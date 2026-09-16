@@ -7,6 +7,14 @@
 </p>
 
 <p align="center">
+  <a href="https://shixingya.github.io/hanzi-practice/"><img src="https://img.shields.io/badge/🎮_在线体验-GitHub_Pages-2ea44f?style=for-the-badge" alt="Live Demo" /></a>
+  &nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License" />
+  &nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/单文件-585_行-orange?style=for-the-badge" alt="Single file" />
+</p>
+
+<p align="center">
   <a href="#-在线体验">在线体验</a> ·
   <a href="#-核心功能">核心功能</a> ·
   <a href="#-三大模式详解">模式详解</a> ·
@@ -16,7 +24,17 @@
 
 ---
 
+## 🌐 在线体验
+
+**👉 立即试玩：<https://shixingya.github.io/hanzi-practice/>**
+
+（已通过 GitHub Pages 部署，无需下载，打开即玩。建议用 Chrome / Edge / Safari，移动端也支持。）
+
+---
+
 ## ✨ 项目亮点
+
+**核心功能一览：**
 
 - 🎯 **零构建、零后端**：单文件 `index.html` 打开即用，任何静态托管都能部署（GitHub Pages / Vercel / Netlify / Nginx）。
 - 🧒 **儿童友好 UI**：糖果紫渐变背景、大圆角按钮、田字格练字区，专为 6–9 岁孩子设计。
