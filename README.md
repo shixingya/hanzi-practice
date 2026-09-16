@@ -9,6 +9,8 @@
 <p align="center">
   <a href="https://shixingya.github.io/hanzi-practice/"><img src="https://img.shields.io/badge/🎮_在线体验-GitHub_Pages-2ea44f?style=for-the-badge" alt="Live Demo" /></a>
   &nbsp;&nbsp;
+  <a href="https://github.com/shixingya/hanzi-practice/releases/latest"><img src="https://img.shields.io/github/v/release/shixingya/hanzi-practice?style=for-the-badge&color=blueviolet" alt="Release" /></a>
+  &nbsp;&nbsp;
   <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License" />
   &nbsp;&nbsp;
   <img src="https://img.shields.io/badge/单文件-585_行-orange?style=for-the-badge" alt="Single file" />
