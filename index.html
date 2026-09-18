@@ -128,11 +128,12 @@ body{font-family:"KaiTi","楷体",STKaiti,"Microsoft YaHei",sans-serif;backgroun
     <p id="homeGreeting">今天也要加油哦！</p>
     <div class="loading-progress" id="loadingProgress"><div class="loading-progress-inner" id="loadingProgressInner"></div></div>
   </div>
-  <div class="difficulty-row" id="difficultyRow">
-    <button class="diff-btn active" data-diff="all" onclick="setDifficulty('all')">全部</button>
-    <button class="diff-btn" data-diff="easy" onclick="setDifficulty('easy')">简单 1-4画</button>
-    <button class="diff-btn" data-diff="medium" onclick="setDifficulty('medium')">中等 5-8画</button>
-    <button class="diff-btn" data-diff="hard" onclick="setDifficulty('hard')">困难 9画+</button>
+  <div class="difficulty-row" id="gradeRow">
+    <button class="diff-btn grade-btn active" data-grade="all" onclick="setGrade('all')">全部</button>
+    <button class="diff-btn grade-btn" data-grade="1上" onclick="setGrade('1上')">一年级上</button>
+    <button class="diff-btn grade-btn" data-grade="1下" onclick="setGrade('1下')">一年级下</button>
+    <button class="diff-btn grade-btn" data-grade="2上" onclick="setGrade('2上')">二年级上</button>
+    <button class="diff-btn grade-btn" data-grade="2下" onclick="setGrade('2下')">二年级下</button>
   </div>
   <div class="mode-cards">
     <div class="mode-card" onclick="enterMode('quiz')">
@@ -225,13 +226,20 @@ body{font-family:"KaiTi","楷体",STKaiti,"Microsoft YaHei",sans-serif;backgroun
   <div class="reward-text" id="rewardText"></div>
 </div>
 <script>
-const CHARS=['一','二','三','十','人','八','大','小','上','下','口','日','月','水','火','山','石','田','木','禾','米','白','云','女','儿','子','了','不','在','有','是','我','你','他','的','来','去','会','个','中','长','门','出','开','见','对','妈','爸','哥','姐','书','读','写','字','本','笔','春','风','冬','花','飞','入','姓','什','么','双','国','王','方','青','清','气','晴','情','请','生','时','动','万','吃','叫','主','住','没','以','后','更','种','样','伙','伴','玩','前','再','成','片','回','事','知','道','声','笑','跑','走','坐','站','看','听','说','唱','画','草','林','鸟','虫','鱼','牛','马','羊','猫','狗','宜','实','色','华','谷','金','尽','层','照','炉','烟','挂','川','劳','尤','其','区','巨','它','安','块','站','豆','识','经','首','于','枝','记','湖','莲','穷','荷','绝','含','窗','岭','鸣','闻','客','何','好','思','乡','整','修','建','真','城','市','民','族','神','祖','洁','欢','庆','旗','曲','找','脱','探','冻','野','烧','村','居','醉','童','散','忙','丝','剪','冲','邮','递','植','注','满','休','息','贝','甲','钱','购','烤','切','保','护','卫','病','医','药','使','便','教','室','操','场','体','育','温','暖','冷','热','凉','甜','苦','酸','辣'];
+const CHARS_BY_GRADE={
+  '1上':['一','二','三','十','人','八','大','小','上','下','口','日','月','水','火','山','石','田','木','禾','米','白','云','女','儿','子','了','不','在','有','是','我','你','他','的','来','去','会','个','中','长','门','出','开','见','对','妈','爸','哥','姐','书','读','写','字','本','笔','走','坐','站','看','听','说','唱','画','草','林','鸟','虫','鱼','牛','马','羊','猫','狗'],
+  '1下':['春','风','冬','花','飞','入','姓','什','么','双','国','王','方','青','清','气','晴','情','请','生','时','动','万','吃','叫','主','住','没','以','后','更','种','样','伙','伴','玩','前','再','成','片','回','事','知','道','声','笑','跑','它','安','块','豆','好','思','乡','找','休','息','病','医','药','教','室','体','育','温','暖','冷','热','凉'],
+  '2上':['宜','实','色','华','谷','金','尽','层','照','炉','烟','挂','川','劳','尤','其','区','巨','识','经','首','于','枝','记','湖','莲','穷','荷','绝','含','窗','岭','鸣','闻','客','何'],
+  '2下':['整','修','建','真','城','市','民','族','神','祖','洁','欢','庆','旗','曲','脱','探','冻','野','烧','村','居','醉','童','散','忙','丝','剪','冲','邮','递','植','注','满','贝','甲','钱','购','烤','切','保','护','卫','使','便','操','场','甜','苦','酸','辣']
+};
+const GRADE_LABELS={'1上':'一年级上','1下':'一年级下','2上':'二年级上','2下':'二年级下'};
+const CHARS=[...CHARS_BY_GRADE['1上'],...CHARS_BY_GRADE['1下'],...CHARS_BY_GRADE['2上'],...CHARS_BY_GRADE['2下']];
 const DIRS=[{icon:'➡️',label:'往右',code:'R'},{icon:'⬇️',label:'往下',code:'D'},{icon:'↙️',label:'往左下',code:'P'},{icon:'↘️',label:'往右下',code:'N'},{icon:'↗️',label:'往右上',code:'T'}];
 const VOICE_PRAISE=['太棒了！','你真厉害！','答对啦，真聪明！','好样的！','太厉害了！','继续加油！','你真棒！','完全正确！'];
 const REWARDS=[{e:'🐼',n:'熊猫'},{e:'🐵',n:'猴子'},{e:'🐰',n:'兔子'},{e:'🐱',n:'小猫'},{e:'🐶',n:'小狗'},{e:'🐘',n:'大象'},{e:'🐧',n:'企鹅'},{e:'🐯',n:'老虎'}];
 const PRAISES=['太棒了！','你真厉害！','继续加油！','真聪明！','太厉害了！','写得真好！','真了不起！','好样的！','棒极了！','太优秀了！'];
 const CONFETTI_COLORS=['#FF6B6B','#4ECDC4','#45B7D1','#FFA07A','#98D8C8','#FFD93D','#C9B1FF','#FF90BC'];
-const DIFFICULTY_RANGES={easy:[1,4],medium:[5,8],hard:[9,99]};
+let currentGrade=localStorage.getItem('hz_grade')||'all';
 
 let stars=parseInt(localStorage.getItem('hz_stars'))||0;
 let maxCombo=parseInt(localStorage.getItem('hz_maxCombo'))||0;
@@ -240,7 +248,6 @@ let settings=JSON.parse(localStorage.getItem('hz_settings')||'{}');
 if(settings.sfx===undefined)settings.sfx=true;
 if(settings.voice===undefined)settings.voice=true;
 if(settings.bgm===undefined)settings.bgm=true;
-let currentDifficulty=localStorage.getItem('hz_difficulty')||'all';
 
 let combo=0, quizLevel=0, writeTotal=0;
 let charDataCache={}, charQueue=[], queueIdx=0;
@@ -305,17 +312,14 @@ async function loadCharData(ch){
   return null;
 }
 
-function filterCharsByDifficulty(chars){
-  if(currentDifficulty==='all')return chars;
-  const [minS,maxS]=DIFFICULTY_RANGES[currentDifficulty]||[1,99];
-  return chars.filter(c=>{
-    const d=charDataCache[c];
-    return d&&d.strokes.length>=minS&&d.strokes.length<=maxS;
-  });
+function filterCharsByGrade(chars){
+  if(currentGrade==='all')return chars;
+  const gradeChars=CHARS_BY_GRADE[currentGrade]||[];
+  return chars.filter(c=>gradeChars.indexOf(c)!==-1);
 }
 
 function buildCharQueue(){
-  const filtered=filterCharsByDifficulty(CHARS.filter(c=>charDataCache[c]));
+  const filtered=filterCharsByGrade(CHARS.filter(c=>charDataCache[c]));
   const sorted=filtered.sort((a,b)=>(charDataCache[a].strokes.length)-(charDataCache[b].strokes.length));
   const groups={};
   sorted.forEach(c=>{const s=charDataCache[c].strokes.length;if(!groups[s])groups[s]=[];groups[s].push(c);});
@@ -357,11 +361,11 @@ function nextInQueue(){
   return charQueue[queueIdx++];
 }
 
-function setDifficulty(diff){
-  currentDifficulty=diff;
-  localStorage.setItem('hz_difficulty',diff);
-  document.querySelectorAll('.diff-btn').forEach(btn=>{
-    btn.classList.toggle('active',btn.dataset.diff===diff);
+function setGrade(grade){
+  currentGrade=grade;
+  localStorage.setItem('hz_grade',grade);
+  document.querySelectorAll('.grade-btn').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.grade===grade);
   });
   buildCharQueue();
 }
@@ -709,8 +713,8 @@ async function boot(){
     document.getElementById('homeGreeting').textContent='加载失败，请检查网络后刷新';
     return;
   }
-  document.querySelectorAll('.diff-btn').forEach(btn=>{
-    btn.classList.toggle('active',btn.dataset.diff===currentDifficulty);
+  document.querySelectorAll('.grade-btn').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.grade===currentGrade);
   });
   updateHomeStats();
   await preloadAll();
