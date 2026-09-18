@@ -32,7 +32,7 @@ body{font-family:"KaiTi","楷体",STKaiti,"Microsoft YaHei",sans-serif;backgroun
 .loading-progress.show{display:block}
 .loading-progress-inner{height:100%;background:linear-gradient(90deg,#FFD700,#FFA000);border-radius:4px;transition:width .3s ease;width:0%}
 .difficulty-row{display:flex;gap:8px;margin:8px 0;flex-wrap:wrap;justify-content:center}
-.diff-btn{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);color:#fff;padding:6px 14px;border-radius:14px;cursor:pointer;font-size:13px;font-family:inherit;transition:all .2s}
+.diff-btn{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);color:#fff;padding:5px 10px;border-radius:12px;cursor:pointer;font-size:12px;font-family:inherit;transition:all .2s;white-space:nowrap}
 .diff-btn:hover{background:rgba(255,255,255,.25)}
 .diff-btn.active{background:#FFD700;color:#333;border-color:#FFD700;font-weight:bold}
 .mode-cards{display:flex;flex-direction:column;gap:14px;width:100%;margin:16px 0}
@@ -130,10 +130,18 @@ body{font-family:"KaiTi","楷体",STKaiti,"Microsoft YaHei",sans-serif;backgroun
   </div>
   <div class="difficulty-row" id="gradeRow">
     <button class="diff-btn grade-btn active" data-grade="all" onclick="setGrade('all')">全部</button>
-    <button class="diff-btn grade-btn" data-grade="1上" onclick="setGrade('1上')">一年级上</button>
-    <button class="diff-btn grade-btn" data-grade="1下" onclick="setGrade('1下')">一年级下</button>
-    <button class="diff-btn grade-btn" data-grade="2上" onclick="setGrade('2上')">二年级上</button>
-    <button class="diff-btn grade-btn" data-grade="2下" onclick="setGrade('2下')">二年级下</button>
+    <button class="diff-btn grade-btn" data-grade="1上" onclick="setGrade('1上')">一上</button>
+    <button class="diff-btn grade-btn" data-grade="1下" onclick="setGrade('1下')">一下</button>
+    <button class="diff-btn grade-btn" data-grade="2上" onclick="setGrade('2上')">二上</button>
+    <button class="diff-btn grade-btn" data-grade="2下" onclick="setGrade('2下')">二下</button>
+    <button class="diff-btn grade-btn" data-grade="3上" onclick="setGrade('3上')">三上</button>
+    <button class="diff-btn grade-btn" data-grade="3下" onclick="setGrade('3下')">三下</button>
+    <button class="diff-btn grade-btn" data-grade="4上" onclick="setGrade('4上')">四上</button>
+    <button class="diff-btn grade-btn" data-grade="4下" onclick="setGrade('4下')">四下</button>
+    <button class="diff-btn grade-btn" data-grade="5上" onclick="setGrade('5上')">五上</button>
+    <button class="diff-btn grade-btn" data-grade="5下" onclick="setGrade('5下')">五下</button>
+    <button class="diff-btn grade-btn" data-grade="6上" onclick="setGrade('6上')">六上</button>
+    <button class="diff-btn grade-btn" data-grade="6下" onclick="setGrade('6下')">六下</button>
   </div>
   <div class="mode-cards">
     <div class="mode-card" onclick="enterMode('quiz')">
@@ -230,10 +238,18 @@ const CHARS_BY_GRADE={
   '1上':['一','二','三','十','人','八','大','小','上','下','口','日','月','水','火','山','石','田','木','禾','米','白','云','女','儿','子','了','不','在','有','是','我','你','他','的','来','去','会','个','中','长','门','出','开','见','对','妈','爸','哥','姐','书','读','写','字','本','笔','走','坐','站','看','听','说','唱','画','草','林','鸟','虫','鱼','牛','马','羊','猫','狗'],
   '1下':['春','风','冬','花','飞','入','姓','什','么','双','国','王','方','青','清','气','晴','情','请','生','时','动','万','吃','叫','主','住','没','以','后','更','种','样','伙','伴','玩','前','再','成','片','回','事','知','道','声','笑','跑','它','安','块','豆','好','思','乡','找','休','息','病','医','药','教','室','体','育','温','暖','冷','热','凉'],
   '2上':['宜','实','色','华','谷','金','尽','层','照','炉','烟','挂','川','劳','尤','其','区','巨','识','经','首','于','枝','记','湖','莲','穷','荷','绝','含','窗','岭','鸣','闻','客','何'],
-  '2下':['整','修','建','真','城','市','民','族','神','祖','洁','欢','庆','旗','曲','脱','探','冻','野','烧','村','居','醉','童','散','忙','丝','剪','冲','邮','递','植','注','满','贝','甲','钱','购','烤','切','保','护','卫','使','便','操','场','甜','苦','酸','辣']
+  '2下':['整','修','建','真','城','市','民','族','神','祖','洁','欢','庆','旗','曲','脱','探','冻','野','烧','村','居','醉','童','散','忙','丝','剪','冲','邮','递','植','注','满','贝','甲','钱','购','烤','切','保','护','卫','使','便','操','场','甜','苦','酸','辣'],
+  '3上':['晨','绒','球','汉','艳','服','装','扮','读','静','停','粗','影','落','荒','笛','舞','狂','罚','假','互','所','够','猜','扬','臂','寒','径','斜','霜','赠','刘','盖','菊','残','君','橙','送','挑','铺','泥','晶','紧','院','印','排','列','规','则','乱','棕','迟','盒','颜','料','票','飘','争','仙','淡','闻','梨','勾','曲','丰','冷','离','等','剩','斧','砍','谷','柴','煤','油','诉','睁','接','旅','咱','怜','救','命','拼','扫','胃','管','刚','流','泪','算','洞','准','备','暴','墙','壁','饿','蜘','蛛','漂','撞','饱','晒','搭','亲','父','沙','啦','响','羽','翠','嘴','悄','吞','哦','捕','蒲','英','盛','耍','喊','欠','钓','而','察','拢','趣','喜','睡','断','楚','至','孤','帆','饮','初','镜','未','磨','遥','银','盘','富','优','浅','错','岩','虾','挺','鼓','数','厚','宝','贵','滨','灰','渔','遍','躺','载','靠','栽','亚','夏','除','踩','洁','脑','袋','严','实','挡','视','线','坛','显','材','软','刮','库','妙','演','奏','琴','柔','感','受','激','击','器','滴','敲','鸣','朝','雾','蒙','鼻','总','抖','露','湿','吸','猎','翅','膀','重','刺','枣','颗','忽','乎','暗','伸','匆','沟','聪','偷','追','腰','司','庭','登','跌','众','弃','持','掌','班','默','腿','轮','投','调','摇','晃','烈','勇','雀','郊','养','粉','粒','男','或','者','冻','惜','肯','诚'],
+  '3下':['融','惠','梅','燕','崇','溪','鸳','鸯','伶','俐','翼','漾','倦','闲','散','纤','杆','痕','挨','蓬','胀','翩','蹈','录','凡','距','款','绸','膜','瞎','益','约','斑','宋','耕','释','冀','陶','罐','骄','谦','虚','懦','弱','恼','代','价','狮','称','禁','皱','配','怨','逼','撒','挣','滔','涯','妇','碌','遵','循','尊','验','屠','苏','魂','酒','牧','符','欲','借','何','兄','独','异','佳','伟','册','宝','存','阿','欧','洲','社','匠','设','计','创','举','且','智','慧','历','斗','芬','芳','内','醒','寿','强','示','昆','修','建','组','蜜','蜂','辨','阻','跨','括','检','查','确','误','途','陌','套','麻','闲','椅','泡','沫','碍','冰','提','棒','状','狐','狸','巧','克','肠','继','续','抬','秘','密','墨','染','竿','碎','拨','浪','葫','蘑','菇','胆','理','付','鬼','夺','骂','仇','差','幻','诱','润','乘','芒','剑','普','通','模','型','危','险','官','参','攻','推','迅','速','退','镇','宁','静','骑','秒','庙','威','武','喂','胖','驴','贼','狼','莫','历','架','粘','胶','偏','抱','旋','纵'],
+  '4上':['潮','据','堤','阔','盼','滚','顿','逐','渐','堵','犹','崩','震','霎','余','淘','鹅','卵','坑','洼','填','庄','稼','俗','跃','葡','稻','熟','豌','按','舒','适','恐','僵','硬','枪','耐','探','愉','曾','达','蚊','即','科','学','横','竖','绳','系','苍','蝇','证','明','研','究','驾','驶','唤','纪','技','改','程','超','索','奥','舶','质','哲','兰','暮','题','侧','峰','庐','缘','降','阁','费','须','逊','输','虎','操','占','嫩','顺','均','叠','隙','柄','萎','瞧','固','宅','临','慎','选','择','址','良','穴','厅','卧','专','卫','较','劈','浊','丈','撑','隆','肢','躯','液','溺','返','衔','悲','惨','猛','兽','敬','佩','坚','定','违','抗','狠','获','著','愤','娲','塌','扎','熄','冶','嗅','奈','煞','拯','嘶','哑','庞','级','链','攀','相','辫','呵','谓','拳','捶','襟','膊','瓶','怖','凭','欺','掐','囊','露','羡','角','殷','豁','撇','霉','亏','哄','拙','唉','砸','踱'],
+  '4下':['杂','篱','徐','疏','锄','剥','构','芍','冠','朴','素','率','倘','附','捣','绘','谐','慰','藉','瞥','绮','和','谈','琥','珀','嗡','脂','拭','渗','俯','番','埋','澎','湃','钝','仅','描','隧','衍','吨','斤','颅','膨','捷','栖','辟','崭','乒','乓','拥','杀','菌','蔬','碳','癌','症','率','疾','灶','揽','焰','驱','践','党','施','懈','碑','肿','胀','搓','惶','吻','偎','萝','膝','叉','挥','融','戒','瘦','乾','剖','窟','窿','混','嘶','维','秩','卑','岗','措','遣','梭','唯'],
+  '5上':['宜','鹤','嫌','朱','框','匣','哨','恩','韵','亩','播','浇','吩','咐','亭','榨','慕','矮','懂','兰','婆','糕','饼','浸','缠','茶','捡','箩','杭','汛','协','隔','访','惰','衡','序','绰','挽','召','臣','议','宫','献','诺','典','抄','罪','怯','拒','荆','冠','俯','喷','枚','箭','筒','束','赤','圈','置','侵','略','筑','堡','党','丘','妨','蔽','陷','拐','酬','誓','谎','牺','悔','扶','郎','爹','嫂','辆','歹','罕','纱','妻','趟','托','祭','乃','熏','亥','恃','哀','拘','泻','潜','胎','皇','履','疆','毁','估','拱','辉','殿','陵','览','境','宏','唐','闯','统','销','域','艇','矛','盾','桅','杆','舱','哗','鱼','鼻'],
+  '5下':['昼','耘','桑','晓','蝴','蚱','嗡','樱','榆','拔','瞎','妒','忌','曹','督','委','鲁','遮','冈','饥','碟','斤','俺','榜','杖','篱','仞','岳','摩','遗','涕','巫','彭','拟','谋','瑞','锻','炼','眷','庆','诊','沃','龄','匪','绷','审','跤','搂','仗','鞭','欺','挠','扳','浆','傅','袱','障','芝','圣','犯','矛','盾','誉','吾','赢','拳','擦','策','荐','艘','航','肆','帽','桅','撕','逗','唬','钩','扭','咧','瞄','姆','祷','雇','哗','艇','翘','艄','码','仪','尊','眺','骏','驰','辽','绵','凳','吆','铃','铛','罐','梁','惠','诣','乃','曰','禽'],
+  '6上':['毯','陈','裳','虹','蹄','腐','羞','涩','微','缀','幽','雅','案','拙','薄','糊','蕾','恰','襟','恍','怨','德','鹊','蝉','律','崖','渡','索','寇','冀','副','榴','抡','贯','棋','悬','沸','涧','雹','屹','悦','迈','屈','政','府','宾','盏','栏','汇','爆','宣','阅','制','坦','距','隆','射','凛','疙','瘩','棍','裁','筹','橡','雕','跺','颓','沮','丧','趴','屉','谜','尚','氧','倾','揭','斑','燥','漠','磁','素','盗','培','咆','哮','嗓','哑','揪','瞪','呻','废','汹','涌','澎','湃','熄','掀','困','唉','淋','嘿','糟','嘛','皱','勺','棚','苔','藓','坪','蔗','瀑','增','缝','谚','袖','篷','缩','疯','瓦','柜','喧','甩','嚷','蒜','酱','唇','蹦','涯','莺','莹','裹','篮','蔼','资','矿','慷','慨','贡','滥','基','睹','哉','巍','弦','锦','曝','矣','谱','莱','茵','盲','纯','键','缕','陶','郑','拜','租','厨','毡','羞','撒','缚','猬','伶','俐','窜','搁','综','澄','萍','漾','削','瞬','凝','骤','掷','陡'],
+  '6下':['醋','饺','摊','拌','筝','眨','宵','燃','戚','贩','彼','贺','轿','骆','驼','腊','粥','腻','咽','匙','搅','稠','肿','熬','褐','缸','脏','筷','御','侯','皎','章','泣','盈','脉','栖','鸦','惧','凄','寞','宴','霉','籍','聊','乏','控','贷','剔','毙','抵','袭','覆','藏','挪','徘','徊','蒸','裸','媚','砖','蚁','叨','绊','绞','耽','揉','绽','沫','搓','惶','吻','偎','络','锤','凿','焚','稚','避','啪','靴','魔','刑','瞅','啃','袍','执','迁','泰','迫','批','标','牺','炊','葬','俱','学','弈','诲','援','辩','蟀','蟋']
 };
-const GRADE_LABELS={'1上':'一年级上','1下':'一年级下','2上':'二年级上','2下':'二年级下'};
-const CHARS=[...CHARS_BY_GRADE['1上'],...CHARS_BY_GRADE['1下'],...CHARS_BY_GRADE['2上'],...CHARS_BY_GRADE['2下']];
+const GRADE_LABELS={'1上':'一年级上','1下':'一年级下','2上':'二年级上','2下':'二年级下','3上':'三年级上','3下':'三年级下','4上':'四年级上','4下':'四年级下','5上':'五年级上','5下':'五年级下','6上':'六年级上','6下':'六年级下'};
+const CHARS=[...CHARS_BY_GRADE['1上'],...CHARS_BY_GRADE['1下'],...CHARS_BY_GRADE['2上'],...CHARS_BY_GRADE['2下'],...CHARS_BY_GRADE['3上'],...CHARS_BY_GRADE['3下'],...CHARS_BY_GRADE['4上'],...CHARS_BY_GRADE['4下'],...CHARS_BY_GRADE['5上'],...CHARS_BY_GRADE['5下'],...CHARS_BY_GRADE['6上'],...CHARS_BY_GRADE['6下']];
 const DIRS=[{icon:'➡️',label:'往右',code:'R'},{icon:'⬇️',label:'往下',code:'D'},{icon:'↙️',label:'往左下',code:'P'},{icon:'↘️',label:'往右下',code:'N'},{icon:'↗️',label:'往右上',code:'T'}];
 const VOICE_PRAISE=['太棒了！','你真厉害！','答对啦，真聪明！','好样的！','太厉害了！','继续加油！','你真棒！','完全正确！'];
 const REWARDS=[{e:'🐼',n:'熊猫'},{e:'🐵',n:'猴子'},{e:'🐰',n:'兔子'},{e:'🐱',n:'小猫'},{e:'🐶',n:'小狗'},{e:'🐘',n:'大象'},{e:'🐧',n:'企鹅'},{e:'🐯',n:'老虎'}];
@@ -332,22 +348,28 @@ function buildCharQueue(){
   queueIdx=0;
 }
 
-async function preloadAll(){
+function getGradeChars(grade){
+  if(grade==='all')return CHARS;
+  return CHARS_BY_GRADE[grade]||[];
+}
+
+async function preloadGrade(grade){
   const greeting=document.getElementById('homeGreeting');
   const progressWrap=document.getElementById('loadingProgress');
   const progressInner=document.getElementById('loadingProgressInner');
+  const chars=getGradeChars(grade);
   progressWrap.classList.add('show');
   greeting.textContent='正在加载字库...';
   const batch=10;
   let loaded=0;
-  for(let i=0;i<CHARS.length;i+=batch){
-    const chunk=CHARS.slice(i,i+batch);
+  for(let i=0;i<chars.length;i+=batch){
+    const chunk=chars.slice(i,i+batch);
     await Promise.all(chunk.map(async ch=>{
       const d=await loadCharData(ch);
       if(d){strokeTypes[ch]=d.medians.map(m=>detectDir(m));}
     }));
     loaded+=chunk.length;
-    const pct=Math.round(loaded/CHARS.length*100);
+    const pct=Math.round(loaded/chars.length*100);
     progressInner.style.width=pct+'%';
     greeting.textContent='正在加载字库... '+pct+'%';
   }
@@ -361,13 +383,23 @@ function nextInQueue(){
   return charQueue[queueIdx++];
 }
 
-function setGrade(grade){
+let gradeLoading=false;
+async function setGrade(grade){
+  if(gradeLoading)return;
   currentGrade=grade;
   localStorage.setItem('hz_grade',grade);
   document.querySelectorAll('.grade-btn').forEach(btn=>{
     btn.classList.toggle('active',btn.dataset.grade===grade);
   });
-  buildCharQueue();
+  const gradeChars=getGradeChars(grade);
+  const loadedCount=gradeChars.filter(c=>charDataCache[c]).length;
+  if(loadedCount<gradeChars.length*0.8){
+    gradeLoading=true;
+    await preloadGrade(grade);
+    gradeLoading=false;
+  }else{
+    buildCharQueue();
+  }
 }
 
 function openSettings(){
@@ -717,7 +749,7 @@ async function boot(){
     btn.classList.toggle('active',btn.dataset.grade===currentGrade);
   });
   updateHomeStats();
-  await preloadAll();
+  await preloadGrade(currentGrade);
 }
 window.addEventListener('DOMContentLoaded',boot);
 </script>
