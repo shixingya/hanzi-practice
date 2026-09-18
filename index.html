@@ -2,7 +2,15 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="汉字闯关">
+<meta name="theme-color" content="#667eea">
+<meta name="format-detection" content="telephone=no">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-page-mode" content="app">
+<link rel="manifest" href='data:application/manifest+json,{"name":"汉字笔顺闯关","short_name":"汉字闯关","description":"趣味汉字笔顺学习小游戏","start_url":".","display":"standalone","orientation":"portrait","background_color":"#667eea","theme_color":"#667eea","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23667eea%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22KaiTi%22%3E汉%3C/text%3E%3C/svg%3E","sizes":"192x192","type":"image/svg+xml"}]}'>
 <title>汉字笔顺闯关</title>
 <script>
 (function(){
@@ -14,7 +22,10 @@
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"KaiTi","楷体",STKaiti,"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+body{font-family:"KaiTi","楷体",STKaiti,"Kaiti SC","BiauKai","DFKai-SB","Microsoft YaHei",sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;touch-action:manipulation;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+button{font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button:active{transform:scale(.95)}
 .screen{display:none;width:100%;max-width:520px;flex-direction:column;align-items:center;padding:10px 16px;animation:fadeIn .4s ease}
 .screen.active{display:flex}
 @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -114,6 +125,9 @@ body{font-family:"KaiTi","楷体",STKaiti,"Microsoft YaHei",sans-serif;backgroun
 .reset-data-btn{width:100%;margin-top:8px;padding:10px;border:1px solid #f44336;border-radius:14px;background:#fff;color:#f44336;font-size:14px;font-family:inherit;cursor:pointer}
 .reset-data-btn:hover{background:#ffebee}
 @media(max-width:420px){.char-box{width:220px;height:220px}.home-title h1{font-size:26px}.mode-card{padding:14px 16px}.mode-card .icon{font-size:32px}.options{gap:8px}.opt-btn{padding:12px 8px;font-size:18px}}
+@media(max-width:360px){.char-box{width:200px;height:200px}.home-title h1{font-size:22px}.stats{gap:6px}.stats span{padding:3px 8px;font-size:11px}.opt-btn{padding:10px 6px;font-size:16px}}
+@media(orientation:landscape) and (max-height:500px){.screen{padding:6px 16px}.home-title{margin:8px 0 4px}.home-title h1{font-size:22px;margin-bottom:2px}.char-box{width:180px;height:180px;margin:4px 0}.mode-cards{flex-direction:row;flex-wrap:wrap;gap:8px;margin:8px 0}.mode-card{flex:1;min-width:140px;padding:10px 12px}.mode-card .icon{font-size:28px}.mode-card .info h3{font-size:14px}.mode-card .info p{font-size:11px}.options{margin:6px 0}.opt-btn{padding:8px 6px;font-size:16px}.quiz-header{margin:4px 0}.quiz-header .question{font-size:18px}.write-controls{margin:4px 0}.w-btn{padding:8px 14px;font-size:13px}.collection-btn{margin:4px 0;padding:8px 16px;font-size:13px}.difficulty-row{margin:4px 0}}
+@media(min-width:768px){.char-box{width:300px;height:300px}.home-title h1{font-size:38px}.mode-card{padding:24px 28px}.opt-btn{padding:20px 12px;font-size:24px}}
 </style>
 </head>
 <body>
@@ -147,6 +161,10 @@ body{font-family:"KaiTi","楷体",STKaiti,"Microsoft YaHei",sans-serif;backgroun
     <div class="mode-card" onclick="enterMode('quiz')">
       <div class="icon">⚔️</div>
       <div class="info"><h3>笔顺大闯关</h3><p>选择题答题，赚星星！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('challenge')">
+      <div class="icon">⏱️</div>
+      <div class="info"><h3>限时挑战</h3><p>60秒极限答题，挑战最高分！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -198,6 +216,47 @@ body{font-family:"KaiTi","楷体",STKaiti,"Microsoft YaHei",sans-serif;backgroun
     <button class="w-btn blue" onclick="writeDemo()">看笔顺</button>
     <button class="w-btn orange" onclick="writeRetry()">再写一次</button>
     <button class="w-btn green" onclick="writeNext()">换一个</button>
+  </div>
+</div>
+<div class="screen" id="screen-challenge">
+  <div class="top-bar">
+    <button class="back-btn" onclick="challengeQuit()">← 退出</button>
+    <div class="stats"><span id="challengeScore">得分 0</span><span id="challengeTimer" style="color:#FFD700;font-weight:bold">⏱️ 60s</span></div>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-inner" id="challengeTimeBar" style="background:linear-gradient(90deg,#4CAF50,#FFD700)"></div></div>
+  <div class="quiz-header">
+    <div class="level" id="challengeLevel">连击 x0</div>
+    <div class="question" id="challengeQuestion">准备开始...</div>
+  </div>
+  <div class="char-box" id="challengeCharBox"></div>
+  <div class="options" id="challengeOptions"></div>
+  <div class="feedback" id="challengeFeedback"></div>
+</div>
+<div class="screen" id="screen-challenge-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="challengeResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:30px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="challengeResultEmoji">🏆</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="challengeResultTitle">挑战结束！</h2>
+    <p style="font-size:16px;opacity:.8;margin-bottom:24px" id="challengeResultSubtitle">再来一次，突破自我！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="resultScore">0</div><div style="font-size:13px;opacity:.7">最终得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="resultCorrect">0</div><div style="font-size:13px;opacity:.7">答对题数</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="resultCombo">0</div><div style="font-size:13px;opacity:.7">最高连击</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="resultAccuracy">0%</div><div style="font-size:13px;opacity:.7">正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏅 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD700" id="resultBest">0</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="challengeStart()">🔄 再来一次</button>
+    <button class="w-btn blue" onclick="challengeShare()">📤 分享成绩</button>
   </div>
 </div>
 <div class="screen" id="screen-collection">
@@ -270,11 +329,31 @@ let charDataCache={}, charQueue=[], queueIdx=0;
 let writer=null, currentChar='', currentMode='';
 let strokeTypes={};
 
+const isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const isWeChat=/MicroMessenger/i.test(navigator.userAgent);
+const isIOS=/iPhone|iPad|iPod/i.test(navigator.userAgent);
+let audioUnlocked=false;
+
 let audioCtx=null;
-function getAC(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx;}
+function getAC(){
+  if(!audioCtx){
+    try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){return null;}
+  }
+  if(audioCtx.state==='suspended'&&audioUnlocked){audioCtx.resume().catch(()=>{});}
+  return audioCtx;
+}
+function unlockAudio(){
+  if(audioUnlocked)return;
+  audioUnlocked=true;
+  const c=getAC();
+  if(c&&c.state==='suspended')c.resume().catch(()=>{});
+}
+document.addEventListener('touchstart',unlockAudio,{once:true,passive:true});
+document.addEventListener('click',unlockAudio,{once:true});
 function tone(f,d,t){
   if(!settings.sfx)return;
-  try{const c=getAC(),o=c.createOscillator(),g=c.createGain();o.type=t||'sine';o.frequency.value=f;g.gain.setValueAtTime(.18,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d);}catch(e){}
+  const c=getAC();if(!c)return;
+  try{const o=c.createOscillator(),g=c.createGain();o.type=t||'sine';o.frequency.value=f;g.gain.setValueAtTime(.18,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d);}catch(e){}
 }
 function sndOk(){tone(880,.12);setTimeout(()=>tone(1100,.15),80);}
 function sndNo(){tone(220,.3,'square');}
@@ -282,8 +361,9 @@ function sndDone(){tone(523,.1);setTimeout(()=>tone(659,.1),100);setTimeout(()=>
 function sndReward(){[523,659,784,1047].forEach((f,i)=>setTimeout(()=>tone(f,.15),i*120));}
 function sndStar(){tone(1200,.08);setTimeout(()=>tone(1500,.1),60);}
 
+const speechSupported=typeof speechSynthesis!=='undefined'&&!isWeChat;
 function speakPraise(){
-  if(!settings.voice)return;
+  if(!settings.voice||!speechSupported)return;
   try{
     const text=VOICE_PRAISE[Math.floor(Math.random()*VOICE_PRAISE.length)];
     const u=new SpeechSynthesisUtterance(text);
@@ -295,7 +375,7 @@ function speakPraise(){
   }catch(e){}
 }
 function speakEncourage(){
-  if(!settings.voice)return;
+  if(!settings.voice||!speechSupported)return;
   try{
     const u=new SpeechSynthesisUtterance('没关系，再试一次！');
     u.lang='zh-CN';u.rate=1;u.pitch=1.2;
@@ -446,6 +526,7 @@ function updateHomeStats(){
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
+  else if(mode==='challenge')challengeStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -579,8 +660,8 @@ async function nextQuizQuestion(){
     questionText='「'+ch+'」的第'+(ordinals[tIdx]||tIdx+1)+'笔往哪个方向写？';
     const correctCode=dirs[tIdx];
     correctAnswer=correctCode;
-    const usedCodes=[correctCode];
-    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctCode);
+    const usedCodes=[correctAnswer];
+    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctAnswer);
     while(usedCodes.length<4){
       const rc=allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0];
       if(rc)usedCodes.push(rc);
@@ -722,6 +803,202 @@ function startWriteQuiz(){
 function writeDemo(){if(writeWriter)writeWriter.animateCharacter({onComplete:startWriteQuiz});}
 function writeRetry(){if(writeWriter)startWriteQuiz();}
 function writeNext(){loadWriteChar(nextInQueue());}
+
+let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
+
+function challengeStart(){
+  challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
+  showScreen('challenge');
+  document.getElementById('challengeScore').textContent='得分 0';
+  document.getElementById('challengeTimer').textContent='⏱️ 60s';
+  document.getElementById('challengeTimer').style.color='#FFD700';
+  document.getElementById('challengeTimeBar').style.width='100%';
+  document.getElementById('challengeLevel').textContent='连击 x0';
+  document.getElementById('challengeQuestion').textContent='准备开始...';
+  document.getElementById('challengeFeedback').textContent='';
+  document.getElementById('challengeOptions').innerHTML='';
+  document.getElementById('challengeCharBox').innerHTML='';
+  let countdown=3;
+  document.getElementById('challengeQuestion').textContent=countdown+'...';
+  const cdInterval=setInterval(()=>{
+    countdown--;
+    if(countdown>0){
+      document.getElementById('challengeQuestion').textContent=countdown+'...';
+      sndStar();
+    }else{
+      clearInterval(cdInterval);
+      document.getElementById('challengeQuestion').textContent='开始！';
+      sndReward();
+      challengeState.timerId=setInterval(challengeTick,1000);
+      setTimeout(challengeNextQuestion,500);
+    }
+  },800);
+}
+
+function challengeTick(){
+  challengeState.timeLeft--;
+  const timerEl=document.getElementById('challengeTimer');
+  timerEl.textContent='⏱️ '+challengeState.timeLeft+'s';
+  document.getElementById('challengeTimeBar').style.width=(challengeState.timeLeft/60*100)+'%';
+  if(challengeState.timeLeft<=10){
+    timerEl.style.color='#EF5350';
+    if(challengeState.timeLeft<=5)sndNo();
+  }else if(challengeState.timeLeft<=20){
+    timerEl.style.color='#FF9800';
+  }
+  if(challengeState.timeLeft<=0){
+    challengeEnd();
+  }
+}
+
+async function challengeNextQuestion(){
+  if(!challengeState.running)return;
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data){challengeNextQuestion();return;}
+  challengeState.currentChar=ch;
+  const numStrokes=data.strokes.length;
+  const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+  const qType=Math.random()<0.6?'count':'dir';
+  let questionText,correctAnswer,options;
+  if(qType==='count'){
+    questionText='「'+ch+'」一共有几笔？';
+    correctAnswer=String(numStrokes);
+    const nums=[numStrokes];
+    while(nums.length<4){
+      const r=numStrokes+Math.floor(Math.random()*5)-2;
+      if(r>=1&&r<=20&&nums.indexOf(r)===-1)nums.push(r);
+    }
+    options=nums.sort(()=>Math.random()-.5).map(String);
+  }else{
+    const tIdx=Math.floor(Math.random()*numStrokes);
+    const ordinals=['一','二','三','四','五','六','七','八','九','十'];
+    questionText='「'+ch+'」的第'+(ordinals[tIdx]||tIdx+1)+'笔往哪写？';
+    correctAnswer=dirs[tIdx];
+    const usedCodes=[correctAnswer];
+    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctAnswer);
+    while(usedCodes.length<4){
+      const rc=allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0];
+      if(rc)usedCodes.push(rc);
+    }
+    options=usedCodes.sort(()=>Math.random()-.5);
+  }
+  challengeState.currentAnswer=correctAnswer;
+  challengeState.currentOptions=options;
+  document.getElementById('challengeQuestion').textContent=questionText;
+  document.getElementById('challengeFeedback').textContent='';
+  const box=document.getElementById('challengeCharBox');box.innerHTML='';
+  const size=Math.min(box.offsetWidth,box.offsetHeight)||260;
+  HanziWriter.create(box,ch,{width:size,height:size,padding:Math.round(size*.08),renderer:'svg',showOutline:true,showCharacter:true,strokeColor:'#333',outlineColor:'#ddd',highlightColor:'#FF6F00',charDataLoader:(c,cb)=>cb(data)});
+  const optDiv=document.getElementById('challengeOptions');optDiv.innerHTML='';
+  options.forEach(opt=>{
+    const btn=document.createElement('button');btn.className='opt-btn';
+    btn.dataset.value=opt;
+    if(qType==='count'){
+      btn.innerHTML='<span style="font-size:32px;font-weight:bold">'+opt+'</span><br><span style="font-size:13px;color:#888">笔</span>';
+    }else{
+      const d=DIRS.find(x=>x.code===opt);
+      btn.innerHTML='<span style="font-size:36px">'+(d?d.icon:'➡️')+'</span><br><span style="font-size:14px;color:#555">'+(d?d.label:'')+'</span>';
+    }
+    btn.onclick=()=>challengeAnswer(opt,btn,optDiv);
+    optDiv.appendChild(btn);
+  });
+}
+
+function challengeAnswer(selected,btn,optDiv){
+  if(!challengeState.running)return;
+  const btns=optDiv.querySelectorAll('.opt-btn');
+  btns.forEach(b=>b.disabled=true);
+  challengeState.total++;
+  if(selected===challengeState.currentAnswer){
+    btn.classList.add('correct');
+    challengeState.correct++;
+    challengeState.currentCombo++;
+    if(challengeState.currentCombo>challengeState.maxCombo)challengeState.maxCombo=challengeState.currentCombo;
+    const baseScore=10;
+    const comboBonus=Math.min(challengeState.currentCombo,10)*2;
+    const earned=baseScore+comboBonus;
+    challengeState.score+=earned;
+    challengeState.timeLeft=Math.min(challengeState.timeLeft+2,99);
+    document.getElementById('challengeTimer').textContent='⏱️ '+challengeState.timeLeft+'s';
+    document.getElementById('challengeTimeBar').style.width=(Math.min(challengeState.timeLeft,60)/60*100)+'%';
+    sndOk();
+    if(challengeState.currentCombo>=3)showComboEffect(challengeState.currentCombo);
+    document.getElementById('challengeScore').textContent='得分 '+challengeState.score;
+    document.getElementById('challengeLevel').textContent='连击 x'+challengeState.currentCombo;
+    document.getElementById('challengeFeedback').innerHTML='<span style="color:#69F0AE">✓ +'+earned+'分 +2秒</span>';
+    setTimeout(challengeNextQuestion,600);
+  }else{
+    btn.classList.add('wrong');
+    challengeState.currentCombo=0;
+    challengeState.timeLeft=Math.max(challengeState.timeLeft-3,0);
+    document.getElementById('challengeTimer').textContent='⏱️ '+challengeState.timeLeft+'s';
+    document.getElementById('challengeTimeBar').style.width=(Math.min(challengeState.timeLeft,60)/60*100)+'%';
+    btns.forEach(b=>{if(b.dataset.value===challengeState.currentAnswer)b.classList.add('reveal');});
+    sndNo();
+    document.getElementById('challengeLevel').textContent='连击 x0';
+    document.getElementById('challengeFeedback').innerHTML='<span style="color:#FFAB91">✗ -3秒</span>';
+    if(challengeState.timeLeft<=0){challengeEnd();return;}
+    setTimeout(challengeNextQuestion,1200);
+  }
+}
+
+function challengeEnd(){
+  challengeState.running=false;
+  if(challengeState.timerId){clearInterval(challengeState.timerId);challengeState.timerId=null;}
+  const best=parseInt(localStorage.getItem('hz_challenge_best')||'0');
+  const isNewBest=challengeState.score>best;
+  if(isNewBest)localStorage.setItem('hz_challenge_best',challengeState.score);
+  const earnedStars=Math.min(Math.floor(challengeState.score/10),20);
+  if(earnedStars>0)addStars(earnedStars);
+  showScreen('challenge-result');
+  document.getElementById('resultScore').textContent=challengeState.score;
+  document.getElementById('resultCorrect').textContent=challengeState.correct+'/'+challengeState.total;
+  document.getElementById('resultCombo').textContent=challengeState.maxCombo;
+  const accuracy=challengeState.total>0?Math.round(challengeState.correct/challengeState.total*100):0;
+  document.getElementById('resultAccuracy').textContent=accuracy+'%';
+  document.getElementById('resultBest').textContent=Math.max(best,challengeState.score);
+  document.getElementById('challengeResultStars').textContent='⭐ +'+earnedStars;
+  let emoji,title,subtitle;
+  if(challengeState.score>=300){emoji='🏆';title='汉字大师！';subtitle='你已经是汉字界的传奇了！';}
+  else if(challengeState.score>=200){emoji='🥇';title='太厉害了！';subtitle='超越了90%的玩家！';}
+  else if(challengeState.score>=120){emoji='🥈';title='表现优秀！';subtitle='继续努力，冲击金牌！';}
+  else if(challengeState.score>=60){emoji='🥉';title='还不错！';subtitle='多练习就能更上一层楼！';}
+  else{emoji='💪';title='继续加油！';subtitle='熟能生巧，再来一次吧！';}
+  if(isNewBest&&challengeState.score>0){title='🎉 新纪录！'+title;}
+  document.getElementById('challengeResultEmoji').textContent=emoji;
+  document.getElementById('challengeResultTitle').textContent=title;
+  document.getElementById('challengeResultSubtitle').textContent=subtitle;
+  sndReward();
+}
+
+function challengeQuit(){
+  if(challengeState.running){
+    if(!confirm('确定要退出挑战吗？当前进度将丢失。'))return;
+    challengeState.running=false;
+    if(challengeState.timerId){clearInterval(challengeState.timerId);challengeState.timerId=null;}
+  }
+  goHome();
+}
+
+function challengeShare(){
+  const text='🏆 我在「汉字笔顺闯关」限时挑战中获得了 '+challengeState.score+' 分！\n'+
+    '✅ 答对 '+challengeState.correct+'/'+challengeState.total+' 题\n'+
+    '🔥 最高连击 '+challengeState.maxCombo+'\n'+
+    '🏅 历史最高分 '+localStorage.getItem('hz_challenge_best'||'0')+'\n\n'+
+    '快来挑战我吧！'+location.href;
+  if(navigator.share){
+    navigator.share({title:'汉字笔顺闯关 - 限时挑战',text:text,url:location.href}).catch(()=>{});
+  }else if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(()=>{
+      alert('成绩已复制到剪贴板，快去分享给朋友吧！');
+    }).catch(()=>{
+      prompt('复制以下内容分享给朋友：',text);
+    });
+  }else{
+    prompt('复制以下内容分享给朋友：',text);
+  }
+}
 
 function showCollection(){
   showScreen('collection');
