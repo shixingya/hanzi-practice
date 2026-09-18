@@ -128,6 +128,55 @@ button:active{transform:scale(.95)}
 @media(max-width:360px){.char-box{width:200px;height:200px}.home-title h1{font-size:22px}.stats{gap:6px}.stats span{padding:3px 8px;font-size:11px}.opt-btn{padding:10px 6px;font-size:16px}}
 @media(orientation:landscape) and (max-height:500px){.screen{padding:6px 16px}.home-title{margin:8px 0 4px}.home-title h1{font-size:22px;margin-bottom:2px}.char-box{width:180px;height:180px;margin:4px 0}.mode-cards{flex-direction:row;flex-wrap:wrap;gap:8px;margin:8px 0}.mode-card{flex:1;min-width:140px;padding:10px 12px}.mode-card .icon{font-size:28px}.mode-card .info h3{font-size:14px}.mode-card .info p{font-size:11px}.options{margin:6px 0}.opt-btn{padding:8px 6px;font-size:16px}.quiz-header{margin:4px 0}.quiz-header .question{font-size:18px}.write-controls{margin:4px 0}.w-btn{padding:8px 14px;font-size:13px}.collection-btn{margin:4px 0;padding:8px 16px;font-size:13px}.difficulty-row{margin:4px 0}}
 @media(min-width:768px){.char-box{width:300px;height:300px}.home-title h1{font-size:38px}.mode-card{padding:24px 28px}.opt-btn{padding:20px 12px;font-size:24px}}
+.chapter-scroll{display:flex;gap:10px;width:100%;overflow-x:auto;padding:8px 0;margin:8px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chapter-scroll::-webkit-scrollbar{display:none}
+.chapter-chip{flex-shrink:0;padding:8px 16px;border-radius:20px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);color:#fff;font-size:13px;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:inherit}
+.chapter-chip:hover{background:rgba(255,255,255,.25)}
+.chapter-chip.active{background:#FFD700;color:#333;border-color:#FFD700;font-weight:bold}
+.chapter-chip.locked{opacity:.4;cursor:not-allowed}
+.chapter-chip .chip-stars{font-size:11px;margin-left:4px}
+.adventure-map{width:100%;background:rgba(255,255,255,.08);border-radius:20px;padding:20px 16px;margin:10px 0;position:relative;min-height:300px;overflow:hidden}
+.map-path{position:absolute;left:50%;top:0;bottom:0;width:4px;background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.1));transform:translateX(-50%);border-radius:2px}
+.map-level{position:relative;display:flex;align-items:center;margin-bottom:24px;z-index:2}
+.map-level:nth-child(odd){flex-direction:row}
+.map-level:nth-child(even){flex-direction:row-reverse}
+.level-node{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;border:3px solid #fff}
+.level-node:hover{transform:scale(1.1)}
+.level-node.unlocked{background:linear-gradient(135deg,#FFD700,#FFA000);box-shadow:0 4px 16px rgba(255,215,0,.4)}
+.level-node.current{background:linear-gradient(135deg,#4CAF50,#2E7D32);box-shadow:0 0 0 4px rgba(76,175,80,.3),0 4px 16px rgba(76,175,80,.4);animation:pulseNode 1.5s ease-in-out infinite}
+@keyframes pulseNode{0%,100%{box-shadow:0 0 0 4px rgba(76,175,80,.3),0 4px 16px rgba(76,175,80,.4)}50%{box-shadow:0 0 0 8px rgba(76,175,80,.15),0 4px 20px rgba(76,175,80,.5)}}
+.level-node.locked{background:rgba(255,255,255,.2);cursor:not-allowed;opacity:.6}
+.level-node.completed{background:linear-gradient(135deg,#42A5F5,#1565C0);box-shadow:0 4px 16px rgba(66,165,245,.4)}
+.level-stars{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);font-size:10px;white-space:nowrap;background:rgba(0,0,0,.6);padding:1px 6px;border-radius:8px;color:#FFD700}
+.level-info{flex:1;padding:0 16px;color:#fff}
+.level-info .level-name{font-size:15px;font-weight:bold;margin-bottom:2px}
+.level-info .level-desc{font-size:12px;opacity:.7}
+.level-info .level-progress{font-size:11px;margin-top:4px;color:#FFD700}
+.challenge-goal{background:rgba(255,255,255,.12);border-radius:12px;padding:8px 16px;margin:6px 0;color:#fff;font-size:13px;text-align:center;width:100%}
+.challenge-goal .goal-text{color:#FFD700;font-weight:bold}
+.level-result-stars{display:flex;justify-content:center;gap:12px;margin:16px 0}
+.result-star{font-size:48px;opacity:.2;transform:scale(.5);transition:all .4s}
+.result-star.earned{opacity:1;transform:scale(1);animation:starPop .5s ease-out}
+@keyframes starPop{0%{transform:scale(0) rotate(-180deg)}60%{transform:scale(1.3) rotate(10deg)}100%{transform:scale(1) rotate(0)}}
+.unlock-badge{background:rgba(255,255,255,.1);border-radius:16px;padding:16px;margin:12px 0;text-align:center;color:#fff}
+.unlock-badge .badge-icon{font-size:48px;display:block;margin-bottom:8px;animation:badgeGlow 2s ease-in-out infinite}
+@keyframes badgeGlow{0%,100%{filter:drop-shadow(0 0 8px rgba(255,215,0,.5))}50%{filter:drop-shadow(0 0 20px rgba(255,215,0,.9))}}
+.unlock-badge .badge-name{font-size:18px;font-weight:bold;color:#FFD700}
+.unlock-badge .badge-desc{font-size:13px;opacity:.7;margin-top:4px}
+.badge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;margin:12px 0}
+.badge-card{background:rgba(255,255,255,.1);border-radius:16px;padding:14px 8px;text-align:center;color:#fff;transition:transform .2s}
+.badge-card:hover{transform:scale(1.05)}
+.badge-card.locked{opacity:.35;filter:grayscale(1)}
+.badge-card .badge-emoji{font-size:36px;display:block;margin-bottom:6px}
+.badge-card .badge-title{font-size:12px;font-weight:bold;margin-bottom:2px}
+.badge-card .badge-sub{font-size:10px;opacity:.6}
+.badge-card.earned{background:linear-gradient(135deg,rgba(255,215,0,.2),rgba(255,160,0,.1));border:1px solid rgba(255,215,0,.3)}
+.share-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:none;justify-content:center;align-items:center;z-index:3000;flex-direction:column;padding:20px}
+.share-overlay.active{display:flex}
+.share-card{background:#fff;border-radius:20px;overflow:hidden;max-width:360px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.share-card canvas{display:block;width:100%}
+.share-hint{color:#fff;font-size:14px;margin-top:16px;text-align:center;opacity:.8}
+.share-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,.2);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -161,6 +210,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('quiz')">
       <div class="icon">⚔️</div>
       <div class="info"><h3>笔顺大闯关</h3><p>选择题答题，赚星星！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('adventure')">
+      <div class="icon">🗺️</div>
+      <div class="info"><h3>冒险地图</h3><p>闯关解锁徽章，晒朋友圈！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('challenge')">
       <div class="icon">⏱️</div>
@@ -259,6 +312,89 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="challengeShare()">📤 分享成绩</button>
   </div>
 </div>
+<div class="screen" id="screen-adventure">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="advStars">⭐ 0</span><span id="advBadges">🏅 0/12</span></div>
+    <button class="icon-btn" onclick="showBadges()" title="徽章墙">🏅</button>
+  </div>
+  <div class="home-title" style="margin:10px 0 4px">
+    <h2 style="color:#fff;font-size:22px">🗺️ 汉字冒险之旅</h2>
+    <p style="font-size:13px;opacity:.8">闯关解锁徽章，晒出你的汉字实力！</p>
+  </div>
+  <div class="chapter-scroll" id="chapterScroll"></div>
+  <div class="adventure-map" id="adventureMap">
+    <div class="map-path"></div>
+  </div>
+</div>
+<div class="screen" id="screen-adventure-battle">
+  <div class="top-bar">
+    <button class="back-btn" onclick="adventureQuit()">← 退出</button>
+    <div class="stats"><span id="advBattleLevel">第1关</span><span id="advBattleProgress">0/5</span></div>
+  </div>
+  <div class="challenge-goal">🎯 目标：答对 <span class="goal-text" id="advBattleTarget">5</span> 题通关 | 当前连击 <span class="goal-text" id="advBattleCombo">0</span></div>
+  <div class="progress-bar-wrap"><div class="progress-bar-inner" id="advBattleBar"></div></div>
+  <div class="quiz-header">
+    <div class="level" id="advBattleCharName">-</div>
+    <div class="question" id="advBattleQuestion">准备开始...</div>
+  </div>
+  <div class="char-box" id="advBattleCharBox"></div>
+  <div class="options" id="advBattleOptions"></div>
+  <div class="feedback" id="advBattleFeedback"></div>
+</div>
+<div class="screen" id="screen-adventure-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goAdventureMap()">← 地图</button>
+    <div class="stats"><span id="advResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:20px;color:#fff">
+    <div style="font-size:48px;margin-bottom:8px" id="advResultEmoji">🎉</div>
+    <h2 style="font-size:24px;margin-bottom:4px" id="advResultTitle">关卡通过！</h2>
+    <p style="font-size:14px;opacity:.8" id="advResultSubtitle">太棒了，继续前进！</p>
+  </div>
+  <div class="level-result-stars" id="advResultStarDisplay">
+    <span class="result-star">⭐</span>
+    <span class="result-star">⭐</span>
+    <span class="result-star">⭐</span>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:16px;margin-bottom:12px;color:#fff;text-align:center">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+      <div><div style="font-size:24px;font-weight:bold;color:#4CAF50" id="advResultCorrect">0</div><div style="font-size:11px;opacity:.7">答对</div></div>
+      <div><div style="font-size:24px;font-weight:bold;color:#FF9800" id="advResultAccuracy">0%</div><div style="font-size:11px;opacity:.7">正确率</div></div>
+      <div><div style="font-size:24px;font-weight:bold;color:#2196F3" id="advResultMaxCombo">0</div><div style="font-size:11px;opacity:.7">最高连击</div></div>
+    </div>
+  </div>
+  <div id="advResultBadgeUnlock" style="display:none">
+    <div class="unlock-badge">
+      <span class="badge-icon" id="advResultBadgeIcon">🏅</span>
+      <div class="badge-name" id="advResultBadgeName">徽章解锁</div>
+      <div class="badge-desc" id="advResultBadgeDesc">恭喜获得新徽章！</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn green" onclick="goAdventureMap()">🗺️ 返回地图</button>
+    <button class="w-btn orange" onclick="adventureShareResult()">📤 晒徽章</button>
+  </div>
+</div>
+<div class="screen" id="screen-badges">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goAdventureMap()">← 返回</button>
+    <div class="stats"><span id="badgesCount">🏅 0/12</span></div>
+  </div>
+  <div class="home-title" style="margin:10px 0 4px">
+    <h2 style="color:#fff;font-size:22px">🏅 我的徽章墙</h2>
+    <p style="font-size:13px;opacity:.8">收集所有年级徽章，成为汉字大师！</p>
+  </div>
+  <div class="badge-grid" id="badgeGrid"></div>
+  <div style="margin-top:16px;width:100%">
+    <button class="w-btn blue" style="width:100%" onclick="shareAllBadges()">📤 晒出我的徽章墙</button>
+  </div>
+</div>
+<div class="share-overlay" id="shareOverlay">
+  <button class="share-close" onclick="closeShare()">✕</button>
+  <div class="share-card"><canvas id="shareCanvas" width="720" height="1080"></canvas></div>
+  <p class="share-hint">💡 长按图片保存到相册，分享到朋友圈</p>
+</div>
 <div class="screen" id="screen-collection">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -315,7 +451,6 @@ const REWARDS=[{e:'🐼',n:'熊猫'},{e:'🐵',n:'猴子'},{e:'🐰',n:'兔子'}
 const PRAISES=['太棒了！','你真厉害！','继续加油！','真聪明！','太厉害了！','写得真好！','真了不起！','好样的！','棒极了！','太优秀了！'];
 const CONFETTI_COLORS=['#FF6B6B','#4ECDC4','#45B7D1','#FFA07A','#98D8C8','#FFD93D','#C9B1FF','#FF90BC'];
 let currentGrade=localStorage.getItem('hz_grade')||'all';
-
 let stars=parseInt(localStorage.getItem('hz_stars'))||0;
 let maxCombo=parseInt(localStorage.getItem('hz_maxCombo'))||0;
 let collected=JSON.parse(localStorage.getItem('hz_collected')||'[]');
@@ -323,17 +458,14 @@ let settings=JSON.parse(localStorage.getItem('hz_settings')||'{}');
 if(settings.sfx===undefined)settings.sfx=true;
 if(settings.voice===undefined)settings.voice=true;
 if(settings.bgm===undefined)settings.bgm=true;
-
 let combo=0, quizLevel=0, writeTotal=0;
 let charDataCache={}, charQueue=[], queueIdx=0;
 let writer=null, currentChar='', currentMode='';
 let strokeTypes={};
-
 const isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 const isWeChat=/MicroMessenger/i.test(navigator.userAgent);
 const isIOS=/iPhone|iPad|iPod/i.test(navigator.userAgent);
 let audioUnlocked=false;
-
 let audioCtx=null;
 function getAC(){
   if(!audioCtx){
@@ -360,7 +492,6 @@ function sndNo(){tone(220,.3,'square');}
 function sndDone(){tone(523,.1);setTimeout(()=>tone(659,.1),100);setTimeout(()=>tone(784,.2),200);}
 function sndReward(){[523,659,784,1047].forEach((f,i)=>setTimeout(()=>tone(f,.15),i*120));}
 function sndStar(){tone(1200,.08);setTimeout(()=>tone(1500,.1),60);}
-
 const speechSupported=typeof speechSynthesis!=='undefined'&&!isWeChat;
 function speakPraise(){
   if(!settings.voice||!speechSupported)return;
@@ -382,7 +513,6 @@ function speakEncourage(){
     speechSynthesis.speak(u);
   }catch(e){}
 }
-
 function detectDir(median){
   if(!median||median.length<2)return'R';
   const n=median.length;
@@ -398,7 +528,6 @@ function detectDir(median){
   if(angle>=80)return'D';
   return'R';
 }
-
 async function loadCharData(ch){
   if(charDataCache[ch])return charDataCache[ch];
   const bases=['https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0','https://unpkg.com/hanzi-writer-data@2.0'];
@@ -407,13 +536,11 @@ async function loadCharData(ch){
   }
   return null;
 }
-
 function filterCharsByGrade(chars){
   if(currentGrade==='all')return chars;
   const gradeChars=CHARS_BY_GRADE[currentGrade]||[];
   return chars.filter(c=>gradeChars.indexOf(c)!==-1);
 }
-
 function buildCharQueue(){
   const filtered=filterCharsByGrade(CHARS.filter(c=>charDataCache[c]));
   const sorted=filtered.sort((a,b)=>(charDataCache[a].strokes.length)-(charDataCache[b].strokes.length));
@@ -427,12 +554,10 @@ function buildCharQueue(){
   });
   queueIdx=0;
 }
-
 function getGradeChars(grade){
   if(grade==='all')return CHARS;
   return CHARS_BY_GRADE[grade]||[];
 }
-
 async function preloadGrade(grade){
   const greeting=document.getElementById('homeGreeting');
   const progressWrap=document.getElementById('loadingProgress');
@@ -457,12 +582,10 @@ async function preloadGrade(grade){
   progressWrap.classList.remove('show');
   greeting.textContent='今天也要加油哦！';
 }
-
 function nextInQueue(){
   if(queueIdx>=charQueue.length)queueIdx=0;
   return charQueue[queueIdx++];
 }
-
 let gradeLoading=false;
 async function setGrade(grade){
   if(gradeLoading)return;
@@ -481,7 +604,6 @@ async function setGrade(grade){
     buildCharQueue();
   }
 }
-
 function openSettings(){
   document.getElementById('toggleSfx').classList.toggle('on',settings.sfx);
   document.getElementById('toggleVoice').classList.toggle('on',settings.voice);
@@ -510,7 +632,6 @@ function resetAllData(){
   updateAllStarDisplays();
   closeSettings();
 }
-
 function showScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-'+name).classList.add('active');
@@ -526,12 +647,12 @@ function updateHomeStats(){
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
+  else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
 }
-
 function addStars(n){
   stars+=n;localStorage.setItem('hz_stars',stars);
   checkUnlock();updateAllStarDisplays();
@@ -577,7 +698,6 @@ function spawnStarFly(x,y){
     setTimeout(()=>s.remove(),1200);
   }
 }
-
 function spawnConfetti(){
   const bg=document.getElementById('rewardBg');bg.innerHTML='';
   for(let i=0;i<25;i++){
@@ -713,7 +833,6 @@ function handleAnswer(selected,correct,btn,optDiv,qType){
     setTimeout(nextQuizQuestion,2500);
   }
 }
-
 let labelWriter=null,labelData=null;
 async function startLabels(){
   showScreen('labels');
@@ -774,7 +893,6 @@ function labelsPlay(){
   labelWriter.hideCharacter(()=>playNext());
 }
 function labelsNext(){loadLabelChar(nextInQueue());}
-
 let writeWriter=null;
 async function startWrite(){
   showScreen('write');writeTotal=0;
@@ -803,9 +921,7 @@ function startWriteQuiz(){
 function writeDemo(){if(writeWriter)writeWriter.animateCharacter({onComplete:startWriteQuiz});}
 function writeRetry(){if(writeWriter)startWriteQuiz();}
 function writeNext(){loadWriteChar(nextInQueue());}
-
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
-
 function challengeStart(){
   challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
   showScreen('challenge');
@@ -834,7 +950,6 @@ function challengeStart(){
     }
   },800);
 }
-
 function challengeTick(){
   challengeState.timeLeft--;
   const timerEl=document.getElementById('challengeTimer');
@@ -850,7 +965,6 @@ function challengeTick(){
     challengeEnd();
   }
 }
-
 async function challengeNextQuestion(){
   if(!challengeState.running)return;
   const ch=nextInQueue();
@@ -904,7 +1018,6 @@ async function challengeNextQuestion(){
     optDiv.appendChild(btn);
   });
 }
-
 function challengeAnswer(selected,btn,optDiv){
   if(!challengeState.running)return;
   const btns=optDiv.querySelectorAll('.opt-btn');
@@ -942,7 +1055,6 @@ function challengeAnswer(selected,btn,optDiv){
     setTimeout(challengeNextQuestion,1200);
   }
 }
-
 function challengeEnd(){
   challengeState.running=false;
   if(challengeState.timerId){clearInterval(challengeState.timerId);challengeState.timerId=null;}
@@ -971,7 +1083,6 @@ function challengeEnd(){
   document.getElementById('challengeResultSubtitle').textContent=subtitle;
   sndReward();
 }
-
 function challengeQuit(){
   if(challengeState.running){
     if(!confirm('确定要退出挑战吗？当前进度将丢失。'))return;
@@ -980,7 +1091,6 @@ function challengeQuit(){
   }
   goHome();
 }
-
 function challengeShare(){
   const text='🏆 我在「汉字笔顺闯关」限时挑战中获得了 '+challengeState.score+' 分！\n'+
     '✅ 答对 '+challengeState.correct+'/'+challengeState.total+' 题\n'+
@@ -999,7 +1109,473 @@ function challengeShare(){
     prompt('复制以下内容分享给朋友：',text);
   }
 }
-
+const ADVENTURE_CHAPTERS=[
+  {id:'1上',name:'一年级上',icon:'🌱',color:'#4CAF50',badge:'🥉',badgeName:'启蒙之星',badgeDesc:'完成一年级上册全部关卡'},
+  {id:'1下',name:'一年级下',icon:'🌿',color:'#66BB6A',badge:'🥉',badgeName:'萌芽之星',badgeDesc:'完成一年级下册全部关卡'},
+  {id:'2上',name:'二年级上',icon:'🌳',color:'#26A69A',badge:'🥈',badgeName:'成长之星',badgeDesc:'完成二年级上册全部关卡'},
+  {id:'2下',name:'二年级下',icon:'🌲',color:'#00897B',badge:'🥈',badgeName:'茁壮之星',badgeDesc:'完成二年级下册全部关卡'},
+  {id:'3上',name:'三年级上',icon:'🌺',color:'#EF5350',badge:'🥈',badgeName:'绽放之星',badgeDesc:'完成三年级上册全部关卡'},
+  {id:'3下',name:'三年级下',icon:'🌸',color:'#EC407A',badge:'🥈',badgeName:'绚烂之星',badgeDesc:'完成三年级下册全部关卡'},
+  {id:'4上',name:'四年级上',icon:'☀️',color:'#FFA726',badge:'🥇',badgeName:'耀阳之星',badgeDesc:'完成四年级上册全部关卡'},
+  {id:'4下',name:'四年级下',icon:'⭐',color:'#FFB300',badge:'🥇',badgeName:'璀璨之星',badgeDesc:'完成四年级下册全部关卡'},
+  {id:'5上',name:'五年级上',icon:'🌙',color:'#7E57C2',badge:'🥇',badgeName:'月华之星',badgeDesc:'完成五年级上册全部关卡'},
+  {id:'5下',name:'五年级下',icon:'✨',color:'#5C6BC0',badge:'🥇',badgeName:'星辰之星',badgeDesc:'完成五年级下册全部关卡'},
+  {id:'6上',name:'六年级上',icon:'👑',color:'#8D6E63',badge:'💎',badgeName:'王者之星',badgeDesc:'完成六年级上册全部关卡'},
+  {id:'6下',name:'六年级下',icon:'🏆',color:'#5D4037',badge:'💎',badgeName:'传奇之星',badgeDesc:'完成六年级下册全部关卡'}
+];
+const LEVEL_CONFIGS=[
+  {name:'笔画入门',desc:'1-3画简单字',minStroke:1,maxStroke:3,target:5,icon:'🔤'},
+  {name:'基础巩固',desc:'4-5画常用字',minStroke:4,maxStroke:5,target:5,icon:'📖'},
+  {name:'进阶挑战',desc:'6-7画中等字',minStroke:6,maxStroke:7,target:5,icon:'⚔️'},
+  {name:'高手之路',desc:'8-9画复杂字',minStroke:8,maxStroke:9,target:5,icon:'🔥'},
+  {name:'终极Boss',desc:'10画以上难字',minStroke:10,maxStroke:99,target:5,icon:'👹'}
+];
+let adventureProgress=JSON.parse(localStorage.getItem('hz_adventure_progress')||'{}');
+let badges=JSON.parse(localStorage.getItem('hz_badges')||'[]');
+let currentChapter='1上';
+let advBattleState={levelIdx:0,correct:0,total:0,maxCombo:0,currentCombo:0,chars:[],charIdx:0,target:5,finished:false};
+function saveAdventureProgress(){localStorage.setItem('hz_adventure_progress',JSON.stringify(adventureProgress));}
+function saveBadges(){localStorage.setItem('hz_badges',JSON.stringify(badges));}
+function getChapterProgress(chapterId){
+  if(!adventureProgress[chapterId]){
+    adventureProgress[chapterId]=LEVEL_CONFIGS.map(()=>({stars:0,completed:false,bestAccuracy:0,bestCombo:0}));
+    saveAdventureProgress();
+  }
+  return adventureProgress[chapterId];
+}
+function isChapterUnlocked(chapterId){
+  const idx=ADVENTURE_CHAPTERS.findIndex(c=>c.id===chapterId);
+  if(idx<=0)return true;
+  const prevChapter=ADVENTURE_CHAPTERS[idx-1];
+  const prevProgress=getChapterProgress(prevChapter.id);
+  return prevProgress[0].completed;
+}
+function getLevelChars(chapterId,levelIdx){
+  const config=LEVEL_CONFIGS[levelIdx];
+  const chapterChars=CHARS_BY_GRADE[chapterId]||[];
+  const filtered=chapterChars.filter(ch=>{
+    const data=charDataCache[ch];
+    if(!data)return false;
+    const strokes=data.strokes.length;
+    return strokes>=config.minStroke&&strokes<=config.maxStroke;
+  });
+  for(let i=filtered.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [filtered[i],filtered[j]]=[filtered[j],filtered[i]];
+  }
+  return filtered.length>0?filtered:chapterChars.filter(ch=>charDataCache[ch]);
+}
+function startAdventure(){
+  showScreen('adventure');
+  renderChapterScroll();
+  renderAdventureMap();
+  updateAdventureStats();
+}
+function updateAdventureStats(){
+  document.getElementById('advStars').textContent='⭐ '+stars;
+  const earnedBadges=badges.length;
+  document.getElementById('advBadges').textContent='🏅 '+earnedBadges+'/12';
+}
+function renderChapterScroll(){
+  const scroll=document.getElementById('chapterScroll');
+  scroll.innerHTML='';
+  ADVENTURE_CHAPTERS.forEach(ch=>{
+    const unlocked=isChapterUnlocked(ch.id);
+    const progress=getChapterProgress(ch.id);
+    const totalStars=progress.reduce((s,l)=>s+l.stars,0);
+    const chip=document.createElement('button');
+    chip.className='chapter-chip'+(ch.id===currentChapter?' active':'')+(unlocked?'':' locked');
+    chip.innerHTML=ch.icon+' '+ch.name+(unlocked?'<span class="chip-stars">'+totalStars+'⭐</span>':' 🔒');
+    if(unlocked){
+      chip.onclick=()=>{currentChapter=ch.id;renderChapterScroll();renderAdventureMap();};
+    }
+    scroll.appendChild(chip);
+  });
+  const activeChip=scroll.querySelector('.chapter-chip.active');
+  if(activeChip)activeChip.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+}
+function renderAdventureMap(){
+  const map=document.getElementById('adventureMap');
+  const progress=getChapterProgress(currentChapter);
+  const chapter=ADVENTURE_CHAPTERS.find(c=>c.id===currentChapter);
+  map.innerHTML='<div class="map-path"></div>';
+  LEVEL_CONFIGS.forEach((config,idx)=>{
+    const levelProgress=progress[idx];
+    const prevCompleted=idx===0||progress[idx-1].completed;
+    const isCurrent=prevCompleted&&!levelProgress.completed;
+    const isLocked=!prevCompleted;
+    const levelDiv=document.createElement('div');
+    levelDiv.className='map-level';
+    let nodeClass='level-node';
+    if(isLocked)nodeClass+=' locked';
+    else if(levelProgress.completed)nodeClass+=' completed';
+    else if(isCurrent)nodeClass+=' current';
+    else nodeClass+=' unlocked';
+    const starsHtml=levelProgress.completed?'<div class="level-stars">'+'⭐'.repeat(levelProgress.stars)+'</div>':'';
+    levelDiv.innerHTML=
+      '<div class="'+nodeClass+'" '+(isLocked?'':'onclick="startAdventureBattle('+idx+')"')+'>'+
+        (isLocked?'🔒':config.icon)+starsHtml+
+      '</div>'+
+      '<div class="level-info">'+
+        '<div class="level-name">第'+(idx+1)+'关 · '+config.name+'</div>'+
+        '<div class="level-desc">'+config.desc+'</div>'+
+        (levelProgress.completed?'<div class="level-progress">最佳正确率 '+levelProgress.bestAccuracy+'% · 最高连击 '+levelProgress.bestCombo+'</div>':'')+
+      '</div>';
+    map.appendChild(levelDiv);
+  });
+  const allCompleted=progress.every(l=>l.completed);
+  if(allCompleted){
+    const badgeDiv=document.createElement('div');
+    badgeDiv.style.cssText='text-align:center;padding:16px;color:#FFD700';
+    badgeDiv.innerHTML='<div style="font-size:48px">'+chapter.badge+'</div><div style="font-size:16px;font-weight:bold;margin-top:4px">'+chapter.badgeName+'</div><div style="font-size:12px;opacity:.7">已获得本章徽章</div>';
+    map.appendChild(badgeDiv);
+  }
+}
+function startAdventureBattle(levelIdx){
+  const config=LEVEL_CONFIGS[levelIdx];
+  const chars=getLevelChars(currentChapter,levelIdx);
+  if(chars.length===0){
+    alert('该关卡字库加载中，请稍候再试');
+    return;
+  }
+  advBattleState={levelIdx:levelIdx,correct:0,total:0,maxCombo:0,currentCombo:0,chars:chars,charIdx:0,target:config.target,finished:false};
+  showScreen('adventure-battle');
+  document.getElementById('advBattleLevel').textContent='第'+(levelIdx+1)+'关';
+  document.getElementById('advBattleTarget').textContent=config.target;
+  document.getElementById('advBattleProgress').textContent='0/'+config.target;
+  document.getElementById('advBattleCombo').textContent='0';
+  document.getElementById('advBattleBar').style.width='0%';
+  document.getElementById('advBattleQuestion').textContent='准备开始...';
+  document.getElementById('advBattleFeedback').textContent='';
+  document.getElementById('advBattleOptions').innerHTML='';
+  document.getElementById('advBattleCharBox').innerHTML='';
+  setTimeout(()=>nextAdventureQuestion(),500);
+}
+async function nextAdventureQuestion(){
+  if(advBattleState.finished)return;
+  if(advBattleState.charIdx>=advBattleState.chars.length)advBattleState.charIdx=0;
+  const ch=advBattleState.chars[advBattleState.charIdx++];
+  const data=await loadCharData(ch);
+  if(!data){nextAdventureQuestion();return;}
+  const numStrokes=data.strokes.length;
+  const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+  const qType=Math.random()<0.6?'count':'dir';
+  let questionText,correctAnswer,options;
+  if(qType==='count'){
+    questionText='「'+ch+'」一共有几笔？';
+    correctAnswer=String(numStrokes);
+    const nums=[numStrokes];
+    while(nums.length<4){
+      const r=numStrokes+Math.floor(Math.random()*5)-2;
+      if(r>=1&&r<=20&&nums.indexOf(r)===-1)nums.push(r);
+    }
+    options=nums.sort(()=>Math.random()-.5).map(String);
+  }else{
+    const tIdx=Math.floor(Math.random()*numStrokes);
+    const ordinals=['一','二','三','四','五','六','七','八','九','十'];
+    questionText='「'+ch+'」的第'+(ordinals[tIdx]||tIdx+1)+'笔往哪写？';
+    correctAnswer=dirs[tIdx];
+    const usedCodes=[correctAnswer];
+    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctAnswer);
+    while(usedCodes.length<4){
+      const rc=allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0];
+      if(rc)usedCodes.push(rc);
+    }
+    options=usedCodes.sort(()=>Math.random()-.5);
+  }
+  document.getElementById('advBattleCharName').textContent='「'+ch+'」'+numStrokes+'画';
+  document.getElementById('advBattleQuestion').textContent=questionText;
+  document.getElementById('advBattleFeedback').textContent='';
+  const box=document.getElementById('advBattleCharBox');box.innerHTML='';
+  const size=Math.min(box.offsetWidth,box.offsetHeight)||260;
+  HanziWriter.create(box,ch,{width:size,height:size,padding:Math.round(size*.08),renderer:'svg',showOutline:true,showCharacter:true,strokeColor:'#333',outlineColor:'#ddd',highlightColor:'#FF6F00',charDataLoader:(c,cb)=>cb(data)});
+  const optDiv=document.getElementById('advBattleOptions');optDiv.innerHTML='';
+  options.forEach(opt=>{
+    const btn=document.createElement('button');btn.className='opt-btn';
+    btn.dataset.value=opt;
+    if(qType==='count'){
+      btn.innerHTML='<span style="font-size:32px;font-weight:bold">'+opt+'</span><br><span style="font-size:13px;color:#888">笔</span>';
+    }else{
+      const d=DIRS.find(x=>x.code===opt);
+      btn.innerHTML='<span style="font-size:36px">'+(d?d.icon:'➡️')+'</span><br><span style="font-size:14px;color:#555">'+(d?d.label:'')+'</span>';
+    }
+    btn.onclick=()=>adventureAnswer(opt,correctAnswer,btn,optDiv,qType);
+    optDiv.appendChild(btn);
+  });
+}
+function adventureAnswer(selected,correct,btn,optDiv,qType){
+  if(advBattleState.finished)return;
+  const btns=optDiv.querySelectorAll('.opt-btn');
+  btns.forEach(b=>b.disabled=true);
+  advBattleState.total++;
+  if(selected===correct){
+    btn.classList.add('correct');
+    advBattleState.correct++;
+    advBattleState.currentCombo++;
+    if(advBattleState.currentCombo>advBattleState.maxCombo)advBattleState.maxCombo=advBattleState.currentCombo;
+    sndOk();
+    if(advBattleState.currentCombo>=3)showComboEffect(advBattleState.currentCombo);
+    document.getElementById('advBattleFeedback').innerHTML='<span style="color:#69F0AE">✓ 答对了！</span>';
+  }else{
+    btn.classList.add('wrong');
+    advBattleState.currentCombo=0;
+    sndNo();
+    btns.forEach(b=>{if(b.dataset.value===correct)b.classList.add('reveal');});
+    document.getElementById('advBattleFeedback').innerHTML='<span style="color:#FFAB91">✗ 答错了</span>';
+  }
+  document.getElementById('advBattleProgress').textContent=advBattleState.correct+'/'+advBattleState.target;
+  document.getElementById('advBattleCombo').textContent=advBattleState.currentCombo;
+  document.getElementById('advBattleBar').style.width=Math.min(advBattleState.correct/advBattleState.target*100,100)+'%';
+  if(advBattleState.correct>=advBattleState.target){
+    advBattleState.finished=true;
+    setTimeout(adventureLevelComplete,800);
+  }else{
+    setTimeout(nextAdventureQuestion,1000);
+  }
+}
+function adventureLevelComplete(){
+  const accuracy=advBattleState.total>0?Math.round(advBattleState.correct/advBattleState.total*100):0;
+  let stars=1;
+  if(accuracy>=80)stars=2;
+  if(accuracy>=95&&advBattleState.maxCombo>=3)stars=3;
+  const progress=getChapterProgress(currentChapter);
+  const levelProgress=progress[advBattleState.levelIdx];
+  levelProgress.completed=true;
+  if(stars>levelProgress.stars)levelProgress.stars=stars;
+  if(accuracy>levelProgress.bestAccuracy)levelProgress.bestAccuracy=accuracy;
+  if(advBattleState.maxCombo>levelProgress.bestCombo)levelProgress.bestCombo=advBattleState.maxCombo;
+  saveAdventureProgress();
+  const starReward=stars*2;
+  addStars(starReward);
+  let newBadge=null;
+  const allCompleted=progress.every(l=>l.completed);
+  if(allCompleted){
+    const chapter=ADVENTURE_CHAPTERS.find(c=>c.id===currentChapter);
+    if(badges.indexOf(chapter.id)===-1){
+      badges.push(chapter.id);
+      saveBadges();
+      newBadge=chapter;
+    }
+  }
+  showScreen('adventure-result');
+  document.getElementById('advResultStars').textContent='⭐ +'+starReward;
+  document.getElementById('advResultCorrect').textContent=advBattleState.correct+'/'+advBattleState.total;
+  document.getElementById('advResultAccuracy').textContent=accuracy+'%';
+  document.getElementById('advResultMaxCombo').textContent=advBattleState.maxCombo;
+  const starEls=document.querySelectorAll('#advResultStarDisplay .result-star');
+  starEls.forEach((el,i)=>{
+    el.classList.remove('earned');
+    if(i<stars){
+      setTimeout(()=>el.classList.add('earned'),300+i*400);
+    }
+  });
+  if(stars===3){
+    document.getElementById('advResultEmoji').textContent='🌟';
+    document.getElementById('advResultTitle').textContent='完美通关！';
+    document.getElementById('advResultSubtitle').textContent='三星完美，太厉害了！';
+  }else if(stars===2){
+    document.getElementById('advResultEmoji').textContent='🎉';
+    document.getElementById('advResultTitle').textContent='关卡通过！';
+    document.getElementById('advResultSubtitle').textContent='表现不错，冲击三星吧！';
+  }else{
+    document.getElementById('advResultEmoji').textContent='✅';
+    document.getElementById('advResultTitle').textContent='关卡通过！';
+    document.getElementById('advResultSubtitle').textContent='通关了，继续加油！';
+  }
+  sndReward();
+  const badgeDiv=document.getElementById('advResultBadgeUnlock');
+  if(newBadge){
+    badgeDiv.style.display='block';
+    document.getElementById('advResultBadgeIcon').textContent=newBadge.badge;
+    document.getElementById('advResultBadgeName').textContent=newBadge.badgeName+' 解锁！';
+    document.getElementById('advResultBadgeDesc').textContent=newBadge.badgeDesc;
+    setTimeout(()=>spawnConfetti(),500);
+  }else{
+    badgeDiv.style.display='none';
+  }
+}
+function adventureQuit(){
+  if(advBattleState.correct>0&&!advBattleState.finished){
+    if(!confirm('确定要退出吗？当前关卡进度将丢失。'))return;
+  }
+  goAdventureMap();
+}
+function goAdventureMap(){
+  showScreen('adventure');
+  renderChapterScroll();
+  renderAdventureMap();
+  updateAdventureStats();
+}
+function showBadges(){
+  showScreen('badges');
+  renderBadgeWall();
+}
+function renderBadgeWall(){
+  const grid=document.getElementById('badgeGrid');
+  grid.innerHTML='';
+  ADVENTURE_CHAPTERS.forEach(ch=>{
+    const earned=badges.indexOf(ch.id)!==-1;
+    const card=document.createElement('div');
+    card.className='badge-card'+(earned?' earned':' locked');
+    card.innerHTML=
+      '<span class="badge-emoji">'+(earned?ch.badge:'🔒')+'</span>'+
+      '<div class="badge-title">'+ch.badgeName+'</div>'+
+      '<div class="badge-sub">'+ch.name+'</div>';
+    if(earned){
+      card.onclick=()=>shareSingleBadge(ch);
+    }
+    grid.appendChild(card);
+  });
+  document.getElementById('badgesCount').textContent='🏅 '+badges.length+'/12';
+}
+let shareData={type:'',chapter:null,level:null,stars:0,accuracy:0,combo:0};
+function adventureShareResult(){
+  const chapter=ADVENTURE_CHAPTERS.find(c=>c.id===currentChapter);
+  const config=LEVEL_CONFIGS[advBattleState.levelIdx];
+  const accuracy=advBattleState.total>0?Math.round(advBattleState.correct/advBattleState.total*100):0;
+  const stars=document.querySelectorAll('#advResultStarDisplay .result-star.earned').length;
+  shareData={type:'level',chapter:chapter,level:config,stars:stars,accuracy:accuracy,combo:advBattleState.maxCombo};
+  drawShareCard();
+}
+function shareSingleBadge(chapter){
+  shareData={type:'badge',chapter:chapter,level:null,stars:0,accuracy:0,combo:0};
+  drawShareCard();
+}
+function shareAllBadges(){
+  shareData={type:'allBadges',chapter:null,level:null,stars:0,accuracy:0,combo:0};
+  drawShareCard();
+}
+function drawShareCard(){
+  const canvas=document.getElementById('shareCanvas');
+  const ctx=canvas.getContext('2d');
+  const W=720,H=1080;
+  const grad=ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0,'#667eea');
+  grad.addColorStop(1,'#764ba2');
+  ctx.fillStyle=grad;
+  ctx.fillRect(0,0,W,H);
+  ctx.globalAlpha=.1;
+  ctx.fillStyle='#fff';
+  ctx.beginPath();ctx.arc(100,150,80,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(650,300,120,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(80,900,100,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(680,850,90,0,Math.PI*2);ctx.fill();
+  ctx.globalAlpha=1;
+  ctx.fillStyle='#fff';
+  ctx.font='bold 48px KaiTi,楷体,serif';
+  ctx.textAlign='center';
+  ctx.fillText('汉字笔顺闯关',W/2,100);
+  ctx.font='24px KaiTi,楷体,serif';
+  ctx.globalAlpha=.8;
+  ctx.fillText('—— 我的汉字冒险之旅 ——',W/2,145);
+  ctx.globalAlpha=1;
+  if(shareData.type==='level'&&shareData.chapter&&shareData.level){
+    const chapter=shareData.chapter;
+    const level=shareData.level;
+    ctx.fillStyle='rgba(255,255,255,.2)';
+    roundRect(ctx,200,190,320,50,25);ctx.fill();
+    ctx.fillStyle='#FFD700';
+    ctx.font='bold 26px KaiTi,楷体,serif';
+    ctx.fillText(chapter.icon+' '+chapter.name,W/2,223);
+    ctx.font='160px serif';
+    ctx.fillText(level.icon,W/2,420);
+    ctx.fillStyle='#fff';
+    ctx.font='bold 40px KaiTi,楷体,serif';
+    ctx.fillText(level.name,W/2,500);
+    ctx.font='22px KaiTi,楷体,serif';
+    ctx.globalAlpha=.7;
+    ctx.fillText(level.desc,W/2,540);
+    ctx.globalAlpha=1;
+    ctx.font='60px serif';
+    let starText='';
+    for(let i=0;i<3;i++){starText+=(i<shareData.stars?'⭐':'☆');}
+    ctx.fillText(starText,W/2,630);
+    ctx.fillStyle='rgba(255,255,255,.15)';
+    roundRect(ctx,80,680,560,160,20);ctx.fill();
+    ctx.fillStyle='#fff';
+    ctx.font='bold 36px sans-serif';
+    ctx.fillText(shareData.accuracy+'%',200,740);
+    ctx.fillText(shareData.combo,360,740);
+    ctx.fillText(shareData.stars+'⭐',520,740);
+    ctx.font='18px sans-serif';
+    ctx.globalAlpha=.7;
+    ctx.fillText('正确率',200,780);
+    ctx.fillText('最高连击',360,780);
+    ctx.fillText('获得星星',520,780);
+    ctx.globalAlpha=1;
+  }else if(shareData.type==='badge'&&shareData.chapter){
+    const chapter=shareData.chapter;
+    ctx.fillStyle='rgba(255,255,255,.2)';
+    roundRect(ctx,180,200,360,50,25);ctx.fill();
+    ctx.fillStyle='#FFD700';
+    ctx.font='bold 26px KaiTi,楷体,serif';
+    ctx.fillText(chapter.name+' 通关纪念',W/2,233);
+    ctx.font='200px serif';
+    ctx.fillText(chapter.badge,W/2,460);
+    ctx.fillStyle='#FFD700';
+    ctx.font='bold 48px KaiTi,楷体,serif';
+    ctx.fillText(chapter.badgeName,W/2,550);
+    ctx.fillStyle='#fff';
+    ctx.font='22px KaiTi,楷体,serif';
+    ctx.globalAlpha=.8;
+    ctx.fillText(chapter.badgeDesc,W/2,600);
+    ctx.globalAlpha=1;
+    ctx.font='40px serif';
+    ctx.fillText('🎉 🏆 🎉',W/2,700);
+  }else{
+    ctx.fillStyle='#fff';
+    ctx.font='bold 32px KaiTi,楷体,serif';
+    ctx.fillText('我的徽章收藏 ('+badges.length+'/12)',W/2,200);
+    const startX=100,startY=260,cellW=130,cellH=160;
+    ADVENTURE_CHAPTERS.forEach((ch,i)=>{
+      const col=i%4,row=Math.floor(i/4);
+      const x=startX+col*cellW+cellW/2;
+      const y=startY+row*cellH;
+      const earned=badges.indexOf(ch.id)!==-1;
+      if(earned){
+        ctx.font='56px serif';
+        ctx.fillText(ch.badge,x,y+50);
+        ctx.fillStyle='#FFD700';
+        ctx.font='bold 16px KaiTi,楷体,serif';
+        ctx.fillText(ch.badgeName,x,y+80);
+      }else{
+        ctx.globalAlpha=.3;
+        ctx.font='56px serif';
+        ctx.fillText('🔒',x,y+50);
+        ctx.fillStyle='#fff';
+        ctx.font='14px KaiTi,楷体,serif';
+        ctx.fillText('未解锁',x,y+80);
+        ctx.globalAlpha=1;
+      }
+    });
+  }
+  ctx.fillStyle='rgba(255,255,255,.15)';
+  roundRect(ctx,80,900,560,120,20);ctx.fill();
+  ctx.fillStyle='#fff';
+  ctx.font='bold 26px KaiTi,楷体,serif';
+  ctx.fillText('扫码一起玩汉字闯关',W/2,950);
+  ctx.font='18px sans-serif';
+  ctx.globalAlpha=.7;
+  ctx.fillText(location.href,W/2,990);
+  ctx.globalAlpha=1;
+  document.getElementById('shareOverlay').classList.add('active');
+}
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+function closeShare(){
+  document.getElementById('shareOverlay').classList.remove('active');
+}
 function showCollection(){
   showScreen('collection');
   const grid=document.getElementById('collectionGrid');grid.innerHTML='';
@@ -1011,7 +1587,6 @@ function showCollection(){
   });
   document.getElementById('colStars').textContent='⭐ '+stars;
 }
-
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
