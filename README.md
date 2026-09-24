@@ -1,6 +1,6 @@
 # 汉字笔顺闯关 · Hanzi Stroke Quest
 
-> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。9 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
+> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。10 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
 
 <p align="center">
   <img src="assets/demo.gif" alt="运行演示 GIF" width="360" />
@@ -13,7 +13,7 @@
   &nbsp;&nbsp;
   <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License" />
   &nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/单文件-2700_行-orange?style=for-the-badge" alt="Single file" />
+  <img src="https://img.shields.io/badge/单文件-3000_行-orange?style=for-the-badge" alt="Single file" />
 </p>
 
 <p align="center">
@@ -41,7 +41,7 @@
 - 🎯 **零构建、零后端**：单文件 `index.html` 打开即用，任何静态托管都能部署（GitHub Pages / Vercel / Netlify / Nginx）。
 - 🧒 **儿童友好 UI**：糖果紫渐变背景、大圆角按钮、田字格练字区，专为 6–9 岁孩子设计。
 - 🎮 **游戏化激励**：星星 ⭐ + 连击 🔥 + 动物收藏 🐼 + 全屏彩带彩蛋，学习成就感拉满。
-- 🕹️ **9 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
+- 🕹️ **10 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
 - 🔊 **多感官反馈**：Web Audio API 合成音效（正确 / 错误 / 完成 / 彩蛋）+ Web Speech API 中文语音鼓励（"太棒了！""你真厉害！"）。
 - 📚 **难度渐进**：字库按笔画数从少到多排序，同笔画组内随机洗牌，避免挫败感也保留趣味性。
 - 🌐 **多 CDN 容错**：`hanzi-writer` 库依次尝试 jsDelivr / unpkg / cdnjs，任一可用即可运行。
@@ -108,6 +108,21 @@
 
 <p align="center">
   <img src="assets/scene_puzzle.png" alt="笔顺拼图" width="240" />
+</p>
+
+### 🏃 笔顺跑酷（Runner 模式）
+
+孩子操控小人一路狂奔，前方不断落下**三道抢答门**——想穿过去，只能冲进正确的那一栏：
+
+- 🚪 **三道抢答门**：上/中/下三条跑道各挂一个答案，点跑道、点底部按钮、键盘 ↑↓（或 WASD / 数字 1-2-3）、手机上下滑动都能变道，怎么顺手怎么来
+- 🧠 **边跑边算**：题目「「一」的第一笔往哪写？」「「山」一共几笔？」常驻顶部，孩子必须心算笔顺再选道，答错直接撞墙
+- 💥 **撞墙有代价**：三颗爱心，撞错一次掉一颗并屏幕震动；每通过 10 道门补一颗心（最多 3 颗），逼出「谨慎但又想冲」的紧张感
+- 🎚️ **越跑越快**：速度随通过门数线性提升（1.8% → 4.5% 屏宽/毫秒），距离米数实时增长，天然刷纪录
+- ✨ **通过特效**：撞对 → 小人起跳 + 正确门牌飞散 + 五声音阶上行 + 连击爆炸字 + 星星雨；每 5 连击语音表扬
+- 🏆 结算评段：跑酷之王 🏆 / 飞毛腿 🥇 / 越跑越顺 🥈 / 起步啦 🥉，总跑动距离与历史最高分本地保存
+
+<p align="center">
+  <img src="assets/scene_runner.png" alt="笔顺跑酷" width="240" />
 </p>
 
 ### ⚔️ 笔顺大闯关（Quiz 模式）
@@ -209,7 +224,7 @@
 | 音效 | Web Audio API · 代码合成正弦 / 方波 / 三角波 |
 | 语音 | Web Speech API · `SpeechSynthesisUtterance` 中文播报 |
 | 动画 | CSS `@keyframes` · 无第三方动画库 |
-| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` |
+| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` |
 | 部署 | 任意静态服务器 · 已内置多 CDN 容错 |
 
 ---
@@ -252,7 +267,7 @@ npx serve -l 8765
 
 ```
 hanzi-practice/
-├── index.html          # 主应用（2700+ 行单文件，包含 HTML/CSS/JS）
+├── index.html          # 主应用（3000 行单文件，包含 HTML/CSS/JS）
 ├── assets/             # README 用图片资源
 │   ├── demo.gif        # 运行演示 GIF
 │   ├── scene_home.png
@@ -263,7 +278,8 @@ hanzi-practice/
 │   ├── scene_write.png
 │   ├── scene_collection.png
 │   ├── scene_mole.png
-│   └── scene_puzzle.png
+│   ├── scene_puzzle.png
+│   └── scene_runner.png
 ├── record_demo.js      # Puppeteer 自动录屏脚本（开发用）
 ├── make_gif.py         # PNG 帧合成 GIF 脚本（开发用）
 ├── package.json

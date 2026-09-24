@@ -254,6 +254,41 @@ button:active{transform:scale(.95)}
 .pz-low .progress-bar-wrap{box-shadow:0 0 14px rgba(239,83,80,.7)}
 .pz-low #pzTime{color:#FF8A80}
 @media(max-width:420px){.pz-target{width:180px;height:180px}.pz-tray{max-width:300px;gap:6px}}
+.run-scene{position:relative;width:100%;height:46vh;min-height:300px;max-height:430px;background:linear-gradient(180deg,#7FB3FF 0%,#9B8FD6 55%,#6C5B9E 100%);border-radius:18px;overflow:hidden;margin:8px 0;box-shadow:0 8px 26px rgba(0,0,0,.28),inset 0 0 60px rgba(0,0,0,.15)}
+.run-lane{position:absolute;left:0;right:0;height:33.333%;border-bottom:2px dashed rgba(255,255,255,.28)}
+.run-lane:last-child{border-bottom:none}
+.run-lane.hot{background:rgba(255,255,255,.1)}
+.run-cloud{position:absolute;font-size:26px;opacity:.55;z-index:1;will-change:transform}
+.run-runner{position:absolute;left:9%;width:56px;height:56px;margin-left:-28px;margin-top:-28px;font-size:40px;line-height:56px;text-align:center;z-index:6;transition:top .15s ease-out;filter:drop-shadow(0 4px 8px rgba(0,0,0,.4))}
+.run-runner .rb{display:block;animation:runBob .32s ease-in-out infinite alternate}
+@keyframes runBob{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+.run-runner::after{content:'';position:absolute;left:50%;bottom:-3px;width:34px;height:8px;margin-left:-17px;border-radius:50%;background:rgba(0,0,0,.3);filter:blur(2px)}
+.run-runner.crash{animation:runCrash .6s ease-out}
+@keyframes runCrash{0%{transform:rotate(0) scale(1)}45%{transform:rotate(200deg) scale(1.25)}100%{transform:rotate(360deg) scale(1)}}
+.run-runner.jump{animation:runJump .3s ease-out}
+@keyframes runJump{0%,100%{transform:scale(1)}50%{transform:scale(1.2) translateY(-6px)}}
+.run-wall{position:absolute;top:0;bottom:0;width:74px;z-index:4;transform:translateX(-50%)}
+.run-bar{position:absolute;top:4%;bottom:4%;left:50%;width:4px;margin-left:-2px;background:rgba(255,255,255,.28);border-radius:2px}
+.run-panel{position:absolute;left:0;width:100%;height:62px;margin-top:-31px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,.3);border:3px solid #ddd;transition:transform .2s,opacity .2s}
+.run-panel .pv{font-size:22px;font-weight:bold;color:#333;line-height:1.1}
+.run-panel .pl{font-size:10px;color:#777;margin-top:1px}
+.run-panel.right{background:#69F0AE;border-color:#00C853;animation:runPass .35s ease-out forwards}
+@keyframes runPass{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(.4) translateY(-40px);opacity:0}}
+.run-panel.boom{background:#FF8A80;border-color:#D50000;animation:runBoom .4s ease-out}
+@keyframes runBoom{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px) rotate(-6deg)}75%{transform:translateX(6px) rotate(6deg)}}
+.run-scene.shake{animation:runShake .45s ease-out}
+@keyframes runShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(4px)}}
+.run-hud{display:flex;justify-content:space-between;align-items:center;width:100%;color:#fff;font-size:14px;margin:2px 0}
+.run-hearts{font-size:20px;letter-spacing:2px}
+.run-hearts .gone{opacity:.25;filter:grayscale(1)}
+.run-ctrl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;width:100%;max-width:340px;margin:6px 0}
+.run-btn{border:none;border-radius:16px;padding:12px 0;color:#fff;font-size:22px;font-family:inherit;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.28);transition:filter .1s,transform .1s}
+.run-btn:active{filter:brightness(1.5);transform:scale(.94)}
+.run-btn.up{background:linear-gradient(135deg,#FF6B6B,#EE5A5A)}
+.run-btn.mid{background:linear-gradient(135deg,#4ECDC4,#2FB4A9)}
+.run-btn.down{background:linear-gradient(135deg,#FFD166,#F0B429)}
+.run-speed{font-size:12px;opacity:.85}
+@media(max-width:420px){.run-scene{height:40vh;min-height:260px}.run-panel{height:54px;margin-top:-27px}.run-panel .pv{font-size:18px}.run-runner{width:48px;height:48px;margin-top:-24px;line-height:48px;font-size:34px}}
 </style>
 </head>
 <body>
@@ -311,6 +346,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('puzzle')">
       <div class="icon">🧩</div>
       <div class="info"><h3>笔顺拼图</h3><p>按笔顺把打碎的汉字拼回来！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('runner')">
+      <div class="icon">🏃</div>
+      <div class="info"><h3>笔顺跑酷</h3><p>三道抢答，冲进正确的那一栏！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -577,6 +616,53 @@ button:active{transform:scale(.95)}
   </div>
   <div class="write-controls">
     <button class="w-btn orange" onclick="puzzleStart()">🔄 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-runner">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="runScore">得分 0</span><span id="runCombo">🔥 x0</span><span id="runDist">0 m</span></div>
+  </div>
+  <div class="challenge-goal" id="runQuestion">🏃 准备好了吗？</div>
+  <div class="run-hud"><span class="run-hearts" id="runHearts"></span><span class="run-speed" id="runSpeed">速度 x1.0</span></div>
+  <div class="run-scene" id="runScene">
+    <div class="run-lane" style="top:0" onclick="runnerSetLane(0)"></div>
+    <div class="run-lane" style="top:33.333%" onclick="runnerSetLane(1)"></div>
+    <div class="run-lane" style="top:66.666%" onclick="runnerSetLane(2)"></div>
+    <div class="run-runner" id="runRunner" style="top:50%"><span class="rb">🏃</span></div>
+  </div>
+  <div class="run-ctrl">
+    <button class="run-btn up" onclick="runnerSetLane(0)">⬆️ 上道</button>
+    <button class="run-btn mid" onclick="runnerSetLane(1)">➡️ 中道</button>
+    <button class="run-btn down" onclick="runnerSetLane(2)">⬇️ 下道</button>
+  </div>
+  <div class="feedback" id="runFeedback"></div>
+</div>
+<div class="screen" id="screen-runner-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="runResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="runResultEmoji">🏃</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="runResultTitle">摔倒啦！</h2>
+    <p style="font-size:16px;opacity:.8" id="runResultSubtitle">再来一局，跑得更远！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="runResultScore">0</div><div style="font-size:13px;opacity:.7">最终得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="runResultGates">0</div><div style="font-size:13px;opacity:.7">冲过关卡</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="runResultDist">0 m</div><div style="font-size:13px;opacity:.7">奔跑距离</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="runResultCombo">0</div><div style="font-size:13px;opacity:.7">最高连击</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏅 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD700" id="runResultBest">0</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="runnerStart()">🔄 再来一局</button>
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
@@ -924,6 +1010,7 @@ function enterMode(mode){
   else if(mode==='tetris')tetrisStart();
   else if(mode==='mole')moleStart();
   else if(mode==='puzzle')puzzleStart();
+  else if(mode==='runner')runnerStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -2017,6 +2104,217 @@ function puzzleGameOver(){
   sndReward();
   if(puzzle.done>=6)setTimeout(showRewardEgg,900);
 }
+/* ================= 笔顺跑酷 ================= */
+const RUN_LANES=3;
+const RUN_LANE_TOP=[16.667,50,83.333];
+const RUN_LANE_COLOR=['#FF6B6B','#4ECDC4','#FFD166'];
+const RUN_PENTA=[523,587,659,784,880,1047];
+const RUN_HIT_X=9;
+let runner={lane:1,score:0,combo:0,maxCombo:0,hearts:3,passed:0,dist:0,over:false,locked:false,started:false,wall:null,spawnAt:0,timerId:null,lastTs:0,clouds:[]};
+function runnerSpeed(){return Math.min(.045,.018+runner.passed*.0012);}
+function runnerUpdateUI(){
+  document.getElementById('runScore').textContent='得分 '+runner.score;
+  document.getElementById('runCombo').textContent='🔥 x'+runner.combo;
+  document.getElementById('runDist').textContent=Math.floor(runner.dist)+' m';
+  document.getElementById('runSpeed').textContent='速度 x'+(runnerSpeed()/.018).toFixed(1);
+  const hp=document.getElementById('runHearts');hp.innerHTML='';
+  for(let i=0;i<3;i++){const s=document.createElement('span');s.textContent='❤️';if(i>=runner.hearts)s.classList.add('gone');hp.appendChild(s);}
+}
+function runnerSetLane(i){
+  if(runner.over)return;
+  i=Math.max(0,Math.min(RUN_LANES-1,i));
+  if(i===runner.lane)return;
+  runner.lane=i;
+  document.getElementById('runRunner').style.top=RUN_LANE_TOP[i]+'%';
+  document.querySelectorAll('#runScene .run-lane').forEach((l,k)=>l.classList.toggle('hot',k===i));
+  tone(420+i*90,.05,'sine',.06);
+}
+function runnerStart(){
+  if(runner.timerId)clearInterval(runner.timerId);
+  runner={lane:1,score:0,combo:0,maxCombo:0,hearts:3,passed:0,dist:0,over:false,locked:false,started:false,wall:null,spawnAt:Infinity,timerId:null,lastTs:performance.now(),clouds:[]};
+  showScreen('runner');
+  const scene=document.getElementById('runScene');
+  scene.querySelectorAll('.run-wall').forEach(w=>w.remove());
+  for(let i=0;i<3;i++){
+    const c=document.createElement('div');c.className='run-cloud';c.textContent=['☁️','️','️'][i];
+    c.style.top=[6,26,64][i]+'%';
+    const x=Math.random()*100;c.style.left=x+'%';
+    scene.appendChild(c);runner.clouds.push({el:c,x:x,sp:.35+Math.random()*.5});
+  }
+  document.getElementById('runFeedback').textContent='';
+  document.getElementById('runQuestion').textContent='3…';
+  runnerSetLane(1);runnerUpdateUI();
+  let n=3;
+  const cd=setInterval(()=>{
+    n--;
+    if(n>0){document.getElementById('runQuestion').textContent=n+'…';tone(660,.08);return;}
+    clearInterval(cd);
+    if(currentMode!=='runner')return;
+    document.getElementById('runQuestion').textContent='🏃 开跑！用 ⬆️️ 或点下面按钮换道';
+    tone(990,.18,'triangle',.14);
+    runner.started=true;
+    runner.lastTs=performance.now();
+    runner.spawnAt=performance.now()+200;
+  },700);
+  runner.timerId=setInterval(runnerTick,33);
+}
+function runnerTick(){
+  if(runner.over||currentMode!=='runner'){
+    if(runner.timerId){clearInterval(runner.timerId);runner.timerId=null;}
+    return;
+  }
+  const now=performance.now();
+  const dt=Math.min(90,now-runner.lastTs);
+  runner.lastTs=now;
+  if(!runner.started)return;
+  const sp=runnerSpeed();
+  runner.dist+=sp*dt*1.4;
+  runner.clouds.forEach(c=>{
+    c.x-=sp*dt*c.sp*2.2;
+    if(c.x<-12)c.x=112;
+    c.el.style.left=c.x+'%';
+  });
+  if(!runner.wall&&!runner.locked&&now>=runner.spawnAt){runner.locked=true;runnerNewWall();}
+  if(runner.wall){
+    const w=runner.wall;
+    w.x-=sp*dt;
+    w.el.style.left=w.x+'%';
+    if(w.x<=RUN_HIT_X&&!w.done){w.done=true;runnerResolve(w);}
+  }
+  document.getElementById('runDist').textContent=Math.floor(runner.dist)+' m';
+}
+async function runnerNewWall(){
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data){runner.spawnAt=performance.now()+400;runner.locked=false;return;}
+  const numStrokes=data.strokes.length;
+  const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+  let question,correct,qType;
+  if(Math.random()<.55){
+    question='「'+ch+'」一共有几笔？';correct=String(numStrokes);qType='count';
+  }else{
+    const tIdx=Math.floor(Math.random()*numStrokes);
+    const ordinals=['一','二','三','四','五','六','七','八','九','十'];
+    question='「'+ch+'」的第'+(ordinals[tIdx]||tIdx+1)+'笔往哪写？';correct=dirs[tIdx];qType='dir';
+  }
+  const vals=[correct];
+  if(qType==='count'){
+    const near=[];
+    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
+    while(vals.length<3&&near.length){vals.push(String(near.splice(Math.floor(Math.random()*near.length),1)[0]));}
+  }else{
+    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correct);
+    while(vals.length<3&&allCodes.length){vals.push(allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0]);}
+  }
+  while(vals.length<3)vals.push('1');
+  for(let i=vals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=vals[i];vals[i]=vals[j];vals[j]=t;}
+  const correctLane=vals.indexOf(correct);
+  const wall=document.createElement('div');wall.className='run-wall';
+  wall.innerHTML='<div class="run-bar"></div>';
+  vals.forEach((v,lane)=>{
+    const d=DIRS.find(x=>x.code===v);
+    const p=document.createElement('div');p.className='run-panel';
+    p.style.top=RUN_LANE_TOP[lane]+'%';
+    p.style.borderColor=RUN_LANE_COLOR[lane];
+    p.dataset.lane=lane;
+    p.innerHTML='<span class="pv">'+(qType==='dir'?(d?d.icon:'➡️'):v)+'</span><span class="pl">'+(qType==='dir'?(d?d.label:''):'笔')+'</span>';
+    wall.appendChild(p);
+  });
+  document.getElementById('runScene').appendChild(wall);
+  runner.wall={el:wall,x:112,correctLane:correctLane,done:false,qType:qType};
+  runner.locked=false;
+  document.getElementById('runQuestion').textContent=question;
+}
+function runnerResolve(w){
+  runner.locked=true;
+  runner.wall=null;
+  const panels=w.el.querySelectorAll('.run-panel');
+  const ok=w.correctLane===runner.lane;
+  if(ok){
+    runner.passed++;runner.combo++;
+    if(runner.combo>runner.maxCombo)runner.maxCombo=runner.combo;
+    const pts=100+Math.min(runner.combo,10)*20;
+    runner.score+=pts;
+    if(panels[w.correctLane])panels[w.correctLane].classList.add('right');
+    const rr=document.getElementById('runRunner');
+    rr.classList.remove('jump');void rr.offsetWidth;rr.classList.add('jump');
+    sndOk();tone(RUN_PENTA[Math.min(runner.combo-1,RUN_PENTA.length-1)],.13,'triangle',.15);
+    showComboEffect(runner.combo);
+    if(runner.combo>=5&&runner.combo%5===0)speakPraise();
+    const r=w.el.getBoundingClientRect();
+    spawnStarFly(r.left+r.width/2,r.top+r.height/2);
+    document.getElementById('runFeedback').innerHTML='<span style="color:#69F0AE">✓ 冲进去了！+'+pts+'</span>';
+    if(runner.passed%10===0&&runner.hearts<3){
+      runner.hearts++;
+      setTimeout(()=>{document.getElementById('runFeedback').innerHTML='<span style="color:#FFD740">🎁 每 10 关奖励一颗爱心！</span>';tone(1046,.2,'triangle',.14);},500);
+    }
+    runnerUpdateUI();
+    setTimeout(()=>{if(w.el.parentNode)w.el.remove();},420);
+    runner.spawnAt=performance.now()+500;
+    runner.locked=false;
+    return;
+  }
+  runner.combo=0;runner.hearts--;
+  if(panels[runner.lane])panels[runner.lane].classList.add('boom');
+  if(panels[w.correctLane])panels[w.correctLane].classList.add('right');
+  const rr=document.getElementById('runRunner');
+  rr.classList.remove('crash');void rr.offsetWidth;rr.classList.add('crash');
+  const scene=document.getElementById('runScene');
+  scene.classList.remove('shake');void scene.offsetWidth;scene.classList.add('shake');
+  sndNo();tone(150,.35,'square',.12);
+  document.getElementById('runFeedback').innerHTML='<span style="color:#FFAB91">✗ 撞错了！正确答案在'+(w.qType==='dir'?'':'')+'绿色那一栏 −1❤️</span>';
+  runnerUpdateUI();
+  if(runner.hearts<=0){runner.over=true;setTimeout(runnerGameOver,900);return;}
+  setTimeout(()=>{if(w.el.parentNode)w.el.remove();},900);
+  runner.spawnAt=performance.now()+1400;
+  setTimeout(()=>{runner.locked=false;},1200);
+}
+function runnerGameOver(){
+  if(runner.timerId){clearInterval(runner.timerId);runner.timerId=null;}
+  const best=parseInt(localStorage.getItem('hz_runner_best')||'0');
+  const isNew=runner.score>best;
+  if(isNew)localStorage.setItem('hz_runner_best',runner.score);
+  const earned=Math.max(1,Math.min(15,Math.floor(runner.score/400)+(runner.maxCombo>=8?3:0)));
+  addStars(earned);
+  showScreen('runner-result');
+  document.getElementById('runResultStars').textContent='⭐ +'+earned;
+  document.getElementById('runResultScore').textContent=runner.score;
+  document.getElementById('runResultGates').textContent=runner.passed;
+  document.getElementById('runResultDist').textContent=Math.floor(runner.dist)+' m';
+  document.getElementById('runResultCombo').textContent=runner.maxCombo;
+  document.getElementById('runResultBest').textContent=Math.max(best,runner.score);
+  let emoji,title,subtitle;
+  if(runner.passed>=20){emoji='🏆';title='跑酷之王！';subtitle='笔顺已经刻进肌肉记忆了！';}
+  else if(runner.passed>=12){emoji='🥇';title='飞毛腿！';subtitle='反应快，笔顺也记得牢！';}
+  else if(runner.passed>=6){emoji='🥈';title='越跑越顺！';subtitle='再来一局，冲过 12 关！';}
+  else if(runner.passed>=2){emoji='🥉';title='起步啦！';subtitle='先看清题目再选道！';}
+  else{emoji='💪';title='别急，看清再跑！';subtitle='心里默念笔顺，再决定换道！';}
+  if(isNew&&runner.score>0)title='🎉 新纪录！'+title;
+  document.getElementById('runResultEmoji').textContent=emoji;
+  document.getElementById('runResultTitle').textContent=title;
+  document.getElementById('runResultSubtitle').textContent=subtitle;
+  sndReward();
+  if(runner.passed>=12)setTimeout(showRewardEgg,900);
+}
+(function(){
+  let sx=0,sy=0;
+  document.addEventListener('touchstart',function(e){
+    if(currentMode!=='runner')return;
+    const t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;
+  },{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(currentMode!=='runner')return;
+    const t=e.changedTouches[0];const dy=t.clientY-sy,dx=t.clientX-sx;
+    if(Math.abs(dy)>26&&Math.abs(dy)>Math.abs(dx)){runnerSetLane(runner.lane+(dy>0?1:-1));e.preventDefault();}
+  },{passive:false});
+})();
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='runner'||runner.over)return;
+  const k=e.key||'';
+  if(k==='ArrowUp'||k==='w'||k==='W'||k==='a'||k==='A'){e.preventDefault();runnerSetLane(runner.lane-1);}
+  else if(k==='ArrowDown'||k==='s'||k==='S'||k==='d'||k==='D'){e.preventDefault();runnerSetLane(runner.lane+1);}
+  else if(k==='1'||k==='2'||k==='3'){e.preventDefault();runnerSetLane(parseInt(k,10)-1);}
+});
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
   challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
