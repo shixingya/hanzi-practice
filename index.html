@@ -209,6 +209,25 @@ button:active{transform:scale(.95)}
 .tetris-char-big{font-size:76px;line-height:1.1;color:#fff;text-shadow:3px 3px 12px rgba(0,0,0,.45);background:rgba(255,255,255,.12);border-radius:16px;padding:10px 26px;min-width:120px;text-align:center}
 .tetris-question{color:#fff;font-size:17px;font-weight:bold;text-align:center;text-shadow:1px 1px 4px rgba(0,0,0,.3);min-height:44px}
 .tetris-over-danger .tetris-board{border-color:rgba(239,83,80,.9);box-shadow:0 0 24px rgba(239,83,80,.5);animation:pulseNode 1s ease-in-out infinite}
+.mole-arena{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:400px;margin:6px 0}
+.mole-hole{position:relative;aspect-ratio:1/1;background:radial-gradient(ellipse at 50% 72%,#5a4028 0%,#3a281a 45%,rgba(0,0,0,0) 68%);border:none;padding:0;overflow:hidden;cursor:pointer;font-family:inherit}
+.mole-hole::before{content:'';position:absolute;left:16%;right:16%;bottom:8%;height:16%;border-radius:50%;background:rgba(0,0,0,.35);box-shadow:inset 0 3px 6px rgba(0,0,0,.5)}
+.mole-hole::after{content:'';position:absolute;left:8%;right:8%;bottom:2%;height:9%;border-radius:50%;background:rgba(255,255,255,.07)}
+.mole-body{position:absolute;left:6%;right:6%;bottom:-105%;height:92%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;transition:bottom .16s ease-out;pointer-events:none;z-index:2}
+.mole-hole.show .mole-body{bottom:4%}
+.mole-face{font-size:32px;line-height:1;filter:drop-shadow(0 3px 4px rgba(0,0,0,.45))}
+.mole-ans{background:#fff;color:#333;border-radius:12px;padding:1px 9px;font-size:18px;font-weight:bold;margin-bottom:-6px;box-shadow:0 2px 6px rgba(0,0,0,.4);border:2px solid #FFD700;font-family:inherit}
+.mole-hole.bonk .mole-body{animation:moleBonk .4s ease-out forwards}
+@keyframes moleBonk{0%{transform:scale(1) rotate(0)}35%{transform:scale(1.22) rotate(-16deg)}100%{transform:scale(.15) rotate(28deg) translateY(30px);opacity:0}}
+.mole-hole.dodged .mole-body{animation:moleDodge .4s ease-in forwards}
+@keyframes moleDodge{0%{transform:translateX(0)}25%{transform:translateX(-8px) rotate(-8deg)}75%{transform:translateX(8px) rotate(8deg)}100%{transform:translateY(120%) scale(.6);opacity:0}}
+.mole-smash{position:fixed;left:0;top:0;font-size:30px;z-index:2600;pointer-events:none;animation:smashPop .45s ease-out forwards}
+@keyframes smashPop{0%{opacity:0;transform:translate(-50%,14px) scale(.4)}30%{opacity:1;transform:translate(-50%,-4px) scale(1.3)}100%{opacity:0;transform:translate(-50%,-26px) scale(1)}}
+.mole-pts{position:fixed;left:0;top:0;font-size:19px;font-weight:bold;color:#FFD740;text-shadow:0 2px 6px rgba(0,0,0,.7);z-index:2600;pointer-events:none;animation:judgeUp .8s ease-out forwards}
+.mole-hearts{display:flex;gap:6px;font-size:22px;margin:2px 0;line-height:1}
+.mole-hearts .lost{opacity:.22;filter:grayscale(1);transform:scale(.85)}
+.mole-char{font-size:26px;font-weight:bold;color:#FFD740;text-shadow:1px 1px 6px rgba(0,0,0,.4)}
+@media(max-width:420px){.mole-arena{gap:7px;max-width:330px}.mole-face{font-size:26px}.mole-ans{font-size:15px;padding:1px 6px}}
 </style>
 </head>
 <body>
@@ -258,6 +277,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('tetris')">
       <div class="icon">🧱</div>
       <div class="info"><h3>汉字俄罗斯方块</h3><p>答对消方块，答错越堆越高！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('mole')">
+      <div class="icon">🐹</div>
+      <div class="info"><h3>笔顺打地鼠</h3><p>答案变地鼠，眼疾手快打掉它！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -436,6 +459,43 @@ button:active{transform:scale(.95)}
   </div>
   <div class="write-controls">
     <button class="w-btn orange" onclick="tetrisStart()">🔄 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-mole">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="moleScore">得分 0</span><span id="moleCombo">🔥 x0</span><span id="moleWave">第 1 题</span></div>
+  </div>
+  <div class="challenge-goal" id="moleQuestion">🐹 哪只地鼠扛着正确答案？快点它！</div>
+  <div class="mole-hearts" id="moleHearts"></div>
+  <div class="mole-arena" id="moleArena"></div>
+  <div class="feedback" id="moleFeedback"></div>
+</div>
+<div class="screen" id="screen-mole-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="moleResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="moleResultEmoji">🐹</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="moleResultTitle">地鼠们逃回去啦！</h2>
+    <p style="font-size:16px;opacity:.8" id="moleResultSubtitle">再练一局，手速更快！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="moleResultScore">0</div><div style="font-size:13px;opacity:.7">最终得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="moleResultHits">0</div><div style="font-size:13px;opacity:.7">打中地鼠</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="moleResultCombo">0</div><div style="font-size:13px;opacity:.7">最高连击</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="moleResultAcc">0%</div><div style="font-size:13px;opacity:.7">命中率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏅 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD700" id="moleResultBest">0</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="moleStart()">🔄 再来一局</button>
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
@@ -781,6 +841,7 @@ function enterMode(mode){
   else if(mode==='challenge')challengeStart();
   else if(mode==='rhythm')rhythmStart();
   else if(mode==='tetris')tetrisStart();
+  else if(mode==='mole')moleStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -1484,6 +1545,211 @@ function tetrisGameOver(){
   document.getElementById('tetrisResultSubtitle').textContent=subtitle;
   sndReward();
   if(tetris.cleared>=15)setTimeout(showRewardEgg,900);
+}
+/* ================= 笔顺打地鼠 ================= */
+const MOLE_HOLES=9;
+const MOLE_HEARTS=3;
+const MOLE_FACES=['🐹','🐭','🐰','🐻','🐮','🐨'];
+let mole={gen:0,score:0,combo:0,maxCombo:0,total:0,hits:0,hearts:MOLE_HEARTS,wave:0,over:false,busy:false,answer:'',options:[],timers:[]};
+function moleClearTimers(){mole.timers.forEach(t=>clearTimeout(t));mole.timers=[];}
+function moleAfter(ms,fn){
+  const g=mole.gen;
+  mole.timers.push(setTimeout(()=>{
+    if(g!==mole.gen||mole.over||currentMode!=='mole')return;
+    fn();
+  },ms));
+}
+function moleUpTime(){return Math.max(1050,2700-mole.wave*140);}
+function moleBuildArena(){
+  const a=document.getElementById('moleArena');a.innerHTML='';
+  for(let i=0;i<MOLE_HOLES;i++){const h=document.createElement('button');h.className='mole-hole';h.type='button';a.appendChild(h);}
+}
+function moleUpdateUI(){
+  document.getElementById('moleScore').textContent='得分 '+mole.score;
+  document.getElementById('moleCombo').textContent='🔥 x'+mole.combo;
+  document.getElementById('moleWave').textContent='第 '+mole.wave+' 题';
+  const hp=document.getElementById('moleHearts');
+  hp.innerHTML='';
+  for(let i=0;i<MOLE_HEARTS;i++){
+    const s=document.createElement('span');s.textContent='❤️';
+    if(i>=mole.hearts)s.classList.add('lost');
+    hp.appendChild(s);
+  }
+}
+function moleFloat(el,txt,color){
+  const r=el.getBoundingClientRect();
+  const d=document.createElement('div');d.className='mole-pts';d.textContent=txt;
+  if(color)d.style.color=color;
+  d.style.left=(r.left+r.width/2)+'px';d.style.top=(r.top+r.height*.32)+'px';
+  document.body.appendChild(d);setTimeout(()=>d.remove(),800);
+}
+function moleSmash(el){
+  const r=el.getBoundingClientRect();
+  const d=document.createElement('div');d.className='mole-smash';d.textContent='💥';
+  d.style.left=(r.left+r.width/2)+'px';d.style.top=(r.top+r.height*.18)+'px';
+  document.body.appendChild(d);setTimeout(()=>d.remove(),460);
+}
+function moleStart(){
+  moleClearTimers();
+  mole.gen++;
+  mole={gen:mole.gen,score:0,combo:0,maxCombo:0,total:0,hits:0,hearts:MOLE_HEARTS,wave:0,over:false,busy:true,answer:'',options:[],timers:[]};
+  showScreen('mole');
+  moleBuildArena();
+  moleUpdateUI();
+  document.getElementById('moleFeedback').textContent='';
+  document.getElementById('moleQuestion').innerHTML='🔨 准备好啦！<span class="mole-char">3</span>';
+  tone(660,.09);
+  moleAfter(350,()=>{document.getElementById('moleQuestion').innerHTML='🔨 准备好啦！<span class="mole-char">2</span>';tone(660,.09);});
+  moleAfter(700,()=>{document.getElementById('moleQuestion').innerHTML='🔨 准备好啦！<span class="mole-char">1</span>';tone(660,.09);});
+  moleAfter(1050,()=>{tone(990,.16);moleNextQuestion();});
+}
+async function moleNextQuestion(){
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data){moleNextQuestion();return;}
+  const numStrokes=data.strokes.length;
+  const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+  let question,correctAnswer,options;
+  if(Math.random()<.55){
+    question='一共有几笔？';
+    correctAnswer=String(numStrokes);
+    const nums=[numStrokes];
+    const near=[];
+    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
+    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
+    options=nums.sort(()=>Math.random()-.5).map(String);
+  }else{
+    const tIdx=Math.floor(Math.random()*numStrokes);
+    const ordinals=['一','二','三','四','五','六','七','八','九','十'];
+    question='第'+(ordinals[tIdx]||tIdx+1)+'笔往哪写？';
+    correctAnswer=dirs[tIdx];
+    const usedCodes=[correctAnswer];
+    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctAnswer);
+    while(usedCodes.length<4){
+      const rc=allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0];
+      if(rc)usedCodes.push(rc);
+    }
+    options=usedCodes.sort(()=>Math.random()-.5);
+  }
+  mole.answer=correctAnswer;
+  mole.options=options;
+  mole.wave++;
+  document.getElementById('moleQuestion').innerHTML='「<span class="mole-char">'+ch+'</span>」'+question;
+  document.getElementById('moleFeedback').textContent='';
+  moleUpdateUI();
+  moleSpawn();
+}
+function moleLabel(v){
+  const d=DIRS.find(x=>x.code===v);
+  return d?d.icon+' '+d.label:v+' 笔';
+}
+function moleSpawn(){
+  moleClearTimers();
+  moleBuildArena();
+  const arena=document.getElementById('moleArena');
+  const holes=[];for(let i=0;i<MOLE_HOLES;i++)holes.push(i);
+  for(let i=holes.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=holes[i];holes[i]=holes[j];holes[j]=t;}
+  const count=Math.min(4+Math.floor(mole.wave/6),7);
+  const vals=mole.options.slice();
+  while(vals.length<count)vals.push(mole.options[Math.floor(Math.random()*mole.options.length)]);
+  for(let i=vals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=vals[i];vals[i]=vals[j];vals[j]=t;}
+  const faces=MOLE_FACES.slice();
+  const up=moleUpTime();
+  mole.busy=false;
+  mole.spawnAt=Date.now();
+  vals.forEach((v,i)=>{
+    const el=arena.children[holes[i]];
+    el.dataset.value=v;
+    el.innerHTML='<span class="mole-body"><span class="mole-ans">'+moleLabel(v)+'</span><span class="mole-face">'+faces.splice(Math.floor(Math.random()*faces.length),1)[0]+'</span></span>';
+    el.onclick=()=>moleClick(el,v);
+    moleAfter(i*150,()=>{
+      el.classList.add('show');
+      tone(500+i*35,.05,'sine',.06);
+    });
+    moleAfter(i*150+up,()=>{el.classList.remove('show');});
+  });
+  moleAfter((vals.length-1)*150+up+120,moleEscape);
+}
+function moleHideAll(){
+  document.querySelectorAll('#moleArena .mole-hole').forEach(el=>el.classList.remove('show'));
+}
+function moleClick(el,v){
+  if(mole.over||mole.busy||!el.classList.contains('show'))return;
+  moleClearTimers();
+  mole.busy=true;
+  mole.total++;
+  if(v===mole.answer){
+    mole.hits++;mole.combo++;
+    if(mole.combo>mole.maxCombo)mole.maxCombo=mole.combo;
+    let pts=50+Math.min(mole.combo,10)*10;
+    let fast='';
+    if(Date.now()-mole.spawnAt<900){pts+=30;fast=' ⚡秒了！';}
+    mole.score+=pts;
+    el.classList.remove('show');el.classList.add('bonk');
+    moleSmash(el);moleFloat(el,'+'+pts);
+    sndOk();tone(300,.07,'square',.12);
+    tone(660+Math.min(mole.combo,8)*60,.12,'triangle',.14);
+    showComboEffect(mole.combo);
+    if(mole.combo>=5&&mole.combo%5===0)speakPraise();
+    const r=el.getBoundingClientRect();
+    spawnStarFly(r.left+r.width/2,r.top);
+    document.getElementById('moleFeedback').innerHTML='<span style="color:#69F0AE">✓ 打中啦！+'+pts+fast+'</span>';
+    moleUpdateUI();
+    moleAfter(520,moleNextQuestion);
+    return;
+  }
+  el.classList.remove('show');el.classList.add('dodged');
+  moleFloat(el,'✗','#FF8A80');
+  sndNo();
+  moleHideAll();
+  moleLoseHeart('<span style="color:#FFAB91">✗ 这只不对，再找找！</span>');
+  if(!mole.over)moleAfter(1100,moleSpawn);
+}
+function moleEscape(){
+  if(mole.over||mole.busy)return;
+  mole.busy=true;
+  moleHideAll();
+  mole.total++;
+  moleLoseHeart('<span style="color:#FFD740">💨 地鼠扛着答案钻回去啦！</span>');
+  if(!mole.over)moleAfter(1000,moleSpawn);
+}
+function moleLoseHeart(msg){
+  mole.combo=0;
+  mole.hearts--;
+  document.getElementById('moleFeedback').innerHTML=msg;
+  moleUpdateUI();
+  if(mole.hearts<=0){
+    mole.over=true;
+    tone(180,.4,'square');
+    setTimeout(()=>{if(currentMode==='mole'||currentMode==='mole-result')moleGameOver();},700);
+  }
+}
+function moleGameOver(){
+  const best=parseInt(localStorage.getItem('hz_mole_best')||'0');
+  const isNew=mole.score>best;
+  if(isNew)localStorage.setItem('hz_mole_best',mole.score);
+  const earned=Math.max(1,Math.min(15,Math.floor(mole.score/250)+(mole.maxCombo>=8?3:0)));
+  addStars(earned);
+  showScreen('mole-result');
+  document.getElementById('moleResultStars').textContent='⭐ +'+earned;
+  document.getElementById('moleResultScore').textContent=mole.score;
+  document.getElementById('moleResultHits').textContent=mole.hits;
+  document.getElementById('moleResultCombo').textContent=mole.maxCombo;
+  const accuracy=mole.total>0?Math.round(mole.hits/mole.total*100):0;
+  document.getElementById('moleResultAcc').textContent=accuracy+'%';
+  document.getElementById('moleResultBest').textContent=Math.max(best,mole.score);
+  let emoji,title,subtitle;
+  if(mole.hits>=20){emoji='🏆';title='地鼠克星！';subtitle='地鼠们看到你绕道走！';}
+  else if(mole.hits>=12){emoji='🥇';title='快手小达人！';subtitle='眼力和笔顺都在线！';}
+  else if(mole.hits>=7){emoji='🥈';title='打得不错！';subtitle='再练一局手更快！';}
+  else if(mole.hits>=3){emoji='🥉';title='刚上手！';subtitle='看清笔画方向再出手！';}
+  else{emoji='💪';title='别急，慢慢来！';subtitle='先想答案，再点地鼠！';}
+  if(isNew&&mole.score>0)title='🎉 新纪录！'+title;
+  document.getElementById('moleResultEmoji').textContent=emoji;
+  document.getElementById('moleResultTitle').textContent=title;
+  document.getElementById('moleResultSubtitle').textContent=subtitle;
+  sndReward();
+  if(mole.hits>=12)setTimeout(showRewardEgg,900);
 }
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
