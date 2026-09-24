@@ -177,6 +177,26 @@ button:active{transform:scale(.95)}
 .share-card canvas{display:block;width:100%}
 .share-hint{color:#fff;font-size:14px;margin-top:16px;text-align:center;opacity:.8}
 .share-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,.2);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer}
+.rhythm-stage{position:relative;width:100%;height:52vh;min-height:280px;max-height:460px;background:rgba(0,0,0,.28);border-radius:18px;overflow:hidden;margin:8px 0}
+.rhythm-lane{position:absolute;top:0;bottom:0;width:25%;border-right:1px dashed rgba(255,255,255,.12)}
+.rhythm-lane:last-child{border-right:none}
+.rhythm-hitzone{position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.14));border-top:3px solid rgba(255,215,0,.8);box-shadow:0 -6px 18px rgba(255,215,0,.3)}
+.rhythm-note{position:absolute;width:58px;height:58px;margin-left:-29px;top:0;will-change:transform;z-index:3}
+.rhythm-note .nb{width:100%;height:100%;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;color:#fff;border:3px solid rgba(255,255,255,.85);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.rhythm-note.missed .nb{opacity:.35;filter:grayscale(1)}
+.rhythm-note.perfect .nb{animation:notePerfect .3s ease-out forwards}
+.rhythm-note.good .nb{animation:noteGood .3s ease-out forwards}
+@keyframes notePerfect{0%{opacity:1;transform:scale(1)}100%{transform:scale(1.7);opacity:0}}
+@keyframes noteGood{0%{opacity:1;transform:scale(1)}100%{transform:scale(1.35);opacity:0}}
+.rhythm-judge{position:absolute;bottom:84px;transform:translateX(-50%);font-size:24px;font-weight:bold;pointer-events:none;z-index:6;text-shadow:0 2px 8px rgba(0,0,0,.5);animation:judgeUp .6s ease-out forwards}
+@keyframes judgeUp{0%{opacity:0;transform:translate(-50%,10px) scale(.6)}25%{opacity:1;transform:translate(-50%,0) scale(1.15)}100%{opacity:0;transform:translate(-50%,-34px) scale(1)}}
+.rhythm-count{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:72px;font-weight:bold;color:#FFD740;text-shadow:0 4px 16px rgba(0,0,0,.5);z-index:6;animation:textPop .6s ease-out}
+.rhythm-char{width:100%;text-align:center;color:#fff;font-size:22px;font-weight:bold;margin:2px 0;min-height:30px;text-shadow:1px 1px 6px rgba(0,0,0,.4)}
+.rhythm-keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;margin:8px 0}
+.rkey{border:none;border-radius:16px;padding:12px 0 9px;color:#fff;font-family:inherit;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.28);font-size:24px;line-height:1.1;transition:filter .1s}
+.rkey .kcap{display:block;font-size:11px;opacity:.9;margin-top:2px}
+.rkey.down{filter:brightness(1.6);transform:scale(.93)}
+@media(max-width:420px){.rhythm-note{width:48px;height:48px;margin-left:-24px}.rhythm-note .nb{font-size:18px;border-radius:13px}.rkey{font-size:20px;padding:9px 0 7px}}
 </style>
 </head>
 <body>
@@ -218,6 +238,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('challenge')">
       <div class="icon">⏱️</div>
       <div class="info"><h3>限时挑战</h3><p>60秒极限答题，挑战最高分！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('rhythm')">
+      <div class="icon">🎵</div>
+      <div class="info"><h3>笔顺音游</h3><p>笔画变音符，按出好节奏！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -310,6 +334,43 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="challengeStart()">🔄 再来一次</button>
     <button class="w-btn blue" onclick="challengeShare()">📤 分享成绩</button>
+  </div>
+</div>
+<div class="screen" id="screen-rhythm">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rhythmQuit()">← 退出</button>
+    <div class="stats"><span id="rhythmScore">得分 0</span><span id="rhythmCombo">🔥 x0</span><span id="rhythmBest">🎼 最高 0</span></div>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-inner" id="rhythmProg" style="background:linear-gradient(90deg,#4ECDC4,#FFD93D);width:0%"></div></div>
+  <div class="rhythm-char" id="rhythmChar">音符即将落下...</div>
+  <div class="rhythm-stage" id="rhythmStage"></div>
+  <div class="rhythm-keys" id="rhythmKeys"></div>
+</div>
+<div class="screen" id="screen-rhythm-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="rhythmResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="rhythmResultEmoji">🎵</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="rhythmResultTitle">演奏结束！</h2>
+    <p style="font-size:16px;opacity:.8" id="rhythmResultSubtitle">再来一曲，突破自我！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="rhythmResultScore">0</div><div style="font-size:13px;opacity:.7">演奏得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="rhythmResultCombo">0</div><div style="font-size:13px;opacity:.7">最高连击</div></div>
+      <div><div style="font-size:26px;font-weight:bold;color:#69F0AE;padding-top:6px" id="rhythmResultJudge">0 / 0</div><div style="font-size:13px;opacity:.7">完美 / 良好</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="rhythmResultAcc">0%</div><div style="font-size:13px;opacity:.7">节奏准确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🎼 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD700" id="rhythmResultBest">0</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="rhythmStart()">🔄 再来一曲</button>
+    <button class="w-btn blue" onclick="rhythmShare()">📤 分享成绩</button>
   </div>
 </div>
 <div class="screen" id="screen-adventure">
@@ -482,10 +543,10 @@ function unlockAudio(){
 }
 document.addEventListener('touchstart',unlockAudio,{once:true,passive:true});
 document.addEventListener('click',unlockAudio,{once:true});
-function tone(f,d,t){
+function tone(f,d,t,v){
   if(!settings.sfx)return;
   const c=getAC();if(!c)return;
-  try{const o=c.createOscillator(),g=c.createGain();o.type=t||'sine';o.frequency.value=f;g.gain.setValueAtTime(.18,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d);}catch(e){}
+  try{const o=c.createOscillator(),g=c.createGain();o.type=t||'sine';o.frequency.value=f;g.gain.setValueAtTime(v===undefined?.18:v,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d);}catch(e){}
 }
 function sndOk(){tone(880,.12);setTimeout(()=>tone(1100,.15),80);}
 function sndNo(){tone(220,.3,'square');}
@@ -649,6 +710,7 @@ function enterMode(mode){
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
+  else if(mode==='rhythm')rhythmStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -921,6 +983,237 @@ function startWriteQuiz(){
 function writeDemo(){if(writeWriter)writeWriter.animateCharacter({onComplete:startWriteQuiz});}
 function writeRetry(){if(writeWriter)startWriteQuiz();}
 function writeNext(){loadWriteChar(nextInQueue());}
+/* ================= 笔顺音游 ================= */
+const RHY_BEAT=560,RHY_FALL=1900;
+const RHY_LANES=[{icon:'➡️',name:'横',color:'#FF6B6B',key:'f'},{icon:'⬇️',name:'竖',color:'#4ECDC4',key:'g'},{icon:'↙️',name:'撇',color:'#45B7D1',key:'j'},{icon:'↘️',name:'捺',color:'#FFA07A',key:'k'}];
+const RHY_DIR2LANE={R:0,T:0,D:1,P:2,N:3};
+const RHY_PENTA=[523,587,659,784,880,1047];
+let rhythm={running:false,notes:[],startAt:0,raf:0,combo:0,maxCombo:0,score:0,perfect:0,good:0,miss:0,tickAt:0,endAt:0,shownKey:'',charCount:{},charTotal:{},cdTimer:null};
+function hexA(hex,a){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return'rgba('+r+','+g+','+b+','+a+')';}
+function rhythmPickChars(){
+  let pool=CHARS.filter(c=>charDataCache[c]&&strokeTypes[c]);
+  if(currentGrade!=='all'){const g=CHARS_BY_GRADE[currentGrade]||[];pool=pool.filter(c=>g.indexOf(c)!==-1);}
+  let easy=pool.filter(c=>{const n=charDataCache[c].strokes.length;return n>=2&&n<=5;});
+  if(easy.length<6)easy=pool;
+  for(let i=easy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[easy[i],easy[j]]=[easy[j],easy[i]];}
+  const picked=[];let strokes=0;
+  for(const c of easy){if(strokes>=26||picked.length>=9)break;picked.push(c);strokes+=charDataCache[c].strokes.length;}
+  return picked;
+}
+function rhythmStart(){
+  const chars=rhythmPickChars();
+  if(chars.length<4){alert('字库还在加载中，稍等一下再来！');return;}
+  showScreen('rhythm');
+  const notes=[];const charTotal={};let beat=4;
+  chars.forEach(ch=>{
+    const dirs=strokeTypes[ch];
+    charTotal[ch]=dirs.length;
+    dirs.forEach((d,i)=>{notes.push({lane:RHY_DIR2LANE[d]||0,time:beat*RHY_BEAT,char:ch,ord:i+1,judged:false,drop:false,visible:false,el:null});beat++;});
+    beat+=2;
+  });
+  if(rhythm.cdTimer)clearInterval(rhythm.cdTimer);
+  cancelAnimationFrame(rhythm.raf);
+  rhythm={running:false,notes,startAt:0,raf:0,combo:0,maxCombo:0,score:0,perfect:0,good:0,miss:0,tickAt:4*RHY_BEAT,endAt:beat*RHY_BEAT,shownKey:'',charCount:{},charTotal,cdTimer:null};
+  document.getElementById('rhythmScore').textContent='得分 0';
+  document.getElementById('rhythmCombo').textContent='🔥 x0';
+  document.getElementById('rhythmBest').textContent='🎼 最高 '+(parseInt(localStorage.getItem('hz_rhythm_best'))||0);
+  document.getElementById('rhythmProg').style.width='0%';
+  document.getElementById('rhythmChar').textContent='准备...';
+  rhythmBuildStage();
+  let cd=3;
+  const stage=document.getElementById('rhythmStage');
+  const countEl=document.createElement('div');countEl.className='rhythm-count';countEl.textContent=cd;
+  stage.appendChild(countEl);
+  rhythm.cdTimer=setInterval(()=>{
+    if(currentMode!=='rhythm'){clearInterval(rhythm.cdTimer);rhythm.cdTimer=null;return;}
+    cd--;
+    if(cd>0){countEl.textContent=cd;tone(660,.1,'triangle');}
+    else if(cd===0){countEl.textContent='GO!';tone(990,.16,'triangle');}
+    else{clearInterval(rhythm.cdTimer);rhythm.cdTimer=null;countEl.remove();rhythmBegin();}
+  },700);
+}
+function rhythmBuildStage(){
+  const stage=document.getElementById('rhythmStage');stage.innerHTML='';
+  for(let i=0;i<4;i++){
+    const lane=document.createElement('div');lane.className='rhythm-lane';
+    lane.style.left=(i*25)+'%';
+    lane.style.background='linear-gradient(180deg,rgba(255,255,255,0),'+hexA(RHY_LANES[i].color,.14)+')';
+    stage.appendChild(lane);
+  }
+  const hz=document.createElement('div');hz.className='rhythm-hitzone';stage.appendChild(hz);
+  rhythm.notes.forEach(n=>{
+    const el=document.createElement('div');el.className='rhythm-note';
+    el.style.left=(n.lane*25+12.5)+'%';el.style.display='none';
+    el.innerHTML='<span class="nb" style="background:'+RHY_LANES[n.lane].color+'">'+n.ord+'</span>';
+    stage.appendChild(el);n.el=el;
+  });
+  const keys=document.getElementById('rhythmKeys');keys.innerHTML='';
+  RHY_LANES.forEach((l,i)=>{
+    const b=document.createElement('button');b.className='rkey';b.style.background=l.color;
+    b.innerHTML=l.icon+'<span class="kcap">'+l.name+' · '+l.key.toUpperCase()+'</span>';
+    b.addEventListener('pointerdown',e=>{e.preventDefault();rhythmPress(i);});
+    keys.appendChild(b);
+  });
+}
+function rhythmBegin(){
+  rhythm.running=true;
+  rhythm.startAt=performance.now();
+  document.getElementById('rhythmChar').textContent='🎵 音符落到金线时按下！';
+  cancelAnimationFrame(rhythm.raf);
+  rhythm.raf=requestAnimationFrame(rhythmFrame);
+}
+function rhythmFrame(){
+  if(!rhythm.running)return;
+  const now=performance.now()-rhythm.startAt;
+  const stage=document.getElementById('rhythmStage');
+  const hitY=stage.clientHeight-70;
+  while(rhythm.tickAt<=now&&rhythm.tickAt<=rhythm.endAt){tone(1350,.035,'square',.045);rhythm.tickAt+=RHY_BEAT;}
+  for(let i=0;i<rhythm.notes.length;i++){
+    const n=rhythm.notes[i];
+    if(n.judged&&!n.drop)continue;
+    const p=1-(n.time-now)/RHY_FALL;
+    if(p<-0.08){if(!n.visible){n.el.style.display='block';n.visible=true;}continue;}
+    if(p>1.5){if(n.visible){n.el.style.display='none';n.visible=false;}continue;}
+    if(!n.visible){n.el.style.display='block';n.visible=true;}
+    n.el.style.transform='translateY('+(p*(hitY+29)-29)+'px)';
+    if(!n.judged&&now-n.time>260)rhythmMiss(n);
+  }
+  const cur=rhythm.notes.find(n=>!n.judged);
+  if(cur){
+    const t='「'+cur.char+'」第'+cur.ord+'笔 '+RHY_LANES[cur.lane].icon;
+    if(t!==rhythm.shownKey){rhythm.shownKey=t;document.getElementById('rhythmChar').textContent=t;}
+  }
+  document.getElementById('rhythmProg').style.width=Math.min(now/rhythm.endAt*100,100)+'%';
+  if(now>rhythm.endAt+600){rhythmEnd();return;}
+  rhythm.raf=requestAnimationFrame(rhythmFrame);
+}
+function rhythmPress(lane){
+  const kb=document.querySelectorAll('#rhythmKeys .rkey')[lane];
+  if(kb){kb.classList.add('down');setTimeout(()=>kb.classList.remove('down'),120);}
+  if(!rhythm.running)return;
+  const now=performance.now()-rhythm.startAt;
+  let best=null,bestAbs=261;
+  for(let i=0;i<rhythm.notes.length;i++){
+    const n=rhythm.notes[i];
+    if(n.time-now>260)break;
+    if(n.judged||n.lane!==lane)continue;
+    const d=Math.abs(now-n.time);
+    if(d<bestAbs){bestAbs=d;best=n;}
+  }
+  if(best)rhythmHit(best,bestAbs<=130?'perfect':'good');
+  else tone(300,.05,'sine',.05);
+}
+function rhythmHit(n,type){
+  n.judged=true;
+  n.el.classList.add(type);
+  setTimeout(()=>{n.el.style.display='none';},320);
+  let pts;
+  if(type==='perfect'){rhythm.perfect++;rhythm.combo++;pts=100+Math.min(rhythm.combo,10)*10;}
+  else{rhythm.good++;rhythm.combo++;pts=50+Math.min(rhythm.combo,10)*5;}
+  if(rhythm.combo>rhythm.maxCombo)rhythm.maxCombo=rhythm.combo;
+  rhythm.score+=pts;
+  tone(RHY_PENTA[rhythm.combo%RHY_PENTA.length]*(type==='perfect'?2:1),.13,'triangle',.15);
+  rhythmJudge(n.lane,type==='perfect'?'完美!':'良好',type==='perfect'?'#FFD740':'#69F0AE');
+  if(rhythm.combo>=3){
+    showComboEffect(rhythm.combo);
+    if(rhythm.combo%10===0)speakPraise();
+  }
+  rhythm.charCount[n.char]=(rhythm.charCount[n.char]||0)+1;
+  if(rhythm.charCount[n.char]===rhythm.charTotal[n.char]){
+    rhythm.score+=50;
+    rhythm.shownKey='';
+    document.getElementById('rhythmChar').textContent='✨「'+n.char+'」写完啦 +50';
+    sndDone();
+    const rect=document.getElementById('rhythmStage').getBoundingClientRect();
+    spawnStarFly(rect.left+rect.width/2,rect.top+rect.height/2);
+  }
+  document.getElementById('rhythmScore').textContent='得分 '+rhythm.score;
+  document.getElementById('rhythmCombo').textContent='🔥 x'+rhythm.combo;
+}
+function rhythmMiss(n){
+  n.judged=true;n.drop=true;
+  rhythm.miss++;rhythm.combo=0;
+  n.el.classList.add('missed');
+  tone(180,.15,'square',.08);
+  rhythmJudge(n.lane,'MISS','#FF8A80');
+  document.getElementById('rhythmCombo').textContent='🔥 x0';
+}
+function rhythmJudge(lane,text,color){
+  const el=document.createElement('div');el.className='rhythm-judge';el.textContent=text;
+  el.style.color=color;el.style.left=(lane*25+12.5)+'%';
+  document.getElementById('rhythmStage').appendChild(el);
+  setTimeout(()=>el.remove(),650);
+}
+function rhythmEnd(){
+  rhythm.running=false;
+  cancelAnimationFrame(rhythm.raf);
+  const total=rhythm.notes.length;
+  const acc=total?Math.round((rhythm.perfect+rhythm.good*0.6)/total*100):0;
+  const fullCombo=total>0&&rhythm.miss===0&&rhythm.perfect===total;
+  const earned=Math.max(1,Math.min(15,Math.floor(rhythm.score/120)+(fullCombo?5:0)));
+  if(rhythm.maxCombo>maxCombo){maxCombo=rhythm.maxCombo;localStorage.setItem('hz_maxCombo',maxCombo);}
+  addStars(earned);
+  const best=parseInt(localStorage.getItem('hz_rhythm_best')||'0');
+  const isNew=rhythm.score>best;
+  if(isNew)localStorage.setItem('hz_rhythm_best',rhythm.score);
+  showScreen('rhythm-result');
+  document.getElementById('rhythmResultStars').textContent='⭐ +'+earned;
+  document.getElementById('rhythmResultScore').textContent=rhythm.score;
+  document.getElementById('rhythmResultCombo').textContent=rhythm.maxCombo;
+  document.getElementById('rhythmResultJudge').textContent=rhythm.perfect+' / '+rhythm.good;
+  document.getElementById('rhythmResultAcc').textContent=acc+'%';
+  document.getElementById('rhythmResultBest').textContent=Math.max(best,rhythm.score);
+  let emoji,title,subtitle;
+  if(fullCombo){emoji='🌈';title='全连击演奏家！';subtitle='一个音符都没错过，太惊人了！';}
+  else if(acc>=95){emoji='🎼';title='节奏之神！';subtitle='你就是汉字里的莫扎特！';}
+  else if(acc>=80){emoji='🎹';title='小小钢琴家！';subtitle='离满分只差一点点！';}
+  else if(acc>=60){emoji='🥁';title='节奏小鼓手！';subtitle='再来一曲会更好！';}
+  else{emoji='🌱';title='继续练习！';subtitle='每一次演奏都在进步！';}
+  if(isNew&&rhythm.score>0)title='🎉 新纪录！'+title;
+  document.getElementById('rhythmResultEmoji').textContent=emoji;
+  document.getElementById('rhythmResultTitle').textContent=title;
+  document.getElementById('rhythmResultSubtitle').textContent=subtitle;
+  sndReward();
+  if(acc>=80)setTimeout(showRewardEgg,900);
+}
+function rhythmQuit(){
+  if(rhythm.cdTimer){clearInterval(rhythm.cdTimer);rhythm.cdTimer=null;}
+  if(rhythm.running){
+    if(!confirm('确定要退出演奏吗？当前得分将不计入最高分。'))return;
+    rhythm.running=false;
+    cancelAnimationFrame(rhythm.raf);
+  }
+  goHome();
+}
+function rhythmShare(){
+  const acc=rhythm.notes.length?Math.round((rhythm.perfect+rhythm.good*0.6)/rhythm.notes.length*100):0;
+  const text='🎵 我在「汉字笔顺闯关」笔顺音游中演奏了 '+rhythm.score+' 分！\n'+
+    '✨ 完美 '+rhythm.perfect+' · 良好 '+rhythm.good+'\n'+
+    '🔥 最高连击 '+rhythm.maxCombo+'\n'+
+    '🎯 节奏准确率 '+acc+'%\n'+
+    '🏅 历史最高分 '+(localStorage.getItem('hz_rhythm_best')||'0')+'\n\n'+
+    '快来一起弹奏汉字吧！'+location.href;
+  if(navigator.share){
+    navigator.share({title:'汉字笔顺闯关 - 笔顺音游',text:text,url:location.href}).catch(()=>{});
+  }else if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(()=>{
+      alert('成绩已复制到剪贴板，快去分享给朋友吧！');
+    }).catch(()=>{
+      prompt('复制以下内容分享给朋友：',text);
+    });
+  }else{
+    prompt('复制以下内容分享给朋友：',text);
+  }
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='rhythm'||!rhythm.running)return;
+  if(e.repeat)return;
+  const k=(e.key||'').toLowerCase();
+  const idx=RHY_LANES.findIndex(l=>l.key===k);
+  if(idx===-1)return;
+  e.preventDefault();
+  rhythmPress(idx);
+});
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
   challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
