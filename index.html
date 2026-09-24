@@ -228,6 +228,32 @@ button:active{transform:scale(.95)}
 .mole-hearts .lost{opacity:.22;filter:grayscale(1);transform:scale(.85)}
 .mole-char{font-size:26px;font-weight:bold;color:#FFD740;text-shadow:1px 1px 6px rgba(0,0,0,.4)}
 @media(max-width:420px){.mole-arena{gap:7px;max-width:330px}.mole-face{font-size:26px}.mole-ans{font-size:15px;padding:1px 6px}}
+.pz-target{position:relative;width:212px;height:212px;background:#fff;border-radius:18px;box-shadow:0 6px 22px rgba(0,0,0,.28);margin:6px 0;overflow:hidden}
+.pz-target::before,.pz-target::after{content:'';position:absolute;background:#f1ecfa;pointer-events:none;z-index:0}
+.pz-target::before{width:1px;height:78%;top:11%;left:50%}
+.pz-target::after{height:1px;width:78%;left:11%;top:50%}
+.pz-target svg{position:relative;z-index:1;width:100%;height:100%;display:block;transform:scaleY(-1)}
+#pzGhostG path{fill:rgba(126,87,194,.15);stroke:none}
+#pzLiveG path{fill:#FFB300;stroke:#fff;stroke-width:12;paint-order:stroke fill}
+.pz-piece path{fill:#5E35B1;stroke:#fff;stroke-width:12;paint-order:stroke fill}
+#pzLiveG g.pop path{animation:pzPop .42s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pzPop{0%{transform-box:fill-box;transform-origin:center;transform:scale(1.7);opacity:.15}100%{transform:scale(1);opacity:1}}
+.pz-target.flash{animation:pzFlash .7s ease-out}
+@keyframes pzFlash{0%{box-shadow:0 0 0 0 rgba(255,215,0,.9)}100%{box-shadow:0 0 0 26px rgba(255,215,0,0)}}
+.pz-tray{display:flex;flex-wrap:wrap;gap:8px;width:100%;max-width:344px;margin:8px 0;justify-content:center}
+.pz-piece{width:72px;height:72px;flex-shrink:0;background:#fff;border:none;border-radius:14px;box-shadow:0 3px 10px rgba(0,0,0,.22);cursor:pointer;padding:6px;display:flex;align-items:center;justify-content:center;transition:transform .18s,opacity .3s;font-family:inherit}
+.pz-piece svg{width:100%;height:100%;display:block;transform:rotate(var(--rot,0deg)) scaleY(-1)}
+.pz-piece:hover{transform:scale(1.07)}
+.pz-piece:active{transform:scale(.93)}
+.pz-piece.used{opacity:0;pointer-events:none;transform:scale(.7)}
+.pz-piece.err{animation:shakeWrong .5s ease;background:#FFCDD2}
+.pz-piece.hint{box-shadow:0 0 0 4px #FFD740,0 3px 14px rgba(255,215,0,.5);animation:pzHint .8s ease-in-out 2}
+@keyframes pzHint{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+.pz-meta{display:flex;gap:14px;align-items:center;justify-content:center;color:#fff;font-size:14px;margin:2px 0;width:100%}
+.pz-meta .pz-charname{font-size:22px;font-weight:bold;color:#FFD740;text-shadow:1px 1px 6px rgba(0,0,0,.35)}
+.pz-low .progress-bar-wrap{box-shadow:0 0 14px rgba(239,83,80,.7)}
+.pz-low #pzTime{color:#FF8A80}
+@media(max-width:420px){.pz-target{width:180px;height:180px}.pz-tray{max-width:300px;gap:6px}}
 </style>
 </head>
 <body>
@@ -281,6 +307,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('mole')">
       <div class="icon">🐹</div>
       <div class="info"><h3>笔顺打地鼠</h3><p>答案变地鼠，眼疾手快打掉它！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('puzzle')">
+      <div class="icon">🧩</div>
+      <div class="info"><h3>笔顺拼图</h3><p>按笔顺把打碎的汉字拼回来！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -496,6 +526,57 @@ button:active{transform:scale(.95)}
   </div>
   <div class="write-controls">
     <button class="w-btn orange" onclick="moleStart()">🔄 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-puzzle">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="pzScore">得分 0</span><span id="pzDone">已拼 0 字</span><span id="pzCombo">🔥 x0</span></div>
+  </div>
+  <div class="challenge-goal">🧩 按<b>正确笔顺</b>点击碎片，把打碎的汉字拼回来！</div>
+  <div class="progress-bar-wrap"><div class="progress-bar-inner" id="pzTimeBar" style="width:100%"></div></div>
+  <div class="pz-meta">
+    <span>⏱️ <b id="pzTime">60</b>s</span>
+    <span class="pz-charname" id="pzCharName">「?」</span>
+    <span>第 <b id="pzStep">1</b>/<b id="pzTotal">3</b> 笔</span>
+  </div>
+  <div class="pz-target" id="pzTarget">
+    <svg viewBox="-70 -70 1164 1164" preserveAspectRatio="xMidYMid meet">
+      <g id="pzGhostG"></g><g id="pzLiveG"></g>
+    </svg>
+  </div>
+  <div class="pz-tray" id="pzTray"></div>
+  <div class="write-controls">
+    <button class="w-btn green" onclick="puzzleHint()">💡 提示 −5s</button>
+    <button class="w-btn blue" onclick="puzzleSkip()">🔄 换字 −10s</button>
+  </div>
+  <div class="feedback" id="pzFeedback"></div>
+</div>
+<div class="screen" id="screen-puzzle-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="pzResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="pzResultEmoji">🧩</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="pzResultTitle">时间到！</h2>
+    <p style="font-size:16px;opacity:.8" id="pzResultSubtitle">再来一局，拼得更快！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="pzResultScore">0</div><div style="font-size:13px;opacity:.7">最终得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="pzResultChars">0</div><div style="font-size:13px;opacity:.7">拼好汉字</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="pzResultPerfect">0</div><div style="font-size:13px;opacity:.7">完美零失误</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="pzResultCombo">0</div><div style="font-size:13px;opacity:.7">最高连击</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏅 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD700" id="pzResultBest">0</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="puzzleStart()">🔄 再来一局</button>
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
@@ -842,6 +923,7 @@ function enterMode(mode){
   else if(mode==='rhythm')rhythmStart();
   else if(mode==='tetris')tetrisStart();
   else if(mode==='mole')moleStart();
+  else if(mode==='puzzle')puzzleStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -1750,6 +1832,190 @@ function moleGameOver(){
   document.getElementById('moleResultSubtitle').textContent=subtitle;
   sndReward();
   if(mole.hits>=12)setTimeout(showRewardEgg,900);
+}
+/* ================= 笔顺拼图 ================= */
+const PZ_START_TIME=70;
+const PZ_CHAR_BONUS=9;
+const PZ_PENTA=[523,587,659,784,880,1047,1175];
+let puzzle={time:PZ_START_TIME,score:0,combo:0,maxCombo:0,done:0,perfect:0,step:0,strokes:[],over:false,busy:false,timerId:null,lastTickAt:0,char:'',mistakes:0};
+async function puzzlePickChar(){
+  for(let i=0;i<24;i++){
+    const ch=nextInQueue();
+    const data=await loadCharData(ch);
+    if(data&&data.strokes.length>=2&&data.strokes.length<=8)return{ch:ch,data:data};
+  }
+  return null;
+}
+function puzzleUpdateUI(){
+  document.getElementById('pzScore').textContent='得分 '+puzzle.score;
+  document.getElementById('pzCombo').textContent='🔥 x'+puzzle.combo;
+  document.getElementById('pzDone').textContent='已拼 '+puzzle.done+' 字';
+}
+function puzzleTickUI(){
+  const pct=Math.max(0,Math.min(100,puzzle.time/PZ_START_TIME*100));
+  document.getElementById('pzTimeBar').style.width=pct+'%';
+  document.getElementById('pzTime').textContent=Math.ceil(Math.max(0,puzzle.time));
+  document.getElementById('pzTime').style.color=puzzle.time<=10?'#FF8A80':'#fff';
+}
+function puzzleStart(){
+  if(puzzle.timerId)clearInterval(puzzle.timerId);
+  puzzle={time:PZ_START_TIME,score:0,combo:0,maxCombo:0,done:0,perfect:0,step:0,strokes:[],over:false,busy:false,timerId:null,lastTickAt:Date.now(),char:'',mistakes:0};
+  showScreen('puzzle');
+  document.getElementById('pzFeedback').textContent='';
+  puzzleUpdateUI();puzzleTickUI();
+  document.getElementById('screen-puzzle').classList.remove('pz-low');
+  puzzle.timerId=setInterval(()=>{
+    if(puzzle.over||currentMode!=='puzzle'){clearInterval(puzzle.timerId);puzzle.timerId=null;return;}
+    const now=Date.now();
+    if(now-puzzle.lastTickAt>=1000){
+      puzzle.lastTickAt=now;
+      puzzle.time--;
+      if(puzzle.time<=5&&puzzle.time>0)tone(300,.08,'square',.08);
+      puzzleTickUI();
+      if(puzzle.time<=0){puzzle.time=0;puzzleTickUI();puzzleGameOver();}
+    }
+  },120);
+  puzzleNextChar();
+}
+async function puzzleNextChar(){
+  if(puzzle.over||currentMode!=='puzzle')return;
+  const pick=await puzzlePickChar();
+  if(!pick){puzzleGameOver();return;}
+  puzzle.char=pick.ch;puzzle.strokes=pick.data.strokes;puzzle.step=0;puzzle.mistakes=0;puzzle.busy=false;
+  document.getElementById('pzCharName').textContent='「'+pick.ch+'」';
+  document.getElementById('pzTotal').textContent=pick.data.strokes.length;
+  document.getElementById('pzStep').textContent='1';
+  document.getElementById('pzFeedback').textContent='';
+  const paths=pick.data.strokes.map((d,i)=>({d:d,i:i}));
+  document.getElementById('pzGhostG').innerHTML=paths.map(p=>'<path d="'+p.d+'"/>').join('');
+  document.getElementById('pzLiveG').innerHTML='';
+  const tray=document.getElementById('pzTray');tray.innerHTML='';
+  const shuffled=paths.slice();
+  for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=shuffled[i];shuffled[i]=shuffled[j];shuffled[j]=t;}
+  shuffled.forEach(p=>{
+    const btn=document.createElement('button');btn.className='pz-piece';btn.type='button';btn.dataset.idx=p.i;
+    btn.style.setProperty('--rot',(Math.random()*40-20).toFixed(1)+'deg');
+    btn.innerHTML='<svg viewBox="'+pzTileViewBox(p.d)+'" preserveAspectRatio="xMidYMid meet"><path d="'+p.d+'"/></svg>';
+    btn.onclick=()=>puzzleClick(btn,p.i);
+    tray.appendChild(btn);
+  });
+  tone(700,.08,'triangle',.08);
+}
+let pzMeasure=null;
+function pzTileViewBox(d){
+  if(!pzMeasure){
+    pzMeasure=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    pzMeasure.setAttribute('width','12');pzMeasure.setAttribute('height','12');
+    pzMeasure.style.cssText='position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none';
+    document.body.appendChild(pzMeasure);
+  }
+  const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+  p.setAttribute('d',d);pzMeasure.appendChild(p);
+  let b=null;
+  try{b=p.getBBox();}catch(e){}
+  pzMeasure.removeChild(p);
+  if(!b||!b.width||!b.height)return '0 0 1024 1024';
+  const side=Math.max(b.width,b.height)*1.32+40;
+  return (b.x+b.width/2-side/2)+' '+(b.y+b.height/2-side/2)+' '+side+' '+side;
+}
+function puzzleClick(btn,idx){
+  if(puzzle.over||puzzle.busy||btn.classList.contains('used'))return;
+  if(idx===puzzle.step){
+    const d=puzzle.strokes[idx];
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','pop');
+    g.innerHTML='<path d="'+d+'"/>';
+    document.getElementById('pzLiveG').appendChild(g);
+    btn.classList.add('used');
+    puzzle.step++;
+    document.getElementById('pzStep').textContent=Math.min(puzzle.step+1,puzzle.strokes.length);
+    const pts=20+Math.min(puzzle.combo,10)*5;
+    puzzle.score+=pts;puzzle.combo++;
+    if(puzzle.combo>puzzle.maxCombo)puzzle.maxCombo=puzzle.combo;
+    tone(PZ_PENTA[Math.min(puzzle.step-1,PZ_PENTA.length-1)],.13,'triangle',.15);
+    moleFloat(btn,'+'+pts);
+    puzzleUpdateUI();
+    if(puzzle.step>=puzzle.strokes.length)puzzleCharDone();
+  }else{
+    puzzle.mistakes++;puzzle.combo=0;
+    puzzle.time=Math.max(0,puzzle.time-3);puzzleTickUI();
+    btn.classList.add('err');
+    setTimeout(()=>btn.classList.remove('err'),520);
+    sndNo();
+    document.getElementById('pzFeedback').innerHTML='<span style="color:#FFAB91">✗ 不是这一笔！第 '+(puzzle.step+1)+' 笔在哪？ −3s</span>';
+    puzzleUpdateUI();
+    if(puzzle.time<=0)puzzleGameOver();
+  }
+}
+function puzzleCharDone(){
+  puzzle.done++;
+  const perfect=puzzle.mistakes===0;
+  if(perfect)puzzle.perfect++;
+  const bonus=100+(perfect?150:0);
+  puzzle.score+=bonus;
+  puzzle.time=Math.min(PZ_START_TIME+30,puzzle.time+PZ_CHAR_BONUS);
+  puzzleTickUI();puzzleUpdateUI();
+  puzzle.busy=true;
+  const target=document.getElementById('pzTarget');
+  target.classList.add('flash');
+  setTimeout(()=>target.classList.remove('flash'),720);
+  const r=target.getBoundingClientRect();
+  spawnStarFly(r.left+r.width/2,r.top+r.height/2);
+  sndDone();
+  if(perfect){
+    showComboEffect(puzzle.combo);
+    document.getElementById('pzFeedback').innerHTML='<span style="color:#FFD740">🧩 「'+puzzle.char+'」拼好啦！零失误 +'+bonus+' ⏱️+'+PZ_CHAR_BONUS+'s</span>';
+    speakPraise();
+  }else{
+    document.getElementById('pzFeedback').innerHTML='<span style="color:#69F0AE">🧩 「'+puzzle.char+'」拼好啦！+'+bonus+' ⏱️+'+PZ_CHAR_BONUS+'s</span>';
+  }
+  if(puzzle.done%5===0)setTimeout(showRewardEgg,700);
+  setTimeout(puzzleNextChar,1100);
+}
+function puzzleHint(){
+  if(puzzle.over||puzzle.busy)return;
+  puzzle.time=Math.max(1,puzzle.time-5);puzzleTickUI();
+  const el=document.querySelector('#pzTray .pz-piece[data-idx="'+puzzle.step+'"]');
+  if(el){el.classList.add('hint');setTimeout(()=>el.classList.remove('hint'),1700);}
+  tone(1050,.12,'triangle',.1);
+  document.getElementById('pzFeedback').innerHTML='<span style="color:#FFD740">💡 亮起来的那块就是第 '+(puzzle.step+1)+' 笔！</span>';
+}
+function puzzleSkip(){
+  if(puzzle.over||puzzle.busy)return;
+  puzzle.time=Math.max(1,puzzle.time-10);puzzleTickUI();
+  puzzle.combo=0;puzzleUpdateUI();
+  document.getElementById('pzFeedback').innerHTML='<span style="color:#B3E5FC">🔄 换一个字 −10s</span>';
+  puzzle.busy=true;
+  setTimeout(puzzleNextChar,300);
+}
+function puzzleGameOver(){
+  if(puzzle.over)return;
+  puzzle.over=true;
+  if(puzzle.timerId){clearInterval(puzzle.timerId);puzzle.timerId=null;}
+  const best=parseInt(localStorage.getItem('hz_puzzle_best')||'0');
+  const isNew=puzzle.score>best;
+  if(isNew)localStorage.setItem('hz_puzzle_best',puzzle.score);
+  const earned=Math.max(1,Math.min(15,Math.floor(puzzle.score/350)+(puzzle.perfect>=3?3:0)));
+  addStars(earned);
+  showScreen('puzzle-result');
+  document.getElementById('pzResultStars').textContent='⭐ +'+earned;
+  document.getElementById('pzResultScore').textContent=puzzle.score;
+  document.getElementById('pzResultChars').textContent=puzzle.done;
+  document.getElementById('pzResultPerfect').textContent=puzzle.perfect;
+  document.getElementById('pzResultCombo').textContent=puzzle.maxCombo;
+  document.getElementById('pzResultBest').textContent=Math.max(best,puzzle.score);
+  let emoji,title,subtitle;
+  if(puzzle.done>=10){emoji='🏆';title='拼图宗师！';subtitle='再难的字到你手里都碎不了！';}
+  else if(puzzle.done>=6){emoji='🥇';title='结构小达人！';subtitle='笔顺记得又准又快！';}
+  else if(puzzle.done>=3){emoji='🥈';title='越拼越顺！';subtitle='再来一局冲上 6 个字！';}
+  else if(puzzle.done>=1){emoji='🥉';title='开拼成功！';subtitle='记住笔顺，拼图自然快！';}
+  else{emoji='💪';title='差一点点！';subtitle='先在心里默写笔顺再动手！';}
+  if(isNew&&puzzle.score>0)title='🎉 新纪录！'+title;
+  document.getElementById('pzResultEmoji').textContent=emoji;
+  document.getElementById('pzResultTitle').textContent=title;
+  document.getElementById('pzResultSubtitle').textContent=subtitle;
+  sndReward();
+  if(puzzle.done>=6)setTimeout(showRewardEgg,900);
 }
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
