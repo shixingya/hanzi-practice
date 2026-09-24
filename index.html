@@ -289,6 +289,54 @@ button:active{transform:scale(.95)}
 .run-btn.down{background:linear-gradient(135deg,#FFD166,#F0B429)}
 .run-speed{font-size:12px;opacity:.85}
 @media(max-width:420px){.run-scene{height:40vh;min-height:260px}.run-panel{height:54px;margin-top:-27px}.run-panel .pv{font-size:18px}.run-runner{width:48px;height:48px;margin-top:-24px;line-height:48px;font-size:34px}}
+/* ---------- 笔顺大魔王 ---------- */
+.bs-stage{position:relative;width:100%;height:32vh;min-height:220px;max-height:310px;border-radius:20px;overflow:hidden;margin:6px 0;background:radial-gradient(120% 95% at 50% 0%,#5A2E7A 0%,#2A1340 58%,#160A24 100%);box-shadow:0 10px 30px rgba(0,0,0,.42),inset 0 0 70px rgba(0,0,0,.55);transition:background .6s}
+.bs-stage.p2{background:radial-gradient(120% 95% at 50% 0%,#7A2E44 0%,#40132A 58%,#240A18 100%)}
+.bs-stage.p3{background:radial-gradient(120% 95% at 50% 0%,#2E5A7A 0%,#13313F 58%,#08191F 100%)}
+.bs-fog{position:absolute;left:-20%;bottom:-8%;width:140%;height:46%;pointer-events:none;background:radial-gradient(50% 65% at 50% 100%,rgba(255,255,255,.16),transparent 72%);animation:bsFog 7s ease-in-out infinite alternate}
+@keyframes bsFog{0%{transform:translateX(-5%)}100%{transform:translateX(5%)}}
+.bs-boss{position:absolute;left:50%;top:47%;width:130px;height:130px;margin-left:-65px;margin-top:-65px;font-size:92px;line-height:130px;text-align:center;pointer-events:none;filter:drop-shadow(0 0 18px rgba(255,64,129,.65));animation:bsIdle 2.4s ease-in-out infinite}
+@keyframes bsIdle{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.05)}}
+.bs-boss.rage{filter:drop-shadow(0 0 28px rgba(255,45,45,.95)) saturate(1.6)}
+.bs-boss.hit{animation:bsHit .44s ease-out}
+@keyframes bsHit{0%{transform:translate(0,0) scale(1)}25%{transform:translate(16px,-8px) scale(1.14) rotate(7deg)}60%{transform:translate(-9px,4px) scale(.95) rotate(-5deg)}100%{transform:translate(0,0) scale(1)}}
+.bs-boss.atk{animation:bsAtk .55s ease-out}
+@keyframes bsAtk{0%{transform:translateY(0) scale(1)}38%{transform:translateY(46px) scale(1.3)}100%{transform:translateY(0) scale(1)}}
+.bs-boss.die{animation:bsDie 1.15s ease-in forwards}
+@keyframes bsDie{0%{opacity:1;transform:scale(1) rotate(0)}100%{opacity:0;transform:scale(.15) rotate(620deg) translateY(46px)}}
+.bs-hp{position:absolute;left:50%;transform:translateX(-50%);width:80%;max-width:360px;z-index:3}
+.bs-hp.boss{top:10px}
+.bs-hp.me{bottom:10px}
+.bs-name{display:flex;justify-content:space-between;font-size:12px;color:#fff;opacity:.92;margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.bs-bar{height:14px;border-radius:9px;background:rgba(255,255,255,.15);overflow:hidden;border:1px solid rgba(255,255,255,.28)}
+.bs-fill{height:100%;border-radius:9px;transition:width .3s ease-out}
+.bs-fill.e{background:linear-gradient(90deg,#FF1744,#FF8A80)}
+.bs-fill.h{background:linear-gradient(90deg,#00E676,#B9F6CA)}
+.bs-fill.low{background:linear-gradient(90deg,#FF6D00,#FFD54F)}
+.bs-stage.shake{animation:bsShake .42s}
+@keyframes bsShake{0%,100%{transform:translate(0,0)}20%{transform:translate(-10px,5px)}40%{transform:translate(9px,-6px)}60%{transform:translate(-7px,-3px)}80%{transform:translate(6px,4px)}}
+.bs-slash{position:absolute;left:50%;top:47%;width:250px;height:250px;margin-left:-125px;margin-top:-125px;border-radius:50%;pointer-events:none;z-index:6;background:radial-gradient(circle,rgba(255,255,255,.95) 0%,rgba(255,214,64,.55) 36%,transparent 68%);animation:bsSlash .55s ease-out forwards}
+@keyframes bsSlash{0%{opacity:0;transform:scale(.25) rotate(-35deg)}28%{opacity:1}100%{opacity:0;transform:scale(1.6) rotate(40deg)}}
+.bs-timer{width:100%;max-width:420px;height:11px;border-radius:8px;background:rgba(255,255,255,.18);overflow:hidden;margin:4px 0 2px;border:1px solid rgba(255,255,255,.22)}
+.bs-timer-fill{height:100%;width:100%;border-radius:8px;background:linear-gradient(90deg,#FFD740,#FFAB40)}
+.bs-timer-fill.urgent{background:linear-gradient(90deg,#FF1744,#FF8A80)}
+.bs-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:420px;margin:8px 0}
+.bs-opt{border:none;border-radius:16px;padding:14px 8px;background:#fff;font-family:inherit;font-size:20px;color:#3A2350;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .1s,filter .1s;display:flex;align-items:center;justify-content:center;gap:8px;min-height:58px}
+.bs-opt:active{transform:scale(.95)}
+.bs-opt .oi{font-size:24px}
+.bs-opt.right{background:#00C853;color:#fff;animation:bsRight .5s ease-out}
+@keyframes bsRight{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
+.bs-opt.wrong{background:#D50000;color:#fff;animation:bsWrong .45s}
+@keyframes bsWrong{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.bs-ult{display:flex;align-items:center;gap:10px;width:100%;max-width:420px;margin:2px 0 6px}
+.bs-energy{flex:1;height:16px;border-radius:10px;background:rgba(255,255,255,.16);overflow:hidden;border:1px solid rgba(255,255,255,.26)}
+.bs-energy-fill{height:100%;width:0;border-radius:10px;background:linear-gradient(90deg,#40C4FF,#E040FB);transition:width .3s}
+.bs-ultbtn{border:none;border-radius:14px;padding:10px 16px;font-family:inherit;font-size:17px;color:#fff;cursor:pointer;background:linear-gradient(135deg,#7E57C2,#5E35B1);opacity:.55;transition:opacity .2s,transform .1s}
+.bs-ultbtn.ready{opacity:1;background:linear-gradient(135deg,#FFD740,#FF6D00);animation:bsReady .8s ease-in-out infinite;box-shadow:0 0 22px rgba(255,214,64,.75)}
+@keyframes bsReady{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.bs-ultbtn:active{transform:scale(.93)}
+.bs-badge{position:absolute;right:10px;top:8px;font-size:11px;color:#fff;opacity:.75;z-index:4}
+@media(max-width:420px){.bs-stage{height:27vh;min-height:190px}.bs-boss{font-size:74px}.bs-opt{font-size:17px;min-height:50px;padding:10px 6px}}
 </style>
 </head>
 <body>
@@ -350,6 +398,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('runner')">
       <div class="icon">🏃</div>
       <div class="info"><h3>笔顺跑酷</h3><p>三道抢答，冲进正确的那一栏！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('boss')">
+      <div class="icon">👹</div>
+      <div class="info"><h3>笔顺大魔王</h3><p>答对蓄力，放大招打倒五位魔王！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -663,6 +715,66 @@ button:active{transform:scale(.95)}
   </div>
   <div class="write-controls">
     <button class="w-btn orange" onclick="runnerStart()">🔄 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-boss">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="bsScore">伤害 0</span><span id="bsCombo">🔥 x0</span><span id="bsRound">回合 1</span></div>
+  </div>
+  <div class="challenge-goal" id="bsTitle">👹 魔王登场！</div>
+  <div class="bs-stage" id="bsStage">
+    <div class="bs-fog"></div>
+    <div class="bs-badge" id="bsBadge"></div>
+    <div class="bs-hp boss">
+      <div class="bs-name"><span id="bsBossName">魔王</span><span id="bsBossHp">100/100</span></div>
+      <div class="bs-bar"><div class="bs-fill e" id="bsBossFill" style="width:100%"></div></div>
+    </div>
+    <div class="bs-boss" id="bsBoss">👹</div>
+    <div class="bs-hp me">
+      <div class="bs-name"><span>✏️ 小勇士</span><span id="bsMyHp">100/100</span></div>
+      <div class="bs-bar"><div class="bs-fill h" id="bsMyFill" style="width:100%"></div></div>
+    </div>
+  </div>
+  <div class="bs-timer"><div class="bs-timer-fill" id="bsTimeFill"></div></div>
+  <div class="quiz-header">
+    <div class="question" id="bsQuestion">准备迎战…</div>
+  </div>
+  <div class="bs-opts" id="bsOptions"></div>
+  <div class="bs-ult">
+    <div class="bs-energy"><div class="bs-energy-fill" id="bsEnergyFill"></div></div>
+    <button class="bs-ultbtn" id="bsUltBtn" onclick="bossUlt()">⚡ 放大招</button>
+  </div>
+  <div class="feedback" id="bsFeedback"></div>
+</div>
+<div class="screen" id="screen-boss-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="bsResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="bsResultEmoji">👹</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="bsResultTitle">魔王被击败！</h2>
+    <p style="font-size:16px;opacity:.8" id="bsResultSubtitle">下一位魔王正在等你。</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="bsResultDmg">0</div><div style="font-size:13px;opacity:.7">总伤害</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="bsResultRounds">0</div><div style="font-size:13px;opacity:.7">战斗回合</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="bsResultCombo">0</div><div style="font-size:13px;opacity:.7">最高连击</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="bsResultBeaten">0/5</div><div style="font-size:13px;opacity:.7">已击败魔王</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🗡️ 魔王阵容</div>
+      <div style="font-size:24px;letter-spacing:6px" id="bsResultRoster">👹🐲😈</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="bossRetry()">🔄 再战本关</button>
+    <button class="w-btn blue" id="bsNextBtn" onclick="bossNextBoss()">👉 挑战下一位</button>
+  </div>
+  <div class="write-controls" style="margin-top:8px">
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
@@ -1011,6 +1123,7 @@ function enterMode(mode){
   else if(mode==='mole')moleStart();
   else if(mode==='puzzle')puzzleStart();
   else if(mode==='runner')runnerStart();
+  else if(mode==='boss')bossStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -2314,6 +2427,274 @@ document.addEventListener('keydown',function(e){
   if(k==='ArrowUp'||k==='w'||k==='W'||k==='a'||k==='A'){e.preventDefault();runnerSetLane(runner.lane-1);}
   else if(k==='ArrowDown'||k==='s'||k==='S'||k==='d'||k==='D'){e.preventDefault();runnerSetLane(runner.lane+1);}
   else if(k==='1'||k==='2'||k==='3'){e.preventDefault();runnerSetLane(parseInt(k,10)-1);}
+});
+/* ================= 笔顺大魔王 ================= */
+const BS_ROSTER=[
+  {e:'👹',n:'糊涂小鬼',hp:110,tc:9000},
+  {e:'👺',n:'倒笔妖女',hp:150,tc:8400},
+  {e:'🐲',n:'乱序龙王',hp:190,tc:7800},
+  {e:'👾',n:'墨汁魔王',hp:235,tc:7000},
+  {e:'😈',n:'笔顺大魔神',hp:280,tc:6200}
+];
+const BS_PENTA=[523,587,659,784,880,1047,1319];
+const BS_PHASE_TC=[1,.78,.6];
+let boss={gen:0,idx:0,hp:1,maxHp:1,my:100,dmg:0,combo:0,maxCombo:0,round:0,energy:0,over:false,busy:true,timerId:null,deadline:0,tc:9000,askAt:0,answered:true,correct:null,phase:1};
+function bossBeaten(){return Math.max(0,Math.min(BS_ROSTER.length,parseInt(localStorage.getItem('hz_boss_beat')||'0',10)||0));}
+function bossSchedule(ms){
+  const g=boss.gen;
+  setTimeout(()=>{if(g!==boss.gen||boss.over||currentMode!=='boss')return;bossAsk();},ms);
+}
+function bossUpdateUI(){
+  const b=BS_ROSTER[boss.idx];
+  document.getElementById('bsScore').textContent='伤害 '+boss.dmg;
+  document.getElementById('bsCombo').textContent='🔥 x'+boss.combo;
+  document.getElementById('bsRound').textContent='回合 '+boss.round;
+  document.getElementById('bsBossName').textContent=b.e+' '+b.n+(boss.phase>1?'（狂暴 x'+boss.phase+'）':'');
+  document.getElementById('bsBossHp').textContent=Math.max(0,Math.ceil(boss.hp))+'/'+boss.maxHp;
+  document.getElementById('bsBossFill').style.width=Math.max(0,boss.hp/boss.maxHp*100)+'%';
+  document.getElementById('bsMyHp').textContent=Math.max(0,Math.ceil(boss.my))+'/100';
+  const mf=document.getElementById('bsMyFill');
+  mf.style.width=Math.max(0,boss.my)+'%';
+  mf.classList.toggle('low',boss.my<=35);
+  document.getElementById('bsEnergyFill').style.width=boss.energy+'%';
+  document.getElementById('bsUltBtn').classList.toggle('ready',boss.energy>=100&&!boss.over);
+  document.getElementById('bsBadge').textContent='💀 '+bossBeaten()+'/'+BS_ROSTER.length;
+}
+function bossLockOptions(){
+  document.querySelectorAll('#bsOptions .bs-opt').forEach(o=>{o.style.pointerEvents='none';});
+}
+function bossSlash(big){
+  const s=document.createElement('div');s.className='bs-slash';
+  if(big){s.style.width=s.style.height='360px';s.style.marginLeft=s.style.marginTop='-180px';}
+  document.getElementById('bsStage').appendChild(s);
+  setTimeout(()=>s.remove(),620);
+}
+function bossStart(idx){
+  if(boss.timerId){clearInterval(boss.timerId);boss.timerId=null;}
+  if(idx===undefined||idx===null)idx=Math.min(bossBeaten(),BS_ROSTER.length-1);
+  idx=Math.max(0,Math.min(BS_ROSTER.length-1,idx));
+  const b=BS_ROSTER[idx];
+  boss={gen:(boss.gen||0)+1,idx:idx,hp:b.hp,maxHp:b.hp,my:100,dmg:0,combo:0,maxCombo:0,round:0,energy:0,over:false,busy:true,timerId:null,deadline:0,tc:b.tc,askAt:0,answered:true,correct:null,phase:1};
+  showScreen('boss');
+  const stage=document.getElementById('bsStage');
+  stage.classList.remove('p2','p3');
+  const be=document.getElementById('bsBoss');
+  be.className='bs-boss';be.textContent=b.e;
+  document.getElementById('bsOptions').innerHTML='';
+  document.getElementById('bsFeedback').textContent='';
+  document.getElementById('bsTimeFill').style.width='100%';
+  document.getElementById('bsTimeFill').classList.remove('urgent');
+  document.getElementById('bsTitle').textContent='👹 第 '+(idx+1)+' 位魔王 · '+b.n+'（血量 '+b.hp+'）';
+  document.getElementById('bsQuestion').textContent='魔王向你冲来了…';
+  bossUpdateUI();
+  tone(170,.5,'sawtooth',.12);
+  const g=boss.gen;
+  setTimeout(()=>{
+    if(g!==boss.gen||currentMode!=='boss'||boss.over)return;
+    document.getElementById('bsQuestion').textContent='⚔️ 答对就砍它一刀，答错它会打你！';
+    boss.timerId=setInterval(bossTick,50);
+    bossAsk();
+  },1200);
+}
+async function bossAsk(){
+  if(boss.over||currentMode!=='boss')return;
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data){bossSchedule(500);return;}
+  if(boss.over||currentMode!=='boss')return;
+  const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+  const n=data.strokes.length;
+  let question,correct,qType;
+  if(Math.random()<.45){
+    question='「'+ch+'」一共有几笔？';correct=String(n);qType='count';
+  }else{
+    const tIdx=Math.floor(Math.random()*n);
+    const ord=['一','二','三','四','五','六','七','八','九','十'];
+    question='「'+ch+'」的第'+(ord[tIdx]||tIdx+1)+'笔往哪写？';correct=dirs[tIdx];qType='dir';
+  }
+  const vals=[correct];
+  if(qType==='count'){
+    const near=[];
+    for(let k=Math.max(1,n-4);k<=Math.min(24,n+4);k++){if(k!==n)near.push(String(k));}
+    while(vals.length<4&&near.length)vals.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);
+  }else{
+    const pool=DIRS.map(d=>d.code).filter(c=>c!==correct);
+    while(vals.length<4&&pool.length)vals.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+  }
+  while(vals.length<4)vals.push('1');
+  for(let i=vals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=vals[i];vals[i]=vals[j];vals[j]=t;}
+  const box=document.getElementById('bsOptions');
+  box.innerHTML='';
+  vals.forEach(v=>{
+    const d=DIRS.find(x=>x.code===v);
+    const btn=document.createElement('button');
+    btn.className='bs-opt';btn.dataset.value=v;
+    btn.innerHTML=qType==='dir'?'<span class="oi">'+(d?d.icon:'➡️')+'</span>'+(d?d.label:''):'<span class="oi">✏️</span>'+v+' 笔';
+    btn.onclick=function(){bossPick(btn);};
+    box.appendChild(btn);
+  });
+  boss.correct=correct;boss.answered=false;boss.busy=false;
+  boss.round++;
+  boss.tc=Math.round(BS_ROSTER[boss.idx].tc*BS_PHASE_TC[boss.phase-1]);
+  boss.askAt=performance.now();
+  boss.deadline=boss.askAt+boss.tc;
+  document.getElementById('bsTimeFill').style.width='100%';
+  document.getElementById('bsTimeFill').classList.remove('urgent');
+  document.getElementById('bsQuestion').textContent=question;
+  bossUpdateUI();
+}
+function bossTick(){
+  if(boss.over||currentMode!=='boss'){
+    if(boss.timerId){clearInterval(boss.timerId);boss.timerId=null;}
+    return;
+  }
+  if(boss.answered)return;
+  const left=boss.deadline-performance.now();
+  const pct=Math.max(0,Math.min(100,left/boss.tc*100));
+  const f=document.getElementById('bsTimeFill');
+  f.style.width=pct+'%';
+  if(pct<30)f.classList.add('urgent');
+  if(left<=0){boss.answered=true;boss.busy=true;bossLockOptions();bossTimeout();}
+}
+function bossCheckPhase(){
+  const stage=document.getElementById('bsStage');
+  const be=document.getElementById('bsBoss');
+  const r=boss.hp/boss.maxHp;
+  if(boss.phase===1&&r<=.5){
+    boss.phase=2;stage.classList.add('p2');be.classList.add('rage');
+    stage.classList.remove('shake');void stage.offsetWidth;stage.classList.add('shake');
+    tone(120,.6,'sawtooth',.14);
+    document.getElementById('bsTitle').textContent='😡 '+BS_ROSTER[boss.idx].n+' 狂暴了！答题时间变短，打你更疼！';
+  }else if(boss.phase===2&&r<=.2){
+    boss.phase=3;stage.classList.add('p3');
+    stage.classList.remove('shake');void stage.offsetWidth;stage.classList.add('shake');
+    tone(100,.7,'sawtooth',.15);
+    document.getElementById('bsTitle').textContent='🔥 魔王垂死挣扎！只剩最后一击的机会！';
+  }
+}
+function bossPick(btn){
+  if(boss.over||boss.busy||boss.answered)return;
+  boss.answered=true;boss.busy=true;
+  bossLockOptions();
+  const ok=btn.dataset.value===boss.correct;
+  const opts=document.querySelectorAll('#bsOptions .bs-opt');
+  opts.forEach(o=>{if(o.dataset.value===boss.correct)o.classList.add('right');});
+  if(ok){
+    const fast=performance.now()-boss.askAt<boss.tc*.4;
+    const pts=8+Math.min(boss.combo,8)*2+(fast?6:0);
+    boss.combo++;if(boss.combo>boss.maxCombo)boss.maxCombo=boss.combo;
+    boss.dmg+=pts;boss.hp-=pts;
+    boss.energy=Math.min(100,boss.energy+22);
+    boss.my=Math.min(100,boss.my+5);
+    const be=document.getElementById('bsBoss');
+    be.classList.remove('hit');void be.offsetWidth;be.classList.add('hit');
+    bossSlash(false);
+    sndOk();tone(BS_PENTA[Math.min(boss.combo-1,BS_PENTA.length-1)],.15,'triangle',.16);
+    showComboEffect(boss.combo);
+    if(boss.combo>=5&&boss.combo%5===0)speakPraise();
+    const r=btn.getBoundingClientRect();
+    spawnStarFly(r.left+r.width/2,r.top);
+    moleFloat(be,'-'+pts+(fast?' ⚡':''),'#FFD740');
+    document.getElementById('bsFeedback').innerHTML='<span style="color:#69F0AE">✓ 砍中 '+pts+' 刀！'+(fast?'⚡速攻加成！':'')+'（回 5 血）</span>';
+    bossCheckPhase();bossUpdateUI();
+    if(boss.hp<=0){bossWin();return;}
+    bossSchedule(950);
+    return;
+  }
+  btn.classList.add('wrong');
+  boss.combo=0;
+  bossHitPlayer(18+boss.phase*4,'✗ 答案不对！');
+  bossSchedule(1200);
+}
+function bossTimeout(){
+  boss.combo=0;
+  bossHitPlayer(24+boss.phase*5,'⏱️ 想太久啦，魔王抢先出手！');
+  bossSchedule(1200);
+}
+function bossHitPlayer(d,label){
+  boss.my-=d;
+  const be=document.getElementById('bsBoss');
+  be.classList.remove('atk');void be.offsetWidth;be.classList.add('atk');
+  const stage=document.getElementById('bsStage');
+  stage.classList.remove('shake');void stage.offsetWidth;stage.classList.add('shake');
+  sndNo();tone(140,.4,'square',.13);
+  moleFloat(document.getElementById('bsMyFill').parentNode,'-'+d+' ❤️','#FF8A80');
+  document.getElementById('bsFeedback').innerHTML='<span style="color:#FFAB91">'+label+' −'+d+' 血</span>';
+  bossUpdateUI();
+  if(boss.my<=0){boss.my=0;boss.over=true;bossUpdateUI();setTimeout(bossLose,950);}
+}
+function bossUlt(){
+  if(boss.over||boss.energy<100)return;
+  boss.energy=0;
+  const d=40+boss.round*2;
+  boss.hp-=d;boss.dmg+=d;
+  bossSlash(true);
+  const stage=document.getElementById('bsStage');
+  stage.classList.remove('shake');void stage.offsetWidth;stage.classList.add('shake');
+  [523,659,784,1047,1319].forEach((f,i)=>setTimeout(()=>tone(f,.16,'triangle',.16),i*70));
+  moleFloat(document.getElementById('bsBoss'),'⚡ -'+d,'#FFD740');
+  document.getElementById('bsFeedback').innerHTML='<span style="color:#FFD740">⚡ 笔顺大招！一刀砍掉 '+d+' 点血量！</span>';
+  bossCheckPhase();bossUpdateUI();
+  if(boss.hp<=0){bossWin();return;}
+}
+function bossWin(){
+  if(boss.over)return;
+  boss.over=true;
+  if(boss.timerId){clearInterval(boss.timerId);boss.timerId=null;}
+  document.getElementById('bsBoss').className='bs-boss die';
+  document.getElementById('bsOptions').innerHTML='';
+  document.getElementById('bsTitle').textContent='🎉 '+BS_ROSTER[boss.idx].n+' 被击败！';
+  sndReward();showRewardEgg();
+  const beaten=bossBeaten();
+  if(boss.idx+1>beaten)localStorage.setItem('hz_boss_beat',String(boss.idx+1));
+  const best=parseInt(localStorage.getItem('hz_boss_best')||'0',10);
+  if(boss.dmg>best)localStorage.setItem('hz_boss_best',String(boss.dmg));
+  const earned=Math.max(2,Math.min(20,4+boss.idx*3+(boss.maxCombo>=6?3:0)+(boss.my>=80?3:0)));
+  setTimeout(()=>bossResult(true,earned),1400);
+}
+function bossLose(){
+  if(boss.timerId){clearInterval(boss.timerId);boss.timerId=null;}
+  const best=parseInt(localStorage.getItem('hz_boss_best')||'0',10);
+  if(boss.dmg>best)localStorage.setItem('hz_boss_best',String(boss.dmg));
+  const earned=Math.max(1,Math.min(8,Math.floor(boss.dmg/70)));
+  bossResult(false,earned);
+}
+function bossResult(win,earned){
+  addStars(earned);
+  showScreen('boss-result');
+  const b=BS_ROSTER[boss.idx];
+  document.getElementById('bsResultStars').textContent='⭐ +'+earned;
+  document.getElementById('bsResultDmg').textContent=boss.dmg;
+  document.getElementById('bsResultRounds').textContent=boss.round;
+  document.getElementById('bsResultCombo').textContent=boss.maxCombo;
+  document.getElementById('bsResultBeaten').textContent=bossBeaten()+'/'+BS_ROSTER.length;
+  document.getElementById('bsResultRoster').textContent=BS_ROSTER.map((x,i)=>i<bossBeaten()?'💀':x.e).join('');
+  let emoji,title,subtitle;
+  if(win){
+    emoji='🏆';title='魔王倒下啦！';
+    subtitle=boss.idx>=BS_ROSTER.length-1?'五位魔王全部被你打倒了，笔顺宗师！':'下一位魔王 '+BS_ROSTER[Math.min(boss.idx+1,BS_ROSTER.length-1)].e+' 正在等你！';
+  }else{
+    emoji=b.e;title=b.n+' 赢了！';
+    subtitle='它还剩 '+Math.ceil(boss.hp)+' 点血，看清笔顺再来一次！';
+  }
+  document.getElementById('bsResultEmoji').textContent=emoji;
+  document.getElementById('bsResultTitle').textContent=title;
+  document.getElementById('bsResultSubtitle').textContent=subtitle;
+  const nb=document.getElementById('bsNextBtn');
+  nb.style.display=win&&boss.idx<BS_ROSTER.length-1?'':'none';
+  if(win)sndReward();
+}
+function bossRetry(){bossStart(boss.idx);}
+function bossNextBoss(){bossStart(Math.min(boss.idx+1,BS_ROSTER.length-1));}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='boss'||boss.over)return;
+  const k=e.key||'';
+  if(k>='1'&&k<='4'){
+    e.preventDefault();
+    const opts=document.querySelectorAll('#bsOptions .bs-opt');
+    const o=opts[parseInt(k,10)-1];
+    if(o)o.click();
+  }else if(k===' '){e.preventDefault();bossUlt();}
 });
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
