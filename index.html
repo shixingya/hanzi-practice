@@ -191,12 +191,24 @@ button:active{transform:scale(.95)}
 .rhythm-judge{position:absolute;bottom:84px;transform:translateX(-50%);font-size:24px;font-weight:bold;pointer-events:none;z-index:6;text-shadow:0 2px 8px rgba(0,0,0,.5);animation:judgeUp .6s ease-out forwards}
 @keyframes judgeUp{0%{opacity:0;transform:translate(-50%,10px) scale(.6)}25%{opacity:1;transform:translate(-50%,0) scale(1.15)}100%{opacity:0;transform:translate(-50%,-34px) scale(1)}}
 .rhythm-count{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:72px;font-weight:bold;color:#FFD740;text-shadow:0 4px 16px rgba(0,0,0,.5);z-index:6;animation:textPop .6s ease-out}
-.rhythm-char{width:100%;text-align:center;color:#fff;font-size:22px;font-weight:bold;margin:2px 0;min-height:30px;text-shadow:1px 1px 6px rgba(0,0,0,.4)}
+.rhythm-char{width:100%;text-align:center;color:#fff;font-size:36px;font-weight:bold;margin:2px 0;min-height:46px;line-height:1.2;text-shadow:2px 2px 8px rgba(0,0,0,.45)}
 .rhythm-keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;margin:8px 0}
 .rkey{border:none;border-radius:16px;padding:12px 0 9px;color:#fff;font-family:inherit;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.28);font-size:24px;line-height:1.1;transition:filter .1s}
 .rkey .kcap{display:block;font-size:11px;opacity:.9;margin-top:2px}
 .rkey.down{filter:brightness(1.6);transform:scale(.93)}
-@media(max-width:420px){.rhythm-note{width:48px;height:48px;margin-left:-24px}.rhythm-note .nb{font-size:18px;border-radius:13px}.rkey{font-size:20px;padding:9px 0 7px}}
+@media(max-width:420px){.rhythm-note{width:48px;height:48px;margin-left:-24px}.rhythm-note .nb{font-size:18px;border-radius:13px}.rkey{font-size:20px;padding:9px 0 7px}.rhythm-char{font-size:28px;min-height:38px}}
+.tetris-wrap{display:flex;gap:14px;width:100%;justify-content:center;align-items:flex-end;margin:8px 0}
+.tetris-board{display:flex;flex-direction:column-reverse;gap:2px;width:234px;flex-shrink:0;background:rgba(0,0,0,.35);border-radius:10px;padding:5px;border:2px solid rgba(255,255,255,.25);min-height:120px}
+.tetris-row{display:flex;gap:2px;height:26px}
+.tetris-cell{flex:1;border-radius:5px;box-shadow:inset 0 -4px rgba(0,0,0,.22),inset 0 2px rgba(255,255,255,.25)}
+.tetris-row.clearing .tetris-cell{animation:tetrisClear .45s ease-out forwards}
+@keyframes tetrisClear{0%{transform:scale(1);opacity:1;filter:brightness(2)}100%{transform:scale(.9);opacity:0}}
+.tetris-row.dropping{animation:tetrisDrop .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes tetrisDrop{0%{transform:translateY(-70px);opacity:0}100%{transform:translateY(0);opacity:1}}
+.tetris-side{flex:1;max-width:260px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.tetris-char-big{font-size:76px;line-height:1.1;color:#fff;text-shadow:3px 3px 12px rgba(0,0,0,.45);background:rgba(255,255,255,.12);border-radius:16px;padding:10px 26px;min-width:120px;text-align:center}
+.tetris-question{color:#fff;font-size:17px;font-weight:bold;text-align:center;text-shadow:1px 1px 4px rgba(0,0,0,.3);min-height:44px}
+.tetris-over-danger .tetris-board{border-color:rgba(239,83,80,.9);box-shadow:0 0 24px rgba(239,83,80,.5);animation:pulseNode 1s ease-in-out infinite}
 </style>
 </head>
 <body>
@@ -242,6 +254,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('rhythm')">
       <div class="icon">🎵</div>
       <div class="info"><h3>笔顺音游</h3><p>笔画变音符，按出好节奏！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('tetris')">
+      <div class="icon">🧱</div>
+      <div class="info"><h3>汉字俄罗斯方块</h3><p>答对消方块，答错越堆越高！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -339,9 +355,15 @@ button:active{transform:scale(.95)}
 <div class="screen" id="screen-rhythm">
   <div class="top-bar">
     <button class="back-btn" onclick="rhythmQuit()">← 退出</button>
-    <div class="stats"><span id="rhythmScore">得分 0</span><span id="rhythmCombo">🔥 x0</span><span id="rhythmBest">🎼 最高 0</span></div>
+    <div class="stats"><span id="rhythmScore">得分 0</span><span id="rhythmCombo">🔥 x0</span><span id="rhythmBest">🎼 最高 0</span><span id="rhyBgmToggle" onclick="toggleRhyBGM()" style="cursor:pointer">🎵</span></div>
   </div>
   <div class="progress-bar-wrap"><div class="progress-bar-inner" id="rhythmProg" style="background:linear-gradient(90deg,#4ECDC4,#FFD93D);width:0%"></div></div>
+  <div class="difficulty-row" style="margin:2px 0">
+    <button class="diff-btn rhy-speed" data-fall="2600" onclick="rhythmSetSpeed(2600)">🐢 慢速</button>
+    <button class="diff-btn rhy-speed" data-fall="1900" onclick="rhythmSetSpeed(1900)">🚶 中速</button>
+    <button class="diff-btn rhy-speed" data-fall="1250" onclick="rhythmSetSpeed(1250)">🚀 快速</button>
+    <span id="rhySong" style="color:rgba(255,255,255,.85);font-size:12px;align-self:center;margin-left:4px"></span>
+  </div>
   <div class="rhythm-char" id="rhythmChar">音符即将落下...</div>
   <div class="rhythm-stage" id="rhythmStage"></div>
   <div class="rhythm-keys" id="rhythmKeys"></div>
@@ -371,6 +393,50 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="rhythmStart()">🔄 再来一曲</button>
     <button class="w-btn blue" onclick="rhythmShare()">📤 分享成绩</button>
+  </div>
+</div>
+<div class="screen" id="screen-tetris">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="tetrisScore">得分 0</span><span id="tetrisCleared">消 0 行</span><span id="tetrisCombo">🔥 x0</span></div>
+  </div>
+  <div class="challenge-goal">🧱 答对笔顺 → 消除一层 | 答错 → 方块叠一层，别让它堆到顶端！</div>
+  <div class="progress-bar-wrap"><div class="progress-bar-inner" id="tetrisDanger" style="background:linear-gradient(90deg,#4CAF50,#FF9800,#EF5350);width:0%"></div></div>
+  <div class="tetris-wrap" id="tetrisWrap">
+    <div class="tetris-board" id="tetrisBoard"></div>
+    <div class="tetris-side">
+      <div class="tetris-char-big" id="tetrisChar">?</div>
+      <div class="tetris-question" id="tetrisQuestion">准备开始...</div>
+    </div>
+  </div>
+  <div class="options" id="tetrisOptions"></div>
+  <div class="feedback" id="tetrisFeedback"></div>
+</div>
+<div class="screen" id="screen-tetris-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="tetrisResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="tetrisResultEmoji">🧱</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="tetrisResultTitle">方块堆满啦！</h2>
+    <p style="font-size:16px;opacity:.8" id="tetrisResultSubtitle">再来一局，消得更爽！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="tetrisResultScore">0</div><div style="font-size:13px;opacity:.7">最终得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="tetrisResultCleared">0</div><div style="font-size:13px;opacity:.7">消除行数</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="tetrisResultCombo">0</div><div style="font-size:13px;opacity:.7">最高连击</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="tetrisResultAcc">0%</div><div style="font-size:13px;opacity:.7">正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏅 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD700" id="tetrisResultBest">0</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="tetrisStart()">🔄 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-adventure">
@@ -543,10 +609,13 @@ function unlockAudio(){
 }
 document.addEventListener('touchstart',unlockAudio,{once:true,passive:true});
 document.addEventListener('click',unlockAudio,{once:true});
-function tone(f,d,t,v){
-  if(!settings.sfx)return;
+function toneRaw(f,d,t,v){
   const c=getAC();if(!c)return;
   try{const o=c.createOscillator(),g=c.createGain();o.type=t||'sine';o.frequency.value=f;g.gain.setValueAtTime(v===undefined?.18:v,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d);}catch(e){}
+}
+function tone(f,d,t,v){
+  if(!settings.sfx)return;
+  toneRaw(f,d,t,v);
 }
 function sndOk(){tone(880,.12);setTimeout(()=>tone(1100,.15),80);}
 function sndNo(){tone(220,.3,'square');}
@@ -711,6 +780,7 @@ function enterMode(mode){
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
   else if(mode==='rhythm')rhythmStart();
+  else if(mode==='tetris')tetrisStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -831,10 +901,9 @@ async function nextQuizQuestion(){
     questionText='「'+ch+'」字一共有几笔？';
     correctAnswer=String(numStrokes);
     const nums=[numStrokes];
-    while(nums.length<4){
-      const r=numStrokes+Math.floor(Math.random()*5)-2;
-      if(r>=1&&r<=20&&nums.indexOf(r)===-1)nums.push(r);
-    }
+    const near=[];
+    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
+    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
     options=nums.sort(()=>Math.random()-.5).map(String);
   }else{
     const tIdx=Math.floor(Math.random()*numStrokes);
@@ -984,11 +1053,47 @@ function writeDemo(){if(writeWriter)writeWriter.animateCharacter({onComplete:sta
 function writeRetry(){if(writeWriter)startWriteQuiz();}
 function writeNext(){loadWriteChar(nextInQueue());}
 /* ================= 笔顺音游 ================= */
-const RHY_BEAT=560,RHY_FALL=1900;
+const RHY_BEAT=560;
+let RHY_FALL=parseInt(localStorage.getItem('hz_rhythm_speed'))||1900;
 const RHY_LANES=[{icon:'➡️',name:'横',color:'#FF6B6B',key:'f'},{icon:'⬇️',name:'竖',color:'#4ECDC4',key:'g'},{icon:'↙️',name:'撇',color:'#45B7D1',key:'j'},{icon:'↘️',name:'捺',color:'#FFA07A',key:'k'}];
 const RHY_DIR2LANE={R:0,T:0,D:1,P:2,N:3};
 const RHY_PENTA=[523,587,659,784,880,1047];
-let rhythm={running:false,notes:[],startAt:0,raf:0,combo:0,maxCombo:0,score:0,perfect:0,good:0,miss:0,tickAt:0,endAt:0,shownKey:'',charCount:{},charTotal:{},cdTimer:null};
+const RHY_FREQ={1:262,2:294,3:330,4:349,5:392,6:440,7:494,8:523};
+const RHY_SONGS=[
+  {name:'欢乐颂',seq:[3,3,4,5,5,4,3,2,1,1,2,3,3,2,2,0,3,3,4,5,5,4,3,2,1,1,2,3,3,2,2,0,2,2,3,1,2,3,4,5,3,2,1,2,3,0,0,0,0]},
+  {name:'两只老虎',seq:[3,3,5,3,1,2,3,0,3,3,5,3,1,2,3,0,2,2,3,5,4,3,2,0,2,2,3,5,4,3,2,0,3,5,6,5,4,3,1,5,3,0,3,5,6,5,4,3,1,5,3,0]},
+  {name:'小星星',seq:[1,1,5,5,6,6,5,0,4,4,3,3,2,2,1,0,5,5,4,4,3,3,2,0,5,5,4,4,3,3,2,0,1,1,5,5,6,6,5,0,4,4,3,3,2,2,1,0]},
+  {name:'粉刷匠',seq:[3,3,4,5,5,4,3,1,3,3,4,5,5,4,3,1,2,2,3,1,3,2,1,5,3,3,4,5,5,4,3,1]},
+  {name:'铃儿响叮当',seq:[3,3,3,0,3,3,3,0,3,5,1,2,3,4,4,4,4,4,3,3,3,3,2,2,3,2,0,5,3,3,3,0,3,3,3,0,3,5,1,2,3,4,4,4,4,4,3,3,3,2,2,3,0,0,0]}
+];
+let rhyBgmTimer=null;
+let rhythm={running:false,notes:[],startAt:0,raf:0,combo:0,maxCombo:0,score:0,perfect:0,good:0,miss:0,tickAt:0,endAt:0,shownKey:'',charCount:{},charTotal:{},cdTimer:null,songIdx:0};
+function rhythmSetSpeed(fall){
+  RHY_FALL=fall;
+  localStorage.setItem('hz_rhythm_speed',fall);
+  document.querySelectorAll('.rhy-speed').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.fall)===fall));
+}
+function toggleRhyBGM(){
+  settings.bgm=!settings.bgm;
+  localStorage.setItem('hz_settings',JSON.stringify(settings));
+  document.getElementById('toggleBgm').classList.toggle('on',settings.bgm);
+  document.getElementById('rhyBgmToggle').textContent=settings.bgm?'🎵':'🔇';
+  if(!settings.bgm)rhyBgmStop();
+  else if(rhythm.running)rhyBgmStart();
+}
+function rhyBgmStart(){
+  rhyBgmStop();
+  const song=RHY_SONGS[rhythm.songIdx];
+  let i=0;
+  rhyBgmTimer=setInterval(()=>{
+    if(!rhythm.running||currentMode!=='rhythm'){rhyBgmStop();return;}
+    if(!settings.bgm)return;
+    const s=song.seq[i%song.seq.length];
+    if(s)toneRaw(RHY_FREQ[s],.24,'triangle',.06);
+    i++;
+  },280);
+}
+function rhyBgmStop(){if(rhyBgmTimer){clearInterval(rhyBgmTimer);rhyBgmTimer=null;}}
 function hexA(hex,a){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return'rgba('+r+','+g+','+b+','+a+')';}
 function rhythmPickChars(){
   let pool=CHARS.filter(c=>charDataCache[c]&&strokeTypes[c]);
@@ -1013,12 +1118,16 @@ function rhythmStart(){
   });
   if(rhythm.cdTimer)clearInterval(rhythm.cdTimer);
   cancelAnimationFrame(rhythm.raf);
-  rhythm={running:false,notes,startAt:0,raf:0,combo:0,maxCombo:0,score:0,perfect:0,good:0,miss:0,tickAt:4*RHY_BEAT,endAt:beat*RHY_BEAT,shownKey:'',charCount:{},charTotal,cdTimer:null};
+  rhyBgmStop();
+  rhythm={running:false,notes,startAt:0,raf:0,combo:0,maxCombo:0,score:0,perfect:0,good:0,miss:0,tickAt:4*RHY_BEAT,endAt:beat*RHY_BEAT,shownKey:'',charCount:{},charTotal,cdTimer:null,songIdx:Math.floor(Math.random()*RHY_SONGS.length)};
   document.getElementById('rhythmScore').textContent='得分 0';
   document.getElementById('rhythmCombo').textContent='🔥 x0';
   document.getElementById('rhythmBest').textContent='🎼 最高 '+(parseInt(localStorage.getItem('hz_rhythm_best'))||0);
   document.getElementById('rhythmProg').style.width='0%';
   document.getElementById('rhythmChar').textContent='准备...';
+  document.getElementById('rhySong').textContent='🎵 背景乐：'+RHY_SONGS[rhythm.songIdx].name;
+  document.getElementById('rhyBgmToggle').textContent=settings.bgm?'🎵':'🔇';
+  rhythmSetSpeed(RHY_FALL);
   rhythmBuildStage();
   let cd=3;
   const stage=document.getElementById('rhythmStage');
@@ -1060,6 +1169,7 @@ function rhythmBegin(){
   rhythm.startAt=performance.now();
   document.getElementById('rhythmChar').textContent='🎵 音符落到金线时按下！';
   cancelAnimationFrame(rhythm.raf);
+  rhyBgmStart();
   rhythm.raf=requestAnimationFrame(rhythmFrame);
 }
 function rhythmFrame(){
@@ -1146,6 +1256,7 @@ function rhythmJudge(lane,text,color){
 }
 function rhythmEnd(){
   rhythm.running=false;
+  rhyBgmStop();
   cancelAnimationFrame(rhythm.raf);
   const total=rhythm.notes.length;
   const acc=total?Math.round((rhythm.perfect+rhythm.good*0.6)/total*100):0;
@@ -1178,6 +1289,7 @@ function rhythmEnd(){
 }
 function rhythmQuit(){
   if(rhythm.cdTimer){clearInterval(rhythm.cdTimer);rhythm.cdTimer=null;}
+  rhyBgmStop();
   if(rhythm.running){
     if(!confirm('确定要退出演奏吗？当前得分将不计入最高分。'))return;
     rhythm.running=false;
@@ -1214,6 +1326,165 @@ document.addEventListener('keydown',function(e){
   e.preventDefault();
   rhythmPress(idx);
 });
+/* ================= 汉字俄罗斯方块 ================= */
+const TETRIS_MAX=10;
+const TETRIS_COLORS=['#FF6B6B','#4ECDC4','#45B7D1','#FFA07A','#98D8C8','#FFD93D','#C9B1FF','#FF90BC','#7FB3FF','#9BE29B'];
+let tetris={rows:[],score:0,cleared:0,combo:0,maxCombo:0,total:0,correct:0,wave:0,over:false,busy:false};
+function tetrisRandomRow(){const r=[];const c1=TETRIS_COLORS[Math.floor(Math.random()*TETRIS_COLORS.length)];let c2=c1;while(c2===c1)c2=TETRIS_COLORS[Math.floor(Math.random()*TETRIS_COLORS.length)];for(let i=0;i<8;i++)r.push(Math.random()<.5?c1:c2);return r;}
+function renderTetris(isNew){
+  const board=document.getElementById('tetrisBoard');board.innerHTML='';
+  tetris.rows.forEach((row,idx)=>{
+    const r=document.createElement('div');r.className='tetris-row';
+    if(isNew&&idx===tetris.rows.length-1)r.classList.add('dropping');
+    row.forEach(c=>{const s=document.createElement('div');s.className='tetris-cell';s.style.background=c;r.appendChild(s);});
+    board.appendChild(r);
+  });
+  document.getElementById('tetrisDanger').style.width=Math.min(tetris.rows.length/TETRIS_MAX*100,100)+'%';
+  document.getElementById('tetrisWrap').classList.toggle('tetris-over-danger',tetris.rows.length>=TETRIS_MAX-2);
+}
+function tetrisUpdateUI(){
+  document.getElementById('tetrisScore').textContent='得分 '+tetris.score;
+  document.getElementById('tetrisCleared').textContent='消 '+tetris.cleared+' 行';
+  document.getElementById('tetrisCombo').textContent='🔥 x'+tetris.combo;
+}
+function tetrisStart(){
+  showScreen('tetris');
+  tetris={rows:[],score:0,cleared:0,combo:0,maxCombo:0,total:0,correct:0,wave:0,over:false,busy:false};
+  for(let i=0;i<4;i++)tetris.rows.push(tetrisRandomRow());
+  renderTetris();tetrisUpdateUI();
+  document.getElementById('tetrisFeedback').textContent='';
+  document.getElementById('tetrisQuestion').textContent='准备开始...';
+  document.getElementById('tetrisChar').textContent='?';
+  document.getElementById('tetrisOptions').innerHTML='';
+  setTimeout(tetrisNextQuestion,800);
+}
+async function tetrisNextQuestion(){
+  if(tetris.over||currentMode!=='tetris')return;
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data){tetrisNextQuestion();return;}
+  const numStrokes=data.strokes.length;
+  const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+  const qType=Math.random()<0.5?'count':'dir';
+  let questionText,correctAnswer,options;
+  if(qType==='count'){
+    questionText='「'+ch+'」一共有几笔？';
+    correctAnswer=String(numStrokes);
+    const nums=[numStrokes];
+    const near=[];
+    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
+    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
+    options=nums.sort(()=>Math.random()-.5).map(String);
+  }else{
+    const tIdx=Math.floor(Math.random()*numStrokes);
+    const ordinals=['一','二','三','四','五','六','七','八','九','十'];
+    questionText='「'+ch+'」的第'+(ordinals[tIdx]||tIdx+1)+'笔往哪写？';
+    correctAnswer=dirs[tIdx];
+    const usedCodes=[correctAnswer];
+    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctAnswer);
+    while(usedCodes.length<4){
+      const rc=allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0];
+      if(rc)usedCodes.push(rc);
+    }
+    options=usedCodes.sort(()=>Math.random()-.5);
+  }
+  document.getElementById('tetrisChar').textContent=ch;
+  document.getElementById('tetrisQuestion').textContent=questionText;
+  document.getElementById('tetrisFeedback').textContent='';
+  const optDiv=document.getElementById('tetrisOptions');optDiv.innerHTML='';
+  options.forEach(opt=>{
+    const btn=document.createElement('button');btn.className='opt-btn';
+    btn.dataset.value=opt;
+    if(qType==='count'){
+      btn.innerHTML='<span style="font-size:32px;font-weight:bold">'+opt+'</span><br><span style="font-size:13px;color:#888">笔</span>';
+    }else{
+      const d=DIRS.find(x=>x.code===opt);
+      btn.innerHTML='<span style="font-size:36px">'+(d?d.icon:'➡️')+'</span><br><span style="font-size:14px;color:#555">'+(d?d.label:'')+'</span>';
+    }
+    btn.onclick=()=>tetrisAnswer(opt,correctAnswer,btn,optDiv);
+    optDiv.appendChild(btn);
+  });
+}
+function tetrisAnswer(selected,correct,btn,optDiv){
+  if(tetris.over||tetris.busy)return;
+  tetris.busy=true;
+  optDiv.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+  tetris.total++;
+  if(selected===correct){
+    btn.classList.add('correct');
+    tetris.correct++;tetris.combo++;
+    if(tetris.combo>tetris.maxCombo)tetris.maxCombo=tetris.combo;
+    const pts=100+Math.min(tetris.combo,10)*20;
+    tetris.score+=pts;tetris.cleared++;
+    sndOk();showComboEffect(tetris.combo);
+    if(tetris.combo>=5&&tetris.combo%5===0)speakPraise();
+    if(tetris.rows.length===0){
+      tetrisWaveBonus();
+    }else{
+      document.getElementById('tetrisFeedback').innerHTML='<span style="color:#69F0AE">✓ 答对！消除一层 +'+pts+'</span>';
+      const el=document.querySelector('#tetrisBoard .tetris-row:last-child');
+      if(el)el.classList.add('clearing');
+      setTimeout(()=>{tetris.rows.pop();renderTetris();tetris.busy=false;},420);
+    }
+    tetrisUpdateUI();
+    if(!tetris.over)setTimeout(tetrisNextQuestion,650);
+    return;
+  }
+  btn.classList.add('wrong');
+  optDiv.querySelectorAll('.opt-btn').forEach(b=>{if(b.dataset.value===correct)b.classList.add('reveal');});
+  tetris.combo=0;sndNo();
+  document.getElementById('tetrisFeedback').innerHTML='<span style="color:#FFAB91">✗ 答错了，方块叠一层！</span>';
+  tetris.rows.push(tetrisRandomRow());
+  renderTetris(true);
+  tetrisUpdateUI();
+  if(tetris.rows.length>=TETRIS_MAX){
+    tetris.over=true;
+    setTimeout(tetrisGameOver,900);
+    return;
+  }
+  setTimeout(()=>{tetris.busy=false;tetrisNextQuestion();},1600);
+}
+function tetrisWaveBonus(){
+  tetris.wave++;
+  tetris.score+=300;
+  document.getElementById('tetrisFeedback').innerHTML='<span style="color:#FFD740">💥 全消！+300 分，新的一波堆得更高！</span>';
+  sndDone();
+  const n=Math.min(4+tetris.wave,7);
+  setTimeout(()=>{
+    tetris.rows=[];
+    for(let i=0;i<n;i++)tetris.rows.push(tetrisRandomRow());
+    renderTetris(true);
+    tetrisUpdateUI();
+    tetris.busy=false;
+  },450);
+}
+function tetrisGameOver(){
+  const best=parseInt(localStorage.getItem('hz_tetris_best')||'0');
+  const isNew=tetris.score>best;
+  if(isNew)localStorage.setItem('hz_tetris_best',tetris.score);
+  const earned=Math.max(1,Math.min(15,Math.floor(tetris.score/200)));
+  addStars(earned);
+  showScreen('tetris-result');
+  document.getElementById('tetrisResultStars').textContent='⭐ +'+earned;
+  document.getElementById('tetrisResultScore').textContent=tetris.score;
+  document.getElementById('tetrisResultCleared').textContent=tetris.cleared;
+  document.getElementById('tetrisResultCombo').textContent=tetris.maxCombo;
+  const accuracy=tetris.total>0?Math.round(tetris.correct/tetris.total*100):0;
+  document.getElementById('tetrisResultAcc').textContent=accuracy+'%';
+  document.getElementById('tetrisResultBest').textContent=Math.max(best,tetris.score);
+  let emoji,title,subtitle;
+  if(tetris.cleared>=25){emoji='🏆';title='方块终结者！';subtitle='你的笔顺就是消除神器！';}
+  else if(tetris.cleared>=15){emoji='🥇';title='堆叠高手！';subtitle='方块们听到你的名字就消失了！';}
+  else if(tetris.cleared>=8){emoji='🥈';title='消除新星！';subtitle='再练一局冲击金牌！';}
+  else if(tetris.cleared>=3){emoji='🥉';title='还不错！';subtitle='熟能生巧，消得更多！';}
+  else{emoji='💪';title='继续加油！';subtitle='笔顺练熟，方块自然消！';}
+  if(isNew&&tetris.score>0)title='🎉 新纪录！'+title;
+  document.getElementById('tetrisResultEmoji').textContent=emoji;
+  document.getElementById('tetrisResultTitle').textContent=title;
+  document.getElementById('tetrisResultSubtitle').textContent=subtitle;
+  sndReward();
+  if(tetris.cleared>=15)setTimeout(showRewardEgg,900);
+}
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
   challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
@@ -1272,10 +1543,9 @@ async function challengeNextQuestion(){
     questionText='「'+ch+'」一共有几笔？';
     correctAnswer=String(numStrokes);
     const nums=[numStrokes];
-    while(nums.length<4){
-      const r=numStrokes+Math.floor(Math.random()*5)-2;
-      if(r>=1&&r<=20&&nums.indexOf(r)===-1)nums.push(r);
-    }
+    const near=[];
+    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
+    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
     options=nums.sort(()=>Math.random()-.5).map(String);
   }else{
     const tIdx=Math.floor(Math.random()*numStrokes);
@@ -1558,10 +1828,9 @@ async function nextAdventureQuestion(){
     questionText='「'+ch+'」一共有几笔？';
     correctAnswer=String(numStrokes);
     const nums=[numStrokes];
-    while(nums.length<4){
-      const r=numStrokes+Math.floor(Math.random()*5)-2;
-      if(r>=1&&r<=20&&nums.indexOf(r)===-1)nums.push(r);
-    }
+    const near=[];
+    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
+    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
     options=nums.sort(()=>Math.random()-.5).map(String);
   }else{
     const tIdx=Math.floor(Math.random()*numStrokes);
