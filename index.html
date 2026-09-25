@@ -53,6 +53,16 @@ button:active{transform:scale(.95)}
 .mode-card .icon{font-size:42px;flex-shrink:0}
 .mode-card .info h3{font-size:18px;color:#333;margin-bottom:4px}
 .mode-card .info p{font-size:13px;color:#888}
+.mode-card.primary{background:linear-gradient(135deg,#FFD54F,#FFB300);box-shadow:0 6px 22px rgba(255,180,0,.5);border:2px solid #fff}
+.mode-card.primary:hover{transform:translateY(-3px) scale(1.02)}
+.mode-card.primary h3{color:#5d3b00;font-size:21px}
+.mode-card.primary p{color:#7a5200}
+.mode-card.primary .icon{font-size:48px}
+.home-goal{width:100%;max-width:520px;text-align:center;color:#fff;font-size:15px;background:rgba(255,255,255,.16);border-radius:14px;padding:8px 14px;margin:8px 0}
+.more-toggle{width:100%;max-width:520px;background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.4);color:#fff;padding:10px 16px;border-radius:16px;cursor:pointer;font-size:15px;font-family:inherit;margin:2px 0 4px;transition:background .2s}
+.more-toggle:hover{background:rgba(255,255,255,.3)}
+@keyframes charPop{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}
+.char-box.pop{animation:charPop .45s ease}
 .collection-btn{background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.4);color:#fff;padding:10px 24px;border-radius:20px;cursor:pointer;font-size:15px;font-family:inherit;margin:10px 0;transition:background .2s}
 .collection-btn:hover{background:rgba(255,255,255,.3)}
 .quiz-header{width:100%;text-align:center;margin:8px 0}
@@ -466,7 +476,7 @@ button:active{transform:scale(.95)}
 <div class="screen active" id="screen-home">
   <div class="top-bar">
     <span style="width:60px"></span>
-    <div class="stats"><span id="homeStars">⭐ 0</span><span id="homeCombo">🔥 最高连击 0</span><span id="homeAnimals">🐼 收藏 0/8</span></div>
+    <div class="stats"><span id="homeStars">⭐ 0</span><span id="homeStreak">📅 连续 0 天</span><span id="homeLearned">📖 已会 0 字</span><span id="homeCombo">🔥 最高连击 0</span><span id="homeAnimals">🐼 收藏 0/8</span></div>
     <button class="icon-btn" onclick="openSettings()" title="设置">⚙️</button>
   </div>
   <div class="home-title">
@@ -489,18 +499,34 @@ button:active{transform:scale(.95)}
     <button class="diff-btn grade-btn" data-grade="6上" onclick="setGrade('6上')">六上</button>
     <button class="diff-btn grade-btn" data-grade="6下" onclick="setGrade('6下')">六下</button>
   </div>
+  <div class="home-goal" id="homeGoal">🎯 今日目标：再领 1 只小动物</div>
   <div class="mode-cards">
+    <div class="mode-card primary" onclick="enterMode('adventure')">
+      <div class="icon">🗺️</div>
+      <div class="info"><h3>继续冒险</h3><p>闯关解锁徽章，集齐识字证书！</p></div>
+    </div>
     <div class="mode-card" onclick="enterMode('quiz')">
       <div class="icon">⚔️</div>
-      <div class="info"><h3>笔顺大闯关</h3><p>选择题答题，赚星星！</p></div>
+      <div class="info"><h3>笔顺大闯关</h3><p>不催时间，答对赚星星！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('adventure')">
-      <div class="icon">🗺️</div>
-      <div class="info"><h3>冒险地图</h3><p>闯关解锁徽章，晒朋友圈！</p></div>
+    <div class="mode-card" onclick="enterMode('pet')">
+      <div class="icon">🐣</div>
+      <div class="info"><h3>笔顺宠物屋</h3><p id="petCardTip">练字喂养你的汉字神兽！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('labels')">
+      <div class="icon">🔍</div>
+      <div class="info"><h3>火眼金睛</h3><p>看编号，学笔顺</p></div>
+    </div>
+  </div>
+  <button class="more-toggle" id="moreToggle" onclick="toggleMoreModes()">⬇️ 更多玩法 (<span id="moreCount">11</span> 个)</button>
+  <div class="mode-cards" id="moreModes" style="display:none">
+    <div class="mode-card" onclick="enterMode('write')">
+      <div class="icon">✏️</div>
+      <div class="info"><h3>妙笔生花</h3><p>手指或鼠标描红练写字</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('challenge')">
       <div class="icon">⏱️</div>
-      <div class="info"><h3>限时挑战</h3><p>60秒极限答题，挑战最高分！</p></div>
+      <div class="info"><h3>限时挑战</h3><p>极限答题，挑战最高分！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('rhythm')">
       <div class="icon">🎵</div>
@@ -526,10 +552,6 @@ button:active{transform:scale(.95)}
       <div class="icon">👹</div>
       <div class="info"><h3>笔顺大魔王</h3><p>答对蓄力，放大招打倒五位魔王！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('pet')">
-      <div class="icon">🐣</div>
-      <div class="info"><h3>笔顺宠物屋</h3><p id="petCardTip">练字喂养你的汉字神兽！</p></div>
-    </div>
     <div class="mode-card" onclick="enterMode('hop')">
       <div class="icon">🦘</div>
       <div class="info"><h3>笔顺跳房子</h3><p>答对往前跳，和对手抢着冲线！</p></div>
@@ -541,14 +563,6 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('fruit')">
       <div class="icon">🍉</div>
       <div class="info"><h3>笔顺切水果</h3><p>答案飞上天，一刀切开它！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('labels')">
-      <div class="icon">🔍</div>
-      <div class="info"><h3>火眼金睛</h3><p>看编号，学笔顺</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('write')">
-      <div class="icon">✏️</div>
-      <div class="info"><h3>妙笔生花</h3><p>鼠标描红练写字</p></div>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -1200,6 +1214,10 @@ button:active{transform:scale(.95)}
       <span class="setting-label">🎵 背景音乐</span>
       <div class="toggle-switch" id="toggleBgm" onclick="toggleSetting('bgm')"></div>
     </div>
+    <div class="setting-row">
+      <span class="setting-label">🐢 慢节奏·不催促</span>
+      <div class="toggle-switch" id="toggleNoPressure" onclick="toggleSetting('noPressure')"></div>
+    </div>
     <button class="reset-data-btn" onclick="resetAllData()">🗑️ 清除所有进度</button>
     <button class="settings-close" onclick="closeSettings()">完成</button>
   </div>
@@ -1231,14 +1249,17 @@ const VOICE_PRAISE=['太棒了！','你真厉害！','答对啦，真聪明！',
 const REWARDS=[{e:'🐼',n:'熊猫'},{e:'🐵',n:'猴子'},{e:'🐰',n:'兔子'},{e:'🐱',n:'小猫'},{e:'🐶',n:'小狗'},{e:'🐘',n:'大象'},{e:'🐧',n:'企鹅'},{e:'🐯',n:'老虎'}];
 const PRAISES=['太棒了！','你真厉害！','继续加油！','真聪明！','太厉害了！','写得真好！','真了不起！','好样的！','棒极了！','太优秀了！'];
 const CONFETTI_COLORS=['#FF6B6B','#4ECDC4','#45B7D1','#FFA07A','#98D8C8','#FFD93D','#C9B1FF','#FF90BC'];
-let currentGrade=localStorage.getItem('hz_grade')||'all';
+let currentGrade=localStorage.getItem('hz_grade')||'1上';
 let stars=parseInt(localStorage.getItem('hz_stars'))||0;
 let maxCombo=parseInt(localStorage.getItem('hz_maxCombo'))||0;
 let collected=JSON.parse(localStorage.getItem('hz_collected')||'[]');
+let mastery=JSON.parse(localStorage.getItem('hz_mastery')||'{}');
+let learnedToday=JSON.parse(localStorage.getItem('hz_learned_today')||'{"d":"","n":0}');
 let settings=JSON.parse(localStorage.getItem('hz_settings')||'{}');
 if(settings.sfx===undefined)settings.sfx=true;
 if(settings.voice===undefined)settings.voice=true;
 if(settings.bgm===undefined)settings.bgm=true;
+if(settings.noPressure===undefined)settings.noPressure=true;
 let combo=0, quizLevel=0, writeTotal=0;
 let charDataCache={}, charQueue=[], queueIdx=0;
 let writer=null, currentChar='', currentMode='';
@@ -1246,6 +1267,7 @@ let strokeTypes={};
 const isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 const isWeChat=/MicroMessenger/i.test(navigator.userAgent);
 const isIOS=/iPhone|iPad|iPod/i.test(navigator.userAgent);
+const LOW_END=isMobile&&((navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory&&navigator.deviceMemory<=2));
 let audioUnlocked=false;
 let audioCtx=null;
 function getAC(){
@@ -1297,6 +1319,10 @@ function speakEncourage(){
     speechSynthesis.speak(u);
   }catch(e){}
 }
+function speakChar(ch){
+  if(!speechSupported)return;
+  try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(ch);u.lang='zh-CN';u.rate=.85;u.pitch=1.1;speechSynthesis.speak(u);}catch(e){}
+}
 function detectDir(median){
   if(!median||median.length<2)return'R';
   const n=median.length;
@@ -1312,6 +1338,41 @@ function detectDir(median){
   if(angle>=80)return'D';
   return'R';
 }
+// ===== 难度分层与统一出题 (第1轮) =====
+function gradeTier(){
+  const g=currentGrade;
+  if(g==='1上'||g==='1下')return'low';
+  if(g==='2上'||g==='2下')return'mid';
+  if(g==='all')return'all';
+  return'high';
+}
+// 按年级分层选题型: 低龄不出抽象方向题; 主模式可加入"听音选字"
+function pickQType(n,allowListen){
+  const t=gradeTier();
+  if(t==='low'){return allowListen&&Math.random()<0.5?'listen':'count';}
+  if(t==='mid')return Math.random()<0.2?'dir':'count';
+  return Math.random()<0.6?'count':'dir';
+}
+function pickStrokeIdx(n){
+  const t=gradeTier();
+  if(t==='low')return 0;
+  if(t==='mid')return Math.random()<0.7?0:Math.floor(Math.random()*n);
+  return Math.floor(Math.random()*n);
+}
+function qOptionCount(){return gradeTier()==='low'?3:4;}
+function countOptions(n){
+  const want=qOptionCount(),nums=[n],near=[],spread=gradeTier()==='low'?3:1;
+  for(let d=spread;d<=spread+5;d++){if(n-d>=1)near.push(n-d);if(n+d<=20)near.push(n+d);}
+  while(nums.length<want&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
+  return nums.sort(()=>Math.random()-.5).map(String);
+}
+function dirOptions(code){
+  const want=qOptionCount(),used=[code],all=DIRS.map(d=>d.code).filter(c=>c!==code);
+  while(used.length<want){const rc=all.splice(Math.floor(Math.random()*all.length),1)[0];if(rc)used.push(rc);}
+  return used.sort(()=>Math.random()-.5);
+}
+// 无压模式时间缩放 (第2轮)
+function tp(base){return settings.noPressure?Math.round(base*1.8):base;}
 async function loadCharData(ch){
   if(charDataCache[ch])return charDataCache[ch];
   const bases=['https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0','https://unpkg.com/hanzi-writer-data@2.0'];
@@ -1336,6 +1397,8 @@ function buildCharQueue(){
     for(let i=g.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[g[i],g[j]]=[g[j],g[i]];}
     charQueue=charQueue.concat(g);
   });
+  // 未掌握的字优先出现，已“学会”(≥3次)的字往后排但保留笔画递增
+  charQueue.sort(function(a,b){return (mastery[a]>=3?1:0)-(mastery[b]>=3?1:0);});
   queueIdx=0;
 }
 function getGradeChars(grade){
@@ -1392,6 +1455,7 @@ function openSettings(){
   document.getElementById('toggleSfx').classList.toggle('on',settings.sfx);
   document.getElementById('toggleVoice').classList.toggle('on',settings.voice);
   document.getElementById('toggleBgm').classList.toggle('on',settings.bgm);
+  document.getElementById('toggleNoPressure').classList.toggle('on',settings.noPressure);
   document.getElementById('settingsOverlay').classList.add('active');
 }
 function closeSettings(){
@@ -1412,6 +1476,10 @@ function resetAllData(){
   localStorage.removeItem('hz_stars');
   localStorage.removeItem('hz_maxCombo');
   localStorage.removeItem('hz_collected');
+  localStorage.removeItem('hz_streak');
+  localStorage.removeItem('hz_mastery');
+  localStorage.removeItem('hz_learned_today');
+  mastery={};learnedToday={d:'',n:0};
   updateHomeStats();
   updateAllStarDisplays();
   closeSettings();
@@ -1426,8 +1494,70 @@ function goHome(){
 }
 function updateHomeStats(){
   document.getElementById('homeStars').textContent='⭐ '+stars;
+  document.getElementById('homeStreak').textContent='📅 连续 '+getStreakDays()+' 天';
   document.getElementById('homeCombo').textContent='🔥 最高连击 '+maxCombo;
   document.getElementById('homeAnimals').textContent='🐼 收藏 '+collected.length+'/8';
+  var goalEl=document.getElementById('homeGoal');
+  var le=document.getElementById('homeLearned');
+  if(le)le.textContent='📖 已会 '+totalLearned()+' 字';
+  if(goalEl){
+    if(learnedToday.d===todayStr()&&learnedToday.n>0&&collected.length<8){var need2=(collected.length+1)*50;var left2=Math.max(0,need2-stars);goalEl.textContent='🌟 今日已新学 '+learnedToday.n+' 字！再得 '+left2+' ⭐ 解锁下一只小动物';}
+    else if(collected.length>=8)goalEl.textContent='🏆 全部小动物已集齐！继续收集识字徽章与证书！';
+    else{var need=(collected.length+1)*50;var left=Math.max(0,need-stars);goalEl.textContent='🎯 今日目标：再得 '+left+' ⭐ 解锁下一只小动物';}
+  }
+}
+// ===== 每日签到 / 连续学习天数 =====
+function todayStr(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function yesterdayStr(){var d=new Date(Date.now()-86400000);return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function getStreak(){try{return JSON.parse(localStorage.getItem('hz_streak')||'{"d":"","days":0}');}catch(e){return{d:'',days:0};}}
+function getStreakDays(){return getStreak().days||0;}
+function checkStreak(){
+  var s=getStreak(),t=todayStr();
+  if(s.d===t){return;}
+  s.days=(s.d===yesterdayStr()?(s.days||0):0)+1;s.d=t;
+  localStorage.setItem('hz_streak',JSON.stringify(s));
+  var bonus=5+Math.min(s.days,7)*2;
+  addStars(bonus);updateHomeStats();
+  var g=document.getElementById('homeGreeting');
+  if(g)g.textContent='📅 连续学习 '+s.days+' 天，签到奖励 +'+bonus+' ⭐';
+}
+// ===== 首页“更多玩法”折叠 =====
+function toggleMoreModes(){
+  var el=document.getElementById('moreModes'),btn=document.getElementById('moreToggle');
+  if(!el||!btn)return;
+  var open=el.style.display!=='none';
+  el.style.display=open?'none':'';
+  var cnt=document.querySelectorAll('#moreModes .mode-card').length;
+  btn.textContent=open?('⬇️ 更多玩法 ('+cnt+' 个)'):'⬆️ 收起更多玩法';
+}
+// ===== 逐字掌握度与识字证书 =====
+function totalLearned(){return Object.keys(mastery).filter(function(k){return mastery[k]>=3;}).length;}
+function markLearned(ch){
+  if(!ch)return;
+  mastery[ch]=(mastery[ch]||0)+1;
+  localStorage.setItem('hz_mastery',JSON.stringify(mastery));
+  if(mastery[ch]===3){
+    var t=todayStr();
+    if(learnedToday.d!==t)learnedToday={d:t,n:0};
+    learnedToday.n++;localStorage.setItem('hz_learned_today',JSON.stringify(learnedToday));
+    updateHomeStats();
+    var n=totalLearned();
+    if([10,30,60,100,150,200].indexOf(n)!==-1){setTimeout(function(){showCert(n);},700);}
+    else{showToast('📖 又学会一个：'+ch+'！');}
+  }
+}
+function showToast(msg){
+  var el=document.createElement('div');el.className='combo-display';el.style.fontSize='30px';el.textContent=msg;
+  document.body.appendChild(el);setTimeout(function(){el.remove();},1300);
+}
+function showCert(n){
+  var ov=document.getElementById('rewardOverlay');
+  var an=document.getElementById('rewardAnimal'),rt=document.getElementById('rewardText');
+  an.textContent='🏅';an.className='reward-animal';
+  rt.textContent='恭喜！已认识 '+n+' 个字，颁发识字小证书！';
+  rt.style.animation='none';void rt.offsetWidth;rt.style.animation='textPop .8s ease-out forwards';
+  spawnConfetti();ov.classList.add('active');sndReward();
+  setTimeout(function(){ov.classList.remove('active');},3800);
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -1486,16 +1616,21 @@ function showComboEffect(c){
   document.body.appendChild(el);setTimeout(()=>el.remove(),1200);
 }
 function spawnStarFly(x,y){
-  for(let i=0;i<3;i++){
+  for(let i=0;i<(LOW_END?3:5);i++){
     const s=document.createElement('div');s.className='star-fly';s.textContent='⭐';
     s.style.left=(x+Math.random()*40-20)+'px';s.style.top=(y-10)+'px';
     s.style.animationDelay=(i*0.15)+'s';document.body.appendChild(s);
     setTimeout(()=>s.remove(),1200);
   }
 }
+function popCharBox(){
+  const id=currentMode==='quiz'?'quizCharBox':(currentMode==='adventure'?'advBattleCharBox':null);
+  const b=id&&document.getElementById(id);if(!b)return;
+  b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');
+}
 function spawnConfetti(){
   const bg=document.getElementById('rewardBg');bg.innerHTML='';
-  for(let i=0;i<25;i++){
+  for(let i=0;i<(LOW_END?12:26);i++){
     const c=document.createElement('div');c.className='confetti';
     c.style.left=Math.random()*100+'%';
     c.style.backgroundColor=CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
@@ -1558,29 +1693,26 @@ async function nextQuizQuestion(){
   currentChar=ch;
   const numStrokes=data.strokes.length;
   const dirs=strokeTypes[ch]||data.medians.map(detectDir);
-  const qType=Math.random()<0.6?'count':'dir';
+  const qType=pickQType(numStrokes,true);
   let questionText,correctAnswer,options;
   if(qType==='count'){
     questionText='「'+ch+'」字一共有几笔？';
     correctAnswer=String(numStrokes);
-    const nums=[numStrokes];
-    const near=[];
-    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
-    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
-    options=nums.sort(()=>Math.random()-.5).map(String);
+    options=countOptions(numStrokes);
+  }else if(qType==='listen'){
+    questionText='🔊 听一听，哪个是这个字？';
+    correctAnswer=ch;
+    const pool0=(getGradeChars(currentGrade).length?getGradeChars(currentGrade):CHARS);
+    const pool=pool0.filter(c=>c!==ch&&charDataCache[c]);
+    const distract=[];
+    while(distract.length<qOptionCount()-1&&pool.length){distract.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);}
+    options=[ch,...distract].sort(()=>Math.random()-.5);
   }else{
-    const tIdx=Math.floor(Math.random()*numStrokes);
+    const tIdx=pickStrokeIdx(numStrokes);
     const ordinals=['一','二','三','四','五','六','七','八','九','十'];
     questionText='「'+ch+'」的第'+(ordinals[tIdx]||tIdx+1)+'笔往哪个方向写？';
-    const correctCode=dirs[tIdx];
-    correctAnswer=correctCode;
-    const usedCodes=[correctAnswer];
-    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctAnswer);
-    while(usedCodes.length<4){
-      const rc=allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0];
-      if(rc)usedCodes.push(rc);
-    }
-    options=usedCodes.sort(()=>Math.random()-.5);
+    correctAnswer=dirs[tIdx];
+    options=dirOptions(correctAnswer);
   }
   document.getElementById('quizQuestion').textContent=questionText;
   document.getElementById('quizFeedback').textContent='';
@@ -1588,12 +1720,15 @@ async function nextQuizQuestion(){
   const size=Math.min(box.offsetWidth,box.offsetHeight)||260;
   writer=HanziWriter.create(box,ch,{width:size,height:size,padding:Math.round(size*.08),renderer:'svg',showOutline:true,showCharacter:true,strokeColor:'#333',outlineColor:'#ddd',highlightColor:'#FF6F00',charDataLoader:(c,cb)=>cb(data)});
   setTimeout(()=>writer.animateCharacter(),500);
+  if(qType==='listen'){setTimeout(()=>speakChar(ch),500);}
   const optDiv=document.getElementById('quizOptions');optDiv.innerHTML='';
   options.forEach(opt=>{
     const btn=document.createElement('button');btn.className='opt-btn';
     btn.dataset.value=opt;
     if(qType==='count'){
       btn.innerHTML='<span style="font-size:32px;font-weight:bold">'+opt+'</span><br><span style="font-size:13px;color:#888">笔</span>';
+    }else if(qType==='listen'){
+      btn.innerHTML='<span style="font-size:40px;font-weight:bold">'+opt+'</span>';
     }else{
       const d=DIRS.find(x=>x.code===opt);
       btn.innerHTML='<span style="font-size:36px">'+(d?d.icon:'➡️')+'</span><br><span style="font-size:14px;color:#555">'+(d?d.label:'')+'</span>';
@@ -1609,22 +1744,26 @@ function handleAnswer(selected,correct,btn,optDiv,qType){
     btn.classList.add('correct');combo++;quizLevel++;
     if(combo>maxCombo){maxCombo=combo;localStorage.setItem('hz_maxCombo',maxCombo);}
     const bonus=combo>=5?3:combo>=3?2:1;
-    addStars(bonus);sndOk();showComboEffect(combo);speakPraise();
+    addStars(bonus);sndOk();showComboEffect(combo);
+    if(quizLevel%3===0)speakPraise();
     const rect=btn.getBoundingClientRect();
     spawnStarFly(rect.left+rect.width/2,rect.top);
+    popCharBox();
+    markLearned(currentChar);
     document.getElementById('quizFeedback').innerHTML='<span style="color:#69F0AE">✓ 答对了！+'+bonus+'星</span>';
     updateQuizUI();
     if(quizLevel%5===0)setTimeout(showRewardEgg,600);
-    setTimeout(nextQuizQuestion,1200);
+    setTimeout(nextQuizQuestion,settings.noPressure?1600:1200);
   }else{
     btn.classList.add('wrong');combo=0;sndNo();
     btns.forEach(b=>{
       if(b.dataset.value===correct)b.classList.add('reveal');
     });
-    const correctLabel=qType==='count'?correct+'笔':(DIRS.find(d=>d.code===correct)||{icon:'',label:''}).label;
-    document.getElementById('quizFeedback').innerHTML='<span style="color:#FFAB91">✗ 正确答案是 '+correctLabel+'</span>';
+    const correctLabel=qType==='count'?correct+'笔':qType==='dir'?(DIRS.find(d=>d.code===correct)||{label:''}).label:correct;
+    document.getElementById('quizFeedback').innerHTML='<span style="color:#FFE082">没关系，正确答案是 '+correctLabel+'，再看一遍笔顺～</span>';
+    try{if(writer)writer.animateCharacter();}catch(e){}
     quizLevel++;updateQuizUI();
-    setTimeout(nextQuizQuestion,2500);
+    setTimeout(nextQuizQuestion,settings.noPressure?3800:2800);
   }
 }
 let labelWriter=null,labelData=null;
@@ -1717,7 +1856,7 @@ function writeRetry(){if(writeWriter)startWriteQuiz();}
 function writeNext(){loadWriteChar(nextInQueue());}
 /* ================= 笔顺音游 ================= */
 const RHY_BEAT=560;
-let RHY_FALL=parseInt(localStorage.getItem('hz_rhythm_speed'))||1900;
+let RHY_FALL=parseInt(localStorage.getItem('hz_rhythm_speed'))||(settings.noPressure?2600:1900);
 const RHY_LANES=[{icon:'➡️',name:'横',color:'#FF6B6B',key:'f'},{icon:'⬇️',name:'竖',color:'#4ECDC4',key:'g'},{icon:'↙️',name:'撇',color:'#45B7D1',key:'j'},{icon:'↘️',name:'捺',color:'#FFA07A',key:'k'}];
 const RHY_DIR2LANE={R:0,T:0,D:1,P:2,N:3};
 const RHY_PENTA=[523,587,659,784,880,1047];
@@ -2028,28 +2167,18 @@ async function tetrisNextQuestion(){
   if(!data){tetrisNextQuestion();return;}
   const numStrokes=data.strokes.length;
   const dirs=strokeTypes[ch]||data.medians.map(detectDir);
-  const qType=Math.random()<0.5?'count':'dir';
+  const qType=pickQType(numStrokes);
   let questionText,correctAnswer,options;
   if(qType==='count'){
     questionText='「'+ch+'」一共有几笔？';
     correctAnswer=String(numStrokes);
-    const nums=[numStrokes];
-    const near=[];
-    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
-    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
-    options=nums.sort(()=>Math.random()-.5).map(String);
+    options=countOptions(numStrokes);
   }else{
-    const tIdx=Math.floor(Math.random()*numStrokes);
+    const tIdx=pickStrokeIdx(numStrokes);
     const ordinals=['一','二','三','四','五','六','七','八','九','十'];
     questionText='「'+ch+'」的第'+(ordinals[tIdx]||tIdx+1)+'笔往哪写？';
     correctAnswer=dirs[tIdx];
-    const usedCodes=[correctAnswer];
-    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctAnswer);
-    while(usedCodes.length<4){
-      const rc=allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0];
-      if(rc)usedCodes.push(rc);
-    }
-    options=usedCodes.sort(()=>Math.random()-.5);
+    options=dirOptions(correctAnswer);
   }
   document.getElementById('tetrisChar').textContent=ch;
   document.getElementById('tetrisQuestion').textContent=questionText;
@@ -2212,26 +2341,16 @@ async function moleNextQuestion(){
   const numStrokes=data.strokes.length;
   const dirs=strokeTypes[ch]||data.medians.map(detectDir);
   let question,correctAnswer,options;
-  if(Math.random()<.55){
+  if(pickQType(numStrokes)==='count'){
     question='一共有几笔？';
     correctAnswer=String(numStrokes);
-    const nums=[numStrokes];
-    const near=[];
-    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
-    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
-    options=nums.sort(()=>Math.random()-.5).map(String);
+    options=countOptions(numStrokes);
   }else{
-    const tIdx=Math.floor(Math.random()*numStrokes);
+    const tIdx=pickStrokeIdx(numStrokes);
     const ordinals=['一','二','三','四','五','六','七','八','九','十'];
     question='第'+(ordinals[tIdx]||tIdx+1)+'笔往哪写？';
     correctAnswer=dirs[tIdx];
-    const usedCodes=[correctAnswer];
-    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctAnswer);
-    while(usedCodes.length<4){
-      const rc=allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0];
-      if(rc)usedCodes.push(rc);
-    }
-    options=usedCodes.sort(()=>Math.random()-.5);
+    options=dirOptions(correctAnswer);
   }
   mole.answer=correctAnswer;
   mole.options=options;
@@ -2317,7 +2436,7 @@ function moleEscape(){
 }
 function moleLoseHeart(msg){
   mole.combo=0;
-  mole.hearts--;
+  if(!settings.noPressure)mole.hearts--;
   document.getElementById('moleFeedback').innerHTML=msg;
   moleUpdateUI();
   if(mole.hearts<=0){
@@ -2357,7 +2476,7 @@ function moleGameOver(){
 const PZ_START_TIME=70;
 const PZ_CHAR_BONUS=9;
 const PZ_PENTA=[523,587,659,784,880,1047,1175];
-let puzzle={time:PZ_START_TIME,score:0,combo:0,maxCombo:0,done:0,perfect:0,step:0,strokes:[],over:false,busy:false,timerId:null,lastTickAt:0,char:'',mistakes:0};
+let puzzle={time:tp(PZ_START_TIME),score:0,combo:0,maxCombo:0,done:0,perfect:0,step:0,strokes:[],over:false,busy:false,timerId:null,lastTickAt:0,char:'',mistakes:0};
 async function puzzlePickChar(){
   for(let i=0;i<24;i++){
     const ch=nextInQueue();
@@ -2379,7 +2498,7 @@ function puzzleTickUI(){
 }
 function puzzleStart(){
   if(puzzle.timerId)clearInterval(puzzle.timerId);
-  puzzle={time:PZ_START_TIME,score:0,combo:0,maxCombo:0,done:0,perfect:0,step:0,strokes:[],over:false,busy:false,timerId:null,lastTickAt:Date.now(),char:'',mistakes:0};
+  puzzle={time:tp(PZ_START_TIME),score:0,combo:0,maxCombo:0,done:0,perfect:0,step:0,strokes:[],over:false,busy:false,timerId:null,lastTickAt:Date.now(),char:'',mistakes:0};
   showScreen('puzzle');
   document.getElementById('pzFeedback').textContent='';
   puzzleUpdateUI();puzzleTickUI();
@@ -2623,10 +2742,10 @@ async function runnerNewWall(){
   const numStrokes=data.strokes.length;
   const dirs=strokeTypes[ch]||data.medians.map(detectDir);
   let question,correct,qType;
-  if(Math.random()<.55){
+  if(pickQType(numStrokes)==='count'){
     question='「'+ch+'」一共有几笔？';correct=String(numStrokes);qType='count';
   }else{
-    const tIdx=Math.floor(Math.random()*numStrokes);
+    const tIdx=pickStrokeIdx(numStrokes);
     const ordinals=['一','二','三','四','五','六','七','八','九','十'];
     question='「'+ch+'」的第'+(ordinals[tIdx]||tIdx+1)+'笔往哪写？';correct=dirs[tIdx];qType='dir';
   }
@@ -2687,7 +2806,7 @@ function runnerResolve(w){
     runner.locked=false;
     return;
   }
-  runner.combo=0;runner.hearts--;
+  runner.combo=0;if(!settings.noPressure)runner.hearts--;
   if(panels[runner.lane])panels[runner.lane].classList.add('boom');
   if(panels[w.correctLane])panels[w.correctLane].classList.add('right');
   const rr=document.getElementById('runRunner');
@@ -2825,10 +2944,10 @@ async function bossAsk(){
   const dirs=strokeTypes[ch]||data.medians.map(detectDir);
   const n=data.strokes.length;
   let question,correct,qType;
-  if(Math.random()<.45){
+  if(pickQType(n)==='count'){
     question='「'+ch+'」一共有几笔？';correct=String(n);qType='count';
   }else{
-    const tIdx=Math.floor(Math.random()*n);
+    const tIdx=pickStrokeIdx(n);
     const ord=['一','二','三','四','五','六','七','八','九','十'];
     question='「'+ch+'」的第'+(ord[tIdx]||tIdx+1)+'笔往哪写？';correct=dirs[tIdx];qType='dir';
   }
@@ -3165,9 +3284,9 @@ function petMakeQuestion(){
     const dirs=strokeTypes[ch]||data.medians.map(detectDir);
     const n=data.strokes.length;
     let question,correct,qType;
-    if(Math.random()<.45){question='「'+ch+'」一共有几笔？';correct=String(n);qType='count';}
+    if(pickQType(n)==='count'){question='「'+ch+'」一共有几笔？';correct=String(n);qType='count';}
     else{
-      const tIdx=Math.floor(Math.random()*n);
+      const tIdx=pickStrokeIdx(n);
       const ord=['一','二','三','四','五','六','七','八','九','十'];
       question='「'+ch+'」的第'+(ord[tIdx]||tIdx+1)+'笔往哪写？';correct=dirs[tIdx];qType='dir';
     }
@@ -3489,9 +3608,9 @@ async function hopAsk(){
   const dirs=strokeTypes[ch]||data.medians.map(detectDir);
   const n=data.strokes.length;
   let question,correct,qType;
-  if(Math.random()<.45){question='「'+ch+'」一共有几笔？';correct=String(n);qType='count';}
+  if(pickQType(n)==='count'){question='「'+ch+'」一共有几笔？';correct=String(n);qType='count';}
   else{
-    const tIdx=Math.floor(Math.random()*n);
+    const tIdx=pickStrokeIdx(n);
     const ord=['一','二','三','四','五','六','七','八','九','十'];
     question='「'+ch+'」的第'+(ord[tIdx]||tIdx+1)+'笔往哪写？';correct=dirs[tIdx];qType='dir';
   }
@@ -3821,7 +3940,7 @@ function lianUpdateUI(){
 function lianStart(){
   if(lian.timerId){clearInterval(lian.timerId);lian.timerId=null;}
   const g=(lian.gen||0)+1;
-  const total=Math.max(70,100-lianWins()*4);
+  const total=tp(Math.max(70,100-lianWins()*4));
   lian={gen:g,t0:total,tiles:[],occ:[],cellEls:[],svg:null,sel:-1,time:total,total:0,cleared:0,combo:0,maxCombo:0,score:0,over:false,busy:true,timerId:lian.timerId,lastTs:performance.now()};
   showScreen('lian');
   document.getElementById('lnWrap').innerHTML='';
@@ -4046,7 +4165,7 @@ const CF_LIVES=3, CF_TIME=90, CF_GRAV=980;
 const CF_SHORT={R:'右',D:'下',P:'左下',N:'右下',T:'右上'};
 const CF_GOOD=['切中！','漂亮！','好刀法！','完美一刀！','就是它！'];
 const CF_RANKS=[[0,'🔰 水果学徒'],[220,'🍃 切瓜小能手'],[460,'🗡️ 刀锋小侠'],[760,'🥷 水果忍者大师']];
-let fruit={gen:0,seq:0,awaitSpawn:0,items:[],score:0,combo:0,maxCombo:0,hits:0,miss:0,wave:0,lives:CF_LIVES,time:CF_TIME,t0:CF_TIME,over:true,busy:true,timerId:null,lastTs:0,pending:0,nextAt:0,answer:'',qChar:'',qText:''};
+let fruit={gen:0,seq:0,awaitSpawn:0,items:[],score:0,combo:0,maxCombo:0,hits:0,miss:0,wave:0,lives:CF_LIVES,time:tp(CF_TIME),t0:tp(CF_TIME),over:true,busy:true,timerId:null,lastTs:0,pending:0,nextAt:0,answer:'',qChar:'',qText:''};
 function fruitWins(){return Math.max(0,parseInt(localStorage.getItem('hz_fruit_wins')||'0',10)||0);}
 function fruitBest(){return Math.max(0,parseInt(localStorage.getItem('hz_fruit_best')||'0',10)||0);}
 function fruitDiff(){
@@ -4085,7 +4204,7 @@ function fruitClearItems(){
 function fruitStart(){
   fruitStopLoops();
   const g=(fruit.gen||0)+1;
-  fruit={gen:g,seq:fruit.seq||0,awaitSpawn:0,items:[],score:0,combo:0,maxCombo:0,hits:0,miss:0,wave:0,lives:CF_LIVES,time:CF_TIME,t0:CF_TIME,over:false,busy:true,timerId:fruit.timerId,lastTs:performance.now(),pending:0,nextAt:0,answer:'',qChar:'',qText:''};
+  fruit={gen:g,seq:fruit.seq||0,awaitSpawn:0,items:[],score:0,combo:0,maxCombo:0,hits:0,miss:0,wave:0,lives:CF_LIVES,time:tp(CF_TIME),t0:tp(CF_TIME),over:false,busy:true,timerId:fruit.timerId,lastTs:performance.now(),pending:0,nextAt:0,answer:'',qChar:'',qText:''};
   showScreen('fruit');
   const wrap=document.getElementById('cfWrap');
   wrap.innerHTML='<div class="cf-wood"></div><div class="cf-judge" id="cfJudge"></div>';
@@ -4133,14 +4252,14 @@ async function fruitWave(){
   if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
   const dirs=strokeTypes[ch],n=data.strokes.length;
   let question,answer,opts=[];
-  if(Math.random()<.5){
+  if(pickQType(n)==='count'){
     question='一共有几笔？';answer=n+' 笔';
     const near=[];
     for(let k=Math.max(1,n-3);k<=Math.min(22,n+3);k++){if(k!==n)near.push(k+' 笔');}
     opts=[answer];
     while(opts.length<4&&near.length)opts.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);
   }else{
-    const tIdx=Math.floor(Math.random()*n);
+    const tIdx=pickStrokeIdx(n);
     const ord=['一','二','三','四','五','六','七','八','九','十'];
     const d=DIRS.find(x=>x.code===dirs[tIdx]);
     question='第'+(ord[tIdx]||tIdx+1)+'笔往哪写？';
@@ -4249,7 +4368,7 @@ function fruitGood(it){
 }
 function fruitWrong(it){
   fruit.combo=0;
-  fruit.lives--;
+  if(!settings.noPressure)fruit.lives--;
   fruitSplash(it,8,'#B0BEC5');
   fruitPop(it,'✗','#FF8A80');
   sndNo();tone(150,.3,'square',.12);
@@ -4261,7 +4380,7 @@ function fruitWrong(it){
 }
 function fruitBomb(it){
   fruit.combo=0;
-  fruit.lives--;
+  if(!settings.noPressure)fruit.lives--;
   fruitSplash(it,14,'#455A64');
   fruitSplash(it,8,'#FF7043');
   fruitPop(it,'💥 -1','#FF8A80');
@@ -4406,7 +4525,7 @@ document.addEventListener('pointerup',function(){
 });
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
-  challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
+  challengeState={running:true,timeLeft:(settings.noPressure?99:60),score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
   showScreen('challenge');
   document.getElementById('challengeScore').textContent='得分 0';
   document.getElementById('challengeTimer').textContent='⏱️ 60s';
@@ -4456,28 +4575,18 @@ async function challengeNextQuestion(){
   challengeState.currentChar=ch;
   const numStrokes=data.strokes.length;
   const dirs=strokeTypes[ch]||data.medians.map(detectDir);
-  const qType=Math.random()<0.6?'count':'dir';
+  const qType=pickQType(numStrokes);
   let questionText,correctAnswer,options;
   if(qType==='count'){
     questionText='「'+ch+'」一共有几笔？';
     correctAnswer=String(numStrokes);
-    const nums=[numStrokes];
-    const near=[];
-    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
-    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
-    options=nums.sort(()=>Math.random()-.5).map(String);
+    options=countOptions(numStrokes);
   }else{
-    const tIdx=Math.floor(Math.random()*numStrokes);
+    const tIdx=pickStrokeIdx(numStrokes);
     const ordinals=['一','二','三','四','五','六','七','八','九','十'];
     questionText='「'+ch+'」的第'+(ordinals[tIdx]||tIdx+1)+'笔往哪写？';
     correctAnswer=dirs[tIdx];
-    const usedCodes=[correctAnswer];
-    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctAnswer);
-    while(usedCodes.length<4){
-      const rc=allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0];
-      if(rc)usedCodes.push(rc);
-    }
-    options=usedCodes.sort(()=>Math.random()-.5);
+    options=dirOptions(correctAnswer);
   }
   challengeState.currentAnswer=correctAnswer;
   challengeState.currentOptions=options;
@@ -4519,6 +4628,7 @@ function challengeAnswer(selected,btn,optDiv){
     document.getElementById('challengeTimeBar').style.width=(Math.min(challengeState.timeLeft,60)/60*100)+'%';
     sndOk();
     if(challengeState.currentCombo>=3)showComboEffect(challengeState.currentCombo);
+    markLearned(challengeState.currentChar);
     document.getElementById('challengeScore').textContent='得分 '+challengeState.score;
     document.getElementById('challengeLevel').textContent='连击 x'+challengeState.currentCombo;
     document.getElementById('challengeFeedback').innerHTML='<span style="color:#69F0AE">✓ +'+earned+'分 +2秒</span>';
@@ -4526,7 +4636,7 @@ function challengeAnswer(selected,btn,optDiv){
   }else{
     btn.classList.add('wrong');
     challengeState.currentCombo=0;
-    challengeState.timeLeft=Math.max(challengeState.timeLeft-3,0);
+    if(!settings.noPressure)challengeState.timeLeft=Math.max(challengeState.timeLeft-3,0);
     document.getElementById('challengeTimer').textContent='⏱️ '+challengeState.timeLeft+'s';
     document.getElementById('challengeTimeBar').style.width=(Math.min(challengeState.timeLeft,60)/60*100)+'%';
     btns.forEach(b=>{if(b.dataset.value===challengeState.currentAnswer)b.classList.add('reveal');});
@@ -4741,28 +4851,18 @@ async function nextAdventureQuestion(){
   if(!data){nextAdventureQuestion();return;}
   const numStrokes=data.strokes.length;
   const dirs=strokeTypes[ch]||data.medians.map(detectDir);
-  const qType=Math.random()<0.6?'count':'dir';
+  const qType=pickQType(numStrokes);
   let questionText,correctAnswer,options;
   if(qType==='count'){
     questionText='「'+ch+'」一共有几笔？';
     correctAnswer=String(numStrokes);
-    const nums=[numStrokes];
-    const near=[];
-    for(let k=Math.max(1,numStrokes-3);k<=Math.min(20,numStrokes+3);k++){if(k!==numStrokes)near.push(k);}
-    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);}
-    options=nums.sort(()=>Math.random()-.5).map(String);
+    options=countOptions(numStrokes);
   }else{
-    const tIdx=Math.floor(Math.random()*numStrokes);
+    const tIdx=pickStrokeIdx(numStrokes);
     const ordinals=['一','二','三','四','五','六','七','八','九','十'];
     questionText='「'+ch+'」的第'+(ordinals[tIdx]||tIdx+1)+'笔往哪写？';
     correctAnswer=dirs[tIdx];
-    const usedCodes=[correctAnswer];
-    const allCodes=DIRS.map(d=>d.code).filter(c=>c!==correctAnswer);
-    while(usedCodes.length<4){
-      const rc=allCodes.splice(Math.floor(Math.random()*allCodes.length),1)[0];
-      if(rc)usedCodes.push(rc);
-    }
-    options=usedCodes.sort(()=>Math.random()-.5);
+    options=dirOptions(correctAnswer);
   }
   document.getElementById('advBattleCharName').textContent='「'+ch+'」'+numStrokes+'画';
   document.getElementById('advBattleQuestion').textContent=questionText;
@@ -5082,6 +5182,7 @@ async function boot(){
     btn.classList.toggle('active',btn.dataset.grade===currentGrade);
   });
   updateHomeStats();
+  checkStreak();
   if(window.petLoad){petLoad();petTip();}
   await preloadGrade(currentGrade);
 }
