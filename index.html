@@ -337,6 +337,51 @@ button:active{transform:scale(.95)}
 .bs-ultbtn:active{transform:scale(.93)}
 .bs-badge{position:absolute;right:10px;top:8px;font-size:11px;color:#fff;opacity:.75;z-index:4}
 @media(max-width:420px){.bs-stage{height:27vh;min-height:190px}.bs-boss{font-size:74px}.bs-opt{font-size:17px;min-height:50px;padding:10px 6px}}
+/* ---------- 笔顺宠物屋 ---------- */
+.pet-room{position:relative;width:100%;max-width:420px;height:32vh;min-height:230px;max-height:320px;border-radius:22px;overflow:hidden;margin:6px 0;background:linear-gradient(180deg,#FFF0B8 0%,#FFD6E4 46%,#C9BCF7 100%);box-shadow:0 10px 28px rgba(0,0,0,.24),inset 0 0 50px rgba(255,255,255,.35)}
+.pet-room.night{background:linear-gradient(180deg,#2E2A55 0%,#403063 50%,#241B3C 100%)}
+.pet-floor{position:absolute;left:0;right:0;bottom:0;height:32%;background:linear-gradient(180deg,#F3C36B,#DFA14B);box-shadow:inset 0 6px 14px rgba(255,255,255,.35)}
+.pet-window{position:absolute;right:14px;top:14px;width:60px;height:60px;border:5px solid #fff;border-radius:12px;background:linear-gradient(180deg,#8FD3FF,#D6F1FF)}
+.pet-room.night .pet-window{background:linear-gradient(180deg,#1B2A55,#3B4A7A)}
+.pet-plant{position:absolute;left:14px;bottom:26%;font-size:34px;opacity:.9}
+.pet-stage-tag{position:absolute;left:12px;top:12px;font-size:12px;font-weight:bold;color:#5B3A78;background:rgba(255,255,255,.85);padding:4px 10px;border-radius:12px;z-index:4}
+.pet-bubble{position:absolute;left:50%;top:44px;transform:translateX(-50%);max-width:68%;background:#fff;color:#5B3A78;font-size:13px;line-height:1.4;padding:7px 12px;border-radius:14px;box-shadow:0 3px 10px rgba(0,0,0,.16);z-index:5;text-align:center}
+.pet-bubble::after{content:'';position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:#fff;transform:translateX(-50%) rotate(45deg)}
+.pet-shadow{position:absolute;left:50%;bottom:21%;width:96px;height:16px;margin-left:-48px;border-radius:50%;background:rgba(0,0,0,.16)}
+.pet-body{position:absolute;left:50%;bottom:22%;font-size:92px;line-height:1;cursor:pointer;z-index:3;filter:drop-shadow(0 6px 12px rgba(0,0,0,.2));animation:petIdle 2.2s ease-in-out infinite}
+@keyframes petIdle{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-9px) scale(1.03)}}
+.pet-body.chew{animation:petChew .55s ease-out}
+@keyframes petChew{0%,100%{transform:translateY(0) rotate(0) scale(1)}30%{transform:translateY(5px) rotate(-7deg) scale(1.07)}65%{transform:translateY(0) rotate(6deg) scale(.97)}}
+.pet-body.happy{animation:petHappy .7s ease-out}
+@keyframes petHappy{0%,100%{transform:translateY(0) rotate(0)}22%{transform:translateY(-26px) rotate(-9deg)}45%{transform:translateY(0)}70%{transform:translateY(-16px) rotate(9deg)}}
+.pet-body.sad{animation:none;transform:translateY(7px) scale(.94);filter:grayscale(.55) brightness(.92)}
+.pet-body.evolving{animation:petEvolving 1.3s ease-in-out}
+@keyframes petEvolving{0%{filter:brightness(1)}35%{filter:brightness(3.2) saturate(1.8);transform:translateY(-14px) scale(1.28)}70%{filter:brightness(2);transform:translateY(0) scale(1.1)}100%{filter:brightness(1);transform:translateY(0) scale(1)}}
+.pet-glow{position:absolute;left:50%;bottom:14%;width:190px;height:190px;margin-left:-95px;border-radius:50%;pointer-events:none;opacity:0;background:radial-gradient(circle,rgba(255,255,255,.95),rgba(255,214,64,.5) 45%,transparent 70%);z-index:2}
+.pet-glow.on{animation:petGlow 1.3s ease-out}
+@keyframes petGlow{0%{opacity:0;transform:scale(.4)}35%{opacity:1;transform:scale(1.05)}100%{opacity:0;transform:scale(1.5)}}
+.pet-food{position:absolute;left:50%;bottom:26%;font-size:28px;pointer-events:none;z-index:6;animation:petFall .85s ease-in forwards}
+@keyframes petFall{0%{opacity:0;transform:translate(-50%,-150px) scale(.75) rotate(-20deg)}30%{opacity:1}100%{opacity:1;transform:translate(-50%,-6px) scale(1.1) rotate(8deg)}}
+.pet-heart{position:absolute;font-size:22px;pointer-events:none;z-index:6;animation:petUp 1.05s ease-out forwards}
+@keyframes petUp{0%{opacity:0;transform:translate(-50%,0) scale(.5)}25%{opacity:1}100%{opacity:0;transform:translate(-50%,-84px) scale(1.25)}}
+.pet-ball{position:absolute;width:44px;height:44px;border-radius:50%;z-index:7;cursor:pointer;background:radial-gradient(circle at 32% 28%,#fff,#FF6B6B 58%,#B71C1C);box-shadow:0 5px 12px rgba(0,0,0,.28);transition:left .34s cubic-bezier(.25,.9,.3,1),top .34s cubic-bezier(.25,.9,.3,1)}
+.pet-dirt{position:absolute;font-size:30px;z-index:7;cursor:pointer;animation:petWiggle 1.2s ease-in-out infinite}
+@keyframes petWiggle{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+.pet-gauges{display:flex;flex-direction:column;gap:6px;width:100%;max-width:420px;margin:8px 0}
+.pet-gauge{display:flex;align-items:center;gap:8px;font-size:12px;color:#fff}
+.pet-gauge .gl{width:56px;text-align:right;opacity:.92}
+.pet-gauge .gb{flex:1;height:13px;border-radius:8px;background:rgba(255,255,255,.2);overflow:hidden;border:1px solid rgba(255,255,255,.3)}
+.pet-gauge .gf{height:100%;border-radius:8px;transition:width .4s ease-out}
+.gf.hunger{background:linear-gradient(90deg,#FFB300,#FFE082)}
+.gf.mood{background:linear-gradient(90deg,#EC407A,#F8BBD0)}
+.gf.xp{background:linear-gradient(90deg,#42A5F5,#B3E5FC)}
+.pet-gauge .gv{width:54px;opacity:.85}
+.pet-acts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:420px;margin:6px 0}
+.pet-act{border:none;border-radius:14px;padding:9px 2px;font-family:inherit;font-size:12px;color:#fff;cursor:pointer;background:linear-gradient(135deg,#8E6FD6,#5E35B1);box-shadow:0 4px 12px rgba(0,0,0,.25);transition:transform .1s,filter .15s}
+.pet-act .pe{display:block;font-size:22px;margin-bottom:2px}
+.pet-act:active{transform:scale(.94)}
+.pet-act.off{opacity:.45;pointer-events:none}
+@media(max-width:420px){.pet-room{height:27vh;min-height:200px}.pet-body{font-size:74px}.pet-gauge .gl{width:44px}}
 </style>
 </head>
 <body>
@@ -402,6 +447,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('boss')">
       <div class="icon">👹</div>
       <div class="info"><h3>笔顺大魔王</h3><p>答对蓄力，放大招打倒五位魔王！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('pet')">
+      <div class="icon">🐣</div>
+      <div class="info"><h3>笔顺宠物屋</h3><p id="petCardTip">练字喂养你的汉字神兽！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -778,6 +827,39 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-pet">
+  <div class="top-bar">
+    <button class="back-btn" onclick="petLeave()">← 返回</button>
+    <div class="stats"><span id="petFed">喂养 0 次</span><span id="petCombo">🔥 x0</span><span id="petAge">破壳 0 天</span></div>
+  </div>
+  <div class="challenge-goal" id="petGoal">🐣 练字喂宠物，看它进化成汉字神兽！</div>
+  <div class="pet-room" id="petRoom">
+    <div class="pet-floor"></div>
+    <div class="pet-window"></div>
+    <div class="pet-plant">🪴</div>
+    <div class="pet-stage-tag" id="petTag">🥚 汉字蛋</div>
+    <div class="pet-bubble" id="petBubble">你好呀！</div>
+    <div class="pet-glow" id="petGlow"></div>
+    <div class="pet-shadow"></div>
+    <div class="pet-body" id="petBody" onclick="petPat()">🥚</div>
+  </div>
+  <div class="pet-gauges">
+    <div class="pet-gauge"><span class="gl">🍚 饱食</span><div class="gb"><div class="gf hunger" id="petHunger"></div></div><span class="gv" id="petHungerV">100</span></div>
+    <div class="pet-gauge"><span class="gl">💗 心情</span><div class="gb"><div class="gf mood" id="petMood"></div></div><span class="gv" id="petMoodV">100</span></div>
+    <div class="pet-gauge"><span class="gl">✨ 成长</span><div class="gb"><div class="gf xp" id="petXp"></div></div><span class="gv" id="petXpV">0</span></div>
+  </div>
+  <div class="pet-acts">
+    <button class="pet-act" id="petFeedBtn" onclick="petFeedStart()"><span class="pe">🍚</span>喂饭</button>
+    <button class="pet-act" id="petPlayBtn" onclick="petPlayStart()"><span class="pe">🎾</span>陪玩</button>
+    <button class="pet-act" id="petBathBtn" onclick="petBathStart()"><span class="pe">🫧</span>洗澡</button>
+    <button class="pet-act" id="petGoBtn" onclick="enterMode('write')"><span class="pe">📚</span>去练字</button>
+  </div>
+  <div class="quiz-header">
+    <div class="question" id="petQuestion">点点宠物摸摸它，或选一个活动</div>
+  </div>
+  <div class="options" id="petOptions"></div>
+  <div class="feedback" id="petFeedback"></div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -1124,6 +1206,7 @@ function enterMode(mode){
   else if(mode==='puzzle')puzzleStart();
   else if(mode==='runner')runnerStart();
   else if(mode==='boss')bossStart();
+  else if(mode==='pet')petStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -1131,6 +1214,7 @@ function enterMode(mode){
 function addStars(n){
   stars+=n;localStorage.setItem('hz_stars',stars);
   checkUnlock();updateAllStarDisplays();
+  if(window.petAddXp)petAddXp(n*2);
 }
 function updateAllStarDisplays(){
   document.getElementById('homeStars').textContent='⭐ '+stars;
@@ -2696,6 +2780,369 @@ document.addEventListener('keydown',function(e){
     if(o)o.click();
   }else if(k===' '){e.preventDefault();bossUlt();}
 });
+/* ================= 笔顺宠物屋 ================= */
+const PET_STAGES=[
+  {e:'🥚',n:'汉字蛋',xp:0},
+  {e:'🐣',n:'破壳小鸡',xp:80},
+  {e:'🐥',n:'笔顺雏鸟',xp:300},
+  {e:'🐔',n:'神气大公鸡',xp:700},
+  {e:'🐉',n:'汉字神兽',xp:1400}
+];
+const PET_PENTA=[523,587,659,784,880,1047,1319];
+const PET_FOODS=['🍙','🍎','🥕','','🥛','','🍉','🧀'];
+let pet={xp:0,hunger:80,mood:80,fed:0,day:'',born:Date.now(),last:Date.now(),stage:0};
+let petRun={combo:0,need:0,left:0,mode:'',gen:0,timerId:null,active:false,busy:true};
+function petToday(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function petLoad(){
+  try{
+    const raw=localStorage.getItem('hz_pet');
+    if(raw){
+      const s=JSON.parse(raw);
+      if(s&&typeof s.xp==='number'){pet=Object.assign(pet,s);}
+    }
+  }catch(e){}
+  const now=Date.now();
+  const mins=Math.max(0,Math.min(60*36,(now-(pet.last||now))/60000));
+  pet.hunger=Math.max(0,pet.hunger-mins*.35);
+  pet.mood=Math.max(0,pet.mood-mins*.22);
+  pet.last=now;
+  pet.stage=petStageOf(pet.xp);
+}
+function petStageOf(xp){
+  let s=0;
+  for(let i=0;i<PET_STAGES.length;i++){if(xp>=PET_STAGES[i].xp)s=i;}
+  return s;
+}
+function petSave(){
+  pet.stage=petStageOf(pet.xp);
+  pet.last=Date.now();
+  localStorage.setItem('hz_pet',JSON.stringify({xp:pet.xp,hunger:pet.hunger,mood:pet.mood,fed:pet.fed,day:pet.day,born:pet.born,last:pet.last,stage:pet.stage}));
+}
+function petAddXp(n){
+  if(!n)return;
+  const before=pet.stage;
+  pet.xp+=n;
+  pet.stage=petStageOf(pet.xp);
+  petSave();
+  if(currentMode==='pet'){
+    petRender();
+    if(pet.stage>before)petEvolve();
+  }
+  petTip();
+}
+function petTip(){
+  const el=document.getElementById('petCardTip');
+  if(el)el.textContent=PET_STAGES[pet.stage].e+' '+PET_STAGES[pet.stage].n+' · 成长 '+Math.floor(pet.xp);
+}
+function petBubble(txt){document.getElementById('petBubble').textContent=txt;}
+function petFx(cls,emoji){
+  const d=document.createElement('div');
+  d.className=cls;d.textContent=emoji;
+  d.style.left=(38+Math.random()*24)+'%';
+  d.style.bottom=(28+Math.random()*10)+'%';
+  document.getElementById('petRoom').appendChild(d);
+  setTimeout(()=>d.remove(),1150);
+}
+function petAni(cls){
+  const b=document.getElementById('petBody');
+  b.classList.remove('chew','happy','evolving');
+  void b.offsetWidth;
+  b.classList.add(cls);
+}
+function petRender(){
+  const st=PET_STAGES[pet.stage];
+  const nx=PET_STAGES[Math.min(pet.stage+1,PET_STAGES.length-1)];
+  const body=document.getElementById('petBody');
+  body.textContent=st.e;
+  const sad=pet.hunger<28||pet.mood<28;
+  body.classList.toggle('sad',sad&&petRun.mode==='');
+  document.getElementById('petTag').textContent=st.e+' '+st.n+(pet.stage>=PET_STAGES.length-1?'（满级）':'');
+  document.getElementById('petHunger').style.width=Math.max(0,Math.min(100,pet.hunger))+'%';
+  document.getElementById('petMood').style.width=Math.max(0,Math.min(100,pet.mood))+'%';
+  const span=Math.max(1,nx.xp-st.xp);
+  const inStage=pet.stage>=PET_STAGES.length-1?100:Math.max(0,Math.min(100,(pet.xp-st.xp)/span*100));
+  document.getElementById('petXp').style.width=inStage+'%';
+  document.getElementById('petXpV').textContent=pet.stage>=PET_STAGES.length-1?'MAX':Math.floor(pet.xp-st.xp)+'/'+span;
+  document.getElementById('petHungerV').textContent=Math.round(pet.hunger);
+  document.getElementById('petMoodV').textContent=Math.round(pet.mood);
+  document.getElementById('petFed').textContent='喂养 '+pet.fed+' 次';
+  document.getElementById('petCombo').textContent='🔥 x'+petRun.combo;
+  document.getElementById('petAge').textContent='破壳 '+Math.max(0,Math.floor((Date.now()-pet.born)/86400000))+' 天';
+  const h=new Date().getHours();
+  document.getElementById('petRoom').classList.toggle('night',h<6||h>=19);
+  petTip();
+}
+function petSayIdle(){
+  if(petRun.active)return;
+  if(pet.hunger<25)petBubble('肚子咕咕叫了…🍚 喂我吃饭好不好');
+  else if(pet.mood<25)petBubble('有点无聊，陪我玩一下嘛 🎾');
+  else if(pet.stage>=PET_STAGES.length-1)petBubble('我是汉字神兽！写笔顺我最厉害！');
+  else petBubble(['今天也要好好写字哦！','你写的字越来越好看啦！','再答对几题我就长大一点！','笔顺写对了，我就有力气！'][Math.floor(Math.random()*4)]);
+}
+function petStart(){
+  petStopTimers();
+  petRun={combo:0,need:0,left:0,mode:'',gen:(petRun.gen||0)+1,timerId:null,active:false,busy:true};
+  petLoad();
+  showScreen('pet');
+  document.getElementById('petOptions').innerHTML='';
+  document.getElementById('petFeedback').textContent='';
+  document.getElementById('petQuestion').textContent='点点宠物摸摸它，或选一个活动';
+  petActsLock(false);
+  if(pet.day!==petToday()){
+    pet.day=petToday();
+    pet.mood=Math.min(100,pet.mood+12);
+    petAddXp(20);
+    petBubble('你终于来啦！今日见面礼 +20 成长 ✨');
+    tone(880,.14,'triangle',.14);
+  }else{
+    petSayIdle();
+  }
+  petRender();
+  petRun.idleId=setInterval(()=>{if(currentMode==='pet')petSayIdle();else clearInterval(petRun.idleId);},9000);
+}
+function petStopTimers(){
+  if(petRun.timerId){clearInterval(petRun.timerId);petRun.timerId=null;}
+  if(petRun.idleId){clearInterval(petRun.idleId);petRun.idleId=null;}
+  const room=document.getElementById('petRoom');
+  if(room){room.querySelectorAll('.pet-ball,.pet-dirt').forEach(x=>x.remove());}
+}
+function petLeave(){
+  petStopTimers();petSave();goHome();
+}
+function petActsLock(lock){
+  ['petFeedBtn','petPlayBtn','petBathBtn'].forEach(id=>{
+    document.getElementById(id).classList.toggle('off',!!lock);
+  });
+}
+function petPat(){
+  if(petRun.mode)return;
+  pet.mood=Math.min(100,pet.mood+2);
+  petFx('pet-heart',['❤️','💕','✨'][Math.floor(Math.random()*3)]);
+  tone(660+Math.random()*220,.07,'sine',.08);
+  petBubble(['嘿嘿，好痒！','摸摸头，更有劲写字了！','再练两个字好不好？'][Math.floor(Math.random()*3)]);
+  petRender();petSave();
+}
+function petMakeQuestion(){
+  const ch=nextInQueue();
+  return loadCharData(ch).then(function(data){
+    if(!data)return null;
+    const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+    const n=data.strokes.length;
+    let question,correct,qType;
+    if(Math.random()<.45){question='「'+ch+'」一共有几笔？';correct=String(n);qType='count';}
+    else{
+      const tIdx=Math.floor(Math.random()*n);
+      const ord=['一','二','三','四','五','六','七','八','九','十'];
+      question='「'+ch+'」的第'+(ord[tIdx]||tIdx+1)+'笔往哪写？';correct=dirs[tIdx];qType='dir';
+    }
+    const vals=[correct];
+    if(qType==='count'){
+      const near=[];
+      for(let k=Math.max(1,n-4);k<=Math.min(24,n+4);k++){if(k!==n)near.push(String(k));}
+      while(vals.length<4&&near.length)vals.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);
+    }else{
+      const pool=DIRS.map(d=>d.code).filter(c=>c!==correct);
+      while(vals.length<4&&pool.length)vals.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+    }
+    while(vals.length<4)vals.push('1');
+    for(let i=vals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=vals[i];vals[i]=vals[j];vals[j]=t;}
+    return {question:question,correct:correct,vals:vals,qType:qType};
+  });
+}
+function petRenderOptions(q){
+  const box=document.getElementById('petOptions');
+  box.innerHTML='';
+  q.vals.forEach(v=>{
+    const d=DIRS.find(x=>x.code===v);
+    const b=document.createElement('button');
+    b.className='opt-btn';b.dataset.value=v;
+    b.textContent=q.qType==='dir'?(d?d.icon+' '+d.label:'➡️'):(v+' 笔');
+    b.onclick=function(){petAnswer(b);};
+    box.appendChild(b);
+  });
+  document.getElementById('petQuestion').textContent=q.question;
+  petRun.busy=false;
+}
+function petFeedStart(){
+  if(petRun.active)return;
+  petRun.active=true;petRun.mode='feed';petRun.combo=0;petRun.need=6;petRun.left=6;
+  petActsLock(true);
+  document.getElementById('petFeedback').textContent='';
+  document.getElementById('petGoal').textContent='🍚 开饭啦！答对 6 题喂饱它';
+  petBubble('我饿啦！快答题喂我！');
+  petRender();
+  petAsk();
+}
+function petAsk(){
+  const g=petRun.gen;
+  petRun.busy=true;
+  petMakeQuestion().then(function(q){
+    if(g!==petRun.gen||currentMode!=='pet'||!petRun.active)return;
+    if(!q){setTimeout(petAsk,500);return;}
+    petRun.q=q;
+    petRenderOptions(q);
+  });
+}
+function petAnswer(btn){
+  if(!petRun.active||petRun.busy)return;
+  petRun.busy=true;
+  const ok=btn.dataset.value===petRun.q.correct;
+  document.querySelectorAll('#petOptions .opt-btn').forEach(o=>{
+    o.style.pointerEvents='none';
+    if(o.dataset.value===petRun.q.correct)o.style.background='#B9F6CA';
+  });
+  if(ok){
+    petRun.combo++;
+    const gain=10+Math.min(petRun.combo,6)*2;
+    pet.hunger=Math.min(100,pet.hunger+9);
+    pet.mood=Math.min(100,pet.mood+3);
+    petFx('pet-food',PET_FOODS[Math.floor(Math.random()*PET_FOODS.length)]);
+    petAni('chew');
+    tone(PET_PENTA[Math.min(petRun.combo-1,PET_PENTA.length-1)],.14,'triangle',.15);
+    document.getElementById('petFeedback').innerHTML='<span style="color:#69F0AE">✓ 喂进去了！成长 +'+gain+(petRun.combo>=3?'（连击 x'+petRun.combo+'）':'')+'</span>';
+    petAddXp(gain);
+    if(petRun.combo>=5&&petRun.combo%5===0)speakPraise();
+  }else{
+    petRun.combo=0;
+    pet.mood=Math.max(0,pet.mood-5);
+    petBubble('唔…这个我不太爱吃 😣');
+    sndNo();
+    document.getElementById('petFeedback').innerHTML='<span style="color:#FFAB91">✗ 答错了，正确答案是绿色的那个</span>';
+    petSave();
+  }
+  petRender();
+  petRun.left--;
+  if(petRun.left<=0){setTimeout(petMealEnd,900);return;}
+  setTimeout(petAsk,900);
+}
+function petMealEnd(){
+  const perfect=petRun.combo>=6;
+  pet.fed++;
+  petRun.active=false;petRun.mode='';
+  petActsLock(false);
+  document.getElementById('petOptions').innerHTML='';
+  document.getElementById('petGoal').textContent='🍚 吃饱啦！';
+  if(perfect){
+    petAni('happy');petAddXp(25);speakPraise();
+    document.getElementById('petFeedback').innerHTML='<span style="color:#FFD740">🌟 全对加餐！额外成长 +25</span>';
+    petBubble('吃得好饱！你太厉害啦！');
+  }else{
+    petBubble('谢谢投喂，再来一轮我就长大啦！');
+  }
+  petSave();petRender();
+}
+function petPlayStart(){
+  if(petRun.active)return;
+  petRun.active=true;petRun.mode='play';petRun.combo=0;petRun.left=5;
+  petActsLock(true);
+  document.getElementById('petGoal').textContent='🎾 点中弹跳球！5 秒内点几下算几下';
+  document.getElementById('petFeedback').textContent='';
+  petBubble('接住我！接住我！');
+  const room=document.getElementById('petRoom');
+  const ball=document.createElement('div');
+  ball.className='pet-ball';
+  ball.style.left='40%';ball.style.top='40%';
+  room.appendChild(ball);
+  let hits=0;
+  const g=petRun.gen;
+  function move(){
+    if(g!==petRun.gen||currentMode!=='pet')return;
+    ball.style.left=(6+Math.random()*80)+'%';
+    ball.style.top=(14+Math.random()*56)+'%';
+    tone(300+Math.random()*200,.05,'sine',.05);
+  }
+  ball.onclick=function(){
+    hits++;petRun.combo=hits;
+    pet.mood=Math.min(100,pet.mood+6);
+    petFx('pet-heart','💗');
+    tone(PET_PENTA[Math.min(hits-1,PET_PENTA.length-1)],.12,'triangle',.14);
+    petAni('happy');
+    document.getElementById('petFeedback').innerHTML='<span style="color:#69F0AE">🎾 接住 '+hits+' 次！</span>';
+    petAddXp(3);
+    move();
+  };
+  petRender();
+  const iv=setInterval(move,640);
+  petRun.timerId=setInterval(()=>{
+    petRun.left--;
+    if(petRun.left<=0){
+      clearInterval(iv);
+      if(petRun.timerId){clearInterval(petRun.timerId);petRun.timerId=null;}
+      ball.remove();
+      petRun.active=false;petRun.mode='';
+      petActsLock(false);
+      document.getElementById('petGoal').textContent='🎾 玩得真开心！';
+      if(hits>=5){petAddXp(15);petAni('happy');speakPraise();petBubble('太好玩了！我还要玩！');}
+      else petBubble('接了 '+hits+' 个球，手速不错嘛！');
+      petSave();petRender();
+    }else if(petRun.left===3)tone(700,.1,'triangle',.1);
+  },1000);
+}
+function petBathStart(){
+  if(petRun.active)return;
+  petRun.active=true;petRun.mode='bath';
+  petActsLock(true);
+  document.getElementById('petGoal').textContent='🫧 把小家伙们点掉，给宠物洗个澡！';
+  document.getElementById('petFeedback').textContent='';
+  petBubble('我脏脏的，帮我洗洗嘛～');
+  const room=document.getElementById('petRoom');
+  const dirt=['🪱','🦟','','💨','️'];
+  let left=0;
+  for(let i=0;i<4;i++){
+    const d=document.createElement('div');
+    d.className='pet-dirt';d.textContent=dirt[i%dirt.length];
+    d.style.left=(10+Math.random()*76)+'%';
+    d.style.top=(16+Math.random()*54)+'%';
+    d.onclick=function(){
+      d.remove();left--;
+      petFx('pet-heart','🫧');
+      pet.mood=Math.min(100,pet.mood+5);
+      petAddXp(5);
+      tone(900+Math.random()*300,.1,'sine',.1);
+      document.getElementById('petFeedback').innerHTML='<span style="color:#B3E5FC">🫧 洗干净一处！还剩 '+left+' 处</span>';
+      petRender();
+      if(left<=0)petBathDone();
+    };
+    room.appendChild(d);left++;
+  }
+  petRender();
+  const g=petRun.gen;
+  petRun.timerId=setInterval(()=>{
+    if(g!==petRun.gen||currentMode!=='pet'){clearInterval(petRun.timerId);petRun.timerId=null;return;}
+    if(left>0){petBubble('快点快点，还有 '+left+' 个小家伙！');}
+  },4000);
+}
+function petBathDone(){
+  if(petRun.timerId){clearInterval(petRun.timerId);petRun.timerId=null;}
+  petRun.active=false;petRun.mode='';
+  petActsLock(false);
+  petAni('happy');
+  petAddXp(20);
+  pet.mood=Math.min(100,pet.mood+12);
+  document.getElementById('petGoal').textContent='🫧 洗得亮晶晶！';
+  document.getElementById('petFeedback').innerHTML='<span style="color:#FFD740">✨ 洗澡完成！成长 +20，心情 +17</span>';
+  petBubble('好舒服！我香喷喷啦！');
+  sndDone();petSave();petRender();
+}
+function petEvolve(){
+  const st=PET_STAGES[pet.stage];
+  petAni('evolving');
+  const glow=document.getElementById('petGlow');
+  glow.classList.remove('on');void glow.offsetWidth;glow.classList.add('on');
+  [523,659,784,1047].forEach((f,i)=>setTimeout(()=>tone(f,.18,'triangle',.16),i*110));
+  for(let i=0;i<6;i++)setTimeout(()=>petFx('pet-heart','⭐'),i*90);
+  const overlay=document.getElementById('rewardOverlay');
+  document.getElementById('rewardAnimal').textContent=st.e;
+  document.getElementById('rewardAnimal').className='reward-animal';
+  document.getElementById('rewardText').textContent='宠物进化！'+st.n+' 登场！';
+  document.getElementById('rewardText').style.animation='none';
+  void document.getElementById('rewardText').offsetWidth;
+  document.getElementById('rewardText').style.animation='textPop .8s ease-out forwards';
+  spawnConfetti();overlay.classList.add('active');sndReward();
+  setTimeout(()=>overlay.classList.remove('active'),3500);
+  petBubble('我变成'+st.n+'啦！都是你练字喂出来的！');
+  document.getElementById('petGoal').textContent='🎉 进化成功：'+st.e+' '+st.n;
+}
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
   challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
@@ -3374,6 +3821,7 @@ async function boot(){
     btn.classList.toggle('active',btn.dataset.grade===currentGrade);
   });
   updateHomeStats();
+  if(window.petLoad){petLoad();petTip();}
   await preloadGrade(currentGrade);
 }
 window.addEventListener('DOMContentLoaded',boot);

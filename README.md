@@ -1,6 +1,6 @@
 # 汉字笔顺闯关 · Hanzi Stroke Quest
 
-> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。11 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷 / 笔顺大魔王…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
+> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。12 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷 / 笔顺大魔王 / 笔顺宠物屋…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
 
 <p align="center">
   <img src="assets/demo.gif" alt="运行演示 GIF" width="360" />
@@ -13,7 +13,7 @@
   &nbsp;&nbsp;
   <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License" />
   &nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/单文件-3400_行-orange?style=for-the-badge" alt="Single file" />
+  <img src="https://img.shields.io/badge/单文件-3800_行-orange?style=for-the-badge" alt="Single file" />
 </p>
 
 <p align="center">
@@ -41,7 +41,7 @@
 - 🎯 **零构建、零后端**：单文件 `index.html` 打开即用，任何静态托管都能部署（GitHub Pages / Vercel / Netlify / Nginx）。
 - 🧒 **儿童友好 UI**：糖果紫渐变背景、大圆角按钮、田字格练字区，专为 6–9 岁孩子设计。
 - 🎮 **游戏化激励**：星星 ⭐ + 连击 🔥 + 动物收藏 🐼 + 全屏彩带彩蛋，学习成就感拉满。
-- 🕹️ **11 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、笔顺大魔王、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
+- 🕹️ **12 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、笔顺大魔王、笔顺宠物屋、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
 - 🔊 **多感官反馈**：Web Audio API 合成音效（正确 / 错误 / 完成 / 彩蛋）+ Web Speech API 中文语音鼓励（"太棒了！""你真厉害！"）。
 - 📚 **难度渐进**：字库按笔画数从少到多排序，同笔画组内随机洗牌，避免挫败感也保留趣味性。
 - 🌐 **多 CDN 容错**：`hanzi-writer` 库依次尝试 jsDelivr / unpkg / cdnjs，任一可用即可运行。
@@ -139,6 +139,24 @@
 
 <p align="center">
   <img src="assets/scene_boss.png" alt="笔顺大魔王" width="240" />
+</p>
+
+### 🐣 笔顺宠物屋（养成模式）
+
+一只**真的会饿、会难过、会长大**的汉字宠物住在房间里，它的口粮只有一种——你答对的笔顺题：
+
+- 🍖 **三条状态槽**：饱食 / 心情 / 成长值实时显示，宠物状态直接反映在表情和动作上（饿了会耷拉变灰）
+- ⏳ **真实时间衰减**：按 `localStorage` 里的时间戳结算，离开 3 小时回来它就饿了 60 多点——**明天还想看看它**的钩子全靠这个
+- 🍚 **喂饭 = 答题**：一顿饭 6 道笔顺题，答对食物掉进嘴里 + 咀嚼动画 + 连击叠成长，全对触发「加餐 +25」
+- 🎾 **陪玩**：5 秒内点中乱弹的小球，点一次心情 +6、成长 +3，音调随连击升高
+- 🫧 **洗澡**：房间里爬出 4 只小脏东西，逐个点掉，洗完亮晶晶 + 经验奖励
+- ❤️ **摸摸头**：随时点宠物，飘爱心 + 心情 +2，它会跟你说话（气泡台词按饥饿/心情/阶段变化）
+- 🐉 **五阶段进化**：🥚 汉字蛋 → 🐣 破壳小鸡 → 🐥 笔顺雏鸟 → 🐔 神气大公鸡 → 🐉 汉字神兽，进化时全屏白光 + 彩带弹窗
+- 🔗 **全局成长联动**：**在任何模式里拿到星星都会顺便给宠物 +2 成长值**，首页卡片实时显示它的阶段，练字越勤它长得越快
+- 📅 **每日见面礼**：第一次打开送 +20 成长、+12 心情
+
+<p align="center">
+  <img src="assets/scene_pet.png" alt="笔顺宠物屋" width="240" />
 </p>
 
 ### ⚔️ 笔顺大闯关（Quiz 模式）
@@ -240,7 +258,7 @@
 | 音效 | Web Audio API · 代码合成正弦 / 方波 / 三角波 |
 | 语音 | Web Speech API · `SpeechSynthesisUtterance` 中文播报 |
 | 动画 | CSS `@keyframes` · 无第三方动画库 |
-| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` / `hz_boss_beat` / `hz_boss_best` |
+| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` / `hz_boss_beat` / `hz_boss_best` · 宠物养成：`hz_pet`（成长/饱食/心情/上线时间，跨真实时间衰减） |
 | 部署 | 任意静态服务器 · 已内置多 CDN 容错 |
 
 ---
@@ -283,7 +301,7 @@ npx serve -l 8765
 
 ```
 hanzi-practice/
-├── index.html          # 主应用（3400 行单文件，包含 HTML/CSS/JS）
+├── index.html          # 主应用（3800 行单文件，包含 HTML/CSS/JS）
 ├── assets/             # README 用图片资源
 │   ├── demo.gif        # 运行演示 GIF
 │   ├── scene_home.png
@@ -296,7 +314,8 @@ hanzi-practice/
 │   ├── scene_mole.png
 │   ├── scene_puzzle.png
 │   ├── scene_runner.png
-│   └── scene_boss.png
+│   ├── scene_boss.png
+│   └── scene_pet.png
 ├── record_demo.js      # Puppeteer 自动录屏脚本（开发用）
 ├── make_gif.py         # PNG 帧合成 GIF 脚本（开发用）
 ├── package.json
