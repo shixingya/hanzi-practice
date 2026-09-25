@@ -382,6 +382,27 @@ button:active{transform:scale(.95)}
 .pet-act:active{transform:scale(.94)}
 .pet-act.off{opacity:.45;pointer-events:none}
 @media(max-width:420px){.pet-room{height:27vh;min-height:200px}.pet-body{font-size:74px}.pet-gauge .gl{width:44px}}
+/* ---------- 笔顺跳房子 ---------- */
+.hp-wrap{position:relative;width:100%;max-width:420px;height:31vh;min-height:240px;max-height:330px;margin:8px 0;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#AEE9FF 0%,#CFF5C8 52%,#8ED17B 100%);box-shadow:0 10px 28px rgba(0,0,0,.26),inset 0 0 40px rgba(255,255,255,.3)}
+.hp-grass{position:absolute;left:0;right:0;bottom:0;height:22%;background:repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 18px,transparent 18px 36px)}
+.hp-tile{position:absolute;width:21%;height:25%;transform:translate(-50%,-50%);border-radius:14px;background:rgba(255,255,255,.86);border:2px solid rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:bold;color:#2E7D32;box-shadow:0 4px 12px rgba(0,0,0,.16);z-index:2}
+.hp-tile.goal{background:linear-gradient(135deg,#FFD54F,#FF8F00);font-size:26px;color:#fff}
+.hp-tile.me{border-color:#FF5252;box-shadow:0 0 0 3px rgba(255,82,82,.34),0 4px 12px rgba(0,0,0,.18)}
+.hp-tile.rival{border-color:#7E57C2;box-shadow:0 0 0 3px rgba(126,87,194,.34),0 4px 12px rgba(0,0,0,.18)}
+.hp-token{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;font-size:34px;line-height:46px;text-align:center;z-index:5;pointer-events:none;transition:left .32s cubic-bezier(.3,.92,.28,1.3),top .32s cubic-bezier(.3,.92,.28,1.3)}
+.hp-token .tt{display:block;animation:hpWalk 1.1s ease-in-out infinite}
+@keyframes hpWalk{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-4px) rotate(4deg)}}
+.hp-token.hop .tt{animation:hpHop .44s ease-out}
+@keyframes hpHop{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-28px) scale(1.14)}70%{transform:translateY(3px) scale(.93)}100%{transform:translateY(0) scale(1)}}
+.hp-token.slip .tt{animation:hpSlip .55s ease-out}
+@keyframes hpSlip{0%{transform:translateY(0) rotate(0)}30%{transform:translateY(12px) rotate(-18deg) scale(.9)}100%{transform:translateY(0) rotate(0)}}
+.hp-dust{position:absolute;font-size:15px;pointer-events:none;z-index:4;transform:translate(-50%,-50%);animation:hpDust .75s ease-out forwards}
+@keyframes hpDust{0%{opacity:.95;transform:translate(-50%,-50%) scale(.45)}100%{opacity:0;transform:translate(-50%,14px) scale(1.6)}}
+.hp-taunt{position:absolute;right:8px;top:8px;max-width:44%;background:#fff;color:#4A2C6B;font-size:12px;line-height:1.35;padding:6px 10px;border-radius:12px;z-index:6;box-shadow:0 3px 10px rgba(0,0,0,.16);opacity:0;transition:opacity .25s}
+.hp-taunt.on{opacity:1}
+.hp-board{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:420px;font-size:12px;color:#fff;margin:2px 0;opacity:.95}
+.hp-flag{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);font-size:11px;color:#2E7D32;opacity:.75}
+@media(max-width:420px){.hp-wrap{height:27vh;min-height:210px}.hp-token{width:38px;height:38px;font-size:28px;line-height:38px;margin:-19px 0 0 -19px}.hp-tile{font-size:13px}}
 </style>
 </head>
 <body>
@@ -451,6 +472,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('pet')">
       <div class="icon">🐣</div>
       <div class="info"><h3>笔顺宠物屋</h3><p id="petCardTip">练字喂养你的汉字神兽！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('hop')">
+      <div class="icon">🦘</div>
+      <div class="info"><h3>笔顺跳房子</h3><p>答对往前跳，和对手抢着冲线！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -860,6 +885,57 @@ button:active{transform:scale(.95)}
   <div class="options" id="petOptions"></div>
   <div class="feedback" id="petFeedback"></div>
 </div>
+<div class="screen" id="screen-hop">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="hpWins">🏅 连胜 0</span><span id="hpRound">第 1 题</span><span id="hpCombo">🔥 x0</span></div>
+  </div>
+  <div class="challenge-goal" id="hpGoal">🦘 答对就往前跳，先冲线的人赢！</div>
+  <div class="hp-wrap" id="hpWrap">
+    <div class="hp-grass"></div>
+    <div class="hp-taunt" id="hpTaunt"></div>
+    <div class="hp-token" id="hpRivalTok"><span class="tt">👾</span></div>
+    <div class="hp-token" id="hpMeTok"><span class="tt">🦘</span></div>
+  </div>
+  <div class="hp-board">
+    <span>🦘 你在第 <b id="hpMePos">1</b> 格</span>
+    <span id="hpGap">还差 11 格冲线</span>
+    <span>👾 对手在第 <b id="hpRivalPos">1</b> 格</span>
+  </div>
+  <div class="bs-timer"><div class="bs-timer-fill" id="hpTimeFill"></div></div>
+  <div class="quiz-header">
+    <div class="question" id="hpQuestion">准备好了吗…</div>
+  </div>
+  <div class="options" id="hpOptions"></div>
+  <div class="feedback" id="hpFeedback"></div>
+</div>
+<div class="screen" id="screen-hop-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="hpResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="hpResultEmoji">🏁</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="hpResultTitle">冲线啦！</h2>
+    <p style="font-size:16px;opacity:.8" id="hpResultSubtitle">再来一局，跳得更快！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="hpResultRound">0</div><div style="font-size:13px;opacity:.7">答题数</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="hpResultCombo">0</div><div style="font-size:13px;opacity:.7">最长连跳</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="hpResultWins">0</div><div style="font-size:13px;opacity:.7">当前连胜</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="hpResultBest">0</div><div style="font-size:13px;opacity:.7">最长连胜</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏃 下一位对手</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="hpResultNext">🐒 急猴子</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="hopStart()">🔄 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -1207,6 +1283,7 @@ function enterMode(mode){
   else if(mode==='runner')runnerStart();
   else if(mode==='boss')bossStart();
   else if(mode==='pet')petStart();
+  else if(mode==='hop')hopStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -3143,6 +3220,290 @@ function petEvolve(){
   petBubble('我变成'+st.n+'啦！都是你练字喂出来的！');
   document.getElementById('petGoal').textContent='🎉 进化成功：'+st.e+' '+st.n;
 }
+/* ================= 笔顺跳房子 ================= */
+const HP_TILES=12, HP_GOAL=HP_TILES-1;
+const HP_RIVALS=[
+  {e:'👾',n:'小紫怪',iv:9500},
+  {e:'🐒',n:'急猴子',iv:8600},
+  {e:'🦖',n:'快龙仔',iv:7800},
+  {e:'🤖',n:'铁蛋机器人',iv:7000},
+  {e:'🐆',n:'闪电豹',iv:6200}
+];
+const HP_TAUNTS=['我跳到你前面啦！','这道题我也会！','快点快点，我要冲线了！','你的笔顺是不是忘啦？','嘿嘿，我又快了一步！'];
+const HP_PENTA=[523,587,659,784,880,1047,1319];
+let hop={me:0,rival:0,combo:0,maxCombo:0,round:0,over:false,busy:true,started:false,timerId:null,autoId:null,deadline:0,tc:9000,askAt:0,correct:null,lv:0,gen:0,tileEls:[]};
+function hopWins(){return Math.max(0,parseInt(localStorage.getItem('hz_hop_wins')||'0',10)||0);}
+function hopTilePos(i){
+  const row=Math.floor(i/4),col=(row%2===0)?(i%4):(3-(i%4));
+  return {left:(col*25+12.5),top:(row*33.3333+16.6667)};
+}
+function hopPlace(tok,pos){
+  const c=hopTilePos(pos);
+  tok.style.left=c.left+'%';tok.style.top=(c.top-9)+'%';
+}
+function hopBuild(){
+  const wrap=document.getElementById('hpWrap');
+  wrap.querySelectorAll('.hp-tile,.hp-flag').forEach(x=>x.remove());
+  hop.tileEls=[];
+  for(let i=0;i<HP_TILES;i++){
+    const t=document.createElement('div');
+    const c=hopTilePos(i);
+    t.className='hp-tile'+(i===HP_GOAL?' goal':'');
+    t.style.left=c.left+'%';t.style.top=c.top+'%';
+    t.textContent=i===HP_GOAL?'🏁':(i+1);
+    wrap.appendChild(t);hop.tileEls.push(t);
+  }
+}
+function hopMark(){
+  hop.tileEls.forEach((t,i)=>{
+    t.classList.toggle('me',i===hop.me);
+    t.classList.toggle('rival',i===hop.rival&&hop.rival!==hop.me);
+  });
+  document.getElementById('hpMePos').textContent=hop.me+1;
+  document.getElementById('hpRivalPos').textContent=hop.rival+1;
+  document.getElementById('hpGap').textContent='还差 '+(HP_GOAL-hop.me)+' 格冲线';
+}
+function hopDust(pos,emoji){
+  const c=hopTilePos(pos);
+  const d=document.createElement('div');
+  d.className='hp-dust';d.textContent=emoji||'💨';
+  d.style.left=c.left+'%';d.style.top=(c.top+11)+'%';
+  document.getElementById('hpWrap').appendChild(d);
+  setTimeout(()=>d.remove(),780);
+}
+function hopTaunt(txt){
+  const t=document.getElementById('hpTaunt');
+  t.textContent=HP_RIVALS[hop.lv].e+' '+txt;
+  t.classList.add('on');
+  clearTimeout(hop.tauntId);
+  hop.tauntId=setTimeout(()=>t.classList.remove('on'),2200);
+}
+function hopUpdateUI(){
+  document.getElementById('hpWins').textContent='🏅 连胜 '+hopWins();
+  document.getElementById('hpRound').textContent='第 '+hop.round+' 题';
+  document.getElementById('hpCombo').textContent='🔥 x'+hop.combo;
+}
+function hopStart(){
+  if(hop.timerId){clearInterval(hop.timerId);hop.timerId=null;}
+  if(hop.autoId){clearInterval(hop.autoId);hop.autoId=null;}
+  const lv=Math.min(HP_RIVALS.length-1,hopWins());
+  hop={me:0,rival:0,combo:0,maxCombo:0,round:0,over:false,busy:true,started:false,timerId:null,autoId:null,deadline:0,tc:Math.max(6000,9000-lv*600),askAt:0,correct:null,lv:lv,gen:(hop.gen||0)+1,tileEls:[],tauntId:hop.tauntId};
+  showScreen('hop');
+  hopBuild();
+  const rival=HP_RIVALS[lv];
+  document.getElementById('hpRivalTok').innerHTML='<span class="tt">'+rival.e+'</span>';
+  hopPlace(document.getElementById('hpMeTok'),0);
+  hopPlace(document.getElementById('hpRivalTok'),0);
+  hopMark();
+  document.getElementById('hpOptions').innerHTML='';
+  document.getElementById('hpFeedback').textContent='';
+  document.getElementById('hpTaunt').classList.remove('on');
+  document.getElementById('hpGoal').textContent='🦘 对手是 '+rival.e+' '+rival.n+'！每 '+(rival.iv/1000).toFixed(1)+' 秒它自己会跳一格';
+  document.getElementById('hpQuestion').textContent='3…';
+  document.getElementById('hpTimeFill').style.width='100%';
+  hopUpdateUI();
+  const g=hop.gen;
+  let n=3;
+  const cd=setInterval(()=>{
+    if(g!==hop.gen||currentMode!=='hop'){clearInterval(cd);return;}
+    n--;
+    if(n>0){document.getElementById('hpQuestion').textContent=n+'…';tone(660,.08);return;}
+    clearInterval(cd);
+    if(g!==hop.gen||currentMode!=='hop'||hop.over)return;
+    document.getElementById('hpQuestion').textContent=' 开跳！答对往前跳，答错对手偷跳一格';
+    tone(990,.18,'triangle',.14);
+    hop.started=true;
+    hopAsk();
+    hop.autoId=setInterval(()=>{
+      if(currentMode!=='hop'||hop.over){clearInterval(hop.autoId);hop.autoId=null;return;}
+      hopRivalStep();
+    },rival.iv);
+  },700);
+  hop.timerId=setInterval(hopTick,50);
+}
+async function hopAsk(){
+  if(hop.over||!hop.started||currentMode!=='hop')return;
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data){setTimeout(hopAsk,500);return;}
+  if(hop.over||currentMode!=='hop')return;
+  const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+  const n=data.strokes.length;
+  let question,correct,qType;
+  if(Math.random()<.45){question='「'+ch+'」一共有几笔？';correct=String(n);qType='count';}
+  else{
+    const tIdx=Math.floor(Math.random()*n);
+    const ord=['一','二','三','四','五','六','七','八','九','十'];
+    question='「'+ch+'」的第'+(ord[tIdx]||tIdx+1)+'笔往哪写？';correct=dirs[tIdx];qType='dir';
+  }
+  const vals=[correct];
+  if(qType==='count'){
+    const near=[];
+    for(let k=Math.max(1,n-4);k<=Math.min(24,n+4);k++){if(k!==n)near.push(String(k));}
+    while(vals.length<4&&near.length)vals.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);
+  }else{
+    const pool=DIRS.map(d=>d.code).filter(c=>c!==correct);
+    while(vals.length<4&&pool.length)vals.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+  }
+  while(vals.length<4)vals.push('1');
+  for(let i=vals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=vals[i];vals[i]=vals[j];vals[j]=t;}
+  const box=document.getElementById('hpOptions');
+  box.innerHTML='';
+  vals.forEach(v=>{
+    const d=DIRS.find(x=>x.code===v);
+    const b=document.createElement('button');
+    b.className='opt-btn';b.dataset.value=v;
+    b.textContent=qType==='dir'?(d?d.icon+' '+d.label:'➡️'):(v+' 笔');
+    b.onclick=function(){hopPick(b);};
+    box.appendChild(b);
+  });
+  hop.correct=correct;hop.busy=false;
+  hop.round++;
+  hop.askAt=performance.now();
+  hop.deadline=hop.askAt+hop.tc;
+  document.getElementById('hpTimeFill').style.width='100%';
+  document.getElementById('hpTimeFill').classList.remove('urgent');
+  document.getElementById('hpQuestion').textContent=question;
+  hopUpdateUI();
+}
+function hopTick(){
+  if(hop.over||currentMode!=='hop'){
+    if(hop.timerId){clearInterval(hop.timerId);hop.timerId=null;}
+    return;
+  }
+  if(!hop.started||hop.busy)return;
+  const left=hop.deadline-performance.now();
+  const pct=Math.max(0,Math.min(100,left/hop.tc*100));
+  const f=document.getElementById('hpTimeFill');
+  f.style.width=pct+'%';
+  if(pct<30)f.classList.add('urgent');
+  if(left<=0){hopBusy();hopFail('⏱️ 想太久，对手趁机偷跳一格！');}
+}
+function hopBusy(){
+  hop.busy=true;
+  document.querySelectorAll('#hpOptions .opt-btn').forEach(o=>{
+    o.style.pointerEvents='none';
+    if(o.dataset.value===hop.correct)o.style.background='#B9F6CA';
+  });
+}
+function hopPick(btn){
+  if(hop.over||hop.busy||!hop.started)return;
+  hopBusy();
+  const g=hop.gen;
+  if(btn.dataset.value===hop.correct){
+    const fast=performance.now()-hop.askAt<hop.tc*.4;
+    hop.combo++;if(hop.combo>hop.maxCombo)hop.maxCombo=hop.combo;
+    const steps=(fast&&hop.combo>=3)?2:1;
+    const from=hop.me;
+    hop.me=Math.min(HP_GOAL,hop.me+steps);
+    for(let i=from+1;i<=hop.me;i++){
+      const d=i-from;
+      setTimeout(()=>{
+        if(g!==hop.gen||currentMode!=='hop')return;
+        hopPlace(document.getElementById('hpMeTok'),i);
+        hopDust(i,'💨');
+        document.getElementById('hpMeTok').classList.remove('hop');
+        void document.getElementById('hpMeTok').offsetWidth;
+        document.getElementById('hpMeTok').classList.add('hop');
+        tone(HP_PENTA[Math.min(i-1,HP_PENTA.length-1)],.13,'triangle',.15);
+        hopMark();
+      },(d-1)*260);
+    }
+    showComboEffect(hop.combo);
+    if(hop.combo>=5&&hop.combo%5===0)speakPraise();
+    document.getElementById('hpFeedback').innerHTML='<span style="color:#69F0AE">✓ 答对！往前跳 '+steps+' 格'+(steps>1?'（⚡连跳加倍）':'')+'</span>';
+    hopUpdateUI();
+    if(hop.me>=HP_GOAL){setTimeout(hopWin,steps>1?620:360);return;}
+    setTimeout(()=>{if(g===hop.gen&&!hop.over&&currentMode==='hop'){hop.busy=false;hopAsk();}},steps>1?900:700);
+    return;
+  }
+  btn.classList.add('wrong');
+  hopFail('✗ 答错啦！正确答案是绿色的那个');
+}
+function hopFail(label){
+  hop.combo=0;
+  const me=document.getElementById('hpMeTok');
+  me.classList.remove('slip');void me.offsetWidth;me.classList.add('slip');
+  sndNo();tone(150,.32,'square',.12);
+  document.getElementById('hpFeedback').innerHTML='<span style="color:#FFAB91">'+label+'</span>';
+  hopRivalStep(true);
+  hopUpdateUI();
+  if(hop.rival>=HP_GOAL){setTimeout(hopLose,600);return;}
+  const g=hop.gen;
+  setTimeout(()=>{if(g===hop.gen&&!hop.over&&currentMode==='hop'){hop.busy=false;hopAsk();}},1100);
+}
+function hopRivalStep(stolen){
+  if(hop.over||!hop.started||currentMode!=='hop')return;
+  if(hop.rival>=HP_GOAL)return;
+  hop.rival=Math.min(HP_GOAL,hop.rival+1);
+  const tok=document.getElementById('hpRivalTok');
+  hopPlace(tok,hop.rival);
+  tok.classList.remove('hop');void tok.offsetWidth;tok.classList.add('hop');
+  hopDust(hop.rival,stolen?'✨':'💨');
+  tone(stolen?740:300,.1,'sine',.1);
+  hopMark();
+  if(hop.rival>=HP_GOAL){hop.busy=true;setTimeout(hopLose,500);return;}
+  if(hop.rival===hop.me)hopTaunt('我们一起跳！看谁先到！');
+  else if(hop.rival>hop.me)hopTaunt(HP_TAUNTS[Math.floor(Math.random()*HP_TAUNTS.length)]);
+  else if(Math.random()<.35)hopTaunt('你跳得好快！');
+}
+function hopWin(){
+  if(hop.over)return;
+  hop.over=true;
+  hopStopLoops();
+  hopDust(HP_GOAL,'🎉');
+  sndReward();
+  const wins=hopWins()+1;
+  localStorage.setItem('hz_hop_wins',String(wins));
+  const best=Math.max(wins,parseInt(localStorage.getItem('hz_hop_best')||'0',10)||0);
+  localStorage.setItem('hz_hop_best',String(best));
+  const earned=Math.max(2,Math.min(18,4+hop.lv*3+(hop.maxCombo>=5?2:0)));
+  hopResult(true,earned,wins,best);
+}
+function hopLose(){
+  if(hop.over)return;
+  hop.over=true;
+  hopStopLoops();
+  localStorage.setItem('hz_hop_wins','0');
+  const best=parseInt(localStorage.getItem('hz_hop_best')||'0',10)||0;
+  hopResult(false,1,0,best);
+}
+function hopStopLoops(){
+  if(hop.timerId){clearInterval(hop.timerId);hop.timerId=null;}
+  if(hop.autoId){clearInterval(hop.autoId);hop.autoId=null;}
+}
+function hopResult(win,earned,wins,best){
+  addStars(earned);
+  showScreen('hop-result');
+  document.getElementById('hpResultStars').textContent='⭐ +'+earned;
+  document.getElementById('hpResultRound').textContent=hop.round;
+  document.getElementById('hpResultCombo').textContent=hop.maxCombo;
+  document.getElementById('hpResultWins').textContent=wins;
+  document.getElementById('hpResultBest').textContent=best;
+  const nx=HP_RIVALS[Math.min(HP_RIVALS.length-1,Math.max(0,hop.lv+(win?1:0)))];
+  document.getElementById('hpResultNext').textContent=nx.e+' '+nx.n;
+  let emoji,title,subtitle;
+  if(win){
+    emoji='🏆';title='冲线！你赢了 '+HP_RIVALS[hop.lv].n+'！';
+    subtitle=hop.lv>=HP_RIVALS.length-1?'最强对手都被你甩在身后了！':'连胜可以解锁更快的对手，再来一局！';
+  }else{
+    emoji=HP_RIVALS[hop.lv].e;title=HP_RIVALS[hop.lv].n+' 先冲线了…';
+    subtitle='你在第 '+(hop.me+1)+' 格，它在第 '+(hop.rival+1)+' 格。看清笔顺再跳！';
+  }
+  document.getElementById('hpResultEmoji').textContent=emoji;
+  document.getElementById('hpResultTitle').textContent=title;
+  document.getElementById('hpResultSubtitle').textContent=subtitle;
+  if(win){setTimeout(showRewardEgg,900);speakPraise();}
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='hop'||hop.over)return;
+  const k=e.key||'';
+  if(k>='1'&&k<='4'){
+    e.preventDefault();
+    const o=document.querySelectorAll('#hpOptions .opt-btn')[parseInt(k,10)-1];
+    if(o)o.click();
+  }
+});
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
   challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
