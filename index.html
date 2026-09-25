@@ -460,7 +460,23 @@ button:active{transform:scale(.95)}
 .cf-hearts i{font-style:normal;filter:grayscale(1) opacity(.35)}
 .cf-hearts i.on{filter:none}
 @media(max-width:420px){.cf-wrap{height:42vh;min-height:300px}.cf-fruit,.cf-half{width:56px;height:56px;margin:-28px 0 0 -28px}.cf-fruit .fe,.cf-half{font-size:33px}.cf-half{line-height:56px}.cf-fruit .fv{font-size:11px}}
+/* ---------- 笔顺打砖块 ---------- */
+.bk-wrap{position:relative;width:100%;max-width:430px;height:50vh;min-height:340px;max-height:500px;margin:6px auto;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#0E1330 0%,#1D2A55 60%,#243B72 100%);box-shadow:0 10px 28px rgba(0,0,0,.4),inset 0 0 70px rgba(0,0,0,.5);touch-action:none;-webkit-user-select:none;user-select:none;cursor:none}
+.bk-brick{position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;border-radius:9px;font-size:13px;font-weight:bold;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.55);box-shadow:inset 0 -4px 0 rgba(0,0,0,.28),0 3px 9px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.28);white-space:nowrap;overflow:hidden;will-change:transform,opacity;transition:opacity .2s,transform .2s}
+.bk-brick.gone{opacity:0;transform:scale(.35) rotate(12deg);pointer-events:none}
+.bk-brick.crack{animation:bkCrack .3s}
+@keyframes bkCrack{0%,100%{transform:translate(0,0)}25%{transform:translate(-4px,2px) scale(1.05)}60%{transform:translate(4px,-2px) scale(.97)}}
+.bk-ball{position:absolute;left:0;top:0;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,#FFE082 45%,#F57F17);box-shadow:0 0 14px rgba(255,224,130,.85),0 0 30px rgba(255,167,38,.45);z-index:5;pointer-events:none;will-change:transform}
+.bk-pad{position:absolute;left:0;top:0;height:15px;border-radius:9px;background:linear-gradient(180deg,#E1F5FE,#4FC3F7 55%,#0288D1);box-shadow:0 0 16px rgba(79,195,247,.7),inset 0 -3px 0 rgba(0,0,0,.25);z-index:4;pointer-events:none;will-change:transform}
+.bk-shard{position:absolute;left:0;top:0;width:9px;height:9px;border-radius:2px;pointer-events:none;z-index:6;will-change:transform;opacity:.95}
+.bk-pop{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font-size:19px;font-weight:bold;color:#FFEB3B;text-shadow:0 2px 7px rgba(0,0,0,.8);pointer-events:none;z-index:9;animation:cfPop .85s ease-out forwards}
+.bk-judge{position:absolute;left:50%;top:38%;transform:translateX(-50%);font-size:24px;font-weight:bold;letter-spacing:1px;z-index:9;pointer-events:none;opacity:0;white-space:nowrap;text-shadow:0 3px 10px rgba(0,0,0,.75)}
+.bk-judge.on{animation:cfJudge .85s ease-out}
+.bk-hud{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:430px;font-size:12px;color:#fff;margin:2px 0;opacity:.95}
+.bk-wrap.shake{animation:cfShake .4s}
+@media(max-width:420px){.bk-wrap{height:46vh;min-height:320px}.bk-brick{font-size:11px}.bk-ball{width:19px;height:19px;margin:-9.5px 0 0 -9.5px}}
 </style>
+
 </head>
 <body>
 <div class="screen active" id="screen-home">
@@ -541,6 +557,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('fruit')">
       <div class="icon">🍉</div>
       <div class="info"><h3>笔顺切水果</h3><p>答案飞上天，一刀切开它！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('brick')">
+      <div class="icon">🧱</div>
+      <div class="info"><h3>笔顺打砖块</h3><p>控制挡板，用球砸对的那块砖！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -1093,6 +1113,52 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-brick">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="bkScore">🧱 0</span><span id="bkCombo" style="color:#FFD740">🔥 x0</span><span id="bkLv">🚩 第 1 关</span></div>
+  </div>
+  <div class="challenge-goal" id="bkGoal">🧱 移动挡板把球弹上去，砸掉写着正确答案的砖块！</div>
+  <div class="bk-wrap" id="bkWrap">
+    <div class="bk-judge" id="bkJudge"></div>
+  </div>
+  <div class="bk-hud">
+    <span id="bkLives" class="cf-hearts"><i class="on">❤️</i><i class="on">❤️</i><i class="on">❤️</i></span>
+    <span id="bkLeft">还剩 20 块砖</span>
+    <span id="bkBest">🏆 0</span>
+  </div>
+  <div class="quiz-header">
+    <div class="question" id="bkQuestion">正在垒砖块…</div>
+  </div>
+  <div class="feedback" id="bkFeedback"></div>
+</div>
+<div class="screen" id="screen-brick-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="bkResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="bkResultEmoji">🧱</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="bkResultTitle">砖墙清空！</h2>
+    <p style="font-size:16px;opacity:.8" id="bkResultSubtitle">再来一局，球会更快！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="bkResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="bkResultCombo">0</div><div style="font-size:13px;opacity:.7">最长连击</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="bkResultHit">0</div><div style="font-size:13px;opacity:.7">砸对砖块</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="bkResultLv">1</div><div style="font-size:13px;opacity:.7">打到第几关</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最佳 / 已通关数</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="bkResultBest">0 / 0</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="brickStart()">🔄 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -1443,6 +1509,7 @@ function enterMode(mode){
   else if(mode==='hop')hopStart();
   else if(mode==='lian')lianStart();
   else if(mode==='fruit')fruitStart();
+  else if(mode==='brick')brickStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -4403,6 +4470,435 @@ document.addEventListener('pointermove',function(e){
 document.addEventListener('pointerup',function(){
   if(currentMode!=='fruit')return;
   cfTrail=[];fruitBladeDraw();
+});
+/* ================= 笔顺打砖块 ================= */
+const BK_COLS=5, BK_ROWS=5;
+const BK_COLORS=['#EF5350','#42A5F5','#66BB6A','#FFA726'];
+const BK_PENTA=[523,587,659,784,880,1047,1319];
+const BK_LIVES=3, BK_ORD=['一','二','三','四','五','六','七','八','九','十'];
+const BK_GOOD=['砸中！','漂亮！','真准！','好球！','就是这样！'];
+let brick={gen:0,bricks:[],ball:null,pad:null,items:0,score:0,combo:0,maxCombo:0,hits:0,wrong:0,lives:BK_LIVES,lv:1,over:true,busy:true,timerId:null,lastTs:0,answer:'',opts:[],qChar:'',qText:'',serveAt:0,padX:0,keyL:false,keyR:false,W:0,H:0};
+function brickLv(){return Math.max(0,parseInt(localStorage.getItem('hz_brick_lv')||'0',10)||0);}
+function brickBest(){return Math.max(0,parseInt(localStorage.getItem('hz_brick_best')||'0',10)||0);}
+function brickSpeed(){return Math.min(520,300+(brick.lv-1)*38);}
+function brickPadW(){return Math.max(62,96-(brick.lv-1)*5);}
+function brickMsg(txt,color){
+  document.getElementById('bkFeedback').innerHTML='<span style="color:'+(color||'#FFD740')+'">'+txt+'</span>';
+}
+function brickJudge(txt,color){
+  const j=document.getElementById('bkJudge');
+  j.textContent=txt;j.style.color=color||'#FFEB3B';
+  j.classList.remove('on');void j.offsetWidth;j.classList.add('on');
+}
+function brickLivesUI(){
+  const el=document.getElementById('bkLives');
+  el.innerHTML='';
+  for(let i=0;i<BK_LIVES;i++){
+    const s=document.createElement('i');s.textContent='❤️';
+    if(i<brick.lives)s.className='on';
+    el.appendChild(s);
+  }
+}
+function brickUpdateUI(){
+  document.getElementById('bkScore').textContent='🧱 '+brick.score;
+  document.getElementById('bkCombo').textContent='🔥 x'+brick.combo;
+  document.getElementById('bkLv').textContent='🚩 第 '+brick.lv+' 关';
+  document.getElementById('bkBest').textContent='🏆 '+brickBest();
+  let left=0;
+  brick.bricks.forEach(b=>{if(b.alive)left++;});
+  document.getElementById('bkLeft').textContent='还剩 '+left+' 块砖';
+}
+function brickStopLoops(){if(brick.timerId){clearInterval(brick.timerId);brick.timerId=null;}}
+function brickGeom(){
+  const wrap=document.getElementById('bkWrap');
+  const W=wrap.clientWidth,H=wrap.clientHeight;
+  brick.W=W;brick.H=H;
+  const padX=W*.045,top=H*.07,gap=Math.max(3,W*.012);
+  const bw=(W-padX*2-gap*(BK_COLS-1))/BK_COLS;
+  const bh=Math.max(20,H*.062);
+  return{W,H,padX,top,gap,bw,bh};
+}
+function brickLayout(){
+  const g=brickGeom();
+  brick.bricks.forEach(b=>{
+    b.x=g.padX+b.c*(g.bw+g.gap);
+    b.y=g.top+b.r*(g.bh+g.gap);
+    b.w=g.bw;b.h=g.bh;
+    b.el.style.width=g.bw+'px';
+    b.el.style.height=g.bh+'px';
+    b.el.style.transform='translate('+b.x.toFixed(1)+'px,'+b.y.toFixed(1)+'px)';
+  });
+  if(brick.pad){
+    brick.pad.w=brickPadW();brick.pad.h=15;
+    brick.pad.y=g.H-g.H*.07;
+    brick.pad.x=Math.max(0,Math.min(g.W-brick.pad.w,brick.pad.x));
+    brick.pad.el.style.width=brick.pad.w+'px';
+  }
+}
+function brickBuildWall(){
+  const wrap=document.getElementById('bkWrap');
+  wrap.querySelectorAll('.bk-brick,.bk-ball,.bk-pad').forEach(x=>x.remove());
+  brick.bricks=[];
+  for(let r=0;r<BK_ROWS;r++)for(let c=0;c<BK_COLS;c++){
+    const el=document.createElement('div');
+    el.className='bk-brick';
+    wrap.appendChild(el);
+    brick.bricks.push({r,c,el,val:'',oi:0,alive:true,x:0,y:0,w:0,h:0});
+  }
+  const g=brickGeom();
+  const padEl=document.createElement('div');
+  padEl.className='bk-pad';
+  wrap.appendChild(padEl);
+  brick.pad={el:padEl,x:g.W/2-brickPadW()/2,y:g.H-g.H*.07,w:brickPadW(),h:15};
+  padEl.style.width=brick.pad.w+'px';
+  const ballEl=document.createElement('div');
+  ballEl.className='bk-ball';
+  wrap.appendChild(ballEl);
+  brick.ball={el:ballEl,x:g.W/2,y:g.H-60,vx:0,vy:0,r:11};
+  brickLayout();
+}
+function brickRelabel(){
+  const alive=brick.bricks.filter(b=>b.alive);
+  brickShuf(alive);
+  const ai=brick.opts.indexOf(brick.answer);
+  alive.forEach((b,i)=>{
+    const oi=i%brick.opts.length;
+    b.oi=oi;b.val=brick.opts[oi];
+    b.el.textContent=b.val;
+    b.el.style.background='linear-gradient(180deg,'+BK_COLORS[oi]+','+brickShade(BK_COLORS[oi])+')';
+  });
+  if(ai>0&&alive.length<=ai){
+    const b=alive[Math.floor(Math.random()*alive.length)];
+    b.oi=ai;b.val=brick.opts[ai];
+    b.el.textContent=b.val;
+    b.el.style.background='linear-gradient(180deg,'+BK_COLORS[ai]+','+brickShade(BK_COLORS[ai])+')';
+  }
+}
+function brickShade(hex){
+  const r=Math.max(0,parseInt(hex.slice(1,3),16)-60);
+  const g=Math.max(0,parseInt(hex.slice(3,5),16)-60);
+  const b=Math.max(0,parseInt(hex.slice(5,7),16)-60);
+  return 'rgb('+r+','+g+','+b+')';
+}
+function brickShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function brickStart(){
+  brickStopLoops();
+  const g=(brick.gen||0)+1;
+  brick={gen:g,bricks:[],ball:null,pad:null,score:0,combo:0,maxCombo:0,hits:0,wrong:0,lives:BK_LIVES,lv:1,over:false,busy:true,timerId:null,lastTs:performance.now(),answer:'',opts:[],qChar:'',qText:'',serveAt:0,padX:0,keyL:false,keyR:false,W:0,H:0};
+  showScreen('brick');
+  const wrap=document.getElementById('bkWrap');
+  wrap.innerHTML='<div class="bk-judge" id="bkJudge"></div>';
+  brickBuildWall();
+  brickLivesUI();
+  document.getElementById('bkFeedback').textContent='';
+  document.getElementById('bkQuestion').textContent='第 1 关 · 准备发球…';
+  document.getElementById('bkGoal').textContent='🧱 移动挡板（鼠标 / 手指 / ← →）把球弹上去，只砸写着正确答案的砖！';
+  brickUpdateUI();
+  const g2=g;
+  setTimeout(()=>{
+    if(g2!==brick.gen||currentMode!=='brick'||brick.over)return;
+    tone(990,.16,'triangle',.14);
+    brickAsk();
+  },700);
+  brick.timerId=setInterval(brickTick,16);
+}
+async function brickAsk(){
+  if(brick.over||currentMode!=='brick')return;
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data||!data.strokes.length){setTimeout(brickAsk,400);return;}
+  if(brick.over||currentMode!=='brick')return;
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],n=data.strokes.length;
+  let question,answer,opts=[];
+  if(Math.random()<.5){
+    question='一共有几笔？';answer=n+' 笔';
+    opts=[answer];
+    const near=[];
+    for(let k=Math.max(1,n-3);k<=Math.min(22,n+3);k++){if(k!==n)near.push(k+' 笔');}
+    while(opts.length<4&&near.length)opts.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);
+  }else{
+    const tIdx=Math.floor(Math.random()*n);
+    const d=DIRS.find(x=>x.code===dirs[tIdx]);
+    question='第'+(BK_ORD[tIdx]||tIdx+1)+'笔往哪写？';
+    answer=(d?d.icon:'➡️')+' '+(CF_SHORT[dirs[tIdx]]||'右');
+    opts=[answer];
+    const pool=DIRS.filter(x=>x.code!==dirs[tIdx]).map(x=>x.icon+' '+(CF_SHORT[x.code]||x.label));
+    while(opts.length<4&&pool.length)opts.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+  }
+  brick.answer=answer;brick.qChar=ch;brick.qText=question;
+  brick.opts=brickShuf(opts.slice());
+  brickRelabel();
+  document.getElementById('bkQuestion').innerHTML='「<span class="mole-char">'+ch+'</span>」'+question;
+  brickMsg('🎯 砸「'+answer+'」的砖块！','#80D8FF');
+  brickServe();
+  brick.busy=false;
+  brickUpdateUI();
+}
+function brickServe(){
+  const b=brick.ball;
+  if(!b)return;
+  const sp=brickSpeed();
+  const ang=(Math.random()*.6-.3)-Math.PI/2;
+  b.vx=sp*Math.cos(ang);b.vy=sp*Math.sin(ang);
+  b.x=brick.pad.x+brick.pad.w/2;
+  b.y=brick.pad.y-24;
+  brick.serveAt=performance.now()+650;
+}
+function brickTick(){
+  if(brick.over||currentMode!=='brick'){brickStopLoops();return;}
+  const now=performance.now();
+  let dt=(now-brick.lastTs)/1000;
+  brick.lastTs=now;
+  if(dt>.05)dt=.05;
+  const g=brickGeom();
+  if(brick.keyL)brick.pad.x-=520*dt;
+  if(brick.keyR)brick.pad.x+=520*dt;
+  brick.pad.x=Math.max(0,Math.min(g.W-brick.pad.w,brick.pad.x));
+  brick.pad.el.style.transform='translate('+brick.pad.x.toFixed(1)+'px,'+brick.pad.y.toFixed(1)+'px)';
+  const b=brick.ball;
+  if(brick.busy){
+    b.x=brick.pad.x+brick.pad.w/2;b.y=brick.pad.y-24;
+    b.el.style.transform='translate('+(b.x-b.r).toFixed(1)+'px,'+(b.y-b.r).toFixed(1)+'px)';
+    return;
+  }
+  if(now<brick.serveAt){
+    b.x=brick.pad.x+brick.pad.w/2;b.y=brick.pad.y-24;
+    b.el.style.transform='translate('+(b.x-b.r).toFixed(1)+'px,'+(b.y-b.r).toFixed(1)+'px)';
+    return;
+  }
+  b.x+=b.vx*dt;b.y+=b.vy*dt;
+  if(b.x<b.r){b.x=b.r;b.vx=-b.vx;tone(420,.04,'sine',.05);}
+  if(b.x>g.W-b.r){b.x=g.W-b.r;b.vx=-b.vx;tone(420,.04,'sine',.05);}
+  if(b.y<b.r){b.y=b.r;b.vy=-b.vy;tone(420,.04,'sine',.05);}
+  const p=brick.pad;
+  if(b.vy>0&&b.y+b.r>=p.y&&b.y-b.r<=p.y+p.h&&b.x>=p.x-6&&b.x<=p.x+p.w+6){
+    const off=Math.max(-1,Math.min(1,(b.x-(p.x+p.w/2))/(p.w/2)));
+    const sp=Math.min(560,Math.hypot(b.vx,b.vy)*1.015);
+    const ang=-Math.PI/2+off*1.05;
+    b.vx=sp*Math.cos(ang);b.vy=sp*Math.sin(ang);
+    b.y=p.y-b.r-1;
+    tone(300+Math.abs(off)*120,.05,'square',.07);
+  }
+  for(let i=0;i<brick.bricks.length;i++){
+    const bk=brick.bricks[i];
+    if(!bk.alive)continue;
+    if(b.x+b.r<bk.x||b.x-b.r>bk.x+bk.w||b.y+b.r<bk.y||b.y-b.r>bk.y+bk.h)continue;
+    const dx=b.x-(bk.x+bk.w/2),dy=b.y-(bk.y+bk.h/2);
+    const ox=(bk.w/2+b.r)-Math.abs(dx),oy=(bk.h/2+b.r)-Math.abs(dy);
+    if(ox<oy){
+      b.vx=dx>0?Math.abs(b.vx):-Math.abs(b.vx);
+      b.x+=dx>0?ox:-ox;
+    }else{
+      b.vy=dy>0?Math.abs(b.vy):-Math.abs(b.vy);
+      b.y+=dy>0?oy:-oy;
+    }
+    brickHit(bk);
+    break;
+  }
+  b.el.style.transform='translate('+(b.x-b.r).toFixed(1)+'px,'+(b.y-b.r).toFixed(1)+'px)';
+  if(b.y-b.r>g.H){brickDropBall();}
+}
+function brickHit(bk){
+  if(String(bk.val)===String(brick.answer))brickGood(bk);
+  else brickBad(bk);
+}
+function brickGood(bk){
+  brick.combo++;
+  if(brick.combo>brick.maxCombo)brick.maxCombo=brick.combo;
+  brick.hits++;
+  const gain=10+Math.min(brick.combo,8)*3;
+  brick.score+=gain;
+  brickDestroy(bk);
+  brickPop(bk,'+'+gain,'#FFEB3B');
+  sndOk();
+  tone(BK_PENTA[Math.min(brick.combo-1,BK_PENTA.length-1)],.14,'triangle',.16);
+  showComboEffect(brick.combo);
+  brickJudge(BK_GOOD[Math.floor(Math.random()*BK_GOOD.length)],'#FFEB3B');
+  brickMsg('✓ 「'+brick.qChar+'」'+brick.qText+' 答案是 '+brick.answer,'#69F0AE');
+  if(brick.combo>=5&&brick.combo%5===0)speakPraise();
+  brickUpdateUI();
+  let leftRight=0;
+  brick.bricks.forEach(x=>{if(x.alive&&String(x.val)===String(brick.answer))leftRight++;});
+  if(leftRight===0){
+    brick.busy=true;
+    const g=brick.gen;
+    let alive=0;
+    brick.bricks.forEach(x=>{if(x.alive)alive++;});
+    if(alive===0){setTimeout(()=>{if(g===brick.gen&&!brick.over)brickNextLevel();},700);return;}
+    brickMsg('🎉 全砸对了！下一题来了','#80D8FF');
+    setTimeout(()=>{
+      if(g!==brick.gen||brick.over||currentMode!=='brick')return;
+      brickAsk();
+    },800);
+  }
+}
+function brickBad(bk){
+  brick.combo=0;
+  brick.wrong++;
+  brick.score=Math.max(0,brick.score-4);
+  brickDestroy(bk);
+  brickPop(bk,'-4','#FF8A80');
+  sndNo();tone(160,.26,'square',.11);
+  brickJudge('砸错啦','#FF8A80');
+  brickShake();
+  brickMsg('✗ 那是「'+bk.val+'」，这题要砸 '+brick.answer,'#FFAB91');
+  brickUpdateUI();
+  let leftRight=0,alive=0;
+  brick.bricks.forEach(x=>{if(x.alive)alive++;if(x.alive&&String(x.val)===String(brick.answer))leftRight++;});
+  if(alive===0){
+    brick.busy=true;
+    const g=brick.gen;
+    setTimeout(()=>{if(g===brick.gen&&!brick.over)brickNextLevel();},700);
+    return;
+  }
+  if(leftRight===0){
+    brick.busy=true;
+    const g=brick.gen;
+    setTimeout(()=>{
+      if(g!==brick.gen||brick.over||currentMode!=='brick')return;
+      brickAsk();
+    },900);
+  }
+}
+function brickDestroy(bk){
+  bk.alive=false;
+  bk.el.classList.add('gone');
+  brickShards(bk);
+  setTimeout(()=>{if(bk.el)bk.el.style.pointerEvents='none';},220);
+}
+function brickShards(bk){
+  const wrap=document.getElementById('bkWrap');
+  const col=BK_COLORS[bk.oi]||'#EF5350';
+  for(let k=0;k<7;k++){
+    const s=document.createElement('div');
+    s.className='bk-shard';
+    s.style.background=col;
+    wrap.appendChild(s);
+    let x=bk.x+bk.w*(.15+Math.random()*.7),y=bk.y+bk.h/2;
+    let vx=(Math.random()*2-1)*220,vy=-Math.random()*180-40,rot=Math.random()*360,life=0;
+    const id=setInterval(()=>{
+      life+=33;
+      vy+=1400*.033;x+=vx*.033;y+=vy*.033;rot+=vx*.5;
+      s.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px) rotate('+rot.toFixed(1)+'deg)';
+      if(life>380)s.style.opacity=String(Math.max(0,1-(life-380)/320));
+      if(life>700){clearInterval(id);s.remove();}
+    },33);
+  }
+}
+function brickPop(bk,txt,color){
+  const wrap=document.getElementById('bkWrap');
+  const p=document.createElement('div');
+  p.className='bk-pop';p.textContent=txt;
+  if(color)p.style.color=color;
+  p.style.left=(bk.x+bk.w/2)+'px';p.style.top=(bk.y+bk.h/2)+'px';
+  wrap.appendChild(p);
+  setTimeout(()=>p.remove(),880);
+}
+function brickShake(){
+  const wrap=document.getElementById('bkWrap');
+  wrap.classList.remove('shake');void wrap.offsetWidth;wrap.classList.add('shake');
+  setTimeout(()=>wrap.classList.remove('shake'),430);
+}
+function brickDropBall(){
+  brick.lives--;
+  brick.combo=0;
+  brickLivesUI();brickUpdateUI();
+  sndNo();tone(140,.4,'sawtooth',.13);
+  brickShake();
+  if(brick.lives<=0){
+    brickMsg('💔 球掉下去了，爱心用完了','#FFAB91');
+    brickEnd();
+    return;
+  }
+  brick.busy=true;
+  brickMsg('💔 球掉了，扣一颗心！还有 '+brick.lives+' 次','#FFAB91');
+  const g=brick.gen;
+  setTimeout(()=>{
+    if(g!==brick.gen||brick.over||currentMode!=='brick')return;
+    brick.busy=false;
+    brickServe();
+  },1100);
+}
+function brickNextLevel(){
+  const g=brick.gen;
+  brick.lv++;
+  const cleared=brick.bricks.length;
+  brickBuildWall();
+  brickRelabel();
+  brickLivesUI();
+  sndReward();
+  brickJudge('🚩 第 '+(brick.lv-1)+' 关通过！','#69F0AE');
+  brickMsg('🎊 砖墙清空！球会变快，挡板会变窄','#80D8FF');
+  brickUpdateUI();
+  const lvDone=brick.lv-1;
+  if(lvDone>brickLv())localStorage.setItem('hz_brick_lv',String(lvDone));
+  brick.busy=true;
+  setTimeout(()=>{
+    if(g!==brick.gen||brick.over||currentMode!=='brick')return;
+    brickAsk();
+  },1200);
+}
+function brickEnd(){
+  if(brick.over)return;
+  brick.over=true;brick.busy=true;
+  brickStopLoops();
+  const best=Math.max(brick.score,brickBest());
+  localStorage.setItem('hz_brick_best',String(best));
+  const lvDone=Math.max(0,brick.lv-1);
+  const acc=brick.hits+brick.wrong>0?brick.hits/(brick.hits+brick.wrong):0;
+  const earned=Math.max(2,Math.min(22,2+lvDone*4+(brick.maxCombo>=6?2:0)+(acc>=.75?2:0)));
+  brickResult(lvDone,best,acc,earned);
+}
+function brickResult(lvDone,best,acc,earned){
+  addStars(earned);
+  showScreen('brick-result');
+  document.getElementById('bkResultStars').textContent='⭐ +'+earned;
+  document.getElementById('bkResultScore').textContent=brick.score;
+  document.getElementById('bkResultCombo').textContent=brick.maxCombo;
+  document.getElementById('bkResultHit').textContent=brick.hits;
+  document.getElementById('bkResultLv').textContent=brick.lv;
+  document.getElementById('bkResultBest').textContent=best+' / '+brickLv();
+  let emoji,title,subtitle;
+  if(lvDone===0){
+    emoji='💔';title='爱心用完了…';
+    subtitle='砸对 '+brick.hits+' 块、砸错 '+brick.wrong+' 块。先看清题目再守球！';
+  }else{
+    emoji=acc>=.8?'🏆':'🧱';
+    title='打通 '+lvDone+' 关！';
+    subtitle='正确率 '+Math.round(acc*100)+'%，最长连击 '+brick.maxCombo+'。下一关球更快！';
+  }
+  document.getElementById('bkResultEmoji').textContent=emoji;
+  document.getElementById('bkResultTitle').textContent=title;
+  document.getElementById('bkResultSubtitle').textContent=subtitle;
+  if(lvDone>0){sndReward();setTimeout(showRewardEgg,900);speakPraise();}
+}
+/* --- 挡板控制 --- */
+function brickPadTo(ev){
+  if(currentMode!=='brick'||brick.over||!brick.pad)return;
+  const wrap=document.getElementById('bkWrap');
+  const r=wrap.getBoundingClientRect();
+  const x=ev.clientX-r.left;
+  brick.pad.x=Math.max(0,Math.min(brick.W-brick.pad.w,x-brick.pad.w/2));
+}
+document.addEventListener('pointermove',function(e){brickPadTo(e);},{passive:true});
+document.addEventListener('touchmove',function(e){
+  if(currentMode!=='brick'||!e.touches||!e.touches[0])return;
+  brickPadTo(e.touches[0]);
+},{passive:true});
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='brick'||brick.over)return;
+  if(e.key==='ArrowLeft'){e.preventDefault();brick.keyL=true;}
+  else if(e.key==='ArrowRight'){e.preventDefault();brick.keyR=true;}
+});
+document.addEventListener('keyup',function(e){
+  if(currentMode!=='brick')return;
+  if(e.key==='ArrowLeft')brick.keyL=false;
+  else if(e.key==='ArrowRight')brick.keyR=false;
+});
+window.addEventListener('resize',function(){
+  if(currentMode!=='brick'||brick.over||!brick.bricks.length)return;
+  brickLayout();
 });
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
