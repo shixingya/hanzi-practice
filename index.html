@@ -429,6 +429,36 @@ button:active{transform:scale(.95)}
 .ln-tool:active{transform:scale(.94)}
 .ln-tool.off{opacity:.42;pointer-events:none}
 @media(max-width:420px){.ln-wrap{height:40vh;min-height:280px;gap:4px;padding:4px}.ln-tile .big{font-size:15px}.ln-tile .small{font-size:8px}}
+/* ---------- 笔顺切水果 ---------- */
+.cf-wrap{position:relative;width:100%;max-width:430px;height:46vh;min-height:320px;max-height:470px;margin:6px auto;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#14213D 0%,#2B3F6B 55%,#40598C 100%);box-shadow:0 10px 28px rgba(0,0,0,.38),inset 0 -30px 60px rgba(0,0,0,.4);touch-action:none;cursor:crosshair;-webkit-user-select:none;user-select:none}
+.cf-wrap.shake{animation:cfShake .4s}
+@keyframes cfShake{0%,100%{transform:translate(0,0)}20%{transform:translate(-9px,4px)}45%{transform:translate(8px,-5px)}70%{transform:translate(-5px,2px)}}
+.cf-wood{position:absolute;left:0;right:0;bottom:0;height:16%;background:linear-gradient(180deg,#6B4423,#3E2712);box-shadow:inset 0 6px 12px rgba(0,0,0,.4);z-index:1}
+.cf-wood::after{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:rgba(255,255,255,.12)}
+.cf-star{position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(255,255,255,.75);z-index:0}
+.cf-fruit{position:absolute;left:0;top:0;width:64px;height:64px;margin:-32px 0 0 -32px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:4;cursor:pointer;will-change:transform}
+.cf-fruit .fe{font-size:38px;line-height:1;filter:drop-shadow(0 4px 9px rgba(0,0,0,.55))}
+.cf-fruit .fv{margin-top:-1px;font-size:12px;font-weight:bold;color:#fff;background:rgba(10,14,28,.72);border:1px solid rgba(255,255,255,.4);border-radius:9px;padding:1px 6px;white-space:nowrap}
+.cf-fruit.bomb .fv{background:rgba(120,0,0,.8);border-color:#FF8A80}
+.cf-fruit.danger .fe{animation:cfWig .5s ease-in-out infinite}
+@keyframes cfWig{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.cf-half{position:absolute;left:0;top:0;width:64px;height:64px;margin:-32px 0 0 -32px;font-size:38px;line-height:64px;text-align:center;z-index:6;pointer-events:none;will-change:transform}
+.cf-half.l{clip-path:inset(0 50% 0 0)}
+.cf-half.r{clip-path:inset(0 0 0 50%)}
+.cf-drop{position:absolute;width:9px;height:9px;border-radius:50%;pointer-events:none;z-index:5;animation:cfDrop .62s ease-out forwards}
+@keyframes cfDrop{0%{opacity:.95;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.35)}}
+.cf-pop{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font-size:19px;font-weight:bold;color:#FFD740;text-shadow:0 2px 7px rgba(0,0,0,.8);pointer-events:none;z-index:9;animation:cfPop .85s ease-out forwards}
+@keyframes cfPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}22%{opacity:1}100%{opacity:0;transform:translate(-50%,-160%) scale(1.15)}}
+.cf-blade{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:8}
+.cf-blade polyline{fill:none;stroke:rgba(255,255,255,.92);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 9px #80D8FF)}
+.cf-judge{position:absolute;left:50%;top:12%;transform:translateX(-50%);font-size:23px;font-weight:bold;letter-spacing:1px;z-index:9;pointer-events:none;opacity:0;white-space:nowrap;text-shadow:0 3px 10px rgba(0,0,0,.7)}
+.cf-judge.on{animation:cfJudge .8s ease-out}
+@keyframes cfJudge{0%{opacity:0;transform:translateX(-50%) scale(.5)}25%{opacity:1;transform:translateX(-50%) scale(1.12)}100%{opacity:0;transform:translateX(-50%) translateY(-26px) scale(1)}}
+.cf-hud{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:430px;font-size:12px;color:#fff;margin:2px 0;opacity:.95}
+.cf-hearts{display:inline-flex;gap:2px}
+.cf-hearts i{font-style:normal;filter:grayscale(1) opacity(.35)}
+.cf-hearts i.on{filter:none}
+@media(max-width:420px){.cf-wrap{height:42vh;min-height:300px}.cf-fruit,.cf-half{width:56px;height:56px;margin:-28px 0 0 -28px}.cf-fruit .fe,.cf-half{font-size:33px}.cf-half{line-height:56px}.cf-fruit .fv{font-size:11px}}
 </style>
 </head>
 <body>
@@ -506,6 +536,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('lian')">
       <div class="icon">🔗</div>
       <div class="info"><h3>笔顺连连消</h3><p>汉字找笔顺线索，连线消消消！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('fruit')">
+      <div class="icon">🍉</div>
+      <div class="info"><h3>笔顺切水果</h3><p>答案飞上天，一刀切开它！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -1010,6 +1044,54 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-fruit">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="cfScore">🍉 0</span><span id="cfCombo" style="color:#FFD740">🔥 x0</span><span id="cfTime">⏱️ 90s</span></div>
+  </div>
+  <div class="challenge-goal" id="cfGoal">🍉 题目在上方，把写着正确答案的水果一刀切开！</div>
+  <div class="cf-wrap" id="cfWrap">
+    <div class="cf-wood"></div>
+    <div class="cf-judge" id="cfJudge"></div>
+  </div>
+  <div class="bs-timer"><div class="bs-timer-fill" id="cfTimeFill"></div></div>
+  <div class="cf-hud">
+    <span id="cfLives" class="cf-hearts"><i class="on">❤️</i><i class="on">❤️</i><i class="on">❤️</i></span>
+    <span id="cfWaveTip">第 1 题 · 小心 💣 炸弹</span>
+    <span id="cfBest">🏆 0</span>
+  </div>
+  <div class="quiz-header">
+    <div class="question" id="cfQuestion">正在准备水果…</div>
+  </div>
+  <div class="feedback" id="cfFeedback"></div>
+</div>
+<div class="screen" id="screen-fruit-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="cfResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="cfResultEmoji">🍉</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="cfResultTitle">刀法如神！</h2>
+    <p style="font-size:16px;opacity:.8" id="cfResultSubtitle">再来一局，切得更快！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="cfResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="cfResultCombo">0</div><div style="font-size:13px;opacity:.7">最长连击</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="cfResultHit">0</div><div style="font-size:13px;opacity:.7">切中答案</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="cfResultBest">0</div><div style="font-size:13px;opacity:.7">历史最佳</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🔪 刀法评级</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="cfResultRank">水果学徒</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="fruitStart()">🔄 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -1359,6 +1441,7 @@ function enterMode(mode){
   else if(mode==='pet')petStart();
   else if(mode==='hop')hopStart();
   else if(mode==='lian')lianStart();
+  else if(mode==='fruit')fruitStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -3954,6 +4037,371 @@ document.addEventListener('keydown',function(e){
   const k=(e.key||'').toLowerCase();
   if(k==='h'){e.preventDefault();lianHint();}
   else if(k==='s'){e.preventDefault();lianShuffleTool();}
+});
+/* ================= 笔顺切水果 ================= */
+const CF_FRUITS=[{e:'🍎',c:'#FF5252'},{e:'🍊',c:'#FFA726'},{e:'🍉',c:'#EF5350'},{e:'🍇',c:'#9575CD'},{e:'🍓',c:'#F06292'},{e:'🥝',c:'#9CCC65'},{e:'🍍',c:'#FFEE58'},{e:'🍑',c:'#FF8A65'}];
+const CF_PENTA=[523,587,659,784,880,1047,1319];
+const CF_LIVES=3, CF_TIME=90, CF_GRAV=980;
+const CF_SHORT={R:'右',D:'下',P:'左下',N:'右下',T:'右上'};
+const CF_GOOD=['切中！','漂亮！','好刀法！','完美一刀！','就是它！'];
+const CF_RANKS=[[0,'🔰 水果学徒'],[220,'🍃 切瓜小能手'],[460,'🗡️ 刀锋小侠'],[760,'🥷 水果忍者大师']];
+let fruit={gen:0,seq:0,awaitSpawn:0,items:[],score:0,combo:0,maxCombo:0,hits:0,miss:0,wave:0,lives:CF_LIVES,time:CF_TIME,t0:CF_TIME,over:true,busy:true,timerId:null,lastTs:0,pending:0,nextAt:0,answer:'',qChar:'',qText:''};
+function fruitWins(){return Math.max(0,parseInt(localStorage.getItem('hz_fruit_wins')||'0',10)||0);}
+function fruitBest(){return Math.max(0,parseInt(localStorage.getItem('hz_fruit_best')||'0',10)||0);}
+function fruitDiff(){
+  const w=fruitWins();
+  return{gap:Math.max(2300,3400-w*130),bombP:Math.min(.3,.08+w*.03),dup:w>=2?Math.min(2,1+Math.floor(w/4)):0,peak:Math.min(6,3+Math.floor(w/2))};
+}
+function fruitMsg(txt,color){
+  document.getElementById('cfFeedback').innerHTML='<span style="color:'+(color||'#FFD740')+'">'+txt+'</span>';
+}
+function fruitJudge(txt,color){
+  const j=document.getElementById('cfJudge');
+  j.textContent=txt;j.style.color=color||'#FFEB3B';
+  j.classList.remove('on');void j.offsetWidth;j.classList.add('on');
+}
+function fruitLivesUI(){
+  const el=document.getElementById('cfLives');
+  el.innerHTML='';
+  for(let i=0;i<CF_LIVES;i++){
+    const s=document.createElement('i');s.textContent='❤️';
+    if(i<fruit.lives)s.className='on';
+    el.appendChild(s);
+  }
+}
+function fruitUpdateUI(){
+  document.getElementById('cfScore').textContent='🍉 '+fruit.score;
+  document.getElementById('cfCombo').textContent='🔥 x'+fruit.combo;
+  document.getElementById('cfTime').textContent='⏱️ '+Math.ceil(Math.max(0,fruit.time))+'s';
+  document.getElementById('cfBest').textContent='🏆 '+fruitBest();
+  document.getElementById('cfWaveTip').textContent='第 '+Math.max(1,fruit.wave)+' 题 · 小心 💣 炸弹';
+}
+function fruitStopLoops(){if(fruit.timerId){clearInterval(fruit.timerId);fruit.timerId=null;}}
+function fruitClearItems(){
+  fruit.items.forEach(it=>{if(it.el)it.el.remove();});
+  fruit.items=[];
+}
+function fruitStart(){
+  fruitStopLoops();
+  const g=(fruit.gen||0)+1;
+  fruit={gen:g,seq:fruit.seq||0,awaitSpawn:0,items:[],score:0,combo:0,maxCombo:0,hits:0,miss:0,wave:0,lives:CF_LIVES,time:CF_TIME,t0:CF_TIME,over:false,busy:true,timerId:fruit.timerId,lastTs:performance.now(),pending:0,nextAt:0,answer:'',qChar:'',qText:''};
+  showScreen('fruit');
+  const wrap=document.getElementById('cfWrap');
+  wrap.innerHTML='<div class="cf-wood"></div><div class="cf-judge" id="cfJudge"></div>';
+  for(let i=0;i<26;i++){
+    const st=document.createElement('div');st.className='cf-star';
+    st.style.left=(Math.random()*100)+'%';st.style.top=(Math.random()*55)+'%';
+    st.style.opacity=(.25+Math.random()*.6).toFixed(2);
+    wrap.insertBefore(st,wrap.firstChild);
+  }
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('class','cf-blade');svg.setAttribute('id','cfBlade');
+  svg.appendChild(document.createElementNS('http://www.w3.org/2000/svg','polyline'));
+  wrap.appendChild(svg);
+  cfTrail=[];
+  document.getElementById('cfFeedback').textContent='';
+  document.getElementById('cfTimeFill').style.width='100%';
+  document.getElementById('cfTimeFill').classList.remove('urgent');
+  fruitLivesUI();fruitUpdateUI();
+  document.getElementById('cfGoal').textContent='🍉 切开写着正确答案的水果，别切错、别碰 💣，飞过去也算失误！';
+  document.getElementById('cfQuestion').innerHTML='🔪 准备好啦！<span class="mole-char">3</span>';
+  tone(660,.09);
+  const g2=g;
+  const step=(n,txt)=>{
+    setTimeout(()=>{
+      if(g2!==fruit.gen||currentMode!=='fruit'||fruit.over)return;
+      document.getElementById('cfQuestion').innerHTML='🔪 准备好啦！<span class="mole-char">'+n+'</span>';
+      tone(660,.09);
+    },txt);
+  };
+  step(2,380);step(1,760);
+  setTimeout(()=>{
+    if(g2!==fruit.gen||currentMode!=='fruit'||fruit.over)return;
+    tone(990,.16,'triangle',.14);
+    fruit.busy=false;
+    fruitWave();
+  },1150);
+  fruit.timerId=setInterval(fruitTick,33);
+}
+async function fruitWave(){
+  if(fruit.over||currentMode!=='fruit')return;
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data||!data.strokes.length){setTimeout(fruitWave,400);return;}
+  if(fruit.over||currentMode!=='fruit')return;
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],n=data.strokes.length;
+  let question,answer,opts=[];
+  if(Math.random()<.5){
+    question='一共有几笔？';answer=n+' 笔';
+    const near=[];
+    for(let k=Math.max(1,n-3);k<=Math.min(22,n+3);k++){if(k!==n)near.push(k+' 笔');}
+    opts=[answer];
+    while(opts.length<4&&near.length)opts.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);
+  }else{
+    const tIdx=Math.floor(Math.random()*n);
+    const ord=['一','二','三','四','五','六','七','八','九','十'];
+    const d=DIRS.find(x=>x.code===dirs[tIdx]);
+    question='第'+(ord[tIdx]||tIdx+1)+'笔往哪写？';
+    answer=(d?d.icon:'➡️')+' '+(CF_SHORT[dirs[tIdx]]||'右');
+    opts=[answer];
+    const pool=DIRS.filter(x=>x.code!==dirs[tIdx]).map(x=>x.icon+' '+(CF_SHORT[x.code]||x.label));
+    while(opts.length<4&&pool.length)opts.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+  }
+  fruit.answer=answer;fruit.qChar=ch;fruit.qText=question;
+  fruit.wave++;fruit.pending=0;fruit.nextAt=0;
+  document.getElementById('cfQuestion').innerHTML='「<span class="mole-char">'+ch+'</span>」'+question;
+  fruitMsg('🍉 切开「'+answer+'」的水果！','#80D8FF');
+  fruitUpdateUI();
+  fruit.awaitSpawn=0;
+  const d=fruitDiff();
+  const vals=opts.slice();
+  for(let i=vals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=vals[i];vals[i]=vals[j];vals[j]=t;}
+  let plan=0;
+  vals.forEach((v,i)=>{fruitSpawn(v,false,180+i*260);plan++;});
+  for(let k=0;k<d.dup;k++){fruitSpawn(answer,false,1200+k*420);plan++;}
+  if(Math.random()<d.bombP){fruitSpawn('',true,900+Math.random()*700);plan++;}
+  if(fruit.wave>2&&Math.random()<.35){fruitSpawn(vals[Math.floor(Math.random()*vals.length)],false,1700);plan++;}
+  fruit.awaitSpawn=plan;
+}
+function fruitSpawn(val,isBomb,delay){
+  const g=fruit.gen;
+  setTimeout(()=>{
+    fruit.awaitSpawn--;
+    if(g!==fruit.gen||fruit.over||currentMode!=='fruit')return;
+    const wrap=document.getElementById('cfWrap');
+    const W=wrap.clientWidth,H=wrap.clientHeight;
+    if(W<40)return;
+    const f=isBomb?{e:'💣',c:'#546E7A'}:CF_FRUITS[Math.floor(Math.random()*CF_FRUITS.length)];
+    const el=document.createElement('div');
+    el.className='cf-fruit'+(isBomb?' bomb danger':'');
+    el.innerHTML='<span class="fe">'+f.e+'</span><span class="fv">'+(isBomb?'炸弹':val)+'</span>';
+    wrap.appendChild(el);
+    const it={x:W*(.14+Math.random()*.72),y:H+34,vx:(Math.random()*2-1)*140,vy:0,rot:0,vr:(Math.random()*2-1)*170,
+      el,val,isBomb,f,alive:true};
+    it.vy=-Math.sqrt(2*CF_GRAV*H*(.62+Math.random()*.22));
+    fruit.items.push(it);fruit.pending++;
+    el.addEventListener('pointerdown',function(ev){ev.preventDefault();ev.stopPropagation();fruitCut(it);});
+    tone(isBomb?240:330,.07,'sine',.07);
+  },delay);
+}
+function fruitTick(){
+  if(fruit.over||currentMode!=='fruit'){fruitStopLoops();return;}
+  const now=performance.now();
+  let dt=(now-fruit.lastTs)/1000;
+  fruit.lastTs=now;
+  if(dt>.08)dt=.08;
+  if(!fruit.busy){
+    fruit.time-=dt;
+    const pct=Math.max(0,Math.min(100,fruit.time/fruit.t0*100));
+    const f=document.getElementById('cfTimeFill');
+    f.style.width=pct+'%';
+    if(pct<30)f.classList.add('urgent');
+    document.getElementById('cfTime').textContent='⏱️ '+Math.ceil(Math.max(0,fruit.time))+'s';
+    if(fruit.time<=0){fruit.time=0;fruitEnd(true);return;}
+    if(fruit.pending<=0&&fruit.awaitSpawn<=0&&fruit.items.length===0){
+      if(!fruit.nextAt)fruit.nextAt=now+900;
+      else if(now>=fruit.nextAt){fruit.nextAt=0;fruitWave();}
+    }
+  }
+  const wrap=document.getElementById('cfWrap');
+  const W=wrap.clientWidth,H=wrap.clientHeight;
+  for(let i=fruit.items.length-1;i>=0;i--){
+    const it=fruit.items[i];
+    it.vy+=CF_GRAV*dt;
+    it.x+=it.vx*dt;it.y+=it.vy*dt;it.rot+=it.vr*dt;
+    if(it.x<28&&it.vx<0){it.x=28;it.vx=-it.vx*.9;}
+    if(it.x>W-28&&it.vx>0){it.x=W-28;it.vx=-it.vx*.9;}
+    it.el.style.transform='translate('+it.x.toFixed(1)+'px,'+it.y.toFixed(1)+'px) rotate('+it.rot.toFixed(1)+'deg)';
+    if(it.y>H+72&&it.vy>0){
+      it.alive=false;it.el.remove();fruit.items.splice(i,1);fruit.pending--;
+      if(!it.isBomb&&String(it.val)===String(fruit.answer))fruitMiss(it);
+    }
+  }
+}
+function fruitCut(it){
+  if(!it.alive||fruit.over||fruit.busy)return;
+  it.alive=false;
+  const idx=fruit.items.indexOf(it);
+  if(idx>=0)fruit.items.splice(idx,1);
+  it.el.remove();
+  fruit.pending--;
+  if(it.isBomb){fruitBomb(it);return;}
+  if(String(it.val)===String(fruit.answer))fruitGood(it);
+  else fruitWrong(it);
+}
+function fruitGood(it){
+  fruit.combo++;
+  if(fruit.combo>fruit.maxCombo)fruit.maxCombo=fruit.combo;
+  fruit.hits++;
+  const gain=12+Math.min(fruit.combo,8)*3;
+  fruit.score+=gain;
+  fruit.time=Math.min(fruit.t0+30,fruit.time+1.5);
+  fruitHalves(it);fruitSplash(it,10,it.f.c);
+  fruitPop(it,'+'+gain,'#FFEB3B');
+  sndOk();tone(CF_PENTA[Math.min(fruit.combo-1,CF_PENTA.length-1)],.14,'triangle',.16);
+  showComboEffect(fruit.combo);
+  fruitJudge(CF_GOOD[Math.floor(Math.random()*CF_GOOD.length)],'#FFEB3B');
+  fruitMsg('✓ 「'+fruit.qChar+'」'+fruit.qText+' 答案是 '+fruit.answer,'#69F0AE');
+  if(fruit.combo>=5&&fruit.combo%5===0)speakPraise();
+  fruitUpdateUI();
+}
+function fruitWrong(it){
+  fruit.combo=0;
+  fruit.lives--;
+  fruitSplash(it,8,'#B0BEC5');
+  fruitPop(it,'✗','#FF8A80');
+  sndNo();tone(150,.3,'square',.12);
+  fruitJudge('切错啦！','#FF8A80');
+  fruitShake();
+  fruitMsg('✗ 那一个是「'+it.val+'」，正确答案是 '+fruit.answer,'#FFAB91');
+  fruitLivesUI();fruitUpdateUI();
+  if(fruit.lives<=0){setTimeout(()=>fruitEnd(false),260);}
+}
+function fruitBomb(it){
+  fruit.combo=0;
+  fruit.lives--;
+  fruitSplash(it,14,'#455A64');
+  fruitSplash(it,8,'#FF7043');
+  fruitPop(it,'💥 -1','#FF8A80');
+  sndNo();tone(90,.5,'sawtooth',.16);tone(200,.2,'square',.1);
+  fruitJudge('boom！💣','#FF8A80');
+  fruitShake();
+  fruitMsg('💣 炸弹不能切！正确答案是 '+fruit.answer,'#FFAB91');
+  fruitLivesUI();fruitUpdateUI();
+  if(fruit.lives<=0){setTimeout(()=>fruitEnd(false),260);}
+}
+function fruitMiss(it){
+  fruit.combo=0;
+  fruit.miss++;
+  fruitMsg('🍃 「'+fruit.qChar+'」的 '+fruit.answer+' 飞走啦，下一刀看准','#FFCC80');
+  fruitJudge('飞走了…','#FFCC80');
+  fruitLivesUI();fruitUpdateUI();
+}
+function fruitShake(){
+  const wrap=document.getElementById('cfWrap');
+  wrap.classList.remove('shake');void wrap.offsetWidth;wrap.classList.add('shake');
+  setTimeout(()=>wrap.classList.remove('shake'),430);
+}
+function fruitHalves(it){
+  const wrap=document.getElementById('cfWrap');
+  [['l',-1],['r',1]].forEach(cfg=>{
+    const side=cfg[0],dir=cfg[1];
+    const h=document.createElement('div');
+    h.className='cf-half '+side;h.textContent=it.f.e;
+    wrap.appendChild(h);
+    let x=it.x,y=it.y,vx=dir*(70+Math.random()*80),vy=it.vy*.35-130,rot=0,life=0;
+    const id=setInterval(()=>{
+      life+=33;
+      vy+=CF_GRAV*.033;x+=vx*.033;y+=vy*.033;rot+=dir*300*.033;
+      h.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px) rotate('+rot.toFixed(1)+'deg)';
+      if(life>600)h.style.opacity=String(Math.max(0,1-(life-600)/340));
+      if(life>960){clearInterval(id);h.remove();}
+    },33);
+  });
+}
+function fruitSplash(it,n,color){
+  const wrap=document.getElementById('cfWrap');
+  for(let k=0;k<n;k++){
+    const d=document.createElement('div');d.className='cf-drop';
+    d.style.background=color;d.style.left=it.x+'px';d.style.top=it.y+'px';
+    d.style.setProperty('--dx',(Math.random()*150-75)+'px');
+    d.style.setProperty('--dy',(Math.random()*120-35)+'px');
+    wrap.appendChild(d);
+    setTimeout(()=>d.remove(),660);
+  }
+}
+function fruitPop(it,txt,color){
+  const wrap=document.getElementById('cfWrap');
+  const p=document.createElement('div');p.className='cf-pop';p.textContent=txt;
+  if(color)p.style.color=color;
+  p.style.left=it.x+'px';p.style.top=it.y+'px';
+  wrap.appendChild(p);
+  setTimeout(()=>p.remove(),880);
+}
+function fruitEnd(survived){
+  if(fruit.over)return;
+  fruit.over=true;fruit.busy=true;
+  fruitStopLoops();
+  fruitClearItems();
+  let wins=fruitWins();
+  if(survived&&fruit.lives>0){wins++;localStorage.setItem('hz_fruit_wins',String(wins));}
+  else localStorage.setItem('hz_fruit_wins','0');
+  const best=Math.max(fruit.score,fruitBest());
+  localStorage.setItem('hz_fruit_best',String(best));
+  const earned=survived&&fruit.lives>0?Math.max(3,Math.min(20,Math.floor(fruit.score/45)+(fruit.maxCombo>=6?2:0))):Math.max(1,Math.floor(fruit.score/90));
+  fruitResult(survived,earned,best);
+}
+function fruitResult(survived,earned,best){
+  addStars(earned);
+  showScreen('fruit-result');
+  document.getElementById('cfResultStars').textContent='⭐ +'+earned;
+  document.getElementById('cfResultScore').textContent=fruit.score;
+  document.getElementById('cfResultCombo').textContent=fruit.maxCombo;
+  document.getElementById('cfResultHit').textContent=fruit.hits;
+  document.getElementById('cfResultBest').textContent=best;
+  let rank=CF_RANKS[0][1];
+  for(let i=0;i<CF_RANKS.length;i++){if(fruit.score>=CF_RANKS[i][0])rank=CF_RANKS[i][1];}
+  document.getElementById('cfResultRank').textContent=rank;
+  let emoji,title,subtitle;
+  if(!survived){
+    emoji='💔';title='爱心用完了…';
+    subtitle='切错和炸弹都很伤，看清「'+fruit.answer+'」再下刀！';
+  }else{
+    emoji=fruit.miss===0?'🥷':'🍉';
+    title=fruit.miss===0?'一个水果都没飞走！':'时间到，刀法不错！';
+    subtitle='切中 '+fruit.hits+' 个答案，飞走 '+fruit.miss+' 个。再来一局切更快！';
+  }
+  document.getElementById('cfResultEmoji').textContent=emoji;
+  document.getElementById('cfResultTitle').textContent=title;
+  document.getElementById('cfResultSubtitle').textContent=subtitle;
+  if(survived&&fruit.lives>0){sndReward();setTimeout(showRewardEgg,900);speakPraise();}
+}
+/* --- 刀刃轨迹 --- */
+let cfTrail=[];
+function fruitPoint(ev){
+  const wrap=document.getElementById('cfWrap');
+  if(!wrap)return null;
+  const r=wrap.getBoundingClientRect();
+  return{x:ev.clientX-r.left,y:ev.clientY-r.top,t:performance.now(),
+    inBox:ev.clientX>=r.left&&ev.clientX<=r.right&&ev.clientY>=r.top&&ev.clientY<=r.bottom};
+}
+function fruitSegDist(px,py,ax,ay,bx,by){
+  const dx=bx-ax,dy=by-ay;
+  const L=dx*dx+dy*dy;
+  let t=L?((px-ax)*dx+(py-ay)*dy)/L:0;
+  t=Math.max(0,Math.min(1,t));
+  const cx=ax+dx*t,cy=ay+dy*t;
+  return Math.sqrt((px-cx)*(px-cx)+(py-cy)*(py-cy));
+}
+function fruitBladeDraw(){
+  const svg=document.getElementById('cfBlade');
+  if(!svg)return;
+  const pl=svg.querySelector('polyline');
+  if(!pl)return;
+  pl.setAttribute('points',cfTrail.map(p=>p.x.toFixed(1)+','+p.y.toFixed(1)).join(' '));
+}
+document.addEventListener('pointermove',function(e){
+  if(currentMode!=='fruit'||fruit.over||fruit.busy)return;
+  const p=fruitPoint(e);
+  if(!p||!p.inBox){if(cfTrail.length){cfTrail=[];fruitBladeDraw();}return;}
+  const now=performance.now();
+  const last=cfTrail[cfTrail.length-1];
+  if(last&&Math.abs(last.x-p.x)+Math.abs(last.y-p.y)<3)return;
+  cfTrail.push(p);
+  while(cfTrail.length>9||(cfTrail.length&&now-cfTrail[0].t>150))cfTrail.shift();
+  if(last){
+    for(let i=fruit.items.length-1;i>=0;i--){
+      const it=fruit.items[i];
+      if(!it.alive)continue;
+      if(fruitSegDist(it.x,it.y,last.x,last.y,p.x,p.y)<34)fruitCut(it);
+    }
+  }
+  fruitBladeDraw();
+},{passive:true});
+document.addEventListener('pointerup',function(){
+  if(currentMode!=='fruit')return;
+  cfTrail=[];fruitBladeDraw();
 });
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){

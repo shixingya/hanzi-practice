@@ -1,6 +1,6 @@
 # 汉字笔顺闯关 · Hanzi Stroke Quest
 
-> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。14 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷 / 笔顺大魔王 / 笔顺宠物屋 / 笔顺跳房子 / 笔顺连连消…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
+> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。15 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷 / 笔顺大魔王 / 笔顺宠物屋 / 笔顺跳房子 / 笔顺连连消 / 笔顺切水果…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
 
 <p align="center">
   <img src="assets/demo.gif" alt="运行演示 GIF" width="360" />
@@ -13,7 +13,7 @@
   &nbsp;&nbsp;
   <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License" />
   &nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/单文件-4600_行-orange?style=for-the-badge" alt="Single file" />
+  <img src="https://img.shields.io/badge/单文件-5000_行-orange?style=for-the-badge" alt="Single file" />
 </p>
 
 <p align="center">
@@ -41,7 +41,7 @@
 - 🎯 **零构建、零后端**：单文件 `index.html` 打开即用，任何静态托管都能部署（GitHub Pages / Vercel / Netlify / Nginx）。
 - 🧒 **儿童友好 UI**：糖果紫渐变背景、大圆角按钮、田字格练字区，专为 6–9 岁孩子设计。
 - 🎮 **游戏化激励**：星星 ⭐ + 连击 🔥 + 动物收藏 🐼 + 全屏彩带彩蛋，学习成就感拉满。
-- 🕹️ **14 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、笔顺大魔王、笔顺宠物屋、笔顺跳房子、笔顺连连消、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
+- 🕹️ **15 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、笔顺大魔王、笔顺宠物屋、笔顺跳房子、笔顺连连消、笔顺切水果、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
 - 🔊 **多感官反馈**：Web Audio API 合成音效（正确 / 错误 / 完成 / 彩蛋）+ Web Speech API 中文语音鼓励（"太棒了！""你真厉害！"）。
 - 📚 **难度渐进**：字库按笔画数从少到多排序，同笔画组内随机洗牌，避免挫败感也保留趣味性。
 - 🌐 **多 CDN 容错**：`hanzi-writer` 库依次尝试 jsDelivr / unpkg / cdnjs，任一可用即可运行。
@@ -175,6 +175,21 @@
   <img src="assets/scene_hop.png" alt="笔顺跳房子" width="240" />
 </p>
 
+### 🍉 笔顺切水果（刀刃切割模式）
+
+夜空下的木台，答案写在飞来的水果上——**用鼠标/手指划一刀**，把正确的那颗切开：
+
+- 🔪 **真·刀感**：按住划过水果才算切中（触屏直接点也行），切中瞬间水果**裂成两半飞散**、果汁四溅、刀刃拖出蓝色光轨，「完美一刀！」「好刀法！」大字弹在天上
+- 🧠 **先算再切**：题目问「『一』第一笔往哪写？」「『人』一共有几笔？」，四颗水果上写着四个候选答案，看准了才下刀——切错一下就去一颗 ❤️
+- 💣 **炸弹别碰**：混在果子里的 💣 越到后面越多，切到直接扣心 + 屏幕震动，贪刀必翻车
+- 🔥 **连击加分**：连切正确答案，五声音阶一路往上爬，分数随连击水涨船高（最高 +36/颗），每切中一颗回 1.5 秒
+- 🍃 **放走也算失误**：写着正确答案的水果掉下木台，连击清零并提醒你别再让它飞走
+- ⏱️ 90 秒一局、3 颗心，结算给出得分 / 最长连击 / 切中数与**刀法评级**（🔰 水果学徒 → 🥷 水果忍者大师），记录 `hz_fruit_best` / `hz_fruit_wins`，连胜越多炸弹越密、下一波水果来得越快
+
+<p align="center">
+  <img src="assets/scene_fruit.png" alt="笔顺切水果" width="240" />
+</p>
+
 ### 🔗 笔顺连连消（知识连连看模式）
 
 30 个字块铺满棋盘，一半是**汉字**、一半是**笔顺线索**（「4 笔」/「第一笔 ➡️」/「最后一笔 ⬇️」），把一对连起来就能消除：
@@ -289,7 +304,7 @@
 | 音效 | Web Audio API · 代码合成正弦 / 方波 / 三角波 |
 | 语音 | Web Speech API · `SpeechSynthesisUtterance` 中文播报 |
 | 动画 | CSS `@keyframes` · 无第三方动画库 |
-| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` / `hz_boss_beat` / `hz_boss_best` · 宠物养成：`hz_pet`（成长/饱食/心情/上线时间，跨真实时间衰减） · 跳房子：`hz_hop_wins` / `hz_hop_best` · 连连消：`hz_lian_wins` / `hz_lian_best` |
+| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` / `hz_boss_beat` / `hz_boss_best` · 宠物养成：`hz_pet`（成长/饱食/心情/上线时间，跨真实时间衰减） · 跳房子：`hz_hop_wins` / `hz_hop_best` · 连连消：`hz_lian_wins` / `hz_lian_best` · 切水果：`hz_fruit_wins` / `hz_fruit_best` |
 | 部署 | 任意静态服务器 · 已内置多 CDN 容错 |
 
 ---
@@ -332,7 +347,7 @@ npx serve -l 8765
 
 ```
 hanzi-practice/
-├── index.html          # 主应用（4600 行单文件，包含 HTML/CSS/JS）
+├── index.html          # 主应用（5000 行单文件，包含 HTML/CSS/JS）
 ├── assets/             # README 用图片资源
 │   ├── demo.gif        # 运行演示 GIF
 │   ├── scene_home.png
@@ -348,7 +363,8 @@ hanzi-practice/
 │   ├── scene_boss.png
 │   ├── scene_pet.png
 │   ├── scene_hop.png
-│   └── scene_lian.png
+│   ├── scene_lian.png
+│   └── scene_fruit.png
 ├── record_demo.js      # Puppeteer 自动录屏脚本（开发用）
 ├── make_gif.py         # PNG 帧合成 GIF 脚本（开发用）
 ├── package.json
