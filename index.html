@@ -35,7 +35,7 @@ button:active{transform:scale(.95)}
 .top-bar .icon-btn{background:rgba(255,255,255,.2);border:none;color:#fff;padding:6px 12px;border-radius:15px;cursor:pointer;font-size:16px;font-family:inherit;line-height:1}
 .top-bar .icon-btn:hover{background:rgba(255,255,255,.35)}
 .stats{display:flex;gap:12px}
-.stats span{background:rgba(255,255,255,.15);padding:4px 10px;border-radius:12px;font-size:13px}
+.stats span{background:rgba(255,255,255,.15);padding:4px 10px;border-radius:12px;font-size:13px;white-space:nowrap}
 .home-title{text-align:center;margin:20px 0 10px;color:#fff}
 .home-title h1{font-size:32px;text-shadow:2px 2px 8px rgba(0,0,0,.3);margin-bottom:6px}
 .home-title p{font-size:16px;opacity:.85}
@@ -403,6 +403,32 @@ button:active{transform:scale(.95)}
 .hp-board{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:420px;font-size:12px;color:#fff;margin:2px 0;opacity:.95}
 .hp-flag{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);font-size:11px;color:#2E7D32;opacity:.75}
 @media(max-width:420px){.hp-wrap{height:27vh;min-height:210px}.hp-token{width:38px;height:38px;font-size:28px;line-height:38px;margin:-19px 0 0 -19px}.hp-tile{font-size:13px}}
+/* ---------- 笔顺连连消 ---------- */
+.ln-wrap{position:relative;display:grid;gap:5px;width:100%;max-width:430px;height:44vh;min-height:300px;max-height:430px;margin:6px auto;padding:6px;border-radius:20px;background:linear-gradient(155deg,rgba(255,255,255,.18),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 26px rgba(0,0,0,.24)}
+.ln-cell{border-radius:12px;min-width:0;min-height:0}
+.ln-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;padding:1px;border:2px solid transparent;font-family:inherit;color:#fff;box-shadow:0 3px 9px rgba(0,0,0,.2);transition:transform .12s ease-out,opacity .28s ease-in,filter .15s;overflow:hidden}
+.ln-tile .big{font-size:clamp(15px,4.2vw,25px);font-weight:bold;line-height:1.08}
+.ln-tile .small{font-size:clamp(8px,2.1vw,11px);opacity:.9;line-height:1.1}
+.ln-tile.char{background:linear-gradient(140deg,#FFB74D,#F57C00)}
+.ln-tile.clue{background:linear-gradient(140deg,#64B5F6,#1976D2)}
+.ln-tile.sel{transform:scale(1.08);border-color:#FFEB3B;box-shadow:0 0 0 3px rgba(255,235,59,.45),0 5px 14px rgba(0,0,0,.3);z-index:3}
+.ln-tile.gone{opacity:0;transform:scale(.2) rotate(24deg);pointer-events:none}
+.ln-tile.bad{animation:lnShake .42s}
+@keyframes lnShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px) rotate(-4deg)}45%{transform:translateX(6px) rotate(4deg)}70%{transform:translateX(-4px)}}
+.ln-tile.hint{animation:lnHint .85s ease-in-out 2}
+@keyframes lnHint{0%,100%{filter:brightness(1)}50%{filter:brightness(1.9) saturate(1.4);transform:scale(1.1)}}
+.ln-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:6}
+.ln-line{fill:none;stroke:#FFEB3B;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(255,235,59,.95));animation:lnFade .5s ease-out forwards}
+@keyframes lnFade{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
+.ln-burst{position:absolute;font-size:17px;pointer-events:none;z-index:7;transform:translate(-50%,-50%);animation:lnBurst .72s ease-out forwards}
+@keyframes lnBurst{0%{opacity:1;transform:translate(-50%,-50%) scale(.4)}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.4)}}
+.ln-pop{position:absolute;transform:translate(-50%,-50%);font-size:16px;font-weight:bold;color:#FFEB3B;pointer-events:none;z-index:8;text-shadow:0 2px 6px rgba(0,0,0,.55);animation:lnPop .95s ease-out forwards}
+@keyframes lnPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}25%{opacity:1}100%{opacity:0;transform:translate(-50%,-135%) scale(1.15)}}
+.ln-tools{display:flex;gap:8px;width:100%;max-width:430px;margin:2px 0 0}
+.ln-tool{flex:1;border:none;border-radius:13px;padding:8px 2px;font-family:inherit;font-size:12px;color:#fff;cursor:pointer;background:linear-gradient(135deg,#26A69A,#00796B);box-shadow:0 4px 11px rgba(0,0,0,.22);transition:transform .1s,filter .15s}
+.ln-tool:active{transform:scale(.94)}
+.ln-tool.off{opacity:.42;pointer-events:none}
+@media(max-width:420px){.ln-wrap{height:40vh;min-height:280px;gap:4px;padding:4px}.ln-tile .big{font-size:15px}.ln-tile .small{font-size:8px}}
 </style>
 </head>
 <body>
@@ -476,6 +502,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('hop')">
       <div class="icon">🦘</div>
       <div class="info"><h3>笔顺跳房子</h3><p>答对往前跳，和对手抢着冲线！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('lian')">
+      <div class="icon">🔗</div>
+      <div class="info"><h3>笔顺连连消</h3><p>汉字找笔顺线索，连线消消消！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -936,6 +966,50 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-lian">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="lnScore">⭐ 0</span><span id="lnLeft">🧩 剩 15</span><span id="lnCombo" style="color:#FFD740">🔥 x0</span><span id="lnTime" style="color:#FFD740">⏱️ 100s</span></div>
+  </div>
+  <div class="challenge-goal" id="lnGoal">🔗 把「汉字」和它的「笔顺线索」连起来，路径最多拐两个弯！</div>
+  <div class="ln-wrap" id="lnWrap"></div>
+  <div class="bs-timer"><div class="bs-timer-fill" id="lnTimeFill"></div></div>
+  <div class="ln-tools">
+    <button class="ln-tool" id="lnHintBtn" onclick="lianHint()">💡 提示一组（省 5 秒）</button>
+    <button class="ln-tool" id="lnShuffleBtn" onclick="lianShuffleTool()">🔀 重新洗牌（省 8 秒）</button>
+  </div>
+  <div class="quiz-header">
+    <div class="question" id="lnQuestion">正在准备字块…</div>
+  </div>
+  <div class="feedback" id="lnFeedback"></div>
+</div>
+<div class="screen" id="screen-lian-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="lnResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="lnResultEmoji">🧩</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="lnResultTitle">全部消除！</h2>
+    <p style="font-size:16px;opacity:.8" id="lnResultSubtitle">再来一局，字块会重新排哦！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="lnResultPairs">0</div><div style="font-size:13px;opacity:.7">消除对数</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="lnResultCombo">0</div><div style="font-size:13px;opacity:.7">最长连击</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="lnResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="lnResultBest">0</div><div style="font-size:13px;opacity:.7">历史最佳</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🧠 这一局复习到的字</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740;letter-spacing:3px" id="lnResultChars">—</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="lianStart()">🔄 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -1284,6 +1358,7 @@ function enterMode(mode){
   else if(mode==='boss')bossStart();
   else if(mode==='pet')petStart();
   else if(mode==='hop')hopStart();
+  else if(mode==='lian')lianStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -3503,6 +3578,382 @@ document.addEventListener('keydown',function(e){
     const o=document.querySelectorAll('#hpOptions .opt-btn')[parseInt(k,10)-1];
     if(o)o.click();
   }
+});
+/* ================= 笔顺连连消 ================= */
+const LN_COLS=6, LN_ROWS=5, LN_PAIRS=15;
+const LN_R=LN_ROWS+2, LN_C=LN_COLS+2;
+const LN_PENTA=[523,587,659,784,880,1047,1319];
+const LN_ORD=['一','二','三','四','五','六','七','八','九','十','十一','十二','十三'];
+let lian={gen:0,tiles:[],occ:[],cellEls:[],svg:null,sel:-1,time:100,total:0,cleared:0,combo:0,maxCombo:0,score:0,over:true,busy:true,timerId:null,lastTs:0};
+function lianWins(){return Math.max(0,parseInt(localStorage.getItem('hz_lian_wins')||'0',10)||0);}
+function lianBest(){return Math.max(0,parseInt(localStorage.getItem('hz_lian_best')||'0',10)||0);}
+function lianShuf(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=arr[i];arr[i]=arr[j];arr[j]=t;}return arr;}
+function lianClues(ch,data){
+  const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+  const n=data.strokes.length;
+  const out=[{big:n+' 笔',small:'一共几笔'}];
+  const f=DIRS.find(x=>x.code===dirs[0]);
+  const l=DIRS.find(x=>x.code===dirs[n-1]);
+  if(f)out.push({big:f.icon,small:'第一笔'});
+  if(l&&n>1)out.push({big:l.icon,small:'最后一笔'});
+  if(n>2){const m=DIRS.find(x=>x.code===dirs[1]);if(m)out.push({big:m.icon,small:'第二笔'});}
+  return out;
+}
+async function lianMakePairs(){
+  const pairs=[],usedChar={},usedText={};
+  let guard=0;
+  while(pairs.length<LN_PAIRS&&guard++<300){
+    const ch=nextInQueue();
+    if(usedChar[ch])continue;
+    const data=await loadCharData(ch);
+    if(!data||!data.strokes||!data.strokes.length)continue;
+    usedChar[ch]=1;
+    if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+    const clues=lianShuf(lianClues(ch,data));
+    let clue=null;
+    for(let i=0;i<clues.length;i++){
+      if(!usedText[clues[i].big+clues[i].small]){clue=clues[i];break;}
+    }
+    if(!clue)continue;
+    usedText[clue.big+clue.small]=1;
+    const dirs=strokeTypes[ch];
+    const fd=DIRS.find(x=>x.code===dirs[0]),ld=DIRS.find(x=>x.code===dirs[dirs.length-1]);
+    pairs.push({ch:ch,clue:clue,n:data.strokes.length,
+      fact:'「'+ch+'」一共 '+data.strokes.length+' 笔'+(fd?'，第一笔 '+fd.icon+' '+(fd.label||''):'')+(ld?'，最后一笔 '+ld.icon:'')});
+  }
+  return pairs;
+}
+function lianOcc(){
+  const occ=[];
+  for(let r=0;r<LN_R;r++){occ.push([]);for(let c=0;c<LN_C;c++)occ[r].push(-1);}
+  lian.tiles.forEach((t,i)=>{if(t.alive)occ[t.r][t.c]=i;});
+  lian.occ=occ;
+}
+function lianEmpty(r,c){return r>=0&&r<LN_R&&c>=0&&c<LN_C&&lian.occ[r][c]<0;}
+function lianH(r,c1,c2){const a=Math.min(c1,c2),b=Math.max(c1,c2);for(let c=a+1;c<b;c++)if(!lianEmpty(r,c))return false;return true;}
+function lianV(c,r1,r2){const a=Math.min(r1,r2),b=Math.max(r1,r2);for(let r=a+1;r<b;r++)if(!lianEmpty(r,c))return false;return true;}
+function lianPath(t1,t2){
+  const A={r:t1.r,c:t1.c},B={r:t2.r,c:t2.c};
+  if(A.r===B.r&&lianH(A.r,A.c,B.c))return[[A.r,A.c],[B.r,B.c]];
+  if(A.c===B.c&&lianV(A.c,A.r,B.r))return[[A.r,A.c],[B.r,B.c]];
+  if(lianEmpty(A.r,B.c)&&lianH(A.r,A.c,B.c)&&lianV(B.c,A.r,B.r))return[[A.r,A.c],[A.r,B.c],[B.r,B.c]];
+  if(lianEmpty(B.r,A.c)&&lianV(A.c,A.r,B.r)&&lianH(B.r,A.c,B.c))return[[A.r,A.c],[B.r,A.c],[B.r,B.c]];
+  for(let r=0;r<LN_R;r++){
+    if(r===A.r||r===B.r)continue;
+    if(lianEmpty(r,A.c)&&lianEmpty(r,B.c)&&lianV(A.c,A.r,r)&&lianH(r,A.c,B.c)&&lianV(B.c,r,B.r))
+      return[[A.r,A.c],[r,A.c],[r,B.c],[B.r,B.c]];
+  }
+  for(let c=0;c<LN_C;c++){
+    if(c===A.c||c===B.c)continue;
+    if(lianEmpty(A.r,c)&&lianEmpty(B.r,c)&&lianH(A.r,A.c,c)&&lianV(c,A.r,B.r)&&lianH(B.r,c,B.c))
+      return[[A.r,A.c],[A.r,c],[B.r,c],[B.r,B.c]];
+  }
+  return null;
+}
+function lianFindPair(){
+  const g={};
+  lian.tiles.forEach((t,i)=>{if(t.alive)(g[t.pair]=g[t.pair]||[]).push(i);});
+  for(const k in g){
+    const a=g[k];
+    for(let x=0;x<a.length;x++)for(let y=x+1;y<a.length;y++){
+      const p=lianPath(lian.tiles[a[x]],lian.tiles[a[y]]);
+      if(p)return{a:a[x],b:a[y],path:p};
+    }
+  }
+  return null;
+}
+function lianRender(){
+  const wrap=document.getElementById('lnWrap');
+  wrap.innerHTML='';
+  wrap.style.gridTemplateColumns='repeat('+LN_C+',1fr)';
+  wrap.style.gridTemplateRows='repeat('+LN_R+',1fr)';
+  lian.cellEls=[];
+  for(let r=0;r<LN_R;r++){lian.cellEls.push([]);for(let c=0;c<LN_C;c++){
+    const el=document.createElement('div');el.className='ln-cell';wrap.appendChild(el);lian.cellEls[r].push(el);
+  }}
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('class','ln-svg');wrap.appendChild(svg);lian.svg=svg;
+  lianOcc();
+  lian.tiles.forEach((t,i)=>{
+    if(!t.alive)return;
+    const el=document.createElement('button');
+    el.type='button';
+    el.className='ln-tile ln-cell '+t.kind;
+    el.dataset.pair=String(t.pair);
+    el.innerHTML='<span class="big">'+(t.kind==='char'?t.ch:t.clue.big)+'</span><span class="small">'+(t.kind==='char'?'找线索':t.clue.small)+'</span>';
+    el.onclick=function(){lianClick(i);};
+    const old=lian.cellEls[t.r][t.c];
+    wrap.replaceChild(el,old);
+    lian.cellEls[t.r][t.c]=el;
+  });
+}
+function lianCell(i){const t=lian.tiles[i];return lian.cellEls[t.r][t.c];}
+function lianPoint(r,c){
+  const wrap=document.getElementById('lnWrap'),el=lian.cellEls[r][c];
+  const wr=wrap.getBoundingClientRect(),er=el.getBoundingClientRect();
+  return[er.left-wr.left+er.width/2,er.top-wr.top+er.height/2];
+}
+function lianDrawLine(path){
+  if(!lian.svg)return;
+  const pts=path.map(p=>lianPoint(p[0],p[1]).join(',')).join(' ');
+  const pl=document.createElementNS('http://www.w3.org/2000/svg','polyline');
+  pl.setAttribute('points',pts);pl.setAttribute('class','ln-line');
+  lian.svg.appendChild(pl);
+  setTimeout(()=>pl.remove(),540);
+}
+function lianBurst(i){
+  const t=lian.tiles[i],el=lianCell(i),wrap=document.getElementById('lnWrap');
+  if(!el)return;
+  const x=el.offsetLeft+el.offsetWidth/2,y=el.offsetTop+el.offsetHeight/2;
+  for(let k=0;k<6;k++){
+    const s=document.createElement('span');
+    s.className='ln-burst';s.textContent=['✨','⭐','💫'][k%3];
+    s.style.left=x+'px';s.style.top=y+'px';
+    s.style.setProperty('--dx',(Math.random()*90-45)+'px');
+    s.style.setProperty('--dy',(Math.random()*-70-18)+'px');
+    wrap.appendChild(s);
+    setTimeout(()=>s.remove(),760);
+  }
+}
+function lianPop(i,txt){
+  const el=lianCell(i),wrap=document.getElementById('lnWrap');
+  if(!el)return;
+  const p=document.createElement('div');
+  p.className='ln-pop';p.textContent=txt;
+  p.style.left=(el.offsetLeft+el.offsetWidth/2)+'px';
+  p.style.top=(el.offsetTop+el.offsetHeight/2)+'px';
+  wrap.appendChild(p);
+  setTimeout(()=>p.remove(),980);
+}
+function lianMsg(txt,color){
+  document.getElementById('lnFeedback').innerHTML='<span style="color:'+(color||'#FFD740')+'">'+txt+'</span>';
+}
+function lianUpdateUI(){
+  document.getElementById('lnLeft').textContent='🧩 剩 '+(lian.total-lian.cleared);
+  document.getElementById('lnCombo').textContent='🔥 x'+lian.combo;
+  document.getElementById('lnTime').textContent='⏱️ '+Math.ceil(Math.max(0,lian.time))+'s';
+  document.getElementById('lnScore').textContent='⭐ '+lian.score;
+}
+function lianStart(){
+  if(lian.timerId){clearInterval(lian.timerId);lian.timerId=null;}
+  const g=(lian.gen||0)+1;
+  const total=Math.max(70,100-lianWins()*4);
+  lian={gen:g,t0:total,tiles:[],occ:[],cellEls:[],svg:null,sel:-1,time:total,total:0,cleared:0,combo:0,maxCombo:0,score:0,over:false,busy:true,timerId:lian.timerId,lastTs:performance.now()};
+  showScreen('lian');
+  document.getElementById('lnWrap').innerHTML='';
+  document.getElementById('lnFeedback').textContent='';
+  document.getElementById('lnHintBtn').classList.remove('off');
+  document.getElementById('lnShuffleBtn').classList.remove('off');
+  document.getElementById('lnTimeFill').style.width='100%';
+  document.getElementById('lnTimeFill').classList.remove('urgent');
+  document.getElementById('lnQuestion').textContent='正在摆字块…';
+  document.getElementById('lnGoal').textContent='🔗 汉字配笔顺线索，连线最多拐两个弯！历史最佳 '+lianBest()+' 分';
+  lianUpdateUI();
+  lian.timerId=setInterval(lianTick,100);
+  lianMakePairs().then(pairs=>{
+    if(g!==lian.gen||currentMode!=='lian'||lian.over)return;
+    if(pairs.length<6){
+      lianQuestion('字库没加载好，返回首页再试一次');
+      lianStopLoops();lian.over=true;return;
+    }
+    const tiles=[];
+    const cells=[];
+    for(let r=1;r<=LN_ROWS;r++)for(let c=1;c<=LN_COLS;c++)cells.push({r:r,c:c});
+    lianShuf(cells);
+    pairs.forEach((p,idx)=>{
+      const a=cells.pop(),b=cells.pop();
+      tiles.push({pair:idx,kind:'char',ch:p.ch,clue:p.clue,n:p.n,fact:p.fact,r:a.r,c:a.c,alive:true});
+      tiles.push({pair:idx,kind:'clue',ch:p.ch,clue:p.clue,n:p.n,fact:p.fact,r:b.r,c:b.c,alive:true});
+    });
+    lian.tiles=tiles;
+    lian.total=pairs.length;
+    lianRender();
+    if(!lianFindPair()){lianRelayout();lianRender();}
+    lian.busy=false;
+    tone(990,.18,'triangle',.14);
+    document.getElementById('lnQuestion').textContent='开始！还剩 '+lian.total+' 对，先找笔画数一样的';
+    lianUpdateUI();
+  });
+}
+function lianQuestion(txt){document.getElementById('lnQuestion').textContent=txt;}
+function lianStopLoops(){if(lian.timerId){clearInterval(lian.timerId);lian.timerId=null;}}
+function lianTick(){
+  if(lian.over||currentMode!=='lian'){lianStopLoops();return;}
+  const now=performance.now();
+  const dt=(now-lian.lastTs)/1000;
+  lian.lastTs=now;
+  if(lian.busy)return;
+  lian.time-=dt;
+  const pct=Math.max(0,Math.min(100,lian.time/Math.max(30,lian.t0)*100));
+  const f=document.getElementById('lnTimeFill');
+  f.style.width=pct+'%';
+  if(pct<30)f.classList.add('urgent');
+  lianUpdateUI();
+  if(lian.time<=0){lian.time=0;lianLose();}
+}
+function lianDeselect(){
+  if(lian.sel>=0){const el=lianCell(lian.sel);if(el)el.classList.remove('sel');lian.sel=-1;}
+}
+function lianClick(i){
+  if(lian.over||lian.busy)return;
+  const t=lian.tiles[i];
+  if(!t||!t.alive)return;
+  unlockAudio();
+  if(lian.sel===i){lianDeselect();lianQuestion('点一个「汉字」，再点它的「笔顺线索」');return;}
+  if(lian.sel<0){
+    lian.sel=i;lianCell(i).classList.add('sel');
+    tone(t.kind==='char'?700:520,.07,'triangle',.12);
+    lianQuestion(t.kind==='char'?('「'+t.ch+'」的笔顺线索是哪一个？'):('先点汉字「'+t.ch+'」，再回来点线索'));
+    return;
+  }
+  const j=lian.sel;
+  const o=lian.tiles[j];
+  lianDeselect();
+  if(o.pair===t.pair){
+    const path=lianPath(o,t);
+    if(path){lianMatch(j,i,path);return;}
+    tone(320,.14,'sine',.1);
+    lianMsg('⚠️ 配对啦，可是连不通！先消掉挡在中间的字块','#FFCC80');
+    lianQuestion('路径最多拐两个弯，换一条试试');
+    lian.sel=-1;
+    return;
+  }
+  lianMiss(j,i);
+}
+function lianMatch(a,b,path){
+  const ta=lian.tiles[a],tb=lian.tiles[b];
+  lianDrawLine(path);
+  ta.alive=false;tb.alive=false;
+  lian.occ[ta.r][ta.c]=-1;lian.occ[tb.r][tb.c]=-1;
+  lian.combo++;
+  if(lian.combo>lian.maxCombo)lian.maxCombo=lian.combo;
+  const gain=10+Math.min(lian.combo,8)*3;
+  lian.score+=gain;
+  lian.cleared++;
+  lian.time=Math.min(120,lian.time+2);
+  sndOk();
+  tone(LN_PENTA[Math.min(lian.combo-1,LN_PENTA.length-1)],.14,'triangle',.16);
+  showComboEffect(lian.combo);
+  lianBurst(a);lianBurst(b);lianPop(a,'+'+gain);
+  const ea=lianCell(a),eb=lianCell(b);
+  if(ea)ea.classList.add('gone');
+  if(eb)eb.classList.add('gone');
+  if(lian.combo>=5&&lian.combo%5===0)speakPraise();
+  lianMsg('✓ 连上了！'+ta.ch+' 消消消 ×'+lian.combo,'#69F0AE');
+  lianQuestion(ta.fact);
+  lianUpdateUI();
+  const g=lian.gen;
+  setTimeout(()=>{
+    if(g!==lian.gen||lian.over||currentMode!=='lian')return;
+    if(lian.cleared>=lian.total){lianWin();return;}
+    if(!lianFindPair()){
+      lianMsg('🔀 没有能连的了，自动洗牌！','#80D8FF');
+      tone(600,.12,'sine',.12);
+      lianRelayout();lianRender();
+    }
+  },520);
+}
+function lianMiss(a,b){
+  const ta=lian.tiles[a],tb=lian.tiles[b];
+  lian.combo=0;
+  lian.time=Math.max(0,lian.time-3);
+  sndNo();tone(160,.3,'square',.11);
+  [[ta,a],[tb,b]].forEach(pr=>{
+    const el=lianCell(pr[1]);
+    if(!el)return;
+    el.classList.remove('bad');void el.offsetWidth;el.classList.add('bad');
+    setTimeout(()=>el.classList.remove('bad'),460);
+  });
+  lianMsg('✗ 不是一对哦，扣 3 秒','#FFAB91');
+  lianQuestion('💡 '+ta.fact);
+  lianUpdateUI();
+  if(lian.time<=0){lian.time=0;lianLose();}
+}
+function lianRelayout(){
+  const alive=lian.tiles.filter(t=>t.alive);
+  for(let tries=0;tries<25;tries++){
+    const cells=[];
+    for(let r=1;r<=LN_ROWS;r++)for(let c=1;c<=LN_COLS;c++)cells.push({r:r,c:c});
+    lianShuf(cells);
+    alive.forEach((t,i)=>{t.r=cells[i].r;t.c=cells[i].c;});
+    lianOcc();
+    if(lianFindPair())return;
+  }
+}
+function lianHint(){
+  if(lian.over||lian.busy)return;
+  const p=lianFindPair();
+  if(!p){lianMsg('🔀 现在真的连不通，帮你洗牌啦','#80D8FF');lianRelayout();lianRender();return;}
+  lian.time=Math.max(1,lian.time-5);
+  lianDeselect();
+  tone(880,.1,'sine',.12);
+  [p.a,p.b].forEach(i=>{
+    const el=lianCell(i);
+    if(!el)return;
+    el.classList.remove('hint');void el.offsetWidth;el.classList.add('hint');
+    setTimeout(()=>el.classList.remove('hint'),1750);
+  });
+  lianMsg('💡 提示：这两个能连上，扣 5 秒','#FFD740');
+  lianQuestion(lian.tiles[p.a].fact);
+  lianUpdateUI();
+}
+function lianShuffleTool(){
+  if(lian.over||lian.busy)return;
+  lian.time=Math.max(1,lian.time-8);
+  lianDeselect();
+  sndDone();
+  lianRelayout();lianRender();
+  lianMsg('🔀 洗好牌啦，扣 8 秒','#80D8FF');
+  lianUpdateUI();
+}
+function lianWin(){
+  if(lian.over)return;
+  lian.over=true;lian.busy=true;
+  lianStopLoops();
+  const left=Math.max(0,Math.floor(lian.time));
+  const wins=lianWins()+1;
+  localStorage.setItem('hz_lian_wins',String(wins));
+  const best=Math.max(lian.score,lianBest());
+  localStorage.setItem('hz_lian_best',String(best));
+  const earned=Math.max(3,Math.min(20,5+Math.floor(left/8)+(lian.maxCombo>=5?2:0)));
+  lianResult(true,earned,best,left);
+}
+function lianLose(){
+  if(lian.over)return;
+  lian.over=true;lian.busy=true;
+  lianStopLoops();
+  localStorage.setItem('hz_lian_wins','0');
+  lianResult(false,Math.max(1,Math.floor(lian.cleared/2)),lianBest(),0);
+}
+function lianResult(win,earned,best,left){
+  addStars(earned);
+  showScreen('lian-result');
+  document.getElementById('lnResultStars').textContent='⭐ +'+earned;
+  document.getElementById('lnResultPairs').textContent=lian.cleared+' / '+lian.total;
+  document.getElementById('lnResultCombo').textContent=lian.maxCombo;
+  document.getElementById('lnResultScore').textContent=lian.score;
+  document.getElementById('lnResultBest').textContent=best;
+  const chars=[];
+  lian.tiles.forEach(t=>{if(!t.alive&&chars.indexOf(t.ch)<0)chars.push(t.ch);});
+  document.getElementById('lnResultChars').textContent=chars.length?chars.slice(0,8).join(' '):'—';
+  let emoji,title,subtitle;
+  if(win){
+    emoji='🎊';title=left>=45?'全部消除，速度惊人！':'全部消除，连消高手！';
+    subtitle='还剩 '+left+' 秒，连击 '+lian.maxCombo+'，下一局时间会更紧哦！';
+  }else{
+    emoji='⏳';title='时间到啦…';
+    subtitle='消掉了 '+lian.cleared+' 对。看清笔画数再连，扣秒就少了！';
+  }
+  document.getElementById('lnResultEmoji').textContent=emoji;
+  document.getElementById('lnResultTitle').textContent=title;
+  document.getElementById('lnResultSubtitle').textContent=subtitle;
+  if(win){sndReward();setTimeout(showRewardEgg,900);speakPraise();}
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='lian'||lian.over)return;
+  const k=(e.key||'').toLowerCase();
+  if(k==='h'){e.preventDefault();lianHint();}
+  else if(k==='s'){e.preventDefault();lianShuffleTool();}
 });
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
