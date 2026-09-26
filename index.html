@@ -556,6 +556,50 @@ button:active{transform:scale(.95)}
 .fh-hud span{white-space:nowrap}
 @media(max-width:420px){.fh-wrap{height:41vh;min-height:290px}.fh-fish .fe{font-size:25px}.fh-fish .fl{font-size:10px}.fh-boat{font-size:27px}.fh-judge{font-size:21px}}
 
+/* ---------- 笔顺双人大乱斗 ---------- */
+.dl-panel{position:relative;width:100%;max-width:430px;margin:0 auto;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:8px 10px 10px;transition:box-shadow .25s,opacity .25s,filter .25s}
+.dl-panel.p1{border-top:3px solid #FF5252}
+.dl-panel.p2{border-bottom:3px solid #448AFF}
+.dl-panel.lock{opacity:.45;filter:saturate(.35)}
+.dl-panel.danger{box-shadow:0 0 0 2px #FFD740,0 0 22px rgba(255,215,64,.45)}
+.dl-phead{display:flex;align-items:center;gap:8px;color:#fff;font-size:13px;font-weight:bold;margin-bottom:3px}
+.dl-phead .ava{font-size:27px;line-height:1;transition:transform .12s}
+.dl-phead .ava.pull{animation:dlPull .36s}
+.dl-phead .who{flex:1}
+.dl-phead .who small{display:block;font-size:10px;opacity:.6;font-weight:normal}
+.dl-phead .st{font-size:12px;color:#FFD740;white-space:nowrap}
+.dl-pq{color:#fff;font-size:15px;font-weight:bold;text-align:center;margin:2px 0 6px;min-height:22px}
+.dl-pq .mole-char{font-size:21px}
+.dl-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.dl-opts .opt-btn{padding:9px 4px;font-size:16px;border-radius:12px}
+.dl-arena{position:relative;width:100%;max-width:430px;height:104px;margin:8px auto;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#0E2C46 0%,#123C5E 45%,#0C2A42 100%);box-shadow:0 8px 22px rgba(0,0,0,.4),inset 0 0 40px rgba(0,0,0,.45)}
+.dl-arena.shake{animation:cfShake .42s}
+.dl-grass{position:absolute;left:0;right:0;bottom:0;height:24px;background:repeating-linear-gradient(90deg,#1E6E4A 0 12px,#25865A 12px 24px);box-shadow:inset 0 3px 6px rgba(0,0,0,.35)}
+.dl-line{position:absolute;top:8px;bottom:8px;left:50%;width:2px;background:rgba(255,255,255,.45)}
+.dl-zone{position:absolute;top:0;bottom:0;width:12%;display:flex;align-items:flex-start;justify-content:center;padding-top:5px;font-size:17px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.dl-zone.z1{left:0;background:linear-gradient(90deg,rgba(255,82,82,.42),transparent)}
+.dl-zone.z2{right:0;background:linear-gradient(270deg,rgba(68,138,255,.42),transparent)}
+.dl-rope{position:absolute;top:46%;left:4%;right:4%;height:8px;border-radius:4px;background:repeating-linear-gradient(90deg,#E3B884 0 11px,#B8863F 11px 22px);box-shadow:0 3px 7px rgba(0,0,0,.55)}
+.dl-knot{position:absolute;top:46%;left:50%;width:34px;height:34px;margin:-17px 0 0 -17px;display:flex;align-items:center;justify-content:center;font-size:27px;line-height:1;transition:left .36s cubic-bezier(.34,1.56,.64,1);z-index:4;filter:drop-shadow(0 3px 6px rgba(0,0,0,.65))}
+.dl-knot.jerk{animation:dlJerk .38s}
+.dl-pull{position:absolute;top:34%;font-size:29px;line-height:1;z-index:3;transition:left .36s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 3px 5px rgba(0,0,0,.55))}
+.dl-pull.t1{transform:rotate(-8deg)}
+.dl-pull.t2{transform:scaleX(-1) rotate(-8deg)}
+.dl-dust{position:absolute;width:7px;height:7px;border-radius:50%;background:#E7D2AE;pointer-events:none;z-index:5;animation:cfDrop .62s ease-out forwards}
+.dl-pop{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font-size:18px;font-weight:bold;color:#FFEB3B;text-shadow:0 2px 7px rgba(0,0,0,.85);pointer-events:none;z-index:9;animation:cfPop .9s ease-out forwards}
+.dl-judge{position:absolute;left:50%;top:22%;transform:translate(-50%,-50%);font-size:21px;font-weight:bold;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.8);pointer-events:none;opacity:0;z-index:8;white-space:nowrap}
+.dl-judge.on{animation:cfJudge .85s ease-out}
+.dl-cd{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:54px;font-weight:bold;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.85);z-index:9;pointer-events:none;opacity:0}
+.dl-cd.on{animation:dlCd .78s ease-out}
+@keyframes dlCd{0%{opacity:0;transform:scale(2.3)}26%{opacity:1;transform:scale(1)}74%{opacity:1}100%{opacity:0;transform:scale(.82)}}
+@keyframes dlPull{0%,100%{transform:translateX(0) rotate(0)}28%{transform:translateX(-8px) rotate(-11deg)}58%{transform:translateX(5px) rotate(6deg)}}
+@keyframes dlJerk{0%,100%{transform:rotate(0) scale(1)}26%{transform:rotate(-14deg) scale(1.2)}56%{transform:rotate(9deg) scale(1.08)}}
+.dl-hud{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;max-width:430px;margin:6px auto 0;color:#fff;font-size:12.5px;font-weight:bold}
+.dl-hud span{white-space:nowrap}
+.dl-btns{display:flex;justify-content:center;gap:10px;width:100%;max-width:430px;margin:8px auto 0}
+.dl-btns .w-btn{flex:1;padding:10px 6px;font-size:14px}
+@media(max-width:420px){.dl-arena{height:92px}.dl-opts .opt-btn{font-size:14px;padding:8px 3px}.dl-pq{font-size:14px}.dl-knot{font-size:23px}.dl-pull{font-size:24px}.dl-cd{font-size:44px}}
+
 </style>
 
 </head>
@@ -650,6 +694,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('fish')">
       <div class="icon">🎣</div>
       <div class="info"><h3>笔顺钓鱼</h3><p>蓄力抛竿，钓起写着答案的小鱼！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('duel')">
+      <div class="icon">🤼</div>
+      <div class="info"><h3>笔顺双人大乱斗</h3><p>分屏抢答拔河，把绳子拉过线！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -1358,6 +1406,82 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-duel">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="dlTime">⏱ 90 秒</span><span id="dlFlagPos">🚩 正中</span><span id="dlAiTag">🤖 电脑陪练</span></div>
+  </div>
+  <div class="challenge-goal" id="dlGoal">🤼 两人分屏抢答！答对把绳子拉向自己，先拉过线的一方获胜；答错对手白拉一格，还会被锁住 1.3 秒！</div>
+  <div class="dl-panel p1" id="dlPanel1">
+    <div class="dl-phead">
+      <span class="ava" id="dlAva1">🐯</span>
+      <span class="who">红队 · 玩家 1<small>上半屏 / 键盘 1 2 3 4</small></span>
+      <span class="st" id="dlSt1">🔥 x0</span>
+    </div>
+    <div class="dl-pq" id="dlQ1">题目准备中…</div>
+    <div class="dl-opts" id="dlO1"></div>
+    <div class="feedback" id="dlFeedback1"></div>
+  </div>
+  <div class="dl-arena" id="dlArena">
+    <div class="dl-grass"></div>
+    <div class="dl-zone z1">🐯</div>
+    <div class="dl-zone z2">🐼</div>
+    <div class="dl-rope"></div>
+    <div class="dl-line"></div>
+    <div class="dl-pull t1" id="dlPull1">🐯</div>
+    <div class="dl-pull t2" id="dlPull2">🐼</div>
+    <div class="dl-knot" id="dlKnot">🚩</div>
+    <div class="dl-judge" id="dlJudge"></div>
+    <div class="dl-cd" id="dlCd"></div>
+  </div>
+  <div class="dl-panel p2" id="dlPanel2">
+    <div class="dl-phead">
+      <span class="ava" id="dlAva2">🐼</span>
+      <span class="who">蓝队 · 玩家 2<small>下半屏 / 键盘 7 8 9 0</small></span>
+      <span class="st" id="dlSt2">🔥 x0</span>
+    </div>
+    <div class="dl-pq" id="dlQ2">题目准备中…</div>
+    <div class="dl-opts" id="dlO2"></div>
+    <div class="feedback" id="dlFeedback2"></div>
+  </div>
+  <div class="dl-hud">
+    <span id="dlNeed1">红队还差 5 格</span>
+    <span id="dlBest">🏆 战绩 0 : 0</span>
+    <span id="dlNeed2">蓝队还差 5 格</span>
+  </div>
+  <div class="dl-btns">
+    <button class="w-btn blue" id="dlAiBtn" onclick="dlToggleAi()">🤖 换成小伙伴对战</button>
+    <button class="w-btn orange" onclick="dlStart()">🔄 重开一局</button>
+  </div>
+</div>
+<div class="screen" id="screen-duel-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="dlResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="dlResultEmoji">🤼</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="dlResultTitle">红队获胜！</h2>
+    <p style="font-size:16px;opacity:.8" id="dlResultSubtitle">再来一局，换边再战！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FF8A80" id="dlResultP1">0</div><div style="font-size:13px;opacity:.7">红队答对 / 拉绳</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#82B1FF" id="dlResultP2">0</div><div style="font-size:13px;opacity:.7">蓝队答对 / 拉绳</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD740" id="dlResultStreak">0</div><div style="font-size:13px;opacity:.7">最长连胜拉</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="dlResultAcc">0%</div><div style="font-size:13px;opacity:.7">全场正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史累计战绩（红 : 蓝）</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="dlResultBest">0 : 0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="dlResultWrong">双方共答错 0 次，答错对手白拉一格</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="dlStart()">🤼 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -1710,6 +1834,7 @@ function enterMode(mode){
   else if(mode==='fruit')fruitStart();
   else if(mode==='brick')brickStart(); else if(mode==='defense')tdStart();
  else if(mode==='fish')fhStart();
+ else if(mode==='duel')dlStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -5994,6 +6119,371 @@ function fhResult(best,acc,found,earned){
     if(e.code==='Space'||e.key===' ')fhUp();
   });
 })();
+
+
+/* ================= 笔顺双人大乱斗 ================= */
+const DL_WIN=5;
+const DL_TIME=90;
+const DL_ORD=['一','二','三','四','五','六','七','八','九','十'];
+const DL_TEAMS=[{e:'🐯',n:'红队',c:'#FF8A80'},{e:'🐼',n:'蓝队',c:'#82B1FF'}];
+const DL_KEYS=[['1','2','3','4'],['7','8','9','0']];
+let dl={gen:0,over:true,cd:true,ai:true,panels:[],pos:0,timerId:null};
+function dlWins(i){return Math.max(0,parseInt(localStorage.getItem(i?'hz_duel_p2':'hz_duel_p1')||'0',10)||0);}
+function dlStreakBest(){return Math.max(0,parseInt(localStorage.getItem('hz_duel_streak')||'0',10)||0);}
+function dlMatches(){return Math.max(0,parseInt(localStorage.getItem('hz_duel_matches')||'0',10)||0);}
+function dlStopLoops(){if(dl.timerId){clearInterval(dl.timerId);dl.timerId=null;}}
+function dlGeom(){const a=document.getElementById('dlArena');return {W:a.clientWidth||1,H:a.clientHeight||1};}
+function dlKnotX(){
+  const g=dlGeom(),pad=g.W*0.05;
+  return pad+(g.W-2*pad)*(0.5+dl.pos/(DL_WIN*2));
+}
+function dlPanelEl(p){return document.getElementById(p?'dlPanel2':'dlPanel1');}
+function dlBoxEl(p){return document.getElementById(p?'dlO2':'dlO1');}
+function dlQEl(p){return document.getElementById(p?'dlQ2':'dlQ1');}
+function dlMsg(p,t,c){
+  document.getElementById(p?'dlFeedback2':'dlFeedback1').innerHTML='<span style="color:'+(c||'#FFD740')+'">'+t+'</span>';
+}
+function dlJudge(t,c){
+  const j=document.getElementById('dlJudge');
+  j.textContent=t;j.style.color=c||'#FFEB3B';
+  j.classList.remove('on');void j.offsetWidth;j.classList.add('on');
+}
+function dlShake(){
+  const a=document.getElementById('dlArena');
+  a.classList.remove('shake');void a.offsetWidth;a.classList.add('shake');
+}
+function dlAvaPull(p){
+  const a=document.getElementById(p?'dlAva2':'dlAva1');
+  a.classList.remove('pull');void a.offsetWidth;a.classList.add('pull');
+}
+function dlDust(x,y){
+  const a=document.getElementById('dlArena');
+  for(let i=0;i<8;i++){
+    const d=document.createElement('div');
+    const ang=Math.random()*Math.PI;
+    d.className='dl-dust';
+    d.style.left=x+'px';d.style.top=y+'px';
+    d.style.setProperty('--dx',(Math.cos(ang)*26*(Math.random()<.5?-1:1)).toFixed(1)+'px');
+    d.style.setProperty('--dy',(-10-Math.random()*26).toFixed(1)+'px');
+    a.appendChild(d);
+    setTimeout(function(){d.remove();},680);
+  }
+}
+function dlPop(t,x,y){
+  const a=document.getElementById('dlArena');
+  const e=document.createElement('div');
+  e.className='dl-pop';e.textContent=t;
+  e.style.left=x+'px';e.style.top=y+'px';
+  a.appendChild(e);
+  setTimeout(function(){e.remove();},940);
+}
+function dlKnotUI(){
+  const g=dlGeom(),x=dlKnotX();
+  const k=document.getElementById('dlKnot');
+  k.style.left=x+'px';
+  document.getElementById('dlPull1').style.left=Math.max(2,x-42)+'px';
+  document.getElementById('dlPull2').style.left=Math.min(g.W-32,x+16)+'px';
+  k.classList.remove('jerk');void k.offsetWidth;k.classList.add('jerk');
+  dlDust(x,g.H*0.52);
+}
+function dlMove(p,cells){
+  if(dl.over||dl.cd)return false;
+  const dir=p===0?-1:1;
+  dl.pos=Math.max(-DL_WIN,Math.min(DL_WIN,dl.pos+dir*cells));
+  dl.tug[p]+=cells;
+  dlKnotUI();
+  tone(p===0?300:360,.1,'square',.07);
+  if(Math.abs(dl.pos)>=DL_WIN){dlWin(p);return true;}
+  dlDanger();
+  return true;
+}
+function dlDanger(){
+  const r1=DL_WIN+dl.pos,r2=DL_WIN-dl.pos;
+  dlPanelEl(0).classList.toggle('danger',r1<=1);
+  dlPanelEl(1).classList.toggle('danger',r2<=1);
+}
+function dlUI(){
+  const r1=DL_WIN+dl.pos,r2=DL_WIN-dl.pos;
+  document.getElementById('dlTime').textContent='⏱ '+Math.ceil(dl.timeLeft)+' 秒';
+  document.getElementById('dlFlagPos').textContent='🚩 '+(dl.pos===0?'正中':(dl.pos<0?'偏红队 '+(-dl.pos):'偏蓝队 '+dl.pos));
+  document.getElementById('dlAiTag').textContent=dl.ai?'🤖 电脑陪练':'👫 双人对战';
+  document.getElementById('dlSt1').textContent='🔥 x'+dl.panels[0].streak;
+  document.getElementById('dlSt2').textContent='🔥 x'+dl.panels[1].streak;
+  document.getElementById('dlNeed1').textContent='红队还差 '+r1+' 格';
+  document.getElementById('dlNeed2').textContent='蓝队还差 '+r2+' 格';
+  document.getElementById('dlBest').textContent='🏆 战绩 '+dlWins(0)+' : '+dlWins(1);
+}
+function dlRenderOpts(p){
+  const box=dlBoxEl(p);
+  box.innerHTML='';
+  const pn=dl.panels[p];
+  pn.opts.forEach(function(v){
+    const b=document.createElement('button');
+    b.className='opt-btn';b.dataset.value=v;
+    b.textContent=v;
+    b.onclick=function(){dlPick(p,v,b);};
+    box.appendChild(b);
+  });
+}
+async function dlAsk(p){
+  if(dl.over||currentMode!=='duel')return;
+  const pn=dl.panels[p];
+  pn.busy=true;
+  dlQEl(p).textContent='题目加载中…';
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data||!data.strokes.length){setTimeout(function(){dlAsk(p);},500);return;}
+  if(dl.over||currentMode!=='duel')return;
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],n=data.strokes.length;
+  let question,answer,opts=[];
+  if(Math.random()<.5){
+    question='一共有几笔？';answer=n+' 笔';
+    opts=[answer];
+    const near=[];
+    for(let k=Math.max(1,n-3);k<=Math.min(22,n+3);k++){if(k!==n)near.push(k+' 笔');}
+    while(opts.length<4&&near.length)opts.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);
+  }else{
+    const tIdx=Math.floor(Math.random()*n);
+    const d=DIRS.find(x=>x.code===dirs[tIdx]);
+    question='第'+(DL_ORD[tIdx]||tIdx+1)+'笔往哪写？';
+    answer=(d?d.icon:'➡️')+' '+(CF_SHORT[dirs[tIdx]]||'右');
+    opts=[answer];
+    const pool=DIRS.filter(x=>x.code!==dirs[tIdx]).map(x=>x.icon+' '+(CF_SHORT[x.code]||x.label));
+    while(opts.length<4&&pool.length)opts.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+  }
+  for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=opts[i];opts[i]=opts[j];opts[j]=t;}
+  pn.answer=answer;pn.qChar=ch;pn.opts=opts;
+  dlQEl(p).innerHTML='「<span class="mole-char">'+ch+'</span>」'+question;
+  dlRenderOpts(p);
+  pn.busy=false;
+  dlUI();
+}
+function dlPick(p,v,btn){
+  if(dl.over||dl.cd||currentMode!=='duel')return;
+  const pn=dl.panels[p];
+  if(!pn||pn.busy||performance.now()<pn.lockAt)return;
+  pn.busy=true;
+  pn.total++;
+  const box=dlBoxEl(p);
+  box.querySelectorAll('.opt-btn').forEach(function(b){b.disabled=true;});
+  const other=p===0?1:0;
+  const gen=dl.gen;
+  if(v===pn.answer){
+    btn.classList.add('correct');
+    pn.correct++;
+    pn.streak++;
+    if(pn.streak>dl.maxStreak)dl.maxStreak=pn.streak;
+    const dbl=pn.streak>=3;
+    sndOk();
+    dlAvaPull(p);
+    showComboEffect(pn.streak);
+    dlPop((dbl?'⚡+2':'+1'),dlKnotX(),dlGeom().H*0.3);
+    dlMove(p,dbl?2:1);
+    if(dl.over)return;
+    dlJudge((dbl?'⚡ 双倍拉力！':'✅ '+DL_TEAMS[p].n+' 拉！'),DL_TEAMS[p].c);
+    dlMsg(p,'✅ 「'+v+'」答对啦！'+(dbl?'连击 3 以上，绳子双倍拉回来！':'把绳子拉过来一格！'),'#B9F6CA');
+    setTimeout(function(){
+      if(gen!==dl.gen||dl.over||currentMode!=='duel')return;
+      dlAsk(p);
+    },430);
+  }else{
+    btn.classList.add('wrong');
+    box.querySelectorAll('.opt-btn').forEach(function(b){if(b.dataset.value===pn.answer)b.classList.add('reveal');});
+    pn.streak=0;
+    pn.wrong++;
+    dl.wrong++;
+    pn.lockAt=performance.now()+1300;
+    sndNo();dlShake();
+    dlPanelEl(p).classList.add('lock');
+    dlMsg(p,'❌ 正确答案是「'+pn.answer+'」。手滑啦：对手白拉一格，你被锁住 1.3 秒！','#FF8A80');
+    dlMove(other,1);
+    if(!dl.over){
+      dlJudge('💥 '+DL_TEAMS[p].n+' 松手了！','#FF5252');
+      dlAvaPull(other);
+    }
+    setTimeout(function(){
+      if(gen!==dl.gen)return;
+      dlPanelEl(p).classList.remove('lock');
+      if(dl.over||currentMode!=='duel')return;
+      dlAsk(p);
+    },1000);
+  }
+  dlUI();
+}
+function dlTick(){
+  if(dl.over||currentMode!=='duel'){dlStopLoops();return;}
+  const now=performance.now();
+  let dt=(now-(dl.lastTs||now))/1000;dl.lastTs=now;
+  if(!(dt>0))dt=0;if(dt>.2)dt=.2;
+  if(dl.cd){dlUI();return;}
+  dl.timeLeft-=dt;
+  if(dl.timeLeft<=0){dl.timeLeft=0;dlUI();dlTimeUp();return;}
+  if(dl.ai){
+    dl.aiAcc=Math.max(.5,Math.min(.85,.6+(-dl.pos)*0.05));
+    const pn=dl.panels[1];
+    if(now>=dl.aiAt&&!pn.busy&&performance.now()>=pn.lockAt){
+      const right=Math.random()<dl.aiAcc;
+      const btns=Array.prototype.slice.call(dlBoxEl(1).querySelectorAll('.opt-btn'));
+      if(btns.length){
+        let t=right?btns.find(function(b){return b.dataset.value===pn.answer;}):btns.find(function(b){return b.dataset.value!==pn.answer;});
+        if(t)t.click();
+      }
+      dl.aiAt=now+1400+Math.random()*1500;
+    }
+  }
+  dlUI();
+}
+function dlCdShow(t){
+  const c=document.getElementById('dlCd');
+  c.textContent=t;
+  c.classList.remove('on');void c.offsetWidth;c.classList.add('on');
+}
+function dlCountdown(){
+  const gen=dl.gen;
+  ['3','2','1','开始拉！'].forEach(function(t,i){
+    setTimeout(function(){
+      if(gen!==dl.gen||currentMode!=='duel')return;
+      dlCdShow(t);
+      tone(i<3?430:760,.14,'square',.1);
+      if(i===3){
+        dl.cd=false;
+        dl.lastTs=performance.now();
+        dl.aiAt=performance.now()+1600;
+      }
+    },i*760);
+  });
+}
+function dlGoalText(){
+  document.getElementById('dlGoal').textContent=dl.ai
+    ?'🤼 你当红队挑战电脑！答对把绳子拉向自己，先拉过线的一方获胜；答错电脑白拉一格，还会被锁 1.3 秒！'
+    :'🤼 两人分屏抢答！答对把绳子拉向自己，先拉过线的一方获胜；答错对手白拉一格，还会被锁 1.3 秒！';
+}
+function dlToggleAi(){
+  if(currentMode!=='duel')return;
+  dl.ai=!dl.ai;
+  if(dl.ai)dl.aiAt=performance.now()+1200;
+  document.getElementById('dlAiBtn').textContent=dl.ai?'🤖 换成小伙伴对战':'👫 换成电脑陪练';
+  dlGoalText();
+  dlUI();
+}
+function dlWin(p){
+  if(dl.over)return;
+  dl.over=true;dl.winner=p;
+  dlStopLoops();
+  localStorage.setItem(p?'hz_duel_p2':'hz_duel_p1',String(dlWins(p)+1));
+  localStorage.setItem('hz_duel_matches',String(dlMatches()+1));
+  if(dl.maxStreak>dlStreakBest())localStorage.setItem('hz_duel_streak',String(dl.maxStreak));
+  spawnConfetti();
+  sndReward();
+  dlJudge('🏆 '+DL_TEAMS[p].n+' 获胜！','#FFD740');
+  dlBanner('🏆 '+DL_TEAMS[p].n+' 把绳子拉过线啦！');
+  const gen=dl.gen;
+  setTimeout(function(){
+    if(gen!==dl.gen||currentMode!=='duel')return;
+    dlResult();
+  },1600);
+}
+function dlTimeUp(){
+  if(dl.over)return;
+  dl.over=true;
+  dl.winner=dl.pos<0?0:(dl.pos>0?1:-1);
+  dlStopLoops();
+  if(dl.winner>=0){
+    localStorage.setItem(dl.winner?'hz_duel_p2':'hz_duel_p1',String(dlWins(dl.winner)+1));
+    if(dl.maxStreak>dlStreakBest())localStorage.setItem('hz_duel_streak',String(dl.maxStreak));
+    dlJudge('⏱ 时间到！'+DL_TEAMS[dl.winner].n+' 险胜','#FFD740');
+    sndReward();
+  }else{
+    dlJudge('⏱ 时间到！平局手','#B0BEC5');
+    sndDone();
+  }
+  localStorage.setItem('hz_duel_matches',String(dlMatches()+1));
+  const gen=dl.gen;
+  setTimeout(function(){
+    if(gen!==dl.gen||currentMode!=='duel')return;
+    dlResult();
+  },1600);
+}
+function dlBanner(t){
+  const g=dlGeom();
+  dlPop(t,g.W/2,g.H*0.34);
+}
+function dlResult(){
+  const totalCorrect=dl.panels[0].correct+dl.panels[1].correct;
+  const totalWrong=dl.panels[0].wrong+dl.panels[1].wrong;
+  const total=dl.panels[0].total+dl.panels[1].total;
+  const acc=total>0?totalCorrect/total:0;
+  const earned=Math.max(3,Math.min(18,3+totalCorrect+(dl.maxStreak>=3?2:0)+(acc>=.7?2:0)));
+  addStars(earned);
+  showScreen('duel-result');
+  document.getElementById('dlResultStars').textContent='⭐ +'+earned;
+  document.getElementById('dlResultP1').textContent=dl.panels[0].correct+' / '+dl.tug[0];
+  document.getElementById('dlResultP2').textContent=dl.panels[1].correct+' / '+dl.tug[1];
+  document.getElementById('dlResultStreak').textContent=dl.maxStreak;
+  document.getElementById('dlResultAcc').textContent=total?Math.round(acc*100)+'%':'—';
+  document.getElementById('dlResultBest').textContent=dlWins(0)+' : '+dlWins(1);
+  document.getElementById('dlResultWrong').textContent='双方共答错 '+totalWrong+' 次 · 本局共打了 '+dlMatches()+' 场';
+  let emoji,title,subtitle;
+  if(dl.winner<0){
+    emoji='🤝';title='谁也没拉动谁！';
+    subtitle='绳子停在中间。再来一局，连击 3 次以上可以双倍拉绳！';
+  }else{
+    const w=DL_TEAMS[dl.winner];
+    emoji=dl.ai?(dl.winner===0?'🏆':'🤖'):'🎉';
+    title=w.e+' '+w.n+' 获胜！';
+    subtitle=(dl.ai&&dl.winner===1)?'电脑这次赢了。多练几题连击，把它拉下水！':'答对 '+(dl.winner===0?dl.panels[0].correct:dl.panels[1].correct)+' 题，最长连胜拉 '+dl.maxStreak+' 次。换边再战一局！';
+  }
+  document.getElementById('dlResultEmoji').textContent=emoji;
+  document.getElementById('dlResultTitle').textContent=title;
+  document.getElementById('dlResultSubtitle').textContent=subtitle;
+  if(dl.winner>=0){setTimeout(showRewardEgg,900);speakPraise();}
+}
+function dlStart(){
+  dlStopLoops();
+  const g=(dl.gen||0)+1;
+  dl={gen:g,over:false,cd:true,winner:-1,pos:0,ai:dl.ai!==false,aiAcc:.6,aiAt:0,
+    timeLeft:DL_TIME,lastTs:performance.now(),maxStreak:0,wrong:0,tug:[0,0],timerId:null,
+    panels:[{answer:'',opts:[],busy:true,lockAt:0,streak:0,correct:0,wrong:0,total:0,qChar:''},
+             {answer:'',opts:[],busy:true,lockAt:0,streak:0,correct:0,wrong:0,total:0,qChar:''}]};
+  showScreen('duel');
+  unlockAudio();
+  const a=document.getElementById('dlArena');
+  a.querySelectorAll('.dl-dust,.dl-pop').forEach(function(n){n.remove();});
+  dlPanelEl(0).classList.remove('lock','danger');
+  dlPanelEl(1).classList.remove('lock','danger');
+  dlBoxEl(0).innerHTML='';dlBoxEl(1).innerHTML='';
+  dlQEl(0).textContent='题目准备中…';dlQEl(1).textContent='题目准备中…';
+  document.getElementById('dlFeedback1').textContent='';
+  document.getElementById('dlFeedback2').textContent='';
+  document.getElementById('dlAiBtn').textContent=dl.ai?'🤖 换成小伙伴对战':'👫 换成电脑陪练';
+  dlGoalText();
+  dlKnotUI();
+  dlUI();
+  const gen=g;
+  setTimeout(function(){
+    if(gen!==dl.gen||currentMode!=='duel')return;
+    dlAsk(0);dlAsk(1);
+  },120);
+  dlCountdown();
+  dl.timerId=setInterval(dlTick,100);
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='duel'||dl.over||dl.cd)return;
+  for(let p=0;p<2;p++){
+    const i=DL_KEYS[p].indexOf(e.key);
+    if(i>=0){
+      e.preventDefault();
+      const b=dlBoxEl(p).querySelectorAll('.opt-btn')[i];
+      if(b&&!b.disabled)b.click();
+      return;
+    }
+  }
+});
+window.addEventListener('resize',function(){
+  if(currentMode!=='duel'||dl.over)return;
+  dlKnotUI();
+});
 
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
