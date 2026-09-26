@@ -470,6 +470,80 @@ button:active{transform:scale(.95)}
 .cf-hearts i{font-style:normal;filter:grayscale(1) opacity(.35)}
 .cf-hearts i.on{filter:none}
 @media(max-width:420px){.cf-wrap{height:42vh;min-height:300px}.cf-fruit,.cf-half{width:56px;height:56px;margin:-28px 0 0 -28px}.cf-fruit .fe,.cf-half{font-size:33px}.cf-half{line-height:56px}.cf-fruit .fv{font-size:11px}}
+/* ================= 新增十个小游戏通用样式 ================= */
+.mg-label{width:100%;text-align:center;color:rgba(255,255,255,.9);font-size:13px;font-weight:bold;letter-spacing:1px;margin:6px 0 -4px;opacity:.85}
+.gg-wrap{display:flex;flex-direction:column;align-items:center;width:100%;flex:1;justify-content:center;gap:6px}
+.tr-stage{width:240px;height:240px;max-width:70vw;max-height:34vh;background:#fff;border-radius:20px;box-shadow:0 6px 20px rgba(0,0,0,.18);position:relative;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none}
+.tr-stage svg{touch-action:none}
+.tr-scene{width:100%;max-width:360px;height:76px;border-radius:16px;position:relative;background:rgba(255,255,255,.12);overflow:hidden}
+.tr-hint,.qz-hint{color:rgba(255,255,255,.9);font-size:14px;text-align:center;min-height:20px}
+.qz-question{color:#fff;font-size:19px;font-weight:bold;text-align:center;margin:8px 0;min-height:26px}
+/* 小火车 */
+.tr-rail{position:absolute;left:0;right:0;bottom:10px;height:4px;background:repeating-linear-gradient(90deg,#cfd8dc,#cfd8dc 12px,transparent 12px,transparent 22px)}
+.train-cars{position:absolute;left:8px;bottom:14px;display:flex;align-items:flex-end;gap:3px}
+.train-car{width:26px;height:20px;border-radius:5px;background:linear-gradient(135deg,#FF8A65,#FF5252);box-shadow:0 2px 5px rgba(0,0,0,.3);position:relative;animation:carIn .4s ease-out}
+.train-car::after{content:'';position:absolute;left:4px;bottom:-4px;width:6px;height:6px;border-radius:50%;background:#37474f;box-shadow:14px 0 #37474f}
+.train-loco{width:40px;height:30px;border-radius:6px 10px 6px 6px;background:linear-gradient(135deg,#4FC3F7,#1976D2)}
+@keyframes carIn{0%{transform:translateX(-20px) scale(.4);opacity:0}100%{transform:translateX(0) scale(1);opacity:1}}
+.train-move{animation:trainRun 1.1s ease-in-out}
+@keyframes trainRun{0%{transform:translateX(0)}100%{transform:translateX(30px)}}
+/* 汉堡 */
+.burger-stack{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);display:flex;flex-direction:column-reverse;align-items:center;gap:2px}
+.burger-layer{width:120px;height:14px;border-radius:8px;animation:layerDrop .4s ease-out}
+@keyframes layerDrop{0%{transform:translateY(-30px);opacity:0}100%{transform:translateY(0);opacity:1}}
+/* 开花 */
+.bloom-scene{display:flex;align-items:flex-end;justify-content:center;gap:2px;height:100%}
+.bloom-plant{font-size:44px;line-height:1;transition:transform .3s;animation:bloomGrow .5s ease-out}
+@keyframes bloomGrow{0%{transform:scale(.4)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+.bloom-field{position:absolute;left:8px;right:8px;bottom:4px;display:flex;gap:2px;justify-content:center;font-size:20px;flex-wrap:wrap}
+/* 砸冰 */
+.ice-block{position:absolute;inset:0;background:linear-gradient(135deg,rgba(129,212,250,.55),rgba(2,136,209,.35));border:2px solid rgba(255,255,255,.6);border-radius:16px;transition:clip-path .4s}
+.ice-crack{position:absolute;font-size:26px;pointer-events:none;animation:crackFade .8s forwards}
+@keyframes crackFade{0%{opacity:0;transform:scale(.4)}30%{opacity:1}100%{opacity:0}}
+.ice-animal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:40px;transition:opacity .3s}
+/* 鞭炮 */
+.fc-string{position:absolute;left:50%;top:6px;transform:translateX(-50%);display:flex;flex-wrap:wrap;gap:4px;justify-content:center;max-width:200px}
+.fc-cracker{width:18px;height:28px;border-radius:5px;background:linear-gradient(#ef5350,#b71c1c);border:1px solid #7f0000;position:relative;transition:transform .2s}
+.fc-cracker.lit{background:linear-gradient(#ffd54f,#ff6f00);animation:fcBlow .5s forwards}
+@keyframes fcBlow{0%{transform:scale(1)}50%{transform:scale(1.4) rotate(10deg);opacity:1}100%{transform:scale(0);opacity:0}}
+.fc-firework{position:absolute;font-size:30px;pointer-events:none;animation:fcFw .9s ease-out forwards}
+@keyframes fcFw{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,-140%) scale(1.6)}}
+/* 射箭 */
+.archer-range{position:relative;width:100%;max-width:360px;height:120px;background:linear-gradient(#B3E5FC,#81D4FA);border-radius:16px;overflow:hidden}
+.archer-bow{position:absolute;left:10px;bottom:12px;font-size:34px}
+.archer-target{position:absolute;bottom:12px;font-size:38px;transition:transform .2s;cursor:default}
+.arrow-fly{position:absolute;left:44px;bottom:26px;font-size:26px;transition:left .4s ease-out}
+/* 雪人 */
+.snow-scene{position:relative;width:100%;max-width:320px;height:150px;background:linear-gradient(#E1F5FE,#B3E5FC);border-radius:16px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.snow-body{display:flex;flex-direction:column-reverse;align-items:center;transition:transform .3s}
+.snow-ball{border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#e0f7fa);box-shadow:0 2px 6px rgba(0,0,0,.12);animation:ballPop .35s ease-out}
+@keyframes ballPop{0%{transform:scale(.3)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
+/* 涂色 */
+.paint-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;width:216px;max-width:70vw;background:rgba(255,255,255,.14);padding:6px;border-radius:12px}
+.paint-cell{aspect-ratio:1/1;background:rgba(255,255,255,.28);border-radius:3px;transition:background .25s,transform .25s}
+.paint-cell.on{transform:scale(1.05)}
+/* 翻牌 */
+.mem-grid{display:grid;gap:8px;justify-content:center;width:100%;max-width:360px}
+.mem-card{aspect-ratio:3/4;border:none;border-radius:12px;font-family:inherit;cursor:pointer;background:linear-gradient(135deg,#7E57C2,#5E35B1);color:#fff;font-size:24px;font-weight:bold;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,.2);transition:transform .2s,background .2s}
+.mem-card .face{display:none}
+.mem-card.up{background:#fff;color:#333}
+.mem-card.up .face{display:block}
+.mem-card.up .qicon,.mem-card.done .qicon{display:none}
+.mem-card.done{background:#A5D6A7;color:#1b5e20;pointer-events:none;animation:memMatch .5s}
+@keyframes memMatch{0%{transform:scale(1)}50%{transform:scale(1.18)}100%{transform:scale(1)}}
+/* 太空入侵者 */
+.inv-stage{position:relative;width:100%;max-width:400px;height:220px;background:radial-gradient(circle at 50% 0,#1a237e,#000);border-radius:16px;overflow:hidden}
+.inv-row{position:absolute;left:0;right:0;display:flex;justify-content:center;gap:10px;cursor:pointer;transition:top .3s}
+.inv-alien{font-size:26px;filter:drop-shadow(0 0 4px #7C4DFF);animation:invBob 1.4s ease-in-out infinite}
+@keyframes invBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.inv-ans{font-size:11px;color:#fff;background:rgba(124,77,255,.6);border-radius:6px;padding:0 4px;text-align:center;margin-top:-2px}
+.inv-laser{position:absolute;width:4px;height:60px;background:linear-gradient(#fff,#7C4DFF);left:50%;border-radius:2px;animation:laserHit .4s ease-out forwards}
+@keyframes laserHit{0%{opacity:0;transform:translateY(120px)}100%{opacity:1;transform:translateY(0)}}
+/* 通用结果页 */
+.gr-hero{text-align:center;padding:18px 12px 6px;color:#fff}
+.gr-emoji{font-size:64px;margin-bottom:6px;animation:grPop .6s ease-out}
+@keyframes grPop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+.gr-grid{width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:center;color:#fff;margin-bottom:16px}
 </style>
 </head>
 <body>
@@ -518,7 +592,7 @@ button:active{transform:scale(.95)}
       <div class="info"><h3>火眼金睛</h3><p>看编号，学笔顺</p></div>
     </div>
   </div>
-  <button class="more-toggle" id="moreToggle" onclick="toggleMoreModes()">⬇️ 更多玩法 (<span id="moreCount">11</span> 个)</button>
+  <button class="more-toggle" id="moreToggle" onclick="toggleMoreModes()">⬇️ 更多玩法 (<span id="moreCount">21</span> 个)</button>
   <div class="mode-cards" id="moreModes" style="display:none">
     <div class="mode-card" onclick="enterMode('write')">
       <div class="icon">✏️</div>
@@ -563,6 +637,48 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('fruit')">
       <div class="icon">🍉</div>
       <div class="info"><h3>笔顺切水果</h3><p>答案飞上天，一刀切开它！</p></div>
+    </div>
+    <div class="mg-label">✍️ 描红闯关 · 真·动手写笔顺</div>
+    <div class="mode-card" onclick="enterMode('train')">
+      <div class="icon">🚂</div>
+      <div class="info"><h3>汉字小火车</h3><p>一笔挂一节车厢，开往下一站！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('burger')">
+      <div class="icon">🍔</div>
+      <div class="info"><h3>汉字汉堡店</h3><p>描一笔叠一层，做出美味汉堡！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('bloom')">
+      <div class="icon">🌸</div>
+      <div class="info"><h3>浇水开花</h3><p>描一笔浇一次水，种子开出花！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('ice')">
+      <div class="icon">🧊</div>
+      <div class="info"><h3>砸冰救小兽</h3><p>描一笔裂一块冰，救出小动物！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('firecracker')">
+      <div class="icon">🧨</div>
+      <div class="info"><h3>鞭炮噼啪</h3><p>一笔点一响，点燃整挂鞭炮！</p></div>
+    </div>
+    <div class="mg-label">🧠 答题闯关 · 手眼脑齐动员</div>
+    <div class="mode-card" onclick="enterMode('archer')">
+      <div class="icon">🏹</div>
+      <div class="info"><h3>小小神箭手</h3><p>数对笔画，一箭射中靶心！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('snowman')">
+      <div class="icon">⛄</div>
+      <div class="info"><h3>堆雪人</h3><p>答对一题滚一层，堆个大雪人！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('paint')">
+      <div class="icon">🎨</div>
+      <div class="info"><h3>数字涂色</h3><p>答对一题涂一格，画出隐藏画！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('memory')">
+      <div class="icon">🃏</div>
+      <div class="info"><h3>汉字翻翻乐</h3><p>翻一翻，把字和笔画数配成对！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('invaders')">
+      <div class="icon">👾</div>
+      <div class="info"><h3>太空入侵者</h3><p>答对一题发光波，击退小怪兽！</p></div>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -1199,6 +1315,86 @@ button:active{transform:scale(.95)}
   <p style="color:rgba(255,255,255,.7);font-size:14px;margin-bottom:8px">每收集 50 颗星星解锁一只动物</p>
   <div class="collection-grid" id="collectionGrid"></div>
 </div>
+<div class="screen" id="screen-train">
+  <div class="top-bar"><button class="back-btn" onclick="trainQuit()">← 退出</button><div class="stats"><span id="trStations">已开 0 站</span><span id="trProg">第 1 站</span></div></div>
+  <div class="gg-wrap">
+    <div class="tr-scene"><div class="tr-rail"></div><div class="train-cars" id="trCars"><div class="train-car train-loco"></div></div></div>
+    <div class="tr-stage" id="trBox"></div>
+    <div class="tr-hint" id="trHint">看动画，跟着写！一笔挂一节车厢</div>
+  </div>
+</div>
+<div class="screen" id="screen-burger">
+  <div class="top-bar"><button class="back-btn" onclick="burgerQuit()">← 退出</button><div class="stats"><span id="bgSold">卖出 0 个汉堡</span></div></div>
+  <div class="gg-wrap">
+    <div class="tr-scene" style="height:100px"><div class="burger-stack" id="bgLayers"></div></div>
+    <div class="tr-stage" id="bgBox"></div>
+    <div class="tr-hint" id="bgHint">小顾客点单：写好这个字就能出餐！</div>
+  </div>
+</div>
+<div class="screen" id="screen-bloom">
+  <div class="top-bar"><button class="back-btn" onclick="bloomQuit()">← 退出</button><div class="stats"><span id="blDone">种出 0 朵花</span></div></div>
+  <div class="gg-wrap">
+    <div class="tr-scene"><div class="bloom-scene"><span class="bloom-plant" id="blPlant">🌱</span></div><div class="bloom-field" id="blField"></div></div>
+    <div class="tr-stage" id="blBox"></div>
+    <div class="tr-hint" id="blHint">每一笔都是一瓜水，把花浇开吧！</div>
+  </div>
+</div>
+<div class="screen" id="screen-ice">
+  <div class="top-bar"><button class="back-btn" onclick="iceQuit()">← 退出</button><div class="stats"><span id="icSaved">救出 0 只小兽</span></div></div>
+  <div class="gg-wrap">
+    <div class="tr-scene"><div class="ice-animal" id="icAnimal">❄️</div></div>
+    <div class="tr-stage" id="icBox"></div>
+    <div class="tr-hint" id="icHint">冰块里藏着小动物，描一笔裂一块冰！</div>
+  </div>
+</div>
+<div class="screen" id="screen-firecracker">
+  <div class="top-bar"><button class="back-btn" onclick="fcQuit()">← 退出</button><div class="stats"><span id="fcDone">点响 0 挂鞭炮</span></div></div>
+  <div class="gg-wrap">
+    <div class="tr-scene" style="height:100px"><div class="fc-string" id="fcString"></div></div>
+    <div class="tr-stage" id="fcBox"></div>
+    <div class="tr-hint" id="fcHint">一笔点响一节鞭炮，全部引爆放烟花！</div>
+  </div>
+</div>
+<div class="screen" id="screen-archer">
+  <div class="top-bar"><button class="back-btn" onclick="archerQuit()">← 退出</button><div class="stats"><span id="acScore">得分 0</span><span id="acCombo">🔥 x0</span></div></div>
+  <div class="qz-question" id="acQ">准备射箭…</div>
+  <div class="archer-range" id="acRange"><span class="archer-bow">🏹</span></div>
+  <div class="options" id="acOptions"></div>
+  <div class="feedback" id="acFeedback"></div>
+</div>
+<div class="screen" id="screen-snowman">
+  <div class="top-bar"><button class="back-btn" onclick="snowQuit()">← 退出</button><div class="stats"><span id="smDone">堆了 0 个雪人</span><span id="smCombo">🔥 x0</span></div></div>
+  <div class="qz-question" id="smQ">准备好了吗？</div>
+  <div class="snow-scene"><div class="snow-body" id="smBody"></div></div>
+  <div class="options" id="smOptions"></div>
+  <div class="feedback" id="smFeedback"></div>
+</div>
+<div class="screen" id="screen-paint">
+  <div class="top-bar"><button class="back-btn" onclick="paintQuit()">← 退出</button><div class="stats"><span id="ptName">?</span><span id="ptDone">画廊 0 幅</span></div></div>
+  <div class="qz-question" id="ptQ">答题涂色，揭开隐藏画！</div>
+  <div class="paint-grid" id="ptGrid"></div>
+  <div class="options" id="ptOptions"></div>
+  <div class="feedback" id="ptFeedback"></div>
+</div>
+<div class="screen" id="screen-memory">
+  <div class="top-bar"><button class="back-btn" onclick="memQuit()">← 退出</button><div class="stats"><span id="myMoves">步数 0</span><span id="myPairs">配对 0</span><span id="myTime"></span></div></div>
+  <div class="qz-question" id="myQ">找到「字」和它的「笔画数」好朋友！</div>
+  <div class="mem-grid" id="myGrid"></div>
+  <div class="feedback" id="myFeedback"></div>
+</div>
+<div class="screen" id="screen-invaders">
+  <div class="top-bar"><button class="back-btn" onclick="invQuit()">← 退出</button><div class="stats"><span id="ivScore">得分 0</span><span id="ivWave">第 1 波</span></div></div>
+  <div class="qz-question" id="ivQ">敌军来袭！</div>
+  <div class="inv-stage" id="ivStage"></div>
+  <div class="feedback" id="ivFeedback"></div>
+</div>
+<div class="screen" id="screen-games-result">
+  <div class="top-bar"><button class="back-btn" onclick="goHome()">← 返回</button><div class="stats"><span id="grStars">⭐ +0</span></div></div>
+  <div class="gr-hero"><div class="gr-emoji" id="grEmoji">🏆</div><h2 style="font-size:26px;margin-bottom:6px" id="grTitle"></h2><p style="font-size:15px;opacity:.8" id="grSub"></p></div>
+  <div class="gr-grid" id="grGrid"></div>
+  <div style="text-align:center;color:#fff;font-size:13px;opacity:.8;margin-bottom:12px">🏅 <span id="grBestLabel">历史最佳</span>：<b id="grBest" style="color:#FFD700;font-size:17px">0</b></div>
+  <div class="write-controls"><button class="w-btn orange" onclick="grRetry()">🔄 再来一次</button><button class="w-btn blue" onclick="goHome()">🏠 回首页</button></div>
+</div>
 <div class="settings-overlay" id="settingsOverlay">
   <div class="settings-panel">
     <h3>⚙️ 设置</h3>
@@ -1480,6 +1676,7 @@ function resetAllData(){
   localStorage.removeItem('hz_mastery');
   localStorage.removeItem('hz_learned_today');
   mastery={};learnedToday={d:'',n:0};
+  ['hz_train_best','hz_burger_best','hz_bloom_best','hz_bloom_garden','hz_ice_best','hz_ice_saved','hz_fc_best','hz_archer_best','hz_snow_best','hz_paint_best','hz_gallery','hz_mem_best','hz_inv_best'].forEach(function(k){localStorage.removeItem(k);});
   updateHomeStats();
   updateAllStarDisplays();
   closeSettings();
@@ -1575,6 +1772,16 @@ function enterMode(mode){
   else if(mode==='fruit')fruitStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
+  else if(mode==='train')trainStart();
+  else if(mode==='burger')burgerStart();
+  else if(mode==='bloom')bloomStart();
+  else if(mode==='ice')iceStart();
+  else if(mode==='firecracker')fcStart();
+  else if(mode==='archer')archerStart();
+  else if(mode==='snowman')snowStart();
+  else if(mode==='paint')paintStart();
+  else if(mode==='memory')memStart();
+  else if(mode==='invaders')invStart();
   else if(mode==='collection')showCollection();
 }
 function addStars(n){
@@ -5167,6 +5374,884 @@ function showCollection(){
     grid.appendChild(card);
   });
   document.getElementById('colStars').textContent='⭐ '+stars;
+}
+/* ===================== 第6轮: 新增10个小游戏 ===================== */
+/* ---------- 共享基建: 出题 ---------- */
+async function buildQuizGame(attempt){
+  attempt=attempt||0;
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data){if(attempt>15)return null;return buildQuizGame(attempt+1);}
+  const n=data.strokes.length;
+  const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+  const qType=pickQType(n,true);
+  let questionText,correct,options;
+  if(qType==='count'){
+    questionText='「'+ch+'」一共有几笔？';
+    correct=String(n);options=countOptions(n);
+  }else if(qType==='listen'){
+    questionText='🔊 听一听，哪个是这个字？';
+    correct=ch;
+    const pool0=(getGradeChars(currentGrade).length?getGradeChars(currentGrade):CHARS);
+    const pool=pool0.filter(c=>c!==ch&&charDataCache[c]);
+    const distract=[];
+    while(distract.length<qOptionCount()-1&&pool.length){distract.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);}
+    options=[ch].concat(distract).sort(()=>Math.random()-.5);
+  }else{
+    const tIdx=pickStrokeIdx(n);
+    const ord=['一','二','三','四','五','六','七','八','九','十'];
+    questionText='「'+ch+'」的第'+(ord[tIdx]||tIdx+1)+'笔往哪个方向写？';
+    correct=dirs[tIdx];options=dirOptions(correct);
+  }
+  return {ch:ch,data:data,n:n,qType:qType,questionText:questionText,correct:correct,options:options};
+}
+function optBtnHTML(opt,qType){
+  if(qType==='count')return '<span style="font-size:30px;font-weight:bold">'+opt+'</span><br><span style="font-size:12px;color:#888">笔</span>';
+  if(qType==='listen')return '<span style="font-size:38px;font-weight:bold">'+opt+'</span>';
+  const d=DIRS.find(function(x){return x.code===opt;});
+  return '<span style="font-size:32px">'+(d?d.icon:'➡️')+'</span><br><span style="font-size:13px;color:#555">'+(d?d.label:'')+'</span>';
+}
+function renderOptions(boxId,q,onClick){
+  const box=document.getElementById(boxId);box.innerHTML='';
+  q.options.forEach(function(opt){
+    const btn=document.createElement('button');btn.className='opt-btn';btn.dataset.value=opt;
+    btn.innerHTML=optBtnHTML(opt,q.qType);
+    btn.onclick=function(){onClick(btn,opt);};
+    box.appendChild(btn);
+  });
+  return box;
+}
+function lockOptions(boxId,q){
+  document.getElementById(boxId).querySelectorAll('.opt-btn').forEach(function(b){
+    b.disabled=true;if(b.dataset.value===q.correct)b.classList.add('reveal');
+  });
+}
+function quizSpeak(q){if(q.qType==='listen')setTimeout(function(){speakChar(q.ch);},400);}
+function fbOk(id,msg){document.getElementById(id).innerHTML='<span style="color:#69F0AE">✓ '+msg+'</span>';}
+function fbNo(id,q){document.getElementById(id).innerHTML='<span style="color:#FFE082">没关系，正确答案是 '+(q.qType==='count'?q.correct+' 笔':q.qType==='dir'?(DIRS.find(function(d){return d.code===q.correct;})||{label:''}).label:q.correct)+'，再看看笔顺～</span>';}
+/* ---------- 共享基建: 描红一轮 ---------- */
+let gameTraceWriter=null;
+function traceRound(boxId,ch,data,hooks){
+  const box=document.getElementById(boxId);box.innerHTML='';
+  const size=Math.min(box.offsetWidth,box.offsetHeight)||240;
+  const w=HanziWriter.create(box,ch,{width:size,height:size,padding:Math.round(size*.08),renderer:'svg',showOutline:true,showCharacter:true,strokeColor:'#333',outlineColor:'#ddd',highlightColor:'#FF6F00',showHintAfterMisses:3,highlightOnComplete:true,charDataLoader:function(c,cb){cb(data);},
+    onCorrectStroke:function(){if(hooks.onStroke)hooks.onStroke();},
+    onMistake:function(){if(hooks.onMistake)hooks.onMistake();}});
+  gameTraceWriter=w;
+  w.animateCharacter({onComplete:function(){w.quiz({onComplete:function(s){if(hooks.onFinish)hooks.onFinish(s);}});}});
+}
+async function pickTraceChar(min,max){
+  for(let i=0;i<24;i++){
+    const ch=nextInQueue();
+    const data=await loadCharData(ch);
+    if(data&&data.strokes.length>=(min||1)&&data.strokes.length<=(max||10))return{ch:ch,data:data};
+  }
+  return null;
+}
+function traceQuitGame(){gameTraceWriter=null;goHome();}
+/* ---------- 共享基建: 结果页 ---------- */
+let _grRetry=null;
+function bestSave(key,val){
+  const best=parseInt(localStorage.getItem(key)||'0');
+  if(val>best){localStorage.setItem(key,val);return{best:val,isNew:true};}
+  return{best:best,isNew:false};
+}
+function renderGameResult(cfg){
+  gameTraceWriter=null;
+  showScreen('games-result');
+  document.getElementById('grEmoji').textContent=cfg.emoji;
+  document.getElementById('grTitle').textContent=cfg.title;
+  document.getElementById('grSub').textContent=cfg.sub;
+  document.getElementById('grStars').textContent='⭐ +'+cfg.stars;
+  const grid=document.getElementById('grGrid');grid.innerHTML='';
+  cfg.metrics.forEach(function(m){
+    const d=document.createElement('div');
+    d.innerHTML='<div style="font-size:30px;font-weight:bold;color:'+m[2]+'">'+m[0]+'</div><div style="font-size:13px;opacity:.7">'+m[1]+'</div>';
+    grid.appendChild(d);
+  });
+  document.getElementById('grBestLabel').textContent=cfg.bestLabel||'历史最佳';
+  document.getElementById('grBest').textContent=cfg.best;
+  _grRetry=cfg.retry;
+  sndReward();
+}
+function grRetry(){if(_grRetry)_grRetry();}
+function startCd(state,id,onEnd){
+  if(state.timerId)clearInterval(state.timerId);
+  state.lastTick=Date.now();
+  state.timerId=setInterval(function(){
+    const now=Date.now();
+    if(now-state.lastTick>=1000){
+      state.lastTick=now;state.time--;
+      const el=document.getElementById(id);if(el)el.textContent='⏱️ '+Math.max(0,state.time)+'s';
+      if(state.time<=0){clearInterval(state.timerId);state.timerId=null;onEnd();}
+    }
+  },200);
+}
+/* ---------- 🚂 汉字小火车 ---------- */
+const TR_TRIPS=8;
+let train={stops:0,cars:0,over:false};
+async function trainStart(){
+  train={stops:0,cars:0,over:false};
+  showScreen('train');
+  document.getElementById('trCars').innerHTML='<div class="train-car train-loco"></div>';
+  document.getElementById('trStations').textContent='已开 0 站';
+  trainNextChar();
+}
+async function trainNextChar(){
+  if(currentMode!=='train')return;
+  const pick=await pickTraceChar(1,9);
+  if(!pick){trainEnd();return;}
+  train.cars=0;
+  document.getElementById('trProg').textContent='第 '+(train.stops+1)+' 站·「'+pick.ch+'」';
+  document.getElementById('trHint').textContent='写好「'+pick.ch+'」，挂满车厢发车！';
+  traceRound('trBox',pick.ch,pick.data,{
+    onStroke:function(){
+      train.cars++;
+      const car=document.createElement('div');car.className='train-car';
+      document.getElementById('trCars').appendChild(car);
+      tone(440+Math.min(train.cars,8)*60,.1,'triangle',.12);
+    },
+    onMistake:function(){
+      const cars=document.querySelectorAll('#trCars .train-car');
+      const last=cars[cars.length-1];
+      if(last){last.style.animation='none';void last.offsetWidth;last.style.animation='lnShake .42s';}
+      tone(220,.15,'square',.08);
+    },
+    onFinish:function(summary){trainFinish(pick.ch,summary);}
+  });
+}
+function trainFinish(ch,summary){
+  if(currentMode!=='train'||train.over)return;
+  train.stops++;markLearned(ch);
+  const bonus=summary.totalMistakes===0?2:1;
+  addStars(bonus);
+  document.getElementById('trStations').textContent='已开 '+train.stops+' 站';
+  document.getElementById('trCars').classList.add('train-move');
+  sndDone();
+  document.getElementById('trHint').textContent='🚂 呜——！「'+ch+'」到站，+'+bonus+'⭐';
+  if(train.stops>=TR_TRIPS){setTimeout(trainEnd,1200);return;}
+  if(train.stops%4===0)setTimeout(showRewardEgg,700);
+  setTimeout(function(){
+    if(currentMode!=='train')return;
+    document.getElementById('trCars').classList.remove('train-move');
+    document.getElementById('trCars').innerHTML='<div class="train-car train-loco"></div>';
+    trainNextChar();
+  },1500);
+}
+function trainEnd(){
+  if(train.over)return;train.over=true;
+  const perfect=train.stops>=TR_TRIPS;
+  const earned=perfect?4:1;
+  addStars(earned);
+  const r=bestSave('hz_train_best',train.stops);
+  renderGameResult({emoji:perfect?'🏆':'💪',title:(r.isNew&&perfect?'🎉 新纪录！':'')+'坐了 '+train.stops+' 站！',sub:perfect?'小司机，全程准点，棒棒哒！':'下次一定开得更远！',stars:earned,best:r.best,bestLabel:'最长里程(站)',retry:trainStart,metrics:[[train.stops,'到站数','#FFD700'],[train.stops*3,'挂上车厢','#4CAF50'],[(perfect?4:1)+train.stops,'本局星星','#FF9800'],['🚂','准点率 100%','#2196F3']]});
+}
+function trainQuit(){traceQuitGame();}
+/* ---------- 🍔 汉字汉堡店 ---------- */
+const BG_TARGET=6;
+const BG_LAYERS=['#E8A33D','#8BC34A','#FFD54F','#795548','#EF5350','#A1887F'];
+const BG_NAMES=['面包','生菜','芝士','肉饼','番茄','培根'];
+let burger={sold:0,layer:0,over:false};
+async function burgerStart(){
+  burger={sold:0,layer:0,over:false};
+  showScreen('burger');
+  document.getElementById('bgLayers').innerHTML='';
+  document.getElementById('bgSold').textContent='卖出 0 个汉堡';
+  burgerNext();
+}
+async function burgerNext(){
+  if(currentMode!=='burger')return;
+  const pick=await pickTraceChar(2,9);
+  if(!pick){burgerEnd();return;}
+  burger.layer=0;
+  document.getElementById('bgLayers').innerHTML='';
+  document.getElementById('bgHint').textContent='顾客点单：写好「'+pick.ch+'」就能出餐！';
+  traceRound('bgBox',pick.ch,pick.data,{
+    onStroke:function(){
+      const L=BG_LAYERS[burger.layer%BG_LAYERS.length];
+      const el=document.createElement('div');el.className='burger-layer';
+      el.style.background='linear-gradient(180deg,'+L+',rgba(0,0,0,.15))';
+      el.style.width=(126-burger.layer*4)+'px';
+      document.getElementById('bgLayers').appendChild(el);
+      burger.layer++;
+      tone(523+Math.min(burger.layer,6)*80,.1,'triangle',.12);
+    },
+    onMistake:function(){
+      const els=document.getElementById('bgLayers').children;
+      const last=els[els.length-1];
+      if(last){last.dataset.burnt='1';last.style.background='#5D4037';}
+      document.getElementById('bgHint').textContent='哎呀，这层煎糊了！没关系，再来一笔～';
+      tone(220,.15,'square',.08);
+    },
+    onFinish:function(summary){burgerServe(pick.ch,summary);}
+  });
+}
+function burgerServe(ch,summary){
+  if(currentMode!=='burger'||burger.over)return;
+  burger.sold++;markLearned(ch);
+  const bonus=summary.totalMistakes===0?2:1;
+  addStars(bonus);
+  document.getElementById('bgSold').textContent='卖出 '+burger.sold+' 个汉堡';
+  document.getElementById('bgLayers').style.animation='grPop .6s ease-out';
+  sndDone();
+  document.getElementById('bgHint').textContent='🍔 「'+ch+'」汉堡出餐！好评 +'+bonus+'⭐';
+  setTimeout(function(){
+    document.getElementById('bgLayers').style.animation='';
+    if(currentMode!=='burger')return;
+    if(burger.sold>=BG_TARGET){burgerEnd();return;}
+    if(burger.sold%3===0)setTimeout(showRewardEgg,500);
+    burgerNext();
+  },1400);
+}
+function burgerEnd(){
+  if(burger.over)return;burger.over=true;
+  const earned=Math.max(1,burger.sold);
+  addStars(earned);
+  const r=bestSave('hz_burger_best',burger.sold);
+  renderGameResult({emoji:burger.sold>=BG_TARGET?'👨‍🍳':'💪',title:(r.isNew?'🎉 新纪录！':'')+'卖出 '+burger.sold+' 个汉堡！',sub:burger.sold>=BG_TARGET?'米其林小厨师认证！':'明天继续开门营业！',stars:earned,best:r.best,bestLabel:'单店最高销量',retry:burgerStart,metrics:[[burger.sold,'销量(个)','#FFD700'],['🍔','今日招牌','#FF9800'],['+ '+earned,'结算星星','#4CAF50'],['😋','顾客好评率 99%','#2196F3']]});
+}
+function burgerQuit(){traceQuitGame();}
+/* ---------- 🌸 浇水开花 ---------- */
+const BL_TARGET=6;
+const BL_STAGES=['🌱','🌿','🪴','🌷'];
+const BL_FLOWERS=['🌸','🌺','🌻','🌹','🌷','💐'];
+let bloom={done:0,strokes:0,need:1,over:false};
+async function bloomStart(){
+  bloom={done:0,strokes:0,need:1,over:false};
+  showScreen('bloom');
+  document.getElementById('blField').innerHTML='';
+  document.getElementById('blDone').textContent='种出 0 朵花';
+  bloomNext();
+}
+async function bloomNext(){
+  if(currentMode!=='bloom')return;
+  const pick=await pickTraceChar(2,9);
+  if(!pick){bloomEnd();return;}
+  bloom.strokes=0;bloom.need=pick.data.strokes.length;
+  const plant=document.getElementById('blPlant');plant.textContent='🌱';
+  document.getElementById('blHint').textContent='给「'+pick.ch+'」浇水，看它长大！';
+  traceRound('blBox',pick.ch,pick.data,{
+    onStroke:function(){
+      bloom.strokes++;
+      const pct=bloom.strokes/bloom.need;
+      const plant=document.getElementById('blPlant');
+      plant.textContent=pct>=1?'🌼':pct>.66?BL_STAGES[3]:pct>.33?BL_STAGES[2]:BL_STAGES[1];
+      plant.style.animation='none';void plant.offsetWidth;plant.style.animation='bloomGrow .5s ease-out';
+      const drop=document.createElement('span');drop.className='ice-crack';drop.textContent='💧';
+      drop.style.left=(20+Math.random()*60)+'%';drop.style.top=(10+Math.random()*40)+'%';
+      plant.parentElement.parentElement.appendChild(drop);
+      setTimeout(function(){drop.remove();},800);
+      tone(660,.08,'sine',.1);
+    },
+    onMistake:function(){tone(220,.15,'square',.08);document.getElementById('blHint').textContent='这下水浇到外面啦，再试一次！';},
+    onFinish:function(summary){bloomBloom(pick.ch,summary);}
+  });
+}
+function bloomBloom(ch,summary){
+  if(currentMode!=='bloom'||bloom.over)return;
+  bloom.done++;markLearned(ch);
+  const bonus=summary.totalMistakes===0?2:1;
+  addStars(bonus);
+  const f=BL_FLOWERS[Math.floor(Math.random()*BL_FLOWERS.length)];
+  const field=document.getElementById('blField');
+  const s=document.createElement('span');s.textContent=f;s.style.animation='bloomGrow .6s ease-out';
+  field.appendChild(s);
+  const total=parseInt(localStorage.getItem('hz_bloom_garden')||'0')+1;
+  localStorage.setItem('hz_bloom_garden',total);
+  document.getElementById('blDone').textContent='种出 '+bloom.done+' 朵花';
+  sndDone();speakPraise();
+  document.getElementById('blHint').textContent='🌸 「'+ch+'」开出了 '+f+'！+'+bonus+'⭐';
+  setTimeout(function(){
+    if(currentMode!=='bloom')return;
+    if(bloom.done>=BL_TARGET){bloomEnd();return;}
+    if(bloom.done%3===0)setTimeout(showRewardEgg,500);
+    bloomNext();
+  },1500);
+}
+function bloomEnd(){
+  if(bloom.over)return;bloom.over=true;
+  const earned=Math.max(1,bloom.done);
+  addStars(earned);
+  const r=bestSave('hz_bloom_best',bloom.done);
+  renderGameResult({emoji:'🌈',title:'种出 '+bloom.done+' 朵花！',sub:'你的小花园香飘万里～',stars:earned,best:r.best,bestLabel:'单局开花数',retry:bloomStart,metrics:[[bloom.done,'开花(朵)','#FF90BC'],['🌸','花园人气','#FFD700'],['+ '+earned,'结算星星','#4CAF50'],[localStorage.getItem('hz_bloom_garden')||'0','累计浇花','#2196F3']]});
+}
+function bloomQuit(){traceQuitGame();}
+/* ---------- 🧊 砸冰救小兽 ---------- */
+const IC_TARGET=6;
+const IC_CRACKS=['❄️','💥','✨','🧊'];
+let ice={saved:0,strokes:0,over:false};
+async function iceStart(){
+  ice={saved:0,strokes:0,over:false};
+  showScreen('ice');
+  document.getElementById('icAnimal').textContent='❄️';
+  document.getElementById('icSaved').textContent='救出 0 只小兽';
+  iceNext();
+}
+async function iceNext(){
+  if(currentMode!=='ice')return;
+  const pick=await pickTraceChar(2,9);
+  if(!pick){iceEnd();return;}
+  ice.strokes=0;
+  const animal=REWARDS[(JSON.parse(localStorage.getItem('hz_ice_saved')||'[]')).length%REWARDS.length];
+  document.getElementById('icAnimal').textContent='❄️';
+  document.getElementById('icHint').textContent='冰块里好像有动静！写好「'+pick.ch+'」救它出来！';
+  traceRound('icBox',pick.ch,pick.data,{
+    onStroke:function(){
+      ice.strokes++;
+      const c=document.createElement('span');c.className='ice-crack';c.textContent=IC_CRACKS[Math.floor(Math.random()*IC_CRACKS.length)];
+      c.style.left=(15+Math.random()*70)+'%';c.style.top=(15+Math.random()*60)+'%';
+      document.getElementById('icAnimal').parentElement.appendChild(c);
+      setTimeout(function(){c.remove();},800);
+      tone(780+ice.strokes*40,.08,'square',.1);
+      document.getElementById('icAnimal').textContent=ice.strokes>=2?'👀':'❄️';
+    },
+    onMistake:function(){
+      tone(220,.15,'square',.08);
+      if(!settings.noPressure)document.getElementById('icHint').textContent='冰又冻上一点，别急慢慢描～';
+    },
+    onFinish:function(summary){iceFree(pick.ch,animal,summary);}
+  });
+}
+function iceFree(ch,animal,summary){
+  if(currentMode!=='ice'||ice.over)return;
+  ice.saved++;markLearned(ch);
+  const bonus=summary.totalMistakes===0?2:1;
+  addStars(bonus);
+  const el=document.getElementById('icAnimal');
+  el.textContent=animal.e;el.style.animation='grPop .7s ease-out';
+  setTimeout(function(){el.style.animation='';},700);
+  const saved=JSON.parse(localStorage.getItem('hz_ice_saved')||'[]');
+  if(saved.indexOf(animal.n)===-1){saved.push(animal.n);localStorage.setItem('hz_ice_saved',JSON.stringify(saved));}
+  document.getElementById('icSaved').textContent='救出 '+ice.saved+' 只小兽';
+  sndDone();
+  document.getElementById('icHint').textContent='🎉 '+animal.n+'获救！它说：谢谢 '+ch+'！+'+bonus+'⭐';
+  setTimeout(function(){
+    if(currentMode!=='ice')return;
+    if(ice.saved>=IC_TARGET){iceEnd();return;}
+    if(ice.saved%3===0)setTimeout(showRewardEgg,500);
+    iceNext();
+  },1600);
+}
+function iceEnd(){
+  if(ice.over)return;ice.over=true;
+  const earned=Math.max(1,ice.saved);
+  addStars(earned);
+  const r=bestSave('hz_ice_best',ice.saved);
+  renderGameResult({emoji:'🐧',title:'救出 '+ice.saved+' 只小兽！',sub:'冰库空啦，小动物们回家喽～',stars:earned,best:r.best,bestLabel:'单局获救数',retry:iceStart,metrics:[[ice.saved,'获救(只)','#4FC3F7'],[(localStorage.getItem('hz_ice_saved')||'[]').replace(/[,\[\]"]/g,'')||'无','荣誉簿','#FFD700'],['+ '+earned,'结算星星','#4CAF50'],['🏠','回家率 100%','#2196F3']]});
+}
+function iceQuit(){traceQuitGame();}
+/* ---------- 🧨 鞭炮噼啪 ---------- */
+const FC_TARGET=6;
+const FC_FW=['🎆','🎇','✨','🌟','💥','🎉'];
+let fc={done:0,lit:0,over:false};
+async function fcStart(){
+  fc={done:0,lit:0,over:false};
+  showScreen('firecracker');
+  document.getElementById('fcDone').textContent='点响 0 挂鞭炮';
+  fcNext();
+}
+async function fcNext(){
+  if(currentMode!=='firecracker')return;
+  const pick=await pickTraceChar(2,9);
+  if(!pick){fcEnd();return;}
+  fc.lit=0;
+  const str=document.getElementById('fcString');str.innerHTML='';
+  for(let i=0;i<pick.data.strokes.length;i++){const c=document.createElement('div');c.className='fc-cracker';str.appendChild(c);}
+  document.getElementById('fcHint').textContent='点燃「'+pick.ch+'」的引火线，一笔一响！';
+  traceRound('fcBox',pick.ch,pick.data,{
+    onStroke:function(){
+      const cr=str.children[fc.lit];
+      if(cr)cr.classList.add('lit');
+      fc.lit++;
+      tone(600+fc.lit*90,.07,'square',.12);
+      setTimeout(function(){tone(1200,.05,'square',.1);},60);
+    },
+    onMistake:function(){tone(180,.18,'square',.1);document.getElementById('fcHint').textContent='这节鞭炮潮了……没关系，点下一节！';},
+    onFinish:function(summary){fcBang(pick.ch,summary);}
+  });
+}
+function fcBang(ch,summary){
+  if(currentMode!=='firecracker'||fc.over)return;
+  fc.done++;markLearned(ch);
+  const bonus=summary.totalMistakes===0?2:1;
+  addStars(bonus);
+  const scene=document.getElementById('fcString').parentElement;
+  for(let i=0;i<(LOW_END?4:8);i++){
+    const f=document.createElement('span');f.className='fc-firework';
+    f.textContent=FC_FW[Math.floor(Math.random()*FC_FW.length)];
+    f.style.left=(10+Math.random()*80)+'%';f.style.top=(15+Math.random()*60)+'%';
+    f.style.animationDelay=(i*0.12)+'s';
+    scene.appendChild(f);
+    setTimeout(function(){f.remove();},1400);
+  }
+  sndReward();
+  document.getElementById('fcDone').textContent='点响 '+fc.done+' 挂鞭炮';
+  document.getElementById('fcHint').textContent='🧨 砰——！「'+ch+'」全部引爆！+'+bonus+'⭐';
+  setTimeout(function(){
+    if(currentMode!=='firecracker')return;
+    if(fc.done>=FC_TARGET){fcEnd();return;}
+    if(fc.done%3===0)setTimeout(showRewardEgg,500);
+    fcNext();
+  },1700);
+}
+function fcEnd(){
+  if(fc.over)return;fc.over=true;
+  const earned=Math.max(1,fc.done);
+  addStars(earned);
+  const r=bestSave('hz_fc_best',fc.done);
+  renderGameResult({emoji:'🎆',title:'点响 '+fc.done+' 挂鞭炮！',sub:'新年到，鞭炮响，笔顺写得呱呱叫！',stars:earned,best:r.best,bestLabel:'单局鞭炮数',retry:fcStart,metrics:[[fc.done,'鞭炮(挂)','#EF5350'],['🎆','烟花秀','#FFD700'],['+ '+earned,'结算星星','#4CAF50'],['🧧','年味值 满满的','#2196F3']]});
+}
+function fcQuit(){traceQuitGame();}
+/* ---------- 🏹 小小神箭手 ---------- */
+const AC_ROUNDS=8;
+let archer={round:0,score:0,combo:0,maxCombo:0,hits:0,total:0,over:false,busy:false,q:null};
+function archerStart(){
+  archer={round:0,score:0,combo:0,maxCombo:0,hits:0,total:0,over:false,busy:false,q:null};
+  showScreen('archer');
+  archerUpdateUI();
+  document.getElementById('acFeedback').textContent='';
+  archerNext();
+}
+function archerUpdateUI(){
+  document.getElementById('acScore').textContent='得分 '+archer.score;
+  document.getElementById('acCombo').textContent='🔥 x'+archer.combo;
+}
+async function archerNext(){
+  if(currentMode!=='archer')return;
+  if(archer.round>=AC_ROUNDS){archerEnd();return;}
+  const pick=await pickTraceChar(1,12);
+  if(!pick){archerEnd();return;}
+  const n=pick.data.strokes.length;
+  const q={ch:pick.ch,qType:'count',questionText:'「'+pick.ch+'」一共有几笔？瞄准靶牌！',correct:String(n),options:countOptions(n)};
+  archer.q=q;archer.busy=false;
+  document.getElementById('acQ').textContent='第 '+(archer.round+1)+'/'+AC_ROUNDS+' 箭 · '+q.questionText;
+  document.getElementById('acFeedback').textContent='';
+  const range=document.getElementById('acRange');
+  range.querySelectorAll('.archer-target').forEach(function(t){t.remove();});
+  const opts=q.options.slice().sort(function(a,b){return parseInt(a)-parseInt(b);});
+  opts.forEach(function(v,i){
+    const t=document.createElement('div');t.className='archer-target';t.dataset.value=v;
+    t.style.left=(30+i*(55/Math.max(1,opts.length-1)))+'%';
+    t.innerHTML='<div style="text-align:center">🎯</div><div class="inv-ans" style="display:block;text-align:center">'+v+' 笔</div>';
+    t.onclick=function(){archerShoot(t,v);};
+    range.appendChild(t);
+  });
+}
+function archerShoot(t,v){
+  const q=archer.q;
+  if(!q||archer.over||archer.busy)return;
+  archer.busy=true;archer.total++;archer.round++;
+  const arrow=document.createElement('span');arrow.className='arrow-fly';arrow.textContent='➤';
+  arrow.style.color='#37474F';
+  document.getElementById('acRange').appendChild(arrow);
+  setTimeout(function(){arrow.style.left=t.style.left;},20);
+  setTimeout(function(){arrow.remove();},520);
+  if(v===q.correct){
+    archer.hits++;archer.combo++;
+    if(archer.combo>archer.maxCombo)archer.maxCombo=archer.combo;
+    const pts=50+Math.min(archer.combo,10)*10;
+    archer.score+=pts;
+    addStars(archer.combo>=5?3:archer.combo>=3?2:1);
+    markLearned(q.ch);
+    t.innerHTML='<div style="text-align:center">💥</div>';
+    sndOk();showComboEffect(archer.combo);
+    const r=t.getBoundingClientRect();
+    spawnStarFly(r.left+r.width/2,r.top);
+    fbOk('acFeedback','命中靶心！+'+pts);
+  }else{
+    archer.combo=0;sndNo();
+    fbNo('acFeedback',q);
+    document.querySelectorAll('#acRange .archer-target').forEach(function(el){
+      if(el.dataset.value===q.correct)el.style.animation='lnHint .85s ease-in-out 2';
+    });
+  }
+  archerUpdateUI();
+  setTimeout(archerNext,settings.noPressure?1700:1100);
+}
+function archerEnd(){
+  if(archer.over)return;archer.over=true;
+  const acc=archer.total?Math.round(archer.hits/archer.total*100):0;
+  const earned=Math.max(1,Math.min(15,Math.floor(archer.score/120)+(archer.maxCombo>=5?3:0)));
+  addStars(earned);
+  const r=bestSave('hz_archer_best',archer.score);
+  renderGameResult({emoji:acc>=80?'🎯':'💪',title:(r.isNew?'🎉 新纪录！':'')+acc+'% 命中率！',sub:acc>=80?'百步穿杨，小养由基！':'多练几局，箭法更准！',stars:earned,best:r.best,bestLabel:'最高分',retry:archerStart,metrics:[[archer.score,'得分','#FFD700'],[archer.hits+'/'+archer.total,'命中','#4CAF50'],[archer.maxCombo,'最高连击','#FF9800'],[acc+'%','准确率','#2196F3']]});
+}
+function archerQuit(){
+  if(!archer.over&&archer.total>0&&!confirm('确定退出射箭场吗？'))return;
+  archer.over=true;goHome();
+}
+/* ---------- ⛄ 堆雪人 ---------- */
+const SM_TARGET=4,SM_TIME=90;
+const SM_BALLS=[74,58,42];
+let snow={time:tp(SM_TIME),stage:0,done:0,combo:0,maxCombo:0,hits:0,total:0,over:false,busy:false,q:null,timerId:null,lastTick:0};
+function snowStart(){
+  showScreen('snowman');
+  snow={time:tp(SM_TIME),stage:0,done:0,combo:0,maxCombo:0,hits:0,total:0,over:false,busy:false,q:null,timerId:null,lastTick:Date.now()};
+  document.getElementById('smBody').innerHTML='';
+  snowUpdateUI();
+  if(!settings.noPressure)startCd(snow,'smCombo',snowEnd);
+  else document.getElementById('smCombo').textContent='🐢 不催促';
+  snowNext();
+}
+function snowUpdateUI(){
+  document.getElementById('smDone').textContent='雪人 '+snow.done+'/'+SM_TARGET+' · 🔥 x'+snow.combo;
+  if(!settings.noPressure)document.getElementById('smCombo').textContent='⏱️ '+Math.max(0,snow.time)+'s';
+}
+function snowRender(){
+  const body=document.getElementById('smBody');body.innerHTML='';
+  const s=snow.stage;
+  for(let i=0;i<Math.min(s,3);i++){
+    const b=document.createElement('div');b.className='snow-ball';
+    b.style.width=SM_BALLS[i]+'px';b.style.height=SM_BALLS[i]+'px';b.style.position='relative';
+    body.appendChild(b);
+  }
+  if(s>=4&&body.children[2]){
+    const h=document.createElement('span');h.textContent='🎩';
+    h.style.cssText='position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:22px';
+    body.children[2].appendChild(h);
+  }
+  if(s>=5&&body.children[2]){
+    const f=document.createElement('span');f.textContent='●∀●';
+    f.style.cssText='position:absolute;top:40%;left:50%;transform:translateX(-50%);font-size:11px;color:#455A64;white-space:nowrap';
+    body.children[2].appendChild(f);
+  }
+  if(s>=6&&body.children[1]){
+    const bt=document.createElement('span');bt.textContent='⚫⚫⚫';
+    bt.style.cssText='position:absolute;top:35%;left:50%;transform:translateX(-50%);font-size:9px';
+    body.children[1].appendChild(bt);
+  }
+}
+async function snowNext(){
+  if(currentMode!=='snowman'||snow.over)return;
+  const q=await buildQuizGame();
+  if(!q){snowEnd();return;}
+  snow.q=q;snow.busy=false;
+  document.getElementById('smQ').textContent=q.questionText;
+  document.getElementById('smFeedback').textContent='';
+  quizSpeak(q);
+  renderOptions('smOptions',q,function(btn,opt){
+    if(snow.over||snow.busy)return;
+    snow.busy=true;snow.total++;
+    btn.disabled=true;
+    if(opt===q.correct){
+      btn.classList.add('correct');
+      snow.hits++;snow.combo++;
+      if(snow.combo>snow.maxCombo)snow.maxCombo=snow.combo;
+      addStars(snow.combo>=5?3:snow.combo>=3?2:1);
+      markLearned(q.ch);sndOk();showComboEffect(snow.combo);
+      snow.stage++;snowRender();
+      const done=snow.stage>=6;
+      if(done){
+        snow.done++;snow.stage=0;
+        document.getElementById('smBody').style.animation='grPop .7s ease-out';
+        fbOk('smFeedback','⛄ 雪人堆好啦！它冲你笑呢～');
+        sndDone();addStars(2);
+        setTimeout(function(){
+          const b=document.getElementById('smBody');
+          b.style.animation='';b.innerHTML='';
+          if(currentMode!=='snowman'||snow.over)return;
+          if(snow.done>=SM_TARGET){snowEnd();return;}
+          snowNext();
+        },1500);
+      }else{
+        fbOk('smFeedback','雪球滚起来！第 '+snow.stage+' 层！');
+        setTimeout(snowNext,settings.noPressure?1200:800);
+      }
+    }else{
+      btn.classList.add('wrong');lockOptions('smOptions',q);
+      snow.combo=0;sndNo();fbNo('smFeedback',q);
+      const body=document.getElementById('smBody');
+      if(!settings.noPressure&&snow.stage>0){snow.stage--;snowRender();snow.time=Math.max(1,snow.time-3);}
+      else{body.style.animation='lnShake .42s';setTimeout(function(){body.style.animation='';},450);}
+      snowUpdateUI();
+      setTimeout(snowNext,settings.noPressure?2800:1800);
+    }
+    snowUpdateUI();
+  });
+}
+function snowEnd(){
+  if(snow.over)return;snow.over=true;
+  if(snow.timerId){clearInterval(snow.timerId);snow.timerId=null;}
+  const earned=Math.max(1,Math.min(15,snow.done*3+Math.floor(snow.hits/3)));
+  addStars(earned);
+  const r=bestSave('hz_snow_best',snow.done);
+  renderGameResult({emoji:snow.done>=SM_TARGET?'⛄':'💪',title:(r.isNew&&snow.done>=SM_TARGET?'🎉 新纪录！':'')+'堆了 '+snow.done+' 个雪人！',sub:snow.done>=SM_TARGET?'雪人合唱团为你唱歌！':'再堆一个，它会跳舞！',stars:earned,best:r.best,bestLabel:'单局雪人数',retry:snowStart,metrics:[[snow.done,'雪人(个)','#4FC3F7'],[snow.hits,'答对题数','#4CAF50'],[snow.maxCombo,'最高连击','#FF9800'],['⛄','雪球质量五星','#2196F3']]});
+}
+function snowQuit(){
+  if(!snow.over&&!confirm('确定退出堆雪人吗？'))return;
+  snow.over=true;
+  if(snow.timerId){clearInterval(snow.timerId);snow.timerId=null;}
+  goHome();
+}
+/* ---------- 🎨 数字涂色 ---------- */
+const PT_PICS=[
+  {name:'爱心',emo:'❤️',colors:{1:'#C62828',2:'#EF5350'},rows:['011000110','122101221','122212221','122222221','012222210','001222100','000121000','000010000','000000000']},
+  {name:'星星',emo:'⭐',colors:{1:'#F9A825',2:'#FFE082'},rows:['000010000','000121000','000121000','011222110','122222221','012222210','001202100','012000210','010000010']},
+  {name:'宝石',emo:'💎',colors:{1:'#01579B',2:'#4FC3F7',3:'#E1F5FE'},rows:['001111100','013333310','132222231','132222231','013222310','001323100','000131000','000010000','000000000']},
+  {name:'火箭',emo:'🚀',colors:{1:'#90A4AE',2:'#ECEFF1',3:'#64B5F6'},rows:['000010000','000121000','001222100','001232100','001222100','001222100','011222110','101222101','000111000']}
+];
+let paint={pic:0,cells:[],idx:0,step:1,done:0,over:false,busy:false,q:null};
+function paintStart(){
+  showScreen('paint');
+  paint={pic:0,cells:[],idx:0,step:1,done:0,over:false,busy:false,q:null};
+  paintLoadPic(0);
+  paintNext();
+}
+function paintLoadPic(i){
+  const p=PT_PICS[i];
+  paint.cells=[];
+  p.rows.forEach(function(row,r){for(let c=0;c<row.length;c++){if(+row[c])paint.cells.push({r:r,c:c,v:+row[c]});}});
+  paint.idx=0;paint.step=Math.max(1,Math.ceil(paint.cells.length/8));
+  const grid=document.getElementById('ptGrid');grid.innerHTML='';
+  for(let r=0;r<9;r++)for(let c=0;c<9;c++){
+    const d=document.createElement('div');d.className='paint-cell';d.dataset.rc=r+'_'+c;
+    grid.appendChild(d);
+  }
+  paintUpdateUI();
+}
+function paintUpdateUI(){
+  document.getElementById('ptName').textContent=PT_PICS[paint.pic].emo+' '+paint.idx+'/'+paint.cells.length;
+  const gal=JSON.parse(localStorage.getItem('hz_gallery')||'[]');
+  document.getElementById('ptDone').textContent='画廊 '+gal.length+' 幅';
+}
+async function paintNext(){
+  if(currentMode!=='paint')return;
+  const q=await buildQuizGame();
+  if(!q){paintEnd();return;}
+  paint.q=q;paint.busy=false;
+  document.getElementById('ptQ').textContent=q.questionText;
+  document.getElementById('ptFeedback').textContent='';
+  quizSpeak(q);
+  renderOptions('ptOptions',q,function(btn,opt){
+    if(paint.over||paint.busy)return;
+    paint.busy=true;
+    btn.disabled=true;
+    if(opt===q.correct){
+      btn.classList.add('correct');
+      markLearned(q.ch);sndOk();
+      const p=PT_PICS[paint.pic];
+      const upto=Math.min(paint.cells.length,paint.idx+paint.step);
+      for(let k=paint.idx;k<upto;k++){
+        const cell=paint.cells[k];
+        const el=document.querySelector('#ptGrid .paint-cell[data-rc="'+cell.r+'_'+cell.c+'"]');
+        if(el){el.style.background=p.colors[cell.v];el.classList.add('on');}
+      }
+      paint.idx=upto;
+      paintUpdateUI();
+      if(paint.idx>=paint.cells.length){
+        paint.done++;addStars(3);
+        const gal=JSON.parse(localStorage.getItem('hz_gallery')||'[]');
+        if(gal.indexOf(p.name)===-1){gal.push(p.name);localStorage.setItem('hz_gallery',JSON.stringify(gal));}
+        fbOk('ptFeedback','🎉 涂好啦！是'+p.name+' '+p.emo+'！+3⭐');
+        document.getElementById('ptGrid').style.animation='grPop .7s ease-out';
+        sndDone();showRewardEgg();
+        setTimeout(function(){
+          const g=document.getElementById('ptGrid');
+          g.style.animation='';
+          if(currentMode!=='paint'||paint.over)return;
+          if(paint.pic>=PT_PICS.length-1){paintEnd();return;}
+          paint.pic++;paintLoadPic(paint.pic);paintNext();
+        },1800);
+      }else{
+        fbOk('ptFeedback','涂了 '+paint.step+' 格，继续揭开画面！');
+        setTimeout(paintNext,settings.noPressure?1200:800);
+      }
+    }else{
+      btn.classList.add('wrong');lockOptions('ptOptions',q);
+      sndNo();fbNo('ptFeedback',q);
+      setTimeout(paintNext,settings.noPressure?2800:1800);
+    }
+  });
+}
+function paintEnd(){
+  if(paint.over)return;paint.over=true;
+  const completed=paint.idx>=paint.cells.length?paint.pic+1:paint.pic;
+  const earned=Math.max(1,Math.min(15,completed*3+(paint.idx>0?1:0)));
+  addStars(earned);
+  const r=bestSave('hz_paint_best',completed);
+  const gal=JSON.parse(localStorage.getItem('hz_gallery')||'[]');
+  renderGameResult({emoji:'🖼️',title:'涂完了 '+completed+' 幅画！',sub:completed>=4?'小小画廊开张啦！':'下次把四幅都涂满！',stars:earned,best:r.best,bestLabel:'单局涂画数',retry:paintStart,metrics:[[completed,'完成(幅)','#FFD700'],[(paint.idx)+'/'+(paint.cells.length||1),'当前进度','#4CAF50'],[gal.join(' ')||'无','我的画廊','#FF90BC'],['🎨','审美天赋拉满','#2196F3']]});
+}
+function paintQuit(){
+  if(!paint.over&&!confirm('确定退出涂色工坊吗？涂好的画会保存哦'))return;
+  paint.over=true;goHome();
+}
+/* ---------- 🃏 汉字翻翻乐 ---------- */
+let mem={first:null,lock:false,moves:0,pairs:0,total:0,time:tp(120),over:false,won:false,timerId:null,lastTick:0};
+async function memStart(){
+  showScreen('memory');
+  mem={first:null,lock:false,moves:0,pairs:0,total:0,time:tp(120),over:false,won:false,timerId:null,lastTick:Date.now()};
+  const want=gradeTier()==='low'?6:8;
+  const picked=[];
+  for(let i=0;i<60&&picked.length<want;i++){
+    const ch=nextInQueue();
+    const data=await loadCharData(ch);
+    if(data&&picked.every(function(p){return p.ch!==ch;}))picked.push({ch:ch,n:data.strokes.length});
+  }
+  if(!picked.length){goHome();return;}
+  mem.total=picked.length;
+  const cards=[];
+  picked.forEach(function(p,i){
+    cards.push({pair:i,face:p.ch,ch:p.ch});
+    cards.push({pair:i,face:p.n+' 笔',ch:p.ch});
+  });
+  for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=cards[i];cards[i]=cards[j];cards[j]=t;}
+  const grid=document.getElementById('myGrid');
+  grid.innerHTML='';grid.style.gridTemplateColumns='repeat(4,1fr)';
+  cards.forEach(function(cd){
+    const btn=document.createElement('button');btn.className='mem-card';btn.type='button';
+    btn.innerHTML='<span class="qicon" style="font-size:22px">❓</span><span class="face">'+cd.face+'</span>';
+    btn.onclick=function(){memFlip(btn,cd);};
+    grid.appendChild(btn);
+  });
+  document.getElementById('myFeedback').textContent='';
+  memUpdateUI();
+  if(!settings.noPressure){
+    document.getElementById('myTime').textContent='⏱️ '+mem.time+'s';
+    startCd(mem,'myTime',memEnd);
+  }else document.getElementById('myTime').textContent='🐢 不催促';
+}
+function memUpdateUI(){
+  document.getElementById('myMoves').textContent='步数 '+mem.moves;
+  document.getElementById('myPairs').textContent='配对 '+mem.pairs+'/'+mem.total;
+}
+function memFlip(btn,cd){
+  if(mem.over||mem.lock||btn.classList.contains('up')||btn.classList.contains('done'))return;
+  btn.classList.add('up');tone(700,.06,'sine',.08);
+  if(!mem.first){mem.first={btn:btn,cd:cd};return;}
+  mem.moves++;memUpdateUI();
+  const a=mem.first;mem.first=null;
+  if(a.cd.pair===cd.pair){
+    a.btn.classList.add('done');btn.classList.add('done');
+    mem.pairs++;addStars(1);markLearned(cd.ch);sndOk();
+    const r=btn.getBoundingClientRect();
+    spawnStarFly(r.left+r.width/2,r.top);
+    fbOk('myFeedback','🎉 「'+cd.ch+'」和它的笔画数是好朋友！');
+    if(mem.pairs>=mem.total){mem.won=true;addStars(3);setTimeout(memEnd,800);}
+  }else{
+    mem.lock=true;sndNo();
+    setTimeout(function(){
+      a.btn.classList.remove('up');btn.classList.remove('up');
+      mem.lock=false;
+    },settings.noPressure?1000:750);
+  }
+}
+function memEnd(){
+  if(mem.over)return;mem.over=true;
+  if(mem.timerId){clearInterval(mem.timerId);mem.timerId=null;}
+  const earned=Math.max(1,Math.min(15,mem.pairs*2+(mem.won?3:0)));
+  addStars(earned);
+  const r=bestSave('hz_mem_best',mem.pairs);
+  renderGameResult({emoji:mem.won?'🎊':'💪',title:mem.won?(r.isNew?'🎉 新纪录！':'全部配对成功！'):'配了 '+mem.pairs+' 对',sub:mem.won?'记性好，笔顺牢！':'慢慢翻，字和笔画数在等你！',stars:earned,best:r.best,bestLabel:'最佳配对数',retry:memStart,metrics:[[mem.pairs+'/'+mem.total,'配对','#4CAF50'],[mem.moves,'用步数','#FFD700'],[mem.won?'🐢':'⏱️','节奏','#FF9800'],[mem.won?'100%':Math.round(mem.pairs/Math.max(1,mem.total)*100)+'%','完成度','#2196F3']]});
+}
+function memQuit(){
+  if(!mem.over&&!confirm('确定退出翻翻乐吗？'))return;
+  mem.over=true;
+  if(mem.timerId){clearInterval(mem.timerId);mem.timerId=null;}
+  goHome();
+}
+/* ---------- 👾 太空入侵者 ---------- */
+const IV_ROUNDS=12;
+let inv={round:0,wave:1,score:0,combo:0,maxCombo:0,hits:0,total:0,over:false,busy:false,q:null,descent:0,timerId:null};
+function invStart(){
+  showScreen('invaders');
+  inv={round:0,wave:1,score:0,combo:0,maxCombo:0,hits:0,total:0,over:false,busy:false,q:null,descent:0,timerId:null};
+  invUpdateUI();
+  if(inv.timerId)clearInterval(inv.timerId);
+  if(!settings.noPressure){
+    inv.timerId=setInterval(function(){
+      if(currentMode!=='invaders'||inv.over){clearInterval(inv.timerId);inv.timerId=null;return;}
+      invPress(1);
+    },5000);
+  }
+  invNext();
+}
+function invUpdateUI(){
+  document.getElementById('ivScore').textContent='得分 '+inv.score;
+  document.getElementById('ivWave').textContent='第 '+inv.wave+' 波';
+}
+function invPress(n){
+  inv.descent+=n;
+  document.querySelectorAll('#ivStage .inv-row').forEach(function(row){
+    row.style.top=(parseInt(row.dataset.base||row.style.top)+n*16)+'px';
+  });
+  if(inv.descent>=5){
+    inv.descent=0;inv.combo=0;
+    document.querySelectorAll('#ivStage .inv-row').forEach(function(row){row.style.top=(parseInt(row.dataset.base)-80)+'px';});
+    setTimeout(function(){document.querySelectorAll('#ivStage .inv-row').forEach(function(row){row.style.top=row.dataset.base+'px';});},400);
+    document.getElementById('ivFeedback').innerHTML='<span style="color:#FFD740">⚠️ 敌军好近！被你的气势吓回去啦（不扣分）</span>';
+  }
+}
+async function invNext(){
+  if(currentMode!=='invaders'||inv.over)return;
+  if(inv.round>=IV_ROUNDS){invEnd();return;}
+  const q=await buildQuizGame();
+  if(!q){invEnd();return;}
+  inv.q=q;inv.busy=false;inv.descent=0;
+  document.getElementById('ivQ').textContent='第 '+inv.wave+' 波 · '+q.questionText;
+  document.getElementById('ivFeedback').textContent='';
+  quizSpeak(q);
+  const stage=document.getElementById('ivStage');stage.innerHTML='';
+  const base=document.createElement('div');base.textContent='🛸';
+  base.style.cssText='position:absolute;bottom:2px;left:50%;transform:translateX(-50%);font-size:30px';
+  stage.appendChild(base);
+  const faces=['👾','👽','🤖'];
+  q.options.forEach(function(opt,i){
+    const row=document.createElement('div');row.className='inv-row';row.dataset.value=opt;
+    let label=opt;
+    if(q.qType==='count')label=opt+' 笔';
+    else if(q.qType==='dir'){const d=DIRS.find(function(x){return x.code===opt;});label=d?d.icon+' '+d.label:opt;}
+    row.innerHTML='<span class="inv-alien">'+faces[i%3]+'</span><span class="inv-alien">'+faces[i%3]+'</span><span class="inv-ans" style="align-self:center">'+label+'</span><span class="inv-alien">'+faces[i%3]+'</span><span class="inv-alien">'+faces[i%3]+'</span>';
+    const top=8+i*56;
+    row.style.top=top+'px';row.dataset.base=top;
+    row.onclick=function(){invShoot(row,opt);};
+    stage.appendChild(row);
+  });
+}
+function invShoot(row,opt){
+  const q=inv.q;
+  if(!q||inv.over||inv.busy)return;
+  inv.busy=true;inv.total++;inv.round++;
+  const stage=document.getElementById('ivStage');
+  const laser=document.createElement('div');laser.className='inv-laser';
+  laser.style.bottom='30px';
+  stage.appendChild(laser);
+  tone(1400,.12,'sawtooth',.08);
+  setTimeout(function(){laser.remove();},420);
+  setTimeout(function(){
+    if(opt===q.correct){
+      inv.hits++;inv.combo++;
+      if(inv.combo>inv.maxCombo)inv.maxCombo=inv.combo;
+      const pts=60+Math.min(inv.combo,10)*15;
+      inv.score+=pts;
+      addStars(inv.combo>=5?3:inv.combo>=3?2:1);
+      markLearned(q.ch);sndOk();showComboEffect(inv.combo);
+      row.querySelectorAll('.inv-alien').forEach(function(el){el.textContent='💥';el.style.animation='none';});
+      fbOk('ivFeedback','激光命中！整行爆破 +'+pts);
+      if(inv.round%3===0){inv.wave++;}
+    }else{
+      inv.combo=0;sndNo();fbNo('ivFeedback',q);
+      row.style.animation='lnShake .42s';
+      invPress(1);
+    }
+    invUpdateUI();
+    setTimeout(invNext,settings.noPressure?1800:1100);
+  },260);
+}
+function invEnd(){
+  if(inv.over)return;inv.over=true;
+  if(inv.timerId){clearInterval(inv.timerId);inv.timerId=null;}
+  const acc=inv.total?Math.round(inv.hits/inv.total*100):0;
+  const earned=Math.max(1,Math.min(15,Math.floor(inv.score/200)+(inv.wave>2?3:0)));
+  addStars(earned);
+  const r=bestSave('hz_inv_best',inv.score);
+  renderGameResult({emoji:acc>=70?'🚀':'💪',title:(r.isNew?'🎉 新纪录！':'')+'击退 '+inv.hits+' 波敌军！',sub:acc>=70?'地球安全了，太空小英雄！':'充好能，再战一轮！',stars:earned,best:r.best,bestLabel:'最高分',retry:invStart,metrics:[[inv.score,'得分','#FFD700'],[inv.hits+'/'+inv.total,'命中','#4CAF50'],[inv.maxCombo,'最高连击','#FF9800'],[acc+'%','准确率','#2196F3']]});
+}
+function invQuit(){
+  if(!inv.over&&!confirm('确定退出太空战场吗？'))return;
+  inv.over=true;
+  if(inv.timerId){clearInterval(inv.timerId);inv.timerId=null;}
+  goHome();
 }
 async function boot(){
   if(typeof HanziWriter==='undefined'){
