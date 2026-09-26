@@ -600,6 +600,44 @@ button:active{transform:scale(.95)}
 .dl-btns .w-btn{flex:1;padding:10px 6px;font-size:14px}
 @media(max-width:420px){.dl-arena{height:92px}.dl-opts .opt-btn{font-size:14px;padding:8px 3px}.dl-pq{font-size:14px}.dl-knot{font-size:23px}.dl-pull{font-size:24px}.dl-cd{font-size:44px}}
 
+/* ---------- 笔顺挖宝 ---------- */
+.dg-wrap{position:relative;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:430px;height:41vh;min-height:280px;max-height:400px;margin:6px auto;padding:10px 12px;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#3B2A17 0%,#5A3D1F 42%,#6E4B26 100%);box-shadow:0 10px 28px rgba(0,0,0,.42),inset 0 0 70px rgba(0,0,0,.5);-webkit-user-select:none;user-select:none}
+.dg-wrap.shake{animation:cfShake .42s}
+.dg-veil{position:absolute;left:0;right:0;top:0;height:38px;background:linear-gradient(180deg,rgba(0,0,0,.5),transparent);pointer-events:none;z-index:2}
+.dg-sun{position:absolute;right:12px;top:7px;font-size:19px;opacity:.7;pointer-events:none}
+.dg-crew{position:absolute;left:12px;top:6px;font-size:19px;opacity:.85;pointer-events:none;animation:fhBob 3.6s ease-in-out infinite}
+.dg-grid{position:relative;display:grid;grid-template-columns:repeat(var(--c,4),1fr);gap:7px;width:100%;max-width:300px;margin:auto;z-index:3}
+.dg-cell{position:relative;aspect-ratio:1/1;border:none;border-radius:11px;padding:0;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#EFCE86,#C89B4E 70%,#B0863C);box-shadow:inset 0 2px 0 rgba(255,255,255,.4),inset 0 -3px 0 rgba(0,0,0,.18),0 3px 7px rgba(0,0,0,.35);transition:transform .12s,filter .2s,box-shadow .25s}
+.dg-cell::after{content:'';position:absolute;inset:0;border-radius:11px;background:radial-gradient(circle at 30% 72%,rgba(255,255,255,.22),transparent 42%),radial-gradient(circle at 72% 28%,rgba(0,0,0,.14),transparent 38%);pointer-events:none}
+.dg-cell:not(.dug):hover{transform:translateY(-2px)}
+.dg-cell:not(.dug):active{transform:scale(.93)}
+.dg-cell.dug{background:linear-gradient(160deg,#5B3F22,#3A2614);box-shadow:inset 0 4px 10px rgba(0,0,0,.7);cursor:default;transform:none}
+.dg-cell.dug::after{background:radial-gradient(circle at 50% 38%,rgba(0,0,0,.28),transparent 62%)}
+.dg-cell.tre{background:radial-gradient(circle at 50% 40%,#FFF3B0,#FFC947 55%,#E8A41F);box-shadow:0 0 20px rgba(255,215,64,.9),inset 0 2px 0 rgba(255,255,255,.6);cursor:default;animation:dgYield .8s ease-out}
+@keyframes dgYield{0%{transform:scale(.4) rotate(-16deg);filter:brightness(2.4)}55%{transform:scale(1.18) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
+.dg-cell.hit{box-shadow:inset 0 4px 10px rgba(0,0,0,.7),0 0 13px rgba(255,214,90,.55);animation:dgHit .34s ease-out}
+@keyframes dgHit{0%{transform:scale(1)}40%{transform:scale(.9) rotate(-4deg)}100%{transform:scale(1)}}
+.dg-e{font-size:23px;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.dg-cell.tre .dg-e{font-size:27px}
+.dg-n{position:absolute;bottom:2px;left:0;right:0;font-size:9px;font-weight:bold;color:rgba(255,255,255,.86);text-shadow:0 1px 2px #000}
+.dg-cell.tre .dg-n{color:rgba(90,50,0,.85);text-shadow:none}
+.dg-e.h1{filter:drop-shadow(0 0 8px rgba(255,82,82,.95))}
+.dg-e.h2{filter:drop-shadow(0 0 7px rgba(255,171,64,.9))}
+.dg-e.h3{filter:drop-shadow(0 0 6px rgba(255,241,118,.82))}
+.dg-e.h4{filter:drop-shadow(0 0 6px rgba(129,212,250,.85))}
+.dg-dry .dg-cell:not(.dug){filter:saturate(.48) brightness(.7);cursor:not-allowed}
+.dg-sand{position:absolute;width:6px;height:6px;border-radius:50%;background:#E3C178;pointer-events:none;z-index:6;animation:cfDrop .62s ease-out forwards}
+.dg-spark{position:absolute;width:7px;height:7px;border-radius:50%;background:#FFF176;pointer-events:none;z-index:7;animation:cfPop .8s ease-out forwards}
+.dg-pop{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font-size:18px;font-weight:bold;color:#FFEB3B;text-shadow:0 2px 7px rgba(0,0,0,.85);pointer-events:none;z-index:9;animation:cfPop .9s ease-out forwards}
+.dg-judge{position:absolute;left:50%;top:15%;transform:translate(-50%,-50%);font-size:22px;font-weight:bold;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.85);pointer-events:none;opacity:0;z-index:9;white-space:nowrap}
+.dg-judge.on{animation:cfJudge .95s ease-out}
+.dg-banner{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:26px;font-weight:bold;color:#fff;text-shadow:0 4px 16px rgba(0,0,0,.9);pointer-events:none;opacity:0;z-index:10;white-space:nowrap}
+.dg-banner.on{animation:cfJudge 1.3s ease-out}
+.dg-hud{display:flex;justify-content:space-between;align-items:center;gap:6px;width:100%;max-width:430px;margin:6px auto 0;color:#fff;font-size:11.5px;font-weight:bold}
+.dg-hud span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dg-shovels{color:#FFD740}
+@media(max-width:420px){.dg-wrap{height:38vh;min-height:268px}.dg-grid{gap:5px;max-width:266px}.dg-e{font-size:20px}.dg-cell.tre .dg-e{font-size:24px}.dg-judge{font-size:19px}.dg-banner{font-size:22px}}
+
 </style>
 
 </head>
@@ -698,6 +736,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('duel')">
       <div class="icon">🤼</div>
       <div class="info"><h3>笔顺双人大乱斗</h3><p>分屏抢答拔河，把绳子拉过线！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('dig')">
+      <div class="icon">⛏️</div>
+      <div class="info"><h3>笔顺挖宝</h3><p>答题领铲子，凭冷热线索挖文物！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -1482,6 +1524,60 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-dig">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="dgScore">🏺 0</span><span id="dgCombo" style="color:#FFD740">🔥 x0</span><span id="dgTime">⏱ 70 秒</span></div>
+  </div>
+  <div class="challenge-goal" id="dgGoal">🏜️ 答题领铲子，点沙格开挖！挖空一格会告诉你离宝物还有几格：🔥 烫 = 就在旁边，❄️ 冷 = 还远着呢</div>
+  <div class="dg-wrap" id="dgWrap">
+    <div class="dg-veil"></div>
+    <div class="dg-crew">👷</div>
+    <div class="dg-sun">☀️</div>
+    <div class="dg-grid" id="dgGrid"></div>
+    <div class="dg-judge" id="dgJudge"></div>
+    <div class="dg-banner" id="dgBanner"></div>
+  </div>
+  <div class="dg-hud">
+    <span id="dgSpade" class="dg-shovels">⛏️ 铲子 2</span>
+    <span id="dgLayer">第 1 层 · 松散表土</span>
+    <span id="dgLeft">🏺 剩 2 件</span>
+    <span id="dgBook">📖 0/12</span>
+  </div>
+  <div class="quiz-header">
+    <div class="question" id="dgQuestion">正在打探方…</div>
+  </div>
+  <div class="options" id="dgOptions"></div>
+  <div class="feedback" id="dgFeedback"></div>
+</div>
+<div class="screen" id="screen-dig-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="dgResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="dgResultEmoji">🏺</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="dgResultTitle">收获满满！</h2>
+    <p style="font-size:16px;opacity:.8" id="dgResultSubtitle">再去挖一次，集齐文物图鉴！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="dgResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="dgResultFound">0</div><div style="font-size:13px;opacity:.7">挖到宝物</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="dgResultLayer">0</div><div style="font-size:13px;opacity:.7">挖到第几层</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="dgResultAcc">0%</div><div style="font-size:13px;opacity:.7">答对正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">📖 文物图鉴 / 🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="dgResultBook">0/12 / 0</div>
+      <div style="display:flex;justify-content:center;gap:6px;margin-top:10px;font-size:26px;flex-wrap:wrap" id="dgResultIcons"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="dgStart()">⛏️ 再去挖一次</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -1835,6 +1931,7 @@ function enterMode(mode){
   else if(mode==='brick')brickStart(); else if(mode==='defense')tdStart();
  else if(mode==='fish')fhStart();
  else if(mode==='duel')dlStart();
+ else if(mode==='dig')dgStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -6485,6 +6582,388 @@ window.addEventListener('resize',function(){
   dlKnotUI();
 });
 
+/* ================= 笔顺挖宝 ================= */
+const DG_TIME=70,DG_SH0=2,DG_SH_MAX=6,DG_ORD=['一','二','三','四','五','六','七','八','九','十'];
+const DG_NAMES=['松散表土','陶片层','古钱层','青铜层','王陵秘宝'];
+// [列, 行, 埋藏文物数, 品阶]
+const DG_LAYERS=[[4,3,2,0],[5,3,3,0],[5,4,3,1],[6,4,4,1],[6,5,5,2],[6,5,6,2]];
+const DG_TREASURES=[
+  {id:'pot',e:'🏺',n:'彩陶罐',sc:40,hits:1,tier:0},
+  {id:'shell',e:'🐚',n:'贝币',sc:45,hits:1,tier:0},
+  {id:'oracle',e:'🦴',n:'甲骨片',sc:55,hits:1,tier:0},
+  {id:'coin',e:'🪙',n:'刀币',sc:80,hits:2,tier:1},
+  {id:'bell',e:'🔔',n:'铜编钟',sc:95,hits:2,tier:1},
+  {id:'scroll',e:'📜',n:'竹简',sc:110,hits:2,tier:1},
+  {id:'statue',e:'🗿',n:'陶俑',sc:130,hits:2,tier:1},
+  {id:'urn',e:'⚱️',n:'青铜鼎',sc:180,hits:3,tier:2},
+  {id:'lantern',e:'🏮',n:'宫灯',sc:160,hits:3,tier:2},
+  {id:'crown',e:'👑',n:'金冠',sc:210,hits:3,tier:2},
+  {id:'dragon',e:'🐉',n:'玉龙',sc:240,hits:3,tier:2},
+  {id:'phoenix',e:'🦚',n:'凤冠',sc:280,hits:3,tier:2}
+];
+let dg={gen:0,over:true,busy:true,cells:[],el:[],tre:[],timerId:null};
+function dgBook(){try{return (localStorage.getItem('hz_dig_book')||'').split(',').filter(function(x){return x})}catch(e){return[]}}
+function dgBest(){return parseInt(localStorage.getItem('hz_dig_best')||'0',10)||0}
+function dgDeepBest(){return parseInt(localStorage.getItem('hz_dig_deep')||'0',10)||0}
+function dgStopLoops(){if(dg.timerId){clearInterval(dg.timerId);dg.timerId=null}}
+function dgCfg(){return DG_LAYERS[Math.min(DG_LAYERS.length-1,dg.layer-1)]}
+function dgLayerName(){return DG_NAMES[Math.min(DG_NAMES.length-1,dg.layer-1)]}
+function dgMsg(t,c){document.getElementById('dgFeedback').innerHTML='<span style="color:'+(c||'#FFD740')+'">'+t+'</span>'}
+function dgJudge(t,c){
+  const j=document.getElementById('dgJudge');
+  j.textContent=t;j.style.color=c||'#fff';
+  j.classList.remove('on');void j.offsetWidth;j.classList.add('on');
+}
+function dgBanner(t){
+  const b=document.getElementById('dgBanner');
+  b.textContent=t;
+  b.classList.remove('on');void b.offsetWidth;b.classList.add('on');
+}
+function dgXY(i){
+  const wrap=document.getElementById('dgWrap'),el=dg.el[i];
+  const wr=wrap.getBoundingClientRect(),r=el.getBoundingClientRect();
+  return{x:r.left-wr.left+r.width/2,y:r.top-wr.top+r.height/2};
+}
+function dgClientXY(i){
+  const r=dg.el[i].getBoundingClientRect();
+  return{x:r.left+r.width/2,y:r.top+r.height/2};
+}
+function dgPopAt(i,txt,c){
+  const p=dgXY(i),e=document.createElement('div');
+  e.className='dg-pop';e.textContent=txt;e.style.color=c||'#FFEB3B';
+  e.style.left=p.x+'px';e.style.top=p.y+'px';
+  document.getElementById('dgWrap').appendChild(e);
+  setTimeout(function(){e.remove()},940);
+}
+function dgGrain(i,cls,n,up){
+  const p=dgXY(i),wrap=document.getElementById('dgWrap');
+  for(let k=0;k<n;k++){
+    const s=document.createElement('div');
+    s.className=cls;
+    s.style.left=p.x+'px';s.style.top=p.y+'px';
+    const a=Math.random()*Math.PI*2,r=(up?24:14)+Math.random()*(up?40:26);
+    s.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    s.style.setProperty('--dy',(up?(Math.sin(a)*r-26):(Math.sin(a)*r+22)).toFixed(1)+'px');
+    if(up&&k%3)s.style.background='#FFD740';
+    wrap.appendChild(s);
+    setTimeout(function(){s.remove()},up?880:700);
+  }
+}
+function dgClue(k){
+  if(k<=1)return['🔥','#FF5252','烫手！宝物就在这格旁边'];
+  if(k===2)return['♨️','#FFAB40','很热，就在这附近'];
+  if(k===3)return['🌡️','#FFE57F','温的，方向没错'];
+  return['❄️','#81D4FA','冷！宝藏还远着呢'];
+}
+function dgDist(i){
+  const cols=dg.cols,x=i%cols,y=Math.floor(i/cols);
+  let best=99;
+  dg.tre.forEach(function(t){
+    if(t.found)return;
+    const tx=t.cell%cols,ty=Math.floor(t.cell/cols);
+    const d=Math.abs(x-tx)+Math.abs(y-ty);
+    if(d<best)best=d;
+  });
+  return best>90?1:best;
+}
+function dgPaint(i){
+  const c=dg.cells[i],el=dg.el[i];
+  if(!el)return;
+  el.classList.add('dug');
+  if(c.st===3){
+    el.classList.add('tre');el.classList.remove('hit');
+    el.innerHTML='<span class="dg-e">'+dg.tre[c.gem].gem.e+'</span>';
+    return;
+  }
+  if(c.st===2){
+    el.classList.add('hit');
+    const t=dg.tre[c.gem];
+    el.innerHTML='<span class="dg-e">💥</span><span class="dg-n">还差'+t.left+'</span>';
+    return;
+  }
+  const k=Math.min(4,c.d),cl=dgClue(k);
+  el.innerHTML=(c.rock
+    ?'<span class="dg-e">🪨</span>'
+    :'<span class="dg-e h'+k+'">'+cl[0]+'</span>')+'<span class="dg-n">'+c.d+'</span>';
+}
+function dgBuild(){
+  const cfg=dgCfg(),cols=cfg[0],rows=cfg[1],tier=cfg[3];
+  const total=cols*rows,n=Math.min(cfg[2],total-5);
+  dg.cols=cols;dg.rows=rows;dg.tier=tier;
+  dg.cells=new Array(total);
+  for(let k=0;k<total;k++)dg.cells[k]={st:0,gem:null,rock:false,d:0};
+  const idx=[];for(let k=0;k<total;k++)idx.push(k);
+  for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=idx[i];idx[i]=idx[j];idx[j]=t;}
+  const pool=DG_TREASURES.filter(function(r){return r.tier<=tier&&r.tier>=Math.max(0,tier-1)});
+  dg.tre=[];
+  for(let k=0;k<n;k++){
+    const gem=pool[Math.floor(Math.random()*pool.length)];
+    const cell=idx.pop();
+    dg.tre.push({gem,left:gem.hits,cell,found:false});
+    dg.cells[cell].gem=dg.tre.length-1;
+  }
+  dg.leftN=n;
+  const rockN=Math.min(idx.length-1,2+Math.floor(dg.layer/2));
+  for(let k=0;k<rockN;k++){const i=idx.pop();if(i==null)break;dg.cells[i].rock=true;}
+  dgRender();
+}
+function dgRender(){
+  const g=document.getElementById('dgGrid');
+  g.style.gridTemplateColumns='repeat('+dg.cols+',1fr)';
+  g.innerHTML='';
+  dg.el=[];
+  for(let i=0;i<dg.cells.length;i++){
+    const b=document.createElement('button');
+    b.type='button';b.className='dg-cell';b.dataset.i=String(i);
+    b.onclick=(function(k){return function(){dgDig(k)}})(i);
+    g.appendChild(b);dg.el.push(b);
+  }
+  dgUpdateUI();
+}
+function dgUpdateUI(){
+  document.getElementById('dgScore').textContent='🏺 '+dg.score;
+  document.getElementById('dgCombo').textContent='🔥 x'+dg.combo;
+  document.getElementById('dgTime').textContent='⏱ '+Math.ceil(dg.timeLeft)+' 秒';
+  document.getElementById('dgSpade').textContent='⛏️ 铲子 '+dg.shovels;
+  document.getElementById('dgLayer').textContent='第 '+dg.layer+' 层 · '+dgLayerName();
+  document.getElementById('dgLeft').textContent='🏺 剩 '+dg.leftN+' 件';
+  document.getElementById('dgBook').textContent='📖 '+dgBook().length+'/'+DG_TREASURES.length+' · 🏆 '+dgBest();
+  const wrap=document.getElementById('dgWrap');
+  if(wrap)wrap.classList.toggle('dg-dry',dg.shovels<1&&!dg.over);
+}
+function dgYield(i){
+  const c=dg.cells[i],t=dg.tre[c.gem],g=t.gem;
+  t.found=true;c.st=3;dg.leftN--;dg.found++;
+  dgPaint(i);
+  dgGrain(i,'dg-spark',12,true);
+  const gain=g.sc+dg.combo*5;
+  dg.score+=gain;
+  dgPopAt(i,'+'+gain,'#FFD740');
+  sndReward();
+  const cl=dgClientXY(i);spawnStarFly(cl.x,cl.y);
+  const bk=dgBook();
+  let isNew=false;
+  if(bk.indexOf(g.id)<0){
+    bk.push(g.id);localStorage.setItem('hz_dig_book',bk.join(','));
+    isNew=true;dg.booked.push(g);dg.score+=25;spawnConfetti();
+  }
+  dgJudge('✨ 出土 '+g.e+' '+g.n+'！'+(isNew?' 🆕 新藏品':''),'#FFD740');
+  dgMsg((isNew?'🆕 博物馆新增：':'又出土一件：')+g.e+' '+g.n+' +'+gain+' 分','#B9F6CA');
+}
+function dgLayerUp(){
+  const bonus=15*dg.layer;
+  dg.score+=bonus;
+  dg.shovels=Math.min(DG_SH_MAX,dg.shovels+2);
+  dg.timeLeft=Math.min(DG_TIME+30,dg.timeLeft+12);
+  if(dg.layer>dgDeepBest())localStorage.setItem('hz_dig_deep',String(dg.layer));
+  spawnConfetti();
+  dgJudge('🎉 这层挖空啦！+'+bonus+' 分 +12 秒','#B9F6CA');
+  tone(659,.12);setTimeout(function(){tone(880,.16)},110);
+  const gen=dg.gen;
+  dg.lock=true;
+  setTimeout(function(){
+    if(gen!==dg.gen||dg.over||currentMode!=='dig')return;
+    dg.lock=false;
+    dg.layer++;
+    dgBuild();
+    dgBanner('⛏️ 第 '+dg.layer+' 层 · '+dgLayerName());
+    dgMsg('🕳️ 挖到第 '+dg.layer+' 层「'+dgLayerName()+'」，埋着更值钱的文物！','#80D8FF');
+    dgUpdateUI();
+  },1300);
+}
+function dgDig(i){
+  if(dg.over||dg.lock||currentMode!=='dig')return;
+  const c=dg.cells[i];
+  if(!c||c.st===1||c.st===3)return;
+  if(dg.shovels<1){
+    tone(200,.14,'square',.05);
+    dgMsg('🙈 没有铲子了！答对题目就能领铲子','#FF8A80');
+    const wrap=document.getElementById('dgWrap');
+    wrap.classList.remove('shake');void wrap.offsetWidth;wrap.classList.add('shake');
+    return;
+  }
+  dg.shovels--;
+  dgGrain(i,'dg-sand',8,false);
+  if(c.gem!=null){
+    const t=dg.tre[c.gem];
+    t.left--;
+    if(t.left>0){
+      c.st=2;dgPaint(i);
+      tone(300,.12,'square',.07);
+      dgPopAt(i,'⛏️ 碰到硬的了！','#FFE082');
+      dgMsg('💥 铲到硬东西！这格再挖 '+t.left+' 下就出土了','#FFCC80');
+      dgUpdateUI();
+      return;
+    }
+    dgYield(i);
+    dgUpdateUI();
+    if(dg.leftN<=0)dgLayerUp();
+    return;
+  }
+  c.st=1;c.d=dgDist(i);
+  const k=Math.min(4,c.d),cl=dgClue(k);
+  dgPaint(i);
+  if(c.rock){tone(180,.16,'square',.06);dgPopAt(i,'🪨 硬邦邦',cl[1])}
+  else{tone(420,.08,'sine',.05);dgPopAt(i,cl[0]+' '+c.d,cl[1])}
+  dgMsg(cl[2]+'（离最近的文物 '+c.d+' 格）',cl[1]);
+  dgUpdateUI();
+}
+async function dgAsk(){
+  if(dg.over||currentMode!=='dig')return;
+  dg.busy=true;
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data||!data.strokes.length){setTimeout(dgAsk,500);return}
+  if(dg.over||currentMode!=='dig')return;
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],n=data.strokes.length;
+  let question,answer,opts=[];
+  if(Math.random()<.5){
+    question='一共有几笔？';answer=n+' 笔';
+    opts=[answer];
+    const near=[];
+    for(let k=Math.max(1,n-3);k<=Math.min(22,n+3);k++){if(k!==n)near.push(k+' 笔')}
+    while(opts.length<4&&near.length)opts.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);
+  }else{
+    const tIdx=Math.floor(Math.random()*n);
+    const d=DIRS.find(function(x){return x.code===dirs[tIdx]});
+    question='第'+(DG_ORD[tIdx]||tIdx+1)+'笔往哪写？';
+    answer=(d?d.icon:'➡️')+' '+(CF_SHORT[dirs[tIdx]]||'右');
+    opts=[answer];
+    const pool=DIRS.filter(function(x){return x.code!==dirs[tIdx]}).map(function(x){return x.icon+' '+(CF_SHORT[x.code]||x.label)});
+    while(opts.length<4&&pool.length)opts.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+  }
+  for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=opts[i];opts[i]=opts[j];opts[j]=t}
+  dg.answer=answer;dg.qChar=ch;dg.qText=question;dg.opts=opts;
+  document.getElementById('dgQuestion').innerHTML='「<span class="mole-char">'+ch+'</span>」'+question+' <span style="font-size:13px;opacity:.75">→ 答对领铲子！</span>';
+  const div=document.getElementById('dgOptions');
+  div.innerHTML='';
+  opts.forEach(function(v){
+    const b=document.createElement('button');
+    b.className='opt-btn';b.dataset.value=v;b.textContent=v;
+    b.onclick=function(){dgPick(v,b)};
+    div.appendChild(b);
+  });
+  dg.busy=false;
+  dgUpdateUI();
+}
+function dgPick(v,btn){
+  if(dg.over||dg.busy||currentMode!=='dig')return;
+  dg.busy=true;
+  dg.total++;
+  const bs=document.querySelectorAll('#dgOptions .opt-btn');
+  bs.forEach(function(b){b.disabled=true});
+  if(v===dg.answer){
+    btn.classList.add('correct');
+    dg.correct++;dg.combo++;
+    if(dg.combo>dg.maxCombo)dg.maxCombo=dg.combo;
+    const gain=dg.combo>=3?3:2;
+    dg.shovels=Math.min(DG_SH_MAX,dg.shovels+gain);
+    dg.score+=6;dg.timeLeft+=2;
+    sndOk();showComboEffect(dg.combo);
+    dgMsg('✓ 领到 '+gain+' 把铲子！点沙格开挖','#B9F6CA');
+    if(dg.combo===3)dgJudge('🔥 连击 x3，铲子变成 3 把！','#FFAB40');
+    dgUpdateUI();
+    setTimeout(dgAsk,380);
+  }else{
+    btn.classList.add('wrong');
+    bs.forEach(function(b){if(b.dataset.value===dg.answer)b.classList.add('reveal')});
+    dg.combo=0;
+    dg.score=Math.max(0,dg.score-8);
+    dg.timeLeft=Math.max(0,dg.timeLeft-4);
+    if(dg.shovels>0)dg.shovels--;
+    sndNo();
+    const wrap=document.getElementById('dgWrap');
+    wrap.classList.remove('shake');void wrap.offsetWidth;wrap.classList.add('shake');
+    dgJudge('🌪️ 沙暴！铲子被埋了一把','#FF5252');
+    dgMsg('🙈 答案是「'+dg.answer+'」，答错扣 4 秒、少一把铲子','#FF8A80');
+    dgUpdateUI();
+    setTimeout(dgAsk,950);
+  }
+}
+function dgTick(){
+  if(dg.over||currentMode!=='dig'){dgStopLoops();return}
+  const now=performance.now();
+  let dt=(now-dg.lastTs)/1000;
+  dg.lastTs=now;
+  if(dt>0.2)dt=0.2;
+  dg.timeLeft-=dt;
+  if(dg.timeLeft<=0){dg.timeLeft=0;dgUpdateUI();dgEnd();return}
+  if(now-dg.uiAt>240){dg.uiAt=now;dgUpdateUI()}
+}
+function dgEnd(){
+  if(dg.over)return;
+  dg.over=true;dg.busy=true;dg.lock=true;
+  dgStopLoops();
+  if(dg.layer>dgDeepBest())localStorage.setItem('hz_dig_deep',String(dg.layer));
+  const best=Math.max(dg.score,dgBest());
+  localStorage.setItem('hz_dig_best',String(best));
+  const acc=dg.total>0?dg.correct/dg.total:0;
+  dgResult(best,acc);
+}
+function dgResult(best,acc){
+  const newN=(dg.booked||[]).length;
+  const earned=Math.max(2,Math.min(22,2+dg.found*2+(acc>=.7?2:0)+(dg.maxCombo>=4?2:0)+newN*2));
+  addStars(earned);
+  showScreen('dig-result');
+  document.getElementById('dgResultStars').textContent='⭐ +'+earned;
+  document.getElementById('dgResultScore').textContent=dg.score;
+  document.getElementById('dgResultFound').textContent=dg.found;
+  document.getElementById('dgResultLayer').textContent=dg.layer;
+  document.getElementById('dgResultAcc').textContent=dg.total?Math.round(acc*100)+'%':'—';
+  document.getElementById('dgResultBook').textContent=dgBook().length+'/'+DG_TREASURES.length+' / '+best;
+  const bk=dgBook();
+  document.getElementById('dgResultIcons').innerHTML=DG_TREASURES.map(function(r){
+    return '<span style="opacity:'+(bk.indexOf(r.id)>=0?1:.2)+';filter:'+(bk.indexOf(r.id)>=0?'none':'grayscale(1)')+'">'+r.e+'</span>';
+  }).join('');
+  let emoji,title,subtitle;
+  if(dg.found===0){
+    emoji='🪣';title='一件文物也没挖到…';
+    subtitle='记住 🔥 烫 ❄️ 冷：下次从最烫的格子旁边开挖！';
+  }else{
+    emoji=bk.length>=DG_TREASURES.length?'👑':(dg.layer>=4?'🏛️':'⛏️');
+    title='出土 '+dg.found+' 件文物，挖到第 '+dg.layer+' 层！';
+    subtitle='最长连击 '+dg.maxCombo+'，正确率 '+Math.round(acc*100)+'%。图鉴还差 '+(DG_TREASURES.length-bk.length)+' 件！';
+  }
+  document.getElementById('dgResultEmoji').textContent=emoji;
+  document.getElementById('dgResultTitle').textContent=title;
+  document.getElementById('dgResultSubtitle').textContent=subtitle;
+  if(dg.found>0){sndReward();setTimeout(showRewardEgg,900);speakPraise()}
+}
+function dgStart(){
+  dgStopLoops();
+  const g=(dg.gen||0)+1;
+  dg={gen:g,over:false,busy:true,lock:false,cells:[],el:[],tre:[],
+    layer:1,cols:4,rows:3,tier:0,leftN:0,
+    score:0,combo:0,maxCombo:0,correct:0,total:0,found:0,booked:[],
+    shovels:DG_SH0,timeLeft:DG_TIME,lastTs:performance.now(),uiAt:0,
+    answer:'',opts:[],qChar:'',qText:'',timerId:null};
+  showScreen('dig');
+  unlockAudio();
+  const wrap=document.getElementById('dgWrap');
+  wrap.querySelectorAll('.dg-pop,.dg-sand,.dg-spark').forEach(function(n){n.remove()});
+  document.getElementById('dgOptions').innerHTML='';
+  document.getElementById('dgFeedback').textContent='';
+  document.getElementById('dgQuestion').textContent='正在打探方…';
+  document.getElementById('dgGoal').textContent='🏜️ 答对题目领铲子，点沙格开挖！挖空会告诉你离文物几格：🔥 烫 = 就在旁边，❄️ 冷 = 还远';
+  dgBuild();
+  dgUpdateUI();
+  dgBanner('⛏️ 第 1 层 · '+dgLayerName());
+  const gen=g;
+  setTimeout(function(){
+    if(gen!==dg.gen||currentMode!=='dig')return;
+    dgAsk();
+  },620);
+  dg.timerId=setInterval(dgTick,100);
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='dig'||dg.over)return;
+  const i='1234'.indexOf(e.key);
+  if(i<0)return;
+  e.preventDefault();
+  const b=document.querySelectorAll('#dgOptions .opt-btn')[i];
+  if(b&&!b.disabled)b.click();
+});
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
   challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
