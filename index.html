@@ -637,6 +637,65 @@ button:active{transform:scale(.95)}
 .dg-hud span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dg-shovels{color:#FFD740}
 @media(max-width:420px){.dg-wrap{height:38vh;min-height:268px}.dg-grid{gap:5px;max-width:266px}.dg-e{font-size:20px}.dg-cell.tre .dg-e{font-size:24px}.dg-judge{font-size:19px}.dg-banner{font-size:22px}}
+/* ---------- 每日签到 · 星运转盘 ---------- */
+.sk-hero{display:flex;align-items:center;justify-content:center;gap:14px;width:100%;max-width:430px;margin:8px auto 2px;padding:14px 16px;border-radius:20px;background:linear-gradient(160deg,#3A2A6E,#5E3AA8 58%,#7A45C6);box-shadow:0 10px 26px rgba(0,0,0,.35),inset 0 0 46px rgba(0,0,0,.3)}
+.sk-flame{font-size:44px;line-height:1;filter:drop-shadow(0 0 14px rgba(255,171,64,.85));animation:skFlame 1.6s ease-in-out infinite}
+.sk-flame.cold{filter:none;animation:none;opacity:.5}
+@keyframes skFlame{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.13) rotate(3deg)}}
+.sk-num{font-size:36px;font-weight:bold;color:#FFD740;line-height:1.05;text-shadow:0 3px 10px rgba(0,0,0,.55)}
+.sk-label{font-size:11px;color:rgba(255,255,255,.72);letter-spacing:1px;font-weight:bold}
+.sk-title{font-size:13px;font-weight:bold;color:#B9F6CA;margin-top:2px}
+.sk-sub{font-size:11px;color:rgba(255,255,255,.62);margin-top:3px}
+.sk-week{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;width:100%;max-width:430px;margin:10px auto}
+.sk-cell{border-radius:12px;padding:6px 2px;text-align:center;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);color:#fff;overflow:hidden}
+.sk-cell .e{display:block;font-size:18px;line-height:1.2}
+.sk-cell .d{display:block;font-size:9px;opacity:.72;font-weight:bold}
+.sk-cell .r{display:block;font-size:9px;font-weight:bold;opacity:.9}
+.sk-cell.done{background:rgba(76,175,80,.22);border-color:rgba(124,252,154,.5)}
+.sk-cell.done .e{filter:grayscale(.45) brightness(.92)}
+.sk-cell.today{background:linear-gradient(160deg,#FFE082,#FFB300);border-color:#FFF59D;color:#4A2E00;box-shadow:0 0 16px rgba(255,213,79,.65);animation:skBeat 1.4s ease-in-out infinite}
+.sk-cell.lock{opacity:.45}
+@keyframes skBeat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.sk-box{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:430px;margin:8px auto;padding:15px 16px;border:none;border-radius:18px;cursor:pointer;font-family:inherit;font-size:16px;font-weight:bold;color:#4A2E00;background:linear-gradient(160deg,#FFE082,#FFB300);box-shadow:0 8px 22px rgba(0,0,0,.35),inset 0 2px 0 rgba(255,255,255,.5);transition:transform .15s}
+.sk-box:hover{transform:translateY(-2px)}
+.sk-box:active{transform:scale(.97)}
+.sk-box .sk-box-e{font-size:30px;line-height:1}
+.sk-box.sk-opened{animation:skTap .55s}
+.sk-box.sk-done-box{background:linear-gradient(160deg,#B0BEC5,#78909C);color:#263238;cursor:default;box-shadow:0 6px 16px rgba(0,0,0,.28)}
+.sk-box.shake{animation:cfShake .42s}
+@keyframes skTap{0%{transform:scale(1)}30%{transform:scale(1.14) rotate(-4deg)}60%{transform:scale(.94) rotate(3deg)}100%{transform:scale(1)}}
+.sk-panel{display:none}
+.sk-panel.on{display:block}
+.sk-wheel-wrap{position:relative;width:100%;max-width:430px;margin:6px auto;display:flex;flex-direction:column;align-items:center}
+.sk-wheel{position:relative;width:228px;height:228px;border-radius:50%;box-shadow:0 0 0 7px rgba(255,213,79,.9),0 14px 32px rgba(0,0,0,.45),inset 0 0 26px rgba(0,0,0,.32);overflow:hidden}
+.sk-wheel-inner{position:absolute;inset:0}
+.sk-wheel-face{position:absolute;inset:0;border-radius:50%}
+.sk-lab{position:absolute;transform:translate(-50%,-50%);font-size:15px;font-weight:bold;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.75);white-space:nowrap;line-height:1;text-align:center}
+.sk-lab i{display:block;font-style:normal;font-size:9px;margin-top:1px}
+.sk-tick{position:absolute;left:50%;top:-16px;transform:translateX(-50%);font-size:20px;z-index:6;filter:drop-shadow(0 2px 5px rgba(0,0,0,.6))}
+.sk-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;border:3px solid #FFF59D;background:linear-gradient(160deg,#FF7043,#D84315);color:#fff;font-family:inherit;font-size:17px;font-weight:bold;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.45);z-index:5}
+.sk-hub:active{transform:translate(-50%,-50%) scale(.94)}
+.sk-hub[disabled]{filter:grayscale(.6) brightness(.75);cursor:default}
+.sk-slow{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);font-size:11px;font-weight:bold;color:#B9F6CA;opacity:0;z-index:6;text-shadow:0 1px 4px #000}
+.sk-judge{position:absolute;left:50%;top:26%;transform:translate(-50%,-50%);font-size:22px;font-weight:bold;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.85);pointer-events:none;opacity:0;z-index:9;white-space:nowrap}
+.sk-judge.on{animation:cfJudge .95s ease-out}
+.sk-banner{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);font-size:24px;font-weight:bold;color:#fff;text-shadow:0 4px 16px rgba(0,0,0,.9);pointer-events:none;opacity:0;z-index:10;white-space:nowrap}
+.sk-banner.on{animation:cfJudge 1.3s ease-out}
+.sk-wmsg{width:100%;max-width:430px;margin:8px auto 0;text-align:center;font-size:12px;font-weight:bold;color:#FFE082}
+.sk-medals{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;width:100%;max-width:430px;margin:10px auto}
+.sk-medal{padding:8px 4px;border-radius:13px;text-align:center;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.13);color:#fff;font-size:10px;font-weight:bold}
+.sk-medal .e{display:block;font-size:24px;line-height:1.2;filter:grayscale(1);opacity:.4}
+.sk-medal .d{display:block;opacity:.6;font-size:9px}
+.sk-medal.on{background:linear-gradient(160deg,rgba(255,213,79,.28),rgba(255,140,0,.16));border-color:rgba(255,213,79,.7)}
+.sk-medal.on .e{filter:none;opacity:1}
+.sk-note{width:100%;max-width:430px;margin:4px auto;font-size:11px;font-weight:bold;color:#F8BBD0;text-align:center}
+.sk-sum{width:100%;max-width:430px;margin:8px auto;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.09);color:#fff;font-size:12px;text-align:center}
+.sk-line{line-height:1.7}
+.sk-line.dim{opacity:.6;font-size:11px}
+.sk-line .gold{color:#FFD740}
+.mode-card.sk-card{position:relative}
+.sk-dot{position:absolute;top:9px;right:11px;min-width:20px;height:20px;border-radius:10px;background:#FF5252;color:#fff;font-size:11px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(255,82,82,.7);animation:skBeat 1.4s ease-in-out infinite}
+@media(max-width:420px){.sk-wheel{width:196px;height:196px}.sk-hub{width:64px;height:64px;font-size:15px}.sk-num{font-size:30px}.sk-flame{font-size:36px}.sk-week{gap:4px}.sk-cell .e{font-size:15px}.sk-lab{font-size:13px}.sk-medal .e{font-size:20px}}
 
 </style>
 
@@ -740,6 +799,11 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('dig')">
       <div class="icon">⛏️</div>
       <div class="info"><h3>笔顺挖宝</h3><p>答题领铲子，凭冷热线索挖文物！</p></div>
+    </div>
+    <div class="mode-card sk-card" onclick="enterMode('checkin')">
+      <div class="icon">📅</div>
+      <div class="info"><h3>每日签到 · 星运转盘</h3><p id="skCardTip">每天回来领星星，连签越久宝箱越好！</p></div>
+      <span class="sk-dot" id="skDot">1</span>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -1578,6 +1642,48 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-checkin">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="skStarsTop">⭐ 0</span><span id="skFlameTxt">🔥 每日签到</span></div>
+  </div>
+  <div class="challenge-goal" id="skGoal">📅 每天回来点宝箱就能领星星，连签越久宝箱越大方；拆完宝箱还能转一次幸运转盘，手快也有份！</div>
+  <div class="sk-hero">
+    <div class="sk-flame" id="skFlame">🔥</div>
+    <div>
+      <div class="sk-label">连续签到</div>
+      <div class="sk-num"><span id="skStreak">0</span> 天</div>
+      <div class="sk-title" id="skTitle">🌱 签到新人</div>
+      <div class="sk-sub" id="skSub">累计签到 0 天 · 最长连签 0 天</div>
+    </div>
+  </div>
+  <div class="sk-week" id="skWeek"></div>
+  <button class="sk-box" id="skBox" onclick="skOpen()"><span class="sk-box-e" id="skBoxE">🎁</span><span id="skBoxTxt">打开今天的宝箱</span></button>
+  <div class="sk-panel" id="skPanel">
+    <div class="sk-wheel-wrap" id="skWheelWrap">
+      <div class="sk-tick">🔻</div>
+      <div class="sk-wheel">
+        <div class="sk-wheel-inner" id="skInner">
+          <div class="sk-wheel-face" id="skFace"></div>
+          <div id="skLabels"></div>
+        </div>
+        <button class="sk-hub" id="skStop" onclick="skStop()" disabled><span id="skHubTxt">停!</span></button>
+      </div>
+      <div class="sk-slow" id="skSlow">慢下来啦，就现在！</div>
+      <div class="sk-judge" id="skJudge"></div>
+      <div class="sk-banner" id="skBanner"></div>
+    </div>
+    <div class="sk-wmsg" id="skWheelMsg">先拆开宝箱，转盘才会开始转</div>
+  </div>
+  <div class="sk-medals" id="skMedals"></div>
+  <div class="sk-note">💎 徽章碎片 <span id="skFrag">0/3</span> · 攒满 3 块自动换来一枚还没解锁的徽章</div>
+  <div class="sk-sum" id="skSummary"></div>
+  <div class="feedback" id="skFeedback"></div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="skStart()">🔄 刷新看看</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页去练字</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -1913,6 +2019,7 @@ function updateHomeStats(){
   document.getElementById('homeStars').textContent='⭐ '+stars;
   document.getElementById('homeCombo').textContent='🔥 最高连击 '+maxCombo;
   document.getElementById('homeAnimals').textContent='🐼 收藏 '+collected.length+'/8';
+  if(typeof skNudge==='function')skNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -1932,6 +2039,7 @@ function enterMode(mode){
  else if(mode==='fish')fhStart();
  else if(mode==='duel')dlStart();
  else if(mode==='dig')dgStart();
+ else if(mode==='checkin')skStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -6964,6 +7072,333 @@ document.addEventListener('keydown',function(e){
   const b=document.querySelectorAll('#dgOptions .opt-btn')[i];
   if(b&&!b.disabled)b.click();
 });
+/* ================= 每日签到 · 星运转盘 ================= */
+const SK_WEEK=[
+  {e:'⭐',n:'第1天',s:5},
+  {e:'🔥',n:'第2天',s:8},
+  {e:'🎁',n:'第3天',s:10},
+  {e:'🧪',n:'第4天',s:12},
+  {e:'🏮',n:'第5天',s:15},
+  {e:'🏅',n:'第6天',s:18},
+  {e:'👑',n:'第7天',s:25}
+];
+const SK_MEDALS=[
+  {d:3,e:'🔥',n:'三日火苗'},
+  {d:7,e:'🏅',n:'七日勋章'},
+  {d:14,e:'🎖️',n:'两周铁杆'},
+  {d:30,e:'👑',n:'月度皇冠'},
+  {d:60,e:'🐉',n:'神兽之友'},
+  {d:100,e:'🏆',n:'百日笔顺王'}
+];
+const SK_WHEEL=[
+  {e:'💫',n:'星星×2',t:'x',v:2,c:'#EF5350'},
+  {e:'✨',n:'+6 颗星',t:'add',v:6,c:'#AB47BC'},
+  {e:'🎁',n:'神秘盲盒',t:'egg',v:10,c:'#FF7043'},
+  {e:'🌱',n:'谢谢参与',t:'none',v:0,c:'#42A5F5'},
+  {e:'👑',n:'星星×3',t:'x',v:3,c:'#FFCA28'},
+  {e:'🐣',n:'宠物口粮',t:'pet',v:70,c:'#26A69A'},
+  {e:'🌟',n:'+12 颗星',t:'add',v:12,c:'#5C6BC0'},
+  {e:'💎',n:'徽章碎片',t:'frag',v:1,c:'#EC407A'}
+];
+const SK_SLOTS=7;
+const SK_FRAG_NEED=3;
+let sk={last:'',streak:0,best:0,total:0,medals:[],frag:0,seg:-1,gen:0,phase:'box',busy:false,can:true,baseVal:0,todayStars:0,timerId:null,spin:{a:0,t0:0,lastTs:0,sp:0,stop:false,v:0}};
+function skDay(){
+  if(window._skDay)return window._skDay;
+  const d=new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function skMs(k){const p=k.split('-');return Date.UTC(+p[0],+p[1]-1,+p[2])}
+function skGap(a,b){return Math.round((skMs(b)-skMs(a))/86400000)}
+function skShift(k,n){
+  const p=k.split('-');
+  const d=new Date(+p[0],+p[1]-1,+p[2]+n);
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function skLoad(){
+  sk.last=localStorage.getItem('hz_sk_last')||'';
+  sk.streak=Math.max(0,+localStorage.getItem('hz_sk_streak')||0);
+  sk.best=Math.max(0,+localStorage.getItem('hz_sk_best')||0);
+  sk.total=Math.max(0,+localStorage.getItem('hz_sk_total')||0);
+  sk.frag=Math.max(0,+localStorage.getItem('hz_sk_frag')||0);
+  const m=localStorage.getItem('hz_sk_medals');
+  sk.medals=m?m.split(',').filter(Boolean):[];
+  sk.can=sk.last!==skDay();
+  sk.seg=-1;
+  if(!sk.can){
+    const s=localStorage.getItem('hz_sk_seg');
+    if(s!==null)sk.seg=Math.max(0,Math.min(SK_WHEEL.length-1,+s|0));
+    sk.baseVal=Math.max(0,+localStorage.getItem('hz_sk_base_'+sk.last)||0);
+    sk.todayStars=Math.max(0,+localStorage.getItem('hz_sk_stars_'+sk.last)||0);
+  }
+}
+function skSave(){
+  localStorage.setItem('hz_sk_last',sk.last);
+  localStorage.setItem('hz_sk_streak',sk.streak);
+  localStorage.setItem('hz_sk_best',sk.best);
+  localStorage.setItem('hz_sk_total',sk.total);
+  localStorage.setItem('hz_sk_frag',sk.frag);
+  localStorage.setItem('hz_sk_medals',sk.medals.join(','));
+  localStorage.setItem('hz_sk_base_'+sk.last,String(sk.baseVal));
+  localStorage.setItem('hz_sk_stars_'+sk.last,String(sk.todayStars));
+  if(sk.seg>=0)localStorage.setItem('hz_sk_seg',String(sk.seg));
+}
+function skTitleOf(n){
+  const list=[{d:0,e:'🌱',n:'签到新人'}].concat(SK_MEDALS);
+  let t=list[0];
+  for(let i=0;i<list.length;i++){if(n>=list[i].d)t=list[i];}
+  return t;
+}
+function skSlot(){return sk.streak>0?(sk.streak-1)%SK_SLOTS:0}
+function skRenderWeek(){
+  let h='';
+  const cur=skSlot();
+  for(let i=0;i<SK_SLOTS;i++){
+    const p=SK_WEEK[i];
+    const cls=i<cur?'done':(i===cur?(sk.can?'today':'done'):'lock');
+    h+='<div class="sk-cell '+cls+'"><span class="e">'+p.e+'</span><span class="d">'+p.n+'</span><span class="r">+'+p.s+'⭐</span></div>';
+  }
+  document.getElementById('skWeek').innerHTML=h;
+}
+function skRenderMedals(){
+  let h='';
+  for(let i=0;i<SK_MEDALS.length;i++){
+    const m=SK_MEDALS[i];
+    const on=sk.medals.indexOf(m.e)>=0;
+    h+='<div class="sk-medal'+(on?' on':'')+'"><span class="e">'+m.e+'</span><span class="n">'+m.n+'</span><span class="d">连签 '+m.d+' 天</span></div>';
+  }
+  document.getElementById('skMedals').innerHTML=h;
+}
+function skRender(){
+  const t=skTitleOf(sk.streak);
+  document.getElementById('skStarsTop').textContent='⭐ '+stars;
+  document.getElementById('skStreak').textContent=sk.streak;
+  document.getElementById('skSub').textContent='累计签到 '+sk.total+' 天 · 最长连签 '+sk.best+' 天';
+  document.getElementById('skTitle').textContent=t.e+' '+t.n;
+  const flame=document.getElementById('skFlame');
+  flame.textContent=(sk.can&&sk.streak===0)?'🕯️':'🔥';
+  flame.className='sk-flame'+((sk.can&&sk.streak===0)?' cold':'');
+  skRenderWeek();
+  skRenderMedals();
+  const box=document.getElementById('skBox');
+  if(sk.can){
+    box.classList.remove('sk-done-box','sk-opened');
+    document.getElementById('skBoxE').textContent='🎁';
+    document.getElementById('skBoxTxt').textContent='打开今天的宝箱（+'+SK_WEEK[skSlot()].s+' 颗星）';
+    document.getElementById('skPanel').classList.remove('on');
+    document.getElementById('skStop').disabled=true;
+    document.getElementById('skWheelMsg').textContent='先拆开宝箱，转盘才会开始转';
+  }else{
+    box.classList.add('sk-done-box');
+    document.getElementById('skBoxE').textContent='✅';
+    document.getElementById('skBoxTxt').textContent='今天已签到 · '+skShift(skDay(),1)+' 的宝箱正在路上';
+    document.getElementById('skPanel').classList.add('on');
+    const face=document.getElementById('skFace');
+    face.style.background='conic-gradient('+SK_WHEEL.map((p,i)=>p.c+' '+(i*45)+'deg '+((i+1)*45)+'deg').join(',')+')';
+    if(sk.seg>=0){
+      const seg=SK_WHEEL[sk.seg];
+      document.getElementById('skInner').style.transform='rotate('+(360-(sk.seg*45+22.5))+'deg)';
+      document.getElementById('skStop').disabled=true;
+      document.getElementById('skHubTxt').textContent='已开';
+      document.getElementById('skWheelMsg').textContent='上次停在 '+seg.e+' '+seg.n+' · 今日共 '+sk.todayStars+'⭐';
+    }
+  }
+  document.getElementById('skFrag').textContent=(sk.frag%SK_FRAG_NEED)+'/'+SK_FRAG_NEED;
+  skSummary();
+}
+function skSummary(){
+  const el=document.getElementById('skSummary');
+  if(sk.can){
+    el.innerHTML='<div class="sk-line">📅 当前连签 <b>'+sk.streak+'</b> 天，明天再签就升到 '+(sk.streak+1)+' 天</div><div class="sk-line dim">'+skDay()+' 的宝箱还没有拆哦</div>';
+    return;
+  }
+  const next=skShift(sk.last,1);
+  el.innerHTML='<div class="sk-line"><b>'+sk.last+'</b> 签到成功 🔥 连签 '+sk.streak+' 天</div>'+
+    '<div class="sk-line">今日收获 <b class="gold">'+sk.todayStars+'</b> 颗星星'+(sk.seg>=0?(' · 转盘 '+SK_WHEEL[sk.seg].e+SK_WHEEL[sk.seg].n):'')+'</div>'+
+    '<div class="sk-line dim">明天（'+next+'）再来，连签奖励更高！</div>';
+}
+function skMsg(t,color){
+  const el=document.getElementById('skFeedback');
+  el.textContent=t;el.style.color=color||'#FFD740';
+}
+function skBanner(t){
+  const el=document.getElementById('skBanner');
+  el.textContent=t;
+  el.classList.remove('on');void el.offsetWidth;
+  if(t)el.classList.add('on');
+}
+function skWheel(t,color){
+  const el=document.getElementById('skJudge');
+  el.textContent=t;el.style.color=color||'#FFD740';
+  el.classList.remove('on');void el.offsetWidth;
+  if(t)el.classList.add('on');
+}
+function skStart(){
+  sk.gen++;
+  skLoad();
+  sk.busy=false;
+  sk.phase='box';
+  showScreen('checkin');
+  const face=document.getElementById('skFace');
+  face.style.background='conic-gradient('+SK_WHEEL.map((p,i)=>p.c+' '+(i*45)+'deg '+((i+1)*45)+'deg').join(',')+')';
+  let h='';
+  for(let i=0;i<SK_WHEEL.length;i++){
+    const ang=(i*45+22.5)*Math.PI/180;
+    h+='<span class="sk-lab" style="left:'+(50+33*Math.sin(ang)).toFixed(1)+'%;top:'+(50-33*Math.cos(ang)).toFixed(1)+'%">'+SK_WHEEL[i].e+'<i>'+SK_WHEEL[i].n+'</i></span>';
+  }
+  document.getElementById('skLabels').innerHTML=h;
+  document.getElementById('skInner').style.transform='rotate(0deg)';
+  skRender();
+  skMsg(sk.can?'🎁 今天还没签到，点开宝箱领星星，再转一次幸运转盘！':'✅ 今天已经签到啦，明天 0 点后再来连签！','#B9F6CA');
+}
+function skSegIdx(){
+  const a=((360-(sk.spin.a%360))%360);
+  return Math.floor(a/45)%SK_WHEEL.length;
+}
+function skSpin(){
+  const gen=sk.gen;
+  const s=sk.spin;
+  s.a=0;s.stop=false;s.v=0;s.sp=0;
+  s.t0=performance.now();s.lastTs=s.t0;
+  sk.phase='spin';
+  document.getElementById('skStop').disabled=false;
+  document.getElementById('skHubTxt').textContent='停!';
+  document.getElementById('skWheelMsg').textContent='转速会变慢的那一瞬间点「停!」才准，转得飞快点会冲过头！';
+  if(sk.timerId)clearInterval(sk.timerId);
+  sk.timerId=setInterval(function(){
+    if(currentMode!=='checkin'||sk.gen!==gen){
+      clearInterval(sk.timerId);sk.timerId=null;return;
+    }
+    const now=performance.now();
+    const dt=Math.min(.12,(now-s.lastTs)/1000);
+    s.lastTs=now;
+    const el=(now-s.t0)/1000;
+    if(!s.stop){
+      s.sp=200+820*Math.abs(Math.sin(el*0.85));
+      s.a=(s.a+s.sp*dt)%360;
+      if(el>12)skStop();
+    }else{
+      s.v*=Math.pow(.04,dt);
+      s.a=(s.a+s.v*dt)%360;
+      if(s.v<8){
+        clearInterval(sk.timerId);sk.timerId=null;
+        skLand();
+        return;
+      }
+    }
+    document.getElementById('skInner').style.transform='rotate('+s.a.toFixed(1)+'deg)';
+    document.getElementById('skSlow').style.opacity=(1-Math.abs(Math.sin(el*0.85))).toFixed(2);
+  },50);
+}
+function skStop(){
+  if(sk.phase!=='spin'||sk.spin.stop)return;
+  sk.spin.stop=true;
+  sk.spin.v=sk.spin.sp;
+  document.getElementById('skStop').disabled=true;
+  tone(760,.08,'square',.12);
+}
+function skGrantMedal(){
+  for(let i=0;i<SK_MEDALS.length;i++){
+    const m=SK_MEDALS[i];
+    if(sk.medals.indexOf(m.e)<0){
+      sk.medals.push(m.e);
+      skSave();
+      skBanner('🏆 用碎片换来 '+m.e+' '+m.n+'！');
+      sndReward();
+      return m;
+    }
+  }
+  return null;
+}
+function skLand(){
+  sk.phase='done';
+  sk.seg=skSegIdx();
+  const seg=SK_WHEEL[sk.seg];
+  let gain=0,note='';
+  if(seg.t==='x'){gain=Math.round(sk.baseVal*(seg.v-1));note='星星翻 '+seg.v+' 倍！再 +'+gain+'⭐';}
+  else if(seg.t==='add'){gain=seg.v;note='白捡 '+seg.v+' 颗星星！';}
+  else if(seg.t==='pet'){if(window.petAddXp)petAddXp(seg.v);note='宠物饱食度 +'+seg.v+' 🐣';}
+  else if(seg.t==='egg'){gain=seg.v;note='拆到盲盒！掉出 '+seg.v+' 颗星';}
+  else if(seg.t==='frag'){
+    sk.frag++;
+    const got=skGrantMedal();
+    note=got?('攒满 '+SK_FRAG_NEED+' 块碎片，换来 '+got.e+got.n+'！'):('捡到徽章碎片 💎（'+(sk.frag%SK_FRAG_NEED)+'/'+SK_FRAG_NEED+'）');
+  }
+  else note='这次谢谢参与，明天再来转一次！';
+  if(gain>0){addStars(gain);sk.todayStars+=gain;}
+  skSave();
+  const w=document.getElementById('skWheelWrap').getBoundingClientRect();
+  if(seg.t!=='none')spawnStarFly(w.left+w.width/2,w.top+w.height/2);
+  skWheel(seg.t==='none'?'🌱 '+seg.n:seg.e+' '+seg.n+'！',seg.t==='none'?'#81D4FA':'#FFD740');
+  skRender();
+  document.getElementById('skWheelMsg').textContent=note+'　今日共 '+sk.todayStars+'⭐';
+  sk.busy=false;
+  if(seg.t==='egg')setTimeout(function(){if(currentMode==='checkin')showRewardEgg()},300);
+}
+function skOpen(){
+  if(sk.busy)return;
+  unlockAudio();
+  skLoad();
+  if(!sk.can){
+    const b=document.getElementById('skBox');
+    b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');
+    sndNo();
+    skMsg('🕰️ 今天 '+sk.last+' 已经签过啦，'+skShift(skDay(),1)+' 见！','#FF8A80');
+    return;
+  }
+  sk.busy=true;
+  let brk=0;
+  if(sk.last&&skGap(sk.last,skDay())===1)sk.streak++;
+  else{
+    if(sk.last)brk=Math.max(0,skGap(sk.last,skDay())-1);
+    sk.streak=1;
+  }
+  sk.last=skDay();
+  sk.total++;
+  sk.best=Math.max(sk.best,sk.streak);
+  sk.baseVal=SK_WEEK[(sk.streak-1)%SK_SLOTS].s;
+  sk.todayStars=sk.baseVal;
+  sk.seg=-1;
+  addStars(sk.baseVal);
+  let newMedal=null;
+  for(let i=0;i<SK_MEDALS.length;i++){
+    const m=SK_MEDALS[i];
+    if(sk.streak>=m.d&&sk.medals.indexOf(m.e)<0){sk.medals.push(m.e);newMedal=m;}
+  }
+  sk.can=false;
+  skSave();
+  const b=document.getElementById('skBox');
+  b.classList.add('sk-opened');
+  sndReward();
+  const r=b.getBoundingClientRect();
+  spawnStarFly(r.left+r.width/2,r.top+10);
+  skBanner('🔥 连签 '+sk.streak+' 天！+'+sk.baseVal+'⭐');
+  skMsg((brk>0?'💨 断了 '+brk+' 天，火焰重新点燃（累计 '+sk.total+' 天不会丢）':'✨ 签到成功！连签 '+sk.streak+' 天，+'+sk.baseVal+' 颗星')+(newMedal?('　🏆 解锁徽章 '+newMedal.e+newMedal.n):''),'#FFD740');
+  skRender();
+  skSpin();
+  sk.busy=false;
+}
+function skNudge(){
+  const dot=document.getElementById('skDot');
+  const tip=document.getElementById('skCardTip');
+  if(!dot||!tip)return;
+  const last=localStorage.getItem('hz_sk_last')||'';
+  const st=Math.max(0,+localStorage.getItem('hz_sk_streak')||0);
+  const can=last!==skDay();
+  dot.style.display=can?'flex':'none';
+  tip.textContent=can?'📅 今天还没签到，点开领星星！':'🔥 连签 '+st+' 天 · '+skTitleOf(st).e+' '+skTitleOf(st).n;
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='checkin')return;
+  const k=e.key.toLowerCase();
+  if(k===' '||k==='enter'){
+    e.preventDefault();
+    if(sk.phase==='spin')skStop();
+    else if(sk.can&&!sk.busy)skOpen();
+  }
+});
+skLoad();
+skNudge();
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
   challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
