@@ -1,6 +1,6 @@
 # 汉字笔顺闯关 · Hanzi Stroke Quest
 
-> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。17 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷 / 笔顺大魔王 / 笔顺宠物屋 / 笔顺跳房子 / 笔顺连连消 / 笔顺切水果 / 笔顺打砖块 / 笔顺塔防…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
+> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。18 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷 / 笔顺大魔王 / 笔顺宠物屋 / 笔顺跳房子 / 笔顺连连消 / 笔顺切水果 / 笔顺打砖块 / 笔顺塔防 / 笔顺钓鱼…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
 
 <p align="center">
   <img src="assets/demo.gif" alt="运行演示 GIF" width="360" />
@@ -13,7 +13,7 @@
   &nbsp;&nbsp;
   <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License" />
   &nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/单文件-6100_行-orange?style=for-the-badge" alt="Single file" />
+  <img src="https://img.shields.io/badge/单文件-6680_行-orange?style=for-the-badge" alt="Single file" />
 </p>
 
 <p align="center">
@@ -41,7 +41,7 @@
 - 🎯 **零构建、零后端**：单文件 `index.html` 打开即用，任何静态托管都能部署（GitHub Pages / Vercel / Netlify / Nginx）。
 - 🧒 **儿童友好 UI**：糖果紫渐变背景、大圆角按钮、田字格练字区，专为 6–9 岁孩子设计。
 - 🎮 **游戏化激励**：星星 ⭐ + 连击 🔥 + 动物收藏 🐼 + 全屏彩带彩蛋，学习成就感拉满。
-- 🕹️ **17 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、笔顺大魔王、笔顺宠物屋、笔顺跳房子、笔顺连连消、笔顺切水果、笔顺打砖块、笔顺塔防、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
+- 🕹️ **18 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、笔顺大魔王、笔顺宠物屋、笔顺跳房子、笔顺连连消、笔顺切水果、笔顺打砖块、笔顺塔防、笔顺钓鱼、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
 - 🔊 **多感官反馈**：Web Audio API 合成音效（正确 / 错误 / 完成 / 彩蛋）+ Web Speech API 中文语音鼓励（"太棒了！""你真厉害！"）。
 - 📚 **难度渐进**：字库按笔画数从少到多排序，同笔画组内随机洗牌，避免挫败感也保留趣味性。
 - 🌐 **多 CDN 容错**：`hanzi-writer` 库依次尝试 jsDelivr / unpkg / cdnjs，任一可用即可运行。
@@ -235,6 +235,21 @@
   <img src="assets/scene_defense.png" alt="笔顺塔防" width="240" />
 </p>
 
+### 🎣 笔顺钓鱼（蓄力抛竿模式）
+
+水面上漂着小船，四个候选答案写在四条鱼的肚子上——**看准答案，蓄力抛竿，把它钓上来**：
+
+- 🎣 **按住蓄力、松手抛竿**：力度条来回摆动，决定鱼钩落水的远近；鱼在五条水道上左右游动，力度差一点就落到隔壁那条鱼旁边
+- 🐟 **答案写在鱼身上**：题目问「『春』一共有几笔？」「第二笔往哪写？」，四条鱼各举一个答案，游得越快（🦈 大鲨鱼）分越高，🐢 海龟爷爷慢但值钱
+- ⬆️ **咬钩提竿 QTE**：鱼钩附近最近的鱼会被吸引过来咬钩，此时出现「小白条」——滑进绿区的一瞬点一下（或按空格）才钓得上来，太早太晚都会挣脱（-3 秒）
+- 🥾 **水里有垃圾**：偶尔漂过一只旧靴子 🥾，钓上来又臭又扣分扣时间；等待时乱点会把整群鱼吓跑（-2 秒）
+- 📖 **鱼图鉴收集**：7 种鱼跨局记录在 `hz_fish_book`，钓到新鱼种会「🌟 新鱼收录图鉴！」并额外加星星，集齐才有 👑
+- ⏱ **90 秒限时**：答对 +3 秒、答错 -5 秒，连击越深鱼游得越快也越值钱，结算给出条数、连击、正确率与图鉴进度（`hz_fish_best` / `hz_fish_caught`）
+
+<p align="center">
+  <img src="assets/scene_fish.png" alt="笔顺钓鱼" width="240" />
+</p>
+
 ### ⚔️ 笔顺大闯关（Quiz 模式）
 
 选择题闯关，每关随机出题，答对得星星、连击越高倍率越大：
@@ -334,7 +349,7 @@
 | 音效 | Web Audio API · 代码合成正弦 / 方波 / 三角波 |
 | 语音 | Web Speech API · `SpeechSynthesisUtterance` 中文播报 |
 | 动画 | CSS `@keyframes` · 无第三方动画库 |
-| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` / `hz_boss_beat` / `hz_boss_best` · 宠物养成：`hz_pet`（成长/饱食/心情/上线时间，跨真实时间衰减） · 跳房子：`hz_hop_wins` / `hz_hop_best` · 连连消：`hz_lian_wins` / `hz_lian_best` · 切水果：`hz_fruit_wins` / `hz_fruit_best` · 打砖块：`hz_brick_lv` / `hz_brick_best` · 塔防：`hz_td_wave` / `hz_td_best` |
+| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` / `hz_boss_beat` / `hz_boss_best` · 宠物养成：`hz_pet`（成长/饱食/心情/上线时间，跨真实时间衰减） · 跳房子：`hz_hop_wins` / `hz_hop_best` · 连连消：`hz_lian_wins` / `hz_lian_best` · 切水果：`hz_fruit_wins` / `hz_fruit_best` · 打砖块：`hz_brick_lv` / `hz_brick_best` · 塔防：`hz_td_wave` / `hz_td_best` · 钓鱼：`hz_fish_book`（跨局鱼图鉴） / `hz_fish_best` / `hz_fish_caught` |
 | 部署 | 任意静态服务器 · 已内置多 CDN 容错 |
 
 ---
@@ -377,7 +392,7 @@ npx serve -l 8765
 
 ```
 hanzi-practice/
-├── index.html          # 主应用（6100 行单文件，包含 HTML/CSS/JS）
+├── index.html          # 主应用（6680 行单文件，包含 HTML/CSS/JS）
 ├── assets/             # README 用图片资源
 │   ├── demo.gif        # 运行演示 GIF
 │   ├── scene_home.png
@@ -396,7 +411,8 @@ hanzi-practice/
 │   ├── scene_lian.png
 │   ├── scene_fruit.png
 │   ├── scene_brick.png
-│   └── scene_defense.png
+│   ├── scene_defense.png
+│   └── scene_fish.png
 ├── record_demo.js      # Puppeteer 自动录屏脚本（开发用）
 ├── make_gif.py         # PNG 帧合成 GIF 脚本（开发用）
 ├── package.json

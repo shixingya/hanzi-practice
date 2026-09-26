@@ -515,6 +515,47 @@ button:active{transform:scale(.95)}
 @keyframes tdScale{0%,100%{transform:scale(1)}40%{transform:scale(1.35) rotate(-8deg)}}
 @keyframes tdBoom{0%{transform:scale(.2);opacity:1}70%{transform:scale(1.15);opacity:.85}100%{transform:scale(1.65);opacity:0}}
 @keyframes tdBanner{0%{opacity:0;transform:translate(-50%,-50%) scale(.55)}16%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}26%{transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-58%) scale(.94)}}
+/* ---------- 笔顺钓鱼 ---------- */
+.fh-wrap{position:relative;width:100%;max-width:430px;height:44vh;min-height:300px;max-height:430px;margin:6px auto;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#0A2138 0%,#0B2E4F 22%,#0F4A73 30%,#12709E 62%,#0C4568 100%);box-shadow:0 10px 28px rgba(0,0,0,.4),inset 0 0 70px rgba(0,0,0,.45);touch-action:none;-webkit-user-select:none;user-select:none;cursor:crosshair}
+.fh-wrap.shake{animation:cfShake .42s}
+.fh-sun{position:absolute;right:12%;top:5%;font-size:25px;filter:drop-shadow(0 0 14px rgba(255,214,90,.85))}
+.fh-cloud{position:absolute;font-size:17px;opacity:.5;animation:fhDrift 30s linear infinite}
+@keyframes fhDrift{0%{transform:translateX(-30px)}100%{transform:translateX(330px)}}
+.fh-surface{position:absolute;left:0;right:0;top:28%;height:3px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);box-shadow:0 0 14px rgba(160,230,255,.85)}
+.fh-fish{position:absolute;left:0;top:0;display:flex;flex-direction:column;align-items:center;will-change:transform;pointer-events:none;z-index:3}
+.fh-fish .fe{font-size:29px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.5));transform:scaleX(var(--fx,1))}
+.fh-fish .fl{margin-top:1px;font-size:11px;font-weight:bold;color:#fff;background:rgba(6,26,44,.8);border:1px solid rgba(255,255,255,.42);border-radius:9px;padding:1px 6px;white-space:nowrap}
+.fh-fish.bite .fl{border-color:#FFD740;box-shadow:0 0 11px rgba(255,215,64,.9)}
+.fh-fish.bite .fe{animation:fhWig .3s ease-in-out infinite}
+@keyframes fhWig{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.fh-fish.escape{animation:fhEsc .55s ease-in forwards}
+@keyframes fhEsc{100%{opacity:0;transform:translate(var(--tx,0),var(--ty,26px)) scale(.55)}}
+.fh-fish.reveal .fl{background:#2E7D32;border-color:#B9F6CA;box-shadow:0 0 12px rgba(102,187,106,.95)}
+.fh-fish.boots .fe{filter:drop-shadow(0 3px 6px rgba(0,0,0,.5)) saturate(.7) brightness(.86)}
+.fh-line{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.fh-line polyline{fill:none;stroke:rgba(255,255,255,.85);stroke-width:1.7;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.fh-bob{position:absolute;left:0;top:0;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#FFFFFF,#FF5252 72%);box-shadow:0 0 11px rgba(255,82,82,.85);z-index:6;pointer-events:none}
+.fh-boat{position:absolute;left:9%;top:22%;font-size:32px;line-height:1;z-index:6;pointer-events:none;filter:drop-shadow(0 3px 6px rgba(0,0,0,.55));animation:fhBob 3.4s ease-in-out infinite}
+@keyframes fhBob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-4px) rotate(3deg)}}
+.fh-splash{position:absolute;left:0;top:0;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;border:3px solid rgba(255,255,255,.85);animation:fhSplash .72s ease-out forwards;pointer-events:none;z-index:7}
+@keyframes fhSplash{0%{transform:scale(.25);opacity:1}100%{transform:scale(1.8);opacity:0}}
+.fh-drop{position:absolute;width:7px;height:7px;border-radius:50%;background:#B3E5FC;pointer-events:none;z-index:7;animation:cfDrop .62s ease-out forwards}
+.fh-pop{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font-size:19px;font-weight:bold;color:#FFEB3B;text-shadow:0 2px 7px rgba(0,0,0,.85);pointer-events:none;z-index:9;animation:cfPop .9s ease-out forwards}
+.fh-judge{position:absolute;left:50%;top:19%;transform:translate(-50%,-50%);font-size:25px;font-weight:bold;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.8);pointer-events:none;opacity:0;z-index:9;white-space:nowrap}
+.fh-judge.on{animation:cfJudge .9s ease-out}
+.fh-tip{position:absolute;left:50%;top:37%;transform:translate(-50%,-50%);font-size:14px;font-weight:bold;color:#E1F5FE;background:rgba(6,26,44,.74);border:1px solid rgba(255,255,255,.28);padding:7px 14px;border-radius:12px;z-index:8;pointer-events:none;white-space:nowrap;opacity:0;transition:opacity .25s}
+.fh-tip.on{opacity:1}
+.fh-bar{position:absolute;left:6%;right:6%;bottom:9px;height:21px;border-radius:11px;background:rgba(4,18,32,.74);border:1px solid rgba(255,255,255,.3);overflow:hidden;z-index:8}
+.fh-bar .band{position:absolute;top:0;bottom:0;left:40%;width:20%;background:rgba(102,187,106,.4);border-left:2px solid #B9F6CA;border-right:2px solid #B9F6CA}
+.fh-bar .fill{position:absolute;left:0;top:0;bottom:0;width:0%;background:linear-gradient(90deg,#4FC3F7,#FFD740 62%,#FF7043)}
+.fh-bar .mk{position:absolute;top:-1px;bottom:-1px;width:6px;margin-left:-3px;border-radius:3px;background:#fff;box-shadow:0 0 11px #fff}
+.fh-bar .txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;color:#fff;text-shadow:0 1px 3px #000}
+.fh-bub{position:absolute;bottom:8%;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);animation:fhBub 4.6s linear infinite;pointer-events:none;z-index:2}
+@keyframes fhBub{0%{transform:translateY(0) scale(.6);opacity:0}22%{opacity:.7}100%{transform:translateY(-210px) scale(1.15);opacity:0}}
+.fh-hud{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;max-width:430px;margin:0 auto 8px;color:#fff;font-size:12.5px;font-weight:bold}
+.fh-hud span{white-space:nowrap}
+@media(max-width:420px){.fh-wrap{height:41vh;min-height:290px}.fh-fish .fe{font-size:25px}.fh-fish .fl{font-size:10px}.fh-boat{font-size:27px}.fh-judge{font-size:21px}}
+
 </style>
 
 </head>
@@ -605,6 +646,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('defense')">
       <div class="icon">🏰</div>
       <div class="info"><h3>笔顺塔防</h3><p>答对一题，一炮一个小怪！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('fish')">
+      <div class="icon">🎣</div>
+      <div class="info"><h3>笔顺钓鱼</h3><p>蓄力抛竿，钓起写着答案的小鱼！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -1254,6 +1299,65 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-fish">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="fhScore">🎣 0</span><span id="fhCombo" style="color:#FFD740">🔥 x0</span><span id="fhTime">⏱ 90 秒</span></div>
+  </div>
+  <div class="challenge-goal" id="fhGoal">🎣 按住水面蓄力，松手抛竿！把钩子扔到写着正确答案的小鱼旁边，咬钩时踩准绿区提竿！</div>
+  <div class="fh-wrap" id="fhWrap">
+    <div class="fh-sun">☀️</div>
+    <div class="fh-cloud" style="left:10%;top:5%">☁️</div>
+    <div class="fh-cloud" style="left:40%;top:12%;animation-delay:-11s">☁️</div>
+    <div class="fh-surface"></div>
+    <div class="fh-bub" style="left:22%;animation-delay:-1s"></div>
+    <div class="fh-bub" style="left:58%;animation-delay:-2.6s"></div>
+    <div class="fh-bub" style="left:78%;animation-delay:-3.8s"></div>
+    <svg class="fh-line" viewBox="0 0 100 100" preserveAspectRatio="none"><polyline id="fhPoly"/></svg>
+    <div class="fh-boat" id="fhBoat">🛶</div>
+    <div class="fh-bob" id="fhHook" style="display:none"></div>
+    <div class="fh-judge" id="fhJudge"></div>
+    <div class="fh-tip" id="fhTip"></div>
+    <div class="fh-bar" id="fhBar" style="display:none"><i class="band"></i><i class="fill" id="fhFill"></i><i class="mk" id="fhMk" style="display:none"></i><span class="txt" id="fhBarTxt"></span></div>
+  </div>
+  <div class="fh-hud">
+    <span id="fhBook">📖 图鉴 0/7</span>
+    <span id="fhBest">🏆 0</span>
+    <span id="fhLeft">🐟 鱼群正在游来…</span>
+  </div>
+  <div class="quiz-header">
+    <div class="question" id="fhQuestion">鱼群正在游来…</div>
+  </div>
+  <div class="feedback" id="fhFeedback"></div>
+</div>
+<div class="screen" id="screen-fish-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="fhResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="fhResultEmoji">🎣</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="fhResultTitle">满载而归！</h2>
+    <p style="font-size:16px;opacity:.8" id="fhResultSubtitle">再去钓一次，集齐小鱼图鉴！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="fhResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="fhResultFish">0</div><div style="font-size:13px;opacity:.7">钓到的鱼</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="fhResultCombo">0</div><div style="font-size:13px;opacity:.7">最长连击</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="fhResultAcc">0%</div><div style="font-size:13px;opacity:.7">答对正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">📖 小鱼图鉴 / 🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="fhResultBook">0/7 / 0</div>
+      <div style="display:flex;justify-content:center;gap:6px;margin-top:10px;font-size:26px" id="fhResultIcons"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="fhStart()">🎣 再去钓一次</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -1605,6 +1709,7 @@ function enterMode(mode){
   else if(mode==='lian')lianStart();
   else if(mode==='fruit')fruitStart();
   else if(mode==='brick')brickStart(); else if(mode==='defense')tdStart();
+ else if(mode==='fish')fhStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -5428,6 +5533,468 @@ function tdResult(cleared,best,acc,earned){
   document.getElementById('tdResultSubtitle').textContent=subtitle;
   if(cleared>0){sndReward();setTimeout(showRewardEgg,900);speakPraise();}
 }
+
+/* ================= 笔顺钓鱼 ================= */
+const FH_TIME=90;
+const FH_LANES=[.42,.52,.62,.72,.82];
+const FH_CAST=420,FH_WAIT=2200,FH_REEL=1500;
+const FH_ORD=['一','二','三','四','五','六','七','八','九','十'];
+const FH_SPECIES=[
+  {id:'qing',e:'🐟',n:'青鱼',sp:26,wt:1},
+  {id:'chou',e:'🐠',n:'小丑鱼',sp:32,wt:2},
+  {id:'hetun',e:'🐡',n:'河豚',sp:22,wt:3},
+  {id:'pangxie',e:'🦀',n:'小螃蟹',sp:15,wt:4},
+  {id:'wuzei',e:'🦑',n:'大乌贼',sp:34,wt:5},
+  {id:'haigui',e:'🐢',n:'海龟爷爷',sp:12,wt:6},
+  {id:'shark',e:'🦈',n:'大鲨鱼',sp:43,wt:9}
+];
+const FH_BOOT={id:'xuezi',e:'🥾',n:'旧靴子',sp:12,wt:0,garbage:true};
+let fh={gen:0,phase:'idle',over:true,busy:true,fish:[],timerId:null};
+function fhBook(){const s=localStorage.getItem('hz_fish_book')||'';return s?s.split(',').filter(function(x){return x;}):[];}
+function fhBest(){return Math.max(0,parseInt(localStorage.getItem('hz_fish_best')||'0',10)||0);}
+function fhCaught(){return Math.max(0,parseInt(localStorage.getItem('hz_fish_caught')||'0',10)||0);}
+function fhStopLoops(){if(fh.timerId){clearInterval(fh.timerId);fh.timerId=null;}}
+function fhGeom(){
+  const w=document.getElementById('fhWrap');
+  const W=w.clientWidth||1,H=w.clientHeight||1;
+  return {W:W,H:H,surf:H*0.28,tipX:W*0.17,tipY:H*0.16};
+}
+function fhMsg(t,c){document.getElementById('fhFeedback').innerHTML='<span style="color:'+(c||'#FFD740')+'">'+t+'</span>';}
+function fhJudge(t,c){
+  const j=document.getElementById('fhJudge');
+  j.textContent=t;j.style.color=c||'#FFEB3B';
+  j.classList.remove('on');void j.offsetWidth;j.classList.add('on');
+}
+function fhTip(t){
+  const e=document.getElementById('fhTip');
+  if(!t){e.classList.remove('on');return;}
+  e.textContent=t;e.classList.add('on');
+  const gen=fh.gen;
+  setTimeout(function(){if(gen===fh.gen&&currentMode==='fish')e.classList.remove('on');},1800);
+}
+function fhBar(mode,txt){
+  const b=document.getElementById('fhBar');
+  if(!mode){b.style.display='none';return;}
+  b.style.display='block';
+  document.getElementById('fhMk').style.display=mode==='reel'?'block':'none';
+  document.getElementById('fhFill').style.display=mode==='charge'?'block':'none';
+  document.getElementById('fhBarTxt').textContent=txt||'';
+}
+function fhLine(pts){
+  const g=fhGeom();
+  document.getElementById('fhPoly').setAttribute('points',pts.map(function(q){
+    return (q[0]/g.W*100).toFixed(2)+','+(q[1]/g.H*100).toFixed(2);
+  }).join(' '));
+}
+function fhSetHook(x,y){
+  const h=document.getElementById('fhHook');
+  h.style.display='block';
+  h.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)';
+  fh.hx=x;fh.hy=y;
+}
+function fhShake(){
+  const w=document.getElementById('fhWrap');
+  w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake');
+}
+function fhSplash(x,y){
+  const wrap=document.getElementById('fhWrap');
+  const s=document.createElement('div');
+  s.className='fh-splash';s.style.left=x+'px';s.style.top=y+'px';
+  wrap.appendChild(s);
+  setTimeout(function(){s.remove();},760);
+  for(let i=0;i<7;i++){
+    const d=document.createElement('div');
+    const a=Math.random()*Math.PI-Math.PI;
+    d.className='fh-drop';
+    d.style.left=x+'px';d.style.top=y+'px';
+    d.style.setProperty('--dx',(Math.cos(a)*26).toFixed(1)+'px');
+    d.style.setProperty('--dy',(Math.sin(a)*22-16).toFixed(1)+'px');
+    wrap.appendChild(d);
+    setTimeout(function(){d.remove();},660);
+  }
+}
+function fhPop(txt,x,y){
+  const wrap=document.getElementById('fhWrap');
+  const e=document.createElement('div');
+  e.className='fh-pop';e.textContent=txt;
+  e.style.left=x+'px';e.style.top=y+'px';
+  wrap.appendChild(e);
+  setTimeout(function(){e.remove();},940);
+}
+function fhFishY(f){
+  const g=fhGeom();
+  return g.H*FH_LANES[f.lane%FH_LANES.length]+Math.sin(f.bob)*5;
+}
+function fhFishXY(f){
+  const y=fhFishY(f);
+  f.y=y;
+  f.el.style.transform='translate(calc('+f.x.toFixed(1)+'px - 50%),'+y.toFixed(1)+'px)';
+  f.el.style.setProperty('--fx',f.vx>0?-1:1);
+}
+function fhFishEl(f){
+  const wrap=document.getElementById('fhWrap');
+  const e=document.createElement('div');
+  e.className='fh-fish'+(f.garbage?' boots':'');
+  e.innerHTML='<span class="fe">'+f.sp.e+'</span>'+(f.label?'<span class="fl">'+f.label+'</span>':'');
+  wrap.appendChild(e);
+  f.el=e;
+  fhFishXY(f);
+}
+function fhSpeciesFor(){
+  const tier=Math.min(FH_SPECIES.length,2+Math.floor((fh.correct||0)/3)+Math.floor((fh.combo||0)/3));
+  return FH_SPECIES[Math.floor(Math.random()*tier)];
+}
+function fhAddBoot(){
+  const g=fhGeom();
+  for(let k=0;k<12;k++){
+    const x=42+Math.random()*Math.max(10,g.W-90);
+    let clash=false;
+    fh.fish.forEach(function(f){if(f.alive&&f.lane===undefined)return;});
+    fh.fish.forEach(function(f){if(f.alive&&!f.garbage&&Math.abs(f.x-x)<64&&f.lane>=3)clash=true;});
+    if(clash)continue;
+    const f={sp:FH_BOOT,label:'',garbage:true,lane:3+Math.floor(Math.random()*2),x:x,vx:(Math.random()<.5?-1:1)*FH_BOOT.sp,bob:Math.random()*6.28,alive:true,el:null,dodgeAt:0};
+    fh.fish.push(f);fhFishEl(f);
+    return;
+  }
+}
+function fhStock(){
+  const g=fhGeom();
+  fh.fish.forEach(function(f){if(f.el)f.el.remove();});
+  fh.fish=[];
+  const lanes=[0,1,2,3,4];
+  for(let i=lanes.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=lanes[i];lanes[i]=lanes[j];lanes[j]=t;}
+  const mul=1+Math.min(.7,fh.combo*0.08);
+  const span=Math.max(40,g.W-96);
+  fh.opts.forEach(function(v,i){
+    const sp=fhSpeciesFor();
+    const f={sp:sp,label:v,garbage:false,lane:lanes[i%lanes.length],
+      x:44+span*((i+0.2+Math.random()*0.6)/fh.opts.length),
+      vx:(Math.random()<.5?-1:1)*sp.sp*mul,bob:Math.random()*6.28,alive:true,el:null,dodgeAt:0};
+    fh.fish.push(f);fhFishEl(f);
+  });
+  if(Math.random()<.65)fhAddBoot();
+  fh.busy=false;
+  if(fh.phase==='idle')fh.phase='ready';
+}
+function fhUpdUI(){
+  document.getElementById('fhScore').textContent='🎣 '+fh.score;
+  document.getElementById('fhCombo').textContent='🔥 x'+fh.combo;
+  document.getElementById('fhTime').textContent='⏱ '+Math.ceil(fh.timeLeft)+' 秒';
+  document.getElementById('fhBook').textContent='📖 图鉴 '+fhBook().length+'/'+FH_SPECIES.length;
+  document.getElementById('fhBest').textContent='🏆 '+Math.max(fhBest(),fh.score);
+  document.getElementById('fhLeft').textContent=fh.busy?'🐟 鱼群正在游来…':('🐠 水里有 '+fh.fish.filter(function(f){return f.alive&&!f.garbage;}).length+' 条鱼');
+}
+function fhRetract(msg){
+  fh.phase='ready';fh.cur=null;
+  document.getElementById('fhHook').style.display='none';
+  fhLine([]);fhBar(null);
+  if(msg)fhTip(msg);
+}
+function fhTick(){
+  if(fh.over||currentMode!=='fish'){fhStopLoops();return;}
+  const now=performance.now();
+  let dt=(now-(fh.lastTs||now))/1000;fh.lastTs=now;
+  if(!(dt>0))dt=0;if(dt>.08)dt=.08;
+  const g=fhGeom();
+  if(Math.abs(g.W-(fh.W||0))>2||Math.abs(g.H-(fh.H||0))>2){fh.W=g.W;fh.H=g.H;}
+  fh.timeLeft-=dt;
+  if(fh.timeLeft<=0){fh.timeLeft=0;fhUpdUI();fhEnd();return;}
+  const margin=36;
+  fh.fish.forEach(function(f){
+    if(!f.alive)return;
+    if(fh.phase==='reel'&&fh.cur===f)return;
+    const fast=f.dodgeAt>now?2.8:1;
+    f.x+=f.vx*dt*fast;
+    f.bob+=dt*1.7;
+    const s=Math.abs(f.vx);
+    if(f.x<margin){f.x=margin;f.vx=s;}
+    else if(f.x>g.W-margin){f.x=g.W-margin;f.vx=-s;}
+    fhFishXY(f);
+  });
+  if(fh.phase==='charge'){
+    const k=((now-fh.chargeAt)%1100)/1100;
+    fh.power=k<.5?k*2:(1-k)*2;
+    document.getElementById('fhFill').style.width=(fh.power*100).toFixed(1)+'%';
+    fhLine([[g.tipX,g.tipY],[g.tipX+22,g.tipY-8]]);
+  }else if(fh.phase==='cast'){
+    const k=Math.min(1,(now-fh.castAt)/FH_CAST);
+    const x=g.tipX+(fh.hookX-g.tipX)*k;
+    const y=g.tipY+(g.surf+8-g.tipY)*k-Math.sin(k*Math.PI)*48;
+    fhSetHook(x,y);
+    fhLine([[g.tipX,g.tipY],[x,y]]);
+    if(k>=1){fhSplash(x,g.surf+6);fh.phase='wait';fh.waitUntil=now+FH_WAIT;fh.retract=0;}
+  }else if(fh.phase==='wait'){
+    fh.retract+=dt*110;
+    const y=Math.min(g.H*0.86,g.surf+10+fh.retract);
+    fhSetHook(fh.hookX,y);
+    fhLine([[g.tipX,g.tipY],[fh.hookX,y]]);
+    let cand=null,bd=1e9;
+    fh.fish.forEach(function(f){if(!f.alive)return;const d=Math.abs(f.x-fh.hookX);if(d<bd){bd=d;cand=f;}});
+    if(cand&&bd<132){
+      const dir=(cand.x>fh.hookX)?1:-1;
+      cand.x-=dir*62*dt;
+      cand.bob+=dt*1.7;
+      fhFishXY(cand);
+      if(Math.abs(cand.x-fh.hookX)<15){
+        const fy=fhFishY(cand);
+        fhSetHook(cand.x,fy);
+        fhLine([[g.tipX,g.tipY],[cand.x,fy]]);
+        cand.el.classList.add('bite');
+        fh.cur=cand;fh.phase='reel';fh.qteAt=now;fh.needle=0;
+        fhSplash(cand.x,fy);
+        tone(540,.09,'triangle',.09);
+        fhBar('reel','⬆️ 咬钩了！小白条进到绿区就点一下提竿！');
+      }
+    }
+    if(fh.phase==='wait'&&now>fh.waitUntil)fhRetract('🫧 没有鱼咬钩，再抛一次！');
+  }else if(fh.phase==='reel'){
+    const t=now-fh.qteAt;
+    const k=((t%1050)/1050);
+    fh.needle=k<.5?k*2:(1-k)*2;
+    document.getElementById('fhMk').style.left=(fh.needle*100).toFixed(1)+'%';
+    const f=fh.cur;
+    if(f&&f.alive){const fy=fhFishY(f);fhSetHook(f.x,fy);fhLine([[g.tipX,g.tipY],[f.x,fy]]);}
+    if(t>FH_REEL)fhEscape('⏱ 提竿太慢，鱼松开嘴跑啦！');
+  }
+  fhUpdUI();
+}
+function fhDown(){
+  if(fh.over||currentMode!=='fish')return;
+  unlockAudio();
+  if(fh.phase==='idle')return;
+  if(fh.busy){fhTip('🐟 鱼还没游好，等一下…');return;}
+  if(fh.phase==='ready'){
+    fh.phase='charge';fh.chargeAt=performance.now();fh.power=0;
+    fhBar('charge','🎣 蓄力中…松手就抛竿！');
+    tone(220,.05,'sine',.06);
+    return;
+  }
+  if(fh.phase==='wait'){
+    fh.fish.forEach(function(f){f.dodgeAt=performance.now()+900;});
+    fh.timeLeft=Math.max(0,fh.timeLeft-2);
+    sndNo();
+    fhRetract('💨 手一抖，把鱼吓跑了…');
+    if(fh.timeLeft<=0)fhEnd();
+    return;
+  }
+  if(fh.phase==='reel')fhSet();
+}
+function fhUp(){
+  if(fh.over||currentMode!=='fish')return;
+  if(fh.phase!=='charge')return;
+  const g=fhGeom();
+  fh.hookX=g.tipX+34+fh.power*Math.max(10,(g.W-g.tipX-80));
+  fh.phase='cast';fh.castAt=performance.now();fh.retract=0;
+  fhBar(null);
+  tone(680,.12,'sine',.09);
+}
+function fhSet(){
+  if(fh.phase!=='reel')return;
+  const f=fh.cur;
+  if(!f||!f.alive){fhRetract('🫧 什么都没有…');return;}
+  if(Math.abs(fh.needle-0.5)>0.1){fhEscape('🙈 提竿时机不对，鱼挣脱了！');return;}
+  fhLand(f);
+}
+function fhEscape(msg){
+  const f=fh.cur;
+  if(f&&f.el){
+    f.el.classList.remove('bite');
+    f.dodgeAt=performance.now()+1000;
+    f.vx=(f.vx>=0?1:-1)*Math.abs(f.vx);
+  }
+  fh.combo=0;
+  fh.timeLeft=Math.max(0,fh.timeLeft-3);
+  sndNo();fhShake();
+  fhJudge('💨 鱼跑了！','#FF8A80');
+  fhRetract(msg);
+  if(fh.timeLeft<=0)fhEnd();
+}
+function fhDropFish(f){
+  f.alive=false;
+  if(f.el){
+    const el=f.el;
+    el.style.setProperty('--tx',(f.vx>0?60:-60)+'px');
+    el.classList.add('escape');
+    setTimeout(function(){el.remove();},580);
+  }
+  fh.fish=fh.fish.filter(function(x){return x!==f;});
+}
+function fhLand(f){
+  const gen=fh.gen;
+  document.getElementById('fhHook').style.display='none';
+  fhLine([]);fhBar(null);
+  fh.phase='pull';fh.cur=null;
+  if(f.el)f.el.classList.remove('bite');
+  if(f.garbage){
+    fh.combo=0;
+    fh.timeLeft=Math.max(0,fh.timeLeft-6);
+    sndNo();fhShake();
+    fhJudge('🥾 好臭呀！','#FF8A80');
+    fhMsg('🥾 居然钓上来一只旧靴子！正确答案在「'+fh.answer+'」那条鱼身上。','#FFCC80');
+    fhDropFish(f);
+    setTimeout(function(){
+      if(gen!==fh.gen||fh.over||currentMode!=='fish')return;
+      fh.phase='ready';fhUpdUI();
+    },900);
+    if(fh.timeLeft<=0)fhEnd();
+    return;
+  }
+  const ok=f.label===fh.answer;
+  fh.total++;
+  if(ok){
+    fh.correct++;
+    fh.combo++;
+    if(fh.combo>fh.maxCombo)fh.maxCombo=fh.combo;
+    const gain=f.sp.wt*6+10+Math.min(fh.combo,9)*2;
+    fh.score+=gain;fh.caught++;
+    fh.timeLeft=Math.min(FH_TIME+20,fh.timeLeft+3);
+    const bk=fhBook();
+    const isNew=bk.indexOf(f.sp.id)<0;
+    if(isNew){bk.push(f.sp.id);localStorage.setItem('hz_fish_book',bk.join(','));}
+    localStorage.setItem('hz_fish_caught',String(fhCaught()+1));
+    sndOk();
+    showComboEffect(fh.combo);
+    spawnStarFly(fh.hx||f.x,fh.hy||f.y);
+    fhSplash(f.x,f.y);
+    fhPop('+'+gain,f.x,f.y-24);
+    fhMsg('🐠 钓到'+f.sp.n+'！它写着「'+f.label+'」，答对啦 +'+gain+' 分，时间 +3 秒','#B9F6CA');
+    if(isNew)fhJudge('🌟 新鱼收录图鉴！','#FFD740');
+    else fhJudge('🎣 上钩啦！','#B9F6CA');
+    fhDropFish(f);
+    setTimeout(function(){
+      if(gen!==fh.gen||fh.over||currentMode!=='fish')return;
+      fh.phase='ready';fhNewQ();
+    },620);
+  }else{
+    fh.combo=0;
+    fh.score=Math.max(0,fh.score-5);
+    fh.timeLeft=Math.max(0,fh.timeLeft-5);
+    sndNo();fhShake();
+    fhJudge('❌ 钓错鱼啦！','#FF5252');
+    fhMsg('❌ 那条鱼写的是「'+f.label+'」，正确答案是「'+fh.answer+'」，时间 -5 秒','#FF8A80');
+    fh.fish.forEach(function(x){if(!x.garbage&&x.label===fh.answer&&x.el)x.el.classList.add('reveal');});
+    setTimeout(function(){
+      if(gen!==fh.gen||fh.over||currentMode!=='fish')return;
+      fh.phase='ready';fhNewQ();
+    },1400);
+  }
+  fhUpdUI();
+  if(fh.timeLeft<=0)fhEnd();
+}
+async function fhNewQ(){
+  if(fh.over||currentMode!=='fish')return;
+  fh.busy=true;
+  const ch=nextInQueue();
+  const data=await loadCharData(ch);
+  if(!data||!data.strokes.length){setTimeout(fhNewQ,500);return;}
+  if(fh.over||currentMode!=='fish')return;
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],n=data.strokes.length;
+  let question,answer,opts=[];
+  if(Math.random()<.5){
+    question='一共有几笔？';answer=n+' 笔';
+    opts=[answer];
+    const near=[];
+    for(let k=Math.max(1,n-3);k<=Math.min(22,n+3);k++){if(k!==n)near.push(k+' 笔');}
+    while(opts.length<4&&near.length)opts.push(near.splice(Math.floor(Math.random()*near.length),1)[0]);
+  }else{
+    const tIdx=Math.floor(Math.random()*n);
+    const d=DIRS.find(x=>x.code===dirs[tIdx]);
+    question='第'+(FH_ORD[tIdx]||tIdx+1)+'笔往哪写？';
+    answer=(d?d.icon:'➡️')+' '+(CF_SHORT[dirs[tIdx]]||'右');
+    opts=[answer];
+    const pool=DIRS.filter(x=>x.code!==dirs[tIdx]).map(x=>x.icon+' '+(CF_SHORT[x.code]||x.label));
+    while(opts.length<4&&pool.length)opts.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+  }
+  for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=opts[i];opts[i]=opts[j];opts[j]=t;}
+  fh.answer=answer;fh.qChar=ch;fh.qText=question;fh.opts=opts;
+  document.getElementById('fhQuestion').innerHTML='「<span class="mole-char">'+ch+'</span>」'+question+' <span style="font-size:13px;opacity:.75">→ 钓对它！</span>';
+  fhStock();
+  fhUpdUI();
+}
+function fhStart(){
+  fhStopLoops();
+  const g=(fh.gen||0)+1;
+  fh={gen:g,phase:'idle',over:false,busy:true,fish:[],score:0,combo:0,maxCombo:0,
+    correct:0,total:0,caught:0,timeLeft:FH_TIME,lastTs:performance.now(),power:0,hookX:0,
+    hx:0,hy:0,retract:0,needle:0,cur:null,answer:'',opts:[],qChar:'',qText:'',
+    startBook:fhBook().length,W:0,H:0,timerId:null};
+  showScreen('fish');
+  unlockAudio();
+  const wrap=document.getElementById('fhWrap');
+  wrap.querySelectorAll('.fh-fish,.fh-splash,.fh-pop,.fh-drop').forEach(function(n){n.remove();});
+  document.getElementById('fhHook').style.display='none';
+  fhLine([]);fhBar(null);
+  document.getElementById('fhFeedback').textContent='';
+  document.getElementById('fhQuestion').textContent='鱼群正在游来…';
+  fhUpdUI();
+  fhTip('🎣 按住水面蓄力，松手抛竿！');
+  const gen=g;
+  setTimeout(function(){
+    if(gen!==fh.gen||currentMode!=='fish')return;
+    fhNewQ();
+  },450);
+  fh.timerId=setInterval(fhTick,33);
+}
+function fhEnd(){
+  if(fh.over)return;
+  fh.over=true;fh.busy=true;
+  fhStopLoops();fhBar(null);fhTip(null);
+  const best=Math.max(fh.score,fhBest());
+  localStorage.setItem('hz_fish_best',String(best));
+  const acc=fh.total>0?fh.correct/fh.total:0;
+  const found=fhBook().length-(fh.startBook||0);
+  const earned=Math.max(2,Math.min(24,2+fh.correct*2+(fh.maxCombo>=5?2:0)+(acc>=.75?2:0)+found*2));
+  fhResult(best,acc,found,earned);
+}
+function fhResult(best,acc,found,earned){
+  addStars(earned);
+  showScreen('fish-result');
+  document.getElementById('fhResultStars').textContent='⭐ +'+earned;
+  document.getElementById('fhResultScore').textContent=fh.score;
+  document.getElementById('fhResultFish').textContent=fh.caught;
+  document.getElementById('fhResultCombo').textContent=fh.maxCombo;
+  document.getElementById('fhResultAcc').textContent=fh.total?Math.round(acc*100)+'%':'—';
+  document.getElementById('fhResultBook').textContent=fhBook().length+'/'+FH_SPECIES.length+' / '+best;
+  const bk=fhBook();
+  document.getElementById('fhResultIcons').innerHTML=FH_SPECIES.map(function(s){
+    return '<span style="opacity:'+(bk.indexOf(s.id)>=0?1:.2)+';filter:'+(bk.indexOf(s.id)>=0?'none':'grayscale(1)')+'">'+s.e+'</span>';
+  }).join('');
+  let emoji,title,subtitle;
+  if(fh.caught===0){
+    emoji='🪣';title='一条也没钓到…';
+    subtitle='蓄力要抛得准，提竿要踩住绿区。再来一次，你可以的！';
+  }else{
+    emoji=bk.length>=FH_SPECIES.length?'👑':(acc>=.8?'🏆':'🎣');
+    title=fh.caught+' 条小鱼进桶啦！';
+    subtitle='最长连击 '+fh.maxCombo+'，正确率 '+Math.round(acc*100)+'%。图鉴还差 '+(FH_SPECIES.length-bk.length)+' 种！';
+  }
+  document.getElementById('fhResultEmoji').textContent=emoji;
+  document.getElementById('fhResultTitle').textContent=title;
+  document.getElementById('fhResultSubtitle').textContent=subtitle;
+  if(fh.caught>0){sndReward();setTimeout(showRewardEgg,900);speakPraise();}
+}
+(function(){
+  const wrap=document.getElementById('fhWrap');
+  if(!wrap)return;
+  wrap.addEventListener('pointerdown',function(e){
+    if(currentMode!=='fish')return;
+    e.preventDefault();fhDown();
+  });
+  document.addEventListener('pointerup',function(){
+    if(currentMode!=='fish')return;
+    fhUp();
+  });
+  document.addEventListener('keydown',function(e){
+    if(currentMode!=='fish'||fh.over)return;
+    if(e.code==='Space'||e.key===' '){e.preventDefault();if(!e.repeat)fhDown();}
+  });
+  document.addEventListener('keyup',function(e){
+    if(currentMode!=='fish')return;
+    if(e.code==='Space'||e.key===' ')fhUp();
+  });
+})();
+
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
   challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
