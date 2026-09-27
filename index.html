@@ -790,6 +790,42 @@ button:active{transform:scale(.95)}
 .sc-hud span{flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sc-wipe{display:block;margin:9px auto 0;font-size:13px;padding:7px 16px}
 @media(max-width:420px){.sc-wrap,.sc-barwrap,.sc-hud{max-width:238px}.sc-cell{font-size:27px}}
+/* ---------- 笔顺多米诺 ---------- */
+.dp-wrap{position:relative;width:100%;max-width:352px;margin:10px auto 0}
+.dp-track{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;perspective:760px}
+.dp-slot{position:relative;aspect-ratio:3/4;border-radius:8px;background:rgba(255,255,255,.07);border:1px dashed rgba(255,255,255,.18)}
+.dp-slot i{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-style:normal;font-size:10px;color:rgba(255,255,255,.3)}
+.dp-slot.hot{border-color:#FFD740;background:rgba(255,215,64,.16);animation:m3Pulse 1.1s ease-in-out infinite}
+.dp-tile{position:absolute;inset:0;border-radius:8px;background:linear-gradient(158deg,#FFFDF4,#E6DCC2);box-shadow:0 3px 0 #B3A17A,0 6px 12px rgba(0,0,0,.36);display:flex;flex-direction:column;align-items:center;justify-content:center;transform-origin:50% 100%;transition:transform .42s cubic-bezier(.34,1.32,.5,1),opacity .42s}
+.dp-tile b{font-size:19px;line-height:1.05;color:#4A3715}
+.dp-tile s{font-size:8.5px;line-height:1.3;color:#9B8557;text-decoration:none}
+.dp-tile.fresh{animation:dpDrop .44s ease-out}
+.dp-tile.gold{background:linear-gradient(158deg,#FFF6CB,#EFC643);box-shadow:0 3px 0 #A97D0A,0 6px 14px rgba(0,0,0,.36)}
+.dp-tile.gold b{color:#6B4A00}
+.dp-tile.gold s{color:#A97D0A}
+.dp-tile.dragon{background:linear-gradient(158deg,#FFE2E9,#EA5A7A);box-shadow:0 3px 0 #95203F,0 6px 14px rgba(0,0,0,.4)}
+.dp-tile.dragon b{color:#fff}
+.dp-tile.dragon s{color:#FFD9E1}
+.dp-tile.down{transform:rotateX(-84deg);opacity:.18}
+@keyframes dpDrop{0%{transform:translateY(-28px) rotateX(30deg);opacity:0}58%{transform:translateY(0) rotateX(-9deg);opacity:1}100%{transform:translateY(0) rotateX(0)}}
+.dp-fusewrap{width:100%;max-width:352px;height:9px;background:rgba(0,0,0,.28);border-radius:6px;margin:9px auto 0;overflow:hidden}
+.dp-fuse{height:100%;width:100%;background:linear-gradient(90deg,#66BB6A,#FFD740);border-radius:6px;transition:width .12s linear}
+.dp-fuse.hurry{background:linear-gradient(90deg,#FF5252,#FF8A65);animation:m3Pulse .5s ease-in-out infinite}
+.dp-hud{display:flex;justify-content:space-between;width:100%;max-width:352px;margin:5px auto 0;font-size:11.5px;color:#fff;opacity:.94;gap:6px}
+.dp-hud span{flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dp-pot{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:352px;margin:8px auto 0;padding:9px 13px;border-radius:14px;background:rgba(0,0,0,.26);color:#fff}
+.dp-pot .p{font-size:13px;opacity:.82}
+.dp-pot .v{font-size:26px;font-weight:bold;color:#FFD740;line-height:1}
+.dp-pot .risk{font-size:11px;opacity:.72;text-align:right}
+.dp-btns{display:flex;gap:10px;width:100%;max-width:352px;margin:10px auto 0}
+.dp-btns .w-btn{flex:1;margin:0;padding:12px 6px;font-size:15px}
+.dp-judge{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);font-size:20px;font-weight:bold;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.85);pointer-events:none;opacity:0;z-index:8;white-space:nowrap}
+.dp-judge.on{animation:cfJudge .95s ease-out}
+.dp-banner{position:absolute;left:50%;top:20%;transform:translate(-50%,-50%);font-size:23px;font-weight:bold;color:#FFF59D;text-shadow:0 4px 16px rgba(0,0,0,.9);pointer-events:none;opacity:0;z-index:9;white-space:nowrap}
+.dp-banner.on{animation:cfJudge 1.35s ease-out}
+.dp-spark{position:absolute;width:7px;height:7px;border-radius:50%;background:#FFD740;pointer-events:none;z-index:7;animation:dpFly .66s ease-out forwards}
+@keyframes dpFly{0%{transform:translate(0,0) scale(1);opacity:.95}100%{transform:translate(var(--dx),var(--dy)) scale(.15);opacity:0}}
+@media(max-width:420px){.dp-wrap,.dp-fusewrap,.dp-hud,.dp-pot,.dp-btns{max-width:300px}.dp-tile b{font-size:16px}.dp-pot .v{font-size:22px}}
 </style>
 
 </head>
@@ -909,6 +945,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('scratch')">
       <div class="icon">🎫</div>
       <div class="info"><h3>笔顺刮刮卡</h3><p>答题印卡，硬币刮开涂层中大奖！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('domino')">
+      <div class="icon">🀄</div>
+      <div class="info"><h3>笔顺多米诺</h3><p>答对一题立一张骨牌，推倒就能领钱！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -1948,7 +1988,64 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
-<div class="screen" id="screen-adventure">
+<div class="screen" id="screen-domino">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="dpScore">💰 0</span><span id="dpChain">🀄 链 1/5</span><span id="dpRank">🐣 小板牙</span></div>
+  </div>
+  <div class="challenge-goal" id="dpGoal">🀄 答对一题立一张骨牌，牌越立越值钱！随时按 <b>🔥 推倒领钱</b> 收手，可一旦答错或手慢，整条链「哗啦」倒塌只留下 <b>35%</b>——见好就收还是搏一条龙？</div>
+  <div class="dp-hud">
+    <span id="dpTiles">骨牌 0/18</span>
+    <span id="dpMul">🔥 x1.0</span>
+    <span id="dpLeft">⏳ 12s</span>
+  </div>
+  <div class="dp-wrap" id="dpWrap">
+    <div class="dp-track" id="dpBoard"></div>
+    <div class="dp-judge" id="dpJudge"></div>
+    <div class="dp-banner" id="dpBanner"></div>
+  </div>
+  <div class="dp-fusewrap"><div class="dp-fuse" id="dpFuse"></div></div>
+  <div class="dp-pot">
+    <div><div class="p">这条链现在值</div><div class="v" id="dpPot">0</div></div>
+    <div class="risk"><div id="dpNext">下一张 +10</div><div id="dpRisk">塌了只剩 0</div></div>
+  </div>
+  <div class="dp-btns">
+    <button class="w-btn orange" id="dpCashBtn" onclick="dpCash()">🔥 推倒领钱</button>
+    <button class="w-btn blue" onclick="dpSkip()">🔄 换一张 (-15)</button>
+  </div>
+  <div class="quiz-header"><div class="question" id="dpQ">正在码牌…</div></div>
+  <div class="options" id="dpOpts"></div>
+  <div class="feedback" id="dpFeedback"></div>
+</div>
+<div class="screen" id="screen-domino-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="dpResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="dpResultEmoji">🀄</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="dpResultTitle">见好就收！</h2>
+    <p style="font-size:16px;opacity:.8" id="dpResultSubtitle">会收手的牌手才是好牌手！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="dpResultScore">0</div><div style="font-size:13px;opacity:.7">本局金币</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="dpResultTiles">0</div><div style="font-size:13px;opacity:.7">立起的骨牌</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="dpResultMax">0</div><div style="font-size:13px;opacity:.7">单链最长</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="dpResultAcc">0%</div><div style="font-size:13px;opacity:.7">答题正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高金币</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="dpResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="dpResultRank">当前称号 🐣 小板牙</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="dpResultDragon">🐉 一条龙 0 次</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="dpStart()">🀄 再推一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div><div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
     <div class="stats"><span id="advStars">⭐ 0</span><span id="advBadges">🏅 0/12</span></div>
@@ -2307,6 +2404,7 @@ function enterMode(mode){
  else if(mode==='snake')snStart();
  else if(mode==='match3')m3Start();
  else if(mode==='scratch')scStart();
+ else if(mode==='domino')dpStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -8467,6 +8565,320 @@ document.addEventListener('keydown',function(e){
   });
   b.addEventListener('pointercancel',function(){from=null});
 })();
+/* ================= 笔顺多米诺 ================= */
+const DP_COLS=6,DP_ROWS=3,DP_TOTAL=DP_COLS*DP_ROWS,DP_LINES=5;
+const DP_KEEP_RISK=.35,DP_SKIP_COST=15;
+const DP_NOTE=[392,440,494,587,659,784,880,988,1175,1319];
+const DP_ORD=['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八'];
+const DP_RANKS=[{n:0,e:'🐣',t:'小板牙'},{n:15,e:'🐍',t:'小蛇龙'},{n:40,e:'🐉',t:'翻江龙'},{n:90,e:'👑',t:'骨牌之王'}];
+let dp={gen:0,over:true,busy:true,animating:false,line:1,tiles:[],pot:0,score:0,placed:0,
+  correct:0,total:0,maxTiles:0,dragons:0,combo:0,okStreak:0,collapses:0,skipped:false,
+  left:0,tick:0,fuseId:null,cur:'',ans:''};
+function dpBest(){return Math.max(0,parseInt(localStorage.getItem('hz_dp_score')||'0',10)||0)}
+function dpAllTiles(){return Math.max(0,parseInt(localStorage.getItem('hz_dp_total')||'0',10)||0)}
+function dpAllLines(){return Math.max(0,parseInt(localStorage.getItem('hz_dp_lines')||'0',10)||0)}
+function dpAllDragons(){return Math.max(0,parseInt(localStorage.getItem('hz_dp_dragon')||'0',10)||0)}
+function dpBestChain(){return Math.max(0,parseInt(localStorage.getItem('hz_dp_chain')||'0',10)||0)}
+function dpRankOf(n){let r=DP_RANKS[0];for(let i=0;i<DP_RANKS.length;i++){if(n>=DP_RANKS[i].n)r=DP_RANKS[i]}return r}
+function dpVal(k){return 10+k*4}
+function dpMul(){return 1+Math.min(2,dp.okStreak*.15)}
+function dpKind(k){return k>=DP_TOTAL-1?'dragon':(k%5===4?'gold':'')}
+function dpKindMul(kind){return kind?2:1}
+function dpTileVal(k){return Math.round(dpVal(k)*dpMul()*dpKindMul(dpKind(k)))}
+function dpFuseMs(){return Math.max(8000,(13-dp.line)*1000)}
+function dpSlotIdx(k){const row=Math.floor(k/DP_COLS),col=k%DP_COLS;return row%2?row*DP_COLS+(DP_COLS-1-col):k}
+function dpSet(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt}
+function dpShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function dpJudge(txt,color){
+  const el=document.getElementById('dpJudge');if(!el)return;
+  el.textContent=txt;el.style.color=color||'#fff';
+  el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function dpBanner(txt){
+  const el=document.getElementById('dpBanner');if(!el)return;
+  el.textContent=txt;el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function dpSpark(k){
+  const wrap=document.getElementById('dpWrap'),slot=document.querySelector('#dpBoard .dp-slot[data-k="'+dpSlotIdx(k)+'"]');
+  if(!wrap||!slot)return;
+  for(let i=0;i<5;i++){
+    const s=document.createElement('div');s.className='dp-spark';
+    s.style.left=(slot.offsetLeft+slot.offsetWidth/2)+'px';
+    s.style.top=(slot.offsetTop+slot.offsetHeight/2)+'px';
+    s.style.background=['#FFD740','#FFF176','#FFAB40','#ffffff'][i%4];
+    s.style.setProperty('--dx',(Math.random()*70-35)+'px');
+    s.style.setProperty('--dy',(-24-Math.random()*46)+'px');
+    s.style.animationDelay=(i*30)+'ms';
+    wrap.appendChild(s);
+    setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s)},760);
+  }
+}
+function dpHud(){
+  const n=dp.tiles.length,kinds=dpKind(n),v=dpTileVal(n);
+  const all=dpAllTiles()+dp.placed;
+  dpSet('dpScore','💰 '+dp.score);
+  dpSet('dpChain','🀄 链 '+dp.line+'/'+DP_LINES);
+  const rk=dpRankOf(all);
+  dpSet('dpRank',rk.e+' '+rk.t);
+  dpSet('dpTiles','骨牌 '+n+'/'+DP_TOTAL);
+  dpSet('dpMul','🔥 x'+dpMul().toFixed(1));
+  dpSet('dpLeft','⏳ '+Math.ceil(dp.left/1000)+'s');
+  dpSet('dpPot',String(dp.pot));
+  dpSet('dpNext',n>=DP_TOTAL?'🐉 已经排满！':'下一张 +'+v+(kinds?'（含×2）':''));
+  dpSet('dpRisk',n>=DP_TOTAL?'一条龙推倒直接 ×2':'塌了只剩 '+Math.round(dp.pot*DP_KEEP_RISK));
+  const btn=document.getElementById('dpCashBtn');
+  if(btn){
+    btn.textContent=n>=DP_TOTAL?'🐉 一条龙！推倒 ×2':n?'🔥 推倒领 '+dp.pot:'🔥 推倒领钱';
+    btn.disabled=(n===0);
+    btn.style.opacity=n?'1':'.45';
+  }
+}
+function dpBuild(){
+  const b=document.getElementById('dpBoard');if(!b)return;
+  let h='';
+  for(let k=0;k<DP_TOTAL;k++){
+    h+='<div class="dp-slot'+(k===0?' hot':'')+'" data-k="'+k+'"><i>'+(k+1)+'</i></div>';
+  }
+  b.innerHTML=h;
+}
+function dpPlace(ch,val){
+  const b=document.getElementById('dpBoard');if(!b)return null;
+  const k=dp.tiles.length,kind=dpKind(k);
+  const slot=b.querySelector('.dp-slot[data-k="'+dpSlotIdx(k)+'"]');
+  if(!slot)return null;
+  slot.classList.remove('hot');
+  const t=document.createElement('div');
+  t.className='dp-tile fresh'+(kind?' '+kind:'');
+  t.innerHTML='<b>'+ch+'</b><s>'+(kind==='dragon'?'🐉':kind==='gold'?'⭐':'')+'+'+val+'</s>';
+  slot.appendChild(t);
+  const nxt=b.querySelector('.dp-slot[data-k="'+dpSlotIdx(Math.min(DP_TOTAL-1,k+1))+'"]');
+  if(nxt&&k+1<DP_TOTAL)nxt.classList.add('hot');
+  return t;
+}
+function dpStopFuse(){if(dp.fuseId){clearInterval(dp.fuseId);dp.fuseId=null}}
+function dpStartFuse(){
+  dpStopFuse();
+  dp.left=dpFuseMs();dp.tick=0;
+  const bar=document.getElementById('dpFuse');
+  if(bar){bar.style.width='100%';bar.classList.remove('hurry')}
+  dp.fuseId=setInterval(function(){
+    if(dp.over||currentMode!=='domino'){dpStopFuse();return}
+    dp.left-=100;
+    const pct=Math.max(0,dp.left/dpFuseMs()*100);
+    if(bar)bar.style.width=pct+'%';
+    if(dp.left<=4000&&bar)bar.classList.add('hurry');
+    if(dp.left<=3000){
+      const sec=Math.ceil(dp.left/1000);
+      if(sec!==dp.tick){dp.tick=sec;if(sec>0)tone(1240,.045,'square',.06)}
+    }
+    dpSet('dpLeft','⏳ '+Math.max(0,Math.ceil(dp.left/1000))+'s');
+    if(dp.left<=0){dpStopFuse();dpFall(false,'⏳ 手慢了，牌链自己滑倒！')}
+  },100);
+}
+async function dpAsk(){
+  if(dp.over)return;
+  dp.busy=true;dp.animating=false;
+  const gen=dp.gen;
+  let ch='',data=null;
+  for(let i=0;i<14;i++){
+    const c=nextInQueue();
+    const d=await loadCharData(c);
+    if(d&&d.strokes&&d.medians&&d.strokes.length>=2&&d.medians.length>=2){ch=c;data=d;break}
+  }
+  if(gen!==dp.gen||dp.over)return;
+  if(!ch){dp.busy=false;return}
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],n=data.strokes.length;
+  dp.cur=ch;
+  let opts;
+  if(Math.random()<.45&&n<=12){
+    dp.ans=String(n);
+    const nums=[n];
+    while(nums.length<4){
+      const k=n+(Math.random()<.5?-1:1)*(1+Math.floor(Math.random()*3));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=dpShuf(nums).map(function(k){return{v:String(k),txt:'✏️ '+k+' 笔'}});
+    dpSet('dpQ','『'+ch+'』一共有几笔？');
+  }else{
+    const idx=Math.floor(Math.random()*dirs.length);
+    const code=dirs[idx];
+    dp.ans=code;
+    const right=DIRS.filter(function(d){return d.code===code})[0]||DIRS[0];
+    const pool=dpShuf(DIRS.filter(function(d){return d.code!==code})).slice(0,3);
+    opts=dpShuf([right].concat(pool)).map(function(d){return{v:d.code,txt:d.icon+' '+d.label}});
+    dpSet('dpQ','『'+ch+'』的第'+(DP_ORD[idx]||(idx+1))+'笔往哪写？');
+  }
+  const box=document.getElementById('dpOpts');
+  if(box){
+    box.innerHTML=opts.map(function(o,i){
+      return '<button class="opt-btn" data-value="'+o.v+'" data-dir="'+i+'" onclick="dpPick(\''+o.v+'\',this)">'+o.txt+'</button>';
+    }).join('');
+  }
+  const fb=document.getElementById('dpFeedback');if(fb)fb.textContent='';
+  dpHud();
+  dpStartFuse();
+  dp.busy=false;
+}
+function dpPick(v,btn){
+  if(dp.over||dp.busy||dp.animating)return;
+  dpStopFuse();
+  dp.busy=true;
+  const gen=dp.gen,ok=(v===dp.ans);
+  dp.total++;
+  if(ok){
+    const k=dp.tiles.length,val=dpTileVal(k);
+    dp.correct++;dp.combo++;dp.okStreak++;
+    const t=dpPlace(dp.cur,val);
+    dp.tiles.push({ch:dp.cur,val:val,kind:dpKind(k),el:t});
+    dp.placed++;
+    dp.pot+=val;
+    if(btn)btn.classList.add('correct');
+    sndOk();showComboEffect(dp.combo);
+    if(t){
+      const r=t.getBoundingClientRect();
+      spawnStarFly(r.left+r.width/2,r.top+r.height/2);
+      setTimeout(function(){t.classList.remove('fresh')},480);
+    }
+    dpSpark(k);
+    dpJudge('🀄 '+dp.cur+' 立住了 +'+val,'#B9F6CA');
+    dpHud();
+    if(dp.tiles.length>=DP_TOTAL){
+      dp.busy=true;
+      setTimeout(function(){if(gen===dp.gen&&!dp.over&&!dp.animating)dpFall(true,'🐉 一条龙排满！')},900);
+      return;
+    }
+    setTimeout(function(){if(gen===dp.gen&&!dp.over&&!dp.animating)dpAsk()},560);
+  }else{
+    dp.combo=0;dp.okStreak=0;
+    sndNo();
+    if(btn)btn.classList.add('wrong');
+    const right=document.querySelector('#dpOpts .opt-btn[data-value="'+dp.ans+'"]');
+    if(right)right.classList.add('reveal');
+    dp.busy=true;
+    dpFall(false,'💥 答错！整条链哗啦倒塌');
+  }
+}
+function dpSkip(){
+  if(dp.over||dp.busy||dp.animating)return;
+  if(dp.skipped){dpJudge('🔄 这条链已经换过啦','#FFD180');return}
+  if(dp.tiles.length===0){dp.skipped=true;dpSet('dpFeedback','');dpStopFuse();dpAsk();return}
+  dp.skipped=true;
+  dp.pot=Math.max(0,dp.pot-DP_SKIP_COST);
+  dp.combo=0;dp.okStreak=0;
+  tone(300,.16,'sawtooth',.1);
+  dpJudge('🔄 换一张 -'+DP_SKIP_COST,'#FFD180');
+  dpStopFuse();
+  dp.busy=true;
+  setTimeout(function(){if(!dp.over)dpAsk()},420);
+}
+function dpCash(){
+  if(dp.over||dp.busy||dp.animating)return;
+  if(dp.tiles.length===0){dpJudge('🀄 先答对一题立张牌！','#FFD180');return}
+  dpFall(true,dp.tiles.length>=DP_TOTAL?'🐉 一条龙排满！':'🔥 推倒！稳稳收下');
+}
+function dpFall(cashed,msg){
+  if(dp.animating||dp.over)return;
+  dp.animating=true;dp.busy=true;
+  dpStopFuse();
+  const bar=document.getElementById('dpFuse');
+  if(bar)bar.classList.add('hurry');
+  const gen=dp.gen,n=dp.tiles.length;
+  const full=cashed&&n>=DP_TOTAL;
+  const bank=Math.round(dp.pot*(full?2:cashed?1:DP_KEEP_RISK));
+  if(!cashed){dp.collapses++;dp.combo=0;dp.okStreak=0}
+  if(full)dp.dragons++;
+  dpSet('dpQ',cashed?'🔥 推倒！':'💥 塌了……');
+  const box=document.getElementById('dpOpts');
+  if(box)box.innerHTML='';
+  for(let i=0;i<n;i++){
+    (function(k){
+      setTimeout(function(){
+        const t=dp.tiles[k]&&dp.tiles[k].el;
+        if(t){t.classList.remove('fresh');t.classList.add('down')}
+        tone(DP_NOTE[k%DP_NOTE.length],.1,'triangle',.11);
+        dpSpark(k);
+      },k*88);
+    })(i);
+  }
+  const after=n*88+560;
+  setTimeout(function(){
+    if(gen!==dp.gen||dp.over)return;
+    dp.score+=bank;
+    if(n>dp.maxTiles)dp.maxTiles=n;
+    if(n)localStorage.setItem('hz_dp_chain',String(Math.max(dpBestChain(),n)));
+    if(bank>0&&cashed){sndReward();spawnConfetti()}
+    else if(bank>0){tone(330,.14,'sawtooth',.1);setTimeout(function(){tone(247,.22,'sawtooth',.1)},110)}
+    dpBanner(msg+' 💰 +'+bank);
+    dpSet('dpPot','0');
+    dpSet('dpRisk','已入账');
+    dp.pot=0;
+    dpHud();
+    setTimeout(function(){
+      if(gen!==dp.gen||dp.over)return;
+      dp.animating=false;
+      if(dp.line>=DP_LINES){dpEnd();return}
+      dp.line++;dp.skipped=false;
+      dp.tiles=[];
+      dpBuild();
+      dpHud();
+      dpJudge('🀄 第 '+dp.line+' 条链，开始码牌','#FFE082');
+      setTimeout(function(){if(gen===dp.gen&&!dp.over&&!dp.animating)dpAsk()},640);
+    },1180);
+  },after);
+}
+function dpEnd(){
+  if(dp.over)return;
+  dp.over=true;dp.busy=true;
+  dpStopFuse();
+  const cashed=DP_LINES-dp.collapses;
+  if(dp.placed>0)localStorage.setItem('hz_dp_total',String(dpAllTiles()+dp.placed));
+  if(cashed>0)localStorage.setItem('hz_dp_lines',String(dpAllLines()+cashed));
+  if(dp.dragons>0)localStorage.setItem('hz_dp_dragon',String(dpAllDragons()+dp.dragons));
+  if(dp.score>dpBest())localStorage.setItem('hz_dp_score',String(dp.score));
+  const s=Math.max(2,Math.min(20,Math.round(dp.score/70)+dp.dragons*3+(dp.collapses===0?3:0)));
+  addStars(s);
+  const acc=dp.total?Math.round(dp.correct/dp.total*100):0;
+  const all=dpAllTiles(),allRank=dpRankOf(all),perfect=dp.collapses===0;
+  const nextRank=DP_RANKS[Math.min(DP_RANKS.length-1,DP_RANKS.indexOf(allRank)+1)];
+  dpSet('dpResultStars','⭐ +'+s);
+  dpSet('dpResultEmoji',dp.dragons?'🐉':perfect?'👑':dp.collapses>=3?'💥':'🀄');
+  dpSet('dpResultTitle',dp.dragons?'一条龙大神！':perfect?'稳到离谱！':dp.collapses>=3?'手气有点爆':'见好就收！');
+  dpSet('dpResultSubtitle','本局立了 '+dp.placed+' 张牌 · 稳稳收手 '+cashed+'/'+DP_LINES+' 条链');
+  dpSet('dpResultScore',String(dp.score));
+  dpSet('dpResultTiles',String(dp.placed));
+  dpSet('dpResultMax',String(dp.maxTiles));
+  dpSet('dpResultAcc',acc+'%');
+  dpSet('dpResultBest',String(dpBest()));
+  dpSet('dpResultRank','当前称号 '+allRank.e+' '+allRank.t+(nextRank.n>all?' · 再立 '+(nextRank.n-all)+' 张升级':' · 已是最高称号'));
+  dpSet('dpResultDragon','🐉 一条龙 '+dpAllDragons()+' 次 · 历史单链 '+dpBestChain()+' 张');
+  showScreen('domino-result');
+}
+function dpStart(){
+  dp.gen++;
+  dpStopFuse();
+  dp.over=false;dp.busy=true;dp.animating=false;
+  dp.line=1;dp.tiles=[];dp.pot=0;dp.score=0;dp.placed=0;
+  dp.correct=0;dp.total=0;dp.maxTiles=0;dp.dragons=0;dp.combo=0;dp.okStreak=0;
+  dp.collapses=0;dp.skipped=false;dp.left=0;dp.tick=0;dp.cur='';dp.ans='';
+  showScreen('domino');
+  dpBuild();
+  const box=document.getElementById('dpOpts');
+  if(box)box.innerHTML='';
+  const bar=document.getElementById('dpFuse');
+  if(bar){bar.style.width='100%';bar.classList.remove('hurry')}
+  dpHud();
+  dpJudge('🀄 答对一题立一张牌','#FFE082');
+  dpAsk();
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='domino')return;
+  if(/^[1-4]$/.test(e.key)){
+    const b=document.querySelector('#dpOpts .opt-btn[data-dir="'+(e.key-1)+'"]');
+    if(b)b.click();
+  }else if(e.key==='c'||e.key==='C'){dpCash()}
+});
+/* ================= 笔顺多米诺 结束 ================= */
 /* ================= 笔顺刮刮卡 ================= */
 const SC_CARDS=8,SC_BRUSH=17,SC_THIN=.5,SC_THICK=.74,SC_AUTO_CLEAN=.84,SC_AUTO_THICK=.9;
 const SC_TIERS=[

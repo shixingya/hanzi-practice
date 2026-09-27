@@ -1,6 +1,6 @@
 # 汉字笔顺闯关 · Hanzi Stroke Quest
 
-> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。24 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷 / 笔顺大魔王 / 笔顺宠物屋 / 笔顺跳房子 / 笔顺连连消 / 笔顺切水果 / 笔顺打砖块 / 笔顺塔防 / 笔顺钓鱼 / 笔顺双人大乱斗 / 笔顺挖宝 / 每日签到星运转盘 / 笔顺贪吃蛇 / 笔顺消消乐 / 笔顺刮刮卡…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
+> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。25 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷 / 笔顺大魔王 / 笔顺宠物屋 / 笔顺跳房子 / 笔顺连连消 / 笔顺切水果 / 笔顺打砖块 / 笔顺塔防 / 笔顺钓鱼 / 笔顺双人大乱斗 / 笔顺挖宝 / 每日签到星运转盘 / 笔顺贪吃蛇 / 笔顺消消乐 / 笔顺刮刮卡 / 笔顺多米诺…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
 
 <p align="center">
   <img src="assets/demo.gif" alt="运行演示 GIF" width="360" />
@@ -13,7 +13,7 @@
   &nbsp;&nbsp;
   <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License" />
   &nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/单文件-9557_行-orange?style=for-the-badge" alt="Single file" />
+  <img src="https://img.shields.io/badge/单文件-9969_行-orange?style=for-the-badge" alt="Single file" />
 </p>
 
 <p align="center">
@@ -41,7 +41,7 @@
 - 🎯 **零构建、零后端**：单文件 `index.html` 打开即用，任何静态托管都能部署（GitHub Pages / Vercel / Netlify / Nginx）。
 - 🧒 **儿童友好 UI**：糖果紫渐变背景、大圆角按钮、田字格练字区，专为 6–9 岁孩子设计。
 - 🎮 **游戏化激励**：星星 ⭐ + 连击 🔥 + 动物收藏 🐼 + 全屏彩带彩蛋，学习成就感拉满。
-- 🕹️ **24 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、笔顺大魔王、笔顺宠物屋、笔顺跳房子、笔顺连连消、笔顺切水果、笔顺打砖块、笔顺塔防、笔顺钓鱼、笔顺双人大乱斗、笔顺挖宝、每日签到星运转盘、笔顺贪吃蛇、笔顺消消乐、笔顺刮刮卡、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
+- 🕹️ **25 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、笔顺大魔王、笔顺宠物屋、笔顺跳房子、笔顺连连消、笔顺切水果、笔顺打砖块、笔顺塔防、笔顺钓鱼、笔顺双人大乱斗、笔顺挖宝、每日签到星运转盘、笔顺贪吃蛇、笔顺消消乐、笔顺刮刮卡、笔顺多米诺、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
 - 🔊 **多感官反馈**：Web Audio API 合成音效（正确 / 错误 / 完成 / 彩蛋）+ Web Speech API 中文语音鼓励（"太棒了！""你真厉害！"）。
 - 📚 **难度渐进**：字库按笔画数从少到多排序，同笔画组内随机洗牌，避免挫败感也保留趣味性。
 - 🌐 **多 CDN 容错**：`hanzi-writer` 库依次尝试 jsDelivr / unpkg / cdnjs，任一可用即可运行。
@@ -345,6 +345,23 @@
   <img src="assets/scene_scratch.png" alt="笔顺刮刮卡" width="240" />
 </p>
 
+### 🀄 笔顺多米诺（越立越值钱，敢不敢推倒领钱）
+
+把「再答一题」变成一次赌博：骨牌一张比一张值钱，随时可以推倒领钱，但答错或手慢就整条链哗啦倒塌——
+
+- 🀄 **答对一题立一张牌**：第 1 张 10 分、第 2 张 14 分……按 6×3 蛇形牌道一路排下去，牌越立越贵，孩子自己就会算「再立一张多几分」
+- 🔥 **随时推倒领钱**：按下去整条链按顺序一张张倒下，配一路升高的五声音阶音效 + 火花 + 彩带，攒的分数全额入账；也可以贪到底继续答
+- 💥 **答错 / 手慢就塌链**：只有 **35%** 能保住，连击和倍率当场清零——「见好就收」和「再搏一张」的拉扯就是这个模式的上瘾点
+- ⭐ **金牌 / 🐉 龙牌翻倍**：每 5 张一张金牌面值 ×2，第 18 张是龙牌；整条链排满 18 张再推倒直接 **×2 一条龙**，结算页给 🐉 称号
+- ⏳ **引线会烧**：每题 8–12 秒引线（链数越高越快），最后 3 秒滴答报警，逼孩子果断而不是磨蹭
+- 🐣→👑 **称号靠攒牌**：累计骨牌数解锁 小板牙 → 小蛇龙 → 翻江龙 → 骨牌之王，结算页实时显示还差几张升级
+- 📊 一局 5 条链，记录单局最高金币、累计骨牌、稳稳收手次数、单链最长与一条龙次数（`hz_dp_score` / `hz_dp_total` / `hz_dp_lines` / `hz_dp_chain` / `hz_dp_dragon`）
+- 🎮 键盘 1–4 作答、按 C 直接推倒；卡壳了可以「🔄 换一张」扣 15 分保命
+
+<p align="center">
+  <img src="assets/scene_domino.png" alt="笔顺多米诺" width="240" />
+</p>
+
 ### ⚔️ 笔顺大闯关（Quiz 模式）
 
 选择题闯关，每关随机出题，答对得星星、连击越高倍率越大：
@@ -444,7 +461,7 @@
 | 音效 | Web Audio API · 代码合成正弦 / 方波 / 三角波 |
 | 语音 | Web Speech API · `SpeechSynthesisUtterance` 中文播报 |
 | 动画 | CSS `@keyframes` · 无第三方动画库 |
-| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` / `hz_boss_beat` / `hz_boss_best` · 宠物养成：`hz_pet`（成长/饱食/心情/上线时间，跨真实时间衰减） · 跳房子：`hz_hop_wins` / `hz_hop_best` · 连连消：`hz_lian_wins` / `hz_lian_best` · 切水果：`hz_fruit_wins` / `hz_fruit_best` · 打砖块：`hz_brick_lv` / `hz_brick_best` · 塔防：`hz_td_wave` / `hz_td_best` · 钓鱼：`hz_fish_book`（跨局鱼图鉴） / `hz_fish_best` / `hz_fish_caught` · 挖宝：`hz_dig_book`（跨局文物图鉴） / `hz_dig_best` / `hz_dig_deep`（最深土层） · 每日签到：`hz_sk_last`（真实日期） / `hz_sk_streak` / `hz_sk_best` / `hz_sk_total` / `hz_sk_medals` / `hz_sk_frag` · 贪吃蛇：`hz_snake_best` / `hz_snake_chars`（累计成字） / `hz_snake_len`（最长蛇身） · 消消乐：`hz_m3_best` / `hz_m3_lv`（最高通关） / `hz_m3_wins` / `hz_m3_sp`（累计特殊糖块） · 刮刮卡：`hz_sc_best`（单张最佳） / `hz_sc_score`（单局最高奖金） / `hz_sc_cards`（累计刮开张数） / `hz_sc_bingo`（累计 BINGO） / `hz_sc_rare`（稀有符号图鉴） · 双人对战：`hz_duel_p1` / `hz_duel_p2`（累计战绩） / `hz_duel_streak` / `hz_duel_matches` |
+| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` / `hz_boss_beat` / `hz_boss_best` · 宠物养成：`hz_pet`（成长/饱食/心情/上线时间，跨真实时间衰减） · 跳房子：`hz_hop_wins` / `hz_hop_best` · 连连消：`hz_lian_wins` / `hz_lian_best` · 切水果：`hz_fruit_wins` / `hz_fruit_best` · 打砖块：`hz_brick_lv` / `hz_brick_best` · 塔防：`hz_td_wave` / `hz_td_best` · 钓鱼：`hz_fish_book`（跨局鱼图鉴） / `hz_fish_best` / `hz_fish_caught` · 挖宝：`hz_dig_book`（跨局文物图鉴） / `hz_dig_best` / `hz_dig_deep`（最深土层） · 每日签到：`hz_sk_last`（真实日期） / `hz_sk_streak` / `hz_sk_best` / `hz_sk_total` / `hz_sk_medals` / `hz_sk_frag` · 贪吃蛇：`hz_snake_best` / `hz_snake_chars`（累计成字） / `hz_snake_len`（最长蛇身） · 消消乐：`hz_m3_best` / `hz_m3_lv`（最高通关） / `hz_m3_wins` / `hz_m3_sp`（累计特殊糖块） · 刮刮卡：`hz_sc_best`（单张最佳） / `hz_sc_score`（单局最高奖金） / `hz_sc_cards`（累计刮开张数） / `hz_sc_bingo`（累计 BINGO） / `hz_sc_rare`（稀有符号图鉴） · 多米诺：`hz_dp_score`（单局最高金币） / `hz_dp_total`（累计骨牌，决定称号） / `hz_dp_lines`（累计稳稳收手次数） / `hz_dp_chain`（单链最长） / `hz_dp_dragon`（一条龙次数） · 双人对战：`hz_duel_p1` / `hz_duel_p2`（累计战绩） / `hz_duel_streak` / `hz_duel_matches` |
 | 部署 | 任意静态服务器 · 已内置多 CDN 容错 |
 
 ---
@@ -487,7 +504,7 @@ npx serve -l 8765
 
 ```
 hanzi-practice/
-├── index.html          # 主应用（9557 行单文件，包含 HTML/CSS/JS）
+├── index.html          # 主应用（9969 行单文件，包含 HTML/CSS/JS）
 ├── assets/             # README 用图片资源
 │   ├── demo.gif        # 运行演示 GIF
 │   ├── scene_home.png
@@ -513,7 +530,8 @@ hanzi-practice/
 │   ├── scene_checkin.png
 │   ├── scene_snake.png
 │   ├── scene_match3.png
-│   └── scene_scratch.png
+│   ├── scene_scratch.png
+│   └── scene_domino.png
 ├── record_demo.js      # Puppeteer 自动录屏脚本（开发用）
 ├── make_gif.py         # PNG 帧合成 GIF 脚本（开发用）
 ├── package.json
