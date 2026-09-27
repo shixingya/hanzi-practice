@@ -733,6 +733,34 @@ button:active{transform:scale(.95)}
 .sn-banner.on{animation:cfJudge 1.3s ease-out}
 @media(max-width:420px){.sn-wrap{max-width:300px}.sn-hud{max-width:300px;font-size:10.5px}.sn-barwrap{max-width:300px}.sn-head span{font-size:17px}.sn-pad{grid-template-columns:repeat(3,48px)}}
 
+/* ---------- 笔顺消消乐 ---------- */
+.m3-wrap{position:relative;width:100%;max-width:334px;margin:6px auto}
+.m3-wrap.shake{animation:cfShake .42s}
+.m3-board{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;width:100%;aspect-ratio:7/8;padding:7px;border-radius:18px;background:linear-gradient(160deg,#2A1B4E,#3E2270 58%,#4A2A85);box-shadow:0 10px 26px rgba(0,0,0,.42),inset 0 0 46px rgba(0,0,0,.45);touch-action:none;-webkit-user-select:none;user-select:none}
+.m3-cell{border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:bold;background:rgba(255,255,255,.06);transition:transform .16s ease,opacity .16s ease;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 2px 4px rgba(0,0,0,.28)}
+.m3-cell.m3-none{box-shadow:none;background:rgba(255,255,255,.04)}
+.m3-ma{background:linear-gradient(160deg,#FF8A80,#C62828)}
+.m3-mb{background:linear-gradient(160deg,#82B4FF,#1565C0)}
+.m3-mc{background:linear-gradient(160deg,#A5D6A7,#2E7D32)}
+.m3-md{background:linear-gradient(160deg,#FFD54F,#EF6C00)}
+.m3-me{background:linear-gradient(160deg,#CE93D8,#6A1B9A)}
+.m3-hi{box-shadow:inset 0 0 0 2px #FFF59D,0 0 10px rgba(255,245,157,.5)}
+.m3-pick{transform:scale(1.16);box-shadow:inset 0 0 0 3px #fff,0 0 16px rgba(255,255,255,.75);z-index:3;position:relative}
+.m3-pop{transform:scale(.18) rotate(28deg);opacity:0}
+.m3-drop{animation:cfDrop .3s ease-out}
+.m3-sp-star{background:linear-gradient(160deg,#FFF176,#F9A825)!important;box-shadow:0 0 14px rgba(255,235,59,.85);animation:m3Pulse 1.1s ease-in-out infinite}
+.m3-sp-rainbow{background:linear-gradient(160deg,#F8BBD0,#80D8FF 52%,#B9F6CA)!important;box-shadow:0 0 16px rgba(128,216,255,.9);animation:m3Pulse .85s ease-in-out infinite}
+@keyframes m3Pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.m3-hud{display:flex;justify-content:space-between;align-items:center;gap:6px;width:100%;max-width:334px;margin:5px auto 0;color:#fff;font-size:11.5px;font-weight:bold}
+.m3-hud span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m3-barwrap{width:100%;max-width:334px;height:7px;border-radius:4px;background:rgba(255,255,255,.14);margin:5px auto 0;overflow:hidden}
+.m3-bar{height:100%;width:0;background:linear-gradient(90deg,#FFD740,#FF9100);transition:width .3s}
+.m3-judge{position:absolute;left:50%;top:16%;transform:translate(-50%,-50%);font-size:19px;font-weight:bold;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.85);pointer-events:none;opacity:0;z-index:9;white-space:nowrap}
+.m3-judge.on{animation:cfJudge .9s ease-out}
+.m3-banner{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);font-size:25px;font-weight:bold;color:#fff;text-shadow:0 4px 16px rgba(0,0,0,.9);pointer-events:none;opacity:0;z-index:10;white-space:nowrap}
+.m3-banner.on{animation:cfJudge 1.3s ease-out}
+.challenge-goal b{color:#FFD740}
+@media(max-width:420px){.m3-wrap{max-width:300px}.m3-hud{max-width:300px;font-size:10.5px}.m3-barwrap{max-width:300px}.m3-cell{font-size:13px;gap:2px}}
 </style>
 
 </head>
@@ -844,6 +872,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('snake')">
       <div class="icon">🐍</div>
       <div class="info"><h3>笔顺贪吃蛇</h3><p>答对解锁笔画果，开蛇按笔顺吃成字！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('match3')">
+      <div class="icon">🍬</div>
+      <div class="info"><h3>笔顺消消乐</h3><p>答对解锁交换，三个同方向连成线！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -1780,6 +1812,54 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-match3">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="m3Score">🍬 0</span><span id="m3Moves">👣 15</span><span id="m3Charge" style="color:#FFD740">🔓 x0</span></div>
+  </div>
+  <div class="challenge-goal" id="m3Goal">🍬 答对题目才解锁一次交换，把三个相同方向的糖块连成一条线！</div>
+  <div class="m3-wrap" id="m3Wrap">
+    <div class="m3-board" id="m3Board"></div>
+    <div class="m3-judge" id="m3Judge"></div>
+    <div class="m3-banner" id="m3Banner"></div>
+  </div>
+  <div class="m3-barwrap"><div class="m3-bar" id="m3Bar"></div></div>
+  <div class="m3-hud">
+    <span id="m3Prog">🎯 0/11</span>
+    <span id="m3LvTxt">🍭 第 1 关</span>
+    <span id="m3SpTxt">✨ 特殊块 0</span>
+  </div>
+  <div class="quiz-header"><div class="question" id="m3Q">正在发糖…</div></div>
+  <div class="options" id="m3Opts"></div>
+  <div class="feedback" id="m3Feedback"></div>
+</div>
+<div class="screen" id="screen-match3-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="m3ResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="m3ResultEmoji">🍬</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="m3ResultTitle">糖果大师！</h2>
+    <p style="font-size:16px;opacity:.8" id="m3ResultSubtitle">方向认得准，糖块消得快！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="m3ResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="m3ResultLv">0</div><div style="font-size:13px;opacity:.7">通过关卡</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="m3ResultSp">0</div><div style="font-size:13px;opacity:.7">累计特殊糖块</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="m3ResultAcc">0%</div><div style="font-size:13px;opacity:.7">答题正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="m3ResultBest">0</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="m3Start()">🍬 再消一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -2137,6 +2217,7 @@ function enterMode(mode){
  else if(mode==='dig')dgStart();
  else if(mode==='checkin')skStart();
  else if(mode==='snake')snStart();
+ else if(mode==='match3')m3Start();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -7830,6 +7911,472 @@ document.addEventListener('keydown',function(e){
     snSetDir(Math.abs(dx)>Math.abs(dy)?(dx>0?'R':'L'):(dy>0?'D':'U'));
   });
   bd.addEventListener('pointercancel',function(){sw=false});
+})();
+/* ================= 笔顺消消乐 ================= */
+const M3_COLS=7,M3_ROWS=8,M3_MOVES=15,M3_CHARGE_MAX=2;
+const M3_TYPES=[
+  {code:'R',icon:'➡️',name:'横',cls:'a'},
+  {code:'D',icon:'⬇️',name:'竖',cls:'b'},
+  {code:'P',icon:'↙️',name:'撇',cls:'c'},
+  {code:'N',icon:'↘️',name:'捺',cls:'d'},
+  {code:'T',icon:'↗️',name:'点',cls:'e'}
+];
+const M3_NOTE=[523,587,659,784,880,1047,1319];
+const M3_ORD=['一','二','三','四','五','六','七','八','九','十','十一','十二','十三'];
+let m3={gen:0,grid:[],over:true,busy:true,lv:1,moves:0,charge:0,tIdx:0,got:0,need:11,chain:0,score:0,combo:0,maxCombo:0,correct:0,total:0,specials:0,sel:null,ansCode:'',uid:1,timerId:null};
+function m3Best(){return Math.max(0,parseInt(localStorage.getItem('hz_m3_best')||'0',10)||0)}
+function m3LvBest(){return Math.max(0,parseInt(localStorage.getItem('hz_m3_lv')||'0',10)||0)}
+function m3Wins(){return Math.max(0,parseInt(localStorage.getItem('hz_m3_wins')||'0',10)||0)}
+function m3Sp(){return Math.max(0,parseInt(localStorage.getItem('hz_m3_sp')||'0',10)||0)}
+function m3Rnd(n){return Math.floor(Math.random()*n)}
+function m3Need(lv){return 8+lv*3}
+function m3At(r,c){return(r>=0&&r<M3_ROWS&&c>=0&&c<M3_COLS)?m3.grid[r][c]:null}
+function m3CellEl(r,c){return document.querySelector('#m3Board .m3-cell[data-pos="'+r+'-'+c+'"]')}
+function m3Judge(txt,color){
+  const el=document.getElementById('m3Judge');if(!el)return;
+  el.textContent=txt;el.style.color=color||'#fff';
+  el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function m3Banner(txt){
+  const el=document.getElementById('m3Banner');if(!el)return;
+  el.textContent=txt;el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function m3Shuf(arr){for(let i=arr.length-1;i>0;i--){const j=m3Rnd(i+1);const t=arr[i];arr[i]=arr[j];arr[j]=t}return arr}
+function m3Build(){
+  for(let tries=0;tries<30;tries++){
+    const g=[];
+    for(let r=0;r<M3_ROWS;r++){
+      const row=[];
+      for(let c=0;c<M3_COLS;c++){
+        let t=0;
+        for(let k=0;k<20;k++){
+          t=m3Rnd(5);
+          const l1=c>=1?row[c-1].t:-1,l2=c>=2?row[c-2].t:-1;
+          const u1=r>=1?g[r-1][c].t:-1,u2=r>=2?g[r-2][c].t:-1;
+          if(!(t===l1&&t===l2)&&!(t===u1&&t===u2))break;
+        }
+        row.push({t:t,sp:null,fresh:false,id:m3.uid++});
+      }
+      g.push(row);
+    }
+    m3.grid=g;
+    if(!m3FindMatches().length&&m3HasMove())return;
+  }
+}
+function m3Range(r1,c1,r2,c2){
+  const out=[];
+  if(r1===r2){for(let c=c1;c<=c2;c++)out.push([r1,c])}
+  else{for(let r=r1;r<=r2;r++)out.push([r,c1])}
+  return out;
+}
+function m3FindMatches(){
+  const ms=[];
+  for(let r=0;r<M3_ROWS;r++){
+    let c=0;
+    while(c<M3_COLS){
+      const A=m3At(r,c);
+      if(!A){c++;continue}
+      let e=c+1;
+      while(e<M3_COLS&&m3At(r,e)&&m3At(r,e).t===A.t)e++;
+      if(e-c>=3)ms.push({t:A.t,len:e-c,cells:m3Range(r,c,r,e-1)});
+      c=e;
+    }
+  }
+  for(let c=0;c<M3_COLS;c++){
+    let r=0;
+    while(r<M3_ROWS){
+      const A=m3At(r,c);
+      if(!A){r++;continue}
+      let e=r+1;
+      while(e<M3_ROWS&&m3At(e,c)&&m3At(e,c).t===A.t)e++;
+      if(e-r>=3)ms.push({t:A.t,len:e-r,cells:m3Range(r,c,e-1,c)});
+      r=e;
+    }
+  }
+  return ms;
+}
+function m3SwapData(r1,c1,r2,c2){const a=m3.grid[r1][c1];m3.grid[r1][c1]=m3.grid[r2][c2];m3.grid[r2][c2]=a}
+function m3WouldMatch(r1,c1,r2,c2){
+  m3SwapData(r1,c1,r2,c2);
+  const ok=m3FindMatches().length>0;
+  m3SwapData(r1,c1,r2,c2);
+  return ok;
+}
+function m3HasMove(){
+  for(let r=0;r<M3_ROWS;r++)for(let c=0;c<M3_COLS;c++){
+    const t=m3At(r,c);
+    if(!t)continue;
+    if(t.sp==='rainbow'||t.sp==='star')return true;
+    if(c+1<M3_COLS&&m3WouldMatch(r,c,r,c+1))return true;
+    if(r+1<M3_ROWS&&m3WouldMatch(r,c,r+1,c))return true;
+  }
+  return false;
+}
+function m3Dedupe(cells){
+  const seen={},out=[];
+  cells.forEach(q=>{const k=q[0]+'-'+q[1];if(!seen[k]){seen[k]=1;out.push(q)}});
+  return out;
+}
+function m3Fall(){
+  for(let c=0;c<M3_COLS;c++){
+    const stack=[];
+    for(let r=M3_ROWS-1;r>=0;r--)if(m3.grid[r][c])stack.push(m3.grid[r][c]);
+    let i=0;
+    for(let r=M3_ROWS-1;r>=0;r--){
+      if(i<stack.length){m3.grid[r][c]=stack[i++]}
+      else{m3.grid[r][c]={t:m3Rnd(5),sp:null,fresh:true,id:m3.uid++}}
+    }
+  }
+}
+function m3Render(){
+  const b=document.getElementById('m3Board');if(!b)return;
+  let h='';
+  for(let r=0;r<M3_ROWS;r++)for(let c=0;c<M3_COLS;c++){
+    const t=m3.grid[r][c];
+    const cls=['m3-cell'];
+    let txt='';
+    if(t){
+      cls.push('m3-m'+M3_TYPES[t.t].cls);
+      if(t.sp){cls.push('m3-sp-'+t.sp);txt=t.sp==='rainbow'?'🌈':'⭐'}
+      else txt=M3_TYPES[t.t].icon;
+      if(t.t===m3.tIdx)cls.push('m3-hi');
+      if(m3.sel&&m3.sel.r===r&&m3.sel.c===c)cls.push('m3-pick');
+      if(t.fresh){cls.push('m3-drop');t.fresh=false}
+    } else cls.push('m3-none');
+    h+='<div class="'+cls.join(' ')+'" data-pos="'+r+'-'+c+'">'+txt+'</div>';
+  }
+  b.innerHTML=h;
+}
+function m3Hud(){
+  const s=document.getElementById('m3Score');if(s)s.textContent='🍬 '+m3.score;
+  const m=document.getElementById('m3Moves');if(m)m.textContent='👣 '+m3.moves;
+  const ch=document.getElementById('m3Charge');if(ch)ch.textContent='🔓 x'+m3.charge;
+  const p=document.getElementById('m3Prog');if(p)p.textContent='🎯 '+m3.got+'/'+m3.need;
+  const l=document.getElementById('m3LvTxt');if(l)l.textContent='🍭 第 '+m3.lv+' 关';
+  const b=document.getElementById('m3Bar');if(b)b.style.width=Math.min(100,Math.round(m3.got/m3.need*100))+'%';
+  const sp=document.getElementById('m3SpTxt');if(sp)sp.textContent='✨ 特殊块 '+m3.specials;
+}
+async function m3Ask(){
+  m3.busy=true;
+  const gen=m3.gen;
+  let ch='',data=null;
+  for(let i=0;i<14;i++){
+    const c=nextInQueue();
+    const d=await loadCharData(c);
+    if(d&&d.strokes&&d.strokes.length>=2&&d.medians&&d.medians.length>=2){ch=c;data=d;break}
+  }
+  if(gen!==m3.gen)return;
+  if(!ch){m3.busy=false;return}
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch];
+  const idx=m3Rnd(dirs.length);
+  const code=dirs[idx];
+  let ti=-1;
+  for(let i=0;i<M3_TYPES.length;i++)if(M3_TYPES[i].code===code)ti=i;
+  if(ti<0)ti=0;
+  m3.tIdx=ti;m3.ansCode=code;
+  const T=M3_TYPES[ti];
+  const pool=m3Shuf(M3_TYPES.filter(function(x){return x.code!==code})).slice(0,3);
+  const opts=m3Shuf([T].concat(pool));
+  const q=document.getElementById('m3Q');
+  if(q)q.textContent='『'+ch+'』的第'+(M3_ORD[idx]||(idx+1))+'笔往哪写？';
+  const box=document.getElementById('m3Opts');
+  if(box){
+    box.innerHTML=opts.map(function(o,i){
+      return '<button class="opt-btn" data-value="'+o.code+'" data-dir="'+i+'" onclick="m3Pick(\''+o.code+'\',this)">'+o.icon+' '+o.name+'</button>';
+    }).join('');
+  }
+  const fb=document.getElementById('m3Feedback');if(fb)fb.textContent='';
+  const g=document.getElementById('m3Goal');
+  if(g)g.innerHTML='🍬 答对才解锁一次交换！本关目标：<b>'+T.icon+' '+T.name+'</b>，把它连成三个以上消掉 '+m3.need+' 个过关';
+  m3Render();m3Hud();
+  m3.busy=false;
+}
+function m3Pick(v,btn){
+  if(m3.over||m3.busy)return;
+  const gen=m3.gen;
+  const ok=(v===m3.ansCode);
+  m3.total++;
+  const T=M3_TYPES[m3.tIdx];
+  const wrap=document.getElementById('m3Wrap');
+  if(ok){
+    m3.correct++;m3.combo++;
+    if(m3.combo>m3.maxCombo)m3.maxCombo=m3.combo;
+    if(m3.charge<M3_CHARGE_MAX)m3.charge++;
+    m3.score+=4+m3.combo;
+    sndOk();showComboEffect(m3.combo);
+    if(btn)btn.classList.add('correct');
+    m3Judge('🔓 交换到手！去消 '+T.icon+' '+T.name,'#B9F6CA');
+  }else{
+    m3.combo=0;
+    m3.score=Math.max(0,m3.score-3);
+    sndNo();
+    if(btn)btn.classList.add('wrong');
+    const right=document.querySelector('#m3Opts .opt-btn[data-value="'+m3.ansCode+'"]');
+    if(right)right.classList.add('reveal');
+    if(wrap){wrap.classList.remove('shake');void wrap.offsetWidth;wrap.classList.add('shake')}
+    m3Judge('❌ 这一笔是 '+T.icon+' '+T.name,'#FF8A80');
+  }
+  m3Hud();
+  m3.busy=true;
+  setTimeout(function(){
+    m3.busy=false;
+    if(gen===m3.gen&&!m3.over)m3Ask();
+  },ok?520:1050);
+}
+function m3Resolve(ms){
+  const gen=m3.gen;
+  m3.chain++;
+  let cells=[];
+  ms.forEach(function(m){cells=cells.concat(m.cells)});
+  cells=m3Dedupe(cells);
+  let sp=null;
+  ms.forEach(function(m){
+    if(sp)return;
+    if(m.len>=5)sp={p:m.cells[Math.floor(m.cells.length/2)],kind:'rainbow',t:m.t};
+    else if(m.len===4)sp={p:m.cells[1],kind:'star',t:m.t};
+  });
+  const spKey=sp?sp.p[0]+'-'+sp.p[1]:'';
+  let gain=0,tgt=0;
+  const pts=[];
+  cells.forEach(function(q){
+    const el=m3CellEl(q[0],q[1]);
+    if(el){el.classList.add('m3-pop');const r=el.getBoundingClientRect();pts.push([r.left+r.width/2,r.top+r.height/2])}
+    if(q[0]+'-'+q[1]===spKey)return;
+    const t=m3At(q[0],q[1]);
+    if(!t)return;
+    gain+=10;
+    if(t.t===m3.tIdx)tgt++;
+  });
+  gain=Math.round(gain*(1+(m3.chain-1)*0.5))+tgt*8;
+  m3.score+=gain;m3.got+=tgt;
+  tone(M3_NOTE[Math.min(m3.chain-1,M3_NOTE.length-1)],.13);
+  if(m3.chain>1){showComboEffect(m3.chain+1);m3Banner('🔗 连锁 x'+m3.chain+'！')}
+  m3Judge((tgt?'🎯 +':'+')+gain+(tgt?'（目标 +'+tgt+'）':''),tgt?'#B9F6CA':'#FFF59D');
+  for(let i=0;i<Math.min(pts.length,5);i++)spawnStarFly(pts[i][0],pts[i][1]);
+  setTimeout(function(){
+    if(gen!==m3.gen||m3.over)return;
+    cells.forEach(function(q){m3.grid[q[0]][q[1]]=null});
+    if(sp){
+      m3.grid[sp.p[0]][sp.p[1]]={t:sp.t,sp:sp.kind,fresh:false,id:m3.uid++};
+      m3.specials++;
+      m3Judge(sp.kind==='rainbow'?'🌈 彩虹块出炉！':'⭐ 星星块出炉！','#FFF59D');
+    }
+    m3Fall();
+    m3Render();m3Hud();
+    const ms2=m3FindMatches();
+    if(ms2.length)setTimeout(function(){if(gen===m3.gen&&!m3.over)m3Resolve(ms2)},190);
+    else m3Settle();
+  },300);
+}
+function m3Blast(rawCells,label){
+  const gen=m3.gen;
+  const cells=m3Dedupe(rawCells);
+  let gain=0,tgt=0;
+  const pts=[];
+  cells.forEach(function(q){
+    const el=m3CellEl(q[0],q[1]);
+    if(el){el.classList.add('m3-pop');const r=el.getBoundingClientRect();pts.push([r.left+r.width/2,r.top+r.height/2])}
+    const t=m3At(q[0],q[1]);
+    if(!t)return;
+    gain+=12;
+    if(t.t===m3.tIdx)tgt++;
+  });
+  gain+=tgt*10;
+  m3.score+=gain;m3.got+=tgt;
+  sndReward();spawnConfetti();
+  m3Banner(label);m3Judge(label+' +'+gain,'#FFF59D');
+  for(let i=0;i<Math.min(pts.length,8);i++)spawnStarFly(pts[i][0],pts[i][1]);
+  setTimeout(function(){
+    if(gen!==m3.gen||m3.over)return;
+    cells.forEach(function(q){if(m3At(q[0],q[1]))m3.grid[q[0]][q[1]]=null});
+    m3Fall();
+    m3Render();m3Hud();
+    const ms=m3FindMatches();
+    if(ms.length)setTimeout(function(){if(gen===m3.gen&&!m3.over)m3Resolve(ms)},200);
+    else m3Settle();
+  },340);
+}
+function m3StarBlast(p,ms){
+  const cells=[];
+  for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++){
+    const r=p.r+dr,c=p.c+dc;
+    if(m3At(r,c))cells.push([r,c]);
+  }
+  (ms||[]).forEach(function(m){m.cells.forEach(function(q){cells.push(q)})});
+  m3.chain=0;
+  m3Blast(cells,'⭐ 星星炸开！');
+}
+function m3Rainbow(p,other){
+  const cells=[[p.r,p.c]];
+  for(let r=0;r<M3_ROWS;r++)for(let c=0;c<M3_COLS;c++){
+    const t=m3At(r,c);
+    if(t&&t.t===other.t&&!(r===p.r&&c===p.c))cells.push([r,c]);
+  }
+  m3.chain=0;
+  m3Blast(cells,'🌈 彩虹全清 '+M3_TYPES[other.t].icon+'！');
+}
+function m3TrySwap(a,b){
+  const gen=m3.gen;
+  const A=m3At(a.r,a.c),B=m3At(b.r,b.c);
+  if(!A||!B){m3Render();return}
+  const aSp=A.sp,bSp=B.sp;
+  m3SwapData(a.r,a.c,b.r,b.c);
+  m3Render();
+  /* 交换后 A 位于 b、B 位于 a，特殊块的引爆位置要跟着换算 */
+  let rain=null,other=null,star=null;
+  if(aSp==='rainbow'){rain={r:b.r,c:b.c};other=B}
+  else if(bSp==='rainbow'){rain={r:a.r,c:a.c};other=A}
+  else if(aSp==='star')star={r:b.r,c:b.c};
+  else if(bSp==='star')star={r:a.r,c:a.c};
+  m3.charge=0;m3.moves--;m3Hud();
+  if(rain){
+    const t=(other&&other.t!==undefined&&other.t!==null)?other.t:m3.tIdx;
+    setTimeout(function(){if(gen===m3.gen&&!m3.over)m3Rainbow(rain,{t:t})},170);
+    return;
+  }
+  const ms=m3FindMatches();
+  if(star){
+    setTimeout(function(){if(gen===m3.gen&&!m3.over)m3StarBlast(star,ms)},170);
+    return;
+  }
+  if(!ms.length){
+    m3.charge++;m3.moves++;
+    setTimeout(function(){
+      if(gen!==m3.gen)return;
+      m3SwapData(a.r,a.c,b.r,b.c);
+      m3Render();
+      m3Judge('😅 换不出三连，再找找','#FFCC80');
+      tone(300,.1,'square');
+      m3Hud();
+    },180);
+    return;
+  }
+  setTimeout(function(){if(gen===m3.gen&&!m3.over)m3Resolve(ms)},180);
+}
+function m3Tap(r,c){
+  if(m3.over||m3.busy)return;
+  if(!m3At(r,c))return;
+  if(m3.charge<=0){
+    m3Judge('🔒 先答对上面的题目才能交换','#FFE082');
+    tone(300,.08,'square');
+    return;
+  }
+  const s=m3.sel;
+  if(s&&s.r===r&&s.c===c){m3.sel=null;m3Render();return}
+  if(!s||Math.abs(s.r-r)+Math.abs(s.c-c)!==1){m3.sel={r:r,c:c};m3Render();return}
+  m3.sel=null;
+  m3TrySwap(s,{r:r,c:c});
+}
+function m3Settle(){
+  m3.chain=0;
+  m3.sel=null;
+  m3Render();m3Hud();
+  if(m3.got>=m3.need){m3Win();return}
+  if(m3.moves<=0&&m3.charge<=0){m3End();return}
+  if(!m3HasMove()){
+    m3Shuffle();
+    m3Judge('🔄 换不动了，自动洗牌！','#B3E5FC');
+    if(!m3HasMove())m3Build();
+    m3Render();m3Hud();
+  }
+}
+function m3Shuffle(){
+  for(let tries=0;tries<40;tries++){
+    const arr=[];
+    for(let r=0;r<M3_ROWS;r++)for(let c=0;c<M3_COLS;c++)arr.push(m3.grid[r][c]);
+    m3Shuf(arr);
+    let k=0;
+    for(let r=0;r<M3_ROWS;r++)for(let c=0;c<M3_COLS;c++)m3.grid[r][c]=arr[k++];
+    if(!m3FindMatches().length&&m3HasMove())break;
+  }
+  m3Render();
+}
+function m3Win(){
+  const done=m3.lv;
+  m3.lv++;
+  m3.got=0;
+  m3.need=m3Need(m3.lv);
+  m3.moves+=M3_MOVES;
+  const bonus=60+done*25;
+  m3.score+=bonus;
+  addStars(3);sndReward();spawnConfetti();
+  m3Banner('🍭 第 '+done+' 关通过！+'+bonus);
+  localStorage.setItem('hz_m3_wins',String(m3Wins()+1));
+  if(m3.lv-1>m3LvBest())localStorage.setItem('hz_m3_lv',String(m3.lv-1));
+  m3Shuffle();
+  if(!m3HasMove())m3Build();
+  m3Hud();
+}
+function m3End(){
+  if(m3.over)return;
+  m3.over=true;
+  m3.busy=true;
+  if(m3.timerId){clearInterval(m3.timerId);m3.timerId=null}
+  const done=Math.max(0,m3.lv-1);
+  if(m3.score>m3Best())localStorage.setItem('hz_m3_best',String(m3.score));
+  if(done>m3LvBest())localStorage.setItem('hz_m3_lv',String(done));
+  if(m3.specials>0)localStorage.setItem('hz_m3_sp',String(m3Sp()+m3.specials));
+  const s=Math.max(2,Math.min(20,Math.round(m3.score/220)+done));
+  addStars(s);
+  const acc=m3.total?Math.round(m3.correct/m3.total*100):0;
+  const set=function(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt};
+  set('m3ResultStars','⭐ +'+s);
+  set('m3ResultEmoji',done>=5?'👑':done>=3?'🍭':'🍬');
+  set('m3ResultTitle',done>=5?'糖果大师！':done>=3?'消消高手！':done>=1?'过关啦！':'再试一局！');
+  set('m3ResultSubtitle','过了 '+done+' 关 · 做出 '+m3.specials+' 个特殊糖块');
+  set('m3ResultScore',String(m3.score));
+  set('m3ResultLv',String(done));
+  set('m3ResultAcc',acc+'%');
+  set('m3ResultSp',String(m3Sp()));
+  set('m3ResultBest',String(m3Best()));
+  showScreen('match3-result');
+}
+function m3Start(){
+  m3.gen++;
+  if(m3.timerId){clearInterval(m3.timerId);m3.timerId=null}
+  m3.grid=[];m3.over=false;m3.busy=true;m3.sel=null;
+  m3.lv=1;m3.score=0;m3.moves=M3_MOVES;m3.charge=0;m3.chain=0;
+  m3.got=0;m3.need=m3Need(1);m3.combo=0;m3.maxCombo=0;m3.correct=0;m3.total=0;m3.specials=0;
+  m3.tIdx=0;m3.ansCode='';
+  m3Build();
+  showScreen('match3');
+  const wrap=document.getElementById('m3Wrap');if(wrap)wrap.classList.remove('shake');
+  m3Render();m3Hud();
+  m3Judge('🍬 三个同方向连成一线就消除！','#FFE082');
+  m3Ask();
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='match3')return;
+  if(/^[1-4]$/.test(e.key)){
+    const b=document.querySelector('#m3Opts .opt-btn[data-dir="'+(e.key-1)+'"]');
+    if(b)b.click();
+  }
+});
+(function(){
+  const b=document.getElementById('m3Board');
+  if(!b)return;
+  let from=null;
+  function pos(e){
+    const el=document.elementFromPoint(e.clientX,e.clientY);
+    const cell=el&&el.closest?el.closest('.m3-cell'):null;
+    if(!cell||!cell.dataset.pos)return null;
+    const p=cell.dataset.pos.split('-');
+    return{r:+p[0],c:+p[1]};
+  }
+  b.addEventListener('pointerdown',function(e){from=pos(e)});
+  b.addEventListener('pointerup',function(e){
+    const to=pos(e),f=from;
+    from=null;
+    if(!f)return;
+    if(!to||(to.r===f.r&&to.c===f.c)){m3Tap(f.r,f.c);return}
+    if(Math.abs(f.r-to.r)+Math.abs(f.c-to.c)!==1)return;
+    if(m3.over||m3.busy)return;
+    if(m3.charge<=0){m3Judge('🔒 先答对上面的题目才能交换','#FFE082');tone(300,.08,'square');return}
+    m3.sel=null;
+    m3TrySwap(f,to);
+  });
+  b.addEventListener('pointercancel',function(){from=null});
 })();
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
