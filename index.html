@@ -761,6 +761,35 @@ button:active{transform:scale(.95)}
 .m3-banner.on{animation:cfJudge 1.3s ease-out}
 .challenge-goal b{color:#FFD740}
 @media(max-width:420px){.m3-wrap{max-width:300px}.m3-hud{max-width:300px;font-size:10.5px}.m3-barwrap{max-width:300px}.m3-cell{font-size:13px;gap:2px}}
+/* ---------- 笔顺刮刮卡 ---------- */
+.sc-wrap{position:relative;width:100%;max-width:264px;margin:10px auto 0;user-select:none;-webkit-user-select:none}
+.sc-card{position:relative;width:100%;aspect-ratio:3/4;border-radius:18px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.38);touch-action:none}
+.sc-card.shake{animation:cfShake .42s}
+.sc-face{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:7px;padding:15px}
+.sc-card.bronze .sc-face{background:linear-gradient(140deg,#7A4F2B,#C98A52)}
+.sc-card.silver .sc-face{background:linear-gradient(140deg,#4B5563,#9CA3AF)}
+.sc-card.gold .sc-face{background:linear-gradient(140deg,#8D6A00,#F3C33B)}
+.sc-card.diamond .sc-face{background:linear-gradient(140deg,#1A5276,#5DADE2)}
+.sc-card.dragon .sc-face{background:linear-gradient(140deg,#7B1E3B,#E74C3C)}
+.sc-cell{display:flex;align-items:center;justify-content:center;font-size:31px;line-height:1;border-radius:12px;background:rgba(255,255,255,.2);color:transparent;font-weight:bold;transition:background .2s}
+.sc-cell.open{background:rgba(255,255,255,.94);color:#333;animation:scPop .34s ease-out;box-shadow:0 3px 10px rgba(0,0,0,.28)}
+.sc-cell.win{background:#FFF176;color:#333;box-shadow:0 0 0 3px #FFD740,0 3px 12px rgba(0,0,0,.3);animation:m3Pulse 1s ease-in-out infinite}
+@keyframes scPop{0%{transform:scale(.4);opacity:.2}60%{transform:scale(1.18)}100%{transform:scale(1);opacity:1}}
+.sc-canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair;touch-action:none;transition:opacity .45s}
+.sc-coin{position:absolute;left:0;top:0;width:40px;height:40px;margin:-20px 0 0 -20px;font-size:31px;line-height:40px;text-align:center;pointer-events:none;opacity:0;transition:opacity .16s;z-index:6;filter:drop-shadow(0 3px 6px rgba(0,0,0,.45))}
+.sc-coin.on{opacity:1}
+.sc-dust{position:absolute;width:6px;height:6px;border-radius:50%;background:#C9CCD1;pointer-events:none;z-index:7;animation:scFly .62s ease-out forwards}
+@keyframes scFly{0%{transform:translate(0,0) scale(1);opacity:.95}100%{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
+.sc-judge{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);font-size:19px;font-weight:bold;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.85);pointer-events:none;opacity:0;z-index:8;white-space:nowrap}
+.sc-judge.on{animation:cfJudge .9s ease-out}
+.sc-banner{position:absolute;left:50%;top:16%;transform:translate(-50%,-50%);font-size:22px;font-weight:bold;color:#FFF59D;text-shadow:0 4px 16px rgba(0,0,0,.9);pointer-events:none;opacity:0;z-index:9;white-space:nowrap}
+.sc-banner.on{animation:cfJudge 1.3s ease-out}
+.sc-barwrap{width:100%;max-width:264px;height:8px;background:rgba(255,255,255,.18);border-radius:6px;margin:9px auto 0;overflow:hidden}
+.sc-bar{height:100%;width:0;background:linear-gradient(90deg,#FFD740,#FF8A65);border-radius:6px;transition:width .3s}
+.sc-hud{display:flex;justify-content:space-between;width:100%;max-width:264px;margin:5px auto 0;font-size:11.5px;color:#fff;opacity:.92;gap:6px}
+.sc-hud span{flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc-wipe{display:block;margin:9px auto 0;font-size:13px;padding:7px 16px}
+@media(max-width:420px){.sc-wrap,.sc-barwrap,.sc-hud{max-width:238px}.sc-cell{font-size:27px}}
 </style>
 
 </head>
@@ -876,6 +905,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('match3')">
       <div class="icon">🍬</div>
       <div class="info"><h3>笔顺消消乐</h3><p>答对解锁交换，三个同方向连成线！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('scratch')">
+      <div class="icon">🎫</div>
+      <div class="info"><h3>笔顺刮刮卡</h3><p>答题印卡，硬币刮开涂层中大奖！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -1860,6 +1893,61 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-scratch">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="scScore">🎫 0</span><span id="scCombo" style="color:#FFD740">🔥 x0</span><span id="scTier">🥉 铜卡</span></div>
+  </div>
+  <div class="challenge-goal" id="scGoal">🎫 答对一题就印出一张刮刮卡，按住屏幕用 🪙 硬币来回刮开银色涂层，刮出三个一样的符号就是 BINGO 大奖！</div>
+  <div class="sc-wrap" id="scWrap">
+    <div class="sc-card bronze" id="scCard">
+      <div class="sc-face" id="scFace"></div>
+      <canvas class="sc-canvas" id="scCanvas"></canvas>
+    </div>
+    <div class="sc-judge" id="scJudge"></div>
+    <div class="sc-banner" id="scBanner"></div>
+    <div class="sc-coin" id="scCoin">🪙</div>
+  </div>
+  <div class="sc-barwrap"><div class="sc-bar" id="scBar"></div></div>
+  <div class="sc-hud">
+    <span id="scProg">🎫 第 0/8 张</span>
+    <span id="scOpenTxt">已刮开 0/9</span>
+    <span id="scBingoTxt">🎉 BINGO 0</span>
+  </div>
+  <button class="w-btn blue sc-wipe" onclick="scWipe()">🧽 一键刮开这张</button>
+  <div class="quiz-header"><div class="question" id="scQ">正在印刷卡片…</div></div>
+  <div class="options" id="scOpts"></div>
+  <div class="feedback" id="scFeedback"></div>
+</div>
+<div class="screen" id="screen-scratch-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="scResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="scResultEmoji">🎫</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="scResultTitle">刮出好运！</h2>
+    <p style="font-size:16px;opacity:.8" id="scResultSubtitle">答得越准，卡面越值钱！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="scResultScore">0</div><div style="font-size:13px;opacity:.7">本局奖金</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="scResultBingo">0</div><div style="font-size:13px;opacity:.7">BINGO 次数</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="scResultCards">0</div><div style="font-size:13px;opacity:.7">刮开的卡片</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="scResultAcc">0%</div><div style="font-size:13px;opacity:.7">答题正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 单局最高奖金 / 🥇 单张最佳</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="scResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="scResultCard">最高单张 0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="scResultRare">稀有符号图鉴 0</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="scStart()">🎫 再刮一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -2218,6 +2306,7 @@ function enterMode(mode){
  else if(mode==='checkin')skStart();
  else if(mode==='snake')snStart();
  else if(mode==='match3')m3Start();
+ else if(mode==='scratch')scStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -8378,6 +8467,410 @@ document.addEventListener('keydown',function(e){
   });
   b.addEventListener('pointercancel',function(){from=null});
 })();
+/* ================= 笔顺刮刮卡 ================= */
+const SC_CARDS=8,SC_BRUSH=17,SC_THIN=.5,SC_THICK=.74,SC_AUTO_CLEAN=.84,SC_AUTO_THICK=.9;
+const SC_TIERS=[
+  {n:'铜卡',e:'🥉',cls:'bronze',pool:[['🍎',6],['⭐',13],['🍀',20],['🎈',9]]},
+  {n:'银卡',e:'🥈',cls:'silver',pool:[['⭐',16],['🍀',26],['🎁',32],['🍎',11]]},
+  {n:'金卡',e:'🥇',cls:'gold',pool:[['🍀',30],['🎁',38],['💎',56],['⭐',19]]},
+  {n:'钻卡',e:'💎',cls:'diamond',pool:[['💎',64],['👑',92],['🍀',34],['🎁',42]]},
+  {n:'龙卡',e:'🐉',cls:'dragon',pool:[['🐉',170],['👑',104],['💎',76],['🌈',132]]}
+];
+const SC_NOTE=[392,494,587,659,784,880,1047,1319];
+const SC_ORD=['一','二','三','四','五','六','七','八','九','十'];
+let sc={gen:0,phase:'idle',over:true,busy:true,card:0,tier:0,cells:[],opened:0,cardScore:0,
+  score:0,combo:0,maxCombo:0,correct:0,total:0,bingo:0,luck:1,thick:false,ans:'',
+  cv:null,ctx:null,dpr:1,w:0,h:0,sx:0,sy:0,scratching:false,lastSample:0,lastDust:0};
+function scBest(){return Math.max(0,parseInt(localStorage.getItem('hz_sc_best')||'0',10)||0)}
+function scRunBest(){return Math.max(0,parseInt(localStorage.getItem('hz_sc_score')||'0',10)||0)}
+function scCardsAll(){return Math.max(0,parseInt(localStorage.getItem('hz_sc_cards')||'0',10)||0)}
+function scBingoAll(){return Math.max(0,parseInt(localStorage.getItem('hz_sc_bingo')||'0',10)||0)}
+function scRare(){return (localStorage.getItem('hz_sc_rare')||'').split(',').filter(function(x){return x})}
+function scShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function scTierOf(){return Math.min(SC_TIERS.length-1,Math.floor(sc.correct/2))}
+function scJudge(txt,color){
+  const el=document.getElementById('scJudge');if(!el)return;
+  el.textContent=txt;el.style.color=color||'#fff';
+  el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function scBanner(txt){
+  const el=document.getElementById('scBanner');if(!el)return;
+  el.textContent=txt;el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function scHud(){
+  const T=SC_TIERS[sc.tier];
+  const set=function(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt};
+  set('scScore','🎫 '+sc.score);
+  set('scCombo','🔥 x'+sc.combo);
+  set('scTier',T.e+' '+T.n);
+  set('scProg','🎫 第 '+sc.card+'/'+SC_CARDS+' 张');
+  set('scOpenTxt','已刮开 '+sc.opened+'/9');
+  set('scBingoTxt','🎉 BINGO '+sc.bingo);
+  const bar=document.getElementById('scBar');
+  if(bar)bar.style.width=Math.round(sc.card/SC_CARDS*100)+'%';
+}
+async function scAsk(){
+  const wasAsk=(sc.phase==='ask');
+  sc.busy=true;sc.phase='ask';
+  const gen=sc.gen;
+  let ch='',data=null;
+  for(let i=0;i<14;i++){
+    const c=nextInQueue();
+    const d=await loadCharData(c);
+    if(d&&d.strokes&&d.medians&&d.strokes.length>=2&&d.medians.length>=2){ch=c;data=d;break}
+  }
+  if(gen!==sc.gen)return;
+  if(!ch){sc.busy=false;return}
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],n=data.strokes.length;
+  const box=document.getElementById('scOpts'),q=document.getElementById('scQ');
+  const T=SC_TIERS[sc.tier];
+  if(!wasAsk)sc.card++;
+  let opts;
+  if(Math.random()<.5&&n<=12){
+    sc.ans=String(n);
+    const nums=[n];
+    while(nums.length<4){
+      const k=n+(Math.random()<.5?-1:1)*(1+Math.floor(Math.random()*3));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=scShuf(nums).map(function(k){return{v:String(k),txt:'✏️ '+k+' 笔'}});
+    if(q)q.textContent='『'+ch+'』一共有几笔？';
+  }else{
+    const idx=Math.floor(Math.random()*dirs.length);
+    const code=dirs[idx];
+    sc.ans=code;
+    const right=DIRS.filter(function(d){return d.code===code})[0]||DIRS[0];
+    const pool=scShuf(DIRS.filter(function(d){return d.code!==code})).slice(0,3);
+    opts=scShuf([right].concat(pool)).map(function(d){return{v:d.code,txt:d.icon+' '+d.label}});
+    if(q)q.textContent='『'+ch+'』的第'+(SC_ORD[idx]||(idx+1))+'笔往哪写？';
+  }
+  if(box){
+    box.innerHTML=opts.map(function(o,i){
+      return '<button class="opt-btn" data-value="'+o.v+'" data-dir="'+i+'" onclick="scPick(\''+o.v+'\',this)">'+o.txt+'</button>';
+    }).join('');
+  }
+  const fb=document.getElementById('scFeedback');if(fb)fb.textContent='';
+  const g=document.getElementById('scGoal');
+  if(g)g.innerHTML='🎫 答对这一题就印出一张 <b>'+T.e+' '+T.n+'</b>，用 🪙 硬币刮开银色涂层，刮出三个一样的符号就是 BINGO 大奖';
+  scHud();
+  sc.busy=false;
+}
+function scPick(v,btn){
+  if(sc.over||sc.busy||sc.phase!=='ask')return;
+  const gen=sc.gen;
+  const ok=(v===sc.ans);
+  sc.total++;
+  const card=document.getElementById('scCard');
+  if(ok){
+    sc.correct++;sc.combo++;
+    if(sc.combo>sc.maxCombo)sc.maxCombo=sc.combo;
+    sc.luck=1+sc.combo*.35;sc.thick=false;
+    if(btn)btn.classList.add('correct');
+    sndOk();showComboEffect(sc.combo);
+    scJudge('🎫 卡片印好啦！去刮开它','#B9F6CA');
+  }else{
+    sc.combo=0;sc.luck=.35;sc.thick=true;
+    sc.score=Math.max(0,sc.score-4);
+    sndNo();
+    if(btn)btn.classList.add('wrong');
+    const right=document.querySelector('#scOpts .opt-btn[data-value="'+sc.ans+'"]');
+    if(right)right.classList.add('reveal');
+    if(card){card.classList.remove('shake');void card.offsetWidth;card.classList.add('shake')}
+    scJudge('😵 印糊了，涂层变厚…','#FF8A80');
+  }
+  sc.busy=true;
+  setTimeout(function(){if(gen===sc.gen&&!sc.over)scIssueCard()},ok?620:1080);
+}
+function scGenCells(){
+  const T=SC_TIERS[sc.tier],pool=T.pool;
+  const kinds=pool.map(function(p){return p[0]});
+  const syms=[];
+  const pB=Math.min(.55,.14+sc.luck*.13);
+  const lucky=pool[Math.floor(Math.random()*pool.length)][0];
+  if(Math.random()<pB)for(let i=0;i<3;i++)syms.push(lucky);
+  while(syms.length<9)syms.push(kinds[Math.floor(Math.random()*kinds.length)]);
+  scShuf(syms);
+  return syms.map(function(s){
+    const row=pool.filter(function(p){return p[0]===s})[0];
+    const base=row?row[1]:8;
+    return{s:s,v:Math.max(2,Math.round(base*(.8+Math.random()*.5))),opened:false};
+  });
+}
+function scIssueCard(){
+  if(sc.over)return;
+  const T=SC_TIERS[sc.tier];
+  sc.cells=scGenCells();
+  sc.opened=0;sc.cardScore=0;
+  const face=document.getElementById('scFace');
+  if(face)face.innerHTML=sc.cells.map(function(c,i){return '<div class="sc-cell" data-i="'+i+'">'+c.s+'</div>'}).join('');
+  const card=document.getElementById('scCard');
+  if(card)card.className='sc-card '+T.cls;
+  sc.phase='scratch';
+  scSize();
+  scCoat();
+  sc.busy=false;
+  scHud();
+  scJudge('🪙 按住屏幕来回刮！','#FFF59D');
+}
+function scSize(){
+  const cv=document.getElementById('scCanvas');if(!cv)return;
+  const r=cv.getBoundingClientRect();
+  if(!r.width){setTimeout(scSize,60);return}
+  const dpr=window.devicePixelRatio||1;
+  sc.cv=cv;sc.ctx=cv.getContext('2d');sc.dpr=dpr;sc.w=r.width;sc.h=r.height;
+  cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);
+  cv.style.opacity='1';
+  cv.getContext('2d').setTransform(dpr,0,0,dpr,0,0);
+}
+function scCoat(){
+  const ctx=sc.ctx;if(!ctx)return;
+  const w=sc.w,h=sc.h;
+  ctx.globalCompositeOperation='source-over';
+  const g=ctx.createLinearGradient(0,0,w,h);
+  g.addColorStop(0,'#DBDFE4');g.addColorStop(.35,'#A9B0B9');g.addColorStop(.62,'#E8EBEF');g.addColorStop(1,'#B4BAC3');
+  ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+  ctx.fillStyle='rgba(255,255,255,.32)';
+  for(let i=0;i<24;i++){ctx.beginPath();ctx.arc(Math.random()*w,Math.random()*h,Math.random()*15+3,0,6.283);ctx.fill()}
+  ctx.fillStyle='rgba(112,120,132,.34)';
+  for(let i=0;i<420;i++)ctx.fillRect(Math.random()*w,Math.random()*h,1.6,1.6);
+  if(sc.thick){ctx.fillStyle='rgba(70,78,90,.34)';ctx.fillRect(0,0,w,h)}
+  ctx.save();ctx.translate(w/2,h/2);ctx.rotate(-.2);
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillStyle='rgba(62,70,82,.92)';ctx.font='bold '+Math.round(w*.14)+'px sans-serif';
+  ctx.fillText('刮开有惊喜',0,-16);
+  ctx.font=Math.round(w*.085)+'px sans-serif';ctx.fillStyle='rgba(84,92,104,.86)';
+  ctx.fillText('🪙 按住来回刮',0,16);
+  ctx.restore();
+  ctx.strokeStyle='rgba(255,255,255,.55)';ctx.lineWidth=3;ctx.strokeRect(2,2,w-4,h-4);
+}
+function scScrub(x0,y0,x1,y1){
+  const ctx=sc.ctx;if(!ctx)return;
+  ctx.globalCompositeOperation='destination-out';
+  ctx.lineCap='round';ctx.lineJoin='round';
+  ctx.lineWidth=SC_BRUSH*2;
+  ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.stroke();
+  ctx.globalCompositeOperation='source-over';
+}
+function scSample(){
+  const cv=sc.cv,ctx=sc.ctx;if(!ctx)return null;
+  const W=cv.width,H=cv.height;
+  let d;try{d=ctx.getImageData(0,0,W,H).data}catch(e){return null}
+  const step=Math.max(2,Math.round(3*sc.dpr));
+  const tot=[],cut=[];
+  for(let i=0;i<9;i++){tot[i]=0;cut[i]=0}
+  let T=0,C=0;
+  const tw=W/3,th=H/3;
+  for(let y=0;y<H;y+=step){
+    const row=Math.floor(y/th);if(row>2)continue;
+    for(let x=0;x<W;x+=step){
+      const col=Math.floor(x/tw);if(col>2)continue;
+      const i=row*3+col;
+      tot[i]++;T++;
+      if(d[(y*W+x)*4+3]<110){cut[i]++;C++}
+    }
+  }
+  return{ratio:T?C/T:0,cell:function(i){return tot[i]?cut[i]/tot[i]:0}};
+}
+function scCheck(){
+  if(sc.phase!=='scratch')return;
+  const s=scSample();if(!s)return;
+  const th=sc.thick?SC_THICK:SC_THIN;
+  for(let i=0;i<9;i++){
+    if(sc.cells[i].opened)continue;
+    if(s.cell(i)>=th)scOpen(i);
+  }
+  const auto=sc.thick?SC_AUTO_THICK:SC_AUTO_CLEAN;
+  if(s.ratio>=auto){
+    for(let i=0;i<9;i++)if(!sc.cells[i].opened)scOpen(i);
+    if(sc.phase==='scratch'){sc.score+=20;scJudge('🧽 刮得真干净！+20','#B9F6CA')}
+  }
+  scHud();
+}
+function scOpen(i){
+  const cell=sc.cells[i];
+  if(!cell||cell.opened)return;
+  cell.opened=true;sc.opened++;
+  sc.cardScore+=cell.v;
+  sc.score+=cell.v;
+  const el=document.querySelector('#scFace .sc-cell[data-i="'+i+'"]');
+  if(el){el.classList.add('open');const r=el.getBoundingClientRect();spawnStarFly(r.left+r.width/2,r.top+r.height/2)}
+  tone(SC_NOTE[Math.min(sc.opened-1,SC_NOTE.length-1)],.13,'triangle',.16);
+  scJudge('+'+cell.v+' '+cell.s,cell.v>=50?'#FFF59D':'#B9F6CA');
+  scHud();
+  if(sc.opened>=9){
+    sc.busy=true;
+    setTimeout(function(){scFinishCard()},520);
+  }
+}
+function scFinishCard(){
+  if(sc.phase!=='scratch')return;
+  sc.phase='settle';
+  const cnt={};
+  sc.cells.forEach(function(c){cnt[c.s]=(cnt[c.s]||0)+1});
+  let sym='',num=0;
+  Object.keys(cnt).forEach(function(k){if(cnt[k]>num){num=cnt[k];sym=k}});
+  if(num>=3){
+    sc.bingo++;
+    const bonus=60+sc.tier*45;
+    sc.score+=bonus;
+    const rare=scRare();
+    let extra='';
+    if(rare.indexOf(sym)<0){rare.push(sym);localStorage.setItem('hz_sc_rare',rare.join(','));extra=' 📖 新符号 +15';sc.score+=15}
+    for(let i=0;i<9;i++){
+      if(sc.cells[i].s!==sym)continue;
+      const el=document.querySelector('#scFace .sc-cell[data-i="'+i+'"]');
+      if(el)el.classList.add('win');
+    }
+    sndReward();spawnConfetti();
+    scBanner('🎉 BINGO！三个 '+sym+'！+'+bonus);
+    scJudge('🎉 BINGO 大奖 +'+bonus,'#FFF59D');
+    addStars(1);
+  }else{
+    sndDone();
+    scBanner('🎫 第 '+sc.card+' 张 +'+sc.cardScore);
+  }
+  if(sc.cardScore>scBest())localStorage.setItem('hz_sc_best',String(sc.cardScore));
+  localStorage.setItem('hz_sc_cards',String(scCardsAll()+1));
+  scHud();
+  setTimeout(function(){if(!sc.over&&sc.phase==='settle')scNextCard()},1150);
+}
+function scNextCard(){
+  const before=sc.tier;
+  sc.tier=scTierOf();
+  if(sc.card>=SC_CARDS){scEnd();return}
+  sc.opened=0;
+  const face=document.getElementById('scFace');if(face)face.innerHTML='';
+  const T=SC_TIERS[sc.tier];
+  const card=document.getElementById('scCard');
+  if(card)card.className='sc-card '+T.cls;
+  scHud();
+  if(sc.tier>before){
+    scBanner('⬆️ 升级到 '+T.e+' '+T.n+'！');
+    tone(1047,.14);setTimeout(function(){tone(1319,.18)},120);
+  }
+  scAsk();
+}
+function scWipe(){
+  if(sc.over||sc.busy||sc.phase!=='scratch')return;
+  sc.busy=true;
+  const cv=document.getElementById('scCanvas');
+  if(cv){cv.style.opacity='0'}
+  const ctx=sc.ctx;
+  if(ctx){ctx.globalCompositeOperation='destination-out';ctx.fillRect(0,0,sc.w,sc.h);ctx.globalCompositeOperation='source-over'}
+  for(let i=0;i<9;i++){
+    (function(k){setTimeout(function(){scOpen(k)},k*70)})(i);
+  }
+}
+function scEnd(){
+  if(!sc.over){
+    sc.over=true;sc.busy=true;sc.phase='done';
+    const done=sc.card;
+    if(sc.score>scRunBest())localStorage.setItem('hz_sc_score',String(sc.score));
+    if(sc.bingo>0)localStorage.setItem('hz_sc_bingo',String(scBingoAll()+sc.bingo));
+    const s=Math.max(2,Math.min(20,Math.round(sc.score/90)+sc.bingo*2));
+    addStars(s);
+    const acc=sc.total?Math.round(sc.correct/sc.total*100):0;
+    const set=function(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt};
+    set('scResultStars','⭐ +'+s);
+    set('scResultEmoji',sc.bingo>=3?'🐉':sc.bingo>=1?'🎉':'🎫');
+    set('scResultTitle',sc.bingo>=3?'刮刮卡之神！':sc.bingo>=1?'中大奖啦！':'手气不错！');
+    set('scResultSubtitle','刮了 '+done+' 张卡 · BINGO '+sc.bingo+' 次');
+    set('scResultScore',String(sc.score));
+    set('scResultBingo',String(sc.bingo));
+    set('scResultCards',String(done));
+    set('scResultAcc',acc+'%');
+    set('scResultBest',String(scRunBest()));
+    set('scResultCard','最高单张 '+scBest());
+    set('scResultRare','稀有符号图鉴 '+scRare().length+' 个');
+    showScreen('scratch-result');
+  }
+}
+function scStart(){
+  sc.gen++;
+  sc.over=false;sc.busy=true;sc.phase='idle';
+  sc.card=0;sc.tier=0;sc.cells=[];sc.opened=0;sc.cardScore=0;
+  sc.score=0;sc.combo=0;sc.maxCombo=0;sc.correct=0;sc.total=0;sc.bingo=0;
+  sc.luck=1;sc.thick=false;sc.ans='';sc.scratching=false;
+  showScreen('scratch');
+  const card=document.getElementById('scCard');
+  if(card)card.className='sc-card bronze';
+  const face=document.getElementById('scFace');
+  if(face)face.innerHTML='';
+  const cv=document.getElementById('scCanvas');
+  if(cv){cv.style.opacity='1'}
+  scHud();
+  scJudge('🎫 答题就能印出刮刮卡！','#FFE082');
+  scAsk();
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='scratch')return;
+  if(/^[1-4]$/.test(e.key)){
+    const b=document.querySelector('#scOpts .opt-btn[data-dir="'+(e.key-1)+'"]');
+    if(b)b.click();
+  }
+});
+(function(){
+  const cv=document.getElementById('scCanvas');
+  if(!cv)return;
+  function loc(e){
+    const r=cv.getBoundingClientRect();
+    return{x:e.clientX-r.left,y:e.clientY-r.top};
+  }
+  function coin(p){
+    const el=document.getElementById('scCoin');if(!el)return;
+    el.style.left=(p.x+cv.offsetLeft)+'px';
+    el.style.top=(p.y+cv.offsetTop)+'px';
+  }
+  function dust(p){
+    const wrap=document.getElementById('scWrap');if(!wrap)return;
+    const d=document.createElement('div');
+    d.className='sc-dust';
+    d.style.left=(p.x+cv.offsetLeft)+'px';
+    d.style.top=(p.y+cv.offsetTop)+'px';
+    d.style.setProperty('--dx',(Math.random()*46-23)+'px');
+    d.style.setProperty('--dy',(-14-Math.random()*30)+'px');
+    wrap.appendChild(d);
+    setTimeout(function(){d.remove()},660);
+  }
+  cv.addEventListener('pointerdown',function(e){
+    if(sc.phase!=='scratch'||sc.busy)return;
+    e.preventDefault();
+    try{cv.setPointerCapture(e.pointerId)}catch(err){}
+    const p=loc(e);
+    sc.scratching=true;sc.sx=p.x;sc.sy=p.y;
+    const el=document.getElementById('scCoin');if(el){coin(p);el.classList.add('on')}
+    scScrub(p.x,p.y,p.x+.01,p.y+.01);
+    sc.lastSample=0;scCheck();
+  });
+  cv.addEventListener('pointermove',function(e){
+    const p=loc(e);
+    if(sc.scratching)e.preventDefault();
+    if(sc.scratching)coin(p);
+    if(!sc.scratching||sc.busy||sc.phase!=='scratch')return;
+    const dx=p.x-sc.sx,dy=p.y-sc.sy;
+    if(dx*dx+dy*dy<4)return;
+    scScrub(sc.sx,sc.sy,p.x,p.y);
+    sc.sx=p.x;sc.sy=p.y;
+    const now=Date.now();
+    if(now-sc.lastDust>55){sc.lastDust=now;dust(p);tone(1500+Math.random()*1300,.03,'square',.02)}
+    if(now-sc.lastSample>110){sc.lastSample=now;scCheck()}
+  });
+  function up(){
+    if(!sc.scratching)return;
+    sc.scratching=false;
+    const el=document.getElementById('scCoin');if(el)el.classList.remove('on');
+    sc.lastSample=0;scCheck();
+  }
+  cv.addEventListener('pointerup',up);
+  cv.addEventListener('pointercancel',up);
+})();
+window.scScratch=function(x0,y0,x1,y1){
+  if(sc.phase!=='scratch')return false;
+  scScrub(x0,y0,x1,y1);scCheck();return true;
+};
+
+
 let challengeState={running:false,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
 function challengeStart(){
   challengeState={running:true,timeLeft:60,score:0,correct:0,total:0,maxCombo:0,currentCombo:0,timerId:null,currentChar:'',currentAnswer:null,currentOptions:[]};
