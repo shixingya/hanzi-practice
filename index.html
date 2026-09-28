@@ -972,6 +972,51 @@ button:active{transform:scale(.95)}
 .mg-dir:active{transform:scale(.9);background:rgba(255,255,255,.38)}
 .mg-tip{width:100%;max-width:330px;margin:7px auto 0;font-size:11.5px;color:rgba(255,255,255,.8);text-align:center;line-height:1.6}
 @media(max-width:420px){.mg-wrap,.mg-hud,.mg-energy,.mg-btns,.mg-pad,.mg-tip{max-width:296px}.mg-tile b{font-size:22px}}
+/* ===== 笔顺保龄球（10 帧计分 + 飞瓶连锁） ===== */
+.bw-wrap{position:relative;width:100%;max-width:316px;margin:8px auto 0}
+.bw-lane{position:relative;width:100%;padding-bottom:110%;border-radius:16px;overflow:hidden;touch-action:none;cursor:pointer;
+  background:linear-gradient(180deg,#3E2C5A 0%,#5B4270 38%,#C79A5E 38.4%,#D8AE72 70%,#EBC58A 100%);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.2),inset 0 -30px 40px rgba(0,0,0,.22)}
+.bw-lane::before,.bw-lane::after{content:'';position:absolute;top:0;bottom:0;width:29.4%;background:linear-gradient(180deg,#150E22,#2A1F3D 38%,#3A2A1E)}
+.bw-lane::before{left:0}.bw-lane::after{right:0}
+.bw-deck{position:absolute;left:29.4%;right:29.4%;top:0;height:38%;z-index:0;background:linear-gradient(180deg,#2A1F3D,#4A3826);border-bottom:2px solid rgba(255,255,255,.18)}
+.bw-spot{position:absolute;width:9%;padding-bottom:9%;border-radius:50%;transform:translate(-50%,-50%);z-index:1;border:2px dashed rgba(255,241,118,.75);opacity:0;transition:opacity .25s}
+.bw-spot.on{opacity:1}
+.bw-pin{position:absolute;width:4.4%;padding-bottom:7%;transform:translate(-50%,-50%);z-index:2;
+  background:linear-gradient(180deg,#FFFDF7 0 55%,#FFD9DF 55% 70%,#FFFDF7 70%);
+  border-radius:46% 46% 30% 30%/60% 60% 22% 22%;box-shadow:0 2px 4px rgba(0,0,0,.35);
+  transition:left .1s,top .1s,transform .5s cubic-bezier(.2,.7,.4,1),opacity .5s}
+.bw-pin.hit{transform:translate(-50%,-50%) translate(var(--tx,0),var(--ty,0)) rotate(var(--tr,180deg)) scale(.72);opacity:0}
+.bw-pin.stone{background:linear-gradient(180deg,#CFD8DC,#78909C)}
+.bw-ball{position:absolute;width:6.6%;padding-bottom:6.6%;border-radius:50%;transform:translate(-50%,-50%);z-index:4;
+  background:radial-gradient(circle at 34% 28%,#8ED0FF,#1565C0 62%,#0B3C79);box-shadow:0 3px 8px rgba(0,0,0,.45)}
+.bw-ball.soft{background:radial-gradient(circle at 34% 28%,#FFE082,#F57C00 62%,#B34D00)}
+.bw-ball i{position:absolute;left:38%;top:22%;width:11%;height:11%;border-radius:50%;background:rgba(0,0,0,.4);box-shadow:9px 4px 0 rgba(0,0,0,.34),3px 11px 0 rgba(0,0,0,.34)}
+.bw-line{position:absolute;left:50%;bottom:0;width:2px;height:52%;z-index:3;transform-origin:bottom center;background:linear-gradient(180deg,rgba(255,234,0,0),rgba(255,234,0,.75));pointer-events:none}
+.bw-judge{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);z-index:6;font-size:22px;font-weight:bold;color:#FFEA00;
+  text-shadow:0 2px 8px rgba(0,0,0,.65);opacity:0;pointer-events:none;white-space:nowrap}
+.bw-judge.show{animation:bwPop .9s ease-out}
+.bw-banner{position:absolute;left:50%;top:14%;transform:translate(-50%,-50%) scale(.6);z-index:7;font-size:25px;font-weight:bold;color:#FFF176;
+  text-shadow:0 3px 0 #E65100,0 0 18px rgba(255,214,64,.9);opacity:0;pointer-events:none;white-space:nowrap}
+.bw-banner.show{animation:bwBan 1.25s cubic-bezier(.2,1.4,.5,1)}
+@keyframes bwPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}22%{opacity:1;transform:translate(-50%,-50%) scale(1.16)}76%{opacity:1}100%{opacity:0;transform:translate(-50%,-64%) scale(1)}}
+@keyframes bwBan{0%{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(-8deg)}25%{opacity:1;transform:translate(-50%,-50%) scale(1.2) rotate(3deg)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-70%) scale(1)}}
+.bw-score{display:flex;gap:3px;width:100%;max-width:316px;margin:8px auto 0}
+.bw-f{flex:1;background:rgba(255,255,255,.14);border-radius:7px;overflow:hidden;text-align:center;color:#fff}
+.bw-f.cur{background:rgba(255,234,0,.26);box-shadow:0 0 0 2px #FFEA00}
+.bw-f s{display:block;font-size:9px;line-height:1.5;opacity:.7;text-decoration:none}
+.bw-f em{display:flex;font-style:normal;font-size:11px;font-weight:bold;line-height:1.35;border-top:1px solid rgba(255,255,255,.18)}
+.bw-f em span{flex:1;padding:1px 0}
+.bw-f b{display:block;font-size:11px;line-height:1.4;border-top:1px solid rgba(255,255,255,.18);color:#FFF176;min-height:15px}
+.bw-hud{display:flex;gap:8px;width:100%;max-width:316px;margin:7px auto 0;font-size:12.5px;color:rgba(255,255,255,.9)}
+.bw-hud span{flex:0 1 auto;text-align:center}
+.bw-btns{display:flex;gap:8px;width:100%;max-width:316px;margin:8px auto 0}
+.bw-act{flex:1;border:none;border-radius:14px;padding:11px 4px;font-size:14px;font-family:inherit;cursor:pointer;color:#fff;
+  background:linear-gradient(135deg,#FF7043,#E64A19);box-shadow:0 3px 10px rgba(0,0,0,.24);transition:transform .15s,filter .2s}
+.bw-act:active{transform:scale(.94)}
+.bw-act:disabled{filter:grayscale(.75) brightness(.72);cursor:not-allowed}
+.bw-tip{width:100%;max-width:316px;margin:6px auto 0;font-size:11.5px;color:rgba(255,255,255,.8);text-align:center;line-height:1.6}
+@media(max-width:420px){.bw-wrap,.bw-score,.bw-hud,.bw-btns,.bw-tip{max-width:296px}}
 </style>
 
 </head>
@@ -1104,6 +1149,10 @@ button:active{transform:scale(.95)}
       <div class="icon">🎡</div>
       <div class="info"><h3>笔顺扭蛋机</h3><p id="ggCardTip">答对题赚 🪙 抽汉字精灵，集齐图鉴！</p></div>
       <span class="sk-dot" id="ggDot">1</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('bowl')">
+      <div class="icon">🎳</div>
+      <div class="info"><h3>笔顺保龄球</h3><p>答对拿大力球，瞄口袋位一票全倒！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('merge')">
       <div class="icon">🧩</div>
@@ -2370,6 +2419,64 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-bowl">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="bwScoreTxt">🎳 0 分</span><span id="bwFrameTxt">第 1 帧</span></div>
+    <button class="icon-btn" onclick="bwHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal" id="bwGoal">🎳 答对笔顺题才拿得到<b>大力球</b>！答完后黄色瞄准线左右摆，看准<b>口袋位</b>（1 号瓶和 3 号瓶中间那道缝）按空格投球。十瓶全倒就是 <b>STRIKE</b>，按真保龄球规则算十帧分！</div>
+  <div class="bw-hud">
+    <span id="bwPinTxt">🎳 站着 10</span>
+    <span id="bwBallTxt">⚪ 第 1 球</span>
+    <span id="bwBestTxt">🥇 最高 0</span>
+  </div>
+  <div class="bw-wrap">
+    <div class="bw-lane" id="bwLane">
+      <div class="bw-deck"></div>
+      <div class="bw-spot" id="bwSpot"></div>
+      <div class="bw-line" id="bwLine"></div>
+      <div class="bw-judge" id="bwJudge"></div>
+      <div class="bw-banner" id="bwBanner"></div>
+    </div>
+  </div>
+  <div class="bw-score" id="bwBoard"></div>
+  <div class="bw-btns">
+    <button class="bw-act" id="bwThrowBtn" onclick="bwThrow()" disabled>🎳 投球（空格）</button>
+  </div>
+  <div class="bw-tip" id="bwTip">答题后瞄准线开始摆动，按<b>空格</b>或点<b>球道</b>投球</div>
+  <div class="quiz-header"><div class="question" id="bwQ">正在摆瓶…</div></div>
+  <div class="options" id="bwOpts"></div>
+  <div class="feedback" id="bwFeedback"></div>
+</div>
+<div class="screen" id="screen-bowl-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="bwResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="bwResultEmoji">🎳</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="bwResultTitle">一局打完！</h2>
+    <p style="font-size:16px;opacity:.8" id="bwResultSubtitle">瞄准口袋位，瓶会自己排队倒</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="bwResultScore">0</div><div style="font-size:13px;opacity:.7">本局总分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="bwResultStrike">0</div><div style="font-size:13px;opacity:.7">全倒次数</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="bwResultSpare">0</div><div style="font-size:13px;opacity:.7">补中次数</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="bwResultAcc">0%</div><div style="font-size:13px;opacity:.7">答题正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="bwResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="bwResultAll">累计全倒 0 次 · 累计倒瓶 0 瓶</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="bwStart()">🎳 再打一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -2734,6 +2841,7 @@ function enterMode(mode){
  else if(mode==='stack')stkStart();
  else if(mode==='gacha')ggStart();
  else if(mode==='merge')mgStart();
+ else if(mode==='bowl')bwStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -11482,7 +11590,438 @@ document.addEventListener('keydown',function(e){
   });
   b.addEventListener('pointercancel',function(){on=false});
 })();
-/* ================= 笔顺合合合 结束 ================= */
+/* ================= 笔顺保龄球 开始 ================= */
+const BW_W=300,BW_H=330,BW_PINR=6.5;
+const BW_PINS=[[150,118],[137,96],[163,96],[124,74],[150,74],[176,74],[111,52],[137,52],[163,52],[189,52]];
+const BW_HARD={ball:10,deflect:0.2,fade:0.85,depth:2,reach:44};
+const BW_SOFT={ball:8,deflect:0.27,fade:1.15,depth:1,reach:30};
+const BW_AIMMAX=14,BW_GL=88,BW_GR=212;
+let bw={gen:0,over:true,busy:false,throwing:false,aiming:false,
+  frame:1,ballNo:1,rolls:[],hist:[],down:[],strength:true,angle:0,adirection:1,aimTimer:0,animTimer:0,
+  score:0,strikes:0,spares:0,gutters:0,combo:0,maxCombo:0,pinsDown:0,
+  fresh:true,left:10,total:0,correct:0,ans:'',ch:'',pinEls:[],ballEl:null};
+function bwSet(id,t){const e=document.getElementById(id);if(e)e.textContent=t}
+function bwL(){return document.getElementById('bwLane')}
+function bwLeft(x){return (x/BW_W*100).toFixed(2)+'%'}
+function bwTop(y){return (y/BW_H*100).toFixed(2)+'%'}
+function bwJudge(t,color){
+  const e=document.getElementById('bwJudge');if(!e)return;
+  e.textContent=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function bwBanner(t){
+  const e=document.getElementById('bwBanner');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function bwPinsInit(){
+  const l=bwL();if(!l)return;
+  bw.pinEls.forEach(function(el){if(el&&el.parentNode)el.parentNode.removeChild(el)});
+  bw.pinEls=[];
+  for(let i=0;i<10;i++){
+    const d=document.createElement('div');
+    d.className='bw-pin';
+    d.style.left=bwLeft(BW_PINS[i][0]);d.style.top=bwTop(BW_PINS[i][1]);
+    l.insertBefore(d,l.firstChild);
+    bw.pinEls.push(d);
+  }
+}
+function bwPaint(){
+  for(let i=0;i<10;i++){
+    const el=bw.pinEls[i];if(!el)continue;
+    if(bw.down[i])el.classList.add('hit');
+    else{el.classList.remove('hit');el.style.setProperty('--tx','0px');el.style.setProperty('--ty','0px');el.style.setProperty('--tr','0deg')}
+  }
+}
+function bwKnock(el,dx,dy,spin){
+  if(!el)return;
+  el.style.setProperty('--tx',Math.round(dx)+'px');
+  el.style.setProperty('--ty',Math.round(dy)+'px');
+  el.style.setProperty('--tr',Math.round(spin)+'deg');
+  el.classList.add('hit');
+}
+function bwMark(f){
+  const h=bw.hist[f]||[];
+  const one=function(v){return v===undefined?'':(v===10?'X':(v===0?'-':String(v)))};
+  if(f<9){
+    if(h[0]===10)return['',one(h[0])];
+    return [one(h[0]),h[1]===undefined?'':(h[0]+h[1]===10?'/':one(h[1]))];
+  }
+  const out=[one(h[0])];
+  if(h[1]===undefined)out.push('');
+  else out.push(h[0]===10?one(h[1]):(h[0]+h[1]===10?'/':one(h[1])));
+  if(h[2]!==undefined){
+    const reset=(h[0]===10)||(h[0]+(h[1]||0)===10);
+    out.push(reset?one(h[2]):(h[1]+h[2]===10?'/':one(h[2])));
+  }
+  return out;
+}
+function bwCalc(r){
+  const tot=[];let i=0,s=0;
+  for(let f=0;f<10;f++){
+    if(i>=r.length){tot.push(null);continue}
+    if(f<9){
+      if(r[i]===10){
+        if(i+2<r.length){s+=10+r[i+1]+r[i+2];tot.push(s)}else tot.push(null);
+        i+=1;
+      }else if(i+1<r.length){
+        if(r[i]+r[i+1]===10){
+          if(i+2<r.length){s+=10+r[i+2];tot.push(s)}else tot.push(null);
+        }else{s+=r[i]+r[i+1];tot.push(s)}
+        i+=2;
+      }else{tot.push(null);i+=2}
+    }else{
+      const need=(r[i]===10||r[i]+(r[i+1]||0)===10)?3:2;
+      if(i+need<=r.length){s+=r[i]+(r[i+1]||0)+(need===3?(r[i+2]||0):0);tot.push(s)}else tot.push(null);
+      i+=need;
+    }
+  }
+  return tot;
+}
+function bwBoard(){
+  const box=document.getElementById('bwBoard');if(!box)return;
+  const tot=bwCalc(bw.rolls);
+  let html='';
+  for(let f=0;f<10;f++){
+    const m=bwMark(f),cells=(f===9?3:2);
+    let em='';
+    for(let k=0;k<cells;k++)em+='<span>'+(m[k]||'')+'</span>';
+    html+='<div class="bw-f'+(f+1===bw.frame&&!bw.over?' cur':'')+'"><s>'+(f+1)+'</s><em>'+em+'</em><b>'+(tot[f]===null?'':tot[f])+'</b></div>';
+  }
+  box.innerHTML=html;
+  bw.score=tot.filter(function(v){return v!==null}).pop()||0;
+}
+function bwHud(){
+  bwSet('bwScoreTxt','🎳 '+bw.score+' 分');
+  bwSet('bwFrameTxt','第 '+bw.frame+' 帧');
+  bwSet('bwPinTxt','🎳 站着 '+(10-bw.down.filter(function(d){return d}).length));
+  bwSet('bwBallTxt','⚪ 第 '+bw.ballNo+' 球');
+  bwSet('bwBestTxt','🥇 最高 '+(parseInt(localStorage.getItem('hz_bw_best')||'0',10)));
+}
+/* ---- 解析滚球：球道直线 + 命中偏转 + 飞瓶连锁，逐步记录好让动画能重演 ---- */
+function bwRoll(angle,standing,o){
+  const HW=o.ball+BW_PINR,step=1.2;
+  const pins=BW_PINS.map(function(p,i){return {x:p[0],y:p[1],i:i,down:!standing[i]}});
+  const fly=[],hits=[],path=[];
+  let x=150,y=306,slope=Math.tan(angle*Math.PI/180),e=1,t=0,out=false;
+  for(;y>34&&t<900;t++){
+    x+=slope*step;
+    y-=step;
+    path.push([x,y]);
+    if(x<BW_GL||x>BW_GR){out=true;break}
+    for(let k=0;k<10;k++){
+      const p=pins[k];
+      if(p.down)continue;
+      const dx=p.x-x,ddx=Math.abs(dx),ddy=Math.abs(p.y-y);
+      if(ddx<HW&&ddy<HW){
+        p.down=true;
+        const side=dx>=0?1:-1,q=1-ddx/HW;
+        slope+=side*o.deflect*(0.35+q)*(1+(1-e)*0.5);
+        e=Math.max(0.12,e-o.fade);
+        hits.push({i:p.i,t:t,side:side,q:q,from:0});
+        if(fly.length<14)fly.push({x:p.x,y:p.y,vx:side*52*(0.35+q),vy:-52*(0.7+q*0.5),d:0,life:o.reach,t:t});
+      }
+    }
+    for(let fi=0;fi<fly.length;fi++){
+      const f=fly[fi];
+      if(f.life<=0)continue;
+      f.x+=f.vx*step/16;f.y+=f.vy*step/16;f.life-=step;
+      f.vx*=0.985;f.vy*=0.985;
+      if(f.d>=(o.depth||2))continue;
+      for(let k=0;k<10;k++){
+        const p=pins[k];
+        if(p.down)continue;
+        const dx=p.x-f.x,dy=p.y-f.y;
+        if(Math.abs(dx)<BW_PINR*2+3&&Math.abs(dy)<BW_PINR*2+3){
+          p.down=true;f.d++;f.life=Math.min(f.life,o.reach*0.5);
+          hits.push({i:p.i,t:t,side:dx>=0?1:-1,q:0.5,from:f.d});
+          fly.push({x:p.x,y:p.y,vx:(dx>=0?1:-1)*52*0.55,vy:-52*0.75,d:f.d,life:o.reach*0.75,t:t});
+          break;
+        }
+      }
+    }
+  }
+  return {hits:hits,path:path,gut:out,
+    knocked:hits.filter(function(h){return standing[h.i]}).length};
+}
+function bwIdeal(standing,o){
+  let best=-1,ba=0;
+  for(let a=-BW_AIMMAX;a<=BW_AIMMAX-0.001;a+=0.25){
+    const n=bwRoll(a,standing,o).knocked;
+    if(n>best){best=n;ba=a}
+  }
+  return {angle:ba,knocked:best};
+}
+/* ---- 瞄准条：用 setInterval（headless / 后台标签页里 rAF 会停） ---- */
+function bwAimStart(){
+  bwAimStop();
+  bw.aiming=true;bw.angle=-BW_AIMMAX;bw.adirection=1;
+  const btn=document.getElementById('bwThrowBtn');
+  if(btn){btn.disabled=false;btn.textContent='🎳 投球（空格）'}
+  const line=document.getElementById('bwLine');
+  bw.aimTimer=setInterval(function(){
+    if(!bw.aiming||currentMode!=='bowl'){bwAimStop();return}
+    bw.angle+=bw.adirection*0.42;
+    if(bw.angle>=BW_AIMMAX)bw.adirection=-1;
+    if(bw.angle<=-BW_AIMMAX)bw.adirection=1;
+    if(line)line.style.transform='rotate('+bw.angle.toFixed(2)+'deg)';
+  },30);
+}
+function bwAimStop(){
+  bw.aiming=false;
+  if(bw.aimTimer){clearInterval(bw.aimTimer);bw.aimTimer=0}
+  const btn=document.getElementById('bwThrowBtn');
+  if(btn){btn.disabled=true;btn.textContent='🎳 先答题'}
+}
+function bwSpot(standing,o){
+  const sp=document.getElementById('bwSpot');
+  if(!sp){return}
+  const id=bwIdeal(standing,o);
+  const slope=Math.tan(id.angle*Math.PI/180);
+  const x=150+slope*(306-210);
+  sp.style.left=bwLeft(Math.max(30,Math.min(270,x)));
+  sp.style.top=bwTop(210);
+  sp.classList.add('on');
+}
+/* ---- 投球动画：按 path 逐步推进，命中时刻触发对应瓶子飞走 ---- */
+function bwThrow(){
+  if(bw.over||bw.busy||bw.throwing||!bw.aiming)return;
+  const gen=bw.gen;
+  bwAimStop();
+  bwSpotOff();
+  const standing=[];
+  for(let i=0;i<10;i++)standing[i]=!bw.down[i];
+  const o=bw.strength?BW_HARD:BW_SOFT;
+  const res=bwRoll(bw.angle,standing,o);
+  bw.throwing=true;bw.busy=true;
+  const btn=document.getElementById('bwThrowBtn');
+  if(btn)btn.textContent='🚀 球在跑…';
+  const ball=bw.ballEl||(bw.ballEl=(function(){
+    const b=document.createElement('div');b.className='bw-ball';b.innerHTML='<i></i>';
+    const l=bwL();if(l)l.appendChild(b);return b;
+  })());
+  ball.classList.toggle('soft',!bw.strength);
+  ball.style.display='block';
+  const lane=bwL(),lw=lane?lane.clientWidth:300;
+  const scale=lw/BW_W;
+  let k=0,done=0;
+  bw.animTimer=setInterval(function(){
+    if(gen!==bw.gen||currentMode!=='bowl'){bwAnimStop();return}
+    for(let rep=0;rep<2&&k<res.path.length;rep++,k++){
+      const pt=res.path[k];
+      ball.style.left=bwLeft(pt[0]);ball.style.top=bwTop(pt[1]);
+      while(done<res.hits.length&&res.hits[done].t<=k){
+        const h=res.hits[done];
+        bwKnock(bw.pinEls[h.i],h.side*(30+h.q*46)*scale,-(46+h.q*40)*scale,h.side*(200+h.q*160));
+        bw.down[h.i]=true;
+        tone(h.from?420+h.i*18:300+h.i*22,.05,'square',.16);
+        done++;
+      }
+    }
+    if(k>=res.path.length){
+      while(done<res.hits.length){
+        const h=res.hits[done];
+        bw.down[h.i]=true;bwKnock(bw.pinEls[h.i],h.side*60,-52,h.side*240);
+        done++;
+      }
+      bwAnimStop();
+      bwResult(res,gen);
+    }
+  },24);
+}
+function bwAnimStop(){if(bw.animTimer){clearInterval(bw.animTimer);bw.animTimer=0}}
+function bwSpotOff(){const sp=document.getElementById('bwSpot');if(sp)sp.classList.remove('on')}
+/* ---- 一球结算 + 十帧推进 ---- */
+function bwLeave(n){bwJudge(n===0?'😅 一瓶没倒':'💥 倒了 '+n+' 瓶',n>=7?'#B9F6CA':(n>=4?'#FFF59D':'#FFCC80'))}
+function bwResult(res,gen){
+  if(gen!==bw.gen||currentMode!=='bowl')return;
+  bw.throwing=false;
+  const f=bw.frame-1,h=bw.hist[f],n=res.knocked;
+  bw.rolls.push(n);h.push(n);
+  bw.pinsDown+=n;bw.total++;
+  const gut=res.gut&&n===0,strike=(n===10&&bw.fresh),spare=(!strike&&n===bw.left);
+  if(gut){bw.gutters++;bw.combo=0;sndNo();bwJudge('🕳️ 洗沟！一瓶都没倒','#FF8A80')}
+  else if(strike){
+    bw.strikes++;bw.combo++;
+    bwJudge('🎳 十瓶全倒！','#B9F6CA');
+    bwBanner(bw.combo>=2?'🔥 '+bw.combo+' 连全倒！':'🎳 STRIKE! 全倒！');
+    spawnConfetti();sndReward();
+    for(let s=0;s<4;s++)(function(d){setTimeout(function(){if(gen===bw.gen&&!bw.over)tone(523*Math.pow(1.12,d),.12)},d*90)})(s);
+  }
+  else if(spare){
+    bw.spares++;bw.combo++;
+    bwJudge('✨ 补中 SPARE！','#B9F6CA');bwBanner('✨ SPARE!');spawnConfetti();sndReward();
+  }
+  else{bw.combo=0;bwLeave(n)}
+  if(bw.maxCombo<bw.combo)bw.maxCombo=bw.combo;
+  bwBoard();bwHud();
+  bwAdvance(strike,n,gut);
+}
+function bwAdvance(strike,n,gut){
+  const gen=bw.gen,f=bw.frame-1;
+  let reset=false,finish=false;
+  if(f<9){
+    if(strike){bw.frame++;reset=true}
+    else if(bw.ballNo===1){bw.ballNo=2;bw.fresh=false}
+    else{bw.frame++;reset=true}
+  }else{
+    const h=bw.hist[9],sum=h.reduce(function(a,b){return a+b},0);
+    if(h.length===1){bw.ballNo=2;reset=strike}
+    else if(h.length===2){
+      if(h[0]===10||sum===10){bw.ballNo=3;reset=true}
+      else finish=true;
+    }else finish=true;
+  }
+  setTimeout(function(){
+    if(gen!==bw.gen||currentMode!=='bowl')return;
+    if(finish||bw.frame>10){bwEnd();return}
+    if(reset){
+      for(let i=0;i<10;i++)bw.down[i]=false;
+      bwPaint();bw.fresh=true;
+      if(bw.ballEl)bw.ballEl.style.display='none';
+      if(n===10)bwJudge('🧹 摆好十瓶，下一帧！','#B9F6CA');
+    }
+    bw.left=10-bw.down.filter(function(d){return d}).length;
+    bwHud();bwBoard();
+    bw.busy=false;
+    bwAsk();
+  },gut?900:1250);
+}
+/* ---- 答题：答对拿大力球，答错只能投软绵绵球 ---- */
+function bwShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+async function bwAsk(){
+  if(bw.over)return;
+  bw.busy=true;
+  const gen=bw.gen;
+  let ch='',data=null;
+  for(let i=0;i<14;i++){
+    const c=nextInQueue();
+    const d=await loadCharData(c);
+    if(d&&d.strokes&&d.medians&&d.strokes.length>=2&&d.medians.length>=2){ch=c;data=d;break}
+  }
+  if(gen!==bw.gen||bw.over||currentMode!=='bowl')return;
+  if(!ch){bwSet('bwQ','📚 字库还在路上，稍等一下…');setTimeout(function(){if(gen===bw.gen&&!bw.over)bwAsk()},1200);return}
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],num=data.strokes.length;
+  bw.ch=ch;
+  let opts;
+  if(Math.random()<.42&&num<=12){
+    bw.ans=String(num);
+    const nums=[num];
+    while(nums.length<4){
+      const k=num+(Math.random()<.5?-1:1)*(1+Math.floor(Math.random()*3));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=bwShuf(nums).map(function(k){return{v:String(k),txt:'✏️ '+k+' 笔'}});
+    bwSet('bwQ','『'+ch+'』一共有几笔？答对才有力大球');
+  }else{
+    const idx=Math.floor(Math.random()*dirs.length);
+    const code=dirs[idx];
+    bw.ans=code;
+    const right=DIRS.filter(function(d){return d.code===code})[0]||DIRS[0];
+    const pool=bwShuf(DIRS.filter(function(d){return d.code!==code})).slice(0,3);
+    opts=bwShuf([right].concat(pool)).map(function(d){return{v:d.code,txt:d.icon+' '+d.label}});
+    bwSet('bwQ','『'+ch+'』的第'+(STK_ORD[idx]||(idx+1))+'笔往哪写？答对才有力大球');
+  }
+  const box=document.getElementById('bwOpts');
+  if(box)box.innerHTML=opts.map(function(o,i){
+    return '<button class="opt-btn" data-value="'+o.v+'" data-dir="'+i+'" onclick="bwPick(\''+o.v+'\',this)">'+o.txt+'</button>';
+  }).join('');
+  bw.busy=false;
+  bwHud();
+}
+function bwPick(v,btn){
+  if(bw.over||bw.busy||bw.throwing)return;
+  const ok=(v===bw.ans);
+  bw.busy=true;
+  if(btn)btn.classList.add(ok?'correct':'wrong');
+  bw.correct+=ok?1:0;
+  bw.strength=ok;
+  if(ok){sndOk()}
+  else{
+    sndNo();
+    const right=document.querySelector('#bwOpts .opt-btn[data-value="'+bw.ans+'"]');
+    if(right)right.classList.add('reveal');
+  }
+  const fb=document.getElementById('bwFeedback');
+  if(fb)fb.textContent=ok?'💪 大力球到手，瞄准口袋位！':'🫠 答错了，这球软绵绵的倒不了几瓶';
+  const gen=bw.gen;
+  setTimeout(function(){
+    if(gen!==bw.gen||bw.over||currentMode!=='bowl')return;
+    if(fb)fb.textContent='';
+    bw.busy=false;
+    bwSpot(bw.down.map(function(d){return !d}),bw.strength?BW_HARD:BW_SOFT);
+    bwAimStart();
+  },ok?520:900);
+}
+/* ---- 开局 / 结算 ---- */
+function bwStart(){
+  bw.gen++;
+  bwAimStop();bwAnimStop();
+  bw.over=false;bw.busy=false;bw.throwing=false;
+  bw.frame=1;bw.ballNo=1;bw.rolls=[];bw.hist=[[],[],[],[],[],[],[],[],[],[]];
+  bw.strength=true;bw.angle=0;bw.adirection=1;
+  bw.score=0;bw.strikes=0;bw.spares=0;bw.gutters=0;bw.combo=0;bw.maxCombo=0;bw.pinsDown=0;
+  bw.total=0;bw.correct=0;bw.ans='';bw.ch='';
+  bw.fresh=true;bw.left=10;
+  bw.down=[];for(let i=0;i<10;i++)bw.down[i]=false;
+  if(bw.ballEl){bw.ballEl.style.display='none'}
+  showScreen('bowl');
+  bwPinsInit();bwPaint();
+  const line=document.getElementById('bwLine');if(line)line.style.transform='rotate(0deg)';
+  bwSpotOff();
+  const fb=document.getElementById('bwFeedback');if(fb)fb.textContent='';
+  const btn=document.getElementById('bwThrowBtn');if(btn){btn.disabled=true;btn.textContent='🎳 先答题'}
+  bwBoard();bwHud();
+  bwJudge('🎳 答对题 → 看准口袋位 → 按空格投球','#FFE082');
+  bwAsk();
+}
+function bwEnd(){
+  if(bw.over)return;
+  bw.over=true;bw.busy=true;
+  bwAimStop();bwAnimStop();bwSpotOff();
+  const best=parseInt(localStorage.getItem('hz_bw_best')||'0',10);
+  if(bw.score>best)localStorage.setItem('hz_bw_best',String(bw.score));
+  localStorage.setItem('hz_bw_strike',String(parseInt(localStorage.getItem('hz_bw_strike')||'0',10)+bw.strikes));
+  localStorage.setItem('hz_bw_spare',String(parseInt(localStorage.getItem('hz_bw_spare')||'0',10)+bw.spares));
+  localStorage.setItem('hz_bw_pins',String(parseInt(localStorage.getItem('hz_bw_pins')||'0',10)+bw.pinsDown));
+  localStorage.setItem('hz_bw_answers',String(parseInt(localStorage.getItem('hz_bw_answers')||'0',10)+bw.correct));
+  localStorage.setItem('hz_bw_games',String(parseInt(localStorage.getItem('hz_bw_games')||'0',10)+1));
+  const gain=Math.max(2,Math.min(20,Math.round(bw.score/12)+bw.strikes*2+bw.spares));
+  addStars(gain);
+  maxCombo=Math.max(maxCombo,bw.maxCombo);
+  showScreen('bowl-result');
+  bwSet('bwResultStars','⭐ +'+gain);
+  bwSet('bwResultScore',String(bw.score));
+  bwSet('bwResultStrike',String(bw.strikes));
+  bwSet('bwResultSpare',String(bw.spares));
+  bwSet('bwResultAcc',bw.total?Math.round(bw.correct*100/bw.total)+'%':'0%');
+  bwSet('bwResultBest',String(Math.max(best,bw.score)));
+  bwSet('bwResultAll','累计全倒 '+localStorage.getItem('hz_bw_strike')+' 次 · 累计倒瓶 '+localStorage.getItem('hz_bw_pins')+' 瓶 · 共打 '+localStorage.getItem('hz_bw_games')+' 局');
+  const em=document.getElementById('bwResultEmoji'),ti=document.getElementById('bwResultTitle'),su=document.getElementById('bwResultSubtitle');
+  let e='🎳',t='一局打完！',s='瞄准口袋位，瓶子会自己排队倒';
+  if(bw.score>=200){e='🏆';t='保龄球大神！';s='满分 300，你已经快打满了！'}
+  else if(bw.score>=150){e='🌟';t=' Strike 机器！';s='全倒拿到手软'}
+  else if(bw.strikes>=3){e='🎳';t='连番全倒！';s='口袋位找得很准'}
+  else if(bw.score>=80){e='🙂';t='打得不错！';s='再瞄准一点点就能全倒'}
+  else if(bw.gutters>=4){e='🕳️';t='球总掉进边沟';s='边沟不是球道，瞄准往中间靠'}
+  if(em)em.textContent=e;
+  if(ti)ti.textContent=t;
+  if(su)su.textContent=s;
+  sndReward();
+}
+function bwHelp(){bwJudge('🎳 打 1、3 号瓶中间的口袋位最容易全倒','#FFE082')}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='bowl')return;
+  const k=e.key;
+  if(k===' '||k==='Enter'){if(bw.aiming){e.preventDefault();bwThrow()}}
+});
+(function bwBind(){
+  const l=document.getElementById('bwLane');
+  if(!l)return;
+  l.addEventListener('click',function(){if(bw.aiming)bwThrow()});
+})();
+/* ================= 笔顺保龄球 结束 ================= */
+/* ================= 笔顺保龄球 布局与计分 结束 ================= */
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
