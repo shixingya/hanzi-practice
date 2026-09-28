@@ -1120,6 +1120,77 @@ button:active{transform:scale(.95)}
 .tk-tip{width:100%;max-width:316px;margin:7px auto 0;font-size:11.5px;line-height:1.5;color:#fff;opacity:.85;text-align:center}
 .tk-tip b{color:#FFF176}
 @media(max-width:420px){.tk-wrap,.tk-hud,.tk-lvs,.tk-ctl,.tk-tip{max-width:296px}.tk-grid{gap:4px;padding:7px}.tk-cell.has b{font-size:15px}}
+/* ===== 笔顺天平屋（汉字当砝码 · 数笔画凑订单 · 一称就中） ===== */
+.bl-wrap{position:relative;width:100%;max-width:322px;margin:6px auto 0;padding:4px 0 0}
+.bl-wrap.shake{animation:cfShake .42s}
+.bl-order{display:flex;align-items:flex-end;gap:8px;width:100%;max-width:322px;margin:0 auto}
+.bl-face{font-size:27px;line-height:1.05;flex:0 0 auto;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+.bl-bub{flex:1;position:relative;background:rgba(255,255,255,.94);color:#4E342E;border-radius:14px;padding:8px 10px;
+  font-size:13px;font-weight:800;line-height:1.35;box-shadow:0 3px 10px rgba(0,0,0,.24)}
+.bl-bub::after{content:'';position:absolute;left:-6px;bottom:9px;width:0;height:0;border:6px solid transparent;border-right-color:rgba(255,255,255,.94)}
+.bl-bub b{color:#E65100;font-size:17px}
+.bl-bub i{display:block;font-style:normal;font-weight:800;font-size:11.5px;color:#6A1B9A;margin-top:3px}
+.bl-pat{width:100%;max-width:322px;height:7px;border-radius:5px;background:rgba(255,255,255,.2);overflow:hidden;margin:7px auto 0}
+.bl-pat>i{display:block;height:100%;width:100%;border-radius:5px;background:linear-gradient(90deg,#66BB6A,#D4E157,#FFCA28);transition:width .12s linear}
+.bl-pat.low>i{background:linear-gradient(90deg,#FF7043,#E53935)}
+.bl-scale{position:relative;width:100%;max-width:322px;height:176px;margin:2px auto 0}
+.bl-post{position:absolute;left:50%;bottom:14px;width:11px;height:116px;margin-left:-5.5px;border-radius:6px;
+  background:linear-gradient(90deg,#6D4C41,#D7A86E 45%,#8D6E63);box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.bl-base{position:absolute;left:50%;bottom:4px;width:132px;height:15px;margin-left:-66px;border-radius:9px;
+  background:linear-gradient(180deg,#A1887F,#4E342E);box-shadow:0 4px 10px rgba(0,0,0,.38)}
+.bl-knob{position:absolute;left:50%;top:44px;width:17px;height:17px;margin-left:-8.5px;border-radius:50%;z-index:4;
+  background:radial-gradient(circle at 34% 28%,#FFF59D,#B8860B 70%);box-shadow:0 2px 5px rgba(0,0,0,.45)}
+.bl-beam{position:absolute;left:50%;top:49px;width:266px;height:10px;margin-left:-133px;border-radius:6px;z-index:3;
+  background:linear-gradient(180deg,#FFECB3,#B8860B 60%,#8D6E63);box-shadow:0 2px 7px rgba(0,0,0,.35);
+  transform:rotate(var(--t,0deg));transition:transform .55s cubic-bezier(.28,1.55,.5,1)}
+.bl-hang{position:absolute;top:10px;width:2px;height:32px;background:rgba(255,255,255,.6)}
+.bl-hang.l{left:3px}.bl-hang.r{right:3px}
+.bl-pan{position:absolute;top:40px;width:118px;transform:rotate(calc(-1 * var(--t,0deg)));transition:transform .55s cubic-bezier(.28,1.55,.5,1)}
+.bl-pan.l{left:-59px}.bl-pan.r{right:-59px}
+.bl-in{min-height:38px;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:2px;padding:0 2px}
+.bl-dish{height:13px;border-radius:0 0 58px 58px;background:linear-gradient(180deg,#E6C07A,#7B5B3A);box-shadow:0 3px 7px rgba(0,0,0,.32),inset 0 2px 0 rgba(255,255,255,.35)}
+.bl-pan.hot .bl-dish{background:linear-gradient(180deg,#FFF176,#F57F17)}
+.bl-pan.bad .bl-dish{background:linear-gradient(180deg,#FF8A80,#B71C1C)}
+.bl-w{width:62px;margin:0 auto;text-align:center;font-size:15px;font-weight:900;color:#4E342E;line-height:1.05;
+  background:linear-gradient(160deg,#FFE082,#F0A500);border-radius:8px;padding:5px 0;box-shadow:0 3px 7px rgba(0,0,0,.35)}
+.bl-w i{display:block;font-style:normal;font-size:9.5px;font-weight:800;color:#6D4C41;letter-spacing:.5px}
+.bl-c{position:relative;width:30px;border-radius:7px;background:linear-gradient(160deg,#B39DDB,#5E35B1 72%);
+  box-shadow:0 2px 5px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.4);cursor:pointer;animation:blDrop .3s}
+.bl-c b{display:block;font-size:14.5px;font-weight:900;color:#fff;line-height:1.15;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.bl-c i{display:block;font-style:normal;font-size:8.5px;font-weight:800;color:#EDE7F6;line-height:1.3}
+.bl-c.new{animation:blDrop .3s}
+@keyframes blDrop{0%{transform:translateY(-26px) scale(.7);opacity:.2}70%{transform:translateY(3px) scale(1.06)}100%{transform:translateY(0) scale(1)}}
+.bl-sum{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:12px;font-weight:900;color:#fff;
+  background:rgba(0,0,0,.32);border-radius:11px;padding:3px 11px;white-space:nowrap}
+.bl-shelf{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;width:100%;max-width:322px;margin:9px auto 0}
+.bl-item{position:relative;border:none;border-radius:11px;padding:6px 0 5px;font-family:inherit;cursor:pointer;
+  background:linear-gradient(160deg,#FFF8E1,#DCC79E);box-shadow:0 3px 0 rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.6);transition:transform .12s}
+.bl-item b{display:block;font-size:21px;font-weight:900;color:#4E342E;line-height:1.1}
+.bl-item i{display:block;font-style:normal;font-size:9.5px;font-weight:800;color:#8D6E63;letter-spacing:.5px}
+.bl-item:active{transform:translateY(3px);box-shadow:none}
+.bl-item.gone{opacity:.42;pointer-events:none}
+.bl-item.gone i{color:#6A1B9A;font-weight:900}
+.bl-btns{display:flex;gap:7px;justify-content:center;width:100%;max-width:322px;margin:9px auto 0}
+.bl-act{flex:1;border:none;border-radius:12px;padding:10px 4px;font-family:inherit;font-size:12.5px;font-weight:900;cursor:pointer;color:#3E2723;
+  background:linear-gradient(160deg,#FFF176,#FFB300);box-shadow:0 3px 0 rgba(0,0,0,.28)}
+.bl-act.b{background:linear-gradient(160deg,#B3E5FC,#0288D1);color:#01304F;flex:0 0 auto;padding:10px 11px}
+.bl-act:active{transform:translateY(3px);box-shadow:none}
+.bl-act:disabled{opacity:.4;cursor:default}
+.bl-hud{display:flex;justify-content:space-between;gap:5px;width:100%;max-width:322px;margin:8px auto 0;
+  font-size:11.5px;font-weight:800;color:#fff;background:rgba(255,255,255,.14);border-radius:12px;padding:7px 9px}
+.bl-hud span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bl-tip{width:100%;max-width:322px;margin:8px auto 0;font-size:11.5px;line-height:1.5;color:#fff;opacity:.86;text-align:center}
+.bl-tip b{color:#FFF176}
+.bl-judge{width:100%;max-width:322px;margin:9px auto 0;min-height:20px;text-align:center;line-height:1.35;
+  font-size:13px;font-weight:900;color:#FFEA00;text-shadow:0 2px 3px rgba(0,0,0,.6)}
+.bl-judge.show{animation:blJudge .44s ease-out}
+@keyframes blJudge{0%{opacity:.2;transform:scale(.9)}55%{opacity:1;transform:scale(1.05)}100%{transform:scale(1)}}
+.bl-banner{position:absolute;left:0;right:0;top:27%;text-align:center;font-size:23px;font-weight:900;color:#fff;
+  text-shadow:0 3px 0 #E65100,0 5px 12px rgba(0,0,0,.4);opacity:0;pointer-events:none;z-index:10}
+.bl-banner.show{animation:blBan 1.7s ease-out forwards}
+@keyframes blBan{0%{opacity:0;transform:scale(.4) rotate(-7deg)}22%{opacity:1;transform:scale(1.15) rotate(3deg)}42%{transform:scale(1)}78%{opacity:1}100%{opacity:0;transform:scale(1.03)}}
+@media(max-width:420px){.bl-wrap,.bl-order,.bl-pat,.bl-scale,.bl-shelf,.bl-btns,.bl-hud,.bl-tip{max-width:300px}
+  .bl-beam{width:246px;margin-left:-123px}.bl-pan{width:108px}.bl-pan.l{left:-54px}.bl-pan.r{right:-54px}.bl-shelf{gap:6px}}
 </style>
 
 </head>
@@ -1256,6 +1327,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('bowl')">
       <div class="icon">🎳</div>
       <div class="info"><h3>笔顺保龄球</h3><p>答对拿大力球，瞄口袋位一票全倒！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('balance')">
+      <div class="icon">⚖️</div>
+      <div class="info"><h3>笔顺天平屋</h3><p>汉字当砝码，凑够订单笔画数！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('push')">
       <div class="icon">📦</div>
@@ -2530,6 +2605,76 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-balance">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="blScoreTxt">⚖️ 0 分</span><span id="blLvTxt">第 1 档</span></div>
+    <button class="icon-btn" onclick="blHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal" id="blGoal">⚖️ 顾客要买<b>几笔</b>的礼物！货架上的汉字就是<b>砝码</b>，点上去称一称：<b>笔画数加起来刚好</b>就成交，<b>一称就中</b>还有大奖。高档位顾客会挑<b>首笔方向</b>，放错字盘子会砸歪！</div>
+  <div class="bl-hud">
+    <span id="blHeartTxt">❤️❤️❤️</span>
+    <span id="blComboTxt">🔥 ×0</span>
+    <span id="blSoldTxt">🛒 成交 0</span>
+    <span id="blBestTxt">🥇 最高 0</span>
+  </div>
+  <div class="bl-wrap">
+    <div class="bl-order">
+      <div class="bl-face" id="blFace">🧒</div>
+      <div class="bl-bub" id="blBub">正在上货…</div>
+    </div>
+    <div class="bl-pat" id="blPatWrap"><i id="blPat"></i></div>
+    <div class="bl-scale">
+      <div class="bl-base"></div>
+      <div class="bl-post"></div>
+      <div class="bl-beam" id="blBeam">
+        <div class="bl-hang l"></div>
+        <div class="bl-hang r"></div>
+        <div class="bl-pan l"><div class="bl-in" id="blPanL"></div><div class="bl-dish"></div></div>
+        <div class="bl-pan r"><div class="bl-in" id="blPanR"></div><div class="bl-dish"></div></div>
+      </div>
+      <div class="bl-knob"></div>
+      <div class="bl-sum" id="blSum">右盘 0 笔 · 要 0 笔</div>
+    </div>
+    <div class="bl-banner" id="blBanner"></div>
+  </div>
+  <div class="bl-shelf" id="blShelf"></div>
+  <div class="bl-btns">
+    <button class="bl-act" id="blWeighBtn" onclick="blWeigh()">⚖️ 称重（空格）</button>
+    <button class="bl-act b" id="blTakeBtn" onclick="blTake()" title="拿回最后一块">↩️</button>
+    <button class="bl-act b" id="blSwapBtn" onclick="blSwap()" title="换一单（扣 20 分）">💡</button>
+  </div>
+  <div class="bl-judge" id="blJudge"></div>
+  <div class="bl-tip" id="blTip">点<b>货架上的字</b>放上天平 · 点<b>盘里的字</b>拿回来 · <b>空格</b>称重 · <b>1-8</b> 快速上货</div>
+</div>
+<div class="screen" id="screen-balance-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="blResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="blResultEmoji">⚖️</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="blResultTitle">收摊啦！</h2>
+    <p style="font-size:16px;opacity:.8" id="blResultSubtitle">数清笔画，天平自己会说话</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="blResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="blResultSold">0</div><div style="font-size:13px;opacity:.7">成交几单</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="blResultExact">0</div><div style="font-size:13px;opacity:.7">🥇 一称就中</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="blResultLv">1</div><div style="font-size:13px;opacity:.7">做到第几档</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="blResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="blResultAll">累计成交 0 单 · 累计认字 0 个 · 共玩 0 局</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="blStart()">⚖️ 再开摊</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-push">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -3070,6 +3215,7 @@ function enterMode(mode){
  else if(mode==='bowl')bwStart();
  else if(mode==='jump')jpStart();
  else if(mode==='push')tkStart();
+ else if(mode==='balance')blStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -13093,6 +13239,320 @@ document.addEventListener('keydown',function(e){
   g.addEventListener('pointercancel',function(){down=false});
 })();
 /* ================= 笔顺推箱子 结束 ================= */
+/* ===== 笔顺天平屋：汉字当砝码，数笔画凑够订单重量 ===== */
+const BL_DIR={R:'➡️',D:'⬇️',P:'↙️',N:'↘️',T:'↗️'};
+const BL_WORD={R:'往右',D:'往下',P:'往左下',N:'往右下',T:'往右上'};
+const BL_NOTE=[392,440,494,523,587,659,698,784,831,880,932,988,1047,1109,1175,1245,1319,1397];
+const BL_FACE=['🧒','👴','👧','🧓','🐵','🐼','🐯','🦊','🐰','🐸'];
+let bl={gen:0,over:true,busy:false,ready:false,lv:1,cfg:null,sol:[],rule:null,need:0,shelf:[],pan:[],oid:0,
+  pat:1,patId:0,taken:0,miss:false,face:'🧒',hearts:3,combo:0,maxCombo:0,score:0,sold:0,exact:0,used:{}};
+function blSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function blJudge(t,color){
+  const e=document.getElementById('blJudge');if(!e)return;
+  e.textContent=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function blBanner(t){
+  const e=document.getElementById('blBanner');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function blShake(){
+  const w=document.querySelector('.bl-wrap');if(!w)return;
+  w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake');
+}
+function blAdd(key,dv){
+  localStorage.setItem(key,String(parseInt(localStorage.getItem(key)||'0',10)+(dv||1)));
+}
+function blShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function blInfo(ch){
+  const d=charDataCache[ch];if(!d||!d.strokes||d.strokes.length<2)return null;
+  const t=strokeTypes[ch]||[];const n=d.strokes.length;
+  if(t.length<n)return null;
+  return {ch:ch,n:n,first:t[0],last:t[n-1]};
+}
+function blCfg(l){
+  return {shelf:Math.min(8,5+Math.floor(l/2)),size:Math.min(4,2+Math.floor(l/3)),
+    maxN:Math.min(12,4+l),rule:l>=2&&Math.random()<Math.min(.7,.18+l*.06)};
+}
+function blPatSec(){return Math.max(14,30-bl.lv*1.6)}
+function blOk(c,r){return r?((r.k==='first'?c.first:c.last)===r.v):true}
+function blRuleTxt(){return bl.rule?('每个字'+(bl.rule.k==='first'?'首笔':'末笔')+'都要'+BL_DIR[bl.rule.v]):''}
+function blTot(){let s=0;for(let i=0;i<bl.pan.length;i++)s+=bl.pan[i].n;return s}
+async function blLoadChars(maxN,k){
+  const out=[],seen={},guard=k*20+80;
+  for(let i=0;i<guard&&out.length<k;i++){
+    const ch=nextInQueue();if(!ch||seen[ch])continue;
+    seen[ch]=1;
+    let d=null;try{d=await loadCharData(ch)}catch(e){d=null}
+    if(!d||!d.strokes)continue;
+    if(!strokeTypes[ch]||!strokeTypes[ch].length)strokeTypes[ch]=(d.medians||[]).map(m=>detectDir(m));
+    const info=blInfo(ch);
+    if(info&&info.n>=2&&info.n<=maxN)out.push(info);
+  }
+  if(out.length<k){
+    const keys=blShuf(Object.keys(charDataCache));
+    for(let i=0;i<keys.length&&out.length<k;i++){
+      const info=blInfo(keys[i]);
+      if(info&&info.n>=2&&info.n<=maxN&&out.every(x=>x.ch!==info.ch))out.push(info);
+    }
+  }
+  return out;
+}
+async function blBuild(){
+  const cfg=bl.cfg;
+  const pool=await blLoadChars(cfg.maxN,cfg.shelf+9);
+  if(pool.length<cfg.size+2)return false;
+  const cap=Math.min(20,6+bl.lv*2);
+  for(let tr=0;tr<70;tr++){
+    let rule=null,cand=pool;
+    if(cfg.rule&&tr<50){
+      const dv=blShuf(['R','D','P','N','T'])[0];
+      rule={k:Math.random()<.5?'first':'last',v:dv};
+      cand=pool.filter(function(c){return blOk(c,rule)});
+      if(cand.length<cfg.size+1)continue;
+    }
+    const pick=blShuf(cand.slice()).slice(0,cfg.size);
+    const need=pick.reduce(function(a,c){return a+c.n},0);
+    if(need<4||need>cap)continue;
+    const rest=pool.filter(function(c){return pick.indexOf(c)<0});
+    const shelf=pick.concat(blShuf(rest.slice()).slice(0,Math.max(0,cfg.shelf-pick.length)));
+    bl.sol=pick;bl.rule=cfg.rule?rule:null;bl.need=need;bl.shelf=blShuf(shelf);
+    return true;
+  }
+  return false;
+}
+function blTilt(){
+  const d=blTot()-bl.need;
+  const t=Math.max(-13,Math.min(13,d*2.1));
+  const b=document.getElementById('blBeam');
+  if(b)b.style.setProperty('--t',t.toFixed(2)+'deg');
+}
+function blPanHtml(){
+  return bl.pan.map(function(c,i){
+    return '<div class="bl-c'+(i===bl.pan.length-1?' new':'')+'" onclick="blTakeChip('+i+')" title="点我拿回来"><b>'+c.ch+'</b><i>'+c.n+' 笔</i></div>';
+  }).join('');
+}
+function blRender(){
+  const pl=document.getElementById('blPanL');
+  if(pl)pl.innerHTML='<div class="bl-w">'+bl.need+' 笔<i>目标</i></div>';
+  const pr=document.getElementById('blPanR');
+  if(pr)pr.innerHTML=blPanHtml();
+  const sh=document.getElementById('blShelf');
+  if(sh){
+    const sig=bl.oid+'|'+bl.shelf.map(function(c){return c.ch}).join('');
+    if(sh.dataset.sig!==sig){
+      sh.dataset.sig=sig;
+      sh.innerHTML=bl.shelf.map(function(it,i){
+        return '<button class="bl-item" onclick="blPlace('+i+')"><b>'+it.ch+'</b><i>点我上秤</i></button>';
+      }).join('');
+    }
+    const btns=sh.querySelectorAll('.bl-item');
+    for(let i=0;i<btns.length;i++){
+      const gone=bl.pan.indexOf(bl.shelf[i])>=0;
+      btns[i].classList.toggle('gone',gone);
+      const lab=btns[i].querySelector('i');
+      if(lab)lab.textContent=gone?'已上秤':'点我上秤';
+    }
+  }
+  const s=document.getElementById('blSum');
+  if(s)s.textContent='右盘 '+blTot()+' 笔 · 要 '+bl.need+' 笔';
+  blTilt();blPatRender();
+}
+function blPatRender(){
+  const w=document.getElementById('blPatWrap'),i=document.getElementById('blPat');
+  const p=Math.max(0,Math.min(1,bl.pat));
+  if(i)i.style.width=(p*100).toFixed(1)+'%';
+  if(w)w.classList.toggle('low',p<.3);
+}
+function blHud(){
+  blSet('blScoreTxt','⚖️ '+bl.score+' 分');
+  blSet('blLvTxt','第 '+bl.lv+' 档');
+  let h='';for(let i=0;i<3;i++)h+=i<bl.hearts?'❤️':'🖤';
+  blSet('blHeartTxt',h);
+  blSet('blComboTxt','🔥 ×'+bl.combo);
+  blSet('blSoldTxt','🛒 成交 '+bl.sold);
+  blSet('blBestTxt','🥇 最高 '+Math.max(parseInt(localStorage.getItem('hz_bl_best')||'0',10),bl.score));
+  const bub=document.getElementById('blBub');
+  if(bub)bub.innerHTML='我要买 <b>'+bl.need+'</b> 笔的礼物！'+(bl.rule?'<i>而且'+blRuleTxt()+'</i>':'');
+  const fc=document.getElementById('blFace');if(fc)fc.textContent=bl.face;
+  const tb=document.getElementById('blTakeBtn');if(tb)tb.disabled=!bl.pan.length;
+}
+function blFly(){
+  const el=document.querySelector('.bl-pan.r');if(!el)return;
+  const r=el.getBoundingClientRect();
+  if(r.width)spawnStarFly(r.left+r.width/2,r.top+r.height/2);
+}
+function blPing(side,cls,ms){
+  const el=document.querySelectorAll('.bl-pan')[side==='l'?0:1];if(!el)return;
+  el.classList.add(cls);
+  setTimeout(function(){el.classList.remove(cls)},ms||700);
+}
+function blGuard(){return !bl.over&&!bl.busy&&bl.ready&&currentMode==='balance'}
+function blStop(){if(bl.patId){clearInterval(bl.patId);bl.patId=0}}
+function blTimer(){
+  blStop();
+  bl.patId=setInterval(function(){
+    if(currentMode!=='balance'||bl.over){blStop();return}
+    if(bl.busy||!bl.ready)return;
+    bl.pat-=0.12/blPatSec();
+    blPatRender();
+    if(bl.pat<=0){
+      bl.pat=0;blStop();
+      blHurt('💨 顾客等不及走啦，这单没做成');
+      if(!bl.over)blNew();
+    }
+  },120);
+}
+function blHurt(msg){
+  bl.hearts--;bl.combo=0;bl.miss=true;
+  sndNo();blShake();blJudge(msg,'#FF5252');blPing('r','bad',820);
+  blHud();
+  if(bl.hearts<=0)blEnd('❤️ 三位顾客不满意走了，小摊先收一收');
+}
+function blSoldFn(){
+  const sum=blTot(),first=bl.taken===0&&!bl.miss;
+  bl.sold++;bl.combo++;bl.maxCombo=Math.max(bl.maxCombo,bl.combo);
+  if(first)bl.exact++;
+  const gain=60+sum*4+(first?25:0)+(bl.combo-1)*15+Math.round(Math.max(0,bl.pat)*20);
+  bl.score+=gain;
+  blAdd('hz_bl_sold');if(first)blAdd('hz_bl_exact');
+  blStop();bl.ready=false;bl.busy=true;
+  blJudge('✅ '+bl.pan.map(function(c){return c.n}).join(' + ')+' = '+sum+' 笔，刚好！+'+gain+' 分','#FFEA00');
+  blBanner(first?'🥇 一称就中！':'⚖️ 成交！');
+  sndReward();spawnConfetti();blFly();blPing('r','hot',900);
+  blHud();
+  const up=bl.sold%3===0,gen=bl.gen;
+  setTimeout(function(){
+    if(gen!==bl.gen||currentMode!=='balance')return;
+    if(up){
+      bl.lv++;
+      if(bl.lv>parseInt(localStorage.getItem('hz_bl_lv')||'1',10))localStorage.setItem('hz_bl_lv',String(bl.lv));
+      blBanner('🔝 第 '+bl.lv+' 档 · 货架更长啦');
+      blJudge('🔝 升到第 '+bl.lv+' 档，砝码更多、要求更刁','#FFD54F');
+    }
+    bl.busy=false;
+    blNew();
+  },up?1800:1200);
+}
+function blPlace(i){
+  if(!blGuard())return;
+  const it=bl.shelf[i];if(!it)return;
+  if(bl.pan.indexOf(it)>=0){blJudge('🤏「'+it.ch+'」已经在盘里啦','#FFF176');return}
+  bl.pan.push(it);
+  if(!bl.used[it.ch]){bl.used[it.ch]=1;blAdd('hz_bl_chars')}
+  tone(BL_NOTE[Math.min(BL_NOTE.length-1,Math.max(0,it.n-2))],.11,'triangle');
+  blRender();blHud();blFly();
+  const t=blTot();
+  if(t===bl.need)blJudge('👀 天平平了！按空格称重','#FFEA00');
+  else if(t>bl.need)blJudge('⚠️ 已经超重 '+(t-bl.need)+' 笔，再称盘子要砸啦','#FFD54F');
+  else blJudge('⚖️ 还差 '+(bl.need-t)+' 笔','#B3E5FC');
+}
+function blTakeChip(k){
+  if(!blGuard())return;
+  if(k<0||k>=bl.pan.length)return;
+  const c=bl.pan.splice(k,1)[0];
+  bl.taken++;
+  tone(300,.08,'sine');
+  blJudge('↩️ 把「'+c.ch+'」'+c.n+' 笔拿回货架','#FFF176');
+  blRender();blHud();blTimer();
+}
+function blTake(){
+  if(!blGuard())return;
+  if(!bl.pan.length){blJudge('🫳 盘里没有字可拿','#FFF176');return}
+  blTakeChip(bl.pan.length-1);
+}
+function blSwap(){
+  if(!blGuard())return;
+  bl.score=Math.max(0,bl.score-20);
+  bl.combo=0;
+  blJudge('💡 换一单（扣 20 分）','#FFD54F');
+  blStop();bl.busy=true;bl.ready=false;
+  const gen=bl.gen;
+  setTimeout(function(){
+    if(gen!==bl.gen||currentMode!=='balance')return;
+    bl.busy=false;blNew();
+  },420);
+  blHud();
+}
+function blWeigh(){
+  if(!blGuard())return;
+  const t=blTot();
+  if(!bl.pan.length){blJudge('🫱 右盘空空的，先点字放上去','#FFF176');tone(220,.1,'square');return}
+  if(bl.rule){
+    const bad=bl.pan.filter(function(c){return !blOk(c,bl.rule)})[0];
+    if(bad){blHurt('🙅「'+bad.ch+'」的'+(bl.rule.k==='first'?'首笔':'末笔')+'不是'+BL_WORD[bl.rule.v]+'，顾客摇头了');return}
+  }
+  if(t<bl.need){blJudge('🪶 轻了 '+(bl.need-t)+' 笔，再加一块试试','#FFF176');tone(300,.1,'sine');blPing('r','bad',620);return}
+  if(t>bl.need){blHurt('💥 重了 '+(t-bl.need)+' 笔，盘子砸歪啦！点盘里的字拿回一个');return}
+  blSoldFn();
+}
+async function blNew(){
+  const gen=bl.gen;
+  bl.busy=true;bl.ready=false;blStop();
+  bl.rule=null;bl.need=0;
+  for(let tr=0;tr<8;tr++){
+    bl.cfg=blCfg(bl.lv);
+    let ok=false;
+    try{ok=await blBuild()}catch(e){ok=false}
+    if(ok&&bl.need)break;
+  }
+  if(gen!==bl.gen)return;
+  if(currentMode!=='balance'){bl.busy=false;return}
+  if(!bl.need){
+    bl.busy=false;
+    blJudge('📦 字库还没准备好，稍等一下再来一单','#FFD54F');
+    return;
+  }
+  bl.pan=[];bl.taken=0;bl.miss=false;bl.pat=1;
+  bl.face=BL_FACE[Math.floor(Math.random()*BL_FACE.length)];
+  bl.oid=(bl.oid||0)+1;
+  bl.busy=false;bl.ready=true;
+  blRender();blHud();blTimer();
+  blJudge((bl.sold?'🛎 第 '+bl.sold+' 单收完 · 新订单要 ':'🛎 新订单要 ')+bl.need+' 笔'+(bl.rule?'（'+blRuleTxt()+'）':''),'#2E7D32');
+}
+async function blStart(){
+  bl.gen++;
+  bl.over=false;bl.busy=false;bl.ready=false;
+  bl.lv=1;bl.hearts=3;bl.combo=0;bl.maxCombo=0;bl.score=0;bl.sold=0;bl.exact=0;
+  bl.pan=[];bl.shelf=[];bl.sol=[];bl.rule=null;bl.need=0;bl.pat=1;bl.taken=0;bl.miss=false;bl.used={};bl.oid=0;
+  showScreen('balance');
+  await blNew();
+}
+function blEnd(reason){
+  if(bl.over)return;
+  bl.over=true;bl.busy=true;bl.ready=false;blStop();
+  const best=parseInt(localStorage.getItem('hz_bl_best')||'0',10);
+  if(bl.score>best)localStorage.setItem('hz_bl_best',String(bl.score));
+  if(bl.lv>parseInt(localStorage.getItem('hz_bl_lv')||'1',10))localStorage.setItem('hz_bl_lv',String(bl.lv));
+  blAdd('hz_bl_games');
+  maxCombo=Math.max(maxCombo,bl.maxCombo);
+  const gain=Math.max(2,Math.min(24,bl.sold*3+bl.exact+(bl.maxCombo>=3?2:0)));
+  addStars(gain);
+  sndDone();
+  showScreen('balance-result');
+  blSet('blResultStars','⭐ +'+gain);
+  blSet('blResultScore',String(bl.score));
+  blSet('blResultSold',String(bl.sold));
+  blSet('blResultExact',String(bl.exact));
+  blSet('blResultLv',String(bl.lv));
+  blSet('blResultBest',String(Math.max(best,bl.score)));
+  blSet('blResultAll','累计成交 '+parseInt(localStorage.getItem('hz_bl_sold')||'0',10)+' 单 · 累计认字 '+
+    parseInt(localStorage.getItem('hz_bl_chars')||'0',10)+' 个 · 共玩 '+
+    parseInt(localStorage.getItem('hz_bl_games')||'0',10)+' 局');
+  const s=bl.sold;
+  blSet('blResultEmoji',s>=8?'🏆':s>=5?'🥇':s>=2?'⚖️':'🫙');
+  blSet('blResultTitle',s>=8?'金牌掌柜！':s>=5?'秤得又快又准！':s>=2?'做成几单啦！':'第一单还没成交');
+  blSet('blResultSubtitle',reason||'数清笔画，天平自己会说话');
+}
+function blHelp(){blJudge('⚖️ 点字上秤，笔画数加起来等于订单就成交','#2E7D32')}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='balance')return;
+  const k=e.key;
+  if(k===' '||k==='Enter'||k===' '){e.preventDefault();blWeigh();return}
+  if(k==='Backspace'){e.preventDefault();blTake();return}
+  if(k==='h'||k==='H'){blSwap();return}
+  if(k>='1'&&k<='8'){const i=parseInt(k,10)-1;if(i<bl.shelf.length)blPlace(i)}
+});
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
