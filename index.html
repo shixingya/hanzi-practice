@@ -1017,6 +1017,56 @@ button:active{transform:scale(.95)}
 .bw-act:disabled{filter:grayscale(.75) brightness(.72);cursor:not-allowed}
 .bw-tip{width:100%;max-width:316px;margin:6px auto 0;font-size:11.5px;color:rgba(255,255,255,.8);text-align:center;line-height:1.6}
 @media(max-width:420px){.bw-wrap,.bw-score,.bw-hud,.bw-btns,.bw-tip{max-width:296px}}
+/* ===== 笔顺跳一跳（蓄力抛物线 + 答案写在落点平台上） ===== */
+.jp-wrap{position:relative;width:100%;max-width:316px;margin:8px auto 0}
+.jp-scene{position:relative;width:100%;padding-bottom:59%;border-radius:16px;overflow:hidden;touch-action:none;cursor:pointer;
+  background:linear-gradient(180deg,#79CFFF 0%,#B9EBFF 44%,#E7F6D6 44.5%,#C9E7AE 100%);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.4),inset 0 -18px 26px rgba(0,0,0,.12)}
+.jp-scene.shake{animation:jpShake .42s}
+@keyframes jpShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}45%{transform:translateX(6px)}70%{transform:translateX(-3px)}}
+.jp-ground{position:absolute;left:0;right:0;bottom:0;height:13%;background:linear-gradient(180deg,#8BC34A,#5D9A34);border-top:2px solid rgba(255,255,255,.55)}
+.jp-cloud{position:absolute;font-size:17px;opacity:.9;pointer-events:none}
+.jp-plat{position:absolute;width:15.3%;padding-bottom:8.8%;bottom:13%;left:0;transform:translateX(-50%);
+  background:linear-gradient(180deg,#FFF7E0 0 30%,#E7BE74 30% 44%,#B98A45 44%);border-radius:7px;
+  box-shadow:0 3px 0 #8A6330,0 5px 9px rgba(0,0,0,.22);
+  transition:left .44s cubic-bezier(.3,.8,.4,1),opacity .4s,transform .4s;z-index:2}
+.jp-plat .jp-face{position:absolute;left:0;right:0;top:-2px;display:flex;flex-direction:column;align-items:center;line-height:1.05;font-style:normal}
+.jp-plat .jp-face b{font-size:13px}
+.jp-plat .jp-face s{font-size:10px;font-weight:700;color:#4E342E;text-decoration:none}
+.jp-plat .jp-wm{position:absolute;left:0;right:0;bottom:1px;text-align:center;font-size:13px;font-style:normal;font-weight:700;color:rgba(93,64,26,.42);text-decoration:none}
+.jp-plat.gift{background:linear-gradient(180deg,#FFF3C4 0 30%,#FFC94D 30% 44%,#C98A00 44%);box-shadow:0 3px 0 #8A6330,0 0 0 3px #FFD54F,0 5px 12px rgba(0,0,0,.26)}
+.jp-plat.moon{background:linear-gradient(180deg,#F3E5FF 0 30%,#B388FF 30% 44%,#6A4FB6 44%);box-shadow:0 3px 0 #4B2E86,0 0 0 3px #D1C4E9,0 5px 12px rgba(0,0,0,.26)}
+.jp-plat .jp-badge{position:absolute;left:50%;top:-19px;transform:translateX(-50%);font-size:15px;font-style:normal;animation:jpFloat 1.5s ease-in-out infinite}
+@keyframes jpFloat{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+.jp-plat.gone{opacity:0;transform:translateX(-50%) scale(.55)}
+.jp-plat.crack{animation:jpCrack .5s forwards}
+@keyframes jpCrack{0%{transform:translateX(-50%) rotate(0)}40%{transform:translateX(-50%) rotate(-9deg) translateY(6px)}100%{transform:translateX(-50%) rotate(-26deg) translateY(46px);opacity:.15}}
+.jp-plat.reveal{box-shadow:0 3px 0 #8A6330,0 0 0 4px #4CAF50,0 5px 10px rgba(0,0,0,.24)}
+.jp-man{position:absolute;left:0;bottom:28%;transform:translateX(-50%);font-size:25px;line-height:1;z-index:5;
+  transform-origin:50% 100%;filter:drop-shadow(0 3px 3px rgba(0,0,0,.28));
+  transition:left .44s cubic-bezier(.3,.8,.4,1),bottom .44s cubic-bezier(.3,.8,.4,1)}
+.jp-man.fly{transition:none}
+.jp-man.charging{transform:translateX(-50%) scaleY(.68) scaleX(1.12)}
+.jp-man.falling{transition:left .5s linear,bottom .5s ease-in;transform:translateX(-50%) rotate(150deg)}
+.jp-pop{position:absolute;transform:translateX(-50%);font-size:14px;font-weight:800;color:#E65100;
+  text-shadow:0 1px 0 #fff;pointer-events:none;z-index:7;animation:jpRise .95s ease-out forwards}
+@keyframes jpRise{0%{opacity:0;transform:translateX(-50%) translateY(6px)}20%{opacity:1}100%{opacity:0;transform:translateX(-50%) translateY(-32px)}}
+.jp-judge{position:absolute;left:50%;top:8%;transform:translateX(-50%);max-width:92%;text-align:center;
+  font-size:13px;font-weight:800;color:#FFEA00;text-shadow:0 2px 3px rgba(0,0,0,.45);opacity:0;pointer-events:none;z-index:8}
+.jp-judge.show{animation:jpPop 1.9s ease-out forwards}
+@keyframes jpPop{0%{opacity:0;transform:translateX(-50%) scale(.7)}14%{opacity:1;transform:translateX(-50%) scale(1.08)}26%{transform:translateX(-50%) scale(1)}80%{opacity:1}100%{opacity:0}}
+.jp-banner{position:absolute;left:0;right:0;top:36%;text-align:center;font-size:25px;font-weight:900;color:#fff;
+  text-shadow:0 3px 0 #FF6F00,0 5px 10px rgba(0,0,0,.3);opacity:0;pointer-events:none;z-index:9}
+.jp-banner.show{animation:jpBan 1.5s ease-out forwards}
+@keyframes jpBan{0%{opacity:0;transform:scale(.4) rotate(-8deg)}22%{opacity:1;transform:scale(1.16) rotate(3deg)}40%{transform:scale(1) rotate(0)}78%{opacity:1}100%{opacity:0;transform:scale(1.05)}}
+.jp-power{height:10px;margin:7px auto 0;background:rgba(0,0,0,.16);border-radius:6px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.3)}
+.jp-power i{display:block;height:100%;width:0;background:linear-gradient(90deg,#FFD54F,#FF6D00);border-radius:6px}
+.jp-hud{display:flex;justify-content:space-between;gap:6px;width:100%;max-width:316px;margin:8px auto 0;
+  font-size:12px;font-weight:700;color:#fff;background:rgba(255,255,255,.14);border-radius:12px;padding:7px 10px}
+.jp-hud span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jp-tip{width:100%;max-width:316px;margin:7px auto 0;font-size:11.5px;line-height:1.5;color:#fff;opacity:.85;text-align:center}
+.jp-tip b{color:#FFF176}
+@media(max-width:420px){.jp-wrap,.jp-hud,.jp-tip{max-width:296px}}
 </style>
 
 </head>
@@ -1153,6 +1203,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('bowl')">
       <div class="icon">🎳</div>
       <div class="info"><h3>笔顺保龄球</h3><p>答对拿大力球，瞄口袋位一票全倒！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('jump')">
+      <div class="icon">🐰</div>
+      <div class="info"><h3>笔顺跳一跳</h3><p>答案写在平台上，蓄力跳过去！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('merge')">
       <div class="icon">🧩</div>
@@ -2419,6 +2473,61 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-jump">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="jpScoreTxt">🐰 0 分</span><span id="jpHopTxt">第 0 跳</span></div>
+    <button class="icon-btn" onclick="jpHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal" id="jpGoal">🐰 三个答案就写在<b>远处三块平台</b>上！按住屏幕（或空格）<b>蓄力</b>，松手起跳——只有落在写着<b>正确答案</b>的那块才算对，蓄力不够会掉进缝里！</div>
+  <div class="jp-hud">
+    <span id="jpHeartTxt">❤️❤️❤️</span>
+    <span id="jpComboTxt">🔥 连击 ×0</span>
+    <span id="jpBestTxt">🥇 最高 0</span>
+  </div>
+  <div class="jp-wrap">
+    <div class="jp-scene" id="jpScene">
+      <div class="jp-cloud" style="left:10%;top:9%">☁️</div>
+      <div class="jp-cloud" style="left:52%;top:5%">☁️</div>
+      <div class="jp-cloud" style="left:84%;top:14%">⛅</div>
+      <div class="jp-ground"></div>
+      <div class="jp-man" id="jpMan">🐰</div>
+      <div class="jp-judge" id="jpJudge"></div>
+      <div class="jp-banner" id="jpBanner"></div>
+    </div>
+    <div class="jp-power"><i id="jpPower"></i></div>
+  </div>
+  <div class="jp-tip" id="jpTip">按住<b>屏幕</b>或<b>空格</b>蓄力，松手起跳 · 正中心 <b>✨完美翻倍</b> · 🎁 <b>+60 补心</b> · 🌙 <b>×3</b></div>
+  <div class="quiz-header"><div class="question" id="jpQ">正在铺路…</div></div>
+</div>
+<div class="screen" id="screen-jump-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="jpResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="jpResultEmoji">🐰</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="jpResultTitle">跳到终点！</h2>
+    <p style="font-size:16px;opacity:.8" id="jpResultSubtitle">力度和答案都要准</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="jpResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="jpResultHops">0</div><div style="font-size:13px;opacity:.7">跳了几格</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="jpResultPerfect">0</div><div style="font-size:13px;opacity:.7">✨完美落心</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="jpResultAcc">0%</div><div style="font-size:13px;opacity:.7">答题正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="jpResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="jpResultAll">累计跳格 0 · 累计认字 0 · 共玩 0 局</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="jpStart()">🐰 再跳一次</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-bowl">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -2842,6 +2951,7 @@ function enterMode(mode){
  else if(mode==='gacha')ggStart();
  else if(mode==='merge')mgStart();
  else if(mode==='bowl')bwStart();
+ else if(mode==='jump')jpStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -12022,6 +12132,388 @@ document.addEventListener('keydown',function(e){
 })();
 /* ================= 笔顺保龄球 结束 ================= */
 /* ================= 笔顺保龄球 布局与计分 结束 ================= */
+/* ================= 笔顺跳一跳 开始 ================= */
+const JP_W=340,JP_H=200,JP_BASE=26,JP_PLATH=30,JP_TOP=JP_BASE+JP_PLATH;
+const JP_MAXD=262,JP_CHARGE=900,JP_PERFECT=7,JP_TOL=25,JP_MISSMAX=3,JP_VIEW=56;
+let jp={gen:0,over:true,busy:false,charging:false,flying:false,timer:0,animTimer:0,
+  x:0,cam:-JP_VIEW,cur:null,plats:[],hops:0,score:0,combo:0,maxCombo:0,perfect:0,miss:0,hearts:3,
+  total:0,correct:0,ans:'',ch:'',kind:'',tip:'',power:0,chargeAt:0,vals:[],manEl:null};
+function jpSet(id,t){const e=document.getElementById(id);if(e)e.textContent=t}
+function jpScene(){return document.getElementById('jpScene')}
+function jpL(x){return ((x-jp.cam)/JP_W*100).toFixed(2)+'%'}
+function jpB(y){return (y/JP_H*100).toFixed(2)+'%'}
+function jpShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function jpJudge(t,color){
+  const e=document.getElementById('jpJudge');if(!e)return;
+  e.textContent=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function jpBanner(t){
+  const e=document.getElementById('jpBanner');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function jpShake(){
+  const s=jpScene();if(!s)return;
+  s.classList.remove('shake');void s.offsetWidth;s.classList.add('shake');
+}
+function jpPop(txt,x){
+  const s=jpScene();if(!s)return;
+  const d=document.createElement('div');
+  d.className='jp-pop';d.textContent=txt;
+  d.style.left=jpL(x);d.style.bottom=jpB(JP_TOP+22);
+  s.appendChild(d);
+  setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d)},1000);
+}
+function jpHud(){
+  jpSet('jpScoreTxt','🐰 '+jp.score+' 分');
+  jpSet('jpHopTxt','第 '+jp.hops+' 跳');
+  jpSet('jpHeartTxt','❤️'.repeat(Math.max(0,jp.hearts))+'🖤'.repeat(Math.max(0,3-jp.hearts)));
+  jpSet('jpComboTxt','🔥 连击 ×'+jp.combo);
+  jpSet('jpBestTxt','🥇 最高 '+(localStorage.getItem('hz_jump_best')||'0'));
+}
+function jpMan(x,y){
+  const el=jp.manEl||document.getElementById('jpMan');if(!el)return;
+  jp.manEl=el;
+  el.style.left=jpL(x);el.style.bottom=jpB(y);
+}
+function jpAddPlat(x){
+  const s=jpScene();if(!s)return null;
+  const el=document.createElement('div');
+  el.className='jp-plat';
+  s.insertBefore(el,document.getElementById('jpMan'));
+  const p={x:x,el:el,v:'',icon:'',label:'',sp:'',cur:false};
+  jp.plats.push(p);
+  el.style.left=jpL(x);
+  return p;
+}
+function jpRender(p){
+  if(!p||!p.el)return;
+  p.el.className='jp-plat'+(p.sp?' '+p.sp:'')+(p.cur?' cur':'');
+  let h='';
+  if(p.sp)h+='<u class="jp-badge">'+(p.sp==='gift'?'🎁':'🌙')+'</u>';
+  if(!p.cur&&p.label)h+='<i class="jp-face"><b>'+p.icon+'</b><s>'+p.label+'</s></i>';
+  h+='<em class="jp-wm">'+(jp.ch||'')+'</em>';
+  p.el.innerHTML=h;
+}
+function jpDist(){
+  const mul=Math.min(1.18,1+jp.hops*0.006);
+  const d=[0,0,0];
+  d[0]=(58+Math.random()*30)*mul;
+  d[1]=d[0]+(56+Math.random()*36)*mul;
+  d[2]=d[1]+(54+Math.random()*38)*mul;
+  const k=d[2]>JP_MAXD-10?(JP_MAXD-10)/d[2]:1;
+  return [Math.round(d[0]*k),Math.round(d[1]*k),Math.round(d[2]*k)];
+}
+function jpCam(){
+  jp.cam=jp.x-JP_VIEW;
+  jp.plats.forEach(function(p){if(p.el)p.el.style.left=jpL(p.x)});
+  jpMan(jp.x,JP_TOP);
+}
+function jpStopCharge(){
+  if(jp.timer){clearInterval(jp.timer);jp.timer=0}
+  jp.charging=false;jp.power=0;
+  const el=jp.manEl||document.getElementById('jpMan');
+  if(el)el.classList.remove('charging');
+  const bar=document.getElementById('jpPower');if(bar)bar.style.width='0%';
+}
+function jpStopAnim(){
+  if(jp.animTimer){clearInterval(jp.animTimer);jp.animTimer=0}
+  const el=jp.manEl||document.getElementById('jpMan');
+  if(el)el.classList.remove('fly');
+  jp.flying=false;
+}
+/* ---- 铺路 + 出题：三个答案写在远处三块平台上 ---- */
+function jpBuild(){
+  jp.plats.forEach(function(p){
+    if(p===jp.cur||!p.el)return;
+    p.el.classList.add('gone');
+    const e=p.el;
+    setTimeout(function(){if(e.parentNode)e.parentNode.removeChild(e)},420);
+  });
+  jp.plats=jp.plats.filter(function(p){return p===jp.cur});
+  const d=jpDist(),out=[];
+  for(let i=0;i<3;i++){
+    const p=jpAddPlat(Math.round(jp.x+d[i]));
+    if(p)out.push(p);
+  }
+  return out;
+}
+function jpAssign(){
+  const ahead=jp.plats.filter(function(p){return !p.cur});
+  if(ahead.length<3)return;
+  let sp='';
+  if((jp.hops+1)%10===0)sp='moon';
+  else if(jp.combo>=5&&Math.random()<.35)sp='gift';
+  jp.kind=sp;
+  const vals=jpShuf(jp.vals.slice());
+  ahead.forEach(function(p,i){p.cur=false;p.sp='';p.v=vals[i].v;p.icon=vals[i].icon;p.label=vals[i].label});
+  if(sp){
+    const i=Math.floor(Math.random()*ahead.length);
+    if(ahead[i].v!==jp.ans){
+      const j=ahead.filter(function(p){return p.v===jp.ans})[0];
+      const k=ahead.indexOf(j);
+      if(k>=0){ahead[k].v=ahead[i].v;ahead[k].icon=ahead[i].icon;ahead[k].label=ahead[i].label}
+      ahead[i].v=jp.ans;ahead[i].icon='';ahead[i].label='';
+      ahead[i].icon=sp==='gift'?'🎁':'';
+      ahead[i].label=jp.ansLabel;
+      ahead[i].sp=sp;
+    }else ahead[i].sp=sp;
+  }
+  ahead.forEach(jpRender);
+}
+async function jpAsk(){
+  if(jp.over)return;
+  jp.busy=true;
+  const gen=jp.gen;
+  let ch='',data=null;
+  for(let i=0;i<14;i++){
+    const c=nextInQueue();
+    const d=await loadCharData(c);
+    if(d&&d.strokes&&d.medians&&d.strokes.length>=2&&d.medians.length>=2){ch=c;data=d;break}
+  }
+  if(gen!==jp.gen||jp.over||currentMode!=='jump')return;
+  if(!ch){jpSet('jpQ','📚 字库还在路上，稍等一下…');setTimeout(function(){if(gen===jp.gen&&!jp.over)jpAsk()},1200);return}
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],num=data.strokes.length;
+  jp.ch=ch;
+  let right;
+  if(Math.random()<.42&&num<=12){
+    jp.ans=String(num);
+    right={v:jp.ans,icon:'✏️',label:num+' 笔'};
+    const nums=[num];
+    while(nums.length<3){
+      const k=num+(Math.random()<.5?-1:1)*(1+Math.floor(Math.random()*3));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    jp.vals=[right].concat(nums.filter(function(k){return k!==num}).map(function(k){return{v:String(k),icon:'✏️',label:k+' 笔'}}));
+    jp.ansLabel=num+' 笔';
+    jpSet('jpQ','『'+ch+'』一共有几笔？跳到写着答案的平台！');
+    jp.tip='📖『'+ch+'』一共 '+num+' 笔';
+  }else{
+    const idx=Math.floor(Math.random()*dirs.length);
+    const code=dirs[idx];
+    jp.ans=code;
+    const r=DIRS.filter(function(d){return d.code===code})[0]||DIRS[0];
+    right={v:code,icon:r.icon,label:r.label};
+    const pool=jpShuf(DIRS.filter(function(d){return d.code!==code})).slice(0,2);
+    jp.vals=[right].concat(pool.map(function(d){return{v:d.code,icon:d.icon,label:d.label}}));
+    jp.ansLabel=r.label;
+    const ord=STK_ORD[idx]||(idx+1);
+    jpSet('jpQ','『'+ch+'』的第'+ord+'笔往哪写？跳到写着答案的平台！');
+    jp.tip='📖『'+ch+'』第'+ord+'笔 '+r.icon+' '+r.label;
+  }
+  jpBuild();
+  jpAssign();
+  jp.busy=false;
+  jpHud();
+}
+/* ---- 蓄力与起跳 ---- */
+function jpDown(){
+  if(jp.over||jp.busy||jp.flying||jp.charging||currentMode!=='jump')return;
+  const gen=jp.gen;
+  jp.charging=true;jp.chargeAt=performance.now();jp.power=0;
+  const el=jp.manEl||document.getElementById('jpMan');
+  if(el){el.classList.add('fly');el.classList.add('charging')}
+  jp.timer=setInterval(function(){
+    if(currentMode!=='jump'||jp.gen!==gen||!jp.charging){jpStopCharge();return}
+    const t=((performance.now()-jp.chargeAt)/JP_CHARGE)%2;
+    jp.power=t<=1?t:2-t;
+    const bar=document.getElementById('jpPower');if(bar)bar.style.width=Math.round(jp.power*100)+'%';
+  },24);
+}
+function jpUp(){
+  if(!jp.charging)return;
+  const p=jp.power;
+  jpStopCharge();
+  jpFly(p);
+}
+function jpFly(pw){
+  if(jp.over||jp.flying||jp.busy)return;
+  const dist=Math.round(pw*JP_MAXD);
+  if(dist<34){jpJudge('🫱 蓄力太短啦，按住再久一点','#FF8F00');return}
+  const gen=jp.gen,x0=jp.x,t0=performance.now(),T=300+dist*1.1,peak=46+dist*.16;
+  jp.flying=true;jp.busy=true;
+  const el=jp.manEl||document.getElementById('jpMan');
+  if(el){el.classList.add('fly');el.classList.remove('charging')}
+  tone(260+dist*1.6,.12,'triangle');
+  jp.animTimer=setInterval(function(){
+    if(currentMode!=='jump'||jp.gen!==gen){jpStopAnim();return}
+    const k=Math.min(1,(performance.now()-t0)/T);
+    jpMan(x0+dist*k,JP_TOP+peak*4*k*(1-k));
+    if(k>=1){jpStopAnim();jpLandAt(x0+dist)}
+  },16);
+}
+function jpFallAt(x){
+  const el=jp.manEl||document.getElementById('jpMan');if(!el)return;
+  el.classList.add('falling');
+  el.style.left=jpL(x);el.style.bottom=jpB(2);
+  setTimeout(function(){
+    el.classList.remove('falling');
+    jpMan(jp.x,JP_TOP);
+  },520);
+}
+/* ---- 落点判定 ---- */
+function jpLandAt(x){
+  const gen=jp.gen;
+  let hit=null,bd=1e9;
+  jp.plats.forEach(function(p){
+    if(p.cur)return;
+    const d=Math.abs(p.x-x);
+    if(d<=JP_TOL&&d<bd){bd=d;hit=p}
+  });
+  if(hit&&hit.v===jp.ans)jpGood(hit,bd,x);
+  else if(hit)jpWrong(hit,x);
+  else jpMiss(x);
+}
+function jpGood(p,off,x){
+  const gen=jp.gen;
+  jp.total++;jp.correct++;
+  const perfect=off<=JP_PERFECT;
+  jp.hops++;jp.combo++;jp.miss=0;
+  jp.maxCombo=Math.max(jp.maxCombo,jp.combo);
+  let gain=Math.round((10+jp.hops*0.6)*(1+Math.min(2,jp.combo*0.15)));
+  let extra='';
+  if(p.sp==='gift'){gain+=60;extra=' · 🎁 +60';if(jp.hearts<3){jp.hearts++;extra+=' · ❤️+1'}}
+  if(p.sp==='moon'){gain*=3;extra=' · 🌙 ×3'}
+  if(perfect){jp.perfect++;gain*=2}
+  jp.score+=gain;
+  if(jp.cur){jp.cur.cur=false;jpRender(jp.cur)}
+  jp.x=p.x;p.cur=true;p.sp='';p.v='';p.icon='';p.label='';jp.cur=p;jpRender(p);
+  jpCam();
+  const s=jpScene();
+  if(s){
+    const r=s.getBoundingClientRect();
+    spawnStarFly(r.left+(p.x-jp.cam)/JP_W*r.width,r.top+r.height*0.24);
+  }
+  jpPop('+'+gain+(perfect?' ✨':''),p.x);
+  sndOk();
+  tone(523*Math.pow(1.06,Math.min(12,jp.combo)),.1);
+  if(perfect)jpJudge('✨ 完美落心！分数翻倍','#FFD700');
+  else jpJudge(jp.tip,'#2E7D32');
+  if(perfect&&jp.combo>=3){spawnConfetti();jpBanner('✨ ×'+jp.combo+' 完美连跳！')}
+  if(jp.combo>0&&jp.combo%5===0){jpBanner('🔥 '+jp.combo+' 连跳！');sndReward()}
+  jpHud();
+  setTimeout(function(){
+    if(gen!==jp.gen||jp.over||currentMode!=='jump')return;
+    jp.busy=false;jpAsk();
+  },perfect?760:620);
+}
+function jpWrong(p,x){
+  jp.total++;jp.combo=0;jp.miss=0;jp.hearts--;
+  sndNo();jpShake();
+  p.el.classList.add('crack');
+  jpFallAt(x);
+  const right=jp.plats.filter(function(q){return !q.cur&&q.v===jp.ans})[0];
+  if(right&&right.el)right.el.classList.add('reveal');
+  jpJudge('❌ 那是「'+p.icon+' '+p.label+'」，'+jp.tip,'#D32F2F');
+  jpHud();
+  const gen=jp.gen;
+  setTimeout(function(){
+    if(gen!==jp.gen||currentMode!=='jump'||jp.over)return;
+    if(jp.hearts<=0){jpEnd();return}
+    jp.busy=false;jpAsk();
+  },1000);
+}
+function jpMiss(x){
+  const gen=jp.gen;
+  jp.miss++;
+  tone(180,.2,'sine');
+  jpFallAt(x);
+  const far=jp.plats.filter(function(p){return !p.cur}).sort(function(a,b){return a.x-b.x})[2];
+  if(jp.miss>=JP_MISSMAX){
+    jp.miss=0;jp.combo=0;jp.hearts--;
+    jpJudge('😵 三连空跳，掉进缝里啦','#D32F2F');
+    jpHud();
+    setTimeout(function(){
+      if(gen!==jp.gen||currentMode!=='jump')return;
+      if(jp.hearts<=0){jpEnd();return}
+      jp.busy=false;jpAsk();
+    },950);
+  }else{
+    jpJudge(far&&x>far.x?'🚀 冲过头啦，收一点力':'🕳️ 差一点点！再蓄久一点','#FF8F00');
+    jpHud();
+    setTimeout(function(){
+      if(gen!==jp.gen||currentMode!=='jump'||jp.over)return;
+      jp.busy=false;
+    },700);
+  }
+}
+/* ---- 开局 / 结算 ---- */
+function jpStart(){
+  jp.gen++;
+  jpStopCharge();jpStopAnim();
+  jp.over=false;jp.busy=false;jp.flying=false;
+  jp.x=0;jp.cam=-JP_VIEW;jp.hops=0;jp.score=0;jp.combo=0;jp.maxCombo=0;
+  jp.perfect=0;jp.miss=0;jp.hearts=3;jp.total=0;jp.correct=0;
+  jp.ans='';jp.ansLabel='';jp.ch='';jp.kind='';jp.tip='';jp.vals=[];
+  const s=jpScene();
+  if(s){
+    jp.plats.forEach(function(p){if(p.el&&p.el.parentNode)p.el.parentNode.removeChild(p.el)});
+    jp.plats=[];
+  }
+  jp.cur=null;
+  showScreen('jump');
+  const base=jpAddPlat(0);
+  if(base){base.cur=true;base.icon='';base.label='';jp.cur=base}
+  jpMan(jp.x,JP_TOP);
+  jpHud();
+  jpSet('jpQ','正在铺路…');
+  jpJudge('🐰 按住屏幕蓄力 → 松手跳上写对答案的平台','#2E7D32');
+  jpAsk();
+}
+function jpEnd(){
+  if(jp.over)return;
+  jp.over=true;jp.busy=true;
+  jpStopCharge();jpStopAnim();
+  const best=parseInt(localStorage.getItem('hz_jump_best')||'0',10);
+  if(jp.score>best)localStorage.setItem('hz_jump_best',String(jp.score));
+  localStorage.setItem('hz_jump_hops',String(parseInt(localStorage.getItem('hz_jump_hops')||'0',10)+jp.hops));
+  localStorage.setItem('hz_jump_perfect',String(parseInt(localStorage.getItem('hz_jump_perfect')||'0',10)+jp.perfect));
+  localStorage.setItem('hz_jump_answers',String(parseInt(localStorage.getItem('hz_jump_answers')||'0',10)+jp.correct));
+  localStorage.setItem('hz_jump_games',String(parseInt(localStorage.getItem('hz_jump_games')||'0',10)+1));
+  const gain=Math.max(2,Math.min(20,Math.round(jp.score/14)+jp.perfect));
+  addStars(gain);
+  maxCombo=Math.max(maxCombo,jp.maxCombo);
+  showScreen('jump-result');
+  jpSet('jpResultStars','⭐ +'+gain);
+  jpSet('jpResultScore',String(jp.score));
+  jpSet('jpResultHops',String(jp.hops));
+  jpSet('jpResultPerfect',String(jp.perfect));
+  jpSet('jpResultAcc',jp.total?Math.round(jp.correct*100/jp.total)+'%':'0%');
+  jpSet('jpResultBest',String(Math.max(best,jp.score)));
+  jpSet('jpResultAll','累计跳格 '+localStorage.getItem('hz_jump_hops')+' · 累计完美 '+localStorage.getItem('hz_jump_perfect')+' 次 · 共玩 '+localStorage.getItem('hz_jump_games')+' 局');
+  let e='🐰',t='跳到累啦！',s='力度和答案都要准';
+  if(jp.hops>=30){e='🏆';t='跳远大神！';s='三十格不带掉心的'}
+  else if(jp.hops>=18){e='🌟';t='轻功了得！';s='蓄力收放自如'}
+  else if(jp.perfect>=6){e='✨';t='完美落心狂！';s='每一跳都踩在正中间'}
+  else if(jp.hops>=8){e='🙂';t='跳得不错！';s='再多蓄一点点力'}
+  else{e='🕳️';t='老掉进缝里';s='按住久一点，松手前看准距离'}
+  jpSet('jpResultEmoji',e);jpSet('jpResultTitle',t);jpSet('jpResultSubtitle',s);
+  sndReward();
+}
+function jpHelp(){jpJudge('🐰 蓄力越久跳得越远，先算答案再估距离','#2E7D32')}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='jump')return;
+  if(e.key===' '){
+    e.preventDefault();
+    if(e.repeat)return;
+    jpDown();
+  }
+});
+document.addEventListener('keyup',function(e){
+  if(currentMode!=='jump')return;
+  if(e.key===' '){e.preventDefault();jpUp()}
+});
+(function jpBind(){
+  const s=document.getElementById('jpScene');
+  if(!s)return;
+  s.addEventListener('pointerdown',function(e){e.preventDefault();jpDown()});
+  s.addEventListener('pointerup',function(){jpUp()});
+  s.addEventListener('pointercancel',function(){jpUp()});
+  s.addEventListener('pointerleave',function(){jpUp()});
+})();
+/* ================= 笔顺跳一跳 结束 ================= */
+
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
