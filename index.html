@@ -933,6 +933,45 @@ button:active{transform:scale(.95)}
 @keyframes ggFly{0%{opacity:1;transform:translate(0,0) scale(.7)}100%{opacity:0;transform:translate(0,-58px) scale(1.35)}}
 @media(max-width:420px){.gg-wrap,.gg-hud,.gg-btns,.gg-tip,.gg-grid{max-width:296px}.gg-machine{height:190px}}
 .stk-sky{height:300px}}
+/* ===== 笔顺合合合（汉字 2048） ===== */
+.mg-wrap{position:relative;width:100%;max-width:330px;margin:8px auto 0}
+.mg-board{position:relative;width:100%;padding-bottom:100%;border-radius:18px;background:rgba(0,0,0,.22);box-shadow:inset 0 0 0 2px rgba(255,255,255,.18);touch-action:none;overflow:hidden}
+.mg-cell{position:absolute;width:calc(25% - 8px);height:calc(25% - 8px);margin:4px;border-radius:12px;background:rgba(255,255,255,.1)}
+.mg-tile{position:absolute;width:calc(25% - 8px);height:calc(25% - 8px);margin:4px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:default;
+  background:linear-gradient(150deg,var(--c1,#B0BEC5),var(--c2,#546E7A));box-shadow:0 3px 10px rgba(0,0,0,.26),inset 0 -4px 0 rgba(0,0,0,.14);
+  transition:left .13s ease-out,top .13s ease-out;will-change:left,top}
+.mg-tile b{font-size:26px;line-height:1;color:var(--fg,#4a3b1f);text-shadow:0 1px 0 rgba(255,255,255,.45);font-weight:normal;font-family:KaiTi,STKaiti,serif}
+.mg-tile s{font-size:10px;line-height:1.5;color:var(--fg,#4a3b1f);opacity:.72;text-decoration:none;letter-spacing:.5px}
+.mg-tile.new{animation:mgNew .26s cubic-bezier(.3,1.5,.6,1)}
+.mg-tile.pop{animation:mgPop .3s cubic-bezier(.3,1.5,.6,1);z-index:3}
+.mg-tile.eaten{opacity:0;transform:scale(.55);z-index:1}
+.mg-tile.stone{background:linear-gradient(150deg,#8D9AA6,#4A5560);box-shadow:0 3px 10px rgba(0,0,0,.3),inset 0 -4px 0 rgba(0,0,0,.22)}
+.mg-tile.stone b{font-size:22px;font-family:inherit;text-shadow:none}
+.mg-tile.stone s{opacity:.9}
+.mg-tile.gold{box-shadow:0 0 0 3px #FFF176,0 0 20px rgba(255,241,118,.85),inset 0 -4px 0 rgba(0,0,0,.14)}
+.mg-board.shk{animation:cfShake .42s}
+@keyframes mgNew{0%{opacity:0;transform:scale(.3)}100%{opacity:1;transform:scale(1)}}
+@keyframes mgPop{0%{transform:scale(1)}45%{transform:scale(1.26)}100%{transform:scale(1)}}
+.mg-judge{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:20px;font-weight:bold;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.9);pointer-events:none;opacity:0;z-index:8;white-space:nowrap}
+.mg-judge.on{animation:cfJudge .95s ease-out}
+.mg-banner{position:absolute;left:50%;top:16%;transform:translate(-50%,-50%);font-size:23px;font-weight:bold;color:#FFF59D;text-shadow:0 4px 16px rgba(0,0,0,.9);pointer-events:none;opacity:0;z-index:9;white-space:nowrap}
+.mg-banner.on{animation:cfJudge 1.35s ease-out}
+.mg-fly{position:absolute;font-size:14px;font-weight:bold;color:#FFF176;text-shadow:0 2px 6px rgba(0,0,0,.8);pointer-events:none;z-index:7;animation:mgFly .8s ease-out forwards}
+@keyframes mgFly{0%{opacity:1;transform:translate(0,0) scale(.8)}100%{opacity:0;transform:translate(0,-46px) scale(1.25)}}
+.mg-hud{display:flex;justify-content:space-between;width:100%;max-width:330px;margin:7px auto 0;font-size:11.5px;color:#fff;gap:6px}
+.mg-hud span{flex:0 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mg-energy{width:100%;max-width:330px;margin:6px auto 0;text-align:center;font-size:17px;letter-spacing:4px}
+.mg-energy i{font-style:normal;opacity:.25;transition:opacity .25s,transform .25s;display:inline-block}
+.mg-energy i.on{opacity:1;transform:scale(1.18)}
+.mg-btns{display:flex;gap:8px;width:100%;max-width:330px;margin:8px auto 0}
+.mg-act{flex:1;border:none;border-radius:14px;padding:10px 4px;font-size:13px;font-family:inherit;cursor:pointer;color:#fff;background:linear-gradient(135deg,#AB47BC,#6A1B9A);box-shadow:0 3px 10px rgba(0,0,0,.24);transition:transform .15s,filter .2s}
+.mg-act:active{transform:scale(.94)}
+.mg-act:disabled{filter:grayscale(.75) brightness(.72);cursor:not-allowed}
+.mg-pad{display:flex;gap:8px;width:100%;max-width:330px;margin:8px auto 0}
+.mg-dir{flex:1;border:none;border-radius:14px;padding:11px 0;font-size:19px;cursor:pointer;color:#fff;background:rgba(255,255,255,.2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);transition:transform .12s,background .15s}
+.mg-dir:active{transform:scale(.9);background:rgba(255,255,255,.38)}
+.mg-tip{width:100%;max-width:330px;margin:7px auto 0;font-size:11.5px;color:rgba(255,255,255,.8);text-align:center;line-height:1.6}
+@media(max-width:420px){.mg-wrap,.mg-hud,.mg-energy,.mg-btns,.mg-pad,.mg-tip{max-width:296px}.mg-tile b{font-size:22px}}
 </style>
 
 </head>
@@ -1065,6 +1104,10 @@ button:active{transform:scale(.95)}
       <div class="icon">🎡</div>
       <div class="info"><h3>笔顺扭蛋机</h3><p id="ggCardTip">答对题赚 🪙 抽汉字精灵，集齐图鉴！</p></div>
       <span class="sk-dot" id="ggDot">1</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('merge')">
+      <div class="icon">🧩</div>
+      <div class="info"><h3>笔顺合合合</h3><p>答对掉字砖，笔画数相同才能合成！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -2265,6 +2308,68 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-merge">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="mgScore">🧩 0 分</span><span id="mgTop">🏆 1 画</span></div>
+    <button class="icon-btn" onclick="mgHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal" id="mgGoal">🧩 答对一道笔顺题就掉一块<b>新字砖</b>；<b>笔画数相同</b>的两块砖碰在一起会合成多一笔的新字，一路合到 <b>16 画</b> 就是「汉字之王」！答错会砸下一块 🪨 石砖占地方。</div>
+  <div class="mg-hud">
+    <span id="mgMergeTxt">🤝 合成 0</span>
+    <span id="mgKingTxt">👑 字王 0</span>
+    <span id="mgBestTxt">🥇 最高 0</span>
+  </div>
+  <div class="mg-wrap">
+    <div class="mg-board" id="mgBoard">
+      <div class="mg-judge" id="mgJudge"></div>
+      <div class="mg-banner" id="mgBanner"></div>
+    </div>
+  </div>
+  <div class="mg-energy" id="mgEnergy"></div>
+  <div class="mg-btns">
+    <button class="mg-act" id="mgSkillBtn" onclick="mgSkill()" disabled>🔮 合成术（3 能量）</button>
+    <button class="mg-act" id="mgUndoBtn" onclick="mgUndo()">↩️ 悔一步（3）</button>
+  </div>
+  <div class="mg-pad">
+    <button class="mg-dir" onclick="mgMove('L')" title="左">◀</button>
+    <button class="mg-dir" onclick="mgMove('U')" title="上">▲</button>
+    <button class="mg-dir" onclick="mgMove('D')" title="下">▼</button>
+    <button class="mg-dir" onclick="mgMove('R')" title="右">▶</button>
+  </div>
+  <div class="quiz-header"><div class="question" id="mgQ">正在准备字砖…</div></div>
+  <div class="options" id="mgOpts"></div>
+  <div class="feedback" id="mgFeedback"></div>
+</div>
+<div class="screen" id="screen-merge-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="mgResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="mgResultEmoji">🧩</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="mgResultTitle">棋盘堵住了！</h2>
+    <p style="font-size:16px;opacity:.8" id="mgResultSubtitle">数对笔画，才能合对字！</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="mgResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="mgResultTop">1</div><div style="font-size:13px;opacity:.7">合到几画</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="mgResultMerges">0</div><div style="font-size:13px;opacity:.7">合成次数</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="mgResultAcc">0%</div><div style="font-size:13px;opacity:.7">答题正确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="mgResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="mgResultTopAll">最高合到 1 画 · 字王 0 次</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="mgResultAll">累计合成 0 次 · 累计答题 0 题</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="mgStart()">🧩 再合一次</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -2628,6 +2733,7 @@ function enterMode(mode){
  else if(mode==='domino')dpStart();
  else if(mode==='stack')stkStart();
  else if(mode==='gacha')ggStart();
+ else if(mode==='merge')mgStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -10969,6 +11075,414 @@ document.addEventListener('keydown',function(e){
   }else if(e.key==='g'||e.key==='G'){ggPull(1)}
 });
 /* ================= 笔顺扭蛋机 结束 ================= */
+/* ================= 笔顺合合合（汉字 2048） ================= */
+const MG_MAX=16, MG_SKILL=3, MG_UNDO=3, MG_ANIM=140;
+const MG_COLORS=[['#FFFDE7','#F0E2A8','#6D5C1E'],['#EAF7FF','#BBE1F5','#1F5673'],['#FFF0F3','#FFC4D3','#8E3350'],['#EAFBF2','#A8E6C3','#1F6B45'],
+  ['#F4EAFF','#D3B6F2','#4A2A7A'],['#FFF6DC','#FFD98A','#7A5310'],['#FFEBDC','#FFB37B','#8A4212'],['#E3F6FF','#8FD0EE','#10506B'],
+  ['#FDEAF0','#F7A6C4','#8A2450'],['#ECF1FF','#A9B8F5','#2A3480'],['#FFF3B0','#FFD24D','#6E4B00'],['#FFE9D6','#FF9E63','#7E3A0E'],
+  ['#D8F7EA','#5FD8B0','#0B5B44'],['#E9DBFF','#9C6BE8','#38146E'],['#FFDCC6','#FF7043','#6E1E05'],['#FFE0EE','#FF6EA9','#8C0F4A']];
+const MG_TITLE=['','','','启蒙小笔','两笔生风','三笔成字','四笔四方','五笔成型','六笔流畅','七笔生花',
+  '八笔成章','九笔有神','十笔圆满','十一笔老练','十二笔功夫','十三笔大家','汉字之王'];
+let mg={gen:0,over:true,busy:false,grid:[],uid:1,score:0,top:1,merges:0,chain:0,king:0,
+  energy:0,undo:MG_UNDO,combo:0,total:0,correct:0,ans:'',ch:'',pool:[],prev:null,snap:null};
+function mgGet(k){return Math.max(0,parseInt(localStorage.getItem(k)||'0',10)||0)}
+function mgBest(){return mgGet('hz_mg_best')}
+function mgTopAll(){return Math.max(1,mgGet('hz_mg_top'))}
+function mgMergeAll(){return mgGet('hz_mg_merges')}
+function mgAnsAll(){return mgGet('hz_mg_answers')}
+function mgKingAll(){return mgGet('hz_mg_king')}
+function mgSet(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt}
+function mgBuildPool(){
+  const p=[];for(let i=0;i<=MG_MAX;i++)p[i]=[];
+  for(const ch in charDataCache){
+    const d=charDataCache[ch];
+    if(!d||!d.strokes)continue;
+    const n=d.strokes.length;
+    if(n>=1&&n<=MG_MAX)p[n].push(ch);
+  }
+  mg.pool=p;return p;
+}
+function mgCharFor(lv){
+  if(!mg.pool||!mg.pool.length)mgBuildPool();
+  const a=(mg.pool&&mg.pool[lv])||[];
+  if(a.length)return a[Math.floor(Math.random()*a.length)];
+  for(let d=1;d<=MG_MAX;d++){const b=(mg.pool&&mg.pool[d])||[];if(b.length)return b[Math.floor(Math.random()*b.length)]}
+  return '';
+}
+function mgSkin(lv){
+  if(lv<=0)return['#8D9AA6','#4A5560','#FFFFFF'];
+  return MG_COLORS[Math.min(MG_MAX,lv)-1]||MG_COLORS[MG_MAX-1];
+}
+function mgEl(t){
+  if(t.el)return t.el;
+  const el=document.createElement('div');
+  el.className='mg-tile';
+  el.innerHTML='<b></b><s></s>';
+  document.getElementById('mgBoard').appendChild(el);
+  t.el=el;return el;
+}
+function mgPaint(t){
+  const el=mgEl(t),C=mgSkin(t.lv);
+  el.style.setProperty('--c1',C[0]);el.style.setProperty('--c2',C[1]);el.style.setProperty('--fg',C[2]);
+  el.querySelector('b').textContent=t.lv<=0?'🪨':(t.ch||t.lv);
+  el.querySelector('s').textContent=t.lv<=0?'石砖':(t.lv+' 画');
+  el.classList.toggle('stone',t.lv<=0);
+  el.classList.toggle('gold',t.lv>=MG_MAX);
+}
+function mgAt(t){
+  const i=t.i;
+  t.el.style.left=(i%4)*25+'%';
+  t.el.style.top=Math.floor(i/4)*25+'%';
+}
+function mgPlace(t,i){t.i=i;mgPaint(t);mgAt(t)}
+function mgCells(){const out=[];for(let i=0;i<16;i++)if(!mg.grid[i])out.push(i);return out}
+function mgSpawn(lv,stone){
+  const free=mgCells();
+  if(!free.length)return null;
+  const i=free[Math.floor(Math.random()*free.length)];
+  const t={id:mg.uid++,lv:stone?0:lv,ch:stone?'':mgCharFor(lv),i:i};
+  mg.grid[i]=t;
+  mgPlace(t,i);
+  t.el.classList.add('new');
+  return t;
+}
+function mgLines(dir){
+  const L=[];
+  for(let k=0;k<4;k++){
+    const line=[];
+    for(let s=0;s<4;s++){
+      let i;
+      if(dir==='L')i=k*4+s;
+      else if(dir==='R')i=k*4+(3-s);
+      else if(dir==='U')i=s*4+k;
+      else i=(3-s)*4+k;
+      line.push(i);
+    }
+    L.push(line);
+  }
+  return L;
+}
+function mgSnap(){
+  return {grid:mg.grid.map(t=>t?{lv:t.lv,ch:t.ch}:null),score:mg.score,top:mg.top,
+    merges:mg.merges,energy:mg.energy,king:mg.king,combo:mg.combo};
+}
+function mgRestore(s){
+  for(const t of mg.grid)if(t&&t.el)t.el.remove();
+  mg.grid=new Array(16).fill(null);
+  for(let i=0;i<16;i++){
+    const c=s.grid[i];
+    if(!c)continue;
+    const t={id:mg.uid++,lv:c.lv,ch:c.ch,i:i};
+    mg.grid[i]=t;mgPlace(t,i);
+  }
+  mg.score=s.score;mg.top=s.top;mg.merges=s.merges;mg.energy=s.energy;mg.king=s.king;mg.combo=s.combo;
+  mgHud();
+}
+function mgFly(i,txt){
+  const b=document.getElementById('mgBoard');if(!b)return;
+  const el=document.createElement('div');
+  el.className='mg-fly';el.textContent=txt;
+  el.style.left=((i%4)*25+3)+'%';el.style.top=(Math.floor(i/4)*25)+'%';
+  b.appendChild(el);setTimeout(function(){el.remove()},820);
+}
+function mgJudge(txt,color){
+  const el=document.getElementById('mgJudge');if(!el)return;
+  el.textContent=txt||'';el.classList.remove('on');void el.offsetWidth;
+  if(txt){el.style.color=color||'#fff';el.classList.add('on')}
+}
+function mgBanner(txt){
+  const el=document.getElementById('mgBanner');if(!el)return;
+  el.textContent=txt;el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function mgHud(){
+  mgSet('mgScore','🧩 '+mg.score+' 分');
+  mgSet('mgTop','🏆 '+mg.top+' 画');
+  mgSet('mgMergeTxt','🤝 合成 '+mg.merges);
+  mgSet('mgKingTxt','👑 字王 '+mg.king);
+  mgSet('mgBestTxt','🥇 最高 '+Math.max(mgBest(),mg.score));
+  const e=document.getElementById('mgEnergy');
+  if(e)e.innerHTML=[0,1,2].map(function(i){return '<i class="'+(i<mg.energy?'on':'')+'">⚡</i>'}).join('');
+  const sb=document.getElementById('mgSkillBtn');
+  if(sb)sb.disabled=(mg.energy<MG_SKILL||mg.over);
+  const ub=document.getElementById('mgUndoBtn');
+  if(ub){ub.disabled=(mg.undo<=0||!mg.prev||mg.over);ub.textContent='↩️ 悔一步（'+mg.undo+'）'}
+}
+function mgMove(dir){
+  if(mg.over||mg.busy)return;
+  const gen=mg.gen;
+  const lines=mgLines(dir);
+  const before=mgSnap();
+  let moved=false,chain=0;
+  const gains=[],eaten=[],popped=[];
+  const ng=new Array(16).fill(null);
+  for(const line of lines){
+    const res=[];
+    for(const idx of line){
+      const t=mg.grid[idx];
+      if(!t)continue;
+      const last=res[res.length-1];
+      if(last&&!last.merged&&t.lv>0&&last.t.lv===t.lv&&last.t.lv<MG_MAX){
+        last.merged=true;
+        t.eaten=true;t.dest=last.pos;
+        eaten.push(t);
+        last.t.lv++;last.t.ch=mgCharFor(last.t.lv);last.t.pop=true;
+        popped.push(last.t);
+        chain++;
+        const g=Math.round(last.t.lv*10*(1+(chain-1)*0.5));
+        last.t.gain=g;mg.score+=g;gains.push([last.pos,g]);
+        mg.merges++;
+        if(last.t.lv>mg.top)mg.top=last.t.lv;
+        if(last.t.lv>=MG_MAX)mg.king++;
+      }else{
+        res.push({t:t,pos:line[res.length],merged:false});
+      }
+    }
+    for(const r of res)ng[r.pos]=r.t;
+  }
+  for(let i=0;i<16;i++)if(ng[i]!==mg.grid[i])moved=true;
+  if(!moved){mgJudge('😅 这方向滑不动，换一个','#FFE082');return}
+  mg.busy=true;mg.grid=ng;mg.prev=before;
+  for(let i=0;i<16;i++)if(ng[i])mgPlace(ng[i],i);
+  for(const t of eaten)mgSlide(t,t.dest);
+  setTimeout(function(){
+    if(gen!==mg.gen)return;
+    for(const t of eaten)if(t.el)t.el.remove();
+    for(const t of popped){mgPaint(t);t.el.classList.remove('pop');void t.el.offsetWidth;t.el.classList.add('pop')}
+    for(const g of gains)mgFly(g[0],'+'+g[1]);
+    if(chain>0){
+      sndOk();
+      if(chain>=2){spawnConfetti();mgBanner('🔥 '+chain+' 连合成！')}
+      if(popped.some(function(t){return t.lv>=MG_MAX})){spawnConfetti();sndReward();mgBanner('👑 十六画汉字之王！')}
+    }
+    mg.busy=false;
+    mgHud();
+    if(mgIsOver())setTimeout(function(){if(mg.gen===gen&&!mg.over)mgEnd()},520);
+  },MG_ANIM+30);
+}
+function mgSlide(t,i){
+  if(!t.el)return;
+  t.el.classList.add('eaten');
+  t.el.style.left=(i%4)*25+'%';
+  t.el.style.top=Math.floor(i/4)*25+'%';
+}
+function mgCanMove(){
+  for(let i=0;i<16;i++)if(!mg.grid[i])return true;
+  for(let r=0;r<4;r++)for(let c=0;c<4;c++){
+    const t=mg.grid[r*4+c];
+    if(!t||t.lv<=0)continue;
+    if(c<3){const u=mg.grid[r*4+c+1];if(u&&u.lv===t.lv&&u.lv<MG_MAX)return true}
+    if(r<3){const d=mg.grid[(r+1)*4+c];if(d&&d.lv===t.lv&&d.lv<MG_MAX)return true}
+  }
+  return false;
+}
+function mgIsOver(){return !mgCanMove()}
+function mgSkill(){
+  if(mg.over||mg.busy)return;
+  if(mg.energy<MG_SKILL){mgJudge('⚡ 还差 '+(MG_SKILL-mg.energy)+' 点能量，答对一题 +1','#FF8A80');return}
+  const stones=[];for(let i=0;i<16;i++){const t=mg.grid[i];if(t&&t.lv<=0)stones.push(i)}
+  mg.energy-=MG_SKILL;
+  if(stones.length){
+    const i=stones[Math.floor(Math.random()*stones.length)];
+    const t=mg.grid[i];mg.grid[i]=null;
+    if(t.el){t.el.classList.add('eaten');setTimeout(function(){if(t.el)t.el.remove()},MG_ANIM+40)}
+    mgJudge('🔮 石砖被炸开了！','#B9F6CA');sndReward();
+    const b=document.getElementById('mgBoard');
+    if(b){b.classList.remove('shake');void b.offsetWidth}
+    mgHud();return;
+  }
+  let best=null;
+  for(let r=0;r<4;r++)for(let c=0;c<4;c++){
+    const i=r*4+c,t=mg.grid[i];
+    if(!t||t.lv<=0||t.lv>=MG_MAX)continue;
+    const cand=[[r*4+c+1,c<3],[(r+1)*4+c,r<3]];
+    for(const [j,ok] of cand){
+      if(!ok)continue;
+      const u=mg.grid[j];
+      if(u&&u.lv===t.lv&&(!best||t.lv<best.lv))best={lv:t.lv,i:i,j:j};
+    }
+  }
+  if(!best){mgJudge('🔮 没有可炸的石砖，也没有能合的一对','#FF8A80');mg.energy+=MG_SKILL;mgHud();return}
+  const a=mg.grid[best.i],b2=mg.grid[best.j];
+  mg.grid[best.j]=null;
+  if(b2.el){b2.el.classList.add('eaten');setTimeout(function(){if(b2.el)b2.el.remove()},MG_ANIM+40)}
+  a.lv++;a.ch=mgCharFor(a.lv);
+  const g=a.lv*12;mg.score+=g;mg.merges++;
+  if(a.lv>mg.top)mg.top=a.lv;
+  if(a.lv>=MG_MAX)mg.king++;
+  mgPlace(a,best.i);
+  a.el.classList.remove('pop');void a.el.offsetWidth;a.el.classList.add('pop');
+  mgFly(best.i,'+'+g);
+  mgJudge('🔮 合成术！'+a.lv+' 画','#B9F6CA');sndReward();
+  if(a.lv>=MG_MAX){spawnConfetti();mgBanner('👑 十六画汉字之王！')}
+  mgHud();
+}
+function mgUndo(){
+  if(mg.over||mg.busy||!mg.prev)return;
+  if(mg.undo<=0){mgJudge('↩️ 这局悔棋用完了','#FF8A80');return}
+  const s=mg.prev;
+  mg.prev=null;mg.undo--;
+  mgRestore(s);
+  mgJudge('↩️ 回到上一步','#B9F6CA');
+  tone(660,.12);
+}
+function mgHelp(){
+  mgJudge('🧩 数笔画：两块一样的笔画数才能合','#FFE082');
+}
+async function mgAsk(){
+  if(mg.over)return;
+  mg.busy=true;
+  const gen=mg.gen;
+  if(!mgBuildPool()||!mg.pool.some(function(a){return a.length})){
+    mgSet('mgQ','📚 字库还在路上，稍等一下…');
+    setTimeout(function(){if(gen===mg.gen&&!mg.over)mgAsk()},1200);
+    return;
+  }
+  let ch='',data=null;
+  for(let i=0;i<14;i++){
+    const c=nextInQueue();
+    const d=await loadCharData(c);
+    if(d&&d.strokes&&d.medians&&d.strokes.length>=2&&d.medians.length>=2){ch=c;data=d;break}
+  }
+  if(gen!==mg.gen||mg.over)return;
+  if(!ch){setTimeout(function(){if(gen===mg.gen&&!mg.over)mgAsk()},1200);return}
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],n=data.strokes.length;
+  mg.ch=ch;
+  let opts;
+  if(Math.random()<.4&&n<=12){
+    mg.ans=String(n);
+    const nums=[n];
+    while(nums.length<4){
+      const k=n+(Math.random()<.5?-1:1)*(1+Math.floor(Math.random()*3));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=mgShuf(nums).map(function(k){return{v:String(k),txt:'✏️ '+k+' 笔'}});
+    mgSet('mgQ','『'+ch+'』一共有几笔？答对掉一块新砖');
+  }else{
+    const idx=Math.floor(Math.random()*dirs.length);
+    const code=dirs[idx];
+    mg.ans=code;
+    const right=DIRS.filter(function(d){return d.code===code})[0]||DIRS[0];
+    const pool=mgShuf(DIRS.filter(function(d){return d.code!==code})).slice(0,3);
+    opts=mgShuf([right].concat(pool)).map(function(d){return{v:d.code,txt:d.icon+' '+d.label}});
+    mgSet('mgQ','『'+ch+'』的第'+(STK_ORD[idx]||(idx+1))+'笔往哪写？答对掉一块新砖');
+  }
+  const box=document.getElementById('mgOpts');
+  if(box){
+    box.innerHTML=opts.map(function(o,i){
+      return '<button class="opt-btn" data-value="'+o.v+'" data-dir="'+i+'" onclick="mgPick(\''+o.v+'\',this)">'+o.txt+'</button>';
+    }).join('');
+  }
+  mg.busy=false;
+  mgHud();
+}
+function mgShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function mgPick(v,btn){
+  if(mg.over||mg.busy)return;
+  const gen=mg.gen,ok=(v===mg.ans);
+  mg.total++;mg.busy=true;
+  if(btn)btn.classList.add(ok?'correct':'wrong');
+  if(ok){
+    mg.correct++;mg.combo++;
+    mg.energy=Math.min(MG_SKILL,mg.energy+1);
+    const lv=mg.combo>=8?3:mg.combo>=4?2:1;
+    const t=mgSpawn(lv,false);
+    sndOk();
+    if(t)mgFly(t.i,'✨'+lv+'画砖');
+    mgJudge(mg.combo>=4?'🔥 '+mg.combo+' 连对！掉 '+lv+' 画好砖':'🧩 掉下一块 '+lv+' 画字砖','#B9F6CA');
+    if(mg.combo%5===0)mgBanner('🔥 '+mg.combo+' 连对！');
+    mgHud();
+    setTimeout(function(){if(gen===mg.gen&&!mg.over&&currentMode==='merge')mgAsk()},700);
+  }else{
+    mg.combo=0;sndNo();
+    const right=document.querySelector('#mgOpts .opt-btn[data-value="'+mg.ans+'"]');
+    if(right)right.classList.add('reveal');
+    const free=mgCells();
+    if(free.length){
+      const s=mgSpawn(1,true);
+      if(s)mgFly(s.i,'🪨');
+      const b=document.getElementById('mgBoard');
+      if(b){b.classList.remove('shk');void b.offsetWidth;b.classList.add('shk')}
+    }
+    mgJudge('😅 砸下一块 🪨 石砖，看看绿色那格','#FF8A80');
+    mgHud();
+    if(mgIsOver()){setTimeout(function(){if(gen===mg.gen&&!mg.over)mgEnd()},620);return}
+    setTimeout(function(){if(gen===mg.gen&&!mg.over&&currentMode==='merge')mgAsk()},1100);
+  }
+}
+function mgCellsInit(){
+  const b=document.getElementById('mgBoard');if(!b)return;
+  if(b.querySelector('.mg-cell'))return;
+  for(let i=0;i<16;i++){
+    const c=document.createElement('div');
+    c.className='mg-cell';
+    c.style.left=(i%4)*25+'%';c.style.top=Math.floor(i/4)*25+'%';
+    b.insertBefore(c,b.firstChild);
+  }
+}
+function mgStart(){
+  mg.gen++;
+  mgCellsInit();
+  const b=document.getElementById('mgBoard');
+  if(b){const old=b.querySelectorAll('.mg-tile,.mg-fly');for(let i=0;i<old.length;i++)old[i].remove()}
+  mg.grid=new Array(16).fill(null);
+  mg.uid=1;mg.score=0;mg.top=1;mg.merges=0;mg.king=0;mg.energy=0;mg.combo=0;
+  mg.undo=MG_UNDO;mg.total=0;mg.correct=0;mg.prev=null;mg.ans='';mg.ch='';
+  mg.over=false;mg.busy=true;
+  mgBuildPool();
+  showScreen('merge');
+  for(let i=0;i<4;i++)mgSpawn(1+(Math.random()<.35?1:0),false);
+  mgHud();
+  mgJudge('🧩 答对题掉砖，滑动把相同笔画的字合起来','#B9F6CA');
+  mgAsk();
+}
+function mgEnd(){
+  if(mg.over)return;
+  mg.over=true;mg.busy=true;
+  if(mg.score>mgBest())localStorage.setItem('hz_mg_best',String(mg.score));
+  if(mg.top>mgTopAll())localStorage.setItem('hz_mg_top',String(mg.top));
+  if(mg.merges>0)localStorage.setItem('hz_mg_merges',String(mgMergeAll()+mg.merges));
+  if(mg.correct>0)localStorage.setItem('hz_mg_answers',String(mgAnsAll()+mg.correct));
+  if(mg.king>0)localStorage.setItem('hz_mg_king',String(mgKingAll()+mg.king));
+  const s=Math.max(2,Math.min(26,Math.round(mg.score/24)+mg.king*6+Math.floor(mg.top/3)));
+  addStars(s);
+  const acc=mg.total?Math.round(mg.correct/mg.total*100):0;
+  mgSet('mgResultStars','⭐ +'+s);
+  mgSet('mgResultEmoji',mg.top>=MG_MAX?'👑':mg.top>=10?'🏯':mg.top>=7?'🎇':mg.top>=5?'🧩':'🌱');
+  mgSet('mgResultTitle',mg.top>=MG_MAX?'十六画汉字之王！':mg.top>=10?'合出大合体字了！':mg.top>=7?'越合越会数笔画！':'再试一次，会更顺！');
+  mgSet('mgResultSubtitle','最高合到 '+mg.top+' 画 · 合成 '+mg.merges+' 次 · 答对 '+mg.correct+'/'+mg.total+' 题');
+  mgSet('mgResultScore',String(mg.score));
+  mgSet('mgResultTop',String(mg.top));
+  mgSet('mgResultMerges',String(mg.merges));
+  mgSet('mgResultAcc',acc+'%');
+  mgSet('mgResultBest',String(mgBest()));
+  mgSet('mgResultTopAll','最高合到 '+mgTopAll()+' 画 · 字王 '+mgKingAll()+' 次');
+  mgSet('mgResultAll','累计合成 '+mgMergeAll()+' 次 · 累计答对 '+mgAnsAll()+' 题');
+  showScreen('merge-result');
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='merge')return;
+  const K={ArrowLeft:'L',ArrowRight:'R',ArrowUp:'U',ArrowDown:'D',a:'L',d:'R',w:'U',s:'D',A:'L',D:'R',W:'U',S:'D'};
+  if(K[e.key]){e.preventDefault();mgMove(K[e.key]);return}
+  if(/^[1-4]$/.test(e.key)){
+    const b=document.querySelector('#mgOpts .opt-btn[data-dir="'+(e.key-1)+'"]');
+    if(b)b.click();
+  }else if(e.key==='x'||e.key==='X'){mgSkill()}
+});
+(function mgSwipeBind(){
+  const b=document.getElementById('mgBoard');
+  if(!b)return;
+  let sx=0,sy=0,on=false;
+  b.addEventListener('pointerdown',function(e){sx=e.clientX;sy=e.clientY;on=true});
+  b.addEventListener('pointerup',function(e){
+    if(!on)return;on=false;
+    const dx=e.clientX-sx,dy=e.clientY-sy;
+    if(Math.abs(dx)<24&&Math.abs(dy)<24)return;
+    mgMove(Math.abs(dx)>Math.abs(dy)?(dx>0?'R':'L'):(dy>0?'D':'U'));
+  });
+  b.addEventListener('pointercancel',function(){on=false});
+})();
+/* ================= 笔顺合合合 结束 ================= */
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
