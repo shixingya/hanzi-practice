@@ -1067,6 +1067,59 @@ button:active{transform:scale(.95)}
 .jp-tip{width:100%;max-width:316px;margin:7px auto 0;font-size:11.5px;line-height:1.5;color:#fff;opacity:.85;text-align:center}
 .jp-tip b{color:#FFF176}
 @media(max-width:420px){.jp-wrap,.jp-hud,.jp-tip{max-width:296px}}
+/* ===== 笔顺推箱子（汉字箱 + 笔画线索格 + 逆向拉箱生成） ===== */
+.tk-wrap{position:relative;width:100%;max-width:316px;margin:8px auto 0}
+.tk-wrap.shake{animation:cfShake .42s}
+.tk-grid{display:grid;grid-template-columns:repeat(var(--c,5),1fr);gap:5px;width:100%;padding:9px;border-radius:15px;
+  background:linear-gradient(160deg,#4A3A6E,#2B1F45);box-shadow:inset 0 2px 12px rgba(0,0,0,.55),0 8px 20px rgba(0,0,0,.3);touch-action:none}
+.tk-cell{position:relative;aspect-ratio:1/1;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,#F5E9CC,#DCC79E);box-shadow:inset 0 -2px 0 rgba(0,0,0,.14),inset 0 2px 0 rgba(255,255,255,.5);
+  font-family:inherit;transition:transform .12s;cursor:pointer}
+.tk-cell.wall{background:linear-gradient(160deg,#9E9E9E,#5B5B5B);box-shadow:inset 0 3px 6px rgba(0,0,0,.55);font-size:15px}
+.tk-cell.tgt{background:radial-gradient(circle at 50% 45%,#FFE9A8 0 52%,#DCC79E 58%);box-shadow:inset 0 0 0 2px #FFB300}
+.tk-cell.tgt .clue{font-size:10px;font-weight:800;color:#5D4037;line-height:1.1;text-align:center}
+.tk-cell.has{background:linear-gradient(160deg,#C5A8F5,#7E57C2 70%);box-shadow:0 3px 8px rgba(0,0,0,.4),inset 0 2px 0 rgba(255,255,255,.4)}
+.tk-cell.has b{font-size:17px;color:#fff;line-height:1.05;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.tk-cell.has i{font-style:normal;font-size:8.5px;color:#EDE7F6;opacity:.95;margin-top:1px}
+.tk-cell.ok{background:linear-gradient(160deg,#9CDBA0,#2E7D32 72%);animation:tkPop .42s}
+.tk-cell.ok i{color:#E8F5E9}
+.tk-cell.bad::after{content:'';position:absolute;inset:0;border-radius:9px;box-shadow:0 0 0 3px #FF5252}
+.tk-cell.me{background:linear-gradient(160deg,#FFE082,#FF8F00 75%);font-size:19px;box-shadow:0 3px 9px rgba(0,0,0,.42),inset 0 2px 0 rgba(255,255,255,.5)}
+.tk-cell.hint{animation:tkBlink .62s ease-in-out 4}
+@keyframes tkPop{0%{transform:scale(.68)}58%{transform:scale(1.14)}100%{transform:scale(1)}}
+@keyframes tkBlink{0%,100%{box-shadow:inset 0 0 0 2px #FFB300}50%{box-shadow:0 0 0 5px #FFF176}}
+.tk-judge{position:absolute;left:50%;top:38%;transform:translateX(-50%);max-width:94%;text-align:center;
+  font-size:14px;font-weight:800;color:#FFEA00;text-shadow:0 2px 4px rgba(0,0,0,.6);opacity:0;pointer-events:none;z-index:9}
+.tk-judge.show{animation:tkJudge 2s ease-out forwards}
+@keyframes tkJudge{0%{opacity:0;transform:translateX(-50%) scale(.72)}14%{opacity:1;transform:translateX(-50%) scale(1.06)}26%{transform:translateX(-50%) scale(1)}80%{opacity:1}100%{opacity:0}}
+.tk-banner{position:absolute;left:0;right:0;top:34%;text-align:center;font-size:24px;font-weight:900;color:#fff;
+  text-shadow:0 3px 0 #6A1B9A,0 5px 12px rgba(0,0,0,.4);opacity:0;pointer-events:none;z-index:10}
+.tk-banner.show{animation:tkBan 1.6s ease-out forwards}
+@keyframes tkBan{0%{opacity:0;transform:scale(.4) rotate(-8deg)}22%{opacity:1;transform:scale(1.16) rotate(3deg)}42%{transform:scale(1)}78%{opacity:1}100%{opacity:0;transform:scale(1.04)}}
+.tk-hud{display:flex;justify-content:space-between;gap:6px;width:100%;max-width:316px;margin:8px auto 0;
+  font-size:11.5px;font-weight:700;color:#fff;background:rgba(255,255,255,.14);border-radius:12px;padding:7px 10px}
+.tk-hud span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tk-lvs{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;width:100%;max-width:316px;margin:8px auto 0}
+.tk-lv{border:none;border-radius:9px;min-width:30px;padding:5px 7px;font-family:inherit;font-size:12px;font-weight:800;cursor:pointer;
+  background:rgba(255,255,255,.16);color:#fff}
+.tk-lv.on{background:linear-gradient(160deg,#FFD54F,#FF8F00);color:#4E2A00}
+.tk-lv:disabled{opacity:.35;cursor:default}
+.tk-ctl{display:flex;align-items:center;justify-content:center;gap:14px;width:100%;max-width:316px;margin:9px auto 0}
+.tk-dpad{display:grid;grid-template-columns:repeat(3,42px);grid-template-rows:repeat(3,42px);gap:4px}
+.tk-key{border:none;border-radius:10px;background:rgba(255,255,255,.18);color:#fff;font-size:16px;font-family:inherit;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.28)}
+.tk-key:active{transform:translateY(2px);box-shadow:none}
+.tk-key.u{grid-column:2;grid-row:1}
+.tk-key.l{grid-column:1;grid-row:2}
+.tk-key.r{grid-column:3;grid-row:2}
+.tk-key.d{grid-column:2;grid-row:3}
+.tk-side{display:flex;flex-direction:column;gap:7px}
+.tk-act{border:none;border-radius:11px;padding:9px 12px;font-family:inherit;font-size:12.5px;font-weight:800;cursor:pointer;color:#3E2723;
+  background:linear-gradient(160deg,#FFF176,#FFB300);box-shadow:0 3px 0 rgba(0,0,0,.28)}
+.tk-act.b{background:linear-gradient(160deg,#B3E5FC,#0288D1);color:#01304F}
+.tk-act:active{transform:translateY(2px);box-shadow:none}
+.tk-tip{width:100%;max-width:316px;margin:7px auto 0;font-size:11.5px;line-height:1.5;color:#fff;opacity:.85;text-align:center}
+.tk-tip b{color:#FFF176}
+@media(max-width:420px){.tk-wrap,.tk-hud,.tk-lvs,.tk-ctl,.tk-tip{max-width:296px}.tk-grid{gap:4px;padding:7px}.tk-cell.has b{font-size:15px}}
 </style>
 
 </head>
@@ -1203,6 +1256,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('bowl')">
       <div class="icon">🎳</div>
       <div class="info"><h3>笔顺保龄球</h3><p>答对拿大力球，瞄口袋位一票全倒！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('push')">
+      <div class="icon">📦</div>
+      <div class="info"><h3>笔顺推箱子</h3><p>汉字箱推到笔画线索格上！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('jump')">
       <div class="icon">🐰</div>
@@ -2473,7 +2530,67 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
-<div class="screen" id="screen-jump">
+<div class="screen" id="screen-push">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="tkScoreTxt">📦 0 分</span><span id="tkLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="tkHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal" id="tkGoal">📦 每只<b>汉字箱</b>都写着它的笔画数，地板上的<b>金色线索格</b>写着「几笔 / 首笔 / 末笔」。把箱子推到<b>对得上的线索格</b>上，全部归位就过关！线索格要的是哪只箱子，全靠<b>数笔画、记笔顺</b>。</div>
+  <div class="tk-hud">
+    <span id="tkStepTxt">👣 0/18 步</span>
+    <span id="tkDoneTxt">✅ 0/2 归位</span>
+    <span id="tkBestTxt">🥇 纪录 —</span>
+  </div>
+  <div class="tk-lvs" id="tkLvs"></div>
+  <div class="tk-wrap">
+    <div class="tk-grid" id="tkGrid"></div>
+    <div class="tk-judge" id="tkJudge"></div>
+    <div class="tk-banner" id="tkBanner"></div>
+  </div>
+  <div class="tk-ctl">
+    <div class="tk-dpad">
+      <button class="tk-key u" onclick="tkMove(0,-1)">▲</button>
+      <button class="tk-key l" onclick="tkMove(-1,0)">◀</button>
+      <button class="tk-key r" onclick="tkMove(1,0)">▶</button>
+      <button class="tk-key d" onclick="tkMove(0,1)">▼</button>
+    </div>
+    <div class="tk-side">
+      <button class="tk-act b" id="tkUndoBtn" onclick="tkUndo()">↩️ 撤销</button>
+      <button class="tk-act" id="tkHintBtn" onclick="tkHint()">💡 提示</button>
+    </div>
+  </div>
+  <div class="tk-tip" id="tkTip">方向键 / <b>WASD</b> 走动，走到箱子后面就能<b>推</b> · <b>U</b> 撤销一步 · <b>H</b> 提示 · 推上错误线索格会<b>扣连击</b></div>
+  <div class="quiz-header"><div class="question" id="tkQ">正在搬箱子…</div></div>
+</div>
+<div class="screen" id="screen-push-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="tkResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="tkResultEmoji">📦</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="tkResultTitle">推箱子收工！</h2>
+    <p style="font-size:16px;opacity:.8" id="tkResultSubtitle">数笔画、记笔顺，箱子自己会排队</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="tkResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="tkResultLv">0</div><div style="font-size:13px;opacity:.7">过了几关</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="tkResultPush">0</div><div style="font-size:13px;opacity:.7">推箱次数</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="tkResultAcc">0%</div><div style="font-size:13px;opacity:.7">归位准确率</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="tkResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="tkResultAll">累计归位 0 只 · 最高第 1 关</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="tkStart()">📦 再推一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div><div class="screen" id="screen-jump">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
     <div class="stats"><span id="jpScoreTxt">🐰 0 分</span><span id="jpHopTxt">第 0 跳</span></div>
@@ -2952,6 +3069,7 @@ function enterMode(mode){
  else if(mode==='merge')mgStart();
  else if(mode==='bowl')bwStart();
  else if(mode==='jump')jpStart();
+ else if(mode==='push')tkStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -12514,6 +12632,467 @@ document.addEventListener('keyup',function(e){
 })();
 /* ================= 笔顺跳一跳 结束 ================= */
 
+/* ================= 笔顺推箱子 开始 ================= */
+const TK_DIR={R:'➡️',D:'⬇️',P:'↙️',N:'↘️',T:'↗️'};
+const TK_NOTE=[523,587,659,784,880,1047,1175,1319];
+const TK_DS=[[1,0],[-1,0],[0,1],[0,-1]];
+let tk={gen:0,lg:0,over:true,busy:false,ready:false,lv:1,cols:5,rows:5,wall:{},crates:[],targets:[],
+  p:{x:0,y:0},steps:0,budget:0,par:0,parMoves:0,hist:[],log:[],cells:[],solved:0,pushes:0,undos:0,hints:0,
+  correct:0,wrong:0,combo:0,maxCombo:0,score:0};
+function tkSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function tkGrid(){return document.getElementById('tkGrid')}
+function tkIdx(x,y){return y*tk.cols+x}
+function tkIn(x,y){return x>=0&&y>=0&&x<tk.cols&&y<tk.rows}
+function tkWallAt(x,y){return tkIn(x,y)&&!!tk.wall[tkIdx(x,y)]}
+function tkCrateAt(x,y){for(let i=0;i<tk.crates.length;i++){if(tk.crates[i].x===x&&tk.crates[i].y===y)return tk.crates[i]}return null}
+function tkTgtAt(x,y){for(let i=0;i<tk.targets.length;i++){if(tk.targets[i].x===x&&tk.targets[i].y===y)return tk.targets[i]}return null}
+function tkMatch(c,t){if(!c||!t)return false;return t.kind==='n'?c.n===t.val:t.kind==='first'?c.first===t.val:c.last===t.val}
+function tkMatched(t){return tkMatch(tkCrateAt(t.x,t.y),t)}
+function tkClue(t){return t.kind==='n'?(t.val+' 笔'):t.kind==='first'?('首笔'+(TK_DIR[t.val]||'➡️')):('末笔'+(TK_DIR[t.val]||'⬇️'))}
+function tkDone(){let n=0;for(let i=0;i<tk.targets.length;i++)if(tkMatched(tk.targets[i]))n++;return n}
+function tkShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function tkPars(){try{return JSON.parse(localStorage.getItem('hz_tk_par')||'{}')||{}}catch(e){return{}}}
+function tkCfg(l){
+  const s=Math.min(7,5+Math.floor((l-1)/3));
+  return {cols:s,rows:s,boxes:Math.min(4,2+Math.floor((l-1)/4)),
+    walls:Math.min(8,1+Math.floor(l/1.6)),pulls:Math.min(9,3+Math.round(l*0.8))};
+}
+function tkJudge(t,color){
+  const e=document.getElementById('tkJudge');if(!e)return;
+  e.textContent=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function tkBanner(t){
+  const e=document.getElementById('tkBanner');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function tkShake(){
+  const w=document.querySelector('.tk-wrap');if(!w)return;
+  w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake');
+}
+function tkFly(t){
+  const el=tk.cells[tkIdx(t.x,t.y)];if(!el)return;
+  const r=el.getBoundingClientRect();
+  spawnStarFly(r.left+r.width/2,r.top+r.height/2);
+}
+function tkFlag(x,y,cls,ms){
+  const el=tk.cells[tkIdx(x,y)];if(!el)return;
+  el.classList.add(cls);
+  setTimeout(function(){if(el)el.classList.remove(cls)},ms||760);
+}
+function tkAdd(key,dv){
+  localStorage.setItem(key,String(parseInt(localStorage.getItem(key)||'0',10)+(dv||1)));
+}
+async function tkLoadChars(k){
+  const out=[],seen={},guard=k*16+70;
+  for(let i=0;i<guard&&out.length<k;i++){
+    const ch=nextInQueue();
+    if(!ch||seen[ch])continue;
+    let d=null;
+    try{d=await loadCharData(ch)}catch(e){d=null}
+    if(!d||!d.strokes||!d.medians||d.medians.length<2)continue;
+    const n=d.strokes.length;
+    if(n<2||n>12)continue;
+    if(!strokeTypes[ch]||!strokeTypes[ch].length)strokeTypes[ch]=d.medians.map(function(m){return detectDir(m)});
+    const st=strokeTypes[ch];
+    if(!st||st.length<2)continue;
+    seen[ch]=1;
+    out.push({ch:ch,n:n,first:st[0],last:st[st.length-1]});
+  }
+  return out;
+}
+function tkLargestComp(w,n){
+  const seen={};
+  let best=[];
+  for(let i=0;i<n;i++){
+    if(w[i]||seen[i])continue;
+    const q=[i],comp=[];
+    seen[i]=1;
+    while(q.length){
+      const cur=q.pop();
+      comp.push(cur);
+      const cx=cur%tk.cols,cy=Math.floor(cur/tk.cols);
+      for(let a=0;a<4;a++){
+        const nx=cx+TK_DS[a][0],ny=cy+TK_DS[a][1];
+        if(!tkIn(nx,ny))continue;
+        const j=tkIdx(nx,ny);
+        if(w[j]||seen[j])continue;
+        seen[j]=1;q.push(j);
+      }
+    }
+    if(comp.length>best.length)best=comp;
+  }
+  return best;
+}
+function tkSolMoves(){
+  const cols=tk.cols,rows=tk.rows,w=tk.wall;
+  const K=function(x,y){return y*cols+x};
+  const sim=tk.crates.map(function(c){return {x:c.x,y:c.y}});
+  const P={x:tk.p.x,y:tk.p.y};
+  const ci=function(x,y){for(let i=0;i<sim.length;i++)if(sim[i].x===x&&sim[i].y===y)return i;return -1};
+  const free=function(x,y){return x>=0&&y>=0&&x<cols&&y<rows&&!w[K(x,y)]&&ci(x,y)<0};
+  const dist=function(sx,sy,tx,ty){
+    if(sx===tx&&sy===ty)return 0;
+    const vis={};
+    vis[K(sx,sy)]=1;
+    const q=[[sx,sy,0]];
+    while(q.length){
+      const cur=q.shift();
+      for(let a=0;a<4;a++){
+        const nx=cur[0]+TK_DS[a][0],ny=cur[1]+TK_DS[a][1];
+        if(!free(nx,ny))continue;
+        const j=K(nx,ny);
+        if(vis[j])continue;
+        vis[j]=1;
+        if(nx===tx&&ny===ty)return cur[2]+1;
+        q.push([nx,ny,cur[2]+1]);
+      }
+    }
+    return -1;
+  };
+  let total=0;
+  for(let i=tk.log.length-1;i>=0;i--){
+    const e=tk.log[i];
+    if(sim[e.ci].x!==e.px||sim[e.ci].y!==e.py)return -1;
+    const nx=e.px-e.dx,ny=e.py-e.dy;
+    if(!free(nx,ny))return -1;
+    const d=dist(P.x,P.y,nx,ny);
+    if(d<0)return -1;
+    total+=d+1;
+    P.x=e.px;P.y=e.py;
+    sim[e.ci].x=e.px+e.dx;sim[e.ci].y=e.py+e.dy;
+  }
+  for(let i=0;i<tk.targets.length;i++){
+    const t=tk.targets[i];
+    let hit=false;
+    for(let k=0;k<sim.length;k++){
+      if(sim[k].x===t.x&&sim[k].y===t.y&&tkMatch(tk.crates[k],t))hit=true;
+    }
+    if(!hit)return -1;
+  }
+  return total;
+}
+function tkTryBuild(cfg,chars,walls){
+  const n=cfg.cols*cfg.rows;
+  tk.cols=cfg.cols;tk.rows=cfg.rows;
+  const w={};
+  const all=[];
+  for(let i=0;i<n;i++)all.push(i);
+  tkShuf(all);
+  for(let i=0;i<walls&&i<all.length;i++)w[all[i]]=1;
+  tk.wall=w;
+  let comp=tkLargestComp(w,n);
+  if(comp.length<Math.max(chars.length+4,8))return false;
+  const inComp={};
+  comp.forEach(function(i){inComp[i]=1});
+  for(let i=0;i<n;i++)if(!w[i]&&!inComp[i])w[i]=1;
+  comp=tkShuf(comp.slice());
+  const targets=[],crates=[];
+  for(let i=0;i<chars.length;i++){
+    const cell=comp[i],t={x:cell%cfg.cols,y:Math.floor(cell/cfg.cols),kind:'n',val:chars[i].n};
+    targets.push(t);
+    crates.push({ch:chars[i].ch,n:chars[i].n,first:chars[i].first,last:chars[i].last,x:t.x,y:t.y});
+  }
+  const kinds=['n','first','last'];
+  targets.forEach(function(t,i){
+    const k=kinds[Math.floor(Math.random()*kinds.length)],c=crates[i];
+    t.kind=k;
+    t.val=k==='n'?c.n:k==='first'?c.first:c.last;
+  });
+  const occ={};
+  crates.forEach(function(c){occ[c.y*cfg.cols+c.x]=1});
+  const spots=comp.filter(function(i){return !occ[i]});
+  if(!spots.length)return false;
+  const pi=spots[Math.floor(Math.random()*spots.length)];
+  const p={x:pi%cfg.cols,y:Math.floor(pi/cfg.cols)};
+  const findC=function(x,y){for(let i=0;i<crates.length;i++)if(crates[i].x===x&&crates[i].y===y)return crates[i];return null};
+  let pulls=0;
+  const log=[];
+  for(let g=0;g<cfg.pulls;g++){
+    const opts=[];
+    for(let k=0;k<crates.length;k++){
+      const c=crates[k];
+      for(let a=0;a<4;a++){
+        const dx=TK_DS[a][0],dy=TK_DS[a][1];
+        const ax=c.x-dx,ay=c.y-dy,bx=c.x-2*dx,by=c.y-2*dy;
+        if(ax<0||ay<0||ax>=cfg.cols||ay>=cfg.rows)continue;
+        if(bx<0||by<0||bx>=cfg.cols||by>=cfg.rows)continue;
+        if(w[ay*cfg.cols+ax]||w[by*cfg.cols+bx])continue;
+        if(findC(ax,ay)||findC(bx,by))continue;
+        opts.push({ci:k,dx:dx,dy:dy,px:ax,py:ay});
+      }
+    }
+    if(!opts.length)break;
+    const o=opts[Math.floor(Math.random()*opts.length)];
+    log.push(o);
+    crates[o.ci].x=o.px;crates[o.ci].y=o.py;
+    p.x=o.px-o.dx;p.y=o.py-o.dy;
+    pulls++;
+  }
+  if(pulls<2)return false;
+  tk.wall=w;tk.crates=crates;tk.targets=targets;tk.p=p;tk.log=log;
+  tk.par=pulls;
+  const mv=tkSolMoves();
+  if(mv<0)return false;
+  tk.parMoves=mv;
+  tk.budget=mv+6+crates.length*4;
+  tk.steps=0;tk.hist=[];
+  return tkDone()<targets.length;
+}
+function tkBuildDom(){
+  const g=tkGrid();if(!g)return;
+  g.style.setProperty('--c',String(tk.cols));
+  g.innerHTML='';
+  tk.cells=[];
+  for(let y=0;y<tk.rows;y++){
+    for(let x=0;x<tk.cols;x++){
+      const d=document.createElement('div');
+      d.className='tk-cell';
+      g.appendChild(d);
+      tk.cells.push(d);
+    }
+  }
+}
+function tkRender(){
+  for(let y=0;y<tk.rows;y++){
+    for(let x=0;x<tk.cols;x++){
+      const i=tkIdx(x,y),el=tk.cells[i];
+      if(!el)continue;
+      const c=tkCrateAt(x,y),t=tkTgtAt(x,y);
+      let cls='tk-cell',html='';
+      if(tk.wall[i]){cls+=' wall';html='🧱'}
+      else if(tk.p.x===x&&tk.p.y===y){cls+=' me';html='🧒'}
+      else if(c){
+        cls+=' has'+(t?' tgt':'')+(t&&tkMatch(c,t)?' ok':'');
+        html='<b>'+c.ch+'</b><i>'+c.n+' 笔</i>';
+      }else if(t){cls+=' tgt';html='<span class="clue">'+tkClue(t)+'</span>'}
+      if(el.className!==cls)el.className=cls;
+      if(el.innerHTML!==html)el.innerHTML=html;
+    }
+  }
+}
+function tkLvs(){
+  const box=document.getElementById('tkLvs');if(!box)return;
+  const un=Math.max(1,Math.min(24,parseInt(localStorage.getItem('hz_tk_lv')||'1',10)));
+  let h='';
+  for(let i=1;i<=un;i++)h+='<button class="tk-lv'+(i===tk.lv?' on':'')+'" onclick="tkGo('+i+')">'+i+'</button>';
+  box.innerHTML=h;
+}
+function tkHud(){
+  tkSet('tkScoreTxt','📦 '+tk.score+' 分');
+  tkSet('tkLvTxt','第 '+tk.lv+' 关');
+  tkSet('tkStepTxt','👣 '+tk.steps+'/'+tk.budget+' 步');
+  tkSet('tkDoneTxt','✅ '+tkDone()+'/'+tk.targets.length+' 归位');
+  const par=tkPars()[String(tk.lv)];
+  tkSet('tkBestTxt',par?('🥇 最佳 '+par+' 步'):'🥇 最佳 —');
+  const btn=document.getElementById('tkUndoBtn');
+  if(btn)btn.disabled=!tk.hist.length;
+  const rest=Math.max(0,tk.budget-tk.steps);
+  tkSet('tkQ','🎯 把 '+tk.targets.length+' 只汉字箱推到对应线索格 · 已归位 '+tkDone()+
+    ' · 还剩 '+rest+' 步（过关参考 '+tk.parMoves+' 步 / '+tk.par+' 次推箱）');
+}
+function tkSnap(){
+  tk.hist.push({cs:tk.crates.map(function(c){return [c.x,c.y]}),p:[tk.p.x,tk.p.y],s:tk.score,c:tk.combo});
+  if(tk.hist.length>400)tk.hist.shift();
+}
+function tkMove(dx,dy){
+  if(tk.over||tk.busy||!tk.ready||currentMode!=='push')return;
+  const nx=tk.p.x+dx,ny=tk.p.y+dy;
+  if(!tkIn(nx,ny)||tkWallAt(nx,ny)){tkJudge('🧱 那边是墙，绕一绕','#FF5252');tone(200,.1,'square');tkShake();return}
+  const c=tkCrateAt(nx,ny);
+  let pushed=false,cx=0,cy=0;
+  if(c){
+    cx=nx+dx;cy=ny+dy;
+    if(!tkIn(cx,cy)||tkWallAt(cx,cy)||tkCrateAt(cx,cy)){
+      tkJudge('🚧「'+c.ch+'」后面推不动，换个方向试试','#FF5252');sndNo();tkShake();return;
+    }
+    pushed=true;
+  }
+  const was=tkDone();
+  tkSnap();
+  if(pushed){
+    c.x=cx;c.y=cy;
+    tk.pushes++;tkAdd('hz_tk_pushes');
+  }
+  tk.p.x=nx;tk.p.y=ny;tk.steps++;
+  tkRender();
+  if(pushed){
+    const t=tkTgtAt(c.x,c.y);
+    if(t&&tkMatch(c,t)){
+      tk.combo++;
+      if(tk.combo>tk.maxCombo)tk.maxCombo=tk.combo;
+      tk.correct++;tkAdd('hz_tk_chars');
+      tk.score+=40+(tk.combo-1)*15;
+      sndOk();
+      tone(TK_NOTE[Math.min(TK_NOTE.length-1,tk.combo-1)],.14);
+      tkFly(t);
+      tkJudge('✅「'+c.ch+'」'+c.n+' 笔，和「'+tkClue(t)+'」对上了！'+(tk.combo>1?(' ×'+tk.combo):''),'#FFEA00');
+      if(tk.combo===3||tk.combo===6)tkBanner('🔥 连对 ×'+tk.combo+'！');
+    }else if(t){
+      tk.combo=0;tk.wrong++;
+      tk.score=Math.max(0,tk.score-8);
+      sndNo();tkFlag(c.x,c.y,'bad',760);tkShake();
+      tkJudge('❌「'+c.ch+'」'+c.n+' 笔 · 首笔'+(TK_DIR[c.first]||'')+' · 末笔'+(TK_DIR[c.last]||
+        '')+'，这格要的是「'+tkClue(t)+'」','#FF5252');
+    }else if(tkDone()<was){
+      tkJudge('↩️「'+c.ch+'」离开了对得上的格子，再推回去','#FFF176');
+    }
+  }
+  if(tk.targets.length&&tkDone()>=tk.targets.length){tkWin();return}
+  tkHud();
+  if(tk.steps>=tk.budget){tkEnd('🥾 步数用完啦，箱子还没全回家');return}
+  if(tk.budget-tk.steps===3)tkJudge('⚠️ 只剩 3 步！用「↩️ 撤销」换条近路','#FFD54F');
+}
+function tkUndo(){
+  if(tk.over||tk.busy||!tk.ready)return;
+  if(!tk.hist.length){tkJudge('↩️ 还没有走过路，无可撤销','#FFF176');return}
+  const s=tk.hist.pop();
+  for(let i=0;i<tk.crates.length;i++){tk.crates[i].x=s.cs[i][0];tk.crates[i].y=s.cs[i][1]}
+  tk.p.x=s.p[0];tk.p.y=s.p[1];
+  tk.score=s.s;tk.combo=s.c;
+  tk.undos++;tkAdd('hz_tk_undo');
+  sndStar();
+  tkRender();tkHud();
+  tkJudge('↩️ 退回去重想（走过的步数不退）','#FFF176');
+}
+function tkHint(){
+  if(tk.over||tk.busy||!tk.ready)return;
+  const un=[],loose=[];
+  for(let i=0;i<tk.targets.length;i++)if(!tkMatched(tk.targets[i]))un.push(tk.targets[i]);
+  tk.crates.forEach(function(c){const t=tkTgtAt(c.x,c.y);if(!t||!tkMatch(c,t))loose.push(c)});
+  if(!un.length||!loose.length){tkJudge('💡 全都对上了，接着推下一关！','#2E7D32');return}
+  let pick=null;
+  for(let i=0;i<un.length&&!pick;i++){
+    for(let j=0;j<loose.length;j++)if(tkMatch(loose[j],un[i])){pick={c:loose[j],t:un[i]};break}
+  }
+  if(!pick)pick={c:loose[0],t:un[0]};
+  tk.hints++;tkAdd('hz_tk_hint');
+  tk.score=Math.max(0,tk.score-12);
+  tone(760,.1);
+  [pick.c,pick.t].forEach(function(o){
+    const el=tk.cells[tkIdx(o.x,o.y)];
+    if(!el)return;
+    el.classList.remove('hint');void el.offsetWidth;el.classList.add('hint');
+    setTimeout(function(){if(el)el.classList.remove('hint')},2600);
+  });
+  tkJudge('💡「'+pick.c.ch+'」'+pick.c.n+' 笔 · 首笔'+(TK_DIR[pick.c.first]||'')+' · 末笔'+
+    (TK_DIR[pick.c.last]||'')+' → 推到「'+tkClue(pick.t)+'」','#FFF176');
+  tkHud();
+}
+function tkWin(){
+  tk.ready=false;tk.busy=true;
+  tk.solved++;
+  const pars=tkPars(),key=String(tk.lv);
+  if(!pars[key]||tk.steps<pars[key]){pars[key]=tk.steps;localStorage.setItem('hz_tk_par',JSON.stringify(pars))}
+  const un=parseInt(localStorage.getItem('hz_tk_lv')||'1',10);
+  if(tk.lv>=un)localStorage.setItem('hz_tk_lv',String(tk.lv+1));
+  sndReward();spawnConfetti();
+  tkBanner('🎉 全部归位！');
+  tkJudge('🏅 第 '+tk.lv+' 关只用了 '+tk.steps+' 步（参考 '+tk.parMoves+' 步）','#FFEA00');
+  const gen=tk.gen;
+  tkHud();tkLvs();
+  setTimeout(function(){
+    if(gen!==tk.gen||currentMode!=='push'||tk.over)return;
+    tkGoWith(tk.lv+1,gen);
+  },1500);
+}
+async function tkGoWith(l,gen){
+  const my=++tk.lg;
+  tk.busy=true;tk.ready=false;tk.lv=l;
+  tkSet('tkQ','第 '+l+' 关 · 正在摆箱子…');
+  const cfg=tkCfg(l);
+  const chars=await tkLoadChars(cfg.boxes);
+  if(my!==tk.lg||gen!==tk.gen||currentMode!=='push')return;
+  if(chars.length<2){
+    tk.busy=false;
+    tkSet('tkQ','📚 字库还在路上，稍等一下再点「再推一局」');
+    return;
+  }
+  let built=false;
+  for(let i=0;i<40&&!built;i++)built=tkTryBuild(cfg,chars,i<30?cfg.walls:0);
+  if(!built){
+    tk.busy=false;
+    tkSet('tkQ','😅 这关地图没摆出来，点「再推一局」换一张');
+    return;
+  }
+  tk.busy=false;
+  tkBuildDom();tkRender();tkLvs();tkHud();
+  tk.ready=true;
+  tkJudge('📦 第 '+l+' 关 · '+cfg.boxes+' 只箱子 · 棋盘 '+cfg.cols+'×'+cfg.rows,'#2E7D32');
+}
+function tkGo(l){return tkGoWith(l,tk.gen)}
+async function tkStart(){
+  tk.gen++;
+  const gen=tk.gen;
+  tk.over=false;tk.busy=true;tk.ready=false;
+  tk.score=0;tk.combo=0;tk.maxCombo=0;tk.solved=0;tk.pushes=0;tk.undos=0;tk.hints=0;
+  tk.correct=0;tk.wrong=0;
+  tk.crates=[];tk.targets=[];tk.hist=[];tk.log=[];tk.parMoves=0;tk.cells=[];tk.wall={};
+  showScreen('push');
+  tkLvs();
+  tkSet('tkQ','正在搬箱子…');
+  await tkGoWith(1,gen);
+}
+function tkEnd(reason){
+  if(tk.over)return;
+  tk.over=true;tk.busy=true;tk.ready=false;
+  const best=parseInt(localStorage.getItem('hz_tk_best')||'0',10);
+  if(tk.score>best)localStorage.setItem('hz_tk_best',String(tk.score));
+  tkAdd('hz_tk_games');
+  maxCombo=Math.max(maxCombo,tk.maxCombo);
+  const gain=Math.max(2,Math.min(24,tk.solved*4+tk.correct*2+(tk.maxCombo>=4?2:0)));
+  addStars(gain);
+  sndDone();
+  showScreen('push-result');
+  tkSet('tkResultStars','⭐ +'+gain);
+  tkSet('tkResultScore',String(tk.score));
+  tkSet('tkResultLv',String(tk.solved));
+  tkSet('tkResultPush',String(tk.pushes));
+  tkSet('tkResultAcc',(tk.correct+tk.wrong)?Math.round(tk.correct*100/(tk.correct+tk.wrong))+'%':'—');
+  tkSet('tkResultBest',String(Math.max(best,tk.score)));
+  tkSet('tkResultAll','累计归位 '+(parseInt(localStorage.getItem('hz_tk_chars')||'0',10))+
+    ' 只 · 最高第 '+localStorage.getItem('hz_tk_lv')+' 关 · 共玩 '+localStorage.getItem('hz_tk_games')+' 局');
+  const s=tk.solved;
+  tkSet('tkResultEmoji',s>=5?'🏗️':s>=3?'🚚':s>=1?'📦':'🧱');
+  tkSet('tkResultTitle',s>=5?'仓库小管家！':s>=3?'推箱小能手！':s>=2?('连过 '+s+' 关！'):s>=1?'第一关过了！':'再来一局更顺手');
+  tkSet('tkResultSubtitle',reason||'数笔画、记笔顺，箱子自己会排队');
+}
+function tkHelp(){tkJudge('📦 走到箱子另一侧就能推，格子写着几笔就放几笔的箱','#2E7D32')}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='push')return;
+  const k=e.key;
+  let m=null;
+  if(k==='ArrowUp'||k==='w'||k==='W')m=[0,-1];
+  else if(k==='ArrowDown'||k==='s'||k==='S')m=[0,1];
+  else if(k==='ArrowLeft'||k==='a'||k==='A')m=[-1,0];
+  else if(k==='ArrowRight'||k==='d'||k==='D')m=[1,0];
+  if(m){e.preventDefault();tkMove(m[0],m[1]);return}
+  if(k==='u'||k==='U'||k==='z'||k==='Z'){e.preventDefault();tkUndo();return}
+  if(k==='h'||k==='H'){e.preventDefault();tkHint()}
+});
+(function tkBind(){
+  const g=tkGrid();
+  if(!g)return;
+  let sx=0,sy=0,down=false;
+  g.addEventListener('pointerdown',function(e){down=true;sx=e.clientX;sy=e.clientY});
+  g.addEventListener('pointerup',function(e){
+    if(!down)return;
+    down=false;
+    const dx=e.clientX-sx,dy=e.clientY-sy;
+    if(Math.abs(dx)<18&&Math.abs(dy)<18){
+      const i=tk.cells.indexOf(e.target.closest?e.target.closest('.tk-cell'):e.target);
+      if(i<0)return;
+      const cx=i%tk.cols,cy=Math.floor(i/tk.cols);
+      const ox=cx-tk.p.x,oy=cy-tk.p.y;
+      if(Math.abs(ox)+Math.abs(oy)===1)tkMove(ox,oy);
+      return;
+    }
+    if(Math.abs(dx)>Math.abs(dy))tkMove(dx>0?1:-1,0);
+    else tkMove(0,dy>0?1:-1);
+  });
+  g.addEventListener('pointercancel',function(){down=false});
+})();
+/* ================= 笔顺推箱子 结束 ================= */
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
