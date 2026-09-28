@@ -859,7 +859,80 @@ button:active{transform:scale(.95)}
 .stk-drop{display:block;width:100%;max-width:330px;margin:9px auto 0;font-size:17px;padding:13px 0}
 .stk-drop:disabled{opacity:.4}
 .stk-zone{width:100%;max-width:330px;margin:5px auto 0;text-align:center;font-size:11.5px;color:#fff;opacity:.85}
-@media(max-width:420px){.stk-wrap,.stk-hud,.stk-hearts,.stk-drop,.stk-zone{max-width:296px}.stk-sky{height:300px}}
+@media(max-width:420px){.stk-wrap,.stk-hud,.stk-hearts,.stk-drop,.stk-zone{max-width:296px}
+/* ---------- 笔顺扭蛋机 ---------- */
+.gg-wrap{width:100%;max-width:330px;margin:10px auto 0}
+.gg-machine{position:relative;height:212px;border-radius:22px;background:linear-gradient(180deg,#8A66F0,#9F7BFF 58%,#6B4BD8);box-shadow:inset 0 0 0 2px rgba(255,255,255,.26),0 10px 26px rgba(0,0,0,.3);overflow:hidden}
+.gg-dome{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:158px;height:110px;border-radius:78px 78px 14px 14px;background:radial-gradient(circle at 32% 22%,rgba(255,255,255,.92),rgba(255,255,255,.26) 46%,rgba(255,255,255,.1) 74%);border:3px solid rgba(255,255,255,.66);overflow:hidden}
+.gg-ball{position:absolute;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,var(--bc));box-shadow:inset -3px -4px 6px rgba(0,0,0,.16);animation:ggBob 3.2s ease-in-out infinite}
+.gg-body{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:196px;height:76px;border-radius:16px 16px 20px 20px;background:linear-gradient(#5B3FC4,#452AA0);box-shadow:inset 0 2px 0 rgba(255,255,255,.22)}
+.gg-knob{position:absolute;left:22px;bottom:26px;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#FFE082,#F0A500);box-shadow:0 0 0 4px rgba(255,255,255,.22);transition:transform .45s}
+.gg-machine.spin .gg-knob{transform:rotate(320deg)}
+.gg-tray{position:absolute;left:50%;bottom:9px;transform:translateX(-50%);width:80px;height:30px;border-radius:10px;background:rgba(0,0,0,.32);box-shadow:inset 0 3px 7px rgba(0,0,0,.55)}
+.gg-capsule{position:absolute;left:50%;bottom:14px;width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 32% 26%,#fff,var(--cc,#FF8A65) 64%);box-shadow:inset -4px -5px 8px rgba(0,0,0,.2),0 6px 14px rgba(0,0,0,.35);opacity:0;transform:translateX(-50%);pointer-events:none}
+.gg-capsule.half::after{content:'';position:absolute;left:0;right:0;top:50%;height:2px;background:rgba(0,0,0,.18)}
+.gg-capsule.drop{animation:ggDrop .62s cubic-bezier(.3,1.42,.6,1) forwards}
+.gg-capsule.pop{animation:ggPop .4s ease-out forwards}
+.gg-shine{position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,rgba(255,255,255,.5),transparent 62%);opacity:0;pointer-events:none}
+.gg-machine.spin .gg-shine{animation:ggShine 1s ease-out}
+.gg-machine.shk{animation:cfShake .42s}
+.gg-hud{display:flex;justify-content:space-between;width:100%;max-width:330px;margin:8px auto 0;font-size:11.5px;color:#fff;gap:6px}
+.gg-hud span{flex:0 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gg-bar{width:100%;max-width:330px;height:8px;border-radius:4px;background:rgba(255,255,255,.22);margin:6px auto 0;overflow:hidden}
+.gg-bar i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,#FFD54F,#FF6D00);transition:width .45s}
+.gg-btns{display:flex;gap:10px;width:100%;max-width:330px;margin:10px auto 0}
+.gg-pull{flex:1;border:none;border-radius:16px;padding:14px 6px;font-size:16px;font-weight:bold;color:#fff;cursor:pointer;transition:transform .15s,opacity .2s;font-family:inherit}
+.gg-pull:active{transform:scale(.96)}
+.gg-pull.one{background:linear-gradient(135deg,#FF8A65,#F4511E);box-shadow:0 6px 16px rgba(244,81,30,.45)}
+.gg-pull.ten{background:linear-gradient(135deg,#B388FF,#651FFF);box-shadow:0 6px 16px rgba(101,31,255,.45)}
+.gg-pull:disabled{opacity:.42;box-shadow:none;cursor:default}
+.gg-tip{width:100%;max-width:330px;margin:7px auto 0;text-align:center;font-size:11.5px;color:#fff;opacity:.84;line-height:1.6}
+.gg-judge{position:fixed;left:50%;top:36%;font-size:22px;font-weight:bold;color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.85);pointer-events:none;opacity:0;z-index:95;white-space:nowrap}
+.gg-judge.on{animation:cfJudge .95s ease-out}
+.gg-coinfly{position:fixed;font-size:20px;pointer-events:none;z-index:96;animation:ggFly .9s ease-out forwards}
+.gg-reveal{position:fixed;inset:0;background:rgba(12,7,42,.88);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:88;padding:20px;overflow:auto}
+.gg-reveal.on{display:flex}
+.gg-reveal.ray{background:radial-gradient(circle at 50% 44%,rgba(255,213,79,.4),rgba(12,7,42,.95) 64%)}
+.gg-rank{font-size:13px;letter-spacing:3px;color:#FFE082;font-weight:bold}
+.gg-card{width:210px;padding:18px 16px 16px;border-radius:22px;text-align:center;color:#fff;background:linear-gradient(160deg,var(--c1),var(--c2));box-shadow:0 0 0 3px rgba(255,255,255,.55),0 16px 40px rgba(0,0,0,.5);animation:ggIn .5s cubic-bezier(.2,1.5,.5,1)}
+.gg-card .be{font-size:36px;line-height:1.2}
+.gg-card .ch{font-size:72px;font-weight:bold;line-height:1.14;text-shadow:0 6px 18px rgba(0,0,0,.45)}
+.gg-card .nm{font-size:15px;opacity:.96;margin-top:2px}
+.gg-card .info{font-size:12px;opacity:.9;margin-top:8px;line-height:1.6}
+.gg-card .tag{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:12px;background:rgba(255,255,255,.24);font-size:12.5px;font-weight:bold}
+.gg-card .tag.new{background:#FFD54F;color:#4A2FAE}
+.gg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;width:100%;max-width:330px}
+.gg-mini{height:80px;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;background:linear-gradient(160deg,var(--c1),var(--c2));box-shadow:0 0 0 2px rgba(255,255,255,.4),0 5px 14px rgba(0,0,0,.4);opacity:0;transform:scale(.4) rotate(-14deg);position:relative}
+.gg-mini.on{animation:ggIn .4s cubic-bezier(.2,1.5,.5,1) forwards}
+.gg-mini b{font-size:28px;line-height:1.1}
+.gg-mini s{text-decoration:none;font-size:9px;letter-spacing:1px;opacity:.92}
+.gg-mini i{position:absolute;top:-6px;right:-4px;font-style:normal;font-size:9px;font-weight:bold;background:#FFD54F;color:#4A2FAE;border-radius:8px;padding:1px 4px}
+.gg-mini.dupe{filter:grayscale(.6)}
+.gg-sum{font-size:13px;color:#fff;text-align:center;line-height:1.7;opacity:.94}
+.gg-sum b{color:#FFD54F}
+.gg-rbtns{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+.gg-rbtn{border:none;border-radius:14px;padding:11px 16px;font-size:14px;font-weight:bold;color:#fff;cursor:pointer;font-family:inherit;background:rgba(255,255,255,.18);box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.gg-rbtn.hot{background:linear-gradient(135deg,#FFB74D,#F57C00)}
+.gg-rbtn:disabled{opacity:.4}
+.gg-book{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.gg-cell{position:relative;height:64px;border-radius:13px;background:rgba(255,255,255,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:bold;box-shadow:inset 0 0 0 2px var(--rc,transparent);cursor:pointer;transition:transform .15s}
+.gg-cell:active{transform:scale(.94)}
+.gg-cell i{font-style:normal;font-size:9px;font-weight:normal;opacity:.86;margin-top:1px}
+.gg-cell.lock{color:rgba(255,255,255,.28);background:rgba(255,255,255,.06);font-size:17px}
+.gg-cell .ex{position:absolute;bottom:-3px;right:-3px;font-size:9px;background:#FFD54F;color:#4A2FAE;border-radius:8px;padding:1px 4px;font-weight:bold}
+.gg-cell.fresh{animation:m3Pulse .6s ease-out}
+.gg-legend{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:9px;font-size:11px;color:#fff}
+.gg-legend span{padding:3px 9px;border-radius:11px;background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px var(--rc,transparent)}
+.gg-pbar{width:100%;height:9px;border-radius:5px;background:rgba(255,255,255,.2);overflow:hidden;margin-top:8px}
+.gg-pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#69F0AE,#00C853);transition:width .5s}
+@keyframes ggBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes ggDrop{0%{opacity:0;transform:translate(-50%,-128px) rotate(0)}55%{opacity:1;transform:translate(-50%,6px) rotate(220deg)}75%{transform:translate(-50%,-9px) rotate(300deg)}100%{opacity:1;transform:translate(-50%,0) rotate(360deg)}}
+@keyframes ggPop{0%{transform:translateX(-50%) scale(1)}45%{transform:translateX(-50%) scale(1.35)}100%{transform:translateX(-50%) scale(0);opacity:0}}
+@keyframes ggIn{0%{opacity:0;transform:scale(.42) rotate(-14deg)}70%{opacity:1;transform:scale(1.07) rotate(3deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes ggShine{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
+@keyframes ggFly{0%{opacity:1;transform:translate(0,0) scale(.7)}100%{opacity:0;transform:translate(0,-58px) scale(1.35)}}
+@media(max-width:420px){.gg-wrap,.gg-hud,.gg-btns,.gg-tip,.gg-grid{max-width:296px}.gg-machine{height:190px}}
+.stk-sky{height:300px}}
 </style>
 
 </head>
@@ -987,6 +1060,11 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('stack')">
       <div class="icon">🗼</div>
       <div class="info"><h3>笔顺叠叠塔</h3><p>答对发砖，看准时机叠成摩天大楼！</p></div>
+    </div>
+    <div class="mode-card sk-card" onclick="enterMode('gacha')">
+      <div class="icon">🎡</div>
+      <div class="info"><h3>笔顺扭蛋机</h3><p id="ggCardTip">答对题赚 🪙 抽汉字精灵，集齐图鉴！</p></div>
+      <span class="sk-dot" id="ggDot">1</span>
     </div>
     <div class="mode-card" onclick="enterMode('labels')">
       <div class="icon">🔍</div>
@@ -2136,7 +2214,58 @@ button:active{transform:scale(.95)}
     <button class="w-btn orange" onclick="stkStart()">🗼 再叠一次</button>
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
-</div><div class="screen" id="screen-adventure">
+</div><div class="screen" id="screen-gacha">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="ggStars">⭐ 0</span><span id="ggCoin">🪙 0</span></div>
+    <button class="icon-btn" onclick="ggOpenBook()" title="精灵图鉴">📖</button>
+  </div>
+  <div class="quiz-header"><div class="question" id="ggQ">正在装填扭蛋…</div></div>
+  <div class="options" id="ggOpts"></div>
+  <div class="gg-wrap">
+    <div class="gg-machine" id="ggMachine">
+      <div class="gg-dome" id="ggDome"></div>
+      <div class="gg-body"></div>
+      <div class="gg-knob"></div>
+      <div class="gg-tray"></div>
+      <div class="gg-capsule half" id="ggCapsule"></div>
+      <div class="gg-shine"></div>
+    </div>
+    <div class="gg-bar"><i id="ggPityBar"></i></div>
+    <div class="gg-hud">
+      <span id="ggPity">🔥 保底 0/30</span>
+      <span id="ggGot">📖 0/0</span>
+      <span id="ggFrag">🧩 0 碎片</span>
+    </div>
+    <div class="gg-btns">
+      <button class="gg-pull one" id="ggOneBtn" onclick="ggPull(1)">🎡 单抽 1🪙</button>
+      <button class="gg-pull ten" id="ggTenBtn" onclick="ggPull(10)">✨ 十连 8🪙</button>
+    </div>
+    <div class="gg-tip" id="ggTip">答对一道笔顺题 +1 🪙</div>
+  </div>
+  <div class="feedback" id="ggFeedback"></div>
+  <div class="gg-reveal" id="ggReveal"></div>
+</div>
+<div class="screen" id="screen-gacha-book">
+  <div class="top-bar">
+    <button class="back-btn" onclick="ggBackFromBook()">← 返回</button>
+    <div class="stats"><span id="ggBookFrag">🧩 0</span><span id="ggBookGot">📖 0/0</span></div>
+    <button class="icon-btn" onclick="ggBackFromBook()" title="回扭蛋机">🎡</button>
+  </div>
+  <div class="home-title" style="margin:12px 0 2px">
+    <h2 style="color:#fff;font-size:22px">📖 汉字精灵馆</h2>
+    <p style="font-size:13px;opacity:.85" id="ggBookSub">抽到的精灵都住在这里，集齐一档有大奖！</p>
+    <div class="gg-pbar"><i id="ggBookBar"></i></div>
+  </div>
+  <div class="gg-legend" id="ggLegend"></div>
+  <div class="gg-book" id="ggBookGrid"></div>
+  <div style="height:22px"></div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="ggBackFromBook()">🎡 去赚币抽蛋</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-adventure">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
     <div class="stats"><span id="advStars">⭐ 0</span><span id="advBadges">🏅 0/12</span></div>
@@ -2472,6 +2601,7 @@ function updateHomeStats(){
   document.getElementById('homeCombo').textContent='🔥 最高连击 '+maxCombo;
   document.getElementById('homeAnimals').textContent='🐼 收藏 '+collected.length+'/8';
   if(typeof skNudge==='function')skNudge();
+  if(typeof ggNudge==='function')ggNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -2497,6 +2627,7 @@ function enterMode(mode){
  else if(mode==='scratch')scStart();
  else if(mode==='domino')dpStart();
  else if(mode==='stack')stkStart();
+ else if(mode==='gacha')ggStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -10398,6 +10529,446 @@ function showCollection(){
   });
   document.getElementById('colStars').textContent='⭐ '+stars;
 }
+/* ================= 笔顺扭蛋机 ================= */
+const GG_RARITY=[
+  {k:'N',t:'普通',e:'🐣',w:600,st:1,fg:1,c1:'#9FB6C8',c2:'#546E7A',rc:'#B0BEC5'},
+  {k:'R',t:'稀有',e:'🐰',w:250,st:2,fg:2,c1:'#4FC3F7',c2:'#01579B',rc:'#4FC3F7'},
+  {k:'SR',t:'超稀有',e:'🦊',w:110,st:4,fg:5,c1:'#B388FF',c2:'#311B92',rc:'#B388FF'},
+  {k:'SSR',t:'传说',e:'🦄',w:35,st:8,fg:12,c1:'#FFD54F',c2:'#E65100',rc:'#FFD54F'},
+  {k:'UR',t:'神话',e:'🐉',w:5,st:20,fg:30,c1:'#FF80AB',c2:'#880E4F',rc:'#FF80AB'}
+];
+const GG_KIND=['🌱芽芽','💧水滴','🔥小火','🍃风叶','⚡电光','🌙月牙','☁️云朵','⭐星星','🪨石头','🌸花花'];
+const GG_PITY=30,GG_ONE=1,GG_TEN=8,GG_MAX=99;
+const GG_SETS=[10,20,40,80,150],GG_EX=[15,40,90];
+const GG_CAP=[18,18,14,10,6];
+const GG_NOTE=[523,587,659,784,880,1047,1175,1319,1568,1760];
+let gg={gen:0,over:true,busy:true,coin:0,frag:0,pity:0,pulls:0,book:[],sets:[],bands:[],pool:[],
+  combo:0,correct:0,total:0,ans:'',ch:'',rolling:false};
+function ggShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function ggBandOf(n){return n<=3?0:n<=5?1:n<=7?2:n<=9?3:4}
+function ggKindOf(ch){return GG_KIND[(ch.charCodeAt(0)||0)%GG_KIND.length]}
+function ggBookHas(ch){return gg.book.indexOf(ch)>=0}
+function ggSet(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt}
+function ggLoad(){
+  gg.coin=Math.max(0,Math.min(GG_MAX,parseInt(localStorage.getItem('hz_gg_coin')||'0',10)||0));
+  gg.frag=Math.max(0,parseInt(localStorage.getItem('hz_gg_frag')||'0',10)||0);
+  gg.pity=Math.max(0,parseInt(localStorage.getItem('hz_gg_pity')||'0',10)||0);
+  gg.pulls=Math.max(0,parseInt(localStorage.getItem('hz_gg_pulls')||'0',10)||0);
+  const b=localStorage.getItem('hz_gg_book')||'';
+  gg.book=b?b.split(',').filter(function(x){return x}):[];
+  const s=localStorage.getItem('hz_gg_sets')||'';
+  gg.sets=s?s.split(',').filter(function(x){return x}):[];
+}
+function ggSave(){
+  localStorage.setItem('hz_gg_coin',String(gg.coin));
+  localStorage.setItem('hz_gg_frag',String(gg.frag));
+  localStorage.setItem('hz_gg_pity',String(gg.pity));
+  localStorage.setItem('hz_gg_pulls',String(gg.pulls));
+  localStorage.setItem('hz_gg_book',gg.book.join(','));
+  localStorage.setItem('hz_gg_sets',gg.sets.join(','));
+}
+function ggBuild(){
+  const list=[],seen={};
+  const src=(charQueue&&charQueue.length)?charQueue:Object.keys(charDataCache);
+  for(let i=0;i<src.length;i++){
+    const ch=src[i];
+    if(seen[ch])continue;
+    const d=charDataCache[ch];
+    if(!d||!d.strokes||!d.strokes.length)continue;
+    seen[ch]=1;list.push({ch:ch,n:d.strokes.length,b:ggBandOf(d.strokes.length)});
+  }
+  const raw=[[],[],[],[],[]];
+  for(let i=0;i<list.length;i++)raw[list[i].b].push(list[i]);
+  const bands=[[],[],[],[],[]];
+  for(let b=0;b<5;b++)bands[b]=raw[b].slice(0,GG_CAP[b]);
+  gg.bands=bands;
+  gg.pool=bands[0].concat(bands[1],bands[2],bands[3],bands[4]);
+  return gg.pool.length;
+}
+function ggInfo(ch){
+  const d=charDataCache[ch];
+  const n=d&&d.strokes?d.strokes.length:0;
+  if(!strokeTypes[ch]&&d&&d.medians)strokeTypes[ch]=d.medians.map(detectDir);
+  const t=(strokeTypes[ch]||[])[0];
+  const dir=DIRS.filter(function(x){return x.code===t})[0];
+  return n+' 画'+(dir?' · 第一笔 '+dir.icon+' '+dir.label:'');
+}
+function ggRoll(){
+  gg.pity++;
+  let tot=0,i,b=0;
+  for(i=0;i<GG_RARITY.length;i++)tot+=GG_RARITY[i].w;
+  let r=Math.random()*tot;
+  for(i=0;i<GG_RARITY.length;i++){r-=GG_RARITY[i].w;if(r<0){b=i;break}}
+  if(gg.pity>=GG_PITY&&b<3)b=3;
+  if(b>=3)gg.pity=0;
+  return b;
+}
+function ggPickChar(b){
+  for(let k=0;k<5;k++){
+    const lo=b-k,hi=b+k;
+    if(lo>=0&&gg.bands[lo]&&gg.bands[lo].length)return gg.bands[lo][Math.floor(Math.random()*gg.bands[lo].length)];
+    if(hi<5&&hi!==lo&&gg.bands[hi]&&gg.bands[hi].length)return gg.bands[hi][Math.floor(Math.random()*gg.bands[hi].length)];
+  }
+  return null;
+}
+function ggAdd(b,ch){
+  const R=GG_RARITY[b],isNew=!ggBookHas(ch);
+  let stars=0,frag=0;
+  if(isNew){gg.book.push(ch);stars=R.st;addStars(stars)}
+  else{frag=R.fg;gg.frag+=frag}
+  return {b:b,ch:ch,isNew:isNew,stars:stars,frag:frag};
+}
+function ggGrant(b,ch){const c=ggAdd(b,ch);gg.pulls++;return c}
+function ggSetCheck(){
+  for(let b=0;b<5;b++){
+    const arr=gg.bands[b]||[];
+    if(!arr.length)continue;
+    const key='b'+b;
+    if(gg.sets.indexOf(key)>=0)continue;
+    let done=true;
+    for(let i=0;i<arr.length;i++)if(!ggBookHas(arr[i].ch)){done=false;break}
+    if(!done)continue;
+    gg.sets.push(key);
+    addStars(GG_SETS[b]);
+    ggBanner(GG_RARITY[b].e+' 集齐'+GG_RARITY[b].t+'全家！+'+GG_SETS[b]+'⭐');
+    spawnConfetti();sndReward();
+  }
+}
+function ggJudge(txt,color){
+  const el=document.getElementById('ggFeedback');
+  if(!el)return;
+  el.textContent=txt;
+  el.style.color=color||'#fff';
+}
+function ggBanner(txt){
+  let el=document.getElementById('ggJudgeFx');
+  if(!el){
+    el=document.createElement('div');
+    el.className='gg-judge';el.id='ggJudgeFx';
+    document.body.appendChild(el);
+  }
+  el.textContent=txt;
+  el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function ggCoinFly(n){
+  const src=document.getElementById('ggCoin');
+  if(!src)return;
+  const r=src.getBoundingClientRect();
+  const s=document.createElement('div');
+  s.className='gg-coinfly';s.textContent='🪙 +'+n;
+  s.style.left=(r.left-6)+'px';s.style.top=(r.top-2)+'px';
+  document.body.appendChild(s);
+  setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s)},940);
+}
+function ggHud(){
+  ggSet('ggStars','⭐ '+stars);
+  ggSet('ggCoin','🪙 '+gg.coin);
+  const left=Math.max(0,GG_PITY-gg.pity);
+  ggSet('ggPity','🔥 保底 '+gg.pity+'/'+GG_PITY+(left<=5?'（还剩 '+left+' 抽必出 SSR+）':''));
+  ggSet('ggGot','📖 '+gg.book.length+'/'+gg.pool.length);
+  ggSet('ggFrag','🧩 '+gg.frag+' 碎片');
+  const bar=document.getElementById('ggPityBar');
+  if(bar)bar.style.width=Math.min(100,gg.pity/GG_PITY*100)+'%';
+  const one=document.getElementById('ggOneBtn'),ten=document.getElementById('ggTenBtn');
+  if(one){one.disabled=gg.coin<GG_ONE||gg.rolling;one.textContent='🎡 单抽 '+GG_ONE+'🪙'}
+  if(ten){ten.disabled=gg.coin<GG_TEN||gg.rolling;ten.textContent='✨ 十连 '+GG_TEN+'🪙'}
+  ggSet('ggTip',gg.coin<GG_ONE?'答对一道笔顺题 +1 🪙，攒币就能抽精灵':
+    (gg.rolling?'扭蛋机正在转……':'🪙 '+gg.coin+' 枚 · 已抽 '+gg.pulls+' 次 · 重复精灵会变成 🧩 碎片'));
+  const bf=document.getElementById('ggBookFrag'),bg=document.getElementById('ggBookGot');
+  if(bf)bf.textContent='🧩 '+gg.frag;
+  if(bg)bg.textContent='📖 '+gg.book.length+'/'+gg.pool.length;
+}
+function ggNudge(){
+  const dot=document.getElementById('ggDot'),tip=document.getElementById('ggCardTip');
+  if(!dot||!tip)return;
+  const can=gg.coin>=GG_ONE;
+  dot.style.display=can?'flex':'none';
+  if(can)dot.textContent=gg.coin;
+  tip.textContent=can?('🪙 有 '+gg.coin+' 枚币，够抽 '+(gg.coin>=GG_TEN?'10 次！':'1 发')):'答对笔顺题赚 🪙 抽汉字精灵';
+}
+async function ggAsk(){
+  if(gg.over)return;
+  gg.busy=true;
+  const gen=gg.gen;
+  if(!gg.pool.length&&ggBuild()===0){
+    ggSet('ggQ','📚 字库还在路上，稍等一下…');
+    setTimeout(function(){if(gen===gg.gen&&!gg.over)ggAsk()},1200);
+    return;
+  }
+  let ch='',data=null;
+  for(let i=0;i<14;i++){
+    const c=nextInQueue();
+    const d=await loadCharData(c);
+    if(d&&d.strokes&&d.medians&&d.strokes.length>=2&&d.medians.length>=2){ch=c;data=d;break}
+  }
+  if(gen!==gg.gen||gg.over)return;
+  if(!ch){
+    if(ggBuild())ggAsk();
+    else setTimeout(function(){if(gen===gg.gen&&!gg.over)ggAsk()},1200);
+    return;
+  }
+  if(!strokeTypes[ch])strokeTypes[ch]=data.medians.map(detectDir);
+  const dirs=strokeTypes[ch],n=data.strokes.length;
+  gg.ch=ch;
+  let opts;
+  if(Math.random()<.45&&n<=12){
+    gg.ans=String(n);
+    const nums=[n];
+    while(nums.length<4){
+      const k=n+(Math.random()<.5?-1:1)*(1+Math.floor(Math.random()*3));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=ggShuf(nums).map(function(k){return{v:String(k),txt:'✏️ '+k+' 笔'}});
+    ggSet('ggQ','『'+ch+'』一共有几笔？答对 +1 🪙');
+  }else{
+    const idx=Math.floor(Math.random()*dirs.length);
+    const code=dirs[idx];
+    gg.ans=code;
+    const right=DIRS.filter(function(d){return d.code===code})[0]||DIRS[0];
+    const pool=ggShuf(DIRS.filter(function(d){return d.code!==code})).slice(0,3);
+    opts=ggShuf([right].concat(pool)).map(function(d){return{v:d.code,txt:d.icon+' '+d.label}});
+    ggSet('ggQ','『'+ch+'』的第'+(STK_ORD[idx]||(idx+1))+'笔往哪写？答对 +1 🪙');
+  }
+  const box=document.getElementById('ggOpts');
+  if(box){
+    box.innerHTML=opts.map(function(o,i){
+      return '<button class="opt-btn" data-value="'+o.v+'" data-dir="'+i+'" onclick="ggPick(\''+o.v+'\',this)">'+o.txt+'</button>';
+    }).join('');
+  }
+  ggJudge('');
+  ggHud();
+  gg.busy=false;
+}
+function ggPick(v,btn){
+  if(gg.over||gg.busy)return;
+  const gen=gg.gen,ok=(v===gg.ans);
+  gg.total++;gg.busy=true;
+  if(ok){
+    gg.correct++;gg.combo++;
+    const gain=gg.combo>=3?2:1;
+    gg.coin=Math.min(GG_MAX,gg.coin+gain);
+    if(btn)btn.classList.add('correct');
+    sndOk();
+    ggCoinFly(gain);
+    ggJudge(gg.combo>=3?'🔥 连击 x'+gg.combo+'！🪙 +'+gain:'🪙 +'+gain+' 攒够就能抽','#B9F6CA');
+    if(gg.combo%5===0)ggBanner('🔥 '+gg.combo+' 连对！币哗哗涨');
+    ggSave();ggHud();
+    setTimeout(function(){if(gen===gg.gen&&!gg.over)ggAsk()},720);
+  }else{
+    gg.combo=0;sndNo();
+    if(btn)btn.classList.add('wrong');
+    const right=document.querySelector('#ggOpts .opt-btn[data-value="'+gg.ans+'"]');
+    if(right)right.classList.add('reveal');
+    ggJudge('😅 这题不算币，看看绿色那格','#FF8A80');
+    ggHud();
+    setTimeout(function(){if(gen===gg.gen&&!gg.over)ggAsk()},1180);
+  }
+}
+function ggSpinMachine(cb){
+  const m=document.getElementById('ggMachine'),c=document.getElementById('ggCapsule');
+  if(m)m.classList.add('spin');
+  if(c){
+    c.classList.remove('drop','pop');
+    c.style.setProperty('--cc',GG_RARITY[Math.floor(Math.random()*GG_RARITY.length)].rc);
+    void c.offsetWidth;c.classList.add('drop');
+    setTimeout(function(){if(c&&c.classList.contains('drop')){c.classList.remove('drop');c.classList.add('pop')}},660);
+  }
+  tone(660,.09,'square',.08);
+  setTimeout(function(){tone(880,.1,'triangle',.1)},430);
+  setTimeout(function(){if(m)m.classList.remove('spin')},1050);
+  setTimeout(cb,1040);
+}
+function ggPull(times){
+  if(gg.over||gg.rolling)return;
+  const n=times>=10?10:1,cost=(times>=10)?GG_TEN:GG_ONE;
+  if(gg.coin<cost){
+    sndNo();
+    const m=document.getElementById('ggMachine');
+    if(m){m.classList.remove('shk');void m.offsetWidth;m.classList.add('shk')}
+    ggJudge('🪙 还差 '+(cost-gg.coin)+' 枚，去答对几题吧','#FF8A80');
+    return;
+  }
+  const gen=gg.gen;
+  gg.rolling=true;gg.coin-=cost;ggSave();ggHud();
+  const rolls=[];
+  for(let i=0;i<n;i++){
+    const b=ggRoll(),p=ggPickChar(b);
+    if(p)rolls.push({b:b,ch:p.ch});
+  }
+  if(n>=10&&rolls.length){
+    let top=0;
+    for(let i=0;i<rolls.length;i++)top=Math.max(top,rolls[i].b);
+    if(top<2){const p=ggPickChar(2);if(p)rolls[rolls.length-1]={b:2,ch:p.ch}}
+  }
+  ggSpinMachine(function(){
+    if(gen!==gg.gen){gg.rolling=false;return}
+    if(!rolls.length){
+      gg.rolling=false;ggJudge('📚 精灵池还是空的，等字库加载完再抽','#FF8A80');
+      return;
+    }
+    const cards=rolls.map(function(r){return ggGrant(r.b,r.ch)});
+    ggSetCheck();ggSave();ggHud();
+    ggShow(cards);
+  });
+}
+function ggShow(cards){
+  const box=document.getElementById('ggReveal');
+  gg.rolling=false;
+  if(!box){ggHud();return}
+  let top=0,fr=0,st=0,nw=0;
+  for(let i=0;i<cards.length;i++){
+    top=Math.max(top,cards[i].b);fr+=cards[i].frag;st+=cards[i].stars;
+    if(cards[i].isNew)nw++;
+  }
+  const T=GG_RARITY[top];
+  box.className='gg-reveal on'+(top>=4?' ray':'');
+  let h='<div class="gg-rank">'+T.e+' '+T.k+' · '+T.t+(cards.length>=10?' 十连开蛋':' 开蛋')+'</div>';
+  if(cards.length===1){
+    const c=cards[0],R=GG_RARITY[c.b];
+    h+='<div class="gg-card" style="--c1:'+R.c1+';--c2:'+R.c2+'">'
+      +'<div class="be">'+R.e+'</div>'
+      +'<div class="ch">'+c.ch+'</div>'
+      +'<div class="nm">'+ggKindOf(c.ch)+' · '+c.ch+'</div>'
+      +'<div class="info">'+ggInfo(c.ch)+'</div>'
+      +'<div class="tag'+(c.isNew?' new':'')+'">'+(c.isNew?'✨ 新精灵入馆！+'+c.stars+'⭐':'🧩 重复 → 碎片 +'+c.frag)+'</div>'
+      +'</div>';
+  }else{
+    h+='<div class="gg-grid">'+cards.map(function(c,i){
+      const R=GG_RARITY[c.b];
+      return '<div class="gg-mini'+(c.isNew?'':' dupe')+'" data-i="'+i+'" style="--c1:'+R.c1+';--c2:'+R.c2+'">'
+        +'<b>'+c.ch+'</b><s>'+R.k+'</s>'
+        +(c.isNew?'<i>NEW</i>':'<i>+'+c.frag+'</i>')+'</div>';
+    }).join('')+'</div>';
+    h+='<div class="gg-sum">新增 <b>'+nw+'</b> 只 · 碎片 <b>+'+fr+'</b> · ⭐ <b>+'+st+'</b> · 最高 <b>'+T.k+'</b></div>';
+  }
+  h+='<div class="gg-rbtns">'
+    +'<button class="gg-rbtn hot" onclick="ggAgain(1)">🎡 再抽 '+GG_ONE+'🪙</button>'
+    +'<button class="gg-rbtn" onclick="ggAgain(10)">✨ 十连 '+GG_TEN+'🪙</button>'
+    +'<button class="gg-rbtn" onclick="ggClose();ggOpenBook()">📖 图鉴</button>'
+    +'<button class="gg-rbtn" onclick="ggClose()">✖ 收下</button>'
+    +'</div>';
+  box.innerHTML=h;
+  const gen=gg.gen;
+  if(cards.length===1){
+    const seq=top>=4?[0,2,4,6,8,9]:top>=3?[0,3,5,7]:top>=2?[0,2,4]:[0,1];
+    seq.forEach(function(v,i){setTimeout(function(){if(gen===gg.gen)tone(GG_NOTE[v],.16,'triangle',.13)},i*110)});
+    if(top>=2){spawnConfetti();sndReward()}else tone(GG_NOTE[0],.16,'triangle',.12);
+    if(top>=4){spawnStarFly(window.innerWidth/2,window.innerHeight/2);ggBanner('🐉 神话精灵降临！')}
+  }else{
+    const minis=[].slice.call(box.querySelectorAll('.gg-mini'));
+    minis.forEach(function(el,i){
+      setTimeout(function(){
+        if(gen!==gg.gen)return;
+        el.classList.add('on');
+        tone(GG_NOTE[Math.min(GG_NOTE.length-1,cards[i].b*2+i)],.1,'triangle',.11);
+        if(cards[i].b>=3){spawnConfetti();sndReward()}
+      },160+i*130);
+    });
+  }
+  ggHud();
+}
+function ggAgain(n){ggClose();setTimeout(function(){ggPull(n)},260)}
+function ggClose(){
+  const box=document.getElementById('ggReveal');
+  if(box){box.className='gg-reveal';box.innerHTML=''}
+  gg.rolling=false;ggHud();
+}
+function ggRenderBook(){
+  const grid=document.getElementById('ggBookGrid');
+  if(!grid)return;
+  const order=gg.pool.slice().sort(function(a,b){return a.b-b.b||a.n-b.n||String(a.ch).localeCompare(String(b.ch))});
+  grid.innerHTML=order.map(function(p){
+    const R=GG_RARITY[p.b],has=ggBookHas(p.ch);
+    if(has){
+      return '<div class="gg-cell" style="--rc:'+R.rc+'" data-ch="'+p.ch+'" onclick="ggCellTap(\''+p.ch+'\')">'
+        +p.ch+'<i>'+R.k+'</i></div>';
+    }
+    const cost=p.b>=2?GG_EX[p.b-2]:0;
+    return '<div class="gg-cell lock" style="--rc:'+R.rc+'" data-ch="'+p.ch+'" onclick="ggCellTap(\''+p.ch+'\')">'
+      +'？<i>'+R.k+(cost?' · '+cost+'🧩':'')+'</i>'+(cost?'<span class="ex">换</span>':'')+'</div>';
+  }).join('');
+  const lg=document.getElementById('ggLegend');
+  if(lg){
+    lg.innerHTML=GG_RARITY.map(function(R,b){
+      const arr=gg.bands[b]||[],got=arr.filter(function(x){return ggBookHas(x.ch)}).length;
+      const done=arr.length>0&&got===arr.length;
+      return '<span style="--rc:'+R.rc+'">'+R.e+' '+R.k+' '+got+'/'+arr.length+(done?' ✅':'')+'</span>';
+    }).join('');
+  }
+  const bar=document.getElementById('ggBookBar');
+  if(bar)bar.style.width=(gg.pool.length?gg.book.length/gg.pool.length*100:0)+'%';
+  const sub=document.getElementById('ggBookSub');
+  if(sub){
+    const pct=gg.pool.length?Math.round(gg.book.length/gg.pool.length*100):0;
+    sub.textContent='收集度 '+pct+'% · 🧩 '+gg.frag+' 碎片可兑换 SR 以上精灵';
+  }
+  ggHud();
+}
+function ggCellTap(ch){
+  const p=gg.pool.filter(function(x){return x.ch===ch})[0];
+  if(!p)return;
+  if(ggBookHas(ch)){
+    ggJudge(''+GG_RARITY[p.b].e+' '+GG_RARITY[p.b].t+' · '+ggKindOf(ch)+'·'+ch+' · '+ggInfo(ch),'#FFE082');
+    sndOk();return;
+  }
+  if(p.b<2){ggJudge('🐣 N / R 精灵只能靠抽，多答几题就有币','#B3E5FC');return}
+  const cost=GG_EX[p.b-2];
+  if(gg.frag<cost){
+    sndNo();
+    ggJudge('🧩 碎片不够，还差 '+(cost-gg.frag)+' 片（重复精灵会掉碎片）','#FF8A80');
+    return;
+  }
+  gg.frag-=cost;
+  const c=ggAdd(p.b,ch);
+  ggSetCheck();ggSave();
+  sndReward();spawnConfetti();
+  const el=document.querySelector('#ggBookGrid .gg-cell[data-ch="'+ch+'"]');
+  if(el){el.classList.remove('lock','fresh');void el.offsetWidth;el.classList.add('fresh')}
+  ggJudge('🎁 兑换成功！'+GG_RARITY[p.b].e+' '+ch+' 入馆 +'+c.stars+'⭐','#B9F6CA');
+  ggRenderBook();
+}
+function ggOpenBook(){
+  if(!gg.pool.length)ggBuild();
+  ggRenderBook();
+  showScreen('gacha-book');
+}
+function ggBackFromBook(){
+  ggClose();showScreen('gacha');ggHud();
+  if(!gg.pool.length)ggBuild();
+  if(!gg.ans||gg.busy)ggAsk();
+}
+function ggDomeFill(){
+  const dome=document.getElementById('ggDome');
+  if(!dome)return;
+  let h='';
+  for(let i=0;i<14;i++){
+    const R=GG_RARITY[i%GG_RARITY.length];
+    h+='<div class="gg-ball" style="--bc:'+R.rc+';left:'+Math.round(4+Math.random()*112)+'px;top:'+Math.round(4+Math.random()*74)+'px;animation-delay:'+(i*180)+'ms"></div>';
+  }
+  dome.innerHTML=h;
+}
+function ggStart(){
+  gg.gen++;
+  ggClose();
+  gg.over=false;gg.busy=true;gg.rolling=false;
+  gg.combo=0;gg.correct=0;gg.total=0;gg.ans='';gg.ch='';
+  ggLoad();
+  if(gg.pulls===0&&gg.coin<GG_ONE){gg.coin=3;ggSave()}
+  ggBuild();
+  ggDomeFill();
+  showScreen('gacha');
+  ggHud();
+  ggJudge(gg.coin>0?'🪙 你有 '+gg.coin+' 枚币，点下面的按钮开抽':'先答对笔顺题赚 🪙，再扭蛋','#B9F6CA');
+  ggAsk();
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='gacha')return;
+  if(/^[1-4]$/.test(e.key)){
+    const b=document.querySelector('#ggOpts .opt-btn[data-dir="'+(e.key-1)+'"]');
+    if(b)b.click();
+  }else if(e.key==='g'||e.key==='G'){ggPull(1)}
+});
+/* ================= 笔顺扭蛋机 结束 ================= */
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
