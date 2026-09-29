@@ -1498,6 +1498,97 @@ button:active{transform:scale(.95)}
 @keyframes mfShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}60%{transform:translateX(4px)}85%{transform:translateX(-2px)}}
 @media(max-width:420px){.mf-hud,.mf-pl,.mf-roll,.mf-board,.mf-q,.mf-opts,.mf-btns,.mf-judge,.mf-tip{max-width:300px}
   .mf-t b{font-size:7.5px}.mf-t s{font-size:7px}}
+/* ===== 笔顺水管屋（旋转管道 · 按笔顺开墨水水阀） ===== */
+.pi-hud{display:flex;flex-wrap:wrap;justify-content:center;gap:3px 10px;width:100%;max-width:322px;margin:7px auto 0;
+  font-size:11px;font-weight:800;color:#fff;background:rgba(255,255,255,.14);border-radius:12px;padding:6px 8px}
+.pi-hud span{white-space:nowrap}
+.pi-hearts{display:flex;gap:4px;justify-content:center;margin:6px auto 0;font-size:15px}
+.pi-hearts i{font-style:normal;transition:opacity .2s,transform .2s}
+.pi-hearts i.off{opacity:.22;transform:scale(.8)}
+.pi-time{width:100%;max-width:322px;height:9px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden;margin:5px auto 0;
+  border:1px solid rgba(255,255,255,.3)}
+.pi-time b{display:block;height:100%;width:100%;background:linear-gradient(90deg,#69F0AE,#FFEE58,#FF8A65);
+  transition:width .3s linear}
+.pi-time.hurry{animation:piHurry .5s infinite}
+@keyframes piHurry{0%,100%{box-shadow:0 0 0 rgba(255,82,82,0)}50%{box-shadow:0 0 12px 2px rgba(255,82,82,.85)}}
+.pi-char{display:flex;align-items:center;justify-content:center;gap:8px;margin:8px auto 0;width:100%;max-width:322px;
+  background:rgba(255,255,255,.12);border-radius:12px;padding:5px 8px;color:#fff;font-size:12px;font-weight:800}
+.pi-char em{font-style:normal;font-size:22px;color:#FFEA00;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.pi-grid{display:grid;gap:3px;width:100%;max-width:322px;margin:8px auto 0;padding:7px;border-radius:16px;
+  background:rgba(0,0,0,.22);box-shadow:inset 0 2px 8px rgba(0,0,0,.3)}
+.pi-c{position:relative;aspect-ratio:1/1;border-radius:9px;background:rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pi-c.wall{background:rgba(0,0,0,.16)}
+.pi-c.pipe{cursor:pointer;background:rgba(255,255,255,.16);box-shadow:inset 0 -2px 0 rgba(0,0,0,.14)}
+.pi-c.pipe:active{transform:scale(.94)}
+.pi-c.pick{outline:3px solid #FFD740;animation:piPick .9s infinite}
+@keyframes piPick{0%,100%{box-shadow:inset 0 0 0 rgba(255,215,64,0)}50%{box-shadow:inset 0 0 14px rgba(255,215,64,.9)}}
+.pi-svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .19s cubic-bezier(.34,1.56,.64,1)}
+.pi-arm{stroke:rgba(255,255,255,.55);stroke-width:26;stroke-linecap:round;fill:none}
+.pi-c.wet .pi-arm{stroke:#4FC3F7}
+.pi-c.wet{background:rgba(79,195,247,.24)}
+.pi-c.src{background:linear-gradient(160deg,#37474F,#263238)}
+.pi-c.src b{font-size:21px;z-index:2}
+.pi-c.src::after{content:'墨池';position:absolute;bottom:2px;left:0;right:0;text-align:center;font-size:8px;
+  font-weight:900;color:#B0BEC5}
+.pi-c.cp{background:linear-gradient(160deg,#FFF8E1,#FFE082);flex-direction:column}
+.pi-c.cp .num{position:relative;z-index:2;font-size:17px;font-weight:900;color:#5D4037;line-height:1;text-shadow:0 0 4px rgba(255,255,255,.95),0 0 8px rgba(255,255,255,.9)}
+.pi-c.cp .lab{position:relative;z-index:2;font-size:8px;font-weight:900;color:#8D6E63;line-height:1.2;margin-top:1px;text-shadow:0 0 4px rgba(255,255,255,.95)}
+.pi-c.cp.closed{filter:saturate(.75)}
+.pi-c.cp.open{background:linear-gradient(160deg,#B9F6CA,#4FC3F7);box-shadow:0 0 14px rgba(79,195,247,.9)}
+.pi-c.cp.open .num{color:#0D47A1}
+.pi-c.cp.open .lab{color:#01579B}
+.pi-c.cp.deny{animation:piDeny .4s}
+@keyframes piDeny{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.pi-c.cp .knob{position:absolute;bottom:1px;left:0;right:0;text-align:center;font-size:8px;font-weight:900;color:#EF6C00;z-index:2}
+.pi-c.cp.open .knob{color:#0277BD}
+.pi-wrap{position:relative;width:100%;max-width:322px;margin:8px auto 0}
+.pi-gate{width:100%;max-width:322px;margin:8px auto 0;border-radius:16px;padding:10px 12px;display:none;flex-direction:column;
+  align-items:center;background:rgba(13,25,60,.9);box-shadow:0 6px 18px rgba(0,0,0,.35),inset 0 0 0 2px rgba(79,195,247,.5)}
+.pi-gate.show{display:flex;animation:piGate .22s}
+@keyframes piGate{from{opacity:0;transform:scale(1.05)}to{opacity:1;transform:scale(1)}}
+.pi-gate h4{color:#fff;font-size:15px;margin:0 0 3px;text-align:center}
+.pi-gate .gi{font-size:44px;margin:2px 0 6px;animation:piBig 1.1s infinite}
+@keyframes piBig{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+.pi-gate .go{font-size:11px;color:#B3E5FC;font-weight:800;margin-bottom:8px;text-align:center}
+.pi-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;width:100%;max-width:300px}
+.pi-o{border:none;border-radius:13px;padding:11px 6px;font-size:14px;font-weight:900;color:#3E2723;cursor:pointer;
+  background:linear-gradient(180deg,#fff,#E1F5FE);box-shadow:0 4px 0 rgba(0,0,0,.28);font-family:inherit}
+.pi-o:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.28)}
+.pi-o.correct{background:linear-gradient(180deg,#B9F6CA,#69F0AE);animation:piOk .4s}
+.pi-o.wrong{background:linear-gradient(180deg,#FFCDD2,#FF8A80);animation:piNo .4s}
+.pi-o.reveal{outline:3px solid #FFEA00}
+.pi-o.dead{opacity:.3}
+@keyframes piOk{0%{transform:scale(1)}45%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes piNo{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}60%{transform:translateX(6px)}}
+.pi-btns{display:flex;gap:6px;width:100%;max-width:322px;margin:8px auto 0}
+.pi-act{flex:1;border:none;border-radius:12px;padding:9px 4px;font-size:12px;font-weight:900;color:#fff;cursor:pointer;
+  font-family:inherit;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.pi-act:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.pi-act.b{background:linear-gradient(180deg,#7986CB,#3F51B5)}
+.pi-act.g{background:linear-gradient(180deg,#9CCC65,#558B2F)}
+.pi-act:disabled{opacity:.4}
+.pi-judge{width:100%;max-width:322px;margin:7px auto 0;min-height:22px;text-align:center;font-size:13px;font-weight:900;
+  color:#FFEA00;opacity:0}
+.pi-judge.show{opacity:1;animation:piJudge .35s}
+@keyframes piJudge{from{transform:translateY(7px) scale(.94)}to{transform:none}}
+.pi-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);
+  font-weight:700;line-height:1.6}
+.pi-splash{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(79,195,247,.85),rgba(2,136,209,0) 62%);
+  pointer-events:none;z-index:18;opacity:0}
+.pi-splash.go{animation:piSplash .55s ease-out}
+@keyframes piSplash{0%{opacity:.95;transform:scale(.4)}100%{opacity:0;transform:scale(1.5)}}
+.pi-shake{animation:piShake .38s}
+@keyframes piShake{0%,100%{transform:translate(0)}20%{transform:translate(-5px,2px)}40%{transform:translate(5px,-2px)}
+  60%{transform:translate(-4px,-1px)}80%{transform:translate(4px,1px)}}
+.pi-banner{position:absolute;top:38%;left:0;right:0;text-align:center;font-size:26px;font-weight:900;color:#FFEA00;
+  text-shadow:0 3px 0 rgba(0,0,0,.35);opacity:0;pointer-events:none;z-index:22}
+.pi-banner.show{animation:piBan 1.5s ease-out}
+@keyframes piBan{0%{opacity:0;transform:scale(.5)}18%{opacity:1;transform:scale(1.12)}72%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(1.05) translateY(-14px)}}
+@media(max-width:420px){.pi-hud,.pi-time,.pi-char,.pi-grid,.pi-btns,.pi-judge,.pi-tip{max-width:300px}
+  .pi-grid{gap:2px;padding:5px}}
+
 </style>
 
 </head>
@@ -1642,6 +1733,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('cup')">
       <div class="icon">🧪</div>
       <div class="info"><h3>笔顺倒水杯</h3><p>把打翻的笔画墨水，一杯杯按方向倒回来！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('pipe')">
+      <div class="icon">💧</div>
+      <div class="info"><h3>笔顺水管屋</h3><p>转管道引墨水，按笔顺序开水阀！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('fortune')">
       <div class="icon">🎲</div>
@@ -3114,6 +3209,69 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-pipe">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="piScoreTxt">💧 0 分</span><span id="piLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="piHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">💧 转动<b>水管</b>，把<b>墨池</b>里的墨水一路引到<b>田字格水阀</b>上：水阀必须按<b>第 1 笔 → 第 2 笔 → 第 3 笔</b>的顺序开，每开一阀要答对那一笔往哪写！</div>
+  <div class="pi-char">今天要写的字 <em id="piCharTxt">永</em><span id="piOrderTxt">笔顺：➡️ ️ ↙️ ️ ↗️</span></div>
+  <div class="pi-hud">
+    <span id="piValveTxt">🚰 水阀 0/3</span>
+    <span id="piMoveTxt">🔄 转管 0</span>
+    <span id="piParTxt">🎯 参考 0</span>
+    <span id="piBestTxt">🥇 纪录 0</span>
+  </div>
+  <div class="pi-hearts" id="piHeartsEl"><i>❤️</i><i>❤️</i><i>❤️</i></div>
+  <div class="pi-time" id="piTimeEl"><b id="piTimeBar"></b></div>
+  <div class="pi-wrap">
+    <div class="pi-grid" id="piGridEl"></div>
+    <div class="pi-splash" id="piSplashEl"></div>
+    <div class="pi-banner" id="piBannerEl"></div>
+  </div>
+  <div class="pi-gate" id="piGateEl">
+    <h4 id="piGateT">第 1 笔往哪写？</h4>
+    <div class="gi" id="piGateI">❔</div>
+    <div class="go" id="piGateO">墨水已经流到这里，答对才开得了水阀</div>
+    <div class="pi-opts" id="piOpts"></div>
+  </div>
+  <div class="pi-btns">
+    <button class="pi-act" id="piHintBtn" onclick="piHint()">💡 提示 ×3</button>
+    <button class="pi-act b" id="piUndoBtn" onclick="piUndo()">↩️ 转回 ×3</button>
+    <button class="pi-act g" onclick="piEnd('🏁 收工')">🏁 收工</button>
+  </div>
+  <div class="pi-judge" id="piJudgeLine"></div>
+  <div class="pi-tip" id="piTip">点<b>管子</b>转一格 · <b>1-4</b> 答水阀题 · <b>H</b> 提示 · <b>U</b> 转回 · 墨水会自己找路</div>
+</div>
+<div class="screen" id="screen-pipe-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="piResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="piResultEmoji">💧</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="piResultTitle">水管屋收工！</h2>
+    <p style="font-size:16px;opacity:.8" id="piResultSubtitle">墨水一路通到底</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="piResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4FC3F7" id="piResultValves">0</div><div style="font-size:13px;opacity:.7">开掉几个水阀</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="piResultLv">1</div><div style="font-size:13px;opacity:.7">通到第几关</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#69F0AE" id="piResultPerfect">0</div><div style="font-size:13px;opacity:.7">一步不浪费的关</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="piResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="piResultAll">累计开水阀 0 · 通关 0 关 · 共玩 0 局</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="piStart()">💧 再通一次</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-fortune">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -3804,6 +3962,7 @@ function enterMode(mode){
   else if(mode==='cup')wcStart();
   else if(mode==='bubble')bbStart();
   else if(mode==='fortune')mfStart();
+  else if(mode==='pipe')piStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -16260,6 +16419,542 @@ document.addEventListener('keydown',function(e){
   }
 });
 /* ===== 笔顺大富翁 结束 ===== */
+/* ===== 笔顺水管屋：旋转管道把墨水按笔顺引到田字格水阀上 ===== */
+const PI_D=[[-1,0],[0,1],[1,0],[0,-1]];      // 0上 1右 2下 3左
+const PI_END=[[50,0],[100,50],[50,100],[0,50]];
+const PI_BASE={I:[0,2],L:[0,1]};
+const PI_CN={R:'横',D:'竖',P:'撇',N:'捺',T:'点'};
+let pi={gen:0,timers:[],lv:1,score:0,over:false,busy:false,ended:false,grid:[],w:4,h:4,src:0,cps:[],next:1,
+  lit:0,moves:0,par:0,valves:0,levels:0,perfect:0,hearts:3,hints:3,undos:3,time:60,tid:0,
+  snaps:[],wet:new Set(),gate:0,combo:0,comboMax:0,chars:{},ch:'',dirs:[],hintIx:-1};
+function piGet(k){return parseInt(localStorage.getItem(k)||'0',10)}
+function piAdd(k,n){localStorage.setItem(k,String(piGet(k)+(n||1)))}
+function piSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function piNote(t){const e=document.getElementById('piTip');if(e)e.innerHTML=t}
+function piCfg(l){
+  l=Math.max(1,Math.min(12,l||1));
+  return {w:Math.min(6,4+Math.floor((l-1)/5)),h:Math.min(5,4+Math.floor((l-1)/4)),
+    cp:Math.min(5,2+Math.floor((l-1)/2)),gap:Math.max(2,4-Math.floor((l-1)/3)),
+    decoy:Math.min(8,1+l),time:Math.max(50,88-l*3)};
+}
+function piJudge(t,color){
+  const e=document.getElementById('piJudgeLine');if(!e)return;
+  e.innerHTML=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function piBanner(t){
+  const e=document.getElementById('piBannerEl');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function piSplash(){
+  const e=document.getElementById('piSplashEl');if(!e)return;
+  e.classList.remove('go');void e.offsetWidth;e.classList.add('go');
+}
+function piShake(){
+  const e=document.getElementById('piGridEl');if(!e)return;
+  e.classList.remove('pi-shake');void e.offsetWidth;e.classList.add('pi-shake');
+}
+function piT(fn,ms){
+  const g=pi.gen;
+  const id=setTimeout(function(){
+    const ix=pi.timers.indexOf(id);if(ix>=0)pi.timers.splice(ix,1);
+    if(g!==pi.gen)return;fn();
+  },ms);
+  pi.timers.push(id);return id;
+}
+function piStop(){pi.timers.forEach(function(id){clearTimeout(id)});pi.timers=[]}
+function piKill(){pi.gen++;piStop()}
+function piEl(i){const g=document.getElementById('piGridEl');if(!g)return null;return g.children[i]||null}
+function piRC(i){return [Math.floor(i/pi.w),i%pi.w]}
+function piIx(r,c){return r*pi.w+c}
+function piIn(r,c){return r>=0&&c>=0&&r<pi.h&&c<pi.w}
+function piStep(i,d){const p=piRC(i),r=p[0]+PI_D[d][0],c=p[1]+PI_D[d][1];return piIn(r,c)?piIx(r,c):-1}
+function piDirTo(a,b){
+  const A=piRC(a),B=piRC(b);
+  if(B[0]===A[0]-1&&B[1]===A[1])return 0;
+  if(B[1]===A[1]+1&&B[0]===A[0])return 1;
+  if(B[0]===A[0]+1&&B[1]===A[1])return 2;
+  if(B[1]===A[1]-1&&B[0]===A[0])return 3;
+  return -1;
+}
+function piOpp(d){return (d+2)%4}
+function piOpen(t){
+  if(!t)return [];
+  if(t.t==='s'||t.t==='c')return [0,1,2,3];
+  if(t.t!=='p')return [];
+  return PI_BASE[t.shape].map(function(d){return (d+t.rot)%4});
+}
+function piIcon(code){const d=DIRS.find(function(x){return x.code===code});return d?d.icon:code}
+function piLabel(code){const d=DIRS.find(function(x){return x.code===code});return d?d.label:code}
+function piStroke(code){return (PI_CN[code]||code)+' '+piIcon(code)}
+/* ---------- 生成：刻一条不自我相交的路 → 每隔 gap 格放一阀 → 只打乱管子朝向 ---------- */
+function piCarve(start,len){
+  const seen=new Set([start]),path=[start];
+  function dfs(cur){
+    if(path.length>=len)return true;
+    const opts=[];
+    for(let d=0;d<4;d++){const n=piStep(cur,d);if(n>=0&&!seen.has(n))opts.push(n)}
+    for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=opts[i];opts[i]=opts[j];opts[j]=t}
+    for(let k=0;k<opts.length;k++){
+      seen.add(opts[k]);path.push(opts[k]);
+      if(dfs(opts[k]))return true;
+      path.pop();seen.delete(opts[k]);
+    }
+    return false;
+  }
+  return dfs(start)?path:null;
+}
+function piSolRot(shape,dirs){
+  const base=PI_BASE[shape],want=dirs.slice().sort().join(',');
+  for(let r=0;r<4;r++){
+    if(base.map(function(d){return (d+r)%4}).sort().join(',')===want)return r;
+  }
+  return 0;
+}
+function piTurns(t){
+  if(t.t!=='p')return 0;
+  const d=(t.sol-t.rot+4)%4;
+  return t.shape==='I'?(d%2?1:0):d;
+}
+function piPoolGet(){
+  let pool=CHARS.filter(function(c){const d=strokeTypes[c];return d&&d.length>=3&&d.length<=8});
+  if(currentGrade!=='all'){
+    const g=CHARS_BY_GRADE[currentGrade]||[];
+    const fg=pool.filter(function(c){return g.indexOf(c)>=0});
+    if(fg.length>=4)pool=fg;
+  }
+  return pool;
+}
+function piPickChar(){
+  const pool=piPoolGet();
+  return pool.length?pool[Math.floor(Math.random()*pool.length)]:null;
+}
+async function piCharData(ch){
+  const d=await loadCharData(ch);
+  if(!d)return null;
+  if(!strokeTypes[ch])strokeTypes[ch]=d.medians.map(detectDir);
+  return strokeTypes[ch];
+}
+async function piChars(){
+  const ch=piPickChar();
+  if(ch)return {ch:ch,dirs:strokeTypes[ch]};
+  const seeds=['永','木','水','火','山','田','日','月','人','大','小','中','春','秋','明'];
+  for(let i=0;i<seeds.length;i++){
+    const d=await piCharData(seeds[i]);
+    if(d&&d.length>=3&&d.length<=8)return {ch:seeds[i],dirs:d};
+  }
+  const q=nextInQueue();
+  if(q){const d=await piCharData(q);if(d)return {ch:q,dirs:d}}
+  return null;
+}
+function piBuild(ch,dirs){
+  const C=piCfg(pi.lv);
+  pi.w=C.w;pi.h=C.h;
+  const n=Math.max(2,Math.min(C.cp,dirs.length));
+  const len=n*C.gap+1;
+  if(len>pi.w*pi.h)return false;
+  for(let attempt=0;attempt<200;attempt++){
+    pi.grid=[];
+    for(let i=0;i<pi.w*pi.h;i++)pi.grid.push({t:'e'});
+    const s=piIx(Math.floor(Math.random()*pi.h),0);
+    const path=piCarve(s,len);
+    if(!path||path.length<len)continue;
+    const cpIx={};
+    for(let j=1;j<=n;j++)cpIx[path[j*C.gap]]=j;
+    pi.grid[s]={t:'s',ix:s};
+    let ok=true;
+    for(let k=1;k<path.length;k++){
+      const i=path[k];
+      if(cpIx[i]){pi.grid[i]={t:'c',ix:i,k:cpIx[i],lit:false};continue}
+      const d1=piDirTo(i,path[k-1]),d2=piDirTo(i,path[k+1]);
+      if(d1<0||d2<0){ok=false;break}
+      const shape=(piOpp(d1)===d2)?'I':'L';
+      pi.grid[i]={t:'p',ix:i,shape:shape,sol:piSolRot(shape,[d1,d2]),rot:0,onPath:true,po:k};
+    }
+    if(!ok)continue;
+    const free=[];
+    for(let i=0;i<pi.grid.length;i++)if(pi.grid[i].t==='e')free.push(i);
+    for(let i=free.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=free[i];free[i]=free[j];free[j]=t}
+    for(let k=0;k<C.decoy&&k<free.length;k++){
+      const shape=Math.random()<.45?'I':'L';
+      pi.grid[free[k]]={t:'p',ix:free[k],shape:shape,sol:Math.floor(Math.random()*4),rot:0};
+    }
+    let off=0,tot=0;
+    for(let i=0;i<pi.grid.length;i++){
+      const t=pi.grid[i];if(t.t!=='p')continue;
+      tot++;
+      t.rot=(t.sol+Math.floor(Math.random()*(t.shape==='I'?2:4)))%4;
+      t.vis=t.rot;
+      if(piTurns(t)>0)off++;
+    }
+    if(off<Math.max(3,Math.round(tot*.5)))continue;
+    pi.src=s;
+    pi.cps=[];
+    for(let i=0;i<pi.grid.length;i++)if(pi.grid[i].t==='c')pi.cps.push(pi.grid[i]);
+    pi.cps.sort(function(a,b){return a.k-b.k});
+    pi.par=0;
+    for(let i=0;i<pi.grid.length;i++){const t=pi.grid[i];if(t.t==='p'&&t.onPath)pi.par+=piTurns(t)}
+    if(pi.par<3||pi.cps.length!==n)return false;
+    return true;
+  }
+  return false;
+}
+/* ---------- 渲染 ---------- */
+function piArmD(dirs){
+  return dirs.map(function(d){return 'M50 50 L'+PI_END[d][0]+' '+PI_END[d][1]}).join(' ');
+}
+function piRenderDom(){
+  const g=document.getElementById('piGridEl');if(!g)return;
+  g.style.gridTemplateColumns='repeat('+pi.w+',1fr)';
+  g.innerHTML='';
+  for(let i=0;i<pi.grid.length;i++){
+    const t=pi.grid[i],el=document.createElement('div');
+    el.dataset.i=i;
+    if(t.t==='e'){el.className='pi-c wall';el.textContent='🧱';g.appendChild(el);continue}
+    if(t.t==='s'){el.className='pi-c src wet';el.innerHTML='<b>🖌️</b>';g.appendChild(el);continue}
+    if(t.t==='c'){
+      el.className='pi-c cp closed';
+      el.innerHTML='<svg class="pi-svg" viewBox="0 0 100 100"><path class="pi-arm" d="'+piArmD([0,1,2,3])+'"/></svg>'+
+        '<span class="num">'+t.k+'</span><span class="lab">第'+t.k+'笔</span><span class="knob">关</span>';
+      g.appendChild(el);continue;
+    }
+    el.className='pi-c pipe';
+    el.innerHTML='<svg class="pi-svg" viewBox="0 0 100 100"><path class="pi-arm" d="'+piArmD(PI_BASE[t.shape])+'"/></svg>';
+    const sv=el.querySelector('.pi-svg');
+    if(sv)sv.style.transform='rotate('+(t.vis*90)+'deg)';
+    g.appendChild(el);
+  }
+  g.onclick=function(e){
+    const c=e.target.closest?e.target.closest('.pi-c'):null;
+    if(!c)return;
+    const i=parseInt(c.dataset.i,10);
+    if(!isNaN(i))piTap(i);
+  };
+}
+function piPaint(i){
+  const t=pi.grid[i],el=piEl(i);if(!t||!el)return;
+  const w=pi.wet.has(i);
+  if(t.t==='p'){
+    const sv=el.querySelector('.pi-svg');
+    if(sv)sv.style.transform='rotate('+(t.vis*90)+'deg)';
+    el.classList.toggle('wet',w);
+  }else if(t.t==='c'){
+    el.classList.toggle('open',!!t.lit);
+    el.classList.toggle('closed',!t.lit);
+    el.classList.toggle('wet',w);
+    const kb=el.querySelector('.knob');if(kb)kb.textContent=t.lit?'开':'关';
+    const lab=el.querySelector('.lab');
+    if(lab&&t.lit)lab.textContent=piIcon(pi.dirs[t.k-1]);
+  }
+}
+function piPaintAll(){for(let i=0;i<pi.grid.length;i++)piPaint(i)}
+/* ---------- 墨水流动：关着的水阀是单向阀门，挡住去路 ---------- */
+function piFlow(){
+  const wet=new Set([pi.src]),reach=[],q=[pi.src];
+  while(q.length){
+    const i=q.shift(),t=pi.grid[i];
+    if(t.t==='c'&&!t.lit){if(reach.indexOf(i)<0)reach.push(i);continue}
+    const opens=piOpen(t);
+    for(let d=0;d<4;d++){
+      if(opens.indexOf(d)<0)continue;
+      const n=piStep(i,d);
+      if(n<0||wet.has(n))continue;
+      const nt=pi.grid[n];
+      if(nt.t!=='p'&&nt.t!=='c')continue;
+      if(piOpen(nt).indexOf(piOpp(d))<0)continue;
+      wet.add(n);q.push(n);
+    }
+  }
+  wet.forEach(function(i){const t=pi.grid[i];if(t.t==='c'&&!t.lit&&reach.indexOf(i)<0)reach.push(i)});
+  return {wet:wet,reach:reach};
+}
+function piApplyFlow(animate){
+  const F=piFlow(),old=pi.wet;
+  pi.wet=F.wet;
+  const fresh=[];
+  F.wet.forEach(function(i){if(!old.has(i))fresh.push(i)});
+  fresh.sort(function(a,b){return a-b});
+  piPaintAll();
+  if(animate&&fresh.length){
+    fresh.forEach(function(i){const el=piEl(i);if(el)el.classList.remove('wet')});
+    fresh.forEach(function(i,k){
+      piT(function(){
+        const el=piEl(i);
+        if(el)el.classList.add('wet');
+        tone(300+Math.min(11,k)*56,.06,'triangle',.07);
+        if(pi.grid[i].t==='c')piSplash();
+      },k*70);
+    });
+  }
+  F.reach.sort(function(a,b){return pi.grid[a].k-pi.grid[b].k});
+  for(let k=0;k<F.reach.length;k++){
+    const cp=pi.grid[F.reach[k]];
+    if(cp.k===pi.next){if(pi.gate!==cp.k)piAsk(cp);return}
+    if(cp.k>pi.next){
+      const el=piEl(F.reach[k]);
+      if(el){el.classList.remove('deny');void el.offsetWidth;el.classList.add('deny')}
+      piJudge('🚰 墨水堵在<b>第 '+cp.k+' 号阀</b>，得先开<b>第 '+pi.next+' 号</b>','#FFCC80');
+      return;
+    }
+  }
+}
+/* ---------- 水阀答题 ---------- */
+function piAsk(cp){
+  if(pi.over)return;
+  pi.gate=cp.k;
+  const code=pi.dirs[cp.k-1]||'R';
+  const pool=DIRS.map(function(d){return d.code}).filter(function(c){return c!==code});
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=pool[i];pool[i]=pool[j];pool[j]=t}
+  const vals=[code].concat(pool.slice(0,3));
+  for(let i=vals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=vals[i];vals[i]=vals[j];vals[j]=t}
+  piSet('piGateT','『'+pi.ch+'』的第 '+cp.k+' 笔往哪写？');
+  piSet('piGateI','❔');
+  piSet('piGateO','墨水已经顶到这里，答对才拧得开水阀');
+  const box=document.getElementById('piOpts');
+  if(box){
+    box.innerHTML=vals.map(function(v){
+      return '<button class="pi-o" data-value="'+v+'">'+piIcon(v)+' '+piLabel(v)+'</button>';
+    }).join('');
+    box.onclick=function(e){
+      const b=e.target.closest?e.target.closest('.pi-o'):null;
+      if(b)piPick(b);
+    };
+  }
+  const ge=document.getElementById('piGateEl');if(ge)ge.classList.add('show');
+}
+function piPick(btn){
+  if(pi.over||!pi.gate||pi.busy)return;
+  const code=pi.dirs[pi.gate-1]||'R';
+  const box=document.getElementById('piOpts');if(!box)return;
+  const kids=[].slice.call(box.children);
+  const right=kids.find(function(b){return b.dataset.value===code});
+  if(btn.dataset.value===code){
+    pi.busy=true;
+    btn.classList.add('correct');
+    const cp=pi.cps.find(function(x){return x.k===pi.gate});
+    pi.lit++;pi.next=pi.lit+1;
+    if(cp){cp.lit=true;piPaint(cp.ix)}
+    pi.valves++;pi.combo++;pi.comboMax=Math.max(pi.comboMax,pi.combo);
+    const gain=60+pi.lv*8+pi.combo*6;
+    pi.score+=gain;
+    pi.chars[pi.ch]=1;
+    piSet('piGateI',piIcon(code));
+    piSet('piGateO','第 '+pi.gate+' 笔是「'+piStroke(code)+'」，水阀拧开了！');
+    sndOk();piSplash();
+    if(cp){
+      const el=piEl(cp.ix);
+      if(el){const r=el.getBoundingClientRect();spawnStarFly(r.left+r.width/2,r.top+r.height/2)}
+    }
+    if(pi.combo>=3)showComboEffect(pi.combo);
+    piJudge('💧 第 '+pi.gate+' 号阀打开：<b>'+piStroke(code)+'</b> +'+gain+' 分','#B3E5FC');
+    piHud();
+    const done=pi.lit>=pi.cps.length;
+    piT(function(){
+      const g2=document.getElementById('piGateEl');if(g2)g2.classList.remove('show');
+      pi.gate=0;pi.busy=false;
+      if(done){piLevelClear();return}
+      piApplyFlow(true);
+    },900);
+  }else{
+    btn.classList.add('wrong');
+    if(right)right.classList.add('reveal');
+    pi.hearts--;pi.combo=0;
+    sndNo();piShake();
+    piSet('piGateI',piIcon(code));
+    piSet('piGateO','这一笔其实是「'+piStroke(code)+'」，管子不用重转，再答一次');
+    piJudge('💔 答错了，还剩 '+pi.hearts+' 颗心','#FF8A80');
+    piHud();
+    if(pi.hearts<=0){piT(function(){piEnd('💔 三颗心都用完了')},900);return}
+    pi.busy=true;
+    piT(function(){
+      pi.busy=false;
+      const cp=pi.cps.find(function(x){return x.k===pi.gate});
+      if(cp)piAsk(cp);
+    },1150);
+  }
+}
+/* ---------- HUD 与回合 ---------- */
+function piHud(){
+  const C=piCfg(pi.lv);
+  piSet('piScoreTxt','💧 '+pi.score+' 分');
+  piSet('piLvTxt','第 '+pi.lv+' 关');
+  piSet('piValveTxt','🚰 水阀 '+pi.lit+'/'+pi.cps.length);
+  piSet('piMoveTxt','🔄 转管 '+pi.moves);
+  piSet('piParTxt','🎯 参考 '+pi.par);
+  piSet('piBestTxt','🥇 纪录 '+piGet('hz_pi_best'));
+  piSet('piCharTxt',pi.ch||'…');
+  piSet('piOrderTxt','共 '+(pi.dirs.length||0)+' 笔 · 本关 '+pi.cps.length+' 个阀');
+  const hb=document.getElementById('piHeartsEl');
+  if(hb)[].slice.call(hb.children).forEach(function(x,k){x.classList.toggle('off',k>=pi.hearts)});
+  const bar=document.getElementById('piTimeBar');
+  if(bar)bar.style.width=Math.max(0,Math.min(100,pi.time/Math.max(1,C.time)*100))+'%';
+  const te=document.getElementById('piTimeEl');
+  if(te)te.classList.toggle('hurry',pi.time<=10);
+  const hbtn=document.getElementById('piHintBtn');
+  if(hbtn){hbtn.textContent='💡 提示 ×'+pi.hints;hbtn.disabled=pi.hints<=0||pi.over}
+  const ubtn=document.getElementById('piUndoBtn');
+  if(ubtn){ubtn.textContent='↩️ 转回 ×'+pi.undos;ubtn.disabled=pi.undos<=0||!pi.snaps.length||pi.over}
+}
+function piTick(){
+  if(currentMode!=='pipe'){if(pi.tid){clearInterval(pi.tid);pi.tid=0}return}
+  if(pi.over||pi.gate)return;
+  pi.time--;
+  if(pi.time===10){piJudge('⌛ 只剩 10 秒，快转管子！','#FFCC80');tone(660,.12)}
+  if(pi.time<=0){pi.time=0;piHud();piEnd('⌛ 时间到，墨水还没通到底');return}
+  piHud();
+}
+function piTap(i){
+  if(pi.over||pi.busy||pi.gate)return;
+  const t=pi.grid[i];
+  if(!t||t.t!=='p')return;
+  pi.snaps.push({i:i,rot:t.rot,vis:t.vis,moves:pi.moves});
+  if(pi.snaps.length>40)pi.snaps.shift();
+  t.vis++;t.rot=(t.rot+1)%4;pi.moves++;
+  tone(330+Math.random()*100,.05,'square',.05);
+  if(i===pi.hintIx){const el=piEl(i);if(el)el.classList.remove('pick');pi.hintIx=-1}
+  piApplyFlow(true);
+  piHud();
+}
+function piUndo(){
+  if(pi.over||pi.busy||pi.gate||pi.undos<=0||!pi.snaps.length)return;
+  const s=pi.snaps.pop(),t=pi.grid[s.i];
+  if(t){t.rot=s.rot;t.vis=s.vis}
+  pi.undos--;pi.moves=s.moves;
+  tone(300,.1,'square',.06);
+  piApplyFlow(false);
+  piJudge('↩️ 把这一根转回原样','#B3E5FC');
+  piHud();
+}
+function piHint(){
+  if(pi.over||pi.busy||pi.gate||pi.hints<=0)return;
+  const bad=[];
+  for(let i=0;i<pi.grid.length;i++){const t=pi.grid[i];if(t.t==='p'&&t.onPath&&piTurns(t)>0)bad.push(i)}
+  if(!bad.length){piJudge('🎉 该转的管子都转对了，去把墨水引到下一阀','#FFF176');return}
+  pi.hints--;pi.time=Math.max(1,pi.time-5);
+  const pick=bad[Math.floor(Math.random()*bad.length)];
+  const el=piEl(pick);
+  if(el){el.classList.add('pick');piT(function(){el.classList.remove('pick')},1800)}
+  pi.hintIx=pick;
+  tone(760,.1);
+  piJudge('💡 试试这根管子（提示扣 5 秒）','#FFF176');
+  piHud();
+}
+function piLevelClear(){
+  pi.busy=true;
+  const tb=Math.round(pi.time*2);
+  const perfect=pi.moves<=pi.par;
+  const gain=120+pi.lv*20+tb+(perfect?80:0);
+  pi.score+=gain;pi.levels++;if(perfect)pi.perfect++;
+  sndDone();piSplash();spawnConfetti();
+  piBanner(perfect?'💧 一步不差！':'💧 全通！');
+  piJudge((perfect?'🏅 只转了 '+pi.moves+'/'+pi.par+' 步 · ':'')+'墨水一路通到底 +'+gain+' 分','#FFF176');
+  piHud();
+  piT(function(){
+    pi.lv=Math.min(12,pi.lv+1);
+    localStorage.setItem('hz_pi_lv',String(Math.max(piGet('hz_pi_lv'),pi.lv)));
+    piNew();
+  },1700);
+}
+function piResetLevel(){
+  pi.wet=new Set();pi.moves=0;pi.snaps=[];pi.gate=0;pi.lit=0;pi.next=1;
+  pi.hearts=3;pi.hints=3;pi.undos=3;pi.busy=false;pi.combo=0;
+  const ge=document.getElementById('piGateEl');if(ge)ge.classList.remove('show');
+}
+async function piNew(){
+  piKill();
+  const C=piCfg(pi.lv);
+  const got=await piChars();
+  if(!got){piJudge('😅 笔顺数据还没下下来，稍等一下再点','#FFCC80');return}
+  let ch=got.ch,dirs=got.dirs;
+  let built=false;
+  for(let tryIx=0;tryIx<10&&!built;tryIx++){
+    built=piBuild(ch,dirs);
+    if(!built){
+      const alt=piPickChar();
+      if(alt&&strokeTypes[alt]){ch=alt;dirs=strokeTypes[alt]}
+    }
+  }
+  if(!built){piJudge('😅 这一关的地图铺不开，再点一次试试','#FFCC80');return}
+  pi.ch=ch;pi.dirs=dirs;
+  piResetLevel();
+  pi.time=C.time;
+  piRenderDom();piApplyFlow(false);piHud();
+  if(!pi.tid)pi.tid=setInterval(piTick,1000);
+  piNote('点<b>管子</b>转一格 · <b>1-4</b> 答水阀题 · <b>H</b> 提示 · <b>U</b> 转回 · <b>R</b> 重新打乱');
+  piJudge('💧 第 '+pi.lv+' 关：把墨水引到 <b>第 1 号阀</b>（'+pi.ch+' 共 '+pi.dirs.length+' 笔）','#B3E5FC');
+}
+function piRe(){
+  if(pi.over||pi.busy||pi.gate)return;
+  const keep={score:pi.score,lv:pi.lv,valves:pi.valves,levels:pi.levels,perfect:pi.perfect,chars:pi.chars,comboMax:pi.comboMax};
+  const time=pi.time;
+  piResetLevel();
+  if(!piBuild(pi.ch,pi.dirs)){piJudge('😅 这张图重排不出来，继续转吧','#FFCC80');return}
+  Object.keys(keep).forEach(function(k){pi[k]=keep[k]});
+  pi.time=time;pi.wet=new Set();
+  piRenderDom();piApplyFlow(false);piHud();
+  piJudge('🔄 同一张图重新打乱，参考 '+pi.par+' 步','#B3E5FC');
+}
+function piStart(){
+  showScreen('pipe');
+  piKill();
+  pi.lv=Math.max(1,Math.min(12,piGet('hz_pi_lv')||1));
+  pi.score=0;pi.valves=0;pi.levels=0;pi.perfect=0;pi.combo=0;pi.comboMax=0;pi.chars={};
+  pi.over=false;pi.ended=false;
+  piNew();
+}
+function piHelp(){
+  piJudge('💧 点管子转一格，墨水自己找路；水阀要按 <b>1→2→3</b> 的顺序开','#B3E5FC');
+  piNote('<b>点管子</b>转一格 · <b>1-4</b> 答水阀题 · <b>H</b> 提示 · <b>U</b> 转回 · <b>R</b> 重新打乱');
+}
+function piEnd(reason){
+  if(pi.ended)return;
+  pi.ended=true;pi.over=true;pi.busy=true;pi.gate=0;
+  piKill();
+  if(pi.tid){clearInterval(pi.tid);pi.tid=0}
+  const score=pi.score;
+  const best=Math.max(piGet('hz_pi_best'),score);
+  localStorage.setItem('hz_pi_best',String(best));
+  localStorage.setItem('hz_pi_lv',String(Math.max(piGet('hz_pi_lv'),pi.lv)));
+  piAdd('hz_pi_valves',pi.valves);
+  piAdd('hz_pi_levels',pi.levels);
+  piAdd('hz_pi_perfect',pi.perfect);
+  piAdd('hz_pi_games',1);
+  piAdd('hz_pi_chars',Object.keys(pi.chars).length);
+  const ge=document.getElementById('piGateEl');if(ge)ge.classList.remove('show');
+  const st=Math.max(2,Math.min(26,Math.round(score/14)+pi.levels*2));
+  addStars(st);
+  showScreen('pipe-result');
+  const emoji=pi.levels>=4?'🌊':(pi.levels>=2?'💧':(pi.valves?'🚿':'🔧'));
+  const title=pi.levels>=4?'水管大师':(pi.levels>=2?'越通越顺':'差一点点就通了');
+  piSet('piResultEmoji',emoji);
+  piSet('piResultTitle',title);
+  piSet('piResultSubtitle',(reason||'')+' · 通了 '+pi.levels+' 关、开了 '+pi.valves+' 个水阀');
+  piSet('piResultScore',String(score));
+  piSet('piResultValves',String(pi.valves));
+  piSet('piResultLv',String(pi.lv));
+  piSet('piResultPerfect',String(pi.perfect));
+  piSet('piResultBest',String(best));
+  piSet('piResultStars','⭐ '+stars);
+  piSet('piResultAll','累计开水阀 '+piGet('hz_pi_valves')+' · 累计通关 '+piGet('hz_pi_levels')+' 关 · 共玩 '+piGet('hz_pi_games')+' 局 · 认字 '+piGet('hz_pi_chars')+' 个');
+  sndReward();spawnConfetti();
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='pipe'||pi.over)return;
+  const k=e.key;
+  if(k>='1'&&k<='4'){
+    const ge=document.getElementById('piGateEl');
+    const box=document.getElementById('piOpts');
+    if(ge&&box&&ge.classList.contains('show')){
+      const btn=box.children[parseInt(k,10)-1];
+      if(btn){e.preventDefault();piPick(btn)}
+    }
+    return;
+  }
+  if(k==='h'||k==='H'){e.preventDefault();piHint()}
+  else if(k==='u'||k==='U'){e.preventDefault();piUndo()}
+  else if(k==='r'||k==='R'){e.preventDefault();piRe()}
+});
+
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
