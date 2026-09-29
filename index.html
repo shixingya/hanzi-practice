@@ -1308,6 +1308,98 @@ button:active{transform:scale(.95)}
 @keyframes wcBan{0%{opacity:0;transform:scale(.4) rotate(-7deg)}22%{opacity:1;transform:scale(1.15) rotate(3deg)}42%{transform:scale(1)}78%{opacity:1}100%{opacity:0;transform:scale(1.03)}}
 @media(max-width:420px){.wc-cop,.wc-hud,.wc-order,.wc-btns,.wc-judge,.wc-tip,.wc-stage,.wc-tubes{max-width:300px}
   .wc-tubes{gap:5px}.wc-t{width:33px}}
+/* ===== 笔顺泡泡龙（笔画方向当泡泡颜色 · 瞄准发射三消 · 悬空整串掉落） ===== */
+.bb-hud{display:flex;justify-content:space-between;gap:5px;width:100%;max-width:322px;margin:8px auto 0;
+  font-size:11.5px;font-weight:800;color:#fff;background:rgba(255,255,255,.14);border-radius:12px;padding:7px 9px}
+.bb-hud span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bb-cop{display:flex;align-items:center;gap:8px;width:100%;max-width:322px;margin:9px auto 0}
+.bb-chem{font-size:32px;line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.32))}
+.bb-bub{flex:1;background:#fff;color:#37474F;font-size:11.5px;font-weight:800;line-height:1.4;border-radius:12px;
+  padding:7px 10px;position:relative;box-shadow:0 2px 0 rgba(0,0,0,.18);min-height:32px;display:flex;align-items:center}
+.bb-bub:before{content:'';position:absolute;left:-6px;top:13px;border:5px solid transparent;border-right-color:#fff}
+.bb-field{position:relative;width:100%;max-width:322px;height:430px;margin:8px auto 0;border-radius:16px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.04) 62%,rgba(0,0,0,.14));
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 4px 0 rgba(0,0,0,.2);touch-action:none;cursor:crosshair}
+.bb-net{position:absolute;inset:0}
+.bb-line{position:absolute;left:0;right:0;border-top:2px dashed rgba(255,235,59,.62)}
+.bb-line:after{content:'⚠️ 越线就收工';position:absolute;right:6px;top:-15px;font-size:9.5px;font-weight:900;color:#FFF59D;opacity:.85}
+.bb-guide{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.bb-path{fill:none;stroke:rgba(255,255,255,.72);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:7 7;opacity:.9}
+.bb-ghost{fill:none;stroke:#FFF59D;stroke-width:2.4;stroke-dasharray:5 5;opacity:.95}
+.bb-ghost.hot{stroke:#69F0AE;stroke-width:3.2}
+.bb-gnum{font-size:13px;font-weight:900;fill:#FFF59D;text-anchor:middle;paint-order:stroke;stroke:rgba(0,0,0,.55);stroke-width:3px}
+.bb{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-style:normal;font-size:13px;font-weight:900;color:rgba(0,0,0,.5);text-shadow:0 1px 0 rgba(255,255,255,.55);
+  box-shadow:inset -3px -4px 7px rgba(0,0,0,.24),inset 3px 4px 7px rgba(255,255,255,.5),0 2px 3px rgba(0,0,0,.28);
+  transform:translate(-50%,-50%);transition:left .3s ease-out,top .3s ease-out}
+.bb:after{content:'';position:absolute;left:20%;top:14%;width:26%;height:20%;border-radius:50%;background:rgba(255,255,255,.72)}
+.bb.land{animation:bbLand .26s cubic-bezier(.34,1.56,.64,1)}
+@keyframes bbLand{0%{transform:translate(-50%,-50%) scale(.45)}60%{transform:translate(-50%,-50%) scale(1.16)}100%{transform:translate(-50%,-50%) scale(1)}}
+.bb.pop{animation:bbPop .3s ease-out forwards;pointer-events:none}
+@keyframes bbPop{0%{transform:translate(-50%,-50%) scale(1);opacity:1}45%{transform:translate(-50%,-50%) scale(1.5);opacity:.75}100%{transform:translate(-50%,-50%) scale(.2);opacity:0}}
+.bb.fall{animation:bbFall .62s ease-in forwards;pointer-events:none;z-index:3}
+@keyframes bbFall{0%{opacity:1}100%{transform:translate(calc(-50% + var(--dx,0px)),calc(-50% + 190px)) rotate(var(--rot,40deg));opacity:0}}
+.bb.spark:after{background:#FFF59D;box-shadow:0 0 10px 4px rgba(255,245,157,.9)}
+.bb-gun{position:absolute;left:50%;bottom:4px;transform:translateX(-50%)}
+.bb-tube{position:relative;width:44px;height:52px;border-radius:8px 8px 22px 22px;border:2px solid rgba(255,255,255,.5);
+  border-bottom:none;background:linear-gradient(100deg,rgba(255,255,255,.26),rgba(255,255,255,.05) 48%,rgba(255,255,255,.24));
+  display:flex;align-items:flex-end;justify-content:center;padding:0 0 6px;box-shadow:0 3px 0 rgba(0,0,0,.22)}
+.bb-tube b{font-size:9px;font-weight:900;color:#fff;opacity:.8;position:absolute;left:0;right:0;top:-14px;text-align:center}
+.bb-nxt{display:flex;align-items:center;gap:5px;flex:0 0 auto;padding:4px 7px 4px 6px;
+  border-radius:12px;background:rgba(0,0,0,.22);font-size:9.5px;font-weight:900;color:rgba(255,255,255,.9);pointer-events:none}
+.bb-nxt .bb-mag{width:22px;height:22px;font-size:10.5px}
+.bb-mag{position:relative;width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:rgba(0,0,0,.5);
+  box-shadow:inset -3px -4px 7px rgba(0,0,0,.24),inset 3px 4px 7px rgba(255,255,255,.5),0 0 0 2px rgba(255,255,255,.4);
+  transition:background .2s,opacity .2s;pointer-events:none}
+.bb-mag:after{content:'';position:absolute;left:22%;top:16%;width:26%;height:20%;border-radius:50%;background:rgba(255,255,255,.72)}
+.bb-mag.empty{background:rgba(255,255,255,.16);color:rgba(255,255,255,.55);box-shadow:inset 0 0 0 2px rgba(255,255,255,.3)}
+.bb-mag.ready{animation:bbReady .9s ease-in-out infinite}
+@keyframes bbReady{0%,100%{box-shadow:inset -3px -4px 7px rgba(0,0,0,.24),inset 3px 4px 7px rgba(255,255,255,.5),0 0 0 2px rgba(255,255,255,.4)}
+  50%{box-shadow:inset -3px -4px 7px rgba(0,0,0,.24),inset 3px 4px 7px rgba(255,255,255,.5),0 0 0 4px rgba(255,245,157,.85)}}
+.bb-q{width:100%;max-width:322px;margin:9px auto 0;text-align:center;font-size:14.5px;font-weight:900;color:#fff;
+  text-shadow:0 2px 3px rgba(0,0,0,.45);line-height:1.35;min-height:20px}
+.bb-q s{text-decoration:none;color:#FFF176;font-size:19px}
+.bb-opts{display:flex;gap:6px;justify-content:center;width:100%;max-width:322px;margin:8px auto 0}
+.bb-o{flex:1;border:none;border-radius:12px;padding:9px 2px;font-family:inherit;font-size:12.5px;font-weight:900;cursor:pointer;
+  color:#263238;background:rgba(255,255,255,.9);box-shadow:0 3px 0 rgba(0,0,0,.28);transition:transform .12s,box-shadow .12s}
+.bb-o em{font-style:normal;font-size:15px;margin-right:3px}
+.bb-o:active{transform:translateY(3px);box-shadow:none}
+.bb-o.correct{background:linear-gradient(160deg,#B9F6CA,#00C853);color:#0B3D17;box-shadow:0 0 0 2px #FFF59D,0 3px 0 rgba(0,0,0,.28)}
+.bb-o.wrong{background:linear-gradient(160deg,#FFCDD2,#E53935);color:#4A0C0C;animation:bbShake .42s ease-out}
+.bb-o.reveal{background:linear-gradient(160deg,#FFF9C4,#F9A825);color:#3E2723;animation:bbShake .42s ease-out}
+.bb-o.dead{opacity:.45;cursor:default}
+@keyframes bbShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}60%{transform:translateX(4px)}85%{transform:translateX(-2px)}}
+.bb-order{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;max-width:322px;margin:9px auto 0;
+  font-size:11px;font-weight:900;color:#fff;opacity:.92}
+.bb-order em{font-style:normal;font-size:14px;line-height:1;background:rgba(255,255,255,.16);border-radius:8px;padding:4px 5px;
+  transition:transform .18s ease-out,background .18s ease-out,color .18s}
+.bb-order em.on{background:#FFD740;color:#3E2723;transform:scale(1.22)}
+.bb-order em.kR{box-shadow:inset 0 0 0 2px #FF6B6B}
+.bb-order em.kD{box-shadow:inset 0 0 0 2px #4FC3F7}
+.bb-order em.kP{box-shadow:inset 0 0 0 2px #81C784}
+.bb-order em.kN{box-shadow:inset 0 0 0 2px #FFB74D}
+.bb-order em.kT{box-shadow:inset 0 0 0 2px #BA68C8}
+.bb-order s{text-decoration:none;font-size:19px;font-weight:900;color:#FFF176;margin-right:3px}
+.bb-btns{display:flex;gap:6px;justify-content:center;width:100%;max-width:322px;margin:10px auto 0}
+.bb-act{flex:1;border:none;border-radius:12px;padding:10px 3px;font-family:inherit;font-size:12px;font-weight:900;cursor:pointer;
+  color:#3E2723;background:linear-gradient(160deg,#FFF176,#FFB300);box-shadow:0 3px 0 rgba(0,0,0,.28)}
+.bb-act.b{background:linear-gradient(160deg,#B3E5FC,#0288D1);color:#01304F}
+.bb-act.g{background:linear-gradient(160deg,#C8E6C9,#43A047);color:#1B4D1B}
+.bb-act:active{transform:translateY(3px);box-shadow:none}
+.bb-act:disabled{opacity:.4;cursor:default}
+.bb-judge{width:100%;max-width:322px;margin:9px auto 0;min-height:20px;text-align:center;line-height:1.35;
+  font-size:13px;font-weight:900;color:#FFEA00;text-shadow:0 2px 3px rgba(0,0,0,.6)}
+.bb-judge.show{animation:bbJudge 2.6s ease-out forwards}
+@keyframes bbJudge{0%{opacity:0;transform:translateY(7px)}12%{opacity:1;transform:translateY(0)}78%{opacity:1}100%{opacity:.92}}
+.bb-banner{position:absolute;left:0;right:0;top:38%;text-align:center;font-size:21px;font-weight:900;color:#FFF176;
+  text-shadow:0 3px 0 rgba(0,0,0,.5),0 0 18px rgba(255,241,118,.8);opacity:0;pointer-events:none;z-index:6}
+.bb-banner.show{animation:bbBan 1.5s ease-out}
+@keyframes bbBan{0%{opacity:0;transform:scale(.5)}18%{opacity:1;transform:scale(1.14)}34%{transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:scale(1.04)}}
+.bb-tip{width:100%;max-width:322px;margin:8px auto 0;text-align:center;font-size:11px;line-height:1.55;color:rgba(255,255,255,.82)}
+.bb-tip b{color:#FFF176}
+.bb-heart{color:#FF5252;letter-spacing:1px}
+.bb-heart.off{color:rgba(255,255,255,.3)}
 </style>
 
 </head>
@@ -1452,6 +1544,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('cup')">
       <div class="icon">🧪</div>
       <div class="info"><h3>笔顺倒水杯</h3><p>把打翻的笔画墨水，一杯杯按方向倒回来！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('bubble')">
+      <div class="icon">🫧</div>
+      <div class="info"><h3>笔顺泡泡龙</h3><p>答对装同色弹，瞄三个连成一片炸！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('balance')">
       <div class="icon">⚖️</div>
@@ -2916,6 +3012,77 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-bubble">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="bbScoreTxt">🫧 0 分</span><span id="bbLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="bbHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal" id="bbGoal">🫧 顶上挂满<b>笔画方向泡泡</b>：横➡️红、竖⬇️蓝、撇↙️绿、捺↘️橙、点↗️紫。<b>答对笔顺题</b>就装上那一发颜色的泡泡，<b>拖动瞄准</b>（会撞墙反弹）松手发射，<b>三个同色连成一片就炸</b>，被炸断的泡泡会整串掉下来！</div>
+  <div class="bb-hud">
+    <span id="bbPopsTxt">🫧 爆破 0</span>
+    <span id="bbComboTxt">🔥 连击 0</span>
+    <span id="bbRowTxt">❤️ ❤️ ❤️</span>
+    <span id="bbBestTxt">🥇 最高 0</span>
+  </div>
+  <div class="bb-cop">
+    <div class="bb-chem">🫧</div>
+    <div class="bb-bub" id="bbBubEl">瞄准同色那一片…</div>
+    <div class="bb-nxt">下一发<span class="bb-mag empty" id="bbMagNext">·</span></div>
+  </div>
+  <div class="bb-field" id="bbField">
+    <div class="bb-net" id="bbNet"></div>
+    <svg class="bb-guide" id="bbGuide" viewBox="0 0 322 430" preserveAspectRatio="none">
+      <polyline class="bb-path" id="bbPath" points=""/>
+      <circle class="bb-ghost" id="bbGhost" cx="0" cy="0" r="0"/>
+      <text class="bb-gnum" id="bbGnum" x="0" y="0"></text>
+    </svg>
+    <div class="bb-line" id="bbLine"></div>
+    <div class="bb-banner" id="bbBannerEl"></div>
+    <div class="bb-gun" id="bbGun">
+      <div class="bb-tube"><b>这一发</b><span class="bb-mag empty" id="bbMag">·</span></div>
+    </div>
+  </div>
+  <div class="bb-q" id="bbQ">正在装泡泡…</div>
+  <div class="bb-opts" id="bbOpts"></div>
+  <div class="bb-order" id="bbOrder"></div>
+  <div class="bb-btns">
+    <button class="bb-act" id="bbHintBtn" onclick="bbHint()">💡 提示</button>
+    <button class="bb-act b" id="bbUndoBtn" onclick="bbUndo()">↩️ 撤销 ×3</button>
+    <button class="bb-act" id="bbReBtn" onclick="bbReroll()">🔄 换一题</button>
+    <button class="bb-act g" onclick="bbEnd('🏁 今天打到这里，收工！')">🏁 收工</button>
+  </div>
+  <div class="bb-judge" id="bbJudgeLine"></div>
+  <div class="bb-tip" id="bbTip">在盘面<b>拖动瞄准</b> · <b>松手发射</b> · <b>←→</b> 微调 · <b>空格</b> 发射 · <b>1-4</b> 答题 · <b>H</b> 提示 · <b>U</b> 撤销</div>
+</div>
+<div class="screen" id="screen-bubble-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="bbResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="bbResultEmoji">🫧</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="bbResultTitle">收工啦！</h2>
+    <p style="font-size:16px;opacity:.8" id="bbResultSubtitle">看清那一笔往哪写，再瞄那一片颜色</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="bbResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="bbResultPops">0</div><div style="font-size:13px;opacity:.7">爆破几个泡</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="bbResultLv">1</div><div style="font-size:13px;opacity:.7">冲到第几关</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="bbResultDrop">0</div><div style="font-size:13px;opacity:.7">整串掉落</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="bbResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="bbResultAll">累计爆破 0 个 · 累计认字 0 个 · 共玩 0 局</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="bbStart()">🫧 再打一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-push">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -3459,6 +3626,7 @@ function enterMode(mode){
  else if(mode==='balance')blStart();
   else if(mode==='memory')mmStart();
   else if(mode==='cup')wcStart();
+  else if(mode==='bubble')bbStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -14521,6 +14689,679 @@ document.addEventListener('keydown',function(e){
   if(k>='1'&&k<='8'){wcTap(parseInt(k,10)-1)}
 });
 /* ===== 笔顺倒水杯 结束 ===== */
+/* ===== 笔顺泡泡龙：笔画方向当泡泡颜色，答题装弹，瞄准发射三消，悬空整串掉落 ===== */
+const BB_COLORS={
+  R:{c:'#FF6B6B',l:'#FFD2D2',i:'➡️',n:'横'},
+  D:{c:'#4FC3F7',l:'#D3F0FF',i:'⬇️',n:'竖'},
+  P:{c:'#81C784',l:'#DDF3DE',i:'↙️',n:'撇'},
+  N:{c:'#FFB74D',l:'#FFE7C2',i:'↘️',n:'捺'},
+  T:{c:'#BA68C8',l:'#EBD3F1',i:'↗️',n:'点'}
+};
+const BB_CODES=['R','D','P','N','T'];
+const BB_BUB=['🫧 三个同色连成一片就炸','🧠 炸掉顶上那串，下面整串会掉下来','🎯 答对才装弹，颜色就是那一笔的方向','↩️ 打歪了能撤销，不罚分','🌈 连击越高，一片越值钱'];
+let bb={gen:0,run:false,busy:false,over:false,lv:1,phase:0,g:[],ids:0,
+  W:0,H:430,D:34,R:17,ROWH:29,PAD:8,TOP:14,dangerY:318,gunX:161,gunY:388,
+  ang:0,tray:[],ch:'',ans:'',idx:0,
+  score:0,combo:0,maxCombo:0,pops:0,drops:0,shots:0,cleared:0,
+  hearts:3,hints:3,undos:3,wrong:0,asked:0,right:0,got:{},snap:[]};
+let bbNodes={},bbLand=null;
+function bbSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function bbJudge(t,color){
+  const e=document.getElementById('bbJudgeLine');if(!e)return;
+  e.textContent=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function bbBanner(t){
+  const e=document.getElementById('bbBannerEl');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function bbBub(t){const e=document.getElementById('bbBubEl');if(e)e.innerHTML=t}
+function bbName(c){return BB_COLORS[c]?BB_COLORS[c].n+'（'+BB_COLORS[c].i+'）':c}
+function bbOdd(r){return ((r+bb.phase)&1)===1}
+function bbCols(r){return bbOdd(r)?8:9}
+function bbCx(r,c){return bb.PAD+bb.R+c*bb.D+(bbOdd(r)?bb.R:0)}
+function bbCy(r){return bb.TOP+bb.R+r*bb.ROWH}
+function bbIn(r,c){return r>=0&&r<bb.g.length&&c>=0&&c<bbCols(r)}
+function bbAt(r,c){return bbIn(r,c)?(bb.g[r][c]||null):null}
+function bbNb(r,c){
+  const o=bbOdd(r)?[[r-1,c],[r-1,c+1],[r,c+1],[r,c-1],[r+1,c],[r+1,c+1]]
+                 :[[r-1,c-1],[r-1,c],[r,c+1],[r,c-1],[r+1,c-1],[r+1,c]];
+  const out=[];
+  for(let i=0;i<o.length;i++){if(bbIn(o[i][0],o[i][1]))out.push(o[i])}
+  return out;
+}
+function bbCell(x,y){
+  let r=Math.round((y-bb.TOP-bb.R)/bb.ROWH);
+  r=Math.max(0,Math.min(bb.g.length?bb.g.length-1:0,r));
+  let c=Math.round((x-bb.PAD-bb.R-(bbOdd(r)?bb.R:0))/bb.D);
+  c=Math.max(0,Math.min(bbCols(r)-1,c));
+  return[r,c];
+}
+function bbPal(){return Math.min(5,3+Math.floor((bb.lv-1)/3))}
+function bbPalCodes(){return BB_CODES.slice(0,bbPal())}
+function bbRows0(){return Math.min(8,4+Math.floor((bb.lv-1)/2))}
+function bbRowEvery(){return Math.max(4,7-Math.floor((bb.lv-1)/3))}
+function bbCount(){let n=0;bb.g.forEach(function(row){row.forEach(function(v){if(v)n++})});return n}
+function bbCountBy(){const m={};bb.g.forEach(function(row){row.forEach(function(v){if(v)m[v.k]=(m[v.k]||0)+1})});return m}
+function bbLiveColors(){
+  const m=bbCountBy(),pal=bbPalCodes();
+  let out=pal.filter(function(k){return (m[k]||0)>=2});
+  if(!out.length)out=pal.filter(function(k){return (m[k]||0)>=1});
+  return out;
+}
+function bbRowColor(){
+  const m=bbCountBy(),pal=bbPalCodes();
+  let low=1e9;pal.forEach(function(k){if((m[k]||0)<low)low=m[k]||0});
+  const pool=pal.filter(function(k){return (m[k]||0)<=low+2});
+  return pool[Math.floor(Math.random()*pool.length)]||pal[0];
+}
+/* ---------- 盘面生成 ---------- */
+function bbBalanced(){
+  const m=bbCountBy();return bbPalCodes().every(function(k){return (m[k]||0)>=3});
+}
+function bbBlankRow(r){
+  const row=[],n=bbCols(r);
+  for(let c=0;c<n;c++)row.push(null);
+  return row;
+}
+function bbBuild(){
+  const rows=bbRows0();
+  bb.phase=0;
+  for(let tr=0;tr<40;tr++){
+    const g=[];
+    for(let r=0;r<12;r++){
+      const row=bbBlankRow(r);
+      if(r<rows){
+        const pal=bbPalCodes();
+        for(let c=0;c<bbCols(r);c++)row[c]={id:++bb.ids,k:pal[Math.floor(Math.random()*pal.length)]};
+      }
+      g.push(row);
+    }
+    bb.g=g;
+    if(bbBalanced())return true;
+  }
+  return bbCount()>0;
+}
+/* ---------- 几何 ---------- */
+function bbGeom(){
+  const f=document.getElementById('bbField');if(!f)return false;
+  const W=f.clientWidth||322,H=f.clientHeight||430;
+  if(bb.W&&Math.abs(W-bb.W)<2&&Math.abs(H-bb.H)<2)return true;
+  bb.W=W;bb.H=H;bb.D=W/9.5;bb.R=bb.D/2;bb.ROWH=bb.D*0.866;
+  bb.PAD=(W-9*bb.D)/2;bb.TOP=bb.R*0.8;
+  bb.dangerY=H-bb.D*3.3;bb.gunX=W/2;bb.gunY=H-38;
+  const sv=document.getElementById('bbGuide');
+  if(sv)sv.setAttribute('viewBox','0 0 '+W+' '+H);
+  const ln=document.getElementById('bbLine');
+  if(ln)ln.style.top=bb.dangerY+'px';
+  bbRender();
+  return true;
+}
+function bbCrossed(){
+  for(let r=0;r<bb.g.length;r++){
+    if(bbCy(r)>bb.dangerY){
+      for(let c=0;c<bbCols(r);c++){if(bb.g[r][c])return true}
+    }
+  }
+  return false;
+}
+/* ---------- 渲染 ---------- */
+function bbStyle(e,k){
+  const C=BB_COLORS[k]||BB_COLORS.R;
+  e.style.background='radial-gradient(circle at 34% 26%,'+C.l+','+C.c+' 70%)';
+  e.textContent=C.i;
+}
+function bbRender(){
+  const net=document.getElementById('bbNet');if(!net)return;
+  const seen={};
+  for(let r=0;r<bb.g.length;r++){
+    for(let c=0;c<bbCols(r);c++){
+      const v=bb.g[r][c];if(!v)continue;
+      seen[v.id]=1;
+      let e=bbNodes[v.id];
+      if(!e){
+        e=document.createElement('i');
+        e.className='bb';e.dataset.id=v.id;
+        net.appendChild(e);bbNodes[v.id]=e;
+      }
+      e.style.width=bb.D+'px';e.style.height=bb.D+'px';
+      e.style.fontSize=Math.round(bb.D*0.44)+'px';
+      e.style.left=bbCx(r,c)+'px';e.style.top=bbCy(r)+'px';
+      e.dataset.r=r;e.dataset.c=c;
+      if(e.dataset.k!==v.k){e.dataset.k=v.k;bbStyle(e,v.k)}
+    }
+  }
+  Object.keys(bbNodes).forEach(function(id){
+    if(!seen[id]){const e=bbNodes[id];delete bbNodes[id];if(e&&e.parentNode)e.parentNode.removeChild(e)}
+  });
+}
+function bbNodesClear(){
+  const net=document.getElementById('bbNet');
+  if(net)net.innerHTML='';
+  bbNodes={};
+}
+function bbBlow(v,cls,ms){
+  const e=bbNodes[v.id];delete bbNodes[v.id];
+  if(!e||!e.parentNode)return;
+  if(cls==='fall'){
+    e.style.setProperty('--dx',Math.round((Math.random()*2-1)*26)+'px');
+    e.style.setProperty('--rot',Math.round((Math.random()*2-1)*70)+'deg');
+  }
+  e.classList.add(cls);
+  setTimeout(function(){if(e.parentNode)e.parentNode.removeChild(e)},ms);
+}
+function bbHud(){
+  bbSet('bbScoreTxt','🫧 '+bb.score+' 分');
+  bbSet('bbLvTxt','第 '+bb.lv+' 关');
+  bbSet('bbPopsTxt','🫧 爆破 '+bb.pops);
+  bbSet('bbComboTxt','🔥 连击 '+bb.combo);
+  let h='';for(let i=0;i<3;i++)h+=i<bb.hearts?'❤️':'🖤';
+  bbSet('bbRowTxt',h);
+  bbSet('bbBestTxt','🥇 最高 '+parseInt(localStorage.getItem('hz_bb_best')||'0',10));
+  const ub=document.getElementById('bbUndoBtn');if(ub)ub.textContent='↩️ 撤销 ×'+bb.undos;
+  const hb=document.getElementById('bbHintBtn');if(hb)hb.disabled=bb.hints<=0;
+  bbMagRender();
+}
+function bbMagSet(el,k,lead){
+  if(!el)return;
+  if(!k){el.className='bb-mag empty';el.textContent='·';el.style.background='';return}
+  const C=BB_COLORS[k];
+  el.className='bb-mag'+(lead?' ready':'');
+  el.textContent=C.i;
+  el.style.background='radial-gradient(circle at 34% 26%,'+C.l+','+C.c+' 70%)';
+}
+function bbMagRender(){
+  bbMagSet(document.getElementById('bbMag'),bb.tray[0],bb.run&&!bb.busy&&bb.tray.length>0);
+  bbMagSet(document.getElementById('bbMagNext'),bb.tray[1],false);
+}
+function bbOrderLight(n){
+  const o=document.getElementById('bbOrder');if(!o)return;
+  const ems=o.querySelectorAll('em');
+  for(let i=0;i<ems.length;i++)ems[i].classList.toggle('on',i<n);
+}
+function bbOrderSet(){
+  const o=document.getElementById('bbOrder');if(!o)return;
+  const dirs=strokeTypes[bb.ch]||[];
+  if(!bb.ch||!dirs.length){o.innerHTML='';return}
+  o.innerHTML='<s>'+bb.ch+'</s>'+dirs.map(function(d){const C=BB_COLORS[d];
+    return '<em class="k'+(d||'X')+'">'+(C?C.i:'·')+'</em>'}).join('')+
+    '<span style="font-size:10.5px;opacity:.8;margin-left:2px">'+dirs.length+' 笔</span>';
+}
+/* ---------- 瞄准与弹道 ---------- */
+function bbHit(x,y){
+  const near=bbCell(x,y)[0];
+  let best=null,bd=bb.D*0.9;
+  for(let r=near-1;r<=near+1;r++){
+    if(r<0||r>=bb.g.length)continue;
+    for(let c=0;c<bbCols(r);c++){
+      if(!bb.g[r][c])continue;
+      const dx=bbCx(r,c)-x,dy=bbCy(r)-y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<bd){bd=d;best=[r,c]}
+    }
+  }
+  return best;
+}
+function bbFreeNear(x,y,rc){
+  const cand=[];
+  if(rc)bbNb(rc[0],rc[1]).forEach(function(p){if(!bbAt(p[0],p[1]))cand.push(p)});
+  if(!cand.length){
+    const b=bbCell(x,y);
+    if(!bbAt(b[0],b[1]))cand.push(b);
+    bbNb(b[0],b[1]).forEach(function(p){if(!bbAt(p[0],p[1]))cand.push(p)});
+  }
+  if(!cand.length)return null;
+  let best=null,bd=1e18;
+  cand.forEach(function(p){
+    const dx=bbCx(p[0],p[1])-x,dy=bbCy(p[0])-y,d=dx*dx+dy*dy;
+    if(d<bd){bd=d;best=p}
+  });
+  return best;
+}
+function bbSimulate(ang){
+  if(!bb.g.length)return null;
+  let x=bb.gunX,y=bb.gunY,dx=Math.sin(ang),dy=-Math.cos(ang);
+  const step=bb.D/7,path=[[x,y]];
+  const minx=bb.PAD+bb.R,maxx=bb.W-bb.PAD-bb.R;
+  const maxSteps=Math.ceil((bb.gunY-bb.TOP)/step)+10;
+  let rc=null,land=null;
+  for(let i=0;i<maxSteps;i++){
+    x+=dx*step;y+=dy*step;
+    if(x<minx){x=minx+(minx-x);dx=-dx;path.push([x,y])}
+    else if(x>maxx){x=maxx-(x-maxx);dx=-dx;path.push([x,y])}
+    if(y<=bb.TOP+bb.R){y=bb.TOP+bb.R;land=bbFreeNear(x,y,null);break}
+    rc=bbHit(x,y);
+    if(rc){land=bbFreeNear(x,y,rc);break}
+    if(y>bb.H){land=bbFreeNear(x,y,rc);break}
+  }
+  if(!land)land=bbFreeNear(x,y,rc);
+  if(!land||bbAt(land[0],land[1]))return null;
+  path.push([bbCx(land[0],land[1]),bbCy(land[0])]);
+  return{r:land[0],c:land[1],path:path};
+}
+function bbPreview(r,c,k){
+  const v={id:-1,k:k};
+  bb.g[r][c]=v;
+  const n=bbCluster(r,c).length;
+  bb.g[r][c]=null;
+  return n;
+}
+function bbAimShow(){
+  const p=document.getElementById('bbPath'),gh=document.getElementById('bbGhost'),gn=document.getElementById('bbGnum');
+  if(!p||!gh)return;
+  if(!bb.run||bb.busy||!bb.tray.length){p.setAttribute('points','');gh.setAttribute('r',0);if(gn)gn.textContent='';bbLand=null;return}
+  const s=bbSimulate(bb.ang);
+  if(!s){p.setAttribute('points','');gh.setAttribute('r',0);if(gn)gn.textContent='';return}
+  p.setAttribute('points',s.path.map(function(q){return q[0].toFixed(1)+','+q[1].toFixed(1)}).join(' '));
+  const x=bbCx(s.r,s.c),y=bbCy(s.r);
+  gh.setAttribute('cx',x.toFixed(1));gh.setAttribute('cy',y.toFixed(1));
+  gh.setAttribute('r',(bb.R*0.9).toFixed(1));
+  const n=bbPreview(s.r,s.c,bb.tray[0]);
+  gh.classList.toggle('hot',n>=3);
+  if(gn){gn.setAttribute('x',x.toFixed(1));gn.setAttribute('y',(y+bb.R*0.36).toFixed(1));gn.textContent=n>=3?'+'+n:''}
+  bbLand={r:s.r,c:s.c,n:n};
+}
+function bbAimTo(x,y){
+  let a=Math.atan2(x-bb.gunX,-(y-bb.gunY));
+  const lim=1.18;
+  bb.ang=Math.max(-lim,Math.min(lim,a));
+  bbAimShow();
+}
+function bbFly(e,path){
+  if(!e||!e.animate||!path||path.length<2)return;
+  const fx=parseFloat(e.style.left)||0,fy=parseFloat(e.style.top)||0;
+  const kf=path.map(function(q){
+    return{transform:'translate(-50%,-50%) translate('+Math.round(q[0]-fx)+'px,'+Math.round(q[1]-fy)+'px) scale(.92)'};
+  });
+  kf.push({transform:'translate(-50%,-50%) scale(1)'});
+  try{e.animate(kf,{duration:Math.min(300,70+path.length*70),easing:'ease-out'})}catch(err){}
+}
+/* ---------- 消除 ---------- */
+function bbCluster(r,c){
+  const v=bbAt(r,c);if(!v)return[];
+  const out=[],seen={},st=[[r,c]];
+  seen[r+'_'+c]=1;
+  while(st.length){
+    const p=st.pop();out.push(p);
+    const nb=bbNb(p[0],p[1]);
+    for(let i=0;i<nb.length;i++){
+      const q=nb[i],key=q[0]+'_'+q[1];
+      if(seen[key])continue;
+      const w=bbAt(q[0],q[1]);
+      if(w&&w.k===v.k){seen[key]=1;st.push(q)}
+    }
+  }
+  return out;
+}
+function bbHanging(){
+  const seen={},st=[];
+  if(bb.g[0])for(let c=0;c<bbCols(0);c++){
+    const v=bb.g[0][c];
+    if(v){seen['0_'+c]=1;st.push([0,c])}
+  }
+  while(st.length){
+    const p=st.pop(),nb=bbNb(p[0],p[1]);
+    for(let i=0;i<nb.length;i++){
+      const q=nb[i],key=q[0]+'_'+q[1];
+      if(!seen[key]&&bbAt(q[0],q[1])){seen[key]=1;st.push(q)}
+    }
+  }
+  const out=[];
+  for(let r=0;r<bb.g.length;r++)for(let c=0;c<bbCols(r);c++){
+    if(bb.g[r][c]&&!seen[r+'_'+c])out.push([r,c]);
+  }
+  return out;
+}
+function bbAddRow(){
+  bb.phase^=1;
+  const row=[];
+  for(let c=0;c<bbCols(0);c++)row.push({id:++bb.ids,k:bbRowColor()});
+  bb.g.unshift(row);
+  bbBub('⬇️ 顶上又挂下来一行');
+}
+/* ---------- 玩法 ---------- */
+function bbShoot(){
+  if(!bb.run||bb.busy)return;
+  if(!bb.tray.length){bbJudge('🫧 先答对上面那道题，才有泡泡可打','#FFD54F');sndNo();return}
+  const s=bbSimulate(bb.ang);
+  if(!s){bbJudge('🫧 这一发没有落脚的空位，换个角度试试','#FF8A80');sndNo();return}
+  bbSnap();
+  const k=bb.tray.shift();
+  const cell={id:++bb.ids,k:k};
+  bb.g[s.r][s.c]=cell;
+  bb.shots++;
+  bb.busy=true;
+  bbAimShow();
+  bbRender();
+  const e=bbNodes[cell.id];
+  if(e)bbFly(e,s.path);
+  tone(540,.07,'triangle',.05);
+  const gen=bb.gen;
+  setTimeout(function(){
+    if(gen!==bb.gen)return;
+    bb.busy=false;
+    if(!bb.run)return;
+    bbAfter(k,s);
+  },250);
+}
+function bbAfter(k,s){
+  const cl=bbCluster(s.r,s.c);
+  if(cl.length>=3){
+    bb.combo++;
+    if(bb.combo>bb.maxCombo){bb.maxCombo=bb.combo;localStorage.setItem('hz_maxCombo',String(bb.maxCombo))}
+    const n=cl.length;
+    const gain=Math.round((12*n+(n>3?(n-3)*18:0))*(1+0.3*(bb.combo-1)))+bb.lv*4;
+    bb.pops+=n;bb.score+=gain;
+    for(let i=0;i<cl.length;i++){
+      const p=cl[i],v=bb.g[p[0]][p[1]];
+      bb.g[p[0]][p[1]]=null;
+      if(v)bbBlow(v,'pop',340);
+    }
+    sndOk();
+    const idx=(strokeTypes[bb.ch]||[]).indexOf(k);
+    bbJudge('🎯 '+bbName(k)+' 炸掉 '+n+' 个！'+(idx>=0?'「'+bb.ch+'」的第 '+(idx+1)+' 笔就是它 ':'')+'+'+gain+' 分','#FFF176');
+    showComboEffect(bb.combo);
+    const f=document.getElementById('bbField');
+    if(f){const rc=f.getBoundingClientRect();spawnStarFly(rc.left+bbCx(cl[0][0],cl[0][1]),rc.top+bbCy(cl[0][0]))}
+    const hang=bbHanging();
+    if(hang.length){
+      for(let i=0;i<hang.length;i++){
+        const p=hang[i],v=bb.g[p[0]][p[1]];
+        bb.g[p[0]][p[1]]=null;
+        if(v)bbBlow(v,'fall',680);
+      }
+      const bonus=Math.round(20*hang.length*(hang.length>=6?1.6:1));
+      bb.score+=bonus;bb.drops+=hang.length;
+      if(hang.length>=6)bbBanner('🌈 一整串掉下去啦！');
+      tone(300,.18,'sawtooth',.05);
+      setTimeout(function(){bbJudge('🫧 断了 '+hang.length+' 个，整串掉落 +'+bonus+' 分','#80D8FF')},260);
+    }
+  }else{
+    if(bb.combo)bbJudge('🫧 只粘住 '+cl.length+' 个 '+bbName(k)+'，凑够 3 个才炸得开','#B0BEC5');
+    else bbJudge('🫧 这一发没凑够三个 '+bbName(k)+'，看看哪一片颜色最多','#B0BEC5');
+    bb.combo=0;
+    bbBub(BB_BUB[Math.floor(Math.random()*BB_BUB.length)]);
+    tone(360,.08,'sine',.04);
+  }
+  bbRender();bbHud();bbAimShow();
+  if(bbCount()===0){bbWin();return}
+  if(bb.shots%bbRowEvery()===0){
+    bbAddRow();bbRender();
+    if(bbCrossed()){bbEnd('🫧 泡泡压过警戒线了');return}
+  }
+  if(bb.tray.length<2)bbAsk();
+}
+function bbPool(){
+  return CHARS.filter(function(c){return charDataCache[c]&&strokeTypes[c]&&strokeTypes[c].length>=2});
+}
+async function bbAsk(){
+  if(!bb.run)return;
+  bb.busy=true;bbMagRender();
+  const gen=bb.gen;
+  const want=bbLiveColors();
+  const pal=bbPalCodes();
+  let hit=null,any=null;
+  for(let i=0;i<20;i++){
+    const c=nextInQueue();
+    if(!c)break;
+    const d=await loadCharData(c);
+    if(gen!==bb.gen)return;
+    if(!d||!d.strokes||d.strokes.length<2||!d.medians)continue;
+    if(!strokeTypes[c])strokeTypes[c]=d.medians.map(detectDir);
+    const ds=strokeTypes[c];
+    for(let j=0;j<ds.length;j++){
+      const k=ds[j];
+      if(!any&&pal.indexOf(k)>=0)any={c:c,k:k,ds:ds};
+      if(!hit&&want.indexOf(k)>=0)hit={c:c,k:k,ds:ds};
+    }
+    if(hit)break;
+  }
+  if(gen!==bb.gen)return;
+  const use=hit||any;
+  if(!use){
+    bb.busy=false;
+    bbJudge('🫧 字库还没装满，等它到齐再打','#FFD54F');
+    return;
+  }
+  const ch=use.c,dirs=use.ds,target=use.k,pick=[];
+  for(let j=0;j<dirs.length;j++)if(dirs[j]===target)pick.push(j);
+  bb.ch=ch;bb.ans=target;bb.busy=false;
+  let idx;
+  const rr=Math.random();
+  if(rr<0.26&&pick.indexOf(0)>=0)idx=0;
+  else if(rr<0.52&&pick.indexOf(dirs.length-1)>=0)idx=dirs.length-1;
+  else idx=pick[Math.floor(Math.random()*pick.length)];
+  bb.idx=idx;
+  const q=document.getElementById('bbQ');
+  if(q)q.innerHTML=idx===0?'🫧 「'+ch+'」的<b>第一笔</b>往哪写？'
+    :idx===dirs.length-1?'🫧 「'+ch+'」的<b>最后一笔</b>往哪写？'
+    :'🫧 「'+ch+'」的<b>第 '+(idx+1)+' 笔</b>往哪写？';
+  const others=BB_CODES.filter(function(x){return x!==target});
+  for(let i=others.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=others[i];others[i]=others[j];others[j]=t}
+  const opts=[target].concat(others.slice(0,3));
+  for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=opts[i];opts[i]=opts[j];opts[j]=t}
+  const box=document.getElementById('bbOpts');
+  if(box)box.innerHTML=opts.map(function(x){const C=BB_COLORS[x];
+    return '<button class="bb-o" data-value="'+x+'" onclick="bbPick(this)"><em>'+C.i+'</em>'+C.n+'</button>'}).join('');
+  bbOrderSet();bbOrderLight(-1);
+  bbHud();bbAimShow();
+}
+function bbPick(el){
+  if(!bb.run||bb.busy||!bb.ans)return;
+  if(bb.tray.length>=2){bbJudge('🫧 弹仓满了，先把这一发打出去','#FFD54F');return}
+  const v=el&&el.dataset?el.dataset.value:null;
+  if(!v)return;
+  bb.asked++;
+  const ok=v===bb.ans;
+  const btns=document.querySelectorAll('#bbOpts .bb-o');
+  for(let i=0;i<btns.length;i++)btns[i].classList.add('dead');
+  if(ok){el.classList.add('correct');bb.right++;bb.got[bb.ch]=1;sndOk()}
+  else{
+    el.classList.add('wrong');bb.wrong++;bb.hearts--;bb.combo=0;
+    for(let i=0;i<btns.length;i++)if(btns[i].dataset.value===bb.ans)btns[i].classList.add('reveal');
+    sndNo();
+  }
+  bbJudge(ok?'✅ 就是 '+bbName(bb.ans)+'！装这一发，瞄准那一片同色'
+    :'🙈 「'+bb.ch+'」的第 '+(bb.idx+1)+' 笔是 '+bbName(bb.ans)+'，这一发给你',ok?'#69F0AE':'#FF8A80');
+  bbOrderLight(bb.idx+1);
+  bb.tray.push(bb.ans);
+  if(ok&&bb.combo>=6)bb.tray.push(bb.ans);
+  bb.busy=true;
+  bbHud();
+  const gen=bb.gen;
+  setTimeout(function(){
+    if(gen!==bb.gen||!bb.run)return;
+    if(bb.hearts<=0){bbEnd('❤️ 三颗心都用完啦');return}
+    if(!ok){
+      bbAddRow();bbRender();
+      if(bbCrossed()){bbEnd('🫧 那一行压下来，泡泡越线了');return}
+    }
+    bb.busy=false;
+    if(bb.tray.length<2)bbAsk();else{bbHud();bbAimShow()}
+  },680);
+}
+function bbHint(){
+  if(!bb.run||bb.busy)return;
+  if(!bb.tray.length){bbJudge('💡 先答对一题才有泡泡可打','#FFD54F');return}
+  if(bb.hints<=0){bbJudge('💡 这一关的提示用完啦，自己瞄试试','#FF8A80');return}
+  let best=null;
+  for(let a=-1.18;a<=1.18;a+=0.035){
+    const s=bbSimulate(a);
+    if(!s)continue;
+    const n=bbPreview(s.r,s.c,bb.tray[0]);
+    if(n<3)continue;
+    bb.g[s.r][s.c]={id:-2,k:bb.tray[0]};
+    const h=bbHanging().length;
+    bb.g[s.r][s.c]=null;
+    const sc=n*10+h*7;
+    if(!best||sc>best.sc)best={a:a,sc:sc,n:n,r:s.r,c:s.c,h:h};
+  }
+  if(!best){bbJudge('🫠 这一发颜色对不上，先打散一片再回来','#FF8A80');sndNo();return}
+  bb.hints--;
+  bb.score=Math.max(0,bb.score-20);
+  bb.ang=best.a;bbAimShow();
+  const nb=bbNb(best.r,best.c);
+  const lit=[];
+  for(let i=0;i<nb.length;i++){
+    const e=bbNodes[(bbAt(nb[i][0],nb[i][1])||{}).id];
+    if(e){e.classList.add('spark');lit.push(e)}
+  }
+  bbJudge('💡 往这个角度打，能炸 '+best.n+' 个'+(best.h?'，还会扯掉 '+best.h+' 个':'')+'（-20 分）','#80D8FF');
+  bbHud();
+  setTimeout(function(){for(let i=0;i<lit.length;i++)lit[i].classList.remove('spark')},1400);
+}
+function bbSnap(){
+  if(bb.snap.length>5)bb.snap.shift();
+  bb.snap.push({g:bb.g.map(function(row){return row.map(function(v){return v?{id:v.id,k:v.k}:null})}),
+    phase:bb.phase,score:bb.score,combo:bb.combo,pops:bb.pops,drops:bb.drops,shots:bb.shots,
+    tray:bb.tray.slice(),hearts:bb.hearts,wrong:bb.wrong,right:bb.right,ch:bb.ch,ans:bb.ans,idx:bb.idx});
+}
+function bbUndo(){
+  if(!bb.run||bb.busy)return;
+  if(!bb.undos){bbJudge('↩️ 撤销用完啦，接着打吧','#FF8A80');return}
+  if(!bb.snap.length){bbJudge('↩️ 这一发还没打出去呢','#FFD54F');return}
+  const s=bb.snap.pop();
+  bb.g=s.g;bb.phase=s.phase;bb.score=s.score;bb.combo=s.combo;bb.pops=s.pops;bb.drops=s.drops;
+  bb.shots=s.shots;bb.tray=s.tray;bb.hearts=s.hearts;bb.wrong=s.wrong;bb.right=s.right;
+  bb.ch=s.ch;bb.ans=s.ans;bb.idx=s.idx;
+  bb.undos--;
+  bbNodesClear();
+  tone(420,.12,'triangle',.06);
+  bbJudge('↩️ 收回上一发，重新瞄准','#B3E5FC');
+  bbRender();bbHud();bbOrderSet();bbAimShow();
+}
+function bbReroll(){
+  if(!bb.run||bb.busy)return;
+  bb.score=Math.max(0,bb.score-15);
+  bbJudge('🔄 换一道题（-15 分）','#B3E5FC');
+  tone(500,.09,'triangle',.05);
+  bbHud();
+  bbAsk();
+}
+/* ---------- 关卡 / 开局 / 收工 ---------- */
+function bbNew(){
+  bb.gen++;bb.busy=true;bb.over=false;bb.tray=[];bb.snap=[];
+  bb.hints=3;bb.undos=3;bb.shots=0;
+  bbNodesClear();
+  if(!bbBuild()){
+    bb.run=false;bbHud();
+    bbJudge('🫧 字库还没装满，稍等一下再来一局','#FFD54F');
+    return false;
+  }
+  bbGeom();
+  bbRender();bbHud();
+  bbBanner('第 '+bb.lv+' 关 · '+bbPal()+' 种颜色');
+  bbBub('🎯 先答对一题，再瞄那一片同色');
+  bbAsk();
+  return true;
+}
+function bbWin(){
+  bb.cleared++;
+  const bonus=180+bb.lv*60;
+  bb.score+=bonus;
+  if(bb.ch)bb.got[bb.ch]=1;
+  spawnConfetti();sndReward();
+  bbBanner('🎉 这一关打干净了！');
+  bbJudge('🫧 第 '+bb.lv+' 关全清！奖励 +'+bonus+' 分 · 下一关挂得更密','#69F0AE');
+  bbHud();
+  const gen=bb.gen;
+  setTimeout(function(){
+    if(gen!==bb.gen||!bb.run)return;
+    bb.lv++;bbNew();
+  },2400);
+}
+function bbStart(){
+  if(!bbPool().length){alert('字库还在加载中，稍等一下再来！');return}
+  bb.run=true;bb.over=false;bb.lv=1;bb.score=0;bb.combo=0;bb.maxCombo=0;
+  bb.pops=0;bb.drops=0;bb.cleared=0;bb.hearts=3;bb.got={};
+  bb.asked=0;bb.right=0;bb.wrong=0;bb.ang=0;
+  showScreen('bubble');
+  bbJudge('','');
+  bbGeom();
+  bbNew();
+}
+function bbEnd(reason){
+  if(!bb.run)return;
+  bb.run=false;bb.over=true;bb.busy=true;bb.gen++;
+  const best=parseInt(localStorage.getItem('hz_bb_best')||'0',10);
+  localStorage.setItem('hz_bb_best',String(Math.max(best,bb.score)));
+  if(bb.lv>parseInt(localStorage.getItem('hz_bb_lv')||'0',10))localStorage.setItem('hz_bb_lv',String(bb.lv));
+  wcAdd('hz_bb_pops',bb.pops);
+  wcAdd('hz_bb_drops',bb.drops);
+  wcAdd('hz_bb_shots',bb.shots);
+  wcAdd('hz_bb_games');
+  let known=[];try{known=JSON.parse(localStorage.getItem('hz_bb_chars')||'[]')}catch(err){known=[]}
+  if(!Array.isArray(known))known=[];
+  Object.keys(bb.got).forEach(function(c){if(known.indexOf(c)<0)known.push(c)});
+  localStorage.setItem('hz_bb_chars',JSON.stringify(known));
+  maxCombo=Math.max(maxCombo,bb.maxCombo);
+  localStorage.setItem('hz_maxCombo',String(maxCombo));
+  const gain=Math.max(2,Math.min(24,Math.round(bb.score/210)+bb.cleared*2));
+  addStars(gain);
+  sndDone();
+  showScreen('bubble-result');
+  bbSet('bbResultStars','⭐ +'+gain);
+  bbSet('bbResultScore',String(bb.score));
+  bbSet('bbResultPops',String(bb.pops));
+  bbSet('bbResultLv',String(bb.lv));
+  bbSet('bbResultDrop',String(bb.drops));
+  bbSet('bbResultBest',String(Math.max(best,bb.score)));
+  bbSet('bbResultAll','累计爆破 '+parseInt(localStorage.getItem('hz_bb_pops')||'0',10)+' 个 · 累计认字 '+
+    known.length+' 个 · 共玩 '+parseInt(localStorage.getItem('hz_bb_games')||'0',10)+' 局');
+  const c=bb.cleared;
+  bbSet('bbResultEmoji',c>=3?'🐉':bb.pops>=40?'🫧':c>=1?'🎯':bb.drops>=10?'🧩':'🫧');
+  bbSet('bbResultTitle',c>=3?'泡泡龙王！':bb.pops>=40?'连爆高手！':c>=1?'打干净一关！':bb.drops>=10?'整串收割机！':'越打越准！');
+  bbSet('bbResultSubtitle',reason||'看清那一笔往哪写，再瞄那一片颜色');
+  updateHomeStats();
+}
+function bbHelp(){bbJudge('🫧 答对题装一发同色泡泡，三个连成一片就炸，断掉的整串掉下来','#2E7D32')}
+(function(){
+  let down=false;
+  document.addEventListener('DOMContentLoaded',function(){
+    const f=document.getElementById('bbField');if(!f)return;
+    const pt=function(e){
+      const rc=f.getBoundingClientRect();
+      return[e.clientX-rc.left,e.clientY-rc.top];
+    };
+    f.addEventListener('pointerdown',function(e){
+      if(!bb.run||bb.busy)return;
+      down=true;const p=pt(e);bbAimTo(p[0],p[1]);
+      if(f.setPointerCapture){try{f.setPointerCapture(e.pointerId)}catch(err){}}
+      e.preventDefault();
+    });
+    f.addEventListener('pointermove',function(e){
+      if(!bb.run||bb.busy)return;
+      const p=pt(e);bbAimTo(p[0],p[1]);
+    });
+    f.addEventListener('pointerup',function(e){
+      if(!down)return;down=false;
+      const p=pt(e);bbAimTo(p[0],p[1]);
+      bbShoot();
+    });
+    f.addEventListener('pointercancel',function(){down=false});
+    window.addEventListener('resize',function(){
+      if(currentMode==='bubble'){bb.W=0;bbGeom()}
+    });
+  });
+})();
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='bubble')return;
+  const k=e.key;
+  if(k==='h'||k==='H'){bbHint();return}
+  if(k==='u'||k==='U'){bbUndo();return}
+  if(k==='r'||k==='R'){bbReroll();return}
+  if(k==='ArrowLeft'){bb.ang=Math.max(-1.18,bb.ang-0.05);bbAimShow();return}
+  if(k==='ArrowRight'){bb.ang=Math.min(1.18,bb.ang+0.05);bbAimShow();return}
+  if(k===' '||k==='ArrowUp'||k==='Enter'){
+    if(bb.tray.length){e.preventDefault();bbShoot()}
+    return;
+  }
+  if(k>='1'&&k<='4'){
+    const btns=document.querySelectorAll('#bbOpts .bb-o');
+    const b=btns[parseInt(k,10)-1];
+    if(b&&!b.classList.contains('dead'))bbPick(b);
+  }
+});
+/* ===== 笔顺泡泡龙 结束 ===== */
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
