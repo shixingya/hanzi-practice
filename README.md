@@ -1,6 +1,6 @@
 # 汉字笔顺闯关 · Hanzi Stroke Quest
 
-> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。32 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷 / 笔顺大魔王 / 笔顺宠物屋 / 笔顺跳房子 / 笔顺连连消 / 笔顺切水果 / 笔顺打砖块 / 笔顺塔防 / 笔顺钓鱼 / 笔顺双人大乱斗 / 笔顺挖宝 / 每日签到星运转盘 / 笔顺贪吃蛇 / 笔顺消消乐 / 笔顺刮刮卡 / 笔顺多米诺 / 笔顺叠叠塔 / 笔顺扭蛋机 / 笔顺合合合 / 笔顺保龄球 / 笔顺跳一跳 / 笔顺推箱子 / 笔顺天平屋…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
+> 一款专为小学低年级孩子打造的 **纯前端** 汉字笔顺学习小游戏。33 种互动模式（笔顺音游 / 汉字俄罗斯方块 / 笔顺打地鼠 / 笔顺拼图 / 笔顺跑酷 / 笔顺大魔王 / 笔顺宠物屋 / 笔顺跳房子 / 笔顺连连消 / 笔顺切水果 / 笔顺打砖块 / 笔顺塔防 / 笔顺钓鱼 / 笔顺双人大乱斗 / 笔顺挖宝 / 每日签到星运转盘 / 笔顺贪吃蛇 / 笔顺消消乐 / 笔顺刮刮卡 / 笔顺多米诺 / 笔顺叠叠塔 / 笔顺扭蛋机 / 笔顺合合合 / 笔顺保龄球 / 笔顺跳一跳 / 笔顺推箱子 / 笔顺天平屋 / 记忆翻翻屋…）+ 星星奖励 + 动物收藏馆，让孩子在玩中掌握 200+ 常用汉字的正确笔顺。
 
 <p align="center">
   <img src="assets/demo.gif" alt="运行演示 GIF" width="360" />
@@ -13,7 +13,7 @@
   &nbsp;&nbsp;
   <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License" />
   &nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/单文件-13575_行-orange?style=for-the-badge" alt="Single file" />
+  <img src="https://img.shields.io/badge/单文件-14001_行-orange?style=for-the-badge" alt="Single file" />
 </p>
 
 <p align="center">
@@ -41,7 +41,7 @@
 - 🎯 **零构建、零后端**：单文件 `index.html` 打开即用，任何静态托管都能部署（GitHub Pages / Vercel / Netlify / Nginx）。
 - 🧒 **儿童友好 UI**：糖果紫渐变背景、大圆角按钮、田字格练字区，专为 6–9 岁孩子设计。
 - 🎮 **游戏化激励**：星星 ⭐ + 连击 🔥 + 动物收藏 🐼 + 全屏彩带彩蛋，学习成就感拉满。
-- 🕹️ **32 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、笔顺大魔王、笔顺宠物屋、笔顺跳房子、笔顺连连消、笔顺切水果、笔顺打砖块、笔顺塔防、笔顺钓鱼、笔顺双人大乱斗、笔顺挖宝、每日签到星运转盘、笔顺贪吃蛇、笔顺消消乐、笔顺刮刮卡、笔顺多米诺、笔顺叠叠塔、笔顺扭蛋机、笔顺合合合、笔顺保龄球、笔顺跳一跳、笔顺推箱子、笔顺天平屋、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
+- 🕹️ **33 种玩法不重样**：选择题闯关、冒险地图、限时挑战、笔顺音游、汉字俄罗斯方块、笔顺打地鼠、笔顺拼图、笔顺跑酷、笔顺大魔王、笔顺宠物屋、笔顺跳房子、笔顺连连消、笔顺切水果、笔顺打砖块、笔顺塔防、笔顺钓鱼、笔顺双人大乱斗、笔顺挖宝、每日签到星运转盘、笔顺贪吃蛇、笔顺消消乐、笔顺刮刮卡、笔顺多米诺、笔顺叠叠塔、笔顺扭蛋机、笔顺合合合、笔顺保龄球、笔顺跳一跳、笔顺推箱子、笔顺天平屋、记忆翻翻屋、火眼金睛、妙笔生花，同一个笔顺知识点反复练也不腻。
 - 🔊 **多感官反馈**：Web Audio API 合成音效（正确 / 错误 / 完成 / 彩蛋）+ Web Speech API 中文语音鼓励（"太棒了！""你真厉害！"）。
 - 📚 **难度渐进**：字库按笔画数从少到多排序，同笔画组内随机洗牌，避免挫败感也保留趣味性。
 - 🌐 **多 CDN 容错**：`hanzi-writer` 库依次尝试 jsDelivr / unpkg / cdnjs，任一可用即可运行。
@@ -496,6 +496,26 @@
   <img src="assets/scene_balance_result.png" alt="天平屋结算" width="240" />
 </p>
 
+### 🕵️ 记忆翻翻屋（汉字和它的笔画数，藏在牌背后面）
+
+一间「侦探事务所」接的新案子：**桌上摊着一排扣着的牌，一半写着汉字、一半写着笔画数**，一张字卡只能和属于它自己的那个数字配上。翻开两张，配上了就绿，配错了就红——而下一次翻开之前，孩子得先记住刚才瞥见的那一眼：
+
+- 🧠 **练的是「记住」而不是「猜对」**：牌翻回去之后位置不变，第二对、第三对全靠上一眼记下的画面，短期记忆被反复调用，笔顺数就在一遍遍「刚才那个 3 画在哪儿」里记住了
+- 🔒 **答案保证唯一**：每一关挑出来的汉字笔画数互不相同，一张字卡只有一个合法对象，孩子不可能靠碰运气蒙对，也不可能配出歧义
+- ⏳ **沙漏代替生命**：配成一对回 4 秒、配错扣 2.5 秒，漏完就收队——想拖延不去记牌，时间反而会先跑光
+- 🔍 **连对三次触发「侦探直觉」**：全场牌面自动亮一秒，把孩子的记忆奖励给他看，然后立刻扣回去——最上瘾的就是这一秒
+- 💡 **两条求助通道**：点「看一对」花 5 秒只亮一对，按 🔍 花 8 秒全场亮一下，都是拿时间换信息，用不用由孩子自己权衡
+- 🎯 **判词当场念答案**：配上时报「🎯 「口」就是 3 画！+60 分 · ⏳+4s」，配错时报「🙈 「山」和 4 画不配对，⏳−2.5 秒」，侦探再补一句「记住它们的位置，下次就不会翻错了」——读一遍就是一次复习
+- 📈 **牌桌越玩越大**：第 1 关 3 对 6 张，每过一关多一对，最多加到 8 对 16 张；沙漏也跟着变长，但封顶 96 秒——要记的画面翻了一倍，时间却不会翻倍地给
+- 💎 **完美搜查**：一局里一次都没配错，结算给钻石和额外 120 分，比单纯通关更值得吹
+- 🎮 点牌翻开、一次翻两张、1-9/0 快速翻牌、H 看一对、P 全场闪视（`hz_mm_best` / `hz_mm_lv` / `hz_mm_pairs` / `hz_mm_perfect` / `hz_mm_games` / `hz_mm_chars`）
+
+<p align="center">
+  <img src="assets/scene_memory.png" alt="记忆翻翻屋十二张扣牌" width="240" />
+  <img src="assets/scene_memory_pair.png" alt="口和 3 画配上了" width="240" />
+  <img src="assets/scene_memory_result.png" alt="金牌侦探结算" width="240" />
+</p>
+
 ### ⚔️ 笔顺大闯关（Quiz 模式）
 
 选择题闯关，每关随机出题，答对得星星、连击越高倍率越大：
@@ -595,7 +615,7 @@
 | 音效 | Web Audio API · 代码合成正弦 / 方波 / 三角波 |
 | 语音 | Web Speech API · `SpeechSynthesisUtterance` 中文播报 |
 | 动画 | CSS `@keyframes` · 无第三方动画库 |
-| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` / `hz_boss_beat` / `hz_boss_best` · 宠物养成：`hz_pet`（成长/饱食/心情/上线时间，跨真实时间衰减） · 跳房子：`hz_hop_wins` / `hz_hop_best` · 连连消：`hz_lian_wins` / `hz_lian_best` · 切水果：`hz_fruit_wins` / `hz_fruit_best` · 打砖块：`hz_brick_lv` / `hz_brick_best` · 塔防：`hz_td_wave` / `hz_td_best` · 钓鱼：`hz_fish_book`（跨局鱼图鉴） / `hz_fish_best` / `hz_fish_caught` · 挖宝：`hz_dig_book`（跨局文物图鉴） / `hz_dig_best` / `hz_dig_deep`（最深土层） · 每日签到：`hz_sk_last`（真实日期） / `hz_sk_streak` / `hz_sk_best` / `hz_sk_total` / `hz_sk_medals` / `hz_sk_frag` · 贪吃蛇：`hz_snake_best` / `hz_snake_chars`（累计成字） / `hz_snake_len`（最长蛇身） · 消消乐：`hz_m3_best` / `hz_m3_lv`（最高通关） / `hz_m3_wins` / `hz_m3_sp`（累计特殊糖块） · 刮刮卡：`hz_sc_best`（单张最佳） / `hz_sc_score`（单局最高奖金） / `hz_sc_cards`（累计刮开张数） / `hz_sc_bingo`（累计 BINGO） / `hz_sc_rare`（稀有符号图鉴） · 多米诺：`hz_dp_score`（单局最高金币） / `hz_dp_total`（累计骨牌，决定称号） / `hz_dp_lines`（累计稳稳收手次数） / `hz_dp_chain`（单链最长） / `hz_dp_dragon`（一条龙次数） · 叠叠塔：`hz_stack_best`（最高层数） / `hz_stack_score`（单局最高分） / `hz_stack_perfect`（累计完美对齐） / `hz_stack_chars`（累计认字） · 跳一跳：`hz_jump_best`（最高分） / `hz_jump_hops`（累计跳格） / `hz_jump_perfect`（累计完美落心） / `hz_jump_answers`（累计答对） / `hz_jump_games`（累计局数） · 保龄球：`hz_bw_best`（最高分） / `hz_bw_strike`（累计全倒） / `hz_bw_spare`（累计补中） / `hz_bw_pins`（累计倒瓶） / `hz_bw_answers`（累计答题） / `hz_bw_games`（累计局数） · 推箱子：`hz_tk_lv`（解锁到第几关） / `hz_tk_par`（每关最佳步数） / `hz_tk_pushes`（累计推箱） / `hz_tk_chars`（累计归位） / `hz_tk_undo` / `hz_tk_hint` / `hz_tk_games` / `hz_tk_best`（单局最高分） · 天平屋：`hz_bl_best`（单局最高分） / `hz_bl_sold`（累计成交） / `hz_bl_exact`（累计一称就中） / `hz_bl_lv`（最高档位） / `hz_bl_chars`（累计认字） / `hz_bl_games`（累计局数） · 合合合：`hz_mg_best`（最高分） / `hz_mg_top`（最高合到几画） / `hz_mg_merges`（累计合成） / `hz_mg_answers`（累计答对题） / `hz_mg_king`（字王次数） · 扭蛋机：`hz_gg_coin`（🪙 余额） / `hz_gg_frag`（🧩 碎片） / `hz_gg_pity`（保底计数） / `hz_gg_pulls`（累计抽数） / `hz_gg_book`（已收精灵） / `hz_gg_sets`（已领套装大奖） · 双人对战：`hz_duel_p1` / `hz_duel_p2`（累计战绩） / `hz_duel_streak` / `hz_duel_matches` |
+| 存储 | `localStorage` · 进度：`hz_stars` / `hz_maxCombo` / `hz_collected` / `hz_settings` / `hz_grade` · 各玩法最高分：`hz_challenge_best` / `hz_rhythm_best` / `hz_tetris_best` / `hz_mole_best` / `hz_puzzle_best` / `hz_runner_best` / `hz_boss_beat` / `hz_boss_best` · 宠物养成：`hz_pet`（成长/饱食/心情/上线时间，跨真实时间衰减） · 跳房子：`hz_hop_wins` / `hz_hop_best` · 连连消：`hz_lian_wins` / `hz_lian_best` · 切水果：`hz_fruit_wins` / `hz_fruit_best` · 打砖块：`hz_brick_lv` / `hz_brick_best` · 塔防：`hz_td_wave` / `hz_td_best` · 钓鱼：`hz_fish_book`（跨局鱼图鉴） / `hz_fish_best` / `hz_fish_caught` · 挖宝：`hz_dig_book`（跨局文物图鉴） / `hz_dig_best` / `hz_dig_deep`（最深土层） · 每日签到：`hz_sk_last`（真实日期） / `hz_sk_streak` / `hz_sk_best` / `hz_sk_total` / `hz_sk_medals` / `hz_sk_frag` · 贪吃蛇：`hz_snake_best` / `hz_snake_chars`（累计成字） / `hz_snake_len`（最长蛇身） · 消消乐：`hz_m3_best` / `hz_m3_lv`（最高通关） / `hz_m3_wins` / `hz_m3_sp`（累计特殊糖块） · 刮刮卡：`hz_sc_best`（单张最佳） / `hz_sc_score`（单局最高奖金） / `hz_sc_cards`（累计刮开张数） / `hz_sc_bingo`（累计 BINGO） / `hz_sc_rare`（稀有符号图鉴） · 多米诺：`hz_dp_score`（单局最高金币） / `hz_dp_total`（累计骨牌，决定称号） / `hz_dp_lines`（累计稳稳收手次数） / `hz_dp_chain`（单链最长） / `hz_dp_dragon`（一条龙次数） · 叠叠塔：`hz_stack_best`（最高层数） / `hz_stack_score`（单局最高分） / `hz_stack_perfect`（累计完美对齐） / `hz_stack_chars`（累计认字） · 跳一跳：`hz_jump_best`（最高分） / `hz_jump_hops`（累计跳格） / `hz_jump_perfect`（累计完美落心） / `hz_jump_answers`（累计答对） / `hz_jump_games`（累计局数） · 保龄球：`hz_bw_best`（最高分） / `hz_bw_strike`（累计全倒） / `hz_bw_spare`（累计补中） / `hz_bw_pins`（累计倒瓶） / `hz_bw_answers`（累计答题） / `hz_bw_games`（累计局数） · 推箱子：`hz_tk_lv`（解锁到第几关） / `hz_tk_par`（每关最佳步数） / `hz_tk_pushes`（累计推箱） / `hz_tk_chars`（累计归位） / `hz_tk_undo` / `hz_tk_hint` / `hz_tk_games` / `hz_tk_best`（单局最高分） · 天平屋：`hz_bl_best`（单局最高分） / `hz_bl_sold`（累计成交） / `hz_bl_exact`（累计一称就中） / `hz_bl_lv`（最高档位） / `hz_bl_chars`（累计认字） / `hz_bl_games`（累计局数） · 记忆翻翻屋：`hz_mm_best`（单局最高分） / `hz_mm_lv`（最高关卡） / `hz_mm_pairs`（累计配对） / `hz_mm_perfect`（累计完美搜查） / `hz_mm_games`（累计局数） / `hz_mm_chars`（累计认字） · 合合合：`hz_mg_best`（最高分） / `hz_mg_top`（最高合到几画） / `hz_mg_merges`（累计合成） / `hz_mg_answers`（累计答对题） / `hz_mg_king`（字王次数） · 扭蛋机：`hz_gg_coin`（🪙 余额） / `hz_gg_frag`（🧩 碎片） / `hz_gg_pity`（保底计数） / `hz_gg_pulls`（累计抽数） / `hz_gg_book`（已收精灵） / `hz_gg_sets`（已领套装大奖） · 双人对战：`hz_duel_p1` / `hz_duel_p2`（累计战绩） / `hz_duel_streak` / `hz_duel_matches` |
 | 部署 | 任意静态服务器 · 已内置多 CDN 容错 |
 
 ---
@@ -638,7 +658,7 @@ npx serve -l 8765
 
 ```
 hanzi-practice/
-├── index.html          # 主应用（13575 行单文件，包含 HTML/CSS/JS）
+├── index.html          # 主应用（14001 行单文件，包含 HTML/CSS/JS）
 ├── assets/             # README 用图片资源
 │   ├── demo.gif        # 运行演示 GIF
 │   ├── scene_home.png
@@ -684,7 +704,10 @@ hanzi-practice/
 │   ├── scene_push_result.png
 │   ├── scene_balance.png
 │   ├── scene_balance_sold.png
-│   └── scene_balance_result.png
+│   ├── scene_balance_result.png
+│   ├── scene_memory.png
+│   ├── scene_memory_pair.png
+│   └── scene_memory_result.png
 ├── record_demo.js      # Puppeteer 自动录屏脚本（开发用）
 ├── make_gif.py         # PNG 帧合成 GIF 脚本（开发用）
 ├── package.json

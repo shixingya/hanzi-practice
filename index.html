@@ -1191,6 +1191,63 @@ button:active{transform:scale(.95)}
 @keyframes blBan{0%{opacity:0;transform:scale(.4) rotate(-7deg)}22%{opacity:1;transform:scale(1.15) rotate(3deg)}42%{transform:scale(1)}78%{opacity:1}100%{opacity:0;transform:scale(1.03)}}
 @media(max-width:420px){.bl-wrap,.bl-order,.bl-pat,.bl-scale,.bl-shelf,.bl-btns,.bl-hud,.bl-tip{max-width:300px}
   .bl-beam{width:246px;margin-left:-123px}.bl-pan{width:108px}.bl-pan.l{left:-54px}.bl-pan.r{right:-54px}.bl-shelf{gap:6px}}
+/* ===== 汉字记忆翻翻屋（字卡配笔画数卡 · 连击奖励闪视 · 沙漏限时） ===== */
+.mm-cop{display:flex;align-items:center;gap:8px;width:100%;max-width:322px;margin:9px auto 0}
+.mm-detect{font-size:32px;line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.32))}
+.mm-bub{flex:1;background:#fff;color:#37474F;font-size:11.5px;font-weight:800;line-height:1.4;border-radius:12px;
+  padding:7px 10px;position:relative;box-shadow:0 2px 0 rgba(0,0,0,.18);min-height:32px;display:flex;align-items:center}
+.mm-bub:before{content:'';position:absolute;left:-6px;top:13px;border:5px solid transparent;border-right-color:#fff}
+.mm-pat{width:100%;max-width:322px;height:10px;margin:9px auto 0;background:rgba(0,0,0,.3);border-radius:6px;overflow:hidden;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.4)}
+.mm-pat i{display:block;height:100%;width:100%;border-radius:6px;transition:width .12s linear;
+  background:linear-gradient(90deg,#FF7043,#FFD54F 45%,#66BB6A)}
+.mm-pat.low i{background:linear-gradient(90deg,#E53935,#FF7043);animation:mmLow .45s ease-in-out infinite alternate}
+@keyframes mmLow{from{opacity:.5}to{opacity:1}}
+.mm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:322px;margin:11px auto 0}
+.mm-grid.c3{grid-template-columns:repeat(3,1fr)}
+.mm-grid.c3 .mm-c{height:68px}
+.mm-c{position:relative;height:62px;border:none;background:none;padding:0;font-family:inherit;cursor:pointer}
+.mm-f{position:absolute;inset:0;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 3px 0 rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.5);transition:opacity .15s ease-out,transform .15s ease-out}
+.mm-b{background:linear-gradient(150deg,#7986CB,#311B92);color:rgba(255,255,255,.92);font-size:21px;opacity:1;transform:scale(1)}
+.mm-a{background:linear-gradient(160deg,#FFF8E1,#FFD54F);color:#4E342E;opacity:0;transform:scale(.55);
+  transition-delay:.09s;pointer-events:none}
+.mm-a b{display:block;font-size:26px;font-weight:900;line-height:1.05}
+.mm-a i{display:block;font-style:normal;font-size:9.5px;font-weight:800;color:#8D6E63;letter-spacing:1px;margin-top:1px}
+.mm-c.up .mm-b{opacity:0;transform:scale(1.3)}
+.mm-c.up .mm-a{opacity:1;transform:scale(1)}
+.mm-c:not(.up):active{transform:translateY(2px)}
+.mm-c.done .mm-a{background:linear-gradient(160deg,#C8E6C9,#43A047);color:#fff;animation:mmPop .42s ease-out}
+.mm-c.done .mm-a i{color:#E8F5E9}
+.mm-c.done{pointer-events:none}
+@keyframes mmPop{0%{transform:scale(.82)}45%{transform:scale(1.16)}100%{transform:scale(1)}}
+.mm-c.err .mm-a{background:linear-gradient(160deg,#FFCDD2,#E53935);color:#fff;animation:mmShake .42s ease-out}
+.mm-c.err .mm-a i{color:#FFCDD2}
+@keyframes mmShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}55%{transform:translateX(5px)}80%{transform:translateX(-3px)}}
+.mm-c.peek .mm-a{background:linear-gradient(160deg,#B3E5FC,#0288D1);color:#01304F}
+.mm-c.peek .mm-a i{color:#01579B}
+.mm-hud{display:flex;justify-content:space-between;gap:5px;width:100%;max-width:322px;margin:8px auto 0;
+  font-size:11.5px;font-weight:800;color:#fff;background:rgba(255,255,255,.14);border-radius:12px;padding:7px 9px}
+.mm-hud span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mm-btns{display:flex;gap:7px;justify-content:center;width:100%;max-width:322px;margin:9px auto 0}
+.mm-act{flex:1;border:none;border-radius:12px;padding:10px 4px;font-family:inherit;font-size:12.5px;font-weight:900;cursor:pointer;color:#3E2723;
+  background:linear-gradient(160deg,#FFF176,#FFB300);box-shadow:0 3px 0 rgba(0,0,0,.28)}
+.mm-act.b{background:linear-gradient(160deg,#B3E5FC,#0288D1);color:#01304F;flex:0 0 auto;padding:10px 12px}
+.mm-act:active{transform:translateY(3px);box-shadow:none}
+.mm-act:disabled{opacity:.4;cursor:default}
+.mm-judge{width:100%;max-width:322px;margin:9px auto 0;min-height:20px;text-align:center;line-height:1.35;
+  font-size:13px;font-weight:900;color:#FFEA00;text-shadow:0 2px 3px rgba(0,0,0,.6)}
+.mm-judge.show{animation:mmJudge .44s ease-out}
+@keyframes mmJudge{0%{opacity:.2;transform:scale(.9)}55%{opacity:1;transform:scale(1.05)}100%{transform:scale(1)}}
+.mm-tip{width:100%;max-width:322px;margin:8px auto 0;font-size:11.5px;line-height:1.5;color:#fff;opacity:.86;text-align:center}
+.mm-tip b{color:#FFF176}
+.mm-wrap{position:relative;width:100%;max-width:322px;margin:0 auto}
+.mm-banner{position:absolute;left:0;right:0;top:34%;text-align:center;font-size:23px;font-weight:900;color:#fff;
+  text-shadow:0 3px 0 #4527A0,0 5px 12px rgba(0,0,0,.42);opacity:0;pointer-events:none;z-index:10}
+.mm-banner.show{animation:mmBan 1.7s ease-out forwards}
+@keyframes mmBan{0%{opacity:0;transform:scale(.4) rotate(-7deg)}22%{opacity:1;transform:scale(1.15) rotate(3deg)}42%{transform:scale(1)}78%{opacity:1}100%{opacity:0;transform:scale(1.03)}}
+@media(max-width:420px){.mm-cop,.mm-pat,.mm-grid,.mm-hud,.mm-btns,.mm-judge,.mm-tip,.mm-wrap{max-width:300px}
+  .mm-grid{gap:6px}.mm-c{height:56px}.mm-grid.c3 .mm-c{height:62px}.mm-a b{font-size:23px}}
 </style>
 
 </head>
@@ -1327,6 +1384,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('bowl')">
       <div class="icon">🎳</div>
       <div class="info"><h3>笔顺保龄球</h3><p>答对拿大力球，瞄口袋位一票全倒！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('memory')">
+      <div class="icon">🕵️</div>
+      <div class="info"><h3>记忆翻翻屋</h3><p>翻开牌，把汉字和它的笔画数配对！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('balance')">
       <div class="icon">⚖️</div>
@@ -2675,6 +2736,63 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-memory">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="mmScoreTxt">🃏 0 分</span><span id="mmLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="mmHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal" id="mmGoal">🕵️ 侦探任务：翻开两张牌，把<b>汉字</b>和它的<b>笔画数</b>配成一对！<b>连对三次</b>触发「<b>侦探直觉</b>」——全场牌面亮一秒，快去记位置。翻错要<b>扣时间</b>，沙漏漏完就收队！</div>
+  <div class="mm-hud">
+    <span id="mmComboTxt">🔥 ×0</span>
+    <span id="mmPairTxt">🃏 0/3 对</span>
+    <span id="mmHintTxt">💡 ×3</span>
+    <span id="mmBestTxt">🥇 最高 0</span>
+  </div>
+  <div class="mm-cop">
+    <div class="mm-detect">🕵️</div>
+    <div class="mm-bub" id="mmBub">正在洗牌…</div>
+  </div>
+  <div class="mm-pat" id="mmPatWrap"><i id="mmPat"></i></div>
+  <div class="mm-wrap">
+    <div class="mm-grid c3" id="mmGrid"></div>
+    <div class="mm-banner" id="mmBanner"></div>
+  </div>
+  <div class="mm-btns">
+    <button class="mm-act" id="mmHintBtn" onclick="mmHint()">💡 看一对（扣 5 秒）</button>
+    <button class="mm-act b" id="mmPeekBtn" onclick="mmPeekBtn()" title="全场亮一下（扣 8 秒）">🔍</button>
+  </div>
+  <div class="mm-judge" id="mmJudge"></div>
+  <div class="mm-tip" id="mmTip">点<b>牌</b>翻开 · 一次翻两张 · <b>1-9/0</b> 快速翻牌 · <b>H</b> 提示 · <b>P</b> 闪视</div>
+</div>
+<div class="screen" id="screen-memory-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="mmResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="mmResultEmoji">🕵️</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="mmResultTitle">收队啦！</h2>
+    <p style="font-size:16px;opacity:.8" id="mmResultSubtitle">记住位置，比翻得快更重要</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="mmResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="mmResultPairs">0</div><div style="font-size:13px;opacity:.7">配上几对</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="mmResultLv">1</div><div style="font-size:13px;opacity:.7">冲到第几关</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="mmResultPerfect">0</div><div style="font-size:13px;opacity:.7">💎 完美搜查</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="mmResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="mmResultAll">累计配对 0 对 · 累计认字 0 个 · 共玩 0 局</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="mmStart()">🕵️ 再查一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-push">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -3216,6 +3334,7 @@ function enterMode(mode){
  else if(mode==='jump')jpStart();
  else if(mode==='push')tkStart();
  else if(mode==='balance')blStart();
+  else if(mode==='memory')mmStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -13553,6 +13672,313 @@ document.addEventListener('keydown',function(e){
   if(k==='h'||k==='H'){blSwap();return}
   if(k>='1'&&k<='8'){const i=parseInt(k,10)-1;if(i<bl.shelf.length)blPlace(i)}
 });
+/* ===== 汉字记忆翻翻屋：汉字配笔画数，连击换「侦探直觉」闪视 ===== */
+const MM_QUIZ=['🕵️ 一张字卡配一张笔画数卡','🧠 记住翻过的牌，下一对更快','⏳ 配对能回 4 秒','🔍 连对三次，全场牌亮一下'];
+let mm={gen:0,run:false,lv:1,p:3,cards:[],open:[],lock:true,found:0,total:0,
+  time:0,timeMax:0,tid:0,combo:0,maxCombo:0,score:0,roundWrong:0,perfect:0,hints:3,
+  peeking:false,chars:{}};
+let mmSig='';
+function mmSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function mmJudge(t,color){
+  const e=document.getElementById('mmJudge');if(!e)return;
+  e.textContent=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function mmBanner(t){
+  const e=document.getElementById('mmBanner');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function mmBub(t){const e=document.getElementById('mmBub');if(e)e.innerHTML=t}
+function mmCfg(l){const p=Math.min(8,2+l);return{p:p,timeMax:Math.max(34,Math.min(96,p*11-(l-1)))}}
+function mmName(c){return c.t==='ch'?'「'+c.ch+'」':c.n+' 画'}
+function mmAdd(k,n){localStorage.setItem(k,String((parseInt(localStorage.getItem(k)||'0',10))+(n||1)))}
+function mmCardEl(i){const g=document.getElementById('mmGrid');if(!g)return null;return g.children[i]||null}
+function mmPoolChars(){
+  let pool=CHARS.filter(c=>{const d=charDataCache[c];return d&&d.strokes&&d.strokes.length>=2&&d.strokes.length<=20});
+  if(currentGrade!=='all'){const g=CHARS_BY_GRADE[currentGrade]||[];pool=pool.filter(c=>g.indexOf(c)!==-1)}
+  return pool;
+}
+function mmPick(p){
+  const pool=mmPoolChars();
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+  const byN={},out=[];
+  for(const c of pool){
+    if(out.length>=p)break;
+    const n=charDataCache[c].strokes.length;
+    if(byN[n])continue;
+    byN[n]=1;out.push({ch:c,n:n});
+  }
+  return out;
+}
+function mmBuild(){
+  const picked=mmPick(mm.p);
+  if(picked.length<2)return false;
+  mm.p=picked.length;
+  const cards=[];
+  picked.forEach(o=>{
+    cards.push({t:'ch',ch:o.ch,n:o.n,up:false,done:false});
+    cards.push({t:'num',ch:o.ch,n:o.n,up:false,done:false});
+  });
+  for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]]}
+  mm.cards=cards;mm.open=[];mm.found=0;mm.roundWrong=0;mm.lock=false;
+  return true;
+}
+function mmRender(){
+  const g=document.getElementById('mmGrid');if(!g)return;
+  g.className='mm-grid'+(mm.cards.length<=6?' c3':'');
+  const sig=mm.gen+'|'+mm.cards.map(c=>c.t+c.ch).join(',');
+  if(mmSig!==sig){
+    mmSig=sig;
+    g.innerHTML=mm.cards.map(function(c,i){
+      return '<button class="mm-c" onclick="mmTap('+i+')">'+
+        '<span class="mm-f mm-b">🔍</span>'+
+        '<span class="mm-f mm-a"><b>'+(c.t==='ch'?c.ch:c.n)+'</b><i>'+(c.t==='ch'?'字卡':'画数')+'</i></span>'+
+        '</button>';
+    }).join('');
+  }
+  mm.cards.forEach((c,i)=>mmPaint(i));
+}
+function mmPaint(i){
+  const e=mmCardEl(i),c=mm.cards[i];if(!e||!c)return;
+  e.classList.toggle('up',!!c.up);
+  e.classList.toggle('done',!!c.done);
+  if(!c.up)e.classList.remove('peek');
+}
+function mmHud(){
+  mmSet('mmComboTxt','🔥 ×'+mm.combo);
+  mmSet('mmPairTxt','🃏 '+mm.found+'/'+mm.p+' 对');
+  mmSet('mmHintTxt','💡 ×'+mm.hints);
+  mmSet('mmBestTxt','🥇 最高 '+(parseInt(localStorage.getItem('hz_mm_best')||'0',10)));
+  mmSet('mmScoreTxt','🃏 '+mm.score+' 分');
+  mmSet('mmLvTxt','第 '+mm.lv+' 关');
+  const hb=document.getElementById('mmHintBtn');if(hb)hb.disabled=mm.hints<=0;
+}
+function mmPaintTime(){
+  const bar=document.getElementById('mmPat'),wrap=document.getElementById('mmPatWrap');
+  const pct=mm.timeMax>0?Math.max(0,Math.min(100,mm.time/mm.timeMax*100)):0;
+  if(bar)bar.style.width=pct.toFixed(1)+'%';
+  if(wrap)wrap.classList.toggle('low',pct<28);
+}
+function mmTick(hi){tone(hi?740:520,.07,'triangle',.05)}
+function mmTap(i){
+  if(!mm.run||mm.lock||mm.peeking)return;
+  const c=mm.cards[i];if(!c||c.up||c.done)return;
+  c.up=true;mmPaint(i);mmTick(mm.open.length);
+  mm.open.push(i);
+  if(mm.open.length<2)return;
+  mm.lock=true;
+  const gen=mm.gen;
+  setTimeout(function(){if(gen!==mm.gen||!mm.run)return;mmResolve()},400);
+}
+function mmResolve(){
+  const a=mm.cards[mm.open[0]],b=mm.cards[mm.open[1]];
+  if(!a||!b){mm.open=[];mm.lock=false;return}
+  if(a.ch===b.ch)mmGood();else mmBad();
+}
+function mmGood(){
+  const ia=mm.open[0],ib=mm.open[1],a=mm.cards[ia];
+  mm.open=[];
+  mm.cards[ia].done=true;mm.cards[ib].done=true;
+  mmPaint(ia);mmPaint(ib);
+  mm.combo++;mm.found++;mm.total++;
+  if(mm.combo>mm.maxCombo)mm.maxCombo=mm.combo;
+  mm.chars[a.ch]=1;
+  const gain=40+(mm.combo-1)*20+mm.lv*5;
+  mm.score+=gain;
+  mm.time=Math.min(mm.timeMax,mm.time+4);
+  sndOk();
+  const e=mmCardEl(ib);
+  if(e){const r=e.getBoundingClientRect();spawnStarFly(r.left+r.width/2,r.top+r.height/2)}
+  mmJudge('🎯 「'+a.ch+'」就是 '+a.n+' 画！+'+gain+' 分 · ⏳+4s','#FFF176');
+  mmBub(MM_QUIZ[Math.floor(Math.random()*MM_QUIZ.length)]);
+  showComboEffect(mm.combo);
+  mmHud();mmPaintTime();
+  if(mm.found>=mm.p){setTimeout(mmClear,560);return}
+  if(mm.combo%3===0){mm.lock=true;setTimeout(mmPeekAll,420);return}
+  mm.lock=false;
+}
+function mmBad(){
+  const ia=mm.open[0],ib=mm.open[1],a=mm.cards[ia],b=mm.cards[ib];
+  mm.open=[];
+  mm.combo=0;mm.roundWrong++;
+  mm.time=Math.max(0,mm.time-2.5);
+  sndNo();
+  const ea=mmCardEl(ia),eb=mmCardEl(ib);
+  if(ea)ea.classList.add('err');if(eb)eb.classList.add('err');
+  mmJudge('🙈 '+mmName(a)+' 和 '+mmName(b)+' 不配对，⏳−2.5 秒','#FF8A80');
+  mmBub('🧠 记住它们的位置，下次就不会翻错了');
+  mmHud();mmPaintTime();
+  const gen=mm.gen;
+  setTimeout(function(){
+    if(gen!==mm.gen)return;
+    mm.cards[ia].up=false;mm.cards[ib].up=false;
+    if(ea)ea.classList.remove('err');if(eb)eb.classList.remove('err');
+    mmPaint(ia);mmPaint(ib);
+    if(!mm.run)return;
+    mm.lock=false;
+  },760);
+}
+function mmReveal(dur,cost,tag){
+  const left=[];
+  mm.cards.forEach((c,i)=>{if(!c.done)left.push(i)});
+  if(!left.length){mm.lock=false;return}
+  mm.peeking=true;mm.lock=true;
+  if(cost){mm.time=Math.max(0,mm.time-cost)}
+  left.forEach(i=>{mm.cards[i].up=true;mmPaint(i);const e=mmCardEl(i);if(e)e.classList.add('peek')});
+  tone(920,.2,'sine',.06);
+  mmBanner(tag);
+  const gen=mm.gen;
+  setTimeout(function(){
+    if(gen!==mm.gen)return;
+    left.forEach(i=>{
+      if(!mm.cards[i].done)mm.cards[i].up=false;
+      mmPaint(i);
+      const e=mmCardEl(i);if(e)e.classList.remove('peek');
+    });
+    mm.peeking=false;
+    if(mm.run&&mm.time<=0){mmEnd('⏳ 沙漏漏完啦');return}
+    mm.lock=false;
+    mmPaintTime();
+  },dur);
+}
+function mmPeekAll(){mmReveal(1000,0,'🔍 侦探直觉！')}
+function mmPeekBtn(){
+  if(!mm.run||mm.lock||mm.peeking)return;
+  if(mm.time<9){mmJudge('⏳ 时间太少啦，先配对回点时间','#FF8A80');return}
+  mmReveal(900,8,'🔍 全场亮一下');
+  mmBub('🔍 花了 8 秒看了一眼，快把位置记牢！');
+}
+function mmHint(){
+  if(!mm.run||mm.lock||mm.peeking)return;
+  if(mm.hints<=0){mmJudge('💡 这一局的提示用完啦','#FF8A80');return}
+  const byCh={};
+  mm.cards.forEach((c,i)=>{if(!c.done){if(!byCh[c.ch])byCh[c.ch]=[];byCh[c.ch].push(i)}});
+  const keys=Object.keys(byCh).filter(k=>byCh[k].length===2);
+  if(!keys.length)return;
+  const k=keys[Math.floor(Math.random()*keys.length)];
+  mm.hints--;mm.time=Math.max(0,mm.time-5);
+  mm.peeking=true;mm.lock=true;
+  byCh[k].forEach(i=>{mm.cards[i].up=true;mmPaint(i);const e=mmCardEl(i);if(e)e.classList.add('peek')});
+  tone(780,.16,'sine',.06);
+  mmBanner('💡 就这一对！');
+  const gen=mm.gen;
+  setTimeout(function(){
+    if(gen!==mm.gen)return;
+    byCh[k].forEach(i=>{
+      if(!mm.cards[i].done)mm.cards[i].up=false;
+      mmPaint(i);
+      const e=mmCardEl(i);if(e)e.classList.remove('peek');
+    });
+    mm.peeking=false;mmHud();mmPaintTime();
+    if(mm.run&&mm.time<=0){mmEnd('⏳ 沙漏漏完啦');return}
+    mm.lock=false;
+  },900);
+}
+function mmClear(){
+  if(!mm.run)return;
+  mm.lock=true;
+  const perfect=mm.roundWrong===0;
+  const bonus=80+mm.lv*30+(perfect?120:0);
+  mm.score+=bonus;
+  if(perfect){mm.perfect++;spawnConfetti();sndReward();mmBanner('💎 完美搜查！')}
+  else{sndDone();mmBanner('🎉 全部配对！')}
+  mmJudge((perfect?'💎 一张都没翻错！':'🎉 '+mm.p+' 对全找到！')+'过关 +'+bonus+' 分','#B9F6CA');
+  mmBub(perfect?'🕵️ 零失误结案，金牌侦探就是你！':'🕵️ 牌越排越多，敢不敢再来一关？');
+  mmHud();
+  const gid=mm.gen;
+  setTimeout(async function(){
+    if(gid!==mm.gen||!mm.run)return;
+    mm.lv++;
+    await mmNew();
+  },1500);
+}
+function mmStop(){if(mm.tid){clearInterval(mm.tid);mm.tid=0}}
+function mmTimer(){
+  mmStop();
+  mm.tid=setInterval(function(){
+    if(!mm.run||currentMode!=='memory'){mmStop();return}
+    if(!mm.peeking)mm.time=Math.max(0,mm.time-0.1);
+    mmPaintTime();
+    if(mm.time<=0)mmEnd('⏳ 沙漏漏完啦，侦探收队');
+  },100);
+}
+async function mmNew(){
+  const gen=++mm.gen;
+  mm.lock=true;mmStop();
+  const cfg=mmCfg(mm.lv);
+  mm.p=cfg.p;mm.timeMax=cfg.timeMax;mm.time=cfg.timeMax;
+  mm.combo=0;mm.hints=3;mm.peeking=false;
+  let built=false;
+  for(let tr=0;tr<4&&!built;tr++)built=mmBuild();
+  if(gen!==mm.gen)return false;
+  if(!built){
+    mmJudge('🃏 字库还没准备好，稍等一下再来一局','#FFD54F');
+    mmBub('🕵️ 字库正在加载，等它装满再来查案');
+    mm.run=false;
+    return false;
+  }
+  mmSig='';
+  mmRender();mmHud();mmPaintTime();mmTimer();
+  mmBanner('🗺️ 第 '+mm.lv+' 关 · '+mm.p+' 对牌');
+  mmJudge('🃏 这一关有 '+mm.p+' 对牌，'+mm.timeMax+' 秒沙漏','#80D8FF');
+  mmBub(MM_QUIZ[Math.floor(Math.random()*MM_QUIZ.length)]);
+  return true;
+}
+async function mmStart(){
+  if(mmPoolChars().length<2){alert('字库还在加载中，稍等一下再来！');return}
+  mm.run=false;mmStop();
+  mm.lv=1;mm.score=0;mm.total=0;mm.combo=0;mm.maxCombo=0;mm.perfect=0;
+  mm.found=0;mm.open=[];mm.chars={};
+  mm.run=true;
+  showScreen('memory');
+  mmJudge('','');
+  await mmNew();
+}
+function mmEnd(reason){
+  if(!mm.run)return;
+  mm.run=false;mm.lock=true;mmStop();mm.gen++;
+  const best=parseInt(localStorage.getItem('hz_mm_best')||'0',10);
+  if(mm.score>best)localStorage.setItem('hz_mm_best',String(mm.score));
+  if(mm.lv>parseInt(localStorage.getItem('hz_mm_lv')||'1',10))localStorage.setItem('hz_mm_lv',String(mm.lv));
+  if(mm.total>0)mmAdd('hz_mm_pairs',mm.total);
+  if(mm.perfect>0)mmAdd('hz_mm_perfect',mm.perfect);
+  mmAdd('hz_mm_games');
+  let known=[];try{known=JSON.parse(localStorage.getItem('hz_mm_chars')||'[]')}catch(err){known=[]}
+  if(!Array.isArray(known))known=[];
+  Object.keys(mm.chars).forEach(c=>{if(known.indexOf(c)<0)known.push(c)});
+  localStorage.setItem('hz_mm_chars',JSON.stringify(known));
+  maxCombo=Math.max(maxCombo,mm.maxCombo);
+  localStorage.setItem('hz_maxCombo',String(maxCombo));
+  const gain=Math.max(2,Math.min(24,(mm.lv-1)*3+Math.floor(mm.score/420)));
+  addStars(gain);
+  sndDone();
+  showScreen('memory-result');
+  mmSet('mmResultStars','⭐ +'+gain);
+  mmSet('mmResultScore',String(mm.score));
+  mmSet('mmResultPairs',String(mm.total));
+  mmSet('mmResultLv',String(mm.lv));
+  mmSet('mmResultPerfect',String(mm.perfect));
+  mmSet('mmResultBest',String(Math.max(best,mm.score)));
+  mmSet('mmResultAll','累计配对 '+parseInt(localStorage.getItem('hz_mm_pairs')||'0',10)+' 对 · 累计认字 '+
+    known.length+' 个 · 共玩 '+parseInt(localStorage.getItem('hz_mm_games')||'0',10)+' 局');
+  const s=mm.total;
+  mmSet('mmResultEmoji',mm.perfect>0?'💎':s>=12?'🏆':s>=6?'🥇':s>=2?'🕵️':'🫙');
+  mmSet('mmResultTitle',mm.perfect>0?'金牌侦探！':s>=12?'记忆力惊人！':s>=6?'配上一大片！':s>=2?'破了几桩小案':'一对也没配上');
+  mmSet('mmResultSubtitle',reason||'记住位置，比翻得快更重要');
+  updateHomeStats();
+}
+function mmHelp(){mmJudge('🕵️ 翻两张牌，汉字要和它的笔画数配成对','#2E7D32')}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='memory')return;
+  const k=e.key;
+  if(k==='h'||k==='H'){mmHint();return}
+  if(k==='p'||k==='P'){mmPeekBtn();return}
+  if(k>='0'&&k<='9'){
+    const i=k==='0'?9:(parseInt(k,10)-1);
+    if(i<mm.cards.length)mmTap(i);
+  }
+});
+/* ===== 汉字记忆翻翻屋 结束 ===== */
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
