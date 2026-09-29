@@ -1248,6 +1248,66 @@ button:active{transform:scale(.95)}
 @keyframes mmBan{0%{opacity:0;transform:scale(.4) rotate(-7deg)}22%{opacity:1;transform:scale(1.15) rotate(3deg)}42%{transform:scale(1)}78%{opacity:1}100%{opacity:0;transform:scale(1.03)}}
 @media(max-width:420px){.mm-cop,.mm-pat,.mm-grid,.mm-hud,.mm-btns,.mm-judge,.mm-tip,.mm-wrap{max-width:300px}
   .mm-grid{gap:6px}.mm-c{height:56px}.mm-grid.c3 .mm-c{height:62px}.mm-a b{font-size:23px}}
+/* ===== 笔顺倒水杯（笔画方向当液体 · 倒水排序解谜 · 逆向打乱保证有解） ===== */
+.wc-cop{display:flex;align-items:center;gap:8px;width:100%;max-width:322px;margin:9px auto 0}
+.wc-chem{font-size:32px;line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.32))}
+.wc-bub{flex:1;background:#fff;color:#37474F;font-size:11.5px;font-weight:800;line-height:1.4;border-radius:12px;
+  padding:7px 10px;position:relative;box-shadow:0 2px 0 rgba(0,0,0,.18);min-height:32px;display:flex;align-items:center}
+.wc-bub:before{content:'';position:absolute;left:-6px;top:13px;border:5px solid transparent;border-right-color:#fff}
+.wc-hud{display:flex;justify-content:space-between;gap:5px;width:100%;max-width:322px;margin:8px auto 0;
+  font-size:11.5px;font-weight:800;color:#fff;background:rgba(255,255,255,.14);border-radius:12px;padding:7px 9px}
+.wc-hud span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wc-stage{position:relative;width:100%;max-width:322px;margin:0 auto}
+.wc-tubes{display:flex;align-items:flex-end;justify-content:center;gap:6px;min-height:150px;padding:16px 0 4px;
+  --cap:3;--th:calc(58px + var(--cap)*24px)}
+.wc-t{position:relative;width:37px;height:var(--th);border:2px solid rgba(255,255,255,.55);border-top:none;
+  border-radius:5px 5px 14px 14px;background:linear-gradient(100deg,rgba(255,255,255,.24),rgba(255,255,255,.05) 46%,rgba(255,255,255,.22));
+  padding:0;cursor:pointer;font-family:inherit;transition:transform .17s ease-out,box-shadow .17s ease-out;
+  box-shadow:0 3px 0 rgba(0,0,0,.22),inset 0 -3px 6px rgba(0,0,0,.18)}
+.wc-t:before{content:'';position:absolute;left:4px;top:6px;bottom:10px;width:4px;border-radius:3px;background:rgba(255,255,255,.34)}
+.wc-li{position:absolute;left:2px;right:2px;top:2px;bottom:2px;display:flex;flex-direction:column-reverse;
+  border-radius:0 0 11px 11px;overflow:hidden}
+.wc-l{flex:1 1 0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;
+  color:rgba(0,0,0,.4);text-shadow:0 1px 0 rgba(255,255,255,.5);border-bottom:1px solid rgba(0,0,0,.14)}
+.wc-l:last-child{border-bottom:none}
+.wc-l.fresh{animation:wcPour .28s ease-out}
+@keyframes wcPour{0%{transform:translateY(-150%) scaleY(.6);opacity:.3}70%{opacity:1}100%{transform:translateY(0) scaleY(1)}}
+.wc-t.sel{transform:translateY(-13px) rotate(-7deg)}
+.wc-t.sel:after{content:'';position:absolute;inset:-5px;border-radius:9px 9px 18px 18px;border:2px dashed #FFF176}
+.wc-t.done{box-shadow:0 0 0 2px #FFD740,0 0 18px rgba(255,215,64,.65);animation:wcWin .52s ease-out}
+.wc-t.done .wc-l{filter:saturate(1.25) brightness(1.06)}
+@keyframes wcWin{0%{transform:scale(.9)}45%{transform:scale(1.1)}100%{transform:scale(1)}}
+.wc-t.err{animation:wcShake .4s ease-out}
+@keyframes wcShake{0%,100%{transform:translateX(0)}22%{transform:translateX(-6px)}56%{transform:translateX(5px)}80%{transform:translateX(-3px)}}
+.wc-t.peek .wc-li{animation:wcPeek 1.1s ease-out}
+.wc-t.peek:after{content:'';position:absolute;inset:-5px;border-radius:9px 9px 18px 18px;border:2px solid #80D8FF}
+@keyframes wcPeek{0%,100%{filter:none}40%{filter:brightness(1.5) drop-shadow(0 0 8px #80D8FF)}}
+.wc-t b.badge{position:absolute;left:0;right:0;top:-16px;text-align:center;font-size:12px;font-weight:900;color:#FFF59D}
+.wc-order{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;max-width:322px;margin:9px auto 0;
+  font-size:11px;font-weight:900;color:#fff;opacity:.92}
+.wc-order em{font-style:normal;font-size:14px;line-height:1;background:rgba(255,255,255,.16);border-radius:8px;padding:4px 5px;
+  transition:transform .18s ease-out,background .18s ease-out,color .18s}
+.wc-order em.on{background:#FFD740;color:#3E2723;transform:scale(1.22)}
+.wc-order s{text-decoration:none;font-size:19px;font-weight:900;color:#FFF176;margin-right:3px}
+.wc-btns{display:flex;gap:6px;justify-content:center;width:100%;max-width:322px;margin:10px auto 0}
+.wc-act{flex:1;border:none;border-radius:12px;padding:10px 3px;font-family:inherit;font-size:12px;font-weight:900;cursor:pointer;
+  color:#3E2723;background:linear-gradient(160deg,#FFF176,#FFB300);box-shadow:0 3px 0 rgba(0,0,0,.28)}
+.wc-act.b{background:linear-gradient(160deg,#B3E5FC,#0288D1);color:#01304F}
+.wc-act.g{background:linear-gradient(160deg,#C8E6C9,#43A047);color:#1B4D1B}
+.wc-act:active{transform:translateY(3px);box-shadow:none}
+.wc-act:disabled{opacity:.4;cursor:default}
+.wc-judge{width:100%;max-width:322px;margin:9px auto 0;min-height:20px;text-align:center;line-height:1.35;
+  font-size:13px;font-weight:900;color:#FFEA00;text-shadow:0 2px 3px rgba(0,0,0,.6)}
+.wc-judge.show{animation:wcJudge .44s ease-out}
+@keyframes wcJudge{0%{opacity:.2;transform:scale(.9)}55%{opacity:1;transform:scale(1.05)}100%{transform:scale(1)}}
+.wc-tip{width:100%;max-width:322px;margin:8px auto 0;font-size:11.5px;line-height:1.5;color:#fff;opacity:.86;text-align:center}
+.wc-tip b{color:#FFF176}
+.wc-banner{position:absolute;left:0;right:0;top:32%;text-align:center;font-size:23px;font-weight:900;color:#fff;
+  text-shadow:0 3px 0 #01579B,0 5px 12px rgba(0,0,0,.42);opacity:0;pointer-events:none;z-index:10}
+.wc-banner.show{animation:wcBan 1.9s ease-out forwards}
+@keyframes wcBan{0%{opacity:0;transform:scale(.4) rotate(-7deg)}22%{opacity:1;transform:scale(1.15) rotate(3deg)}42%{transform:scale(1)}78%{opacity:1}100%{opacity:0;transform:scale(1.03)}}
+@media(max-width:420px){.wc-cop,.wc-hud,.wc-order,.wc-btns,.wc-judge,.wc-tip,.wc-stage,.wc-tubes{max-width:300px}
+  .wc-tubes{gap:5px}.wc-t{width:33px}}
 </style>
 
 </head>
@@ -1388,6 +1448,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('memory')">
       <div class="icon">🕵️</div>
       <div class="info"><h3>记忆翻翻屋</h3><p>翻开牌，把汉字和它的笔画数配对！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('cup')">
+      <div class="icon">🧪</div>
+      <div class="info"><h3>笔顺倒水杯</h3><p>把打翻的笔画墨水，一杯杯按方向倒回来！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('balance')">
       <div class="icon">⚖️</div>
@@ -2793,6 +2857,65 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-cup">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="wcScoreTxt">🧪 0 分</span><span id="wcLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="wcHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal" id="wcGoal">🧪 打翻的<b>笔画墨水</b>混成一团！点一杯拿起来、再点另一杯倒过去，<b>只能倒最上面那一段同色的水</b>，而且只能倒进<b>同一方向</b>的杯子里。每只杯子倒满一个方向就过关，全部理顺还能看清这个字笔顺的走向！</div>
+  <div class="wc-hud">
+    <span id="wcStepsTxt">👣 0 步</span>
+    <span id="wcParTxt">🎯 参考 0</span>
+    <span id="wcCupsTxt">🧪 0/3 杯</span>
+    <span id="wcBestTxt">🥇 最高 0</span>
+  </div>
+  <div class="wc-cop">
+    <div class="wc-chem">🧪</div>
+    <div class="wc-bub" id="wcBubEl">正在倒墨水…</div>
+  </div>
+  <div class="wc-stage">
+    <div class="wc-tubes" id="wcTubes"></div>
+    <div class="wc-banner" id="wcBannerEl"></div>
+  </div>
+  <div class="wc-order" id="wcOrder"></div>
+  <div class="wc-btns">
+    <button class="wc-act" id="wcHintBtn" onclick="wcHint()">💡 提示</button>
+    <button class="wc-act b" id="wcUndoBtn" onclick="wcUndo()">↩️ 撤销 ×3</button>
+    <button class="wc-act" id="wcReBtn" onclick="wcRe()">🔄 重摆</button>
+    <button class="wc-act g" onclick="wcEnd('🏁 今天倒到这里，收工！')">🏁 收工</button>
+  </div>
+  <div class="wc-judge" id="wcJudgeLine"></div>
+  <div class="wc-tip" id="wcTip">点<b>杯子</b>拿起来 · 再点一杯<b>倒过去</b> · <b>1-8</b> 选杯 · <b>H</b> 提示 · <b>U</b> 撤销 · <b>R</b> 重摆</div>
+</div>
+<div class="screen" id="screen-cup-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="wcResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="wcResultEmoji">🧪</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="wcResultTitle">收工啦！</h2>
+    <p style="font-size:16px;opacity:.8" id="wcResultSubtitle">想清楚谁压在谁上面，再动手倒</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="wcResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="wcResultCups">0</div><div style="font-size:13px;opacity:.7">倒满几杯</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="wcResultLv">1</div><div style="font-size:13px;opacity:.7">冲到第几关</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="wcResultPerfect">0</div><div style="font-size:13px;opacity:.7">💎 一步没错</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="wcResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="wcResultAll">累计倒满 0 杯 · 累计认字 0 个 · 共玩 0 局</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="wcStart()">🧪 再倒一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-push">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -3335,6 +3458,7 @@ function enterMode(mode){
  else if(mode==='push')tkStart();
  else if(mode==='balance')blStart();
   else if(mode==='memory')mmStart();
+  else if(mode==='cup')wcStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -13979,6 +14103,424 @@ document.addEventListener('keydown',function(e){
   }
 });
 /* ===== 汉字记忆翻翻屋 结束 ===== */
+/* ===== 笔顺倒水杯：笔画方向当液体，倒水排序解谜，逆向打乱保证有解 ===== */
+const WC_DIR={
+  R:{c:'#FF6B6B',i:'➡️',n:'横'},
+  D:{c:'#4FC3F7',i:'⬇️',n:'竖'},
+  P:{c:'#81C784',i:'↙️',n:'撇'},
+  N:{c:'#FFB74D',i:'↘️',n:'捺'},
+  T:{c:'#BA68C8',i:'↗️',n:'点'}
+};
+const WC_TIP=['🫗 每次只能拿最上面那层','🎯 一杯只装一种方向的墨水','🧠 先想清楚谁压在谁上面','↩️ 倒错了能撤销，不罚步','🌟 一步不错就是完美倒水'];
+let wc={gen:0,run:false,lv:1,ch:'',cols:[],cap:3,tubes:[],sel:-1,lock:false,
+  steps:0,par:0,undo:[],undos:3,hints:3,combo:0,maxCombo:0,score:0,cups:0,total:0,
+  roundWrong:0,perfect:0,solvedLv:0,got:{},fresh:null,sol:null};
+let wcSig='';
+function wcSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function wcJudge(t,color){
+  const e=document.getElementById('wcJudgeLine');if(!e)return;
+  e.textContent=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function wcBanner(t){
+  const e=document.getElementById('wcBannerEl');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function wcBub(t){const e=document.getElementById('wcBubEl');if(e)e.innerHTML=t}
+function wcAdd(k,n){localStorage.setItem(k,String((parseInt(localStorage.getItem(k)||'0',10))+(n||1)))}
+function wcTubeEl(i){const g=document.getElementById('wcTubes');if(!g)return null;return g.children[i]||null}
+function wcName(c){return WC_DIR[c]?WC_DIR[c].n+'（'+WC_DIR[c].i+'）':c}
+/* ---------- 关卡参数 ---------- */
+function wcCfg(l){
+  const cols=Math.min(5,3+Math.floor((l-1)/3));
+  const cap=l<=2?3:4;
+  return{cols:cols,cap:cap,tubes:cols+2,mix:Math.min(40,7+l*4)};
+}
+/* ---------- 杯子小工具 ---------- */
+function wcRun(t){if(!t.length)return 0;let n=1;const c=t[t.length-1];
+  for(let i=t.length-2;i>=0&&t[i]===c;i--)n++;return n}
+function wcUniform(t){return !t.length||t.every(v=>v===t[0])}
+function wcFull(t,cap){return t.length===cap&&wcUniform(t)}
+function wcMixed(t){return t.length>0&&!wcUniform(t)}
+function wcKey(t){return t.map(x=>x.join('')).join('|')}
+function wcClone(t){return t.map(x=>x.slice())}
+function wcDone(t,cap){return t.every(x=>!x.length||wcFull(x,cap))}
+/* ---------- 合法倒法（整段同色一起倒，只能倒进空杯或同色顶） ---------- */
+function wcMoves(t,cap){
+  const out=[];
+  for(let i=0;i<t.length;i++){
+    const s=t[i];if(!s.length)continue;
+    if(wcFull(s,cap))continue;
+    const c=s[s.length-1],run=wcRun(s);
+    for(let j=0;j<t.length;j++){
+      if(i===j)continue;
+      const d=t[j],free=cap-d.length;
+      if(free<=0)continue;
+      if(d.length&&d[d.length-1]!==c)continue;
+      if(!d.length&&run===s.length)continue;
+      out.push({f:i,t:j,c:c,k:Math.min(run,free)});
+    }
+  }
+  return out;
+}
+function wcApply(t,mv){const n=wcClone(t);for(let k=0;k<mv.k;k++)n[mv.t].push(n[mv.f].pop());return n}
+function wcMoveScore(t,m,cap){
+  const n=wcApply(t,m);let s=0;
+  if(wcFull(n[m.t],cap))s+=8;
+  if(t[m.t].length)s+=3;
+  if(wcUniform(n[m.f]))s+=3;
+  if(wcFull(n[m.f],cap))s+=2;
+  if(!t[m.t].length)s-=2;
+  return s;
+}
+/* 逐步加深搜索：给提示用，先找短解（也用来判断是否真倒不回来了） */
+function wcSolve(t0,cap,budget){
+  let nodes=0;
+  function dfs(t,acc,limit,seen){
+    if(nodes++>budget)return null;
+    if(wcDone(t,cap))return acc;
+    if(acc.length>=limit)return null;
+    const k=wcKey(t);
+    if(seen[k]!==undefined&&seen[k]<=acc.length)return null;
+    seen[k]=acc.length;
+    const ms=wcMoves(t,cap);
+    ms.sort((a,b)=>wcMoveScore(t,b,cap)-wcMoveScore(t,a,cap));
+    for(let i=0;i<ms.length;i++){
+      const r=dfs(wcApply(t,ms[i]),acc.concat([ms[i]]),limit,seen);
+      if(r)return r;
+    }
+    return null;
+  }
+  for(let limit=3;limit<=26;limit+=2){
+    const r=dfs(t0,[],limit,{});
+    if(r)return r;
+    if(nodes>budget)return null;
+  }
+  return null;
+}
+/* ---------- 出题：从已解状态倒着打乱，保证一定能倒回去 ---------- */
+function wcPoolChars(minDirs){
+  let pool=CHARS.filter(function(c){
+    const d=strokeTypes[c],cd=charDataCache[c];
+    if(!d||!cd)return false;
+    const n=cd.strokes.length;if(n<3||n>16)return false;
+    const s={};for(let i=0;i<d.length;i++)s[d[i]]=1;
+    return Object.keys(s).length>=minDirs;
+  });
+  if(currentGrade!=='all'){const g=CHARS_BY_GRADE[currentGrade]||[];pool=pool.filter(c=>g.indexOf(c)!==-1)}
+  return pool;
+}
+function wcSolvedTubes(cols,cap,n){
+  const t=[];
+  cols.forEach(function(c){const a=[];for(let i=0;i<cap;i++)a.push(c);t.push(a)});
+  for(let i=cols.length;i<n;i++)t.push([]);
+  return t;
+}
+function wcScramble(tubes,cap,mix){
+  let done=0,log=[];
+  for(let tr=0;tr<mix*6&&done<mix;tr++){
+    const src=[];
+    tubes.forEach(function(t,i){if(wcRun(t)>=2)src.push(i)});
+    if(!src.length)break;
+    const f=src[Math.floor(Math.random()*src.length)];
+    const run=wcRun(tubes[f]);
+    const k=1+Math.floor(Math.random()*(run-1));
+    const c=tubes[f][tubes[f].length-1];
+    const tg=[];
+    tubes.forEach(function(t,j){
+      if(j===f)return;
+      if(cap-t.length<k)return;
+      if(t.length&&t[t.length-1]===c)return;
+      tg.push(j);
+    });
+    if(!tg.length)continue;
+    const d=tg[Math.floor(Math.random()*tg.length)];
+    for(let q=0;q<k;q++)tubes[d].push(tubes[f].pop());
+    log.push({f:d,t:f,k:k,c:c});
+    done++;
+  }
+  return {n:done,log:log.reverse()};
+}
+function wcBuild(){
+  const cfg=wcCfg(wc.lv);
+  let pool=null,use=cfg.cols;
+  for(let want=cfg.cols;want>=2;want--){pool=wcPoolChars(want);if(pool.length){use=want;break}}
+  if(!pool||!pool.length)return false;
+  const cap=cfg.cap,tubesN=use+2;
+  const ch=pool[Math.floor(Math.random()*pool.length)];
+  const dirs=strokeTypes[ch];
+  if(!dirs||dirs.length<use)return false;
+  const seen={},cols=[];
+  for(let i=0;i<dirs.length&&cols.length<use;i++){if(!seen[dirs[i]]){seen[dirs[i]]=1;cols.push(dirs[i])}}
+  if(cols.length<use)return false;
+  let built=null,moves=0,sol=null;
+  for(let tr=0;tr<8&&!built;tr++){
+    const tubes=wcSolvedTubes(cols,cap,tubesN);
+    const sc=wcScramble(tubes,cap,cfg.mix);
+    moves=sc.n;
+    const mixed=tubes.filter(wcMixed).length;
+    if(moves>=Math.min(5,cfg.mix)&&mixed>=2&&!wcDone(tubes,cap)){built=tubes;sol=sc.log}
+  }
+  if(!built)return false;
+  wc.ch=ch;wc.cols=cols;wc.cap=cap;wc.tubes=built;wc.par=moves;wc.sol=sol;
+  wc.sel=-1;wc.steps=0;wc.undo=[];wc.undos=3;wc.hints=3;wc.lock=false;
+  wc.roundWrong=0;wc.cups=0;wc.fresh=null;
+  return true;
+}
+/* ---------- 渲染 ---------- */
+function wcRender(){
+  const g=document.getElementById('wcTubes');if(!g)return;
+  g.style.setProperty('--cap',String(wc.cap));
+  const sig=wc.gen+'|'+wc.cap+'|'+wcKey(wc.tubes);
+  if(sig!==wcSig){
+    wcSig=sig;
+    g.innerHTML=wc.tubes.map(function(t,i){
+      return '<button class="wc-t" onclick="wcTap('+i+')"><span class="wc-li">'+
+        t.map(function(c){const d=WC_DIR[c]||WC_DIR.R;
+          return '<span class="wc-l" style="background:'+d.c+'">'+d.i+'</span>'}).join('')+
+        '</span>'+(wcFull(t,wc.cap)?'<b class="badge">✓</b>':'')+'</button>';
+    }).join('');
+    if(wc.fresh){
+      const ft=wcTubeEl(wc.fresh.t);
+      if(ft){const ls=ft.querySelectorAll('.wc-l');
+        for(let i=Math.max(0,ls.length-wc.fresh.k);i<ls.length;i++)ls[i].classList.add('fresh')}
+      wc.fresh=null;
+    }
+  }
+  wc.tubes.forEach(function(t,i){
+    const e=wcTubeEl(i);if(!e)return;
+    e.classList.toggle('done',wcFull(t,wc.cap));
+    e.classList.toggle('sel',wc.sel===i);
+  });
+}
+function wcHud(){
+  wcSet('wcStepsTxt','👣 '+wc.steps+' 步');
+  wcSet('wcParTxt','🎯 参考 '+wc.par);
+  wcSet('wcCupsTxt','🧪 '+wc.cups+'/'+wc.cols.length+' 杯');
+  wcSet('wcBestTxt','🥇 最高 '+(parseInt(localStorage.getItem('hz_wc_best')||'0',10)));
+  wcSet('wcScoreTxt','🧪 '+wc.score+' 分');
+  wcSet('wcLvTxt','第 '+wc.lv+' 关');
+  const ub=document.getElementById('wcUndoBtn');if(ub)ub.textContent='↩️ 撤销 ×'+wc.undos;
+  const hb=document.getElementById('wcHintBtn');if(hb)hb.disabled=wc.hints<=0;
+}
+function wcOrderLight(n){
+  const o=document.getElementById('wcOrder');if(!o)return;
+  const ems=o.querySelectorAll('em');
+  for(let i=0;i<ems.length;i++)ems[i].classList.toggle('on',i<n);
+}
+function wcOrderSet(){
+  const o=document.getElementById('wcOrder');if(!o)return;
+  const dirs=strokeTypes[wc.ch]||[];
+  o.innerHTML='<s>'+wc.ch+'</s>'+dirs.map(d=>'<em>'+(WC_DIR[d]?WC_DIR[d].i:'·')+'</em>').join('')+
+    '<span style="font-size:10.5px;opacity:.8;margin-left:2px">'+dirs.length+' 笔</span>';
+  wcOrderLight(-1);
+}
+/* ---------- 玩法 ---------- */
+function wcTap(i){
+  if(!wc.run||wc.lock)return;
+  const t=wc.tubes[i];if(!t)return;
+  if(wcFull(t,wc.cap)){wcJudge('✅ 这一杯已经倒满 '+wcName(t[0])+' 的水，不能再动了','#FFF176');return}
+  if(wc.sel<0){
+    if(!t.length){wcJudge('🫗 空杯子先别拿，挑一杯有水的','#FFD54F');return}
+    wc.sel=i;tone(660,.06,'triangle',.05);
+    wcJudge('🫗 拿起了 '+wcName(t[t.length-1])+' 的水，再点一杯倒进去','#80D8FF');
+    wcRender();return;
+  }
+  if(wc.sel===i){wc.sel=-1;wcJudge('🫗 放回去了','#B0BEC5');wcRender();return}
+  wcPour(wc.sel,i);
+}
+function wcLegal(s,d,cap){
+  if(!s.length)return null;
+  const c=s[s.length-1],free=cap-d.length;
+  if(free<=0)return null;
+  if(d.length&&d[d.length-1]!==c)return null;
+  return{c:c,k:Math.min(wcRun(s),free)};
+}
+function wcPour(f,tt){
+  const s=wc.tubes[f],d=wc.tubes[tt];
+  if(!s||!d)return;
+  const mv=wcLegal(s,d,wc.cap);
+  if(!mv){
+    const e=wcTubeEl(tt);
+    if(e){e.classList.add('err');setTimeout(function(){e.classList.remove('err')},430)}
+    sndNo();wc.roundWrong++;wc.combo=0;
+    const why=d.length&&!wcFull(d,wc.cap)?'最上面是 '+wcName(d[d.length-1])+'，接不住':'这一杯已经满了';
+    wcJudge('🙈 倒不进去：'+why,'#FF8A80');
+    wc.sel=-1;wcHud();wcRender();return;
+  }
+  wc.undo.push(wcClone(wc.tubes));
+  if(wc.undo.length>12)wc.undo.shift();
+  for(let k=0;k<mv.k;k++)d.push(s.pop());
+  wc.sel=-1;wc.steps++;wc.combo++;
+  if(wc.combo>wc.maxCombo)wc.maxCombo=wc.combo;
+  const gain=6+(wc.combo-1)*3;
+  wc.score+=gain;
+  wc.fresh={t:tt,k:mv.k};
+  for(let k=0;k<mv.k;k++)setTimeout(function(){tone(300+k*55,.09,'sine',.06)},k*70);
+  wcRender();wcHud();
+  if(wcFull(d,wc.cap))wcCupDone(tt);
+  else if(wcDone(wc.tubes,wc.cap))wcClear();
+  else wcBub(WC_TIP[Math.floor(Math.random()*WC_TIP.length)]);
+}
+function wcCupDone(i){
+  const t=wc.tubes[i],c=t[0];
+  wc.cups++;wc.total++;
+  const gain=80+wc.combo*20+wc.lv*8;
+  wc.score+=gain;
+  sndOk();
+  const e=wcTubeEl(i);
+  if(e){const r=e.getBoundingClientRect();spawnStarFly(r.left+r.width/2,r.top+r.height/2)}
+  const idx=(strokeTypes[wc.ch]||[]).indexOf(c);
+  wcJudge('🎉 倒满一杯 '+wcName(c)+'！'+(idx>=0?'「'+wc.ch+'」的第 '+(idx+1)+' 笔就是它 ':'')+'+'+gain+' 分','#FFF176');
+  showComboEffect(wc.combo);
+  wcHud();wcRender();
+  if(wcDone(wc.tubes,wc.cap))setTimeout(wcClear,520);
+}
+function wcClear(){
+  if(!wc.run||wc.lock)return;
+  wc.lock=true;wc.gen++;
+  const perfect=wc.roundWrong===0;
+  if(perfect)wc.perfect++;
+  wc.solvedLv++;
+  wc.got[wc.ch]=1;
+  const bonus=120+wc.lv*40+(perfect?150:0);
+  wc.score+=bonus;
+  spawnConfetti();sndReward();
+  wcOrderLight(99);
+  wcBanner(perfect?'🌟 一步没错！':'🎉 倒回来啦！');
+  wcJudge('🧪 「'+wc.ch+'」'+(strokeTypes[wc.ch]||[]).length+' 笔全顺了！+'+bonus+' 分'+
+    (perfect?(wc.steps<=wc.par?' · 💎 完美倒水，比参考还少':' · 💎 完美倒水'):''),'#69F0AE');
+  wcHud();
+  const gen=wc.gen;
+  setTimeout(function(){
+    if(gen!==wc.gen||!wc.run||currentMode!=='cup')return;
+    if(wc.solvedLv>=5){wcEnd('🌟 连过五关，明天再来倒！');return}
+    wc.lv++;wcNew();
+  },2600);
+}
+function wcHint(){
+  if(!wc.run||wc.lock)return;
+  if(wc.hints<=0){wcJudge('💡 这一关的提示用完啦，试试自己倒','#FF8A80');return}
+  const p=wcSolve(wc.tubes,wc.cap,120000);
+  if(!p||!p.length){
+    wcJudge('🫠 已经倒不回来了…按 ↩️ 撤销一步再试','#FF8A80');
+    sndNo();return;
+  }
+  const m=p[0];
+  wc.hints--;wc.combo=0;
+  wc.score=Math.max(0,wc.score-20);
+  wc.sel=-1;wcRender();
+  const a=wcTubeEl(m.f),b=wcTubeEl(m.t);
+  if(a)a.classList.add('peek');
+  if(b)b.classList.add('peek');
+  tone(880,.1,'triangle',.06);
+  wcJudge('💡 把 '+wcName(wc.tubes[m.f][wc.tubes[m.f].length-1])+' 倒进'+
+    (wc.tubes[m.t].length?'另一杯同样的水':'空杯子')+'（-20 分）','#80D8FF');
+  wcBub('🧠 先给下面那层腾个位置');
+  wcHud();
+  const gen=wc.gen;
+  setTimeout(function(){
+    if(gen!==wc.gen)return;
+    if(a)a.classList.remove('peek');
+    if(b)b.classList.remove('peek');
+  },1200);
+}
+function wcUndo(){
+  if(!wc.run||wc.lock)return;
+  if(!wc.undo.length){wcJudge('↩️ 这一步还没倒过呢','#FFD54F');return}
+  if(wc.undos<=0){wcJudge('↩️ 撤销用完啦，接着倒吧','#FF8A80');return}
+  wc.tubes=wc.undo.pop();wc.undos--;wc.steps=Math.max(0,wc.steps-1);
+  wc.combo=0;wc.sel=-1;wc.fresh=null;
+  wc.cups=wc.tubes.filter(t=>wcFull(t,wc.cap)).length;
+  tone(420,.12,'triangle',.06);
+  wcJudge('↩️ 倒回去一步，想清楚再来','#B3E5FC');
+  wcBub('🧠 哪一层压住了你想找的水？');
+  wcSig='';wcRender();wcHud();
+}
+function wcRe(){
+  if(!wc.run||wc.lock)return;
+  wc.gen++;wc.combo=0;
+  wcJudge('🔄 重新摆一杯，这一关换个乱法','#B3E5FC');
+  const gen=wc.gen;
+  setTimeout(function(){if(gen!==wc.gen||!wc.run)return;wcNew()},260);
+}
+/* ---------- 开局 / 收工 ---------- */
+async function wcNew(){
+  const gen=++wc.gen;
+  wc.lock=true;wc.sel=-1;
+  const cfg=wcCfg(wc.lv);
+  wc.cap=cfg.cap;wc.cols=[];wc.tubes=[];
+  let built=false;
+  for(let tr=0;tr<5&&!built;tr++)built=wcBuild();
+  if(gen!==wc.gen)return false;
+  if(!built){
+    wcJudge('🧪 字库还没装满，稍等一下再来一局','#FFD54F');
+    wcBub('🫗 墨水还在路上，等它到齐');
+    wc.run=false;wcHud();
+    return false;
+  }
+  wcSig='';
+  wcOrderSet();wcRender();wcHud();
+  wcBanner('🧪 第 '+wc.lv+' 关 · '+wc.cols.length+' 种方向');
+  wcJudge('🫗 '+wc.cols.map(wcName).join(' · ')+'，参考 '+wc.par+' 步','#80D8FF');
+  wcBub(WC_TIP[Math.floor(Math.random()*WC_TIP.length)]);
+  wc.lock=false;
+  return true;
+}
+async function wcStart(){
+  if(!wcPoolChars(3).length){alert('字库还在加载中，稍等一下再来！');return}
+  wc.run=false;
+  wc.lv=1;wc.score=0;wc.total=0;wc.cups=0;wc.combo=0;wc.maxCombo=0;
+  wc.perfect=0;wc.solvedLv=0;wc.got={};wc.undo=[];
+  wc.run=true;
+  showScreen('cup');
+  wcJudge('','');
+  await wcNew();
+}
+function wcEnd(reason){
+  if(!wc.run)return;
+  wc.run=false;wc.lock=true;wc.gen++;
+  const best=parseInt(localStorage.getItem('hz_wc_best')||'0',10);
+  if(wc.score>best)localStorage.setItem('hz_wc_best',String(wc.score));
+  if(wc.lv>parseInt(localStorage.getItem('hz_wc_lv')||'0',10))localStorage.setItem('hz_wc_lv',String(wc.lv));
+  if(wc.total>0)wcAdd('hz_wc_cups',wc.total);
+  if(wc.perfect>0)wcAdd('hz_wc_perfect',wc.perfect);
+  wcAdd('hz_wc_steps',wc.steps);
+  wcAdd('hz_wc_games');
+  let known=[];try{known=JSON.parse(localStorage.getItem('hz_wc_chars')||'[]')}catch(err){known=[]}
+  if(!Array.isArray(known))known=[];
+  Object.keys(wc.got).forEach(c=>{if(known.indexOf(c)<0)known.push(c)});
+  localStorage.setItem('hz_wc_chars',JSON.stringify(known));
+  maxCombo=Math.max(maxCombo,wc.maxCombo);
+  localStorage.setItem('hz_maxCombo',String(maxCombo));
+  const gain=Math.max(2,Math.min(24,(wc.lv-1)*3+Math.floor(wc.score/420)));
+  addStars(gain);
+  sndDone();
+  showScreen('cup-result');
+  wcSet('wcResultStars','⭐ +'+gain);
+  wcSet('wcResultScore',String(wc.score));
+  wcSet('wcResultCups',String(wc.total));
+  wcSet('wcResultLv',String(wc.lv));
+  wcSet('wcResultPerfect',String(wc.perfect));
+  wcSet('wcResultBest',String(Math.max(best,wc.score)));
+  wcSet('wcResultAll','累计倒满 '+parseInt(localStorage.getItem('hz_wc_cups')||'0',10)+' 杯 · 累计认字 '+
+    known.length+' 个 · 共玩 '+parseInt(localStorage.getItem('hz_wc_games')||'0',10)+' 局');
+  const s=wc.solvedLv;
+  wcSet('wcResultEmoji',wc.perfect>0?'💎':s>=5?'🏆':s>=3?'🥇':s>=1?'🧪':'🫙');
+  wcSet('wcResultTitle',wc.perfect>0?'金牌调香师！':s>=5?'倒水大师！':s>=3?'越倒越顺手！':s>=1?'理顺了一杯':'一杯也没倒满');
+  wcSet('wcResultSubtitle',reason||'想清楚谁压在谁上面，再动手倒');
+  updateHomeStats();
+}
+function wcHelp(){wcJudge('🧪 点一杯拿起来，再点一杯倒过去，同方向才能接','#2E7D32')}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='cup')return;
+  const k=e.key;
+  if(k==='h'||k==='H'){wcHint();return}
+  if(k==='u'||k==='U'){wcUndo();return}
+  if(k==='r'||k==='R'){wcRe();return}
+  if(k>='1'&&k<='8'){wcTap(parseInt(k,10)-1)}
+});
+/* ===== 笔顺倒水杯 结束 ===== */
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
