@@ -1400,6 +1400,104 @@ button:active{transform:scale(.95)}
 .bb-tip b{color:#FFF176}
 .bb-heart{color:#FF5252;letter-spacing:1px}
 .bb-heart.off{color:rgba(255,255,255,.3)}
+/* ===== 笔顺大富翁（掷骰走格 · 答题赚金币 · 买地收租 · 事件卡） ===== */
+.mf-hud{display:flex;flex-wrap:wrap;justify-content:center;gap:3px 10px;width:100%;max-width:322px;margin:7px auto 0;
+  font-size:11px;font-weight:800;color:#fff;background:rgba(255,255,255,.14);border-radius:12px;padding:6px 8px}
+.mf-hud span{white-space:nowrap}
+.mf-pl{display:flex;gap:7px;width:100%;max-width:322px;margin:7px auto 0}
+.mf-who{flex:1;background:rgba(255,255,255,.12);border-radius:13px;padding:6px 8px;color:#fff;
+  border:2px solid transparent;transition:box-shadow .25s,border-color .25s}
+.mf-who .l{display:flex;align-items:center;gap:5px;font-size:11.5px;font-weight:900}
+.mf-who .l b{margin-left:auto;font-size:17px;color:#FFD740}
+.mf-who.turn{border-color:#FFF176;box-shadow:0 0 14px rgba(255,241,118,.5)}
+.mf-who.ai .l b{color:#90CAF9}
+.mf-bar{height:5px;background:rgba(255,255,255,.2);border-radius:3px;margin-top:5px;overflow:hidden}
+.mf-bar i{display:block;height:100%;width:0;border-radius:3px;background:linear-gradient(90deg,#FFD740,#FF8A65);transition:width .5s ease-out}
+.mf-who.ai .mf-bar i{background:linear-gradient(90deg,#90CAF9,#448AFF)}
+.mf-roll{display:flex;gap:6px;width:100%;max-width:322px;margin:9px auto 0}
+.mf-dice-btn{flex:1;border:none;border-radius:14px;padding:11px 4px;font-family:inherit;font-size:15px;font-weight:900;cursor:pointer;
+  color:#3E2723;background:linear-gradient(160deg,#FFF176,#FFB300);box-shadow:0 3px 0 rgba(0,0,0,.3)}
+.mf-dice-btn:active{transform:translateY(3px);box-shadow:none}
+.mf-dice-btn.dis{filter:grayscale(.85);opacity:.5;pointer-events:none}
+.mf-board{position:relative;width:100%;max-width:322px;margin:9px auto 0;display:grid;
+  grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(5,1fr);gap:3px;padding:6px;box-sizing:border-box;
+  aspect-ratio:1/1;background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.05));
+  border-radius:18px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 4px 0 rgba(0,0,0,.22)}
+.mf-t{position:relative;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;background:linear-gradient(160deg,#fff,#EEF1FB);border:2px solid transparent;cursor:pointer;
+  box-shadow:0 2px 5px rgba(20,28,66,.28);padding:1px}
+.mf-t i{font-style:normal;font-size:14px;line-height:1.1}
+.mf-t b{font-size:8px;font-weight:900;color:#3E4A66;line-height:1.15;white-space:nowrap}
+.mf-t s{text-decoration:none;font-size:7.5px;font-weight:900;color:#7B88A8;line-height:1.15;white-space:nowrap}
+.mf-t.q{background:linear-gradient(160deg,#FFF3E0,#FFCC80)}
+.mf-t.ch{background:linear-gradient(160deg,#F3E5F5,#CE93D8)}
+.mf-t.st{background:linear-gradient(160deg,#FFFDE7,#FFF59D)}
+.mf-t.go{background:linear-gradient(160deg,#E8F5E9,#A5D6A7)}
+.mf-t.own-me{border-color:#FF6F00;box-shadow:0 0 9px rgba(255,111,0,.72)}
+.mf-t.own-ai{border-color:#2979FF;box-shadow:0 0 9px rgba(41,121,255,.72)}
+.mf-t.cur{transform:scale(1.1);z-index:4}
+.mf-t.pick{animation:mfGlow 1.15s ease-in-out infinite}
+.mf-t .lv{position:absolute;right:1px;top:0;font-size:7px;font-weight:900;color:#E65100}
+.mf-c{grid-column:2/5;grid-row:2/5;background:rgba(16,22,52,.82);border-radius:14px;color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;position:relative;overflow:hidden}
+.mf-die{font-size:38px;line-height:1;filter:drop-shadow(0 3px 7px rgba(0,0,0,.6))}
+.mf-die.spin{animation:mfSpin .16s linear infinite}
+.mf-note{font-size:11px;text-align:center;line-height:1.4;margin-top:6px;min-height:28px;padding:0 4px}
+.mf-note b{color:#FFF176}
+.mf-card{position:absolute;inset:7px;background:linear-gradient(160deg,#FFF8E1,#FFD54F);color:#4E342E;border-radius:12px;
+  display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7px;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.mf-card.show{display:flex;animation:mfCard .5s cubic-bezier(.34,1.56,.64,1)}
+.mf-card i{font-style:normal;font-size:25px;line-height:1.1}
+.mf-card b{font-size:12.5px;margin-top:4px;line-height:1.3}
+.mf-card s{text-decoration:none;font-size:11px;font-weight:900;opacity:.85;margin-top:2px}
+.mf-tok{position:absolute;width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:12px;z-index:7;margin:-9.5px 0 0 -9.5px;left:0;top:0;box-shadow:0 3px 7px rgba(0,0,0,.5);
+  transition:left .17s ease-out,top .17s ease-out}
+.mf-tok.me{background:#FFD740;outline:2px solid #fff}
+.mf-tok.ai{background:#42A5F5;outline:2px solid #fff}
+.mf-tok.hop{animation:mfHop .19s ease-out}
+.mf-coin{position:absolute;z-index:8;font-size:12px;font-weight:900;color:#FFF176;pointer-events:none;
+  text-shadow:0 2px 4px rgba(0,0,0,.7);animation:mfCoin .95s ease-out forwards}
+.mf-shake{animation:mfShake .42s ease-out}
+.mf-q{width:100%;max-width:322px;margin:9px auto 0;text-align:center;font-size:14.5px;font-weight:900;color:#fff;
+  text-shadow:0 2px 3px rgba(0,0,0,.45);line-height:1.35;min-height:20px}
+.mf-q s{text-decoration:none;color:#FFF176;font-size:19px}
+.mf-opts{display:flex;gap:6px;justify-content:center;width:100%;max-width:322px;margin:8px auto 0;flex-wrap:wrap}
+.mf-o{flex:1;min-width:120px;border:none;border-radius:12px;padding:9px 3px;font-family:inherit;font-size:12.5px;font-weight:900;cursor:pointer;
+  color:#263238;background:rgba(255,255,255,.92);box-shadow:0 3px 0 rgba(0,0,0,.28);transition:transform .12s,box-shadow .12s}
+.mf-o em{font-style:normal;font-size:15px;margin-right:3px}
+.mf-o:active{transform:translateY(3px);box-shadow:none}
+.mf-o.correct{background:linear-gradient(160deg,#B9F6CA,#00C853);color:#0B3D17;box-shadow:0 0 0 2px #FFF59D,0 3px 0 rgba(0,0,0,.28)}
+.mf-o.wrong{background:linear-gradient(160deg,#FFCDD2,#E53935);color:#4A0C0C;animation:mfShake .42s ease-out}
+.mf-o.reveal{background:linear-gradient(160deg,#FFF9C4,#F9A825);color:#3E2723}
+.mf-o.dead{opacity:.45;cursor:default}
+.mf-o.buy{background:linear-gradient(160deg,#FFE082,#FFB300);color:#3E2723;min-width:100%}
+.mf-o.no{background:rgba(255,255,255,.5);color:#37474F;min-width:100%}
+.mf-btns{display:flex;gap:6px;justify-content:center;width:100%;max-width:322px;margin:10px auto 0}
+.mf-act{flex:1;border:none;border-radius:12px;padding:10px 3px;font-family:inherit;font-size:12px;font-weight:900;cursor:pointer;
+  color:#3E2723;background:linear-gradient(160deg,#FFF176,#FFB300);box-shadow:0 3px 0 rgba(0,0,0,.28)}
+.mf-act.b{background:linear-gradient(160deg,#B3E5FC,#0288D1);color:#01304F}
+.mf-act.g{background:linear-gradient(160deg,#C8E6C9,#43A047);color:#1B4D1B}
+.mf-act:active{transform:translateY(3px);box-shadow:none}
+.mf-act:disabled{opacity:.4;cursor:default}
+.mf-judge{width:100%;max-width:322px;margin:9px auto 0;min-height:20px;text-align:center;line-height:1.35;
+  font-size:13px;font-weight:900;color:#FFEA00;text-shadow:0 2px 3px rgba(0,0,0,.6)}
+.mf-judge.show{animation:mfJudge 2.6s ease-out forwards}
+@keyframes mfJudge{0%{opacity:0;transform:translateY(7px)}12%{opacity:1;transform:translateY(0)}78%{opacity:1}100%{opacity:.92}}
+.mf-banner{position:absolute;left:0;right:0;top:42%;text-align:center;font-size:20px;font-weight:900;color:#FFF176;
+  text-shadow:0 3px 0 rgba(0,0,0,.55),0 0 18px rgba(255,241,118,.85);opacity:0;pointer-events:none;z-index:9}
+.mf-banner.show{animation:mfBan 1.6s ease-out}
+@keyframes mfBan{0%{opacity:0;transform:scale(.5)}18%{opacity:1;transform:scale(1.16)}34%{transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:scale(1.04)}}
+.mf-tip{width:100%;max-width:322px;margin:8px auto 0;text-align:center;font-size:11px;line-height:1.55;color:rgba(255,255,255,.82)}
+.mf-tip b{color:#FFF176}
+@keyframes mfSpin{0%{transform:rotate(0) scale(1)}50%{transform:rotate(180px) scale(1.14)}100%{transform:rotate(360deg) scale(1)}}
+@keyframes mfGlow{0%,100%{box-shadow:0 0 0 0 rgba(255,241,118,0)}50%{box-shadow:0 0 12px 4px rgba(255,241,118,.85)}}
+@keyframes mfCard{0%{transform:translateY(18px) rotate(-8deg) scale(.6);opacity:0}100%{transform:translateY(0) rotate(0) scale(1);opacity:1}}
+@keyframes mfHop{0%{transform:scale(1)}45%{transform:scale(1.35) translateY(-4px)}100%{transform:scale(1)}}
+@keyframes mfCoin{0%{opacity:0;transform:translateY(0) scale(.6)}25%{opacity:1;transform:translateY(-12px) scale(1.15)}100%{opacity:0;transform:translateY(-40px) scale(.9)}}
+@keyframes mfShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}60%{transform:translateX(4px)}85%{transform:translateX(-2px)}}
+@media(max-width:420px){.mf-hud,.mf-pl,.mf-roll,.mf-board,.mf-q,.mf-opts,.mf-btns,.mf-judge,.mf-tip{max-width:300px}
+  .mf-t b{font-size:7.5px}.mf-t s{font-size:7px}}
 </style>
 
 </head>
@@ -1544,6 +1642,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('cup')">
       <div class="icon">🧪</div>
       <div class="info"><h3>笔顺倒水杯</h3><p>把打翻的笔画墨水，一杯杯按方向倒回来！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('fortune')">
+      <div class="icon">🎲</div>
+      <div class="info"><h3>笔顺大富翁</h3><p>掷骰子买地收租，先攒够金币就赢！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('bubble')">
       <div class="icon">🫧</div>
@@ -3012,6 +3114,80 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-fortune">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="mfScoreTxt">💰 0 金币</span><span id="mfLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="mfHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🎲 掷骰子沿<b>汉字小城</b>走一圈：踩到<b>写字摊</b>就答笔顺题赚金币，踩到<b>无主地</b>可以买下来，对手再踩到就要<b>交过路费</b>！先攒够目标金币的人赢。</div>
+  <div class="mf-pl">
+    <div class="mf-who me" id="mfWhoMe">
+      <div class="l">😺 你<b id="mfMyCash">120</b></div>
+      <div class="mf-bar"><i id="mfMyBar"></i></div>
+    </div>
+    <div class="mf-who ai" id="mfWhoAi">
+      <div class="l">🐼 小墨<b id="mfAiCash">120</b></div>
+      <div class="mf-bar"><i id="mfAiBar"></i></div>
+    </div>
+  </div>
+  <div class="mf-hud">
+    <span id="mfRoundTxt">🎯 目标 240</span>
+    <span id="mfEstTxt">🏠 地 0</span>
+    <span id="mfRentTxt">💸 收租 0</span>
+    <span id="mfBestTxt">🥇 纪录 0</span>
+  </div>
+  <div class="mf-roll">
+    <button class="mf-dice-btn dis" id="mfDiceBtn" onclick="mfRoll()">🎲 掷骰子</button>
+  </div>
+  <div class="mf-board" id="mfBoardEl">
+    <div class="mf-c">
+      <div class="mf-die" id="mfDieEl">🎲</div>
+      <div class="mf-note" id="mfNoteEl">点上面<b>掷骰子</b>出发</div>
+      <div class="mf-card" id="mfCardEl"><i id="mfCardI">🎁</i><b id="mfCardT">神秘事件</b><s id="mfCardD">…</s></div>
+      <div class="mf-banner" id="mfBannerEl"></div>
+    </div>
+    <div class="mf-tok me" id="mfTokMe">😺</div>
+    <div class="mf-tok ai" id="mfTokAi">🐼</div>
+  </div>
+  <div class="mf-q" id="mfQ">走到<b>写字摊</b>就能靠笔顺赚金币…</div>
+  <div class="mf-opts" id="mfOpts"></div>
+  <div class="mf-btns">
+    <button class="mf-act" id="mfHintBtn" onclick="mfHint()">💡 提示</button>
+    <button class="mf-act b" id="mfUndoBtn" onclick="mfUndo()">↩️ 反悔 ×3</button>
+    <button class="mf-act g" onclick="mfEnd('🏁 今天收工，下次再来开张！')">🏁 收工</button>
+  </div>
+  <div class="mf-judge" id="mfJudgeLine"></div>
+  <div class="mf-tip" id="mfTip">点<b>掷骰子</b>或按<b>空格</b> · <b>1-4</b> 答题 · 点<b>格子</b>看这块地 · <b>H</b> 提示 · <b>U</b> 反悔</div>
+</div>
+<div class="screen" id="screen-fortune-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="mfResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="mfResultEmoji">🎲</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="mfResultTitle">收工啦！</h2>
+    <p style="font-size:16px;opacity:.8" id="mfResultSubtitle">一块一块地买下去，金币就越滚越多</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="mfResultScore">0</div><div style="font-size:13px;opacity:.7">赚到的金币</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4CAF50" id="mfResultRent">0</div><div style="font-size:13px;opacity:.7">收到手的租</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="mfResultEst">0</div><div style="font-size:13px;opacity:.7">置下几块地</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#2196F3" id="mfResultLv">1</div><div style="font-size:13px;opacity:.7">开到第几关</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高金币</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="mfResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="mfResultAll">累计收租 0 · 累计置地 0 · 共玩 0 局</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="mfStart()">🎲 再开一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-bubble">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -3627,6 +3803,7 @@ function enterMode(mode){
   else if(mode==='memory')mmStart();
   else if(mode==='cup')wcStart();
   else if(mode==='bubble')bbStart();
+  else if(mode==='fortune')mfStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -15362,6 +15539,727 @@ document.addEventListener('keydown',function(e){
   }
 });
 /* ===== 笔顺泡泡龙 结束 ===== */
+/* ===== 笔顺大富翁：掷骰走格 · 答题赚金币 · 买地收租 · 事件卡 ===== */
+const MFU_TILES=[
+  {t:'go',e:'🏫',n:'学校大门',s:'领薪水'},
+  {t:'q',e:'✏️',n:'写字摊',s:'答题'},
+  {t:'land',e:'一',n:'一笔巷',price:60},
+  {t:'ch',e:'🎁',n:'神秘屋',s:'事件卡'},
+  {t:'land',e:'二',n:'二文铺',price:80},
+  {t:'q',e:'📖',n:'笔墨题',s:'答题'},
+  {t:'land',e:'三',n:'三声街',price:100},
+  {t:'st',e:'⭐',n:'星星广场',s:'+星星'},
+  {t:'land',e:'王',n:'王府井',price:120},
+  {t:'q',e:'🖌️',n:'书法摊',s:'答题'},
+  {t:'ch',e:'🃏',n:'命运屋',s:'事件卡'},
+  {t:'land',e:'田',n:'田字阁',price:140},
+  {t:'land',e:'雨',n:'大雨城',price:180},
+  {t:'q',e:'🎒',n:'书包铺',s:'答题'},
+  {t:'st',e:'🌈',n:'彩虹台',s:'+星星'},
+  {t:'land',e:'木',n:'木字宅',price:120}
+];
+/* 5×5 外圈顺时针 16 格：[grid-row,grid-column] */
+const MFU_CELL=[[5,1],[5,2],[5,3],[5,4],[5,5],[4,5],[3,5],[2,5],[1,5],[1,4],[1,3],[1,2],[1,1],[2,1],[3,1],[4,1]];
+const MFU_FACE=['⚀','⚁','⚂','⚃','⚄','⚅'];
+const MFU_ORD=['一','二','三','四','五','六','七','八','九','十','十一','十二'];
+const MFU_CARDS=[
+  {e:'🧧',t:'邻居请你写春联',d:30},
+  {e:'📚',t:'交了书法补习费',d:-18},
+  {e:'🐭',t:'老鼠叼走了零钱',d:-22},
+  {e:'🍜',t:'请同学吃了碗面',d:-14},
+  {e:'✍️',t:'写字比赛拿了奖',d:40},
+  {e:'🎲',t:'手气好，再掷一次',s:'extra'},
+  {e:'🚌',t:'坐公交回到学校大门',s:'go'},
+  {e:'🌟',t:'星星雨落进兜里',s:'stars'},
+  {e:'🛡️',t:'捡到一张免租卡',s:'shield'},
+  {e:'🏗️',t:'自家房子免费翻修',s:'build'}
+];
+let mfu={gen:0,run:false,over:true,busy:true,ended:true,lv:1,phase:'idle',turn:'me',round:1,
+  me:{pos:0,cash:120,streak:0,income:0,broke:0},ai:{pos:0,cash:120,streak:0,income:0,broke:0},
+  own:{},up:{},dice:0,walkId:null,timers:[],offerFns:[],extra:false,
+  score:0,rent:0,estates:0,answered:0,right:0,got:{},won:0,streakWin:0,
+  hints:3,undos:3,shield:0,snaps:[],tileEls:[],
+  qAns:'',qWho:'me',qChar:'',qCheap:false,answeredNow:false};
+function mfuAdd(k,n){localStorage.setItem(k,String((parseInt(localStorage.getItem(k)||'0',10)||0)+(n||0)))}
+function mfuGet(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function mfuCfg(l){
+  l=Math.max(1,Math.min(12,l||1));
+  return {goal:240+(l-1)*36,turns:22+Math.floor((l-1)/3)*2,salary:22+Math.floor((l-1)/3)*4,
+    aiAcc:Math.min(.86,.54+(l-1)*.032),aiBuy:Math.min(.92,.5+(l-1)*.05),qReward:26+Math.floor((l-1)/2)*5};
+}
+function mfuRent(i){
+  const T=MFU_TILES[i];if(!T||T.t!=='land')return 0;
+  return Math.round(T.price*.3)+(mfu.up[i]||0)*Math.round(T.price*.24);
+}
+function mfuUpCost(i){return Math.round(MFU_TILES[i].price*.55)}
+function mfuRentUp(i){return mfuRent(i)+Math.round(MFU_TILES[i].price*.24)}
+function mfuDirLabel(code){
+  const d=DIRS.find(function(x){return x.code===code});
+  return d?(d.icon+' '+d.label):code;
+}
+function mfTokOf(who){return document.getElementById(who==='me'?'mfTokMe':'mfTokAi')}
+function mfNote(t){const e=document.getElementById('mfNoteEl');if(e)e.innerHTML=t}
+function mfQHtml(t){const e=document.getElementById('mfQ');if(e)e.innerHTML=t}
+function mfJudge(t,color){
+  const e=document.getElementById('mfJudgeLine');if(!e)return;
+  e.innerHTML=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function mfBanner(t){
+  const e=document.getElementById('mfBannerEl');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function mfSetTxt(id,t){const e=document.getElementById(id);if(e)e.textContent=t}
+function mfStopTimers(){
+  mfu.timers.forEach(function(id){clearTimeout(id)});mfu.timers=[];
+  if(mfu.walkId){clearInterval(mfu.walkId);mfu.walkId=null;}
+}
+function mfKill(){mfu.gen++;mfStopTimers()}
+function mfT(fn,ms){
+  const g=mfu.gen;
+  const id=setTimeout(function(){
+    const ix=mfu.timers.indexOf(id);if(ix>=0)mfu.timers.splice(ix,1);
+    if(g!==mfu.gen)return;
+    fn();
+  },ms);
+  mfu.timers.push(id);return id;
+}
+/* ---------- 盘面 ---------- */
+function mfBuildTiles(){
+  const bd=document.getElementById('mfBoardEl');if(!bd)return;
+  bd.querySelectorAll('.mf-t').forEach(function(x){x.remove()});
+  mfu.tileEls=[];
+  for(let i=0;i<MFU_TILES.length;i++){
+    const T=MFU_TILES[i];
+    const d=document.createElement('div');
+    d.className='mf-t '+T.t;d.dataset.i=i;
+    d.style.gridRow=MFU_CELL[i][0];d.style.gridColumn=MFU_CELL[i][1];
+    d.innerHTML='<i>'+T.e+'</i><b>'+T.n+'</b><s></s>'+(T.t==='land'?'<em class="lv"></em>':'');
+    d.onclick=(function(idx){return function(){mfTileTap(idx)}})(i);
+    bd.appendChild(d);
+    mfu.tileEls.push(d);
+  }
+}
+function mfPaint(i){
+  const T=MFU_TILES[i],el=mfu.tileEls[i];if(!T||!el)return;
+  const o=mfu.own[i],u=mfu.up[i]||0;
+  el.classList.toggle('own-me',o==='me');
+  el.classList.toggle('own-ai',o==='ai');
+  const sub=el.querySelector('s'),lv=el.querySelector('.lv');
+  if(T.t==='land'){
+    sub.textContent=o?(u?'⭐'.repeat(u)+' 租'+mfuRent(i):'租'+mfuRent(i)):(T.price+'💰');
+    if(lv)lv.textContent=o&&u?('×'+(u+1)):'';
+  }else sub.textContent=T.s||'';
+}
+function mfPaintAll(){for(let i=0;i<MFU_TILES.length;i++)mfPaint(i)}
+function mfPlace(who){
+  const P=mfu[who],el=mfTokOf(who),t=mfu.tileEls[P.pos];
+  if(!el||!t)return;
+  const w=t.offsetWidth,h=t.offsetHeight;
+  const x=who==='me'?w-22:2,y=who==='ai'?h-22:2;
+  el.style.left=(t.offsetLeft+x)+'px';
+  el.style.top=(t.offsetTop+y)+'px';
+}
+function mfHop(who){
+  const el=mfTokOf(who);if(!el)return;
+  el.classList.remove('hop');void el.offsetWidth;el.classList.add('hop');
+}
+function mfMark(i){
+  mfu.tileEls.forEach(function(el,k){if(el)el.classList.toggle('cur',k===i)});
+}
+function mfCoin(who,txt){
+  const bd=document.getElementById('mfBoardEl'),t=mfu.tileEls[mfu[who].pos];
+  if(!bd||!t)return;
+  for(let k=0;k<3;k++){
+    const c=document.createElement('div');
+    c.className='mf-coin';c.textContent=txt||'💰';
+    c.style.left=(t.offsetLeft+t.offsetWidth/2-8+Math.random()*22-11)+'px';
+    c.style.top=(t.offsetTop+t.offsetHeight/2-6)+'px';
+    c.style.animationDelay=(k*.09)+'s';
+    bd.appendChild(c);setTimeout(function(){c.remove()},1150);
+  }
+}
+function mfFlyAt(i){
+  const t=mfu.tileEls[i];if(!t)return;
+  const rc=t.getBoundingClientRect();
+  spawnStarFly(rc.left+rc.width/2,rc.top);
+}
+function mfShake(){
+  const bd=document.getElementById('mfBoardEl');if(!bd)return;
+  bd.classList.remove('mf-shake');void bd.offsetWidth;bd.classList.add('mf-shake');
+  setTimeout(function(){bd.classList.remove('mf-shake')},460);
+}
+function mfOwnCount(who){
+  let n=0;for(const k in mfu.own)if(mfu.own[k]===who)n++;
+  return n;
+}
+function mfEstates(who){
+  const out=[];for(const k in mfu.own)if(mfu.own[k]===(who||'me')&&(mfu.up[k]||0)<2)out.push(Number(k));
+  return out;
+}
+/* ---------- HUD ---------- */
+function mfHud(){
+  const C=mfuCfg(mfu.lv);
+  mfSetTxt('mfScoreTxt','💰 '+mfu.score+' 金币');
+  mfSetTxt('mfLvTxt','第 '+mfu.lv+' 关');
+  mfSetTxt('mfMyCash',String(mfu.me.cash));
+  mfSetTxt('mfAiCash',String(mfu.ai.cash));
+  const mb=document.getElementById('mfMyBar'),ab=document.getElementById('mfAiBar');
+  if(mb)mb.style.width=Math.max(0,Math.min(100,mfu.me.cash/C.goal*100))+'%';
+  if(ab)ab.style.width=Math.max(0,Math.min(100,mfu.ai.cash/C.goal*100))+'%';
+  mfSetTxt('mfRoundTxt','🎯 目标 '+C.goal+' · 第 '+mfu.round+'/'+C.turns+' 回合');
+  mfSetTxt('mfEstTxt','🏠 地 '+mfOwnCount('me'));
+  mfSetTxt('mfRentTxt','💸 收租 '+mfu.rent+(mfu.shield?' · 🛡️'+mfu.shield:''));
+  mfSetTxt('mfBestTxt','🥇 纪录 '+mfuGet('hz_mf_best'));
+  const wm=document.getElementById('mfWhoMe'),wa=document.getElementById('mfWhoAi');
+  if(wm)wm.classList.toggle('turn',!mfu.over&&mfu.turn==='me');
+  if(wa)wa.classList.toggle('turn',!mfu.over&&mfu.turn==='ai');
+  const btn=document.getElementById('mfDiceBtn');
+  if(btn){
+    const ready=!mfu.over&&mfu.turn==='me'&&mfu.phase==='roll'&&!mfu.busy;
+    btn.classList.toggle('dis',!ready);
+    btn.textContent=mfu.over?'🎲 掷骰子':(mfu.turn==='ai'?'🐼 小墨正在走棋…':(ready?'🎲 掷骰子（空格）':'🎲 先把这一格处理完'));
+  }
+  const hb=document.getElementById('mfHintBtn');
+  if(hb){hb.textContent='💡 提示 ×'+mfu.hints;hb.disabled=mfu.hints<=0||mfu.phase!=='q'}
+  const ub=document.getElementById('mfUndoBtn');
+  if(ub){ub.textContent='↩️ 反悔 ×'+mfu.undos;ub.disabled=mfu.undos<=0||!mfu.snaps.length||mfu.turn!=='me'}
+}
+/* ---------- 金币 ---------- */
+function mfMoney(who,delta){
+  const P=mfu[who];
+  if(delta>0){P.cash+=delta;P.income+=delta;if(who==='me')mfu.score+=delta;}
+  else if(delta<0){
+    const need=-delta;
+    if(P.cash>=need)P.cash-=need;
+    else{
+      P.cash=0;P.broke++;P.streak=0;mfShake();
+      mfJudge(who==='me'?'💸 金币赔光了！（破产 <s>'+P.broke+'</s> 次）':'🎉 小墨金币赔光了！（破产 <s>'+P.broke+'</s> 次）','#FF8A80');
+    }
+  }
+  mfHud();mfCheckEnd();
+}
+/* ---------- 开局 ---------- */
+function mfStart(){
+  mfKill();
+  showScreen('fortune');
+  mfu.lv=Math.max(1,Math.min(12,mfuGet('hz_mf_lv')||1));
+  mfu.streakWin=0;
+  mfNew();
+}
+function mfNew(){
+  mfKill();
+  const C=mfuCfg(mfu.lv);
+  mfu.over=false;mfu.run=true;mfu.busy=false;mfu.ended=false;mfu.turn='me';mfu.round=1;mfu.phase='roll';
+  mfu.me={pos:0,cash:120,streak:0,income:0,broke:0};
+  mfu.ai={pos:0,cash:120,streak:0,income:0,broke:0};
+  mfu.own={};mfu.up={};mfu.score=0;mfu.rent=0;mfu.estates=0;mfu.answered=0;mfu.right=0;
+  mfu.got={};mfu.won=0;mfu.hints=3;mfu.undos=3;mfu.shield=0;mfu.snaps=[];mfu.offerFns=[];
+  mfu.dice=0;mfu.extra=false;mfu.qAns='';mfu.qChar='';mfu.qCheap=false;mfu.answeredNow=false;
+  mfBuildTiles();mfPaintAll();mfMark(-1);
+  const ce=document.getElementById('mfCardEl');if(ce)ce.classList.remove('show');
+  mfClearOpts();
+  mfQHtml('走到<b>写字摊</b>就能靠笔顺赚金币…');
+  mfNote('第 <b>'+mfu.lv+'</b> 关 · 谁先攒到 <b>'+C.goal+'</b> 金币就赢');
+  mfPlace('me');mfPlace('ai');
+  mfHud();
+  tone(660,.14);
+  setTimeout(function(){mfPlace('me');mfPlace('ai')},90);
+}
+/* ---------- 掷骰与走格 ---------- */
+function mfRoll(){
+  if(mfu.over||mfu.busy||mfu.turn!=='me'||mfu.phase!=='roll')return;
+  mfSnap();
+  mfDoRoll('me');
+}
+function mfDoRoll(who){
+  const g=mfu.gen;
+  mfu.busy=true;mfu.phase='walk';mfHud();
+  const d=document.getElementById('mfDieEl');
+  if(d)d.classList.add('spin');
+  const iv=setInterval(function(){
+    if(d)d.textContent=MFU_FACE[Math.floor(Math.random()*6)];
+    tone(500+Math.random()*340,.05,'triangle',.05);
+  },70);
+  setTimeout(function(){
+    clearInterval(iv);
+    if(g!==mfu.gen)return;
+    if(d){d.classList.remove('spin');}
+    const v=1+Math.floor(Math.random()*6);
+    if(d)d.textContent=MFU_FACE[v-1];
+    mfu.dice=v;
+    tone(v>4?920:700,.16);
+    mfNote((who==='me'?'😺 你':'🐼 小墨')+'掷出 <b>'+v+'</b> 点');
+    mfWalk(who,v);
+  },640);
+}
+function mfWalk(who,steps){
+  const g=mfu.gen,P=mfu[who];let k=0;
+  if(mfu.walkId){clearInterval(mfu.walkId);mfu.walkId=null;}
+  mfu.walkId=setInterval(function(){
+    if(g!==mfu.gen||mfu.over){if(mfu.walkId){clearInterval(mfu.walkId);mfu.walkId=null;}return;}
+    P.pos=(P.pos+1)%MFU_TILES.length;
+    k++;
+    mfMark(P.pos);mfPlace(who);mfHop(who);
+    tone(300+Math.min(6,k)*62,.07,'triangle');
+    if(P.pos===0&&k<steps)mfSalary(who,1);
+    if(k>=steps){
+      clearInterval(mfu.walkId);mfu.walkId=null;
+      mfT(function(){mfArrive(who)},300);
+    }
+  },190);
+}
+function mfSalary(who,times){
+  const C=mfuCfg(mfu.lv);
+  const v=Math.round((C.salary+mfu[who].streak*3)*(times||1));
+  mfMoney(who,v);mfCoin(who,'💰');
+  mfJudge((who==='me'?'😺 你':'🐼 小墨')+'路过学校大门，领到薪水 <b>+'+v+'</b> 金币','#C5E1A5');
+}
+/* ---------- 落格结算 ---------- */
+function mfArrive(who){
+  if(mfu.over)return;
+  const i=mfu[who].pos,T=MFU_TILES[i];
+  mfu.phase='tile';mfu.busy=true;mfHud();
+  if(!T){mfAfterTile(who);return;}
+  if(T.t==='q'){mfAsk(who);return;}
+  if(T.t==='land'){mfQHtml('🏠 这一格是<b>'+T.n+'</b>');mfLandTile(who,i);return;}
+  if(T.t==='ch'){mfQHtml('🎁 <b>'+T.n+'</b>：抽一张事件卡');mfChance(who);return;}
+  if(T.t==='st'){mfQHtml('🌟 <b>'+T.n+'</b>：白给金币和星星');mfStarTile(who,i);return;}
+  mfQHtml('🏫 停在<b>学校大门</b>');
+  mfSalary(who,2);
+  mfJudge('🏫 停在学校大门，领到<b>双倍薪水</b>！','#C5E1A5');
+  mfAfterTile(who);
+}
+function mfAfterTile(who){
+  if(mfu.over)return;
+  mfu.busy=true;mfu.phase='tile';mfHud();
+  mfT(function(){mfFinishTurn()},560);
+}
+function mfFinishTurn(){
+  if(mfu.over)return;
+  mfMark(-1);
+  if(mfu.extra){
+    mfu.extra=false;
+    if(mfu.turn==='me'){mfu.phase='roll';mfu.busy=false;mfNote('🎲 <b>再掷一次</b>！手气来了');mfHud();}
+    else mfT(mfAiTurn,600);
+    return;
+  }
+  mfCheckEnd();if(mfu.over)return;
+  if(mfu.turn==='me'){
+    mfu.turn='ai';mfu.phase='ai';mfu.busy=true;
+    mfNote('🐼 <b>小墨</b>的回合');mfHud();
+    mfT(mfAiTurn,780);
+  }else{
+    mfu.turn='me';mfu.round++;
+    const C=mfuCfg(mfu.lv);
+    if(mfu.round>C.turns){mfTimeout();return;}
+    mfu.phase='roll';mfu.busy=false;
+    mfNote('第 <b>'+mfu.round+'</b> 回合 · 点<b>掷骰子</b>出发');mfHud();
+  }
+}
+/* ---------- 地块 ---------- */
+function mfLandTile(who,i){
+  const T=MFU_TILES[i],o=mfu.own[i],el=mfu.tileEls[i];
+  if(!o){
+    if(who==='ai'){
+      if(mfu.ai.cash>=T.price&&Math.random()<mfuCfg(mfu.lv).aiBuy)mfBuy('ai',i);
+      else{mfNote('🐼 小墨看了看<b>'+T.n+'</b>，没下手');mfAfterTile('ai');}
+      return;
+    }
+    if(el)el.classList.add('pick');
+    if(mfu.me.cash<T.price){
+      mfQHtml('🏠 <b>'+T.n+'</b> 要 <s>'+T.price+'</s> 金币，你的金币还不够 —— 先答题攒一攒');
+      mfJudge('💸 这一格买不起，先空着','#FFCC80');
+      mfAfterTile('me');return;
+    }
+    mfQHtml('🏠 无主地<b>'+T.n+'</b>（'+T.price+'💰）：买下来，对手踩到就要交过路费');
+    mfOffer([{cls:'buy',v:'B',label:'🏠 买下 '+T.n+'（'+T.price+' 金币）',fn:function(){mfBuy('me',i)}},
+      {cls:'no',v:'N',label:'🙅 这一格先不买',fn:function(){mfNote('留下那块地，谁也买不走');mfAfterTile('me')}}]);
+    return;
+  }
+  if(o===who){
+    const u=mfu.up[i]||0,cost=mfuUpCost(i);
+    if(u>=2){mfJudge('🏠 <b>'+T.n+'</b>已经翻修到顶了','#B3E5FC');mfAfterTile(who);return;}
+    if(who==='ai'){
+      if(mfu.ai.cash>cost+30)mfBuy('ai',i,true);
+      else{mfNote('🐼 小墨在自己家喝了口水');mfAfterTile('ai');}
+      return;
+    }
+    if(mfu.me.cash<cost){mfJudge('💸 翻修要 '+cost+' 金币，这次钱不够','#FFCC80');mfAfterTile('me');return;}
+    mfQHtml('🏠 自家地盘<b>'+T.n+'</b>：花 '+cost+' 金币翻修，过路费立刻涨');
+    mfOffer([{cls:'buy',v:'B',label:'🔨 翻修一级（'+cost+' 金币 · 租涨到 '+mfuRentUp(i)+'）',fn:function(){mfBuy('me',i,true)}},
+      {cls:'no',v:'N',label:'🙅 先留点现钱',fn:function(){mfNote('钱攥在手里也是一种底气');mfAfterTile('me')}}]);
+    return;
+  }
+  mfRent(who,i);
+}
+function mfBuy(who,i,up){
+  const T=MFU_TILES[i],P=mfu[who];
+  if(up){
+    const cost=mfuUpCost(i);
+    if(P.cash<cost||(mfu.up[i]||0)>=2){mfAfterTile(who);return;}
+    P.cash-=cost;mfu.up[i]=(mfu.up[i]||0)+1;mfPaint(i);
+    mfCoin(who,'🔨');
+    tone(760,.14);setTimeout(function(){tone(1000,.16)},110);
+    if(who==='me'){
+      mfu.score+=Math.round(cost*.5);mfBanner('🔨 翻修完成');mfFlyAt(i);
+      mfJudge('🔨 <b>'+T.n+'</b>翻修到 '+(mfu.up[i]+1)+' 级，过路费涨到 <b>'+mfuRent(i)+'</b> 金币','#FFF176');
+    }else mfNote('🐼 小墨把<b>'+T.n+'</b>翻修了一级');
+    mfHud();mfAfterTile(who);return;
+  }
+  if(P.cash<T.price){mfJudge('💸 金币不够付 '+T.n,'#FFCC80');mfAfterTile(who);return;}
+  P.cash-=T.price;mfu.own[i]=who;mfu.up[i]=0;mfPaintAll();
+  if(who==='me'){
+    mfu.estates++;mfu.score+=Math.round(T.price*.5);
+    mfBanner('🏠 '+T.n);mfFlyAt(i);
+    tone(680,.12);setTimeout(function(){tone(900,.18)},110);
+    mfJudge('🏠 置下 <b>'+T.n+'</b>！小墨踩到就要交 <b>'+mfuRent(i)+'</b> 金币过路费','#FFF176');
+  }else{
+    mfNote('🐼 小墨买下了<b>'+T.n+'</b>');
+    mfJudge('⚠️ 小墨买了 <b>'+T.n+'</b>，踩到要交 <b>'+mfuRent(i)+'</b> 金币','#FFCC80');
+  }
+  mfHud();mfAfterTile(who);
+}
+function mfRent(who,i){
+  const T=MFU_TILES[i],owner=mfu.own[i],r=mfuRent(i);
+  if(who==='me'&&mfu.shield>0){
+    mfu.shield--;mfHud();
+    mfJudge('🛡️ 免租卡生效，省下 <b>'+r+'</b> 金币','#B3E5FC');
+    tone(880,.16);mfCoin('me','🛡️');
+    mfAfterTile('me');return;
+  }
+  const paid=Math.min(mfu[who].cash,r);
+  mfMoney(who,-r);
+  if(mfu.over)return;
+  if(paid>0){
+    mfMoney(owner,paid);
+    if(owner==='me'){
+      mfu.rent+=paid;mfCoin('ai','💸');spawnConfetti();
+      tone(720,.12);setTimeout(function(){tone(980,.2)},110);
+      mfBanner('💰 收租 '+paid);mfFlyAt(i);
+      mfJudge('💰 <b>'+T.n+'</b>是你的地，小墨交了 <b>'+paid+'</b> 金币过路费','#FFF176');
+    }else{
+      mfShake();mfCoin('me','💸');sndNo();
+      mfJudge('💸 踩到小墨的 <b>'+T.n+'</b>，交了 <b>'+paid+'</b> 金币','#FF8A80');
+    }
+  }
+  mfAfterTile(who);
+}
+/* ---------- 星星格 · 事件卡 ---------- */
+function mfStarTile(who,i){
+  const T=MFU_TILES[i],v=14+mfu.lv*2;
+  mfMoney(who,v);mfCoin(who,'⭐');
+  if(who==='me'){
+    addStars(2);spawnConfetti();
+    tone(880,.12);setTimeout(function(){tone(1180,.16)},110);
+    mfJudge('🌟 <b>'+T.n+'</b>掉下一把星星：+'+v+' 金币、+2 ⭐','#FFF176');
+  }else mfNote('🐼 小墨在<b>'+T.n+'</b>捡到一把星星');
+  mfAfterTile(who);
+}
+function mfChance(who){
+  const cd=MFU_CARDS[Math.floor(Math.random()*MFU_CARDS.length)];
+  const ce=document.getElementById('mfCardEl');
+  mfSetTxt('mfCardI',cd.e);mfSetTxt('mfCardT',cd.t);
+  mfSetTxt('mfCardD',typeof cd.d==='number'?('金币 '+(cd.d>0?'+':'')+cd.d):
+    (cd.s==='extra'?'再掷一次':(cd.s==='go'?'回到学校大门':(cd.s==='stars'?'星星雨':(cd.s==='shield'?'免租卡 ×1':'免费翻修')))));
+  if(ce){ce.classList.remove('show');void ce.offsetWidth;ce.classList.add('show');}
+  tone(560,.12);setTimeout(function(){tone(840,.14)},130);
+  mfT(function(){
+    if(ce)ce.classList.remove('show');
+    mfApplyCard(who,cd);
+  },1250);
+}
+function mfApplyCard(who,cd){
+  const P=mfu[who];
+  if(typeof cd.d==='number'){
+    mfMoney(who,cd.d);mfCoin(who,cd.d>0?'💰':'🕳️');
+    if(who==='me')mfJudge((cd.d>0?'🎁 白捡 ':'🕳️ 赔掉 ')+Math.abs(cd.d)+' 金币 —— '+cd.t,(cd.d>0?'#FFF176':'#FF8A80'));
+    else mfNote('🐼 小墨'+cd.t+'（'+(cd.d>0?'+':'')+cd.d+'）');
+    mfAfterTile(who);return;
+  }
+  if(cd.s==='extra'){
+    mfu.extra=true;
+    mfJudge('🎲 '+cd.t+'！马上<b>再掷一次</b>','#B3E5FC');
+    mfAfterTile(who);return;
+  }
+  if(cd.s==='go'){
+    P.pos=0;mfMark(0);mfPlace(who);mfHop(who);
+    mfSalary(who,2);
+    mfAfterTile(who);return;
+  }
+  if(cd.s==='stars'){
+    mfMoney(who,18+mfu.lv*3);mfCoin(who,'🌟');
+    if(who==='me'){addStars(3);spawnConfetti();mfJudge('🌟 星星雨！+'+(18+mfu.lv*3)+' 金币、+3 ⭐','#FFF176');}
+    else mfNote('🐼 小墨摊上一场星星雨');
+    mfAfterTile(who);return;
+  }
+  if(cd.s==='shield'){
+    mfu.shield++;mfHud();
+    if(who==='me')mfJudge('🛡️ 拿到一张<b>免租卡</b>，踩到小墨的地能少交一次','#B3E5FC');
+    else mfNote('🐼 小墨也捡到了一张免租卡');
+    tone(800,.16);mfAfterTile(who);return;
+  }
+  if(cd.s==='build'){
+    const list=mfEstates(who);
+    if(list.length){
+      const pick=list[Math.floor(Math.random()*list.length)];
+      mfu.up[pick]=(mfu.up[pick]||0)+1;mfPaint(pick);
+      if(who==='me'){mfJudge('🏗️ <b>'+MFU_TILES[pick].n+'</b>免费翻修一级，过路费涨到 <b>'+mfuRent(pick)+'</b>','#FFF176');mfBanner('🏗️ 免费翻修');}
+      else mfNote('🐼 小墨的<b>'+MFU_TILES[pick].n+'</b>免费翻修了');
+    }else mfMoney(who,20);
+    mfAfterTile(who);return;
+  }
+  mfAfterTile(who);
+}
+/* ---------- 笔顺题 ---------- */
+function mfClearOpts(){
+  const box=document.getElementById('mfOpts');if(box)box.innerHTML='';
+  mfu.offerFns=[];
+  mfu.tileEls.forEach(function(el){if(el)el.classList.remove('pick')});
+}
+function mfOffer(list){
+  const box=document.getElementById('mfOpts');if(!box)return;
+  box.innerHTML='';mfu.offerFns=[];
+  list.forEach(function(o,idx){
+    const b=document.createElement('button');
+    b.className='mf-o'+(o.cls?' '+o.cls:'');
+    b.innerHTML=o.label;b.dataset.value=o.v||String(idx);
+    b.onclick=function(){mfOfferTap(idx)};
+    box.appendChild(b);
+  });
+  mfu.offerFns=list.map(function(o){return o.fn});
+  mfu.phase='offer';mfu.busy=false;mfHud();
+}
+function mfOfferTap(k){
+  if(mfu.over||mfu.phase!=='offer')return;
+  const fn=mfu.offerFns[k];
+  mfu.offerFns=[];mfu.phase='tile';mfu.busy=true;
+  mfClearOpts();
+  if(fn)fn();
+}
+async function mfAsk(who){
+  if(mfu.over)return;
+  const ch=nextInQueue();
+  if(!ch){mfNote('这一批字都练完啦');mfJudge('🎉 字都练过了，这一格先跳过','#B3E5FC');mfT(mfFinishTurn,700);return;}
+  mfu.phase='q';
+  const data=await loadCharData(ch);
+  if(mfu.over)return;
+  if(!data){mfNote('这一格的字还没加载好…');mfT(mfFinishTurn,800);return;}
+  const dirs=strokeTypes[ch]||data.medians.map(detectDir);
+  const n=data.strokes.length;
+  let question,correct,qKind;
+  if(Math.random()<.45){question='一共有几笔？';correct=String(n);qKind='count';}
+  else{
+    const tIdx=Math.floor(Math.random()*n);
+    question='的第'+(MFU_ORD[tIdx]||(tIdx+1))+'笔往哪写？';
+    correct=dirs[tIdx];qKind='dir';
+  }
+  const vals=[correct];
+  let pool;
+  if(qKind==='count'){
+    pool=[];
+    for(let k=Math.max(1,n-4);k<=Math.min(24,n+4);k++){if(String(k)!==correct)pool.push(String(k));}
+  }else{
+    pool=DIRS.map(function(d){return d.code}).filter(function(c){return c!==correct});
+  }
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=pool[i];pool[i]=pool[j];pool[j]=tmp;}
+  vals.push.apply(vals,pool.slice(0,3));
+  for(let pad=20;vals.length<4;pad++)if(vals.indexOf(String(pad))<0)vals.push(String(pad));
+  for(let i=vals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=vals[i];vals[i]=vals[j];vals[j]=tmp;}
+  if(vals.indexOf(correct)<0)vals[0]=correct;
+  const box=document.getElementById('mfOpts');box.innerHTML='';mfu.offerFns=[];
+  vals.forEach(function(v){
+    const d=DIRS.find(function(x){return x.code===v});
+    const b=document.createElement('button');
+    b.className='mf-o';b.dataset.value=v;
+    b.innerHTML=(qKind==='dir'&&d)?('<em>'+d.icon+'</em>'+d.label):(v+' 笔');
+    b.onclick=function(){mfPick(b)};
+    box.appendChild(b);
+  });
+  mfu.qAns=correct;mfu.qWho=who;mfu.qChar=ch;mfu.qCheap=false;mfu.answeredNow=false;
+  mfQHtml('✏️ <b>'+ch+'</b> '+question);
+  mfNote((who==='me'?'😺 你在':'🐼 小墨在')+'<b>'+MFU_TILES[mfu[who].pos].n+'</b>答笔顺题');
+  mfu.busy=false;mfHud();
+  if(who==='ai')mfT(mfAiPick,760);
+}
+function mfAiPick(){
+  if(mfu.over||mfu.phase!=='q')return;
+  const box=document.getElementById('mfOpts');
+  if(!box||!box.children.length)return;
+  const acc=mfuCfg(mfu.lv).aiAcc;
+  let target=null;
+  if(Math.random()<acc){
+    for(let k=0;k<box.children.length;k++){if(box.children[k].dataset.value===mfu.qAns)target=box.children[k];}
+  }
+  if(!target){
+    const wrong=[];
+    for(let k=0;k<box.children.length;k++){if(box.children[k].dataset.value!==mfu.qAns)wrong.push(box.children[k]);}
+    target=wrong.length?wrong[Math.floor(Math.random()*wrong.length)]:box.children[0];
+  }
+  mfPick(target);
+}
+function mfPick(el){
+  if(!el||mfu.over||mfu.busy||mfu.phase!=='q'||mfu.answeredNow)return;
+  mfu.answeredNow=true;mfu.busy=true;
+  const who=mfu.qWho||'me',P=mfu[who];
+  const ok=(el.dataset.value===mfu.qAns);
+  mfu.answered++;if(ok)mfu.right++;
+  if(ok){
+    P.streak++;
+    if(who==='me'&&P.streak>maxCombo){maxCombo=P.streak;localStorage.setItem('hz_maxCombo',String(maxCombo));}
+    const C=mfuCfg(mfu.lv);
+    const gain=Math.round((C.qReward+P.streak*6+mfu.lv*3)*(mfu.qCheap?.6:1));
+    el.classList.add('correct');
+    mfMoney(who,gain);mfCoin(who,'💰');
+    sndOk();showComboEffect(P.streak);
+    if(who==='me'){
+      mfu.got[mfu.qChar]=1;mfFlyAt(mfu[who].pos);
+      mfJudge('✅ 答对！<b>'+MFU_TILES[mfu[who].pos].n+'</b>塞给你 <b>'+gain+'</b> 金币'+(mfu.qCheap?'（用了提示，打六折）':''),'#B9F6CA');
+    }else mfNote('🐼 小墨答对了，收走 <b>'+gain+'</b> 金币');
+  }else{
+    P.streak=0;
+    el.classList.add('wrong');
+    const box=document.getElementById('mfOpts');
+    for(let k=0;k<box.children.length;k++){if(box.children[k].dataset.value===mfu.qAns)box.children[k].classList.add('reveal');}
+    mfMoney(who,-14);mfShake();sndNo();
+    mfJudge(who==='me'?'🙋 差一点，这一笔是 <b>'+mfuDirLabel(mfu.qAns)+'</b>，先记下来（-14 金币）':'🐼 小墨这一笔写歪了（-14 金币）','#FFCC80');
+  }
+  mfHud();
+  mfT(function(){mfClearOpts();mfFinishTurn();},1020);
+}
+/* ---------- AI 回合 ---------- */
+function mfAiTurn(){
+  if(mfu.over||mfu.turn!=='ai')return;
+  mfDoRoll('ai');
+}
+/* ---------- 提示 · 反悔 ---------- */
+function mfHint(){
+  if(mfu.over)return;
+  if(mfu.phase!=='q'||mfu.hints<=0){
+    mfJudge('💡 提示只在<b>写字摊答题</b>时用得上','#B3E5FC');return;
+  }
+  mfu.hints--;mfu.qCheap=true;
+  const box=document.getElementById('mfOpts');
+  if(box){
+    const dead=[];
+    for(let k=0;k<box.children.length;k++){if(box.children[k].dataset.value!==mfu.qAns)dead.push(box.children[k]);}
+    for(let k=dead.length-1;k>0&&dead.length>2;k--)dead.splice(Math.floor(Math.random()*dead.length),1);
+    dead.slice(0,2).forEach(function(b){b.classList.add('dead')});
+  }
+  tone(520,.12);
+  mfJudge('💡 划掉了两个答案，代价是这一笔金币打<b>六折</b>','#B3E5FC');
+  mfHud();
+}
+function mfSnap(){
+  mfu.snaps.push(JSON.stringify({
+    me:{pos:mfu.me.pos,cash:mfu.me.cash,streak:mfu.me.streak,income:mfu.me.income,broke:mfu.me.broke},
+    ai:{pos:mfu.ai.pos,cash:mfu.ai.cash,streak:mfu.ai.streak,income:mfu.ai.income,broke:mfu.ai.broke},
+    own:mfu.own,up:mfu.up,round:mfu.round,score:mfu.score,rent:mfu.rent,
+    estates:mfu.estates,shield:mfu.shield,dice:mfu.dice,hints:mfu.hints,answered:mfu.answered,right:mfu.right
+  }));
+  if(mfu.snaps.length>3)mfu.snaps.shift();
+}
+function mfUndo(){
+  if(mfu.over||mfu.undos<=0||!mfu.snaps.length||mfu.turn!=='me')return;
+  mfKill();
+  const s=JSON.parse(mfu.snaps.pop());
+  mfu.undos--;mfu.busy=false;mfu.phase='roll';mfu.extra=false;
+  mfu.me=s.me;mfu.ai=s.ai;mfu.own=s.own;mfu.up=s.up;mfu.round=s.round;mfu.score=s.score;
+  mfu.rent=s.rent;mfu.estates=s.estates;mfu.shield=s.shield;mfu.dice=s.dice;mfu.hints=s.hints;
+  mfu.answered=s.answered;mfu.right=s.right;
+  mfClearOpts();mfPaintAll();mfMark(-1);mfPlace('me');mfPlace('ai');
+  mfNote('↩️ 收回了上一次掷骰，<b>想好再走</b>');
+  mfJudge('↩️ 反悔不罚款，金币和地都退回原位','#B3E5FC');
+  tone(420,.16);
+  mfHud();
+}
+/* ---------- 结束判定 ---------- */
+function mfCheckEnd(){
+  if(mfu.over)return;
+  const C=mfuCfg(mfu.lv);
+  if(mfu.me.cash>=C.goal){mfWin('🎉 你先攒够了 <b>'+C.goal+'</b> 金币！');return;}
+  if(mfu.ai.cash>=C.goal){mfLose('🐼 小墨先攒够了 '+C.goal+' 金币');return;}
+  if((mfu.ai.broke||0)>=2){mfWin('💸 小墨破产两次，地盘都归你了！');return;}
+  if((mfu.me.broke||0)>=2){mfLose('😿 你破产了两次，这局先输');return;}
+}
+function mfWin(msg){
+  mfu.over=true;mfu.won=1;mfu.streakWin++;mfu.phase='over';mfu.busy=true;
+  spawnConfetti();sndDone();mfBanner('🏆 过关');
+  mfJudge(msg,'#FFF176');
+  localStorage.setItem('hz_mf_lv',String(Math.min(12,Math.max(mfuGet('hz_mf_lv'),mfu.lv))));
+  mfuAdd('hz_mf_wins',1);mfHud();
+  if(mfu.streakWin>=3){mfT(function(){mfEnd('🏆 连赢三局，封个「小城首富」再收工')},1500);return;}
+  mfT(function(){mfu.lv=Math.min(12,mfu.lv+1);mfNew();mfBanner('第 '+mfu.lv+' 关')},2000);
+}
+function mfLose(msg){
+  mfu.over=true;mfu.won=0;mfu.streakWin=0;mfu.phase='over';mfu.busy=true;
+  sndNo();mfBanner('再来一局');mfJudge(msg,'#FFCC80');mfHud();
+  mfT(function(){mfNew()},2000);
+}
+function mfTimeout(){
+  if(mfu.me.cash===mfu.ai.cash){mfLose('⌛ 回合用尽，金币正好打平');return;}
+  if(mfu.me.cash>mfu.ai.cash)mfWin('⌛ 回合用尽，你攒得更多（'+mfu.me.cash+' 金币）');
+  else mfLose('⌛ 回合用尽，小墨攒得更多');
+}
+/* ---------- 结算 ---------- */
+function mfEnd(reason){
+  const already=mfu.ended;
+  mfu.ended=true;mfu.over=true;mfu.phase='idle';mfu.busy=true;mfKill();
+  if(already)return;
+  const score=mfu.score;
+  const best=Math.max(mfuGet('hz_mf_best'),score);
+  localStorage.setItem('hz_mf_best',String(best));
+  localStorage.setItem('hz_mf_lv',String(Math.min(12,Math.max(mfuGet('hz_mf_lv'),mfu.lv))));
+  mfuAdd('hz_mf_rent',mfu.rent);
+  mfuAdd('hz_mf_estates',mfu.estates);
+  mfuAdd('hz_mf_games',1);
+  mfuAdd('hz_mf_chars',Object.keys(mfu.got).length);
+  const st=Math.max(2,Math.min(26,Math.round(score/12)+mfu.estates*2+(mfu.won?6:0)));
+  addStars(st);
+  showScreen('fortune-result');
+  const emoji=mfu.won?(mfu.lv>=4?'👑':'🏆'):(mfu.estates>=3?'🏠':'🎲');
+  const title=mfu.won?(mfu.estates>=5?'小城首富':'稳稳当当的胜利'):(mfu.estates>=3?'地主还没输':'这一局差一点');
+  const sub=mfu.won?('买了 '+mfu.estates+' 块地 · 收了 '+mfu.rent+' 金币过路费'):('答对 '+mfu.right+'/'+mfu.answered+' 道笔顺题 · '+(mfu.estates?'下次早点买地':'试试先拿下便宜的一笔巷'));
+  mfSetTxt('mfResultEmoji',emoji);
+  mfSetTxt('mfResultTitle',title);
+  mfSetTxt('mfResultSubtitle',sub);
+  mfSetTxt('mfResultScore',String(score));
+  mfSetTxt('mfResultRent',String(mfu.rent));
+  mfSetTxt('mfResultEst',String(mfu.estates));
+  mfSetTxt('mfResultLv',String(mfu.lv));
+  mfSetTxt('mfResultBest',String(best));
+  mfSetTxt('mfResultStars','⭐ '+stars);
+  mfSetTxt('mfResultAll','累计收租 '+mfuGet('hz_mf_rent')+' · 累计置地 '+mfuGet('hz_mf_estates')+' · 共玩 '+mfuGet('hz_mf_games')+' 局 · 认字 '+mfuGet('hz_mf_chars')+' 个');
+  sndReward();spawnConfetti();
+}
+function mfHelp(){
+  mfJudge('🎲 掷骰子走城 · 答题赚金币 · 买地收租 · 先攒够目标金币就赢','#B3E5FC');
+  mfNote('<b>写字摊</b>答题赚金币，<b>无主地</b>能买，<b>神秘屋</b>抽事件卡');
+}
+function mfTileTap(i){
+  const T=MFU_TILES[i];if(!T)return;
+  if(T.t==='land'){
+    const o=mfu.own[i];
+    mfNote('<b>'+T.n+'</b>「'+T.e+'」'+(o?(o==='me'?'是你的地':'小墨的地')+' · 过路费 '+mfuRent(i)+' 金币':('无主 · '+T.price+' 金币买下来')));
+  }else if(T.t==='q')mfNote('<b>'+T.n+'</b>：停下来答一道笔顺题，答对赚金币');
+  else if(T.t==='ch')mfNote('<b>'+T.n+'</b>：随机抽一张事件卡，可能白捡也可能赔');
+  else if(T.t==='st')mfNote('<b>'+T.n+'</b>：白给金币和星星');
+  else mfNote('<b>'+T.n+'</b>：路过就领薪水，停在这里领双倍');
+  tone(620,.07,'triangle');
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='fortune'||mfu.over)return;
+  const k=e.key.toLowerCase();
+  if(k===' '||k==='enter'){e.preventDefault();mfRoll();return;}
+  if(k==='h'){e.preventDefault();mfHint();return;}
+  if(k==='u'){e.preventDefault();mfUndo();return;}
+  if(k>='1'&&k<='4'){
+    const box=document.getElementById('mfOpts');
+    const b=box&&box.children[parseInt(k,10)-1];
+    if(b&&!b.classList.contains('dead'))b.click();
+  }
+});
+/* ===== 笔顺大富翁 结束 ===== */
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
