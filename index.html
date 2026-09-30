@@ -1883,6 +1883,57 @@ button:active{transform:scale(.95)}
 .fl-tip b{color:#FFD740}
 .fl-shake{animation:c4Shake .38s}
 @media(max-width:420px){.fl-hud,.fl-stage,.fl-bar,.fl-opts,.fl-tools,.fl-judge,.fl-wall,.fl-tip{max-width:300px}}
+/* ---------- 笔顺猜字 ---------- */
+.wd-hud{display:flex;justify-content:space-between;align-items:center;gap:6px;width:100%;max-width:322px;
+  margin:6px auto 0;padding:7px 10px;background:rgba(255,255,255,.1);border-radius:12px;
+  font-size:11.5px;color:rgba(255,255,255,.9);flex-wrap:wrap}
+.wd-hud b{color:#FFEA00}
+.wd-stars{display:inline-flex;gap:2px;margin-left:4px}
+.wd-stars i{font-style:normal;opacity:.25;filter:grayscale(1)}
+.wd-stars i.on{opacity:1;filter:none}
+.wd-stage{position:relative;width:100%;max-width:322px;margin:8px auto 0}
+.wd-cv{display:block;width:100%;border-radius:18px;background:rgba(0,0,0,.3);box-shadow:inset 0 0 0 2px rgba(255,255,255,.08)}
+.wd-veil{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;
+  gap:4px;font-size:14px;font-weight:700;color:rgba(255,255,255,.8);pointer-events:none;transition:opacity .3s;
+  text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.wd-veil.gone{opacity:0}
+.wd-veil u{text-decoration:none;font-size:40px;line-height:1}
+.wd-rows{width:100%;max-width:322px;margin:8px auto 0;display:flex;flex-direction:column;gap:5px;min-height:4px}
+.wd-row{display:flex;align-items:center;gap:7px;padding:3px 7px;border-radius:11px;background:rgba(255,255,255,.07)}
+.wd-row.win{background:rgba(255,215,64,.2);box-shadow:inset 0 0 0 2px #FFD740}
+.wd-rc{font-size:18px;font-weight:800;color:#fff;width:20px;text-align:center;flex:0 0 auto}
+.wd-tiles{display:flex;gap:3px;flex-wrap:wrap}
+.wd-t{width:25px;height:25px;border-radius:7px;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;background:#546E7A;color:#fff;animation:wdFlip .4s both}
+.wd-t.g{background:#00C853}
+.wd-t.y{background:#FFD740;color:#4E342E}
+.wd-t.x{background:#546E7A;opacity:.7}
+@keyframes wdFlip{0%{transform:rotateX(88deg);opacity:.2}100%{transform:rotateX(0);opacity:1}}
+.wd-know{width:100%;max-width:322px;margin:6px auto 0;display:flex;gap:4px;flex-wrap:wrap;justify-content:center;
+  min-height:20px;font-size:10.5px;color:rgba(255,255,255,.75)}
+.wd-know i{font-style:normal;padding:2px 6px;border-radius:8px;background:rgba(0,200,83,.24);color:#B9F6CA;font-weight:800}
+.wd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(48px,1fr));gap:6px;width:100%;max-width:322px;
+  margin:7px auto 0;padding:0 2px}
+.wd-c{position:relative;padding:10px 2px 12px;border:none;border-radius:12px;background:rgba(255,255,255,.94);
+  color:#37474F;font-size:21px;font-weight:800;cursor:pointer;line-height:1.1;
+  box-shadow:0 3px 0 rgba(0,0,0,.22);transition:transform .1s,opacity .2s}
+.wd-c:active{transform:translateY(2px)}
+.wd-c i{position:absolute;left:5px;top:3px;font-style:normal;font-size:9px;color:#90A4AE}
+.wd-c s{position:absolute;right:5px;bottom:2px;font-size:8px;color:#B0BEC5;text-decoration:none;font-weight:700}
+.wd-c.used{opacity:.3;pointer-events:none;background:rgba(255,255,255,.34);color:#fff}
+.wd-c.out{opacity:.16;pointer-events:none;text-decoration:line-through}
+.wd-tools{display:flex;gap:8px;justify-content:center;width:100%;max-width:322px;margin:9px auto 0}
+.wd-act{flex:1;padding:9px 4px;border:none;border-radius:12px;font-size:12.5px;font-weight:800;cursor:pointer;
+  color:#fff;background:#5C6BC0;box-shadow:0 3px 0 rgba(0,0,0,.22)}
+.wd-act.r{background:#EF5350}.wd-act.g{background:#26A69A}.wd-act.o{background:#FFA726}
+.wd-act[disabled]{opacity:.4;pointer-events:none}
+.wd-judge{width:100%;max-width:322px;margin:8px auto 0;min-height:34px;padding:7px 10px;border-radius:12px;
+  background:rgba(0,0,0,.34);text-align:center;font-size:12px;font-weight:700;line-height:1.55;opacity:0;transition:opacity .3s}
+.wd-judge.show{opacity:1;animation:dtJudge .35s}
+.wd-tip{width:100%;max-width:322px;margin:4px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);line-height:1.6}
+.wd-tip b{color:#FFD740}
+.wd-shake{animation:c4Shake .38s}
+@media(max-width:420px){.wd-hud,.wd-stage,.wd-rows,.wd-know,.wd-grid,.wd-tools,.wd-judge,.wd-tip{max-width:300px}}
 </style>
 
 </head>
@@ -2043,6 +2094,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('flash')">
       <div class="icon">📸</div>
       <div class="info"><h3>笔顺闪现</h3><p>字只闪一下，凭这一眼答题！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('wordle')">
+      <div class="icon">🔤</div>
+      <div class="info"><h3>笔顺猜字</h3><p>逐笔翻彩牌，最少次数揪出它！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('plinko')">
       <div class="icon">🔮</div>
@@ -3778,6 +3833,68 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-wordle">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="wdScoreTxt">🔤 0 分</span><span id="wdLvTxt">段位 1 · 猜字新手</span></div>
+    <button class="icon-btn" onclick="wdHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🔤 有一个字<b>藏起来了</b>！从下面挑一个字去猜，它会<b>一笔一笔翻出彩牌</b>：<b style="color:#B9F6CA">绿</b>=方向和位置都对了，<b style="color:#FFE082">黄</b>=方向对但站错了位，<b style="color:#B0BEC5">灰</b>=这一笔根本不是这样。用<b>最少的次数</b>揪出它！</div>
+  <div class="wd-hud">
+    <span id="wdQTxt">准备…</span>
+    <span>🔥 连胜 <b id="wdStreakTxt">0</b></span>
+    <span>🎯 猜中 <b id="wdWinTxt">0</b></span>
+    <span id="wdBestTxt">🥇 纪录 0</span>
+  </div>
+  <div class="wd-hud">
+    <span class="wd-stars">爱心<span id="wdHeartsEl"><i>🧡</i><i>🧡</i><i>🧡</i></span></span>
+    <span id="wdTriesTxt">这个字还剩 6 次机会</span>
+    <span id="wdBuffTxt">🔮 神探直觉：连胜 3 起</span>
+  </div>
+  <div class="wd-stage">
+    <canvas class="wd-cv" id="wdCanvas"></canvas>
+    <div class="wd-veil" id="wdVeilEl"><u>❓</u><span>还没猜过：点下面任意一个字</span></div>
+  </div>
+  <div class="wd-rows" id="wdRows"></div>
+  <div class="wd-know" id="wdKnowEl"></div>
+  <div class="wd-grid" id="wdGrid"></div>
+  <div class="wd-tools">
+    <button class="wd-act g" id="wdHintBtn" onclick="wdHint()">💡 亮一笔 ×2</button>
+    <button class="wd-act r" id="wdSwapBtn" onclick="wdSwap()">🔀 换字 ×2</button>
+    <button class="wd-act o" onclick="wdEnd('🏳️ 你合上字条不玩了')">🏳️ 不玩了</button>
+  </div>
+  <div class="wd-judge" id="wdJudgeLine"></div>
+  <div class="wd-tip" id="wdTip"><b>1-9</b> 猜第几个字 · <b>H</b> 亮一笔 · <b>S</b> 换字 · <b>回车</b> 再来一局</div>
+</div>
+<div class="screen" id="screen-wordle-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="wdResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="wdResultEmoji">🔤</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="wdResultTitle">字条摊开啦</h2>
+    <p style="font-size:16px;opacity:.8" id="wdResultSubtitle">猜中了几个字</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="wdResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#69F0AE" id="wdResultWins">0</div><div style="font-size:13px;opacity:.7">猜中几个</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="wdResultLv">1</div><div style="font-size:13px;opacity:.7">最高段位</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4FC3F7" id="wdResultAvg">-</div><div style="font-size:13px;opacity:.7">平均几次猜中</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="wdResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="wdResultAll">累计猜 0 次 · 最长连胜 0 · 共玩 0 场</div>
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:3px;justify-content:center" id="wdResultBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="wdStart()">🔤 再猜一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-plinko">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -4602,6 +4719,7 @@ function enterMode(mode){
   else if(mode==='detect')dtStart();
   else if(mode==='four')c4Start();
   else if(mode==='flash')flStart();
+  else if(mode==='wordle')wdStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -20103,6 +20221,374 @@ document.addEventListener('keydown',function(e){
   else if(k===' '){
     if(fl.phase==='done'){e.preventDefault();flKill();flAsk()}
   }
+});
+/* ================= 笔顺猜字 ================= */
+const WD_W=320,WD_H=320,WD_PAD=22;
+const WD_RANKS=['','猜字新手','越猜越准','心里有字','一笔不差','顺藤摸字','字感惊人','神探之眼','一字千金','汉字大师'];
+const WD_COL={g:'#00C853',y:'#FFD740',x:'#546E7A'};
+let wd={gen:0,lv:1,score:0,streak:0,streakMax:0,wins:0,guesses:0,miss:0,hearts:3,usedSum:0,
+  over:false,ended:false,busy:true,tries:6,used:0,target:'',n:0,grid:[],rows:[],
+  guessed:{},out:{},know:{},hints:2,swaps:2,usedHint:false,usedSwap:false,startedAt:0,revealed:false,winNow:false};
+function wdGet(k){return parseInt(localStorage.getItem(k)||'0',10)}
+function wdAdd(k,n){localStorage.setItem(k,String(wdGet(k)+(n||1)))}
+function wdSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function wdT(fn,ms){const g=wd.gen;setTimeout(function(){if(g===wd.gen&&currentMode==='wordle'&&!wd.over)fn()},ms)}
+function wdKill(){wd.gen++}
+function wdMix(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function wdD(code){const d=DIRS.find(function(x){return x.code===code});return d?d.icon:code}
+function wdCfg(l){
+  l=Math.max(1,Math.min(9,l||1));
+  const lo=3+Math.floor((l-1)/2);
+  return {tries:Math.max(4,6-Math.floor(l/4)),lo:lo,hi:lo+2,pool:Math.min(20,8+l*2),rank:WD_RANKS[l]};
+}
+function wdVal(){return Math.round((60+wd.lv*14)*(1+Math.min(1.2,wd.streak*0.15)))}
+function wdSc(d){wd.score=Math.max(0,wd.score+d)}
+function wdDirs(ch){return (strokeTypes[ch]||[]).map(wdD).join(' ')}
+function wdNote(t){const e=document.getElementById('wdTip');if(e)e.innerHTML=t}
+function wdJudge(t,c){
+  const e=document.getElementById('wdJudgeLine');if(!e)return;
+  e.innerHTML=t;e.style.color=c||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function wdShake(){
+  const e=document.getElementById('screen-wordle');if(!e)return;
+  e.classList.remove('wd-shake');void e.offsetWidth;e.classList.add('wd-shake');
+}
+function wdHelp(){
+  wdJudge('🔤 有个字的笔顺被藏起来了。猜一个字，它会<b>一笔一笔翻出彩牌</b>：<b style="color:#B9F6CA">绿牌</b>=方向和位置都对，'
+    +'<b style="color:#FFE082">黄牌</b>=这个方向它用了、但站错了位，<b style="color:#B0BEC5">灰牌</b>=这一笔根本不是这个方向。'
+    +'用<b>最少的次数</b>揪出它，次数用得越少分越高！','#B3E5FC');
+  wdNote('<b>1-9</b> 猜第几个字 · <b>H</b> 亮一笔 · <b>S</b> 换字 · <b>回车</b> 再来一局');
+}
+/* ---------- Wordle 两遍判定：方向重复的字也数得对 ---------- */
+function wdMark(g,t){
+  const n=t.length,out=[],cnt={};
+  for(let i=0;i<n;i++)out.push('x');
+  for(let i=0;i<n;i++){if(g[i]===t[i])out[i]='g';else cnt[t[i]]=(cnt[t[i]]||0)+1}
+  for(let i=0;i<n;i++){
+    if(out[i]==='g')continue;
+    const c=g[i];
+    if(c&&cnt[c]>0){out[i]='y';cnt[c]--}
+  }
+  return out;
+}
+/* ---------- 画布：把彩牌染到真正的笔画上 ---------- */
+function wdCtx(){const cv=document.getElementById('wdCanvas');return cv?cv.getContext('2d'):null}
+function wdMiZi(c,x0,y0,box){
+  c.strokeStyle='rgba(255,255,255,.14)';c.lineWidth=1;c.setLineDash([5,4]);
+  c.beginPath();
+  c.moveTo(x0+box/2,y0);c.lineTo(x0+box/2,y0+box);
+  c.moveTo(x0,y0+box/2);c.lineTo(x0+box,y0+box/2);
+  c.moveTo(x0,y0);c.lineTo(x0+box,y0+box);
+  c.moveTo(x0+box,y0);c.lineTo(x0,y0+box);
+  c.stroke();c.setLineDash([]);
+  c.strokeStyle='rgba(255,255,255,.4)';c.lineWidth=2;c.strokeRect(x0,y0,box,box);
+}
+function wdChar(c,ch,mk,tint){
+  const d=charDataCache[ch];
+  if(!d||!d.strokes||!d.strokes.length)return false;
+  const box=WD_W-WD_PAD*2,s=box/1024;
+  c.save();c.translate(WD_PAD,WD_PAD+box);c.scale(s,-s);
+  for(let i=0;i<d.strokes.length;i++){
+    let fill='#ECEFF1';
+    if(tint)fill=tint;
+    else if(mk)fill=mk[i]==='g'?WD_COL.g:(mk[i]==='y'?WD_COL.y:WD_COL.x);
+    c.fillStyle=fill;c.shadowColor='rgba(0,0,0,.45)';c.shadowBlur=4;
+    c.fill(new Path2D(d.strokes[i]));
+  }
+  c.shadowBlur=0;c.restore();
+  if(tint&&d.medians){
+    for(let i=0;i<d.medians.length;i++){
+      const m=d.medians[i];
+      if(!m||!m.length)continue;
+      const p=m[0];
+      const px=Math.max(WD_PAD+13,Math.min(WD_PAD+box-13,WD_PAD+p[0]*s));
+      const py=Math.max(WD_PAD+13,Math.min(WD_PAD+box-13,WD_PAD+box-p[1]*s));
+      c.fillStyle='rgba(0,0,0,.74)';c.beginPath();
+      if(c.roundRect)c.roundRect(px-11,py-11,22,22,7);else c.rect(px-11,py-11,22,22);
+      c.fill();
+      c.textAlign='center';c.font='700 13px system-ui,sans-serif';
+      c.fillStyle='#FFFFFF';c.fillText(String(i+1),px,py+5);
+    }
+  }
+  return true;
+}
+function wdPaint(){
+  const c=wdCtx();if(!c)return;
+  c.clearRect(0,0,WD_W,WD_H);
+  wdMiZi(c,WD_PAD,WD_PAD,WD_W-WD_PAD*2);
+  const v=document.getElementById('wdVeilEl');
+  if(wd.revealed&&wd.target){
+    if(v)v.classList.add('gone');
+    wdChar(c,wd.target,null,wd.winNow?'#FFC107':'#00E676');
+    return;
+  }
+  if(wd.rows.length){
+    if(v)v.classList.add('gone');
+    const r=wd.rows[wd.rows.length-1];
+    wdChar(c,r.ch,r.mk,null);
+    return;
+  }
+  if(v)v.classList.remove('gone');
+}
+/* ---------- DOM ---------- */
+function wdRenderRows(){
+  const el=document.getElementById('wdRows');if(!el)return;
+  el.innerHTML=wd.rows.slice(-6).map(function(r){
+    return '<div class="wd-row'+(r.win?' win':'')+'"><b class="wd-rc">'+r.ch+'</b><div class="wd-tiles">'
+      +r.mk.map(function(m,i){return '<span class="wd-t '+m+'" style="animation-delay:'+(i*70)+'ms">'+wdD(r.t[i])+'</span>'}).join('')
+      +'</div></div>';
+  }).join('');
+}
+function wdRenderGrid(){
+  const el=document.getElementById('wdGrid');if(!el)return;
+  el.innerHTML='';
+  wd.grid.forEach(function(ch,i){
+    const b=document.createElement('button');
+    b.className='wd-c'+(wd.guessed[ch]?' used':'')+(wd.out[ch]?' out':'');
+    b.innerHTML=(i<9?'<i>'+(i+1)+'</i>':'')+'<span>'+ch+'</span><s>'+wd.n+' 笔</s>';
+    b.onclick=function(){wdGuess(i)};
+    el.appendChild(b);
+  });
+}
+function wdRenderKnow(){
+  const el=document.getElementById('wdKnowEl');if(!el)return;
+  const ks=Object.keys(wd.know).map(Number).sort(function(a,b){return a-b});
+  if(!ks.length){el.innerHTML='<span>一笔都还没亮过 —— 先猜，或者点 💡</span>';return}
+  el.innerHTML=ks.map(function(i){return '<i>第 '+(i+1)+' 笔 '+wdD(wd.know[i])+'</i>'}).join('');
+}
+function wdHud(){
+  const C=wdCfg(wd.lv);
+  wdSet('wdScoreTxt','🔤 '+wd.score+' 分');
+  wdSet('wdLvTxt','段位 '+wd.lv+' · '+C.rank);
+  wdSet('wdQTxt',wd.n?('第 '+(wd.wins+wd.miss+1)+' 题 · '+wd.n+' 笔 · '+wd.grid.length+' 个候选'):'📡 洗牌中…');
+  wdSet('wdStreakTxt',String(wd.streak));
+  wdSet('wdWinTxt',String(wd.wins));
+  wdSet('wdBestTxt','🥇 纪录 '+wdGet('hz_wd_best'));
+  wdSet('wdTriesTxt','这个字还剩 '+Math.max(0,wd.tries-wd.used)+' 次机会');
+  wdSet('wdBuffTxt',wd.streak>=3?('🔮 神探直觉：本字得分 ×'+(1+Math.min(1.2,wd.streak*0.15)).toFixed(2)):'🔮 神探直觉：连胜 3 起');
+  const hs=document.getElementById('wdHeartsEl');
+  if(hs)Array.prototype.forEach.call(hs.children,function(el,i){el.classList.toggle('on',i<wd.hearts)});
+  const hb=document.getElementById('wdHintBtn');
+  if(hb){hb.textContent='💡 亮一笔 ×'+wd.hints;hb.disabled=wd.hints<=0||wd.busy||wd.over||wd.revealed}
+  const sb=document.getElementById('wdSwapBtn');
+  if(sb){sb.textContent='🔀 换字 ×'+wd.swaps;sb.disabled=wd.swaps<=0||wd.busy||wd.over||wd.revealed}
+}
+/* ---------- 发牌：候选字的笔顺方向串互不相同，保证一定推得出来 ---------- */
+async function wdDeal(){
+  const g=wd.gen;
+  wd.busy=true;
+  wdHud();
+  await dtEnsure(40);
+  if(g!==wd.gen||wd.over||currentMode!=='wordle')return;
+  const C=wdCfg(wd.lv),by={},sig={};
+  dtPool().forEach(function(ch){
+    const t=strokeTypes[ch];
+    if(!t||t.length<3||t.length>9)return;
+    const k=t.join('');
+    if(sig[k])return;
+    sig[k]=1;
+    (by[t.length]||(by[t.length]=[])).push(ch);
+  });
+  let ns=[];
+  for(let n=C.lo;n<=Math.min(9,C.hi);n++)if((by[n]||[]).length>=4)ns.push(n);
+  if(!ns.length){
+    let bn=0,best=0;
+    Object.keys(by).forEach(function(k){if(by[k].length>best){best=by[k].length;bn=+k}});
+    if(best>=4)ns=[bn];
+  }
+  if(!ns.length){wdJudge('📡 字库还没攒够能猜的字，稍等一下','#FFCC80');wdT(wdDeal,1500);return}
+  const n=ns[Math.floor(Math.random()*ns.length)];
+  const list=wdMix(by[n].slice());
+  wd.n=n;
+  wd.grid=list.slice(0,Math.min(list.length,C.pool));
+  wd.target=wd.grid[Math.floor(Math.random()*wd.grid.length)];
+  wd.rows=[];wd.used=0;wd.guessed={};wd.out={};wd.know={};
+  wd.tries=C.tries;wd.usedHint=false;wd.usedSwap=false;
+  wd.revealed=false;wd.winNow=false;wd.startedAt=Date.now();
+  wd.busy=false;
+  wdRenderGrid();wdRenderRows();wdRenderKnow();wdHud();wdPaint();
+  wdJudge('🔤 一个 <b>'+n+' 笔</b>的字藏起来了，下面 '+wd.grid.length+' 个字里就有它 —— 随便点一个开始','#B3E5FC');
+}
+function wdPips(mk){
+  const g=wd.gen;
+  mk.forEach(function(m,i){
+    setTimeout(function(){
+      if(g!==wd.gen||currentMode!=='wordle')return;
+      tone(m==='g'?(720+i*70):(m==='y'?(520+i*46):(250+i*14)),.11,m==='x'?'square':'triangle',.18);
+    },i*80);
+  });
+}
+function wdGuess(i){
+  if(wd.busy||wd.over||wd.revealed)return;
+  const ch=wd.grid[i];
+  if(!ch)return;
+  if(wd.guessed[ch]){wdJudge('🔤 <b>'+ch+'</b> 已经猜过啦，换一个','#B3E5FC');return}
+  if(wd.out[ch]){wdJudge('🚫 <b>'+ch+'</b> 早就被线索划掉了，再看看别的','#FFCC80');return}
+  const g=strokeTypes[ch],t=strokeTypes[wd.target];
+  if(!g||!t)return;
+  const mk=wdMark(g,t);
+  wd.rows.push({ch:ch,mk:mk,t:g,win:false});
+  wd.used++;
+  wd.guessed[ch]=1;
+  wdAdd('hz_wd_guesses',1);
+  if(ch===wd.target){wdRight();return}
+  if(wd.used>=wd.tries){wdFail();return}
+  const gr=mk.filter(function(x){return x==='g'}).length;
+  const ye=mk.filter(function(x){return x==='y'}).length;
+  let msg;
+  if(gr===0&&ye===0)msg='🚫 灰成一片：这些方向它一个都没用';
+  else if(gr===0&&ye>0)msg='🟡 '+ye+' 个黄牌：方向它都用了，可全站错了位';
+  else if(gr>=t.length-1)msg='😱 绿 '+gr+'/'+t.length+' —— 就差一笔，快想是谁！';
+  else msg='🟢 绿 '+gr+' 个 · 🟡 黄 '+ye+' 个';
+  wdJudge('🔤 <b>'+ch+'</b>（'+wd.n+' 笔）：'+msg+'　还剩 <b>'+Math.max(0,wd.tries-wd.used)+'</b> 次','#B3E5FC');
+  wdRenderRows();wdRenderGrid();wdHud();wdPaint();wdPips(mk);
+}
+function wdRight(){
+  const r=wd.rows[wd.rows.length-1];
+  if(r)r.win=true;
+  wd.wins++;wd.streak++;wd.streakMax=Math.max(wd.streakMax,wd.streak);
+  wd.usedSum+=wd.used;
+  wd.revealed=true;wd.winNow=true;wd.busy=true;
+  wdAdd('hz_wd_wins',1);
+  wdBook(wd.target);
+  let mult=1,tag='';
+  if(wd.used===1){mult=2;tag=' 🎯 一击即中 ×2'}
+  else if(wd.usedHint){mult=0.7;tag=' 💡 用过亮笔 ×0.7'}
+  else if(wd.usedSwap){mult=0.5;tag=' 🔀 用过换字 ×0.5'}
+  else if(Date.now()-wd.startedAt<20000){mult=1.25;tag=' ⚡ 闪电猜手 ×1.25'}
+  const gain=Math.max(10,Math.round(wdVal()*(wd.tries-wd.used+1)/wd.tries*mult));
+  wdSc(gain);
+  wd.lv=Math.min(9,1+Math.floor(wd.wins/2));
+  wdRenderRows();wdRenderGrid();wdRenderKnow();wdHud();wdPaint();
+  sndDone();spawnConfetti();
+  wdJudge('🎉 就是 <b>'+wd.target+'</b>！'+wdDirs(wd.target)+'　第 '+wd.used+' 次猜中 <b>+'+gain+'</b> 分'+tag,'#B9F6CA');
+  wdT(wdDeal,2400);
+}
+function wdFail(){
+  wd.streak=0;wd.miss++;wd.hearts--;
+  wd.revealed=true;wd.winNow=false;wd.busy=true;
+  wdAdd('hz_wd_miss',1);
+  wdRenderRows();wdRenderGrid();wdRenderKnow();wdHud();wdPaint();
+  sndNo();wdShake();
+  wdJudge('🙈 次数用完了，它其实是 <b>'+wd.target+'</b>：'+wdDirs(wd.target)+'　🧡 还剩 '+Math.max(0,wd.hearts),'#FF8A80');
+  if(wd.hearts<=0)wdT(function(){wdEnd('🧡 三颗爱心都用完啦')},2900);
+  else wdT(wdDeal,2900);
+}
+function wdBook(ch){
+  let a=[];
+  try{a=JSON.parse(localStorage.getItem('hz_wd_book')||'[]')}catch(e){a=[]}
+  if(!Array.isArray(a))a=[];
+  if(a.indexOf(ch)<0)a.push(ch);
+  localStorage.setItem('hz_wd_book',JSON.stringify(a.slice(-60)));
+}
+function wdHint(){
+  if(wd.busy||wd.over||wd.revealed)return;
+  if(wd.hints<=0){wdJudge('💡 亮笔的机会用完啦，全靠自己的眼睛','#FFCC80');tone(240,.12,'square',.14);return}
+  const t=strokeTypes[wd.target];
+  if(!t)return;
+  const live=wd.grid.filter(function(ch){return !wd.guessed[ch]&&!wd.out[ch]});
+  if(live.length===1){
+    wdJudge('🔮 神探直觉：其实<b>只剩一个可能</b>了 —— 就是 <b>'+live[0]+'</b>，点它！（不扣亮笔）','#B3E5FC');
+    tone(880,.16,'triangle',.2);
+    return;
+  }
+  let bi=-1,best=-1;
+  for(let i=0;i<t.length;i++){
+    if(wd.know[i]!==undefined)continue;
+    let kill=0;
+    live.forEach(function(ch){const g=strokeTypes[ch];if(!g||g[i]!==t[i])kill++});
+    if(kill>best){best=kill;bi=i}
+  }
+  if(bi<0){wdJudge('💡 能亮的笔都亮过了，剩下的靠脑子','#FFCC80');return}
+  wd.hints--;wd.usedHint=true;
+  wd.know[bi]=t[bi];
+  let killed=0;
+  wd.grid.forEach(function(ch){
+    if(wd.guessed[ch]||wd.out[ch])return;
+    const g=strokeTypes[ch];
+    if(!g||g[bi]!==t[bi]){wd.out[ch]=1;killed++}
+  });
+  wdSc(-12);
+  tone(760,.18,'triangle',.2);
+  wdRenderGrid();wdRenderKnow();wdHud();
+  wdJudge('💡 探到第 <b>'+(bi+1)+'</b> 笔是 '+wdD(t[bi])+'，一下划掉 <b>'+killed+'</b> 个字（-12 分）','#B9F6CA');
+}
+function wdSwap(){
+  if(wd.busy||wd.over||wd.revealed)return;
+  if(wd.swaps<=0){wdJudge('🔀 换字的机会用完啦','#FFCC80');tone(240,.12,'square',.14);return}
+  const others=wd.grid.filter(function(ch){return ch!==wd.target});
+  if(others.length<1){wdJudge('🔀 候选太少，没法换','#FFCC80');return}
+  wd.swaps--;
+  wd.target=others[Math.floor(Math.random()*others.length)];
+  wd.rows=[];wd.used=0;wd.guessed={};wd.out={};wd.know={};
+  wd.usedSwap=true;wd.revealed=false;wd.winNow=false;wd.startedAt=Date.now();
+  wdRenderGrid();wdRenderRows();wdRenderKnow();wdHud();wdPaint();
+  tone(420,.16,'sine',.2);
+  wdJudge('🔀 换了一个字藏起来，之前的线索全作废（猜中得分 ×0.5）','#FFCC80');
+}
+function wdStart(){
+  showScreen('wordle');
+  wdKill();
+  wd.lv=1;wd.score=0;wd.streak=0;wd.streakMax=0;wd.wins=0;wd.guesses=0;wd.miss=0;wd.usedSum=0;
+  wd.hearts=3;wd.hints=2;wd.swaps=2;
+  wd.over=false;wd.ended=false;wd.busy=true;
+  wd.target='';wd.n=0;wd.grid=[];wd.rows=[];wd.guessed={};wd.out={};wd.know={};
+  wd.revealed=false;wd.winNow=false;wd.used=0;wd.tries=6;
+  const cv=document.getElementById('wdCanvas');
+  if(cv){cv.width=WD_W;cv.height=WD_H}
+  const v=document.getElementById('wdVeilEl');
+  if(v)v.classList.remove('gone');
+  wdRenderGrid();wdRenderRows();wdRenderKnow();wdHud();wdPaint();
+  wdNote('<b>1-9</b> 猜第几个字 · <b>H</b> 亮一笔 · <b>S</b> 换字 · <b>回车</b> 再来一局');
+  wdJudge('🔤 准备…先把彩牌洗出来','#FFEE58');
+  wdDeal();
+}
+function wdEnd(reason){
+  if(wd.ended)return;
+  wd.ended=true;wd.over=true;wd.busy=true;
+  wdKill();
+  const best=Math.max(wdGet('hz_wd_best'),wd.score);
+  localStorage.setItem('hz_wd_best',String(best));
+  localStorage.setItem('hz_wd_lv',String(Math.max(wdGet('hz_wd_lv'),wd.lv)));
+  localStorage.setItem('hz_wd_streak',String(Math.max(wdGet('hz_wd_streak'),wd.streakMax)));
+  wdAdd('hz_wd_games',1);
+  if(wd.wins)wdAdd('hz_wd_gsum',wd.usedSum);
+  const gift=Math.max(2,Math.min(26,Math.round(wd.score/22)+wd.wins));
+  addStars(gift);
+  showScreen('wordle-result');
+  wdSet('wdResultStars','⭐ '+gift);
+  let emoji='😅',title='才刚摸到门道';
+  if(wd.wins>=8){emoji='🏆';title='一字千金'}
+  else if(wd.wins>=5){emoji='🥇';title='神探之眼'}
+  else if(wd.wins>=2){emoji='🎯';title='心里有字'}
+  else if(wd.wins>=1){emoji='🔤';title='揪出一个'}
+  wdSet('wdResultEmoji',emoji);
+  wdSet('wdResultTitle',title);
+  wdSet('wdResultSubtitle',reason||'字条摊开啦');
+  wdSet('wdResultScore',String(wd.score));
+  wdSet('wdResultWins',String(wd.wins));
+  wdSet('wdResultLv',String(wd.lv));
+  wdSet('wdResultAvg',wd.wins?((wd.usedSum/wd.wins).toFixed(1)+' 次'):'-');
+  wdSet('wdResultBest',String(best));
+  const tw=wdGet('hz_wd_wins'),tg=wdGet('hz_wd_gsum');
+  wdSet('wdResultAll','累计猜 '+wdGet('hz_wd_guesses')+' 次 · 最长连胜 '+wdGet('hz_wd_streak')
+    +' · 共玩 '+wdGet('hz_wd_games')+' 场'+(tw>0?(' · 历史平均 '+(tg/tw).toFixed(1)+' 次猜中'):''));
+  let bk=[];
+  try{bk=JSON.parse(localStorage.getItem('hz_wd_book')||'[]')}catch(e){bk=[]}
+  if(!Array.isArray(bk))bk=[];
+  const be=document.getElementById('wdResultBook');
+  if(be)be.innerHTML=bk.slice(-24).map(function(c){return '<span style="font-size:20px">'+c+'</span>'}).join('');
+  sndReward();spawnConfetti();
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode==='wordle'&&!wd.over){
+    const k=e.key;
+    if(k>='1'&&k<='9'){wdGuess(parseInt(k,10)-1);e.preventDefault();return}
+    if(k==='h'||k==='H'){e.preventDefault();wdHint();return}
+    if(k==='s'||k==='S'){e.preventDefault();wdSwap();return}
+  }
+  if(e.key==='Enter'&&currentMode==='wordle-result'){e.preventDefault();wdStart()}
 });
 async function boot(){
   if(typeof HanziWriter==='undefined'){
