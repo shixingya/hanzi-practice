@@ -1831,6 +1831,58 @@ button:active{transform:scale(.95)}
 @keyframes c4Shake{0%,100%{transform:translate(0)}20%{transform:translate(-6px,2px)}40%{transform:translate(6px,-2px)}
   60%{transform:translate(-4px,-1px)}80%{transform:translate(4px,1px)}}
 @media(max-width:420px){.c4-hud,.c4-fuse,.c4-cols,.c4-wrap,.c4-btns,.c4-judge,.c4-tip{max-width:300px}}
+/* ---------- 笔顺闪现 ---------- */
+.fl-hud{display:flex;justify-content:space-between;align-items:center;gap:6px;width:100%;max-width:322px;
+  margin:6px auto 0;padding:7px 10px;background:rgba(255,255,255,.1);border-radius:12px;
+  font-size:11.5px;color:rgba(255,255,255,.9);flex-wrap:wrap}
+.fl-hud b{color:#FFEA00}
+.fl-stars{display:inline-flex;gap:2px;margin-left:4px}
+.fl-stars i{font-style:normal;opacity:.25;filter:grayscale(1)}
+.fl-stars i.on{opacity:1;filter:none}
+.fl-stage{position:relative;width:100%;max-width:322px;margin:8px auto 0}
+.fl-cv{display:block;width:100%;border-radius:18px;background:rgba(0,0,0,.3);box-shadow:inset 0 0 0 2px rgba(255,255,255,.08)}
+.fl-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;border-radius:18px}
+.fl-flash.go{animation:flFlash .45s ease-out}
+@keyframes flFlash{0%{opacity:0}10%{opacity:.96}100%{opacity:0}}
+.fl-gone{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;color:rgba(255,255,255,.82);pointer-events:none;opacity:0;transition:opacity .25s;
+  text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.fl-gone.show{opacity:1}
+.fl-bar{height:9px;border-radius:6px;background:rgba(255,255,255,.16);overflow:hidden;width:100%;max-width:322px;margin:7px auto 0}
+.fl-bar i{display:block;height:100%;width:100%;transform-origin:left center;
+  background:linear-gradient(90deg,#FFD54F,#FF8A65);transition:none}
+.fl-bar.ask i{background:linear-gradient(90deg,#4FC3F7,#B3E5FC)}
+.fl-bar.low i{background:linear-gradient(90deg,#FF1744,#FF8A80)}
+.fl-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%;max-width:322px;margin:9px auto 0;padding:0 2px}
+.fl-o{position:relative;padding:13px 6px;border:none;border-radius:14px;background:rgba(255,255,255,.94);
+  color:#37474F;font-size:19px;font-weight:800;cursor:pointer;line-height:1.15;
+  box-shadow:0 3px 0 rgba(0,0,0,.22);transition:transform .1s,opacity .2s}
+.fl-o:active{transform:translateY(2px)}
+.fl-o i{position:absolute;left:6px;top:5px;font-style:normal;font-size:10px;color:#90A4AE}
+.fl-o.dim{opacity:.3;text-decoration:line-through;pointer-events:none}
+.fl-o.right{background:#B9F6CA;box-shadow:0 0 0 3px #FFD740,0 3px 0 rgba(0,0,0,.22)}
+.fl-o.wrong{background:#FFCDD2}
+.fl-o[disabled]{pointer-events:none;opacity:.5}
+.fl-tools{display:flex;gap:8px;justify-content:center;width:100%;max-width:322px;margin:9px auto 0}
+.fl-act{flex:1;padding:9px 4px;border:none;border-radius:12px;font-size:12.5px;font-weight:800;cursor:pointer;
+  color:#fff;background:#5C6BC0;box-shadow:0 3px 0 rgba(0,0,0,.22)}
+.fl-act.r{background:#EF5350}.fl-act.g{background:#26A69A}.fl-act.o{background:#FFA726}
+.fl-act[disabled]{opacity:.4;pointer-events:none}
+.fl-judge{width:100%;max-width:322px;margin:8px auto 0;min-height:34px;padding:7px 10px;border-radius:12px;
+  background:rgba(0,0,0,.34);text-align:center;font-size:12px;font-weight:700;line-height:1.55;opacity:0;transition:opacity .3s}
+.fl-judge.show{opacity:1;animation:dtJudge .35s}
+.fl-wall{width:100%;max-width:322px;margin:8px auto 0;padding:7px 9px;border-radius:12px;background:rgba(255,255,255,.08)}
+.fl-wall-t{font-size:10.5px;color:rgba(255,255,255,.72);margin-bottom:4px}
+.fl-wall-t b{color:#FFD740}
+.fl-wall-g{display:flex;flex-wrap:wrap;gap:3px;min-height:22px}
+.fl-wall-g i{font-style:normal;font-size:15px;line-height:1.25;padding:1px 3px;border-radius:5px;
+  background:rgba(255,255,255,.1);color:rgba(255,255,255,.62)}
+.fl-wall-g i.new{background:#FFD740;color:#4E342E;animation:flPop .5s}
+@keyframes flPop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.25)}100%{transform:scale(1);opacity:1}}
+.fl-tip{width:100%;max-width:322px;margin:4px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);line-height:1.6}
+.fl-tip b{color:#FFD740}
+.fl-shake{animation:c4Shake .38s}
+@media(max-width:420px){.fl-hud,.fl-stage,.fl-bar,.fl-opts,.fl-tools,.fl-judge,.fl-wall,.fl-tip{max-width:300px}}
 </style>
 
 </head>
@@ -1987,6 +2039,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('four')">
       <div class="icon">🔴</div>
       <div class="info"><h3>笔顺四子棋</h3><p>正确答案占两列，答对才有得挑！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('flash')">
+      <div class="icon">📸</div>
+      <div class="info"><h3>笔顺闪现</h3><p>字只闪一下，凭这一眼答题！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('plinko')">
       <div class="icon">🔮</div>
@@ -3656,6 +3712,72 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-flash">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="flScoreTxt">📸 0 分</span><span id="flLvTxt">段位 1 · 快照学徒</span></div>
+    <button class="icon-btn" onclick="flHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">📸 大字<b>只闪一下就消失</b>，屏幕上空空如也——全靠刚才那一眼！它<b>第几笔往哪写</b>、<b>一共几笔</b>、<b>到底是哪个字</b>？段位越高闪得越短，高段位还<b>一次闪两个字</b>让你记。</div>
+  <div class="fl-hud">
+    <span id="flQTxt">准备…</span>
+    <span>🔥 连击 <b id="flComboTxt">0</b></span>
+    <span>⚡ 一眼记住 <b id="flEasyTxt">0</b></span>
+    <span id="flBestTxt">🥇 纪录 0</span>
+  </div>
+  <div class="fl-hud">
+    <span class="fl-stars">🧠 记忆星<span id="flStarsEl"><i>🧠</i><i>🧠</i><i>🧠</i></span></span>
+    <span id="flBuffTxt">🧠 过目不忘：连击 3 起</span>
+    <span id="flPhaseTxt">📸 看仔细</span>
+  </div>
+  <div class="fl-bar" id="flBarEl"><i id="flBarFill"></i></div>
+  <div class="fl-stage">
+    <canvas class="fl-cv" id="flCanvas"></canvas>
+    <div class="fl-flash" id="flFlashEl"></div>
+    <div class="fl-gone" id="flGoneEl"></div>
+  </div>
+  <div class="fl-opts" id="flOpts"></div>
+  <div class="fl-tools">
+    <button class="fl-act r" id="flReplayBtn" onclick="flReplay()">🔄 再看一眼 ×2</button>
+    <button class="fl-act g" id="flCutBtn" onclick="flCut()">✂️ 排除 ×2</button>
+    <button class="fl-act o" onclick="flEnd('🏳️ 你合上胶卷不玩了')">🏳️ 不玩了</button>
+  </div>
+  <div class="fl-judge" id="flJudgeLine"></div>
+  <div class="fl-wall">
+    <div class="fl-wall-t">🧱 本局记忆墙 <b id="flWallCnt">0</b> 个字 · 答对的都会留下来</div>
+    <div class="fl-wall-g" id="flWallEl"></div>
+  </div>
+  <div class="fl-tip" id="flTip"><b>1-4</b> 选答案 · <b>R</b> 再看一眼 · <b>X</b> 排除 · <b>空格</b> 下一张</div>
+</div>
+<div class="screen" id="screen-flash-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="flResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="flResultEmoji">📸</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="flResultTitle">胶卷冲好了</h2>
+    <p style="font-size:16px;opacity:.8" id="flResultSubtitle">记住了几个字</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="flResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#69F0AE" id="flResultCards">0</div><div style="font-size:13px;opacity:.7">闪过几张</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="flResultLv">1</div><div style="font-size:13px;opacity:.7">最高段位</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4FC3F7" id="flResultEasy">0</div><div style="font-size:13px;opacity:.7">一眼记住</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="flResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="flResultAll">累计闪过 0 张 · 最长连击 0 · 共玩 0 场</div>
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:3px;justify-content:center" id="flResultWall"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="flStart()">📸 再闪一卷</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-plinko">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -4479,6 +4601,7 @@ function enterMode(mode){
   else if(mode==='claw')clStart();
   else if(mode==='detect')dtStart();
   else if(mode==='four')c4Start();
+  else if(mode==='flash')flStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -19530,6 +19653,456 @@ document.addEventListener('keydown',function(e){
   if(k==='h'||k==='H'){e.preventDefault();c4Hint()}
   else if(k==='t'||k==='T'){e.preventDefault();c4Shuf()}
   else if(k==='u'||k==='U'){e.preventDefault();c4Undo()}
+});
+/* ================= 笔顺闪现 ================= */
+const FL_W=320,FL_H=320,FL_PAD=20;
+const FL_RANKS=['','快照学徒','看一眼就会','记性不错','眼里有字','过目成诵','照相机眼睛','人形照相机','记忆大师','最强大脑'];
+const FL_SIDE=['左边','右边'];
+let fl={gen:0,timerId:0,raf:0,lv:1,score:0,combo:0,comboMax:0,cards:0,easy:0,answers:0,miss:0,
+  over:false,ended:false,busy:true,stars:3,replays:2,cuts:2,replayed:false,usedCut:false,
+  phase:'idle',chars:[],side:0,kind:'d',idx:0,opts:[],ans:'',q:'',dual:false,parts:[],
+  showMs:1600,showLeft:0,fuseMs:9000,fuseLeft:0,lastTs:0,wall:{},wallNew:'',buff:0};
+function flGet(k){return parseInt(localStorage.getItem(k)||'0',10)}
+function flAdd(k,n){localStorage.setItem(k,String(flGet(k)+(n||1)))}
+function flSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function flT(fn,ms){const g=fl.gen;setTimeout(function(){if(g===fl.gen&&currentMode==='flash'&&!fl.over)fn()},ms)}
+function flKill(){fl.gen++;flStopFuse();if(fl.raf){cancelAnimationFrame(fl.raf);fl.raf=0}fl.parts=[]}
+function flMix(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function flCfg(l){
+  l=Math.max(1,Math.min(9,l||1));
+  return {show:Math.max(650,2000-l*150),fuse:Math.max(6000,11000-l*600),rank:FL_RANKS[l]};
+}
+function flVal(){return Math.round((16+fl.lv*4)*(1+Math.min(1.6,fl.combo*0.14)))}
+function flSc(d){fl.score=Math.max(0,fl.score+d)}
+function flNote(t){const e=document.getElementById('flTip');if(e)e.innerHTML=t}
+function flD(code){const d=DIRS.find(function(x){return x.code===code});return d?d.icon:code}
+function flJudge(t,c){
+  const e=document.getElementById('flJudgeLine');if(!e)return;
+  e.innerHTML=t;e.style.color=c||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function flShake(){
+  const e=document.getElementById('screen-flash');if(!e)return;
+  e.classList.remove('fl-shake');void e.offsetWidth;e.classList.add('fl-shake');
+}
+/* ---------- 画布 ---------- */
+function flCtx(){const cv=document.getElementById('flCanvas');return cv?cv.getContext('2d'):null}
+function flGeom(cnt,si){
+  const inner=FL_W-FL_PAD*2;
+  if(cnt<2)return{x0:FL_PAD,y0:FL_PAD,box:inner};
+  const gap=12,box=(inner-gap)/2;
+  return{x0:FL_PAD+si*(box+gap),y0:FL_PAD+(inner-box)/2,box:box};
+}
+function flGrid(c,x0,y0,box){
+  c.strokeStyle='rgba(255,255,255,.14)';c.lineWidth=1;c.setLineDash([5,4]);
+  c.beginPath();
+  c.moveTo(x0+box/2,y0);c.lineTo(x0+box/2,y0+box);
+  c.moveTo(x0,y0+box/2);c.lineTo(x0+box,y0+box/2);
+  c.moveTo(x0,y0);c.lineTo(x0+box,y0+box);
+  c.moveTo(x0+box,y0);c.lineTo(x0,y0+box);
+  c.stroke();c.setLineDash([]);
+  c.strokeStyle='rgba(255,255,255,.4)';c.lineWidth=2;c.strokeRect(x0,y0,box,box);
+}
+function flChar(c,ch,geo,hot,reveal){
+  const d=charDataCache[ch];if(!d||!d.strokes)return;
+  c.save();c.translate(geo.x0,geo.y0+geo.box);c.scale(geo.box/1024,-geo.box/1024);
+  for(let i=0;i<d.strokes.length;i++){
+    const h=(i===hot);
+    c.fillStyle=h?'#FFC107':'#FFFFFF';
+    c.shadowColor=h?'rgba(255,193,7,.9)':'rgba(0,0,0,.4)';
+    c.shadowBlur=h?14:4;
+    c.fill(new Path2D(d.strokes[i]));
+  }
+  c.shadowBlur=0;c.restore();
+  if(reveal&&hot>=0&&d.medians&&d.medians[hot]){
+    const m=d.medians[hot],e=m[m.length-1];
+    const px=Math.max(geo.x0+14,Math.min(geo.x0+geo.box-14,geo.x0+e[0]/1024*geo.box));
+    const py=Math.max(geo.y0+14,Math.min(geo.y0+geo.box-14,geo.y0+geo.box-e[1]/1024*geo.box));
+    c.fillStyle='rgba(0,0,0,.72)';c.beginPath();
+    if(c.roundRect)c.roundRect(px-15,py-15,30,30,9);else c.rect(px-15,py-15,30,30);
+    c.fill();
+    c.textAlign='center';c.font='18px system-ui,sans-serif';
+    c.fillStyle='#FFEA00';c.fillText(flD(strokeTypes[ch][hot]),px,py+7);
+  }
+}
+function flPaint(){
+  const c=flCtx();if(!c)return;
+  c.clearRect(0,0,FL_W,FL_H);
+  const live=fl.phase==='show'||fl.phase==='teach';
+  if(fl.dual){
+    flGrid(c,flGeom(2,0).x0,flGeom(2,0).y0,flGeom(2,0).box);
+    flGrid(c,flGeom(2,1).x0,flGeom(2,1).y0,flGeom(2,1).box);
+  }else flGrid(c,FL_PAD,FL_PAD,FL_W-FL_PAD*2);
+  if(live){
+    const hot=(fl.kind==='d')?fl.idx:-1;
+    fl.chars.forEach(function(ch,i){
+      const geo=fl.dual?flGeom(2,i):flGeom(1,0);
+      if(!ch){flChar(c,'',geo,-1,false);return}
+      flChar(c,ch,geo,hot,fl.phase==='teach');
+      if(fl.dual){
+        c.textAlign='center';c.font='700 11px system-ui,sans-serif';
+        c.fillStyle=i===fl.side&&fl.phase==='show'?'#FFEA00':'rgba(255,255,255,.5)';
+        c.fillText(FL_SIDE[i],geo.x0+geo.box/2,geo.y0+geo.box+16);
+      }
+    });
+  }
+  fl.parts.forEach(function(p){
+    c.globalAlpha=Math.max(0,Math.min(1,p.l));
+    c.fillStyle=p.c;c.beginPath();c.arc(p.x,p.y,p.r,0,6.283);c.fill();
+  });
+  c.globalAlpha=1;
+}
+function flBurst(){
+  fl.parts=[];
+  fl.chars.forEach(function(ch,si){
+    const m=dtMask(ch);if(!m)return;
+    const geo=fl.dual?flGeom(2,si):flGeom(1,0);
+    for(let i=0;i<m.length;i++){
+      if(!m[i]||Math.random()>0.07)continue;
+      fl.parts.push({
+        x:geo.x0+((i%DT_M)+.5)/DT_M*geo.box,
+        y:geo.y0+(Math.floor(i/DT_M)+.5)/DT_M*geo.box,
+        vx:(Math.random()-.5)*2.8,vy:-1.2-Math.random()*2.4,r:1.6+Math.random()*2.6,l:1,
+        c:Math.random()<.32?'#FFD740':'#FFFFFF'});
+    }
+  });
+  if(fl.parts.length>90)fl.parts=flMix(fl.parts).slice(0,90);
+  if(fl.parts.length&&!fl.raf)flLoop();
+}
+function flLoop(){
+  const g=fl.gen;let last=0;
+  function step(ts){
+    if(g!==fl.gen){fl.raf=0;return}
+    if(!fl.parts.length){fl.raf=0;flPaint();return}
+    if(!last)last=ts;
+    const d=Math.min(48,ts-last);last=ts;
+    for(let i=fl.parts.length-1;i>=0;i--){
+      const p=fl.parts[i];
+      p.x+=p.vx*d/16;p.y+=p.vy*d/16;p.vy+=.14*d/16;p.l-=d/720;
+      if(p.l<=0)fl.parts.splice(i,1);
+    }
+    flPaint();
+    fl.raf=requestAnimationFrame(step);
+  }
+  fl.raf=requestAnimationFrame(step);
+}
+/* ---------- 出题 ---------- */
+function flSideChar(){return fl.chars[fl.side]||fl.chars[0]}
+async function flAsk(){
+  const g=fl.gen;
+  await dtEnsure(6);
+  if(g!==fl.gen||fl.over||currentMode!=='flash')return;
+  const P=dtPool();
+  if(P.length<6){flJudge('📡 字库还没加载好，稍等一下','#FFCC80');flT(flAsk,1200);return}
+  fl.lv=Math.min(9,1+Math.floor(fl.answers/4));
+  const C=flCfg(fl.lv);
+  fl.buff=fl.combo>=3?500:0;
+  fl.showMs=C.show+fl.buff;
+  fl.dual=fl.lv>=6&&Math.random()<.5;
+  const pick=[];
+  while(pick.length<(fl.dual?2:1)){
+    const c=P[Math.floor(Math.random()*P.length)];
+    if(pick.indexOf(c)<0&&strokeTypes[c]&&strokeTypes[c].length>=3)pick.push(c);
+  }
+  fl.chars=pick;fl.side=Math.floor(Math.random()*pick.length);
+  await Promise.all(pick.map(function(c){return loadCharData(c)}));
+  if(fl.over||currentMode!=='flash')return;
+  if(!fl.dual){fl.side=0}
+  const ch=flSideChar();
+  let dirs=strokeTypes[ch];
+  if(!dirs||!dirs.length){
+    flJudge('📡 这个字的笔顺数据还没到位，换一张','#FFCC80');
+    flT(flAsk,900);return;
+  }
+  fl.idx=Math.floor(Math.random()*dirs.length);
+  const who=fl.dual?FL_SIDE[fl.side]+'那个字':'「'+ch+'」';
+  let kind=fl.dual?(Math.random()<.5?'d':'c'):(Math.random()<.34&&fl.lv>=3?'w':(Math.random()<.55?'d':'c'));
+  if(kind==='d'){
+    const others=flMix(DIRS.map(function(d){return d.code}).filter(function(c){return c!==dirs[fl.idx]})).slice(0,3);
+    fl.opts=flMix([{v:dirs[fl.idx],label:flD(dirs[fl.idx]),ok:true}].concat(
+      others.map(function(c){return{v:c,label:flD(c),ok:false}})));
+    fl.ans=flD(dirs[fl.idx]);
+    fl.q=who+'第 '+(fl.idx+1)+' 笔往哪写？';
+  }else if(kind==='c'){
+    const n=dirs.length,cand=[];
+    for(let k=n-3;k<=n+3;k++)if(k>=3&&k<=24&&k!==n)cand.push(k);
+    const picks=flMix(cand).slice(0,3);
+    fl.opts=flMix([n].concat(picks).map(function(k){return{v:k,label:String(k),ok:k===n}}));
+    fl.ans=String(n);
+    fl.q=who+'一共几笔？';
+  }else{
+    let list=[];
+    try{list=await dtOptions(ch,4)}catch(e){list=[]}
+    list=list.filter(function(c,i){return c&&list.indexOf(c)===i});
+    while(list.length<4){
+      const c=P[Math.floor(Math.random()*P.length)];
+      if(list.indexOf(c)<0)list.push(c);
+    }
+    fl.opts=list.map(function(c){return{v:c,label:c,ok:c===ch}});
+    fl.ans=ch;
+    fl.q='刚才闪的是哪个字？';
+  }
+  fl.kind=kind;
+  if(g!==fl.gen||fl.over||currentMode!=='flash')return;
+  fl.phase='show';fl.showLeft=fl.showMs;
+  fl.replayed=false;fl.usedCut=false;
+  flJudge(kind==='d'?'📸 盯住被点亮的那一笔':(kind==='c'?'📸 盯住整字，数清它几笔':'📸 记住这个字的模样'),'#FFEE58');
+  flRenderOpts();flHud();flPaint();
+  const fe=document.getElementById('flFlashEl');
+  if(fe){fe.classList.remove('go');void fe.offsetWidth;fe.classList.add('go')}
+  tone(1400,.04,'square',.16);setTimeout(function(){tone(300,.1,'square',.14)},70);
+  const gv=document.getElementById('flGoneEl');if(gv)gv.classList.remove('show');
+  flStartFuse();
+}
+function flRenderOpts(){
+  const box=document.getElementById('flOpts');if(!box)return;
+  box.innerHTML='';
+  fl.opts.forEach(function(o,i){
+    const b=document.createElement('button');
+    b.className='fl-o'+(o.dead?' dim':'');
+    if(fl.phase!=='ask')b.setAttribute('disabled','disabled');
+    b.innerHTML='<i>'+(i+1)+'</i>'+o.label;
+    b.onclick=function(){flPlay(i)};
+    box.appendChild(b);
+  });
+}
+/* ---------- 闪 → 收 → 答 ---------- */
+function flStartFuse(){
+  fl.lastTs=Date.now();
+  if(fl.timerId)clearInterval(fl.timerId);
+  fl.timerId=setInterval(flTick,90);
+}
+function flStopFuse(){if(fl.timerId){clearInterval(fl.timerId);fl.timerId=0}}
+function flBar(){
+  const f=document.getElementById('flBarFill');if(!f)return;
+  const show=fl.phase==='show';
+  const total=show?fl.showMs:fl.fuseMs;
+  const left=show?fl.showLeft:fl.fuseLeft;
+  const r=Math.max(0,Math.min(1,left/total));
+  f.style.transform='scaleX('+r+')';
+  const el=document.getElementById('flBarEl');
+  if(el){el.classList.toggle('ask',!show);el.classList.toggle('low',r<.3)}
+}
+function flTick(){
+  if(currentMode!=='flash'||fl.over){flStopFuse();return}
+  const now=Date.now(),d=now-fl.lastTs;fl.lastTs=now;
+  if(fl.phase==='show'){
+    fl.showLeft-=d;flBar();
+    if(fl.showLeft<=0)flHide();
+    return;
+  }
+  if(fl.phase==='ask'){
+    fl.fuseLeft-=d;flBar();
+    if(fl.fuseLeft<=0)flMiss();
+    return;
+  }
+  flStopFuse();
+}
+function flHide(){
+  fl.phase='ask';fl.busy=false;
+  fl.fuseMs=flCfg(fl.lv).fuse;fl.fuseLeft=fl.fuseMs;fl.lastTs=Date.now();
+  flBurst();
+  const gv=document.getElementById('flGoneEl');
+  if(gv){gv.textContent='📸 字不见了！凭刚才那一眼';gv.classList.add('show')}
+  flJudge('👀 字收走了——凭刚才那一眼答','#B3E5FC');
+  flRenderOpts();flHud();
+}
+function flGain(){
+  const base=flVal();
+  let mult=1,tag='';
+  if(fl.replayed){mult*=.5;tag+='🔄 回看 ×0.5 '}
+  if(fl.fuseLeft>=fl.fuseMs*.6){mult*=1.35;fl.easy++;tag+='⚡ 一眼记住 ×1.35 '}
+  if(fl.combo>=5){mult*=1.5;tag+='🔥 连拍 ×1.5 '}
+  if(fl.dual){mult*=1.6;tag+='👥 双子 ×1.6 '}
+  return{val:Math.max(8,Math.round(base*mult)),tag:tag};
+}
+function flPlay(i){
+  if(fl.busy||fl.phase!=='ask')return;
+  const o=fl.opts[i];
+  if(!o||o.dead)return;
+  fl.busy=true;flStopFuse();
+  fl.cards++;flAdd('hz_fl_cards',1);
+  const gv=document.getElementById('flGoneEl');if(gv)gv.classList.remove('show');
+  const btns=document.querySelectorAll('#flOpts .fl-o');
+  Array.prototype.forEach.call(btns,function(b){b.setAttribute('disabled','disabled')});
+  if(o.ok){
+    const g=flGain();
+    flSc(g.val);fl.combo++;
+    fl.comboMax=Math.max(fl.comboMax,fl.combo);
+    fl.answers++;
+    flAdd('hz_fl_answers',1);
+    flWall();
+    if(btns[i])btns[i].classList.add('right');
+    flJudge('✅ 就是它！+'+g.val+' 分'+(g.tag?'<br>'+g.tag.trim():''),'#B9F6CA');
+    sndOk();
+    if(fl.combo>=3){showComboEffect(fl.combo);spawnConfetti()}
+    if(g.tag.indexOf('一眼记住')>=0)tone(1568,.12,'triangle',.2);
+    fl.phase='done';flHud();
+    flT(flAsk,1150);
+  }else{
+    if(btns[i])btns[i].classList.add('wrong');
+    flWrong('你按的是「'+o.label+'」');
+  }
+}
+function flMiss(){
+  if(fl.phase!=='ask')return;
+  fl.busy=true;flStopFuse();
+  const gv=document.getElementById('flGoneEl');if(gv)gv.classList.remove('show');
+  fl.cards++;flAdd('hz_fl_cards',1);
+  flWrong('⏱️ 时间到，胶卷没拍上');
+}
+function flWrong(head){
+  fl.miss++;flAdd('hz_fl_miss',1);
+  fl.stars--;fl.combo=0;
+  sndNo();flShake();
+  const ch=flSideChar();
+  let tip='';
+  if(fl.kind==='d')tip='「'+ch+'」第 '+(fl.idx+1)+' 笔是 '+flD(strokeTypes[ch][fl.idx])+' '+
+    (DIRS.find(function(d){return d.code===strokeTypes[ch][fl.idx]})||{}).label;
+  else if(fl.kind==='c')tip='「'+ch+'」一共 '+strokeTypes[ch].length+' 笔';
+  else tip='刚才闪的是「'+ch+'」';
+  flJudge('❌ '+head+'<br>正确答案：'+tip,'#FF8A80');
+  fl.phase='teach';
+  flPaint();flHud();
+  if(fl.stars<=0)flT(function(){flEnd('🧠 三颗记忆星都用完啦')},2300);
+  else flT(flAsk,2300);
+}
+function flWall(){
+  fl.wallNew='';
+  fl.chars.forEach(function(ch){
+    if(!ch||fl.wall[ch])return;
+    fl.wall[ch]=1;fl.wallNew=ch;
+  });
+  const raw=(function(){try{return JSON.parse(localStorage.getItem('hz_fl_wall')||'[]')}catch(e){return[]}})();
+  const g=[];fl.chars.forEach(function(ch){if(ch&&raw.indexOf(ch)<0&&g.indexOf(ch)<0)g.push(ch)});
+  if(g.length){
+    const merged=raw.concat(g).slice(-48);
+    localStorage.setItem('hz_fl_wall',JSON.stringify(merged));
+  }
+  flWallRender();
+}
+function flWallRender(){
+  const el=document.getElementById('flWallEl');if(!el)return;
+  el.innerHTML='';
+  const ks=Object.keys(fl.wall);
+  flSet('flWallCnt',String(ks.length));
+  ks.slice(-24).forEach(function(ch){
+    const i=document.createElement('i');
+    i.textContent=ch;
+    if(ch===fl.wallNew)i.classList.add('new');
+    el.appendChild(i);
+  });
+}
+/* ---------- 道具 ---------- */
+function flReplay(){
+  if(fl.phase!=='ask'||fl.replayed)return;
+  if(fl.replays<=0)return;
+  fl.replays--;fl.replayed=true;
+  fl.busy=true;flStopFuse();
+  const gv=document.getElementById('flGoneEl');if(gv)gv.classList.remove('show');
+  fl.phase='show';
+  fl.showLeft=Math.max(420,Math.round(flCfg(fl.lv).show*.6));
+  fl.showMs=fl.showLeft;
+  flRenderOpts();flHud();flPaint();
+  const fe=document.getElementById('flFlashEl');
+  if(fe){fe.classList.remove('go');void fe.offsetWidth;fe.classList.add('go')}
+  tone(1100,.04,'square',.12);
+  flStartFuse();
+  flJudge('🔄 回看这一张——答对了分数减半','#B3E5FC');
+}
+function flCut(){
+  if(fl.phase!=='ask')return;
+  if(fl.cuts<=0)return;
+  const dead=fl.opts.filter(function(o){return !o.ok&&!o.dead});
+  if(dead.length<2){flJudge('✂️ 剩下的干扰项不够剪啦','#FFCC80');return}
+  fl.cuts--;fl.usedCut=true;
+  const kill=flMix(dead.slice()).slice(0,Math.min(2,dead.length));
+  fl.opts.forEach(function(o){if(kill.indexOf(o)>=0)o.dead=true});
+  flSc(-8);
+  sndNo();flRenderOpts();flHud();
+  flJudge('✂️ 剪掉两个不相干的 -8 分','#80D8FF');
+}
+/* ---------- HUD 与说明 ---------- */
+function flHud(){
+  const C=flCfg(fl.lv);
+  flSet('flScoreTxt','📸 '+fl.score+' 分');
+  flSet('flLvTxt','段位 '+fl.lv+' · '+C.rank);
+  flSet('flQTxt',fl.phase==='show'?'📸 看仔细…':(fl.q||'📸 装胶卷中…'));
+  flSet('flComboTxt',String(fl.combo));
+  flSet('flEasyTxt',String(fl.easy));
+  flSet('flBestTxt','🥇 纪录 '+flGet('hz_fl_best'));
+  flSet('flBuffTxt',fl.buff>0?'🧠 过目不忘：这张多给 0.5 秒':'🧠 过目不忘：连击 3 起');
+  flSet('flPhaseTxt',fl.phase==='show'?'📸 正在闪':(fl.phase==='ask'?'❓ 凭这一眼':
+    (fl.phase==='teach'?'👀 回看正确答案':'✅ 记住啦')));
+  const hs=document.getElementById('flStarsEl');
+  if(hs)Array.prototype.forEach.call(hs.children,function(el,i){el.classList.toggle('on',i<fl.stars)});
+  const rb=document.getElementById('flReplayBtn');
+  if(rb){rb.textContent='🔄 再看一眼 ×'+fl.replays;rb.disabled=fl.replays<=0||fl.replayed||fl.phase!=='ask'}
+  const cb=document.getElementById('flCutBtn');
+  if(cb){cb.textContent='✂️ 排除 ×'+fl.cuts;cb.disabled=fl.cuts<=0||fl.phase!=='ask'}
+  const gv=document.getElementById('flGoneEl');
+  if(gv&&fl.phase==='show')gv.classList.remove('show');
+}
+function flHelp(){
+  flJudge('📸 大字只闪一下就收走，屏幕上只剩空格子：它第几笔往哪写、一共几笔、是哪个字，全靠刚才那一眼。答对才会盖上记忆墙，段位越高闪得越短，6 段起还一次闪两个字！','#B3E5FC');
+  flNote('<b>1-4</b> 选答案 · <b>R</b> 再看一眼 · <b>X</b> 排除 · <b>空格</b> 下一张');
+}
+/* ---------- 开局与结算 ---------- */
+function flStart(){
+  showScreen('flash');
+  flKill();
+  fl.lv=1;fl.score=0;fl.combo=0;fl.comboMax=0;fl.cards=0;fl.easy=0;fl.answers=0;fl.miss=0;
+  fl.stars=3;fl.replays=2;fl.cuts=2;fl.replayed=false;fl.usedCut=false;fl.buff=0;
+  fl.over=false;fl.ended=false;fl.busy=true;fl.phase='idle';
+  fl.chars=[];fl.side=0;fl.opts=[];fl.q='';fl.dual=false;fl.wall={};fl.wallNew='';
+  const cv=document.getElementById('flCanvas');
+  if(cv){cv.width=FL_W;cv.height=FL_H}
+  flWallRender();flPaint();flHud();
+  flNote('<b>1-4</b> 选答案 · <b>R</b> 再看一眼 · <b>X</b> 排除 · <b>空格</b> 下一张');
+  flJudge('📸 准备…盯住大字','#FFEE58');
+  flAsk();
+}
+function flEnd(reason){
+  if(fl.ended)return;
+  fl.ended=true;fl.over=true;fl.busy=true;
+  flStopFuse();flKill();
+  fl.phase='idle';fl.q='';
+  const score=fl.score;
+  const best=Math.max(flGet('hz_fl_best'),score);
+  localStorage.setItem('hz_fl_best',String(best));
+  localStorage.setItem('hz_fl_lv',String(Math.max(flGet('hz_fl_lv'),fl.lv)));
+  localStorage.setItem('hz_fl_streak',String(Math.max(flGet('hz_fl_streak'),fl.comboMax)));
+  flAdd('hz_fl_games',1);flAdd('hz_fl_easy',fl.easy);
+  const st=Math.max(2,Math.min(26,Math.round(score/16)+fl.easy));
+  addStars(st);
+  showScreen('flash-result');
+  flSet('flResultEmoji',fl.cards>=14?'🏆':(fl.cards>=9?'🥇':(fl.cards>=5?'🎉':'📸')));
+  flSet('flResultTitle',fl.cards>=14?'人形照相机':(fl.cards>=9?'过目不忘':(fl.cards>=5?'眼里有字':'胶卷才刚开卷')));
+  flSet('flResultSubtitle',(reason||'')+' · 闪过 '+fl.cards+' 张、 miss '+fl.miss+' 次');
+  flSet('flResultScore',String(score));
+  flSet('flResultCards',String(fl.cards));
+  flSet('flResultLv',String(fl.lv));
+  flSet('flResultEasy',String(fl.easy));
+  flSet('flResultBest',String(best));
+  flSet('flResultStars','⭐ '+stars);
+  flSet('flResultAll','累计闪过 '+flGet('hz_fl_cards')+' 张 · 最长连击 '+flGet('hz_fl_streak')+
+    ' · 一眼记住 '+flGet('hz_fl_easy')+' 次 · 共玩 '+flGet('hz_fl_games')+' 场');
+  const wallEl=document.getElementById('flResultWall');
+  if(wallEl){
+    const raw=(function(){try{return JSON.parse(localStorage.getItem('hz_fl_wall')||'[]')}catch(e){return[]}})();
+    wallEl.innerHTML=raw.slice(-20).map(function(c){return '<span style="font-size:20px">'+c+'</span>'}).join('');
+  }
+  sndReward();spawnConfetti();
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='flash'||fl.over)return;
+  const k=e.key;
+  if(k>='1'&&k<='4'){flPlay(parseInt(k,10)-1);e.preventDefault();return}
+  if(k==='r'||k==='R'){e.preventDefault();flReplay()}
+  else if(k==='x'||k==='X'){e.preventDefault();flCut()}
+  else if(k===' '){
+    if(fl.phase==='done'){e.preventDefault();flKill();flAsk()}
+  }
 });
 async function boot(){
   if(typeof HanziWriter==='undefined'){
