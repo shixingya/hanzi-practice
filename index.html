@@ -1589,6 +1589,68 @@ button:active{transform:scale(.95)}
 @media(max-width:420px){.pi-hud,.pi-time,.pi-char,.pi-grid,.pi-btns,.pi-judge,.pi-tip{max-width:300px}
   .pi-grid{gap:2px;padding:5px}}
 
+/* ===== 笔顺弹珠台（答对一笔投一珠 · 撞钉落倍率奖格） ===== */
+.pl-hud{display:flex;flex-wrap:wrap;justify-content:center;gap:3px 10px;width:100%;max-width:322px;margin:7px auto 0;
+  font-size:11px;font-weight:800;color:#fff;background:rgba(255,255,255,.14);border-radius:12px;padding:6px 8px}
+.pl-hud span{white-space:nowrap}
+.pl-hearts{display:flex;gap:4px;justify-content:center;margin:6px auto 0;font-size:15px}
+.pl-hearts i{font-style:normal;transition:opacity .2s,transform .2s}
+.pl-hearts i.off{opacity:.22;transform:scale(.8)}
+.pl-goal{width:100%;max-width:322px;height:10px;border-radius:99px;background:rgba(0,0,0,.26);overflow:hidden;margin:5px auto 0;
+  border:1px solid rgba(255,255,255,.3)}
+.pl-goal b{display:block;height:100%;width:0;background:linear-gradient(90deg,#4FC3F7,#FFD740,#FF8A65);transition:width .35s ease-out}
+.pl-char{display:flex;align-items:center;justify-content:center;gap:8px;margin:8px auto 0;width:100%;max-width:322px;
+  background:rgba(255,255,255,.12);border-radius:12px;padding:5px 8px;color:#fff;font-size:12px;font-weight:800}
+.pl-char em{font-style:normal;font-size:22px;color:#FFEA00;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.pl-stage{position:relative;width:100%;max-width:322px;margin:8px auto 0;border-radius:16px;overflow:hidden;
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.35)}
+#plCanvas{display:block;width:100%;height:auto;background:linear-gradient(180deg,#2A3270,#141A44);touch-action:none;cursor:crosshair}
+.pl-banner{position:absolute;top:34%;left:0;right:0;text-align:center;font-size:25px;font-weight:900;color:#FFEA00;
+  text-shadow:0 3px 0 rgba(0,0,0,.4);opacity:0;pointer-events:none;z-index:6}
+.pl-banner.show{animation:plBan 1.5s ease-out}
+@keyframes plBan{0%{opacity:0;transform:scale(.5)}18%{opacity:1;transform:scale(1.14)}72%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(1.05) translateY(-14px)}}
+.pl-gate{width:100%;max-width:322px;margin:8px auto 0;border-radius:16px;padding:10px 12px;display:none;flex-direction:column;
+  align-items:center;background:rgba(13,25,60,.9);box-shadow:0 6px 18px rgba(0,0,0,.35),inset 0 0 0 2px rgba(255,215,64,.45)}
+.pl-gate.show{display:flex;animation:plGate .22s}
+@keyframes plGate{from{opacity:0;transform:scale(1.05)}to{opacity:1;transform:scale(1)}}
+.pl-gate h4{color:#fff;font-size:15px;margin:0 0 3px;text-align:center}
+.pl-gate .gi{font-size:42px;margin:2px 0 6px;animation:plBig 1.1s infinite}
+@keyframes plBig{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+.pl-gate .go{font-size:11px;color:#FFE082;font-weight:800;margin-bottom:8px;text-align:center}
+.pl-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;width:100%;max-width:300px}
+.pl-o{border:none;border-radius:13px;padding:11px 6px;font-size:14px;font-weight:900;color:#3E2723;cursor:pointer;
+  background:linear-gradient(180deg,#fff,#FFF3E0);box-shadow:0 4px 0 rgba(0,0,0,.28);font-family:inherit}
+.pl-o:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.28)}
+.pl-o.correct{background:linear-gradient(180deg,#B9F6CA,#69F0AE);animation:plOk .4s}
+.pl-o.wrong{background:linear-gradient(180deg,#FFCDD2,#FF8A80);animation:plNo .4s}
+.pl-o.reveal{outline:3px solid #FFEA00}
+.pl-o.dead{opacity:.28;text-decoration:line-through}
+@keyframes plOk{0%{transform:scale(1)}45%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes plNo{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}60%{transform:translateX(6px)}}
+.pl-drop{display:block;width:100%;max-width:322px;margin:8px auto 0;border:none;border-radius:14px;padding:13px 6px;
+  font-size:16px;font-weight:900;color:#3E2723;cursor:pointer;font-family:inherit;
+  background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 4px 0 rgba(0,0,0,.3)}
+.pl-drop:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.3)}
+.pl-drop:disabled{opacity:.5}
+.pl-btns{display:flex;gap:6px;width:100%;max-width:322px;margin:8px auto 0}
+.pl-act{flex:1;border:none;border-radius:12px;padding:9px 3px;font-size:11.5px;font-weight:900;color:#fff;cursor:pointer;
+  font-family:inherit;box-shadow:0 3px 0 rgba(0,0,0,.25);white-space:nowrap}
+.pl-act:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.pl-act.b{background:linear-gradient(180deg,#4FC3F7,#0277BD)}
+.pl-act.g{background:linear-gradient(180deg,#9CCC65,#558B2F)}
+.pl-act.o{background:linear-gradient(180deg,#FFB74D,#EF6C00)}
+.pl-act:disabled{opacity:.4}
+.pl-judge{width:100%;max-width:322px;margin:7px auto 0;min-height:22px;text-align:center;font-size:13px;font-weight:900;
+  color:#FFEA00;opacity:0}
+.pl-judge.show{opacity:1;animation:plJudge .35s}
+@keyframes plJudge{from{transform:translateY(7px) scale(.94)}to{transform:none}}
+.pl-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);
+  font-weight:700;line-height:1.6}
+.pl-shake{animation:plShake .38s}
+@keyframes plShake{0%,100%{transform:translate(0)}20%{transform:translate(-5px,2px)}40%{transform:translate(5px,-2px)}
+  60%{transform:translate(-4px,-1px)}80%{transform:translate(4px,1px)}}
+@media(max-width:420px){.pl-hud,.pl-goal,.pl-char,.pl-stage,.pl-drop,.pl-btns,.pl-judge,.pl-tip{max-width:300px}}
 </style>
 
 </head>
@@ -1733,6 +1795,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('cup')">
       <div class="icon">🧪</div>
       <div class="info"><h3>笔顺倒水杯</h3><p>把打翻的笔画墨水，一杯杯按方向倒回来！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('plinko')">
+      <div class="icon">🔮</div>
+      <div class="info"><h3>笔顺弹珠台</h3><p>答对一笔投一珠，撞进大奖格！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('pipe')">
       <div class="icon">💧</div>
@@ -3209,6 +3275,70 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-plinko">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="plScoreTxt">💧 0 分</span><span id="plLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="plHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🪄 答对<b>一笔</b>就发一颗<b>弹珠</b>：拖动瞄准、松手投珠，撞过一排排钉子，掉进<b>越靠中间越大</b>的倍率奖格！攒满目标分就过关。</div>
+  <div class="pl-char">今天要写的字 <em id="plCharTxt">永</em><span id="plOrderTxt">第 1 / 5 笔</span></div>
+  <div class="pl-hud">
+    <span id="plGoalTxt">🎯 目标 320</span>
+    <span id="plBallTxt">🔮 珠子 10</span>
+    <span id="plComboTxt">🔥 连击 0</span>
+    <span id="plBestTxt">🥇 纪录 0</span>
+  </div>
+  <div class="pl-hearts" id="plHeartsEl"><i>❤️</i><i>❤️</i><i>❤️</i></div>
+  <div class="pl-goal"><b id="plGoalBar"></b></div>
+  <div class="pl-stage">
+    <canvas id="plCanvas" width="320" height="384"></canvas>
+    <div class="pl-banner" id="plBannerEl"></div>
+  </div>
+  <div class="pl-gate" id="plGateEl">
+    <h4 id="plGateT">第 1 笔往哪写？</h4>
+    <div class="gi" id="plGateI">❔</div>
+    <div class="go" id="plGateO">答对才有珠子可投</div>
+    <div class="pl-opts" id="plOpts"></div>
+  </div>
+  <button class="pl-drop" id="plDropBtn" onclick="plDrop()">✍️ 先答上面的题</button>
+  <div class="pl-btns">
+    <button class="pl-act" id="plHintBtn" onclick="plHint()">💡 提示 ×3</button>
+    <button class="pl-act b" id="plMagBtn" onclick="plMag()">🧲 磁铁 ×2</button>
+    <button class="pl-act g" id="plSwapBtn" onclick="plSwap()">🔤 换题 ×3</button>
+    <button class="pl-act o" onclick="plEnd('🏁 收工')">🏁 收工</button>
+  </div>
+  <div class="pl-judge" id="plJudgeLine"></div>
+  <div class="pl-tip" id="plTip">拖动瞄准 · <b>空格</b>投珠 · <b>1-4</b> 答题 · <b>H</b> 提示 · <b>G</b> 磁铁 · <b>T</b> 换题</div>
+</div>
+<div class="screen" id="screen-plinko-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="plResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="plResultEmoji">🔮</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="plResultTitle">弹珠台收工！</h2>
+    <p style="font-size:16px;opacity:.8" id="plResultSubtitle">珠子颗颗落进好格</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="plResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4FC3F7" id="plResultJack">0</div><div style="font-size:13px;opacity:.7">撞进几次头奖</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="plResultLv">1</div><div style="font-size:13px;opacity:.7">通到第几关</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#69F0AE" id="plResultChars">0</div><div style="font-size:13px;opacity:.7">写完几个字</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="plResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="plResultAll">累计投珠 0 · 累计头奖 0 · 共玩 0 局</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="plStart()">🔮 再投一次</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-pipe">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -3810,6 +3940,7 @@ function detectDir(median){
   return'R';
 }
 async function loadCharData(ch){
+  if(!ch)return null;
   if(charDataCache[ch])return charDataCache[ch];
   const bases=['https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0','https://unpkg.com/hanzi-writer-data@2.0'];
   for(const b of bases){
@@ -3865,7 +3996,7 @@ async function preloadGrade(grade){
 }
 function nextInQueue(){
   if(queueIdx>=charQueue.length)queueIdx=0;
-  return charQueue[queueIdx++];
+  return charQueue[queueIdx++]||CHARS[queueIdx%CHARS.length];
 }
 let gradeLoading=false;
 async function setGrade(grade){
@@ -3963,6 +4094,7 @@ function enterMode(mode){
   else if(mode==='bubble')bbStart();
   else if(mode==='fortune')mfStart();
   else if(mode==='pipe')piStart();
+  else if(mode==='plinko')plStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -16955,6 +17087,484 @@ document.addEventListener('keydown',function(e){
   else if(k==='r'||k==='R'){e.preventDefault();piRe()}
 });
 
+/* ===== 笔顺弹珠台：答对一笔投一珠，撞钉落进倍率奖格 ===== */
+const PL_W=320,PL_H=384,PL_TOP=54,PL_SLOT=42,PL_BR=7,PL_PR=3.4;
+const PL_CN={R:'横',D:'竖',P:'撇',N:'捺',T:'点'};
+let pl={gen:0,timers:[],raf:0,lv:1,score:0,goal:320,over:false,ended:false,busy:false,phase:'ask',
+  rows:6,n:7,s:49,left:11,pegs:[],balls:[],budget:10,jack:0,answers:0,levels:0,chars:0,drops:0,lvScore:0,
+  hearts:3,hints:3,mags:2,swaps:3,combo:0,comboMax:0,aim:160,magnet:false,dragging:false,tLast:0,
+  ch:'',dirs:[],k:0};
+function plGet(k){return parseInt(localStorage.getItem(k)||'0',10)}
+function plAdd(k,n){localStorage.setItem(k,String(plGet(k)+(n||1)))}
+function plSc(d){pl.score=Math.max(0,pl.score+d);pl.lvScore=Math.max(0,pl.lvScore+d)}
+function plSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function plNote(t){const e=document.getElementById('plTip');if(e)e.innerHTML=t}
+function plIcon(code){const d=DIRS.find(function(x){return x.code===code});return d?d.icon:code}
+function plLabel(code){const d=DIRS.find(function(x){return x.code===code});return d?d.label:code}
+function plStroke(code){return (PL_CN[code]||code)+' '+plIcon(code)}
+function plCfg(l){
+  l=Math.max(1,Math.min(12,l||1));
+  const rows=Math.min(9,6+Math.floor((l-1)/3));
+  const budget=Math.min(16,10+Math.floor(l/2));
+  const goal=Math.round((20+4*l)*budget*2/10)*10;
+  return {rows:rows,n:rows+1,goal:goal,budget:budget};
+}
+function plMult(n,i){
+  const c=(n-1)/2,d=Math.abs(i-c);
+  return d<=.5?5:d<=1.5?3:d<=2.5?2:1;
+}
+function plJudge(t,color){
+  const e=document.getElementById('plJudgeLine');if(!e)return;
+  e.innerHTML=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function plBanner(t){
+  const e=document.getElementById('plBannerEl');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function plShake(){
+  const e=document.getElementById('plGateEl');if(!e)return;
+  e.classList.remove('pl-shake');void e.offsetWidth;e.classList.add('pl-shake');
+}
+function plT(fn,ms){
+  const g=pl.gen;
+  const id=setTimeout(function(){
+    const ix=pl.timers.indexOf(id);if(ix>=0)pl.timers.splice(ix,1);
+    if(g!==pl.gen)return;fn();
+  },ms);
+  pl.timers.push(id);return id;
+}
+function plStop(){pl.timers.forEach(function(id){clearTimeout(id)});pl.timers=[]}
+function plKill(){pl.gen++;plStop();if(pl.raf){cancelAnimationFrame(pl.raf);pl.raf=0}}
+/* ---------- 钉阵 ---------- */
+function plLay(){
+  const C=plCfg(pl.lv);
+  pl.rows=C.rows;pl.n=C.n;
+  pl.s=(PL_W-22)/pl.n;
+  pl.left=PL_W/2-pl.n*pl.s/2;
+  const dy=(PL_H-PL_SLOT-PL_TOP-10)/pl.rows;
+  pl.pegs=[];
+  for(let i=0;i<pl.rows;i++){
+    for(let j=0;j<=i+1;j++){
+      const x=PL_W/2+(j-i/2-0.5)*pl.s;
+      if(x<9||x>PL_W-9)continue;
+      pl.pegs.push({x:x,y:PL_TOP+i*dy,f:0});
+    }
+  }
+  pl.aim=PL_W/2;
+}
+function plSlotX(i){return pl.left+(i+0.5)*pl.s}
+function plSlotAt(x){return Math.max(0,Math.min(pl.n-1,Math.floor((x-pl.left)/pl.s)))}
+/* ---------- 选字与出题 ---------- */
+function plPoolGet(){
+  let pool=CHARS.filter(function(c){const d=strokeTypes[c];return d&&d.length>=3&&d.length<=8});
+  if(currentGrade!=='all'){
+    const g=CHARS_BY_GRADE[currentGrade]||[];
+    const fg=pool.filter(function(c){return g.indexOf(c)>=0});
+    if(fg.length>=4)pool=fg;
+  }
+  return pool;
+}
+function plPickChar(){const p=plPoolGet();return p.length?p[Math.floor(Math.random()*p.length)]:null}
+async function plCharData(ch){
+  const d=await loadCharData(ch);if(!d)return null;
+  if(!strokeTypes[ch])strokeTypes[ch]=d.medians.map(function(m){return detectDir(m)});
+  return strokeTypes[ch];
+}
+async function plChars(){
+  const ch=plPickChar();
+  if(ch)return {ch:ch,dirs:strokeTypes[ch]};
+  const seeds=['永','木','水','火','山','田','日','月','人','大','小','中','春','秋','明'];
+  for(let i=0;i<seeds.length;i++){
+    const d=await plCharData(seeds[i]);
+    if(d&&d.length>=3&&d.length<=8)return {ch:seeds[i],dirs:d};
+  }
+  const q=nextInQueue();
+  if(q){const d=await plCharData(q);if(d)return {ch:q,dirs:d}}
+  return null;
+}
+async function plNewChar(){
+  const r=await plChars();
+  if(!r){plJudge('😅 笔顺数据还没下下来，稍等一下再点','#FFCC80');return false}
+  pl.ch=r.ch;pl.dirs=r.dirs;pl.k=0;
+  return true;
+}
+function plAsk(){
+  if(pl.over)return;
+  pl.phase='ask';
+  const code=pl.dirs[pl.k];
+  const pool=DIRS.map(function(d){return d.code}).filter(function(c){return c!==code});
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=pool[i];pool[i]=pool[j];pool[j]=t}
+  const vals=[code].concat(pool.slice(0,3));
+  for(let i=vals.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=vals[i];vals[i]=vals[j];vals[j]=t}
+  plSet('plGateT','『'+pl.ch+'』的第 '+(pl.k+1)+' 笔往哪写？');
+  plSet('plGateI','❔');
+  plSet('plGateO','答对才有珠子可投');
+  const box=document.getElementById('plOpts');
+  if(box){
+    box.innerHTML=vals.map(function(v){return '<button class="pl-o" data-value="'+v+'">'+plIcon(v)+' '+plLabel(v)+'</button>'}).join('');
+    box.onclick=function(e){const b=e.target.closest('.pl-o');if(b)plPick(b)};
+  }
+  const ge=document.getElementById('plGateEl');if(ge)ge.classList.add('show');
+  plHud();plDrawBoard();
+}
+async function plFinishChar(){
+  pl.chars++;plAdd('hz_pl_chars');
+  const gain=100+pl.lv*10;
+  plSc(gain);
+  sndDone();spawnConfetti();
+  plBanner('✍️ 『'+pl.ch+'』写完了！');
+  plJudge('✍️ 『'+pl.ch+'』'+pl.dirs.length+' 笔全答对，整字奖励 +'+gain+' 分','#B9F6CA');
+  plHud();
+  await plNewChar();
+  plAsk();
+}
+function plPick(btn){
+  if(pl.over||pl.busy||pl.phase!=='ask')return;
+  const code=pl.dirs[pl.k];
+  const box=document.getElementById('plOpts');if(!box)return;
+  const kids=[].slice.call(box.children);
+  const right=kids.find(function(b){return b.dataset.value===code});
+  if(btn.dataset.value===code){
+    pl.busy=true;
+    btn.classList.add('correct');
+    pl.answers++;plAdd('hz_pl_answers');pl.combo++;pl.comboMax=Math.max(pl.comboMax,pl.combo);
+    plSet('plGateI',plIcon(code));
+    plSet('plGateO','第 '+(pl.k+1)+' 笔是「'+plStroke(code)+'」，投珠吧！');
+    sndOk();
+    if(pl.combo>=3)showComboEffect(pl.combo);
+    plJudge('✅ '+plStroke(code)+' 答对了，拖动瞄准再投珠','#B9F6CA');
+    plHud();
+    plT(function(){
+      const g2=document.getElementById('plGateEl');if(g2)g2.classList.remove('show');
+      pl.busy=false;pl.k++;pl.phase='aim';
+      plHud();plDrawBoard();
+    },760);
+  }else{
+    btn.classList.add('wrong');
+    if(right)right.classList.add('reveal');
+    pl.hearts--;pl.combo=0;
+    sndNo();plShake();
+    plSet('plGateI',plIcon(code));
+    plSet('plGateO','这一笔其实是「'+plStroke(code)+'」，再看一次');
+    plJudge('💔 答错了，还剩 '+pl.hearts+' 颗心','#FF8A80');
+    plHud();
+    if(pl.hearts<=0){plT(function(){plEnd('💔 三颗心都用完了')},880);return}
+    pl.busy=true;
+    plT(function(){pl.busy=false;plAsk()},1050);
+  }
+}
+/* ---------- 投放与物理 ---------- */
+function plDrop(){
+  if(pl.over||pl.busy||pl.phase!=='aim')return;
+  if(pl.budget<=0){plJudge('🪙 这一关的珠子投完啦','#FFCC80');return}
+  pl.budget--;pl.drops++;plAdd('hz_pl_beads');
+  pl.phase='fly';
+  pl.balls.push({x:pl.aim,y:16,vx:0,vy:40,tr:[],hit:0,t:0,gold:pl.combo>=3,mag:pl.magnet});
+  pl.magnet=false;
+  tone(520,.07,'triangle',.07);
+  plHud();
+  if(!pl.raf){pl.tLast=performance.now();pl.raf=requestAnimationFrame(plFrame)}
+}
+function plStep(b,dt){
+  b.t+=dt;
+  b.vy+=1500*dt;
+  if(b.mag)b.vx+=((PL_W/2-b.x)*5.5-b.vx*1.6)*dt;
+  const sp=Math.hypot(b.vx,b.vy);
+  if(sp>430){b.vx*=430/sp;b.vy*=430/sp}
+  b.x+=b.vx*dt;b.y+=b.vy*dt;
+  if(b.x<PL_BR+4){b.x=PL_BR+4;b.vx=Math.abs(b.vx)*.35}
+  if(b.x>PL_W-PL_BR-4){b.x=PL_W-PL_BR-4;b.vx=-Math.abs(b.vx)*.35}
+  for(let i=0;i<pl.pegs.length;i++){
+    const p=pl.pegs[i],dx=b.x-p.x,dy=b.y-p.y,r=PL_BR+PL_PR,d=Math.hypot(dx,dy);
+    if(d<r&&d>0.001){
+      const nx=dx/d,ny=dy/d;
+      b.x=p.x+nx*r;b.y=p.y+ny*r;
+      const vn=b.vx*nx+b.vy*ny;
+      if(vn<0){
+        b.vx-=1.42*vn*nx;b.vy-=1.42*vn*ny;
+        b.vx*=0.9;b.vx+=(Math.random()-.5)*30;b.vy*=.985;
+        p.f=1;b.hit++;
+        if(b.hit<=16)tone(360+Math.min(22,b.hit)*44+Math.random()*22,.05,'triangle',.05);
+      }
+    }
+  }
+  if(b.y>=PL_H-PL_SLOT+4||b.t>7){
+    plLand(plSlotAt(b.x),b);
+    return true
+  }
+  return false
+}
+function plGain(i,gold){
+  return Math.round((20+pl.lv*4)*plMult(pl.n,i)*(gold?2:1)*(1+0.25*Math.max(0,pl.combo-1)));
+}
+function plLand(i,b){
+  const m=plMult(pl.n,i);
+  const gold=b.gold?2:1;
+  const gain=plGain(i,b.gold);
+  plSc(gain);
+  if(m>=5){pl.jack++;plAdd('hz_pl_jack');plBanner('🌟 头奖 ×'+m+'！');spawnConfetti();sndReward()}
+  else if(m>=3){plBanner('💧 ×'+m+' 好格！');tone(700,.12,'triangle',.08)}
+  else{tone(300,.09,'sine',.06)}
+  const cv=document.getElementById('plCanvas');
+  if(cv){
+    const r=cv.getBoundingClientRect();
+    spawnStarFly(r.left+plSlotX(i)/PL_W*r.width,r.top+(PL_H-PL_SLOT)/PL_H*r.height);
+  }
+  pl.balls.push({x:plSlotX(i),y:PL_H-PL_SLOT+4,dead:true,ring:1});
+  plJudge((m>=5?'🌟 撞进 ×'+m+' 大奖格！':(m>=3?'💧 落进 ×'+m+' 格！':'🎯 落进 ×'+m+' 格'))+' +'+gain+' 分'+(gold>1?'（金珠翻倍）':''),'#FFF176');
+  plHud();
+  plT(function(){
+    if(pl.lvScore>=pl.goal){plLevelClear();return}
+    if(pl.budget<=0){plEnd('🪙 珠子投完啦');return}
+    if(pl.k>=pl.dirs.length){plFinishChar();return}
+    plAsk();
+  },m>=5?1300:640);
+}
+function plFrame(now){
+  pl.raf=0;
+  if(pl.over||currentMode!=='plinko')return;
+  let dt=(now-pl.tLast)/1000;pl.tLast=now;
+  if(dt>0.05)dt=0.05;
+  const sub=Math.max(1,Math.ceil(dt/0.008));
+  for(let s=0;s<sub;s++){
+    for(let i=pl.balls.length-1;i>=0;i--){
+      const b=pl.balls[i];
+      if(b.dead)continue;
+      if(plStep(b,dt/sub))pl.balls.splice(i,1);
+    }
+  }
+  let live=false;
+  for(let i=pl.balls.length-1;i>=0;i--){
+    const b=pl.balls[i];
+    if(b.dead){b.ring-=dt*1.7;if(b.ring<=0)pl.balls.splice(i,1);continue}
+    live=true;
+    b.tr.push({x:b.x,y:b.y});
+    if(b.tr.length>12)b.tr.shift();
+  }
+  pl.pegs.forEach(function(p){if(p.f>0)p.f=Math.max(0,p.f-dt*3.2)});
+  plDrawBoard();
+  if(live||pl.balls.length)pl.raf=requestAnimationFrame(plFrame);
+}
+/* ---------- 画布 ---------- */
+function plCtx(){const cv=document.getElementById('plCanvas');if(!cv)return null;return cv.getContext('2d')}
+function plFit(){
+  const cv=document.getElementById('plCanvas');if(!cv)return;
+  const dpr=Math.min(2,window.devicePixelRatio||1);
+  cv.width=Math.round(PL_W*dpr);cv.height=Math.round(PL_H*dpr);
+  const c=cv.getContext('2d');
+  if(c)c.setTransform(dpr,0,0,dpr,0,0);
+}
+function plDrawBoard(){
+  const c=plCtx();if(!c)return;
+  c.clearRect(0,0,PL_W,PL_H);
+  for(let i=0;i<pl.n;i++){
+    const m=plMult(pl.n,i),x=pl.left+i*pl.s,w=pl.s-3;
+    c.fillStyle=m>=5?'rgba(255,214,64,.94)':(m>=3?'rgba(79,195,247,.86)':(m>=2?'rgba(156,204,101,.8)':'rgba(255,255,255,.24)'));
+    c.beginPath();
+    if(c.roundRect)c.roundRect(x+1.5,PL_H-PL_SLOT+6,w,PL_SLOT-12,6);else c.rect(x+1.5,PL_H-PL_SLOT+6,w,PL_SLOT-12);
+    c.fill();
+    c.fillStyle=m>=5?'#3E2723':'#FFFFFF';
+    c.font='900 13px system-ui,sans-serif';
+    c.textAlign='center';c.textBaseline='middle';
+    c.fillText('×'+m,plSlotX(i),PL_H-PL_SLOT/2+1);
+  }
+  pl.pegs.forEach(function(p){
+    c.beginPath();c.arc(p.x,p.y,PL_PR+p.f*2.6,0,Math.PI*2);
+    c.fillStyle=p.f>0?'rgba(255,238,88,'+(0.45+p.f*0.55)+')':'rgba(255,255,255,.42)';
+    c.fill();
+  });
+  if(pl.phase==='aim'){
+    c.save();
+    c.setLineDash([5,5]);c.strokeStyle='rgba(255,235,59,.8)';c.lineWidth=1.6;
+    c.beginPath();c.moveTo(pl.aim,20);c.lineTo(pl.aim,PL_TOP-6);c.stroke();
+    c.restore();
+    c.beginPath();c.arc(pl.aim,18,PL_BR,0,Math.PI*2);
+    c.fillStyle='rgba(255,255,255,.92)';c.fill();
+  }
+  pl.balls.forEach(function(b){
+    if(b.dead){
+      c.beginPath();c.arc(b.x,b.y,(1-b.ring)*26+6,0,Math.PI*2);
+      c.strokeStyle='rgba(255,238,88,'+Math.max(0,b.ring)+')';c.lineWidth=3;c.stroke();
+      return
+    }
+    for(let i=0;i<b.tr.length;i++){
+      const t=b.tr[i],a=(i+1)/b.tr.length*.5;
+      c.beginPath();c.arc(t.x,t.y,PL_BR*a,0,Math.PI*2);
+      c.fillStyle=b.gold?'rgba(255,214,64,'+a+')':'rgba(79,195,247,'+a+')';c.fill();
+    }
+    c.beginPath();c.arc(b.x,b.y,PL_BR,0,Math.PI*2);
+    const g=c.createRadialGradient(b.x-2,b.y-3,1,b.x,b.y,PL_BR);
+    g.addColorStop(0,'#fff');g.addColorStop(1,b.gold?'#FFB300':'#0288D1');
+    c.fillStyle=g;c.fill();
+  });
+}
+/* ---------- HUD 与回合 ---------- */
+function plHud(){
+  plSet('plScoreTxt','💧 '+pl.score+' 分');
+  plSet('plLvTxt','第 '+pl.lv+' 关');
+  plSet('plGoalTxt','🎯 本关 '+pl.lvScore+' / '+pl.goal);
+  plSet('plBallTxt','🔮 珠子 '+pl.budget);
+  plSet('plComboTxt','🔥 连击 '+pl.combo);
+  plSet('plBestTxt','🥇 纪录 '+plGet('hz_pl_best'));
+  plSet('plCharTxt',pl.ch||'…');
+  plSet('plOrderTxt',pl.dirs.length?('第 '+(Math.min(pl.k+1,pl.dirs.length))+' / '+pl.dirs.length+' 笔'):'');
+  const hb=document.getElementById('plHeartsEl');
+  if(hb)[].slice.call(hb.children).forEach(function(x,k){x.classList.toggle('off',k>=pl.hearts)});
+  const bar=document.getElementById('plGoalBar');
+  if(bar)bar.style.width=Math.min(100,pl.lvScore/Math.max(1,pl.goal)*100)+'%';
+  const h=document.getElementById('plHintBtn');
+  if(h){h.textContent='💡 提示 ×'+pl.hints;h.disabled=pl.hints<=0||pl.over}
+  const m=document.getElementById('plMagBtn');
+  if(m){m.textContent='🧲 磁铁 ×'+pl.mags;m.disabled=pl.mags<=0||pl.over}
+  const s=document.getElementById('plSwapBtn');
+  if(s){s.textContent='🔤 换题 ×'+pl.swaps;s.disabled=pl.swaps<=0||pl.over}
+  const d=document.getElementById('plDropBtn');
+  if(d){d.disabled=pl.phase!=='aim'||pl.budget<=0||pl.over;d.textContent=pl.phase==='aim'?'🔮 投珠（空格）':'✍️ 先答上面的题'}
+}
+function plHint(){
+  if(pl.over||pl.busy||pl.phase!=='ask'||pl.hints<=0)return;
+  const box=document.getElementById('plOpts');if(!box)return;
+  const code=pl.dirs[pl.k];
+  const wrong=[].slice.call(box.children).filter(function(b){return b.dataset.value!==code&&!b.classList.contains('dead')});
+  if(!wrong.length)return;
+  pl.hints--;plSc(-12);
+  for(let i=wrong.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=wrong[i];wrong[i]=wrong[j];wrong[j]=t}
+  wrong.slice(0,2).forEach(function(b){b.classList.add('dead');b.disabled=true});
+  tone(760,.1);
+  plJudge('💡 划掉两个错答案（-12 分）','#FFF176');
+  plHud();
+}
+function plMag(){
+  if(pl.over||pl.busy||pl.mags<=0)return;
+  if(pl.phase!=='aim'){plJudge('🧲 答完题以后才能开磁铁','#FFCC80');return}
+  pl.mags--;plSc(-15);pl.magnet=true;
+  tone(880,.12,'triangle',.07);
+  plJudge('🧲 下一颗会被吸向中间大奖格（-15 分）','#B3E5FC');
+  plHud();
+}
+async function plSwap(){
+  if(pl.over||pl.busy||pl.phase!=='ask'||pl.swaps<=0)return;
+  pl.swaps--;plSc(-8);pl.combo=0;
+  pl.busy=true;
+  plJudge('🔤 换一个字的第 1 笔（-8 分）','#B3E5FC');
+  plHud();
+  await plNewChar();
+  pl.busy=false;
+  plAsk();
+}
+function plLevelClear(){
+  pl.busy=true;
+  const left=pl.budget;
+  const gain=140+pl.lv*24+left*18;
+  plSc(gain);pl.levels++;
+  sndDone();spawnConfetti();
+  plBanner('🎉 过关！');
+  plJudge('🎉 第 '+pl.lv+' 关达成 · 剩 '+left+' 颗珠折进奖励 +'+gain+' 分','#FFF176');
+  plHud();
+  plT(function(){
+    pl.lv=Math.min(12,pl.lv+1);
+    localStorage.setItem('hz_pl_lv',String(Math.max(plGet('hz_pl_lv'),pl.lv)));
+    const C=plCfg(pl.lv);
+    pl.goal=C.goal;pl.budget=C.budget;pl.lvScore=Math.max(0,pl.lvScore-C.goal);
+    pl.hearts=Math.min(3,pl.hearts+1);
+    pl.hints=3;pl.mags=2;pl.swaps=3;
+    plLay();
+    pl.busy=false;pl.phase='ask';
+    plHud();plDrawBoard();
+    plAsk();
+  },1500);
+}
+function plResetLevel(){
+  pl.lvScore=0;pl.balls=[];pl.combo=0;pl.magnet=false;pl.busy=false;pl.phase='ask';
+  pl.hearts=3;pl.hints=3;pl.mags=2;pl.swaps=3;
+  const ge=document.getElementById('plGateEl');if(ge)ge.classList.remove('show');
+}
+async function plNew(){
+  plKill();
+  const C=plCfg(pl.lv);
+  pl.goal=C.goal;pl.budget=C.budget;
+  plLay();plResetLevel();
+  const ok=await plNewChar();
+  if(!ok)return;
+  plBind();plFit();
+  plHud();plAsk();
+  plNote('拖动瞄准 · <b>空格</b>投珠 · <b>1-4</b> 答题 · <b>H</b> 提示 · <b>G</b> 磁铁 · <b>T</b> 换题');
+  plJudge('🎯 第 '+pl.lv+' 关：答对一题投一珠，本关攒够 '+pl.goal+' 分','#B3E5FC');
+}
+function plStart(){
+  showScreen('plinko');
+  plKill();
+  pl.lv=Math.max(1,Math.min(12,plGet('hz_pl_lv')||1));
+  pl.score=0;pl.jack=0;pl.answers=0;pl.levels=0;pl.chars=0;pl.drops=0;
+  pl.combo=0;pl.comboMax=0;
+  pl.over=false;pl.ended=false;
+  plNew();
+}
+function plHelp(){
+  plJudge('🪄 答对一笔 → 投一珠 → 撞钉落进倍率奖格，越靠中间 ×5 越大','#B3E5FC');
+  plNote('<b>拖动</b>瞄准 · <b>空格</b>投珠 · <b>1-4</b> 答题 · <b>H</b> 提示 · <b>G</b> 磁铁 · <b>T</b> 换题');
+}
+function plEnd(reason){
+  if(pl.ended)return;
+  pl.ended=true;pl.over=true;pl.busy=true;pl.phase='over';
+  plKill();
+  const score=pl.score;
+  const best=Math.max(plGet('hz_pl_best'),score);
+  localStorage.setItem('hz_pl_best',String(best));
+  localStorage.setItem('hz_pl_lv',String(Math.max(plGet('hz_pl_lv'),pl.lv)));
+  plAdd('hz_pl_games',1);
+  const st=Math.max(2,Math.min(26,Math.round(score/16)+pl.levels*2));
+  addStars(st);
+  showScreen('plinko-result');
+  plSet('plResultEmoji',pl.levels>=4?'🎰':(pl.levels>=2?'🪄':(pl.jack?'🌟':'🔮')));
+  plSet('plResultTitle',pl.levels>=4?'弹珠大师':(pl.levels>=2?'越投越顺':'差一点点就够'));
+  plSet('plResultSubtitle',(reason||'')+' · 过了 '+pl.levels+' 关、投出 '+pl.drops+' 颗珠');
+  plSet('plResultScore',String(score));
+  plSet('plResultJack',String(pl.jack));
+  plSet('plResultLv',String(pl.lv));
+  plSet('plResultChars',String(pl.chars));
+  plSet('plResultBest',String(best));
+  plSet('plResultStars','⭐ '+stars);
+  plSet('plResultAll','累计投珠 '+plGet('hz_pl_beads')+' · 累计头奖 '+plGet('hz_pl_jack')+' · 累计答对 '+plGet('hz_pl_answers')+' 题 · 写完 '+plGet('hz_pl_chars')+' 个字 · 共玩 '+plGet('hz_pl_games')+' 局');
+  sndReward();spawnConfetti();
+}
+function plBind(){
+  const cv=document.getElementById('plCanvas');if(!cv||cv.dataset.bound)return;
+  cv.dataset.bound='1';
+  function setPtr(ev){
+    const r=cv.getBoundingClientRect();
+    const cx=(ev.touches&&ev.touches[0]?ev.touches[0].clientX:ev.clientX)-r.left;
+    pl.aim=Math.max(pl.left+5,Math.min(pl.left+pl.n*pl.s-5,cx/r.width*PL_W));
+    plDrawBoard();
+  }
+  cv.addEventListener('pointerdown',function(e){if(pl.phase==='aim'){pl.dragging=true;setPtr(e)}});
+  cv.addEventListener('pointermove',function(e){if(pl.dragging)setPtr(e)});
+  window.addEventListener('pointerup',function(){
+    if(!pl.dragging)return;
+    pl.dragging=false;
+    plDrop();
+  });
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='plinko'||pl.over)return;
+  const k=e.key;
+  if(k>='1'&&k<='4'){
+    const ge=document.getElementById('plGateEl');
+    const box=document.getElementById('plOpts');
+    if(ge&&box&&ge.classList.contains('show')){
+      const btn=box.children[parseInt(k,10)-1];
+      if(btn&&!btn.classList.contains('dead')){e.preventDefault();plPick(btn)}
+    }
+    return;
+  }
+  if(k===' '||k==='Enter'){e.preventDefault();plDrop();return}
+  if(k==='ArrowLeft'){e.preventDefault();pl.aim=Math.max(pl.left+5,pl.aim-8);plDrawBoard();return}
+  if(k==='ArrowRight'){e.preventDefault();pl.aim=Math.min(pl.left+pl.n*pl.s-5,pl.aim+8);plDrawBoard();return}
+  if(k==='h'||k==='H'){e.preventDefault();plHint()}
+  else if(k==='g'||k==='G'){e.preventDefault();plMag()}
+  else if(k==='t'||k==='T'){e.preventDefault();plSwap()}
+});
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
