@@ -1713,6 +1713,71 @@ button:active{transform:scale(.95)}
 @keyframes cwShake{0%,100%{transform:translate(0)}20%{transform:translate(-5px,2px)}40%{transform:translate(5px,-2px)}
   60%{transform:translate(-4px,-1px)}80%{transform:translate(4px,1px)}}
 @media(max-width:420px){.cw-hud,.cw-goal,.cw-char,.cw-stage,.cw-drop,.cw-btns,.cw-judge,.cw-tip{max-width:300px}}
+/* ===== 笔顺神探（只看露出的几笔 · 从形近字里认出它） ===== */
+.dt-hud{display:flex;flex-wrap:wrap;justify-content:center;gap:3px 10px;width:100%;max-width:322px;margin:7px auto 0;
+  font-size:11px;font-weight:800;color:#fff;background:rgba(255,255,255,.14);border-radius:12px;padding:6px 8px}
+.dt-hud span{white-space:nowrap}
+.dt-cases{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2px 8px;margin:8px auto 0;width:100%;max-width:322px;
+  background:rgba(255,255,255,.12);border-radius:12px;padding:5px 8px;color:#fff;font-size:12px;font-weight:800}
+.dt-cases em{font-style:normal;font-size:20px;color:#FFEA00;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.dt-cases span{font-size:11px;opacity:.9}
+.dt-hearts{display:flex;gap:4px;justify-content:center;margin:6px auto 0;font-size:15px}
+.dt-hearts i{font-style:normal;transition:opacity .2s,transform .2s}
+.dt-hearts i.off{opacity:.22;transform:scale(.8)}
+.dt-stage{position:relative;width:100%;max-width:322px;margin:8px auto 0;border-radius:16px;overflow:hidden;
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.35)}
+#dtCanvas{display:block;width:100%;height:auto;background:linear-gradient(180deg,#241A4F,#120E2E)}
+.dt-banner{position:absolute;top:32%;left:0;right:0;text-align:center;font-size:23px;font-weight:900;color:#FFEA00;
+  text-shadow:0 3px 0 rgba(0,0,0,.45);opacity:0;pointer-events:none;z-index:6}
+.dt-banner.show{animation:dtBan 1.5s ease-out}
+@keyframes dtBan{0%{opacity:0;transform:scale(.5)}18%{opacity:1;transform:scale(1.14)}72%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(1.05) translateY(-14px)}}
+.dt-stamp{position:absolute;top:36%;left:50%;width:94px;height:94px;margin:-47px 0 0 -47px;border-radius:50%;
+  border:5px solid #FF1744;color:#FF1744;background:rgba(255,23,68,.13);display:flex;align-items:center;justify-content:center;
+  font-size:29px;font-weight:900;line-height:1.05;letter-spacing:2px;opacity:0;pointer-events:none;z-index:7;
+  transform:rotate(-14deg) scale(2.6)}
+.dt-stamp.show{animation:dtStamp .62s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes dtStamp{0%{opacity:0;transform:rotate(-14deg) scale(2.6)}55%{opacity:1;transform:rotate(-14deg) scale(.92)}
+  75%{transform:rotate(-14deg) scale(1.07)}100%{opacity:1;transform:rotate(-14deg) scale(1)}}
+.dt-stamp.gray{border-color:#90A4AE;color:#CFD8DC;background:rgba(144,164,174,.16)}
+.dt-float{position:absolute;top:46%;left:50%;transform:translateX(-50%);font-size:21px;font-weight:900;color:#FFD740;
+  text-shadow:0 2px 0 rgba(0,0,0,.4);opacity:0;pointer-events:none;z-index:8}
+.dt-float.show{animation:dtFloat 1.15s ease-out}
+@keyframes dtFloat{0%{opacity:0;transform:translate(-50%,10px) scale(.6)}22%{opacity:1;transform:translate(-50%,-6px) scale(1.15)}
+  100%{opacity:0;transform:translate(-50%,-52px) scale(1)}}
+.dt-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;width:100%;max-width:322px;margin:9px auto 0}
+.dt-o{position:relative;border:none;border-radius:13px;padding:9px 4px 8px;font-size:27px;font-weight:900;color:#3E2723;cursor:pointer;
+  background:linear-gradient(180deg,#fff,#FFF3E0);box-shadow:0 4px 0 rgba(0,0,0,.28);font-family:inherit;line-height:1.15}
+.dt-o i{position:absolute;top:3px;left:5px;font-style:normal;font-size:10px;font-weight:900;color:rgba(62,39,35,.5)}
+.dt-o:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.28)}
+.dt-o.correct{background:linear-gradient(180deg,#B9F6CA,#69F0AE);animation:dtOk .4s}
+.dt-o.wrong{background:linear-gradient(180deg,#FFCDD2,#FF8A80);animation:dtNo .4s}
+.dt-o.dead{opacity:.26;text-decoration:line-through}
+.dt-o.reveal{outline:3px solid #FFEA00}
+@keyframes dtOk{0%{transform:scale(1)}45%{transform:scale(1.16)}100%{transform:scale(1)}}
+@keyframes dtNo{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}60%{transform:translateX(6px)}}
+.dt-chain{width:100%;max-width:322px;margin:7px auto 0;min-height:24px;text-align:center;font-size:15px;font-weight:900;
+  color:#B3E5FC;letter-spacing:2px;background:rgba(0,0,0,.24);border-radius:11px;padding:3px 6px;display:none}
+.dt-chain.show{display:block;animation:dtGate .22s}
+@keyframes dtGate{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:scale(1)}}
+.dt-btns{display:flex;gap:6px;width:100%;max-width:322px;margin:8px auto 0}
+.dt-act{flex:1;border:none;border-radius:12px;padding:9px 2px;font-size:11px;font-weight:900;color:#fff;cursor:pointer;
+  font-family:inherit;box-shadow:0 3px 0 rgba(0,0,0,.25);white-space:nowrap}
+.dt-act:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.dt-act.b{background:linear-gradient(180deg,#4FC3F7,#0277BD)}
+.dt-act.g{background:linear-gradient(180deg,#9CCC65,#558B2F)}
+.dt-act.o{background:linear-gradient(180deg,#FFB74D,#EF6C00)}
+.dt-act:disabled{opacity:.4}
+.dt-judge{width:100%;max-width:322px;margin:7px auto 0;min-height:22px;text-align:center;font-size:13px;font-weight:900;
+  color:#FFEA00;opacity:0}
+.dt-judge.show{opacity:1;animation:dtJudge .35s}
+@keyframes dtJudge{from{transform:translateY(7px) scale(.94)}to{transform:none}}
+.dt-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);
+  font-weight:700;line-height:1.6}
+.dt-shake{animation:dtShake .38s}
+@keyframes dtShake{0%,100%{transform:translate(0)}20%{transform:translate(-5px,2px)}40%{transform:translate(5px,-2px)}
+  60%{transform:translate(-4px,-1px)}80%{transform:translate(4px,1px)}}
+@media(max-width:420px){.dt-hud,.dt-cases,.dt-stage,.dt-opts,.dt-chain,.dt-btns,.dt-judge,.dt-tip{max-width:300px}}
 </style>
 
 </head>
@@ -1861,6 +1926,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('claw')">
       <div class="icon">🧸</div>
       <div class="info"><h3>笔顺娃娃机</h3><p>夹中娃娃考笔顺，答对才落袋！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('detect')">
+      <div class="icon">🧐</div>
+      <div class="info"><h3>笔顺神探</h3><p>只露几笔，从形近字里认出它！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('plinko')">
       <div class="icon">🔮</div>
@@ -3406,6 +3475,68 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-detect">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="dtScoreTxt">🧐 0 分</span><span id="dtLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="dtHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🧐 一个<b>藏起来的字</b>只露出前几笔：看笔画的形状和走向，从下面几个<b>长得很像的字</b>里认出它！线索要得越多，这一案越不值钱。</div>
+  <div class="dt-cases">第 <em id="dtCaseTxt">1 / 3</em> 案<span id="dtHideTxt">🫥 还藏 4 笔</span><span id="dtBookTxt">📓 手册 0 字</span></div>
+  <div class="dt-hud">
+    <span id="dtValTxt">💰 本案 82</span>
+    <span id="dtClueTxt">🔎 线索 0</span>
+    <span id="dtComboTxt">🔥 连击 0</span>
+    <span id="dtBestTxt">🥇 纪录 0</span>
+  </div>
+  <div class="dt-hearts" id="dtHeartsEl"><i>❤️</i><i>❤️</i><i>❤️</i></div>
+  <div class="dt-stage">
+    <canvas id="dtCanvas" width="316" height="316"></canvas>
+    <div class="dt-stamp" id="dtStampEl">结案</div>
+    <div class="dt-banner" id="dtBannerEl"></div>
+    <div class="dt-float" id="dtFloatEl"></div>
+  </div>
+  <div class="dt-opts" id="dtOpts"></div>
+  <div class="dt-chain" id="dtChainEl"></div>
+  <div class="dt-btns">
+    <button class="dt-act" id="dtStrokeBtn" onclick="dtClue('s')">🖌 再露一笔</button>
+    <button class="dt-act b" id="dtCountBtn" onclick="dtClue('n')">📏 共几笔</button>
+    <button class="dt-act g" id="dtDirBtn" onclick="dtClue('d')">🧭 方向串</button>
+    <button class="dt-act o" id="dtCutBtn" onclick="dtCut()">🔍 排除 ×2</button>
+    <button class="dt-act o" onclick="dtEnd('🏁 收工')">🏁 收工</button>
+  </div>
+  <div class="dt-judge" id="dtJudgeLine"></div>
+  <div class="dt-tip" id="dtTip"><b>1-6</b> 选字 · <b>S</b> 露一笔 · <b>N</b> 数笔画 · <b>D</b> 方向串 · <b>H</b> 排除</div>
+</div>
+<div class="screen" id="screen-detect-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="dtResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="dtResultEmoji">🧐</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="dtResultTitle">神探收工！</h2>
+    <p style="font-size:16px;opacity:.8" id="dtResultSubtitle">破了好几桩案子</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="dtResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4FC3F7" id="dtResultCases">0</div><div style="font-size:13px;opacity:.7">破案数</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="dtResultLv">1</div><div style="font-size:13px;opacity:.7">通到第几关</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#69F0AE" id="dtResultEasy">0</div><div style="font-size:13px;opacity:.7">一眼看穿</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="dtResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="dtResultAll">累计破案 0 · 一眼看穿 0 · 共玩 0 局</div>
+      <div style="font-size:12px;opacity:.85;margin-top:8px" id="dtResultBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="dtStart()">🧐 再破一案</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-plinko">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -4227,6 +4358,7 @@ function enterMode(mode){
   else if(mode==='pipe')piStart();
   else if(mode==='plinko')plStart();
   else if(mode==='claw')clStart();
+  else if(mode==='detect')dtStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -18313,6 +18445,478 @@ document.addEventListener('keydown',function(e){
   else if(k==='j'||k==='J'){e.preventDefault();clStrike()}
   else if(k==='n'||k==='N'){e.preventDefault();clAimAt()}
   else if(k==='t'||k==='T'){e.preventDefault();clSwap()}
+});
+/* ===== 笔顺神探：只露前几笔，从形近字里认出它是谁 ===== */
+const DT_W=316,DT_H=316,DT_PAD=24,DT_M=40;
+const DT_STEP=[1,.74,.55,.4,.3,.24];
+const dtFeatCache={},dtMaskCache={};
+let dtPoolCache=null,dtPoolKey='',dtMaskCv=null;
+let dt={gen:0,timers:[],raf:0,lv:1,score:0,levels:0,cases:0,lvCases:0,easy:0,miss:0,answers:0,
+  over:false,ended:false,busy:false,hearts:3,combo:0,comboMax:0,cuts:2,
+  ch:null,d:null,n:0,shown:1,clues:0,val:0,count:false,chain:false,inBook:false,done:false,
+  parts:[],tLast:0,book:[]};
+function dtGet(k){return parseInt(localStorage.getItem(k)||'0',10)}
+function dtAdd(k,n){localStorage.setItem(k,String(dtGet(k)+(n||1)))}
+function dtSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function dtNote(t){const e=document.getElementById('dtTip');if(e)e.innerHTML=t}
+function dtIcon(code){const d=DIRS.find(function(x){return x.code===code});return d?d.icon:code}
+function dtBookLoad(){try{const a=JSON.parse(localStorage.getItem('hz_dt_book')||'[]');return Array.isArray(a)?a:[]}catch(e){return[]}}
+function dtBookSave(){localStorage.setItem('hz_dt_book',JSON.stringify(dt.book.slice(0,12)))}
+function dtJudge(t,color){
+  const e=document.getElementById('dtJudgeLine');if(!e)return;
+  e.innerHTML=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function dtBanner(t){
+  const e=document.getElementById('dtBannerEl');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function dtShake(){
+  const e=document.querySelector('#screen-detect .dt-stage');if(!e)return;
+  e.classList.remove('dt-shake');void e.offsetWidth;e.classList.add('dt-shake');
+}
+function dtStamp(t,gray){
+  const e=document.getElementById('dtStampEl');if(!e)return;
+  if(!t){e.classList.remove('show');return}
+  e.textContent=t;e.classList.remove('show');
+  e.classList.toggle('gray',!!gray);
+  void e.offsetWidth;e.classList.add('show');
+}
+function dtFloat(t,color){
+  const e=document.getElementById('dtFloatEl');if(!e)return;
+  e.textContent=t;e.style.color=color||'#FFD740';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function dtT(fn,ms){
+  const g=dt.gen;
+  const id=setTimeout(function(){
+    const ix=dt.timers.indexOf(id);if(ix>=0)dt.timers.splice(ix,1);
+    if(g!==dt.gen)return;fn();
+  },ms);
+  dt.timers.push(id);return id;
+}
+function dtStop(){dt.timers.forEach(function(id){clearTimeout(id)});dt.timers=[]}
+function dtKill(){dt.gen++;dt.busy=false;dtStop();if(dt.raf){cancelAnimationFrame(dt.raf);dt.raf=0}}
+function dtBoom(x,y,col,n){
+  for(let i=0;i<(n||16);i++){
+    const a=Math.random()*Math.PI*2,v=70+Math.random()*160;
+    dt.parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-90,r:1.6+Math.random()*2.8,t:0,life:.5+Math.random()*.45,c:col});
+  }
+  dtFx();
+}
+function dtFx(){
+  if(dt.raf)return;
+  function step(ts){
+    const dts=Math.min(.05,(ts-(dt.tLast||ts))/1000);dt.tLast=ts;
+    for(let i=dt.parts.length-1;i>=0;i--){
+      const p=dt.parts[i];p.t+=dts;
+      if(p.t>=p.life){dt.parts.splice(i,1);continue}
+      p.vy+=560*dts;p.x+=p.vx*dts;p.y+=p.vy*dts;
+    }
+    dtDraw();
+    if(dt.parts.length&&dt.tLast){dt.raf=requestAnimationFrame(step)}else{dt.raf=0;dt.tLast=0}
+  }
+  dt.raf=requestAnimationFrame(step);
+}
+/* ---------- 关卡与得分 ---------- */
+function dtCfg(l){
+  l=Math.max(1,Math.min(12,l||1));
+  return {need:Math.min(5,3+Math.floor((l-1)/3)),cand:Math.min(6,4+Math.floor((l-1)/4)),
+    base:70+l*12,first:l<=3?2:1};
+}
+function dtVal(){
+  const C=dtCfg(dt.lv);
+  return Math.max(12,Math.round(C.base*DT_STEP[Math.min(DT_STEP.length-1,dt.clues)]));
+}
+function dtGain(){
+  const cm=Math.min(3,1+0.22*Math.max(0,dt.combo-1));
+  return Math.round(dt.val*(dt.clues?1:1.35)*cm);
+}
+function dtSc(d){dt.score=Math.max(0,dt.score+d)}
+/* ---------- 字形相似度：从 medians 算特征，挑最像的字当干扰项 ---------- */
+function dtShuffle(a){
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}
+  return a;
+}
+function dtPool(){
+  const key=currentGrade+'|'+Object.keys(strokeTypes).length;
+  if(dtPoolCache&&dtPoolKey===key)return dtPoolCache;
+  dtPoolKey=key;
+  const seen={};
+  let pool=CHARS.filter(function(c){const t=strokeTypes[c];return t&&t.length>=3&&t.length<=9&&!seen[c]&&(seen[c]=1)});
+  if(currentGrade!=='all'){
+    const g=CHARS_BY_GRADE[currentGrade]||[];
+    const f=pool.filter(function(c){return g.indexOf(c)>=0});
+    if(f.length>=10)pool=f;
+  }
+  dtPoolCache=pool;
+  return pool;
+}
+function dtMask(ch){
+  if(dtMaskCache[ch])return dtMaskCache[ch];
+  const d=charDataCache[ch];
+  if(!d||!d.strokes||!d.strokes.length)return null;
+  if(!dtMaskCv){dtMaskCv=document.createElement('canvas');dtMaskCv.width=DT_M;dtMaskCv.height=DT_M}
+  const c=dtMaskCv.getContext('2d');
+  c.clearRect(0,0,DT_M,DT_M);
+  c.save();c.translate(0,DT_M);c.scale(DT_M/1024,-DT_M/1024);
+  for(let i=0;i<d.strokes.length;i++)c.fill(new Path2D(d.strokes[i]));
+  c.restore();
+  const im=c.getImageData(0,0,DT_M,DT_M).data;
+  const m=new Uint8Array(DT_M*DT_M);
+  for(let i=0;i<m.length;i++)m[i]=im[i*4+3]>60?1:0;
+  dtMaskCache[ch]=m;return m;
+}
+function dtIoU(a,b){
+  let inter=0,un=0;
+  for(let i=0;i<a.length;i++){
+    const x=a[i],y=b[i];
+    if(x&&y)inter++;
+    if(x||y)un++;
+  }
+  return un?inter/un:0;
+}
+function dtLcs(a,b){
+  const n=a.length,m=b.length;
+  let prev=new Array(m+1).fill(0),cur=new Array(m+1).fill(0);
+  for(let i=1;i<=n;i++){
+    cur=new Array(m+1).fill(0);
+    for(let j=1;j<=m;j++)cur[j]=a[i-1]===b[j-1]?prev[j-1]+1:Math.max(prev[j],cur[j-1]);
+    prev=cur;
+  }
+  return prev[m];
+}
+function dtFeat(ch){
+  if(dtFeatCache[ch])return dtFeatCache[ch];
+  const d=charDataCache[ch];
+  if(!d||!d.medians||!d.medians.length)return null;
+  const m=d.medians;
+  const f={n:m.length,dirs:strokeTypes[ch]||m.map(function(x){return detectDir(x)}),m:dtMask(ch)};
+  dtFeatCache[ch]=f;return f;
+}
+function dtSim(a,b){
+  if(!a||!b)return 0;
+  const dn=1-Math.min(3,Math.abs(a.n-b.n))/3;
+  const lcs=dtLcs(a.dirs,b.dirs)/Math.max(a.n,b.n);
+  const iou=a.m&&b.m?dtIoU(a.m,b.m):0;
+  return iou*.5+dn*.2+lcs*.3;
+}
+async function dtEnsure(n){
+  const want=Math.max(30,(n||4)+10);
+  let guard=0;
+  while(dtPool().length<want&&guard++<30){
+    const miss=CHARS.filter(function(c){return !strokeTypes[c]});
+    if(!miss.length)break;
+    await Promise.all(dtShuffle(miss.slice()).slice(0,12).map(async function(c){
+      const d=await loadCharData(c);
+      if(d&&!strokeTypes[c])strokeTypes[c]=d.medians.map(function(m){return detectDir(m)});
+    }));
+  }
+  return dtPool();
+}
+async function dtTarget(){
+  const P=dtPool();
+  if(!P.length)return null;
+  for(let i=0;i<dt.book.length;i++){
+    const ch=dt.book[i];
+    if(P.indexOf(ch)>=0&&charDataCache[ch]&&strokeTypes[ch])return ch;
+  }
+  const lo=3+Math.min(5,Math.floor(dt.lv/2));
+  const near=P.filter(function(c){const n=strokeTypes[c].length;return n>=lo&&n<=lo+3});
+  const arr=near.length>=8?near:P;
+  return arr[Math.floor(Math.random()*arr.length)];
+}
+async function dtOptions(ch,n){
+  const fa=dtFeat(ch);
+  const rest=dtPool().filter(function(c){return c!==ch&&dtFeat(c)});
+  if(!fa||!fa.m)return dtShuffle([ch].concat(dtShuffle(rest.slice()).slice(0,n-1)));
+  const scored=rest.map(function(c){return[c,dtSim(fa,dtFeat(c))]}).sort(function(x,y){return y[1]-x[1]});
+  const cut=Math.max(10,n*4);
+  let near=scored.slice(0,cut),far=scored.slice(cut);
+  if(dt.lv>=4){
+    const same=near.filter(function(x){return dtFeat(x[0]).n===fa.n});
+    if(same.length>=n-1)near=same;
+  }
+  const picks=dtShuffle(near.slice()).slice(0,Math.max(0,n-1));
+  if(dt.lv<=3&&far.length)picks[picks.length-1]=far[Math.floor(Math.random()*far.length)];
+  return dtShuffle([ch].concat(picks.map(function(x){return x[0]})));
+}
+/* ---------- 画布 ---------- */
+function dtCtx(){const cv=document.getElementById('dtCanvas');return cv?cv.getContext('2d'):null}
+function dtDraw(){
+  const c=dtCtx();if(!c)return;
+  c.clearRect(0,0,DT_W,DT_H);
+  const box=DT_W-DT_PAD*2,x0=DT_PAD,y0=DT_PAD;
+  c.strokeStyle='rgba(255,255,255,.15)';c.lineWidth=1;c.setLineDash([5,4]);
+  c.beginPath();
+  c.moveTo(x0+box/2,y0);c.lineTo(x0+box/2,y0+box);
+  c.moveTo(x0,y0+box/2);c.lineTo(x0+box,y0+box/2);
+  c.moveTo(x0,y0);c.lineTo(x0+box,y0+box);
+  c.moveTo(x0+box,y0);c.lineTo(x0,y0+box);
+  c.stroke();c.setLineDash([]);
+  c.strokeStyle='rgba(255,255,255,.4)';c.lineWidth=2;c.strokeRect(x0,y0,box,box);
+  if(dt.d){
+    c.save();c.translate(x0,y0+box);c.scale(box/1024,-box/1024);
+    for(let i=0;i<dt.shown&&i<dt.n;i++){
+      const hot=(i===dt.shown-1)&&!dt.done;
+      c.fillStyle=hot?'#FFC107':(dt.done?'#E8F5E9':'#FFFFFF');
+      c.shadowColor=hot?'rgba(255,193,7,.85)':'rgba(0,0,0,.4)';
+      c.shadowBlur=hot?12:4;
+      c.fill(new Path2D(dt.d.strokes[i]));
+    }
+    c.shadowBlur=0;c.restore();
+    const dirs=strokeTypes[dt.ch];
+    if(dirs&&dt.shown>0&&dt.shown<=dt.n){
+      const m=dt.d.medians[dt.shown-1];
+      if(m){
+        const e=m[m.length-1];
+        const px=Math.max(DT_PAD+12,Math.min(DT_W-DT_PAD-12,x0+e[0]/1024*box));
+        const py=Math.max(DT_PAD+12,Math.min(DT_H-DT_PAD-12,y0+box-e[1]/1024*box));
+        c.fillStyle='rgba(0,0,0,.6)';c.beginPath();
+        if(c.roundRect)c.roundRect(px-12,py-12,24,24,8);else c.rect(px-12,py-12,24,24);
+        c.fill();
+        c.textAlign='center';c.font='14px system-ui,sans-serif';
+        c.fillStyle='#FFEA00';c.fillText(dtIcon(dirs[dt.shown-1]),px,py+5);
+      }
+    }
+  }else{
+    c.textAlign='center';c.font='900 34px system-ui,sans-serif';c.fillStyle='rgba(255,255,255,.55)';
+    c.fillText('⋯',DT_W/2,DT_H/2+12);
+  }
+  for(let i=0;i<dt.parts.length;i++){
+    const p=dt.parts[i];
+    c.globalAlpha=Math.max(0,1-p.t/p.life);
+    c.fillStyle=p.c;c.beginPath();c.arc(p.x,p.y,p.r,0,Math.PI*2);c.fill();
+  }
+  c.globalAlpha=1;
+}
+function dtShowChain(){
+  const e=document.getElementById('dtChainEl');if(!e)return;
+  const dirs=strokeTypes[dt.ch]||[];
+  e.textContent='🧭 '+dirs.map(dtIcon).join(' ');
+  e.classList.add('show');
+}
+/* ---------- 流程 ---------- */
+function dtOptBtns(){return Array.prototype.slice.call(document.getElementById('dtOpts').children)}
+function dtRenderOpts(list){
+  const box=document.getElementById('dtOpts');if(!box)return;
+  box.innerHTML='';
+  box.style.gridTemplateColumns='repeat('+(list.length>4?3:2)+',1fr)';
+  list.forEach(function(ch,i){
+    const b=document.createElement('button');
+    b.className='dt-o';b.dataset.ch=ch;
+    b.innerHTML='<i>'+(i+1)+'</i>'+ch;
+    b.onclick=function(){dtPick(b)};
+    box.appendChild(b);
+  });
+}
+function dtHud(){
+  const C=dtCfg(dt.lv);
+  dtSet('dtScoreTxt','🧐 '+dt.score+' 分');
+  dtSet('dtLvTxt','第 '+dt.lv+' 关');
+  dtSet('dtCaseTxt',(Math.min(dt.lvCases+1,C.need))+' / '+C.need);
+  dtSet('dtHideTxt',dt.count?('🫥 共 '+dt.n+' 笔 · 藏 '+Math.max(0,dt.n-dt.shown)+' 笔'):'🫥 还藏着看不见的笔画');
+  dtSet('dtBookTxt','📓 手册 '+dt.book.length+' 字');
+  dtSet('dtValTxt','💰 本案 '+dt.val);
+  dtSet('dtClueTxt','🔎 线索 '+dt.clues);
+  dtSet('dtComboTxt','🔥 连击 '+dt.combo);
+  dtSet('dtBestTxt','🥇 纪录 '+dtGet('hz_dt_best'));
+  const hs=document.getElementById('dtHeartsEl');
+  if(hs)Array.prototype.forEach.call(hs.children,function(el,i){el.classList.toggle('off',i>=dt.hearts)});
+  const sb=document.getElementById('dtStrokeBtn');if(sb)sb.disabled=dt.shown>=dt.n;
+  const nb=document.getElementById('dtCountBtn');if(nb)nb.disabled=dt.count;
+  const db=document.getElementById('dtDirBtn');if(db)db.disabled=dt.chain;
+  const cb=document.getElementById('dtCutBtn');
+  if(cb){cb.textContent='🔍 排除 ×'+dt.cuts;cb.disabled=dt.cuts<=0}
+}
+function dtMemo(ch){
+  if(dt.book.indexOf(ch)>=0)return;
+  dt.book.unshift(ch);dtBookSave();
+}
+function dtUnbook(ch){
+  const i=dt.book.indexOf(ch);
+  if(i>=0){dt.book.splice(i,1);dtBookSave()}
+}
+function dtFill(i){
+  if(dt.shown>=dt.n||dt.over){dtFinish();return}
+  dt.shown++;dtDraw();tone(500+i*55,.06);
+  dtT(function(){dtFill(i+1)},110);
+}
+function dtFinish(){
+  dtHud();
+  if(dt.inBook&&dt.clues<=1){
+    dtUnbook(dt.ch);dtSc(60);
+    dtJudge('📓 复仇成功！这个字从手册里划掉了 +60','#B9F6CA');
+  }
+  dtHud();
+  if(dt.lvCases>=dtCfg(dt.lv).need){dtLevelUp();return}
+  dtT(dtNext,1000);
+}
+async function dtNext(){
+  dtKill();
+  if(dt.over)return;
+  dt.busy=true;
+  const C=dtCfg(dt.lv);
+  await dtEnsure(C.cand);
+  const ch=await dtTarget();
+  const d=ch?charDataCache[ch]:null;
+  if(!d||!d.strokes||d.strokes.length<3){
+    dtJudge('📡 字库还没加载好，稍等一下再看下一案','#FFCC80');
+    dtT(dtNext,1400);return;
+  }
+  dt.ch=ch;dt.d=d;dt.n=d.strokes.length;
+  dt.shown=Math.max(1,Math.min(C.first,dt.n-1));
+  dt.clues=0;dt.count=false;dt.chain=false;dt.done=false;dt.busy=false;dt.val=dtVal();
+  dt.inBook=dt.book.indexOf(ch)>=0;
+  const list=await dtOptions(ch,C.cand);
+  dtRenderOpts(list);
+  const ce=document.getElementById('dtChainEl');if(ce)ce.classList.remove('show');
+  dtStamp('');
+  dtDraw();
+  dt.busy=false;dtHud();
+  dtJudge(dt.inBook?'📓 手册上的老对手又来啦，这次别看走眼':'🔎 这个字只露了 '+dt.shown+' 笔，它是谁？','#B3E5FC');
+  dtNote('<b>1-'+list.length+'</b> 选字 · <b>S</b> 露一笔 · <b>N</b> 数笔画 · <b>D</b> 方向串 · <b>H</b> 排除');
+}
+function dtRight(btn){
+  dt.busy=true;dt.done=true;dt.answers++;
+  btn.classList.add('correct');
+  const gain=dtGain();
+  dt.combo++;dt.comboMax=Math.max(dt.comboMax,dt.combo);
+  dtSc(gain);dt.cases++;dt.lvCases++;
+  if(!dt.clues)dt.easy++;
+  sndOk();
+  dtBoom(DT_W/2,DT_H*0.42,'#FFD740',18);
+  dtFloat('+'+gain);
+  dtStamp('结案');
+  if(dt.combo>=3)showComboEffect(dt.combo);
+  if(!dt.clues){
+    dtBanner('🧠 一眼看穿！');spawnConfetti();
+    dtJudge('🧠 一笔线索都没要就认出「'+dt.ch+'」了！','#FFEA00');
+  }else{
+    dtBanner(dt.ch+'！');
+    dtJudge('✅ 就是「'+dt.ch+'」· '+dt.n+' 笔 · +'+gain+' 分','#B9F6CA');
+  }
+  dtHud();
+  dtT(function(){dtFill(0)},420);
+}
+function dtWrong(btn){
+  dt.busy=true;dt.miss++;
+  btn.classList.add('wrong');btn.disabled=true;
+  dt.combo=0;dt.hearts--;dt.clues++;dt.val=dtVal();
+  dtMemo(dt.ch);
+  sndNo();dtShake();
+  dtStamp('');
+  dtJudge('❌ 不是「'+btn.dataset.ch+'」· 心 -1、本案掉到 '+dt.val+' 分，白送你一笔线索','#FF8A80');
+  dtHud();
+  dtT(function(){
+    btn.classList.remove('wrong');
+    if(dt.hearts<=0){dtEnd('💔 三颗心都用完啦');return}
+    if(dt.shown<dt.n)dt.shown++;
+    dt.busy=false;dtDraw();dtHud();
+  },820);
+}
+function dtPick(btn){
+  if(dt.busy||dt.over||dt.done)return;
+  if(!btn||btn.classList.contains('dead')||btn.disabled)return;
+  if(btn.dataset.ch===dt.ch)dtRight(btn);else dtWrong(btn);
+}
+function dtClue(kind){
+  if(dt.busy||dt.over||dt.done)return;
+  if(kind==='s'){
+    if(dt.shown>=dt.n){dtJudge('🖼 笔画已经全露出来啦','#FFE082');return}
+    dt.shown++;tone(660,.07);
+  }else if(kind==='n'){
+    if(dt.count){dtJudge('📏 笔画数已经说过啦','#FFE082');return}
+    dt.count=true;tone(720,.08);
+  }else{
+    if(dt.chain){dtJudge('🧭 方向串已经给过啦','#FFE082');return}
+    dt.chain=true;dtShowChain();tone(780,.09);
+  }
+  dt.clues++;dt.val=dtVal();
+  dtHud();dtDraw();
+}
+function dtCut(){
+  if(dt.busy||dt.over||dt.done)return;
+  if(dt.cuts<=0){dtJudge('🔍 这一关的排除用完啦','#FFE082');return}
+  const bad=dtOptBtns().filter(function(b){return !b.classList.contains('dead')&&b.dataset.ch!==dt.ch});
+  if(bad.length<2){dtJudge('🔍 候选没剩几个啦，不用排除','#FFE082');return}
+  dt.cuts--;dtSc(-8);
+  dtShuffle(bad.slice()).slice(0,2).forEach(function(b){b.classList.add('dead');b.disabled=true});
+  tone(520,.09);
+  dtJudge('🔍 划掉两个不像的（-8 分）','#B3E5FC');
+  dtHud();
+}
+function dtLevelUp(){
+  const gain=90+dt.lv*20+dt.hearts*25;
+  dtSc(gain);dt.levels++;
+  sndDone();spawnConfetti();
+  dtBanner('🎉 过关！');
+  dtJudge('🎉 第 '+dt.lv+' 关的案子全破了 · 奖励 +'+gain+' 分','#FFF176');
+  dtHud();
+  dtT(function(){
+    dt.lv=Math.min(12,dt.lv+1);
+    localStorage.setItem('hz_dt_lv',String(Math.max(dtGet('hz_dt_lv'),dt.lv)));
+    dt.lvCases=0;dt.hearts=Math.min(3,dt.hearts+1);dt.cuts=2;
+    dt.busy=false;dtNext();
+  },1500);
+}
+async function dtStart(){
+  showScreen('detect');
+  dtKill();
+  dt.lv=Math.max(1,Math.min(12,dtGet('hz_dt_lv')||1));
+  dt.score=0;dt.cases=0;dt.lvCases=0;dt.levels=0;dt.answers=0;dt.miss=0;dt.easy=0;
+  dt.combo=0;dt.comboMax=0;dt.hearts=3;dt.cuts=2;
+  dt.over=false;dt.ended=false;dt.busy=false;dt.parts=[];
+  dt.book=dtBookLoad();
+  await dtEnsure(dtCfg(dt.lv).cand);
+  dtNext();
+}
+function dtHelp(){
+  dtJudge('🧐 看清露出的每一笔的形状和走向，在长得很像的字里挑出真正的那一个','#B3E5FC');
+  dtNote('<b>1-6</b> 选字 · <b>S</b> 露一笔 · <b>N</b> 数笔画 · <b>D</b> 方向串 · <b>H</b> 排除');
+}
+function dtEnd(reason){
+  if(dt.ended)return;
+  dt.ended=true;dt.over=true;dt.busy=true;
+  dtKill();
+  const score=dt.score;
+  const best=Math.max(dtGet('hz_dt_best'),score);
+  localStorage.setItem('hz_dt_best',String(best));
+  localStorage.setItem('hz_dt_lv',String(Math.max(dtGet('hz_dt_lv'),dt.lv)));
+  localStorage.setItem('hz_dt_streak',String(Math.max(dtGet('hz_dt_streak'),dt.comboMax)));
+  dtAdd('hz_dt_games',1);dtAdd('hz_dt_cases',dt.cases);dtAdd('hz_dt_easy',dt.easy);
+  dtAdd('hz_dt_answers',dt.answers);dtAdd('hz_dt_miss',dt.miss);
+  dtBookSave();
+  const st=Math.max(2,Math.min(26,Math.round(score/18)+dt.levels*2));
+  addStars(st);
+  showScreen('detect-result');
+  dtSet('dtResultEmoji',dt.levels>=3?'🏆':(dt.easy>=4?'🧠':(dt.cases>=3?'🕵️':'🔎')));
+  dtSet('dtResultTitle',dt.levels>=3?'神探大师':(dt.easy>=4?'一眼就认出你':(dt.cases>=3?'破了不少案子':'差一点点就看出来了')));
+  dtSet('dtResultSubtitle',(reason||'')+' · 破了 '+dt.cases+' 案、猜错 '+dt.miss+' 次');
+  dtSet('dtResultScore',String(score));
+  dtSet('dtResultCases',String(dt.cases));
+  dtSet('dtResultLv',String(dt.lv));
+  dtSet('dtResultEasy',String(dt.easy));
+  dtSet('dtResultBest',String(best));
+  dtSet('dtResultStars','⭐ '+stars);
+  dtSet('dtResultAll','累计破案 '+dtGet('hz_dt_cases')+' · 一眼看穿 '+dtGet('hz_dt_easy')+
+    ' · 最高连击 '+dtGet('hz_dt_streak')+' · 共玩 '+dtGet('hz_dt_games')+' 局');
+  dtSet('dtResultBook',dt.book.length?('📓 侦探手册还记着：'+dt.book.join(' ')):
+    (dt.miss?'📓 手册空了，看错的字都认回来了':'📓 一次都没看错，手册空空的'));
+  sndReward();spawnConfetti();
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='detect'||dt.over)return;
+  const k=e.key;
+  if(k>='1'&&k<='6'){
+    const btn=dtOptBtns()[parseInt(k,10)-1];
+    if(btn){e.preventDefault();dtPick(btn)}
+    return;
+  }
+  if(k==='s'||k==='S'){e.preventDefault();dtClue('s')}
+  else if(k==='n'||k==='N'){e.preventDefault();dtClue('n')}
+  else if(k==='d'||k==='D'){e.preventDefault();dtClue('d')}
+  else if(k==='h'||k==='H'){e.preventDefault();dtCut()}
 });
 async function boot(){
   if(typeof HanziWriter==='undefined'){
