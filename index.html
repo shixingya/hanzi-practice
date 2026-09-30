@@ -1778,6 +1778,59 @@ button:active{transform:scale(.95)}
 @keyframes dtShake{0%,100%{transform:translate(0)}20%{transform:translate(-5px,2px)}40%{transform:translate(5px,-2px)}
   60%{transform:translate(-4px,-1px)}80%{transform:translate(4px,1px)}}
 @media(max-width:420px){.dt-hud,.dt-cases,.dt-stage,.dt-opts,.dt-chain,.dt-btns,.dt-judge,.dt-tip{max-width:300px}}
+/* ---------- 笔顺四子棋 ---------- */
+.c4-hud{width:100%;max-width:322px;margin:6px auto 0;display:flex;gap:7px;justify-content:center;flex-wrap:wrap;
+  font-size:11.5px;color:#fff;background:rgba(255,255,255,.1);border-radius:12px;padding:6px 8px}
+.c4-hud span{white-space:nowrap}
+.c4-stars i{font-style:normal;filter:grayscale(1);opacity:.35}
+.c4-stars i.on{filter:none;opacity:1}
+.c4-fuse{width:100%;max-width:322px;height:7px;margin:5px auto 0;background:rgba(255,255,255,.14);border-radius:5px;overflow:hidden}
+.c4-fuse i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#FFD740,#4ECDC4);border-radius:5px}
+.c4-fuse.hurry i{background:linear-gradient(90deg,#FF5252,#FF1744)}
+.c4-cols{width:100%;max-width:322px;margin:8px auto 0;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.c4-col{border:0;border-radius:9px;padding:5px 0 4px;background:#FFF8E7;color:#3A2A6B;font:inherit;cursor:pointer;
+  box-shadow:0 3px 0 rgba(0,0,0,.22);transition:transform .1s}
+.c4-col i{display:block;font-style:normal;font-size:8px;opacity:.45}
+.c4-col b{display:block;font-size:14.5px;line-height:1.15}
+.c4-col.dead{background:rgba(255,255,255,.12);color:rgba(255,255,255,.35);box-shadow:none;cursor:default}
+.c4-col.hit{background:#69F0AE}
+.c4-col.miss{background:#FF8A80}
+.c4-col.reveal{box-shadow:0 0 0 2px #FFD740,0 3px 0 rgba(0,0,0,.22)}
+.c4-col:not(.dead):active{transform:translateY(2px)}
+.c4-wrap{position:relative;width:100%;max-width:322px;margin:6px auto 0;padding:8px;border-radius:16px;
+  background:linear-gradient(180deg,#2A1E5C,#150F33);box-shadow:inset 0 0 22px rgba(0,0,0,.5)}
+.c4-board{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.c4-cell{position:relative;aspect-ratio:1;background:rgba(255,255,255,.07);border-radius:50%;overflow:hidden}
+.c4-d{position:absolute;inset:6%;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,#FFE29A,#FF9800 62%,#E65100);box-shadow:0 2px 6px rgba(0,0,0,.45)}
+.c4-d.p2{background:radial-gradient(circle at 32% 28%,#D1C4FF,#7C4DFF 62%,#311B92)}
+.c4-d.drop{animation:c4Drop .4s cubic-bezier(.34,1.36,.64,1)}
+@keyframes c4Drop{from{transform:translateY(var(--fy,-320%))}to{transform:translateY(0)}}
+.c4-d.win{animation:c4Win .65s infinite alternate}
+@keyframes c4Win{from{box-shadow:0 0 0 0 rgba(255,215,64,.95)}to{box-shadow:0 0 0 8px rgba(255,215,64,0)}}
+.c4-banner{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%) scale(.6);opacity:0;pointer-events:none;
+  font-size:25px;font-weight:900;color:#FFEA00;text-shadow:0 3px 12px rgba(0,0,0,.85);white-space:nowrap;z-index:6}
+.c4-banner.show{animation:c4Ban 1.5s}
+@keyframes c4Ban{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}
+  30%{transform:translate(-50%,-50%) scale(1)}78%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.05)}}
+.c4-float{position:absolute;left:50%;top:24%;transform:translateX(-50%);opacity:0;font-size:21px;font-weight:900;color:#B9F6CA;
+  text-shadow:0 2px 8px rgba(0,0,0,.75);pointer-events:none;z-index:6}
+.c4-float.show{animation:c4Float 1s}
+@keyframes c4Float{0%{opacity:0;transform:translate(-50%,6px)}22%{opacity:1}100%{opacity:0;transform:translate(-50%,-34px)}}
+.c4-btns{width:100%;max-width:322px;margin:9px auto 0;display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.c4-act{border:0;border-radius:11px;padding:8px 11px;font:inherit;font-size:12px;font-weight:700;color:#fff;cursor:pointer;
+  background:#7C4DFF;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.c4-act.b{background:#26A69A}.c4-act.g{background:#5C6BC0}.c4-act.o{background:#FB8C00}
+.c4-act:disabled{opacity:.42;cursor:default;box-shadow:none}
+.c4-judge{width:100%;max-width:322px;margin:7px auto 0;min-height:19px;text-align:center;font-size:12px;
+  color:#FFEA00;font-weight:700;line-height:1.6;opacity:0;transition:opacity .3s}
+.c4-judge.show{opacity:1;animation:dtJudge .35s}
+.c4-tip{width:100%;max-width:322px;margin:4px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);line-height:1.6}
+.c4-tip b{color:#FFD740}
+.c4-shake{animation:c4Shake .38s}
+@keyframes c4Shake{0%,100%{transform:translate(0)}20%{transform:translate(-6px,2px)}40%{transform:translate(6px,-2px)}
+  60%{transform:translate(-4px,-1px)}80%{transform:translate(4px,1px)}}
+@media(max-width:420px){.c4-hud,.c4-fuse,.c4-cols,.c4-wrap,.c4-btns,.c4-judge,.c4-tip{max-width:300px}}
 </style>
 
 </head>
@@ -1930,6 +1983,10 @@ button:active{transform:scale(.95)}
     <div class="mode-card" onclick="enterMode('detect')">
       <div class="icon">🧐</div>
       <div class="info"><h3>笔顺神探</h3><p>只露几笔，从形近字里认出它！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('four')">
+      <div class="icon">🔴</div>
+      <div class="info"><h3>笔顺四子棋</h3><p>正确答案占两列，答对才有得挑！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('plinko')">
       <div class="icon">🔮</div>
@@ -3537,6 +3594,68 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-four">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="c4ScoreTxt">🔴 0 分</span><span id="c4LvTxt">段位 1</span></div>
+    <button class="icon-btn" onclick="c4Help()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🔴 四个<b>答案挂在七列棋盘顶上</b>：正确答案占<b>两列</b>，答对了才能落子、还能挑要占哪一列；<b>答错那颗子直接归 AI</b>！谁先把四颗棋子连成一条线谁就赢。新手村的 AI 常常忘记堵你，段位越高它越狠。</div>
+  <div class="c4-hud">
+    <span id="c4QTxt">出题中…</span>
+    <span id="c4ComboTxt">🔥 连击 0</span>
+    <span id="c4WinsTxt">🏆 胜 0 · 负 0</span>
+    <span id="c4BestTxt">🥇 纪录 0</span>
+  </div>
+  <div class="c4-hud">
+    <span class="c4-stars">⭐ 挑战星<span id="c4StarsEl"><i>⭐</i><i>⭐</i><i>⭐</i></span></span>
+    <span id="c4ShieldTxt">🛡️ 护身：无</span>
+    <span id="c4TurnTxt">🟠 轮到你</span>
+  </div>
+  <div class="c4-fuse" id="c4FuseEl"><i id="c4FuseBar"></i></div>
+  <div class="c4-cols" id="c4Cols"></div>
+  <div class="c4-wrap">
+    <div class="c4-board" id="c4Board"></div>
+    <div class="c4-banner" id="c4BannerEl"></div>
+    <div class="c4-float" id="c4FloatEl"></div>
+  </div>
+  <div class="c4-btns">
+    <button class="c4-act b" id="c4HintBtn" onclick="c4Hint()">💡 提示 ×2</button>
+    <button class="c4-act g" id="c4ShufBtn" onclick="c4Shuf()">🔀 换题 ×2</button>
+    <button class="c4-act" id="c4UndoBtn" onclick="c4Undo()">⏪ 悔棋 ×1</button>
+    <button class="c4-act o" onclick="c4End('🏳️ 你掀了棋盘认输')">🏳️ 不下了</button>
+  </div>
+  <div class="c4-judge" id="c4JudgeLine"></div>
+  <div class="c4-tip" id="c4Tip"><b>1-7</b> 落子 · <b>H</b> 提示 · <b>T</b> 换题 · <b>U</b> 悔棋</div>
+</div>
+<div class="screen" id="screen-four-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="c4ResultStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:24px 20px;color:#fff">
+    <div style="font-size:64px;margin-bottom:12px" id="c4ResultEmoji">🔴</div>
+    <h2 style="font-size:28px;margin-bottom:8px" id="c4ResultTitle">棋局结束</h2>
+    <p style="font-size:16px;opacity:.8" id="c4ResultSubtitle">赢了几盘</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:#fff">
+      <div><div style="font-size:32px;font-weight:bold;color:#FFD700" id="c4ResultScore">0</div><div style="font-size:13px;opacity:.7">本局得分</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#69F0AE" id="c4ResultWins">0</div><div style="font-size:13px;opacity:.7">赢下几盘</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#FF9800" id="c4ResultLv">1</div><div style="font-size:13px;opacity:.7">最高段位</div></div>
+      <div><div style="font-size:32px;font-weight:bold;color:#4FC3F7" id="c4ResultAns">0</div><div style="font-size:13px;opacity:.7">答对题数</div></div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:6px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="c4ResultBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="c4ResultAll">累计胜 0 · 最长连击 0 · 共玩 0 场</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="c4Start()">🔴 再下一盘</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-plinko">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -4359,6 +4478,7 @@ function enterMode(mode){
   else if(mode==='plinko')plStart();
   else if(mode==='claw')clStart();
   else if(mode==='detect')dtStart();
+  else if(mode==='four')c4Start();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -18917,6 +19037,499 @@ document.addEventListener('keydown',function(e){
   else if(k==='n'||k==='N'){e.preventDefault();dtClue('n')}
   else if(k==='d'||k==='D'){e.preventDefault();dtClue('d')}
   else if(k==='h'||k==='H'){e.preventDefault();dtCut()}
+});
+/* ================= 笔顺四子棋 ================= */
+const C4_COLS=7,C4_ROWS=6;
+const C4_RANKS=['','新手村','会下啦','三连手','堵路者','四连高手','读盘人','半子先生','棋坛小神童'];
+let c4PoolCache=null,c4PoolKey='';
+let c4={gen:0,fuseId:0,lv:1,score:0,wins:0,losses:0,draws:0,boards:0,answers:0,miss:0,slow:0,
+  over:false,ended:false,settled:false,busy:false,stars:3,combo:0,comboMax:0,hints:2,shufs:2,undos:1,
+  ch:'',n:0,kind:'d',idx:0,opts:[],cols:[],ansIdx:0,okIdx:[0,1],dead:{},board:[],turn:'p',
+  fuseMs:9000,fuseLeft:9000,lastTs:0,tickAt:0,snaps:[],line:null};
+function c4Get(k){return parseInt(localStorage.getItem(k)||'0',10)}
+function c4Add(k,n){localStorage.setItem(k,String(c4Get(k)+(n||1)))}
+function c4Set(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function c4T(fn,ms){const g=c4.gen;setTimeout(function(){if(g===c4.gen&&currentMode==='four'&&!c4.over)fn()},ms)}
+function c4Kill(){c4.gen++;if(c4.fuseId){clearInterval(c4.fuseId);c4.fuseId=0}}
+function c4Mix(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function c4Cfg(l){
+  l=Math.max(1,Math.min(8,l||1));
+  return {fuse:Math.max(5200,11000-l*750),mistake:Math.max(.10,.45-l*.05),
+    block:Math.min(.78,.20+l*.12),
+    think:Math.max(420,1000-l*70),rank:C4_RANKS[l]};
+}
+function c4Val(){return Math.round((14+c4.lv*3)*(1+Math.min(1.5,c4.combo*0.12)))}
+function c4Sc(d){c4.score=Math.max(0,c4.score+d)}
+function c4Note(t){const e=document.getElementById('c4Tip');if(e)e.innerHTML=t}
+function c4D(code){const d=DIRS.find(function(x){return x.code===code});return d?d.icon:code}
+/* ---------- 字池与出题 ---------- */
+function c4Pool(){
+  const key=currentGrade+'|'+Object.keys(strokeTypes).length;
+  if(c4PoolCache&&c4PoolKey===key)return c4PoolCache;
+  c4PoolKey=key;
+  const seen={},out=[];
+  CHARS.forEach(function(ch){
+    if(seen[ch])return;
+    const t=strokeTypes[ch];
+    if(!t||t.length<3||t.length>9)return;
+    seen[ch]=1;out.push(ch);
+  });
+  c4PoolCache=out;return out;
+}
+async function c4Ensure(){
+  let guard=0;
+  while(c4Pool().length<24&&guard++<20){
+    const miss=CHARS.filter(function(c){return !strokeTypes[c]});
+    if(!miss.length)break;
+    await Promise.all(c4Mix(miss.slice()).slice(0,12).map(async function(c){
+      const d=await loadCharData(c);
+      if(d&&!strokeTypes[c])strokeTypes[c]=d.medians.map(function(m){return detectDir(m)});
+    }));
+  }
+  return c4Pool();
+}
+async function c4Ask(){
+  await c4Ensure();
+  const P=c4Pool();
+  if(!P.length){c4Judge('📡 字库还没加载好，稍等一下','#FFCC80');c4T(c4Ask,1200);return}
+  const ch=P[Math.floor(Math.random()*P.length)];
+  const dirs=strokeTypes[ch];
+  c4.ch=ch;c4.n=dirs.length;c4.dead={};c4.line=null;
+  const idx=Math.floor(Math.random()*dirs.length);
+  c4.idx=idx;
+  if(Math.random()<0.5){
+    const others=c4Mix(DIRS.map(function(d){return d.code}).filter(function(c){return c!==dirs[idx]})).slice(0,2);
+    c4.kind='d';
+    const right={v:dirs[idx],label:c4D(dirs[idx]),ok:true};
+    c4.opts=c4Mix([right,{v:dirs[idx],label:c4D(dirs[idx]),ok:true}].concat(
+      others.map(function(c){return{v:c,label:c4D(c),ok:false}})));
+  }else{
+    const nums={};
+    while(Object.keys(nums).length<2){
+      const v=c4.n+Math.floor(Math.random()*7)-3;
+      if(v>=1&&v<=16&&v!==c4.n)nums[v]=1;
+    }
+    c4.kind='n';
+    c4.opts=c4Mix([{v:c4.n,label:String(c4.n),ok:true},{v:c4.n,label:String(c4.n),ok:true}].concat(
+      Object.keys(nums).map(Number).map(function(v){return{v:v,label:String(v),ok:false}})));
+  }
+  const cols=c4Mix([0,1,2,3,4,5,6]).slice(0,4).sort(function(a,b){return a-b});
+  c4.cols=cols;
+  c4.okIdx=c4.opts.map(function(o,i){return o.ok?i:-1}).filter(function(i){return i>=0});
+  c4.ansIdx=c4.okIdx[0];
+  c4.snaps.push(c4.board.slice());
+  if(c4.snaps.length>6)c4.snaps.shift();
+  c4.turn='p';c4.busy=false;
+  c4RenderCols();c4Hud();
+  c4StartFuse();
+  const q=c4.kind==='d'?('「'+ch+'」的第 '+(idx+1)+' 笔往哪写？'):('「'+ch+'」一共有几笔？');
+  c4Judge('🟠 '+q+' 正确答案挂在两列上，挑你想落的那一列','#B3E5FC');
+}
+/* ---------- 棋盘 ---------- */
+function c4Build(){
+  const b=document.getElementById('c4Board');if(!b)return;
+  b.innerHTML='';
+  for(let i=0;i<C4_COLS*C4_ROWS;i++){
+    const c=document.createElement('div');
+    c.className='c4-cell';c.dataset.i=String(i);
+    c.onclick=function(){c4Play(i%C4_COLS)};
+    b.appendChild(c);
+  }
+}
+function c4Paint(hot){
+  const b=document.getElementById('c4Board');if(!b)return;
+  const cells=b.children;
+  for(let i=0;i<cells.length;i++){
+    const w=c4.board[i],el=cells[i];
+    el.innerHTML='';
+    if(!w)continue;
+    const d=document.createElement('div');
+    d.className='c4-d '+(w===2?'p2':'p1');
+    if(i===hot){
+      const row=Math.floor(i/C4_COLS);
+      d.style.setProperty('--fy',(-(row+1)*128)+'%');
+      d.classList.add('drop');
+    }
+    if(c4.line&&c4.line.indexOf(i)>=0)d.classList.add('win');
+    el.appendChild(d);
+  }
+}
+function c4Empty(col){
+  for(let r=C4_ROWS-1;r>=0;r--)if(!c4.board[r*C4_COLS+col])return r;
+  return -1;
+}
+function c4Full(){return c4.board.every(function(v){return v})}
+function c4Find(b,who){
+  const at=function(r,c){return(r<0||c<0||r>=C4_ROWS||c>=C4_COLS)?0:b[r*C4_COLS+c]};
+  const D=[[0,1],[1,0],[1,1],[1,-1]];
+  for(let r=0;r<C4_ROWS;r++)for(let c=0;c<C4_COLS;c++){
+    if(at(r,c)!==who)continue;
+    for(let k=0;k<4;k++){
+      const line=[],dr=D[k][0],dc=D[k][1];
+      for(let t=0;t<4;t++){
+        const rr=r+dr*t,cc=c+dc*t;
+        if(at(rr,cc)!==who)break;
+        line.push(rr*C4_COLS+cc);
+      }
+      if(line.length===4)return line;
+    }
+  }
+  return null;
+}
+function c4Drop(col,who){
+  const r=c4Empty(col);
+  if(r<0)return -1;
+  c4.board[r*C4_COLS+col]=who;
+  c4Paint(r*C4_COLS+col);
+  return r;
+}
+function c4RenderCols(){
+  const box=document.getElementById('c4Cols');if(!box)return;
+  box.innerHTML='';
+  for(let col=0;col<C4_COLS;col++){
+    const oi=c4.cols.indexOf(col);
+    const live=oi>=0&&!c4.dead[col];
+    const btn=document.createElement('button');
+    btn.className='c4-col';btn.dataset.col=String(col);
+    if(!live)btn.classList.add('dead');
+    btn.innerHTML='<i>'+(col+1)+'</i><b>'+(live?c4.opts[oi].label:'·')+'</b>';
+    btn.onclick=function(){c4Play(col)};
+    box.appendChild(btn);
+  }
+}
+function c4Chip(col){
+  const box=document.getElementById('c4Cols');
+  return box?box.children[col]:null;
+}
+/* ---------- 回合 ---------- */
+function c4Play(col){
+  if(c4.busy||c4.over||c4.turn!=='p')return;
+  if(c4.dead[col]){c4Judge('🚫 这一列被划掉啦','#FFE082');return}
+  const oi=c4.cols.indexOf(col);
+  if(oi<0){c4Judge('💤 这一列今天没挂答案，点一个亮着的列','#FFE082');return}
+  c4StopFuse();
+  c4.busy=true;
+  const chip=c4Chip(col);
+  if(c4.opts[oi].ok)c4Good(col,chip);else c4Bad(col,chip);
+}
+function c4Good(col,chip){
+  c4.answers++;c4.combo++;c4.comboMax=Math.max(c4.comboMax,c4.combo);
+  const gain=c4Val();
+  c4Sc(gain);
+  if(chip)chip.classList.add('hit');
+  sndOk();
+  if(c4.combo>=3)showComboEffect(c4.combo);
+  c4Drop(col,1);
+  c4Float('+'+gain);
+  let line=c4Find(c4.board,1);
+  if(line){c4WinBoard(line);return}
+  const twin=c4Twin(col);
+  let twinCol=-1;
+  if(c4comboDouble()&&twin>=0&&c4Empty(twin)>=0){
+    twinCol=twin;
+    c4Drop(twinCol,1);
+    c4Banner('👥 连击双子！');
+    line=c4Find(c4.board,1);
+    if(line){c4WinBoard(line);return}
+  }
+  if(c4Full()){c4DrawBoard();return}
+  c4Judge('✅ 就是这一列！你的子落进第 '+(col+1)+' 列'+(twinCol>=0?'，双子白赚第 '+(twinCol+1)+' 列':''),'#B9F6CA');
+  c4Hud();
+  c4T(c4Ai,560);
+}
+function c4Twin(col){
+  const o=c4.okIdx.map(function(i){return c4.cols[i]}).find(function(c){return c!==col&&!c4.dead[c]});
+  return o===undefined?-1:o;
+}
+function c4Bad(col,chip){
+  const shield=c4comboShield();
+  c4.miss++;c4.combo=0;
+  if(chip)chip.classList.add('miss');
+  c4.okIdx.forEach(function(i){const el=c4Chip(c4.cols[i]);if(el)el.classList.add('reveal')});
+  sndNo();c4Shake();
+  const tip=c4.kind==='d'
+    ?('「'+c4.ch+'」的第 '+(c4.idx+1)+' 笔是 '+c4.opts[c4.ansIdx].label+' '+
+      (DIRS.find(function(d){return d.code===c4.opts[c4.ansIdx].v})||{label:''}).label)
+    :('「'+c4.ch+'」其实有 '+c4.n+' 笔');
+  if(shield){
+    c4Judge('❌ '+tip+' —— 🛡️ 护身挡下了，AI 没捡到子（连击清零）','#FFD54F');
+    c4Hud();
+    c4T(c4Ask,1100);
+    return;
+  }
+  c4Judge('❌ '+tip+' —— 这颗子白送给 AI 了','#FF8A80');
+  c4T(function(){
+    const r=c4Drop(col,2);
+    const line=r>=0?c4Find(c4.board,2):null;
+    if(line){c4LoseBoard(line);return}
+    if(c4Full()){c4DrawBoard();return}
+    c4Hud();
+    c4T(c4Ask,420);
+  },420);
+}
+function c4Ai(){
+  if(c4.over)return;
+  c4.turn='ai';c4Hud();
+  const C=c4Cfg(c4.lv);
+  c4T(function(){
+    const col=c4AiPick();
+    if(col<0){c4DrawBoard();return}
+    c4Drop(col,2);
+    const line=c4Find(c4.board,2);
+    if(line){c4LoseBoard(line);return}
+    if(c4Full()){c4DrawBoard();return}
+    c4Judge('🟣 AI 落到第 '+(col+1)+' 列 —— 该你了','#CE93D8');
+    c4T(c4Ask,340);
+  },C.think);
+}
+function c4AiPick(){
+  const C=c4Cfg(c4.lv);
+  const legal=[];
+  for(let col=0;col<C4_COLS;col++)if(c4Empty(col)>=0)legal.push(col);
+  if(!legal.length)return -1;
+  if(Math.random()<C.mistake)return legal[Math.floor(Math.random()*legal.length)];
+  const b=c4.board.slice();
+  const winsIf=function(col,who){
+    const r=c4Empty(col);if(r<0)return false;
+    b[r*C4_COLS+col]=who;
+    const ok=!!c4Find(b,who);
+    b[r*C4_COLS+col]=0;
+    return ok;
+  };
+  for(let i=0;i<legal.length;i++)if(winsIf(legal[i],2))return legal[i];
+  if(Math.random()<C.block)
+    for(let i=0;i<legal.length;i++)if(winsIf(legal[i],1))return legal[i];
+  let best=legal[0],bs=-1e9;
+  legal.forEach(function(col){
+    let s=(3-Math.abs(col-3))*2+Math.random()*2;
+    const r=c4Empty(col);
+    b[r*C4_COLS+col]=2;
+    let give=0;
+    for(let c2=0;c2<C4_COLS;c2++){
+      const r2=c4Empty(c2);
+      if(r2<0)continue;
+      b[r2*C4_COLS+c2]=1;
+      if(c4Find(b,1))give++;
+      b[r2*C4_COLS+c2]=0;
+    }
+    b[r*C4_COLS+col]=0;
+    s-=give*(c4.lv>=3?9:3);
+    if(s>bs){bs=s;best=col}
+  });
+  return best;
+}
+/* ---------- 盘面结算 ---------- */
+function c4WinBoard(line){
+  if(c4.settled)return;
+  c4.settled=true;
+  c4.line=line;c4Paint(-1);
+  c4.boards++;c4.wins++;
+  const bonus=120+c4.lv*40+Math.min(60,c4.combo*6);
+  c4Sc(bonus);
+  c4.lv=Math.min(8,1+c4.wins);
+  localStorage.setItem('hz_c4_lv',String(Math.max(c4Get('hz_c4_lv'),c4.lv)));
+  c4Banner('🎉 四连！');
+  c4Judge('🎉 你把四颗子连成一条线！AI 挡不住 · 奖励 +'+bonus+' 分','#FFF176');
+  sndReward();spawnConfetti();
+  if(c4.combo>=3)showComboEffect(c4.combo);
+  c4Hud();
+  c4T(c4NewBoard,2400);
+}
+function c4LoseBoard(line){
+  if(c4.settled)return;
+  c4.settled=true;
+  c4.line=line;c4Paint(-1);
+  c4.boards++;c4.losses++;c4.stars--;c4.combo=0;
+  c4Banner('AI 四连…');
+  c4Shake();sndNo();
+  c4Judge('💔 AI 连成四子，掉一颗挑战星（还剩 '+c4.stars+' 颗）','#FF8A80');
+  c4Hud();
+  if(c4.stars<=0){c4T(function(){c4End('💔 三颗挑战星都用完了')},1500);return}
+  c4T(c4NewBoard,2200);
+}
+function c4DrawBoard(){
+  if(c4.settled)return;
+  c4.settled=true;
+  c4.boards++;c4.draws++;
+  c4Sc(30);
+  c4Judge('🤝 棋盘下满了，谁都没连上 —— 和棋一盘 +30 分','#B3E5FC');
+  sndDone();
+  c4Hud();
+  c4T(c4NewBoard,1500);
+}
+function c4NewBoard(){
+  c4.settled=false;
+  c4.board=[];for(let i=0;i<C4_COLS*C4_ROWS;i++)c4.board[i]=0;
+  c4.line=null;c4.snaps=[];
+  c4Paint(-1);
+  c4Ask();
+}
+/* ---------- 求助 ---------- */
+function c4Hint(){
+  if(c4.busy||c4.over||c4.turn!=='p')return;
+  if(c4.hints<=0){c4Judge('💡 提示用完啦','#FFE082');return}
+  const bad=c4.opts.map(function(o,i){return i}).filter(function(i){return !c4.opts[i].ok&&!c4.dead[c4.cols[i]]});
+  if(!bad.length){c4Judge('💡 错答案都划掉啦，这一题稳了','#FFE082');return}
+  c4.hints--;
+  c4.dead[c4.cols[c4Mix(bad)[0]]]=1;
+  tone(700,.08);
+  c4RenderCols();c4Hud();
+  c4Judge('💡 划掉一个挂错答案的列（还剩 '+c4.hints+' 次）','#B3E5FC');
+}
+function c4Shuf(){
+  if(c4.busy||c4.over||c4.turn!=='p')return;
+  if(c4.shufs<=0){c4Judge('🔀 换题用完啦','#FFE082');return}
+  c4.shufs--;c4StopFuse();
+  tone(560,.09);
+  c4Hud();
+  c4Judge('🔀 换一个字重出（还剩 '+c4.shufs+' 次）','#B3E5FC');
+  c4T(c4Ask,260);
+}
+function c4Undo(){
+  if(c4.over||c4.busy)return;
+  if(c4.undos<=0){c4Judge('⏪ 悔棋用完啦','#FFE082');return}
+  if(c4.snaps.length<2){c4Judge('⏪ 还没落过子，没什么可悔的','#FFE082');return}
+  c4.undos--;
+  c4StopFuse();
+  c4.snaps.pop();
+  const s=c4.snaps[c4.snaps.length-1];
+  c4.board=s.slice();
+  c4.line=null;c4Paint(-1);
+  c4.combo=0;c4.busy=false;c4.turn='p';
+  tone(480,.1);
+  c4Judge('⏪ 悔到上一手，AI 那子也一起收回（还剩 '+c4.undos+' 次）','#CE93D8');
+  c4Hud();
+  c4T(c4Ask,320);
+}
+function c4comboShield(){return c4.combo>=3}
+function c4comboDouble(){return c4.combo>=4}
+/* ---------- 限时 ---------- */
+function c4StartFuse(){
+  const C=c4Cfg(c4.lv);
+  c4.fuseMs=C.fuse;c4.fuseLeft=C.fuse;c4.lastTs=Date.now();c4.tickAt=0;
+  if(c4.fuseId)clearInterval(c4.fuseId);
+  c4.fuseId=setInterval(c4FuseTick,100);
+  c4FuseBar(1);
+}
+function c4StopFuse(){if(c4.fuseId){clearInterval(c4.fuseId);c4.fuseId=0}}
+function c4FuseBar(f){
+  const el=document.getElementById('c4FuseBar');
+  if(el)el.style.width=Math.max(0,Math.min(1,f)*100)+'%';
+  const w=document.getElementById('c4FuseEl');
+  if(w)w.classList.toggle('hurry',f<=0.28);
+}
+function c4FuseTick(){
+  if(c4.over||currentMode!=='four'){c4StopFuse();return}
+  const now=Date.now(),dt=now-c4.lastTs;c4.lastTs=now;
+  if(c4.busy||c4.turn!=='p')return;
+  c4.fuseLeft-=dt;
+  const f=c4.fuseLeft/c4.fuseMs;
+  c4FuseBar(f);
+  if(f<=0.28&&c4.fuseLeft<c4.tickAt){c4.tickAt=c4.fuseLeft-1000;tone(1240,.06,'square',.06)}
+  if(c4.fuseLeft<=0)c4Slow();
+}
+function c4Slow(){
+  c4StopFuse();
+  if(c4.busy||c4.over||c4.turn!=='p')return;
+  c4.slow++;c4.combo=0;
+  sndNo();c4Shake();
+  c4Judge('⏱️ 手慢了！AI 白捡一颗子','#FF8A80');
+  c4Hud();
+  c4T(function(){
+    const col=c4AiPick();
+    if(col<0){c4DrawBoard();return}
+    c4Drop(col,2);
+    const line=c4Find(c4.board,2);
+    if(line){c4LoseBoard(line);return}
+    if(c4Full()){c4DrawBoard();return}
+    c4T(c4Ask,320);
+  },420);
+}
+/* ---------- HUD 与特效 ---------- */
+function c4Hud(){
+  const C=c4Cfg(c4.lv);
+  c4Set('c4ScoreTxt','🔴 '+c4.score+' 分');
+  c4Set('c4LvTxt','段位 '+c4.lv+' · '+C.rank);
+  c4Set('c4QTxt',c4.ch?('🧠 「'+c4.ch+'」'+(c4.kind==='d'?'第 '+(c4.idx+1)+' 笔':'共几笔')):'🧠 出题中…');
+  c4Set('c4ComboTxt','🔥 连击 '+c4.combo);
+  c4Set('c4WinsTxt','🏆 胜 '+c4.wins+' · 负 '+c4.losses);
+  c4Set('c4BestTxt','🥇 纪录 '+c4Get('hz_c4_best'));
+  c4Set('c4ShieldTxt',c4comboDouble()?'🛡️ 护身 + 👥 双子':(c4comboShield()?'🛡️ 护身：答错不送子':'🛡️ 护身：连击 3 起'));
+  c4Set('c4TurnTxt',c4.turn==='ai'?'🟣 AI 思考中':'🟠 轮到你');
+  const hs=document.getElementById('c4StarsEl');
+  if(hs)Array.prototype.forEach.call(hs.children,function(el,i){el.classList.toggle('on',i<c4.stars)});
+  const hb=document.getElementById('c4HintBtn');if(hb){hb.textContent='💡 提示 ×'+c4.hints;hb.disabled=c4.hints<=0}
+  const sb=document.getElementById('c4ShufBtn');if(sb){sb.textContent='🔀 换题 ×'+c4.shufs;sb.disabled=c4.shufs<=0}
+  const ub=document.getElementById('c4UndoBtn');if(ub){ub.textContent='⏪ 悔棋 ×'+c4.undos;ub.disabled=c4.undos<=0}
+}
+function c4Judge(t,c){
+  const e=document.getElementById('c4JudgeLine');if(!e)return;
+  e.innerHTML=t;e.style.color=c||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function c4Banner(t){
+  const e=document.getElementById('c4BannerEl');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function c4Float(t){
+  const e=document.getElementById('c4FloatEl');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function c4Shake(){
+  const e=document.querySelector('#screen-four .c4-wrap');if(!e)return;
+  e.classList.remove('c4-shake');void e.offsetWidth;e.classList.add('c4-shake');
+}
+function c4Help(){
+  c4Judge('🧠 四个答案挂在四列顶上：正确答案占两列，答对才落得进、还能挑落在哪一列；答错这颗子归 AI。段位越高 AI 越会堵你，先连成四子的人赢！','#B3E5FC');
+  c4Note('<b>1-7</b> 选列落子 · <b>H</b> 提示 · <b>T</b> 换题 · <b>U</b> 悔棋');
+}
+/* ---------- 开局与结算 ---------- */
+function c4Start(){
+  showScreen('four');
+  c4Kill();
+  c4.lv=1;c4.score=0;c4.wins=0;c4.losses=0;c4.draws=0;c4.boards=0;c4.answers=0;c4.miss=0;c4.slow=0;
+  c4.combo=0;c4.comboMax=0;c4.stars=3;c4.hints=2;c4.shufs=2;c4.undos=1;
+  c4.over=false;c4.ended=false;c4.settled=false;c4.busy=true;c4.turn='p';c4.line=null;c4.snaps=[];c4.dead={};
+  c4.board=[];for(let i=0;i<C4_COLS*C4_ROWS;i++)c4.board[i]=0;
+  c4Build();c4Paint(-1);c4Hud();
+  c4Note('<b>1-7</b> 选列落子 · <b>H</b> 提示 · <b>T</b> 换题 · <b>U</b> 悔棋');
+  c4Ask();
+}
+function c4End(reason){
+  if(c4.ended)return;
+  c4.ended=true;c4.over=true;c4.busy=true;
+  c4StopFuse();c4Kill();
+  const score=c4.score;
+  const best=Math.max(c4Get('hz_c4_best'),score);
+  localStorage.setItem('hz_c4_best',String(best));
+  localStorage.setItem('hz_c4_lv',String(Math.max(c4Get('hz_c4_lv'),c4.lv)));
+  localStorage.setItem('hz_c4_streak',String(Math.max(c4Get('hz_c4_streak'),c4.comboMax)));
+  c4Add('hz_c4_games',1);c4Add('hz_c4_wins',c4.wins);c4Add('hz_c4_losses',c4.losses);
+  c4Add('hz_c4_answers',c4.answers);c4Add('hz_c4_miss',c4.miss);c4Add('hz_c4_slow',c4.slow);
+  c4Add('hz_c4_boards',c4.boards);
+  const st=Math.max(2,Math.min(26,Math.round(score/16)+c4.wins*3));
+  addStars(st);
+  showScreen('four-result');
+  c4Set('c4ResultEmoji',c4.wins>=4?'🏆':(c4.wins>=2?'🥇':(c4.wins>=1?'🎉':'⚫')));
+  c4Set('c4ResultTitle',c4.wins>=4?'四连常胜将军':(c4.wins>=2?'棋力见长':(c4.wins>=1?'赢了一盘，还想赢':'差一点点就连上了')));
+  c4Set('c4ResultSubtitle',(reason||'')+' · 赢 '+c4.wins+' 盘、输 '+c4.losses+' 盘、和棋 '+c4.draws+' 盘');
+  c4Set('c4ResultScore',String(score));
+  c4Set('c4ResultWins',String(c4.wins));
+  c4Set('c4ResultLv',String(c4.lv));
+  c4Set('c4ResultAns',String(c4.answers));
+  c4Set('c4ResultBest',String(best));
+  c4Set('c4ResultStars','⭐ '+stars);
+  c4Set('c4ResultAll','累计胜 '+c4Get('hz_c4_wins')+' 盘 · 最长连击 '+c4Get('hz_c4_streak')+
+    ' · 手慢被抢 '+c4Get('hz_c4_slow')+' 次 · 共玩 '+c4Get('hz_c4_games')+' 场');
+  sndReward();spawnConfetti();
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='four'||c4.over)return;
+  const k=e.key;
+  if(k>='1'&&k<='7'){c4Play(parseInt(k,10)-1);e.preventDefault();return}
+  if(k==='h'||k==='H'){e.preventDefault();c4Hint()}
+  else if(k==='t'||k==='T'){e.preventDefault();c4Shuf()}
+  else if(k==='u'||k==='U'){e.preventDefault();c4Undo()}
 });
 async function boot(){
   if(typeof HanziWriter==='undefined'){
