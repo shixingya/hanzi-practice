@@ -2166,6 +2166,126 @@ button:active{transform:scale(.95)}
 /* 竖排 flex 容器会压缩每一块（判词两行字就被挤出去压住底部提示）：整屏一律不许缩 */
 #screen-dd>*{flex:0 0 auto}
 @media(max-width:420px){.dd-hud,.dd-wrap,.dd-slotwrap,.dd-shelf,.dd-shelflbl,.dd-tools,.dd-judge,.dd-tip{max-width:290px}}
+/* ===== 笔顺星图：答对才往前修的关卡路 · 攒星换村子 · 龙巢关 · 每日星关 ===== */
+.mp-hud,.mp-hud2{display:flex;justify-content:space-between;align-items:center;gap:6px;width:100%;
+  max-width:460px;margin:2px auto;padding:0 2px;box-sizing:border-box;color:#fff;
+  font-size:11.5px;font-weight:800;white-space:nowrap;overflow:hidden}
+.mp-hud span,.mp-hud2 span{flex:0 1 auto;overflow:hidden;text-overflow:ellipsis;
+  background:rgba(0,0,0,.26);border-radius:10px;padding:3px 8px}
+.mp-hud2{font-size:11px;opacity:.9}
+.mp-mini{flex:0 0 auto;border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.12);color:#fff;
+  font-family:inherit;font-size:11px;font-weight:800;border-radius:10px;padding:3px 9px;cursor:pointer}
+.mp-mini:active{transform:scale(.94)}
+.mp-scroll{width:100%;max-width:460px;height:46vh;min-height:300px;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  border-radius:18px;margin:3px 0;box-shadow:inset 0 0 46px rgba(0,0,0,.55),0 8px 22px rgba(0,0,0,.3)}
+.mp-scroll{background:linear-gradient(180deg,#131A38 0%,#1B1236 40%,#241448 70%,#0F1030 100%);scrollbar-width:none}
+.mp-scroll::-webkit-scrollbar{display:none}
+.mp-map{position:relative;width:100%}
+.mp-path{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+.mp-path path{fill:none;stroke:rgba(255,255,255,.34);stroke-width:3;stroke-dasharray:7 9;stroke-linecap:round}
+.mp-band{position:absolute;left:0;right:0;pointer-events:none}
+.mp-band.b0{background:linear-gradient(180deg,rgba(27,94,32,.5),rgba(67,160,71,.16))}
+.mp-band.b1{background:linear-gradient(180deg,rgba(13,71,161,.5),rgba(30,136,229,.16))}
+.mp-band.b2{background:linear-gradient(180deg,rgba(74,20,140,.5),rgba(142,36,170,.16))}
+.mp-band.b3{background:linear-gradient(180deg,rgba(191,54,12,.48),rgba(251,140,0,.16))}
+.mp-band.b4{background:linear-gradient(180deg,rgba(1,87,155,.5),rgba(0,172,193,.16))}
+.mp-bandname{position:absolute;left:9px;top:5px;font-size:13px;font-weight:900;color:#fff;opacity:.92;
+  text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.mp-bandneed{position:absolute;right:9px;top:7px;font-size:10px;font-weight:700;color:#fff;opacity:.8;
+  background:rgba(0,0,0,.3);border-radius:9px;padding:2px 7px}
+.mp-bandname,.mp-bandneed{z-index:3}
+.mp-node{position:absolute;width:54px;height:54px;border-radius:50%;padding:0;cursor:pointer;
+  border:3px solid rgba(255,255,255,.42);color:#fff;font-family:inherit;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 16px rgba(0,0,0,.42);transition:transform .16s}
+.mp-node:active{transform:scale(.9)}
+.mp-node .mp-e{font-style:normal;font-size:25px;line-height:1}
+.mp-node .mp-no{position:absolute;right:-4px;top:-6px;min-width:19px;height:19px;border-radius:10px;
+  background:#FFD740;color:#3E2723;font-size:11px;font-weight:900;display:flex;align-items:center;
+  justify-content:center;padding:0 4px;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.mp-node .mp-str{position:absolute;left:0;right:0;bottom:-17px;text-align:center;font-size:12px;
+  color:#FFD740;letter-spacing:1px;text-shadow:0 2px 5px rgba(0,0,0,.7)}
+.mp-node.star{background:linear-gradient(150deg,#5C6BC0,#283593)}
+.mp-node.combo{background:linear-gradient(150deg,#FB8C00,#E65100)}
+.mp-node.gift{background:linear-gradient(150deg,#AB47BC,#6A1B9A)}
+.mp-node.boss{width:66px;height:66px;border-color:#FFD54F;background:linear-gradient(150deg,#D81B60,#880E4F)}
+.mp-node.boss .mp-e{font-size:32px}
+.mp-node.done{border-color:#FFD740}
+.mp-node.full{box-shadow:0 0 0 3px rgba(255,213,79,.35),0 6px 16px rgba(0,0,0,.42)}
+.mp-node.now{animation:mpPulse 1.5s infinite}
+.mp-node.lock{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);opacity:.72}
+.mp-node.lock .mp-no{background:rgba(255,255,255,.4);color:#222}
+.mp-node.shk{animation:mpShake .38s}
+@keyframes mpPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,213,79,.6),0 6px 16px rgba(0,0,0,.42)}
+  50%{box-shadow:0 0 0 12px rgba(255,213,79,0),0 6px 16px rgba(0,0,0,.42)}}
+@keyframes mpShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.mp-dayrow{width:100%;max-width:460px;margin:3px auto 0}
+.mp-day{width:100%;padding:10px 12px;border:none;border-radius:14px;cursor:pointer;font-family:inherit;
+  font-size:14px;font-weight:800;color:#3E2723;background:linear-gradient(135deg,#FFE082,#FFB300);
+  box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.mp-day b{color:#BF360C}
+.mp-day:active{transform:scale(.97)}
+.mp-day.used{background:rgba(255,255,255,.14);color:rgba(255,255,255,.62);box-shadow:none}
+.mp-day.used b{color:rgba(255,255,255,.62)}
+.mp-judge{width:100%;max-width:460px;min-height:24px;margin:4px auto 0;text-align:center;
+  font-size:13px;font-weight:800;color:#FFE082;opacity:0;text-shadow:0 2px 8px rgba(0,0,0,.7)}
+.mp-judge.show{opacity:1;animation:dtJudge .35s}
+.mp-tip{width:100%;max-width:460px;text-align:center;font-size:11px;color:rgba(255,255,255,.6);margin:2px auto 4px}
+/* ---- 擂台（盖住整屏的答题台） ---- */
+.mp-arena{position:fixed;inset:0;z-index:70;display:none;flex-direction:column;align-items:center;
+  justify-content:center;justify-content:safe center;gap:7px;padding:12px 14px 16px;color:#fff;overflow-y:auto;
+  background:linear-gradient(180deg,#141A3A 0%,#2A1B4C 55%,#3B1F57 100%);animation:fadeIn .3s ease}
+.mp-arena.on{display:flex}
+.mp-ahead{width:100%;max-width:440px;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  font-size:13px;font-weight:800}
+.mp-ahead b{font-size:16px;color:#FFD740}
+.mp-ahead span{opacity:.78;font-size:12px}
+.mp-aclose{border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.12);color:#fff;
+  font-family:inherit;font-size:12.5px;font-weight:800;border-radius:12px;padding:6px 11px;cursor:pointer}
+.mp-goal{width:100%;max-width:440px;background:rgba(255,255,255,.1);border-radius:12px;padding:7px 12px;
+  font-size:12.5px;line-height:1.42;text-align:center;color:#FFF9C4}
+.mp-barrow,.mp-boss{display:flex;align-items:center;gap:8px;width:100%;max-width:440px}
+.mp-bar,.mp-hp{flex:1 1 auto;height:12px;border-radius:8px;background:rgba(255,255,255,.16);overflow:hidden}
+.mp-bar i,.mp-hp i{display:block;height:100%;width:100%;border-radius:8px;transition:width .2s}
+.mp-bar i{background:linear-gradient(90deg,#FFD740,#FFB300)}
+.mp-hp i{background:linear-gradient(90deg,#FF5252,#B71C1C)}
+.mp-bartxt{flex:0 0 auto;font-size:12px;font-weight:800;color:#FFE082;min-width:52px;text-align:right}
+.mp-boss .mp-bosse{font-size:19px}
+.mp-stage{width:100%;max-width:440px;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:12px 10px;border-radius:20px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 30px rgba(0,0,0,.35)}
+.mp-stage.shk{animation:mpShake .38s}
+.mp-char{font-size:60px;line-height:1.05;font-weight:900;color:#fff;
+  text-shadow:0 6px 22px rgba(0,0,0,.55);font-family:"KaiTi","STKaiti","楷体",serif}
+.mp-q{font-size:17px;font-weight:800;text-align:center;color:#B3E5FC;min-height:24px}
+.mp-opts{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;max-width:420px}
+.mp-o{padding:13px 6px;border-radius:14px;border:2px solid rgba(255,255,255,.26);background:rgba(255,255,255,.1);
+  color:#fff;font-family:inherit;font-size:15.5px;font-weight:800;cursor:pointer;transition:transform .14s}
+.mp-o:active{transform:scale(.95)}
+.mp-o.ok{background:linear-gradient(135deg,#66BB6A,#43A047);border-color:#C8E6C9}
+.mp-o.wrong{background:linear-gradient(135deg,#EF5350,#C62828);border-color:#FFCDD2}
+.mp-o.reveal{border-color:#FFD740;box-shadow:inset 0 0 0 3px rgba(255,213,79,.55)}
+.mp-meters{display:flex;justify-content:space-between;align-items:center;gap:6px;width:100%;max-width:440px;
+  font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden}
+.mp-meters span{flex:0 1 auto;overflow:hidden;text-overflow:ellipsis;background:rgba(0,0,0,.28);
+  border-radius:10px;padding:4px 8px}
+.mp-time{width:100%;max-width:440px;height:8px;border-radius:6px;background:rgba(255,255,255,.14);overflow:hidden}
+.mp-time i{display:block;height:100%;width:100%;border-radius:6px;background:linear-gradient(90deg,#4FC3F7,#29B6F6);
+  transition:width .12s linear}
+.mp-time i.hurry{background:linear-gradient(90deg,#FF8A80,#F4511E)}
+.mp-ajudge{width:100%;max-width:440px;min-height:26px;text-align:center;font-size:15px;font-weight:900;
+  color:#B9F6CA;opacity:0;text-shadow:0 3px 12px rgba(0,0,0,.7)}
+.mp-ajudge.show{opacity:1;animation:dtJudge .35s}
+.mp-atip{width:100%;max-width:440px;text-align:center;font-size:11px;color:rgba(255,255,255,.58)}
+.mp-rs{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;text-align:center;color:#fff}
+.mp-rs span{display:block;font-size:19px;font-weight:900}
+.mp-rs small{display:block;font-size:10.5px;opacity:.62;margin-top:3px}
+.map-dot{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;
+  background:#FF5252;color:#fff;font-size:10.5px;font-weight:bold;display:none;
+  align-items:center;justify-content:center;padding:0 6px;box-shadow:0 2px 8px rgba(0,0,0,.28)}
+.map-dot.on{display:flex}
+@media(max-width:420px){.mp-hud,.mp-hud2,.mp-scroll,.mp-dayrow,.mp-judge,.mp-tip{max-width:296px}
+  .mp-node.boss{width:60px;height:60px}}
+
 /* ===== 笔顺地宫：火把只照亮身边几格 · 找钥匙开石门 · 宝箱要答题才开得 ===== */
 .mz-hud{display:flex;justify-content:space-between;align-items:center;gap:4px;width:100%;
   max-width:302px;margin:2px auto 0;padding:0 2px;box-sizing:border-box;
@@ -2441,6 +2561,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🏮</div>
       <div class="info"><h3>笔顺地宫</h3><p id="mzCardTip">火把只照两格，找钥匙开石门！</p></div>
       <span class="mz-dot" id="mzCardDot">🏮 第 1 层</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('map')">
+      <div class="icon">🗺️</div>
+      <div class="info"><h3>笔顺星图</h3><p id="mapCardTip">答对才修得出下一关，尽头有龙！</p></div>
+      <span class="map-dot" id="mapCardDot">🆕</span>
     </div>
 <div class="mode-card" onclick="enterMode('plinko')">
       <div class="icon">🔮</div>
@@ -4450,6 +4575,87 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-map">
+  <div class="top-bar">
+    <button class="back-btn" onclick="mpLeave()">← 返回</button>
+    <div class="stats"><span id="mpStarsTxt">⭐ 0/120</span><span id="mpLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="mpHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🗺️ 这条路<b style="color:#FFD740">答对了才会往前修</b>：⭐ 普通关 · 🔥 连击关（<b style="color:#FF8A80">只有一条命</b>）· 🎁 宝箱关 ·
+    每村尽头蹲着<b style="color:#B9F6CA">🐲 笔画龙</b>（砍满 9 格血才算赢）。一个村子攒够 <b style="color:#FFF176">16⭐</b> 才修得到下一个村子！</div>
+  <div class="mp-hud">
+    <span id="mpRankTxt">段位 星图新手</span>
+    <span id="mpBossTxt">🐲 屠龙 0 次</span>
+    <span id="mpDayTxt">📅 每日关 可打</span>
+  </div>
+  <div class="mp-scroll" id="mpScroll"><div class="mp-map" id="mpMap"></div></div>
+  <div class="mp-hud2"><span id="mpProgAll">点亮 0/40 关</span><button class="mp-mini" onclick="mpScrollCur()">🎯 我的关</button></div>
+  <div class="mp-dayrow"><button class="mp-day" id="mpDayBtn" onclick="mpPlayDaily()">📅 每日星关 <b>+3⭐</b>（连续打星星更多）</button></div>
+  <div class="mp-judge" id="mpJudge"></div>
+  <div class="mp-tip" id="mpTip">点 🔒 的关会告诉你<b>差多少星</b> · <b>Enter</b> 直接打下一关 · <b>D</b> 每日关 · <b>H</b> 怎么玩</div>
+  <div class="mp-arena" id="mpArena">
+    <div class="mp-ahead">
+      <button class="mp-aclose" onclick="mpCloseArena()">🎒 回地图</button>
+      <b id="mpATitle">第 1 关 · ⭐</b>
+      <span id="mpAWorld">🌱 笔画村</span>
+    </div>
+    <div class="mp-goal" id="mpAGoal"></div>
+    <div class="mp-barrow">
+      <div class="mp-bar"><i id="mpProgBar"></i></div>
+      <span class="mp-bartxt" id="mpProgTxt">0/6</span>
+    </div>
+    <div class="mp-boss" id="mpBossRow">
+      <span class="mp-bosse">🐲</span>
+      <div class="mp-hp"><i id="mpHpBar"></i></div>
+      <span class="mp-bartxt" id="mpHpTxt">🐲 9 格</span>
+    </div>
+    <div class="mp-stage" id="mpStage">
+      <div class="mp-char" id="mpChar">字</div>
+      <div class="mp-q" id="mpQ"></div>
+      <div class="mp-opts" id="mpOpts"></div>
+    </div>
+    <div class="mp-meters">
+      <span id="mpHearts">❤️❤️</span>
+      <span id="mpComboTxt">🔥 连击 0</span>
+      <span id="mpScoreTxt">🏅 0 分</span>
+      <span id="mpTimeTxt">⏱️ 60 秒</span>
+    </div>
+    <div class="mp-time"><i id="mpTimeBar"></i></div>
+    <div class="mp-ajudge" id="mpAJudge"></div>
+    <div class="mp-atip" id="mpATip">按 <b>1-4</b> 或点选项作答</div>
+  </div>
+</div>
+<div class="screen" id="screen-map-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="mpBackToMap()">← 回星图</button>
+    <div class="stats"><span id="mpRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="mpRsEmoji">🗺️</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="mpRsTitle">这一关还锁着</h2>
+    <div style="font-size:26px;letter-spacing:6px;color:#FFD740;margin-bottom:6px" id="mpRsNode">☆☆☆</div>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="mpRsSub">看一眼正确答案，再来一次</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="mp-rs">
+      <div><span style="color:#FFD700" id="mpRsScore">0</span><small>本关得分</small></div>
+      <div><span style="color:#69F0AE" id="mpRsRight">0</span><small>答对几题</small></div>
+      <div><span style="color:#FF8A80" id="mpRsWrong">0</span><small>答错几题</small></div>
+      <div><span style="color:#4FC3F7" id="mpRsCombo">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="mpRsTime">0</span><small>用时（秒）</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 单关历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="mpRsBest">0</div>
+      <div style="font-size:12px;opacity:.75;margin-top:8px;white-space:pre-line;line-height:1.7" id="mpRsAll">段位 星图新手 · 点亮 0/40 关</div>
+      <div style="font-size:13px;margin-top:10px;color:#B9F6CA" id="mpRsBack"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" id="mpRsAgain" onclick="mpRetry()">🎯 再打一次</button>
+    <button class="w-btn blue" onclick="mpBackToMap()">🗺️ 看星图</button>
+  </div>
+</div>
 <div class="screen" id="screen-maze">
   <div class="top-bar">
     <button class="back-btn" onclick="mzLeave()">← 返回</button>
@@ -5301,6 +5507,7 @@ function updateHomeStats(){
   if(typeof twNudge==='function')twNudge();
   if(typeof ddNudge==='function')ddNudge();
   if(typeof mzNudge==='function')mzNudge();
+  if(typeof mpNudge==='function')mpNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -5346,7 +5553,7 @@ function enterMode(mode){
   else if(mode==='town')twStart();
   else if(mode==='mow')mwStart();
  else if(mode==='dd')ddStart();
- else if(mode==='maze')mzStart();
+ else if(mode==='maze')mzStart(); else if(mode==='map')mpStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -23567,6 +23774,566 @@ document.addEventListener('keydown',function(e){
     if(Math.abs(dx)<18&&Math.abs(dy)<18)return;
     if(Math.abs(dx)>Math.abs(dy))mzGo(dx>0?1:3);else mzGo(dy>0?2:0);
   },{passive:true});
+})();
+
+/* ===== 笔顺星图：一条会自己往前修的关卡路 —— 答对才点亮下一关，攒星换村子，每村尽头蹲着笔画龙 ===== */
+const MP_PER=8,MP_N=40,MP_GATE=16;
+const MP_WORLDS=[
+  {n:'笔画村',e:'🌱',a:'#1B5E20',b:'#43A047'},
+  {n:'偏旁镇',e:'🏘️',a:'#0D47A1',b:'#1E88E5'},
+  {n:'部首城',e:'🏯',a:'#4A148C',b:'#8E24AA'},
+  {n:'汉字山',e:'⛰️',a:'#BF360C',b:'#FB8C00'},
+  {n:'云海宫',e:'🌌',a:'#01579B',b:'#00ACC1'}];
+const MP_RANKS=['星图新手','探路小侠','关卡猎人','连击新星','宝箱达人','屠龙勇士','星海行者','地图征服者','星图霸主'];
+const MP_EMO={star:'⭐',combo:'🔥',gift:'🎁',boss:'🐲'};
+const MP_NAME={star:'普通关',combo:'连击关',gift:'宝箱关',boss:'龙巢关'};
+const MP_NOTE=[523,587,659,698,784,880,988,1046,1175,1319];
+
+/* ---- 纯函数：类型 / 关卡参数 / 计分 / 星级 / 解锁 / 版图坐标，harness 可在 Node 里独立重算 ---- */
+function mpType(i){const b=i%MP_PER;return b===7?'boss':b===4?'combo':b===6?'gift':'star'}
+function mpWorldOf(i){return Math.min(MP_WORLDS.length-1,(i/MP_PER)|0)}
+function mpBand(n){return n<=3?0:n<=5?1:n<=7?2:n<=9?3:4}
+function mpCfg(i){
+  const w=mpWorldOf(i),T=mpType(i);
+  const need=T==='boss'?9:T==='combo'?8:T==='gift'?5:6+w;
+  const lives=T==='combo'?1:2;
+  const secs=T==='gift'?48:Math.max(42,74-w*5-(T==='boss'?8:0));
+  const base=60+w*22;
+  return {i:i,world:w,type:T,need:need,lives:lives,secs:secs,base:base};
+}
+function mpDayCfg(){return {i:-1,world:0,type:'star',need:5,lives:1,secs:45,base:78,day:true}}
+function mpGain(base,combo,T){
+  return Math.round(base*(1+Math.min(1.5,Math.max(0,combo-1)*0.18))+(T==='boss'?26:T==='combo'?14:0));
+}
+function mpBossGain(w){return Math.round(220+w*140)}
+function mpGiftGain(w,perfect){return Math.round((90+w*45)*(perfect?2:1))}
+function mpStarsOf(wrong){return wrong===0?3:wrong===1?2:1}
+function mpRank(total){return MP_RANKS[Math.min(MP_RANKS.length-1,Math.floor(total/15))]}
+function mpX(i){return 50+34*Math.sin(i*0.72)}
+function mpY(i){return 34+i*72}
+function mpMapH(){return mpY(MP_N-1)+92}
+function mpWorldStars(map,w){
+  let s=0;
+  for(let i=w*MP_PER;i<(w+1)*MP_PER;i++)s+=(map[i]||0);
+  return s;
+}
+function mpOpen(map,i){
+  const w=mpWorldOf(i);
+  if(w>0&&mpWorldStars(map,w-1)<MP_GATE)return false;
+  if(i%MP_PER===0)return true;
+  return (map[i-1]||0)>=1;
+}
+function mpGateMsg(map,i){
+  const w=mpWorldOf(i);
+  if(w>0&&mpWorldStars(map,w-1)<MP_GATE){
+    return '🔒 要去 '+MP_WORLDS[w].e+' '+MP_WORLDS[w].n+'，得先在上一村攒满 '+MP_GATE+'⭐（现在 '+mpWorldStars(map,w-1)+'⭐）';
+  }
+  return '🔒 上一关还没点亮呢 —— 先把 第 '+i+' 关 打穿，路才会修到这里';
+}
+function mpNextIdx(map){
+  for(let i=0;i<MP_N;i++)if(!map[i])return i;
+  return MP_N-1;
+}
+
+/* ---- 存档 ---- */
+function mpInt(k){const v=parseInt(localStorage.getItem(k));return isNaN(v)?0:v}
+function mpAdd(k,n){localStorage.setItem(k,String(mpInt(k)+(n||0)))}
+function mpLoad(){
+  try{
+    const o=JSON.parse(localStorage.getItem('hz_map_stars')||'{}');
+    if(!o||typeof o!=='object'||Array.isArray(o))return {};
+    const out={};
+    for(const k in o){const i=parseInt(k),v=parseInt(o[k]);if(!isNaN(i)&&i>=0&&i<MP_N&&!isNaN(v))out[i]=Math.max(0,Math.min(3,v))}
+    return out;
+  }catch(e){return {}}
+}
+function mpSave(){localStorage.setItem('hz_map_stars',JSON.stringify(mp.map))}
+function mpTotal(){
+  let s=0;
+  for(const k in mp.map)s+=(mp.map[k]||0);
+  return s;
+}
+function mpDay(){
+  if(window._mpDay)return window._mpDay;
+  const d=new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function mpStreak(){return mpInt('hz_map_streak')}
+
+/* ---- 出题：方向只吃本模块缓存（绝不覆写全局 strokeTypes / detectDir） ---- */
+const mpTy={};
+async function mpEnsure(n){
+  for(let a=0;a<CHARS.length&&Object.keys(mpTy).length<n;a++){
+    const c=CHARS[a];
+    if(mpTy[c])continue;
+    let d=charDataCache[c];
+    if(!d||!d.medians)d=await loadCharData(c);
+    if(!d||!d.medians||d.medians.length<2)continue;
+    mpTy[c]={t:d.medians.map(ddStrokeDir),n:d.medians.length};
+  }
+}
+function mpPool(w){
+  const out=[];
+  for(const c in mpTy){const e=mpTy[c];if(e.n>=2&&e.n<=13&&mpBand(e.n)===w)out.push(c)}
+  if(out.length<5){
+    for(const c in mpTy){
+      const e=mpTy[c];
+      if(e.n>=2&&e.n<=13&&out.indexOf(c)<0)out.push(c);
+    }
+  }
+  return out;
+}
+function mpDirLabel(c){
+  for(let i=0;i<DIRS.length;i++)if(DIRS[i].code===c)return DIRS[i].icon+DIRS[i].label;
+  return c;
+}
+function mpAnsLabel(v){return typeof v==='number'?v+' 笔':mpDirLabel(v)}
+
+/* ---- 状态 ---- */
+let mp={gen:0,run:false,over:false,busy:false,arena:false,
+  map:{},i:0,cfg:null,day:false,boss:false,bossHp:0,bossMax:0,
+  right:0,wrong:0,lives:0,combo:0,maxCombo:0,score:0,time:0,timeMax:0,
+  asked:0,timerId:null,quiz:null,startedAt:0,stars:0,lastAnswer:'—'};
+
+/* ---- 首页红点 / 卡片提示 ---- */
+function mpNudge(){
+  const tip=document.getElementById('mapCardTip'),dot=document.getElementById('mapCardDot');
+  const m=mpLoad(),t=(function(){let s=0;for(const k in m)s+=(m[k]||0);return s})();
+  if(tip)tip.textContent=t>0?('点亮 '+mpNextIdx(m)+'/'+MP_N+' 关 · ⭐ '+t+' 已收'):('一条没点亮，先从 🌱 笔画村开头');
+  if(dot){
+    const seen=mpInt('hz_map_seen');
+    const cur=mpNextIdx(m);
+    if(cur>seen){dot.classList.add('on');dot.textContent='🆕 第 '+(cur+1)+' 关'}
+    else{dot.classList.remove('on');dot.textContent=''}
+  }
+}
+function mpMarkSeen(){
+  const m=mpLoad(),cur=mpNextIdx(m);
+  if(cur>mpInt('hz_map_seen'))localStorage.setItem('hz_map_seen',String(cur));
+  mpNudge();
+}
+
+/* ---- 星图页 ---- */
+function mpStart(){
+  mp.gen++;
+  mp.run=true;mp.over=false;mp.busy=false;mp.arena=false;mp.quiz=null;
+  mpStopClock();
+  mp.map=mpLoad();
+  showScreen('map');
+  const a=document.getElementById('mpArena');
+  if(a)a.classList.remove('on');
+  mpRender();mpHud();
+  mpJudge('🗺️ 打穿第 1 关，路才会自己往前修','#FFE082');
+  mpMarkSeen();
+  const gen=mp.gen;
+  mpEnsure(150).then(function(){if(gen!==mp.gen||currentMode!=='map')return;mpHud()}).catch(function(){});
+}
+function mpRender(){
+  const map=document.getElementById('mpMap'),wrap=document.getElementById('mpScroll');
+  if(!map)return;
+  const H=mpMapH();
+  map.style.height=H+'px';
+  if(wrap)wrap.style.height='min(54vh,470px)';
+  let h='';
+  for(let w=0;w<MP_WORLDS.length;w++){
+    const W=MP_WORLDS[w];
+    h+='<div class="mp-band b'+w+'" style="top:'+(w*MP_PER*72)+'px;height:'+(MP_PER*72)+'px">'+
+      '<span class="mp-bandname">'+W.e+' '+W.n+'</span>'+
+      '<span class="mp-bandneed">'+(w===0?('已收 '+mpWorldStars(mp.map,0)+'/'+(MP_PER*3)+'⭐'):('村里攒 '+mpWorldStars(mp.map,w)+'⭐ · 上一村要 '+MP_GATE+'⭐ 才修到这'))+'</span></div>';
+  }
+  let d='';
+  for(let i=0;i<MP_N;i++)d+=(i?'L':'M')+mpX(i).toFixed(1)+' '+mpY(i)+' ';
+  h+='<svg class="mp-path" viewBox="0 0 100 '+H+'" preserveAspectRatio="none"><path d="'+d+'" vector-effect="non-scaling-stroke"/></svg>';
+  const nextI=mpNextIdx(mp.map);
+  for(let i=0;i<MP_N;i++){
+    const st=mp.map[i]||0,op=mpOpen(mp.map,i),T=mpType(i);
+    h+='<button class="mp-node '+T+(op?'':' lock')+(st?' done':'')+(st===3?' full':'')+(i===nextI?' now':'')+
+      '" id="mpN'+i+'" style="left:calc('+mpX(i).toFixed(1)+'% - 27px);top:'+(mpY(i)-29)+'px" onclick="mpTap('+i+')">'+
+      '<i class="mp-e">'+(op?MP_EMO[T]:'🔒')+'</i>'+
+      '<b class="mp-no">'+(i+1)+'</b>'+
+      '<s class="mp-str">'+(st?'★★★'.slice(3-st):'')+'</s></button>';
+  }
+  map.innerHTML=h;
+}
+function mpScrollCur(){
+  const wrap=document.getElementById('mpScroll'),map=document.getElementById('mpMap');
+  if(!wrap||!map)return;
+  const i=mpNextIdx(mp.map);
+  const y=mpY(i)-wrap.clientHeight*0.52;
+  map.style.transform='';
+  wrap.scrollTop=Math.max(0,y);
+}
+function mpHud(){
+  const t=mpTotal();
+  mpSet('mpStarsTxt','⭐ '+t+'/'+(MP_N*3));
+  mpSet('mpLvTxt','第 '+(mpNextIdx(mp.map)+1)+' 关');
+  mpSet('mpRankTxt','🥇 '+mpRank(t));
+  mpSet('mpBossTxt','🐲 屠龙 '+mpInt('hz_map_boss'));
+  const done=localStorage.getItem('hz_map_day')===mpDay();
+  mpSet('mpDayTxt',done?'📅 已打卡':'📅 可打卡');
+  const btn=document.getElementById('mpDayBtn');
+  if(btn)btn.classList.toggle('used',done);
+  mpSet('mpProgAll','点亮 '+Object.keys(mp.map).length+'/'+MP_N+' 关 · 最长连击 '+Math.max(mpInt('hz_map_combo'),mp.maxCombo));
+}
+function mpSet(id,v){const el=document.getElementById(id);if(el)el.textContent=v}
+function mpJudge(msg,color){
+  const el=document.getElementById('mpJudge');
+  if(!el)return;
+  el.textContent=msg;
+  if(color)el.style.color=color;
+  el.classList.remove('show');
+  void el.offsetWidth;
+  el.classList.add('show');
+}
+function mpLeave(){
+  mp.gen++;mp.run=false;mp.over=true;mp.busy=false;mp.arena=false;mp.quiz=null;
+  mpStopClock();
+  goHome();
+}
+function mpHelp(){
+  mpJudge('⭐ 答对才修出下一关 · 🔥 只有一条命 · 🎁 打完开宝箱 · 🐲 龙巢要砍满 9 格血 · 每村攒 '+MP_GATE+'⭐ 才能去下一个村子','#80DEEA');
+}
+function mpTap(i){
+  if(!mp.run||mp.busy||mp.arena)return;
+  if(!mpOpen(mp.map,i)){
+    mpJudge(mpGateMsg(mp.map,i),'#FFCDD2');
+    const n=document.getElementById('mpN'+i);
+    if(n){n.classList.remove('shk');void n.offsetWidth;n.classList.add('shk')}
+    tone(180,.16,'square');
+    return;
+  }
+  mpPlay(i);
+}
+function mpPlayDaily(){
+  if(localStorage.getItem('hz_map_day')===mpDay()){
+    mpJudge('📅 今天的星关已经打完啦，明天再来（连续打有额外星星）','#FFCC80');
+    return;
+  }
+  const C=mpDayCfg();
+  C.world=mpWorldOf(mpNextIdx(mp.map));
+  mpBegin(C,true);
+}
+function mpPlay(i){mpBegin(mpCfg(i),false)}
+
+/* ---- 关卡擂台 ---- */
+function mpBegin(C,isDay){
+  mpStopClock();
+  mp.gen++;
+  const gen=mp.gen;
+  mp.busy=true;mp.over=false;mp.day=!!isDay;mp.i=C.i;mp.cfg=C;
+  mp.right=0;mp.wrong=0;mp.lives=C.lives;mp.combo=0;mp.maxCombo=0;
+  mp.score=0;mp.time=C.secs;mp.timeMax=C.secs;mp.asked=0;mp.stars=0;
+  mp.boss=C.type==='boss';mp.bossMax=C.need;mp.bossHp=C.need;
+  mp.startedAt=Date.now();
+  const a=document.getElementById('mpArena');
+  if(a)a.classList.add('on');
+  mp.arena=true;
+  const W=MP_WORLDS[C.world];
+  mpSet('mpATitle',isDay?'📅 今日星关':('第 '+(C.i+1)+' 关 · '+MP_EMO[C.type]+' '+MP_NAME[C.type]));
+  mpSet('mpAWorld',W.e+' '+W.n);
+  mpSet('mpAGoal',isDay?'每天只有 1 条命，答对 5 题就收工':mpGoalText(C));
+  const br=document.getElementById('mpBossRow');
+  if(br)br.style.display=mp.boss?'flex':'none';
+  mpSet('mpChar','字');
+  mpSet('mpATip','按 1-4 或点选项作答 · 答错会把正确的那一笔亮出来');
+  mpArenaHud();
+  mpStartClock();
+  mpEnsure(150).then(function(){
+    if(gen!==mp.gen||!mp.arena||mp.over)return;
+    mpAsk();
+  }).catch(function(){if(gen===mp.gen)mp.busy=false});
+}
+function mpGoalText(C){
+  if(C.type==='boss')return '🐲 笔画龙有 '+C.need+' 格血：答对砍 1 格，答错它回 1 格（还有 '+C.lives+' 条命）';
+  if(C.type==='combo')return '🔥 连击关：答对 '+C.need+' 题，全程只有 1 条命，答错就断';
+  if(C.type==='gift')return '🎁 宝箱关：答完 '+C.need+' 题箱子才开，全对的话宝要多一倍';
+  return '⭐ 答对 '+C.need+' 题点亮这一关（有 '+C.lives+' 条命 · '+C.secs+' 秒）';
+}
+function mpStartClock(){
+  mpStopClock();
+  mp.timerId=setInterval(mpTick,100);
+}
+function mpStopClock(){
+  if(mp.timerId){clearInterval(mp.timerId);mp.timerId=null}
+}
+function mpTick(){
+  if(currentMode!=='map'){
+    // 切去别的模式：擂台必须自己收干净，别让计时器在别人家跑
+    mpStopClock();mp.arena=false;mp.quiz=null;mp.busy=false;
+    const ap=document.getElementById('mpArena');
+    if(ap)ap.classList.remove('on');
+    return;
+  }
+  if(!mp.arena||mp.over||mp.busy)return;
+  mp.time=Math.max(0,mp.time-0.1);
+  mpArenaHud();
+  if(mp.time<=0)mpLose('time');
+}
+function mpArenaHud(){
+  const C=mp.cfg;
+  if(!C)return;
+  mpSet('mpHearts',mp.lives>0?('❤️'.repeat(mp.lives)):'💔');
+  mpSet('mpComboTxt','🔥 连击 '+mp.combo);
+  mpSet('mpScoreTxt','🏅 '+Math.round(mp.score)+' 分');
+  mpSet('mpTimeTxt','⏱️ '+Math.ceil(mp.time)+' 秒');
+  const tb=document.getElementById('mpTimeBar');
+  if(tb){
+    tb.style.width=(mp.timeMax?Math.max(0,mp.time/mp.timeMax*100):0)+'%';
+    tb.classList.toggle('hurry',mp.time<=10);
+  }
+  const pb=document.getElementById('mpProgBar');
+  if(pb)pb.style.width=Math.min(100,mp.right/C.need*100)+'%';
+  mpSet('mpProgTxt',mp.right+'/'+C.need);
+  const hb=document.getElementById('mpHpBar');
+  if(hb){
+    hb.style.width=Math.max(0,mp.bossHp/mp.bossMax*100)+'%';
+    mpSet('mpHpTxt','🐲 '+mp.bossHp+' 格');
+  }
+}
+async function mpAsk(){
+  if(!mp.arena||mp.over||mp.run===false)return;
+  mp.busy=true;
+  const gen=mp.gen;
+  try{await mpEnsure(150)}catch(e){}
+  if(gen!==mp.gen||!mp.arena||mp.over||currentMode!=='map'){mp.busy=false;return}
+  const C=mp.cfg;
+  const pool=mpPool(C.world);
+  if(!pool.length){
+    mp.busy=false;
+    mpAJudge('📖 字库还没加载好，回首页等一下再进来','#FFCDD2');
+    return;
+  }
+  const ch=pool[(Math.random()*pool.length)|0];
+  const e=mpTy[ch];
+  const r=Math.random();
+  let text,right,opts=[];
+  if(r<0.4||e.n<3){
+    text='「'+ch+'」一共有几笔？';
+    right=e.n;
+    const nums=[e.n],offs=[-3,-2,-1,1,2,3,4,5];
+    for(let a=offs.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=offs[a];offs[a]=offs[b];offs[b]=t}
+    for(let a=0;a<offs.length&&nums.length<4;a++){
+      const k=e.n+offs[a];
+      if(k>0&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=nums;
+  }else{
+    const last=r>=0.75&&e.n>=4;
+    const k=last?e.n-1:(Math.random()*e.n)|0;
+    const code=e.t[k];
+    text='「'+ch+'」的'+(last?'最后':('第 '+(k+1)))+' 笔往哪写？';
+    right=code;
+    const rest=DIRS.filter(function(x){return x.code!==code});
+    for(let a=rest.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=rest[a];rest[a]=rest[b];rest[b]=t}
+    opts=[code].concat(rest.slice(0,3).map(function(x){return x.code}));
+  }
+  for(let a=opts.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=opts[a];opts[a]=opts[b];opts[b]=t}
+  mp.quiz={opts:opts,right:right,ch:ch,text:text};
+  mp.asked++;
+  mpSet('mpChar',ch);
+  mpSet('mpQ',text);
+  const g=document.getElementById('mpOpts');
+  if(g){
+    g.innerHTML=opts.map(function(v,i){
+      return '<button class="mp-o" id="mpO'+i+'" data-value="'+v+'" onclick="mpPick('+i+')">'+(i+1)+'. '+mpAnsLabel(v)+'</button>';
+    }).join('');
+  }
+  mp.busy=false;
+}
+function mpAJudge(msg,color){
+  const el=document.getElementById('mpAJudge');
+  if(!el)return;
+  el.textContent=msg;
+  if(color)el.style.color=color;
+  el.classList.remove('show');
+  void el.offsetWidth;
+  el.classList.add('show');
+}
+function mpPick(j){
+  if(!mp.arena||mp.over||mp.busy)return;
+  const Q=mp.quiz;
+  if(!Q||Q.opts[j]===undefined)return;
+  mp.busy=true;
+  const C=mp.cfg;
+  const btn=document.getElementById('mpO'+j);
+  const ok=Q.opts[j]===Q.right;
+  if(ok){
+    mp.combo++;
+    if(mp.combo>mp.maxCombo)mp.maxCombo=mp.combo;
+    if(mp.maxCombo>mpInt('hz_map_combo'))localStorage.setItem('hz_map_combo',String(mp.maxCombo));
+    mp.right++;
+    const g=mpGain(C.base,mp.combo,C.type);
+    mp.score+=g;
+    tone(MP_NOTE[Math.min(MP_NOTE.length-1,mp.combo-1)],.12);
+    if(btn){
+      btn.classList.add('ok');
+      const rc=btn.getBoundingClientRect();
+      spawnStarFly(rc.left+rc.width/2,rc.top);
+    }
+    mpAJudge('✅ +'+g+' 分'+(mp.combo>=3?(' · 连击 x'+mp.combo):''),'#B9F6CA');
+    if(mp.boss){
+      mp.bossHp=Math.max(0,mp.bossHp-1);
+      if(mp.bossHp<=0)mpAJudge('🐲 龙血打空了！','#FFE082');
+    }
+  }else{
+    mp.wrong++;
+    mp.combo=0;
+    mp.lives--;
+    mp.lastAnswer=mpAnsLabel(Q.right);
+    if(mp.boss)mp.bossHp=Math.min(mp.bossMax,mp.bossHp+1);
+    sndNo();
+    if(btn)btn.classList.add('wrong');
+    for(let a=0;a<Q.opts.length;a++){
+      if(Q.opts[a]===Q.right){
+        const rb=document.getElementById('mpO'+a);
+        if(rb)rb.classList.add('reveal');
+      }
+    }
+    const w=document.getElementById('mpStage');
+    if(w){w.classList.remove('shk');void w.offsetWidth;w.classList.add('shk')}
+    mpAJudge('❌ 正确答案是「'+mpAnsLabel(Q.right)+'」'+(mp.lives<=0?' —— 命没了':' —— 还剩 '+mp.lives+' 条命'),'#FF8A80');
+  }
+  mpArenaHud();
+  setTimeout(mpAdvance,ok?620:1050);
+}
+function mpAdvance(){
+  if(!mp.arena||mp.over||mp.run===false)return;
+  for(let a=0;a<4;a++){
+    const b=document.getElementById('mpO'+a);
+    if(b)b.className='mp-o';
+  }
+  mp.quiz=null;
+  mp.busy=false;
+  if(mp.lives<=0){mpLose('lives');return}
+  const C=mp.cfg;
+  const cleared=mp.boss?(mp.bossHp<=0):(mp.right>=C.need);
+  if(cleared){mpWin();return}
+  mpAsk();
+}
+function mpCloseArena(){
+  if(!mp.arena)return;
+  mp.gen++;
+  mp.arena=false;mp.quiz=null;mp.busy=false;
+  mpStopClock();
+  const a=document.getElementById('mpArena');
+  if(a)a.classList.remove('on');
+  mpAdd('hz_map_runs',1);
+  mpJudge('🎒 收了摊回地图 —— 这一关没打穿，星星不点亮','#FFCC80');
+}
+
+/* ---- 通关 / 失败 ---- */
+function mpWin(){
+  if(mp.over)return;
+  mp.over=true;mp.arena=false;mp.busy=false;
+  mpStopClock();
+  const a=document.getElementById('mpArena');
+  if(a)a.classList.remove('on');
+  const C=mp.cfg;
+  const st=mpStarsOf(mp.wrong);
+  mp.stars=st;
+  let bonus=0,gift=0;
+  if(C.type==='boss'){
+    bonus=mpBossGain(C.world);
+    mpAdd('hz_map_boss',1);
+    mp.score+=bonus;
+    spawnConfetti();
+    sndDone();
+  }
+  if(C.type==='gift'){
+    gift=mpGiftGain(C.world,mp.wrong===0);
+    mp.score+=gift;
+    sndReward();
+  }
+  let extra=0;
+  if(mp.day){
+    const yest=(function(){
+      const d=new Date(mpDay()+'T00:00:00');
+      d.setDate(d.getDate()-1);
+      return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    })();
+    // 昨天打过就 +1，隔一天则重新从 1 开始
+    localStorage.setItem('hz_map_streak',String(localStorage.getItem('hz_map_day')===yest?mpStreak()+1:1));
+    localStorage.setItem('hz_map_day',mpDay());
+    extra=Math.min(6,mpStreak()-1);
+  }else{
+    const old=mp.map[C.i]||0;
+    if(st>old){mp.map[C.i]=st;mpSave()}
+    mpAdd('hz_map_wins',1);
+  }
+  mpAdd('hz_map_runs',1);
+  if(mp.score>mpInt('hz_map_best'))localStorage.setItem('hz_map_best',String(Math.round(mp.score)));
+  const g=st+(C.type==='boss'?2:0)+extra;
+  addStars(g);
+  mpHud();
+  mpSettle(true,st,bonus,gift,g);
+}
+function mpLose(reason){
+  if(mp.over)return;
+  mp.over=true;mp.arena=false;mp.busy=false;
+  mpStopClock();
+  const a=document.getElementById('mpArena');
+  if(a)a.classList.remove('on');
+  mpAdd('hz_map_runs',1);
+  if(mp.score>mpInt('hz_map_best'))localStorage.setItem('hz_map_best',String(Math.round(mp.score)));
+  mpAdd('hz_map_fails',1);
+  mpSettle(false,0,0,0,0);
+}
+function mpSettle(won,st,bonus,gift,g){
+  const C=mp.cfg;
+  const used=Math.max(1,Math.round((Date.now()-mp.startedAt)/1000));
+  mpSet('mpRsEmoji',won?(mp.day?'📅':MP_EMO[C.type]):'💨');
+  mpSet('mpRsTitle',won?(mp.day?'今日星关收下啦':'第 '+(C.i+1)+' 关点亮！'):'这一关还锁着');
+  mpSet('mpRsSub',won?('下一关已经修好了 —— '+(mpNextIdx(mp.map)<MP_N?('去打 第 '+(mpNextIdx(mp.map)+1)+' 关'):'整条星图都归你了'))
+    :'答错的那一笔我留在下面了，看一眼再来');
+  mpSet('mpRsStars','⭐ +'+g);
+  mpSet('mpRsScore',String(Math.round(mp.score)));
+  mpSet('mpRsRight',String(mp.right));
+  mpSet('mpRsWrong',String(mp.wrong));
+  mpSet('mpRsCombo',String(mp.maxCombo));
+  mpSet('mpRsTime',String(used));
+  mpSet('mpRsNode',won?('★'.repeat(st)+'☆'.repeat(3-st)):'☆☆☆');
+  mpSet('mpRsBest',String(mpInt('hz_map_best')));
+  mpSet('mpRsAll','段位 '+mpRank(mpTotal())+' · 点亮 '+Object.keys(mp.map).length+'/'+MP_N+' 关 · ⭐ '+mpTotal()+'/'+(MP_N*3)+
+    '\n🐲 屠龙 '+mpInt('hz_map_boss')+' 次 · 📅 连打 '+mpStreak()+' 天');
+  mpSet('mpRsBack',won?'':'🧠 刚答错的那一题，正确答案是「'+mp.lastAnswer+'」');
+  const again=document.getElementById('mpRsAgain');
+  if(again)again.textContent=mp.day?'📅 回地图':('🎯 再打 第 '+(C.i+1)+' 关');
+  if(again&&mp.day)again.setAttribute('onclick','mpBackToMap()');
+  else if(again)again.setAttribute('onclick','mpRetry()');
+  showScreen('map-result');
+}
+function mpRetry(){
+  const C=mp.cfg;
+  if(!C||mp.day){mpBackToMap();return}
+  if(!mpOpen(mp.map,C.i)){mpBackToMap();return}
+  mpStart();
+  mpPlay(C.i);
+}
+function mpBackToMap(){mpStart()}
+/* ---- 键位：1-4 作答 · Esc 回地图 · H 玩法 · Enter 打下一关 ---- */
+(function(){
+  document.addEventListener('keydown',function(e){
+    if(currentMode!=='map')return;
+    const k=e.key;
+    if(mp.arena){
+      if(k>='1'&&k<='4'){
+        const j=parseInt(k)-1;
+        if(mp.quiz&&mp.quiz.opts[j]!==undefined)mpPick(j);
+        return;
+      }
+      if(k==='Escape'){e.preventDefault();mpCloseArena();return}
+      if(k==='h'||k==='H'||k==='?'){mpAJudge(mpGoalText(mp.cfg),'#80DEEA');return}
+      return;
+    }
+    if(k==='h'||k==='H'||k==='?'){mpHelp();return}
+    if(k==='Enter'){
+      const nxt=mpNextIdx(mp.map);
+      if(mpOpen(mp.map,nxt))mpPlay(nxt);
+      else mpJudge(mpGateMsg(mp.map,nxt),'#FFCDD2');
+      return;
+    }
+    if(k==='d'||k==='D'){mpPlayDaily()}
+  });
 })();
 
 async function boot(){
