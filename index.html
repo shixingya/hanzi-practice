@@ -2166,6 +2166,98 @@ button:active{transform:scale(.95)}
 /* 竖排 flex 容器会压缩每一块（判词两行字就被挤出去压住底部提示）：整屏一律不许缩 */
 #screen-dd>*{flex:0 0 auto}
 @media(max-width:420px){.dd-hud,.dd-wrap,.dd-slotwrap,.dd-shelf,.dd-shelflbl,.dd-tools,.dd-judge,.dd-tip{max-width:290px}}
+/* ===== 笔顺地宫：火把只照亮身边几格 · 找钥匙开石门 · 宝箱要答题才开得 ===== */
+.mz-hud{display:flex;justify-content:space-between;align-items:center;gap:4px;width:100%;
+  max-width:302px;margin:2px auto 0;padding:0 2px;box-sizing:border-box;
+  color:#fff;font-size:11.5px;font-weight:800;flex-wrap:nowrap}
+.mz-hud span{flex:0 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mz-hud b{color:#FFEA00}
+.mz-torchwrap{width:100%;max-width:302px;margin:5px auto 0;display:flex;align-items:center;gap:7px;
+  padding:0 2px;box-sizing:border-box;color:#fff;font-size:11px;font-weight:800}
+.mz-torchbar{flex:1;height:11px;border-radius:6px;background:rgba(255,255,255,.14);overflow:hidden;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.5)}
+.mz-torchbar i{display:block;height:100%;width:100%;border-radius:6px;
+  background:linear-gradient(90deg,#FF6F00,#FFD54F);transition:width .25s linear}
+.mz-torchwrap.low .mz-torchbar i{background:linear-gradient(90deg,#B71C1C,#FF5252);
+  animation:mzLow .6s infinite}
+.mz-torchwrap.low #mzTorchTxt{color:#FF8A80}
+@keyframes mzLow{0%,100%{filter:none}50%{filter:brightness(1.7)}}
+.mz-torchwrap>span{flex:0 0 auto;min-width:56px;text-align:right}
+.mz-wrap{position:relative;width:100%;max-width:322px;margin:8px auto 0;padding:9px;border-radius:16px;
+  box-sizing:border-box;background:radial-gradient(circle at 50% 42%,#2A1F33 0%,#150F1C 62%,#0B0710 100%);
+  border:2px solid rgba(255,183,77,.3);box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.mz-wrap.shk{animation:mzShake .36s}
+@keyframes mzShake{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}
+  60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.mz-board{display:grid;gap:0;width:100%}
+.mz-c{position:relative;aspect-ratio:1/1;box-sizing:border-box;border:3px solid transparent;
+  background:#07050B;display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:background .2s,box-shadow .2s}
+.mz-c.wn{border-top-color:#8D6E63}
+.mz-c.we{border-right-color:#8D6E63}
+.mz-c.ws{border-bottom-color:#8D6E63}
+.mz-c.ww{border-left-color:#8D6E63}
+.mz-c s{text-decoration:none;font-size:15px;line-height:1;pointer-events:none}
+.mz-c.mem{background:#1B1424}
+.mz-c.mem s{opacity:.5;filter:saturate(.7)}
+.mz-c.lit{background:radial-gradient(circle at 50% 45%,#5C4222 0%,#3A2A18 70%,#2A1E12 100%);
+  border-color:rgba(141,110,99,.75)}
+.mz-c.lit.wn{border-top-color:#C8A063}
+.mz-c.lit.we{border-right-color:#C8A063}
+.mz-c.lit.ws{border-bottom-color:#C8A063}
+.mz-c.lit.ww{border-left-color:#C8A063}
+.mz-c.me{background:radial-gradient(circle at 50% 45%,#FFD180 0%,#B2702A 78%,#7A4314 100%);
+  box-shadow:0 0 16px rgba(255,193,88,.75);z-index:2}
+.mz-c.me s{font-size:19px}
+.mz-c.hint{box-shadow:0 0 0 3px #FFEA00,0 0 18px rgba(255,234,0,.8);z-index:3;
+  animation:mzHintPulse .6s infinite}
+@keyframes mzHintPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.55)}}
+.mz-banner{position:absolute;left:50%;top:38%;transform:translateX(-50%) scale(.9);z-index:400;
+  padding:9px 15px;border-radius:14px;background:rgba(255,214,64,.95);color:#3E2723;
+  font-size:13.5px;font-weight:900;text-align:center;opacity:0;pointer-events:none;
+  box-shadow:0 6px 18px rgba(0,0,0,.45);white-space:nowrap}
+.mz-banner.show{animation:mzBan 1.7s}
+@keyframes mzBan{0%{opacity:0;transform:translateX(-50%) scale(.8)}14%{opacity:1;transform:translateX(-50%) scale(1.06)}
+  26%{transform:translateX(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) scale(1)}}
+.mz-quiz{display:none;width:100%;max-width:302px;margin:8px auto 0;padding:10px 11px;border-radius:15px;
+  box-sizing:border-box;background:rgba(0,0,0,.42);border:2px solid rgba(255,213,79,.45)}
+.mz-quiz.on{display:block;animation:mzQuizIn .24s}
+@keyframes mzQuizIn{from{transform:translateY(12px) scale(.95);opacity:0}to{transform:none;opacity:1}}
+.mz-qtext{color:#FFF3E0;font-size:13px;font-weight:900;text-align:center;line-height:1.5;margin-bottom:8px}
+.mz-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mz-o{padding:10px 4px;border:none;border-radius:12px;font-size:12.5px;font-weight:900;cursor:pointer;
+  color:#fff;background:#5C6BC0;box-shadow:0 3px 0 rgba(0,0,0,.26);transition:transform .12s,filter .2s}
+.mz-o:active{transform:translateY(2px) scale(.97)}
+.mz-o.reveal{background:#00C853;box-shadow:0 0 14px rgba(0,200,83,.8);animation:mzRev .5s 2}
+@keyframes mzRev{0%,100%{filter:brightness(1)}50%{filter:brightness(1.5)}}
+.mz-actrow{display:flex;gap:7px;justify-content:center;width:100%;max-width:302px;margin:9px auto 0}
+.mz-act{flex:1;padding:9px 3px;border:none;border-radius:12px;font-size:12px;font-weight:800;
+  cursor:pointer;color:#fff;background:#5C6BC0;box-shadow:0 3px 0 rgba(0,0,0,.22);line-height:1.3}
+.mz-act.o{background:#26A69A}
+.mz-act b{color:#FFEA00}
+.mz-judge{width:100%;max-width:302px;margin:8px auto 0;min-height:54px;padding:7px 10px;border-radius:12px;
+  box-sizing:border-box;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.34);text-align:center;font-size:11.5px;font-weight:700;line-height:1.55;
+  color:#FFEA00;opacity:0;transition:opacity .3s}
+.mz-judge.show{opacity:1;animation:dtJudge .35s}
+.mz-tip{width:100%;max-width:302px;margin:11px auto 0;text-align:center;font-size:10.5px;
+  color:rgba(255,255,255,.72);line-height:1.6}
+.mz-tip b{color:#FFD740}
+.mz-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;color:#fff}
+.mz-rs div>span{display:block;font-size:23px;font-weight:900;line-height:1.2}
+.mz-rs div>small{display:block;font-size:10.5px;opacity:.7;margin-top:2px}
+.mz-book{margin-top:12px;display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.mz-tr{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+  font-size:15px;background:rgba(255,255,255,.09);filter:grayscale(1) brightness(.6)}
+.mz-tr.on{background:rgba(255,214,64,.22);filter:none}
+.mz-dot{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;
+  background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;
+  align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28)}
+.mz-dot.on{display:flex}
+/* 竖排 flex 容器会压缩每一块（判词两行字就被挤出去压住底部提示）：整屏一律不许缩 */
+#screen-maze>*{flex:0 0 auto}
+@media(max-width:420px){.mz-hud,.mz-torchwrap,.mz-wrap,.mz-quiz,.mz-actrow,.mz-judge,.mz-tip{max-width:290px}}
+
 </style>
 
 </head>
@@ -2344,6 +2436,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🐑</div>
       <div class="info"><h3>笔顺堆堆消</h3><p id="ddCardTip">抽最上面的牌，三张同方向就炸！</p></div>
       <span class="dd-dot" id="ddCardDot">🥇 0</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('maze')">
+      <div class="icon">🏮</div>
+      <div class="info"><h3>笔顺地宫</h3><p id="mzCardTip">火把只照两格，找钥匙开石门！</p></div>
+      <span class="mz-dot" id="mzCardDot">🏮 第 1 层</span>
     </div>
 <div class="mode-card" onclick="enterMode('plinko')">
       <div class="icon">🔮</div>
@@ -4353,6 +4450,71 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-maze">
+  <div class="top-bar">
+    <button class="back-btn" onclick="mzLeave()">← 返回</button>
+    <div class="stats"><span id="mzScoreTxt">🏮 0 分</span><span id="mzLvTxt">第 1 层</span></div>
+    <button class="icon-btn" onclick="mzHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🏮 火把<b style="color:#FFD740">只照亮身边两三格</b>，其余全是黑的：摸到<b style="color:#B9F6CA">🗝️ 钥匙</b>才开得了<b style="color:#FFCC80">🚪 石门</b>，
+    一路上的<b style="color:#FFF176">📦 宝箱</b>要<b style="color:#FF8A80">答对笔顺题</b>才打得开（答错两次就锈死），脚下还可能藏着<b style="color:#FF8A80">⚡ 暗雷</b>。火把烧完就得重头来过！</div>
+  <div class="mz-hud">
+    <span id="mzFloorTxt">🏮 第 1/6 层</span>
+    <span id="mzBoxTxt">📦 0/1</span>
+    <span id="mzKeyTxt">🗝️ 没找到</span>
+    <span id="mzHeartsTxt">❤️ 3</span>
+    <span id="mzBestTxt">🥇 0</span>
+  </div>
+  <div class="mz-torchwrap" id="mzTorchWrap">
+    <div class="mz-torchbar"><i id="mzTorchBar"></i></div>
+    <span id="mzTorchTxt">⏱️ 60 秒</span>
+  </div>
+  <div class="mz-wrap" id="mzWrap">
+    <div class="mz-board" id="mzBoard"></div>
+    <div class="mz-banner" id="mzBanner"></div>
+  </div>
+  <div class="mz-quiz" id="mzQuiz">
+    <div class="mz-qtext" id="mzQText"></div>
+    <div class="mz-opts" id="mzOpts"></div>
+  </div>
+  <div class="mz-actrow">
+    <button class="mz-act" id="mzHintBtn" onclick="mzHint()">💡 照路 <b>2</b></button>
+    <button class="mz-act o" id="mzFlashBtn" onclick="mzFlash()">🔦 火把 <b>1</b></button>
+  </div>
+  <div class="mz-judge" id="mzJudge"></div>
+  <div class="mz-tip" id="mzTip">本层 16 间 · 📦 1 个 · 视野 2 格 · <b>方向键/点相邻格/滑动</b>走动 · <b>H</b> 照路 · <b>F</b> 火把</div>
+</div>
+<div class="screen" id="screen-maze-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="mzRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 12px;color:#fff">
+    <div style="font-size:64px;margin-bottom:10px" id="mzRsEmoji">🏮</div>
+    <h2 style="font-size:27px;margin-bottom:6px" id="mzRsTitle">火把熄灭了</h2>
+    <p style="font-size:15px;opacity:.82;line-height:1.5" id="mzRsSub">下次先看清 🗝️ 大概在哪头，别绕远路</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:16px">
+    <div class="mz-rs">
+      <div><span style="color:#FFD700" id="mzRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#69F0AE" id="mzRsFloors">0</span><small>逃出几层</small></div>
+      <div><span style="color:#4FC3F7" id="mzRsDepth">1</span><small>下到第几层</small></div>
+      <div><span style="color:#FF9800" id="mzRsBoxes">0</span><small>开出宝箱</small></div>
+      <div><span style="color:#E1BEE7" id="mzRsCombo">0</span><small>最长连击</small></div>
+      <div><span style="color:#B9F6CA" id="mzRsSteps">0</span><small>走过几格</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="mzRsBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="mzRsAll">段位 地宫新手 · 累计逃出 0 层 · 图鉴 0/10 件宝藏</div>
+      <div class="mz-book" id="mzRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="mzStart()">🏮 再探一次</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-plinko">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -5138,6 +5300,7 @@ function updateHomeStats(){
   if(typeof ggNudge==='function')ggNudge();
   if(typeof twNudge==='function')twNudge();
   if(typeof ddNudge==='function')ddNudge();
+  if(typeof mzNudge==='function')mzNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -5183,6 +5346,7 @@ function enterMode(mode){
   else if(mode==='town')twStart();
   else if(mode==='mow')mwStart();
  else if(mode==='dd')ddStart();
+ else if(mode==='maze')mzStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -22732,6 +22896,679 @@ document.addEventListener('keydown',function(e){
   if(k==='3'){ddPark();return}
   if(k==='h'||k==='H'){ddHelp();return}
 });
+/* ===== 笔顺地宫：火把只照亮身边几格，找钥匙开石门逃生，宝箱要答对题才打得开，路上埋着看不见的暗雷 ===== */
+const MZ_DIRS=['N','E','S','W'];
+const MZ_DX=[0,1,0,-1],MZ_DY=[-1,0,1,0],MZ_OPP=[2,3,0,1];
+const MZ_CN={N:'往北（上）',E:'往东（右）',S:'往南（下）',W:'往西（左）'};
+const MZ_FLOORS=6;
+const MZ_LV=[
+  {w:4,h:4,vis:2,box:1,oil:1,trap:1,heal:0,time:60,step:1.0},
+  {w:5,h:4,vis:2,box:2,oil:1,trap:2,heal:0,time:62,step:1.0},
+  {w:5,h:5,vis:2,box:2,oil:2,trap:2,heal:1,time:64,step:1.1},
+  {w:6,h:5,vis:2,box:3,oil:2,trap:3,heal:1,time:66,step:1.2},
+  {w:6,h:6,vis:1,box:3,oil:2,trap:3,heal:1,time:68,step:1.3},
+  {w:7,h:6,vis:1,box:4,oil:3,trap:4,heal:1,time:70,step:1.4}
+];
+const MZ_TRE=[
+  {k:'coin',e:'🪙',n:'五铢钱',sc:20,t:0},
+  {k:'jar',e:'🏺',n:'陶罐',sc:24,t:0},
+  {k:'bone',e:'🦴',n:'甲骨片',sc:28,t:0},
+  {k:'bell',e:'🔔',n:'铜铃',sc:34,t:1},
+  {k:'seal',e:'🈹',n:'石印',sc:40,t:1},
+  {k:'lantern',e:'🏮',n:'宫灯',sc:46,t:1},
+  {k:'mirror',e:'🪞',n:'铜镜',sc:54,t:2},
+  {k:'pearl',e:'🔮',n:'夜明珠',sc:64,t:2},
+  {k:'crown',e:'👑',n:'金冠',sc:78,t:2},
+  {k:'jade',e:'🐉',n:'玉龙',sc:96,t:3}
+];
+const MZ_RANKS=['地宫新手','摸黑学徒','探洞小匠','点火猎人','开箱高手','寻宝勇士','破门高手','地宫主宰','汉字考古家'];
+const MZ_NOTE=[392,440,523,587,659,784,880,1046];
+function mzSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function mzJudge(t,color){
+  const e=document.getElementById('mzJudge');if(!e)return;
+  e.textContent=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function mzBanner(t){
+  const e=document.getElementById('mzBanner');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function mzShake(){
+  const e=document.getElementById('mzWrap');if(!e)return;
+  e.classList.remove('shk');void e.offsetWidth;e.classList.add('shk');
+}
+function mzT(fn,ms){
+  const g=mz.gen;
+  return setTimeout(function(){if(g===mz.gen&&mz.run&&!mz.over&&currentMode==='maze')fn()},ms);
+}
+/* ---- 纯函数：层配置 / 挖迷宫 / 连通距离 / 计分 / 星级 / 宝藏权重，harness 可在 Node 里独立重算 ---- */
+function mzCfg(d){return MZ_LV[Math.min(MZ_LV.length-1,Math.max(0,(d|0)-1))]}
+function mzRnd(seed){let s=(seed>>>0)||1;return function(){s=(s*1664525+1013904223)>>>0;return s/4294967296}}
+function mzNb(w,h,d,from){
+  const x=from%w,y=(from/w)|0;
+  const nx=x+MZ_DX[d],ny=y+MZ_DY[d];
+  if(nx<0||ny<0||nx>=w||ny>=h)return -1;
+  return ny*w+nx;
+}
+function mzOpen(R,w,h,d,from){
+  if(d<0||d>3)return -1;
+  const r=R[from];
+  if(!r||r.walls[d])return -1;
+  return mzNb(w,h,d,from);
+}
+function mzCarve(w,h,rnd){
+  const n=w*h,R=[];
+  for(let i=0;i<n;i++)R.push({i:i,x:i%w,y:(i/w)|0,walls:[1,1,1,1]});
+  const vis=new Uint8Array(n);vis[0]=1;
+  const stack=[0];
+  while(stack.length){
+    const ci=stack[stack.length-1],c=R[ci],nb=[];
+    for(let d=0;d<4;d++){
+      const ni=mzNb(w,h,d,ci);
+      if(ni<0||vis[ni])continue;
+      nb.push([d,ni]);
+    }
+    if(!nb.length){stack.pop();continue}
+    const p=nb[(rnd()*nb.length)|0];
+    c.walls[p[0]]=0;R[p[1]].walls[MZ_OPP[p[0]]]=0;
+    vis[p[1]]=1;stack.push(p[1]);
+  }
+  /* 拆掉一部分死胡同，留出回路：纯树形迷宫对孩子太磨人 */
+  for(let i=0;i<n;i++){
+    const r=R[i];let open=0;
+    for(let d=0;d<4;d++)if(!r.walls[d])open++;
+    if(open>2||rnd()>0.34)continue;
+    const cand=[];
+    for(let d=0;d<4;d++){
+      if(!r.walls[d])continue;
+      const ni=mzNb(w,h,d,i);
+      if(ni<0||ni===i)continue;
+      cand.push([d,ni]);
+    }
+    if(!cand.length)continue;
+    const p=cand[(rnd()*cand.length)|0];
+    r.walls[p[0]]=0;R[p[1]].walls[MZ_OPP[p[0]]]=0;
+  }
+  return R;
+}
+function mzBfs(R,w,h,from){
+  const dist=[];
+  for(let i=0;i<R.length;i++)dist[i]=-1;
+  dist[from]=0;
+  const q=[from];
+  for(let qi=0;qi<q.length;qi++){
+    const c=q[qi];
+    for(let d=0;d<4;d++){
+      const ni=mzOpen(R,w,h,d,c);
+      if(ni<0||dist[ni]>=0)continue;
+      dist[ni]=dist[c]+1;q.push(ni);
+    }
+  }
+  return dist;
+}
+function mzTake(used,R,rnd){
+  const cand=[];
+  for(let i=0;i<R.length;i++)if(!used[i])cand.push(i);
+  if(!cand.length)return -1;
+  return cand[(rnd()*cand.length)|0];
+}
+function mzLayout(R,w,h,cfg,rnd){
+  const n=R.length,start=0,exit=n-1;
+  const dist=mzBfs(R,w,h,start);
+  const used=new Uint8Array(n);
+  used[start]=1;used[exit]=1;
+  let best=-1;
+  for(let i=0;i<n;i++)if(i!==exit&&i!==start&&dist[i]>=0&&dist[i]>best)best=dist[i];
+  const tie=[];
+  for(let i=0;i<n;i++)if(i!==exit&&i!==start&&dist[i]===best)tie.push(i);
+  const key=tie.length?tie[(rnd()*tie.length)|0]:mzTake(used,R,rnd);
+  used[key]=1;
+  function take(cnt){
+    const out=[];
+    for(let a=0;a<cnt;a++){
+      const i=mzTake(used,R,rnd);
+      if(i<0)break;
+      used[i]=1;out.push(i);
+    }
+    return out;
+  }
+  return {
+    start:start,exit:exit,key:key,dist:dist,
+    items:{key:key,box:take(cfg.box),oil:take(cfg.oil),heal:take(cfg.heal),trap:take(cfg.trap)}
+  };
+}
+function mzBoxGain(lv,first){return Math.round((40+lv*10)*(first?1:.6))}
+function mzDoorGain(lv,opened,left){return Math.round(80+lv*30+opened*35+Math.min(60,Math.max(0,left))*2)}
+function mzAnsGain(lv,combo){return Math.round((16+lv*4)*(1+Math.min(1.5,Math.max(0,(combo|0)-1)*.18)))}
+function mzStars(score,floors,opened){return Math.max(2,Math.min(26,Math.round((score||0)/45)+(floors||0)*2+Math.min(6,opened||0)))}
+function mzRank(floors){return MZ_RANKS[Math.min(MZ_RANKS.length-1,Math.floor((floors||0)/4))]}
+function mzTreRoll(d,rnd){
+  const tier=d<=2?0:d<=4?1:d<=5?2:3;
+  const pool=[],wt=[];
+  let sum=0;
+  for(let i=0;i<MZ_TRE.length;i++){
+    if(MZ_TRE[i].t>tier)continue;
+    pool.push(MZ_TRE[i]);
+    const v=1+MZ_TRE[i].t*MZ_TRE[i].t;
+    wt.push(v);sum+=v;
+  }
+  let r=rnd()*sum;
+  for(let i=0;i<pool.length;i++){r-=wt[i];if(r<0)return pool[i]}
+  return pool[pool.length-1];
+}
+/* ---- 存档 ---- */
+function mzInt(k){const v=parseInt(localStorage.getItem(k)||'0',10);return isFinite(v)&&v>0?v:0}
+function mzAdd(k,n){localStorage.setItem(k,String(mzInt(k)+(n||0)))}
+function mzBook(){
+  let b=[];
+  try{
+    const p=JSON.parse(localStorage.getItem('hz_mz_book')||'[]');
+    if(Array.isArray(p)){const s={};for(let i=0;i<p.length;i++){const x=p[i];if(typeof x==='string'&&!s[x]){s[x]=1;b.push(x)}}}
+  }catch(e){}
+  return b;
+}
+function mzBookAdd(k){
+  const b=mzBook();
+  if(b.indexOf(k)>=0)return false;
+  b.push(k);
+  localStorage.setItem('hz_mz_book',JSON.stringify(b.slice(-80)));
+  return true;
+}
+/* ---- 出题：方向只吃本模块缓存（绝不覆写全局 strokeTypes / detectDir） ---- */
+const mzTy={};
+async function mzEnsure(n){
+  for(let a=0;a<CHARS.length&&Object.keys(mzTy).length<n;a++){
+    const c=CHARS[a];
+    if(mzTy[c])continue;
+    let d=charDataCache[c];
+    if(!d||!d.medians)d=await loadCharData(c);
+    if(!d||!d.medians||d.medians.length<3)continue;
+    mzTy[c]={t:d.medians.map(ddStrokeDir),n:d.medians.length};
+  }
+}
+function mzPool(){
+  const out=[];
+  for(const c in mzTy){const e=mzTy[c];if(e.n>=3&&e.n<=9)out.push(c)}
+  return out;
+}
+/* ---- 状态 ---- */
+let mz={gen:0,run:false,over:false,ended:false,busy:false,gate:false,
+  depth:1,score:0,combo:0,maxCombo:0,
+  R:[],w:4,h:4,cur:0,exit:0,keyRoom:0,hasKey:false,visBase:2,vis:2,
+  time:60,timeMax:60,step:1,hearts:3,boxTotal:1,opened:0,traps:0,steps:0,floors:0,
+  hint:2,flash:1,flashT:0,answers:0,miss:0,newTre:0,low:false,
+  items:null,quiz:null,tickId:0,sig:''};
+function mzItemOf(r){
+  if(r.done)return null;
+  if(r.i===mz.exit)return mz.hasKey?'door':'lock';
+  if(!mz.items)return null;
+  if(mz.items.key===r.i)return 'key';
+  if(mz.items.box.indexOf(r.i)>=0)return 'box';
+  if(mz.items.oil.indexOf(r.i)>=0)return 'oil';
+  if(mz.items.heal.indexOf(r.i)>=0)return 'heal';
+  return null;
+}
+function mzLit(){
+  const c=mz.R[mz.cur];
+  for(let i=0;i<mz.R.length;i++){
+    const r=mz.R[i];
+    r.lit=Math.max(Math.abs(r.x-c.x),Math.abs(r.y-c.y))<=mz.vis?1:0;
+    if(r.lit)r.seen=1;
+  }
+}
+function mzGlyph(r){
+  if(r.i===mz.cur)return '🧒';
+  if(!r.seen)return '';
+  const it=mzItemOf(r);
+  if(it==='lock')return '🔒';
+  if(it==='door')return '🚪';
+  if(it==='key')return '🗝️';
+  if(it==='box')return '📦';
+  if(it==='oil')return '🕯️';
+  if(it==='heal')return '💧';
+  if(r.trapHit)return '⚡';
+  return '';
+}
+function mzCls(r){
+  return 'mz-c'+(r.lit?' lit':'')+(r.seen&&!r.lit?' mem':'')+(r.i===mz.cur?' me':'')+
+    (r.walls[0]?' wn':'')+(r.walls[1]?' we':'')+(r.walls[2]?' ws':'')+(r.walls[3]?' ww':'');
+}
+function mzCellHtml(r){
+  return '<div class="'+mzCls(r)+'" id="mzC'+r.i+'" onclick="mzTapRoom('+r.i+')"><s>'+mzGlyph(r)+'</s></div>';
+}
+function mzRender(){
+  const g=document.getElementById('mzBoard');
+  if(!g)return;
+  const sig=mz.gen+'|'+mz.depth+'|'+mz.R.map(function(r){
+    return r.i+(r.lit?'l':'')+(r.seen?'s':'')+(r.done?'d':'')+(r.trapHit?'t':'');
+  }).join(',');
+  g.style.gridTemplateColumns='repeat('+mz.w+',1fr)';
+  if(sig!==mz.sig){
+    mz.sig=sig;
+    g.innerHTML=mz.R.map(mzCellHtml).join('');
+    return;
+  }
+  for(let i=0;i<mz.R.length;i++){
+    const r=mz.R[i],e=document.getElementById('mzC'+r.i);
+    if(!e)continue;
+    e.className=mzCls(r);
+    const s=e.querySelector('s');
+    if(s)s.textContent=mzGlyph(r);
+  }
+}
+function mzHud(){
+  mzSet('mzScoreTxt','🏮 '+mz.score+' 分');
+  mzSet('mzLvTxt','第 '+mz.depth+' 层');
+  mzSet('mzFloorTxt','🏮 第 '+mz.depth+'/'+MZ_FLOORS+' 层');
+  mzSet('mzBoxTxt','📦 '+mz.opened+'/'+mz.boxTotal);
+  mzSet('mzKeyTxt',mz.hasKey?'🗝️ 有了':'🗝️ 没找到');
+  mzSet('mzHeartsTxt','❤️ '+mz.hearts);
+  mzSet('mzBestTxt','🥇 '+mzInt('hz_mz_best'));
+  const hb=document.getElementById('mzHintBtn');
+  if(hb)hb.innerHTML='💡 照路 <b>'+mz.hint+'</b>';
+  const fb=document.getElementById('mzFlashBtn');
+  if(fb)fb.innerHTML='🔦 火把 <b>'+mz.flash+'</b>';
+}
+function mzBar(){
+  const p=Math.max(0,Math.min(1,mz.time/mz.timeMax));
+  const b=document.getElementById('mzTorchBar');
+  if(b)b.style.width=(p*100).toFixed(1)+'%';
+  const t=document.getElementById('mzTorchWrap');
+  const low=mz.time<=10;
+  if(t&&low!==mz.low){mz.low=low;t.classList.toggle('low',low)}
+  mzSet('mzTorchTxt','⏱️ '+Math.ceil(mz.time)+' 秒');
+}
+/* ---- 火把计时：答题时自动停住，别让孩子边读题边掉时间 ---- */
+function mzStartTorch(){if(!mz.tickId)mz.tickId=setInterval(mzTick,250)}
+function mzStopTorch(){if(mz.tickId){clearInterval(mz.tickId);mz.tickId=0}}
+function mzTick(){
+  if(!mz.run||mz.over)return;
+  if(currentMode!=='maze'){mzStopTorch();return}
+  if(mz.flashT>0){
+    mz.flashT-=0.25;
+    if(mz.flashT<=0){mz.flashT=0;mz.vis=mz.visBase;mzLit();mz.sig='';mzRender()}
+  }
+  if(mz.gate){mzBar();return}
+  mz.time-=0.25;
+  if(mz.time<=0){mz.time=0;mzBar();mzEnd('burn');return}
+  if(mz.time<=10&&mz.time+0.25>10)tone(1180,.09,'square',.05);
+  mzBar();
+}
+/* ---- 走动 ---- */
+function mzGo(d){
+  if(!mz.run||mz.over||mz.busy)return false;
+  if(mz.gate){
+    if(!mz.quiz){mz.gate=false;return false}
+    return false;
+  }
+  const ni=mzOpen(mz.R,mz.w,mz.h,d,mz.cur);
+  if(ni<0){
+    mzShake();tone(180,.09,'square',.05);
+    mzJudge('🧱 这一面是石墙，过不去','#FFCC80');
+    return false;
+  }
+  mz.cur=ni;mz.steps++;
+  mz.time=Math.max(0,mz.time-mz.step);
+  mzLit();mz.sig='';mzRender();mzBar();
+  if(mz.time<=0){mzEnd('burn');return true}
+  mzEnter(mz.R[ni]);
+  return true;
+}
+function mzTapRoom(i){
+  if(!mz.run||mz.over||mz.gate||mz.busy)return;
+  const r=mz.R[i];
+  if(!r||!r.seen){mzJudge('🌑 那片还黑着，先照到它再往那走','#B0BEC5');return}
+  for(let d=0;d<4;d++)if(mzOpen(mz.R,mz.w,mz.h,d,mz.cur)===i){mzGo(d);return}
+  mzJudge('🚶 一格一格走，只能走到挨着的那间','#B0BEC5');
+}
+function mzEnter(r){
+  if(!mz.run||mz.over)return;
+  if(r.trap&&!r.trapHit){
+    r.trapHit=1;
+    mz.traps++;mz.combo=0;
+    mz.time=Math.max(0,mz.time-5);
+    mz.hearts--;
+    mzShake();sndNo();mzBar();mzHud();mzRender();
+    mzJudge('⚡ 踩到暗雷了！这一格下次记得绕开 —— ❤️ -1 · 火把 -5 秒','#FFCDD2');
+    if(mz.hearts<=0)mzEnd('trap');
+    return;
+  }
+  const it=mzItemOf(r);
+  if(!it)return;
+  if(it==='key'){
+    r.done=1;mz.hasKey=true;mz.score+=15;
+    tone(MZ_NOTE[3],.14,'triangle',.1);
+    mzFly(r);mzHud();mzRender();
+    mzJudge('🗝️ 摸到一把铜钥匙！快回 🔒 那扇石门，它现在开得了','#B9F6CA');
+    return;
+  }
+  if(it==='oil'){
+    r.done=1;mz.score+=12;
+    mz.time=Math.min(mz.timeMax,mz.time+6);
+    mz.visBase=Math.min(5,mz.visBase+1);
+    mz.vis=mz.visBase+(mz.flashT>0?2:0);
+    mzLit();mz.sig='';mzRender();mzHud();mzBar();
+    tone(MZ_NOTE[2],.12,'sine',.08);
+    mzJudge('🕯️ 添了灯油：火把照得更远（视野 +1 格）· 火把 +6 秒','#FFF9C4');
+    return;
+  }
+  if(it==='heal'){
+    r.done=1;mz.hearts=Math.min(3,mz.hearts+1);mz.score+=8;
+    mzHud();mzRender();sndDone();
+    mzJudge('💧 地宫里竟有一眼清泉，喝一口 ❤️ +1','#B9F6CA');
+    return;
+  }
+  if(it==='lock'){
+    tone(240,.12,'square',.05);
+    mzJudge('🔒 石门纹丝不动——先去找 🗝️ 钥匙，它多半藏在这层最深的角落','#FFCC80');
+    return;
+  }
+  if(it==='box'){mzAsk('box',r.i);return}
+  if(it==='door'){mzAsk('door',r.i);return}
+}
+/* ---- 出题：宝箱与石门都是「答对才打得开」 ---- */
+async function mzAsk(kind,room){
+  if(!mz.run||mz.over)return;
+  mz.gate=true;mz.busy=true;
+  const gen=mz.gen;
+  try{await mzEnsure(90)}catch(e){}
+  if(gen!==mz.gen)return;
+  if(!mz.run||mz.over){mz.busy=false;return}
+  if(currentMode!=='maze'){mz.busy=false;mz.gate=false;mzCloseQuiz();return}
+  const pool=mzPool();
+  if(!pool.length){
+    mz.gate=false;mz.busy=false;
+    mzJudge('📖 字库还没加载好，回首页等一下再进来','#FFCDD2');
+    return;
+  }
+  const ch=pool[(Math.random()*pool.length)|0];
+  const e=mzTy[ch];
+  const dirQ=Math.random()<.6;
+  let text,right,opts=[];
+  if(dirQ){
+    const k=(Math.random()*e.n)|0;
+    const code=e.t[k];
+    text='「'+ch+'」的第 '+(k+1)+' 笔往哪写？';
+    right=code;
+    const rest=DIRS.filter(function(x){return x.code!==code});
+    for(let a=rest.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=rest[a];rest[a]=rest[b];rest[b]=t}
+    opts=[code].concat(rest.slice(0,3).map(function(x){return x.code}));
+  }else{
+    text='「'+ch+'」一共有几笔？';
+    right=e.n;
+    const nums=[e.n];
+    const offs=[-3,-2,-1,1,2,3,4,5,6];
+    for(let a=offs.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=offs[a];offs[a]=offs[b];offs[b]=t}
+    for(let a=0;a<offs.length&&nums.length<4;a++){
+      const k=e.n+offs[a];
+      if(k>0&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=nums;
+  }
+  for(let a=opts.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=opts[a];opts[a]=opts[b];opts[b]=t}
+  mz.quiz={kind:kind,room:room,tries:kind==='box'?2:99,opts:opts,right:right,ch:ch,text:text};
+  const qp=document.getElementById('mzQuiz');
+  if(qp)qp.classList.add('on');
+  mzSet('mzQText',(kind==='box'?'📦 宝箱上刻着：':'🚪 石门上刻着：')+text);
+  const g=document.getElementById('mzOpts');
+  if(g)g.innerHTML=opts.map(function(v,i){
+    return '<button class="mz-o" id="mzO'+i+'" onclick="mzPick('+i+')">'+(i+1)+'. '+(typeof v==='number'?v+' 笔':mzDirLabel(v))+'</button>';
+  }).join('');
+  mz.busy=false;
+}
+function mzDirLabel(c){
+  for(let i=0;i<DIRS.length;i++)if(DIRS[i].code===c)return DIRS[i].icon+DIRS[i].label;
+  return c;
+}
+function mzRightLabel(v){return typeof v==='number'?v+' 笔':mzDirLabel(v)}
+function mzCloseQuiz(){
+  mz.quiz=null;mz.gate=false;
+  const qp=document.getElementById('mzQuiz');
+  if(qp)qp.classList.remove('on');
+}
+function mzPick(i){
+  const Q=mz.quiz;
+  if(!Q||!mz.run||mz.over||!mz.gate)return;
+  const v=Q.opts[i];
+  if(v===undefined)return;
+  const r=mz.R[Q.room];
+  if(String(v)===String(Q.right)){
+    const first=Q.tries>=2;
+    mz.combo++;
+    if(mz.combo>mz.maxCombo)mz.maxCombo=mz.combo;
+    mz.answers++;
+    const g=mzAnsGain(mz.depth,mz.combo);
+    mz.score+=g;
+    mz.time=Math.min(mz.timeMax,mz.time+8);
+    tone(MZ_NOTE[Math.min(MZ_NOTE.length-1,mz.combo-1)],.15,'triangle',.12);
+    mzCloseQuiz();
+    if(Q.kind==='box'){
+      r.done=1;mz.opened++;
+      const tr=mzTreRoll(mz.depth,Math.random);
+      const isNew=mzBookAdd(tr.k);
+      const bg=mzBoxGain(mz.depth,first)+tr.sc;
+      mz.score+=bg;
+      if(isNew){mz.newTre++;addStars(2)}
+      mzFly(r);
+      mzJudge('📦 开出 '+tr.e+' '+tr.n+'（+'+bg+' 分）'+(isNew?' · 🌟 图鉴收录新宝藏':'')+
+        ' · 火把 +8 秒（这题 +'+g+' 分）','#B9F6CA');
+      if(mz.opened>=mz.boxTotal)mzBanner('📦 这层的宝箱全开啦！去 🚪 石门');
+    }else{
+      mzJudge('🚪 石门「轰」地开了（这题 +'+g+' 分）','#B9F6CA');
+    }
+    mzHud();mzRender();mzBar();
+    if(Q.kind==='door')mzFloorWin();
+    return;
+  }
+  mz.combo=0;mz.miss++;
+  mz.time=Math.max(0,mz.time-6);
+  sndNo();mzShake();
+  const btns=document.querySelectorAll('#mzOpts .mz-o');
+  for(let a=0;a<btns.length;a++)if(String(Q.opts[a])===String(Q.right))btns[a].classList.add('reveal');
+  Q.tries--;
+  mzHud();mzBar();
+  if(Q.kind==='box'&&Q.tries<=0){
+    r.done=1;
+    mzCloseQuiz();
+    mzJudge('💥 又答错了——宝箱「咔」地锈死了，这层少一件宝藏（火把 -6 秒）','#FFCDD2');
+    mzRender();
+    if(mz.time<=0)mzEnd('burn');
+    return;
+  }
+  mzJudge('🙅 明明是「'+mzRightLabel(Q.right)+'」呀，再想一次（火把 -6 秒）','#FFCC80');
+  if(mz.time<=0){mzCloseQuiz();mzEnd('burn');return}
+  mzT(function(){mzAsk(Q.kind,Q.room)},1200);
+}
+function mzFly(r){
+  const c=document.getElementById('mzC'+r.i);
+  if(!c||!window.spawnStarFly)return;
+  const b=c.getBoundingClientRect();
+  spawnStarFly(b.left+b.width/2,b.top+b.height/2);
+}
+function mzConfetti(){try{if(window.spawnConfetti)spawnConfetti()}catch(e){}}
+/* ---- 层进 / 结算 ---- */
+function mzFloorWin(){
+  const gain=mzDoorGain(mz.depth,mz.opened,mz.time);
+  mz.score+=gain;
+  mz.floors++;
+  mzAdd('hz_mz_floors',1);
+  if(mz.depth>mzInt('hz_mz_depth'))localStorage.setItem('hz_mz_depth',String(mz.depth));
+  mzConfetti();
+  tone(660,.14,'triangle',.12);
+  mzHud();
+  if(mz.depth>=MZ_FLOORS){mzEnd('clear');return}
+  mzBanner('🚪 逃出第 '+mz.depth+' 层！再往下：更黑、更深、宝更多');
+  mz.depth++;
+  mzBuild();
+}
+function mzBuild(){
+  const C=mzCfg(mz.depth);
+  mz.w=C.w;mz.h=C.h;mz.timeMax=C.time;mz.time=C.time;mz.step=C.step;
+  mz.visBase=C.vis;mz.vis=C.vis;mz.flashT=0;mz.low=false;
+  mz.R=mzCarve(C.w,C.h,Math.random);
+  for(let i=0;i<mz.R.length;i++){
+    const r=mz.R[i];
+    r.seen=0;r.lit=0;r.done=0;r.trap=0;r.trapHit=0;
+  }
+  const L=mzLayout(mz.R,C.w,C.h,C,Math.random);
+  mz.items=L.items;mz.cur=L.start;mz.exit=L.exit;mz.keyRoom=L.key;mz.hasKey=false;
+  mz.boxTotal=L.items.box.length;mz.opened=0;mz.steps=0;mz.hint=2;mz.flash=1;
+  for(let a=0;a<L.items.trap.length;a++)mz.R[L.items.trap[a]].trap=1;
+  mz.R[mz.cur].seen=1;
+  mzLit();mz.sig='';mzRender();mzHud();mzBar();
+  const tp=document.getElementById('mzTip');
+  if(tp)tp.innerHTML='本层 '+mz.R.length+' 间 · 📦 '+mz.boxTotal+' 个 · 视野 '+mz.vis+' 格 · <b>方向键/点相邻格/滑动</b>走动 · <b>H</b> 照路 · <b>F</b> 火把';
+  mzJudge('🏮 第 '+mz.depth+' 层：找 🗝️ 钥匙 → 开 🚪 石门，路上顺手开箱','#FFE082');
+}
+function mzEnd(reason){
+  if(mz.ended)return;
+  mz.ended=true;mz.over=true;mz.run=false;mz.busy=false;
+  mzStopTorch();mzCloseQuiz();
+  const s=Math.round(mz.score);
+  if(s>mzInt('hz_mz_best'))localStorage.setItem('hz_mz_best',String(s));
+  if(mz.depth>mzInt('hz_mz_depth'))localStorage.setItem('hz_mz_depth',String(mz.depth));
+  mzAdd('hz_mz_runs',1);mzAdd('hz_mz_boxes',mz.opened);
+  mzAdd('hz_mz_answers',mz.answers);mzAdd('hz_mz_traps',mz.traps);
+  const g=mzStars(s,mz.floors,mz.opened);
+  addStars(g);
+  mzSettle(reason,s,g);
+}
+function mzSettle(reason,s,g){
+  const E={clear:'🏆',burn:'🕯️',trap:'💥',leave:'🎒'};
+  const T={clear:'地宫贯通！',burn:'火把熄灭了',trap:'暗雷炸翻了探险家',leave:'背着宝藏回地面'};
+  const S={
+    clear:'连下 '+MZ_FLOORS+' 层、一扇石门都没挡住你——地宫的主人就是你',
+    burn:'火把烧完了。下次先看清 🗝️ 大概在哪头，别绕远路',
+    trap:'三颗心都交给暗雷了——记住哪一格炸过，绕开它再来',
+    leave:'这层还没逃出去，但背包里的宝藏够沉了'
+  };
+  mzSet('mzRsEmoji',E[reason]||'🏮');
+  mzSet('mzRsTitle',T[reason]||'地宫探险结束');
+  mzSet('mzRsSub',S[reason]||'');
+  mzSet('mzRsScore',String(s));
+  mzSet('mzRsFloors',String(mz.floors));
+  mzSet('mzRsDepth',String(mz.depth));
+  mzSet('mzRsBoxes',String(mz.opened));
+  mzSet('mzRsCombo',String(mz.maxCombo));
+  mzSet('mzRsSteps',String(mz.steps));
+  mzSet('mzRsBest',String(mzInt('hz_mz_best')));
+  mzSet('mzRsStars','⭐ +'+g);
+  mzSet('mzRsAll','段位 '+mzRank(mzInt('hz_mz_floors'))+' · 累计逃出 '+mzInt('hz_mz_floors')+' 层 · 图鉴 '+mzBook().length+'/'+MZ_TRE.length+' 件宝藏');
+  const bk=document.getElementById('mzRsBook');
+  if(bk){
+    const have=mzBook();
+    bk.innerHTML=MZ_TRE.map(function(t){
+      const on=have.indexOf(t.k)>=0;
+      return '<span class="mz-tr'+(on?' on':'')+'" title="'+t.n+'">'+(on?t.e:'❔')+'</span>';
+    }).join('');
+  }
+  showScreen('maze-result');
+  if(reason==='clear')mzConfetti();
+}
+function mzLeave(){
+  if(mz.run&&!mz.over){mzEnd('leave');return}
+  goHome();
+}
+function mzHelp(){
+  mzJudge('🏮 火把只照亮身边 '+mz.vis+' 格 · 走过的路会留在记忆里 · 找 🗝️ 才开得了 🚪 石门 · 📦 要答对题才打得开（答错两次就锈死）· ⚡ 暗雷看不见，踩过才知道','#80DEEA');
+}
+function mzHint(){
+  if(!mz.run||mz.over||mz.gate||mz.busy)return;
+  if(mz.hint<=0){mzJudge('💡 这一层的照路次数用完了','#FFCDD2');return}
+  const targets=[];
+  if(!mz.hasKey)targets.push(mz.keyRoom);
+  else targets.push(mz.exit);
+  for(let a=0;a<mz.items.box.length;a++){
+    const r=mz.R[mz.items.box[a]];
+    if(r&&!r.done)targets.push(r.i);
+  }
+  const back=mzBfs(mz.R,mz.w,mz.h,mz.cur);
+  let to=-1,bestD=1e9;
+  for(let a=0;a<targets.length;a++){
+    const t=targets[a];
+    if(t===mz.cur)continue;
+    if(back[t]>=0&&back[t]<bestD){bestD=back[t];to=t}
+  }
+  if(to<0||bestD>=1e9){mzJudge('💡 这层已经没什么可去的了，直接找石门吧','#B0BEC5');return}
+  const dist=mzBfs(mz.R,mz.w,mz.h,to);
+  let stepRoom=-1,stepDir=-1;
+  for(let d=0;d<4;d++){
+    const ni=mzOpen(mz.R,mz.w,mz.h,d,mz.cur);
+    if(ni>=0&&dist[ni]>=0&&(stepRoom<0||dist[ni]<dist[stepRoom])){stepRoom=ni;stepDir=d}
+  }
+  mz.hint--;mz.score=Math.max(0,mz.score-10);
+  const e=stepRoom>=0?document.getElementById('mzC'+stepRoom):null;
+  if(e)e.classList.add('hint');
+  mzHud();
+  mzJudge('💡 宝藏/钥匙在 '+bestD+' 步外：先'+(stepDir>=0?MZ_CN[MZ_DIRS[stepDir]]:'往前走')+'（-10 分）','#FFF9C4');
+  mzT(function(){if(e)e.classList.remove('hint')},1800);
+}
+function mzFlash(){
+  if(!mz.run||mz.over||mz.gate||mz.busy)return;
+  if(mz.flash<=0){mzJudge('🔦 这一层的备用火把用完了','#FFCDD2');return}
+  mz.flash--;mz.flashT=10;mz.vis=mz.visBase+2;
+  mz.score=Math.max(0,mz.score-8);
+  tone(880,.16,'triangle',.1);
+  mzLit();mz.sig='';mzRender();mzHud();
+  mzJudge('🔦 火把轰地窜高——10 秒内这层几乎全亮（-8 分）','#FFE082');
+}
+function mzNudge(){
+  const tip=document.getElementById('mzCardTip'),dot=document.getElementById('mzCardDot');
+  const n=mzBook().length,deep=mzInt('hz_mz_depth');
+  if(tip)tip.textContent=deep>1?('已下到第 '+deep+' 层 · 收了 '+n+' 件宝藏'):'火把照亮身边两格，找钥匙开石门！';
+  if(dot){
+    dot.classList.toggle('on',deep>1||mzInt('hz_mz_best')>0);
+    dot.textContent='🏮 第 '+Math.max(1,deep)+' 层';
+  }
+}
+async function mzStart(){
+  mz.gen++;mzStopTorch();mzCloseQuiz();
+  mz.run=true;mz.over=false;mz.ended=false;mz.busy=false;mz.gate=false;
+  mz.depth=1;mz.score=0;mz.combo=0;mz.maxCombo=0;mz.hearts=3;
+  mz.floors=0;mz.traps=0;mz.answers=0;mz.miss=0;mz.newTre=0;
+  showScreen('maze');
+  mzBuild();
+  mzStartTorch();
+  mzEnsure(60);
+}
+document.addEventListener('keydown',function(e){
+  if(currentMode==='maze-result'){
+    if(e.key==='Enter'){e.preventDefault();mzStart()}
+    return;
+  }
+  if(currentMode!=='maze')return;
+  const k=e.key;
+  if(mz.gate){
+    if(k>='1'&&k<='4'){e.preventDefault();mzPick(parseInt(k,10)-1)}
+    return;
+  }
+  if(k==='ArrowUp'||k==='w'||k==='W'){e.preventDefault();mzGo(0);return}
+  if(k==='ArrowRight'||k==='d'||k==='D'){e.preventDefault();mzGo(1);return}
+  if(k==='ArrowDown'||k==='s'||k==='S'){e.preventDefault();mzGo(2);return}
+  if(k==='ArrowLeft'||k==='a'||k==='A'){e.preventDefault();mzGo(3);return}
+  if(k==='h'||k==='H'){mzHint();return}
+  if(k==='f'||k==='F'){mzFlash();return}
+});
+/* 手指在盘面上滑动也能走一格 */
+(function(){
+  let sx=0,sy=0,touching=false;
+  document.addEventListener('touchstart',function(e){
+    if(currentMode!=='maze'||mz.gate)return;
+    const t=e.target;
+    if(!t.closest||!t.closest('#mzBoard'))return;
+    const p=e.touches[0];
+    sx=p.clientX;sy=p.clientY;touching=true;
+  },{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(!touching)return;
+    touching=false;
+    const p=e.changedTouches[0];
+    const dx=p.clientX-sx,dy=p.clientY-sy;
+    if(Math.abs(dx)<18&&Math.abs(dy)<18)return;
+    if(Math.abs(dx)>Math.abs(dy))mzGo(dx>0?1:3);else mzGo(dy>0?2:0);
+  },{passive:true});
+})();
+
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
