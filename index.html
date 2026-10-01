@@ -2079,6 +2079,93 @@ button:active{transform:scale(.95)}
 .mw-rs div>span{display:block;font-size:23px;font-weight:900;line-height:1.2}
 .mw-rs div>small{display:block;font-size:10.5px;opacity:.7;margin-top:2px}
 @media(max-width:420px){.mw-hud,.mw-bars,.mw-target,.mw-stage,.mw-done,.mw-tools,.mw-judge,.mw-tip{max-width:300px}}
+/* ---------- 笔顺堆堆消（层叠抽牌 · 三连同方向爆破） ---------- */
+.dd-hud{display:flex;justify-content:space-between;align-items:center;gap:5px;width:100%;max-width:302px;
+  margin:6px auto 0;padding:7px 9px;background:rgba(255,255,255,.1);border-radius:12px;
+  font-size:11px;font-weight:800;color:#FFF3E0;overflow:hidden}
+.dd-hud span{flex:0 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dd-hud b{color:#FFEA00}
+.dd-wrap{position:relative;width:100%;max-width:302px;margin:6px auto 0;min-height:150px}
+.dd-board{position:absolute;top:0;left:0;transform-origin:top left}
+.dd-tile{position:absolute;width:44px;height:52px;border-radius:9px;cursor:pointer;
+  background:linear-gradient(160deg,#FFF8E1,#FFCC80);border:2px solid #E6A817;
+  box-shadow:0 3px 0 #A5700F,0 4px 8px rgba(0,0,0,.4);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:transform .14s,filter .2s,box-shadow .14s}
+.dd-tile b{font-size:19px;line-height:1.05;color:#4E342E;font-weight:900}
+.dd-tile i{font-style:normal;font-size:8.5px;font-weight:800;color:#8D6E63;margin-top:1px}
+.dd-tile.free:active{transform:translateY(3px) scale(.96)}
+.dd-tile.blk{filter:brightness(.46) saturate(.45);box-shadow:0 2px 0 #4E342E;cursor:default}
+.dd-tile.blk::after{content:'🔒';position:absolute;right:1px;top:0;font-size:9px;opacity:.85}
+.dd-tile.lift{animation:ddLift .22s}
+@keyframes ddLift{to{transform:translateY(-8px) scale(1.08)}}
+.dd-slotwrap{width:100%;max-width:322px;margin:8px auto 0;padding:6px 7px;border-radius:14px;
+  background:rgba(255,255,255,.13);border:2px dashed rgba(255,255,255,.28)}
+.dd-slot{display:flex;gap:4px;justify-content:center;align-items:flex-end;min-height:58px}
+.dd-slot.danger{border-color:#FF5252;animation:ddDanger .75s infinite}
+@keyframes ddDanger{0%,100%{box-shadow:0 0 0 rgba(255,82,82,0)}50%{box-shadow:0 0 15px rgba(255,82,82,.9)}}
+.dd-slot .dd-empty{font-size:10.5px;color:rgba(255,255,255,.55);font-weight:800;align-self:center}
+.dd-st{width:38px;height:56px;border-radius:8px;flex:0 0 auto;color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 2px 6px rgba(0,0,0,.42);animation:ddIn .22s}
+@keyframes ddIn{from{transform:translateY(24px) scale(.7);opacity:0}to{transform:none;opacity:1}}
+.dd-st b{font-size:16px;line-height:1;font-weight:900}
+.dd-st i{font-style:normal;font-size:7.5px;font-weight:800;opacity:.92}
+.dd-st s{text-decoration:none;font-size:9px;font-weight:900;background:rgba(0,0,0,.3);
+  border-radius:5px;padding:0 3px;margin-top:2px;white-space:nowrap}
+.dd-st.r{background:linear-gradient(160deg,#EF5350,#B71C1C)}
+.dd-st.d{background:linear-gradient(160deg,#42A5F5,#1565C0)}
+.dd-st.p{background:linear-gradient(160deg,#66BB6A,#2E7D32)}
+.dd-st.n{background:linear-gradient(160deg,#FFA726,#E65100)}
+.dd-st.t{background:linear-gradient(160deg,#AB47BC,#6A1B9A)}
+.dd-st.pop{animation:ddBoom .34s forwards}
+@keyframes ddBoom{0%{transform:none}38%{transform:translateY(-13px) scale(1.2)}100%{transform:translateY(12px) scale(.15);opacity:0}}
+.dd-shelflbl{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:10px;
+  font-weight:800;color:rgba(255,255,255,.6)}
+.dd-shelf{display:flex;gap:4px;justify-content:center;align-items:flex-end;min-height:58px;
+  flex:0 0 auto;width:100%;max-width:322px;margin:2px auto 0}
+.dd-shelf .dd-st{cursor:pointer;animation:ddSet .22s}
+@keyframes ddSet{from{transform:translateY(-12px) scale(.9);opacity:0}to{transform:none;opacity:1}}
+.dd-shelf:empty{min-height:0;margin:0}
+.dd-shelf:empty+.dd-tools,.dd-shelf:empty~.dd-tools{margin-top:14px}
+.dd-banner{position:absolute;left:50%;top:34%;transform:translateX(-50%) scale(.9);z-index:400;
+  padding:9px 16px;border-radius:14px;background:rgba(255,214,64,.95);color:#4E342E;
+  font-size:14px;font-weight:900;text-align:center;opacity:0;pointer-events:none;
+  box-shadow:0 6px 18px rgba(0,0,0,.4);white-space:nowrap}
+.dd-banner.show{animation:ddBan 1.6s}
+@keyframes ddBan{0%{opacity:0;transform:translateX(-50%) scale(.8)}14%{opacity:1;transform:translateX(-50%) scale(1.06)}
+  26%{transform:translateX(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) scale(1)}}
+.dd-tools{display:flex;gap:7px;justify-content:center;width:100%;max-width:322px;margin:9px auto 0}
+.dd-act{flex:1;padding:9px 3px;border:none;border-radius:12px;font-size:12px;font-weight:800;
+  cursor:pointer;color:#fff;background:#5C6BC0;box-shadow:0 3px 0 rgba(0,0,0,.22);line-height:1.3}
+.dd-act.o{background:#26A69A}
+.dd-act.b{background:#8E24AA}
+.dd-act b{color:#FFEA00}
+.dd-act[disabled]{opacity:.42;pointer-events:none}
+.dd-judge{width:100%;max-width:322px;margin:8px auto 0;min-height:54px;padding:7px 10px;border-radius:12px;
+  box-sizing:border-box;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.34);text-align:center;font-size:11.5px;font-weight:700;line-height:1.55;
+  opacity:0;transition:opacity .3s}
+.dd-judge.show{opacity:1;animation:dtJudge .35s}
+.dd-tip{width:100%;max-width:322px;margin:4px auto 0;text-align:center;font-size:10.5px;
+  color:rgba(255,255,255,.72);line-height:1.6}
+.dd-tip b{color:#FFD740}
+.dd-wrap.shk{animation:ddShake .36s}
+@keyframes ddShake{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}
+  60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.dd-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;color:#fff}
+.dd-rs div>span{display:block;font-size:23px;font-weight:900;line-height:1.2}
+.dd-rs div>small{display:block;font-size:10.5px;opacity:.7;margin-top:2px}
+.dd-book{margin-top:12px;display:flex;flex-wrap:wrap;gap:3px;justify-content:center}
+.dd-book i{font-style:normal;padding:2px 7px;border-radius:8px;background:rgba(255,214,64,.2);
+  color:#FFE082;font-weight:800;font-size:11.5px}
+.dd-dot{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;
+  background:#FFB300;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;
+  align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28)}
+.dd-dot.on{display:flex}
+/* 竖排 flex 容器会压缩每一块（判词两行字就被挤出去压住底部提示）：整屏一律不许缩 */
+#screen-dd>*{flex:0 0 auto}
+@media(max-width:420px){.dd-hud,.dd-wrap,.dd-slotwrap,.dd-shelf,.dd-shelflbl,.dd-tools,.dd-judge,.dd-tip{max-width:290px}}
 </style>
 
 </head>
@@ -2252,6 +2339,11 @@ button:active{transform:scale(.95)}
         <div class="mode-card" onclick="enterMode('mow')">
       <div class="icon">🗡️</div>
       <div class="info"><h3>笔顺无双</h3><p>撞对下一笔才拔刀，割草斩字！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('dd')">
+      <div class="icon">🐑</div>
+      <div class="info"><h3>笔顺堆堆消</h3><p id="ddCardTip">抽最上面的牌，三张同方向就炸！</p></div>
+      <span class="dd-dot" id="ddCardDot">🥇 0</span>
     </div>
 <div class="mode-card" onclick="enterMode('plinko')">
       <div class="icon">🔮</div>
@@ -4201,6 +4293,66 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-dd">
+  <div class="top-bar">
+    <button class="back-btn" onclick="ddLeave()">← 返回</button>
+    <div class="stats"><span id="ddScoreTxt">🐑 0 分</span><span id="ddLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="ddHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🐑 牌<b style="color:#FFE082">一张压一张</b>地叠着：只有<b style="color:#B9F6CA">最上面</b>那张能抽，抽进下面的槽里就翻出「这一笔往哪写」。
+    同一方向（<b>横/竖/撇/捺/点</b>）凑满<b style="color:#FFD740">三张</b>就「砰」地炸掉，<b style="color:#FF8A80">七个槽挤满就崩盘</b>！整摞拆光就进下一关。</div>
+  <div class="dd-hud">
+    <span id="ddLeftTxt">🀄 剩 0</span>
+    <span id="ddJamTxt">🎯 槽 0/7</span>
+    <span id="ddComboTxt">🔥 ×0</span>
+    <span id="ddBestTxt">🥇 0</span>
+  </div>
+  <div class="dd-wrap" id="ddWrap">
+    <div class="dd-board" id="ddBoard"></div>
+    <div class="dd-banner" id="ddBanner"></div>
+  </div>
+  <div class="dd-slotwrap"><div class="dd-slot" id="ddSlot"></div></div>
+  <div class="dd-shelflbl">📤 挪出来的牌 · 点它可以放回槽里</div>
+  <div class="dd-shelf" id="ddShelf"></div>
+  <div class="dd-tools">
+    <button class="dd-act" id="ddUndoBtn" onclick="ddUndo()">↩️ 退一张 <b>1</b></button>
+    <button class="dd-act o" id="ddShufBtn" onclick="ddShuffle()">🔄 洗牌 <b>1</b></button>
+    <button class="dd-act b" id="ddParkBtn" onclick="ddPark()">📤 挪三张 <b>1</b></button>
+  </div>
+  <div class="dd-judge" id="ddJudge"></div>
+  <div class="dd-tip" id="ddTip">点<b>亮着的牌</b>抽进槽 · 同方向<b>三张</b>才炸 · <b>1/2/3</b> 用道具 · <b>H</b> 看玩法</div>
+</div>
+<div class="screen" id="screen-dd-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <div class="stats"><span id="ddRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 12px;color:#fff">
+    <div style="font-size:64px;margin-bottom:10px" id="ddRsEmoji">🐑</div>
+    <h2 style="font-size:27px;margin-bottom:6px" id="ddRsTitle">槽挤满啦</h2>
+    <p style="font-size:15px;opacity:.82;line-height:1.5" id="ddRsSub">抽牌之前先想好：这一笔到底往哪写</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:16px">
+    <div class="dd-rs">
+      <div><span style="color:#FFD700" id="ddRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#69F0AE" id="ddRsPops">0</span><small>炸掉几组</small></div>
+      <div><span style="color:#4FC3F7" id="ddRsLv">1</span><small>冲到第几关</small></div>
+      <div><span style="color:#FF9800" id="ddRsCombo">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="ddRsTiles">0</span><small>拆掉几张</small></div>
+      <div><span style="color:#B9F6CA" id="ddRsLeft">0</span><small>还剩几张</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="ddRsBest">0</div>
+      <div style="font-size:12px;opacity:.65;margin-top:6px" id="ddRsAll">段位 堆堆新手 · 通关 0 次 · 共开局 0 场</div>
+      <div class="dd-book" id="ddRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="ddStart()">🐑 再来一局</button>
+    <button class="w-btn blue" onclick="goHome()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-plinko">
   <div class="top-bar">
     <button class="back-btn" onclick="goHome()">← 返回</button>
@@ -4985,6 +5137,7 @@ function updateHomeStats(){
   if(typeof skNudge==='function')skNudge();
   if(typeof ggNudge==='function')ggNudge();
   if(typeof twNudge==='function')twNudge();
+  if(typeof ddNudge==='function')ddNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -5029,6 +5182,7 @@ function enterMode(mode){
   else if(mode==='wordle')wdStart();
   else if(mode==='town')twStart();
   else if(mode==='mow')mwStart();
+ else if(mode==='dd')ddStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -22080,6 +22234,504 @@ function mwBind(){
     cv.addEventListener(t,function(){mw.down=false;mw.ptr=null});
   });
 }
+/* ===== 笔顺堆堆消：牌一层压一层，只有最上面能抽，三张同方向才炸，七个槽挤满就崩 ===== */
+const DD_SLOTN=7,DD_TW=44,DD_TH=52,DD_PX=46,DD_PY=54;
+const DD_DIRS=['R','D','P','N','T'];
+const DD_CN={R:'横',D:'竖',P:'撇',N:'捺',T:'点'};
+const DD_ICON={R:'➡️',D:'⬇️',P:'↙️',N:'↘️',T:'↗️'};
+const DD_CLS={R:'r',D:'d',P:'p',N:'n',T:'t'};
+const DD_HUE={R:'#EF5350',D:'#42A5F5',P:'#66BB6A',N:'#FFA726',T:'#AB47BC'};
+const DD_NOTE=[523,659,784,880,1046,1174,1318,1568];
+const DD_RANKS=['堆堆新手','叠牌学徒','抽牌小匠','拆堆达人','三连高手','灭堆勇士','清场堆神','笔顺堆圣','叠牌至尊'];
+const DD_LV=[
+  {c:5,r:3,z:2,k:[1,.7],d:3,s:[1,3]},
+  {c:6,r:3,z:2,k:[1,.75],d:3,s:[1,3]},
+  {c:6,r:4,z:3,k:[1,.75,.55],d:4,s:[1,3,4]},
+  {c:7,r:4,z:3,k:[1,.8,.62],d:4,s:[1,3,5]},
+  {c:7,r:4,z:4,k:[1,.82,.68,.52],d:5,s:[1,3,5,3]},
+  {c:7,r:4,z:5,k:[1,.84,.72,.6,.5],d:5,s:[1,3,5,7,3]}
+];
+let dd={gen:0,run:false,over:false,ended:false,busy:false,lv:1,score:0,
+  tiles:[],slot:[],shelf:[],ghost:[],chars:{},
+  combo:0,maxCombo:0,pops:0,done:0,total:0,
+  undo:1,shuf:1,park:1,maxX:0,maxY:0,maxZ:0,scale:1,sig:'',gid:0,pool:[]};
+function ddSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function ddJudge(t,color){
+  const e=document.getElementById('ddJudge');if(!e)return;
+  e.textContent=t;e.style.color=color||'#FFEA00';
+  e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function ddBanner(t){
+  const e=document.getElementById('ddBanner');if(!e)return;
+  e.textContent=t;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');
+}
+function ddShake(){
+  const e=document.getElementById('ddWrap');if(!e)return;
+  e.classList.remove('shk');void e.offsetWidth;e.classList.add('shk');
+}
+/* ---- 纯公式：关卡形状 / 发牌 / 计分 / 星级，harness 可在 Node 里独立重算 ---- */
+function ddCfg(l){return DD_LV[Math.min(DD_LV.length-1,Math.max(0,(l|0)-1))]}
+function ddGcd(a,b){return b?ddGcd(b,a%b):a}
+function ddPlan(C){
+  const pos=[];
+  for(let z=0;z<C.z;z++){
+    const o=(z%2)?0.5:0,cx=C.c-(z>>1)-(z%2),cy=C.r-(z>>1)-(z%2);
+    if(cx<1||cy<1)continue;
+    const cells=[];
+    for(let a=0;a<cx;a++)for(let b=0;b<cy;b++)cells.push({x:o+a,y:o+b,z:z});
+    let keep=Math.round(cells.length*(C.k[z]===undefined?1:C.k[z]));
+    keep=Math.max(2,Math.min(cells.length,keep));
+    let st=C.s[z]||3;
+    while(st<cells.length&&ddGcd(st,cells.length)!==1)st++;
+    const seen={},out=[];
+    for(let i=0;out.length<keep&&i<cells.length*4;i=(i+st)%cells.length){
+      if(seen[i])break;
+      seen[i]=1;out.push(cells[i]);
+    }
+    while(out.length<keep&&cells.length)out.push(cells[out.length%cells.length]);
+    for(let i=0;i<out.length;i++)pos.push(out[i]);
+  }
+  const n=pos.length-pos.length%3;
+  return n>=C.d*3?pos.slice(0,n):pos.slice(0,Math.floor(pos.length/(C.d*3))*(C.d*3));
+}
+function ddSplit(g,d){
+  const c=[];
+  for(let i=0;i<d;i++)c.push(3);
+  for(let i=d;i<g;i++)c[i%d]+=3;
+  return c;
+}
+function ddGain(combo,lv){return 15+(Math.max(1,combo)-1)*6+Math.min(9,lv|0)*3}
+function ddStars(score,pops,lv){return Math.max(2,Math.min(24,2+Math.round(score/38)+Math.min(6,pops)+Math.min(8,lv|0)))}
+function ddRank(wins){return DD_RANKS[Math.min(DD_RANKS.length-1,Math.floor((wins||0)/3))]}
+function ddProps(lv){return (lv|0)>=4?2:1}
+/* ---- 存档 ---- */
+function ddInt(k){const v=parseInt(localStorage.getItem(k)||'0',10);return isFinite(v)&&v>0?v:0}
+function ddAdd(k,n){localStorage.setItem(k,String(ddInt(k)+(n||0)))}
+function ddBook(){
+  let b=[];
+  try{
+    const p=JSON.parse(localStorage.getItem('hz_dd_book')||'[]');
+    if(Array.isArray(p)){const s={};for(let i=0;i<p.length;i++){const x=p[i];if(typeof x==='string'&&!s[x]){s[x]=1;b.push(x)}}}
+  }catch(e){}
+  return b;
+}
+function ddBookAdd(list){
+  if(!list||!list.length)return 0;
+  const b=ddBook();let n=0;
+  for(let i=0;i<list.length;i++){if(b.indexOf(list[i])<0){b.push(list[i]);n++}}
+  if(n)localStorage.setItem('hz_dd_book',JSON.stringify(b.slice(-80)));
+  return n;
+}
+/* ---- 牌面内容：从真实笔顺数据里按方向分桶 ---- */
+/* 本模块自己的方向判定：detectDir 的 撇/捺 区间会被竖/点吃掉（全仓库共用，不能动它），
+   这里按「屏幕角 + 笔画长度」重切五档，撇捺才出得来。 */
+function ddStrokeDir(m){
+  if(!m||m.length<2)return'R';
+  const n=m.length;
+  const dx=m[n-1][0]-m[0][0];
+  const dy=m[0][1]-m[n-1][1];
+  let len=0;
+  for(let i=1;i<n;i++){const a=m[i][0]-m[i-1][0],b=m[i][1]-m[i-1][1];len+=Math.sqrt(a*a+b*b)}
+  if(len<90)return'T';
+  const ang=Math.atan2(dy,dx)*180/Math.PI;
+  if(ang>=-25&&ang<25)return'R';
+  if(ang>=25&&ang<65)return len<330?'T':'N';
+  if(ang>=65&&ang<105)return'D';
+  if(ang>=105)return'P';
+  if(ang<=-105)return'P';
+  if(ang>-65)return'T';
+  return'D';
+}
+const ddTy={};
+async function ddPool(){
+  const pool=CHARS.filter(function(c){return !!ddTy[c]});
+  for(let i=0;i<CHARS.length&&pool.length<160;i++){
+    const c=CHARS[i];
+    if(ddTy[c])continue;
+    let d=charDataCache[c];
+    if(!d||!d.medians)d=await loadCharData(c);
+    if(!d||!d.medians||!d.medians.length||d.medians.length<3)continue;
+    ddTy[c]=d.medians.map(ddStrokeDir);
+    pool.push(c);
+  }
+  return pool;
+}
+function ddPairs(pool){
+  const by={R:[],D:[],P:[],N:[],T:[]};
+  for(let i=0;i<pool.length;i++){
+    const ch=pool[i],st=ddTy[ch];
+    if(!st)continue;
+    for(let k=0;k<st.length;k++)if(by[st[k]])by[st[k]].push({ch:ch,k:k});
+  }
+  for(let j=0;j<DD_DIRS.length;j++){
+    const a=by[DD_DIRS[j]];
+    for(let i=a.length-1;i>0;i--){const k=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[k];a[k]=t}
+  }
+  return by;
+}
+function ddDirAvail(pairs,d){
+  let n=d;
+  while(n>1&&(!pairs[DD_DIRS[n-1]]||!pairs[DD_DIRS[n-1]].length))n--;
+  return n;
+}
+function ddDeal(pos,pairs,d){
+  const cnt=ddSplit(pos.length/3,d),cards=[],used={};
+  for(let di=0;di<d;di++){
+    const dir=DD_DIRS[di],bk=pairs[dir]||[],want=cnt[di];
+    let ptr=0;
+    for(let n=0;n<want;n++){
+      let card=null;
+      for(let q=0;bk.length&&q<bk.length;q++){
+        const c=bk[(ptr++)%bk.length];
+        if(!used[c.ch+'#'+c.k]){used[c.ch+'#'+c.k]=1;card=c;break}
+      }
+      if(!card&&bk.length)card=bk[n%bk.length];
+      if(!card)card={ch:'一',k:0};
+      cards.push({ch:card.ch,k:card.k,dir:dir});
+    }
+  }
+  for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)),t=cards[i];cards[i]=cards[j];cards[j]=t}
+  return pos.map(function(p,i){
+    const c=cards[i];
+    return {id:i,x:p.x,y:p.y,z:p.z,dir:c.dir,ch:c.ch,k:c.k,in:'board'};
+  });
+}
+/* ---- 几何 ---- */
+function ddGeom(){
+  const wrap=document.getElementById('ddWrap'),b=document.getElementById('ddBoard');
+  if(!wrap||!b)return;
+  const bw=4+dd.maxX*DD_PX+DD_TW+4,bs=4+dd.maxY*DD_PY+dd.maxZ*5+DD_TH+4;
+  const avail=wrap.clientWidth||300;
+  const sc=Math.min(1,Math.max(.5,avail/bw));
+  dd.scale=sc;
+  b.style.width=bw+'px';b.style.height=bs+'px';
+  b.style.transform='scale('+sc.toFixed(3)+')';
+  b.style.left=Math.max(0,Math.round((avail-bw*sc)/2))+'px';
+  wrap.style.height=Math.round(bs*sc+4)+'px';
+}
+function ddXY(t){return{l:4+t.x*DD_PX,tp:4+(dd.maxY-t.y)*DD_PY+(dd.maxZ-t.z)*5}}
+function ddCover(t){
+  for(let i=0;i<dd.tiles.length;i++){
+    const o=dd.tiles[i];
+    if(o!==t&&o.in==='board'&&o.z>t.z&&Math.abs(o.x-t.x)<.999&&Math.abs(o.y-t.y)<.999)return true;
+  }
+  return false;
+}
+/* ---- 渲染 ---- */
+function ddTileHtml(t){
+  const p=ddXY(t);
+  return '<div class="dd-tile" id="ddT'+t.id+'" onclick="ddTap('+t.id+')" style="left:'+p.l+'px;top:'+p.tp+'px;z-index:'+(10+t.z*100)+'">'+
+    '<b>'+t.ch+'</b><i>第'+(t.k+1)+'笔</i></div>';
+}
+function ddStHtml(t,cls,click){
+  return '<div class="dd-st '+DD_CLS[t.dir]+(cls?' '+cls:'')+'"'+(click?' onclick="'+click+'"':'')+'>'+
+    '<b>'+t.ch+'</b><i>第'+(t.k+1)+'笔</i><s>'+DD_ICON[t.dir]+DD_CN[t.dir]+'</s></div>';
+}
+function ddRender(){
+  const g=document.getElementById('ddBoard');
+  if(g){
+    const live=dd.tiles.filter(t=>t.in==='board');
+    const sig=dd.gen+'|'+dd.lv+'|'+live.map(t=>t.id+(ddCover(t)?'b':'f')).join(',');
+    if(sig!==dd.sig){dd.sig=sig;g.innerHTML=live.map(ddTileHtml).join('')}
+    for(let i=0;i<live.length;i++)ddPaint(live[i]);
+  }
+  ddRenderSlot();ddRenderShelf();ddHud();
+}
+function ddPaint(t){
+  const e=document.getElementById('ddT'+t.id);if(!e)return;
+  e.classList.toggle('blk',ddCover(t));
+}
+function ddRenderSlot(){
+  const g=document.getElementById('ddSlot');if(!g)return;
+  let h=dd.slot.map(t=>ddStHtml(t,'')).join('')+dd.ghost.map(t=>ddStHtml(t,' pop')).join('');
+  if(!dd.slot.length&&!dd.ghost.length)h='<span class="dd-empty">牌抽出来就落在这里 · 三张同方向就炸</span>';
+  g.innerHTML=h;
+  g.classList.toggle('danger',dd.slot.length>=DD_SLOTN-1&&!dd.over);
+}
+function ddRenderShelf(){
+  const g=document.getElementById('ddShelf');if(!g)return;
+  g.innerHTML=dd.shelf.map(function(t,i){
+    return ddStHtml(t,'','ddTapShelf('+i+')');
+  }).join('');
+  const lbl=document.querySelector('.dd-shelflbl');
+  if(lbl)lbl.style.display=dd.shelf.length?'':'none';
+}
+function ddStarAt(){
+  const g=document.getElementById('ddSlot');
+  if(!g||!g.lastElementChild)return;
+  const r=g.lastElementChild.getBoundingClientRect();
+  spawnStarFly(r.left+r.width/2,r.top+r.height/2);
+}
+function ddHud(){
+  ddSet('ddScoreTxt','🐑 '+dd.score+' 分');
+  ddSet('ddLvTxt','第 '+dd.lv+' 关');
+  ddSet('ddLeftTxt','🀄 剩 '+(dd.total-dd.done));
+  ddSet('ddJamTxt','🎯 槽 '+dd.slot.length+'/'+DD_SLOTN);
+  ddSet('ddComboTxt','🔥 ×'+dd.combo);
+  ddSet('ddBestTxt','🥇 '+ddInt('hz_dd_best'));
+  const u=document.getElementById('ddUndoBtn');
+  if(u){u.disabled=dd.undo<=0;u.innerHTML='↩️ 退一张 <b>'+dd.undo+'</b>'}
+  const s=document.getElementById('ddShufBtn');
+  if(s){s.disabled=dd.shuf<=0;s.innerHTML='🔄 洗牌 <b>'+dd.shuf+'</b>'}
+  const p=document.getElementById('ddParkBtn');
+  if(p){p.disabled=dd.park<=0;p.innerHTML='📤 挪三张 <b>'+dd.park+'</b>'}
+}
+/* ---- 关卡流程 ---- */
+function ddBuild(){
+  const C=ddCfg(dd.lv),pos=ddPlan(C),pairs=ddPairs(dd.pool);
+  const d=ddDirAvail(pairs,C.d);
+  dd.tiles=ddDeal(pos,pairs,d);
+  dd.total=dd.tiles.length;dd.done=0;
+  dd.slot=[];dd.shelf=[];dd.ghost=[];dd.chars={};dd.sig='';
+  dd.undo=ddProps(dd.lv);dd.shuf=ddProps(dd.lv);dd.park=ddProps(dd.lv);
+  let mx=0,my=0,mz=0;
+  for(let i=0;i<dd.tiles.length;i++){
+    const t=dd.tiles[i];
+    if(t.x>mx)mx=t.x;if(t.y>my)my=t.y;if(t.z>mz)mz=t.z;
+  }
+  dd.maxX=mx;dd.maxY=my;dd.maxZ=mz;
+  ddGeom();ddRender();
+  const tp=document.getElementById('ddTip');if(tp)tp.innerHTML='本关 '+dd.tiles.length+' 张牌 · '+d+' 种方向 · '+C.z+' 层叠 · 点<b>亮着的牌</b>抽进槽 · <b>1/2/3</b> 用道具';
+}
+async function ddStart(){
+  dd.gen++;
+  const gen=dd.gen;
+  clearTimeout(dd.gid);
+  dd.run=false;dd.busy=true;dd.over=false;dd.ended=false;
+  dd.lv=1;dd.score=0;dd.combo=0;dd.maxCombo=0;dd.pops=0;dd.done=0;
+  dd.tiles=[];dd.slot=[];dd.shelf=[];dd.ghost=[];dd.chars={};dd.sig='';
+  showScreen('dd');
+  ddAdd('hz_dd_games',1);
+  ddRender();
+  if(!dd.pool.length)dd.pool=await ddPool();
+  if(gen!==dd.gen||currentMode!=='dd')return;
+  if(!dd.pool.length){
+    dd.busy=false;
+    ddJudge('📖 字库还没加载好，回首页等一下再进来','#FFCDD2');
+    return;
+  }
+  dd.busy=false;
+  ddBuild();
+  dd.run=true;
+  ddJudge('🐑 先看清「第几笔」，再决定抽哪张牌——凑三个同方向才炸得掉','#FFF9C4');
+}
+function ddLeave(){
+  dd.gen++;dd.run=false;dd.busy=false;
+  clearTimeout(dd.gid);
+  goHome();
+}
+function ddLive(){return dd.tiles.filter(function(t){return t.in!=='gone'})}
+function ddCount(dir){
+  let n=0;
+  for(let i=0;i<dd.slot.length;i++)if(dd.slot[i].dir===dir)n++;
+  return n;
+}
+function ddInsert(t){
+  let last=-1;
+  for(let i=0;i<dd.slot.length;i++)if(dd.slot[i].dir===t.dir)last=i;
+  if(last>=0)dd.slot.splice(last+1,0,t);else dd.slot.push(t);
+  const n=ddCount(t.dir);
+  if(n>=3){ddBoom(t.dir);return true}
+  if(n===2){
+    dd.score+=4;
+    tone(DD_NOTE[1],.1,'sine',.07);
+    ddJudge('✨ 「'+t.ch+'」的第'+(t.k+1)+'笔是 '+DD_ICON[t.dir]+DD_CN[t.dir]+'，凑成一对——再来一张就炸','#FFF9C4');
+  }else{
+    dd.combo=0;
+    tone(300,.13,'sine',.06);
+    ddJudge('🙅 「'+t.ch+'」的第'+(t.k+1)+'笔是 '+DD_ICON[t.dir]+DD_CN[t.dir]+'，槽里没有同方向的牌，连击断了','#FFCC80');
+  }
+  return false;
+}
+function ddBoom(dir){
+  const idx=[];
+  for(let i=0;i<dd.slot.length&&idx.length<3;i++)if(dd.slot[i].dir===dir)idx.push(i);
+  const got=idx.map(i=>dd.slot[i]);
+  dd.slot=dd.slot.filter(function(s,i){return idx.indexOf(i)<0});
+  const chs=[];
+  for(let i=0;i<got.length;i++){
+    got[i].in='gone';dd.done++;
+    chs.push(got[i].ch);
+    if(!dd.chars[got[i].ch])dd.chars[got[i].ch]=dir;
+  }
+  dd.ghost=got;
+  dd.combo++;
+  if(dd.combo>dd.maxCombo)dd.maxCombo=dd.combo;
+  dd.pops++;
+  const g=ddGain(dd.combo,dd.lv);
+  dd.score+=g;
+  tone(DD_NOTE[Math.min(DD_NOTE.length-1,dd.combo-1)],.15,'triangle',.12);
+  if(dd.combo>=3)sndOk();
+  if(dd.score>ddInt('hz_dd_best'))localStorage.setItem('hz_dd_best',String(dd.score));
+  const fresh=ddBookAdd(chs);
+  if(fresh>0)addStars(fresh);
+  ddStarAt();
+  ddJudge('💥 三个「'+DD_CN[dir]+'」！'+got.map(function(t){
+    return ' '+t.ch+' 第'+(t.k+1)+'笔';
+  }).join('·')+' 都往'+DD_CN[dir]+'写 → +'+g+' 分'+(fresh>0?' · 认识 '+fresh+' 个新字':''),'#B9F6CA');
+  ddRender();
+  const gen=dd.gen;
+  clearTimeout(dd.gid);
+  dd.gid=setTimeout(function(){
+    if(gen!==dd.gen||currentMode!=='dd')return;
+    dd.ghost=[];ddRenderSlot();
+  },340);
+}
+function ddAfter(){
+  if(dd.over||dd.busy)return;
+  ddRender();
+  if(dd.slot.length>=DD_SLOTN){ddLose();return}
+  if(dd.done>=dd.total&&!dd.slot.length&&!dd.shelf.length)ddWin();
+}
+function ddWin(){
+  if(dd.over||dd.busy)return;
+  dd.busy=true;
+  const gen=dd.gen;
+  ddAdd('hz_dd_wins',1);
+  if(dd.lv>=ddInt('hz_dd_lv'))localStorage.setItem('hz_dd_lv',String(dd.lv+1));
+  addStars(3);
+  sndReward();spawnConfetti();
+  ddBanner('🎉 第 '+dd.lv+' 关拆光啦！牌更多、层更深');
+  ddJudge('🎉 整摞清空！下一关 '+ddCfg(dd.lv+1).c+'×'+ddCfg(dd.lv+1).r+'×'+ddCfg(dd.lv+1).z,'#B9F6CA');
+  dd.lv++;
+  setTimeout(function(){
+    if(gen!==dd.gen||currentMode!=='dd'){dd.busy=false;return}
+    dd.busy=false;
+    ddBuild();
+    ddHud();
+  },1100);
+}
+function ddLose(){
+  if(dd.over)return;
+  dd.over=true;dd.run=false;
+  sndNo();ddShake();
+  ddJudge('😵 七个槽挤满了！抽牌之前先想清楚这一笔往哪写','#FFCDD2');
+  const gen=dd.gen;
+  setTimeout(function(){
+    if(gen!==dd.gen)return;
+    ddSettle();
+  },900);
+}
+function ddSettle(){
+  if(dd.ended)return;
+  dd.ended=true;dd.run=false;
+  const s=dd.score,left=dd.total-dd.done;
+  if(s>ddInt('hz_dd_best'))localStorage.setItem('hz_dd_best',String(s));
+  ddAdd('hz_dd_pops',dd.pops);ddAdd('hz_dd_tiles',dd.done);
+  if(dd.maxCombo>ddInt('hz_dd_combo'))localStorage.setItem('hz_dd_combo',String(dd.maxCombo));
+  const st=ddStars(s,dd.pops,dd.lv);
+  addStars(st);
+  showScreen('dd-result');
+  ddSet('ddRsStars','⭐ +'+st);
+  ddSet('ddRsEmoji',left<=3?'😱':left<=10?'🐑':'😵');
+  ddSet('ddRsTitle',left<=3?('就差 '+left+' 张！'):left<=10?('拆到第 '+dd.lv+' 关'):'这摞牌太厚了');
+  ddSet('ddRsSub',left<=3?'差一点点就通关了，下一局先记牢槽里有几张':'抽牌之前先想好：这一笔到底往哪写');
+  ddSet('ddRsScore',String(s));
+  ddSet('ddRsPops',String(dd.pops));
+  ddSet('ddRsLv',String(dd.lv));
+  ddSet('ddRsCombo',String(dd.maxCombo));
+  ddSet('ddRsTiles',String(dd.done));
+  ddSet('ddRsLeft',String(left));
+  ddSet('ddRsBest',String(ddInt('hz_dd_best')));
+  ddSet('ddRsAll','段位 '+ddRank(ddInt('hz_dd_wins'))+' · 通关 '+ddInt('hz_dd_wins')+' 次 · 累计拆牌 '+ddInt('hz_dd_tiles')+' 张');
+  const bk=document.getElementById('ddRsBook');
+  if(bk){
+    const mine=Object.keys(dd.chars);
+    bk.innerHTML='<div style="width:100%;font-size:11.5px;opacity:.72;margin-bottom:5px">📖 这局新学的字（图鉴 '+ddBook().length+'/80）</div>'+
+      (mine.length?mine.map(function(c){return '<i>'+c+' '+DD_CN[dd.chars[c]]+'</i>'}).join(''):'<i>还没拆完一组</i>');
+  }
+}
+/* ---- 抽牌与道具 ---- */
+function ddTap(id){
+  if(!dd.run||dd.over||dd.busy)return;
+  const t=dd.tiles[id];
+  if(!t||t.in!=='board')return;
+  if(ddCover(t)){
+    ddPaint(t);ddShake();sndNo();
+    ddJudge('🔒 「'+t.ch+'」的第'+(t.k+1)+'笔被压在下面了，先抽掉压着它的那层','#FFCDD2');
+    return;
+  }
+  t.in='slot';
+  const popped=ddInsert(t);
+  if(!popped&&dd.slot.length>=DD_SLOTN){ddRender();ddLose();return}
+  ddAfter();
+}
+function ddTapShelf(i){
+  if(!dd.run||dd.over||dd.busy)return;
+  const t=dd.shelf[i];
+  if(!t)return;
+  dd.shelf.splice(i,1);
+  t.in='slot';
+  const popped=ddInsert(t);
+  if(!popped&&dd.slot.length>=DD_SLOTN){ddRender();ddLose();return}
+  ddAfter();
+}
+function ddUndo(){
+  if(!dd.run||dd.over||dd.busy)return;
+  if(dd.undo<=0){ddJudge('↩️ 这一关的「退一张」已经用完','#FFCDD2');return}
+  const t=dd.slot[dd.slot.length-1];
+  if(!t){ddJudge('↩️ 槽里还没有牌可以退','#FFCC80');return}
+  dd.slot.pop();
+  t.in='board';
+  dd.undo--;
+  tone(440,.1,'sine',.07);
+  ddJudge('↩️ 把「'+t.ch+'」塞回它原来那一格，槽腾出一格','#B3E5FC');
+  dd.sig='';ddRender();
+}
+function ddShuffle(){
+  if(!dd.run||dd.over||dd.busy)return;
+  if(dd.shuf<=0){ddJudge('🔄 这一关的「洗牌」已经用完','#FFCDD2');return}
+  const live=ddLive(),dirs=live.map(t=>t.dir);
+  for(let i=dirs.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)),t=dirs[i];dirs[i]=dirs[j];dirs[j]=t}
+  let same=true;
+  for(let i=0;i<live.length;i++)if(live[i].dir!==dirs[i]){same=false;break}
+  if(same&&live.length>1){dirs.reverse();for(let i=0;i<live.length;i++)live[i].dir=dirs[i]}
+  else for(let i=0;i<live.length;i++)live[i].dir=dirs[i];
+  dd.shuf--;dd.combo=0;
+  tone(680,.13,'triangle',.08);
+  ddJudge('🔄 牌面全部重发一遍，方向张数不变——数清楚再抽','#CE93D8');
+  dd.sig='';ddRender();
+}
+function ddPark(){
+  if(!dd.run||dd.over||dd.busy)return;
+  if(dd.park<=0){ddJudge('📤 这一关的「挪三张」已经用完','#FFCDD2');return}
+  if(dd.shelf.length){ddJudge('📤 架子上还搁着牌，先点它们放回槽里','#FFCC80');return}
+  if(dd.slot.length<3){ddJudge('📤 槽里至少要有 3 张牌才能挪出去','#FFCC80');return}
+  dd.shelf=dd.slot.splice(0,3);
+  dd.park--;
+  tone(540,.1,'square',.06);
+  ddJudge('📤 腾出 3 格！架子上的牌点一下就能放回来','#B3E5FC');
+  ddRender();
+}
+function ddHelp(){
+  ddJudge('🐑 只有最上面那张牌能抽 · 抽出来才知道它是哪一笔 · 同方向三张才炸 · 槽满 7 张就崩；先攒两对再连着炸，连击分才上得去','#80DEEA');
+}
+function ddNudge(){
+  const tip=document.getElementById('ddCardTip'),dot=document.getElementById('ddCardDot');
+  const n=ddBook().length,best=ddInt('hz_dd_best');
+  if(tip)tip.textContent=n>0?('已认识 '+n+' 个字，最高 '+best+' 分'):'抽最上面的牌，三张同方向就炸！';
+  if(dot){
+    const on=ddInt('hz_dd_lv')>1||best>0;
+    dot.classList.toggle('on',on);
+    dot.textContent='🥇 '+best;
+  }
+}
+window.addEventListener('resize',function(){
+  if(currentMode!=='dd')return;
+  ddGeom();dd.sig='';ddRender();
+});
+document.addEventListener('keydown',function(e){
+  if(currentMode==='dd-result'){
+    if(e.key==='Enter'){e.preventDefault();ddStart()}
+    return;
+  }
+  if(currentMode!=='dd')return;
+  const k=e.key;
+  if(k==='1'){ddUndo();return}
+  if(k==='2'){ddShuffle();return}
+  if(k==='3'){ddPark();return}
+  if(k==='h'||k==='H'){ddHelp();return}
+});
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
