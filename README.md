@@ -1021,7 +1021,7 @@ npx serve -l 8765
 
 ```
 hanzi-practice/
-├── index.html          # 主应用（25925 行单文件，包含 HTML/CSS/JS）
+├── index.html          # 主应用（25927 行单文件，包含 HTML/CSS/JS）
 ├── assets/             # README 用图片资源
 │   ├── demo.gif        # 运行演示 GIF
 │   ├── scene_home.png
