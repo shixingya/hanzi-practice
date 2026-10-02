@@ -2583,6 +2583,90 @@ button:active{transform:scale(.95)}
 @media(max-width:420px){.cld-hud,.cld-alt,.cld-q,.cld-ctl,.cld-judge,.cld-tip{max-width:300px}
   .cld-stage{max-width:296px;height:252px}}
 
+/* ============ v1.48.0 笔顺滚雪球（答对雪球就长大 · 够大才能碾碎障碍 · 越大越难拐弯）============ */
+.snw-hud{display:flex;gap:5px;justify-content:center;flex-wrap:nowrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
+.snw-hud span{flex:0 1 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 8px;font-size:10.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.snw-hud b{color:#FFD740}
+.snw-size{display:flex;align-items:center;gap:8px;width:100%;max-width:340px;margin:2px auto 0;font-size:12px;color:#fff}
+.snw-size span{min-width:112px;font-weight:700;white-space:nowrap}
+.snw-track{flex:1;height:10px;border-radius:99px;background:rgba(0,0,0,.32);overflow:hidden}
+.snw-track i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#B3E5FC,#4FC3F7);transition:width .16s}
+.snw-track.huge i{background:linear-gradient(90deg,#FFD740,#FF8F00)}
+.snw-stage{position:relative;width:100%;max-width:322px;height:302px;margin:7px auto 0;overflow:hidden;border-radius:18px;
+  touch-action:none;background:linear-gradient(180deg,#A5D6A7,#C8E6C9 46%,#E8F5E9);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 8px 22px rgba(0,0,0,.28);transition:background .7s}
+.snw-stage.g1{background:linear-gradient(180deg,#B3E5FC,#DFF3FF 46%,#F7FCFF)}
+.snw-stage.g2{background:linear-gradient(180deg,#7FB3D8,#CFE6F7 46%,#EDF6FC)}
+.snw-stage.g3{background:linear-gradient(180deg,#102A4C,#2E5077 46%,#8FB6D6)}
+.snw-lane{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none}
+.snw-lane i{position:absolute;top:0;bottom:0;width:2px;background:repeating-linear-gradient(180deg,rgba(255,255,255,.45) 0 10px,transparent 10px 22px)}
+.snw-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.snw-deco span{position:absolute;font-style:normal;line-height:1;opacity:.55;animation:snwBob 3.2s ease-in-out infinite alternate}
+@keyframes snwBob{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+.snw-band{position:absolute;left:0;right:0;top:34%;text-align:center;font-size:21px;font-weight:900;color:rgba(255,255,255,.94);
+  text-shadow:0 2px 10px rgba(0,0,0,.45);pointer-events:none;opacity:0;transition:opacity .4s;letter-spacing:1px;z-index:7}
+.snw-band.on{opacity:1}
+.snw-o{position:absolute;display:flex;align-items:center;justify-content:center;line-height:1;z-index:3;
+  border-radius:50%;transition:box-shadow .18s}
+.snw-o.can{box-shadow:0 0 0 2px rgba(105,240,174,.9),0 0 12px rgba(105,240,174,.5)}
+.snw-o.no{box-shadow:0 0 0 2px rgba(255,82,82,.8),0 0 12px rgba(255,82,82,.4)}
+.snw-o.free{box-shadow:0 0 0 2px rgba(255,238,170,.9),0 0 12px rgba(255,238,170,.45)}
+.snw-o.dead{animation:snwDead .42s forwards}
+@keyframes snwDead{0%{opacity:1;transform:scale(1) rotate(0)}
+  45%{opacity:.95;transform:scale(1.36) rotate(14deg)}
+  100%{opacity:0;transform:scale(.42) rotate(-12deg)}}
+.snw-ball{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:4;
+  background:radial-gradient(circle at 32% 26%,#FFFFFF 0 42%,#E3F2FD 72%,#B3E5FC 100%);
+  box-shadow:0 6px 16px rgba(0,0,0,.3),inset -3px -5px 10px rgba(144,202,249,.75),inset 2px 3px 8px rgba(255,255,255,.9);
+  will-change:transform;transition:width .16s,height .16s}
+.snw-ball .face{line-height:1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.18))}
+.snw-ball.frz{box-shadow:0 0 18px rgba(255,171,64,.95),0 6px 16px rgba(0,0,0,.3),inset -3px -5px 10px rgba(255,224,178,.8)}
+.snw-ball.inv{animation:snwBlink .26s steps(2,end) infinite}
+@keyframes snwBlink{from{opacity:1}to{opacity:.3}}
+.snw-ball.slip .face{animation:snwSlipSpin .8s linear infinite}
+@keyframes snwSlipSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.snw-trail{position:absolute;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.9);pointer-events:none;z-index:2;
+  animation:snwTrail .5s ease-out forwards}
+@keyframes snwTrail{0%{opacity:.85;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--sx),var(--sy)) scale(.3)}}
+.snw-q{width:100%;max-width:322px;margin:7px auto 0;text-align:center;font-size:14px;font-weight:800;color:#fff;line-height:1.45;
+  background:rgba(255,255,255,.12);border-radius:13px;padding:8px 10px}
+.snw-q small{display:block;font-size:10.5px;font-weight:700;opacity:.82;margin-top:3px}
+.snw-cd{width:100%;max-width:322px;height:8px;margin:5px auto 0;border-radius:99px;background:rgba(0,0,0,.3);overflow:hidden}
+.snw-cd i{display:block;height:100%;width:100%;border-radius:99px;background:linear-gradient(90deg,#69F0AE,#B9F6CA)}
+.snw-cd.hot i{background:linear-gradient(90deg,#FF5252,#FF8A80)}
+.snw-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;width:100%;max-width:322px;margin:6px auto 0}
+.snw-opts button{border:none;border-radius:13px;padding:10px 4px;font-size:16px;font-weight:900;color:#37474F;
+  background:linear-gradient(180deg,#FFFFFF,#E1F5FE);box-shadow:0 3px 9px rgba(0,0,0,.24);cursor:pointer;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.snw-opts button:active{transform:scale(.95)}
+.snw-opts button.ok{background:linear-gradient(180deg,#B9F6CA,#69F0AE);box-shadow:0 0 14px rgba(105,240,174,.85)}
+.snw-opts button.bad{background:linear-gradient(180deg,#FF8A80,#FF5252);color:#fff}
+.snw-opts button.gone{opacity:.42}
+.snw-opts button em{font-style:normal;font-size:11px;font-weight:800;color:#78909C;margin-right:4px}
+.snw-judge{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:12px;font-weight:800;min-height:34px;
+  line-height:1.45;color:#fff;opacity:.95}
+.snw-judge.pop{animation:snwJudge .4s}
+@keyframes snwJudge{from{transform:scale(.88);opacity:.3}to{transform:scale(1);opacity:1}}
+.snw-pop{position:absolute;font-size:15px;font-weight:900;color:#FFD740;text-shadow:0 2px 6px rgba(0,0,0,.5);
+  pointer-events:none;z-index:6;white-space:nowrap;animation:snwPopUp 1s forwards}
+@keyframes snwPopUp{0%{opacity:0;transform:translateY(6px) scale(.8)}22%{opacity:1;transform:translateY(-6px) scale(1.1)}100%{opacity:0;transform:translateY(-42px) scale(1)}}
+.snw-spark{position:absolute;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:5;background:#fff;
+  animation:snwSpark .68s forwards}
+@keyframes snwSpark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--sx),var(--sy)) scale(.3)}}
+.snw-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);line-height:1.6}
+.snw-tip b{color:#FFD740}
+.snw-stage.shake{animation:snwShake .4s}
+@keyframes snwShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.snw-rs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 8px;text-align:center}
+.snw-rs span{display:block;font-size:26px;font-weight:bold}
+.snw-rs small{display:block;font-size:11px;opacity:.7;margin-top:2px;color:#fff}
+.snw-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;
+  font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.snw-badge.on{display:flex}
+@media(max-width:420px){.snw-hud,.snw-size,.snw-q,.snw-cd,.snw-opts,.snw-judge,.snw-tip{max-width:300px}
+  .snw-stage{max-width:296px;height:252px}}
+
 /* ============ v1.46.0 笔顺甩金钩（摆动钩爪 · 看准松钩 · 越沉越值钱越慢）============ */
 .gk-hud{display:flex;gap:7px;justify-content:center;flex-wrap:nowrap;padding:2px 10px 5px;width:100%;max-width:340px;margin:0 auto}
 .gk-hud span{background:rgba(255,255,255,.1);border-radius:20px;padding:5px 10px;font-size:11.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -2845,6 +2929,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🔊</div>
       <div class="info"><h3>笔顺回声</h3><p id="echoCardTip">听笔顺 · 凭记忆按回去</p></div>
       <span class="ec-badge" id="echoCardDot">🆕</span>
+    </div>
+<div class="mode-card" onclick="enterMode('snow')">
+      <div class="icon">⛄</div>
+      <div class="info"><h3>笔顺滚雪球</h3><p id="snowCardTip">答对雪球就变大 · 够大才碾得碎</p></div>
+      <span class="snw-badge" id="snowCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('sky')">
       <div class="icon">☁️</div>
@@ -5004,6 +5093,63 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="cldLeave()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-snow">
+  <div class="top-bar">
+    <button class="back-btn" onclick="snwLeave()">← 返回</button>
+    <div class="stats"><span id="snwScoreTxt">⛄ 0 分</span><span id="snwLvTxt">第 1 层</span></div>
+    <button class="icon-btn" onclick="snwHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">⛄ 每答对一笔顺，<b style="color:#B9F6CA">雪球就滚大一圈</b>。够大才能<b style="color:#FFD740">碾碎</b>坡上的石头、松树、冰塔；<b>太小撞上去会翻</b>！雪球越大，<b style="color:#FFF176">拐弯越慢</b>——想清楚再往哪边滚。</div>
+  <div class="snw-hud">
+    <span id="snwRankTxt">🏅 滚雪新手</span>
+    <span id="snwDiaTxt">⛄ 30 厘米</span>
+    <span id="snwHeartsTxt">❤️❤️❤️</span>
+    <span id="snwComboTxt">🔥 0</span>
+  </div>
+  <div class="snw-size"><span id="snwDistTxt">📏 0 米 · 纪录 0</span><div class="snw-track" id="snwTrack"><i id="snwBar"></i></div></div>
+  <div class="snw-stage g0" id="snwStage">
+    <div class="snw-deco" id="snwDeco"></div>
+    <div class="snw-lane"><i style="left:26%"></i><i style="left:50%"></i><i style="left:74%"></i></div>
+    <div class="snw-band" id="snwBand"></div>
+    <div id="snwField"></div>
+    <div class="snw-ball" id="snwBall"><span class="face" id="snwFace">😄</span></div>
+  </div>
+  <div class="snw-q" id="snwQ">「?」雪球正要下坡……<small>答对就长大，碾碎坡上的东西</small></div>
+  <div class="snw-cd" id="snwCd"><i id="snwCdBar"></i></div>
+  <div class="snw-opts" id="snwOpts"></div>
+  <div class="snw-judge" id="snwJudge"></div>
+  <div class="snw-tip">点 <b>1～4</b> 按钮抢答笔顺 · 按住雪坡<b>左半边 / 右半边</b>或方向键 <b>⬅️ ➡️</b> 左右滚 · <b>H</b> 怎么玩</div>
+</div>
+<div class="screen" id="screen-snow-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="snwLeave()">← 回首页</button>
+    <div class="stats"><span id="snwRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="snwRsEmoji">⛄</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="snwRsTitle">雪球停住了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="snwRsSub">下一坡再滚大一点</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="snw-rs">
+      <div><span style="color:#FFD700" id="snwRsM">0</span><small>本局坡长(米)</small></div>
+      <div><span style="color:#4FC3F7" id="snwRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#69F0AE" id="snwRsRight">0</span><small>答对笔顺</small></div>
+      <div><span style="color:#FFF176" id="snwRsCrush">0</span><small>碾碎障碍</small></div>
+      <div><span style="color:#E1BEE7" id="snwRsStreak">0</span><small>最长连对</small></div>
+      <div><span style="color:#FF8A80" id="snwRsCrash">0</span><small>被撞翻</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏔️ 历史最长雪坡</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="snwRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="snwRsAll">🏅 滚雪新手</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="snwRetry()">🔁 再滚一次</button>
+    <button class="w-btn blue" onclick="snwLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-hook">
   <div class="top-bar">
     <button class="back-btn" onclick="gkLeave()">← 返回</button>
@@ -6034,6 +6180,7 @@ function updateHomeStats(){
   if(typeof ecNudge==='function')ecNudge();
   if(typeof gkNudge==='function')gkNudge();
   if(typeof cldNudge==='function')cldNudge();
+  if(typeof snwNudge==='function')snwNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -6083,6 +6230,7 @@ function enterMode(mode){
  else if(mode==='echo')ecStart();
  else if(mode==='hook')gkStart();
  else if(mode==='sky')cldStart();
+ else if(mode==='snow')snwStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -26685,6 +26833,643 @@ document.addEventListener('keyup',e=>{
   });
 })();
 window.addEventListener('resize',cldOnResize);
+
+/* ============ v1.48.0 笔顺滚雪球（答对雪球就长大 · 够大才碾得碎 · 越大越难拐弯）============ */
+const SNW_BANDS=[
+  {m:0,cls:'g0',face:'😀',name:'草坡',deco:['🌱','🍀','🌼','🐛','🍄','🌾']},
+  {m:95,cls:'g1',face:'🙂',name:'初雪坡',deco:['❄️','☁️','⛄','🌨️','✨','❄️']},
+  {m:230,cls:'g2',face:'😎',name:'松林道',deco:['🌲','❄️','🦔','🐿️','✨','🌲']},
+  {m:430,cls:'g3',face:'🤩',name:'冰湖夜',deco:['🧊','❄️','🌙','✨','⛄','🌨️']},
+];
+const SNW_RANKS=[[0,'滚雪新手'],[140,'推车学徒'],[380,'滚坡少年'],[760,'雪球快手'],[1300,'碾石小虎'],[2100,'雪崩制造者'],[3200,'松林滚王'],[4600,'冰湖飞球'],[6400,'雪球之神']];
+const SNW_OBJS={
+  clump:{id:'clump',icon:'❄️',name:'雪堆',r:11,need:0,gain:9,freq:660},
+  rock:{id:'rock',icon:'🪨',name:'石头',r:13,need:44,gain:26,freq:300},
+  tree:{id:'tree',icon:'🌲',name:'松树',r:16,need:62,gain:42,freq:240},
+  man:{id:'man',icon:'⛄',name:'雪人',r:15,need:84,gain:64,freq:190,book:true},
+  ice:{id:'ice',icon:'🧊',name:'冰塔',r:16,need:104,gain:82,freq:160},
+  star:{id:'star',icon:'⭐',name:'松果',r:10,pick:'star',gain:18,freq:1180},
+  heart:{id:'heart',icon:'❤️',name:'暖手宝',r:11,pick:'heart',gain:0,freq:520},
+};
+const SNW_TABLE=[
+  {clump:5,rock:3,tree:1,star:3},
+  {clump:4,rock:3,tree:2,man:1,star:3,heart:1},
+  {clump:3,rock:3,tree:3,man:2,ice:1,star:3,heart:1},
+  {clump:3,rock:2,tree:3,man:2,ice:3,star:3,heart:1},
+];
+const SNW_R0=15,SNW_RMAX=64,SNW_M=8,SNW_HEARTS=3,SNW_PAD=10,SNW_OPTS=4;
+const SNW_ACC=1560,SNW_VMAX=400,SNW_GROW=6;
+const SNW_LV_M=60,SNW_Q_MIN=4.6,SNW_TZ=4000;
+let snw={run:false,over:false,gen:0,busy:false,dir:0,picked:-1,cx:0,r:SNW_R0,vx:0,d:0,maxR:SNW_R0,_dm:-1,
+  score:0,combo:0,maxCombo:0,right:0,crush:0,crash:0,men:0,hearts:SNW_HEARTS,
+  lv:1,band:0,objects:[],quiz:null,answered:false,used:[],qT:0,qMax:9,tz:0,inv:0,ts:0,now:0,beat:0,
+  nextAt:0,trailAt:0,cid:0,W:0,H:0,timers:[],timerId:null};
+function snwInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function snwAdd(k,n){localStorage.setItem(k,String(snwInt(k)+n))}
+function snwSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function snwRank(m){let r=SNW_RANKS[0][1];for(let i=0;i<SNW_RANKS.length;i++)if(m>=SNW_RANKS[i][0])r=SNW_RANKS[i][1];return r}
+function snwBandOf(m){let b=0;for(let i=0;i<SNW_BANDS.length;i++)if(m>=SNW_BANDS[i].m)b=i;return b}
+function snwLvOf(m){return 1+Math.floor(m/SNW_LV_M)}
+function snwDia(){return Math.round(snw.r*2)}
+function snwAcc(){return SNW_ACC*Math.max(0.34,Math.min(1.15,30/(snw.r+9)))}
+function snwVmax(){return SNW_VMAX*Math.max(0.55,Math.min(1,26/(snw.r+7)))}
+function snwSpd(){return Math.min(255,105+snw.r*1.2+snw.lv*7)}
+function snwEvery(){return Math.max(0.62,1.15-snw.lv*0.04)}
+function snwQT(){return Math.max(SNW_Q_MIN,9.5-(snw.lv-1)*0.55)}
+function snwTz(){return snw.now<snw.tz}
+function snwCy(){return snw.H-snw.r-12}
+function snwCan(o){return snwTz()||snwDia()>=(o.k.need||0)}
+function snwAnsLabel(v){
+  for(let i=0;i<DIRS.length;i++)if(DIRS[i].code===v)return DIRS[i].icon+' '+DIRS[i].label;
+  return v+' 笔';
+}
+function snwT(fn,ms){const g=snw.gen;const id=setTimeout(()=>{if(g!==snw.gen)return;fn()},ms);snw.timers.push(id);return id}
+function snwKillTimers(){snw.timers.forEach(id=>clearTimeout(id));snw.timers=[]}
+function snwStopLoop(){if(snw.timerId){clearInterval(snw.timerId);snw.timerId=null}}
+function snwStartLoop(){snwStopLoop();snw.ts=performance.now();snw.timerId=setInterval(snwTick,16)}
+const snwTy={};
+async function snwData(ch){
+  const d0=snwTy[ch];if(d0)return d0;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await loadCharData(ch);
+  if(!raw||!raw.medians||!raw.medians.length)return null;
+  const d={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  snwTy[ch]=d;return d;
+}
+function snwReadyChar(){
+  // 优先用「笔顺数据已经在本地」的字出题 —— 弱网也不会卡在题目上
+  const pool=CHARS.filter(function(c){return snwTy[c]||charDataCache[c]});
+  if(!pool.length)return null;
+  const fresh=pool.filter(function(c){return snw.used.indexOf(c)<0});
+  return fresh.length?fresh:pool;
+}
+async function snwPickChar(){
+  const ready=snwReadyChar();
+  if(ready){
+    for(let a=0;a<24;a++){
+      const c=ready[(Math.random()*ready.length)|0];
+      const d=await snwData(c);
+      if(d&&d.n>=2)return c;
+    }
+  }
+  for(let a=0;a<50;a++){
+    const c=CHARS[Math.floor(Math.random()*CHARS.length)];
+    if(snw.used.indexOf(c)>=0)continue;
+    const d=await snwData(c);
+    if(d&&d.n>=2)return c;
+  }
+  for(let i=0;i<CHARS.length;i++){
+    const c=CHARS[i];if(snw.used.indexOf(c)>=0)continue;
+    const d=await snwData(c);
+    if(d&&d.n>=2)return c;
+  }
+  return null;
+}
+function snwEl(){return document.getElementById('snwStage')}
+function snwPop(t,color,x,y){
+  const st=snwEl();if(!st)return;
+  const d=document.createElement('div');
+  d.className='snw-pop';d.textContent=t;d.style.color=color||'#FFD740';
+  d.style.left='0px';
+  d.style.top=Math.round(Math.max(2,(y===undefined?snwCy()-snw.r:y)-16))+'px';
+  st.appendChild(d);
+  const w=d.offsetWidth||96;
+  d.style.left=Math.round(Math.max(4,Math.min(Math.max(4,snw.W-w-4),(x===undefined?snw.cx:x)-w/2)))+'px';
+  setTimeout(()=>d.remove(),1000);
+}
+function snwSpark(x,y,color,n){
+  const st=snwEl();if(!st)return;
+  for(let i=0;i<(n||9);i++){
+    const s=document.createElement('div');s.className='snw-spark';
+    s.style.left=x+'px';s.style.top=y+'px';s.style.background=color;
+    const a=Math.random()*Math.PI*2,dist=18+Math.random()*34;
+    s.style.setProperty('--sx',(Math.cos(a)*dist).toFixed(1)+'px');
+    s.style.setProperty('--sy',(Math.sin(a)*dist-8).toFixed(1)+'px');
+    st.appendChild(s);setTimeout(()=>s.remove(),700);
+  }
+}
+function snwShake(){
+  const st=snwEl();if(!st)return;
+  st.classList.remove('shake');void st.offsetWidth;st.classList.add('shake');
+  snwT(()=>st.classList.remove('shake'),440);
+}
+function snwJudge(msg,color){
+  const el=document.getElementById('snwJudge');if(!el)return;
+  el.textContent=msg;el.style.color=color||'#fff';
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function snwObX(o){
+  const lo=SNW_PAD+o.r,hi=snw.W-SNW_PAD-o.r;
+  if(hi<=lo)return Math.round(snw.W/2);
+  return Math.round(lo+Math.random()*(hi-lo));
+}
+function snwPickKind(){
+  const t=SNW_TABLE[snw.band],keys=Object.keys(t);
+  let sum=0,i;
+  for(i=0;i<keys.length;i++){
+    if(keys[i]==='heart'&&snw.hearts>=SNW_HEARTS)continue;
+    sum+=t[keys[i]];
+  }
+  if(!sum)return SNW_OBJS.star;
+  let k=Math.random()*sum,pick=null;
+  for(i=0;i<keys.length;i++){
+    const id=keys[i];
+    if(id==='heart'&&snw.hearts>=SNW_HEARTS)continue;
+    k-=t[id];
+    if(k<=0){pick=SNW_OBJS[id];break}
+  }
+  return pick||SNW_OBJS.star;
+}
+function snwClass(o){
+  if(!o.el)return;
+  o.el.classList.remove('can','no','free');
+  if(o.pick)o.el.classList.add('free');
+  else o.el.classList.add(snwCan(o)?'can':'no');
+}
+function snwReclass(){for(let i=0;i<snw.objects.length;i++)snwClass(snw.objects[i])}
+function snwSpawn(){
+  const k=snwPickKind();
+  const o={id:++snw.cid,k:k,kind:k.id,r:k.r,pick:k.pick||null,cx:snwObX(k),cy:-k.r,dead:false,el:null};
+  const box=document.getElementById('snwField');
+  if(box){
+    const el=document.createElement('div');
+    el.className='snw-o';
+    el.style.width=el.style.height=(o.r*2)+'px';
+    el.style.fontSize=Math.round(o.r*1.7)+'px';
+    el.textContent=k.icon;
+    box.appendChild(el);o.el=el;
+  }
+  snwClass(o);
+  snw.objects.push(o);
+  return o;
+}
+function snwDrop(o){
+  const i=snw.objects.indexOf(o);
+  if(i>=0)snw.objects.splice(i,1);
+  if(o.el&&o.el.parentNode)o.el.remove();
+  o.el=null;
+}
+function snwKill(o){
+  o.dead=true;
+  const el=o.el;o.el=null;
+  const i=snw.objects.indexOf(o);
+  if(i>=0)snw.objects.splice(i,1);
+  if(el){el.classList.add('dead');snwT(()=>{if(el.parentNode)el.remove()},440)}
+}
+function snwHud(){
+  snwSet('snwScoreTxt','⛄ '+Math.round(snw.score)+' 分');
+  snwSet('snwLvTxt','第 '+snw.lv+' 层 · '+SNW_BANDS[snw.band].name);
+  snwSet('snwRankTxt',snwRank(Math.round(snwInt('hz_snw_m')+snw.d)));
+  snwSet('snwDiaTxt',snwDia()+' 厘米');
+  snwSet('snwHeartsTxt','❤️'.repeat(snw.hearts)+'🤍'.repeat(SNW_HEARTS-snw.hearts)+(snwTz()?' 💨':''));
+  snwSet('snwComboTxt','连对 '+snw.combo);
+}
+function snwDistHud(){
+  const m=Math.round(snw.d);
+  if(snw._dm===m)return;
+  snw._dm=m;
+  const best=snwInt('hz_snw_best');
+  snwSet('snwDistTxt','📏 '+m+' 米'+((snw.beat>0&&m>snw.beat)?' 🆕':'')+' · 纪录 '+Math.max(best,m));
+  const bar=document.getElementById('snwBar'),tr=document.getElementById('snwTrack');
+  if(bar)bar.style.width=Math.min(100,m/Math.max(80,snw.beat)*100).toFixed(1)+'%';
+  if(tr)tr.classList.toggle('huge',snw.beat>0&&m>snw.beat);
+}
+function snwCdHud(){
+  const bar=document.getElementById('snwCdBar'),cd=document.getElementById('snwCd');
+  const k=Math.max(0,Math.min(1,snw.qT/Math.max(0.1,snw.qMax)));
+  if(bar)bar.style.width=(k*100).toFixed(1)+'%';
+  if(cd)cd.classList.toggle('hot',k<0.34);
+}
+function snwRender(){
+  const b=document.getElementById('snwBall');
+  if(b){
+    const dia=Math.round(snw.r*2);
+    if(b._d!==dia){b.style.width=dia+'px';b.style.height=dia+'px';b._d=dia}
+    b.style.left=(snw.cx-snw.r).toFixed(1)+'px';
+    b.style.top=(snwCy()-snw.r).toFixed(1)+'px';
+    b.classList.toggle('frz',snwTz());
+    b.classList.toggle('inv',snw.now<snw.inv);
+    const fa=document.getElementById('snwFace');
+    if(fa){
+      const txt=snw.quiz?snw.quiz.ch:SNW_BANDS[snw.band].face;
+      if(fa._t!==txt){fa.textContent=txt;fa._t=txt;fa.style.fontSize=Math.max(12,Math.round(snw.r*0.92))+'px'}
+    }
+  }
+  for(let i=0;i<snw.objects.length;i++){
+    const o=snw.objects[i];
+    if(!o.el)continue;
+    o.el.style.left=(o.cx-o.r)+'px';
+    o.el.style.top=(o.cy-o.r)+'px';
+  }
+  snwCdHud();
+}
+function snwTrail(){
+  const st=snwEl();if(!st)return;
+  const d=document.createElement('div');
+  d.className='snw-trail';
+  d.style.left=Math.round(snw.cx-snw.vx/60)+'px';
+  d.style.top=Math.round(snwCy()+snw.r*0.7)+'px';
+  d.style.setProperty('--sx',(-snw.vx/50).toFixed(1)+'px');
+  d.style.setProperty('--sy',(10+Math.random()*10).toFixed(1)+'px');
+  st.appendChild(d);setTimeout(()=>d.remove(),520);
+}
+async function snwAsk(){
+  if(!snw.run||snw.over||currentMode!=='snow')return;
+  snw.busy=true;
+  const gen=snw.gen;
+  const ch=await snwPickChar();
+  if(gen!==snw.gen||currentMode!=='snow'||!snw.run||snw.over){snw.busy=false;return}
+  if(!ch){snw.busy=false;snwJudge('📖 字还没下下来，回首页等一下再进来','#FFCDD2');return}
+  const d=snwTy[ch];
+  snw.used.push(ch);
+  if(snw.used.length>CHARS.length-4)snw.used=[];
+  let text,right,opts;
+  if(Math.random()<0.45||d.n<3){
+    text='「'+ch+'」一共有几笔？';
+    right=String(d.n);
+    const nums=[d.n],offs=[-3,-2,-1,1,2,3,4,5];
+    for(let a=offs.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=offs[a];offs[a]=offs[b];offs[b]=t}
+    for(let a=0;a<offs.length&&nums.length<SNW_OPTS;a++){const k=d.n+offs[a];if(k>0&&nums.indexOf(k)<0)nums.push(k)}
+    opts=nums.map(String);
+    while(opts.length<SNW_OPTS)opts.push(String(d.n+opts.length+2));
+  }else{
+    const last=Math.random()<0.25&&d.n>=4;
+    const k=last?d.n-1:(Math.random()*d.n)|0;
+    const code=d.t[k];
+    text='「'+ch+'」'+(last?'最后的一笔':'的第 '+(k+1)+' 笔')+'往哪写？';
+    right=code;
+    const rest=DIRS.filter(function(x){return x.code!==code});
+    for(let a=rest.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=rest[a];rest[a]=rest[b];rest[b]=t}
+    opts=rest.slice(0,SNW_OPTS-1).map(function(x){return x.code});
+    opts.splice((Math.random()*SNW_OPTS)|0,0,code);
+  }
+  snw.quiz={opts:opts,right:right,ch:ch,text:text};
+  snw.answered=false;snw.picked=-1;
+  snw.qMax=snwQT();snw.qT=snw.qMax;
+  snwSet('snwQ',text+'<small>答对了雪球就滚大一圈 —— 绿圈碾得碎，红圈会把你撞翻</small>');
+  const box=document.getElementById('snwOpts');
+  if(box){
+    let h='';
+    for(let i=0;i<opts.length;i++)h+='<button type="button" class="snw-opt" data-i="'+i+'"><em>'+(i+1)+'</em>'+snwAnsLabel(opts[i])+'</button>';
+    box.innerHTML=h;
+  }
+  snwRender();
+  snw.busy=false;
+}
+function snwMark(){
+  const bs=document.querySelectorAll('#snwOpts .snw-opt'),q=snw.quiz;
+  for(let i=0;i<bs.length;i++){
+    bs[i].classList.remove('ok','bad','gone');
+    if(!q){bs[i].classList.add('gone');continue}
+    if(q.opts[i]===q.right)bs[i].classList.add('ok');
+    else if(+bs[i].dataset.i===snw.picked)bs[i].classList.add('bad');
+    else bs[i].classList.add('gone');
+  }
+}
+function snwGrow(){
+  snw.r=Math.min(SNW_RMAX,snw.r+SNW_GROW);
+  if(snw.r>snw.maxR){snw.maxR=snw.r;localStorage.setItem('hz_snw_ball',String(Math.round(snw.maxR*2)))}
+  snwReclass();
+  snwHud();
+}
+function snwShrink(k){
+  snw.r=Math.max(SNW_R0,Math.round(snw.r*k));
+  snwReclass();
+  snwHud();
+}
+function snwRight(i){
+  snw.answered=true;snw.picked=i;
+  snw.combo++;
+  if(snw.combo>snw.maxCombo)snw.maxCombo=snw.combo;
+  snw.right++;
+  const gain=Math.round((7+snw.r*0.3+snw.lv*2)*(1+Math.min(1.6,(snw.combo-1)*0.14))*(snwTz()?2:1));
+  snw.score+=gain;
+  snwAdd('hz_snw_balls',1);
+  if(snw.combo>snwInt('hz_snw_streak'))localStorage.setItem('hz_snw_streak',String(snw.combo));
+  const before=snwDia();
+  snwGrow();
+  sndOk();
+  const st=snwEl();
+  if(st){const r=st.getBoundingClientRect();spawnStarFly(r.left+snw.cx,r.top+snwCy()-snw.r)}
+  snwSpark(snw.cx,snwCy(),'#B9F6CA',10);
+  snwPop('⛄ '+before+'→'+snwDia()+' 厘米 +'+gain+' 分','#B9F6CA');
+  if(snw.combo>0&&snw.combo%5===0&&!snwTz()){
+    snw.tz=snw.now+SNW_TZ;
+    tone(980,.18,'triangle',.24);
+    snwT(()=>tone(1240,.2,'triangle',.24),140);
+    spawnConfetti();
+    snwReclass();
+    snwHud();
+    snwJudge('💨 连对 '+snw.combo+' 题！雪球旋风 '+SNW_TZ/1000+' 秒 —— 这段时间什么都能碾碎','#FFD740');
+  }else if(snw.combo>=3)snwJudge('🔥 连对 '+snw.combo+'！雪球滚到 '+snwDia()+' 厘米，+'+gain+' 分','#FFD740');
+  else snwJudge('✅ 答对了！雪球 '+snwDia()+' 厘米 —— 绿圈的东西现在碾得碎，红圈还不行','#B9F6CA');
+  if(snw.combo>0&&snw.combo%6===0)spawnConfetti();
+  snwMark();
+  snwT(()=>{if(snw.run&&!snw.over)snwAsk()},760);
+}
+function snwWrong(msg){
+  if(!snw.quiz)return;
+  snw.answered=true;
+  snw.combo=0;snw.tz=0;
+  const before=snwDia();
+  snwShrink(0.7);
+  snw.score=Math.max(0,snw.score-5);
+  sndNo();snwShake();
+  snwPop('📉 '+before+'→'+snwDia()+' 厘米','#FF8A80');
+  snwMark();
+  snwJudge('❌ '+msg+' 正确答案是 '+snwAnsLabel(snw.quiz.right)+' —— 雪球缩到 '+snwDia()+' 厘米，先躲开红圈','#FF8A80');
+  snwT(()=>{if(snw.run&&!snw.over)snwAsk()},950);
+}
+function snwAnswer(i){
+  if(!snw.run||snw.over||snw.busy||!snw.quiz||snw.answered)return;
+  if(currentMode!=='snow')return;
+  const q=snw.quiz;
+  if(q.opts[i]===undefined)return;
+  if(q.opts[i]===q.right)snwRight(i);
+  else{snw.picked=i;snwWrong('你选了 '+snwAnsLabel(q.opts[i])+'。')}
+}
+function snwTimeout(){
+  if(!snw.quiz||snw.answered)return;
+  snw.picked=-1;
+  snwWrong('⏳ 想太久，雪球都凉了。');
+}
+function snwSmash(o){
+  const k=o.k;
+  const gain=Math.round((k.gain+snw.r*0.35)*(1+Math.max(0,Math.min(1.2,(snw.combo-1)*0.12)))*(snwTz()?2:1));
+  snw.score+=gain;
+  snw.crush++;
+  snwAdd('hz_snw_crush',1);
+  if(k.book){snw.men++;snwAdd('hz_snw_men',1)}
+  tone(k.freq,.12,'triangle',.22);
+  tone(k.freq*0.6,.16,'square',.1);
+  snwSpark(o.cx,o.cy,k.book?'#FFF176':'#E1F5FE',12);
+  snwKill(o);
+  snwPop('💥 碾碎'+k.name+' +'+gain,snwTz()?'#FFCC80':'#FFF59D',o.cx,o.cy);
+  if(k.book){spawnConfetti();snwJudge('⛄ 第 '+snw.men+' 个雪人被你的大雪球碾过去了！+'+gain+' 分','#FFF59D')}
+  else if(snwTz())snwJudge('💨 旋风里连 '+k.name+' 都被卷飞 —— +'+gain+' 分','#FFCC80');
+  else snwJudge('💥 '+k.name+' 被 '+snwDia()+' 厘米的雪球碾碎了 —— +'+gain+' 分','#E1F5FE');
+  snwHud();
+}
+function snwPick(o){
+  const k=o.k;
+  const st=snwEl();
+  if(st){const r=st.getBoundingClientRect();spawnStarFly(r.left+o.cx,r.top+o.cy)}
+  if(k.pick==='star'){
+    snw.score+=k.gain;
+    addStars(1);
+    tone(k.freq,.14,'triangle',.22);
+    snwSpark(o.cx,o.cy,'#FFF176',8);
+    snwKill(o);
+    snwPop('⭐ +'+k.gain,'#FFF176',o.cx,o.cy);
+  }else{
+    if(snw.hearts<SNW_HEARTS)snw.hearts++;
+    tone(700,.16,'sine',.2);
+    snwSpark(o.cx,o.cy,'#FF8A80',8);
+    snwKill(o);
+    snwPop('❤️ 暖手宝','#FF8A80',o.cx,o.cy);
+  }
+  snwHud();
+}
+function snwCrash(o){
+  const k=o.k;
+  snw.hearts--;
+  snw.crash++;
+  snwAdd('hz_snw_crash',1);
+  snw.combo=0;snw.tz=0;
+  const before=snwDia();
+  snwShrink(0.62);
+  snw.inv=snw.now+1300;
+  sndNo();snwShake();
+  snwSpark(o.cx,o.cy,'#FF8A80',14);
+  snwKill(o);
+  snwPop('💢 被'+k.name+'撞翻','#FF8A80',o.cx,o.cy);
+  if(snw.hearts<=0){snwEnd();return}
+  snwJudge('💢 「'+k.name+'」要 '+k.need+' 厘米才碾得碎，你只有 '+before+' —— 还剩 '+snw.hearts+' 颗心，抢答把雪球滚大','#FF8A80');
+  snwHud();
+}
+function snwLevelCheck(){
+  const lv=snwLvOf(snw.d);
+  if(lv<=snw.lv)return;
+  snw.lv=lv;
+  if(lv>snwInt('hz_snw_lv'))localStorage.setItem('hz_snw_lv',String(lv));
+  snw.score+=20;
+  tone(720,.12,'triangle',.2);
+  snwT(()=>tone(960,.14,'triangle',.2),110);
+  snwJudge('⛰️ 滚到第 '+lv+' 层！坡更陡、东西更密，答题限时只剩 '+snwQT().toFixed(1)+' 秒 —— +20 分','#B9F6CA');
+  snwPop('第 '+lv+' 层 +20','#B9F6CA');
+  if(lv%3===0)addStars(1);
+  snwHud();
+}
+function snwBandCheck(){
+  const b=snwBandOf(snw.d);
+  if(b===snw.band)return;
+  snw.band=b;
+  const T=SNW_BANDS[b],st=snwEl();
+  if(st){st.classList.remove('g0','g1','g2','g3');st.classList.add(T.cls)}
+  snwDeco();
+  snwReclass();
+  snw.score+=30;
+  const bd=document.getElementById('snwBand');
+  if(bd){bd.textContent='🏔️ '+T.name;bd.classList.add('on');snwT(()=>bd.classList.remove('on'),1600)}
+  spawnConfetti();
+  tone(880,.14,'triangle',.2);
+  snwJudge('🏔️ 滚进 '+T.name+'！+30 分 · 坡上的东西更硬了，趁势把雪球滚大','#FFF59D');
+  snwHud();
+}
+function snwDeco(){
+  const box=document.getElementById('snwDeco');if(!box)return;
+  const T=SNW_BANDS[snw.band],out=[];
+  for(let i=0;i<9;i++){
+    const g=T.deco[(Math.random()*T.deco.length)|0];
+    out.push('<span style="left:'+Math.round(Math.random()*88+3)+'%;top:'+Math.round(Math.random()*82+4)+'%;font-size:'+
+      (12+Math.round(Math.random()*9))+'px;animation-delay:'+(Math.random()*2).toFixed(2)+'s">'+g+'</span>');
+  }
+  box.innerHTML=out.join('');
+}
+function snwTick(a){
+  if(!snw.run||snw.over||currentMode!=='snow'){snwStopLoop();return}
+  const now=(typeof a==='number')?a:performance.now();
+  snw.now=now;
+  let dt=(now-snw.ts)/1000;snw.ts=now;
+  if(!(dt>0))dt=0;
+  if(dt>0.06)dt=0.06;
+  if(snw.tz&&now>=snw.tz){snw.tz=0;snwReclass();snwHud()}
+  if(snw.dir){
+    snw.vx+=snw.dir*snwAcc()*dt;
+    const vm=snwVmax();
+    if(snw.vx>vm)snw.vx=vm;
+    if(snw.vx<-vm)snw.vx=-vm;
+  }else snw.vx*=0.82;
+  snw.cx+=snw.vx*dt;
+  if(snw.cx<SNW_PAD+snw.r){snw.cx=SNW_PAD+snw.r;if(snw.vx<0)snw.vx=-snw.vx*0.25}
+  if(snw.cx>snw.W-SNW_PAD-snw.r){snw.cx=Math.max(SNW_PAD+snw.r,snw.W-SNW_PAD-snw.r);if(snw.vx>0)snw.vx=-snw.vx*0.25}
+  if(snw.quiz&&!snw.answered){
+    snw.qT-=dt;
+    if(snw.qT<=0){snw.qT=0;snwTimeout()}
+  }
+  if(now>=snw.nextAt){
+    snw.nextAt=now+snwEvery()*1000;
+    snwSpawn();
+  }
+  if(now>=snw.trailAt){
+    snw.trailAt=now+Math.max(40,150-snw.r);
+    snwTrail();
+  }
+  const cy=snwCy(),sp=snwSpd();
+  for(let i=snw.objects.length-1;i>=0;i--){
+    const o=snw.objects[i];
+    if(o.dead)continue;
+    o.cy+=sp*dt;
+    if(o.cy>snw.H+o.r+16){snwDrop(o);continue}
+    const dx=o.cx-snw.cx,dy=o.cy-cy,rr=snw.r+o.r*0.72;
+    if(dx*dx+dy*dy>=rr*rr)continue;
+    if(o.pick)snwPick(o);
+    else if(snwCan(o))snwSmash(o);
+    else if(now<snw.inv)continue;
+    else{snwCrash(o);if(snw.over)return}
+  }
+  snw.d+=sp*dt/SNW_M;
+  const dm=Math.round(snw.d);
+  if(dm>snwInt('hz_snw_best'))localStorage.setItem('hz_snw_best',String(dm));
+  snwLevelCheck();
+  snwBandCheck();
+  snwDistHud();
+  snwRender();
+}
+function snwStart(){
+  currentMode='snow';snw.gen++;snwKillTimers();snwStopLoop();
+  const box=document.getElementById('snwField');
+  if(box)box.innerHTML='';
+  const bd=document.getElementById('snwBand');
+  if(bd){bd.textContent='';bd.classList.remove('on')}
+  const st0=snwEl();
+  if(st0)st0.querySelectorAll('.snw-pop,.snw-spark,.snw-trail').forEach(function(e){e.remove()});
+  snw.run=true;snw.over=false;snw.busy=false;snw.dir=0;snw.picked=-1;
+  snw.d=0;snw.score=0;snw.combo=0;snw.maxCombo=0;snw.right=0;snw.crush=0;snw.crash=0;snw.men=0;
+  snw.r=SNW_R0;snw.maxR=SNW_R0;snw.vx=0;snw.cx=Math.round((snw.W||320)/2);snw.hearts=SNW_HEARTS;
+  snw.tz=0;snw.inv=0;snw._dm=-1;snw.beat=snwInt('hz_snw_best');
+  snw.lv=1;snw.band=0;snw.objects=[];snw.quiz=null;snw.answered=false;snw.used=[];snw.cid=0;
+  snw.qT=0;snw.qMax=snwQT();
+  showScreen('snow');
+  const st=snwEl();
+  if(st){st.classList.remove('shake','g0','g1','g2','g3');st.classList.add('g0')}
+  snw.W=st?(st.clientWidth||320):320;snw.H=st?(st.clientHeight||302):302;
+  snw.cx=Math.round(snw.W/2);
+  snwDeco();
+  const now=performance.now();
+  snw.now=now;snw.ts=now;snw.nextAt=now+1000;snw.trailAt=now;
+  const ob=document.getElementById('snwOpts');
+  if(ob)ob.innerHTML='';
+  snwHud();snwDistHud();snwCdHud();snwRender();
+  snwJudge('⛄ 抢答笔顺，雪球一圈圈滚大 —— 绿圈碾得碎，红圈会把你撞翻','#B9F6CA');
+  snwMarkSeen();
+  snwAsk();
+  snwStartLoop();
+}
+function snwEnd(){
+  if(snw.over)return;
+  snw.over=true;snw.run=false;
+  snwStopLoop();snwKillTimers();
+  const m=Math.round(snw.d),s=Math.round(snw.score);
+  snwAdd('hz_snw_m',m);
+  if(m>snwInt('hz_snw_best'))localStorage.setItem('hz_snw_best',String(m));
+  if(snw.lv>snwInt('hz_snw_lv'))localStorage.setItem('hz_snw_lv',String(snw.lv));
+  if(snw.maxCombo>snwInt('hz_snw_streak'))localStorage.setItem('hz_snw_streak',String(snw.maxCombo));
+  const stars=Math.max(1,Math.min(30,Math.round(m/20)+snw.lv+Math.round(snw.maxCombo*0.6)+Math.round(snw.crush/5)));
+  addStars(stars);
+  snwSet('snwRsStars','⭐ +'+stars);
+  snwSet('snwRsEmoji',m>=430?'🏔️':m>=230?'🌲':m>=95?'❄️':snw.maxR>=SNW_RMAX-2?'⛄':'🌨️');
+  snwSet('snwRsTitle',m>=430?'冰湖都滚过去了！':m>=230?'松林滚王':m>=95?'雪球滚得不错':'坡还没滚完');
+  snwSet('snwRsSub',m>=95?('答对 '+snw.right+' 笔、碾碎 '+snw.crush+' 件，雪球最大到 '+Math.round(snw.maxR*2)+' 厘米 · 一路滚了 '+m+
+    ' 米 —— 再来一趟，红圈会变绿圈'):
+    ('只滚了 '+m+' 米：抢答笔顺把雪球滚大，'+SNW_OBJS.rock.icon+' 要 '+SNW_OBJS.rock.need+' 厘米、'+
+      SNW_OBJS.tree.icon+' 要 '+SNW_OBJS.tree.need+' 厘米才碾得碎；答错会缩一圈，越大约难拐弯，别贪快'));
+  snwSet('snwRsM',String(m));
+  snwSet('snwRsScore',String(s));
+  snwSet('snwRsRight',String(snw.right));
+  snwSet('snwRsCrush',String(snw.crush));
+  snwSet('snwRsStreak',String(snw.maxCombo));
+  snwSet('snwRsCrash',String(snw.crash));
+  snwSet('snwRsBest',snwInt('hz_snw_best')+' 米');
+  snwSet('snwRsAll','🏅 段位 '+snwRank(snwInt('hz_snw_m'))+' · 已滚到第 '+snwInt('hz_snw_lv')+' 层\n累计坡长 🌨️ '+snwInt('hz_snw_m')+
+    ' 米 · 最大雪球 '+snwInt('hz_snw_ball')+' 厘米 · 答对 '+snwInt('hz_snw_balls')+' 题 · 碾碎 '+snwInt('hz_snw_crush')+
+    ' 件 · 撞翻 '+snwInt('hz_snw_crash')+' 次 · 碾过雪人 '+snwInt('hz_snw_men')+' 个 · 最长连对 '+snwInt('hz_snw_streak'));
+  showScreen('snow-result');
+}
+function snwRetry(){snwStart()}
+function snwLeave(){
+  snwStopLoop();snwKillTimers();
+  if(snw.run&&!snw.over){snw.over=true;snw.run=false}
+  goHome();
+}
+function snwHelp(){
+  snwJudge('⛄ 答对一笔顺，雪球大 '+SNW_GROW*2+' 厘米 → 直径够大才碾得碎绿圈，红圈会撞翻你 → 雪球越大滚得越快也越难拐弯 → 连对 5 题触发 💨 旋风','#80DEEA');
+}
+function snwMarkSeen(){localStorage.setItem('hz_snw_seen',String(snwInt('hz_snw_lv')))}
+function snwNudge(){
+  const dot=document.getElementById('snowCardDot'),tip=document.getElementById('snowCardTip');
+  const lv=snwInt('hz_snw_lv'),best=snwInt('hz_snw_best'),ball=snwInt('hz_snw_ball');
+  if(tip)tip.textContent=best?('滚过 '+best+' 米 · 雪球 '+ball+' 厘米'):'答对雪球就变大 · 够大才碾得碎';
+  if(!dot)return;
+  if(lv>snwInt('hz_snw_seen')){dot.textContent='🆕 第 '+lv+' 层';dot.classList.add('on')}
+  else dot.classList.remove('on');
+}
+function snwSteer(d){snw.dir=d}
+function snwOnResize(){
+  if(currentMode!=='snow'||!snw.run)return;
+  const st=snwEl();if(!st)return;
+  const w=st.clientWidth,h=st.clientHeight;
+  if(Math.abs(w-snw.W)<2&&Math.abs(h-snw.H)<2)return;
+  const kx=snw.W?w/snw.W:1,ky=snw.H?h/snw.H:1;
+  snw.W=w||snw.W;snw.H=h||snw.H;
+  for(let i=0;i<snw.objects.length;i++){
+    const o=snw.objects[i];
+    o.cx=Math.round(o.cx*kx);
+    o.cy=Math.round(o.cy*ky);
+    if(o.el){
+      o.el.style.left=(o.cx-o.r)+'px';
+      o.el.style.top=(o.cy-o.r)+'px';
+    }
+  }
+  snw.cx=Math.max(SNW_PAD+snw.r,Math.min(snw.W-SNW_PAD-snw.r,Math.round(snw.cx*kx)));
+  snwRender();
+}
+window.snwKey=e=>{
+  if(currentMode!=='snow')return;
+  const scr=document.getElementById('screen-snow');
+  if(!scr||!scr.classList.contains('active'))return;
+  const k=e.key;
+  if(k==='ArrowLeft'||k==='a'||k==='A'){snwSteer(-1);return}
+  if(k==='ArrowRight'||k==='d'||k==='D'){snwSteer(1);return}
+  if(k>='1'&&k<=String(SNW_OPTS)){snwAnswer(+k-1);return}
+  if(k==='h'||k==='H'||k==='?'){snwHelp();return}
+};
+document.addEventListener('keydown',e=>{if(window.snwKey)window.snwKey(e)});
+document.addEventListener('keyup',e=>{
+  if(currentMode!=='snow')return;
+  const k=e.key;
+  if(k==='ArrowLeft'||k==='ArrowRight'||k==='a'||k==='A'||k==='d'||k==='D')snw.dir=0;
+});
+(function snwBindCtl(){
+  const ob=document.getElementById('snwOpts');
+  if(ob)ob.addEventListener('click',ev=>{
+    const b=ev.target.closest?ev.target.closest('.snw-opt'):null;
+    if(!b||!ob.contains(b))return;
+    ev.preventDefault();
+    snwAnswer(+b.dataset.i);
+  });
+  const st=document.getElementById('snwStage');
+  if(st)st.addEventListener('pointerdown',ev=>{
+    if(currentMode!=='snow')return;
+    const r=st.getBoundingClientRect(),x=ev.clientX-r.left;
+    snwSteer(x<r.width/2?-1:1);
+    const clr=()=>{snw.dir=0;window.removeEventListener('pointerup',clr);window.removeEventListener('pointercancel',clr)};
+    window.addEventListener('pointerup',clr);
+    window.addEventListener('pointercancel',clr);
+  });
+})();
+window.addEventListener('resize',snwOnResize);
+
 
 
 async function boot(){
