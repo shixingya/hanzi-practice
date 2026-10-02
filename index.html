@@ -2378,6 +2378,86 @@ button:active{transform:scale(.95)}
 #screen-maze>*{flex:0 0 auto}
 @media(max-width:420px){.mz-hud,.mz-torchwrap,.mz-wrap,.mz-quiz,.mz-actrow,.mz-judge,.mz-tip{max-width:290px}}
 
+/* ---------- 笔顺排排队（滑动推盘） ---------- */
+.sl-hud{display:flex;justify-content:center;gap:6px;width:100%;max-width:306px;margin:6px auto 0}
+.sl-hud span{flex:0 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font-size:11px;font-weight:900;color:#fff;background:rgba(0,0,0,.3);padding:4px 9px;border-radius:11px}
+.sl-hud b{color:#FFD740}
+.sl-time{display:flex;align-items:center;gap:7px;width:100%;max-width:306px;margin:6px auto 0}
+.sl-time .bar{flex:1;height:11px;border-radius:6px;background:rgba(255,255,255,.14);overflow:hidden;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.34)}
+.sl-time .bar i{display:block;height:100%;width:100%;border-radius:6px;
+  background:linear-gradient(90deg,#00E5FF,#69F0AE,#FFEA00);transition:width .12s linear}
+.sl-time span{flex:0 0 auto;min-width:56px;text-align:right;font-size:11.5px;font-weight:900;color:#fff}
+.sl-time.low .bar i{background:linear-gradient(90deg,#B71C1C,#FF5252)}
+.sl-time.low span{color:#FF8A80}
+.sl-sub{width:100%;max-width:306px;margin:7px auto 0;text-align:center;font-size:12.5px;font-weight:900;
+  color:#FFF3E0;line-height:1.45}
+.sl-sub b{color:#FFD740;font-size:15px}
+.sl-wrap{position:relative;width:100%;max-width:306px;margin:8px auto 0;border-radius:18px;
+  background:radial-gradient(circle at 50% 20%,#4A2F7A 0%,#2E1B4E 74%,#20123A 100%);
+  box-shadow:inset 0 2px 12px rgba(0,0,0,.5),0 6px 20px rgba(0,0,0,.3)}
+.sl-slot{position:absolute;box-sizing:border-box;border-radius:13px;border:2px dashed rgba(255,255,255,.17);
+  background:rgba(255,255,255,.05)}
+.sl-slot.free{border-color:transparent;background:rgba(255,255,255,.022)}
+.sl-slot em{position:absolute;left:-2px;top:-2px;z-index:3;font-style:normal;
+  min-width:19px;height:19px;line-height:19px;text-align:center;border-radius:0 0 10px 0;
+  font-size:11px;font-weight:900;color:#EDE7F6;background:rgba(18,8,34,.82);padding:0 3px}
+.sl-slots{position:absolute;left:0;top:0;right:0;bottom:0}
+.sl-tiles{position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none}
+.sl-t{position:absolute;left:0;top:0;pointer-events:auto;cursor:pointer;
+  width:var(--slc,64px);height:var(--slc,64px);
+  transition:transform .17s cubic-bezier(.22,.86,.3,1)}
+.sl-svg{position:absolute;left:0;top:0;width:100%;height:100%;display:block;border-radius:13px;
+  box-sizing:border-box;background:linear-gradient(160deg,#FFF8E1 0%,#FFE9BE 62%,#F3CF94 100%);
+  box-shadow:0 4px 0 rgba(0,0,0,.3),0 6px 14px rgba(0,0,0,.34);overflow:visible}
+.sl-svg .gh{fill:rgba(94,53,177,.22);stroke:none}
+.sl-svg .on{fill:#E65100;stroke:#FFD740;stroke-width:14;paint-order:stroke fill}
+.sl-t.ok .sl-svg{background:linear-gradient(160deg,#E8F5E9 0%,#AFF4C6 60%,#7BE39A 100%);
+  box-shadow:0 0 0 2px #69F0AE,0 0 16px rgba(105,240,174,.72),0 4px 0 rgba(0,0,0,.26)}
+.sl-t.ok .sl-svg .on{fill:#1B5E20;stroke:#B9F6CA}
+.sl-mk{position:absolute;right:-2px;bottom:-2px;z-index:3;font-size:11px;font-weight:900;color:#1B5E20;
+  background:#B9F6CA;border-radius:10px 0 0 10px;padding:0 4px;line-height:19px;min-width:19px;text-align:center}
+.sl-mk:empty{display:none}
+@keyframes slLit{0%{filter:brightness(2.3) saturate(1.6)}55%{filter:brightness(1.25)}100%{filter:none}}
+.sl-t.lit .sl-svg{animation:slLit .55s ease-out}
+@keyframes slShk{0%,100%{transform:translateX(0)}22%{transform:translateX(-5px)}46%{transform:translateX(4px)}72%{transform:translateX(-2px)}}
+.sl-t.shk .sl-svg{animation:slShk .34s}
+.sl-write{position:absolute;left:0;top:0;right:0;bottom:0;display:none;align-items:center;justify-content:center;
+  flex-direction:column;gap:6px;border-radius:18px;background:rgba(22,10,40,.88);z-index:20}
+.sl-write.on{display:flex;animation:dtJudge .35s}
+.sl-write .sl-wr{display:flex;align-items:center;justify-content:center}
+.sl-write svg{display:block}
+.sl-big{font-size:74px;font-weight:900;color:#FFD740;line-height:1.1}
+.sl-write em{font-style:normal;font-size:12.5px;font-weight:900;color:#B9F6CA;text-align:center;padding:0 8px}
+.sl-chips{display:flex;justify-content:center;gap:7px;width:100%;max-width:306px;margin:8px auto 0}
+.sl-chips span{font-size:12px;font-weight:900;color:#fff;background:rgba(255,255,255,.11);
+  padding:5px 12px;border-radius:12px;white-space:nowrap}
+.sl-chips b{color:#FFEA00}
+.sl-proprow{display:flex;gap:8px;justify-content:center;width:100%;max-width:306px;margin:9px auto 0}
+.sl-prop{flex:1;padding:10px 3px;border:none;border-radius:13px;font-size:12.5px;font-weight:900;
+  cursor:pointer;color:#3E2723;background:#FFD740;box-shadow:0 3px 0 rgba(0,0,0,.24);line-height:1.3}
+.sl-prop.o{background:#26C6DA}
+.sl-prop b{font-size:13px}
+.sl-prop:active{transform:translateY(2px) scale(.97)}
+.sl-judge{width:100%;max-width:306px;margin:8px auto 0;min-height:52px;padding:7px 10px;border-radius:12px;
+  box-sizing:border-box;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.34);text-align:center;font-size:11.5px;font-weight:700;line-height:1.55;
+  color:#FFEA00;opacity:0;transition:opacity .3s}
+.sl-judge.show{opacity:1;animation:dtJudge .35s}
+.sl-tip{width:100%;max-width:306px;margin:10px auto 0;text-align:center;font-size:10.5px;
+  color:rgba(255,255,255,.74);line-height:1.6}
+.sl-tip b{color:#FFD740}
+.sl-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;color:#fff}
+.sl-rs div>span{display:block;font-size:22px;font-weight:900;line-height:1.2}
+.sl-rs div>small{display:block;font-size:10.5px;opacity:.7;margin-top:2px}
+.sl-dot{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;
+  background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;
+  align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28)}
+.sl-dot.on{display:flex}
+#screen-slide>*{flex:0 0 auto}
+@media(max-width:420px){.sl-hud,.sl-time,.sl-sub,.sl-wrap,.sl-chips,.sl-proprow,.sl-judge,.sl-tip{max-width:292px}}
+
 </style>
 
 </head>
@@ -2566,6 +2646,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🗺️</div>
       <div class="info"><h3>笔顺星图</h3><p id="mapCardTip">答对才修得出下一关，尽头有龙！</p></div>
       <span class="map-dot" id="mapCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('slide')">
+      <div class="icon">🧩</div>
+      <div class="info"><h3>笔顺排排队</h3><p id="slideCardTip">滑动方块 · 把笔画推回 1→n</p></div>
+      <span class="sl-dot" id="slideCardDot">🆕</span>
     </div>
 <div class="mode-card" onclick="enterMode('plinko')">
       <div class="icon">🔮</div>
@@ -4656,6 +4741,69 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="mpBackToMap()">🗺️ 看星图</button>
   </div>
 </div>
+<div class="screen" id="screen-slide">
+  <div class="top-bar">
+    <button class="back-btn" onclick="slLeave()">← 返回</button>
+    <div class="stats"><span id="slScoreTxt">🏆 0 分</span><span id="slLvTxt">第 1 盘</span></div>
+    <button class="icon-btn" onclick="slHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🧩 只有<b style="color:#FFD740">挨着空格</b>的那一块能推：把打乱的笔画方块一块块推回<b style="color:#B9F6CA">书写顺序</b>——
+    每格角上的数字是<b style="color:#FFF176">这一格该放第几笔</b>，全部对上就当场把这个字写给你看！</div>
+  <div class="sl-hud">
+    <span id="slRankTxt">🥇 推盘新手</span>
+    <span id="slFixTxt">🧩 累计归位 0 笔</span>
+  </div>
+  <div class="sl-time" id="slTimeWrap">
+    <div class="bar"><i id="slTimeBar"></i></div>
+    <span id="slTimeTxt">⏱️ 95 秒</span>
+  </div>
+  <div class="sl-sub" id="slGoal">把「?」的 3 笔推回书写顺序</div>
+  <div class="sl-wrap" id="slWrap">
+    <div class="sl-slots" id="slSlots"></div>
+    <div class="sl-tiles" id="slTiles"></div>
+    <div class="sl-write" id="slWriteBox"></div>
+  </div>
+  <div class="sl-chips">
+    <span id="slMovesTxt">👣 0 / 18</span>
+    <span id="slLockTxt">🔒 0/3</span>
+  </div>
+  <div class="sl-proprow">
+    <button class="sl-prop" id="slHintBtn" onclick="slHint()">💡 推一把 <b>2</b></button>
+    <button class="sl-prop o" id="slReBtn" onclick="slReshuffle()">🔀 重排 <b>1</b></button>
+  </div>
+  <div class="sl-judge" id="slJudge"></div>
+  <div class="sl-tip" id="slTip">点方块推进空格 · <b>方向键</b> 也能推 · <b>P</b> 提示 · <b>R</b> 重排 · <b>H</b> 怎么玩</div>
+</div>
+<div class="screen" id="screen-slide-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="slLeave()">← 回首页</button>
+    <div class="stats"><span id="slRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="slRsEmoji">🧩</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="slRsTitle">排好啦</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="slRsSub">下一盘笔画更多</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="sl-rs">
+      <div><span style="color:#FFD700" id="slRsScore">0</span><small>本盘得分</small></div>
+      <div><span style="color:#4FC3F7" id="slRsLv">1</span><small>打到第几盘</small></div>
+      <div><span style="color:#69F0AE" id="slRsMoves">0 / 18</span><small>步数 / 标准</small></div>
+      <div><span style="color:#E1BEE7" id="slRsLock">0/3</span><small>归位几笔</small></div>
+      <div><span style="color:#FF8A80" id="slRsCombo">0</span><small>一步不差连击</small></div>
+      <div><span style="color:#FFF176" id="slRsTime">0</span><small>用时（秒）</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="slRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="slRsAll">段位 推盘新手</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" id="slRsAgain" onclick="slNext()">➡️ 下一盘</button>
+    <button class="w-btn blue" onclick="slLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-maze">
   <div class="top-bar">
     <button class="back-btn" onclick="mzLeave()">← 返回</button>
@@ -5508,6 +5656,7 @@ function updateHomeStats(){
   if(typeof ddNudge==='function')ddNudge();
   if(typeof mzNudge==='function')mzNudge();
   if(typeof mpNudge==='function')mpNudge();
+  if(typeof slNudge==='function')slNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -5553,7 +5702,7 @@ function enterMode(mode){
   else if(mode==='town')twStart();
   else if(mode==='mow')mwStart();
  else if(mode==='dd')ddStart();
- else if(mode==='maze')mzStart(); else if(mode==='map')mpStart();
+ else if(mode==='maze')mzStart(); else if(mode==='map')mpStart(); else if(mode==='slide')slStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -24336,6 +24485,424 @@ function mpBackToMap(){mpStart()}
   });
 })();
 
+/* ---------- 笔顺排排队（滑动推盘 · 把笔画推回书写顺序） ---------- */
+const SL_BANDS=[{lo:2,hi:3},{lo:4,hi:5},{lo:6,hi:8},{lo:9,hi:12}];
+const SL_NOTE=[523,587,659,784,880,988,1046,1175,1318,1568];
+const SL_RANKS=['推盘新手','滑动学徒','笔顺巧手','顺序达人','落位如飞','一步不差','归位高手','排排宗师','笔顺推盘王'];
+const SL_TIP=['先找第 1 笔：它多半在字的最上面或最左边','撇和捺这种大笔画一般不是最先写的','数一数已经亮了几笔，就知道还差几笔','长横常常躺在字的中间，多半是第 2、3 笔','别急着推，先想清楚这一笔该落在几号位'];
+function slK(n){return n<=8?3:4}
+function slBandOf(lv){return Math.min(SL_BANDS.length-1,((lv-1)/2)|0)}
+function slScrambleN(lv){return Math.min(26,7+lv*2)}
+function slPar(lv){return Math.min(44,Math.round(slScrambleN(lv)*1.6)+4)}
+function slSecs(lv){return Math.max(45,100-lv*5)}
+function slBase(lv){return 70+lv*12}
+function slStarsOf(mv,par){return mv<=par?3:(mv<=Math.ceil(par*1.6)?2:1)}
+function slGain(base,combo,perfect,left){
+  return Math.round(base*(1+Math.min(1.2,Math.max(0,combo-1)*.15))+(perfect?45:0)+Math.min(60,Math.max(0,left))*1.5);
+}
+function slRank(fix){return SL_RANKS[Math.min(SL_RANKS.length-1,(fix/25)|0)]}
+function slSolved(b){
+  for(let i=0;i<b.length;i++)if(b[i]>=0&&b[i]!==i)return false;
+  return true;
+}
+function slLocked(b){let c=0;for(let i=0;i<b.length;i++)if(b[i]===i)c++;return c}
+function slBlanks(b){const o=[];for(let i=0;i<b.length;i++)if(b[i]<0)o.push(i);return o}
+function slBlankFor(b,pos,k){
+  const nb=slAdj(pos,k),t=b[pos];
+  let best=-1,bd=1e9;
+  for(let i=0;i<nb.length;i++){
+    const bl=nb[i];
+    if(b[bl]>=0)continue;
+    if(t===bl)return bl;
+    const d=Math.abs(((t/k)|0)-((bl/k)|0))+Math.abs(t%k-bl%k);
+    if(d<bd){bd=d;best=bl}
+  }
+  return best;
+}
+function slAdj(pos,k){
+  const r=(pos/k)|0,c=pos%k,out=[];
+  if(r>0)out.push(pos-k);
+  if(r<k-1)out.push(pos+k);
+  if(c>0)out.push(pos-1);
+  if(c<k-1)out.push(pos+1);
+  return out;
+}
+function slScramble(k,n,moves,rnd){
+  const b=[];
+  for(let i=0;i<k*k;i++)b.push(i<n?i:-1);
+  let bl=k*k-1,prev=-1;
+  for(let m=0;m<moves;m++){
+    const nb=slAdj(bl,k).filter(p=>p!==prev);
+    const pick=nb[(rnd()*nb.length)|0];
+    b[bl]=b[pick];b[pick]=-1;
+    prev=bl;bl=pick;
+  }
+  if(slSolved(b)){
+    for(let i=0;i<b.length;i++){
+      if(b[i]<0)continue;
+      const nb=slAdj(i,k).filter(p=>b[p]<0);
+      if(nb.length){b[nb[0]]=b[i];b[i]=-1;break}
+    }
+  }
+  return b;
+}
+function slDist(b,k){
+  let d=0;
+  for(let i=0;i<b.length;i++){
+    const t=b[i];
+    if(t>=0&&t!==i)d+=Math.abs(((t/k)|0)-((i/k)|0))+Math.abs(t%k-i%k);
+  }
+  return d;
+}
+function slBestMove(b,k){
+  let best=-1,bd=slDist(b,k);
+  for(let p=0;p<b.length;p++){
+    if(b[p]<0)continue;
+    const bl=slBlankFor(b,p,k);
+    if(bl<0)continue;
+    const t=b.slice();t[bl]=t[p];t[p]=-1;
+    const d=slDist(t,k);
+    if(d<bd){bd=d;best=p}
+  }
+  return best;
+}
+function slInt(k){const v=parseInt(localStorage.getItem(k),10);return isNaN(v)?0:v}
+function slAdd(k,n){localStorage.setItem(k,String(slInt(k)+n))}
+function slBook(){try{const a=JSON.parse(localStorage.getItem('hz_sl_book')||'[]');return Array.isArray(a)?a:[]}catch(e){return[]}}
+function slBookAdd(ch){
+  const a=slBook();
+  if(a.indexOf(ch)>=0)return false;
+  a.push(ch);localStorage.setItem('hz_sl_book',JSON.stringify(a.slice(-120)));
+  return true;
+}
+const slPool={};
+function slCands(band){
+  const B=SL_BANDS[band],out=[];
+  for(const ch in slPool)if(slPool[ch]>=B.lo&&slPool[ch]<=B.hi)out.push(ch);
+  return out;
+}
+async function slFill(band){
+  const B=SL_BANDS[band];
+  const from=Math.floor(CHARS.length*(band/SL_BANDS.length));
+  let got=0;
+  for(let i=0;i<CHARS.length&&slCands(band).length<6&&got<26;i++){
+    const ch=CHARS[(from+i*7+band)%CHARS.length];
+    if(slPool[ch]!==undefined)continue;
+    got++;
+    const d=await loadCharData(ch);
+    slPool[ch]=(d&&d.strokes)?d.strokes.length:0;
+  }
+  return slCands(band);
+}
+async function slPickChar(band,used){
+  let c=slCands(band).filter(x=>used.indexOf(x)<0);
+  if(c.length<3){await slFill(band).catch(()=>[]);c=slCands(band).filter(x=>used.indexOf(x)<0)}
+  if(!c.length)c=slCands(band);
+  return c.length?c[(Math.random()*c.length)|0]:null;
+}
+let sl={gen:0,run:false,over:false,lv:1,ch:'',k:3,n:0,b:[],moves:0,par:0,time:0,timeMax:0,
+  combo:0,maxCombo:0,fix:0,score:0,lock:0,hint:2,re:1,startedAt:0,timerId:null,resId:null,used:[],lastStars:0};
+function slCancelResult(){if(sl.resId){clearTimeout(sl.resId);sl.resId=null}}
+function slStart(){
+  currentMode='slide';sl.gen++;
+  slCancelResult();
+  slAdd('hz_sl_games',1);
+  slMarkSeen();
+  sl.lv=1;sl.score=0;sl.combo=0;sl.maxCombo=0;
+  sl.fix=0;sl.used=[];
+  showScreen('slide');
+  sl.run=true;sl.over=false;
+  slBeginLevel();
+}
+async function slBeginLevel(){
+  const g=++sl.gen;
+  slCancelResult();
+  const wb=document.getElementById('slWriteBox');
+  if(wb){wb.classList.remove('on');wb.innerHTML=''}
+  const ch=await slPickChar(slBandOf(sl.lv),sl.used);
+  if(g!==sl.gen)return;
+  if(!ch){slJudge('📡 字的数据还没下下来，检查一下网络再进来','#FFCDD2');slStopClock();sl.run=false;return}
+  const d=charDataCache[ch];
+  sl.used.push(ch);
+  sl.ch=ch;sl.n=d.strokes.length;sl.k=slK(sl.n);
+  sl.par=slPar(sl.lv);sl.timeMax=slSecs(sl.lv);sl.time=sl.timeMax;
+  sl.b=slScramble(sl.k,sl.n,slScrambleN(sl.lv),Math.random);
+  sl.moves=0;sl.hint=2;sl.re=1;
+  sl.lock=slLocked(sl.b);
+  sl.startedAt=Date.now();
+  slLayout();slHud();
+  slJudge('🎯 把「'+sl.ch+'」的 '+sl.n+' 笔推回书写顺序：1 号位放第 1 笔','#B9F6CA');
+  slStartClock();
+}
+function slCell(){
+  const w=document.getElementById('slWrap');
+  const W=(w&&w.clientWidth?w.clientWidth:288)-2;
+  return Math.floor((W-(sl.k+1)*6)/sl.k);
+}
+function slSvg(t){
+  const d=charDataCache[sl.ch];if(!d)return '';
+  let g='';
+  for(let j=0;j<d.strokes.length;j++)g+='<path d="'+d.strokes[j]+'" class="'+(j===t?'on':'gh')+'"/>';
+  return '<svg class="sl-svg" viewBox="0 -1024 1024 1024" preserveAspectRatio="xMidYMid meet"><g transform="scale(1,-1)">'+g+'</g></svg>';
+}
+function slLayout(){
+  const wrap=document.getElementById('slWrap');if(!wrap)return;
+  const k=sl.k,cell=slCell(),g=6;
+  wrap.style.height=(cell*k+g*(k+1))+'px';
+  wrap.style.setProperty('--slc',cell+'px');
+  let h='';
+  for(let i=0;i<k*k;i++){
+    const r=(i/k)|0,c=i%k;
+    h+='<div class="sl-slot'+(i<sl.n?'':' free')+'" style="left:'+(g+c*(cell+g))+'px;top:'+(g+r*(cell+g))+'px;width:'+cell+'px;height:'+cell+'px">'+
+      (i<sl.n?'<em>'+(i+1)+'</em>':'')+'</div>';
+  }
+  document.getElementById('slSlots').innerHTML=h;
+  let t='';
+  for(let i=0;i<k*k;i++){
+    const tile=sl.b[i];
+    if(tile<0)continue;
+    t+='<div class="sl-t" id="slTile'+tile+'" data-t="'+tile+'">'+slSvg(tile)+'<b class="sl-mk"></b></div>';
+  }
+  const box=document.getElementById('slTiles');
+  box.innerHTML=t;
+  box.onclick=e=>{
+    const el=e.target.closest?e.target.closest('.sl-t'):null;
+    if(!el)return;
+    const tile=+el.getAttribute('data-t');
+    slTap(sl.b.indexOf(tile));
+  };
+  slPlace();
+}
+function slPlace(){
+  const k=sl.k,cell=slCell(),g=6;
+  for(let pos=0;pos<k*k;pos++){
+    const t=sl.b[pos];if(t<0)continue;
+    const el=document.getElementById('slTile'+t);if(!el)continue;
+    const r=(pos/k)|0,c=pos%k;
+    el.style.transform='translate('+(g+c*(cell+g))+'px,'+(g+r*(cell+g))+'px)';
+    const ok=(t===pos);
+    el.classList.toggle('ok',ok);
+    const m=el.querySelector('.sl-mk');
+    if(m)m.textContent=ok?'✓':'';
+  }
+}
+function slSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function slHud(){
+  slSet('slScoreTxt','🏆 '+Math.round(sl.score)+' 分');
+  slSet('slLvTxt','第 '+sl.lv+' 盘');
+  slSet('slGoal','把 <b>'+sl.ch+'</b> 的 '+sl.n+' 笔推回书写顺序');
+  slSet('slFixTxt','🧩 累计归位 '+slInt('hz_sl_fix')+' 笔');
+  slSet('slRankTxt','🥇 '+slRank(slInt('hz_sl_fix')));
+  slSet('slMovesTxt','👣 '+sl.moves+' / '+sl.par);
+  slSet('slLockTxt','🔒 '+sl.lock+'/'+sl.n);
+  slSet('slHintBtn','💡 推一把 <b>'+sl.hint+'</b>');
+  slSet('slReBtn','🔀 重排 <b>'+sl.re+'</b>');
+  const tip=document.getElementById('slTip');
+  if(tip)tip.textContent='本盘 '+sl.k+'×'+sl.k+' · '+sl.n+' 笔 · 步数 ≤'+sl.par+' 拿 3⭐ · '+SL_TIP[(sl.lv-1)%SL_TIP.length];
+  slClockHud();
+}
+function slClockHud(){
+  const bar=document.getElementById('slTimeBar');
+  if(bar)bar.style.width=(sl.timeMax?Math.max(0,sl.time/sl.timeMax*100):0)+'%';
+  const tt=document.getElementById('slTimeTxt');
+  if(tt)tt.textContent='⏱️ '+Math.ceil(sl.time)+' 秒';
+  const tw=document.getElementById('slTimeWrap');
+  if(tw)tw.classList.toggle('low',sl.time<=12);
+}
+function slJudge(msg,color){
+  const el=document.getElementById('slJudge');if(!el)return;
+  el.textContent=msg;el.style.color=color||'#fff';
+  el.classList.remove('show');void el.offsetWidth;el.classList.add('show');
+}
+function slStartClock(){slStopClock();sl.timerId=setInterval(slTick,100)}
+function slStopClock(){if(sl.timerId){clearInterval(sl.timerId);sl.timerId=null}}
+function slTick(){
+  if(currentMode!=='slide'){slStopClock();sl.run=false;return}
+  if(!sl.run||sl.over)return;
+  sl.time=Math.max(0,sl.time-0.1);
+  slClockHud();
+  if(sl.time<=0)slLose();
+}
+function slSlidable(pos,bl){
+  if(pos<0||pos>=sl.k*sl.k||sl.b[pos]<0)return false;
+  if(bl!==undefined&&bl>=0)return sl.b[bl]<0&&slAdj(pos,sl.k).indexOf(bl)>=0;
+  return slBlankFor(sl.b,pos,sl.k)>=0;
+}
+function slTap(pos,bl){
+  if(!sl.run||sl.over)return;
+  if(!slSlidable(pos,bl)){
+    if(sl.b[pos]>=0){
+      const el=document.getElementById('slTile'+sl.b[pos]);
+      if(el){el.classList.remove('shk');void el.offsetWidth;el.classList.add('shk')}
+    }
+    slJudge('🧲 它挨不着空格 —— 只能把贴着空格的方块推进去','#FFCC80');
+    tone(180,.09,'square',.06);
+    return;
+  }
+  slSlide(pos,bl);
+}
+function slSlide(pos,bl){
+  if(bl===undefined||bl<0)bl=slBlankFor(sl.b,pos,sl.k);
+  if(sl.b[pos]<0||sl.b[bl]>=0||slAdj(pos,sl.k).indexOf(bl)<0)return false;
+  const t=sl.b[pos];
+  sl.b[bl]=t;sl.b[pos]=-1;
+  sl.moves++;
+  const wasOk=(t===pos),nowOk=(t===bl);
+  tone(300+((pos*37)%160),.05,'square',.05);
+  slPlace();
+  if(nowOk){
+    sl.lock++;sl.fix++;slAdd('hz_sl_fix',1);
+    tone(SL_NOTE[Math.min(SL_NOTE.length-1,sl.lock-1)],.13,'triangle',.14);
+    const el=document.getElementById('slTile'+t);
+    if(el){
+      el.classList.add('lit');
+      const rc=el.getBoundingClientRect();
+      spawnStarFly(rc.left+rc.width/2,rc.top+rc.height/2);
+    }
+    slJudge('✅ 第 '+(t+1)+' 笔落回 '+(bl+1)+' 号位！','#B9F6CA');
+  }else if(wasOk){
+    sl.lock--;
+    slJudge('↩️ 第 '+(t+1)+' 笔被推出去了，它该待在 '+(pos+1)+' 号位','#FFE082');
+  }
+  slHud();
+  if(sl.lock>=sl.n)slWin();
+  return true;
+}
+function slHint(){
+  if(!sl.run||sl.over)return;
+  if(sl.hint<=0){slJudge('💡 这盘的提示用完啦 —— 剩下靠自己','#FFCC80');return}
+  const best=slBestMove(sl.b,sl.k);
+  if(best<0){slJudge('🤔 推哪一块都不会更近 —— 先让开路，把挡着的挪走','#FFE082');return}
+  sl.hint--;slHud();
+  slJudge('💡 替你推了这一步（步数照算，还剩 '+sl.hint+' 次）','#FFE082');
+  slSlide(best);
+}
+function slReshuffle(){
+  if(!sl.run||sl.over)return;
+  if(sl.re<=0){slJudge('🔀 重排机会用完了，这盘只能自己推','#FFCC80');return}
+  sl.re--;
+  sl.b=slScramble(sl.k,sl.n,slScrambleN(sl.lv),Math.random);
+  sl.moves=0;sl.lock=slLocked(sl.b);
+  slLayout();slHud();
+  slJudge('🔀 重新洗了一盘，计时没停 —— 这次看清了再推','#80DEEA');
+  tone(660,.1,'triangle',.12);
+}
+function slWin(){
+  sl.over=true;sl.run=false;slStopClock();
+  const stars=slStarsOf(sl.moves,sl.par);
+  sl.lastStars=stars;
+  const perfect=stars===3;
+  if(perfect){sl.combo++;slAdd('hz_sl_par',1)}else sl.combo=0;
+  if(sl.combo>sl.maxCombo)sl.maxCombo=sl.combo;
+  if(sl.maxCombo>slInt('hz_sl_combo'))localStorage.setItem('hz_sl_combo',String(sl.maxCombo));
+  const g=slGain(slBase(sl.lv),sl.combo,perfect,sl.time);
+  sl.score+=g;
+  const isNew=slBookAdd(sl.ch);
+  if(sl.lv>slInt('hz_sl_lv'))localStorage.setItem('hz_sl_lv',String(sl.lv));
+  if(sl.score>slInt('hz_sl_best'))localStorage.setItem('hz_sl_best',String(Math.round(sl.score)));
+  slAdd('hz_sl_moves',sl.moves);
+  addStars(stars+(isNew?2:0));
+  sndDone();spawnConfetti();
+  slShowWrite();
+  const gen=sl.gen;
+  sl.resId=setTimeout(()=>{sl.resId=null;if(gen!==sl.gen||currentMode!=='slide')return;slResult(true,g,stars,isNew)},1600);
+}
+function slLose(){
+  sl.over=true;sl.run=false;slStopClock();
+  sl.combo=0;
+  sndNo();
+  slResult(false,0,0,false);
+}
+function slShowWrite(){
+  const box=document.getElementById('slWriteBox');if(!box)return;
+  box.innerHTML='<div class="sl-wr"></div><em>排好啦 · 看它自己写一遍</em>';
+  box.classList.add('on');
+  const target=box.querySelector('.sl-wr');
+  const d=charDataCache[sl.ch];
+  const size=Math.min(150,slCell()*2);
+  if(typeof HanziWriter==='undefined'||!d){target.innerHTML='<span class="sl-big">'+sl.ch+'</span>';return}
+  try{
+    const w=HanziWriter.create(target,sl.ch,{width:size,height:size,padding:6,renderer:'svg',
+      showOutline:true,showCharacter:false,strokeColor:'#FFD740',outlineColor:'rgba(255,255,255,.2)',
+      highlightColor:'#69F0AE',charDataLoader:(c,cb)=>cb(d)});
+    w.animateCharacter();
+  }catch(e){target.innerHTML='<span class="sl-big">'+sl.ch+'</span>'}
+}
+function slResult(won,g,stars,isNew){
+  const wb=document.getElementById('slWriteBox');if(wb)wb.classList.remove('on');
+  const used=Math.max(1,Math.round((Date.now()-sl.startedAt)/1000));
+  slSet('slRsEmoji',won?(stars===3?'🎡':'🧩'):'⏱️');
+  slSet('slRsTitle',won?(stars===3?'一步不差！':'排好啦'):'时间到了');
+  slSet('slRsSub',won?('「'+sl.ch+'」的 '+sl.n+' 笔全归位'+(isNew?' · 🌟 图鉴收到新字':'')+' —— 下一盘笔画更多')
+    :'还有 '+(sl.n-sl.lock)+' 笔没归位，下盘先找第 1 笔');
+  slSet('slRsStars',won?'⭐ +'+(stars+(isNew?2:0)):'⭐ 0');
+  slSet('slRsScore',String(Math.round(g)));
+  slSet('slRsLv',String(sl.lv));
+  slSet('slRsMoves',String(sl.moves)+' / '+sl.par);
+  slSet('slRsLock',String(sl.lock)+'/'+sl.n);
+  slSet('slRsCombo',String(sl.maxCombo));
+  slSet('slRsTime',String(used));
+  slSet('slRsBest',String(slInt('hz_sl_best')));
+  slSet('slRsAll','🥇 段位 '+slRank(slInt('hz_sl_fix'))+' · 累计归位 '+slInt('hz_sl_fix')+' 笔\n图鉴 '+slBook().length+' 字 · 最长连击 '+slInt('hz_sl_combo')+' 盘 · 一共推了 '+slInt('hz_sl_moves')+' 步');
+  const again=document.getElementById('slRsAgain');
+  if(again){
+    again.textContent=won?'➡️ 下一盘':'🔁 再来一次';
+    again.setAttribute('onclick',won?'slNext()':'slRetry()');
+  }
+  showScreen('slide-result');
+}
+function slNext(){
+  sl.lv++;sl.run=true;sl.over=false;
+  showScreen('slide');
+  slBeginLevel();
+}
+function slRetry(){
+  sl.lv=1;sl.score=0;sl.combo=0;sl.maxCombo=0;sl.used=[];
+  slAdd('hz_sl_games',1);
+  sl.run=true;sl.over=false;
+  showScreen('slide');
+  slBeginLevel();
+}
+function slLeave(){
+  slCancelResult();
+  const wb=document.getElementById('slWriteBox');if(wb)wb.classList.remove('on');
+  if(sl.run&&!sl.over){slStopClock();sl.over=true;sl.run=false}
+  goHome();
+}
+function slHelp(){
+  slJudge('🧩 每一格下面写着它该放第几笔：把笔画方块推进空格，让每一笔回到自己的号位，排满就当场把这个字写给你看','#80DEEA');
+}
+function slMarkSeen(){localStorage.setItem('hz_sl_seen',String(slInt('hz_sl_lv')))}
+function slNudge(){
+  const dot=document.getElementById('slideCardDot'),tip=document.getElementById('slideCardTip');
+  const lv=slInt('hz_sl_lv'),fix=slInt('hz_sl_fix');
+  if(tip)tip.textContent=lv?('玩到第 '+lv+' 盘 · 归位 '+fix+' 笔'):'滑动方块 · 把笔画推回 1→n';
+  if(!dot)return;
+  if(lv>slInt('hz_sl_seen')){dot.textContent='🆕 第 '+lv+' 盘';dot.classList.add('on')}
+  else dot.classList.remove('on');
+}
+window.slKey=e=>{
+  if(currentMode!=='slide')return;
+  const scr=document.getElementById('screen-slide');
+  if(!scr||!scr.classList.contains('active'))return;
+  const k=e.key;
+  if(k==='ArrowLeft'||k==='ArrowRight'||k==='ArrowUp'||k==='ArrowDown'){
+    e.preventDefault();
+    const d=k==='ArrowLeft'?[0,1]:k==='ArrowRight'?[0,-1]:k==='ArrowUp'?[1,0]:[-1,0];
+    const bs=slBlanks(sl.b);
+    for(let i=0;i<bs.length;i++){
+      const bl=bs[i];
+      const r=((bl/sl.k)|0)+d[0],c=bl%sl.k+d[1];
+      if(r<0||r>=sl.k||c<0||c>=sl.k)continue;
+      const p=r*sl.k+c;
+      if(sl.b[p]>=0){slTap(p,bl);return}
+    }
+    slJudge('🧲 这个方向没有贴着空格的方块 —— 换个方向推','#FFCC80');
+  }else if(k==='h'||k==='H'||k==='?')slHelp();
+  else if(k==='p'||k==='P')slHint();
+  else if(k==='r'||k==='R')slReshuffle();
+};
+document.addEventListener('keydown',e=>{if(window.slKey)window.slKey(e)});
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
