@@ -2506,6 +2506,70 @@ button:active{transform:scale(.95)}
 .ec-rs span{display:block;font-size:26px;font-weight:bold}
 .ec-rs small{display:block;font-size:11px;opacity:.7;margin-top:2px;color:#fff}
 
+/* ============ v1.46.0 笔顺甩金钩（摆动钩爪 · 看准松钩 · 越沉越值钱越慢）============ */
+.gk-hud{display:flex;gap:7px;justify-content:center;flex-wrap:nowrap;padding:2px 10px 5px;width:100%;max-width:340px;margin:0 auto}
+.gk-hud span{background:rgba(255,255,255,.1);border-radius:20px;padding:5px 10px;font-size:11.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gk-time{display:flex;align-items:center;gap:8px;width:100%;max-width:340px;margin:2px auto 0;font-size:12px;color:#fff}
+.gk-time span{min-width:46px;font-weight:700}
+.gk-tbar{flex:1;height:8px;border-radius:99px;background:rgba(0,0,0,.32);overflow:hidden}
+.gk-tbar i{display:block;height:100%;width:100%;border-radius:99px;background:linear-gradient(90deg,#69F0AE,#26A69A);transition:width .12s linear}
+.gk-tbar.hurry i{background:linear-gradient(90deg,#FF8A80,#EF5350)}
+.gk-meter{display:flex;align-items:center;gap:8px;width:100%;max-width:340px;margin:5px auto 0;font-size:12px;color:#fff}
+.gk-meter span{min-width:86px;font-weight:700;white-space:nowrap}
+.gk-track{flex:1;height:11px;border-radius:99px;background:rgba(0,0,0,.32);overflow:hidden}
+.gk-track i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#FFD740,#FF8F00);transition:width .25s}
+.gk-stage{position:relative;width:100%;max-width:340px;height:268px;border-radius:18px;overflow:hidden;margin:6px auto 0;cursor:pointer;touch-action:none;
+  background:linear-gradient(180deg,#3FA9E0 0%,#7FC9EE 16%,#93765F 16%,#8D6E63 54%,#4E342E 100%);
+  box-shadow:inset 0 0 26px rgba(0,0,0,.42)}
+.gk-stage.ready{box-shadow:inset 0 0 26px rgba(0,0,0,.42),0 0 0 2px rgba(255,213,79,.5)}
+.gk-stage.frozen{filter:saturate(.62) hue-rotate(-12deg)}
+.gk-stage.shake{animation:gkShake .38s}
+@keyframes gkShake{0%,100%{transform:translate(0,0)}25%{transform:translate(-6px,3px)}50%{transform:translate(5px,-3px)}75%{transform:translate(-3px,-2px)}}
+.gk-strata{position:absolute;left:0;right:0;top:16%;height:84%;background:repeating-linear-gradient(180deg,rgba(255,255,255,.055) 0 3px,transparent 3px 26px)}
+.gk-hut{position:absolute;left:50%;top:1px;transform:translateX(-50%);font-size:23px;z-index:6;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45))}
+.gk-rot{position:absolute;left:50%;top:18px;width:0;height:0;z-index:5}
+.gk-line{position:absolute;left:-1px;top:0;width:2px;height:0;background:linear-gradient(180deg,#FFF9C4,rgba(255,255,255,.42));box-shadow:0 0 7px rgba(255,255,255,.55)}
+.gk-claw{position:absolute;left:-16px;top:0;width:32px;text-align:center;font-size:21px;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.gk-stage.ready .gk-claw{animation:gkPulse .78s ease-in-out infinite}
+@keyframes gkPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.17)}}
+.gk-held{position:absolute;z-index:4;pointer-events:none;line-height:1;filter:drop-shadow(0 0 7px rgba(255,215,64,.75))}
+.gk-item{position:absolute;display:flex;align-items:center;justify-content:center;border-radius:50%;z-index:3;pointer-events:none;line-height:1}
+.gk-item.deep{opacity:.5;filter:grayscale(.55)}
+.gk-item.taken{animation:gkTaken .42s ease-out forwards}
+@keyframes gkTaken{0%{transform:scale(1)}32%{transform:scale(1.3)}100%{transform:scale(.08);opacity:0}}
+.gk-item i{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-style:normal;font-size:9.5px;font-weight:800;color:#FFF9C4;text-shadow:0 1px 2px rgba(0,0,0,.8);white-space:nowrap}
+.gk-item.deep i{color:#CFD8DC}
+.gk-pop{position:absolute;z-index:7;width:120px;text-align:center;font-size:15px;font-weight:900;text-shadow:0 2px 4px rgba(0,0,0,.7);pointer-events:none;animation:gkPop 1s ease-out forwards}
+@keyframes gkPop{0%{transform:translateY(0);opacity:0}18%{opacity:1}100%{transform:translateY(-34px);opacity:0}}
+.gk-spark{position:absolute;width:6px;height:6px;border-radius:50%;z-index:7;pointer-events:none;animation:gkSpark .7s ease-out forwards}
+@keyframes gkSpark{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(.2);opacity:0}}
+.gk-q{width:100%;max-width:340px;margin:7px auto 0;font-size:15px;font-weight:800;color:#fff;text-align:center;line-height:1.4}
+.gk-q b{color:#FFD740}
+.gk-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:340px;margin:7px auto 0}
+.gk-o{padding:11px 5px;border-radius:13px;border:2px solid rgba(255,255,255,.26);background:rgba(255,255,255,.1);color:#fff;font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;transition:transform .14s}
+.gk-o:active{transform:scale(.95)}
+.gk-o.correct{background:linear-gradient(135deg,#66BB6A,#43A047);border-color:#C8E6C9}
+.gk-o.wrong{background:linear-gradient(135deg,#EF5350,#C62828);border-color:#FFCDD2}
+.gk-o.reveal{border-color:#FFD740;box-shadow:inset 0 0 0 3px rgba(255,213,79,.55)}
+.gk-o:disabled{cursor:default}
+.gk-judge{min-height:40px;display:flex;align-items:center;justify-content:center;text-align:center;padding:4px 14px;font-size:13.5px;color:#fff;font-weight:bold;line-height:1.4;width:100%;max-width:340px;margin:2px auto 0}
+.gk-judge.pop{animation:gkJPop .4s}
+@keyframes gkJPop{0%{transform:scale(.84);opacity:.4}60%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+.gk-shop{display:flex;gap:6px;width:100%;max-width:340px;margin:3px auto 0;justify-content:center;flex-wrap:wrap}
+.gk-up{background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.22);color:#fff;border-radius:12px;padding:6px 8px;font-size:11px;cursor:pointer;font-family:inherit;font-weight:700;line-height:1.3;text-align:center}
+.gk-up b{display:block;color:#FFD740;font-size:11.5px}
+.gk-up small{display:block;font-size:9px;opacity:.72;font-weight:600}
+.gk-up.have{border-color:#81C784;background:rgba(129,199,132,.2);cursor:default}
+.gk-up.have b{color:#B9F6CA}
+.gk-up.cant{opacity:.5}
+.gk-tip{text-align:center;font-size:11px;opacity:.62;color:#fff;padding:5px 16px 2px;line-height:1.5}
+.gk-tip b{color:#FFD740}
+.gk-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.gk-badge.on{display:flex}
+.gk-rs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 6px;text-align:center}
+.gk-rs span{display:block;font-size:23px;font-weight:bold}
+.gk-rs small{display:block;font-size:11px;opacity:.7;margin-top:2px;color:#fff}
+@media(max-width:420px){.gk-stage,.gk-opts,.gk-q,.gk-judge,.gk-shop,.gk-meter,.gk-time,.gk-hud{max-width:296px}.gk-stage{height:250px}}
 </style>
 
 </head>
@@ -2704,6 +2768,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🔊</div>
       <div class="info"><h3>笔顺回声</h3><p id="echoCardTip">听笔顺 · 凭记忆按回去</p></div>
       <span class="ec-badge" id="echoCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('hook')">
+      <div class="icon">🪝</div>
+      <div class="info"><h3>笔顺甩金钩</h3><p id="hookCardTip">看准摆动松钩 · 越沉越值钱</p></div>
+      <span class="gk-badge" id="hookCardDot">🆕</span>
     </div>
 <div class="mode-card" onclick="enterMode('plinko')">
       <div class="icon">🔮</div>
@@ -4794,6 +4863,62 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="mpBackToMap()">🗺️ 看星图</button>
   </div>
 </div>
+<div class="screen" id="screen-hook">
+  <div class="top-bar">
+    <button class="back-btn" onclick="gkLeave()">← 返回</button>
+    <div class="stats"><span id="gkScoreTxt">💎 0 分</span><span id="gkLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="gkHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🪝 答对笔顺题才发<b style="color:#FFD740">钩子</b>：钩子在头顶左右摆，看准方向<b style="color:#FFF176">点矿洞松钩</b>——金子越沉收得越慢，🪨 石头最重只值 8 分，<b style="color:#B9F6CA">够不着的宝先别贪</b>！</div>
+  <div class="gk-hud">
+    <span id="gkRankTxt">🏅 甩钩新手</span>
+    <span id="gkChargesTxt">🪝 ×2</span>
+    <span id="gkGoldTxt">🪙 累计 0</span>
+  </div>
+  <div class="gk-time"><span id="gkTimeTxt">⏱️ 61</span><div class="gk-tbar" id="gkTbar"><i id="gkTimeBar"></i></div></div>
+  <div class="gk-meter"><span id="gkMoneyTxt">💰 0 / 180</span><div class="gk-track"><i id="gkBar"></i></div></div>
+  <div class="gk-stage" id="gkStage" onclick="gkThrow()">
+    <div class="gk-strata"></div>
+    <div class="gk-hut">⛏️</div>
+    <div class="gk-rot" id="gkRot"><div class="gk-line" id="gkLine"></div><div class="gk-claw" id="gkClaw">🪝</div></div>
+    <div id="gkItems"></div>
+  </div>
+  <div class="gk-q" id="gkQ">「?」正在下矿……</div>
+  <div class="gk-opts" id="gkOpts"></div>
+  <div class="gk-judge" id="gkJudge"></div>
+  <div class="gk-shop" id="gkShop"></div>
+  <div class="gk-tip">点矿洞或按 <b>空格</b> 甩钩 · <b>1～4</b> 答题领钩子 · <b>H</b> 怎么玩</div>
+</div>
+<div class="screen" id="screen-hook-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="gkLeave()">← 回首页</button>
+    <div class="stats"><span id="gkRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="gkRsEmoji">🪝</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="gkRsTitle">矿车到站</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="gkRsSub">下一洞再贪一点</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="gk-rs">
+      <div><span style="color:#FFD700" id="gkRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="gkRsLv">1</span><small>冲到第几关</small></div>
+      <div><span style="color:#69F0AE" id="gkRsCatch">0</span><small>捞中物件</small></div>
+      <div><span style="color:#E1BEE7" id="gkRsDiamond">0</span><small>钻石</small></div>
+      <div><span style="color:#FF8A80" id="gkRsRight">0</span><small>答对题</small></div>
+      <div><span style="color:#FFF176" id="gkRsDeep">0</span><small>最深一钩</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="gkRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="gkRsAll">🏅 甩钩新手</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="gkRetry()">🔁 再开一洞</button>
+    <button class="w-btn blue" onclick="gkLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-echo">
   <div class="top-bar">
     <button class="back-btn" onclick="ecLeave()">← 返回</button>
@@ -5766,6 +5891,7 @@ function updateHomeStats(){
   if(typeof mpNudge==='function')mpNudge();
   if(typeof slNudge==='function')slNudge();
   if(typeof ecNudge==='function')ecNudge();
+  if(typeof gkNudge==='function')gkNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -5813,6 +5939,7 @@ function enterMode(mode){
  else if(mode==='dd')ddStart();
  else if(mode==='maze')mzStart(); else if(mode==='map')mpStart(); else if(mode==='slide')slStart();
  else if(mode==='echo')ecStart();
+ else if(mode==='hook')gkStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -25302,6 +25429,481 @@ window.ecKey=e=>{
   if(k==='h'||k==='H'||k==='?'){ecHelp();return}
 };
 document.addEventListener('keydown',e=>{if(window.ecKey)window.ecKey(e)});
+
+/* ============ v1.46.0 笔顺甩金钩（摆动钩爪 · 看准松钩 · 越沉越值钱越慢）============ */
+const GK_ITEMS={
+  s:{k:'s',icon:'💰',name:'小金币',val:30,w:1.0,r:13,freq:660},
+  m:{k:'m',icon:'💰',name:'中金币',val:70,w:2.0,r:17,freq:587},
+  b:{k:'b',icon:'💰',name:'大金币',val:180,w:3.6,r:24,freq:523},
+  g:{k:'g',icon:'💎',name:'钻石',val:300,w:0.9,r:11,freq:880},
+  r:{k:'r',icon:'🪨',name:'石头',val:8,w:4.4,r:18,freq:170},
+  c:{k:'c',icon:'⏳',name:'沙漏',val:20,w:1.1,r:12,freq:740},
+  t:{k:'t',icon:'⭐',name:'幸运星',val:60,w:0.8,r:12,freq:990},
+};
+const GK_ROLL=[['s',28],['m',20],['b',14],['r',19],['g',7],['c',6],['t',6]];
+const GK_ROLL_SUM=GK_ROLL.reduce(function(a,x){return a+x[1]},0);
+const GK_RANKS=[[0,'甩钩新手'],[200,'铜钩学徒'],[600,'铁钩快手'],[1200,'金钩少年'],[2200,'钻石猎人'],[3600,'矿洞老手'],[5400,'一钩千金'],[8000,'钩无虚发'],[12000,'汉字淘金王']];
+const GK_UPS=[
+  {id:'clock',icon:'⏳',name:'沙漏背包',cost:450,tip:'每关多 10 秒'},
+  {id:'reel',icon:'⚡',name:'强力绞盘',cost:600,tip:'收钩快 30%'},
+  {id:'cable',icon:'📏',name:'加长钢缆',cost:900,tip:'钩子够得更深'},
+];
+const GK_OUT=360,GK_REEL=430,GK_CH_MAX=3,GK_CH_START=2,GK_HIT=11;
+let gk={run:false,over:false,gen:0,phase:'idle',lv:1,need:0,money:0,score:0,combo:0,maxCombo:0,
+  catches:0,diamonds:0,right:0,deep:0,left:0,lastSec:-1,lastBeep:99,charges:GK_CH_START,
+  items:[],grab:null,len:0,swingT:0,deg:0,frozen:0,busy:false,used:[],timers:[],
+  C:null,W:0,H:0,cx:0,py:18,timerId:null,ts:0,quiz:null,lastWallet:0};
+function gkInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function gkAdd(k,n){localStorage.setItem(k,String(gkInt(k)+n))}
+function gkSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function gkRank(gold){let r=GK_RANKS[0][1];for(let i=0;i<GK_RANKS.length;i++)if(gold>=GK_RANKS[i][0])r=GK_RANKS[i][1];return r}
+function gkUps(){try{const a=JSON.parse(localStorage.getItem('hz_gk_up')||'[]');return Array.isArray(a)?a:[]}catch(e){return[]}}
+function gkHas(u){return gkUps().indexOf(u)>=0}
+function gkCfg(lv){
+  return {
+    amp:Math.min(66,42+lv*2.4),
+    period:Math.max(940,1760-lv*54),
+    secs:Math.max(36,62-lv*2)+(gkHas('clock')?10:0),
+    need:120+lv*60,
+    count:10+Math.min(8,lv),
+    reach:Math.min(0.94,0.36+lv*0.05+(gkHas('cable')?0.13:0)),
+  };
+}
+function gkMaxLen(){return Math.round(Math.min(gk.H-gk.py-8,gk.H*gk.C.reach))}
+function gkT(fn,ms){const g=gk.gen;const id=setTimeout(()=>{if(g!==gk.gen)return;fn()},ms);gk.timers.push(id);return id}
+function gkKillTimers(){gk.timers.forEach(id=>clearTimeout(id));gk.timers=[]}
+function gkStopTimer(){if(gk.timerId){clearInterval(gk.timerId);gk.timerId=null}}
+function gkStartTimer(){gkStopTimer();gk.ts=performance.now();gk.timerId=setInterval(gkTick,24)}
+const gkTy={};
+async function gkData(ch){
+  const d0=gkTy[ch];if(d0)return d0;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await loadCharData(ch);
+  if(!raw||!raw.medians||!raw.medians.length)return null;
+  const d={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  gkTy[ch]=d;return d;
+}
+async function gkPickChar(){
+  for(let a=0;a<50;a++){
+    const c=CHARS[Math.floor(Math.random()*CHARS.length)];
+    if(gk.used.indexOf(c)>=0)continue;
+    const d=await gkData(c);
+    if(d&&d.n>=2)return c;
+  }
+  for(let i=0;i<CHARS.length;i++){
+    const c=CHARS[i];if(gk.used.indexOf(c)>=0)continue;
+    const d=await gkData(c);
+    if(d&&d.n>=2)return c;
+  }
+  return null;
+}
+function gkAnsLabel(v){
+  for(let i=0;i<DIRS.length;i++)if(DIRS[i].code===v)return DIRS[i].icon+' '+DIRS[i].label;
+  return v+' 笔';
+}
+function gkPopTxt(t,color){
+  const st=document.getElementById('gkStage');if(!st)return;
+  const d=document.createElement('div');
+  d.className='gk-pop';d.textContent=t;d.style.color=color||'#FFD740';
+  d.style.left=(gk.cx-60)+'px';d.style.top=(gk.py+8)+'px';
+  st.appendChild(d);setTimeout(()=>d.remove(),1000);
+}
+function gkSpark(x,y,color){
+  const st=document.getElementById('gkStage');if(!st)return;
+  for(let i=0;i<8;i++){
+    const s=document.createElement('div');s.className='gk-spark';
+    s.style.left=x+'px';s.style.top=y+'px';s.style.background=color;
+    const a=Math.random()*Math.PI*2,dist=18+Math.random()*30;
+    s.style.setProperty('--sx',(Math.cos(a)*dist).toFixed(1)+'px');
+    s.style.setProperty('--sy',(Math.sin(a)*dist+16).toFixed(1)+'px');
+    st.appendChild(s);setTimeout(()=>s.remove(),720);
+  }
+}
+function gkShake(){
+  const st=document.getElementById('gkStage');if(!st)return;
+  st.classList.remove('shake');void st.offsetWidth;st.classList.add('shake');
+  gkT(()=>st.classList.remove('shake'),420);
+}
+function gkJudge(msg,color){
+  const el=document.getElementById('gkJudge');if(!el)return;
+  el.textContent=msg;el.style.color=color||'#fff';
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function gkRoll(){
+  let x=Math.random()*GK_ROLL_SUM;
+  for(let i=0;i<GK_ROLL.length;i++){x-=GK_ROLL[i][1];if(x<=0)return GK_ROLL[i][0]}
+  return 's';
+}
+function gkMake(k,fx,fy,id){
+  const it=GK_ITEMS[k];
+  return {k:k,it:it,name:it.name,icon:it.icon,val:it.val,w:it.w,r:it.r,fx:fx,fy:fy,id:id};
+}
+function gkBuild(){
+  const st=document.getElementById('gkStage');if(!st)return;
+  gk.W=st.clientWidth||320;gk.H=st.clientHeight||268;gk.cx=gk.W/2;
+  const n=gk.C.count,maxLen=gkMaxLen(),out=[];
+  let guard=0;
+  while(out.length<n&&guard++<1200){
+    const k=gkRoll(),it=GK_ITEMS[k];
+    const x0=Math.max(0.07,(it.r+5)/gk.W),x1=Math.min(0.93,1-(it.r+5)/gk.W);
+    const y0=Math.max(0.30,(gk.py+it.r+4)/gk.H),y1=Math.min(0.94,1-(it.r+5)/gk.H);
+    const fx=x0+Math.random()*Math.max(.02,x1-x0),fy=y0+Math.random()*Math.max(.02,y1-y0);
+    let bad=false;
+    for(let i=0;i<out.length;i++){
+      const dx=(fx-out[i].fx)*gk.W,dy=(fy-out[i].fy)*gk.H;
+      if(Math.sqrt(dx*dx+dy*dy)<it.r+out[i].r+5){bad=true;break}
+    }
+    if(bad)continue;
+    out.push(gkMake(k,fx,fy,out.length+1));
+  }
+  let rich=0,reach=0;
+  for(let i=0;i<out.length;i++){
+    if(out[i].val>=70)rich++;
+    if(Math.sqrt(Math.pow((out[i].fx-0.5)*gk.W,2)+Math.pow(gk.H*out[i].fy-gk.py,2))<=maxLen)reach++;
+  }
+  if(!rich){const j=out.length<n?out.length:out.length-1;out[j]=gkMake('m',0.34,Math.min(0.52,1-22/gk.H),j+1)}
+  if(!reach){
+    const t=out.filter(function(x){return x.val>=30})[0]||out[0];
+    if(t){t.fx=0.5;t.fy=Math.min(1-(t.r+5)/gk.H,(gk.py+maxLen*0.72)/gk.H)}
+  }
+  gk.items=out;
+  gkRenderItems();
+}
+function gkRenderItems(){
+  const box=document.getElementById('gkItems');if(!box)return;
+  const maxLen=gkMaxLen();
+  box.innerHTML=gk.items.map(function(it){
+    const x=gk.W*it.fx,y=gk.H*it.fy;
+    const out=Math.sqrt(Math.pow(x-gk.cx,2)+Math.pow(y-gk.py,2))>maxLen;
+    return '<div class="gk-item'+(out?' deep':'')+'" id="gkIt'+it.id+'" data-k="'+it.k+'" style="left:'+(x-it.r).toFixed(1)+'px;top:'+(y-it.r).toFixed(1)+'px;width:'+(it.r*2)+'px;height:'+(it.r*2)+'px;font-size:'+(it.r*1.55).toFixed(1)+'px"><i>'+it.val+'</i>'+it.icon+'</div>';
+  }).join('');
+}
+function gkTipPx(){
+  const a=gk.deg*Math.PI/180;
+  return {x:gk.cx+gk.len*Math.sin(a),y:gk.py+gk.len*Math.cos(a)};
+}
+function gkHitTest(){
+  const p=gkTipPx();
+  let best=null,bd=1e9;
+  for(let i=0;i<gk.items.length;i++){
+    const it=gk.items[i],x=gk.W*it.fx,y=gk.H*it.fy;
+    const dx=p.x-x,dy=p.y-y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<=it.r*0.72+GK_HIT&&d<bd){bd=d;best=it}
+  }
+  return best;
+}
+function gkGrab(it){
+  gk.grab=it;
+  gk.items=gk.items.filter(function(x){return x!==it});
+  const el=document.getElementById('gkIt'+it.id);
+  if(el){el.classList.add('taken');const id=it.id;gkT(()=>{const e2=document.getElementById('gkIt'+id);if(e2)e2.remove()},430)}
+  const st=document.getElementById('gkStage');
+  if(st){
+    const h=document.createElement('div');
+    h.className='gk-held';h.id='gkHeld';h.textContent=it.icon;
+    h.style.fontSize=(it.r*1.5).toFixed(1)+'px';
+    st.appendChild(h);
+  }
+}
+function gkRenderRope(){
+  const rot=document.getElementById('gkRot'),line=document.getElementById('gkLine'),claw=document.getElementById('gkClaw');
+  const now=performance.now();
+  if(rot)rot.style.transform='rotate('+gk.deg.toFixed(2)+'deg)';
+  if(line)line.style.height=Math.round(gk.len)+'px';
+  if(claw)claw.style.top=Math.round(gk.len-11)+'px';
+  const st=document.getElementById('gkStage');
+  if(st){
+    const fr=now<gk.frozen;
+    st.classList.toggle('frozen',fr&&gk.phase==='swing');
+    st.classList.toggle('ready',!fr&&gk.phase==='swing'&&gk.charges>0&&!gk.over);
+  }
+  const held=document.getElementById('gkHeld');
+  if(held&&gk.grab){const p=gkTipPx();held.style.left=(p.x-10).toFixed(1)+'px';held.style.top=(p.y-10).toFixed(1)+'px'}
+}
+function gkHud(){
+  gkSet('gkScoreTxt','💎 '+Math.round(gk.score)+' 分');
+  gkSet('gkLvTxt','第 '+gk.lv+' 关');
+  gkSet('gkRankTxt','🏅 '+gkRank(gkInt('hz_gk_gold')));
+  gkSet('gkChargesTxt','🪝 ×'+gk.charges);
+  gkSet('gkGoldTxt','🪙 累计 '+gkInt('hz_gk_gold'));
+  const w=gkInt('hz_gk_gold');
+  if(w!==gk.lastWallet){gk.lastWallet=w;gkRenderShop()}
+}
+function gkMeter(){
+  const pct=Math.min(1,gk.money/gk.need)*100;
+  const bar=document.getElementById('gkBar');
+  if(bar)bar.style.width=pct.toFixed(1)+'%';
+  gkSet('gkMoneyTxt','💰 '+Math.round(gk.money)+' / '+gk.need);
+}
+function gkTimeHud(){
+  const s=Math.ceil(gk.left/1000);
+  if(s!==gk.lastSec){gk.lastSec=s;gkSet('gkTimeTxt','⏱️ '+s)}
+  const bar=document.getElementById('gkTimeBar');
+  if(bar)bar.style.width=(Math.min(1,gk.left/(gk.C.secs*1000))*100).toFixed(1)+'%';
+  const tb=document.getElementById('gkTbar');
+  if(tb)tb.classList.toggle('hurry',s<=10);
+  if(s<=5&&s>0&&s!==gk.lastBeep){gk.lastBeep=s;tone(1240,.05,'square',.12)}
+}
+function gkRenderShop(){
+  const box=document.getElementById('gkShop');if(!box)return;
+  const owned=gkUps(),wallet=gkInt('hz_gk_gold');
+  box.innerHTML=GK_UPS.map(function(u){
+    const has=owned.indexOf(u.id)>=0,cant=!has&&wallet<u.cost;
+    return '<button class="gk-up'+(has?' have':cant?' cant':'')+'" data-up="'+u.id+'" onclick="gkBuy(\''+u.id+'\')">'+
+      u.icon+' '+u.name+(has?'<b>已装备 ✅</b>':'<b>🪙 '+u.cost+'</b>')+'<small>'+u.tip+'</small></button>';
+  }).join('');
+}
+function gkBuy(id){
+  const u=GK_UPS.filter(function(x){return x.id===id})[0];if(!u)return;
+  const owned=gkUps(),wallet=gkInt('hz_gk_gold');
+  if(owned.indexOf(id)>=0){gkJudge('✔️ '+u.name+' 已经装备在身上啦','#B9F6CA');return}
+  if(wallet<u.cost){gkJudge('🪙 还差 '+(u.cost-wallet)+' 金币 —— 把金子捞上来就能买','#FFCC80');return}
+  localStorage.setItem('hz_gk_gold',String(wallet-u.cost));
+  owned.push(id);localStorage.setItem('hz_gk_up',JSON.stringify(owned));
+  sndDone();spawnConfetti();
+  gkJudge('🛠️ 装备成功 '+u.icon+' '+u.name+'：'+u.tip,'#FFD740');
+  if(id==='clock'&&gk.run&&!gk.over)gk.left+=10000;
+  if(id==='cable'&&gk.run){gk.C.reach=Math.min(0.94,gk.C.reach+0.13);gkRenderItems()}
+  gk.lastWallet=gkInt('hz_gk_gold');
+  gkHud();gkRenderShop();
+}
+function gkThrow(){
+  if(!gk.run||gk.over||currentMode!=='hook')return;
+  const now=performance.now();
+  if(gk.phase!=='swing'){gkJudge('🪝 钩子还在'+(gk.phase==='out'?'外头':'往回收')+'，等它回来再甩','#FFCC80');return}
+  if(now<gk.frozen){gkJudge('🧊 钩子被冻住了 —— 答对一道题就化开','#80DEEA');return}
+  if(gk.charges<=0){gkJudge('🔒 没有钩子了，答对下面的笔顺题就有 🪝','#FFCC80');return}
+  gk.charges--;gk.phase='out';gk.len=0;gk.grab=null;
+  tone(920,.08,'triangle',.2);
+  gkRenderRope();gkHud();
+}
+function gkDeliver(){
+  const it=gk.grab;
+  gk.grab=null;gk.len=0;gk.phase='swing';
+  const held=document.getElementById('gkHeld');if(held)held.remove();
+  if(!it){gk.combo=0;gkHud();gkMeter();return}
+  gk.catches++;gkAdd('hz_gk_catch',1);
+  if(it.k==='r'){
+    gk.combo=0;
+    gk.money+=it.val;gk.score+=it.val;gkAdd('hz_gk_gold',it.val);
+    sndNo();gkShake();gkPopTxt('+'+it.val,'#BCAAA4');
+    gkJudge('🪨 捞出大石头，沉得要命只值 '+it.val+' 分（连击断了）','#FFCC80');
+    gkHud();gkMeter();return;
+  }
+  gk.combo++;if(gk.combo>gk.maxCombo)gk.maxCombo=gk.combo;
+  const gain=Math.round(it.val*(1+Math.min(1.6,(gk.combo-1)*0.14)));
+  gk.money+=gain;gk.score+=gain;gkAdd('hz_gk_gold',gain);
+  if(it.k==='g'){gk.diamonds++;gkAdd('hz_gk_diamond',1)}
+  if(it.k==='t')addStars(2);
+  if(it.k==='c'){gk.left+=9000;gkJudge('⏳ 捞到沙漏，白赚 9 秒！','#80DEEA')}
+  else if(it.k==='g')gkJudge('💎 钻石！'+it.name+' +'+gain+' 分','#80D8FF');
+  else gkJudge('🪝 '+it.name+' +'+gain+' 分'+(gk.combo>1?' · 手气 x'+gk.combo:''),'#FFD740');
+  tone(it.freq*(1+Math.min(0.5,(gk.combo-1)*0.06)),.14,'triangle',.22);
+  gkSpark(gk.cx,gk.py+10,it.k==='g'?'#80D8FF':it.k==='t'?'#FFF176':'#FFD740');
+  gkPopTxt('+'+gain,it.k==='g'?'#80D8FF':'#FFD740');
+  const st=document.getElementById('gkStage');
+  if(st){const r=st.getBoundingClientRect();spawnStarFly(r.left+gk.cx,r.top+gk.py+8)}
+  if(gk.combo>=6)spawnConfetti();
+  if(gk.money>=gk.need)gkLevelUp();
+  gkHud();gkMeter();
+}
+function gkLevelUp(){
+  const bonus=Math.round(gk.left/140)+40+gk.lv*10;
+  gk.score+=bonus;
+  const st=2+Math.min(8,Math.floor(gk.lv/2)+1);
+  addStars(st);spawnConfetti();sndDone();
+  const done=gk.lv;
+  gk.lv++;
+  if(gk.lv>gkInt('hz_gk_lv'))localStorage.setItem('hz_gk_lv',String(gk.lv));
+  gk.money=0;
+  gk.C=gkCfg(gk.lv);gk.need=gk.C.need;gk.left=gk.C.secs*1000;gk.lastSec=-1;gk.lastBeep=99;
+  gk.swingT=0;gk.phase='swing';gk.charges=Math.max(gk.charges,GK_CH_START);
+  gkBuild();
+  gkJudge('🎉 第 '+done+' 关达成！奖励 +'+bonus+' 分 · ⭐+'+st+' —— 第 '+gk.lv+' 关要 '+gk.need+' 分','#FFD740');
+  gkHud();gkMeter();gkTimeHud();gkRenderRope();
+}
+async function gkAsk(){
+  if(!gk.run||gk.over||currentMode!=='hook')return;
+  gk.busy=true;
+  const gen=gk.gen;
+  const ch=await gkPickChar();
+  if(gen!==gk.gen||currentMode!=='hook'||!gk.run||gk.over){gk.busy=false;return}
+  if(!ch){gk.busy=false;gkJudge('📖 字还没下下来，回首页等一下再进来','#FFCDD2');return}
+  const d=gkTy[ch];
+  gk.used.push(ch);
+  if(gk.used.length>CHARS.length-4)gk.used=[];
+  let text,right,opts=[];
+  if(Math.random()<0.45||d.n<3){
+    text='「'+ch+'」一共有几笔？';
+    right=String(d.n);
+    const nums=[d.n],offs=[-3,-2,-1,1,2,3,4,5];
+    for(let a=offs.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=offs[a];offs[a]=offs[b];offs[b]=t}
+    for(let a=0;a<offs.length&&nums.length<4;a++){const k2=d.n+offs[a];if(k2>0&&nums.indexOf(k2)<0)nums.push(k2)}
+    opts=nums.map(function(x){return String(x)});
+  }else{
+    const last=Math.random()<0.25&&d.n>=4;
+    const k=last?d.n-1:(Math.random()*d.n)|0;
+    const code=d.t[k];
+    text='「'+ch+'」'+(last?'最后的一笔':'的第 '+(k+1)+' 笔')+'往哪写？';
+    right=code;
+    const rest=DIRS.filter(function(x){return x.code!==code});
+    for(let a=rest.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=rest[a];rest[a]=rest[b];rest[b]=t}
+    opts=rest.slice(0,3).map(function(x){return x.code});
+    opts.splice((Math.random()*4)|0,0,code);
+  }
+  gk.quiz={opts:opts,right:right,ch:ch,text:text};
+  gkSet('gkQ',text);
+  const g=document.getElementById('gkOpts');
+  if(g)g.innerHTML=opts.map(function(v,i){
+    return '<button class="gk-o" id="gkO'+i+'" data-value="'+v+'" onclick="gkPick('+i+')">'+(i+1)+'. '+gkAnsLabel(v)+'</button>';
+  }).join('');
+  gk.busy=false;
+}
+function gkPick(i){
+  if(!gk.run||gk.over||gk.busy||!gk.quiz)return;
+  const btn=document.getElementById('gkO'+i);
+  if(!btn)return;
+  const v=btn.getAttribute('data-value'),right=gk.quiz.right;
+  const all=document.querySelectorAll('#gkOpts .gk-o');
+  for(let a=0;a<all.length;a++)all[a].disabled=true;
+  gk.busy=true;
+  const gen=gk.gen;
+  if(v===right){
+    btn.classList.add('correct');
+    const before=gk.charges;
+    gk.charges=Math.min(GK_CH_MAX,gk.charges+1+(gk.combo>=4?1:0));
+    gk.left+=2000;
+    const gain=10+gk.lv*2;
+    gk.score+=gain;gk.right++;gkAdd('hz_gk_answers',1);
+    sndOk();
+    const st=document.getElementById('gkStage');
+    if(st){const r=st.getBoundingClientRect();spawnStarFly(r.left+gk.cx,r.top+gk.py+6)}
+    gkSpark(gk.cx,14,'#69F0AE');
+    const got=gk.charges-before;
+    gkJudge('✅ 答对！+'+gain+' 分 · ⏱️+2 秒 · '+(got>0?'🪝 +'+got+' 个钩子':'🪝 钩子已满，快去甩！'),'#B9F6CA');
+    gkMeter();gkTimeHud();gkHud();
+    gkT(()=>{if(gen!==gk.gen)return;gkAsk()},620);
+  }else{
+    btn.classList.add('wrong');
+    for(let a=0;a<all.length;a++)if(all[a].getAttribute('data-value')===right)all[a].classList.add('reveal');
+    gk.combo=0;
+    gk.left=Math.max(0,gk.left-6000);
+    gk.frozen=performance.now()+1600;
+    sndNo();gkShake();
+    gkJudge('❌ 正确的是 '+gkAnsLabel(right)+' —— 钩子冻住 1.6 秒，还扣 6 秒','#FF8A80');
+    gkTimeHud();gkHud();
+    gkT(()=>{if(gen!==gk.gen)return;gkAsk()},1150);
+  }
+}
+function gkTick(){
+  if(currentMode!=='hook'||!gk.run||gk.over){gkStopTimer();return}
+  const now=performance.now();
+  let dt=now-gk.ts;gk.ts=now;
+  if(!(dt>0))dt=0;
+  if(dt>60)dt=60;
+  gk.left-=dt;
+  if(gk.left<=0){gk.left=0;gkTimeHud();gkEnd();return}
+  if(gk.phase==='swing'){
+    if(now>=gk.frozen)gk.swingT+=dt;
+    gk.deg=gk.C.amp*Math.sin(2*Math.PI*gk.swingT/gk.C.period);
+  }else if(gk.phase==='out'){
+    gk.len+=GK_OUT*dt/1000;
+    if(gk.len>gk.deep){
+      gk.deep=Math.round(gk.len);
+      if(gk.deep>gkInt('hz_gk_deep'))localStorage.setItem('hz_gk_deep',String(gk.deep));
+    }
+    const hit=gkHitTest();
+    if(hit){gkGrab(hit);gk.phase='back';tone(300,.09,'square',.18)}
+    else if(gk.len>=gkMaxLen()){gk.phase='back';gkJudge('💨 差一点点，空钩收回来','#FFCC80')}
+  }else if(gk.phase==='back'){
+    const w=gk.grab?gk.grab.w:0.45;
+    gk.len-=(GK_REEL*(gkHas('reel')?1.3:1)/(w+0.35))*dt/1000;
+    if(gk.len<=0)gkDeliver();
+  }
+  gkRenderRope();gkTimeHud();
+}
+function gkStart(){
+  currentMode='hook';gk.gen++;gkKillTimers();gkStopTimer();
+  gkAdd('hz_gk_runs',1);
+  gk.lv=1;gk.C=gkCfg(1);gk.need=gk.C.need;gk.money=0;gk.score=0;gk.combo=0;gk.maxCombo=0;
+  gk.catches=0;gk.diamonds=0;gk.right=0;gk.deep=0;gk.left=gk.C.secs*1000;
+  gk.lastSec=-1;gk.lastBeep=99;gk.charges=GK_CH_START;
+  gk.phase='swing';gk.len=0;gk.grab=null;gk.swingT=0;gk.deg=0;gk.frozen=0;
+  gk.busy=false;gk.used=[];gk.over=false;gk.run=true;gk.quiz=null;gk.lastWallet=gkInt('hz_gk_gold');
+  showScreen('hook');
+  const held=document.getElementById('gkHeld');if(held)held.remove();
+  gkMarkSeen();gkBuild();gkHud();gkMeter();gkTimeHud();gkRenderShop();gkRenderRope();
+  gkJudge('🪝 先答一道题领钩子，等钩子摆到宝物正上方再松手','#B9F6CA');
+  gkAsk();
+  gkStartTimer();
+}
+function gkEnd(){
+  if(gk.over)return;
+  gk.over=true;gk.run=false;gk.phase='over';
+  gkStopTimer();gkKillTimers();
+  const held=document.getElementById('gkHeld');if(held)held.remove();
+  const s=Math.round(gk.score);
+  if(s>gkInt('hz_gk_best'))localStorage.setItem('hz_gk_best',String(s));
+  if(gk.lv>gkInt('hz_gk_lv'))localStorage.setItem('hz_gk_lv',String(gk.lv));
+  const stars=Math.max(0,Math.min(30,Math.round(s/60)+gk.lv*2+gk.diamonds*3));
+  addStars(stars);
+  const gap=Math.max(0,gk.need-Math.round(gk.money));
+  gkSet('gkRsStars','⭐ +'+stars);
+  gkSet('gkRsEmoji',gk.lv>=4?'🏆':gk.diamonds>0?'💎':gk.lv>=2?'🪝':'⛏️');
+  gkSet('gkRsTitle',gk.lv>=4?'金钩大师！':gk.lv>=2?'捞了不少':'差一点就过关');
+  gkSet('gkRsSub',gk.lv>=2?('冲到第 '+gk.lv+' 关，捞中 '+gk.catches+' 件宝贝'+(gk.diamonds?('，还摸到 '+gk.diamonds+' 颗钻石'):'')):('第 1 关还差 '+gap+' 分 —— 记住：轻的小金快，重的大金慢，钻石最值'));
+  gkSet('gkRsScore',String(s));
+  gkSet('gkRsLv',String(gk.lv));
+  gkSet('gkRsCatch',String(gk.catches));
+  gkSet('gkRsDiamond',String(gk.diamonds));
+  gkSet('gkRsRight',String(gk.right));
+  gkSet('gkRsDeep',String(gk.deep));
+  gkSet('gkRsBest',String(gkInt('hz_gk_best')));
+  gkSet('gkRsAll','🏅 段位 '+gkRank(gkInt('hz_gk_gold'))+' · 已装备 '+gkUps().length+'/3 件\n累计金币 🪙 '+gkInt('hz_gk_gold')+' · 捞中 '+gkInt('hz_gk_catch')+' 件 · 最深一钩 '+gkInt('hz_gk_deep')+'px · 答对 '+gkInt('hz_gk_answers')+' 题');
+  showScreen('hook-result');
+}
+function gkRetry(){gkStart()}
+function gkLeave(){
+  gkStopTimer();gkKillTimers();
+  if(gk.run&&!gk.over){gk.over=true;gk.run=false;gk.phase='idle'}
+  const held=document.getElementById('gkHeld');if(held)held.remove();
+  goHome();
+}
+function gkHelp(){
+  gkJudge('🪝 答对笔顺题领钩子（最多 3 个）→ 钩子左右摆时点矿洞松钩 → 碰到宝物就往回收：越沉收得越慢，钱够目标数就进下一关','#80DEEA');
+}
+function gkMarkSeen(){localStorage.setItem('hz_gk_seen',String(gkInt('hz_gk_lv')))}
+function gkNudge(){
+  const dot=document.getElementById('hookCardDot'),tip=document.getElementById('hookCardTip');
+  const lv=gkInt('hz_gk_lv'),gold=gkInt('hz_gk_gold');
+  if(tip){
+    const afford=GK_UPS.filter(function(u){return gkUps().indexOf(u.id)<0&&gold>=u.cost});
+    tip.textContent=afford.length?('🪙 '+gold+' · 可买 '+afford[0].icon+afford[0].name):lv?('冲到第 '+lv+' 关 · 累计 🪙 '+gold):'看准摆动松钩 · 越沉越值钱';
+  }
+  if(!dot)return;
+  if(lv>gkInt('hz_gk_seen')){dot.textContent='🆕 第 '+lv+' 关';dot.classList.add('on')}
+  else dot.classList.remove('on');
+}
+function gkOnResize(){
+  if(currentMode!=='hook'||!gk.run)return;
+  const st=document.getElementById('gkStage');if(!st)return;
+  const w=st.clientWidth,h=st.clientHeight;
+  if(Math.abs(w-gk.W)<2&&Math.abs(h-gk.H)<2)return;
+  gk.W=w||gk.W;gk.H=h||gk.H;gk.cx=gk.W/2;
+  gkRenderItems();gkRenderRope();
+}
+window.gkKey=e=>{
+  if(currentMode!=='hook')return;
+  const scr=document.getElementById('screen-hook');
+  if(!scr||!scr.classList.contains('active'))return;
+  const k=e.key;
+  if(k===' '||k==='Enter'||k==='g'||k==='G'){e.preventDefault();gkThrow();return}
+  if(k>='1'&&k<='4'){gkPick(+k-1);return}
+  if(k==='h'||k==='H'||k==='?'){gkHelp();return}
+};
+document.addEventListener('keydown',e=>{if(window.gkKey)window.gkKey(e)});
+window.addEventListener('resize',gkOnResize);
+
 
 async function boot(){
   if(typeof HanziWriter==='undefined'){
