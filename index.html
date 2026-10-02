@@ -2506,6 +2506,83 @@ button:active{transform:scale(.95)}
 .ec-rs span{display:block;font-size:26px;font-weight:bold}
 .ec-rs small{display:block;font-size:11px;opacity:.7;margin-top:2px;color:#fff}
 
+/* ============ v1.47.0 笔顺登云梯（答案写在云朵上 · 跳到那一朵 · 脚踩的云会下沉）============ */
+.cld-hud{display:flex;gap:7px;justify-content:center;flex-wrap:nowrap;padding:2px 10px 5px;width:100%;max-width:340px;margin:0 auto}
+.cld-hud span{background:rgba(255,255,255,.1);border-radius:20px;padding:5px 10px;font-size:11.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cld-hud b{color:#FFD740}
+.cld-alt{display:flex;align-items:center;gap:8px;width:100%;max-width:340px;margin:2px auto 0;font-size:12px;color:#fff}
+.cld-alt span{min-width:96px;font-weight:700;white-space:nowrap}
+.cld-track{flex:1;height:10px;border-radius:99px;background:rgba(0,0,0,.32);overflow:hidden}
+.cld-track i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#80DEEA,#4DD0E1);transition:width .2s}
+.cld-track.newbest i{background:linear-gradient(90deg,#FFD740,#FF8F00)}
+.cld-stage{position:relative;width:100%;max-width:322px;height:302px;margin:7px auto 0;overflow:hidden;border-radius:18px;
+  touch-action:none;background:linear-gradient(180deg,#81D4FA,#B3E5FC 55%,#C8E6C9);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.14),0 8px 22px rgba(0,0,0,.28);transition:background .7s}
+.cld-stage.b1{background:linear-gradient(180deg,#4FC3F7,#90CAF9 58%,#E1F5FE)}
+.cld-stage.b2{background:linear-gradient(180deg,#1A237E,#3949AB 55%,#7986CB)}
+.cld-stage.b3{background:linear-gradient(180deg,#0B0824,#311B92 58%,#4A148C)}
+.cld-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.cld-deco span{position:absolute;font-style:normal;line-height:1;opacity:.62;animation:cldBob 3.4s ease-in-out infinite alternate}
+@keyframes cldBob{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+.cld-band{position:absolute;left:0;right:0;top:38%;text-align:center;font-size:21px;font-weight:900;color:rgba(255,255,255,.94);
+  text-shadow:0 2px 10px rgba(0,0,0,.45);pointer-events:none;opacity:0;transition:opacity .4s;letter-spacing:1px}
+.cld-band.on{opacity:1}
+.cld-cloud{position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;
+  border-radius:999px;background:linear-gradient(180deg,#FFFFFF,#E3F2FD);
+  box-shadow:0 5px 12px rgba(0,0,0,.2),inset 0 -3px 6px rgba(144,202,249,.5);will-change:transform}
+.cld-cloud b{font-size:14px;font-weight:900;color:#0D47A1;white-space:nowrap;line-height:1}
+.cld-cloud s{position:absolute;left:50%;top:-15px;transform:translateX(-50%);text-decoration:none;font-size:9px;font-weight:800;
+  color:#fff;background:rgba(13,71,161,.62);border-radius:8px;padding:1px 5px;white-space:nowrap}
+.cld-cloud.ring{animation:cldIn .32s}
+@keyframes cldIn{from{opacity:0;transform:scale(.6)}to{opacity:1}}
+.cld-cloud.spent{filter:saturate(.5) brightness(.94);opacity:.82}
+.cld-cloud.stood{box-shadow:0 5px 12px rgba(0,0,0,.2),inset 0 -3px 6px rgba(144,202,249,.5),0 0 0 2px rgba(255,215,64,.55)}
+.cld-cloud.reveal{background:linear-gradient(180deg,#FFF59D,#FFD54F);box-shadow:0 0 16px rgba(255,215,64,.9)}
+.cld-cloud.reveal b{color:#4E342E}
+.cld-cloud.dead{animation:cldDead .44s forwards}
+@keyframes cldDead{0%{opacity:.95;transform:scale(1)}40%{opacity:.8;transform:scale(1.16)}100%{opacity:0;transform:scale(.5)}}
+.cld-cloud.spot{background:linear-gradient(180deg,#FFFDE7,#FFF176);box-shadow:0 0 14px rgba(255,241,118,.7)}
+.cld-cloud.spot b{font-size:17px}
+.cld-rider{position:absolute;left:0;top:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+  font-size:25px;line-height:1;z-index:4;will-change:transform;filter:drop-shadow(0 3px 5px rgba(0,0,0,.35))}
+.cld-rider.inv{animation:cldBlink .28s steps(2,end) infinite}
+@keyframes cldBlink{from{opacity:1}to{opacity:.28}}
+.cld-shield{position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;border:2px solid rgba(178,255,251,.9);
+  box-shadow:0 0 12px rgba(128,222,234,.8);pointer-events:none;z-index:3;will-change:transform}
+.cld-q{width:100%;max-width:322px;margin:7px auto 0;text-align:center;font-size:14px;font-weight:800;color:#fff;line-height:1.45;
+  background:rgba(255,255,255,.12);border-radius:13px;padding:8px 10px}
+.cld-q em{font-style:normal;color:#FFD740}
+.cld-q small{display:block;font-size:10.5px;font-weight:700;opacity:.8;margin-top:3px}
+.cld-ctl{display:flex;gap:8px;width:100%;max-width:322px;margin:7px auto 0}
+.cld-ctl button{flex:1;border:none;border-radius:14px;padding:12px 0;font-size:17px;font-weight:900;color:#fff;
+  background:rgba(255,255,255,.16);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:none}
+.cld-ctl button:active{transform:scale(.94);background:rgba(255,255,255,.3)}
+.cld-ctl button.jump{flex:1.5;background:linear-gradient(180deg,#FFD740,#FFB300);color:#5D4037;
+  box-shadow:0 4px 12px rgba(255,179,0,.45)}
+.cld-judge{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:12px;font-weight:800;min-height:34px;
+  line-height:1.45;color:#fff;opacity:.95}
+.cld-judge.pop{animation:cldJudge .4s}
+@keyframes cldJudge{from{transform:scale(.88);opacity:.3}to{transform:scale(1);opacity:1}}
+.cld-pop{position:absolute;left:0;top:0;font-size:15px;font-weight:900;color:#FFD740;text-shadow:0 2px 6px rgba(0,0,0,.5);
+  pointer-events:none;z-index:6;animation:cldPopUp 1s forwards;white-space:nowrap}
+@keyframes cldPopUp{0%{opacity:0;transform:translateY(6px) scale(.8)}22%{opacity:1;transform:translateY(-6px) scale(1.1)}100%{opacity:0;transform:translateY(-42px) scale(1)}}
+.cld-spark{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;z-index:5;
+  animation:cldSpark .68s forwards}
+@keyframes cldSpark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--sx),var(--sy)) scale(.3)}}
+.cld-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);line-height:1.6}
+.cld-tip b{color:#FFD740}
+.cld-stage.shake{animation:cldShake .4s}
+@keyframes cldShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.cld-rs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 8px;text-align:center}
+.cld-rs span{display:block;font-size:26px;font-weight:bold}
+.cld-rs small{display:block;font-size:11px;opacity:.7;margin-top:2px;color:#fff}
+.cld-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;
+  font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.cld-badge.on{display:flex}
+@media(max-width:420px){.cld-hud,.cld-alt,.cld-q,.cld-ctl,.cld-judge,.cld-tip{max-width:300px}
+  .cld-stage{max-width:296px;height:252px}}
+
 /* ============ v1.46.0 笔顺甩金钩（摆动钩爪 · 看准松钩 · 越沉越值钱越慢）============ */
 .gk-hud{display:flex;gap:7px;justify-content:center;flex-wrap:nowrap;padding:2px 10px 5px;width:100%;max-width:340px;margin:0 auto}
 .gk-hud span{background:rgba(255,255,255,.1);border-radius:20px;padding:5px 10px;font-size:11.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -2768,6 +2845,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🔊</div>
       <div class="info"><h3>笔顺回声</h3><p id="echoCardTip">听笔顺 · 凭记忆按回去</p></div>
       <span class="ec-badge" id="echoCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('sky')">
+      <div class="icon">☁️</div>
+      <div class="info"><h3>笔顺登云梯</h3><p id="skyCardTip">答案写在云上 · 跳对才踩得住</p></div>
+      <span class="cld-badge" id="skyCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('hook')">
       <div class="icon">🪝</div>
@@ -4863,6 +4945,65 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="mpBackToMap()">🗺️ 看星图</button>
   </div>
 </div>
+<div class="screen" id="screen-sky">
+  <div class="top-bar">
+    <button class="back-btn" onclick="cldLeave()">← 返回</button>
+    <div class="stats"><span id="cldScoreTxt">☁️ 0 分</span><span id="cldLvTxt">第 1 层</span></div>
+    <button class="icon-btn" onclick="cldHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">☁️ 四朵<b style="color:#FFD740">云</b>上各写着一个答案，只有<b style="color:#B9F6CA">写对的那一朵踩得住</b>——踩错会穿云掉下去！脚底下的云<b style="color:#FFF176">一直在往下沉</b>，看清笔顺再按 <b>⬆️ 跳</b>。</div>
+  <div class="cld-hud">
+    <span id="cldRankTxt">🏅 踩云新手</span>
+    <span id="cldHeartsTxt">❤️❤️❤️</span>
+    <span id="cldComboTxt">🔥 连对 0</span>
+  </div>
+  <div class="cld-alt"><span id="cldAltTxt">⛰️ 0 米 · 纪录 0</span><div class="cld-track" id="cldTrack"><i id="cldBar"></i></div></div>
+  <div class="cld-stage b0" id="cldStage">
+    <div class="cld-deco" id="cldDeco"></div>
+    <div class="cld-band" id="cldBand"></div>
+    <div id="cldClouds"></div>
+    <div class="cld-rider" id="cldRider">🐤</div>
+    <div class="cld-shield" id="cldShield" style="display:none"></div>
+  </div>
+  <div class="cld-q" id="cldQ">「?」云朵正在飘过来……<small>跳到写着正确答案的那朵云上</small></div>
+  <div class="cld-ctl">
+    <button id="cldLeft" type="button">⬅️</button>
+    <button class="jump" id="cldJumpBtn" type="button">⬆️ 跳</button>
+    <button id="cldRight" type="button">➡️</button>
+  </div>
+  <div class="cld-judge" id="cldJudge"></div>
+  <div class="cld-tip">按住 <b>⬅️ ➡️</b> 或方向键漂移 · 按 <b>空格</b> 起跳 · <b>1～4</b> 自动跳向第几朵云 · <b>H</b> 怎么玩</div>
+</div>
+<div class="screen" id="screen-sky-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="cldLeave()">← 回首页</button>
+    <div class="stats"><span id="cldRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="cldRsEmoji">☁️</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="cldRsTitle">落到地面啦</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="cldRsSub">下一趟再高一点</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="cld-rs">
+      <div><span style="color:#FFD700" id="cldRsM">0</span><small>本局高度(米)</small></div>
+      <div><span style="color:#4FC3F7" id="cldRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#69F0AE" id="cldRsClouds">0</span><small>踩对云朵</small></div>
+      <div><span style="color:#E1BEE7" id="cldRsStreak">0</span><small>最长连对</small></div>
+      <div><span style="color:#FF8A80" id="cldRsFall">0</span><small>坠落次数</small></div>
+      <div><span style="color:#FFF176" id="cldRsRain">0</span><small>踩到彩虹</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏔️ 历史最高高度</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="cldRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="cldRsAll">🏅 踩云新手</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="cldRetry()">🔁 再登一次</button>
+    <button class="w-btn blue" onclick="cldLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-hook">
   <div class="top-bar">
     <button class="back-btn" onclick="gkLeave()">← 返回</button>
@@ -5892,6 +6033,7 @@ function updateHomeStats(){
   if(typeof slNudge==='function')slNudge();
   if(typeof ecNudge==='function')ecNudge();
   if(typeof gkNudge==='function')gkNudge();
+  if(typeof cldNudge==='function')cldNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -5940,6 +6082,7 @@ function enterMode(mode){
  else if(mode==='maze')mzStart(); else if(mode==='map')mpStart(); else if(mode==='slide')slStart();
  else if(mode==='echo')ecStart();
  else if(mode==='hook')gkStart();
+ else if(mode==='sky')cldStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -25903,6 +26046,645 @@ window.gkKey=e=>{
 };
 document.addEventListener('keydown',e=>{if(window.gkKey)window.gkKey(e)});
 window.addEventListener('resize',gkOnResize);
+
+
+/* ============ v1.47.0 笔顺登云梯（答案写在云朵上 · 跳到那一朵 · 脚踩的云会下沉）============ */
+const CLD_BANDS=[
+  {m:0,cls:'b0',rider:'🐤',name:'田野',deco:['🌱','🌾','🦋','🌼','🐛','🍄']},
+  {m:110,cls:'b1',rider:'🐦',name:'云层',deco:['☁️','⛅','🕊️','💨','🎈','☁️']},
+  {m:280,cls:'b2',rider:'🦅',name:'月宫',deco:['🌙','⭐','✨','🐇','🌕','💫']},
+  {m:520,cls:'b3',rider:'🚀',name:'银河',deco:['🌌','🪐','☄️','🌠','🛸','✨']},
+];
+const CLD_RANKS=[[0,'踩云新手'],[150,'云朵学徒'],[400,'轻步登云'],[800,'登梯少年'],[1400,'穿云快手'],[2200,'月宫常客'],[3200,'摘星少年'],[4600,'银河飞人'],[6500,'踏云仙人']];
+const CLD_SPOTS={
+  rain:{id:'rain',icon:'🌈',name:'彩虹跳',tip:'下一跳飞得特别高',gain:40,freq:990},
+  star:{id:'star',icon:'⭐',name:'幸运星',tip:'当场 +2⭐',gain:30,freq:1180},
+  soap:{id:'soap',icon:'🫧',name:'肥皂泡',tip:'掉下去有一次保险',gain:26,freq:820},
+  heart:{id:'heart',icon:'❤️',name:'暖心云',tip:'补回一颗心',gain:34,freq:640},
+};
+const CLD_G=1780,CLD_RW=30,CLD_RH=30,CLD_PAD=8,CLD_M=8,CLD_HEARTS=3,CLD_LV_M=90,CLD_OPTS=4,CLD_ACC=1600,CLD_VMAX=420;
+let cld={run:false,over:false,gen:0,busy:false,dir:0,aim:null,
+  x:0,y:0,vx:0,vy:0,air:false,on:null,inv:0,boost:1,shield:false,
+  m:0,score:0,combo:0,maxCombo:0,right:0,jumps:0,falls:0,hearts:CLD_HEARTS,rainbows:0,
+  lv:1,band:0,clouds:[],qring:null,answered:false,quiz:null,used:[],ringTs:0,
+  timers:[],timerId:null,W:0,H:0,ts:0,cid:0};
+function cldInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function cldAdd(k,n){localStorage.setItem(k,String(cldInt(k)+n))}
+function cldSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function cldRank(m){let r=CLD_RANKS[0][1];for(let i=0;i<CLD_RANKS.length;i++)if(m>=CLD_RANKS[i][0])r=CLD_RANKS[i][1];return r}
+function cldBandOf(m){let b=0;for(let i=0;i<CLD_BANDS.length;i++)if(m>=CLD_BANDS[i].m)b=i;return b}
+function cldGap(){return Math.round(Math.min(cld.H*0.5,cld.H*(0.40+Math.min(0.10,(cld.lv-1)*0.012))))}
+function cldCloudW(){return Math.max(58,Math.round(cld.W*0.30)-(cld.lv-1)*3)}
+function cldSink(){return 20+cld.lv*4}
+function cldDrift(){return cld.lv>=3?(12+cld.lv*3):0}
+function cldBounce(){return Math.sqrt(2*CLD_G*(cldGap()+CLD_RH))*1.14*cld.boost}
+function cldLvOf(m){return 1+Math.floor(m/CLD_LV_M)}
+function cldT(fn,ms){const g=cld.gen;const id=setTimeout(()=>{if(g!==cld.gen)return;fn()},ms);cld.timers.push(id);return id}
+function cldKillTimers(){cld.timers.forEach(id=>clearTimeout(id));cld.timers=[]}
+function cldStopLoop(){if(cld.timerId){clearInterval(cld.timerId);cld.timerId=null}}
+function cldStartLoop(){cldStopLoop();cld.ts=performance.now();cld.timerId=setInterval(cldTick,16)}
+const cldTy={};
+async function cldData(ch){
+  const d0=cldTy[ch];if(d0)return d0;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await loadCharData(ch);
+  if(!raw||!raw.medians||!raw.medians.length)return null;
+  const d={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  cldTy[ch]=d;return d;
+}
+function cldReadyChar(){
+  // 优先用「笔顺数据已经在本地」的字出题 —— 弱网也不会卡在题目上
+  const pool=CHARS.filter(function(c){return cldTy[c]||charDataCache[c]});
+  if(!pool.length)return null;
+  const fresh=pool.filter(function(c){return cld.used.indexOf(c)<0});
+  return fresh.length?fresh:pool;
+}
+async function cldPickChar(){
+  const ready=cldReadyChar();
+  if(ready){
+    for(let a=0;a<24;a++){
+      const c=ready[(Math.random()*ready.length)|0];
+      const d=await cldData(c);
+      if(d&&d.n>=2)return c;
+    }
+  }
+  for(let a=0;a<50;a++){
+    const c=CHARS[Math.floor(Math.random()*CHARS.length)];
+    if(cld.used.indexOf(c)>=0)continue;
+    const d=await cldData(c);
+    if(d&&d.n>=2)return c;
+  }
+  for(let i=0;i<CHARS.length;i++){
+    const c=CHARS[i];if(cld.used.indexOf(c)>=0)continue;
+    const d=await cldData(c);
+    if(d&&d.n>=2)return c;
+  }
+  return null;
+}
+function cldAnsLabel(v){
+  for(let i=0;i<DIRS.length;i++)if(DIRS[i].code===v)return DIRS[i].icon+' '+DIRS[i].label;
+  return v+' 笔';
+}
+function cldCloudText(v){
+  for(let i=0;i<DIRS.length;i++)if(DIRS[i].code===v)return {big:DIRS[i].icon,small:CF_SHORT[v]||''};
+  return {big:String(v),small:'笔'};
+}
+function cldEl(){return document.getElementById('cldStage')}
+function cldPop(t,color){
+  const st=cldEl();if(!st)return;
+  const d=document.createElement('div');
+  d.className='cld-pop';d.textContent=t;d.style.color=color||'#FFD740';
+  d.style.transform='translate('+(cld.x+CLD_RW/2-34)+'px,'+(cld.y-16)+'px)';
+  st.appendChild(d);setTimeout(()=>d.remove(),1000);
+}
+function cldSpark(x,y,color){
+  const st=cldEl();if(!st)return;
+  for(let i=0;i<9;i++){
+    const s=document.createElement('div');s.className='cld-spark';
+    s.style.left=x+'px';s.style.top=y+'px';s.style.background=color;
+    const a=Math.random()*Math.PI*2,dist=20+Math.random()*32;
+    s.style.setProperty('--sx',(Math.cos(a)*dist).toFixed(1)+'px');
+    s.style.setProperty('--sy',(Math.sin(a)*dist-10).toFixed(1)+'px');
+    st.appendChild(s);setTimeout(()=>s.remove(),700);
+  }
+}
+function cldShake(){
+  const st=cldEl();if(!st)return;
+  st.classList.remove('shake');void st.offsetWidth;st.classList.add('shake');
+  cldT(()=>st.classList.remove('shake'),440);
+}
+function cldJudge(msg,color){
+  const el=document.getElementById('cldJudge');if(!el)return;
+  el.textContent=msg;el.style.color=color||'#fff';
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function cldMake(o){
+  cld.cid++;
+  const has=o.val!==undefined&&o.val!==null;
+  return {id:cld.cid,x:o.x,y:o.y,w:o.w,val:has?o.val:null,right:!!o.right,ghost:!!o.ghost,
+    spot:o.spot||null,label:has?cldCloudText(o.val):null,
+    sunk:false,dead:false,hit:false,spent:false,
+    drift:(o.drift||0)*(Math.random()<0.5?-1:1),el:null};
+}
+function cldPut(c){
+  cld.clouds.push(c);
+  const box=document.getElementById('cldClouds');
+  if(!box)return c;
+  const el=document.createElement('div');
+  el.className='cld-cloud ring';
+  if(c.spot)el.classList.add('spot');
+  el.style.width=c.w+'px';el.style.height='22px';
+  el.innerHTML=c.spot?'<b>'+CLD_SPOTS[c.spot].icon+'</b>'
+    :(c.label?'<b>'+c.label.big+'</b>'+(c.label.small?'<s>'+c.label.small+'</s>':''):'');
+  el.style.transform='translate('+c.x+'px,'+c.y+'px)';
+  box.appendChild(el);c.el=el;
+  cldT(()=>{if(c.el)c.el.classList.remove('ring')},340);
+  return c;
+}
+function cldDrop(c){
+  const i=cld.clouds.indexOf(c);
+  if(i>=0)cld.clouds.splice(i,1);
+  if(c.el&&c.el.parentNode)c.el.remove();
+  c.el=null;
+}
+function cldClampX(x,w){
+  const lo=CLD_PAD,hi=cld.W-w-CLD_PAD;
+  if(hi<lo)return lo;
+  return Math.max(lo,Math.min(hi,x));
+}
+function cldRingW(){
+  return Math.max(46,Math.min(cldCloudW(),Math.floor(cld.W/CLD_OPTS)-14));
+}
+function cldSpawnRing(){
+  if(!cld.quiz)return [];
+  const w=cldRingW(),gap=cldGap(),dl=cldDrift();
+  const y=Math.max(20,cld.y-gap);
+  const out=[];
+  for(let i=0;i<CLD_OPTS;i++){
+    const center=cld.W*((i+0.5)/CLD_OPTS)+(Math.random()-0.5)*cld.W*0.03;
+    out.push(cldPut(cldMake({x:cldClampX(center-w/2,w),y:y,w:w,val:cld.quiz.opts[i],
+      right:cld.quiz.opts[i]===cld.quiz.right,ghost:cld.quiz.opts[i]!==cld.quiz.right,drift:dl})));
+  }
+  cld.qring=out;
+  cld.ringTs=cld.now||performance.now();
+  if(Math.random()<(cld.lv>=2?0.24:0.14)){
+    const pool=['rain','star','soap'];
+    if(cld.hearts<CLD_HEARTS)pool.push('heart');
+    const sp=CLD_SPOTS[pool[(Math.random()*pool.length)|0]];
+    const sw=Math.round(w*0.66);
+    const sx=cldClampX(cld.W*(0.16+Math.random()*0.68),sw);
+    const sy=Math.max(14,y-Math.round(cld.H*0.15));
+    const near=out.filter(function(c){return sx<c.x+c.w+8&&sx+sw>c.x-8&&Math.abs(sy-c.y)<26});
+    if(!near.length)cldPut(cldMake({x:sx,y:sy,w:sw,spot:sp.id,drift:dl}));
+  }
+  return out;
+}
+function cldAgingRing(){
+  const r=cld.qring||[];
+  const old=cld.clouds.filter(function(c){return r.indexOf(c)>=0});
+  for(let i=0;i<old.length;i++){
+    const c=old[i];
+    c.dead=true;
+    const el=c.el;
+    if(el){el.classList.add('dead');cldT(()=>{if(el.parentNode)el.remove()},420)}
+  }
+  cld.qring=null;
+  cldSpawnRing();
+  cldJudge('💨 旧的云飘走了，新的四朵又聚过来 —— 看清题目再跳','#B3E5FC');
+}
+async function cldAsk(){
+  if(!cld.run||cld.over||currentMode!=='sky')return;
+  cld.busy=true;
+  const gen=cld.gen;
+  const ch=await cldPickChar();
+  if(gen!==cld.gen||currentMode!=='sky'||!cld.run||cld.over){cld.busy=false;return}
+  if(!ch){cld.busy=false;cldJudge('📖 字还没下下来，回首页等一下再进来','#FFCDD2');return}
+  const d=cldTy[ch];
+  cld.used.push(ch);
+  if(cld.used.length>CHARS.length-4)cld.used=[];
+  let text,right,opts;
+  if(Math.random()<0.45||d.n<3){
+    text='「'+ch+'」一共有几笔？';
+    right=String(d.n);
+    const nums=[d.n],offs=[-3,-2,-1,1,2,3,4,5];
+    for(let a=offs.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=offs[a];offs[a]=offs[b];offs[b]=t}
+    for(let a=0;a<offs.length&&nums.length<CLD_OPTS;a++){const k=d.n+offs[a];if(k>0&&nums.indexOf(k)<0)nums.push(k)}
+    opts=nums.map(String);
+    while(opts.length<CLD_OPTS)opts.push(String(d.n+opts.length+2));
+  }else{
+    const last=Math.random()<0.25&&d.n>=4;
+    const k=last?d.n-1:(Math.random()*d.n)|0;
+    const code=d.t[k];
+    text='「'+ch+'」'+(last?'最后的一笔':'的第 '+(k+1)+' 笔')+'往哪写？';
+    right=code;
+    const rest=DIRS.filter(function(x){return x.code!==code});
+    for(let a=rest.length-1;a>0;a--){const b=(Math.random()*(a+1))|0;const t=rest[a];rest[a]=rest[b];rest[b]=t}
+    opts=rest.slice(0,CLD_OPTS-1).map(function(x){return x.code});
+    opts.splice((Math.random()*CLD_OPTS)|0,0,code);
+  }
+  cld.quiz={opts:opts,right:right,ch:ch,text:text};
+  cld.answered=false;
+  cldSet('cldQ',text+'<small>四朵云上只有一朵写对了 —— 看清答案，再跳到它上面</small>');
+  cldSpawnRing();
+  cld.busy=false;
+}
+function cldSpendRing(){
+  const r=cld.qring||[];
+  for(let i=0;i<r.length;i++){
+    const c=r[i];
+    c.ghost=false;c.spent=true;c.right=false;
+    if(c.el){c.el.classList.add('spent');c.el.classList.remove('reveal')}
+  }
+  cld.qring=null;
+}
+function cldRight(c){
+  cld.answered=true;
+  cldSpendRing();
+  cld.combo++;
+  if(cld.combo>cld.maxCombo)cld.maxCombo=cld.combo;
+  cld.right++;
+  const gain=Math.round((9+cld.lv*2)*(1+Math.min(1.5,(cld.combo-1)*0.13)));
+  cld.score+=gain;
+  cldAdd('hz_cld_clouds',1);
+  if(cld.combo>cldInt('hz_cld_streak'))localStorage.setItem('hz_cld_streak',String(cld.combo));
+  sndOk();
+  const st=cldEl();
+  if(st){const r=st.getBoundingClientRect();spawnStarFly(r.left+cld.x+CLD_RW/2,r.top+cld.y)}
+  cldSpark(cld.x+CLD_RW/2,c.y,'#69F0AE');
+  cldPop('+'+gain+' 分','#B9F6CA');
+  if(cld.combo>=3)cldJudge('🔥 连对 '+cld.combo+' 朵！+'+gain+' 分 —— 手气正热，接着爬','#FFD740');
+  else cldJudge('✅ 踩对了！+'+gain+' 分 · 这朵云开始往下沉，快跳下一朵','#B9F6CA');
+  if(cld.combo>0&&cld.combo%6===0)spawnConfetti();
+  cldHud();
+  cldAsk();
+}
+function cldBurst(c){
+  if(c.hit)return;
+  c.hit=true;c.dead=true;
+  if(c.el)c.el.classList.add('dead');
+  cldT(()=>cldDrop(c),460);
+  if(cld.answered||!cld.qring||cld.qring.indexOf(c)<0)return;
+  const right=cld.qring.filter(function(x){return x.val===cld.quiz.right})[0]||null;
+  cld.answered=true;
+  cldSpendRing();
+  if(right&&right.el)right.el.classList.add('reveal');
+  cld.combo=0;
+  cld.score=Math.max(0,cld.score-6);
+  cld.ringTs=cld.now||performance.now();
+  sndNo();cldShake();
+  cldJudge('❌ 正确的是 '+cldAnsLabel(cld.quiz.right)+' —— 它已经点亮了，跳上去还能救回来','#FF8A80');
+  cldHud();
+}
+function cldSpotEffect(c){
+  const sp=CLD_SPOTS[c.spot];
+  cld.score+=sp.gain;
+  if(c.spot==='rain'){cld.boost=1.32;cld.rainbows++;cldAdd('hz_cld_rain',1)}
+  if(c.spot==='star')addStars(2);
+  if(c.spot==='soap')cld.shield=true;
+  if(c.spot==='heart'&&cld.hearts<CLD_HEARTS)cld.hearts++;
+  tone(sp.freq,.16,'triangle',.22);
+  cldSpark(cld.x+CLD_RW/2,c.y,'#FFF176');
+  cldPop(sp.icon+' '+sp.name,'#FFF176');
+  cldJudge(sp.icon+' '+sp.name+'！'+sp.tip+' · +'+sp.gain+' 分','#FFF59D');
+  const st=cldEl();
+  if(st){const r=st.getBoundingClientRect();spawnStarFly(r.left+cld.x+CLD_RW/2,r.top+cld.y-6)}
+  cldHud();
+}
+function cldLand(c){
+  cld.air=false;cld.on=c;cld.vy=0;cld.vx*=0.3;
+  if(!c.spot)cld.aim=null;
+  cld.y=c.y-CLD_RH;
+  c.sunk=true;
+  if(c.el)c.el.classList.add('stood');
+  if(c.spot){
+    cldSpotEffect(c);
+    c.dead=true;
+    if(c.el){const el=c.el;el.classList.add('dead');cldT(()=>{if(el.parentNode)el.remove()},420)}
+    cld.on=null;cld.air=true;cld.vy=-cldBounce()*0.5;
+    return;
+  }
+  if(c.right){cldRight(c);return}
+  tone(420,.07,'triangle',.12);
+}
+function cldSteer(d){cld.aim=null;cld.dir=d}
+function cldJump(){
+  if(!cld.run||cld.over||cld.air||!cld.on)return;
+  cld.air=true;
+  cld.vy=-cldBounce();
+  cld.jumps++;
+  if(cld.boost>1){
+    cld.boost=1;
+    cldSpark(cld.x+CLD_RW/2,cld.y+CLD_RH,'#FFCC80');
+    cldPop('🌈 彩虹跳！','#FFCC80');
+  }
+  tone(520+Math.random()*60,.07,'triangle',.13);
+  if(cld.on.el)cld.on.el.classList.remove('stood');
+  cld.on=null;
+}
+function cldGoto(i){
+  if(!cld.run||cld.over||!cld.qring)return;
+  const c=cld.qring[i];
+  if(!c)return;
+  cld.aim=c.x+c.w/2;
+  if(!cld.air)cldJump();
+}
+function cldFall(){
+  if(cld.shield){
+    cld.shield=false;
+    cldRevive('🫧 肥皂泡把你托住了 —— 保险用完了');
+    tone(700,.14,'sine',.2);
+    return;
+  }
+  cld.hearts--;
+  cld.falls++;
+  cldAdd('hz_cld_fall',1);
+  cld.combo=0;
+  sndNo();cldShake();
+  if(cld.hearts<=0){cldEnd();return}
+  cldRevive('💨 掉下去啦，还剩 '+cld.hearts+' 颗心 —— 这次先看清答案再跳');
+}
+function cldRevive(msg){
+  const w=cldCloudW();
+  const x=cldClampX(cld.x+CLD_RW/2-w/2,w);
+  const y=Math.round(cld.H*0.62);
+  const c=cldPut(cldMake({x:x,y:y,w:w}));
+  c.sunk=true;c.spent=true;
+  if(c.el)c.el.classList.add('spent');
+  cld.on=c;cld.air=false;cld.vy=0;cld.vx=0;cld.y=y-CLD_RH;cld.aim=null;cld.dir=0;
+  cld.inv=performance.now()+1200;
+  cld.ringTs=cld.now||performance.now();
+  cldJudge(msg,'#FFCC80');
+  cldHud();
+  if(!cld.qring){
+    if(cld.quiz)cldSpawnRing();
+    else cldAsk();
+  }
+}
+function cldLevelCheck(){
+  const lv=cldLvOf(cld.m);
+  if(lv<=cld.lv)return;
+  cld.lv=lv;
+  if(lv>cldInt('hz_cld_lv'))localStorage.setItem('hz_cld_lv',String(lv));
+  cld.score+=20;
+  tone(760,.12,'triangle',.2);
+  cldT(()=>tone(1010,.14,'triangle',.2),110);
+  cldJudge('⛰️ 登到第 '+lv+' 层！云更小、沉得更快，还会左右飘 —— +20 分','#B9F6CA');
+  cldPop('第 '+lv+' 层 +20','#B9F6CA');
+  if(lv%3===0)addStars(1);
+  cldHud();
+}
+function cldBandCheck(){
+  const b=cldBandOf(cld.m);
+  if(b===cld.band)return;
+  cld.band=b;
+  const T=CLD_BANDS[b],st=cldEl();
+  if(st){st.classList.remove('b0','b1','b2','b3');st.classList.add(T.cls)}
+  const rd=document.getElementById('cldRider');
+  if(rd)rd.textContent=T.rider;
+  cldDeco();
+  cld.score+=30;
+  const bd=document.getElementById('cldBand');
+  if(bd){bd.textContent='🌄 '+T.name;bd.classList.add('on');cldT(()=>bd.classList.remove('on'),1600)}
+  spawnConfetti();
+  tone(880,.14,'triangle',.2);
+  cldJudge('🌄 进入 '+T.name+'！+30 分 · 换乘 '+T.rider,'#FFF59D');
+  cldHud();
+}
+function cldDeco(){
+  const box=document.getElementById('cldDeco');if(!box)return;
+  const T=CLD_BANDS[cld.band],out=[];
+  for(let i=0;i<9;i++){
+    const g=T.deco[(Math.random()*T.deco.length)|0];
+    out.push('<span style="left:'+Math.round(Math.random()*88+3)+'%;top:'+Math.round(Math.random()*84+4)+'%;font-size:'+
+      (12+Math.round(Math.random()*9))+'px;animation-delay:'+(Math.random()*2).toFixed(2)+'s">'+g+'</span>');
+  }
+  box.innerHTML=out.join('');
+}
+function cldHud(){
+  cldSet('cldScoreTxt','☁️ '+Math.round(cld.score)+' 分');
+  cldSet('cldLvTxt','第 '+cld.lv+' 层 · '+CLD_BANDS[cld.band].name);
+  cldSet('cldRankTxt','🏅 '+cldRank(Math.round(cldInt('hz_cld_m')+cld.m)));
+  let h='';
+  for(let i=0;i<CLD_HEARTS;i++)h+=i<cld.hearts?'❤️':'🤍';
+  cldSet('cldHeartsTxt',h+(cld.shield?' 🫧':''));
+  cldSet('cldComboTxt','🔥 连对 '+cld.combo);
+}
+function cldAltHud(){
+  const m=Math.round(cld.m),best=cldInt('hz_cld_best');
+  cldSet('cldAltTxt','⛰️ '+m+' 米 · 纪录 '+Math.max(best,m));
+  const bar=document.getElementById('cldBar'),tr=document.getElementById('cldTrack');
+  if(bar)bar.style.width=Math.min(100,m/Math.max(1,best||80)*100).toFixed(1)+'%';
+  if(tr)tr.classList.toggle('newbest',m>best);
+}
+function cldRender(){
+  const rd=document.getElementById('cldRider');
+  if(rd){
+    rd.classList.toggle('inv',performance.now()<cld.inv);
+    rd.style.transform='translate('+cld.x.toFixed(1)+'px,'+cld.y.toFixed(1)+'px) rotate('+(cld.vx/22).toFixed(1)+'deg)';
+  }
+  const sh=document.getElementById('cldShield');
+  if(sh){
+    sh.style.display=cld.shield?'block':'none';
+    if(cld.shield)sh.style.transform='translate('+(cld.x-7).toFixed(1)+'px,'+(cld.y-7).toFixed(1)+'px)';
+  }
+  for(let i=0;i<cld.clouds.length;i++){
+    const c=cld.clouds[i];
+    if(c.el)c.el.style.transform='translate('+c.x.toFixed(1)+'px,'+c.y.toFixed(1)+'px)';
+  }
+}
+function cldTick(a){
+  if(!cld.run||cld.over||currentMode!=='sky'){cldStopLoop();return}
+  const now=(typeof a==='number')?a:performance.now();
+  cld.now=now;
+  let dt=(now-cld.ts)/1000;cld.ts=now;
+  if(!(dt>0))dt=0;
+  if(dt>0.06)dt=0.06;
+  if(cld.aim!==null){
+    const cx=cld.x+CLD_RW/2,dx=cld.aim-cx;
+    const slide=cld.vx*cld.vx/(2*CLD_ACC);
+    if(Math.abs(cld.vx)>40&&Math.abs(dx)<=slide+4)cld.dir=cld.vx>0?-1:1;
+    else if(Math.abs(dx)>6)cld.dir=dx>0?1:-1;
+    else{cld.dir=0;if(Math.abs(cld.vx)<50)cld.vx=0}
+  }
+  if(cld.dir)cld.vx+=cld.dir*CLD_ACC*dt;
+  else cld.vx*=cld.air?0.985:0.7;
+  if(cld.vx>CLD_VMAX)cld.vx=CLD_VMAX;
+  if(cld.vx<-CLD_VMAX)cld.vx=-CLD_VMAX;
+  cld.x+=cld.vx*dt;
+  if(cld.x<CLD_PAD){cld.x=CLD_PAD;if(cld.vx<0)cld.vx=-cld.vx*0.3}
+  if(cld.x>cld.W-CLD_RW-CLD_PAD){cld.x=Math.max(CLD_PAD,cld.W-CLD_RW-CLD_PAD);if(cld.vx>0)cld.vx=-cld.vx*0.3}
+  if(!cld.air&&cld.qring&&cld.qring.length&&now-cld.ringTs>4200)cldAgingRing();
+  const sink=cldSink();
+  for(let i=cld.clouds.length-1;i>=0;i--){
+    const c=cld.clouds[i];
+    if(c.dead)continue;
+    if(c.sunk)c.y+=sink*dt;
+    if(c.drift){
+      c.x+=c.drift*dt;
+      const lo=CLD_PAD,hi=cld.W-c.w-CLD_PAD;
+      if(c.x<lo){c.x=lo;c.drift=-c.drift}
+      if(c.x>hi){c.x=hi;c.drift=-c.drift}
+    }
+    if(c.y>cld.H+34){
+      if(c===cld.on){cldFall();return}
+      cldDrop(c);
+    }
+  }
+  const prevF=cld.y+CLD_RH;
+  if(cld.air){
+    cld.vy+=CLD_G*dt;
+    cld.y+=cld.vy*dt;
+    if(cld.vy>0){
+      const f=cld.y+CLD_RH,cx=cld.x+CLD_RW/2;
+      let hit=null,gHit=null;
+      for(let i=0;i<cld.clouds.length;i++){
+        const c=cld.clouds[i];
+        if(c.dead)continue;
+        if(cx<c.x-6||cx>c.x+c.w+6)continue;
+        if(prevF>c.y+8||f<c.y)continue;
+        if(c.ghost){if(!gHit||c.y<gHit.y)gHit=c;continue}
+        if(!hit||c.y<hit.y)hit=c;
+      }
+      if(hit)cldLand(hit);
+      else if(gHit)cldBurst(gHit);
+    }
+    if(cld.y>cld.H+14){cldFall();return}
+  }else if(cld.on){
+    cld.y=cld.on.y-CLD_RH;
+  }
+  const line=cld.H*0.44;
+  if(cld.y<line){
+    const d=line-cld.y;
+    cld.y=line;
+    for(let i=0;i<cld.clouds.length;i++)cld.clouds[i].y+=d;
+    cld.m+=d/CLD_M;
+    if(cld.m>cldInt('hz_cld_best'))localStorage.setItem('hz_cld_best',String(Math.round(cld.m)));
+    cldLevelCheck();
+    cldBandCheck();
+    cldAltHud();
+  }
+  cldRender();
+}
+function cldStart(){
+  currentMode='sky';cld.gen++;cldKillTimers();cldStopLoop();
+  cldAdd('hz_cld_runs',1);
+  const box=document.getElementById('cldClouds');
+  if(box)box.innerHTML='';
+  const bd=document.getElementById('cldBand');
+  if(bd){bd.textContent='';bd.classList.remove('on')}
+  const st0=cldEl();
+  if(st0)st0.querySelectorAll('.cld-pop,.cld-spark').forEach(function(e){e.remove()});
+  cld.run=true;cld.over=false;cld.busy=false;cld.dir=0;cld.aim=null;
+  cld.m=0;cld.score=0;cld.combo=0;cld.maxCombo=0;cld.right=0;cld.jumps=0;cld.falls=0;
+  cld.hearts=CLD_HEARTS;cld.rainbows=0;cld.boost=1;cld.shield=false;
+  cld.lv=1;cld.band=0;cld.clouds=[];cld.qring=null;cld.answered=false;
+  cld.quiz=null;cld.used=[];cld.inv=0;cld.cid=0;cld.vx=0;cld.vy=0;cld.air=false;cld.on=null;
+  showScreen('sky');
+  const st=cldEl();
+  if(st){st.classList.remove('shake','b0','b1','b2','b3');st.classList.add('b0')}
+  const rd=document.getElementById('cldRider');
+  if(rd){rd.textContent=CLD_BANDS[0].rider;rd.classList.remove('inv')}
+  cld.W=st?(st.clientWidth||320):320;cld.H=st?(st.clientHeight||302):302;
+  cldDeco();
+  const w=cldCloudW();
+  const base=cldPut(cldMake({x:cldClampX(cld.W/2-w/2,w),y:Math.round(cld.H*0.7),w:w}));
+  base.sunk=true;
+  cld.on=base;cld.x=Math.round(base.x+base.w/2-CLD_RW/2);cld.y=base.y-CLD_RH;
+  cldHud();cldAltHud();cldRender();
+  cldJudge('☁️ 抬头看：四朵云上各写一个答案，只有写对的那朵踩得住','#B9F6CA');
+  cldMarkSeen();
+  cldAsk();
+  cldStartLoop();
+}
+function cldEnd(){
+  if(cld.over)return;
+  cld.over=true;cld.run=false;
+  cldStopLoop();cldKillTimers();
+  const m=Math.round(cld.m),s=Math.round(cld.score);
+  cldAdd('hz_cld_m',m);
+  if(m>cldInt('hz_cld_best'))localStorage.setItem('hz_cld_best',String(m));
+  if(cld.lv>cldInt('hz_cld_lv'))localStorage.setItem('hz_cld_lv',String(cld.lv));
+  if(cld.maxCombo>cldInt('hz_cld_streak'))localStorage.setItem('hz_cld_streak',String(cld.maxCombo));
+  const stars=Math.max(1,Math.min(30,Math.round(m/22)+cld.lv+Math.round(cld.maxCombo*0.6)));
+  addStars(stars);
+  cldSet('cldRsStars','⭐ +'+stars);
+  cldSet('cldRsEmoji',m>=520?'🚀':m>=280?'🦅':m>=110?'🐦':m>=40?'🐤':'🌱');
+  cldSet('cldRsTitle',m>=520?'银河飞人！':m>=280?'都到月宫了！':m>=110?'云上小英雄':m>=40?'爬得不慢':'刚离地');
+  cldSet('cldRsSub',m>=110?('一路踩对 '+cld.right+' 朵云，登到 '+m+' 米 · 最长连对 '+cld.maxCombo+
+    ' 朵 —— 再来一趟能更高'):
+    ('只涨了 '+m+' 米：先看清题目再跳，踩错的云会穿过去；脚底的云一直在往下沉，别磨蹭'));
+  cldSet('cldRsM',String(m));
+  cldSet('cldRsScore',String(s));
+  cldSet('cldRsClouds',String(cld.right));
+  cldSet('cldRsStreak',String(cld.maxCombo));
+  cldSet('cldRsFall',String(cld.falls));
+  cldSet('cldRsRain',String(cld.rainbows));
+  cldSet('cldRsBest',String(cldInt('hz_cld_best')));
+  cldSet('cldRsAll','🏅 段位 '+cldRank(cldInt('hz_cld_m'))+' · 已登 '+cldInt('hz_cld_lv')+' 层\n累计登高 🛰️ '+cldInt('hz_cld_m')+
+    ' 米 · 踩对云朵 '+cldInt('hz_cld_clouds')+' 朵 · 最长连对 '+cldInt('hz_cld_streak')+' · 彩虹 '+cldInt('hz_cld_rain')+
+    ' 次 · 坠落 '+cldInt('hz_cld_fall')+' 次 · 玩过 '+cldInt('hz_cld_runs')+' 局');
+  showScreen('sky-result');
+}
+function cldRetry(){cldStart()}
+function cldLeave(){
+  cldStopLoop();cldKillTimers();
+  if(cld.run&&!cld.over){cld.over=true;cld.run=false}
+  goHome();
+}
+function cldHelp(){
+  cldJudge('☁️ 四朵云各写一个答案，只有对的那朵踩得住 → 按 ⬆️跳 起跳、按住 ⬅️➡️ 空中漂移 → 踩过的云会下沉，别停在原地','#80DEEA');
+}
+function cldMarkSeen(){localStorage.setItem('hz_cld_seen',String(cldInt('hz_cld_lv')))}
+function cldNudge(){
+  const dot=document.getElementById('skyCardDot'),tip=document.getElementById('skyCardTip');
+  const lv=cldInt('hz_cld_lv'),best=cldInt('hz_cld_best'),m=cldInt('hz_cld_m');
+  if(tip)tip.textContent=best?('已登 '+best+' 米 · 累计 '+m+' 米'):'答案写在云上 · 跳对才踩得住';
+  if(!dot)return;
+  if(lv>cldInt('hz_cld_seen')){dot.textContent='🆕 第 '+lv+' 层';dot.classList.add('on')}
+  else dot.classList.remove('on');
+}
+function cldOnResize(){
+  if(currentMode!=='sky'||!cld.run)return;
+  const st=cldEl();if(!st)return;
+  const w=st.clientWidth,h=st.clientHeight;
+  if(Math.abs(w-cld.W)<2&&Math.abs(h-cld.H)<2)return;
+  const kx=cld.W?w/cld.W:1,ky=cld.H?h/cld.H:1;
+  cld.W=w||cld.W;cld.H=h||cld.H;
+  for(let i=0;i<cld.clouds.length;i++){
+    const c=cld.clouds[i];
+    c.w=Math.max(46,Math.round(c.w*kx));
+    if(c.el)c.el.style.width=c.w+'px';
+    c.x=cldClampX(Math.round(c.x*kx),c.w);
+    c.y=Math.round(c.y*ky);
+  }
+  cld.x=cldClampX(Math.round(cld.x*kx),CLD_RW);
+  cld.y=Math.round(cld.y*ky);
+  if(cld.on)cld.y=cld.on.y-CLD_RH;
+  cldRender();
+}
+window.cldKey=e=>{
+  if(currentMode!=='sky')return;
+  const scr=document.getElementById('screen-sky');
+  if(!scr||!scr.classList.contains('active'))return;
+  const k=e.key;
+  if(k===' '||k==='Enter'||k==='ArrowUp'||k==='w'||k==='W'){e.preventDefault();cldJump();return}
+  if(k==='ArrowLeft'||k==='a'||k==='A'){cldSteer(-1);return}
+  if(k==='ArrowRight'||k==='d'||k==='D'){cldSteer(1);return}
+  if(k>='1'&&k<=String(CLD_OPTS)){cldGoto(+k-1);return}
+  if(k==='h'||k==='H'||k==='?'){cldHelp();return}
+};
+document.addEventListener('keydown',e=>{if(window.cldKey)window.cldKey(e)});
+document.addEventListener('keyup',e=>{
+  if(currentMode!=='sky')return;
+  const k=e.key;
+  if(k==='ArrowLeft'||k==='ArrowRight'||k==='a'||k==='A'||k==='d'||k==='D')cld.dir=0;
+});
+(function cldBindCtl(){
+  const hold=(id,down,up)=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.addEventListener('pointerdown',ev=>{ev.preventDefault();down()});
+    el.addEventListener('pointerup',up);
+    el.addEventListener('pointercancel',up);
+    el.addEventListener('pointerleave',up);
+  };
+  hold('cldLeft',()=>cldSteer(-1),()=>{if(cld.dir<0)cld.dir=0});
+  hold('cldRight',()=>cldSteer(1),()=>{if(cld.dir>0)cld.dir=0});
+  const jb=document.getElementById('cldJumpBtn');
+  if(jb)jb.addEventListener('pointerdown',ev=>{ev.preventDefault();cldJump()});
+  const st=document.getElementById('cldStage');
+  if(st)st.addEventListener('pointerdown',ev=>{
+    if(currentMode!=='sky')return;
+    const r=st.getBoundingClientRect(),x=ev.clientX-r.left;
+    if(x<r.width*0.34||x>r.width*0.66){
+      cldSteer(x<r.width*0.34?-1:1);
+      const clr=()=>{cld.dir=0;window.removeEventListener('pointerup',clr);window.removeEventListener('pointercancel',clr)};
+      window.addEventListener('pointerup',clr);
+      window.addEventListener('pointercancel',clr);
+    }else cldJump();
+  });
+})();
+window.addEventListener('resize',cldOnResize);
 
 
 async function boot(){
