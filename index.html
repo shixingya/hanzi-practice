@@ -2458,6 +2458,54 @@ button:active{transform:scale(.95)}
 #screen-slide>*{flex:0 0 auto}
 @media(max-width:420px){.sl-hud,.sl-time,.sl-sub,.sl-wrap,.sl-chips,.sl-proprow,.sl-judge,.sl-tip{max-width:292px}}
 
+/* ===== v1.45.0 笔顺回声（Simon 序列记忆）===== */
+#screen-echo>*{flex:0 0 auto}
+.ec-hud{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:2px 12px 6px}
+.ec-hud span{background:rgba(255,255,255,.1);border-radius:20px;padding:5px 12px;font-size:12px;color:#fff;white-space:nowrap}
+.ec-hearts{letter-spacing:2px}
+.ec-stage{position:relative;width:min(88vw,320px);aspect-ratio:1/1;margin:6px auto 2px;touch-action:manipulation;user-select:none}
+.ec-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:38%;aspect-ratio:1/1;border-radius:50%;
+  background:rgba(255,255,255,.07);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;pointer-events:none;border:2px dashed rgba(255,255,255,.18)}
+.ec-ghost{font-size:clamp(30px,12vw,52px);line-height:1;font-weight:bold;color:rgba(255,255,255,.85)}
+.ec-stage-cap{font-size:11px;opacity:.7;margin-top:2px}
+.ec-pad{position:absolute;transform:translate(-50%,-50%);width:29%;aspect-ratio:1/1;border-radius:50%;
+  background:var(--pc,#555);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;
+  box-shadow:0 4px 0 rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.12);transition:filter .12s,transform .12s;color:#fff}
+.ec-pad b{font-size:clamp(20px,6vw,28px);line-height:1}
+.ec-pad s{font-size:12px;text-decoration:none;opacity:.9;margin-top:1px}
+.ec-pad u{position:absolute;top:6%;right:8%;font-size:9px;text-decoration:none;background:rgba(0,0,0,.28);border-radius:6px;padding:0 4px;opacity:.7}
+.ec-pad.lit{filter:brightness(1.9) saturate(1.4);transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 22px 6px var(--pg,#fff),0 4px 0 rgba(0,0,0,.28)}
+.ec-pad.ok{filter:brightness(1.6);box-shadow:0 0 16px 4px var(--pg,#fff),0 4px 0 rgba(0,0,0,.28)}
+.ec-pad.bad{animation:ecShake .4s}
+.ec-pad.dim{filter:brightness(.62) saturate(.7)}
+@keyframes ecShake{0%,100%{transform:translate(-50%,-50%)}25%{transform:translate(-62%,-50%)}50%{transform:translate(-38%,-50%)}75%{transform:translate(-56%,-50%)}}
+.ec-prog{display:flex;gap:6px;justify-content:center;align-items:center;min-height:20px;padding:0 12px}
+.ec-dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.18);transition:background .2s,transform .2s}
+.ec-dot.hit{background:#69F0AE;transform:scale(1.15)}
+.ec-dot.cur{background:#FFD740;box-shadow:0 0 8px #FFD740}
+.ec-dot.new{background:#FF8A80;animation:ecPulse .9s ease-out}
+@keyframes ecPulse{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1)}}
+.ec-judge{min-height:46px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px 16px;font-size:14px;color:#fff;font-weight:bold;line-height:1.4}
+.ec-judge.pop{animation:ecJPop .4s}
+@keyframes ecJPop{0%{transform:scale(.8);opacity:0}60%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+@keyframes ecStageShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}
+.ec-stage.shake{animation:ecStageShake .42s}
+.ec-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.ec-badge.on{display:flex}
+.ec-proprow{display:flex;gap:10px;justify-content:center;padding:4px 14px 2px}
+.ec-prop{background:rgba(255,255,255,.12);border:none;color:#fff;border-radius:14px;padding:9px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+.ec-prop b{color:#FFD740}
+.ec-prop.o{background:rgba(120,200,255,.14)}
+.ec-prop.off{opacity:.4;pointer-events:none}
+.ec-tip{text-align:center;font-size:11px;opacity:.62;color:#fff;padding:6px 16px 2px;line-height:1.5}
+.ec-tip b{color:#FFD740}
+.ec-write{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.55);border-radius:16px;z-index:5}
+.ec-write.on{display:flex}
+.ec-big{font-size:90px;color:#FFD740;font-weight:bold}
+.ec-rs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 8px;text-align:center}
+.ec-rs span{display:block;font-size:26px;font-weight:bold}
+.ec-rs small{display:block;font-size:11px;opacity:.7;margin-top:2px;color:#fff}
+
 </style>
 
 </head>
@@ -2651,6 +2699,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🧩</div>
       <div class="info"><h3>笔顺排排队</h3><p id="slideCardTip">滑动方块 · 把笔画推回 1→n</p></div>
       <span class="sl-dot" id="slideCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('echo')">
+      <div class="icon">🔊</div>
+      <div class="info"><h3>笔顺回声</h3><p id="echoCardTip">听笔顺 · 凭记忆按回去</p></div>
+      <span class="ec-badge" id="echoCardDot">🆕</span>
     </div>
 <div class="mode-card" onclick="enterMode('plinko')">
       <div class="icon">🔮</div>
@@ -4741,6 +4794,61 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="mpBackToMap()">🗺️ 看星图</button>
   </div>
 </div>
+<div class="screen" id="screen-echo">
+  <div class="top-bar">
+    <button class="back-btn" onclick="ecLeave()">← 返回</button>
+    <div class="stats"><span id="ecScoreTxt">🎧 0 分</span><span id="ecLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="ecHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🔊 看清笔画方向在圆环上<b style="color:#FFD740">一个个亮起</b>，听它们的<b style="color:#B9F6CA">高低音</b>——然后<b style="color:#FFF176">凭记忆照着按回去</b>。每记住一轮就多一笔，记满整个字就成字！</div>
+  <div class="ec-hud">
+    <span id="ecRankTxt">🏅 回声新手</span>
+    <span class="ec-hearts" id="ecHeartsTxt">❤️❤️❤️</span>
+    <span id="ecStageTxt">记住 2 笔</span>
+  </div>
+  <div class="ec-stage" id="ecStage">
+    <div class="ec-center"><span class="ec-ghost" id="ecGhost">?</span><span class="ec-stage-cap" id="ecGhostCap">照我按</span></div>
+    <div id="ecPads"></div>
+    <div class="ec-write" id="ecWriteBox"></div>
+  </div>
+  <div class="ec-prog" id="ecProg"></div>
+  <div class="ec-judge" id="ecJudge"></div>
+  <div class="ec-proprow">
+    <button class="ec-prop" id="ecSlowBtn" onclick="ecSlow()">🔍 慢放 <b>3</b></button>
+    <button class="ec-prop o" id="ecHintBtn" onclick="ecHint()">💡 下一笔 <b>2</b></button>
+  </div>
+  <div class="ec-tip">点亮时 <b>别按</b> · 该你了按 <b>1～5</b> 或点圆盘 · <b>M</b> 慢放 · <b>H</b> 怎么玩</div>
+</div>
+<div class="screen" id="screen-echo-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="ecLeave()">← 回首页</button>
+    <div class="stats"><span id="ecRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="ecRsEmoji">🔊</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="ecRsTitle">回声断了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="ecRsSub">再听一遍，你就能记得更长</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="ec-rs">
+      <div><span style="color:#FFD700" id="ecRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="ecRsLv">1</span><small>打到第几关</small></div>
+      <div><span style="color:#69F0AE" id="ecRsChars">0</span><small>记住几个字</small></div>
+      <div><span style="color:#E1BEE7" id="ecRsStage">0</span><small>最长记忆（笔）</small></div>
+      <div><span style="color:#FF8A80" id="ecRsCombo">0</span><small>最高连击</small></div>
+      <div><span style="color:#FFF176" id="ecRsEchoes">0</span><small>本局复述笔数</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="ecRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="ecRsAll">🏅 回声新手</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="ecRetry()">🔁 再来一局</button>
+    <button class="w-btn blue" onclick="ecLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-slide">
   <div class="top-bar">
     <button class="back-btn" onclick="slLeave()">← 返回</button>
@@ -5657,6 +5765,7 @@ function updateHomeStats(){
   if(typeof mzNudge==='function')mzNudge();
   if(typeof mpNudge==='function')mpNudge();
   if(typeof slNudge==='function')slNudge();
+  if(typeof ecNudge==='function')ecNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -5703,6 +5812,7 @@ function enterMode(mode){
   else if(mode==='mow')mwStart();
  else if(mode==='dd')ddStart();
  else if(mode==='maze')mzStart(); else if(mode==='map')mpStart(); else if(mode==='slide')slStart();
+ else if(mode==='echo')ecStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -24903,6 +25013,296 @@ window.slKey=e=>{
   else if(k==='r'||k==='R')slReshuffle();
 };
 document.addEventListener('keydown',e=>{if(window.slKey)window.slKey(e)});
+
+/* ============ v1.45.0 笔顺回声（Simon 序列记忆 · 复述越来越长的笔顺）============ */
+const EC_DIRS=[
+  {c:'R',name:'横',icon:'➡️',color:'#FF6B6B',glow:'#FF8A80',freq:392},
+  {c:'D',name:'竖',icon:'⬇️',color:'#4FC3F7',glow:'#81D4FA',freq:440},
+  {c:'P',name:'撇',icon:'↙️',color:'#81C784',glow:'#A5D6A7',freq:494},
+  {c:'N',name:'捺',icon:'↘️',color:'#FFB74D',glow:'#FFCC80',freq:587},
+  {c:'T',name:'点',icon:'↗️',color:'#BA68C8',glow:'#CE93D8',freq:659},
+];
+const EC_IX={R:0,D:1,P:2,N:3,T:4};
+const EC_RANKS=[[0,'回声新手'],[2,'听写学徒'],[5,'笔顺记星'],[9,'记忆能手'],[14,'过耳不忘'],[20,'照单全收'],[28,'神耳少年'],[38,'最强大脑'],[50,'汉字录音机']];
+const EC_TIP=['先记住前两笔，像哼一段小旋律','撇↙️和捺↘️最容易混，看清斜的方向','点↗️又短又高，一听就知道','记住整串，字就自己写给你看','越往后亮得越快，别慌跟着节奏来'];
+let ec={run:false,over:false,gen:0,ch:'',seq:[],dirIx:[],n:0,phase:'idle',idx:0,
+  score:0,combo:0,maxCombo:0,lv:1,lives:3,slow:3,hint:2,roundEcho:0,maxStage:0,chars:0,
+  grew:false,pen:1,C:null,respId:null,timers:[],used:[]};
+function ecInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function ecAdd(k,n){localStorage.setItem(k,String(ecInt(k)+n))}
+function ecSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function ecRank(chars){let r=EC_RANKS[0][1];for(let i=0;i<EC_RANKS.length;i++)if(chars>=EC_RANKS[i][0])r=EC_RANKS[i][1];return r}
+function ecCfg(lv){
+  const startN=lv<=2?2:3;
+  return {lightMs:Math.max(280,600-lv*34),gapMs:Math.max(90,210-lv*13),
+    respMs:Math.max(1500,3400-lv*170),startN,
+    minLen:startN+1,maxLen:Math.min(8,startN+2+Math.floor(lv/2))};
+}
+const ecCache={};
+async function ecData(ch){
+  let d=ecCache[ch];if(d)return d;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await loadCharData(ch);
+  if(!raw||!raw.medians||!raw.medians.length)return null;
+  d={dirs:raw.medians.map(ddStrokeDir),len:raw.medians.length};
+  ecCache[ch]=d;return d;
+}
+async function ecPickChar(minLen,maxLen,used){
+  for(let t=0;t<60;t++){
+    const c=CHARS[Math.floor(Math.random()*CHARS.length)];
+    if(used.indexOf(c)>=0)continue;
+    const d=await ecData(c);
+    if(d&&d.len>=minLen&&d.len<=maxLen)return c;
+  }
+  for(let i=0;i<CHARS.length;i++){
+    const c=CHARS[i];const d=await ecData(c);
+    if(d&&d.len>=minLen&&d.len<=maxLen+2)return c;
+  }
+  return null;
+}
+function ecT(fn,ms){const g=ec.gen;const id=setTimeout(()=>{if(g!==ec.gen)return;fn()},ms);ec.timers.push(id);return id}
+function ecKillTimers(){ec.timers.forEach(id=>clearTimeout(id));ec.timers=[];if(ec.respId){clearTimeout(ec.respId);ec.respId=null}}
+function ecLight(i,on){const p=document.getElementById('ecPad'+i);if(p)p.classList.toggle('lit',on)}
+function ecDimAll(){for(let i=0;i<5;i++){const p=document.getElementById('ecPad'+i);if(p)p.classList.remove('lit','ok','bad')}}
+function ecFlashOnce(i){const p=document.getElementById('ecPad'+i);if(!p)return;p.classList.add('lit');ecT(()=>p.classList.remove('lit'),440)}
+function ecShakeStage(){const s=document.getElementById('ecStage');if(!s)return;s.classList.remove('shake');void s.offsetWidth;s.classList.add('shake');ecT(()=>s.classList.remove('shake'),440)}
+function ecSetGhost(ch){const g=document.getElementById('ecGhost');if(g)g.textContent=ch}
+function ecSetCap(t){const c=document.getElementById('ecGhostCap');if(c)c.textContent=t}
+function ecBuildPads(){
+  const box=document.getElementById('ecPads');if(!box)return;
+  let h='';
+  for(let i=0;i<5;i++){
+    const a=(-90+i*72)*Math.PI/180;
+    const x=50+33*Math.cos(a),y=50+33*Math.sin(a);
+    const d=EC_DIRS[i];
+    h+='<div class="ec-pad" id="ecPad'+i+'" data-i="'+i+'" style="left:'+x.toFixed(1)+'%;top:'+y.toFixed(1)+'%;--pc:'+d.color+';--pg:'+d.glow+'"><b>'+d.icon+'</b><s>'+d.name+'</s><u>'+(i+1)+'</u></div>';
+  }
+  box.innerHTML=h;
+  box.onclick=e=>{const el=e.target.closest?e.target.closest('.ec-pad'):null;if(!el)return;ecTap(+el.getAttribute('data-i'))};
+}
+function ecRenderProg(){
+  const box=document.getElementById('ecProg');if(!box)return;
+  let h='';
+  for(let j=0;j<ec.n;j++){
+    let cls='ec-dot';
+    if(ec.phase==='input'){if(j<ec.idx)cls+=' hit';else if(j===ec.idx)cls+=' cur';}
+    if(ec.grew&&j===ec.n-1)cls+=' new';
+    h+='<div class="'+cls+'"></div>';
+  }
+  box.innerHTML=h;
+}
+function ecHud(){
+  ecSet('ecScoreTxt','🎧 '+Math.round(ec.score)+' 分');
+  ecSet('ecLvTxt','第 '+ec.lv+' 关');
+  ecSet('ecRankTxt','🏅 '+ecRank(ecInt('hz_ec_chars')));
+  let hs='';for(let i=0;i<3;i++)hs+=i<ec.lives?'❤️':'🖤';
+  ecSet('ecHeartsTxt',hs);
+  ecSet('ecStageTxt','记住 '+ec.n+'/'+ec.seq.length+' 笔');
+  const sb=document.getElementById('ecSlowBtn');
+  if(sb){sb.innerHTML='🔍 慢放 <b>'+ec.slow+'</b>';sb.classList.toggle('off',ec.slow<=0)}
+  const hb=document.getElementById('ecHintBtn');
+  if(hb){hb.innerHTML='💡 下一笔 <b>'+ec.hint+'</b>';hb.classList.toggle('off',ec.hint<=0)}
+}
+function ecJudge(msg,color){
+  const el=document.getElementById('ecJudge');if(!el)return;
+  el.textContent=msg;el.style.color=color||'#fff';
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function ecStart(){
+  currentMode='echo';ec.gen++;ecKillTimers();
+  ecAdd('hz_ec_runs',1);ecMarkSeen();
+  ec.lv=1;ec.score=0;ec.combo=0;ec.maxCombo=0;ec.chars=0;ec.roundEcho=0;ec.maxStage=0;ec.used=[];
+  ec.lives=3;ec.slow=3;ec.hint=2;ec.over=false;ec.run=true;
+  showScreen('echo');
+  ecBuildPads();ecSetGhost('?');
+  ecNextChar();
+}
+async function ecNextChar(){
+  const g=++ec.gen;ecKillTimers();ec.phase='idle';
+  const wb=document.getElementById('ecWriteBox');if(wb){wb.classList.remove('on');wb.innerHTML=''}
+  const C=ecCfg(ec.lv);ec.C=C;
+  const ch=await ecPickChar(C.minLen,C.maxLen,ec.used);
+  if(g!==ec.gen)return;
+  if(!ch){ecJudge('📡 字还没下下来，检查网络再进来','#FFCDD2');ec.run=false;return}
+  const d=await ecData(ch);
+  if(g!==ec.gen)return;
+  ec.ch=ch;ec.seq=d.dirs;ec.dirIx=ec.seq.map(x=>EC_IX[x]===undefined?0:EC_IX[x]);
+  ec.used.push(ch);
+  ec.n=Math.min(C.startN,ec.seq.length);ec.pen=1;ec.grew=false;ec.idx=0;
+  ecSetGhost(ch);ecHud();
+  ecJudge('👂 听好：「'+ch+'」的笔顺，先记住 '+ec.n+' 笔','#B9F6CA');
+  ecT(()=>ecShow(1),680);
+}
+function ecShow(mult){
+  const g=ec.gen;
+  ec.phase='show';ec.idx=0;ecDimAll();ecRenderProg();ecSetCap('看 · 听');
+  if(ec.respId){clearTimeout(ec.respId);ec.respId=null}
+  let j=0;
+  const lm=ec.C.lightMs*(mult||1),gm=ec.C.gapMs*(mult||1);
+  const playNext=()=>{
+    if(g!==ec.gen||currentMode!=='echo'||ec.over)return;
+    if(j>=ec.n){ecArmInput();return}
+    const ix=ec.dirIx[j];
+    ecLight(ix,true);tone(EC_DIRS[ix].freq,.24,'triangle',.2);
+    j++;
+    ecT(()=>ecLight(ix,false),lm);
+    ecT(playNext,lm+gm);
+  };
+  playNext();
+}
+function ecArmInput(){
+  if(currentMode!=='echo'||ec.over)return;
+  ec.phase='input';ec.idx=0;ecSetCap('该你了');ecRenderProg();ecRespArm();
+}
+function ecRespArm(){
+  if(ec.respId)clearTimeout(ec.respId);
+  const g=ec.gen;
+  ec.respId=setTimeout(()=>{if(g!==ec.gen)return;ecFail('⌛ 想得有点久，回声断在这一笔')},ec.C.respMs);
+}
+function ecTap(i){
+  if(!ec.run||ec.over||ec.phase!=='input'||i<0||i>4)return;
+  const expected=ec.dirIx[ec.idx];
+  const pad=document.getElementById('ecPad'+i);
+  if(pad){pad.classList.add('lit');ecT(()=>pad.classList.remove('lit'),150)}
+  if(i===expected){
+    if(ec.respId){clearTimeout(ec.respId);ec.respId=null}
+    tone(EC_DIRS[i].freq,.18,'sine',.22);
+    if(pad){pad.classList.add('ok');ecT(()=>pad.classList.remove('ok'),230)}
+    const gain=Math.round((6+ec.lv)*(1+Math.min(1.5,ec.combo*0.12))*ec.pen);
+    ec.score+=gain;ec.combo++;if(ec.combo>ec.maxCombo)ec.maxCombo=ec.combo;
+    ec.roundEcho++;ecAdd('hz_ec_echoes',1);
+    if(pad){const r=pad.getBoundingClientRect();spawnStarFly(r.left+r.width/2,r.top)}
+    ec.idx++;ecHud();ecRenderProg();
+    if(ec.idx>=ec.n)ecRoundOk();
+    else ecRespArm();
+  }else{
+    if(pad){pad.classList.add('bad');ecT(()=>pad.classList.remove('bad'),400)}
+    if(ec.respId){clearTimeout(ec.respId);ec.respId=null}
+    ecFail('❌ 这一笔是「'+EC_DIRS[expected].name+EC_DIRS[expected].icon+'」，不是「'+EC_DIRS[i].name+'」');
+  }
+}
+function ecRoundOk(){
+  ec.phase='judge';
+  ec.score+=Math.round(ec.n*4*ec.pen);
+  if(ec.n>ec.maxStage)ec.maxStage=ec.n;
+  if(ec.n>ecInt('hz_ec_stage'))localStorage.setItem('hz_ec_stage',String(ec.n));
+  if(ec.n>=ec.seq.length){ecCharOk();return}
+  ec.n++;ec.grew=true;ec.pen=1;
+  ecHud();
+  ecJudge('👏 全记住啦！再加一笔，跟着听到第 '+ec.n+' 笔','#B9F6CA');
+  ecShow(1);
+}
+function ecCharOk(){
+  const gain=Math.round((90+ec.lv*22)*(1+Math.min(1,ec.combo*0.1)));
+  ec.score+=gain;
+  const stars=Math.max(1,Math.min(5,1+Math.floor(ec.seq.length/2)));
+  addStars(stars);spawnConfetti();sndDone();
+  ec.chars++;ecAdd('hz_ec_chars',1);ecAddBook(ec.ch);
+  if(ec.lv>ecInt('hz_ec_lv'))localStorage.setItem('hz_ec_lv',String(ec.lv));
+  ecHud();
+  ecJudge('🎉 整串都记住了！看「'+ec.ch+'」自己写一遍','#FFD740');
+  ecShowWrite();
+  ec.lv++;
+  const g=ec.gen;
+  ecT(()=>{if(g!==ec.gen||currentMode!=='echo'||ec.over)return;ecNextChar()},2300);
+}
+function ecFail(msg){
+  if(!ec.run||ec.over||ec.phase==='over')return;
+  ec.lives--;ec.combo=0;
+  if(ec.respId){clearTimeout(ec.respId);ec.respId=null}
+  ecDimAll();sndNo();ecShakeStage();ecJudge(msg,'#FF8A80');ecHud();
+  if(ec.lives<=0){ecEnd();return}
+  ec.phase='judge';
+  const g=ec.gen;
+  ecT(()=>{if(g!==ec.gen||currentMode!=='echo'||ec.over)return;ecShow(1)},1200);
+}
+function ecSlow(){
+  if(!ec.run||ec.over||ec.phase!=='input')return;
+  if(ec.slow<=0){ecJudge('🔍 慢放用完啦','#FFCC80');return}
+  ec.slow--;ec.pen=Math.min(ec.pen,.7);
+  ecHud();
+  ecJudge('🐢 放慢再听一遍（这一轮得分打七折）','#80DEEA');
+  ecShow(1.7);
+}
+function ecHint(){
+  if(!ec.run||ec.over||ec.phase!=='input')return;
+  if(ec.hint<=0){ecJudge('💡 提示用完啦','#FFCC80');return}
+  ec.hint--;ec.pen=Math.min(ec.pen,.5);
+  const ix=ec.dirIx[ec.idx];
+  ecFlashOnce(ix);
+  ecJudge('💡 下一笔是「'+EC_DIRS[ix].name+'」'+EC_DIRS[ix].icon+'（本轮得分减半）','#FFF176');
+  ecHud();
+}
+function ecShowWrite(){
+  const box=document.getElementById('ecWriteBox');if(!box)return;
+  box.innerHTML='<div id="ecWt"></div>';box.classList.add('on');
+  const d=charDataCache[ec.ch];const target=box.querySelector('#ecWt');
+  const stage=document.getElementById('ecStage');
+  const size=Math.min(170,(stage?stage.clientWidth:300)*0.55);
+  if(typeof HanziWriter==='undefined'||!d){target.innerHTML='<span class="ec-big">'+ec.ch+'</span>';return}
+  try{
+    const w=HanziWriter.create(target,ec.ch,{width:size,height:size,padding:6,renderer:'svg',
+      showOutline:true,showCharacter:false,strokeColor:'#FFD740',outlineColor:'rgba(255,255,255,.2)',
+      highlightColor:'#69F0AE',charDataLoader:(c,cb)=>cb(d)});
+    w.animateCharacter();
+  }catch(e){target.innerHTML='<span class="ec-big">'+ec.ch+'</span>'}
+}
+function ecEnd(){
+  if(ec.over)return;
+  ec.over=true;ec.run=false;ec.phase='over';ecKillTimers();
+  const s=Math.round(ec.score);
+  if(s>ecInt('hz_ec_best'))localStorage.setItem('hz_ec_best',String(s));
+  if(ec.maxCombo>ecInt('hz_ec_combo'))localStorage.setItem('hz_ec_combo',String(ec.maxCombo));
+  if(ec.lv>ecInt('hz_ec_lv'))localStorage.setItem('hz_ec_lv',String(ec.lv));
+  const stars=Math.max(0,Math.min(30,Math.round(s/30)+ec.chars*2));
+  addStars(stars);
+  ecSet('ecRsStars','⭐ +'+stars);
+  ecSet('ecRsEmoji',ec.chars>=3?'🏆':ec.chars>=1?'🔊':'💤');
+  ecSet('ecRsTitle',ec.chars>=3?'记忆超群！':ec.chars>=1?'还记得不少':'再听一遍就好');
+  ecSet('ecRsSub',ec.chars?('这局记住了 '+ec.chars+' 个字，最长一次记住 '+ec.maxStage+' 笔'):'别灰心，回声多听几遍就变长了');
+  ecSet('ecRsScore',String(s));
+  ecSet('ecRsLv',String(ec.lv));
+  ecSet('ecRsChars',String(ec.chars));
+  ecSet('ecRsStage',String(ec.maxStage));
+  ecSet('ecRsCombo',String(ec.maxCombo));
+  ecSet('ecRsEchoes',String(ec.roundEcho));
+  ecSet('ecRsBest',String(ecInt('hz_ec_best')));
+  ecSet('ecRsAll','🏅 段位 '+ecRank(ecInt('hz_ec_chars'))+' · 图鉴 '+ecBook().length+' 字\n累计记住 '+ecInt('hz_ec_chars')+' 个字 · 最长记忆 '+ecInt('hz_ec_stage')+' 笔 · 一共复述 '+ecInt('hz_ec_echoes')+' 笔');
+  showScreen('echo-result');
+}
+function ecRetry(){ecStart()}
+function ecLeave(){
+  ecKillTimers();
+  const wb=document.getElementById('ecWriteBox');if(wb)wb.classList.remove('on');
+  if(ec.run&&!ec.over){ec.over=true;ec.run=false}
+  goHome();
+}
+function ecHelp(){
+  ecJudge('🔊 笔画方向在圆环上一个个亮起、发一声高低音，记住顺序；轮到你时按 1～5 或点圆盘，把它们「回声」回去，越记越长','#80DEEA');
+}
+function ecMarkSeen(){localStorage.setItem('hz_ec_seen',String(ecInt('hz_ec_lv')))}
+function ecAddBook(ch){try{let b=JSON.parse(localStorage.getItem('hz_ec_book')||'[]');if(!Array.isArray(b))b=[];if(b.indexOf(ch)<0)b.push(ch);localStorage.setItem('hz_ec_book',JSON.stringify(b.slice(-80)))}catch(e){localStorage.setItem('hz_ec_book','[]')}}
+function ecBook(){try{const b=JSON.parse(localStorage.getItem('hz_ec_book')||'[]');return Array.isArray(b)?b:[]}catch(e){return[]}}
+function ecNudge(){
+  const dot=document.getElementById('echoCardDot'),tip=document.getElementById('echoCardTip');
+  const lv=ecInt('hz_ec_lv'),chars=ecInt('hz_ec_chars');
+  if(tip)tip.textContent=lv?('记住过 '+chars+' 字 · 最长 '+ecInt('hz_ec_stage')+' 笔'):'听笔顺 · 凭记忆按回去';
+  if(!dot)return;
+  if(lv>ecInt('hz_ec_seen')){dot.textContent='🆕 第 '+lv+' 关';dot.classList.add('on')}
+  else dot.classList.remove('on');
+}
+window.ecKey=e=>{
+  if(currentMode!=='echo')return;
+  const scr=document.getElementById('screen-echo');
+  if(!scr||!scr.classList.contains('active'))return;
+  const k=e.key;
+  if(k>='1'&&k<='5'){ecTap(+k-1);return}
+  if(k==='m'||k==='M'){ecSlow();return}
+  if(k==='f'||k==='F'){ecHint();return}
+  if(k==='h'||k==='H'||k==='?'){ecHelp();return}
+};
+document.addEventListener('keydown',e=>{if(window.ecKey)window.ecKey(e)});
+
 async function boot(){
   if(typeof HanziWriter==='undefined'){
     await new Promise(resolve=>{
