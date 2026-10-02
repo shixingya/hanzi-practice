@@ -2731,6 +2731,106 @@ button:active{transform:scale(.95)}
 .gk-rs span{display:block;font-size:23px;font-weight:bold}
 .gk-rs small{display:block;font-size:11px;opacity:.7;margin-top:2px;color:#fff}
 @media(max-width:420px){.gk-stage,.gk-opts,.gk-q,.gk-judge,.gk-shop,.gk-meter,.gk-time,.gk-hud{max-width:296px}.gk-stage{height:250px}}
+/* ============ v1.49.0 笔顺分拣厂（传送带送字 · 按规矩投筐 · 满筐发车 · 炸弹箱别碰）============ */
+.srt-hud{display:flex;gap:5px;justify-content:center;flex-wrap:nowrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
+.srt-hud span{flex:0 1 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 8px;font-size:10.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srt-hud b{color:#FFD740}
+.srt-meta{display:flex;align-items:center;gap:8px;width:100%;max-width:340px;margin:2px auto 0;font-size:12px;color:#fff}
+.srt-meta span{min-width:118px;font-weight:700;white-space:nowrap}
+.srt-track{flex:1;height:10px;border-radius:99px;background:rgba(0,0,0,.32);overflow:hidden}
+.srt-track i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#FFD740,#FF8F00);transition:width .18s}
+.srt-track.huge i{background:linear-gradient(90deg,#B9F6CA,#00E676)}
+.srt-stage{position:relative;width:100%;max-width:322px;height:302px;margin:7px auto 0;overflow:hidden;border-radius:18px;
+  touch-action:none;background:linear-gradient(180deg,#D7E8F4,#EAF3FA 44%,#B9CBDA);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.18),0 8px 22px rgba(0,0,0,.28);transition:background .7s}
+.srt-stage.b1{background:linear-gradient(180deg,#F6E2C0,#FBF1DC 44%,#DCC9A8)}
+.srt-stage.b2{background:linear-gradient(180deg,#2C3E63,#42557C 44%,#22304B)}
+.srt-stage.b3{background:linear-gradient(180deg,#141A2E,#2A1F43 44%,#0E1424)}
+.srt-deco{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none}
+.srt-deco span{position:absolute;opacity:.5;animation:srtFloat 4.2s ease-in-out infinite}
+@keyframes srtFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.srt-rule{position:absolute;left:8px;right:8px;top:6px;min-height:34px;border-radius:12px;background:rgba(0,0,0,.42);
+  color:#fff;font-size:12px;font-weight:800;line-height:1.32;padding:6px 9px;text-align:center;z-index:7;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.srt-rule small{display:block;font-size:10px;font-weight:600;opacity:.78;margin-top:2px}
+.srt-rule b{color:#FFD740}
+.srt-rule.flip b{color:#80D8FF}
+.srt-band{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:9;font-size:16px;font-weight:900;color:#fff;
+  background:rgba(0,0,0,.62);border-radius:99px;padding:8px 16px;opacity:0;pointer-events:none;white-space:nowrap}
+.srt-band.on{animation:srtBand 1.7s forwards}
+@keyframes srtBand{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}
+  76%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.04)}}
+.srt-belt{position:absolute;left:0;right:0;height:14px;background:#4E5B68;box-shadow:0 3px 0 rgba(0,0,0,.22),0 -2px 0 rgba(255,255,255,.16)}
+.srt-strip{position:absolute;left:0;right:0;top:0;bottom:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 9px,transparent 9px 26px);
+  animation:srtRun .9s linear infinite}
+@keyframes srtRun{from{background-position:0 0}to{background-position:-26px 0}}
+.srt-gate{position:absolute;width:0;border-left:3px dashed rgba(255,82,82,.85);z-index:4;pointer-events:none}.srt-gate i{position:absolute;left:-16px;bottom:-2px;width:32px;text-align:center;font-size:13px;font-style:normal}
+.srt-box{position:absolute;width:46px;height:46px;border-radius:9px;z-index:6;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;line-height:1;user-select:none;-webkit-user-select:none;
+  background:linear-gradient(180deg,#E5C894,#C9A46B);box-shadow:inset 0 0 0 2px #A67C43,0 4px 9px rgba(0,0,0,.3);
+  transition:box-shadow .2s}
+.srt-box .ch{font-size:24px;font-weight:900;color:#3E2723;line-height:1.05}
+.srt-box .tag{font-size:8.5px;font-weight:800;color:#6D4C41;letter-spacing:.3px;margin-top:1px}
+.srt-box.front{box-shadow:inset 0 0 0 2px #FFD740,0 0 14px rgba(255,215,64,.8),0 4px 9px rgba(0,0,0,.3)}
+.srt-box.front::after{content:'▲';position:absolute;left:50%;bottom:-15px;transform:translateX(-50%);font-size:11px;color:#FFD740;
+  text-shadow:0 0 6px rgba(0,0,0,.6)}
+.srt-box.star{background:linear-gradient(180deg,#FFF3B0,#FFD740);box-shadow:inset 0 0 0 2px #F57F17,0 0 15px rgba(255,213,79,.75)}
+.srt-box.star .ch{color:#5D4037}
+.srt-box.gold{background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:inset 0 0 0 2px #E65100,0 0 13px rgba(255,179,0,.7)}
+.srt-box.gold .ch{color:#4E342E}
+.srt-box.bomb{background:linear-gradient(180deg,#546E7A,#263238);box-shadow:inset 0 0 0 2px #FF5252,0 4px 9px rgba(0,0,0,.4);
+  animation:srtBomb 1s ease-in-out infinite}
+.srt-box.bomb .ch{font-size:22px}
+.srt-box.bomb .tag{color:#FF8A80}
+@keyframes srtBomb{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.srt-box.heart{background:linear-gradient(180deg,#FFCDD2,#FF8A80);box-shadow:inset 0 0 0 2px #D32F2F,0 0 13px rgba(255,138,128,.7)}
+.srt-box.heart .ch{font-size:22px}
+.srt-box.out{animation:srtFly .42s ease-in forwards;pointer-events:none}
+@keyframes srtFly{0%{opacity:1;transform:translate(0,0) scale(1)}
+  100%{opacity:.15;transform:translate(var(--fx),var(--fy)) scale(.34) rotate(var(--fr))}}
+.srt-box.bad{animation:srtBoom .44s ease-out forwards;pointer-events:none}
+@keyframes srtBoom{0%{opacity:1;transform:scale(1)}30%{opacity:1;transform:scale(1.5) rotate(9deg)}100%{opacity:0;transform:scale(.2) rotate(-16deg)}}
+.srt-box.drop{animation:srtDrop .5s ease-in forwards;pointer-events:none}
+@keyframes srtDrop{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(74px) rotate(26deg)}}
+.srt-bin{position:absolute;height:64px;border-radius:12px;z-index:5;background:rgba(0,0,0,.34);overflow:hidden;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.15);cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;
+  transition:box-shadow .2s,transform .12s}
+.srt-bin:active{transform:scale(.97)}
+.srt-bin .lbl{position:absolute;left:0;right:0;top:3px;text-align:center;font-size:11px;font-weight:900;color:#fff;letter-spacing:.2px}
+.srt-bin .lbl i{font-style:normal;font-size:9.5px;font-weight:700;opacity:.72;display:block;margin-top:1px}
+.srt-bin .stack{position:absolute;left:5px;right:5px;bottom:15px;height:26px;display:flex;gap:2px;justify-content:flex-start;align-items:flex-end}
+.srt-bin .stack i{font-style:normal;font-size:15px;line-height:1;color:#FFF59D;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
+.srt-bin .cnt{position:absolute;left:0;right:0;bottom:2px;text-align:center;font-size:9.5px;font-weight:800;color:rgba(255,255,255,.8)}
+.srt-bin.full{box-shadow:inset 0 0 0 2px #FFD740,0 0 16px rgba(255,215,64,.7)}
+.srt-bin.pumped{animation:srtPump .34s}
+@keyframes srtPump{0%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+.srt-truck{position:absolute;font-size:26px;z-index:8;opacity:0;pointer-events:none}
+.srt-truck.on{animation:srtTruck 1.15s ease-in-out forwards}
+@keyframes srtTruck{0%{opacity:0;transform:translateX(-40px)}14%{opacity:1;transform:translateX(0)}
+  80%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(46px)}}
+.srt-pop{position:absolute;font-size:14px;font-weight:900;color:#FFD740;text-shadow:0 2px 6px rgba(0,0,0,.55);
+  pointer-events:none;z-index:10;white-space:nowrap;animation:srtPopUp 1s forwards}
+@keyframes srtPopUp{0%{opacity:0;transform:translateY(6px) scale(.8)}22%{opacity:1;transform:translateY(-6px) scale(1.1)}100%{opacity:0;transform:translateY(-40px) scale(1)}}
+.srt-spark{position:absolute;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:9;background:#fff;
+  animation:srtSpark .68s forwards}
+@keyframes srtSpark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--sx),var(--sy)) scale(.3)}}
+.srt-judge{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:12px;font-weight:800;min-height:34px;
+  line-height:1.45;color:#fff;opacity:.95}
+.srt-judge.pop{animation:srtJudge .4s}
+@keyframes srtJudge{from{transform:scale(.88);opacity:.3}to{transform:scale(1);opacity:1}}
+.srt-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);line-height:1.6}
+.srt-tip b{color:#FFD740}
+.srt-stage.shake{animation:srtShake .4s}
+@keyframes srtShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.srt-rs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 8px;text-align:center}
+.srt-rs span{display:block;font-size:26px;font-weight:bold}
+.srt-rs small{display:block;font-size:11px;opacity:.7;margin-top:2px;color:#fff}
+.srt-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;
+  font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.srt-badge.on{display:flex}
+@media(max-width:420px){.srt-hud,.srt-meta,.srt-judge,.srt-tip{max-width:300px}
+  .srt-stage{max-width:296px;height:258px}}
 </style>
 
 </head>
@@ -2934,6 +3034,11 @@ button:active{transform:scale(.95)}
       <div class="icon">⛄</div>
       <div class="info"><h3>笔顺滚雪球</h3><p id="snowCardTip">答对雪球就变大 · 够大才碾得碎</p></div>
       <span class="snw-badge" id="snowCardDot">🆕</span>
+    </div>
+<div class="mode-card" onclick="enterMode('sort')">
+      <div class="icon">🏭</div>
+      <div class="info"><h3>笔顺分拣厂</h3><p id="sortCardTip">传送带送字 · 按规矩投筐 · 满筐发车</p></div>
+      <span class="srt-badge" id="sortCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('sky')">
       <div class="icon">☁️</div>
@@ -5150,6 +5255,65 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="snwLeave()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-sort">
+  <div class="top-bar">
+    <button class="back-btn" onclick="srtLeave()">← 返回</button>
+    <div class="stats"><span id="srtScoreTxt">📦 0 分</span><span id="srtLvTxt">第 1 批 · 早班</span></div>
+    <button class="icon-btn" onclick="srtHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🏭 传送带把<b style="color:#FFF176">汉字箱子</b>一只只送过来：看清顶上这条<b style="color:#FFD740">批次规矩</b>，最前面那只箱子到<b>闸门</b>之前，把它投进对的筐。筐装满就<b style="color:#B9F6CA">🚚 发车拿大钱</b>；💣 <b style="color:#FF8A80">炸弹箱千万别碰</b>，让它滚出闸门就对了。</div>
+  <div class="srt-hud">
+    <span id="srtRankTxt">🏅 门口学徒</span>
+    <span id="srtShipTxt">🚚 0</span>
+    <span id="srtHeartsTxt">❤️❤️❤️</span>
+    <span id="srtComboTxt">连对 0</span>
+  </div>
+  <div class="srt-meta"><span id="srtBatchTxt">📋 本批 0/8 · 纪录 0</span><div class="srt-track" id="srtTrack"><i id="srtBar"></i></div></div>
+  <div class="srt-stage b0" id="srtStage">
+    <div class="srt-deco" id="srtDeco"></div>
+    <div class="srt-belt" id="srtBelt"><div class="srt-strip"></div></div>
+    <div class="srt-gate" id="srtGate"><i>⛔</i></div>
+    <div class="srt-rule" id="srtRule">📋 装箱规矩马上贴上……<small>看清规矩再动手</small></div>
+    <div id="srtField"></div>
+    <div class="srt-bin" id="srtBinL"><div class="lbl"><span id="srtBinLL">✅ 符合</span><i id="srtBinLS">左筐</i></div><div class="stack" id="srtStackL"></div><div class="cnt" id="srtCntL">0 / 6</div></div>
+    <div class="srt-bin" id="srtBinR"><div class="lbl"><span id="srtBinRL">⛔ 不符合</span><i id="srtBinRS">右筐</i></div><div class="stack" id="srtStackR"></div><div class="cnt" id="srtCntR">0 / 6</div></div>
+    <div class="srt-truck" id="srtTruckL">🚚</div>
+    <div class="srt-truck" id="srtTruckR">🚚</div>
+    <div class="srt-band" id="srtBand"></div>
+  </div>
+  <div class="srt-judge" id="srtJudge"></div>
+  <div class="srt-tip">点 <b>左筐 / 右筐</b> 或按 <b>⬅️ ➡️</b>（<b>A</b> / <b>D</b>、<b>1</b> / <b>2</b>）把<b>最前面</b>那只箱子投进去 · <b>H</b> 怎么玩</div>
+</div>
+<div class="screen" id="screen-sort-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="srtLeave()">← 回首页</button>
+    <div class="stats"><span id="srtRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="srtRsEmoji">🏭</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="srtRsTitle">今日收工</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="srtRsSub">下一班再快一点</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="srt-rs">
+      <div><span style="color:#FFD700" id="srtRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="srtRsBatch">0</span><small>干到第几批</small></div>
+      <div><span style="color:#69F0AE" id="srtRsOk">0</span><small>分对件数</small></div>
+      <div><span style="color:#FFF176" id="srtRsShip">0</span><small>发车次数</small></div>
+      <div><span style="color:#E1BEE7" id="srtRsStreak">0</span><small>最长连对</small></div>
+      <div><span style="color:#FF8A80" id="srtRsMiss">0</span><small>漏掉 + 炸到</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 历史最高工资</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="srtRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="srtRsAll">🏅 门口学徒</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="srtRetry()">🔁 再上一班</button>
+    <button class="w-btn blue" onclick="srtLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-hook">
   <div class="top-bar">
     <button class="back-btn" onclick="gkLeave()">← 返回</button>
@@ -6181,6 +6345,7 @@ function updateHomeStats(){
   if(typeof gkNudge==='function')gkNudge();
   if(typeof cldNudge==='function')cldNudge();
   if(typeof snwNudge==='function')snwNudge();
+  if(typeof srtNudge==='function')srtNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -6231,6 +6396,7 @@ function enterMode(mode){
  else if(mode==='hook')gkStart();
  else if(mode==='sky')cldStart();
  else if(mode==='snow')snwStart();
+ else if(mode==='sort')srtStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -27469,6 +27635,619 @@ document.addEventListener('keyup',e=>{
   });
 })();
 window.addEventListener('resize',snwOnResize);
+
+/* ============ v1.49.0 笔顺分拣厂（传送带送字 · 按批次规矩投筐 · 满筐发车 · 炸弹箱别碰）============ */
+const SRT_BANDS=[
+  {b:1,cls:'b0',name:'早班',icon:'🌅',deco:['🌅','🔧','🧰','☕','🐓','📦']},
+  {b:3,cls:'b1',name:'午班',icon:'☀️',deco:['☀️','🔩','🚧','🍚','🐝','📦']},
+  {b:5,cls:'b2',name:'夜班',icon:'🌙',deco:['🌙','💡','🔧','🌃','✨','📦']},
+  {b:7,cls:'b3',name:'特急夜运',icon:'🚨',deco:['🚨','⚡','🌙','🛞','✨','📦']},
+];
+const SRT_RANKS=[[0,'门口学徒'],[40,'传送带熟手'],[110,'分拣快手'],[220,'装箱好手'],[380,'车间组长'],[600,'流水线主管'],[900,'金牌分拣员'],[1300,'厂长帮手'],[1900,'机器人也没你快']];
+const SRT_CN={R:'横',D:'竖',P:'撇',N:'捺',T:'点'};
+const SRT_ST={R:'一',D:'丨',P:'丿',N:'㇏',T:'丶'};
+const SRT_BOX=46,SRT_GATE=54,SRT_HEARTS=3,SRT_CAP=6,SRT_BATCH=8,SRT_SPACE=104,SRT_SPD0=40,SRT_SPDC=84;
+let srt={run:false,over:false,gen:0,boxes:[],load:[0,0],batch:1,band:0,done:0,prevKey:'',flipAt:0,
+  score:0,combo:0,maxCombo:0,ok:0,miss:0,ships:0,hearts:SRT_HEARTS,used:[],rule:null,yesLeft:true,
+  W:0,H:0,beltY:0,boxY:0,binY:0,binW:0,now:0,ts:0,cid:0,timers:[],timerId:null,beat:0,booted:false};
+function srtInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function srtAdd(k,n){localStorage.setItem(k,String(srtInt(k)+n))}
+function srtSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function srtRank(n){let r=SRT_RANKS[0][1];for(let i=0;i<SRT_RANKS.length;i++)if(n>=SRT_RANKS[i][0])r=SRT_RANKS[i][1];return r}
+function srtBandOf(b){let i=0;for(let k=0;k<SRT_BANDS.length;k++)if(b>=SRT_BANDS[k].b)i=k;return i}
+function srtSpd(){return Math.min(SRT_SPDC,SRT_SPD0+(srt.batch-1)*5+srt.band*6)}
+function srtEl(){return document.getElementById('srtStage')}
+function srtT(fn,ms){const g=srt.gen;const id=setTimeout(()=>{if(g!==srt.gen)return;fn()},ms);srt.timers.push(id);return id}
+function srtKillTimers(){srt.timers.forEach(id=>clearTimeout(id));srt.timers=[]}
+function srtStopLoop(){if(srt.timerId){clearInterval(srt.timerId);srt.timerId=null}}
+function srtStartLoop(){srtStopLoop();srt.ts=performance.now();srt.timerId=setInterval(srtTick,16)}
+/* ---- 字形数据：本模块自己的方向表（撇/捺要按「屏幕角 + 笔画长」重切才认得出）---- */
+const srtTy={};
+async function srtData(ch){
+  const d0=srtTy[ch];if(d0)return d0;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await loadCharData(ch);
+  if(!raw||!raw.medians||!raw.medians.length||raw.medians.length<2)return null;
+  const d={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  srtTy[ch]=d;return d;
+}
+async function srtWarm(){
+  const want=52;
+  for(let i=0;i<CHARS.length&&Object.keys(srtTy).length<want;i++){
+    const c=CHARS[i];
+    if(srtTy[c])continue;
+    const raw=charDataCache[c];
+    if(!raw||!raw.medians||raw.medians.length<2)continue;
+    srtTy[c]={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  }
+  if(Object.keys(srtTy).length>=28)return;
+  const need=CHARS.filter(function(c){return !srtTy[c]});
+  for(let i=0;i<need.length&&Object.keys(srtTy).length<want;i+=5){
+    const g=need.slice(i,i+5);
+    await Promise.all(g.map(async c=>{await srtData(c)}));
+  }
+}
+/* ---- 批次规矩 ---- */
+function srtMatch(r,d){
+  if(!r||!d)return false;
+  if(r.k==='cnt')return d.n>=r.v;
+  if(r.k==='first')return d.t[0]===r.c;
+  if(r.k==='last')return d.t[d.n-1]===r.c;
+  if(r.k==='nth')return d.n>r.i&&d.t[r.i]===r.c;
+  if(r.k==='has')return d.t.indexOf(r.c)>=0;
+  return false;
+}
+function srtDirTxt(c){return SRT_ST[c]+'（'+SRT_CN[c]+'）'}
+function srtRuleKey(r){return r.k+':'+(r.c||r.v||'')}
+function srtPool(){return Object.keys(srtTy)}
+function srtBalance(r){
+  const p=srtPool();let y=0,n=0;
+  for(let i=0;i<p.length;i++){if(srtMatch(r,srtTy[p[i]]))y++;else n++}
+  return [y,n];
+}
+function srtPickRule(){
+  const tier=srt.batch>=5?3:srt.batch>=3?2:1;
+  const codes=['R','D','P','N','T'];
+  const cands=[];
+  const ns=[];
+  const p=srtPool();
+  for(let i=0;i<p.length;i++)ns.push(srtTy[p[i]].n);
+  ns.sort(function(a,b){return a-b});
+  const uniq=[];
+  for(let i=0;i<ns.length;i++)if(uniq.indexOf(ns[i])<0&&ns[i]>=3&&ns[i]<=9)uniq.push(ns[i]);
+  for(let i=0;i<uniq.length;i++)cands.push({k:'cnt',v:uniq[i],text:'笔画数 ≥ '+uniq[i],tier:1});
+  for(let i=0;i<codes.length;i++){
+    cands.push({k:'first',c:codes[i],text:'第 1 笔是 '+srtDirTxt(codes[i]),tier:1});
+    cands.push({k:'has',c:codes[i],text:'里面含 '+srtDirTxt(codes[i]),tier:2});
+    cands.push({k:'last',c:codes[i],text:'最后 1 笔是 '+srtDirTxt(codes[i]),tier:2});
+    cands.push({k:'nth',i:1,c:codes[i],text:'第 2 笔是 '+srtDirTxt(codes[i]),tier:3});
+  }
+  let tiered=cands.filter(function(r){return r.tier<=tier&&srtBalance(r)[0]>=6&&srtBalance(r)[1]>=6});
+  if(!tiered.length){
+    tiered=cands.filter(function(r){const b=srtBalance(r);return b[0]>=4&&b[1]>=4});
+  }
+  if(!tiered.length)return null;
+  let pick=null;
+  for(let a=0;a<14;a++){
+    const r=tiered[(Math.random()*tiered.length)|0];
+    if(srtRuleKey(r)!==srt.prevKey){pick=r;break}
+    if(a===13)pick=r;
+  }
+  return pick||tiered[0];
+}
+function srtNewRule(){
+  const r=srtPickRule();
+  if(!r){srtJudge('📖 字还没下下来，等一秒再开工','#FFCDD2');return false}
+  srt.prevKey=srtRuleKey(r);
+  srt.rule=r;srt.done=0;
+  const nl=Math.random()<0.5;
+  if(nl!==srt.yesLeft){srt.flipAt=srt.now}srt.yesLeft=nl;
+  srtRuleHud();
+  return true;
+}
+function srtYesBin(){return srt.yesLeft?0:1}
+function srtBinTxt(side){
+  const yes=side===srtYesBin();
+  return yes?'✅ 是':'⛔ 不是';
+}
+function srtRuleHud(){
+  const r=srt.rule;if(!r)return;
+  const L=srt.yesLeft?'左筐':'右筐',R=srt.yesLeft?'右筐':'左筐';
+  srtSet('srtRule','📋 第 '+srt.batch+' 批：<b>'+r.text+'</b> → <b>'+L+'</b> · 不是 → '+R+
+    '<small>还剩 '+(SRT_BATCH-srt.done)+' 件换规矩'+(srt.now-srt.flipAt<4200?' · ⚠️ 本批左右对调了！':'')+'</small>');
+  const la=document.getElementById('srtBinLL'),ra=document.getElementById('srtBinRL');
+  if(la)la.textContent=srtBinTxt(0);
+  if(ra)ra.textContent=srtBinTxt(1);
+  const sl=document.getElementById('srtBinLS'),sr=document.getElementById('srtBinRS');
+  if(sl)sl.textContent='左筐 · 装满 '+SRT_CAP+' 就发车';
+  if(sr)sr.textContent='右筐 · 装满 '+SRT_CAP+' 就发车';
+}
+/* ---- 版面 ---- */
+function srtLayout(){
+  const st=srtEl();if(!st)return;
+  srt.W=st.clientWidth||322;srt.H=st.clientHeight||302;
+  srt.beltY=Math.round(srt.H*0.52);
+  srt.boxY=srt.beltY-SRT_BOX/2-6;
+  srt.binY=srt.H-70;
+  srt.binW=Math.max(96,Math.round(srt.W/2)-14);
+  const belt=document.getElementById('srtBelt');
+  if(belt){belt.style.top=(srt.beltY-7)+'px'}
+  const gate=document.getElementById('srtGate');
+  if(gate){gate.style.left=SRT_GATE+'px';gate.style.top=(srt.boxY-SRT_BOX/2-6)+'px';gate.style.height=(SRT_BOX+30)+'px'}
+  const bl=document.getElementById('srtBinL'),br=document.getElementById('srtBinR');
+  if(bl){bl.style.left='8px';bl.style.top=srt.binY+'px';bl.style.width=srt.binW+'px'}
+  if(br){br.style.left=(8+srt.binW+12)+'px';br.style.top=srt.binY+'px';br.style.width=srt.binW+'px'}
+  const tl=document.getElementById('srtTruckL'),tr=document.getElementById('srtTruckR');
+  if(tl){tl.style.left='10px';tl.style.top=(srt.binY-30)+'px'}
+  if(tr){tr.style.left=(8+srt.binW+12)+'px';tr.style.top=(srt.binY-30)+'px'}
+}
+function srtDeco(){
+  const box=document.getElementById('srtDeco');if(!box)return;
+  const T=SRT_BANDS[srt.band],out=[];
+  for(let i=0;i<8;i++){
+    const g=T.deco[(Math.random()*T.deco.length)|0];
+    out.push('<span style="left:'+Math.round(Math.random()*86+3)+'%;top:'+Math.round(Math.random()*24+2)+'%;font-size:'+
+      (12+Math.random()*9|0)+'px;animation-delay:'+(Math.random()*2).toFixed(2)+'s">'+g+'</span>');
+  }
+  box.innerHTML=out.join('');
+}
+function srtPop(t,color,x,y){
+  const st=srtEl();if(!st)return;
+  const d=document.createElement('div');
+  d.className='srt-pop';d.textContent=t;d.style.color=color||'#FFD740';
+  d.style.left='0px';
+  d.style.top=Math.round(Math.max(2,(y===undefined?srt.boxY-30:y)-14))+'px';
+  st.appendChild(d);
+  const w=d.offsetWidth||96;
+  d.style.left=Math.round(Math.max(4,Math.min(Math.max(4,srt.W-w-4),(x===undefined?srt.W/2:x)-w/2)))+'px';
+  srtT(()=>d.remove(),1000);
+}
+function srtSpark(x,y,color,n){
+  const st=srtEl();if(!st)return;
+  for(let i=0;i<(n||9);i++){
+    const s=document.createElement('div');s.className='srt-spark';
+    s.style.left=x+'px';s.style.top=y+'px';s.style.background=color||'#FFF176';
+    const a=Math.random()*Math.PI*2,dist=16+Math.random()*34;
+    s.style.setProperty('--sx',(Math.cos(a)*dist).toFixed(1)+'px');
+    s.style.setProperty('--sy',(Math.sin(a)*dist-6).toFixed(1)+'px');
+    st.appendChild(s);srtT(()=>s.remove(),700);
+  }
+}
+function srtShake(){
+  const st=srtEl();if(!st)return;
+  st.classList.remove('shake');void st.offsetWidth;st.classList.add('shake');
+  srtT(()=>st.classList.remove('shake'),440);
+}
+function srtJudge(msg,color){
+  const el=document.getElementById('srtJudge');if(!el)return;
+  el.textContent=msg;el.style.color=color||'#fff';
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function srtBanner(txt){
+  const bd=document.getElementById('srtBand');
+  if(!bd)return;
+  bd.textContent=txt;bd.classList.remove('on');void bd.offsetWidth;bd.classList.add('on');
+}
+/* ---- 箱子 ---- */
+function srtKind(){
+  const r=Math.random();
+  if(srt.hearts<SRT_HEARTS&&r<0.045)return'heart';
+  if(r<0.11)return'star';
+  const bombP=Math.min(0.24,0.06+srt.batch*0.016);
+  if(r<0.11+bombP)return'bomb';
+  if(r<0.11+bombP+0.10)return'gold';
+  return'rule';
+}
+function srtChar(){
+  const p=srtPool();if(!p.length)return null;
+  const yes=[],no=[];
+  for(let i=0;i<p.length;i++){if(srtMatch(srt.rule,srtTy[p[i]]))yes.push(p[i]);else no.push(p[i])}
+  const want=Math.random()<0.5?yes:no;
+  const src=want.length>=2?want:(yes.length>=2?yes:no);
+  if(!src.length)return null;
+  for(let a=0;a<24;a++){
+    const c=src[(Math.random()*src.length)|0];
+    if(srt.used.indexOf(c)<0)return c;
+  }
+  return src[(Math.random()*src.length)|0];
+}
+function srtSpawn(){
+  if(!srt.rule)return null;
+  const kind=srtKind();
+  let ch=null,d=null;
+  if(kind==='rule'||kind==='gold'){
+    for(let a=0;a<10;a++){
+      ch=srtChar();
+      if(ch&&srtTy[ch]){d=srtTy[ch];break}
+      ch=null;d=null;
+    }
+    if(!ch)return null;
+  }else if(kind==='star'||kind==='heart'||kind==='bomb'){ch=null}
+  const o={id:++srt.cid,kind:kind,ch:ch,yes:d?srtMatch(srt.rule,d):null,x:srt.W+SRT_BOX/2+8,dead:false,out:false,el:null};
+  const box=document.getElementById('srtField');
+  if(box){
+    const el=document.createElement('div');
+    el.className='srt-box '+kind;
+    const face=kind==='bomb'?'💣':kind==='star'?'⭐':kind==='heart'?'❤️':ch;
+    const tag=kind==='bomb'?'别碰':kind==='star'?'随便投':kind==='heart'?'+1 颗心':kind==='gold'?'📦 ×2':'';
+    el.innerHTML='<span class="ch">'+face+'</span>'+(tag?'<span class="tag">'+tag+'</span>':'');
+    box.appendChild(el);
+    o.sz=el.offsetWidth||SRT_BOX;
+    o.el=el;
+  }else o.sz=SRT_BOX;
+  srt.boxes.push(o);
+  srt.used.push(ch||kind);
+  if(srt.used.length>Math.max(12,srtPool().length-2))srt.used=[];
+  return o;
+}
+function srtTake(o){
+  const i=srt.boxes.indexOf(o);
+  if(i>=0)srt.boxes.splice(i,1);
+  o.out=true;o.dead=true;
+  const el=o.el;o.el=null;
+  if(el){srtT(()=>{if(el.parentNode)el.remove()},480)}
+}
+function srtGateBox(o){
+  o.el.classList.add(o.kind==='bomb'?'out':'drop');
+  o.el.style.setProperty('--fx','-56px');
+  o.el.style.setProperty('--fy','46px');
+  o.el.style.setProperty('--fr','-18deg');
+  srtTake(o);
+}
+function srtFront(){
+  let best=null;
+  for(let i=0;i<srt.boxes.length;i++){
+    const o=srt.boxes[i];
+    if(o.out)continue;
+    if(!best||o.x<best.x)best=o;
+  }
+  return best;
+}
+function srtBinXY(side){
+  const x=side===0?8+srt.binW/2:8+srt.binW+12+srt.binW/2;
+  return [x,srt.binY+30];
+}
+function srtFly(o,side){
+  if(!o.el)return;
+  const t=srtBinXY(side);
+  o.el.style.setProperty('--fx',Math.round(t[0]-o.x)+'px');
+  o.el.style.setProperty('--fy',Math.round(t[1]-srt.boxY)+'px');
+  o.el.style.setProperty('--fr',(side===0?-20:20)+'deg');
+  o.el.classList.add('out');
+  srtTake(o);
+}
+function srtBinHud(){
+  for(let s=0;s<2;s++){
+    const cnt=document.getElementById(s===0?'srtCntL':'srtCntR');
+    if(cnt)cnt.textContent=srt.load[s]+' / '+SRT_CAP;
+    const stack=document.getElementById(s===0?'srtStackL':'srtStackR');
+    if(stack){
+      if(srt['_h'+s]===srt.load[s])continue;
+      srt['_h'+s]=srt.load[s];
+      stack.innerHTML=srt.load[s]>0?'<i>📦</i>'.repeat(srt.load[s]):'';
+    }
+    const bin=document.getElementById(s===0?'srtBinL':'srtBinR');
+    if(bin)bin.classList.toggle('full',srt.load[s]>=SRT_CAP-1);
+  }
+}
+function srtHud(){
+  srtSet('srtScoreTxt','📦 '+Math.round(srt.score)+' 分');
+  srtSet('srtLvTxt','第 '+srt.batch+' 批 · '+SRT_BANDS[srt.band].name);
+  srtSet('srtRankTxt',srtRank(srtInt('hz_srt_ok')+srt.ok));
+  srtSet('srtShipTxt','🚚 '+srtInt('hz_srt_ship')+' 车');
+  srtSet('srtHeartsTxt','❤️'.repeat(srt.hearts)+'🤍'.repeat(SRT_HEARTS-srt.hearts));
+  srtSet('srtComboTxt','连对 '+srt.combo);
+}
+function srtBatchHud(){
+  const best=Math.max(srt.beat,srtInt('hz_srt_best'));
+  const k=srt.done+'/'+best+'/'+(srt.beat>0&&srt.score>srt.beat?1:0);
+  if(srt._bk===k)return;
+  srt._bk=k;
+  srtSet('srtBatchTxt','📋 本批 '+srt.done+'/'+SRT_BATCH+' · 纪录 '+best);
+  const bar=document.getElementById('srtBar'),tr=document.getElementById('srtTrack');
+  if(bar)bar.style.width=(Math.min(100,srt.done/SRT_BATCH*100)).toFixed(1)+'%';
+  if(tr)tr.classList.toggle('huge',srt.beat>0&&srt.score>srt.beat);
+}
+function srtRender(){
+  const f=srtFront();
+  for(let i=0;i<srt.boxes.length;i++){
+    const o=srt.boxes[i];
+    if(!o.el)continue;
+    o.el.style.left=Math.round(o.x-o.sz/2)+'px';
+    o.el.style.top=Math.round(srt.boxY-o.sz/2)+'px';
+    o.el.classList.toggle('front',o===f);
+  }
+}
+/* ---- 判定 ---- */
+function srtGain(base){
+  return Math.round(base*(1+Math.min(1.5,srt.combo*0.11)));
+}
+function srtShip(side){
+  const bonus=46+srt.batch*6;
+  srt.score+=bonus;
+  srt.ships++;
+  srtAdd('hz_srt_ship',1);
+  srt.load[side]=0;
+  const t=srtBinXY(side);
+  const trk=document.getElementById(side===0?'srtTruckL':'srtTruckR');
+  if(trk){trk.classList.remove('on');void trk.offsetWidth;trk.classList.add('on')}
+  const bin=document.getElementById(side===0?'srtBinL':'srtBinR');
+  if(bin){bin.classList.remove('pumped');void bin.offsetWidth;bin.classList.add('pumped')}
+  srtSpark(t[0],t[1]-8,'#B9F6CA',16);
+  srtPop('🚚 满筐发车 +'+bonus,'#B9F6CA',t[0],t[1]-26);
+  spawnConfetti();
+  tone(660,.14,'triangle',.22);
+  srtT(()=>tone(880,.18,'triangle',.22),130);
+  srtJudge('🚚 第 '+srt.ships+' 车开走了！这一筐 '+SRT_CAP+' 件全分对 —— +'+bonus+' 分，接着装','#B9F6CA');
+  srtHud();srtBinHud();
+}
+function srtCount(o){
+  srt.done++;
+  if(srt.done>=SRT_BATCH)srtNextBatch();
+}
+function srtGood(o,side){
+  srt.combo++;
+  if(srt.combo>srt.maxCombo)srt.maxCombo=srt.combo;
+  srt.ok++;
+  srtAdd('hz_srt_ok',1);
+  if(srt.combo>srtInt('hz_srt_streak'))localStorage.setItem('hz_srt_streak',String(srt.combo));
+  let gain=0,free=false,fill=1,msg='';
+  if(o.kind==='star'){gain=srtGain(20);free=true;addStars(1);msg='⭐ 星星箱随便投都算对'}
+  else if(o.kind==='heart'){gain=srtGain(12);free=true;if(srt.hearts<SRT_HEARTS)srt.hearts++;msg='❤️ 补回一颗心'}
+  else if(o.kind==='gold'){gain=srtGain(10+srt.batch*1.2)*2;fill=2;msg='🎁 金箱 '+o.ch+' 值钱双倍'}
+  else{gain=srtGain(10+srt.batch*1.2);msg='✅ '+o.ch+' 没错'}
+  srt.score+=gain;
+  srt.load[side]=Math.min(SRT_CAP,srt.load[side]+fill);
+  const t=srtBinXY(side);
+  srtFly(o,side);
+  srtSpark(o.x,srt.boxY,o.kind==='star'||o.kind==='gold'?'#FFF176':'#B9F6CA',10);
+  srtPop('+'+gain,o.kind==='heart'?'#FF8A80':'#B9F6CA',t[0],t[1]-30);
+  const st=srtEl();
+  if(st){const r=st.getBoundingClientRect();spawnStarFly(r.left+o.x,r.top+srt.boxY)}
+  sndOk();
+  if(o.kind==='star'||o.kind==='heart')tone(1120,.14,'triangle',.2);
+  if(srt.load[side]>=SRT_CAP)srtShip(side);
+  else if(srt.combo>0&&srt.combo%6===0){spawnConfetti();srtJudge('🔥 连对 '+srt.combo+' 件！手越来越稳 —— 工资 +'+gain,'#FFD740')}
+  else if(srt.combo>=3)srtJudge('🔥 连对 '+srt.combo+'！'+msg+' —— +'+gain+' 分','#FFD740');
+  else srtJudge(msg+' —— +'+gain+' 分','#B9F6CA');
+  srtCount(o);
+  srtHud();srtBinHud();srtBatchHud();srtRuleHud();
+}
+function srtBad(o,side,why){
+  srt.combo=0;
+  srt.miss++;
+  srtAdd('hz_srt_miss',1);
+  srt.hearts--;
+  srt.score=Math.max(0,srt.score-6);
+  if(o.el){o.el.classList.add('bad');srtTake(o)}
+  sndNo();srtShake();
+  srtSpark(o.x,srt.boxY,'#FF8A80',13);
+  srtPop('💢 投错了','#FF8A80',o.x,srt.boxY-20);
+  srtJudge('❌ '+why+' —— 还剩 '+Math.max(0,srt.hearts)+' 颗心，看清「'+(srt.rule?srt.rule.text:'规矩')+'」再投','#FF8A80');
+  srtHud();srtBatchHud();
+  if(srt.hearts<=0){srtEnd();return true}
+  return false;
+}
+function srtBoomBox(o){
+  srt.combo=0;
+  srt.miss++;
+  srtAdd('hz_srt_miss',1);
+  srt.hearts--;
+  srt.score=Math.max(0,srt.score-10);
+  if(o.el){o.el.classList.add('bad');srtTake(o)}
+  sndNo();srtShake();
+  srtSpark(o.x,srt.boxY,'#FF5252',18);
+  srtPop('💣 炸了','#FF8A80',o.x,srt.boxY-20);
+  spawnConfetti();
+  srtJudge('💣 炸弹箱不该碰！它自己滚出闸门才算处理对了 —— 还剩 '+Math.max(0,srt.hearts)+' 颗心','#FF8A80');
+  srtHud();srtBatchHud();
+  if(srt.hearts<=0){srtEnd();return true}
+  return false;
+}
+function srtSort(side){
+  if(!srt.run||srt.over||currentMode!=='sort')return;
+  const scr=document.getElementById('screen-sort');
+  if(!scr||!scr.classList.contains('active'))return;
+  const o=srtFront();
+  if(!o){srtJudge('📦 带子上还没箱子，等一只滑过来','#FFCC80');return}
+  if(o.kind==='bomb'){srtBoomBox(o);return}
+  if(o.kind==='star'||o.kind==='heart'){srtGood(o,side);return}
+  const exp=o.yes?srtYesBin():1-srtYesBin();
+  if(side===exp){srtGood(o,side);return}
+  const d=srtTy[o.ch];
+  const cnt=d?d.n:0;
+  srtBad(o,side,'「'+o.ch+'」'+srt.rule.text.replace('≥','不少于')+'（它 '+(o.yes?'是':'不是')+'，'+cnt+' 笔），该去 '+(exp===0?'左筐':'右筐'));
+}
+function srtGate(o){
+  if(o.kind==='bomb'){
+    srt.combo++;
+    if(srt.combo>srt.maxCombo)srt.maxCombo=srt.combo;
+    srt.ok++;
+    srtAdd('hz_srt_ok',1);
+    const gain=srtGain(14);
+    srt.score+=gain;
+    srtGateBox(o);
+    srtSpark(SRT_GATE+8,srt.boxY,'#B0BEC5',8);
+    srtPop('💨 躲过炸弹 +'+gain,'#B0BEC5',SRT_GATE+16,srt.boxY-20);
+    tone(300,.16,'sine',.18);
+    srtJudge('💨 干得漂亮！💣 放它滚出去，不用投也不会亏 —— +'+gain+' 分','#B0BEC5');
+    srtHud();srtBatchHud();srtRuleHud();
+    srtCount(o);
+    return;
+  }
+  srtGateBox(o);
+  if(srt.batch<=1){
+    srt.combo=0;
+    srtJudge('📦 「'+o.ch+'」溜出闸门了。先看清顶上那条规矩：'+srt.rule.text+' → '+(srt.yesLeft?'左筐':'右筐')+'。第 1 批漏单不扣心','#FFCC80');
+    srtHud();
+    return;
+  }
+  srtBad(o,null,'⏳ 漏单：「'+o.ch+'」没分拣就滑出闸门了');
+}
+function srtNextBatch(){
+  srt.done=0;
+  srt.batch++;
+  srt.score+=18;
+  if(srt.batch>srtInt('hz_srt_batch'))localStorage.setItem('hz_srt_batch',String(srt.batch));
+  const ok=srtNewRule();
+  tone(760,.12,'triangle',.2);
+  srtT(()=>tone(1010,.15,'triangle',.2),120);
+  srtBanner('🔧 第 '+srt.batch+' 批：新规矩 · 带子提速 +18');
+  srtJudge('🔧 换批次！这一批的规矩是「'+(ok?srt.rule.text:'先看着')+'」，'+(srt.yesLeft?'符合的进左筐':'符合的进右筐')+' —— 带子更快了','#FFD740');
+  srtBandCheck();
+  srtHud();srtBatchHud();
+}
+function srtBandCheck(){
+  const b=srtBandOf(srt.batch);
+  if(b===srt.band)return;
+  srt.band=b;
+  const T=SRT_BANDS[b],st=srtEl();
+  if(st){st.classList.remove('b0','b1','b2','b3');st.classList.add(T.cls)}
+  srtDeco();
+  srt.score+=34;
+  spawnConfetti();
+  srtBanner(T.icon+' '+T.name+' 开工 +34');
+  srtJudge(T.icon+' 换成 '+T.name+'！工资 +34，规矩更绕、带子更快，稳住手','#FFF59D');
+  srtHud();
+}
+function srtTick(a){
+  if(!srt.run||srt.over||currentMode!=='sort'){srtStopLoop();return}
+  const now=(typeof a==='number')?a:performance.now();
+  srt.now=now;
+  let dt=(now-srt.ts)/1000;srt.ts=now;
+  if(!(dt>0))dt=0;
+  if(dt>0.06)dt=0.06;
+  const sp=srtSpd();
+  for(let i=srt.boxes.length-1;i>=0;i--){
+    const o=srt.boxes[i];
+    if(o.out)continue;
+    o.x-=sp*dt;
+    if(o.x<=SRT_GATE)srtGate(o);
+  }
+  let maxX=-1e9;
+  for(let i=0;i<srt.boxes.length;i++)if(!srt.boxes[i].out&&srt.boxes[i].x>maxX)maxX=srt.boxes[i].x;
+  if(!srt.rule){
+    if(now-(srt.retryAt||0)>1200){srt.retryAt=now;srtNewRule()}
+  }else if(maxX<=srt.W-SRT_SPACE)srtSpawn();
+  srtRender();
+  const sc=Math.round(srt.score);
+  if(sc>srtInt('hz_srt_best'))localStorage.setItem('hz_srt_best',String(sc));
+  srtBatchHud();
+}
+function srtStart(){
+  currentMode='sort';srt.gen++;srtKillTimers();srtStopLoop();
+  const box=document.getElementById('srtField');
+  if(box)box.innerHTML='';
+  const st0=srtEl();
+  if(st0)st0.querySelectorAll('.srt-pop,.srt-spark').forEach(function(e){e.remove()});
+  const bd=document.getElementById('srtBand');
+  if(bd)bd.classList.remove('on');
+  srt.run=true;srt.over=false;srt.boxes=[];srt.load=[0,0];
+  srt.batch=1;srt.band=0;srt.done=0;srt.prevKey='';srt.flipAt=-1e9;
+  srt.score=0;srt.combo=0;srt.maxCombo=0;srt.ok=0;srt.miss=0;srt.ships=0;srt.hearts=SRT_HEARTS;
+  srt.used=[];srt.rule=null;srt.yesLeft=true;srt.cid=0;srt._h0=-1;srt._h1=-1;srt._bk='';srt.retryAt=0;
+  srt.beat=srtInt('hz_srt_best');
+  showScreen('sort');
+  const st=srtEl();
+  if(st){st.classList.remove('shake','b0','b1','b2','b3');st.classList.add('b0')}
+  srtLayout();
+  srtDeco();
+  const now=performance.now();
+  srt.now=now;srt.ts=now;
+  srtHud();srtBatchHud();srtBinHud();srtRender();
+  srtSet('srtRule','📋 正在把箱子搬上传送带……<small>马上贴出这一批的规矩</small>');
+  srtJudge('🏭 上班啦！看清顶上那条规矩，把最前面那只箱子投进对的筐','#B9F6CA');
+  srtMarkSeen();
+  const gen=srt.gen;
+  const go=function(){
+    if(gen!==srt.gen||currentMode!=='sort'||!srt.run||srt.over)return;
+    srtNewRule();
+    srt.booted=true;
+    srtHud();srtBatchHud();
+    srtStartLoop();
+  };
+  srtWarm().then(go,go);
+}
+function srtEnd(){
+  if(srt.over)return;
+  srt.over=true;srt.run=false;
+  srtStopLoop();srtKillTimers();
+  const s=Math.round(srt.score);
+  if(s>srtInt('hz_srt_best'))localStorage.setItem('hz_srt_best',String(s));
+  if(srt.batch>srtInt('hz_srt_batch'))localStorage.setItem('hz_srt_batch',String(srt.batch));
+  if(srt.maxCombo>srtInt('hz_srt_streak'))localStorage.setItem('hz_srt_streak',String(srt.maxCombo));
+  const stars=Math.max(1,Math.min(30,Math.round(srt.batch*1.4)+Math.round(srt.ok/3)+srt.ships*2+Math.round(srt.maxCombo*0.35)));
+  addStars(stars);
+  srtSet('srtRsStars','⭐ +'+stars);
+  const best=srtInt('hz_srt_best');
+  srtSet('srtRsEmoji',s>=520?'🏆':s>=260?'🚚':s>=120?'📦':srt.miss>0?'💣':'🏭');
+  srtSet('srtRsTitle',s>=520?'金牌车间主任！':s>=260?'这班干得漂亮':s>=120?'越分拣越顺手':'手还没热起来');
+  srtSet('srtRsSub',s>=260?('分对 '+srt.ok+' 件、发走 '+srt.ships+' 车，最长连对 '+srt.maxCombo+' 件 —— 干到第 '+srt.batch+
+    ' 批，工资 '+s+' 分'+(s>=best?'（新纪录）':'，还差 '+(best-s)+' 分破纪录')):
+    ('只挣了 '+s+' 分：分对 '+srt.ok+' 件、漏掉 '+srt.miss+' 件。规矩每 '+SRT_BATCH+' 件换一条，💣 要放它走，装满 '+SRT_CAP+' 件才发车 —— 再上一班'));
+  srtSet('srtRsScore',String(s));
+  srtSet('srtRsBatch',String(srt.batch));
+  srtSet('srtRsOk',String(srt.ok));
+  srtSet('srtRsShip',String(srt.ships));
+  srtSet('srtRsStreak',String(srt.maxCombo));
+  srtSet('srtRsMiss',String(srt.miss));
+  srtSet('srtRsBest',best+' 分');
+  srtSet('srtRsAll','🏅 段位 '+srtRank(srtInt('hz_srt_ok'))+' · 干到第 '+srtInt('hz_srt_batch')+' 批\n累计分对 📦 '+srtInt('hz_srt_ok')+
+    ' 件 · 发车 🚚 '+srtInt('hz_srt_ship')+' 车 · 最长连对 '+srtInt('hz_srt_streak')+' 件 · 漏掉/炸到 '+srtInt('hz_srt_miss')+' 次');
+  showScreen('sort-result');
+}
+function srtRetry(){srtStart()}
+function srtLeave(){
+  srtStopLoop();srtKillTimers();
+  if(srt.run&&!srt.over){srt.over=true;srt.run=false}
+  goHome();
+}
+function srtHelp(){
+  srtJudge('🏭 顶上贴规矩 → 最前面的箱子到闸门之前投进对的筐 → 💣 别碰，放它滚出去 → 一筐装满 '+SRT_CAP+' 件就 🚚 发车 → 每 '+SRT_BATCH+' 件换一条规矩、左右还可能对调','#80DEEA');
+}
+function srtMarkSeen(){
+  const b=srt.batch;
+  if(b>srtInt('hz_srt_seen'))localStorage.setItem('hz_srt_seen',String(b));
+}
+function srtNudge(){
+  const dot=document.getElementById('sortCardDot'),tip=document.getElementById('sortCardTip');
+  const batch=srtInt('hz_srt_batch'),ship=srtInt('hz_srt_ship'),ok=srtInt('hz_srt_ok');
+  if(tip)tip.textContent=ok?('分对 '+ok+' 件 · 发过 '+ship+' 车'):'按规矩投筐 · 💣 别碰 · 满筐发车';
+  if(!dot)return;
+  if(batch>srtInt('hz_srt_seen')){dot.textContent='🆕 第 '+batch+' 批';dot.classList.add('on')}
+  else dot.classList.remove('on');
+}
+function srtOnResize(){
+  if(currentMode!=='sort'||!srt.run)return;
+  const st=srtEl();if(!st)return;
+  const w=st.clientWidth;
+  if(Math.abs(w-srt.W)<2&&Math.abs(st.clientHeight-srt.H)<2)return;
+  const kx=w&&srt.W?w/srt.W:1;
+  srtLayout();
+  for(let i=0;i<srt.boxes.length;i++){
+    const o=srt.boxes[i];
+    o.x=Math.round(o.x*kx);
+    if(o.x>srt.W+SRT_BOX)o.x=Math.round(srt.W+SRT_BOX);
+  }
+  srtRender();
+}
+window.srtKey=e=>{
+  if(currentMode!=='sort')return;
+  const scr=document.getElementById('screen-sort');
+  if(!scr||!scr.classList.contains('active'))return;
+  const k=e.key;
+  if(k==='ArrowLeft'||k==='a'||k==='A'||k==='1'){srtSort(0);return}
+  if(k==='ArrowRight'||k==='d'||k==='D'||k==='2'){srtSort(1);return}
+  if(k==='h'||k==='H'||k==='?'){srtHelp();return}
+};
+document.addEventListener('keydown',e=>{if(window.srtKey)window.srtKey(e)});
+(function srtBindCtl(){
+  [[ 'srtBinL',0],['srtBinR',1]].forEach(function(p){
+    const el=document.getElementById(p[0]);
+    if(el)el.addEventListener('click',ev=>{ev.preventDefault();srtSort(p[1])});
+  });
+})();
+window.addEventListener('resize',srtOnResize);
 
 
 
