@@ -3137,6 +3137,52 @@ button:active{transform:scale(.95)}
 .sp-badge.on{display:flex}
 @media(max-width:420px){.sp-hud,.sp-bar,.sp-quiz,.sp-judge,.sp-tip{max-width:300px}
   .sp-stage{max-width:296px;height:266px}}
+.rp-hud{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
+.rp-hud span{flex:0 0 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 5px;font-size:9.5px;color:#fff;white-space:nowrap}
+.rp-hud b{color:#FFD740}
+.rp-bar{position:relative;display:flex;width:100%;max-width:322px;height:22px;margin:0 auto;border-radius:99px;overflow:hidden;
+  background:rgba(0,0,0,.34);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.rp-bar i{display:block;height:100%;width:0;transition:width .26s;background:linear-gradient(90deg,#4FC3F7,#7C4DFF)}
+.rp-bar i.low{background:linear-gradient(90deg,#FFAB91,#E64A19)}
+.rp-bar b{position:absolute;left:0;right:0;top:0;line-height:22px;text-align:center;font-size:11px;font-weight:800;color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.65);pointer-events:none}
+.rp-quiz{width:100%;max-width:322px;margin:6px auto 0;min-height:38px;border-radius:12px;background:rgba(255,255,255,.14);
+  font-size:13.5px;font-weight:800;text-align:center;line-height:1.3;padding:7px 9px;color:#fff;position:relative;z-index:2}
+.rp-quiz small{display:block;font-size:10.5px;font-weight:700;opacity:.78;margin-top:3px}
+.rp-wrap{position:relative;width:100%;max-width:322px;margin:6px auto 0;border-radius:16px;overflow:hidden;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 8px 22px rgba(0,0,0,.3)}
+.rp-cv{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;
+  background:linear-gradient(180deg,#20305E,#16304F 46%,#123B33)}
+.rp-band{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;
+  background:rgba(0,0,0,.66);border-radius:99px;padding:8px 16px;opacity:0;
+  font-size:13px;font-weight:900;color:#fff;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.rp-band.on{animation:rpBand 1.7s forwards}
+@keyframes rpBand{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}
+  30%,76%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-56%) scale(.96)}}
+.rp-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:100%;max-width:322px;margin:7px auto 0}
+.rp-tool{border:none;border-radius:12px;padding:8px 10px;font-size:11.5px;font-weight:800;color:#fff;cursor:pointer;
+  background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.rp-tool:active{transform:scale(.96);background:rgba(255,255,255,.28)}
+.rp-tool b{color:#FFD740}
+.rp-tool.go{background:linear-gradient(180deg,#66BB6A,#2E7D32);font-size:13px;padding:9px 18px}
+.rp-tool.ghost{background:linear-gradient(180deg,#BA68C8,#6A1B9A)}
+.rp-tool.dead{opacity:.4;pointer-events:none}
+.rp-judge{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:12px;font-weight:700;min-height:34px;
+  line-height:1.45;color:#fff;opacity:.95}
+.rp-judge.pop{animation:rpJudge .4s}
+@keyframes rpJudge{from{transform:scale(.88);opacity:.3}to{transform:scale(1);opacity:1}}
+.rp-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;opacity:.8;color:#fff;line-height:1.6}
+.rp-tip b{color:#FFD740}
+.rp-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center;color:#fff}
+.rp-rs span{display:block;font-size:25px;font-weight:bold}
+.rp-rs small{display:block;font-size:11px;opacity:.75;margin-top:2px}
+.rp-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:99px;background:#FF6D00;color:#fff;
+  font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 6px;
+  box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.rp-badge.on{display:flex}
+@media(max-width:420px){.rp-quiz,.rp-bar,.rp-judge,.rp-tip,.rp-tools,.rp-wrap{max-width:300px}
+.rp-hud{max-width:336px;gap:4px}}
+
 </style>
 
 </head>
@@ -3360,6 +3406,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🏝️</div>
       <div class="info"><h3>笔顺炸炸岛</h3><p id="bombCardTip">放炮走位 · 炸掉对的答案</p></div>
       <span class="bm-badge" id="bombCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('ramp')">
+      <div class="icon">🛝</div>
+      <div class="info"><h3>笔顺滑滑梯</h3><p id="rampCardTip">画条滑道 · 把球引进答案格</p></div>
+      <span class="rp-badge" id="rampCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('sky')">
       <div class="icon">☁️</div>
@@ -5635,6 +5686,65 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="srtLeave()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-ramp">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rpLeave()">← 返回</button>
+    <div class="stats"><span id="rpScoreTxt">🛝 0 分</span><span id="rpTimeTxt">⏱ 72s</span></div>
+    <button class="icon-btn" onclick="rpHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🛝 顶上这道题的答案，写在滑梯底下 <b>四个格子</b> 里。用手指或鼠标 <b>画一条滑道</b>，再按 <b style="color:#FFF176">放球</b> —— <b style="color:#80DEEA">让写着字的小球顺着你的线滑进正确的那一格</b>。线画得越短、进得越准，分越高；⚠️ 钉板会扎破球。</div>
+  <div class="rp-hud">
+    <span id="rpRankTxt" title="段位">🏅 描线小娃</span>
+    <span id="rpGoalTxt" title="这一道要引对几个">🛝 差 4</span>
+    <span id="rpInkTxt" title="剩下的墨线长度">🖊 墨 300</span>
+    <span id="rpComboTxt" title="连对次数">🔥 连 0</span>
+    <span id="rpHeartTxt" title="生命">❤️❤️❤️</span>
+  </div>
+  <div class="rp-bar"><i id="rpBar"></i><b id="rpBarTxt">🛝 第 1 道 · 引对 0 / 4</b></div>
+  <div class="rp-quiz" id="rpQuiz">🖊 正在铺滑道……<small>马上出题</small></div>
+  <div class="rp-wrap">
+    <canvas class="rp-cv" id="rpCanvas" width="336" height="430"></canvas>
+    <div class="rp-band" id="rpBand"></div>
+  </div>
+  <div class="rp-tools">
+    <button class="rp-tool go" id="rpGo" onclick="rpRelease()" title="放球（空格 / 回车）">🚀 放球</button>
+    <button class="rp-tool" id="rpEraseBtn" onclick="rpErase()" title="擦掉全部滑道并退回墨线（E）">🧽 擦掉重画</button>
+    <button class="rp-tool ghost" id="rpHintBtn" onclick="rpHint()" title="虚线指向正确格子（H）">🔍 看方向 <b id="rpHintN">2</b></button>
+    <button class="rp-tool" id="rpSlowBtn" onclick="rpSlowMo()" title="慢动作，好趁空再画两笔（S）">🐢 慢一点 <b id="rpSlowN">2</b></button>
+  </div>
+  <div class="rp-judge" id="rpJudge"></div>
+  <div class="rp-tip">在场上<b>按住拖动</b>就能画滑道 · <b>放球</b>后还能接着补画 · 键盘：<b>1~4</b> 把球送进第几格 · <b>E</b> 擦 · <b>H</b> 看方向 · <b>S</b> 慢一点</div>
+</div>
+<div class="screen" id="screen-ramp-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rpLeave()">← 回首页</button>
+    <div class="stats"><span id="rpRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="rpRsEmoji">🛝</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="rpRsTitle">滑到第 1 道</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="rpRsSub">下一道更陡，钉子更多</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="rp-rs">
+      <div><span style="color:#FFD700" id="rpRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="rpRsLv">1</span><small>滑到第几道</small></div>
+      <div><span style="color:#69F0AE" id="rpRsOk">0</span><small>引对格子</small></div>
+      <div><span style="color:#FFAB91" id="rpRsBalls">0</span><small>放了几球</small></div>
+      <div><span style="color:#FFF176" id="rpRsCoins">0</span><small>捡了几颗星</small></div>
+      <div><span style="color:#E1BEE7" id="rpRsStreak">0</span><small>最长连对</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="rpRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="rpRsAll">🏅 描线小娃</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="rpRetry()">🔁 再滑一道</button>
+    <button class="w-btn blue" onclick="rpLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-bomb">
   <div class="top-bar">
     <button class="back-btn" onclick="bmLeave()">← 返回</button>
@@ -6856,6 +6966,7 @@ function updateHomeStats(){
   if(typeof spNudge==='function')spNudge();
   if(typeof pcNudge==='function')pcNudge();
   if(typeof bmNudge==='function')bmNudge();
+  if(typeof rpNudge==='function')rpNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -6909,7 +7020,7 @@ function enterMode(mode){
  else if(mode==='sort')srtStart();
  else if(mode==='splat')spStart();
  else if(mode==='picross')pcStart();
- else if(mode==='bomb')bmStart();
+ else if(mode==='bomb')bmStart(); else if(mode==='ramp')rpStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -31558,6 +31669,723 @@ window.addEventListener('resize',function(){
   if(Math.abs(st.clientWidth-bm.W)<2&&Math.abs(st.clientHeight-bm.H)<2)return;
   bmLayout();
 });
+
+/* ================= 笔顺滑滑梯（自己画一条滑道 · 把字球引进写着对答案的格子） ================= */
+const RP_W=336,RP_H=430,RP_BIN=74,RP_R=15,RP_GRAV=1500,RP_MAXV=520,RP_TIME=72,RP_INK0=300;
+const RP_CELL=RP_W/4;
+const RP_LB={R:['➡️','往右'],D:['⬇️','往下'],P:['↙️','左下'],N:['↘️','右下'],T:['↗️','右上']};
+const RP_ORD=['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十'];
+const RP_NOTE=[523,587,659,693,784,880,988,1047,1175,1319];
+const RP_RANKS=[
+  {n:0,e:'🖊',t:'描线小娃'},{n:8,e:'📏',t:'画线学徒'},{n:20,e:'🛝',t:'滑梯小工'},
+  {n:36,e:'🎯',t:'一线到位手'},{n:56,e:'🐭',t:'溜球高手'},{n:82,e:'⚡',t:'闪电铺路匠'},
+  {n:112,e:'🔥',t:'滑道匠人'},{n:150,e:'👑',t:'引球大师'},{n:210,e:'🌈',t:'彩虹滑道王'}
+];
+let rp={
+  run:false,over:false,gen:0,timers:[],timerId:null,ts:0,
+  level:1,time:RP_TIME,score:0,hearts:3,combo:0,maxCombo:0,
+  ok:0,levelOk:0,need:4,balls:0,coins:0,pits:0,lines:0,oneLine:0,
+  phase:'aim',ink:RP_INK0,inkMax:RP_INK0,erased:false,ghost:0,hintN:2,slowN:2,slow:0,
+  bx:0,by:0,vx:0,vy:0,spin:0,rest:0,inv:0,
+  strokes:[],cur:null,segs:[],rocks:[],spikes:[],gots:[],fx:[],pops:[],
+  bins:[],ans:'',ansLbl:'',ch:'',ty:{},busy:false,inkOut:false,shake:0
+};
+function rpCv(){return document.getElementById('rpCanvas')}
+function rpNow(){return (window.performance&&performance.now)?performance.now():Date.now()}
+function rpInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function rpAdd(k,n){localStorage.setItem(k,String(rpInt(k)+n))}
+function rpSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function rpRank(n){let r=RP_RANKS[0];for(let i=0;i<RP_RANKS.length;i++)if(n>=RP_RANKS[i].n)r=RP_RANKS[i];return r}
+function rpInkFor(l){return Math.max(220,RP_INK0-(l-1)*12)}
+function rpShuf(a){for(let i=a.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function rpT(fn,ms){const g=rp.gen;const id=setTimeout(function(){if(g!==rp.gen)return;fn()},ms);rp.timers.push(id);return id}
+function rpKillTimers(){rp.timers.forEach(function(t){clearTimeout(t)});rp.timers=[]}
+function rpBinTop(){return RP_H-RP_BIN}
+function rpBinAt(x){let k=Math.floor(x/RP_CELL);if(k<0)k=0;if(k>3)k=3;return k}
+function rpBinCx(k){return k*RP_CELL+RP_CELL/2}
+/* ---- 画布 ---- */
+function rpCtx(){const cv=rpCv();if(!cv)return null;return cv.getContext('2d')}
+function rpFit(){
+  const cv=rpCv();if(!cv)return;
+  const dpr=Math.min(2,window.devicePixelRatio||1);
+  cv.width=Math.round(RP_W*dpr);cv.height=Math.round(RP_H*dpr);
+  const c=cv.getContext('2d');
+  if(c)c.setTransform(dpr,0,0,dpr,0,0);
+}
+/* ---- 碰撞线段：围墙 + 隔墙 + 石头 + 玩家画的线 ---- */
+function rpRebuild(){
+  const top=rpBinTop();
+  const s=[[0,0,0,RP_H],[RP_W,0,RP_W,RP_H],[0,0,RP_W,0]];
+  s.push([RP_CELL,top-2,RP_CELL,RP_H]);
+  s.push([RP_CELL*2,top-34,RP_CELL*2,RP_H]);
+  s.push([RP_CELL*3,top-2,RP_CELL*3,RP_H]);
+  rp.rocks.forEach(function(r){s.push([r.x,r.y,r.x+r.w,r.y])});
+  rp.strokes.forEach(function(st){
+    for(let i=1;i<st.p.length;i++)s.push([st.p[i-1].x,st.p[i-1].y,st.p[i].x,st.p[i].y]);
+  });
+  rp.segs=s;
+}
+function rpHitSeg(b,x1,y1,x2,y2){
+  const dx=x2-x1,dy=y2-y1;
+  const L2=dx*dx+dy*dy;
+  let t=L2>0?((b.x-x1)*dx+(b.y-y1)*dy)/L2:0;
+  if(t<0)t=0;else if(t>1)t=1;
+  const px=x1+dx*t,py=y1+dy*t;
+  let nx=b.x-px,ny=b.y-py;
+  const d2=nx*nx+ny*ny;
+  if(d2>RP_R*RP_R)return false;
+  const d=Math.sqrt(d2);
+  if(d<0.0001){nx=0;ny=-1}else{nx/=d;ny/=d}
+  b.x=px+nx*RP_R;b.y=py+ny*RP_R;
+  const vn=b.vx*nx+b.vy*ny;
+  if(vn<0){
+    const tx=-ny,ty=nx;
+    const vt=b.vx*tx+b.vy*ty;
+    const nn=Math.abs(vn)<26?0:-vn*0.24;
+    b.vx=nx*nn+tx*vt*0.986;
+    b.vy=ny*nn+ty*vt*0.986;
+    if(-vn>150){tone(180+(-vn)/6,.03,'sine',.03);rpSpark(px,py,'rgba(178,235,255,.85)',2)}
+  }
+  return true;
+}
+/* ---- 每一道的地图 ---- */
+function rpBuild(){
+  const lv=rp.level,top=rpBinTop();
+  rp.rocks=[];rp.spikes=[];rp.gots=[];
+  const want=Math.min(7,1+lv);
+  let guard=0;
+  while(rp.rocks.length<want&&guard++<240){
+    const w=26+Math.random()*54;
+    const x=14+Math.random()*(RP_W-28-w);
+    const y=118+Math.random()*(top-178);
+    let okp=true;
+    rp.rocks.forEach(function(r){
+      if(Math.abs(r.y-y)<26&&x<r.x+r.w+18&&x+w>r.x-18)okp=false;
+    });
+    if(Math.abs(y-108)<30&&x<RP_CELL*2+20&&x+w>RP_CELL*2-20)okp=false;
+    if(okp)rp.rocks.push({x:x,y:y,w:w});
+  }
+  if(lv>=3){
+    const sn=Math.min(5,lv-1);guard=0;
+    while(rp.spikes.length<sn&&guard++<240){
+      const x=22+Math.random()*(RP_W-44);
+      const y=148+Math.random()*(top-210);
+      let okp=true;
+      rp.rocks.forEach(function(r){if(y>r.y-26&&y<r.y+26&&x>r.x-26&&x<r.x+r.w+26)okp=false});
+      rp.spikes.forEach(function(k){if(Math.hypot(k.x-x,k.y-y)<54)okp=false});
+      if(Math.hypot(RP_W/2-x,100-y)<62)okp=false;
+      if(okp)rp.spikes.push({x:x,y:y,r:14});
+    }
+  }
+  const cn=Math.min(4,2+Math.floor(lv/2));guard=0;
+  while(rp.gots.length<cn&&guard++<240){
+    const x=26+Math.random()*(RP_W-52);
+    const y=132+Math.random()*(top-186);
+    let okp=true;
+    rp.rocks.forEach(function(r){if(y>r.y-24&&y<r.y+24&&x>r.x-22&&x<r.x+r.w+22)okp=false});
+    rp.spikes.forEach(function(k){if(Math.hypot(k.x-x,k.y-y)<36)okp=false});
+    rp.gots.forEach(function(g){if(Math.hypot(g.x-x,g.y-y)<46)okp=false});
+    if(okp)rp.gots.push({x:x,y:y,taken:false});
+  }
+  rpRebuild();
+}
+/* ---- 出题 ---- */
+async function rpData(ch){
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await loadCharData(ch);
+  if(!raw||!raw.medians||raw.medians.length<2)return null;
+  const d={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  rp.ty[ch]=d;return d;
+}
+async function rpAsk(){
+  if(rp.over||currentMode!=='ramp'){rp.busy=false;return}
+  if(rp.busy)return;
+  rp.busy=true;
+  const gen=rp.gen;
+  let ch='',d=null;
+  for(let i=0;i<12;i++){
+    const c=nextInQueue();
+    if(!c)break;
+    const r=await rpData(c);
+    if(r){ch=c;d=r;break}
+  }
+  if(gen!==rp.gen||rp.over||currentMode!=='ramp'){rp.busy=false;return}
+  if(!ch){
+    rpSet('rpQuiz','📖 字还没下下来……<small>等一秒就开画</small>');
+    rp.busy=false;
+    rpT(function(){if(!rp.over&&currentMode==='ramp')rpAsk()},900);
+    return;
+  }
+  rp.ch=ch;
+  const n=d.n,dirs=d.t;
+  let opts,ans,lbl,qText;
+  if(Math.random()<.45&&n<=12){
+    ans=String(n);lbl=n+' 笔';
+    const nums=[n];
+    while(nums.length<4){
+      const k=n+(Math.random()<.5?-1:1)*(1+Math.floor(Math.random()*3));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=rpShuf(nums.slice(0,4)).map(function(k){return{v:String(k),txt:k+' 笔'}});
+    qText='『'+ch+'』一共有几笔？';
+  }else{
+    const idx=Math.floor(Math.random()*dirs.length);
+    const code=dirs[idx];
+    ans=code;lbl=(RP_LB[code]||['?','?'])[1];
+    const right=[{v:code,txt:lbl}];
+    const pool=rpShuf(['R','D','P','N','T'].filter(function(c){return c!==code})).slice(0,3)
+      .map(function(c){return{v:c,txt:RP_LB[c][1]}});
+    opts=rpShuf(right.concat(pool));
+    qText='『'+ch+'』的第'+(RP_ORD[idx]||(idx+1))+'笔往哪写？';
+  }
+  rp.ans=ans;rp.ansLbl=lbl;
+  rp.bins=opts;
+  rp.phase='aim';rp.ghost=0;rp.erased=false;rp.inkOut=false;
+  rp.inkMax=rpInkFor(rp.level);rp.ink=rp.inkMax;
+  rp.strokes=[];rp.cur=null;
+  rp.gots.forEach(function(g){g.taken=false});
+  rpReset();
+  rpSet('rpQuiz','🛝 '+qText+'<small>底下四个格子写着答案 · 画条滑道把球引进对的那一格</small>');
+  rpSay('🛝 新题目来了 —— 底下四个格子各写一个答案，画条滑道把球引进对的那一格','#B9F6CA');
+  rpHud();rpRebuild();rpDraw();
+  rp.busy=false;
+}
+function rpReset(){
+  const sd=Math.random()<.5?-1:1;
+  rp.bx=RP_W/2+sd*(3+Math.random()*11);
+  rp.by=100;rp.vx=0;rp.vy=0;rp.rest=0;rp.spin=0;
+}
+/* ---- 画线（墨线要花，剩得多算你会画） ---- */
+function rpPt(ev){
+  const cv=rpCv();if(!cv)return null;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return null;
+  const x=(ev.clientX-r.left)/r.width*RP_W;
+  const y=(ev.clientY-r.top)/r.height*RP_H;
+  return{x:Math.max(2,Math.min(RP_W-2,x)),y:Math.max(2,Math.min(RP_H-2,y))};
+}
+function rpCanDraw(){return rp.run&&!rp.over&&rp.phase!=='judge'&&currentMode==='ramp'}
+function rpStartStroke(ev){
+  if(!rpCanDraw())return;
+  const p=rpPt(ev);if(!p)return;
+  if(rp.ink<8){rpNoInk();return}
+  rp.cur={p:[p]};
+  rpDraw();
+}
+function rpMoveStroke(ev){
+  if(!rpCanDraw()||!rp.cur)return;
+  const p=rpPt(ev);if(!p)return;
+  const last=rp.cur.p[rp.cur.p.length-1];
+  const d=Math.hypot(p.x-last.x,p.y-last.y);
+  if(d<7)return;
+  if(rp.ink<d){rpNoInk();return}
+  rp.ink-=d;
+  rp.cur.p.push(p);
+  if(rp.cur.p.length>2)rp.ghost=0;
+  rpHud();rpDraw();
+}
+function rpEndStroke(){
+  if(!rp.cur)return;
+  if(rp.cur.p.length>=2){
+    rp.strokes.push(rp.cur);
+    rp.lines++;rpAdd('hz_rp_lines',1);
+    rpRebuild();
+    if(rp.phase==='aim')rpSay('🛝 滑道铺好了 —— 按 <b>🚀 放球</b> 让它滑下去','#B3E5FC');
+  }
+  rp.cur=null;rpHud();rpDraw();
+}
+function rpNoInk(){
+  if(rp.inkOut)return;
+  rp.inkOut=true;
+  sndNo();
+  rpEndStroke();
+  rpSay('🖊 这一格的墨线用完了：点 <b>🧽 擦掉重画</b> 就能全部退回','#FFCC80');
+  rpHud();
+}
+function rpErase(){
+  if(!rp.run||rp.over||rp.phase==='judge'||currentMode!=='ramp')return;
+  if(!rp.strokes.length&&!rp.cur){rpSay('🧽 场上还没有滑道','#B0BEC5');return}
+  rp.strokes=[];rp.cur=null;rp.ink=rp.inkMax;rp.inkOut=false;rp.erased=true;
+  rpRebuild();sndNo();
+  rpBand('🧽 擦干净 · 墨线退回来了');
+  if(rp.phase==='fly')rpReshoot('🧽 路擦掉了 —— 球回到顶上，重新画重新放');
+  rpHud();rpDraw();
+}
+/* ---- 放球 / 辅助 ---- */
+function rpRelease(){
+  if(!rp.run||rp.over||currentMode!=='ramp')return;
+  if(rp.phase!=='aim')return;
+  rp.cur=null;rpRebuild();
+  rp.phase='fly';rp.balls++;
+  rp.vx=(Math.random()-.5)*10;rp.vy=40;rp.rest=0;
+  tone(660,.08,'sine',.05);
+  rpSay('🚀 出发了！趁它滑还能再补几笔','#B3E5FC');
+  rpHud();
+}
+function rpAssist(k){
+  if(!rp.run||rp.over||currentMode!=='ramp')return;
+  if(rp.phase==='judge'||k<0||k>3)return;
+  rp.cur=null;rpRebuild();
+  const tx=rpBinCx(k),ty=rpBinTop()+6;
+  let best=null;
+  for(let t=45;t<=150;t++){
+    const T=t/100;
+    const vx=(tx-rp.bx)/T;
+    const vy=(ty-rp.by-0.5*RP_GRAV*T*T)/T;
+    const sp=Math.hypot(vx,vy);
+    if(!best||sp<best.sp)best={sp:sp,vx:vx,vy:vy};
+  }
+  if(!best)return;
+  rp.vx=best.vx;rp.vy=best.vy;
+  const sp=Math.hypot(rp.vx,rp.vy);
+  if(sp>RP_MAXV){rp.vx*=RP_MAXV/sp;rp.vy*=RP_MAXV/sp}
+  rp.phase='fly';rp.balls++;rp.erased=true;
+  rp.score=Math.max(0,rp.score-8);
+  rpBand('🎯 辅助瞄准 −8 分');
+  tone(660,.08,'sine',.05);
+  rpHud();
+}
+function rpHint(){
+  if(!rp.run||rp.over||currentMode!=='ramp')return;
+  if(rp.ghost>0){rpDraw();return}
+  if(rp.hintN<=0){rpSay('🔍 这一局的方向提示用完了','#B0BEC5');return}
+  rp.hintN--;rp.ghost=2600;rp.erased=true;
+  rp.score=Math.max(0,rp.score-10);
+  rpSet('rpHintN',String(rp.hintN));
+  if(rp.hintN<=0){const b=document.getElementById('rpHintBtn');if(b)b.classList.add('dead')}
+  const k=rpAnsBin();
+  rpSay('🔍 虚线指向第 <b>'+(k+1)+'</b> 格（−10 分，线还得自己画）','#CE93D8');
+  tone(900,.1,'triangle',.05);
+  rpHud();rpDraw();
+}
+function rpSlowMo(){
+  if(!rp.run||rp.over||currentMode!=='ramp')return;
+  if(rp.slowN<=0){rpSay('🐢 慢动作这一局用完了','#B0BEC5');return}
+  rp.slowN--;rp.slow=2600;
+  rpSet('rpSlowN',String(rp.slowN));
+  if(rp.slowN<=0){const b=document.getElementById('rpSlowBtn');if(b)b.classList.add('dead')}
+  rpBand('🐢 慢一点，趁现在再画两笔');
+  tone(330,.18,'sine',.05);
+}
+function rpAnsBin(){
+  for(let i=0;i<4;i++)if(rp.bins[i]&&rp.bins[i].v===rp.ans)return i;
+  return 0;
+}
+function rpReshoot(msg){
+  rp.phase='aim';rpReset();
+  rpSay(msg,'#B3E5FC');
+  rpHud();rpDraw();
+}
+/* ---- 判定 ---- */
+function rpSpike(){
+  if(rp.inv>0)return;
+  rp.pits++;
+  rp.hearts--;rp.combo=0;rp.inv=1500;rp.shake=280;
+  sndNo();
+  rpSpark(rp.bx,rp.by,'#FF8A80',16);
+  rpPop('💥 扎破啦',rp.bx,rp.by,'#FF8A80');
+  if(rp.hearts<=0){rpEnd('heart');return}
+  rpReshoot('⚠️ 撞上钉板 −1 颗心，还剩 <b>'+rp.hearts+'</b> 颗 —— 这回绕着它画','#FF8A80');
+}
+function rpLand(k){
+  rp.phase='judge';
+  rp.bx=rpBinCx(k);rp.by=rpBinTop()+RP_BIN/2;
+  rpSpark(rp.bx,rp.by-16,k===rpAnsBin()?'#80DEEA':'#FF8A80',12);
+  rpDraw();
+  if(k===rpAnsBin())rpRight(k);else rpWrong(k);
+}
+function rpRight(k){
+  rp.combo++;rp.maxCombo=Math.max(rp.maxCombo,rp.combo);
+  rp.ok++;rp.levelOk++;
+  const save=Math.round(Math.max(0,rp.ink)*0.3);
+  const one=(rp.strokes.length===1&&!rp.erased)?14:0;
+  const gain=Math.round(38+rp.combo*9+rp.level*6+save+one);
+  rp.score+=gain;
+  rp.time=Math.min(RP_TIME+30,rp.time+5);
+  if(one)rp.oneLine++;
+  rpPop('🎯 +'+gain,rp.bx,rp.by,'#FFD740');
+  rpBand(one?('🎯 一条线到位 +'+gain):('🛝 滑进对格 +'+gain));
+  tone(RP_NOTE[Math.min(RP_NOTE.length-1,rp.combo-1)],.17,'triangle',.07);
+  showComboEffect(rp.combo);
+  const cv=rpCv();
+  if(cv){
+    const q=cv.getBoundingClientRect();
+    spawnStarFly(q.left+rp.bx/Math.max(1,RP_W)*q.width,q.top+rp.by/Math.max(1,RP_H)*q.height);
+  }
+  if(rp.combo%3===0)spawnConfetti();
+  rpBookAdd(rp.ch);
+  if(rp.levelOk>=rp.need)rpLevelUp();
+  rpHud();
+  const gen=rp.gen;
+  rpT(function(){if(gen!==rp.gen||rp.over||currentMode!=='ramp')return;rpAsk()},660);
+}
+function rpWrong(k){
+  rp.combo=0;
+  rp.time=Math.max(1,rp.time-4);
+  rp.score=Math.max(0,rp.score-6);
+  sndNo();
+  const L=rp.bins[k]?rp.bins[k].txt:'?';
+  rpSay('❌ 那一格写着「<b>'+L+'</b>」，题目要的是「<b>'+rp.ansLbl+'</b>」—— 扣 4 秒','#FF8A80');
+  rpPop('💢 滑错格',rp.bx,rp.by,'#FF8A80');
+  rpHud();
+  const gen=rp.gen;
+  rpT(function(){if(gen!==rp.gen||rp.over||currentMode!=='ramp')return;rpAsk()},780);
+}
+function rpLevelUp(){
+  rp.level++;rp.levelOk=0;rp.need=3+rp.level;
+  rp.inkMax=rpInkFor(rp.level);
+  const bonus=Math.round(50+rp.time*1.5+rp.level*18);
+  rp.score+=bonus;
+  rp.time=Math.min(RP_TIME+40,rp.time+6);
+  addStars(1+Math.min(6,rp.level));
+  rpBuild();
+  rpBand('🛝 爬上第 '+rp.level+' 道 · 奖励 +'+bonus);
+  sndDone();spawnConfetti();
+  if(rp.level>rpInt('hz_rp_lv'))localStorage.setItem('hz_rp_lv',String(rp.level));
+  rpHud();
+}
+function rpBookAdd(ch){
+  if(!ch)return;
+  const k='hz_rp_book';
+  const cur=localStorage.getItem(k)||'';
+  const arr=cur?cur.split(','):[];
+  if(arr.indexOf(ch)>=0)return;
+  arr.push(ch);
+  if(arr.length>300)arr.shift();
+  localStorage.setItem(k,arr.join(','));
+}
+/* ---- 主循环 ---- */
+function rpStartLoop(){rpStopLoop();rp.ts=rpNow();rp.timerId=setInterval(rpTick,60)}
+function rpStopLoop(){if(rp.timerId){clearInterval(rp.timerId);rp.timerId=null}}
+function rpTick(){
+  if(!rp.run||rp.over||currentMode!=='ramp'){rpStopLoop();return}
+  const now=rpNow();
+  let dt=(now-rp.ts)/1000;
+  rp.ts=now;
+  if(dt>0.08)dt=0.08;
+  rpAdvance(dt);
+}
+function rpAdvance(dt){
+  if(rp.slow>0){
+    rp.slow-=dt*1000;
+    if(rp.slow<=0)rp.slow=0;else dt*=0.42;
+  }
+  if(rp.inv>0)rp.inv=Math.max(0,rp.inv-dt*1000);
+  if(rp.ghost>0)rp.ghost=Math.max(0,rp.ghost-dt*1000);
+  if(rp.shake>0)rp.shake=Math.max(0,rp.shake-dt*1000);
+  rp.time-=dt;
+  if(rp.time<=0){rp.time=0;rpHud();rpEnd('time');return}
+  if(rp.phase==='fly'){
+    const b={x:rp.bx,y:rp.by,vx:rp.vx,vy:rp.vy};
+    const sub=6;
+    let landed=false;
+    for(let i=0;i<sub&&!landed;i++){
+      const h=dt/sub;
+      b.vy+=RP_GRAV*h;
+      const sp=Math.hypot(b.vx,b.vy);
+      if(sp>RP_MAXV){b.vx*=RP_MAXV/sp;b.vy*=RP_MAXV/sp}
+      b.x+=b.vx*h;b.y+=b.vy*h;
+      for(let s=0;s<rp.segs.length;s++){
+        const g=rp.segs[s];
+        rpHitSeg(b,g[0],g[1],g[2],g[3]);
+      }
+      if(b.y>=rpBinTop()+RP_R*0.7){landed=true;break}
+    }
+    rp.bx=b.x;rp.by=b.y;rp.vx=b.vx;rp.vy=b.vy;
+    if(landed){rpLand(rpBinAt(b.x));return}
+    rp.spin+=b.vx*dt/26;
+    for(let i=0;i<rp.spikes.length;i++){
+      const k=rp.spikes[i];
+      if(Math.hypot(k.x-b.x,k.y-b.y)<k.r+RP_R-3){rpSpike();return}
+    }
+    for(let i=0;i<rp.gots.length;i++){
+      const g=rp.gots[i];
+      if(!g.taken&&Math.hypot(g.x-b.x,g.y-b.y)<RP_R+11){
+        g.taken=true;rp.coins++;rpAdd('hz_rp_coin',1);
+        rp.score+=18;rpPop('⭐ +18',g.x,g.y,'#FFF176');
+        rpSpark(g.x,g.y,'#FFF59D',8);
+        tone(1320,.07,'triangle',.05);
+        rpHud();
+      }
+    }
+    const v=Math.hypot(b.vx,b.vy);
+    if(v<16)rp.rest+=dt;else rp.rest=0;
+    if(rp.rest>1.1)rpReshoot('🛑 球停在半道：再补一笔推它一下，或 <b>🧽 擦掉重画</b>');
+  }
+  for(let i=rp.fx.length-1;i>=0;i--){
+    const p=rp.fx[i];
+    p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=520*dt;p.l-=dt;
+    if(p.l<=0)rp.fx.splice(i,1);
+  }
+  for(let i=rp.pops.length-1;i>=0;i--){
+    const p=rp.pops[i];
+    p.y-=34*dt;p.l-=dt;
+    if(p.l<=0)rp.pops.splice(i,1);
+  }
+  rpHud();rpDraw();
+}
+function rpSpark(x,y,col,n){
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,s=60+Math.random()*170;
+    rp.fx.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-40,l:.5+Math.random()*.28,c:col,r:2+Math.random()*2.4});
+  }
+}
+function rpPop(txt,x,y,col){rp.pops.push({t:txt,x:x,y:y,l:.95,c:col})}
+/* ---- HUD ---- */
+function rpHud(){
+  rpSet('rpScoreTxt','🛝 '+Math.round(rp.score)+' 分');
+  rpSet('rpTimeTxt','⏱ '+Math.max(0,Math.ceil(rp.time))+'s');
+  const R=rpRank(rpInt('hz_rp_ok')+rp.ok);
+  rpSet('rpRankTxt','🏅 '+R.t);
+  rpSet('rpGoalTxt','🛝 差 '+(rp.need-rp.levelOk));
+  rpSet('rpInkTxt','🖊 '+Math.max(0,Math.round(rp.ink))+'/'+rp.inkMax);
+  rpSet('rpComboTxt','🔥 连 '+rp.combo);
+  let h='';for(let i=0;i<Math.max(0,rp.hearts);i++)h+='❤️';
+  if(!h)h='💔';
+  rpSet('rpHeartTxt',h);
+  const bar=document.getElementById('rpBar');
+  if(bar){
+    const pct=Math.max(0,Math.min(100,rp.levelOk/rp.need*100));
+    bar.style.width=pct+'%';
+    bar.classList.toggle('low',pct<25);
+  }
+  rpSet('rpBarTxt','🛝 第 '+rp.level+' 道 · 引对 '+rp.levelOk+' / '+rp.need);
+  const go=document.getElementById('rpGo');
+  if(go)go.classList.toggle('dead',rp.phase!=='aim');
+}
+function rpSay(msg,color){
+  const el=document.getElementById('rpJudge');
+  if(!el)return;
+  el.innerHTML=msg;
+  if(color)el.style.color=color;
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function rpBand(msg){
+  const el=document.getElementById('rpBand');
+  if(!el)return;
+  el.innerHTML=msg;
+  el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+/* ---- 渲染 ---- */
+function rpDraw(){
+  const c=rpCtx();if(!c)return;
+  c.clearRect(0,0,RP_W,RP_H);
+  const top=rpBinTop();
+  if(rp.shake>0){c.save();c.translate((Math.random()-.5)*5,(Math.random()-.5)*5)}
+  c.strokeStyle='rgba(255,255,255,.07)';c.lineWidth=1;
+  for(let x=RP_CELL;x<RP_W;x+=RP_CELL){c.beginPath();c.moveTo(x,0);c.lineTo(x,top);c.stroke()}
+  for(let k=0;k<4;k++){
+    const x=k*RP_CELL;
+    c.fillStyle=k%2?'rgba(255,255,255,.13)':'rgba(255,255,255,.09)';
+    c.beginPath();
+    if(c.roundRect)c.roundRect(x+3,top+2,RP_CELL-6,RP_BIN-6,8);else c.rect(x+3,top+2,RP_CELL-6,RP_BIN-6);
+    c.fill();
+    const L=rp.bins[k];
+    c.fillStyle='#FFFFFF';
+    c.font='900 13px system-ui,sans-serif';
+    c.textAlign='center';c.textBaseline='middle';
+    c.fillText(L?L.txt:'?',x+RP_CELL/2,top+RP_BIN/2-3);
+    c.fillStyle='rgba(255,255,255,.5)';
+    c.font='800 10px system-ui,sans-serif';
+    c.fillText(String(k+1),x+RP_CELL/2,top+13);
+  }
+  c.strokeStyle='rgba(255,255,255,.42)';c.lineCap='round';
+  c.lineWidth=4;
+  c.beginPath();c.moveTo(RP_CELL,top-2);c.lineTo(RP_CELL,RP_H);c.stroke();
+  c.beginPath();c.moveTo(RP_CELL*3,top-2);c.lineTo(RP_CELL*3,RP_H);c.stroke();
+  c.lineWidth=7;
+  c.beginPath();c.moveTo(RP_CELL*2,top-34);c.lineTo(RP_CELL*2,RP_H);c.stroke();
+  c.fillStyle='rgba(255,255,255,.22)';
+  c.beginPath();c.arc(RP_W/2,88,24,Math.PI,0);c.fill();
+  rp.rocks.forEach(function(r){
+    c.fillStyle='#3E5C76';
+    c.strokeStyle='rgba(255,255,255,.34)';c.lineWidth=3;
+    c.beginPath();
+    if(c.roundRect)c.roundRect(r.x,r.y-5,r.w,14,6);else c.rect(r.x,r.y-5,r.w,14);
+    c.fill();c.stroke();
+  });
+  rp.spikes.forEach(function(k){
+    c.fillStyle='#FF6E40';
+    c.beginPath();
+    c.moveTo(k.x-k.r,k.y+k.r*0.7);c.lineTo(k.x,k.y-k.r*0.85);c.lineTo(k.x+k.r,k.y+k.r*0.7);
+    c.closePath();c.fill();
+    c.strokeStyle='rgba(255,255,255,.5)';c.lineWidth=1.4;c.stroke();
+  });
+  c.font='900 16px system-ui,sans-serif';c.textAlign='center';c.textBaseline='middle';
+  rp.gots.forEach(function(g){
+    if(g.taken)return;
+    c.fillStyle='#FFF176';
+    c.fillText('⭐',g.x,g.y);
+  });
+  function rpPathStyle(pts,style,w,dash){
+    if(pts.length<2)return;
+    c.save();
+    c.strokeStyle=style;c.lineWidth=w;c.lineCap='round';c.lineJoin='round';
+    if(dash)c.setLineDash(dash);
+    c.shadowColor='rgba(128,222,255,.65)';c.shadowBlur=dash?0:9;
+    c.beginPath();c.moveTo(pts[0].x,pts[0].y);
+    for(let i=1;i<pts.length;i++)c.lineTo(pts[i].x,pts[i].y);
+    c.stroke();c.restore();
+  }
+  rp.strokes.forEach(function(st){rpPathStyle(st.p,'rgba(178,235,255,.95)',5)});
+  if(rp.cur)rpPathStyle(rp.cur.p,'rgba(255,241,118,.95)',5);
+  if(rp.ghost>0){
+    const k=rpAnsBin();
+    rpPathStyle([{x:rp.bx,y:rp.by+RP_R+2},{x:rpBinCx(k),y:top-18}],'rgba(206,147,216,.92)',4,[7,7]);
+  }
+  if(rp.phase!=='judge'){
+    c.save();
+    c.translate(rp.bx,rp.by);c.rotate(rp.spin);
+    c.beginPath();c.arc(0,0,RP_R,0,Math.PI*2);
+    c.fillStyle=rp.inv>0?'rgba(255,138,128,.92)':'#FFFFFF';c.fill();
+    c.strokeStyle='rgba(38,50,56,.5)';c.lineWidth=2;c.stroke();
+    c.rotate(-rp.spin);
+    c.fillStyle='#1B3C50';
+    c.font='900 16px system-ui,sans-serif';
+    c.fillText(rp.ch||'字',0,1);
+    c.restore();
+  }
+  rp.fx.forEach(function(p){
+    c.globalAlpha=Math.max(0,Math.min(1,p.l*2));
+    c.fillStyle=p.c;
+    c.beginPath();c.arc(p.x,p.y,p.r,0,Math.PI*2);c.fill();
+  });
+  c.globalAlpha=1;
+  c.font='900 13px system-ui,sans-serif';
+  rp.pops.forEach(function(p){
+    c.globalAlpha=Math.max(0,Math.min(1,p.l));
+    c.fillStyle=p.c;
+    c.fillText(p.t,p.x,p.y);
+  });
+  c.globalAlpha=1;
+  if(rp.shake>0)c.restore();
+}
+/* ---- 起停 ---- */
+function rpStart(){
+  currentMode='ramp';rp.gen++;rpKillTimers();rpStopLoop();
+  rp.run=true;rp.over=false;
+  rp.level=1;rp.time=RP_TIME;rp.score=0;rp.hearts=3;
+  rp.combo=0;rp.maxCombo=0;rp.ok=0;rp.levelOk=0;rp.need=4;
+  rp.balls=0;rp.coins=0;rp.pits=0;rp.lines=0;rp.oneLine=0;
+  rp.phase='aim';rp.inkMax=rpInkFor(1);rp.ink=rp.inkMax;rp.erased=false;
+  rp.ghost=0;rp.hintN=2;rp.slowN=2;rp.slow=0;rp.inv=0;rp.rest=0;
+  rp.strokes=[];rp.cur=null;rp.fx=[];rp.pops=[];rp.busy=false;rp.inkOut=false;
+  rp.bins=[];rp.shake=0;
+  rp.ty=rp.ty||{};
+  showScreen('ramp');
+  rpFit();rpBuild();rpReset();rpHud();
+  rpSet('rpHintN','2');rpSet('rpSlowN','2');
+  const hb=document.getElementById('rpHintBtn');if(hb)hb.classList.remove('dead');
+  const sb=document.getElementById('rpSlowBtn');if(sb)sb.classList.remove('dead');
+  rpSet('rpQuiz','🛝 正在铺滑道……<small>马上出题</small>');
+  rpSay('🛝 看清题目 → 画一条滑道 → 放球，让字球滑进写着对答案的那一格','#B9F6CA');
+  rpStartLoop();
+  const gen=rp.gen;
+  rpT(function(){
+    if(gen!==rp.gen||currentMode!=='ramp'||!rp.run||rp.over)return;
+    rpAsk();
+  },30);
+}
+function rpEnd(why){
+  if(rp.over)return;
+  rp.over=true;rp.run=false;
+  rpStopLoop();rpKillTimers();
+  const s=Math.round(rp.score);
+  if(s>rpInt('hz_rp_best'))localStorage.setItem('hz_rp_best',String(s));
+  if(rp.level>rpInt('hz_rp_lv'))localStorage.setItem('hz_rp_lv',String(rp.level));
+  if(rp.maxCombo>rpInt('hz_rp_streak'))localStorage.setItem('hz_rp_streak',String(rp.maxCombo));
+  rpAdd('hz_rp_ok',rp.ok);
+  rpAdd('hz_rp_runs',1);
+  rpAdd('hz_rp_balls',rp.balls);
+  const stars=Math.max(2,Math.min(26,2+Math.floor(s/110)+(rp.level-1)*4+Math.floor(rp.ok/3)));
+  addStars(stars);
+  const best=rpInt('hz_rp_best');
+  const book=(localStorage.getItem('hz_rp_book')||'').split(',').filter(Boolean).length;
+  const R=rpRank(rpInt('hz_rp_ok'));
+  rpSet('rpRsStars','⭐ +'+stars);
+  rpSet('rpRsEmoji',rp.level>=5?'🌈':(rp.level>=3?'🛝':(why==='time'?'⏱':'💥')));
+  rpSet('rpRsTitle',why==='time'?('时间到 · 滑到第 '+rp.level+' 道'):(rp.hearts<=0?'💔 球都扎破了':'这一道滑完了'));
+  rpSet('rpRsSub',(why==='time'?'⏱ 漏完了':'❤️ 心用完了')+' —— 这局引对 <b>'+rp.ok+
+    '</b> 格、放了 '+rp.balls+' 球、铺 '+rp.lines+' 条线、捡到 '+rp.coins+' 颗⭐'+
+    (rp.pits?('，扎破 '+rp.pits+' 次'):'，一次钉板都没碰着，漂亮')+
+    '。最长连对 '+rp.maxCombo+' 次、一条线到位 '+rp.oneLine+' 次。');
+  rpSet('rpRsScore',String(s));
+  rpSet('rpRsLv',String(rp.level));
+  rpSet('rpRsOk',String(rp.ok));
+  rpSet('rpRsBalls',String(rp.balls));
+  rpSet('rpRsCoins',String(rp.coins));
+  rpSet('rpRsStreak',String(rp.maxCombo));
+  rpSet('rpRsBest',best+' 分');
+  rpSet('rpRsAll','🏅 段位 '+R.e+' '+R.t+'（累计引对 '+rpInt('hz_rp_ok')+' 格）'+
+    '\n滑到过第 '+rpInt('hz_rp_lv')+' 道 · 铺过 '+rpInt('hz_rp_lines')+' 条线 · 捡了 '+rpInt('hz_rp_coin')+' 颗星'+
+    '\n累计放球 '+rpInt('hz_rp_balls')+' 个 · 最长连对 '+rpInt('hz_rp_streak')+' 次 · 上过 '+rpInt('hz_rp_runs')+' 次滑梯'+
+    '\n🛝 引对过的字已收录 '+book+' 个');
+  showScreen('ramp-result');
+}
+function rpRetry(){rpStart()}
+function rpLeave(){
+  rpStopLoop();rpKillTimers();
+  if(rp.run&&!rp.over){rp.over=true;rp.run=false}
+  rp.cur=null;
+  goHome();
+}
+function rpHelp(){
+  rpSay('🛝 题目在顶上 → 答案写在底下四个 <b>格子</b> 里 → 在场上 <b>按住拖动画一条滑道</b>（画线要花墨线）→ 按 <b>🚀 放球</b> → 球顺着你画的线滑走，<b>滑进写着对答案的那格</b> → 墨线剩得越多分越高；⚠️ 钉板会扎破球，中间那道隔墙最高','#80DEEA');
+}
+function rpNudge(){
+  const dot=document.getElementById('rampCardDot');
+  const tip=document.getElementById('rampCardTip');
+  const ok=rpInt('hz_rp_ok'),lv=rpInt('hz_rp_lv'),runs=rpInt('hz_rp_runs');
+  if(tip){
+    const R=rpRank(ok);
+    tip.textContent=runs?('🏅 '+R.t+' · 滑到过第 '+lv+' 道'):'画条滑道 · 把球引进答案格';
+  }
+  if(!dot)return;
+  if(!runs){dot.textContent='🆕';dot.classList.add('on');return}
+  const R=rpRank(ok),R2=RP_RANKS[RP_RANKS.indexOf(R)+1];
+  if(R2&&R2.n-ok<=3){dot.textContent='🏅 差 '+(R2.n-ok)+' 格';dot.classList.add('on');return}
+  dot.classList.remove('on');
+}
+/* ---- 输入 ---- */
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='ramp'||rp.over)return;
+  const k=e.key||'';
+  const kk=k.toLowerCase();
+  if(k>='1'&&k<='4'){e.preventDefault();rpAssist(parseInt(k,10)-1);return}
+  if(k===' '||k==='Enter'){e.preventDefault();rpRelease();return}
+  if(kk==='e'){e.preventDefault();rpErase();return}
+  if(kk==='h'){e.preventDefault();rpHint();return}
+  if(kk==='s'){e.preventDefault();rpSlowMo();return}
+  if(k==='?'){e.preventDefault();rpHelp();return}
+});
+(function rpBindInput(){
+  const cv=rpCv();
+  if(!cv||cv.dataset.bound)return;
+  cv.dataset.bound='1';
+  let down=false;
+  cv.addEventListener('pointerdown',function(e){
+    if(currentMode!=='ramp'||!rpCanDraw())return;
+    down=true;
+    try{cv.setPointerCapture(e.pointerId)}catch(err){}
+    rpStartStroke(e);
+    e.preventDefault();
+  });
+  cv.addEventListener('pointermove',function(e){
+    if(!down)return;
+    rpMoveStroke(e);
+    e.preventDefault();
+  });
+  window.addEventListener('pointerup',function(){
+    if(!down)return;
+    down=false;
+    rpEndStroke();
+  });
+})();
+window.addEventListener('resize',function(){
+  if(currentMode!=='ramp'||!rp.run)return;
+  rpFit();rpDraw();
+});
+
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
