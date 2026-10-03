@@ -2834,6 +2834,108 @@ button:active{transform:scale(.95)}
 
 /* ============ v1.50.0 笔顺喷喷乐（走位涂地 · 和章鱼抢地盘 · 连喷扩大喷幅）============ */
 /* ============ v1.51.0 笔顺数织屋（行列数字推格子 · 把这个字染出来 · 按笔顺序亮起）============ */
+.bm-hud{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
+.bm-hud span{flex:0 0 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 6px;font-size:10px;color:#fff;white-space:nowrap}
+.bm-hud b{color:#FFD740}
+.bm-bar{position:relative;display:flex;width:100%;max-width:322px;height:22px;margin:0 auto;border-radius:99px;overflow:hidden;
+  background:rgba(0,0,0,.34);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.bm-bar i{display:block;height:100%;width:0;transition:width .28s;background:linear-gradient(90deg,#FFD54F,#FF6D00)}
+.bm-bar i.full{background:linear-gradient(90deg,#69F0AE,#00C853)}
+.bm-bar b{position:absolute;left:0;right:0;top:0;line-height:22px;text-align:center;font-size:11px;font-weight:800;color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.65);pointer-events:none}
+.bm-quiz{width:100%;max-width:322px;margin:6px auto 0;min-height:40px;border-radius:12px;background:rgba(0,0,0,.42);color:#fff;
+  font-size:13.5px;font-weight:800;text-align:center;line-height:1.3;padding:7px 9px;z-index:6;position:relative;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.bm-quiz small{display:block;font-size:10px;font-weight:600;opacity:.8;margin-top:2px}
+.bm-quiz b{color:#FFD740}
+.bm-stage{position:relative;width:100%;max-width:322px;height:262px;margin:7px auto 0;overflow:hidden;border-radius:18px;
+  touch-action:none;user-select:none;-webkit-user-select:none;
+  background:linear-gradient(180deg,#1E4D3B,#2E6F4E 52%,#1B3C50);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 8px 22px rgba(0,0,0,.32)}
+.bm-stage.lv2{background:linear-gradient(180deg,#3B2E5E,#5A4185 52%,#1F2E55)}
+.bm-stage.lv3{background:linear-gradient(180deg,#5A2A2A,#8A4B2E 52%,#2A1F3D)}
+.bm-stage.lv4{background:linear-gradient(180deg,#123B5C,#1E6E8C 52%,#0F2A44)}
+.bm-stage.lv5{background:linear-gradient(180deg,#4A1E5C,#7B2C7A 52%,#1A1330)}
+.bm-stage.shake{animation:bmShake .38s}
+@keyframes bmShake{0%,100%{transform:translate(0,0)}20%{transform:translate(-5px,2px)}45%{transform:translate(5px,-3px)}70%{transform:translate(-3px,-1px)}}
+.bm-deco{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;z-index:1}
+.bm-deco span{position:absolute;opacity:.3;animation:bmFloat 5.2s ease-in-out infinite}
+@keyframes bmFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.bm-grid{position:absolute;display:grid;gap:2px;z-index:2;border-radius:10px;
+  grid-template-columns:repeat(9,var(--bmc,32px));grid-auto-rows:var(--bmc,32px)}
+.bm-tile{position:relative;background:rgba(255,255,255,.09);border-radius:5px}
+.bm-tile.rock{background:linear-gradient(160deg,#8D9AA6,#4B5A66);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.bm-tile.rock i{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-style:normal;font-size:15px;opacity:.8}
+.bm-crate{position:absolute;z-index:5;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  line-height:1;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;
+  background:linear-gradient(180deg,#CFE07A,#8FAD4C);box-shadow:inset 0 0 0 2px #5C7A2E,0 3px 8px rgba(0,0,0,.4);
+  transition:transform .12s,box-shadow .2s}
+.bm-crate i{font-style:normal;font-size:14px;line-height:1.05}
+.bm-crate b{font-size:10.5px;font-weight:900;color:#2E4310;margin-top:1px;white-space:nowrap}
+.bm-crate:active{transform:scale(.94)}
+.bm-crate.opt{background:linear-gradient(180deg,#FFE9A8,#E0B84E);box-shadow:inset 0 0 0 2px #9A7225,0 3px 10px rgba(0,0,0,.44)}
+.bm-crate.opt b{color:#4E342E;font-size:11.5px}
+.bm-crate.opt u{position:absolute;left:50%;transform:translateX(-50%);top:-11px;font-size:9px;font-weight:900;color:#FFECB3;
+  text-decoration:none;background:rgba(0,0,0,.42);border-radius:8px;padding:1px 5px}
+.bm-crate.near{box-shadow:inset 0 0 0 2px #FFF176,0 0 14px rgba(255,235,59,.85)}
+.bm-crate.gone{animation:bmGone .38s ease-in forwards;pointer-events:none}
+@keyframes bmGone{0%{opacity:1;transform:scale(1) rotate(0)}40%{opacity:1;transform:scale(1.22) rotate(9deg)}100%{opacity:0;transform:scale(.2) rotate(-16deg)}}
+.bm-bomb{position:absolute;z-index:6;text-align:center;line-height:1;font-size:24px;pointer-events:none;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,.5));animation:bmFuse .42s ease-in-out infinite}
+@keyframes bmFuse{0%,100%{transform:scale(1)}50%{transform:scale(1.24)}}
+.bm-bomb.hot{animation-duration:.19s;filter:drop-shadow(0 0 9px #FF7043) brightness(1.25)}
+.bm-flame{position:absolute;z-index:8;display:flex;align-items:center;justify-content:center;border-radius:9px;
+  text-align:center;line-height:1;font-size:22px;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,rgba(255,241,118,.95),rgba(255,152,0,.72) 52%,rgba(255,87,34,0) 80%);
+  filter:drop-shadow(0 0 9px rgba(255,167,38,.95)) saturate(1.5) brightness(1.15);
+  animation:bmFlame .42s ease-out forwards}
+@keyframes bmFlame{0%{opacity:0;transform:scale(.4)}26%{opacity:1;transform:scale(1.24)}100%{opacity:0;transform:scale(.86)}}
+.bm-pick{position:absolute;z-index:4;text-align:center;line-height:1;font-size:17px;pointer-events:none;
+  animation:bmGlit 1.3s ease-in-out infinite}
+@keyframes bmGlit{0%,100%{transform:scale(1) rotate(-7deg)}50%{transform:scale(1.18) rotate(7deg)}}
+.bm-crab{position:absolute;z-index:6;text-align:center;line-height:1;font-size:23px;
+  transition:left .24s linear,top .24s linear;filter:drop-shadow(0 3px 6px rgba(0,0,0,.5));cursor:pointer}
+.bm-crab.dead{animation:bmGone .4s ease-in forwards;pointer-events:none}
+.bm-hero{position:absolute;z-index:9;text-align:center;font-size:26px;line-height:1;pointer-events:none;
+  transition:left .14s linear,top .14s linear;filter:drop-shadow(0 3px 7px rgba(0,0,0,.55))}
+.bm-hero.hurt{animation:bmHurt .5s}
+@keyframes bmHurt{0%,100%{filter:drop-shadow(0 3px 7px rgba(0,0,0,.55))}30%{filter:drop-shadow(0 0 12px #FF5252) saturate(1.6)}
+  60%{transform:translateY(-4px) rotate(-10deg)}}
+.bm-door{position:absolute;z-index:3;text-align:center;font-size:23px;line-height:1;filter:grayscale(.7) brightness(.75);
+  transition:filter .3s}
+.bm-door.open{filter:drop-shadow(0 0 13px #69F0AE) saturate(1.5);animation:bmDoor 1.1s ease-in-out infinite}
+@keyframes bmDoor{0%,100%{transform:scale(1)}50%{transform:scale(1.13)}}
+.bm-pop{position:absolute;font-size:14px;font-weight:900;color:#FFD740;text-shadow:0 2px 6px rgba(0,0,0,.62);
+  pointer-events:none;z-index:11;white-space:nowrap;animation:bmPopUp 1.05s forwards}
+@keyframes bmPopUp{0%{opacity:0;transform:translateY(8px) scale(.8)}22%{opacity:1;transform:translateY(-6px) scale(1.12)}
+  100%{opacity:0;transform:translateY(-44px) scale(1)}}
+.bm-spark{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:10;
+  animation:bmSparkF .62s forwards}
+@keyframes bmSparkF{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--sx),var(--sy)) scale(.2)}}
+.bm-judge{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:12px;font-weight:800;min-height:34px;
+  line-height:1.45;color:#fff;opacity:.95}
+.bm-judge.pop{animation:bmJudge .4s}
+@keyframes bmJudge{from{transform:scale(.88);opacity:.3}to{transform:scale(1);opacity:1}}
+.bm-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);line-height:1.6}
+.bm-tip b{color:#FFD740}
+.bm-dpad{display:grid;grid-template-columns:repeat(3,54px);gap:5px;justify-content:center;margin:8px auto 0}
+.bm-db{width:54px;height:44px;border-radius:13px;border:none;background:rgba(255,255,255,.15);color:#fff;font-size:17px;
+  font-weight:900;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.bm-db:active{background:rgba(255,255,255,.34);transform:scale(.95)}
+.bm-db.bomb{background:linear-gradient(180deg,#FF8A65,#E64A19);font-size:20px}
+.bm-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.bm-rs span{display:block;font-size:25px;font-weight:bold}
+.bm-rs small{display:block;font-size:11px;opacity:.75;margin-top:2px}
+.bm-band{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:12;font-size:16px;font-weight:900;color:#fff;
+  background:rgba(0,0,0,.66);border-radius:99px;padding:8px 16px;opacity:0;pointer-events:none;white-space:nowrap}
+.bm-band.on{animation:bmBand 1.7s forwards}
+@keyframes bmBand{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}
+  76%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.04)}}
+.bm-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;
+  font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.bm-badge.on{display:flex}
+@media(max-width:420px){.bm-hud,.bm-quiz,.bm-bar,.bm-judge,.bm-tip{max-width:300px}}
 .pc-hud{display:flex;gap:5px;justify-content:center;flex-wrap:nowrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
 .pc-hud span{flex:0 1 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 6px;font-size:10px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pc-hud b{color:#FFD740}
@@ -3253,6 +3355,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🖼</div>
       <div class="info"><h3>笔顺数织屋</h3><p id="picrossCardTip">数字推格子 · 把这个字染出来</p></div>
       <span class="pc-badge" id="picrossCardDot">🆕</span>
+    </div>
+<div class="mode-card" onclick="enterMode('bomb')">
+      <div class="icon">🏝️</div>
+      <div class="info"><h3>笔顺炸炸岛</h3><p id="bombCardTip">放炮走位 · 炸掉对的答案</p></div>
+      <span class="bm-badge" id="bombCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('sky')">
       <div class="icon">☁️</div>
@@ -5528,6 +5635,68 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="srtLeave()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-bomb">
+  <div class="top-bar">
+    <button class="back-btn" onclick="bmLeave()">← 返回</button>
+    <div class="stats"><span id="bmScoreTxt">💥 0 分</span><span id="bmTimeTxt">⏱ 70s</span></div>
+    <button class="icon-btn" onclick="bmHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🏝️ 岛上到处是 <b>灌木丛</b>，其中四丛各写着一个答案：看清顶上这道题，<b style="color:#FFF176">站到写着对答案的那丛旁边放一炮</b>。放完要 <b style="color:#FF8A65">1.9 秒内跑出火圈</b>；🦀 螃蟹一直追你，🚪 炸够数量门才开。</div>
+  <div class="bm-hud">
+    <span id="bmRankTxt" title="段位">🏅 点火新手</span>
+    <span id="bmGoalTxt" title="还要炸对几个才开门">🚪 差 3</span>
+    <span id="bmPowTxt" title="携带炮弹数 · 火圈宽度">💣×1 火1</span>
+    <span id="bmComboTxt" title="连炸次数">🔥 连 0</span>
+    <span id="bmHeartTxt" title="生命">❤️❤️❤️</span>
+  </div>
+  <div class="bm-bar"><i id="bmBar"></i><b id="bmBarTxt">🏝️ 第 1 关 · 炸对 0 / 3</b></div>
+  <div class="bm-quiz" id="bmQuiz">💣 正在抱火药……<small>马上出题</small></div>
+  <div class="bm-stage" id="bmStage">
+    <div class="bm-deco" id="bmDeco"></div>
+    <div class="bm-grid" id="bmGrid"></div>
+    <div id="bmField"></div>
+    <div class="bm-door" id="bmDoor">🚪</div>
+    <div class="bm-hero" id="bmHero">🦦</div>
+    <div class="bm-band" id="bmBand"></div>
+  </div>
+  <div class="bm-dpad">
+    <span></span><button class="bm-db" data-d="u" title="往上">▲</button><span></span>
+    <button class="bm-db" data-d="l" title="往左">◀</button><button class="bm-db bomb" id="bmDrop" title="放炮（空格）">💣</button><button class="bm-db" data-d="r" title="往右">▶</button>
+    <span></span><button class="bm-db" data-d="d" title="往下">▼</button><span></span>
+  </div>
+  <div class="bm-judge" id="bmJudge"></div>
+  <div class="bm-tip">按 <b>方向键 / WASD</b> 走位 · <b>空格 / 回车 / B</b> 放炮 · <b>点灌木</b>自动走到它旁边 · <b>H</b> 怎么玩</div>
+</div>
+<div class="screen" id="screen-bomb-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="bmLeave()">← 回首页</button>
+    <div class="stats"><span id="bmRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="bmRsEmoji">🏝️</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="bmRsTitle">这一岛炸开了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="bmRsSub">下一座岛更大，螃蟹更快</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="bm-rs">
+      <div><span style="color:#FFD700" id="bmRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="bmRsLv">1</span><small>炸到第几关</small></div>
+      <div><span style="color:#69F0AE" id="bmRsOk">0</span><small>炸对答案</small></div>
+      <div><span style="color:#FFAB91" id="bmRsBooms">0</span><small>放了几炮</small></div>
+      <div><span style="color:#FFF176" id="bmRsCrab">0</span><small>炸到螃蟹</small></div>
+      <div><span style="color:#E1BEE7" id="bmRsStreak">0</span><small>最长连炸</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="bmRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="bmRsAll">🏅 点火新手</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="bmRetry()">🔁 再炸一岛</button>
+    <button class="w-btn blue" onclick="bmLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-picross">
   <div class="top-bar">
     <button class="back-btn" onclick="pcLeave()">← 返回</button>
@@ -6686,6 +6855,7 @@ function updateHomeStats(){
   if(typeof srtNudge==='function')srtNudge();
   if(typeof spNudge==='function')spNudge();
   if(typeof pcNudge==='function')pcNudge();
+  if(typeof bmNudge==='function')bmNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -6739,6 +6909,7 @@ function enterMode(mode){
  else if(mode==='sort')srtStart();
  else if(mode==='splat')spStart();
  else if(mode==='picross')pcStart();
+ else if(mode==='bomb')bmStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -30442,6 +30613,952 @@ document.addEventListener('keydown',e=>{if(window.pcKeys)window.pcKeys(e)});
   window.addEventListener('pointerup',stop);
 })();
 window.addEventListener('resize',pcOnResize);
+/* ================= 笔顺炸炸岛（放炮走位 · 炸掉写着对答案的灌木丛） ================= */
+const BM_COLS=9,BM_ROWS=7,BM_N=BM_COLS*BM_ROWS;
+const BM_TIME=70,BM_FUSE=1900,BM_STEP0=172,BM_STEP_MIN=112,BM_INV=1600,BM_STUN=880;
+const BM_LB={R:['➡️','往右'],D:['⬇️','往下'],P:['↙️','左下'],N:['↘️','右下'],T:['↗️','右上']};
+const BM_ORD=['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十'];
+const BM_NOTE=[523,587,659,693,784,880,988,1047,1175,1319];
+const BM_PICKS={
+  heart:{e:'❤️',lbl:'❤️ 捡回一颗心'},
+  star:{e:'💎',lbl:'💎 一袋钻石 +60'},
+  time:{e:'⏳',lbl:'⏳ 捡到 8 秒'},
+  bomb:{e:'🧨',lbl:'🧨 多背一发炮'},
+  range:{e:'🎯',lbl:'🎯 火圈变宽！'}
+};
+const BM_RANKS=[
+  {n:0,e:'🐣',t:'点火新手'},{n:8,e:'🧨',t:'炸草学徒'},{n:20,e:'💥',t:'爆破小队长'},
+  {n:36,e:'🦀',t:'螃蟹克星'},{n:56,e:'🏝️',t:'岛上常住民'},{n:82,e:'⚡',t:'火线飞毛腿'},
+  {n:112,e:'🔥',t:'火药桶达人'},{n:150,e:'👑',t:'炸炸岛主'},{n:210,e:'🌋',t:'爆破大火山'}
+];
+let bm={
+  run:false,over:false,gen:0,timers:[],timerId:null,ts:0,now:0,
+  level:1,time:BM_TIME,score:0,hearts:3,combo:0,maxCombo:0,
+  ok:0,levelOk:0,booms:0,dug:0,crabs:0,doors:0,gems:0,need:3,unlocked:false,
+  px:0,py:0,walk:[],walkAcc:0,aiAcc:0,stun:0,inv:0,busy:false,chainThis:0,
+  cap:1,range:1,g:[],lab:[],hide:[],cels:[],pels:[],picks:[],bombs:[],crabList:[],
+  door:-1,cell:32,ox:0,oy:0,W:322,H:262,ans:'',ansLbl:'',ch:'',ty:{},tries:0
+};
+function bmEl(){return document.getElementById('bmStage')}
+function bmField(){return document.getElementById('bmField')}
+function bmSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function bmInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function bmAdd(k,n){localStorage.setItem(k,String(bmInt(k)+n))}
+function bmIdx(x,y){return y*BM_COLS+x}
+function bmIn(x,y){return x>=0&&y>=0&&x<BM_COLS&&y<BM_ROWS}
+function bmX(i){return i%BM_COLS}
+function bmY(i){return Math.floor(i/BM_COLS)}
+function bmShuf(a){for(let i=a.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function bmT(fn,ms){const g=bm.gen;const id=setTimeout(function(){if(g!==bm.gen)return;fn()},ms);bm.timers.push(id);return id}
+function bmKillTimers(){bm.timers.forEach(function(t){clearTimeout(t)});bm.timers=[]}
+function bmNow(){return(typeof performance!=='undefined')?performance.now():Date.now()}
+function bmRank(n){let r=BM_RANKS[0];for(let i=0;i<BM_RANKS.length;i++)if(n>=BM_RANKS[i].n)r=BM_RANKS[i];return r}
+function bmCx(i){return bm.ox+(bmX(i)+0.5)*bm.cell}
+function bmCy(i){return bm.oy+(bmY(i)+0.5)*bm.cell}
+function bmOkTotal(){return bmInt('hz_bm_ok')+bm.ok}
+function bmcurRange(){return Math.min(3,bm.range+(bm.combo>=3?1:0))}
+function bmStepMs(){return Math.max(BM_STEP_MIN,BM_STEP0-Math.min(40,(bm.level-1)*6+bm.combo*2))}
+function bmCrabMs(){return Math.max(300,660-(bm.level-1)*62)}
+function bmCrabWant(){return Math.min(3,Math.ceil(bm.level/2))}
+function bmDens(){return Math.min(.66,.4+bm.level*.05)}
+function bmHome(){return[bmIdx(0,0),bmIdx(1,0),bmIdx(0,1)]}
+function bmWalkable(i){return bm.g[i]===0&&!bm.bombs.some(function(b){return b.i===i})}
+/* ---- 舞台尺寸 ---- */
+function bmLayout(){
+  const st=bmEl();if(!st)return;
+  bm.W=st.clientWidth||322;bm.H=st.clientHeight||262;
+  const pad=8;
+  bm.cell=Math.max(20,Math.min(Math.floor((bm.W-pad*2)/BM_COLS),Math.floor((bm.H-pad*2)/BM_ROWS)));
+  bm.ox=Math.round((bm.W-bm.cell*BM_COLS)/2);
+  bm.oy=Math.round((bm.H-bm.cell*BM_ROWS)/2);
+  const g=document.getElementById('bmGrid');
+  if(g){
+    g.style.setProperty('--bmc',(bm.cell-2)+'px');
+    g.style.left=bm.ox+'px';g.style.top=bm.oy+'px';
+    g.style.width=(bm.cell*BM_COLS-2)+'px';g.style.height=(bm.cell*BM_ROWS-2)+'px';
+  }
+  const s=bmBox();
+  for(let i=0;i<BM_N;i++){
+    if(bm.cels[i])bmSize(bm.cels[i],i,s);
+    if(bm.pels[i])bmSize(bm.pels[i],i,Math.round(s*0.8));
+  }
+  bm.bombs.forEach(function(b){if(b.el)bmSize(b.el,b.i,Math.round(s*0.86))});
+  bm.crabList.forEach(function(c){if(c.el)bmSize(c.el,bmIdx(c.x,c.y),Math.round(s*0.86))});
+  bmHeroPos();bmDoorPos();bmDecos();
+}
+function bmBox(){return Math.max(20,bm.cell-2)}
+function bmSize(el,i,s){
+  el.style.width=s+'px';el.style.height=s+'px';
+  el.style.left=(bmCx(i)-s/2)+'px';el.style.top=(bmCy(i)-s/2)+'px';
+}
+function bmHeroPos(){
+  const h=document.getElementById('bmHero');if(!h)return;
+  bmSize(h,bmIdx(bm.px,bm.py),bmBox());
+}
+function bmDoorPos(){
+  const d=document.getElementById('bmDoor');
+  if(!d)return;
+  if(bm.door<0){d.style.display='none';return}
+  d.style.display='';
+  bmSize(d,bm.door,bmBox());
+}
+/* ---- 造岛 ---- */
+function bmBuild(){
+  bm.g=new Array(BM_N).fill(0);
+  bm.lab=new Array(BM_N).fill(null);
+  bm.hide=new Array(BM_N).fill('');
+  bm.picks=[];bm.cels=[];bm.pels=[];
+  for(let y=1;y<BM_ROWS;y+=2)for(let x=1;x<BM_COLS;x+=2)bm.g[bmIdx(x,y)]=1;
+  const home=bmHome(),dens=bmDens();
+  for(let i=0;i<BM_N;i++){
+    if(bm.g[i]!==0||home.indexOf(i)>=0)continue;
+    if(Math.random()<dens)bm.g[i]=2;
+  }
+  for(let i=0;i<BM_N;i++){
+    if(bm.g[i]!==2)continue;
+    const r=Math.random();
+    if(r<.05)bm.hide[i]='heart';
+    else if(r<.17)bm.hide[i]='star';
+    else if(r<.24)bm.hide[i]='time';
+    else if(r<.29)bm.hide[i]='bomb';
+    else if(r<.33&&bm.range<3)bm.hide[i]='range';
+  }
+  let best=-1,bestD=-1;
+  for(let i=0;i<BM_N;i++){
+    if(bm.g[i]!==0||home.indexOf(i)>=0)continue;
+    const d=bmX(i)+bmY(i);
+    if(d>bestD||(d===bestD&&Math.random()<.5)){bestD=d;best=i}
+  }
+  if(best<0){
+    let far=-1,fd=-1;
+    for(let i=0;i<BM_N;i++){
+      if(bm.g[i]!==2)continue;
+      const d=bmX(i)+bmY(i);
+      if(d>fd){fd=d;far=i}
+    }
+    if(far>=0){bm.g[far]=0;bm.hide[far]='';best=far}
+  }
+  bm.door=best>=0?best:bmIdx(BM_COLS-1,BM_ROWS-1);
+  bm.g[bm.door]=0;bm.hide[bm.door]='';
+  bm.px=0;bm.py=0;bm.walk.length=0;bm.walkAcc=0;bm.aiAcc=0;
+  bm.bombs.forEach(function(b){if(b.el)b.el.remove()});
+  bm.bombs=[];
+  bm.crabList.forEach(function(c){if(c.el)c.el.remove()});
+  bm.crabList=[];
+  bm.unlocked=false;bm.levelOk=0;
+  bmRenderTiles();
+  bmRenderCrates();
+  for(let k=0;k<bmCrabWant();k++)bmCrabSpawn();
+  const dg=document.getElementById('bmDoor');
+  if(dg)dg.classList.remove('open');
+  bmDoorPos();
+}
+function bmRenderTiles(){
+  const g=document.getElementById('bmGrid');if(!g)return;
+  g.innerHTML='';
+  for(let i=0;i<BM_N;i++){
+    const t=document.createElement('div');
+    t.className='bm-tile'+(bm.g[i]===1?' rock':'');
+    if(bm.g[i]===1)t.innerHTML='<i>🗿</i>';
+    g.appendChild(t);
+  }
+}
+function bmRenderCrates(){
+  const f=bmField();if(!f)return;
+  f.querySelectorAll('.bm-crate,.bm-pick,.bm-crab,.bm-bomb').forEach(function(e){e.remove()});
+  bm.cels=[];bm.pels=[];
+  for(let i=0;i<BM_N;i++){
+    if(bm.g[i]!==2)continue;
+    bmSize(bmCrateDom(i),i,bmBox());
+  }
+  bmPaintCrates();
+}
+function bmCrateDom(i){
+  if(bm.cels[i])return bm.cels[i];
+  const el=document.createElement('div');
+  el.className='bm-crate';el.dataset.i=String(i);
+  el.innerHTML='<i>🌴</i><b></b>';
+  const f=bmField();if(f)f.appendChild(el);
+  bm.cels[i]=el;
+  return el;
+}
+function bmPaintCrates(){
+  for(let i=0;i<BM_N;i++){
+    const el=bm.cels[i];
+    if(!el)continue;
+    const L=bm.lab[i];
+    el.classList.toggle('opt',!!L);
+    const b=el.querySelector('b');
+    if(b)b.textContent=L?L.txt:'';
+    const u=el.querySelector('u');
+    if(L){
+      if(!u){const n=document.createElement('u');n.textContent='答案';el.appendChild(n)}
+    }else if(u)u.remove();
+  }
+}
+function bmDecos(){
+  const dc=document.getElementById('bmDeco');if(!dc)return;
+  if(!dc.children.length){
+    const es=['🌺','🪵','🐚','🌿','⭐','🍍','🌾','🐠'];
+    for(let i=0;i<es.length;i++){
+      const s=document.createElement('span');
+      s.textContent=es[i];
+      s.style.animationDelay=(i*0.42)+'s';
+      dc.appendChild(s);
+    }
+  }
+  const kids=dc.children;
+  for(let i=0;i<kids.length;i++){
+    kids[i].style.left=(6+(i*61+13)%Math.max(20,bm.W-30))+'px';
+    kids[i].style.top=(4+(i*79+17)%Math.max(20,bm.H-28))+'px';
+  }
+}
+/* ---- 出题：四个答案写在四丛灌木上 ---- */
+async function bmData(ch){
+  if(!ch)return null;
+  const d0=bm.ty[ch];if(d0)return d0;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await loadCharData(ch);
+  if(!raw||!raw.medians||raw.medians.length<2)return null;
+  const d={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  bm.ty[ch]=d;return d;
+}
+async function bmAsk(){
+  if(bm.over||currentMode!=='bomb'){bm.busy=false;return}
+  if(bm.busy)return;
+  bm.busy=true;bm.tries=0;
+  const gen=bm.gen;
+  let ch='',d=null;
+  for(let i=0;i<12;i++){
+    const c=nextInQueue();
+    if(!c)break;
+    const r=await bmData(c);
+    if(r){ch=c;d=r;break}
+  }
+  if(gen!==bm.gen||bm.over||currentMode!=='bomb'){bm.busy=false;return}
+  if(!ch){
+    bmSet('bmQuiz','📖 字还没下下来……<small>等一秒就开炸</small>');
+    bm.busy=false;
+    bmT(function(){if(!bm.over&&currentMode==='bomb')bmAsk()},900);
+    return;
+  }
+  bm.ch=ch;
+  const n=d.n,dirs=d.t;
+  let opts,ans,lbl,qText;
+  if(Math.random()<.45&&n<=12){
+    ans=String(n);lbl=n+' 笔';
+    const nums=[n];
+    while(nums.length<4){
+      const k=n+(Math.random()<.5?-1:1)*(1+Math.floor(Math.random()*3));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=bmShuf(nums.slice(0,4)).map(function(k){return{v:String(k),txt:k+' 笔'}});
+    qText='『'+ch+'』一共有几笔？';
+  }else{
+    const idx=Math.floor(Math.random()*dirs.length);
+    const code=dirs[idx];
+    ans=code;lbl=(BM_LB[code]||['?','?'])[1];
+    const right=[{v:code,txt:lbl}];
+    const pool=bmShuf(['R','D','P','N','T'].filter(function(c){return c!==code})).slice(0,3)
+      .map(function(c){return{v:c,txt:BM_LB[c][1]}});
+    opts=bmShuf(right.concat(pool));
+    qText='『'+ch+'』的第'+(BM_ORD[idx]||(idx+1))+'笔往哪写？';
+  }
+  bm.ans=ans;bm.ansLbl=lbl;
+  bmSet('bmQuiz','💣 '+qText+'<small>四个答案写在四丛灌木上 · 炸掉对的那丛</small>');
+  bmLabel(opts);
+  bmHud();
+  bm.busy=false;
+}
+function bmDigDist(){
+  const dist=new Array(BM_N).fill(-1);
+  for(let i=0;i<BM_N;i++)if(bm.g[i]===0)dist[i]=0;
+  let changed=true,pass=0;
+  while(changed&&pass++<BM_N){
+    changed=false;
+    for(let i=0;i<BM_N;i++){
+      if(bm.g[i]===1)continue;
+      const x=bmX(i),y=bmY(i);
+      const dd=[[1,0],[-1,0],[0,1],[0,-1]];
+      for(let k=0;k<4;k++){
+        const nx=x+dd[k][0],ny=y+dd[k][1];
+        if(!bmIn(nx,ny))continue;
+        const ni=bmIdx(nx,ny);
+        if(dist[ni]<0)continue;
+        const cand=dist[ni]+(bm.g[i]===2?1:0);
+        if(dist[i]<0||cand<dist[i]){dist[i]=cand;changed=true}
+      }
+    }
+  }
+  return dist;
+}
+function bmLabel(opts){
+  if(!opts||!opts.length)return;
+  for(let i=0;i<BM_N;i++)bm.lab[i]=null;
+  const occ=new Set([bmIdx(bm.px,bm.py),bm.door]);
+  bm.crabList.forEach(function(c){occ.add(bmIdx(c.x,c.y))});
+  bm.bombs.forEach(function(b){occ.add(b.i)});
+  let cand=[];
+  [2,3,4,9].forEach(function(lim){
+    if(cand.length)return;
+    const dist=bmDigDist();
+    for(let i=0;i<BM_N;i++){
+      if(bm.g[i]!==2||bm.hide[i]||occ.has(i))continue;
+      if(dist[i]<=lim)cand.push(i);
+    }
+  });
+  cand=bmShuf(cand);
+  const picked=[];
+  const far=function(i,j){return Math.abs(bmX(i)-bmX(j))+Math.abs(bmY(i)-bmY(j))};
+  cand.forEach(function(i){
+    if(picked.length>=4)return;
+    if(picked.every(function(p){return far(p,i)>=2}))picked.push(i);
+  });
+  cand.forEach(function(i){if(picked.length<4&&picked.indexOf(i)<0)picked.push(i)});
+  while(picked.length<4){
+    const i=bmMakeCrate(occ);
+    if(i<0)break;
+    picked.push(i);
+  }
+  if(!picked.length)return;
+  const ordered=opts.filter(function(o){return o.v===bm.ans})
+    .concat(opts.filter(function(o){return o.v!==bm.ans}));
+  ordered.forEach(function(o,k){
+    if(k>=picked.length)return;
+    bm.lab[picked[k]]={v:o.v,txt:o.txt,right:o.v===bm.ans};
+  });
+  bmPaintCrates();
+  bmMarkNear();
+}
+function bmMakeCrate(occ){
+  const list=[];
+  for(let i=0;i<BM_N;i++){
+    if(bm.g[i]!==0||bm.hide[i]||occ.has(i))continue;
+    const dd=[[1,0],[-1,0],[0,1],[0,-1]];
+    for(let k=0;k<4;k++){
+      const nx=bmX(i)+dd[k][0],ny=bmY(i)+dd[k][1];
+      if(bmIn(nx,ny)&&bm.g[bmIdx(nx,ny)]===0){list.push(i);break}
+    }
+  }
+  if(!list.length)return -1;
+  const i=list[(Math.random()*list.length)|0];
+  bm.g[i]=2;bm.hide[i]='';
+  bmSize(bmCrateDom(i),i,bmBox());
+  return i;
+}
+function bmMarkNear(){
+  const d=bmIdx(bm.px,bm.py);
+  for(let i=0;i<BM_N;i++){
+    const el=bm.cels[i];
+    if(!el)continue;
+    const dd=Math.abs(bmX(i)-bmX(d))+Math.abs(bmY(i)-bmY(d));
+    el.classList.toggle('near',!!bm.lab[i]&&dd<=2);
+  }
+}
+/* ---- 走位 ---- */
+function bmPush(dx,dy){
+  if(!bm.run||bm.over||bm.stun>0)return;
+  if(bm.walk.length>8)return;
+  const last=bm.walk[bm.walk.length-1];
+  if(last&&last[0]===dx&&last[1]===dy)return;
+  bm.walk.push([dx,dy]);
+}
+function bmTryStep(dx,dy){
+  const nx=bm.px+dx,ny=bm.py+dy;
+  if(!bmIn(nx,ny)){bmBump();return}
+  const i=bmIdx(nx,ny);
+  if(bm.g[i]===1){bmSay('🗿 大石头炸不掉，绕着挖','#B0BEC5');bmBump();return}
+  if(bm.g[i]===2){bmSay('🌴 这丛挡路：站到它旁边按 <b>空格</b> 放炮','#FFCC80');bmBump();return}
+  if(bm.bombs.some(function(b){return b.i===i})){bmSay('💣 你自己占着这一格，绕开走','#FFCC80');bmBump();return}
+  const c=bm.crabList.find(function(k){return k.x===nx&&k.y===ny});
+  if(c&&!c.dead){bmHurt('🦀 螃蟹夹住你了');return}
+  bm.px=nx;bm.py=ny;
+  bmHeroPos();bmMarkNear();
+  bmCollect(i);
+  if(bm.over)return;
+  bmDoorCheck();
+}
+function bmBump(){
+  const h=document.getElementById('bmHero');
+  if(!h)return;
+  h.classList.remove('hurt');void h.offsetWidth;
+}
+function bmRoute(sx,sy,tx,ty){
+  if(!bmIn(tx,ty))return null;
+  const target=bmIdx(tx,ty);
+  if(bm.g[target]!==0)return null;
+  const from=new Array(BM_N).fill(-1);
+  const seen=new Array(BM_N).fill(0);
+  const start=bmIdx(sx,sy);
+  seen[start]=1;
+  const q=[[sx,sy]];
+  for(let h=0;h<q.length;h++){
+    const cur=q[h];
+    const dd=[[1,0],[-1,0],[0,1],[0,-1]];
+    for(let k=0;k<4;k++){
+      const nx=cur[0]+dd[k][0],ny=cur[1]+dd[k][1];
+      if(!bmIn(nx,ny))continue;
+      const ni=bmIdx(nx,ny);
+      if(seen[ni]||!bmWalkable(ni))continue;
+      seen[ni]=1;from[ni]=bmIdx(cur[0],cur[1]);q.push([nx,ny]);
+    }
+  }
+  if(!seen[target])return null;
+  const steps=[];
+  let cur=target;
+  while(cur!==start){
+    const p=from[cur];
+    if(p<0)break;
+    steps.unshift([bmX(cur)-bmX(p),bmY(cur)-bmY(p)]);
+    cur=p;
+  }
+  return steps;
+}
+function bmTapCell(clientX,clientY){
+  const st=bmEl();if(!st)return;
+  const r=st.getBoundingClientRect();
+  const x=Math.floor((clientX-r.left-bm.ox)/bm.cell);
+  const y=Math.floor((clientY-r.top-bm.oy)/bm.cell);
+  if(!bmIn(x,y))return;
+  const i=bmIdx(x,y);
+  if(i===bmIdx(bm.px,bm.py)){bmPlace();return}
+  if(bm.g[i]===2){
+    let best=null,bestN=1e9;
+    for(let k=0;k<BM_N;k++){
+      if(!bmWalkable(k))continue;
+      if(Math.abs(bmX(k)-x)+Math.abs(bmY(k)-y)!==1)continue;
+      const s=bmRoute(bm.px,bm.py,bmX(k),bmY(k));
+      if(s&&s.length<bestN){bestN=s.length;best=s}
+    }
+    if(best){bm.walk=best.slice(0,8);bmSay('🎯 已走到那丛边上 —— 按 <b>空格</b> 放炮','#80DEEA')}
+    else bmSay('🌴 这丛暂时够不着，先炸开外围','#FFCC80');
+    return;
+  }
+  if(bm.g[i]===1)return;
+  const s=bmRoute(bm.px,bm.py,x,y);
+  if(s)bm.walk=s.slice(0,8);
+}
+/* ---- 放炮与爆炸 ---- */
+function bmPlace(){
+  if(!bm.run||bm.over||bm.stun>0||currentMode!=='bomb')return;
+  if(bm.bombs.length>=bm.cap){
+    bmSay('🧨 身上只有 '+bm.cap+' 发炮，等这一炮炸完','#FFCC80');
+    return;
+  }
+  const i=bmIdx(bm.px,bm.py);
+  if(bm.bombs.some(function(b){return b.i===i}))return;
+  bm.booms++;
+  const el=document.createElement('div');
+  el.className='bm-bomb';el.textContent='💣';
+  const f=bmField();if(f)f.appendChild(el);
+  bmSize(el,i,Math.round(bmBox()*0.86));
+  const b={i:i,x:bm.px,y:bm.py,t0:bmNow(),range:bmcurRange(),el:el};
+  bm.bombs.push(b);
+  tone(150,.1,'square',.06);
+  bmHud();
+}
+function bmDetonate(b){
+  const k=bm.bombs.indexOf(b);
+  if(k<0)return;
+  bm.bombs.splice(k,1);
+  if(b.el){b.el.remove();b.el=null}
+  const cells=[b.i],broken=[],stack=[b];
+  const dirs=[[1,0],[-1,0],[0,1],[0,-1]];
+  let chain=0;
+  while(stack.length){
+    const cur=stack.pop();
+    for(let d=0;d<4;d++){
+      for(let s=1;s<=cur.range;s++){
+        const x=cur.x+dirs[d][0]*s,y=cur.y+dirs[d][1]*s;
+        if(!bmIn(x,y))break;
+        const i=bmIdx(x,y);
+        if(bm.g[i]===1)break;
+        if(cells.indexOf(i)<0)cells.push(i);
+        const j=bm.bombs.findIndex(function(z){return z.i===i});
+        if(j>=0){
+          const ob=bm.bombs[j];
+          bm.bombs.splice(j,1);
+          if(ob.el){ob.el.remove();ob.el=null}
+          chain++;stack.push(ob);
+          continue;
+        }
+        if(bm.g[i]===2){broken.push(i);break}
+      }
+    }
+  }
+  bmFire(cells,broken,chain);
+}
+function bmFire(cells,broken,chain){
+  const st=bmEl();if(!st)return;
+  const s=bmBox();
+  cells.forEach(function(i,idx){
+    const el=document.createElement('div');
+    el.className='bm-flame';el.textContent=(idx===0)?'💥':'🔥';
+    st.appendChild(el);
+    bmSize(el,i,s);
+    bmT(function(){if(el.parentNode)el.remove()},460);
+  });
+  st.classList.remove('shake');void st.offsetWidth;st.classList.add('shake');
+  bmT(function(){st.classList.remove('shake')},440);
+  tone(70,.3,'sawtooth',.1);
+  if(chain>0)tone(96,.22,'square',.08);
+  bm.chainThis=chain;
+  broken.forEach(function(i){bmBreak(i)});
+  bm.chainThis=0;
+  const me=bmIdx(bm.px,bm.py);
+  if(cells.indexOf(me)>=0)bmHurt('💥 炸到自己啦，放完炮要跑出火圈');
+  bm.crabList.slice().forEach(function(c){
+    if(!c.dead&&cells.indexOf(bmIdx(c.x,c.y))>=0)bmCrabBoom(c);
+  });
+  bmMarkNear();
+  bmHud();
+}
+function bmBreak(i){
+  if(bm.g[i]!==2)return;
+  bm.g[i]=0;bm.dug++;
+  const el=bm.cels[i];
+  bm.cels[i]=null;
+  if(el){
+    el.classList.add('gone');
+    const e=el;bmT(function(){if(e.parentNode)e.remove()},420);
+  }
+  const L=bm.lab[i];
+  bm.lab[i]=null;
+  if(bm.hide[i]){
+    const key=bm.hide[i];bm.hide[i]='';
+    bmPickDrop(i,key);
+  }
+  if(L&&L.right)bmRight(i);
+  else if(L)bmWrong(i,L);
+  else bm.score+=2;
+  bmHud();
+}
+function bmRight(i){
+  bm.combo++;bm.maxCombo=Math.max(bm.maxCombo,bm.combo);
+  bm.ok++;bm.levelOk++;
+  const gain=Math.round(40+bm.combo*10+bmcurRange()*8+bm.level*6);
+  bm.score+=gain;
+  bm.time=Math.min(BM_TIME+30,bm.time+5);
+  if(bm.chainThis>0){
+    const cs=bm.chainThis*15;
+    bm.score+=cs;
+    bmBand('🔗 连环炸 ×'+(bm.chainThis+1)+' +'+cs);
+  }
+  tone(BM_NOTE[Math.min(BM_NOTE.length-1,bm.combo-1)],.16,'triangle',.07);
+  showComboEffect(bm.combo);
+  bmPop('💥 +'+gain,i,'#FFD740');
+  bmSparks(i,'#FFE082',10);
+  const r=bmEl();
+  if(r){
+    const q=r.getBoundingClientRect();
+    spawnStarFly(q.left+bmCx(i),q.top+bmCy(i));
+  }
+  if(bm.chainThis<=0){
+    if(bm.combo>=3)bmBand('🔥 连炸 ×'+bm.combo+' 火圈变宽');
+    else bmBand('💥 炸对啦 +'+gain);
+  }
+  if(bm.combo%3===0)spawnConfetti();
+  bmBookAdd(bm.ch);
+  if(bm.levelOk>=bm.need&&!bm.unlocked)bmUnlock();
+  bm.busy=false;
+  bmT(function(){
+    if(bm.over||!bm.run||currentMode!=='bomb')return;
+    bmAsk();
+  },560);
+}
+function bmWrong(i,L){
+  bm.combo=0;
+  bm.time=Math.max(1,bm.time-4);
+  bm.score=Math.max(0,bm.score-6);
+  sndNo();
+  bmSay('❌ 那丛写的是「<b>'+L.txt+'</b>」—— 扣 4 秒，连炸清零','#FF8A80');
+  bmPop('💢 炸错了',i,'#FF8A80');
+  bmSparks(i,'#FF8A80',6);
+}
+function bmPickDrop(i,key){
+  const P=BM_PICKS[key];if(!P)return;
+  const el=document.createElement('div');
+  el.className='bm-pick';el.textContent=P.e;
+  const f=bmField();if(f)f.appendChild(el);
+  bmSize(el,i,Math.round(bmBox()*0.8));
+  bm.pels[i]=el;
+  bm.picks[i]=key;
+}
+function bmCollect(i){
+  const key=bm.picks[i];
+  if(!key)return;
+  delete bm.picks[i];
+  if(key==='heart')bm.hearts=Math.min(5,bm.hearts+1);
+  else if(key==='star'){bm.score+=60;bm.gems++}
+  else if(key==='time')bm.time=Math.min(BM_TIME+40,bm.time+8);
+  else if(key==='bomb')bm.cap=Math.min(3,bm.cap+1);
+  else if(key==='range')bm.range=Math.min(3,bm.range+1);
+  const el=bm.pels[i];
+  if(el){el.remove();bm.pels[i]=null}
+  bmBand(BM_PICKS[key].lbl);
+  sndReward();
+  const r=bmEl();
+  if(r){
+    const q=r.getBoundingClientRect();
+    spawnStarFly(q.left+bmCx(i),q.top+bmCy(i));
+  }
+  bmSparks(i,'#80DEEA',8);
+  bmHud();
+}
+/* ---- 螃蟹 ---- */
+function bmCrabSpawn(){
+  let best=-1,bestD=-1;
+  const home=bmHome();
+  for(let i=0;i<BM_N;i++){
+    if(!bmWalkable(i)||i===bm.door||home.indexOf(i)>=0)continue;
+    const d=Math.abs(bmX(i)-bm.px)+Math.abs(bmY(i)-bm.py);
+    if(d>bestD){bestD=d;best=i}
+  }
+  if(best<0)return;
+  const el=document.createElement('div');
+  el.className='bm-crab';el.textContent='🦀';
+  const f=bmField();if(f)f.appendChild(el);
+  bmSize(el,best,Math.round(bmBox()*0.86));
+  bm.crabList.push({x:bmX(best),y:bmY(best),el:el,dead:false});
+}
+function bmCrabMove(c){
+  if(c.dead||!c.el)return;
+  const path=bmRoute(c.x,c.y,bm.px,bm.py);
+  let mv=null;
+  if(path&&path.length)mv=path[0];
+  else{
+    const opts=bmShuf([[1,0],[-1,0],[0,1],[0,-1]]).filter(function(dd){
+      return bmIn(c.x+dd[0],c.y+dd[1])&&bmWalkable(bmIdx(c.x+dd[0],c.y+dd[1]));
+    });
+    if(opts.length)mv=opts[0];
+  }
+  if(!mv)return;
+  c.x+=mv[0];c.y+=mv[1];
+  bmSize(c.el,bmIdx(c.x,c.y),Math.round(bmBox()*0.86));
+  if(c.x===bm.px&&c.y===bm.py)bmHurt('🦀 螃蟹夹住你了');
+}
+function bmCrabBoom(c){
+  c.dead=true;bm.crabs++;
+  bm.score+=30;
+  bmPop('🦀 炸蟹 +30',bmIdx(c.x,c.y),'#FF8A65');
+  bmSparks(bmIdx(c.x,c.y),'#FF8A65',12);
+  if(c.el){
+    c.el.classList.add('dead');
+    const e=c.el;bmT(function(){if(e.parentNode)e.remove()},420);
+    c.el=null;
+  }
+  const k=bm.crabList.indexOf(c);
+  if(k>=0)bm.crabList.splice(k,1);
+  bmT(function(){
+    if(bm.over||!bm.run||currentMode!=='bomb')return;
+    if(bm.crabList.length<bmCrabWant())bmCrabSpawn();
+  },3600);
+  bmHud();
+}
+/* ---- 出口门 ---- */
+function bmUnlock(){
+  bm.unlocked=true;
+  const d=document.getElementById('bmDoor');
+  if(d)d.classList.add('open');
+  bmBand('🚪 门开了！快跑进去');
+  bmSay('🚪 <b>出口开了</b> —— 这岛炸够 '+bm.need+' 声，冲进 🚪 换下一座岛','#B9F6CA');
+  bm.time=Math.min(BM_TIME+40,bm.time+6);
+  sndReward();
+}
+function bmDoorCheck(){
+  if(bmIdx(bm.px,bm.py)!==bm.door)return;
+  if(!bm.unlocked){bmSay('🔒 门锁着：还要再炸 '+(bm.need-bm.levelOk)+' 个对答案','#B0BEC5');return}
+  bmLevelUp();
+}
+function bmLevelUp(){
+  bm.doors++;
+  const bonus=Math.round(60+bm.time*2+bm.level*20);
+  bm.score+=bonus;
+  addStars(1+Math.min(6,bm.level));
+  spawnConfetti();
+  sndDone();
+  bmAdd('hz_bm_door',1);
+  bmBand('🏝️ 登上新岛 +'+bonus);
+  bm.level++;
+  if(bm.level>bmInt('hz_bm_lv'))localStorage.setItem('hz_bm_lv',String(bm.level));
+  bm.need=2+bm.level;
+  bm.time=BM_TIME;
+  bm.stun=0;bm.inv=0;bm.walk.length=0;bm.chainThis=0;
+  bmBuild();
+  bmLayout();
+  bmHud();bmTimeHud();
+  bm.busy=false;
+  bmAsk();
+}
+/* ---- 受伤 ---- */
+function bmHurt(why){
+  if(bm.over||bm.inv>0||bm.stun>0)return;
+  bm.hearts--;bm.combo=0;bm.chainThis=0;
+  bm.stun=BM_STUN;bm.inv=BM_INV;
+  bm.walk.length=0;
+  sndNo();
+  bmSay(why+' 还剩 <b>'+Math.max(0,bm.hearts)+'</b> 颗心','#FF8A80');
+  bmPop('💔 -1',bmIdx(bm.px,bm.py),'#FF8A80');
+  const st=bmEl();
+  if(st){st.classList.remove('shake');void st.offsetWidth;st.classList.add('shake')}
+  const h=document.getElementById('bmHero');
+  if(h)h.classList.add('hurt');
+  bmHud();
+  if(bm.hearts<=0){bmEnd('hearts');return}
+  bmT(function(){
+    const hh=document.getElementById('bmHero');
+    if(hh)hh.classList.remove('hurt');
+  },BM_INV);
+}
+/* ---- HUD ---- */
+function bmHud(){
+  const R=bmRank(bmOkTotal());
+  bmSet('bmRankTxt','🏅 '+R.t);
+  bmSet('bmGoalTxt',bm.unlocked?'🚪 门开了':('🚪 差 '+(bm.need-bm.levelOk)));
+  bmSet('bmPowTxt','💣×'+bm.cap+' 火'+bmcurRange());
+  bmSet('bmComboTxt','🔥 连 '+bm.combo);
+  let h='';
+  for(let i=0;i<Math.max(0,bm.hearts);i++)h+='❤️';
+  if(!h)h='💔';
+  bmSet('bmHeartTxt',h);
+  const bar=document.getElementById('bmBar');
+  if(bar){
+    bar.style.width=Math.min(100,(bm.levelOk/bm.need)*100)+'%';
+    bar.classList.toggle('full',bm.unlocked);
+  }
+  bmSet('bmBarTxt','🏝️ 第 '+bm.level+' 关 · 炸对 '+bm.levelOk+' / '+bm.need);
+  bmSet('bmScoreTxt','💥 '+Math.round(bm.score)+' 分');
+}
+function bmTimeHud(){bmSet('bmTimeTxt','⏱ '+Math.max(0,Math.ceil(bm.time))+'s')}
+function bmSay(msg,color){
+  const el=document.getElementById('bmJudge');
+  if(!el)return;
+  el.innerHTML=msg;
+  el.style.color=color||'#fff';
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function bmBand(msg){
+  const el=document.getElementById('bmBand');
+  if(!el)return;
+  el.textContent=msg;
+  el.classList.remove('on');void el.offsetWidth;
+  el.classList.add('on');
+  bmT(function(){el.classList.remove('on')},1700);
+}
+function bmPop(txt,i,color){
+  const st=bmEl();if(!st)return;
+  const el=document.createElement('div');
+  el.className='bm-pop';el.textContent=txt;
+  if(color)el.style.color=color;
+  el.style.left=(bmCx(i)-36)+'px';
+  el.style.top=(bmCy(i)-16)+'px';
+  st.appendChild(el);
+  bmT(function(){if(el.parentNode)el.remove()},1100);
+}
+function bmSparks(i,color,n){
+  const st=bmEl();if(!st)return;
+  for(let k=0;k<n;k++){
+    const e=document.createElement('div');
+    e.className='bm-spark';
+    e.style.background=color;
+    e.style.left=(bmCx(i)-4)+'px';
+    e.style.top=(bmCy(i)-4)+'px';
+    e.style.setProperty('--sx',((Math.random()*70)-35)+'px');
+    e.style.setProperty('--sy',((Math.random()*70)-35)+'px');
+    e.style.animationDelay=(Math.random()*0.1)+'s';
+    st.appendChild(e);
+    const el=e;
+    bmT(function(){if(el.parentNode)el.remove()},760);
+  }
+}
+function bmBookAdd(ch){
+  if(!ch)return;
+  const k='hz_bm_book';
+  const cur=localStorage.getItem(k)||'';
+  const arr=cur?cur.split(','):[];
+  if(arr.indexOf(ch)>=0)return;
+  arr.push(ch);
+  if(arr.length>300)arr.shift();
+  localStorage.setItem(k,arr.join(','));
+}
+/* ---- 主循环 ---- */
+function bmStartLoop(){bmStopLoop();bm.ts=bmNow();bm.timerId=setInterval(bmTick,60)}
+function bmStopLoop(){if(bm.timerId){clearInterval(bm.timerId);bm.timerId=null}}
+function bmTick(a){
+  if(!bm.run||bm.over||currentMode!=='bomb'){bmStopLoop();return}
+  const now=(typeof a==='number')?a:bmNow();
+  let dt=(now-bm.ts)/1000;
+  bm.ts=now;bm.now=now;
+  if(!(dt>0))dt=0;
+  if(dt>0.08)dt=0.08;
+  if(dt>0){
+    bm.time-=dt;
+    if(bm.inv>0)bm.inv-=dt*1000;
+    if(bm.stun>0){
+      bm.stun-=dt*1000;
+      if(bm.stun<=0)bm.stun=0;
+    }
+    bm.walkAcc+=dt*1000;
+    const step=bmStepMs();
+    let guard=0;
+    while(bm.walk.length&&bm.walkAcc>=step&&guard++<5){
+      bm.walkAcc-=step;
+      if(bm.stun>0){bm.walk.length=0;break}
+      const d=bm.walk.shift();
+      bmTryStep(d[0],d[1]);
+      if(bm.over)return;
+    }
+    for(let k=bm.bombs.length-1;k>=0;k--){
+      const b=bm.bombs[k];
+      const el=bmNow()-b.t0;
+      if(b.el&&el>BM_FUSE*0.6)b.el.classList.add('hot');
+      if(el>=BM_FUSE)bmDetonate(b);
+    }
+    bm.aiAcc+=dt*1000;
+    const cms=bmCrabMs();
+    let g2=0;
+    while(bm.aiAcc>=cms&&g2++<4){
+      bm.aiAcc-=cms;
+      const list=bm.crabList.slice();
+      for(let k=0;k<list.length;k++)bmCrabMove(list[k]);
+      if(bm.over)return;
+    }
+    const sc=Math.round(bm.score);
+    if(sc>bmInt('hz_bm_best'))localStorage.setItem('hz_bm_best',String(sc));
+    bmTimeHud();
+    if(bm.time<=0){bmEnd('time');return}
+  }
+}
+/* ---- 开局 / 结算 ---- */
+function bmStart(){
+  currentMode='bomb';bm.gen++;bmKillTimers();bmStopLoop();
+  const st0=bmEl();
+  if(st0){
+    st0.querySelectorAll('.bm-pop,.bm-spark,.bm-flame').forEach(function(e){e.remove()});
+    st0.className='bm-stage';
+  }
+  const f=bmField();if(f)f.innerHTML='';
+  const bd=document.getElementById('bmBand');
+  if(bd)bd.classList.remove('on');
+  const dg=document.getElementById('bmDoor');
+  if(dg)dg.classList.remove('open');
+  bm.run=true;bm.over=false;
+  bm.level=1;bm.time=BM_TIME;bm.score=0;bm.hearts=3;
+  bm.combo=0;bm.maxCombo=0;bm.ok=0;bm.levelOk=0;bm.booms=0;bm.dug=0;bm.crabs=0;bm.doors=0;bm.gems=0;
+  bm.need=3;bm.unlocked=false;bm.stun=0;bm.inv=0;bm.busy=false;bm.chainThis=0;
+  bm.cap=1;bm.range=1;bm.walk.length=0;bm.walkAcc=0;bm.aiAcc=0;bm.bombs=[];
+  bm.ty=bm.ty||{};
+  showScreen('bomb');
+  bmBuild();
+  bmLayout();
+  bmHeroPos();bmDoorPos();
+  bmHud();bmTimeHud();
+  bmSet('bmQuiz','💣 正在抱火药……<small>马上出题</small>');
+  bmSay('🏝️ 看清题目，炸掉写着对答案的那丛灌木 —— 放完炮要跑出火圈！','#B9F6CA');
+  bmStartLoop();
+  const gen=bm.gen;
+  bmT(function(){
+    if(gen!==bm.gen||currentMode!=='bomb'||!bm.run||bm.over)return;
+    bmAsk();
+  },30);
+}
+function bmEnd(why){
+  if(bm.over)return;
+  bm.over=true;bm.run=false;
+  bmStopLoop();bmKillTimers();
+  bm.walk.length=0;
+  const s=Math.round(bm.score);
+  if(s>bmInt('hz_bm_best'))localStorage.setItem('hz_bm_best',String(s));
+  if(bm.level>bmInt('hz_bm_lv'))localStorage.setItem('hz_bm_lv',String(bm.level));
+  if(bm.maxCombo>bmInt('hz_bm_streak'))localStorage.setItem('hz_bm_streak',String(bm.maxCombo));
+  bmAdd('hz_bm_ok',bm.ok);
+  bmAdd('hz_bm_boom',bm.booms);
+  bmAdd('hz_bm_crab',bm.crabs);
+  bmAdd('hz_bm_games',1);
+  const stars=Math.max(2,Math.min(26,2+Math.floor(s/110)+(bm.level-1)*4+Math.floor(bm.ok/3)));
+  addStars(stars);
+  const best=bmInt('hz_bm_best');
+  const book=(localStorage.getItem('hz_bm_book')||'').split(',').filter(Boolean).length;
+  const R=bmRank(bmInt('hz_bm_ok'));
+  bmSet('bmRsStars','⭐ +'+stars);
+  bmSet('bmRsEmoji',bm.level>=5?'🌋':bm.level>=3?'🏝️':(why==='time'?'⏱':'💥'));
+  bmSet('bmRsTitle',why==='time'?('时间到 · 炸到第 '+bm.level+' 座岛'):(bm.hearts<=0?'💔 心都炸飞了':'这一岛炸开了'));
+  bmSet('bmRsSub',(why==='time'?'⏱ 沙漏漏完了':'❤️ 心用完了')+' —— 这局炸对 <b>'+bm.ok+
+    '</b> 个答案、放 '+bm.booms+' 炮、开 '+bm.doors+' 次门、挖掉 '+bm.dug+' 丛灌木'+
+    (bm.crabs?('，顺手炸飞 '+bm.crabs+' 只 🦀'):'，下次连炮把螃蟹一起炸掉')+
+    '。最长连炸 '+bm.maxCombo+' 次（连炸 3 次火圈自动变宽）、捡到 '+bm.gems+' 袋钻石');
+  bmSet('bmRsScore',String(s));
+  bmSet('bmRsLv',String(bm.level));
+  bmSet('bmRsOk',String(bm.ok));
+  bmSet('bmRsBooms',String(bm.booms));
+  bmSet('bmRsCrab',String(bm.crabs));
+  bmSet('bmRsStreak',String(bm.maxCombo));
+  bmSet('bmRsBest',best+' 分');
+  bmSet('bmRsAll','🏅 段位 '+R.e+' '+R.t+'（累计炸对 '+bmInt('hz_bm_ok')+' 个答案）'+
+    '\n到过第 '+bmInt('hz_bm_lv')+' 座岛 · 开过 '+bmInt('hz_bm_door')+' 次门 · 炸飞 '+bmInt('hz_bm_crab')+' 只螃蟹'+
+    '\n累计放炮 '+bmInt('hz_bm_boom')+' 发 · 最长连炸 '+bmInt('hz_bm_streak')+' 次 · 上过 '+bmInt('hz_bm_games')+' 次岛'+
+    '\n💥 炸对过的字已收录 '+book+' 个');
+  showScreen('bomb-result');
+}
+function bmRetry(){bmStart()}
+function bmLeave(){
+  bmStopLoop();bmKillTimers();
+  if(bm.run&&!bm.over){bm.over=true;bm.run=false}
+  bm.walk.length=0;
+  const bd=document.getElementById('bmBand');
+  if(bd)bd.classList.remove('on');
+  goHome();
+}
+function bmHelp(){
+  bmSay('🏝️ 题目在顶上 → 四个答案写在四丛 🌴 上 → 走到旁边按 <b>空格</b> 放 💣 → 1.9 秒后炸出十字火圈，<b>要跑出火圈</b> → 炸对 +分补 5 秒，炸错 −4 秒 → 连炸 3 次火圈变宽 → 炸够数量 🚪 开门进下一岛 → 🦀 一直追你，可以连它一起炸掉','#80DEEA');
+}
+function bmNudge(){
+  const dot=document.getElementById('bombCardDot'),tip=document.getElementById('bombCardTip');
+  const ok=bmInt('hz_bm_ok'),lv=bmInt('hz_bm_lv'),games=bmInt('hz_bm_games');
+  if(tip)tip.textContent=ok?('炸对 '+ok+' 个 · 到过第 '+lv+' 岛'):'放炮走位 · 炸掉对的答案';
+  if(!dot)return;
+  if(!games){dot.textContent='🆕';dot.classList.add('on');return}
+  const R=bmRank(ok),R2=BM_RANKS[BM_RANKS.indexOf(R)+1];
+  if(R2&&R2.n-ok<=3){dot.textContent='🏅 差 '+(R2.n-ok)+' 声';dot.classList.add('on');return}
+  dot.classList.remove('on');
+}
+/* ---- 输入 ---- */
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='bomb')return;
+  const k=(e.key||'').toLowerCase();
+  let dx=0,dy=0;
+  if(k==='arrowup'||k==='w')dy=-1;
+  else if(k==='arrowdown'||k==='s')dy=1;
+  else if(k==='arrowleft'||k==='a')dx=-1;
+  else if(k==='arrowright'||k==='d')dx=1;
+  else if(k===' '||k==='enter'||k==='b'){e.preventDefault();bmPlace();return}
+  else if(k==='h'){bmHelp();return}
+  else return;
+  e.preventDefault();
+  bmPush(dx,dy);
+});
+document.addEventListener('pointerdown',function(e){
+  if(currentMode!=='bomb')return;
+  const t=e.target;
+  if(!t||!t.closest)return;
+  const b=t.closest('.bm-db');
+  if(b){
+    if(b.id==='bmDrop'){bmPlace();return}
+    const M={u:[0,-1],d:[0,1],l:[-1,0],r:[1,0]};
+    const m=M[b.dataset.d];
+    if(m)bmPush(m[0],m[1]);
+    return;
+  }
+  const st=bmEl();
+  if(st&&st.contains(t)&&!bm.over&&bm.run)bmTapCell(e.clientX,e.clientY);
+});
+window.addEventListener('resize',function(){
+  if(currentMode!=='bomb'||!bm.run)return;
+  const st=bmEl();if(!st)return;
+  if(Math.abs(st.clientWidth-bm.W)<2&&Math.abs(st.clientHeight-bm.H)<2)return;
+  bmLayout();
+});
+
 window.addEventListener('DOMContentLoaded',boot);
 </script>
 </body>
