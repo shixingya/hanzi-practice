@@ -2833,6 +2833,109 @@ button:active{transform:scale(.95)}
   .srt-stage{max-width:296px;height:258px}}
 
 /* ============ v1.50.0 笔顺喷喷乐（走位涂地 · 和章鱼抢地盘 · 连喷扩大喷幅）============ */
+/* ============ v1.51.0 笔顺数织屋（行列数字推格子 · 把这个字染出来 · 按笔顺序亮起）============ */
+.pc-hud{display:flex;gap:5px;justify-content:center;flex-wrap:nowrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
+.pc-hud span{flex:0 1 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 6px;font-size:10px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-hud b{color:#FFD740}
+.pc-ink{position:relative;display:flex;width:100%;max-width:322px;height:20px;margin:0 auto;border-radius:99px;overflow:hidden;
+  background:rgba(0,0,0,.36);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.pc-ink i{display:block;height:100%;transition:width .26s;background:linear-gradient(90deg,#80DEEA,#2C3E70)}
+.pc-ink b{position:absolute;left:0;right:0;top:0;line-height:20px;text-align:center;font-size:11px;font-weight:800;color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.7);pointer-events:none}
+.pc-ink.low i{background:linear-gradient(90deg,#FFAB91,#E64A19);animation:pcLow 1s ease-in-out infinite}
+@keyframes pcLow{0%,100%{filter:none}50%{filter:brightness(1.55)}}
+.pc-quiz{width:100%;max-width:322px;margin:6px auto 0;min-height:38px;border-radius:12px;background:rgba(0,0,0,.42);color:#fff;
+  font-size:13.5px;font-weight:800;text-align:center;line-height:1.3;padding:6px 9px;position:relative;z-index:6;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.pc-quiz small{display:block;font-size:10px;font-weight:600;opacity:.8;margin-top:2px}
+.pc-quiz b{color:#FFD740}
+.pc-opts{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:100%;max-width:322px;margin:6px auto 0}
+.pc-op{border:0;border-radius:12px;padding:8px 10px;min-width:70px;font-size:13px;font-weight:900;color:#3E2723;cursor:pointer;
+  background:linear-gradient(180deg,#FFF3D6,#E8CFA0);box-shadow:inset 0 0 0 2px rgba(140,100,50,.42),0 3px 9px rgba(0,0,0,.34);
+  -webkit-tap-highlight-color:transparent;transition:transform .12s}
+.pc-op u{display:block;font-size:8.5px;font-weight:800;color:#8D6E63;text-decoration:none;line-height:1.3}
+.pc-op:active{transform:scale(.94)}
+.pc-op.correct{background:linear-gradient(180deg,#B9F6CA,#4CAF50);color:#10331A;box-shadow:inset 0 0 0 2px #2E7D32,0 0 15px rgba(105,240,194,.75)}
+.pc-op.bad{background:linear-gradient(180deg,#FFCDD2,#E57373);color:#4E1111;animation:pcShake .38s}
+.pc-op.gone{opacity:0;transform:scale(.6);pointer-events:none;transition:all .3s}
+.pc-stage{position:relative;width:100%;max-width:322px;height:250px;margin:8px auto 0;overflow:hidden;border-radius:18px;
+  touch-action:none;user-select:none;-webkit-user-select:none;
+  background:linear-gradient(180deg,#F3E7CE,#E6D3AE 55%,#DCC49A);
+  box-shadow:inset 0 0 0 2px rgba(120,90,40,.5),inset 0 0 46px rgba(120,90,40,.22),0 8px 22px rgba(0,0,0,.34)}
+.pc-grid-bg{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;opacity:.3;
+  background-image:linear-gradient(rgba(120,90,40,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(120,90,40,.5) 1px,transparent 1px);
+  background-size:22px 22px}
+.pc-deco{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;z-index:1}
+.pc-deco span{position:absolute;opacity:.28;font-size:15px;animation:pcFloat 5.2s ease-in-out infinite}
+@keyframes pcFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-8px) rotate(5deg)}}
+.pc-frame{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}
+.pc-board{display:grid;gap:2px;grid-template-columns:var(--cw,26px) repeat(var(--pcC,5),var(--cs,32px));
+  grid-auto-rows:var(--cs,32px);grid-template-rows:var(--rh,34px) repeat(var(--pcR,5),var(--cs,32px))}
+.pc-rclue{grid-column:1;justify-self:end;align-self:center;font-size:11px;font-weight:900;color:#4E342E;letter-spacing:.5px;
+  white-space:nowrap;padding-right:3px;position:relative}
+.pc-cclue{grid-row:1;align-self:end;justify-self:center;display:flex;flex-direction:column;align-items:center;gap:1px;
+  font-size:11px;font-weight:900;color:#4E342E;line-height:1.15;position:relative}
+.pc-rclue.ok,.pc-cclue.ok{color:#2E7D32}
+.pc-rclue.ok::after,.pc-cclue.ok::after{content:'✓';position:absolute;right:-9px;top:-5px;font-size:11px;font-weight:900;color:#E64A19;
+  text-shadow:0 0 6px rgba(255,255,255,.9);animation:pcStamp .4s}
+.pc-cclue.ok::after{right:-6px;top:-9px}
+@keyframes pcStamp{0%{transform:scale(2.4) rotate(-14deg);opacity:0}55%{transform:scale(.9) rotate(6deg);opacity:1}100%{transform:scale(1) rotate(-6deg)}}
+.pc-c{position:relative;background:rgba(255,255,255,.5);border-radius:4px;box-shadow:inset 0 0 0 1px rgba(120,90,40,.42);
+  transition:background .16s;cursor:pointer}
+.pc-c.on{background:linear-gradient(158deg,#4A6072,#1B2436);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.pc-c.wet{animation:pcWet .42s}
+@keyframes pcWet{0%{transform:scale(.4);opacity:.3}52%{transform:scale(1.18);opacity:1}100%{transform:scale(1);opacity:1}}
+.pc-c.no{background:rgba(255,255,255,.3);box-shadow:inset 0 0 0 1px rgba(120,90,40,.24)}
+.pc-c.no::after{content:'✗';position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;
+  font-size:calc(var(--cs,32px)*.34);font-weight:900;color:#C0705C;opacity:.9}
+.pc-c.lock{background:linear-gradient(158deg,#37474F,#0D1620);box-shadow:inset 0 0 0 1px rgba(255,215,64,.55)}
+.pc-cur{outline:3px dashed #FFD740;outline-offset:-1px;z-index:2}
+.pc-c.hint{animation:pcHint .7s}
+@keyframes pcHint{0%,100%{box-shadow:inset 0 0 0 1px rgba(120,90,40,.42)}50%{box-shadow:0 0 0 3px #FFD740,0 0 14px rgba(255,215,64,.85)}}
+.pc-c.glow{background:linear-gradient(158deg,#FFE082,#F9A825)!important;box-shadow:0 0 12px rgba(255,213,79,.95)!important;
+  animation:pcGlow .5s}
+@keyframes pcGlow{0%{transform:scale(1)}45%{transform:scale(1.2)}100%{transform:scale(1)}}
+.pc-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:100%;max-width:322px;margin:7px auto 0}
+.pc-tool{border:0;border-radius:11px;padding:7px 9px;font-size:11.5px;font-weight:900;color:#fff;cursor:pointer;
+  background:rgba(255,255,255,.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);-webkit-tap-highlight-color:transparent;
+  transition:transform .12s}
+.pc-tool:active{transform:scale(.94)}
+.pc-tool.off{opacity:.4;pointer-events:none}
+.pc-band{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:12;font-size:15px;font-weight:900;color:#fff;
+  background:rgba(20,14,8,.78);border-radius:99px;padding:8px 16px;opacity:0;pointer-events:none;white-space:nowrap;max-width:94%}
+.pc-band.on{animation:pcBand 1.6s forwards}
+@keyframes pcBand{0%{opacity:0;transform:translate(-50%,-50%) scale(.72)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}
+  76%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.03)}}
+.pc-big{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:13;font-weight:900;color:#3E2723;
+  font-size:100px;line-height:1;opacity:0;pointer-events:none;text-shadow:0 6px 18px rgba(0,0,0,.35)}
+.pc-big.on{animation:pcBig 1.5s forwards}
+@keyframes pcBig{0%{opacity:0;transform:translate(-50%,-50%) scale(.3) rotate(-12deg)}
+  26%{opacity:1;transform:translate(-50%,-50%) scale(1.14) rotate(4deg)}
+  74%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.05)}}
+.pc-pop{position:absolute;font-size:14px;font-weight:900;color:#FFD740;text-shadow:0 2px 6px rgba(0,0,0,.6);
+  pointer-events:none;z-index:14;white-space:nowrap;animation:pcPopUp 1.05s forwards}
+@keyframes pcPopUp{0%{opacity:0;transform:translateY(8px) scale(.8)}22%{opacity:1;transform:translateY(-6px) scale(1.12)}
+  100%{opacity:0;transform:translateY(-42px) scale(1)}}
+.pc-drop{position:absolute;width:8px;height:8px;border-radius:60% 40% 55% 45%;pointer-events:none;z-index:11;
+  background:#2C3E70;animation:pcDropF .6s forwards}
+@keyframes pcDropF{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.25)}}
+.pc-judge{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:12px;font-weight:800;min-height:34px;
+  line-height:1.45;color:#fff;opacity:.95}
+.pc-judge.pop{animation:pcJudge .4s}
+@keyframes pcJudge{from{transform:scale(.88);opacity:.3}to{transform:scale(1);opacity:1}}
+.pc-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);line-height:1.6}
+.pc-tip b{color:#FFD740}
+.pc-frame.shake{animation:pcShake .4s}
+@keyframes pcShake{0%,100%{transform:translate(-50%,-50%)}20%{transform:translate(calc(-50% - 7px),-50%)}40%{transform:translate(calc(-50% + 6px),-50%)}60%{transform:translate(calc(-50% - 4px),-50%)}80%{transform:translate(calc(-50% + 3px),-50%)}}
+.pc-rs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 8px;text-align:center}
+.pc-rs span{display:block;font-size:26px;font-weight:bold}
+.pc-rs small{display:block;font-size:11px;opacity:.7;margin-top:2px;color:#fff}
+.pc-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;
+  font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.pc-badge.on{display:flex}
+@media(max-width:420px){.pc-hud,.pc-ink,.pc-quiz,.pc-opts,.pc-tools,.pc-judge,.pc-tip{max-width:300px}
+  .pc-stage{max-width:296px;height:232px}}
 .sp-hud{display:flex;gap:5px;justify-content:center;flex-wrap:nowrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
 .sp-hud span{flex:0 1 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 8px;font-size:10.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sp-hud b{color:#FFD740}
@@ -3145,6 +3248,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🦑</div>
       <div class="info"><h3>笔顺喷喷乐</h3><p id="splatCardTip">走位涂地 · 和章鱼抢地盘</p></div>
       <span class="sp-badge" id="splatCardDot">🆕</span>
+    </div>
+<div class="mode-card" onclick="enterMode('picross')">
+      <div class="icon">🖼</div>
+      <div class="info"><h3>笔顺数织屋</h3><p id="picrossCardTip">数字推格子 · 把这个字染出来</p></div>
+      <span class="pc-badge" id="picrossCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('sky')">
       <div class="icon">☁️</div>
@@ -5420,6 +5528,68 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="srtLeave()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-picross">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pcLeave()">← 返回</button>
+    <div class="stats"><span id="pcScoreTxt">🖌 0 分</span><span id="pcTimeTxt">⏱ 100s</span></div>
+    <button class="icon-btn" onclick="pcHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🖼 顶上和左边写着<b>数字</b>：那是每行每列「连着要染几格」。按数字<b style="color:#FFF176">把格子染成墨</b>，整行对上了就 <b style="color:#B9F6CA">盖一个 ✓</b>；🫙 墨水有限，<b>点已染的格子可以擦</b>。整幅染完，它会<b style="color:#FFD740">按笔顺序一笔一笔亮起来</b>——那幅画就是这个字！</div>
+  <div class="pc-hud">
+    <span id="pcRankTxt">🏅 握笔小娃</span>
+    <span id="pcFrameTxt">第 1 / 3 幅</span>
+    <span id="pcComboTxt">连染 0</span>
+    <span id="pcLinesTxt">✓ 0 行</span>
+  </div>
+  <div class="pc-ink" id="pcInkBox"><i id="pcInkBar" style="width:100%"></i><b id="pcInkTxt">🫙 墨水 0 滴</b></div>
+  <div class="pc-quiz" id="pcQuiz">🖼 正在挂画……<small>马上出题</small></div>
+  <div class="pc-opts" id="pcOpts"></div>
+  <div class="pc-stage" id="pcStage">
+    <div class="pc-grid-bg"></div>
+    <div class="pc-deco" id="pcDeco"></div>
+    <div class="pc-frame" id="pcFrame"><div class="pc-board" id="pcBoard"></div></div>
+    <div class="pc-band" id="pcBand"></div>
+    <div class="pc-big" id="pcBig"></div>
+  </div>
+  <div class="pc-tools" id="pcTools">
+    <button class="pc-tool" onclick="pcRefill()">✏️ 答题补墨 ×3</button>
+    <button class="pc-tool" id="pcHintBtn" onclick="pcHint()">🔍 看一笔 ×3</button>
+    <button class="pc-tool" onclick="pcGuess()">🔮 猜这个字</button>
+    <button class="pc-tool" onclick="pcWipe()">🧽 擦干净</button>
+  </div>
+  <div class="pc-judge" id="pcJudge"></div>
+  <div class="pc-tip">点格子<b>染色</b> · 点染好的格子<b>擦掉</b> · 按住<b>拖</b>连着一排染 · 键盘 <b>方向键</b>移光标 <b>空格</b>染/擦 · <b>1~4</b> 答题 · <b>H</b> 怎么玩</div>
+</div>
+<div class="screen" id="screen-picross-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pcLeave()">← 回首页</button>
+    <div class="stats"><span id="pcRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="pcRsEmoji">🖼</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="pcRsTitle">这一幅挂进画廊了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="pcRsSub">再来一局，把更大的字染出来</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="pc-rs">
+      <div><span style="color:#4FC3F7" id="pcRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#FFD740" id="pcRsFrames">0</span><small>染完的画</small></div>
+      <div><span style="color:#B9F6CA" id="pcRsLines">0</span><small>盖的 ✓</small></div>
+      <div><span style="color:#FF80AB" id="pcRsCells">0</span><small>染的格子</small></div>
+      <div><span style="color:#E1BEE7" id="pcRsCombo">0</span><small>最长连染</small></div>
+      <div><span style="color:#FFF176" id="pcRsFlaw">0</span><small>一错未犯</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 最高分 / 已收进画廊</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="pcRsBest">0 / 0 幅</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="pcRsAll">🏅 握笔小娃</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="pcRetry()">🔁 再染一局</button>
+    <button class="w-btn blue" onclick="pcLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-splat">
   <div class="top-bar">
     <button class="back-btn" onclick="spLeave()">← 返回</button>
@@ -6515,6 +6685,7 @@ function updateHomeStats(){
   if(typeof snwNudge==='function')snwNudge();
   if(typeof srtNudge==='function')srtNudge();
   if(typeof spNudge==='function')spNudge();
+  if(typeof pcNudge==='function')pcNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -6567,6 +6738,7 @@ function enterMode(mode){
  else if(mode==='snow')snwStart();
  else if(mode==='sort')srtStart();
  else if(mode==='splat')spStart();
+ else if(mode==='picross')pcStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -29232,6 +29404,1044 @@ async function boot(){
   if(window.petLoad){petLoad();petTip();}
   await preloadGrade(currentGrade);
 }
+/* ============ v1.51.0 笔顺数织屋（行列数字推格子 · 把这个字染出来 · 按笔顺序亮起）============ */
+const PC_FRAMES=3,PC_NMIN=5,PC_NMAX=8,PC_COV=0.15,PC_CAP=260000,PC_NARROW=3;
+const PC_RANKS=[[0,'握笔小娃'],[3,'点墨学徒'],[8,'临帖小生'],[16,'小画廊主'],[28,'墨韵少年'],[42,'丹青快手'],[60,'装裱师'],[84,'字画大家'],[120,'汉字大画师']];
+const PC_NOTE=[523,587,659,784,880,988,1047,1175,1319,1568];
+const PC_LB={R:['➡️','往右'],D:['⬇️','往下'],P:['↙️','左下'],N:['↘️','右下'],T:['↗️','右上']};
+const PC_ORD=['一','二','三','四','五','六','七','八','九','十','十一','十二'];
+let pcCv=null,pcCv2=null;
+function pcSizeFor(lv){return Math.min(PC_NMAX,PC_NMIN+Math.floor(Math.max(0,lv-1)/2))}
+function pcInkFor(lv){return Math.max(6,12-Math.floor(lv/2))}
+function pcRuns(a){
+  const out=[];let k=0;
+  for(let i=0;i<a.length;i++){
+    if(a[i])k++;
+    else if(k){out.push(k);k=0}
+  }
+  if(k)out.push(k);
+  return out;
+}
+/* ---- 栅格化：方格是正方形，长边铺满 n 格，短边按实际比例给 R/C 行（列）
+      这样「二」「三」这类扁字不会被拉成一坨，「十」「大」也不会被压扁 ---- */
+function pcRaster(ch,n){
+  const d=charDataCache[ch];
+  if(!d||!d.strokes||!d.strokes.length)return null;
+  const S=Math.max(192,n*40);
+  if(!pcCv){pcCv=document.createElement('canvas');pcCv.width=pcCv.height=S}
+  if(S!==pcCv.width){pcCv.width=S;pcCv.height=S}
+  const c=pcCv.getContext('2d');
+  c.clearRect(0,0,S,S);
+  c.save();c.translate(0,S);c.scale(S/1024,-S/1024);
+  for(let i=0;i<d.strokes.length;i++)c.fill(new Path2D(d.strokes[i]));
+  c.restore();
+  const im=c.getImageData(0,0,S,S).data;
+  let x0=S,y0=S,x1=-1,y1=-1;
+  for(let y=0;y<S;y++)for(let x=0;x<S;x++){
+    if(im[(y*S+x)*4+3]>44){
+      if(x<x0)x0=x;if(x>x1)x1=x;
+      if(y<y0)y0=y;if(y>y1)y1=y;
+    }
+  }
+  if(x1<0)return null;
+  const pw=x1-x0+1,ph=y1-y0+1;
+  let C,R,cs,ox,oy;
+  if(pw>=ph){
+    C=n;cs=pw/n;
+    R=Math.max(PC_NARROW,Math.min(n,Math.ceil(ph/cs)));
+    ox=x0;oy=y0-(R*cs-ph)/2;
+  }else{
+    R=n;cs=ph/n;
+    C=Math.max(PC_NARROW,Math.min(n,Math.ceil(pw/cs)));
+    oy=y0;ox=x0-(C*cs-pw)/2;
+  }
+  const cellRect=function(r,col){
+    return [Math.floor(ox+cs*col),Math.ceil(ox+cs*(col+1)),Math.floor(oy+cs*r),Math.ceil(oy+cs*(r+1))];
+  };
+  const cov=new Float32Array(R*C);
+  for(let r=0;r<R;r++)for(let col=0;col<C;col++){
+    const q=cellRect(r,col);
+    let hit=0,tot=0;
+    for(let y=Math.max(0,q[2]);y<Math.min(S,q[3]);y++)for(let x=Math.max(0,q[0]);x<Math.min(S,q[1]);x++){
+      tot++;if(im[(y*S+x)*4+3]>44)hit++;
+    }
+    cov[r*C+col]=tot?hit/tot:0;
+  }
+  const mask=new Uint8Array(R*C);
+  let cells=0;
+  for(let i=0;i<R*C;i++)if(cov[i]>=PC_COV){mask[i]=1;cells++}
+  if(!cells)return null;
+  /* 每格归属哪一笔：逐笔单独栅格化，取覆盖率最大的那一笔 */
+  const order=new Int8Array(R*C).fill(-1);
+  const best=new Float32Array(R*C);
+  for(let s=0;s<d.strokes.length;s++){
+    if(!pcCv2){pcCv2=document.createElement('canvas');pcCv2.width=pcCv2.height=S}
+    if(S!==pcCv2.width){pcCv2.width=S;pcCv2.height=S}
+    const c2=pcCv2.getContext('2d');
+    c2.clearRect(0,0,S,S);
+    c2.save();c2.translate(0,S);c2.scale(S/1024,-S/1024);
+    c2.fill(new Path2D(d.strokes[s]));
+    c2.restore();
+    const im2=c2.getImageData(0,0,S,S).data;
+    for(let r=0;r<R;r++)for(let col=0;col<C;col++){
+      const i=r*C+col;
+      if(!mask[i])continue;
+      const q=cellRect(r,col);
+      let hit=0,tot=0;
+      for(let y=Math.max(0,q[2]);y<Math.min(S,q[3]);y++)for(let x=Math.max(0,q[0]);x<Math.min(S,q[1]);x++){
+        tot++;if(im2[(y*S+x)*4+3]>44)hit++;
+      }
+      const v=tot?hit/tot:0;
+      if(v>best[i]+0.001){best[i]=v;order[i]=s}
+    }
+  }
+  return {mask:mask,cov:cov,order:order,cells:cells,R:R,C:C,nstrokes:d.strokes.length};
+}
+/* ---- 数织线索 ---- */
+function pcClues(g,R,C){
+  const rows=[],cols=[];
+  for(let r=0;r<R;r++){
+    const a=[];for(let c=0;c<C;c++)a.push(g[r*C+c]);
+    rows.push(pcRuns(a));
+  }
+  for(let c=0;c<C;c++){
+    const a=[];for(let r=0;r<R;r++)a.push(g[r*C+c]);
+    cols.push(pcRuns(a));
+  }
+  return {rows:rows,cols:cols};
+}
+/* ---- 一行（列）里所有满足线索的摆法（bit i = 第 i 格）---- */
+function pcLineCands(len,clue){
+  const out=[];
+  function rec(pos,ci,bits){
+    if(ci>=clue.length){out.push(bits);return}
+    const rest=clue.slice(ci).reduce(function(a,b){return a+b},0)+(clue.length-ci-1);
+    for(let p=pos;p<=len-rest;p++){
+      let b=bits;
+      for(let k=0;k<clue[ci];k++)b|=(1<<(p+k));
+      rec(p+clue[ci]+1,ci+1,b);
+    }
+  }
+  if(!clue.length){out.push(0);return out}
+  rec(0,0,0);
+  return out;
+}
+/* ---- 解的个数（最多算到 2 就停），用来保证「只有一种答案」---- */
+function pcCountSolutions(cl,R,C,cap){
+  const rc=[],cc=[];
+  for(let r=0;r<R;r++){
+    rc.push(pcLineCands(C,cl.rows[r]));
+    if(!rc[r].length)return 0;
+  }
+  for(let c=0;c<C;c++){
+    cc.push(pcLineCands(R,cl.cols[c]));
+    if(!cc[c].length)return 0;
+  }
+  let sols=0,nodes=0,bad=false;
+  const colMask=new Int32Array(C);
+  function dfs(r){
+    if(bad)return;
+    if(++nodes>cap){bad=true;return}
+    if(r===R){sols++;return}
+    for(let i=0;i<rc[r].length;i++){
+      const m=rc[r][i];
+      let ok=true;
+      for(let c=0;c<C;c++){
+        const v=(colMask[c]|(((m>>c)&1)<<r))&((1<<(r+1))-1);
+        let found=false;
+        for(let k=0;k<cc[c].length;k++)if((cc[c][k]&((1<<(r+1))-1))===v){found=true;break}
+        if(!found){ok=false;break}
+      }
+      if(!ok)continue;
+      for(let c=0;c<C;c++)colMask[c]|=((m>>c)&1)<<r;
+      dfs(r+1);
+      for(let c=0;c<C;c++)colMask[c]&=~(1<<r);
+      if(sols>=2||bad)return;
+    }
+  }
+  dfs(0);
+  return bad?-1:sols;
+}
+/* ---- 一幅「画」的档案：能不能玩、好不好玩都在这判 ---- */
+const pcProfCache={};
+function pcProf(ch,n){
+  const key=ch+'x'+n;
+  if(pcProfCache[key]!==undefined)return pcProfCache[key];
+  const g=pcRaster(ch,n);
+  if(!g){pcProfCache[key]=null;return null}
+  const R=g.R,C=g.C,area=R*C;
+  const cl=pcClues(g.mask,R,C);
+  let nums=0,wide=0;
+  for(let i=0;i<R;i++){
+    nums+=cl.rows[i].length;
+    wide=Math.max(wide,cl.rows[i].length);
+    if(!cl.rows[i].length)nums++;
+  }
+  for(let i=0;i<C;i++){
+    nums+=cl.cols[i].length;
+    wide=Math.max(wide,cl.cols[i].length);
+    if(!cl.cols[i].length)nums++;
+  }
+  const ratio=g.cells/area;
+  let uniq=-1;
+  if(ratio>=0.16&&ratio<=0.66&&wide<=2&&nums<=R+C+4)uniq=pcCountSolutions(cl,R,C,PC_CAP);
+  const p={ch:ch,n:n,R:R,C:C,mask:g.mask,order:g.order,cells:g.cells,rows:cl.rows,cols:cl.cols,
+    nums:nums,wide:wide,uniq:uniq,ratio:ratio,
+    ok:uniq===1&&ratio>=0.2&&ratio<=0.6&&g.cells>=Math.max(R,C)&&g.nstrokes>=2};
+  pcProfCache[key]=p;
+  return p;
+}
+function pcUniq(a){const s={},o=[];for(let i=0;i<a.length;i++)if(!s[a[i]]){s[a[i]]=1;o.push(a[i])}return o}
+function pcYield(){return new Promise(function(r){setTimeout(r,0)})}
+/* ---- 字方向表（全局 detectDir 认不出撇/捺，这里吃 medians 自建）---- */
+const pcTy={};
+async function pcData(ch){
+  if(!ch)return null;
+  if(pcTy[ch])return pcTy[ch];
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await loadCharData(ch);
+  if(!raw||!raw.medians||raw.medians.length<2)return null;
+  const d={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  pcTy[ch]=d;return d;
+}
+async function pcEnsure(want){
+  want=want||96;
+  const list=pcUniq(CHARS);
+  let guard=0;
+  for(let i=0;i<list.length&&guard<64;i++){
+    if(Object.keys(charDataCache).length>=want)break;
+    const c=list[i];
+    if(charDataCache[c])continue;
+    guard++;
+    await loadCharData(c);
+    if(guard%6===0)await pcYield();
+  }
+  for(let i=0;i<list.length;i++){
+    const c=list[i];
+    const raw=charDataCache[c];
+    if(!pcTy[c]&&raw&&raw.medians&&raw.medians.length>=2)pcTy[c]={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  }
+}
+/* ---- 给尺寸 n 把候选字都算一遍档案 ---- */
+async function pcBuild(n){
+  await pcEnsure();
+  const list=pcUniq(CHARS).filter(function(c){return charDataCache[c]});
+  let made=0;
+  for(let i=0;i<list.length;i++){
+    const c=list[i];
+    if(pcProfCache[c+'x'+n]!==undefined)continue;
+    pcProf(c,n);made++;
+    if(made%8===0)await pcYield();
+  }
+}
+function pcCands(n,maxStrokes){
+  const suf='x'+n,out=[];
+  for(const k in pcProfCache){
+    if(k.slice(-suf.length)!==suf)continue;
+    const p=pcProfCache[k];
+    if(!p||!p.ok)continue;
+    const ch=k.slice(0,k.length-suf.length);
+    const d=pcTy[ch];
+    if(!d)continue;
+    if(maxStrokes&&d.n>maxStrokes)continue;
+    out.push({ch:ch,cells:p.cells,nums:p.nums,n:d.n});
+  }
+  return out;
+}
+function pcPick(n,used,maxStrokes){
+  let arr=pcCands(n,maxStrokes);
+  if(used&&used.length){
+    const f=arr.filter(function(x){return used.indexOf(x.ch)<0});
+    if(f.length>=3)arr=f;
+  }
+  if(!arr.length)return null;
+  arr.sort(function(a,b){return (a.nums-b.nums)||(b.cells-a.cells)});
+  const pool=arr.slice(0,Math.max(1,Math.ceil(arr.length*0.55)));
+  return pool[Math.floor(Math.random()*pool.length)].ch;
+}
+/* ---- 状态 ---- */
+const PC_TIME=100,PC_HINTS=3,PC_REFILL=3,PC_INKBONUS=3,PC_STEP=62;
+let pc={run:false,over:false,gen:0,phase:'idle',score:0,combo:0,maxCombo:0,
+  frame:0,frames:PC_FRAMES,lv:1,n:5,ch:'',R:0,C:0,sol:null,order:null,painted:null,known:null,lock:null,
+  rows:[],cols:[],cells:[],rclue:[],cclue:[],cellsTotal:0,ink:0,inkMax:0,lines:0,time:PC_TIME,secs:-1,
+  tries:0,ok:0,wrong:0,flawless:true,flawN:0,hints:PC_HINTS,refills:PC_REFILL,guessUsed:false,gotRight:false,
+  gotFrames:0,gotCells:0,gotLines:0,lastRank:0,used:[],cursor:0,drag:0,dragMode:1,busy:true,
+  ans:'',ansLbl:'',qOpts:[],W:0,H:0,cs:32,cw:26,rh:34,timers:[],timerId:null,ts:0,booted:false};
+function pcInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function pcAdd(k,n){localStorage.setItem(k,String(pcInt(k)+n))}
+function pcSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function pcEl(){return document.getElementById('pcStage')}
+function pcBoard(){return document.getElementById('pcBoard')}
+function pcShuf(a){for(let i=a.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function pcT(fn,ms){const g=pc.gen;const id=setTimeout(function(){if(g!==pc.gen)return;fn()},ms);pc.timers.push(id);return id}
+function pcKillTimers(){pc.timers.forEach(function(id){clearTimeout(id)});pc.timers=[]}
+function pcStopLoop(){if(pc.timerId){clearInterval(pc.timerId);pc.timerId=null}}
+function pcStartLoop(){pcStopLoop();pc.ts=performance.now();pc.timerId=setInterval(pcTick,16)}
+function pcIn(idx){return idx>=0&&idx<(pc.R*pc.C)}
+function pcRC(idx){return [Math.floor(idx/pc.C),idx%pc.C]}
+function pcBook(){const s=localStorage.getItem('hz_pc_book')||'';return s?s.split(','):[]}
+function pcRank(x){let r=PC_RANKS[0][1];for(let i=0;i<PC_RANKS.length;i++)if(x>=PC_RANKS[i][0])r=PC_RANKS[i][1];return r}
+function pcNextRankTxt(){
+  const x=pcInt('hz_pc_frames');
+  for(let i=0;i<PC_RANKS.length;i++)if(x<PC_RANKS[i][0])return '再染 '+(PC_RANKS[i][0]-x)+' 幅升段位「'+PC_RANKS[i][1]+'」';
+  return '已是「'+PC_RANKS[PC_RANKS.length-1][1]+'」，把画框染到 '+PC_NMAX+' 格试试';
+}
+function pcCellEl(i){const b=pcBoard();return b?b.querySelector('.pc-c[data-i="'+i+'"]'):null}
+/* ---- 版面 ---- */
+function pcLayout(){
+  const st=pcEl();if(!st)return;
+  pc.W=st.clientWidth||322;pc.H=st.clientHeight||250;
+  const pad=11;
+  let maxNum=1;
+  for(let c=0;c<pc.C;c++)maxNum=Math.max(maxNum,Math.max(1,pc.cols[c]?pc.cols[c].length:1));
+  pc.rh=Math.min(52,12*maxNum+10);
+  let maxRW=1;
+  for(let r=0;r<pc.R;r++)maxRW=Math.max(maxRW,(pc.rows[r]||[]).join(' ').length||1);
+  pc.cw=Math.max(18,Math.min(40,7+maxRW*7));
+  const availW=pc.W-pad*2-pc.cw-pc.C*2;
+  const availH=pc.H-pad*2-pc.rh-pc.R*2;
+  pc.cs=Math.max(15,Math.min(Math.floor(availW/Math.max(1,pc.C)),Math.floor(availH/Math.max(1,pc.R)),44));
+  const b=pcBoard();
+  if(b){
+    b.style.setProperty('--cs',pc.cs+'px');
+    b.style.setProperty('--cw',pc.cw+'px');
+    b.style.setProperty('--rh',pc.rh+'px');
+    b.style.setProperty('--pcC',String(pc.C));
+    b.style.setProperty('--pcR',String(pc.R));
+  }
+  const dc=document.getElementById('pcDeco');
+  if(dc){
+    const kids=dc.children;
+    for(let i=0;i<kids.length;i++){
+      kids[i].style.left=(6+(i*61+13)%Math.max(20,pc.W-32))+'px';
+      kids[i].style.top=(4+(i*79+21)%Math.max(20,pc.H-32))+'px';
+    }
+  }
+}
+function pcDecos(){
+  const dc=document.getElementById('pcDeco');if(!dc)return;
+  dc.innerHTML='';
+  const d=['🖌','📜','🀄','🏮','🪧','✒️','🖼','🎴'];
+  for(let i=0;i<8;i++){
+    const s=document.createElement('span');
+    s.textContent=d[i%d.length];
+    s.style.animationDelay=(i*0.42)+'s';
+    dc.appendChild(s);
+  }
+}
+function pcBuildBoard(){
+  const b=pcBoard();if(!b)return;
+  b.innerHTML='';
+  const corner=document.createElement('div');
+  corner.className='pc-corner';
+  b.appendChild(corner);
+  pc.cclue=[];
+  for(let c=0;c<pc.C;c++){
+    const d=document.createElement('div');
+    d.className='pc-cclue';
+    d.textContent=(pc.cols[c]&&pc.cols[c].length)?pc.cols[c].join(' '):'0';
+    b.appendChild(d);pc.cclue.push(d);
+  }
+  pc.rclue=[];pc.cells=[];
+  for(let r=0;r<pc.R;r++){
+    const d=document.createElement('div');
+    d.className='pc-rclue';
+    d.textContent=(pc.rows[r]&&pc.rows[r].length)?pc.rows[r].join(' '):'0';
+    b.appendChild(d);pc.rclue.push(d);
+    for(let c=0;c<pc.C;c++){
+      const t=document.createElement('div');
+      t.className='pc-c';
+      t.dataset.i=String(r*pc.C+c);
+      b.appendChild(t);pc.cells.push(t);
+    }
+  }
+  pc.cursor=0;
+}
+function pcPaintAll(){
+  for(let i=0;i<pc.cells.length;i++){
+    const t=pc.cells[i];
+    if(!t)continue;
+    t.classList.remove('on','no','lock','glow','pc-cur');
+    if(pc.known[i])t.classList.add('no');
+    else if(pc.painted[i]){t.classList.add('on');if(pc.lock[i])t.classList.add('lock')}
+  }
+}
+/* ---- 反馈 ---- */
+function pcSay(msg,color){
+  const j=document.getElementById('pcJudge');
+  if(!j)return;
+  j.innerHTML=msg;
+  if(color)j.style.color=color;
+  j.classList.remove('pop');
+  void j.offsetWidth;
+  j.classList.add('pop');
+}
+function pcBand(txt){
+  const bd=document.getElementById('pcBand');
+  if(!bd)return;
+  bd.textContent=txt;
+  bd.classList.remove('on');
+  void bd.offsetWidth;
+  bd.classList.add('on');
+}
+function pcPop(idx,txt,color){
+  const st=pcEl(),fr=document.getElementById('pcFrame');
+  if(!st||!fr)return;
+  const p=document.createElement('div');
+  p.className='pc-pop';
+  p.textContent=txt;
+  if(color)p.style.color=color;
+  const a=st.getBoundingClientRect(),q=fr.getBoundingClientRect();
+  const cx=(idx%pc.C+0.5)*pc.cs+(q.left-a.left);
+  const cy=(Math.floor(idx/pc.C)+0.5)*pc.cs+(q.top-a.top);
+  p.style.left=Math.max(6,Math.min(pc.W-58,cx))+'px';
+  p.style.top=Math.max(4,cy-10)+'px';
+  st.appendChild(p);
+  setTimeout(function(){p.remove()},1100);
+}
+function pcDrops(idx,k,color){
+  const st=pcEl(),fr=document.getElementById('pcFrame');
+  if(!st||!fr)return;
+  const a=st.getBoundingClientRect(),q=fr.getBoundingClientRect();
+  const cx=(idx%pc.C+0.5)*pc.cs+(q.left-a.left);
+  const cy=(Math.floor(idx/pc.C)+0.5)*pc.cs+(q.top-a.top);
+  for(let i=0;i<Math.min(9,k);i++){
+    const s=document.createElement('i');
+    s.className='pc-drop';
+    if(color)s.style.background=color;
+    s.style.left=cx+'px';s.style.top=cy+'px';
+    s.style.setProperty('--dx',((Math.random()*44-22)|0)+'px');
+    s.style.setProperty('--dy',((Math.random()*40-26)|0)+'px');
+    st.appendChild(s);
+    setTimeout(function(){s.remove()},700);
+  }
+}
+function pcShake(){
+  const fr=document.getElementById('pcFrame');
+  if(!fr)return;
+  fr.classList.remove('shake');
+  void fr.offsetWidth;
+  fr.classList.add('shake');
+}
+/* ---- HUD ---- */
+function pcHud(){
+  pcSet('pcScoreTxt','🖌 '+Math.round(pc.score)+' 分');
+  pcSet('pcFrameTxt','第 '+pc.frame+'/'+pc.frames+' 幅 · '+pc.n+'格');
+  pcSet('pcComboTxt',pc.combo>0?('连染 <b>'+pc.combo+'</b>'):'连染 0');
+  pcSet('pcLinesTxt','✓ '+pc.lines+' 行');
+  const rk=pcRank(pcInt('hz_pc_frames'));
+  pcSet('pcRankTxt','🏅 '+rk);
+  if(rk!==pc.lastRank&&pc.lastRank!==''){
+    pcBand('🏅 升段位：'+rk+'！');
+    sndReward();
+  }
+  pc.lastRank=rk;
+  const box=document.getElementById('pcInkBox');
+  const bar=document.getElementById('pcInkBar');
+  if(bar)bar.style.width=(pc.inkMax>0?Math.max(0,Math.min(100,pc.ink/pc.inkMax*100)):0)+'%';
+  if(box){
+    if(pc.ink<=2)box.classList.add('low');
+    else box.classList.remove('low');
+  }
+  pcSet('pcInkTxt','🫙 墨水 '+pc.ink+' / '+pc.inkMax+' 滴');
+  const hb=document.getElementById('pcHintBtn');
+  if(hb){
+    hb.textContent='🔍 看一笔 ×'+pc.hints;
+    if(pc.hints<=0)hb.classList.add('off');
+    else hb.classList.remove('off');
+  }
+  const tools=document.getElementById('pcTools');
+  if(tools){
+    const btns=tools.children;
+    if(btns[0])btns[0].textContent='✏️ 答题补墨 ×'+pc.refills;
+    if(btns[2])btns[2].textContent=pc.guessUsed?'🔮 已经猜过了':'🔮 猜这个字';
+    if(btns[2]){if(pc.guessUsed)btns[2].classList.add('off');else btns[2].classList.remove('off')}
+  }
+}
+function pcTimeHud(){
+  const s=Math.ceil(pc.time);
+  if(s===pc.secs)return;
+  pc.secs=s;
+  const el=document.getElementById('pcTimeTxt');
+  if(el)el.textContent='⏱ '+s+'s';
+}
+function pcTick(){
+  const now=performance.now();
+  let dt=(now-pc.ts)/1000;
+  pc.ts=now;
+  if(dt>0.5)dt=0.5;
+  if(!pc.run||pc.over||currentMode!=='picross'){pcStopLoop();return}
+  if(pc.phase==='paint'||pc.phase==='ask'||pc.phase==='refill'||pc.phase==='guess'){
+    pc.time-=dt;
+    if(pc.time<=0){
+      pc.time=0;pcTimeHud();
+      pcSay('⏱ 时间到，墨汁干透了……','#FFAB91');
+      pcEnd('time');
+      return;
+    }
+    pcTimeHud();
+  }
+}
+/* ---- 题目 ---- */
+function pcOpts(opts){
+  const box=document.getElementById('pcOpts');
+  if(!box)return;
+  box.innerHTML='';
+  if(!opts||!opts.length)return;
+  const lb=['①','②','③','④'];
+  for(let i=0;i<opts.length;i++){
+    const b=document.createElement('button');
+    b.className='pc-op';
+    b.dataset.value=opts[i].v;
+    b.dataset.dir=opts[i].icon||'';
+    b.innerHTML='<u>'+lb[i]+'</u>'+(opts[i].icon?opts[i].icon+' ':'')+opts[i].txt;
+    b.addEventListener('click',function(ev){ev.preventDefault();pcAnswer(opts[i].v,b)});
+    box.appendChild(b);
+  }
+  pc.qOpts=opts;
+}
+function pcAsk(kind){
+  const ks=Object.keys(pcTy);
+  if(!ks.length){pc.phase='paint';pc.busy=false;return}
+  let ch=null;
+  for(let t=0;t<20;t++){
+    const c=ks[(Math.random()*ks.length)|0];
+    if(c!==pc.ch&&pcTy[c].t.length>=2){ch=c;break}
+  }
+  if(!ch)ch=ks[0];
+  const dirs=pcTy[ch].t;
+  let qText,opts,ans,lbl;
+  if(Math.random()<.5){
+    const n=pcTy[ch].n;
+    ans=String(n);lbl=n+' 笔';
+    const nums=[n];
+    while(nums.length<4){
+      const k=n+(Math.random()<.5?-1:1)*(1+((Math.random()*3)|0));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=pcShuf(nums.slice()).map(function(k){return{v:String(k),icon:'✏️',txt:k+' 笔'}});
+    qText='『'+ch+'』一共有几笔？';
+  }else{
+    const idx=(Math.random()*dirs.length)|0;
+    const code=dirs[idx];
+    ans=code;lbl=(PC_LB[code]||['?','?'])[1];
+    const right=[{v:code,icon:(PC_LB[code]||['❔'])[0],txt:lbl}];
+    const pool=pcShuf(['R','D','P','N','T'].filter(function(c){return c!==code})).slice(0,3)
+      .map(function(c){return{v:c,icon:PC_LB[c][0],txt:PC_LB[c][1]}});
+    opts=pcShuf(right.concat(pool));
+    qText='『'+ch+'』的第'+(PC_ORD[idx]||(idx+1))+'笔往哪写？';
+  }
+  pc.ans=ans;pc.ansLbl=lbl;pc.qKind=kind;
+  pcSet('pcQuiz','🖌 '+qText+'<small>'+(kind==='refill'?('答对补 '+pcInkFor(pc.lv)+' 滴墨'):'答对先送 '+PC_INKBONUS+' 滴墨，再开染')+'</small>');
+  pcOpts(opts);
+  pc.busy=false;
+}
+function pcAnswer(v,btn){
+  if(pc.busy||pc.over)return;
+  if(pc.phase!=='ask'&&pc.phase!=='refill'&&pc.phase!=='guess')return;
+  pc.busy=true;
+  const kind=pc.phase;
+  const right=(v===pc.ans);
+  const box=document.getElementById('pcOpts');
+  if(btn)btn.classList.add(right?'correct':'bad');
+  if(!right){
+    sndNo();pcShake();
+    if(box){
+      for(let i=0;i<box.children.length;i++){
+        if(box.children[i].dataset.value===pc.ans)box.children[i].classList.add('correct');
+      }
+    }
+  }else sndOk();
+  pc.tries++;
+  if(kind==='ask'){
+    if(right){
+      pc.ok++;pc.score+=8;pc.ink+=PC_INKBONUS;pc.inkMax+=PC_INKBONUS;
+      pcBand('🖌 答对啦！先送 '+PC_INKBONUS+' 滴墨');
+    }else{
+      pc.score=Math.max(0,pc.score-10);pc.flawless=false;
+      pcBand('💧 答错了，墨瓶打翻一点');
+    }
+    pc.phase='paint';
+    pcT(function(){
+      pcOpts([]);pc.busy=false;pcHud();pcTimeHud();
+      pcSet('pcQuiz','🖼 顶上和左边写着数字 · 那是「连着要染几格」<small>点格子染色 · 点染好的擦掉 · 整行对上盖 ✓</small>');
+    },right?780:980);
+  }else if(kind==='refill'){
+    if(right){
+      pc.ok++;pc.ink+=pcInkFor(pc.lv);pc.inkMax+=pcInkFor(pc.lv);pc.score+=4;
+      pcBand('🫙 补墨 +'+pcInkFor(pc.lv)+' 滴');
+    }else{
+      pc.score=Math.max(0,pc.score-5);pc.combo=0;pc.flawless=false;
+      pcBand('💧 没答对，墨没有');
+    }
+    pc.phase='paint';
+    pcT(function(){
+      pcOpts([]);pc.busy=false;pcHud();
+      pcSet('pcQuiz','🖼 顶上和左边写着数字 · 那是「连着要染几格」<small>点格子染色 · 点染好的擦掉 · 整行对上盖 ✓</small>');
+    },right?720:900);
+  }else{
+    if(right){
+      pc.ok++;pc.gotRight=true;pc.score+=25;pc.ink+=3;pc.inkMax+=3;
+      pcSet('pcQuiz','🔮 你猜对了！这幅画就是『<b>'+pc.ch+'</b>』<small>继续染完，看它按笔顺序亮起来</small>');
+      pcBand('🔮 一眼看穿 +25 分');
+      spawnConfetti();
+    }else{
+      pc.score=Math.max(0,pc.score-8);pc.flawless=false;
+      pcSet('pcQuiz','🔮 猜错了，偷偷告诉你：是『<b>'+pc.ch+'</b>』<small>把剩下的格子染完吧</small>');
+      pcBand('🙈 差一点就猜中');
+    }
+    pc.guessUsed=true;
+    pc.phase='paint';
+    pcT(function(){pcOpts([]);pc.busy=false;pcHud()},right?900:1050);
+  }
+  pcHud();
+}
+/* ---- 染格子 ---- */
+function pcLineDone(axis,k){
+  const L=axis==='r'?pc.C:pc.R;
+  for(let j=0;j<L;j++){
+    const i=axis==='r'?(k*pc.C+j):(j*pc.C+k);
+    if((pc.painted[i]?1:0)!==(pc.sol[i]?1:0))return false;
+  }
+  return true;
+}
+function pcLockLine(axis,k){
+  const L=axis==='r'?pc.C:pc.R;
+  for(let j=0;j<L;j++){
+    const i=axis==='r'?(k*pc.C+j):(j*pc.C+k);
+    if(pc.sol[i]){
+      pc.lock[i]=1;
+      const t=pc.cells[i];
+      if(t)t.classList.add('lock');
+    }else if(!pc.painted[i]){
+      pc.known[i]=1;
+      const t=pc.cells[i];
+      if(t){t.classList.remove('on');t.classList.add('no')}
+    }
+  }
+  const lab=axis==='r'?pc.rclue[k]:pc.cclue[k];
+  if(lab)lab.classList.add('ok');
+}
+function pcStampFx(axis,k){
+  pc.lines++;pc.gotLines++;
+  pcAdd('hz_pc_lines',1);
+  const gain=10+Math.min(30,pc.combo*2);
+  pc.score+=gain;
+  tone(PC_NOTE[Math.min(PC_NOTE.length-1,pc.lines%PC_NOTE.length)],.13,'triangle',.2);
+  const idxs=[];
+  const L=axis==='r'?pc.C:pc.R;
+  for(let j=0;j<L;j++)idxs.push(axis==='r'?(k*pc.C+j):(j*pc.C+k));
+  pcDrops(idxs[0],5,'#FFD740');
+  pcPop(idxs[0],'+'+gain+' ✓','#FFD740');
+  pcSay('✅ 第 '+(k+1)+(axis==='r'?' 行':' 列')+' 对上了，盖个 ✓（+'+gain+'）','#B9F6CA');
+}
+function pcMoveCursor(i){
+  if(!pcIn(i))return;
+  const old=pcCellEl(pc.cursor);
+  if(old)old.classList.remove('pc-cur');
+  pc.cursor=i;
+  const t=pcCellEl(i);
+  if(t)t.classList.add('pc-cur');
+}
+function pcTap(i){
+  if(pc.over||!pc.run)return;
+  if(pc.phase==='ask'||pc.phase==='refill'||pc.phase==='guess'){
+    pcSay('☝️ 先把上头的题答完，才发墨','#FFF176');
+    return;
+  }
+  if(pc.phase!=='paint')return;
+  if(!pcIn(i))return;
+  if(pc.known[i]){pcShake();pcSay('🚫 这格已经打过 ✗ 了，换一格','#FFAB91');return}
+  if(pc.painted[i]){
+    if(pc.lock[i]){pcSay('🔒 这行已经盖了 ✓，锁定啦','#80DEEA');return}
+    pc.painted[i]=0;pc.ink++;
+    const t=pc.cells[i];
+    if(t)t.classList.remove('on','wet');
+    tone(330,.08,'sine',.14);
+    pcHud();
+    return;
+  }
+  if(pc.ink<=0){
+    pcShake();
+    pcSay('🫙 墨用完了！点下面「✏️ 答题补墨」领墨','#FFD740');
+    tone(180,.2,'square',.16);
+    return;
+  }
+  pc.painted[i]=1;pc.ink--;pc.gotCells++;
+  pcAdd('hz_pc_cells',1);
+  const t=pc.cells[i];
+  if(t){
+    t.classList.add('on');
+    t.classList.remove('wet');
+    void t.offsetWidth;
+    t.classList.add('wet');
+  }
+  if(pc.sol[i]){
+    pc.combo++;pc.maxCombo=Math.max(pc.maxCombo,pc.combo);
+    const gain=2+Math.min(8,Math.floor(pc.combo/3)*2);
+    pc.score+=gain;
+    tone(660+Math.min(9,pc.combo)*40,.07,'triangle',.13);
+    if(pc.combo>0&&pc.combo%9===0)showComboEffect(pc.combo);
+    const rc=pcRC(i);
+    if(pcLineDone('r',rc[0])&&!pc.rclue[rc[0]].classList.contains('ok')){
+      pcLockLine('r',rc[0]);pcStampFx('r',rc[0]);
+    }
+    if(pcLineDone('c',rc[1])&&!pc.cclue[rc[1]].classList.contains('ok')){
+      pcLockLine('c',rc[1]);pcStampFx('c',rc[1]);
+    }
+    if(pcGot()>=pc.cellsTotal)pcWinFrame();
+  }else{
+    pc.wrong++;pc.combo=0;pc.flawless=false;
+    pc.painted[i]=0;
+    pc.known[i]=1;
+    pc.score=Math.max(0,pc.score-6);
+    if(t){t.classList.remove('on');t.classList.add('no')}
+    sndNo();pcShake();
+    pcPop(i,'-6 ✗','#FF8A80');
+    pcDrops(i,3,'#90A4AE');
+  }
+  pcHud();
+}
+function pcGot(){let k=0;for(let i=0;i<pc.sol.length;i++)if(pc.sol[i]&&pc.painted[i])k++;return k}
+/* ---- 一幅画 ---- */
+function pcWinFrame(){
+  if(pc.phase!=='paint')return;
+  pc.phase='reveal';
+  pc.gotFrames++;
+  pcAdd('hz_pc_frames',1);
+  const bk=pcBook();
+  let isNew=false;
+  if(bk.indexOf(pc.ch)<0){bk.push(pc.ch);localStorage.setItem('hz_pc_book',bk.join(','));isNew=true}
+  if(pc.flawless)pcAdd('hz_pc_flaw',1);
+  const tb=Math.max(0,Math.floor(pc.time/2));
+  const gain=40+pc.cellsTotal+tb+(pc.flawless?30:0)+(isNew?15:0);
+  pc.score+=gain;
+  pc.time=PC_TIME;pc.secs=-1;
+  pcHud();pcTimeHud();
+  pcOpts([]);
+  pcReveal(gain,isNew,tb);
+}
+function pcReveal(gain,isNew,tb){
+  const groups=[];
+  const ns=Math.max(1,pc.orderMax+1);
+  for(let s=0;s<ns;s++)groups.push([]);
+  for(let i=0;i<pc.sol.length;i++){
+    if(!pc.sol[i])continue;
+    let s=pc.order[i];
+    if(s<0)s=0;
+    if(s>=ns)s=ns-1;
+    groups[s].push(i);
+  }
+  const seq=[];
+  for(let s=0;s<ns;s++)for(let j=0;j<groups[s].length;j++)seq.push([groups[s][j],s]);
+  let k=0;
+  const step=function(){
+    if(pc.over||currentMode!=='picross')return;
+    if(k>=seq.length){pcRevealDone(gain,isNew,tb);return}
+    const it=seq[k];
+    const t=pcCellEl(it[0]);
+    if(t){t.classList.add('glow');pcDrops(it[0],1,'#FFD740')}
+    tone(PC_NOTE[Math.min(PC_NOTE.length-1,it[1])],.1,'triangle',.17);
+    k++;
+    pcT(step,PC_STEP);
+  };
+  pcSet('pcQuiz','✨ 染好了！看它<b>按笔顺一笔一笔亮起来</b><small>第 '+pc.frame+' 幅 · 一错未犯 '+(pc.flawless?'✓':'✗')+'</small>');
+  step();
+}
+function pcRevealDone(gain,isNew,tb){
+  const big=document.getElementById('pcBig');
+  if(big){
+    big.textContent=pc.ch;
+    big.classList.remove('on');
+    void big.offsetWidth;
+    big.classList.add('on');
+  }
+  sndReward();
+  spawnConfetti();
+  pcSet('pcQuiz','🖼 这幅画就是『<b>'+pc.ch+'</b>』！<small>+'+gain+' 分（含限时奖励 '+tb+'）'+(isNew?' · 📚 画廊新收录':'')+'</small>');
+  pcSay('🖼 完成 +'+gain+' 分','#B9F6CA');
+  const st=pcEl();
+  if(st){
+    const a=st.getBoundingClientRect();
+    spawnStarFly(a.left+a.width/2,a.top+a.height/2);
+  }
+  pc.busy=true;
+  pcT(pcNextFrame,1650);
+}
+function pcNextFrame(){
+  pc.frame++;
+  if(pc.frame>pc.frames){pcEnd('done');return}
+  pcStartFrame();
+}
+function pcStartFrame(){
+  const gen=pc.gen;
+  pc.busy=true;pc.phase='wait';
+  pcOpts([]);
+  pcSet('pcQuiz','🖼 正在挂第 '+pc.frame+' 幅画……<small>先量一量格子</small>');
+  pc.lv=Math.min(14,1+Math.floor(pcInt('hz_pc_frames')/3));
+  const wantN=pcSizeFor(pc.lv);
+  pcBuild(wantN).then(function(){
+    if(gen!==pc.gen||currentMode!=='picross'||!pc.run||pc.over)return;
+    let ch=null,usedN=0;
+    for(let k=wantN;k>=PC_NMIN;k--){
+      ch=pcPick(k,pc.used,0);
+      if(ch){usedN=k;break}
+    }
+    if(!ch){
+      pcSet('pcQuiz','🖼 这一档的画都染完啦<small>改天再挂新的</small>');
+      pcEnd('empty');
+      return;
+    }
+    pc.n=usedN;pc.ch=ch;pc.used.push(ch);
+    const p=pcProfCache[ch+'x'+usedN];
+    pc.R=p.R;pc.C=p.C;
+    pc.rows=p.rows;pc.cols=p.cols;
+    pc.sol=[];pc.order=[];
+    pc.cellsTotal=p.cells;
+    pc.orderMax=-1;
+    for(let i=0;i<p.R*p.C;i++){
+      pc.sol.push(p.mask[i]?1:0);
+      pc.order.push(p.order[i]);
+      if(p.mask[i]&&p.order[i]>pc.orderMax)pc.orderMax=p.order[i];
+    }
+    pc.painted=new Array(pc.R*pc.C).fill(0);
+    pc.known=new Array(pc.R*pc.C).fill(0);
+    pc.lock=new Array(pc.R*pc.C).fill(0);
+    pc.lines=0;pc.time=PC_TIME;pc.secs=-1;
+    pc.inkMax=pc.cellsTotal+pcInkFor(pc.lv);pc.ink=pc.inkMax;
+    pc.hints=PC_HINTS;pc.refills=PC_REFILL;pc.guessUsed=false;pc.gotRight=false;
+    pc.flawless=true;
+    pcBuildBoard();
+    pcLayout();
+    pcPaintAll();
+    pcHud();pcTimeHud();
+    pcSay('🧐 看数字推理：顶上和左边是「连着染几格」','#80DEEA');
+    pcBand('第 '+pc.frame+' 幅 · '+pc.R+' 行 '+pc.C+' 列');
+    pc.phase='ask';
+    pcAsk('ink');
+  },function(){
+    if(gen!==pc.gen||currentMode!=='picross'||!pc.run||pc.over)return;
+    pcSet('pcQuiz','📡 字库拉不到了……<small>检查网络再试</small>');
+    pcEnd('net');
+  });
+}
+/* ---- 道具 ---- */
+function pcHint(){
+  if(pc.over||pc.phase!=='paint')return;
+  if(pc.hints<=0){pcSay('🔍 这幅的「看一笔」用完了','#FFAB91');return}
+  const pool=[];
+  for(let i=0;i<pc.sol.length;i++)if(pc.sol[i]&&!pc.painted[i])pool.push(i);
+  if(!pool.length)return;
+  pc.hints--;
+  pc.score=Math.max(0,pc.score-12);
+  const i=pool[(Math.random()*pool.length)|0];
+  pc.painted[i]=1;pc.gotCells++;
+  const t=pcCellEl(i);
+  if(t){t.classList.add('on','hint');setTimeout(function(){t.classList.remove('hint')},720)}
+  pcAdd('hz_pc_cells',1);
+  tone(900,.1,'sine',.16);
+  pcPop(i,'🔍 就这格','#80DEEA');
+  const rc=pcRC(i);
+  if(pcLineDone('r',rc[0])&&!pc.rclue[rc[0]].classList.contains('ok')){pcLockLine('r',rc[0]);pcStampFx('r',rc[0])}
+  if(pcLineDone('c',rc[1])&&!pc.cclue[rc[1]].classList.contains('ok')){pcLockLine('c',rc[1]);pcStampFx('c',rc[1])}
+  pcHud();
+  if(pcGot()>=pc.cellsTotal)pcWinFrame();
+}
+function pcRefill(){
+  if(pc.over||pc.phase!=='paint')return;
+  if(pc.refills<=0){pcSay('✏️ 这一幅的补墨题用完了','#FFAB91');return}
+  pc.refills--;
+  pc.phase='refill';
+  pc.busy=false;
+  pcHud();
+  pcAsk('refill');
+}
+function pcGuess(){
+  if(pc.over||pc.phase!=='paint')return;
+  if(pc.guessUsed){pcSay('🔮 这一幅已经猜过一次啦','#FFAB91');return}
+  const cands=pcCands(pc.n,0).map(function(x){return x.ch}).filter(function(c){return c!==pc.ch});
+  const same=pcCands(pc.n,0).filter(function(x){return x.ch!==pc.ch&&pcTy[x.ch]&&pcTy[pc.ch]&&pcTy[x.ch].n===pcTy[pc.ch].n});
+  const src=same.length>=3?same:cands;
+  pcShuf(src);
+  const deco=src.slice(0,3);
+  while(deco.length<3){
+    const c=CHARS[(Math.random()*CHARS.length)|0];
+    if(c!==pc.ch&&deco.indexOf(c)<0)deco.push(c);
+  }
+  const opts=pcShuf([{v:pc.ch,icon:'🖼',txt:pc.ch}].concat(deco.map(function(c){return{v:c,icon:'🖼',txt:c}})));
+  pc.ans=pc.ch;pc.ansLbl=pc.ch;
+  pcSet('pcQuiz','🔮 猜一猜：这幅画染的是哪个字？<small>猜对 +25 分还送 3 滴墨</small>');
+  pcOpts(opts);
+  pc.phase='guess';
+}
+function pcWipe(){
+  if(pc.over||pc.phase!=='paint')return;
+  let k=0;
+  for(let i=0;i<pc.painted.length;i++){
+    if(pc.painted[i]&&!pc.lock[i]){pc.painted[i]=0;pc.ink++;k++}
+  }
+  if(!k){pcSay('🧽 没有可以擦的格子','#FFAB91');return}
+  pc.score=Math.max(0,pc.score-4);
+  pc.combo=0;
+  pcPaintAll();
+  pcHud();
+  tone(300,.16,'sine',.14);
+  pcSay('🧽 擦掉了 '+k+' 格（扣 4 分），数字还在，再想想','#FFF176');
+}
+/* ---- 开局 / 结算 ---- */
+function pcStart(){
+  currentMode='picross';pc.gen++;pcKillTimers();pcStopLoop();
+  const st0=pcEl();
+  if(st0){st0.querySelectorAll('.pc-pop,.pc-drop').forEach(function(e){e.remove()})}
+  const fr=document.getElementById('pcFrame');
+  if(fr)fr.classList.remove('shake');
+  const bd=document.getElementById('pcBand');
+  if(bd)bd.classList.remove('on');
+  const bg=document.getElementById('pcBig');
+  if(bg)bg.classList.remove('on');
+  pc.run=true;pc.over=false;
+  pc.score=0;pc.combo=0;pc.maxCombo=0;pc.frame=1;pc.frames=PC_FRAMES;
+  pc.tries=0;pc.ok=0;pc.wrong=0;pc.lines=0;pc.gotFrames=0;pc.gotCells=0;pc.gotLines=0;
+  pc.used=[];pc.lastRank=pcRank(pcInt('hz_pc_frames'));
+  pc.lv=Math.min(14,1+Math.floor(pcInt('hz_pc_frames')/3));
+  pc.n=pcSizeFor(pc.lv);pc.R=pc.n;pc.C=pc.n;
+  pc.rows=[];pc.cols=[];pc.sol=[];pc.order=[];pc.painted=[];pc.known=[];pc.lock=[];
+  pc.cellsTotal=0;pc.ink=0;pc.inkMax=0;pc.time=PC_TIME;pc.secs=-1;
+  pc.busy=true;pc.phase='wait';pc.guessUsed=false;pc.gotRight=false;pc.flawless=true;
+  pc.cursor=0;pc.drag=0;
+  showScreen('picross');
+  pcDecos();
+  pcBuildBoard();
+  pcLayout();
+  pcHud();pcTimeHud();
+  pcMarkSeen();
+  pcSay('🖼 数字就是「连着染几格」，先答一题领墨','#80DEEA');
+  pcStartFrame();
+}
+function pcEnd(reason){
+  if(pc.over)return;
+  pc.over=true;pc.run=false;pc.phase='over';
+  pcStopLoop();pcKillTimers();
+  const s=Math.round(pc.score);
+  if(s>pcInt('hz_pc_best'))localStorage.setItem('hz_pc_best',String(s));
+  pcAdd('hz_pc_runs',1);
+  if(pc.n>pcInt('hz_pc_lv'))localStorage.setItem('hz_pc_lv',String(pc.n));
+  const bk=pcBook().length;
+  const stars=Math.max(1,Math.min(24,pc.gotFrames*6+Math.round(s/70)+Math.round(pc.gotLines/2)));
+  addStars(stars);
+  const best=pcInt('hz_pc_best');
+  pcSet('pcRsStars','⭐ +'+stars);
+  pcSet('pcRsEmoji',pc.gotFrames>=pc.frames?'🖼':pc.gotFrames>0?'🧽':'💧');
+  pcSet('pcRsTitle',reason==='done'?(pc.gotFrames>=pc.frames?'三幅全挂上墙了！':'这一幅挂进画廊了'):
+    (reason==='time'?'时间到，墨汁干透了':'先收摊，画廊改天再开'));
+  const why=reason==='time'?'（时间用完了）':reason==='empty'?'（这一档的字都染过了）':reason==='net'?'（字库没连上）':'';
+  pcSet('pcRsSub','染完 '+pc.gotFrames+' 幅、盖了 '+pc.gotLines+' 个 ✓、用掉 '+pc.gotCells+' 格墨，最长连染 '+pc.maxCombo+'，'+
+    '得分 '+s+' 分'+why+(s>=best&&s>0?'（新纪录）':'，离最高分 '+best+' 还差 '+Math.max(0,best-s)+' 分')+
+    ' · 答对 '+pc.ok+'/'+(pc.tries||pc.ok)+' 题');
+  pcSet('pcRsScore',String(s));
+  pcSet('pcRsFrames',String(pc.gotFrames));
+  pcSet('pcRsLines',String(pc.gotLines));
+  pcSet('pcRsCells',String(pc.gotCells));
+  pcSet('pcRsCombo',String(pc.maxCombo));
+  pcSet('pcRsFlaw',String(pcInt('hz_pc_flaw')));
+  pcSet('pcRsBest',best+' 分 / '+bk+' 字');
+  pcSet('pcRsAll','🏅 段位 '+pcRank(pcInt('hz_pc_frames'))+'（累计 '+pcInt('hz_pc_frames')+' 幅） · 画框最大 '+pcInt('hz_pc_lv')+' 格\n'+
+    '累计盖 ✓ '+pcInt('hz_pc_lines')+' 行 · 染格 '+pcInt('hz_pc_cells')+' 格 · 一错未犯 '+pcInt('hz_pc_flaw')+' 幅 · 上了 '+pcInt('hz_pc_runs')+' 局\n'+
+    '📚 画廊收了 '+bk+' 个字 '+pcBook().slice(-8).join('')+' · '+pcNextRankTxt());
+  pcMarkSeen();
+  showScreen('picross-result');
+}
+function pcRetry(){pcStart()}
+function pcLeave(){
+  pcStopLoop();pcKillTimers();
+  if(pc.run&&!pc.over){pc.over=true;pc.run=false}
+  pc.drag=0;
+  const fr=document.getElementById('pcFrame');
+  if(fr)fr.classList.remove('shake');
+  goHome();
+}
+function pcHelp(){
+  pcSay('🖼 顶上/左边的数字=这一行（列）要连着染几格 → 点格子染色、点染好的擦掉 → 整行对上就盖 ✓ 并自动打 ✗ → 墨水滴有限，用完点「✏️ 答题补墨」 → 整幅染完会按笔顺序亮起，那幅画就是这个字','#80DEEA');
+}
+function pcMarkSeen(){localStorage.setItem('hz_pc_seen',String(pcInt('hz_pc_frames')))}
+function pcNudge(){
+  const dot=document.getElementById('picrossCardDot'),tip=document.getElementById('picrossCardTip');
+  const runs=pcInt('hz_pc_runs'),frames=pcInt('hz_pc_frames'),bk=pcBook().length;
+  if(tip)tip.textContent=frames?('画廊 '+bk+' 个字 · 染过 '+frames+' 幅'):'数字推格子 · 把这个字染出来';
+  if(!dot)return;
+  if(!runs){dot.textContent='🆕';dot.classList.add('on');return}
+  if(pcInt('hz_pc_lv')<PC_NMAX){dot.textContent='🖼 大画框';dot.classList.add('on');return}
+  if(frames>pcInt('hz_pc_seen')){dot.textContent='📚 新收录';dot.classList.add('on');return}
+  dot.classList.remove('on');
+}
+function pcOnResize(){
+  if(currentMode!=='picross'||!pc.run)return;
+  const st=pcEl();if(!st)return;
+  if(Math.abs(st.clientWidth-pc.W)<2&&Math.abs(st.clientHeight-pc.H)<2)return;
+  pcLayout();
+}
+window.pcKeys=e=>{
+  if(currentMode!=='picross')return;
+  const scr=document.getElementById('screen-picross');
+  if(!scr||!scr.classList.contains('active'))return;
+  const k=e.key;
+  if(k==='ArrowLeft'||k==='a'||k==='A'){if(pc.cursor%pc.C>0)pcMoveCursor(pc.cursor-1);e.preventDefault();return}
+  if(k==='ArrowRight'||k==='d'||k==='D'){if(pc.cursor%pc.C<pc.C-1)pcMoveCursor(pc.cursor+1);e.preventDefault();return}
+  if(k==='ArrowUp'||k==='w'||k==='W'){if(pc.cursor>=pc.C)pcMoveCursor(pc.cursor-pc.C);e.preventDefault();return}
+  if(k==='ArrowDown'||k==='s'||k==='S'){if(pc.cursor<pc.R*pc.C-pc.C)pcMoveCursor(pc.cursor+pc.C);e.preventDefault();return}
+  if(k===' '||k==='Enter'){pcTap(pc.cursor);e.preventDefault();return}
+  if(k==='1'||k==='2'||k==='3'||k==='4'){
+    const box=document.getElementById('pcOpts');
+    if(box&&box.children.length>=(+k)){
+      const b=box.children[(+k)-1];
+      pcAnswer(b.dataset.value,b);
+    }
+    return;
+  }
+  if(k==='h'||k==='H'||k==='?'){pcHelp();return}
+  if(k==='i'||k==='I'){pcHint();return}
+  if(k==='r'||k==='R'){pcRefill();return}
+};
+document.addEventListener('keydown',e=>{if(window.pcKeys)window.pcKeys(e)});
+(function pcBindCtl(){
+  const bd=document.getElementById('pcBoard');
+  if(!bd)return;
+  const cellAt=function(x,y){
+    const el=document.elementFromPoint(x,y);
+    if(el&&el.classList&&el.classList.contains('pc-c'))return parseInt(el.dataset.i,10);
+    return -1;
+  };
+  bd.addEventListener('pointerdown',function(ev){
+    if(pc.over||currentMode!=='picross')return;
+    const i=cellAt(ev.clientX,ev.clientY);
+    if(i<0)return;
+    ev.preventDefault();
+    pcMoveCursor(i);
+    pc.drag=1;
+    if(pc.known[i]||pc.lock[i])pc.dragMode=-1;
+    else pc.dragMode=pc.painted[i]?0:1;
+    pcTap(i);
+    if(bd.setPointerCapture){try{bd.setPointerCapture(ev.pointerId)}catch(e){}}
+  });
+  bd.addEventListener('pointermove',function(ev){
+    if(!pc.drag||pc.over)return;
+    const i=cellAt(ev.clientX,ev.clientY);
+    if(i<0||i===pc.cursor)return;
+    pcMoveCursor(i);
+    if(pc.dragMode===1){
+      if(pc.painted[i]||pc.known[i]||pc.lock[i])return;
+      pcTap(i);
+    }else if(pc.dragMode===0){
+      if(!pc.painted[i]||pc.lock[i])return;
+      pcTap(i);
+    }
+  });
+  const stop=function(){pc.drag=0};
+  bd.addEventListener('pointerup',stop);
+  bd.addEventListener('pointercancel',stop);
+  window.addEventListener('pointerup',stop);
+})();
+window.addEventListener('resize',pcOnResize);
 window.addEventListener('DOMContentLoaded',boot);
 </script>
 </body>
