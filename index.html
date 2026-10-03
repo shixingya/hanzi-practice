@@ -2831,6 +2831,107 @@ button:active{transform:scale(.95)}
 .srt-badge.on{display:flex}
 @media(max-width:420px){.srt-hud,.srt-meta,.srt-judge,.srt-tip{max-width:300px}
   .srt-stage{max-width:296px;height:258px}}
+
+/* ============ v1.50.0 笔顺喷喷乐（走位涂地 · 和章鱼抢地盘 · 连喷扩大喷幅）============ */
+.sp-hud{display:flex;gap:5px;justify-content:center;flex-wrap:nowrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
+.sp-hud span{flex:0 1 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 8px;font-size:10.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sp-hud b{color:#FFD740}
+.sp-bar{position:relative;display:flex;width:100%;max-width:322px;height:22px;margin:0 auto;border-radius:99px;overflow:hidden;
+  background:rgba(0,0,0,.34);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.sp-bar i{display:block;height:100%;transition:width .28s}
+.sp-bar i.mine{background:linear-gradient(90deg,var(--sp-a,#4FC3F7),var(--sp-b,#0288D1))}
+.sp-bar i.theirs{background:linear-gradient(90deg,#FF9EC6,#EC407A);margin-left:auto}
+.sp-bar b{position:absolute;left:0;right:0;top:0;line-height:22px;text-align:center;font-size:11px;font-weight:800;color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.65);pointer-events:none}
+.sp-bar i.grab{animation:spGrab .4s}
+@keyframes spGrab{0%,100%{filter:none}50%{filter:brightness(1.7)}}
+.sp-quiz{width:100%;max-width:322px;margin:6px auto 0;min-height:40px;border-radius:12px;background:rgba(0,0,0,.42);color:#fff;
+  font-size:13.5px;font-weight:800;text-align:center;line-height:1.3;padding:7px 9px;z-index:6;position:relative;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.sp-quiz small{display:block;font-size:10px;font-weight:600;opacity:.8;margin-top:2px}
+.sp-quiz b{color:#FFD740}
+.sp-stage{position:relative;width:100%;max-width:322px;height:288px;margin:7px auto 0;overflow:hidden;border-radius:18px;
+  touch-action:none;user-select:none;-webkit-user-select:none;
+  background:linear-gradient(180deg,#42306B,#59448A 58%,#33255020),linear-gradient(0deg,#2A1F45,#3E2E62);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 8px 22px rgba(0,0,0,.32);
+  --sp-a:#4FC3F7;--sp-b:#0288D1}
+.sp-stage.ik1{--sp-a:#80FFDB;--sp-b:#00BFA5}
+.sp-stage.ik2{--sp-a:#E4FF6B;--sp-b:#7CB304}
+.sp-stage.ik3{--sp-a:#FFD180;--sp-b:#F57C00}
+.sp-stage.ik4{--sp-a:#E0B3FF;--sp-b:#8E24AA}
+.sp-deco{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;z-index:1}
+.sp-deco span{position:absolute;opacity:.34;animation:spFloat 4.6s ease-in-out infinite}
+@keyframes spFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.sp-grid{position:absolute;display:grid;gap:2px;z-index:2;border-radius:10px;
+  grid-template-columns:repeat(6,var(--spc,32px));grid-auto-rows:var(--spc,32px)}
+.sp-tile{position:relative;background:rgba(255,255,255,.11);border-radius:5px;transition:background .18s}
+.sp-tile.mine{background:linear-gradient(158deg,var(--sp-a),var(--sp-b));box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.sp-tile.theirs{background:linear-gradient(158deg,#FF9EC6,#EC407A);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.sp-tile.wet{animation:spWet .44s}
+@keyframes spWet{0%{transform:scale(.35);opacity:.25}54%{transform:scale(1.16);opacity:1}100%{transform:scale(1);opacity:1}}
+.sp-stage.ik5 .sp-tile.mine{background:linear-gradient(118deg,#FF80AB,#FFD740,#80FFDB,#82B1FF,#E0B3FF,#FF80AB);background-size:260% 100%;
+  animation:spRb 3.2s linear infinite}
+@keyframes spRb{from{background-position:0 0}to{background-position:260% 0}}
+.sp-crate{position:absolute;z-index:5;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  line-height:1;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;
+  background:linear-gradient(180deg,#F7E6C3,#D9B47C);box-shadow:inset 0 0 0 2px #A67C43,0 3px 9px rgba(0,0,0,.42);
+  transition:box-shadow .2s,transform .14s}
+.sp-crate u{position:absolute;left:3px;top:1px;font-size:8.5px;font-weight:900;color:#8D6E63;text-decoration:none;line-height:1}
+.sp-crate i{font-style:normal;font-size:15px;line-height:1.05}
+.sp-crate b{font-size:11px;font-weight:900;color:#4E342E;margin-top:1px;white-space:nowrap}
+.sp-crate:active{transform:scale(.95)}
+.sp-crate.near{box-shadow:inset 0 0 0 2px #FFD740,0 0 13px rgba(255,215,64,.8)}
+.sp-crate.reveal{box-shadow:inset 0 0 0 2px #69F0AE,0 0 17px rgba(105,240,194,.9);animation:spRev 1s ease-in-out infinite}
+@keyframes spRev{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.sp-crate.bad{animation:spBad .5s ease-out forwards;pointer-events:none}
+@keyframes spBad{0%{opacity:1;transform:scale(1)}38%{opacity:1;transform:scale(1.3) rotate(11deg)}100%{opacity:0;transform:scale(.28) rotate(-18deg)}}
+.sp-crate.gone{animation:spGone .4s ease-in forwards;pointer-events:none}
+@keyframes spGone{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-12px) scale(.4)}}
+.sp-glit{position:absolute;z-index:4;width:26px;height:26px;text-align:center;font-size:23px;line-height:26px;pointer-events:none;
+  animation:spGlit 1.5s ease-in-out infinite}
+@keyframes spGlit{0%,100%{transform:scale(1) rotate(-6deg)}50%{transform:scale(1.2) rotate(6deg)}}
+.sp-hero{position:absolute;z-index:7;text-align:center;font-size:27px;line-height:1;pointer-events:none;
+  transition:left .13s linear,top .13s linear;filter:drop-shadow(0 3px 7px rgba(0,0,0,.55))}
+.sp-hero.soaked{filter:drop-shadow(0 0 12px #EC407A) saturate(.5);animation:spSoak .46s}
+@keyframes spSoak{0%,100%{transform:translateY(0)}30%{transform:translateY(-4px) rotate(-9deg)}60%{transform:translateY(2px) rotate(8deg)}}
+.sp-hero.bump{animation:spBump .26s}
+@keyframes spBump{0%,100%{transform:translate(0,0)}50%{transform:translate(var(--bx),var(--by))}}
+.sp-octo{position:absolute;z-index:6;text-align:center;font-size:24px;line-height:1;pointer-events:none;
+  transition:left .3s linear,top .3s linear;filter:drop-shadow(0 3px 6px rgba(0,0,0,.48))}
+.sp-pop{position:absolute;font-size:14px;font-weight:900;color:#FFD740;text-shadow:0 2px 6px rgba(0,0,0,.6);
+  pointer-events:none;z-index:11;white-space:nowrap;animation:spPopUp 1.05s forwards}
+@keyframes spPopUp{0%{opacity:0;transform:translateY(8px) scale(.8)}22%{opacity:1;transform:translateY(-6px) scale(1.12)}
+  100%{opacity:0;transform:translateY(-42px) scale(1)}}
+.sp-ink{position:absolute;width:9px;height:9px;border-radius:58% 42% 50% 50%;pointer-events:none;z-index:10;
+  animation:spInkF .64s forwards}
+@keyframes spInkF{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--ix),var(--iy)) scale(.3)}}
+.sp-band{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:12;font-size:16px;font-weight:900;color:#fff;
+  background:rgba(0,0,0,.66);border-radius:99px;padding:8px 16px;opacity:0;pointer-events:none;white-space:nowrap}
+.sp-band.on{animation:spBand 1.7s forwards}
+@keyframes spBand{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}
+  76%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.04)}}
+.sp-judge{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:12px;font-weight:800;min-height:34px;
+  line-height:1.45;color:#fff;opacity:.95}
+.sp-judge.pop{animation:spJudge .4s}
+@keyframes spJudge{from{transform:scale(.88);opacity:.3}to{transform:scale(1);opacity:1}}
+.sp-dpad{display:grid;grid-template-columns:repeat(3,52px);grid-template-rows:repeat(3,38px);gap:5px;justify-content:center;margin:7px auto 0}
+.sp-db{border:0;border-radius:12px;background:rgba(255,255,255,.15);color:#fff;font-size:17px;line-height:1;cursor:pointer;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);-webkit-tap-highlight-color:transparent;padding:0}
+.sp-db:active{background:rgba(255,255,255,.34);transform:scale(.93)}
+.sp-db.mid{background:rgba(255,255,255,.06);font-size:15px;cursor:default}
+.sp-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;color:rgba(255,255,255,.72);line-height:1.6}
+.sp-tip b{color:#FFD740}
+.sp-stage.shake{animation:spShake .4s}
+@keyframes spShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.sp-rs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 8px;text-align:center}
+.sp-rs span{display:block;font-size:26px;font-weight:bold}
+.sp-rs small{display:block;font-size:11px;opacity:.7;margin-top:2px;color:#fff}
+.sp-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;
+  font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.sp-badge.on{display:flex}
+@media(max-width:420px){.sp-hud,.sp-bar,.sp-quiz,.sp-judge,.sp-tip{max-width:300px}
+  .sp-stage{max-width:296px;height:266px}}
 </style>
 
 </head>
@@ -3039,6 +3140,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🏭</div>
       <div class="info"><h3>笔顺分拣厂</h3><p id="sortCardTip">传送带送字 · 按规矩投筐 · 满筐发车</p></div>
       <span class="srt-badge" id="sortCardDot">🆕</span>
+    </div>
+<div class="mode-card" onclick="enterMode('splat')">
+      <div class="icon">🦑</div>
+      <div class="info"><h3>笔顺喷喷乐</h3><p id="splatCardTip">走位涂地 · 和章鱼抢地盘</p></div>
+      <span class="sp-badge" id="splatCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('sky')">
       <div class="icon">☁️</div>
@@ -5314,6 +5420,68 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="srtLeave()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-splat">
+  <div class="top-bar">
+    <button class="back-btn" onclick="spLeave()">← 返回</button>
+    <div class="stats"><span id="spScoreTxt">🎨 0 分</span><span id="spTimeTxt">⏱ 70s</span></div>
+    <button class="icon-btn" onclick="spHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🦑 地板上摆着 <b>四个油漆桶</b>，桶上各写一个答案：看清顶上这道题，<b style="color:#FFF176">走到写着对答案的那个桶</b>上就 <b style="color:#B9F6CA">噗——喷出墨水</b>。连喷越多<b>喷幅越大</b>；🐙 小章鱼在旁边一格格抢地盘，<b style="color:#FFD740">时间到谁涂的格子多谁赢</b>。</div>
+  <div class="sp-hud">
+    <span id="spRankTxt">🏅 新来的实习生</span>
+    <span id="spWideTxt">🖌 喷幅 1 格</span>
+    <span id="spComboTxt">连喷 0</span>
+    <span id="spStealTxt">🥊 抢地 0</span>
+  </div>
+  <div class="sp-bar"><i class="mine" id="spBarMine" style="width:0"></i><i class="theirs" id="spBarTheirs" style="width:0"></i><b id="spBarTxt">🦑 0 格 · 🐙 0 格 · 空 30</b></div>
+  <div class="sp-quiz" id="spQuiz">🎨 正在调漆……<small>马上出题</small></div>
+  <div class="sp-stage ik0" id="spStage">
+    <div class="sp-deco" id="spDeco"></div>
+    <div class="sp-grid" id="spGrid"></div>
+    <div id="spField"></div>
+    <div class="sp-glit" id="spGlit" style="display:none">✨</div>
+    <div class="sp-octo" id="spOcto">🐙</div>
+    <div class="sp-hero" id="spHero">🦑</div>
+    <div class="sp-band" id="spBand"></div>
+  </div>
+  <div class="sp-dpad">
+    <span></span><button class="sp-db" data-d="u" title="往上">▲</button><span></span>
+    <button class="sp-db" data-d="l" title="往左">◀</button><span class="sp-db mid">🦑</span><button class="sp-db" data-d="r" title="往右">▶</button>
+    <span></span><button class="sp-db" data-d="d" title="往下">▼</button><span></span>
+  </div>
+  <div class="sp-judge" id="spJudge"></div>
+  <div class="sp-tip">按 <b>方向键 / WASD</b> 走位 · <b>点格子</b>或<b>点油漆桶</b>直接走过去 · 踩到对的桶自动开喷 · <b>H</b> 怎么玩</div>
+</div>
+<div class="screen" id="screen-splat-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="spLeave()">← 回首页</button>
+    <div class="stats"><span id="spRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="spRsEmoji">🦑</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="spRsTitle">这一片地盘归你</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="spRsSub">再喷一局，把章鱼赶出这条街</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="sp-rs">
+      <div><span style="color:#4FC3F7" id="spRsMine">0</span><small>你的格子</small></div>
+      <div><span style="color:#FF80AB" id="spRsTheirs">0</span><small>章鱼的格子</small></div>
+      <div><span style="color:#FFD700" id="spRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#FFF176" id="spRsSplats">0</span><small>喷了几次</small></div>
+      <div><span style="color:#E1BEE7" id="spRsStreak">0</span><small>最长连喷</small></div>
+      <div><span style="color:#B9F6CA" id="spRsSteal">0</span><small>抢它地盘</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最多格子 / 最高工资</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="spRsBest">0 / 0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="spRsAll">🏅 新来的实习生</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="spRetry()">🔁 再喷一局</button>
+    <button class="w-btn blue" onclick="spLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-hook">
   <div class="top-bar">
     <button class="back-btn" onclick="gkLeave()">← 返回</button>
@@ -6346,6 +6514,7 @@ function updateHomeStats(){
   if(typeof cldNudge==='function')cldNudge();
   if(typeof snwNudge==='function')snwNudge();
   if(typeof srtNudge==='function')srtNudge();
+  if(typeof spNudge==='function')spNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -6397,6 +6566,7 @@ function enterMode(mode){
  else if(mode==='sky')cldStart();
  else if(mode==='snow')snwStart();
  else if(mode==='sort')srtStart();
+ else if(mode==='splat')spStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -28248,6 +28418,800 @@ document.addEventListener('keydown',e=>{if(window.srtKey)window.srtKey(e)});
   });
 })();
 window.addEventListener('resize',srtOnResize);
+
+/* ============ v1.50.0 笔顺喷喷乐（走位涂地 · 和章鱼抢地盘 · 连喷扩大喷幅）============ */
+const SP_COLS=6,SP_ROWS=5,SP_N=30,SP_TIME=70,SP_STUN=1100,SP_STEP0=115,SP_STEP_MIN=70,SP_G_EVERY=8;
+const SP_LB={R:['➡️','往右'],D:['⬇️','往下'],P:['↙️','左下'],N:['↘️','右下'],T:['↗️','右上']};
+const SP_ORD=['一','二','三','四','五','六','七','八','九','十','十一','十二'];
+const SP_INK=[{n:'湖蓝',need:0},{n:'薄荷',need:1},{n:'青柠',need:3},{n:'橙金',need:6},{n:'葡萄',need:10},{n:'彩虹',need:15}];
+const SP_RANKS=[[0,'新来的实习生'],[40,'喷壶学徒'],[110,'地板涂鸦手'],[220,'地盘小霸王'],[380,'涂地快手'],[600,'墨水大师'],[900,'喷喷大魔王'],[1300,'这条街归你管'],[1900,'章鱼见了你搬家']];
+const SP_ZONES=[{p:.66,name:'商业区',icon:'🏬'},{p:.33,name:'中心广场',icon:'🏙️'},{p:0,name:'整条街',icon:'🌆'}];
+const SP_DECO=['🫧','🐟','🪸','🫟','🐚','⭐','🧽','🛟'];
+const SP_NOTE=[392,440,494,523,587,659,698,784,880,988,1047,1175];
+let sp={run:false,over:false,gen:0,grid:[],mine:0,theirs:0,empty:SP_N,score:0,combo:0,maxCombo:0,splats:0,steal:0,lastRank:0,
+  wrong:0,tries:0,glitN:0,time:SP_TIME,zone:0,px:0,py:0,ax:0,ay:0,walk:[],walkAcc:0,aiAcc:0,gAcc:0,gLife:0,glitCell:-1,
+  crates:[],ans:'',ansLbl:'',ch:'',busy:false,stun:0,used:[],W:0,H:0,cell:0,ox:0,oy:0,now:0,ts:0,timers:[],timerId:null,
+  ink:0,beat:0,booted:false,swiped:false};
+function spInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function spAdd(k,n){localStorage.setItem(k,String(spInt(k)+n))}
+function spSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function spEl(){return document.getElementById('spStage')}
+function spIdx(x,y){return y*SP_COLS+x}
+function spIn(x,y){return x>=0&&y>=0&&x<SP_COLS&&y<SP_ROWS}
+function spShuf(a){for(let i=a.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function spT(fn,ms){const g=sp.gen;const id=setTimeout(()=>{if(g!==sp.gen)return;fn()},ms);sp.timers.push(id);return id}
+function spKillTimers(){sp.timers.forEach(id=>clearTimeout(id));sp.timers=[]}
+function spStopLoop(){if(sp.timerId){clearInterval(sp.timerId);sp.timerId=null}}
+function spStartLoop(){spStopLoop();sp.ts=performance.now();sp.timerId=setInterval(spTick,16)}
+/* ---- 字形数据：本模块自己的方向表（全局 detectDir 认不出撇/捺，这里用 ddStrokeDir 重切）---- */
+const spTy={};
+async function spData(ch){
+  if(!ch)return null;
+  const d0=spTy[ch];if(d0)return d0;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await loadCharData(ch);
+  if(!raw||!raw.medians||raw.medians.length<2)return null;
+  const d={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  spTy[ch]=d;return d;
+}
+async function spWarm(){
+  const want=44;
+  for(let i=0;i<CHARS.length&&Object.keys(spTy).length<want;i++){
+    const c=CHARS[i];
+    if(spTy[c])continue;
+    const raw=charDataCache[c];
+    if(!raw||!raw.medians||raw.medians.length<2)continue;
+    spTy[c]={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  }
+  if(Object.keys(spTy).length>=26)return;
+  const need=CHARS.filter(function(c){return !spTy[c]});
+  for(let i=0;i<need.length&&Object.keys(spTy).length<want;i+=5){
+    const g=need.slice(i,i+5);
+    await Promise.all(g.map(async c=>{await spData(c)}));
+  }
+}
+/* ---- 喷幅：连喷越多，一次盖住的格子越多 ---- */
+function spWide(c){return c>=9?'line':c>=6?'area':c>=3?'cross':'dot'}
+const SP_RANK={'dot':0,'cross':1,'area':2,'line':3};
+const SP_FLAGTXT={'cross':'🖌 十字喷！一次 5 格','area':'🌊 大范围！一次 9 格','line':'💥 高压水枪！整行整列'};
+function spPattern(x,y){
+  const w=spWide(sp.combo),out=[];
+  const add=function(a,b){
+    if(!spIn(a,b))return;
+    const i=spIdx(a,b);
+    if(out.indexOf(i)<0)out.push(i);
+  };
+  if(w==='dot'){add(x,y);return out}
+  if(w==='cross'){for(let d=-1;d<=1;d++){add(x+d,y);add(x,y+d)}return out}
+  if(w==='area'){for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++)add(x+dx,y+dy);return out}
+  for(let c=0;c<SP_COLS;c++)add(c,y);
+  for(let r=0;r<SP_ROWS;r++)add(x,r);
+  return out;
+}
+function spWideCells(){return spPattern(sp.px,sp.py).length}
+/* ---- 版面 ---- */
+function spLayout(){
+  const st=spEl();if(!st)return;
+  sp.W=st.clientWidth||322;sp.H=st.clientHeight||288;
+  const pad=9;
+  sp.cell=Math.max(24,Math.min(Math.floor((sp.W-pad*2)/SP_COLS),Math.floor((sp.H-pad*2)/SP_ROWS)));
+  sp.ox=Math.round((sp.W-sp.cell*SP_COLS)/2);
+  sp.oy=Math.round((sp.H-sp.cell*SP_ROWS)/2);
+  const g=document.getElementById('spGrid');
+  if(g){
+    g.style.setProperty('--spc',(sp.cell-2)+'px');
+    g.style.left=sp.ox+'px';g.style.top=sp.oy+'px';
+    g.style.width=(sp.cell*SP_COLS-2)+'px';g.style.height=(sp.cell*SP_ROWS-2)+'px';
+  }
+  spHeroPos();spOctoPos();spGlitPos();spRenderCrates();
+  const dc=document.getElementById('spDeco');
+  if(dc){
+    const kids=dc.children;
+    for(let i=0;i<kids.length;i++){
+      kids[i].style.left=(4+(i*57+11)%Math.max(20,sp.W-30))+'px';
+      kids[i].style.top=(3+(i*73+19)%Math.max(20,sp.H-30))+'px';
+    }
+  }
+}
+function spCx(i){return sp.ox+(i%SP_COLS+0.5)*sp.cell}
+function spCy(i){return sp.oy+(Math.floor(i/SP_COLS)+0.5)*sp.cell}
+function spBuild(){
+  const g=document.getElementById('spGrid');if(!g)return;
+  g.innerHTML='';
+  for(let i=0;i<SP_N;i++){
+    const t=document.createElement('div');
+    t.className='sp-tile';t.dataset.i=String(i);
+    g.appendChild(t);
+  }
+}
+function spTile(i){
+  const g=document.getElementById('spGrid');
+  return g?g.children[i]:null;
+}
+function spDecos(){
+  const dc=document.getElementById('spDeco');if(!dc)return;
+  dc.innerHTML='';
+  for(let i=0;i<8;i++){
+    const s=document.createElement('span');
+    s.textContent=SP_DECO[i%SP_DECO.length];
+    s.style.animationDelay=(i*0.34)+'s';
+    dc.appendChild(s);
+  }
+}
+/* ---- 涂色 ---- */
+function spPaint(i,who,fx){
+  const old=sp.grid[i];
+  if(old===who)return false;
+  if(old===1)sp.mine--;
+  else if(old===2)sp.theirs--;
+  sp.grid[i]=who;
+  if(old===0&&who!==0)sp.empty--;
+  else if(who===0)sp.empty++;
+  if(who===1)sp.mine++;
+  else if(who===2)sp.theirs++;
+  const t=spTile(i);
+  if(t){
+    t.classList.remove('mine','theirs','wet');
+    void t.offsetWidth;
+    t.classList.add(who===1?'mine':'theirs');
+    if(fx)t.classList.add('wet');
+  }
+  return true;
+}
+function spInkFx(i,color,n){
+  const st=spEl();if(!st)return;
+  const x=spCx(i),y=spCy(i);
+  for(let k=0;k<(n||4);k++){
+    const d=document.createElement('div');
+    d.className='sp-ink';
+    d.style.background=color;
+    d.style.left=(x-4)+'px';d.style.top=(y-4)+'px';
+    const a=Math.random()*Math.PI*2,r=16+Math.random()*30;
+    d.style.setProperty('--ix',Math.round(Math.cos(a)*r)+'px');
+    d.style.setProperty('--iy',Math.round(Math.sin(a)*r-8)+'px');
+    d.style.animationDelay=(Math.random()*0.1)+'s';
+    st.appendChild(d);
+    setTimeout(()=>d.remove(),780);
+  }
+}
+function spPopAt(txt,i,color){
+  const st=spEl();if(!st)return;
+  const d=document.createElement('div');
+  d.className='sp-pop';d.textContent=txt;
+  if(color)d.style.color=color;
+  d.style.left=(spCx(i)-22)+'px';d.style.top=(spCy(i)-16)+'px';
+  st.appendChild(d);
+  setTimeout(()=>d.remove(),1100);
+}
+function spShake(){
+  const st=spEl();if(!st)return;
+  st.classList.remove('shake');void st.offsetWidth;st.classList.add('shake');
+}
+function spSay(msg,color){
+  const j=document.getElementById('spJudge');if(!j)return;
+  j.innerHTML='<span style="color:'+(color||'#fff')+'">'+msg+'</span>';
+  j.classList.remove('pop');void j.offsetWidth;j.classList.add('pop');
+}
+function spFlag(txt){
+  const b=document.getElementById('spBand');if(!b)return;
+  b.textContent=txt;b.classList.remove('on');void b.offsetWidth;b.classList.add('on');
+}
+/* ---- 角色 ---- */
+function spHeroPos(){
+  const h=document.getElementById('spHero');if(!h)return;
+  const i=spIdx(sp.px,sp.py);
+  h.style.left=(spCx(i)-19)+'px';h.style.top=(spCy(i)-25)+'px';
+}
+function spOctoPos(){
+  const o=document.getElementById('spOcto');if(!o)return;
+  const i=spIdx(sp.ax,sp.ay);
+  o.style.left=(spCx(i)-17)+'px';o.style.top=(spCy(i)-21)+'px';
+}
+function spGlitPos(){
+  const e=document.getElementById('spGlit');if(!e)return;
+  if(sp.glitCell<0){e.style.display='none';return}
+  e.style.display='block';
+  e.style.left=(spCx(sp.glitCell)-13)+'px';
+  e.style.top=(spCy(sp.glitCell)-13)+'px';
+}
+/* ---- 油漆桶 ---- */
+function spBusyCells(){
+  const out=[],block=spIdx(sp.px,sp.py),ab=spIdx(sp.ax,sp.ay);
+  for(let i=0;i<SP_N;i++){
+    if(i===block||i===ab||i===sp.glitCell)continue;
+    let hit=false;
+    for(let k=0;k<sp.crates.length;k++)if(sp.crates[k].cell===i)hit=true;
+    if(!hit)out.push(i);
+  }
+  return out;
+}
+function spClearCrates(anim){
+  sp.crates.forEach(function(o){
+    if(!o.el)return;
+    if(anim){o.el.classList.add(anim);const el=o.el;setTimeout(()=>el.remove(),480)}
+    else o.el.remove();
+  });
+  sp.crates=[];
+}
+function spPlace(opts){
+  const box=document.getElementById('spField');
+  if(!box)return;
+  spClearCrates('gone');
+  const free=spShuf(spBusyCells());
+  opts.forEach(function(o,k){
+    const cell=free[k]!==undefined?free[k]:free[0];
+    if(cell===undefined)return;
+    const el=document.createElement('div');
+    el.className='sp-crate';
+    el.dataset.value=o.v;
+    el.innerHTML='<u>'+(k+1)+'</u><i>'+o.icon+'</i><b>'+o.txt+'</b>';
+    box.appendChild(el);
+    sp.crates.push({v:o.v,icon:o.icon,lbl:o.txt,cell:cell,el:el});
+  });
+  spRenderCrates();
+  spMarkNear();
+}
+function spRenderCrates(){
+  const s=Math.max(22,Math.round(sp.cell*0.9));
+  sp.crates.forEach(function(o){
+    if(!o.el)return;
+    o.el.style.width=s+'px';o.el.style.height=s+'px';
+    o.el.style.left=(spCx(o.cell)-s/2)+'px';
+    o.el.style.top=(spCy(o.cell)-s/2)+'px';
+  });
+}
+function spCrateAt(i){
+  for(let k=0;k<sp.crates.length;k++)if(sp.crates[k].cell===i)return sp.crates[k];
+  return null;
+}
+function spMarkNear(){
+  const d=spIdx(sp.px,sp.py);
+  sp.crates.forEach(function(o){
+    if(!o.el)return;
+    const dx=Math.abs(o.cell%SP_COLS-d%SP_COLS)+Math.abs(Math.floor(o.cell/SP_COLS)-Math.floor(d/SP_COLS));
+    o.el.classList.toggle('near',dx<=1);
+  });
+}
+/* ---- 出题 ---- */
+async function spAsk(){
+  if(sp.over||currentMode!=='splat'){sp.busy=false;return}
+  sp.busy=true;sp.tries=0;
+  const gen=sp.gen;
+  let ch='',d=null;
+  for(let i=0;i<12;i++){
+    const c=nextInQueue();
+    if(!c)break;
+    const r=await spData(c);
+    if(r){ch=c;d=r;break}
+  }
+  if(gen!==sp.gen||sp.over){sp.busy=false;return}
+  if(!ch){
+    spSet('spQuiz','📖 字还没下下来……<small>等一秒就开始</small>');
+    sp.busy=false;
+    spT(function(){spAsk()},900);
+    return;
+  }
+  sp.ch=ch;
+  const n=d.n,dirs=d.t;
+  let opts,ans,lbl,qText;
+  if(Math.random()<.45&&n<=12){
+    ans=String(n);lbl=n+' 笔';
+    const nums=[n];
+    while(nums.length<4){
+      const k=n+(Math.random()<.5?-1:1)*(1+Math.floor(Math.random()*3));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=spShuf(nums.slice()).map(function(k){return{v:String(k),icon:'✏️',txt:k+' 笔'}});
+    qText='『'+ch+'』一共有几笔？';
+  }else{
+    const idx=Math.floor(Math.random()*dirs.length);
+    const code=dirs[idx];
+    ans=code;lbl=(SP_LB[code]||['?','?'])[1];
+    const right=[{v:code,icon:(SP_LB[code]||['❔'])[0],txt:lbl}];
+    const pool=spShuf(['R','D','P','N','T'].filter(function(c){return c!==code})).slice(0,3)
+      .map(function(c){return{v:c,icon:SP_LB[c][0],txt:SP_LB[c][1]}});
+    opts=spShuf(right.concat(pool));
+    qText='『'+ch+'』的第'+(SP_ORD[idx]||(idx+1))+'笔往哪写？';
+  }
+  sp.ans=ans;sp.ansLbl=lbl;
+  spSet('spQuiz','🎨 '+qText+'<small>走到写着对答案的那个桶上就开喷</small>');
+  spPlace(opts);
+  spHud();
+  sp.busy=false;
+}
+/* ---- 走位 ---- */
+function spStepMs(){return Math.max(SP_STEP_MIN,SP_STEP0-Math.min(32,sp.combo*4))}
+function spPush(dx,dy){
+  if(!sp.run||sp.over||sp.stun>0)return;
+  if(sp.walk.length>10)return;
+  const last=sp.walk[sp.walk.length-1];
+  if(last&&last[0]===dx&&last[1]===dy&&sp.walk.length>2)return;
+  sp.walk.push([dx,dy]);
+}
+function spRoute(sx,sy,tx,ty){
+  const target=ty*SP_COLS+tx;
+  const blocked=new Array(SP_N).fill(0);
+  for(let k=0;k<sp.crates.length;k++){const c=sp.crates[k].cell;if(c!==target&&c>=0&&c<SP_N)blocked[c]=1}
+  const from=new Array(SP_N).fill(-1);
+  const seen=new Array(SP_N).fill(0);
+  seen[spIdx(sx,sy)]=1;
+  const q=[[sx,sy]];
+  const dirs=[[1,0],[-1,0],[0,1],[0,-1]].sort(function(a,b){
+    const da=Math.abs(sx+a[0]-tx)+Math.abs(sy+a[1]-ty);
+    const db=Math.abs(sx+b[0]-tx)+Math.abs(sy+b[1]-ty);
+    return da-db;
+  });
+  for(let h=0;h<q.length;h++){
+    const cur=q[h];
+    for(let d=0;d<dirs.length;d++){
+      const nx=cur[0]+dirs[d][0],ny=cur[1]+dirs[d][1];
+      if(!spIn(nx,ny))continue;
+      const ni=spIdx(nx,ny);
+      if(seen[ni]||blocked[ni])continue;
+      seen[ni]=1;from[ni]=spIdx(cur[0],cur[1]);q.push([nx,ny]);
+    }
+  }
+  if(!seen[target])return null;
+  const steps=[];
+  let cur=target;
+  while(cur!==spIdx(sx,sy)){
+    const p=from[cur];
+    if(p<0)return null;
+    steps.push([cur%SP_COLS-p%SP_COLS,Math.floor(cur/SP_COLS)-Math.floor(p/SP_COLS)]);
+    cur=p;
+  }
+  return steps.reverse();
+}
+function spGoTo(cell){
+  if(!sp.run||sp.over||sp.stun>0)return;
+  const tx=cell%SP_COLS,ty=Math.floor(cell/SP_COLS);
+  if(tx===sp.px&&ty===sp.py){spCrateTap(spIdx(sp.px,sp.py));return}
+  sp.walk.length=0;
+  let p=spRoute(sp.px,sp.py,tx,ty);
+  if(!p){
+    const dx=Math.sign(tx-sp.px),dy=Math.sign(ty-sp.py);
+    p=[];
+    for(let k=0;k<Math.abs(tx-sp.px);k++)p.push([dx,0]);
+    for(let k=0;k<Math.abs(ty-sp.py);k++)p.push([0,dy]);
+  }
+  for(let k=0;k<p.length;k++)sp.walk.push(p[k]);
+  if(sp.walk.length)sp.walkAcc=spStepMs();
+}
+function spCrateTap(cell){
+  const o=spCrateAt(cell);
+  if(o&&!sp.busy&&sp.stun<=0&&!sp.over){
+    if(o.v===sp.ans)spSplat(o);else spWrongSort(o);
+  }
+}
+function spBump(dx,dy){
+  const h=document.getElementById('spHero');
+  if(h){
+    h.style.setProperty('--bx',(dx*5)+'px');
+    h.style.setProperty('--by',(dy*5)+'px');
+    h.classList.remove('bump');void h.offsetWidth;h.classList.add('bump');
+  }
+  tone(180,.07,'square',.07);
+}
+function spStep(dx,dy){
+  if(!sp.run||sp.over||sp.stun>0)return false;
+  const nx=sp.px+dx,ny=sp.py+dy;
+  if(!spIn(nx,ny)){spBump(dx,dy);return false}
+  sp.px=nx;sp.py=ny;
+  spHeroPos();spMarkNear();
+  const i=spIdx(nx,ny);
+  if(i===sp.glitCell)spGlitTake(i);
+  const o=spCrateAt(i);
+  if(o&&!sp.busy&&sp.stun<=0){
+    if(o.v===sp.ans)spSplat(o);else spWrongSort(o);
+  }
+  return true;
+}
+/* ---- 亮片漆 ---- */
+function spGlitSpawn(){
+  const free=[],block=spIdx(sp.px,sp.py),ab=spIdx(sp.ax,sp.ay);
+  for(let i=0;i<SP_N;i++){
+    if(sp.grid[i]!==0||i===block||i===ab)continue;
+    let hit=false;
+    for(let k=0;k<sp.crates.length;k++)if(sp.crates[k].cell===i)hit=true;
+    if(!hit)free.push(i);
+  }
+  if(!free.length)return;
+  sp.glitCell=free[(Math.random()*free.length)|0];
+  sp.gLife=9;
+  spGlitPos();
+  tone(1180,.08,'triangle',.08);
+}
+function spGlitTake(i){
+  sp.glitCell=-1;spGlitPos();sp.gAcc=0;sp.gLife=0;
+  sp.score+=14;sp.time=Math.min(SP_TIME+40,sp.time+3);sp.glitN++;
+  spInkFx(i,'#FFF176',7);
+  spPopAt('✨ +14 · 补 3 秒',i,'#FFF59D');
+  tone(1320,.1,'triangle',.13);setTimeout(()=>tone(1560,.12,'triangle',.11),70);
+  const st=spEl();
+  if(st){const r=st.getBoundingClientRect();spawnStarFly(r.left+spCx(i),r.top+spCy(i))}
+  spSay('✨ 捡到一瓶亮片漆！+14 分、时间补 3 秒','#FFF59D');
+  spHud();
+}
+/* ---- 开喷 ---- */
+function spSplat(o){
+  if(sp.over||sp.busy)return;
+  sp.combo++;
+  if(sp.combo>sp.maxCombo)sp.maxCombo=sp.combo;
+  const pat=spPattern(sp.px,sp.py);
+  let gained=0,steal=0;
+  for(let k=0;k<pat.length;k++){
+    const i=pat[k],v=sp.grid[i];
+    if(v===1)continue;
+    if(v===2){if(spPaint(i,1,true)){steal++;gained++;spInkFx(i,'#FF9EC6',3)}continue}
+    if(spPaint(i,1,true)){gained++;spInkFx(i,'var(--sp-a)',4)}
+  }
+  sp.splats++;sp.steal+=steal;
+  const mul=1+Math.min(1.2,sp.combo*0.08);
+  const gain=Math.round((20+gained*5+steal*7)*mul);
+  sp.score+=gain;
+  sp.time=Math.min(SP_TIME+40,sp.time+2);
+  const cell=spIdx(sp.px,sp.py);
+  spInkFx(cell,'#FFFFFF',5);
+  spPopAt('💦 +'+gain,cell,'#FFF59D');
+  if(steal)spPopAt('🥊 抢它 '+steal+' 格',cell,'#FF80AB');
+  const f=Math.min(SP_NOTE.length-1,sp.combo);
+  tone(SP_NOTE[f],.13,'triangle',.15);
+  if(sp.combo>=3)setTimeout(()=>tone(SP_NOTE[Math.min(SP_NOTE.length-1,f+2)],.12,'sine',.11),90);
+  if(sp.combo>=6)setTimeout(()=>tone(SP_NOTE[Math.min(SP_NOTE.length-1,f+4)],.14,'sine',.09),180);
+  const st=spEl();
+  if(st){const r=st.getBoundingClientRect();spawnStarFly(r.left+spCx(cell),r.top+spCy(cell))}
+  const wr=spWide(sp.combo),rk=SP_RANK[wr];
+  if(rk>sp.lastRank){
+    sp.lastRank=rk;
+    if(SP_FLAGTXT[wr])spFlag(SP_FLAGTXT[wr]);
+  }else if(wr==='line')spFlag(SP_FLAGTXT.line);
+  if(sp.combo>=6&&sp.combo%3===0)spawnConfetti();
+  spAdd('hz_splat_paints',gained);
+  spClearCrates('gone');
+  spZoneCheck();
+  spHud();
+  sp.busy=true;
+  spT(function(){if(sp.over)return;sp.busy=false;spAsk()},340);
+}
+function spWrongSort(o){
+  if(sp.over||sp.busy)return;
+  sp.tries++;sp.combo=0;sp.lastRank=0;sp.wrong++;
+  sp.score=Math.max(0,sp.score-8);
+  sp.time=Math.max(0,sp.time-2);
+  sp.stun=SP_STUN;
+  const h=document.getElementById('spHero');
+  if(h){h.classList.remove('soaked');void h.offsetWidth;h.classList.add('soaked')}
+  spShake();
+  spInkFx(o.cell,'#EC407A',9);
+  spPopAt('💢 -8',o.cell,'#FF8A80');
+  tone(200,.26,'square',.15);
+  if(o.el){o.el.classList.add('bad');const el=o.el;setTimeout(()=>el.remove(),540)}
+  sp.crates=sp.crates.filter(function(c){return c!==o});
+  spAiGrab(2);
+  if(sp.tries>=2){
+    sp.crates.forEach(function(c){if(c.v===sp.ans&&c.el)c.el.classList.add('reveal')});
+  }
+  spSay('❌ 「'+o.lbl+'」不对。正确答案是 '+sp.ansLbl+' —— 走到那个桶上就喷，被打湿 1 秒而已','#FFCDD2');
+  spMarkNear();
+  spHud();
+}
+/* ---- 章鱼对手 ---- */
+function spAiMs(){
+  let ms=1120-sp.splats*30-sp.zone*70;
+  if(sp.mine>sp.theirs)ms-=90;
+  return Math.max(480,ms);
+}
+function spAiTarget(){
+  let best=-1,bd=1e9;
+  for(let i=0;i<SP_N;i++){
+    if(sp.grid[i]!==0)continue;
+    const d=Math.abs(i%SP_COLS-sp.ax)+Math.abs(Math.floor(i/SP_COLS)-sp.ay);
+    if(d<bd){bd=d;best=i}
+  }
+  return best;
+}
+function spAiMove(){
+  if(!sp.run||sp.over)return;
+  const t=spAiTarget();
+  if(t<0){spEnd();return}
+  const tx=t%SP_COLS,ty=Math.floor(t/SP_COLS);
+  if(sp.ax!==tx)sp.ax+=Math.sign(tx-sp.ax);
+  else if(sp.ay!==ty)sp.ay+=Math.sign(ty-sp.ay);
+  spOctoPos();
+  const i=spIdx(sp.ax,sp.ay);
+  if(sp.grid[i]===0){
+    spPaint(i,2,true);
+    spInkFx(i,'#EC407A',2);
+    tone(280,.05,'sawtooth',.05);
+  }
+  spBarHud();
+  if(sp.empty<=0)spEnd();
+}
+function spAiGrab(n){
+  let k=n||1;
+  const free=[];
+  for(let i=0;i<SP_N;i++)if(sp.grid[i]===0)free.push(i);
+  const pick=spShuf(free).slice(0,k);
+  pick.forEach(function(i){
+    if(spPaint(i,2,true)){spInkFx(i,'#EC407A',3)}
+  });
+  spBarHud();
+  if(sp.empty<=0&&!sp.over)spEnd();
+}
+function spZoneCheck(){
+  const r=sp.empty/SP_N;
+  let z=0;
+  for(let i=0;i<SP_ZONES.length;i++)if(r<=SP_ZONES[i].p)z=i+1;
+  if(z>sp.zone){
+    sp.zone=z;
+    sp.score+=25;
+    const T=SP_ZONES[z-1];
+    spFlag(T.icon+' 推进到 '+T.name+' +25');
+    spSay(T.icon+' 地盘推进到'+T.name+'！+25 分，章鱼也急了、涂得更快','#B9F6CA');
+    if(z>=2)spawnConfetti();
+  }
+}
+/* ---- HUD ---- */
+function spRank(n){
+  let r=SP_RANKS[0][1];
+  for(let i=0;i<SP_RANKS.length;i++)if(n>=SP_RANKS[i][0])r=SP_RANKS[i][1];
+  return r;
+}
+function spHud(){
+  const s=Math.round(sp.score);
+  spSet('spScoreTxt','🎨 '+s+' 分');
+  spSet('spRankTxt','🏅 '+spRank(spInt('hz_splat_paints')));
+  spSet('spWideTxt','🖌 喷幅 '+spWideCells()+' 格');
+  spSet('spComboTxt','连喷 '+sp.combo);
+  spSet('spStealTxt','🥊 抢地 '+sp.steal);
+  spBarHud();
+}
+function spBarHud(){
+  const mine=document.getElementById('spBarMine'),theirs=document.getElementById('spBarTheirs');
+  if(mine)mine.style.width=(sp.mine/SP_N*100).toFixed(2)+'%';
+  if(theirs)theirs.style.width=(sp.theirs/SP_N*100).toFixed(2)+'%';
+  spSet('spBarTxt','🦑 '+sp.mine+' 格 · 🐙 '+sp.theirs+' 格 · 空 '+sp.empty);
+}
+function spTimeHud(){
+  const el=document.getElementById('spTimeTxt');
+  if(!el)return;
+  const t=Math.max(0,Math.ceil(sp.time));
+  el.textContent='⏱ '+t+'s';
+  el.style.color=t<=10?'#FF8A80':'';
+}
+function spInkIdx(){
+  const w=spInt('hz_splat_wins');
+  let i=0;
+  for(let k=0;k<SP_INK.length;k++)if(w>=SP_INK[k].need)i=k;
+  return i;
+}
+function spApplyInk(){
+  const st=spEl();if(!st)return;
+  sp.ink=spInkIdx();
+  for(let k=0;k<=5;k++)st.classList.remove('ik'+k);
+  st.classList.add('ik'+sp.ink);
+}
+/* ---- 主循环 ---- */
+function spTick(a){
+  if(!sp.run||sp.over||currentMode!=='splat'){spStopLoop();return}
+  const now=(typeof a==='number')?a:performance.now();
+  let dt=(now-sp.ts)/1000;
+  sp.ts=now;sp.now=now;
+  if(!(dt>0))dt=0;
+  if(dt>0.06)dt=0.06;
+  if(dt>0){
+    sp.time-=dt;
+    sp.walkAcc+=dt*1000;
+    const step=spStepMs();
+    let guard=0;
+    while(sp.walk.length&&sp.walkAcc>=step&&guard++<6){
+      sp.walkAcc-=step;
+      if(sp.stun>0){sp.walk.length=0;break}
+      const d=sp.walk.shift();
+      spStep(d[0],d[1]);
+      if(sp.over)break;
+    }
+    sp.aiAcc+=dt*1000;
+    const ms=spAiMs();
+    let g2=0;
+    while(sp.aiAcc>=ms&&g2++<4){sp.aiAcc-=ms;spAiMove();if(sp.over)break}
+    if(sp.stun>0){
+      sp.stun-=dt*1000;
+      if(sp.stun<=0){
+        sp.stun=0;
+        const h=document.getElementById('spHero');
+        if(h)h.classList.remove('soaked');
+        spMarkNear();
+      }
+    }
+    if(sp.glitCell<0){
+      sp.gAcc+=dt;
+      if(sp.gAcc>=SP_G_EVERY){sp.gAcc=0;spGlitSpawn()}
+    }else{
+      sp.gLife-=dt;
+      if(sp.gLife<=0){sp.glitCell=-1;spGlitPos()}
+    }
+    const sc=Math.round(sp.score);
+    if(sc>spInt('hz_splat_score'))localStorage.setItem('hz_splat_score',String(sc));
+    spTimeHud();
+    if(sp.time<=0||sp.empty<=0){spEnd();return}
+  }
+}
+/* ---- 开局 / 结算 ---- */
+function spStart(){
+  currentMode='splat';sp.gen++;spKillTimers();spStopLoop();
+  const box=document.getElementById('spField');
+  if(box)box.innerHTML='';
+  const st0=spEl();
+  if(st0)st0.querySelectorAll('.sp-pop,.sp-ink').forEach(function(e){e.remove()});
+  const bd=document.getElementById('spBand');
+  if(bd)bd.classList.remove('on');
+  sp.run=true;sp.over=false;
+  sp.grid=[];for(let i=0;i<SP_N;i++)sp.grid.push(0);
+  sp.mine=0;sp.theirs=0;sp.empty=SP_N;sp.score=0;sp.combo=0;sp.maxCombo=0;sp.splats=0;sp.steal=0;sp.lastRank=0;
+  sp.wrong=0;sp.tries=0;sp.glitN=0;sp.time=SP_TIME;sp.zone=0;
+  sp.px=0;sp.py=SP_ROWS-1;sp.ax=SP_COLS-1;sp.ay=0;
+  sp.walk=[];sp.walkAcc=0;sp.aiAcc=0;sp.gAcc=0;sp.gLife=0;sp.glitCell=-1;sp.crates=[];
+  sp.stun=0;sp.busy=false;sp.swiped=false;sp.used=[];
+  sp.beat=spInt('hz_splat_best');
+  showScreen('splat');
+  const st=spEl();
+  if(st)st.classList.remove('shake');
+  spBuild();spDecos();spLayout();spApplyInk();
+  spHeroPos();spOctoPos();spGlitPos();
+  spHud();spTimeHud();
+  spSet('spQuiz','🎨 正在调漆……<small>马上出题</small>');
+  spSay('🦑 抢地盘开涂！看清题目，走到写着对答案的桶上就噗——','#B9F6CA');
+  spMarkSeen();
+  const gen=sp.gen;
+  const go=function(){
+    if(gen!==sp.gen||currentMode!=='splat'||!sp.run||sp.over)return;
+    sp.booted=true;
+    spStartLoop();
+    spAsk();
+  };
+  spWarm().then(go,go);
+}
+function spEnd(){
+  if(sp.over)return;
+  sp.over=true;sp.run=false;
+  spStopLoop();spKillTimers();
+  sp.walk.length=0;
+  const s=Math.round(sp.score),win=sp.mine>sp.theirs,draw=sp.mine===sp.theirs;
+  if(sp.mine>spInt('hz_splat_best'))localStorage.setItem('hz_splat_best',String(sp.mine));
+  if(s>spInt('hz_splat_score'))localStorage.setItem('hz_splat_score',String(s));
+  if(sp.maxCombo>spInt('hz_splat_streak'))localStorage.setItem('hz_splat_streak',String(sp.maxCombo));
+  spAdd('hz_splat_games',1);
+  const inkBefore=spInkIdx();
+  if(win)spAdd('hz_splat_wins',1);
+  const inkAfter=spInkIdx();
+  const stars=Math.max(2,Math.min(26,Math.round(sp.mine/2.2)+(win?6:draw?2:0)+Math.round(sp.maxCombo*0.6)+Math.round(s/120)));
+  addStars(stars);
+  const best=spInt('hz_splat_best'),bestS=spInt('hz_splat_score');
+  spSet('spRsStars','⭐ +'+stars);
+  spSet('spRsEmoji',win?(sp.mine>=24?'👑':'🦑'):draw?'🤝':'🐙');
+  spSet('spRsTitle',win?(sp.mine>=24?'整条街都是你的涂鸦！':'这一片地盘归你'):(draw?'平局，一边一半':'章鱼偷走了半条街'));
+  const nextZone=sp.empty>0?('，还有 '+sp.empty+' 格没涂'):'';
+  let sub;
+  if(win){
+    sub='你盖了 '+sp.mine+' 格、章鱼只有 '+sp.theirs+' 格'+nextZone+' —— 连喷 '+sp.maxCombo+' 次、抢它地盘 '+sp.steal+
+      ' 格，工资 '+s+' 分'+(s>=bestS?'（新纪录）':'，离最高分还差 '+(bestS-s)+' 分');
+    if(inkAfter>inkBefore)sub+=' · 🎨 解锁新墨水「'+SP_INK[inkAfter].n+'」！';
+  }else{
+    sub='章鱼盖了 '+sp.theirs+' 格，你才 '+sp.mine+' 格。连喷 3 次喷幅变十字、6 次变 3×3、9 次整行整列 —— 再喷一局'+nextZone+
+      '，答错会被打湿 1 秒，看清题目再抬脚';
+  }
+  spSet('spRsSub',sub);
+  spSet('spRsMine',String(sp.mine));
+  spSet('spRsTheirs',String(sp.theirs));
+  spSet('spRsScore',String(s));
+  spSet('spRsSplats',String(sp.splats));
+  spSet('spRsStreak',String(sp.maxCombo));
+  spSet('spRsSteal',String(sp.steal));
+  spSet('spRsBest',best+' 格 / '+bestS+' 分');
+  const nx=SP_INK[inkAfter+1];
+  spSet('spRsAll','🏅 段位 '+spRank(spInt('hz_splat_paints'))+' · 🎨 墨水「'+SP_INK[inkAfter].n+'」'+
+    (nx?('（再赢 '+(nx.need-spInt('hz_splat_wins'))+' 局解锁「'+nx.n+'」）'):'（已是最高级）')+
+    '\n累计涂格 '+spInt('hz_splat_paints')+' 格 · 赢了 '+spInt('hz_splat_wins')+' 局 · 上了 '+spInt('hz_splat_games')+' 次地板\n单局最多 '+best+' 格 · 最高工资 '+bestS+' 分 · 最长连喷 '+spInt('hz_splat_streak')+' 次');
+  showScreen('splat-result');
+}
+function spRetry(){spStart()}
+function spLeave(){
+  spStopLoop();spKillTimers();
+  if(sp.run&&!sp.over){sp.over=true;sp.run=false}
+  sp.walk.length=0;
+  const bd=document.getElementById('spBand');
+  if(bd)bd.classList.remove('on');
+  goHome();
+}
+function spHelp(){
+  spSay('🦑 题目在上方 → 四个桶各写一个答案 → <b>走到对的桶上</b>就喷 → 连喷 3/6/9 次喷幅变十字 / 3×3 / 整行整列 → 🐙 一直在抢空格子，✨ 亮片漆 +14 分补 3 秒 → ⏱ 到点比谁格多','#80DEEA');
+}
+function spMarkSeen(){
+  localStorage.setItem('hz_splat_seen',String(spInkIdx()));
+}
+function spNudge(){
+  const dot=document.getElementById('splatCardDot'),tip=document.getElementById('splatCardTip');
+  const wins=spInt('hz_splat_wins'),paints=spInt('hz_splat_paints'),games=spInt('hz_splat_games');
+  if(tip)tip.textContent=paints?('涂了 '+paints+' 格 · 赢 '+wins+' 局'):'走位涂地 · 和章鱼抢地盘';
+  if(!dot)return;
+  if(!games){dot.textContent='🆕';dot.classList.add('on');return}
+  const ink=spInkIdx(),nx=SP_INK[ink+1];
+  if(nx&&nx.need-wins<=1){dot.textContent='🎨 差 1 胜';dot.classList.add('on');return}
+  if(ink>spInt('hz_splat_seen')){dot.textContent='🎨 新墨水';dot.classList.add('on');return}
+  dot.classList.remove('on');
+}
+function spOnResize(){
+  if(currentMode!=='splat'||!sp.run)return;
+  const st=spEl();if(!st)return;
+  if(Math.abs(st.clientWidth-sp.W)<2&&Math.abs(st.clientHeight-sp.H)<2)return;
+  spBuildKeep();
+  spLayout();
+}
+function spBuildKeep(){
+  const g=document.getElementById('spGrid');
+  if(!g||g.children.length!==SP_N){spBuild();spRepaintAll()}
+}
+function spRepaintAll(){
+  for(let i=0;i<SP_N;i++){
+    const t=spTile(i);
+    if(!t)continue;
+    t.classList.remove('mine','theirs');
+    if(sp.grid[i]===1)t.classList.add('mine');
+    else if(sp.grid[i]===2)t.classList.add('theirs');
+  }
+}
+window.spKeys=e=>{
+  if(currentMode!=='splat')return;
+  const scr=document.getElementById('screen-splat');
+  if(!scr||!scr.classList.contains('active'))return;
+  const k=e.key;
+  if(k==='ArrowLeft'||k==='a'||k==='A'){spPush(-1,0);e.preventDefault();return}
+  if(k==='ArrowRight'||k==='d'||k==='D'){spPush(1,0);e.preventDefault();return}
+  if(k==='ArrowUp'||k==='w'||k==='W'){spPush(0,-1);e.preventDefault();return}
+  if(k==='ArrowDown'||k==='s'||k==='S'){spPush(0,1);e.preventDefault();return}
+  if(k==='1'||k==='2'||k==='3'||k==='4'){
+    const o=sp.crates[(+k)-1];
+    if(o)spGoTo(o.cell);
+    return;
+  }
+  if(k==='h'||k==='H'||k==='?'){spHelp();return}
+};
+document.addEventListener('keydown',e=>{if(window.spKeys)window.spKeys(e)});
+(function spBindCtl(){
+  const dirs={u:[0,-1],d:[0,1],l:[-1,0],r:[1,0]};
+  document.querySelectorAll('.sp-db[data-d]').forEach(function(b){
+    b.addEventListener('click',function(ev){
+      ev.preventDefault();
+      const p=dirs[b.dataset.d];
+      if(p)spPush(p[0],p[1]);
+    });
+  });
+  const st=spEl();
+  if(st){
+    let dx0=0,dy0=0,down=false;
+    st.addEventListener('pointerdown',function(ev){
+      down=true;dx0=ev.clientX;dy0=ev.clientY;sp.swiped=false;
+    });
+    st.addEventListener('pointerup',function(ev){
+      if(!down)return;
+      down=false;
+      const dx=ev.clientX-dx0,dy=ev.clientY-dy0;
+      if(Math.max(Math.abs(dx),Math.abs(dy))>18){
+        sp.swiped=true;
+        if(Math.abs(dx)>Math.abs(dy))spPush(Math.sign(dx),0);else spPush(0,Math.sign(dy));
+        return;
+      }
+      const r=st.getBoundingClientRect();
+      const x=ev.clientX-r.left-sp.ox,y=ev.clientY-r.top-sp.oy;
+      if(x<0||y<0)return;
+      const cx=Math.min(SP_COLS-1,Math.max(0,Math.floor(x/sp.cell)));
+      const cy=Math.min(SP_ROWS-1,Math.max(0,Math.floor(y/sp.cell)));
+      spGoTo(spIdx(cx,cy));
+    });
+  }
+})();
+window.addEventListener('resize',spOnResize);
 
 
 
