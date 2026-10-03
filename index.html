@@ -3183,6 +3183,49 @@ button:active{transform:scale(.95)}
 @media(max-width:420px){.rp-quiz,.rp-bar,.rp-judge,.rp-tip,.rp-tools,.rp-wrap{max-width:300px}
 .rp-hud{max-width:336px;gap:4px}}
 
+/* ================= 笔顺投石机 ================= */
+.sg-hud{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
+.sg-hud span{flex:0 0 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 6px;font-size:9.5px;color:#fff;white-space:nowrap}
+.sg-hud b{color:#FFD740}
+.sg-bar{position:relative;display:flex;width:100%;max-width:322px;height:22px;margin:0 auto;border-radius:99px;overflow:hidden;
+  background:rgba(0,0,0,.34);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.sg-bar i{display:block;height:100%;width:0;transition:width .26s;background:linear-gradient(90deg,#FFB74D,#F4511E)}
+.sg-bar i.low{background:linear-gradient(90deg,#FFAB91,#E64A19)}
+.sg-bar b{position:absolute;left:0;right:0;top:0;line-height:22px;text-align:center;font-size:11px;font-weight:800;color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.65);pointer-events:none}
+.sg-quiz{width:100%;max-width:322px;margin:6px auto 0;min-height:38px;border-radius:12px;background:rgba(255,255,255,.14);
+  font-size:13.5px;font-weight:800;text-align:center;line-height:1.3;padding:7px 9px;color:#fff;position:relative;z-index:2}
+.sg-quiz small{display:block;font-size:10.5px;font-weight:700;opacity:.78;margin-top:3px}
+.sg-wrap{position:relative;width:100%;max-width:322px;margin:6px auto 0;border-radius:16px;overflow:hidden;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 8px 22px rgba(0,0,0,.3)}
+.sg-cv{display:block;width:100%;height:auto;touch-action:none;cursor:grab;
+  background:linear-gradient(180deg,#2B2350,#3A2A55 40%,#4A3350 74%,#2C3B52)}
+.sg-cv.aim{cursor:grabbing}
+.sg-band{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;
+  background:rgba(0,0,0,.66);border-radius:99px;padding:8px 16px;opacity:0;
+  font-size:13px;font-weight:900;color:#fff;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.sg-band.on{animation:sgBand 1.7s forwards}
+@keyframes sgBand{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}
+  30%,76%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-56%) scale(.96)}}
+.sg-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:100%;max-width:322px;margin:7px auto 0}
+.sg-tool{border:none;border-radius:12px;padding:8px 10px;font-size:11.5px;font-weight:800;color:#fff;cursor:pointer;
+  background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.sg-tool:active{transform:scale(.96);background:rgba(255,255,255,.28)}
+.sg-tool b{color:#FFD740}
+.sg-tool.go{background:linear-gradient(180deg,#FFB74D,#E65100);font-size:13px;padding:9px 18px}
+.sg-tool.ghost{background:linear-gradient(180deg,#BA68C8,#6A1B9A)}
+.sg-tool.dead{opacity:.4;pointer-events:none}
+.sg-judge{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:12px;font-weight:700;min-height:34px;
+  line-height:1.45;color:#fff;opacity:.95}
+.sg-judge.pop{animation:sgJudge .4s}
+@keyframes sgJudge{from{transform:scale(.88);opacity:.3}to{transform:scale(1);opacity:1}}
+.sg-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;opacity:.8;color:#fff;line-height:1.6}
+.sg-tip b{color:#FFD740}
+.sg-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.sg-rs div span{display:block;font-size:22px;font-weight:800;line-height:1.2}
+.sg-rs div small{display:block;font-size:10px;opacity:.72;margin-top:2px}
+@media(max-width:420px){.sg-quiz,.sg-bar,.sg-judge,.sg-tip,.sg-tools,.sg-wrap{max-width:300px}
+.sg-hud{max-width:336px;gap:4px}}
 </style>
 
 </head>
@@ -3411,6 +3454,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🛝</div>
       <div class="info"><h3>笔顺滑滑梯</h3><p id="rampCardTip">画条滑道 · 把球引进答案格</p></div>
       <span class="rp-badge" id="rampCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('sling')">
+      <div class="icon">🪨</div>
+      <div class="info"><h3>笔顺投石机</h3><p id="sgCardTip">拉满弹弓 · 砸对那座塔</p></div>
+      <span class="rp-badge" id="sgCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('sky')">
       <div class="icon">☁️</div>
@@ -5686,6 +5734,65 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="srtLeave()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-sling">
+  <div class="top-bar">
+    <button class="back-btn" onclick="sgLeave()">← 返回</button>
+    <div class="stats"><span id="sgScoreTxt">🪨 0 分</span><span id="sgTimeTxt">⏱ 72s</span></div>
+    <button class="icon-btn" onclick="sgHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="challenge-goal">🪨 顶上这道题的答案，写在场上 <b>四座石塔</b> 的牌子上。按住屏幕 <b>往后拉满弹弓</b>再松手 —— <b style="color:#80DEEA">让石头飞过去砸塌写着对答案的那座塔</b>。每题只有 <b style="color:#FFF176">3 发石头</b>，一发砸对分最高；砸错塔会倒（帮你排除），⚠️ 火药桶会炸伤人。</div>
+  <div class="sg-hud">
+    <span id="sgRankTxt" title="段位">🏅 搬石小工</span>
+    <span id="sgGoalTxt" title="这一关要砸对几座">🎯 差 3</span>
+    <span id="sgAmmoTxt" title="这道题还剩几发石头">🪨 3 发</span>
+    <span id="sgComboTxt" title="连对次数">🔥 连 0</span>
+    <span id="sgHeartTxt" title="生命">❤️❤️❤️</span>
+  </div>
+  <div class="sg-bar"><i id="sgBar"></i><b id="sgBarTxt">🪨 第 1 关 · 砸对 0 / 3</b></div>
+  <div class="sg-quiz" id="sgQuiz">🪨 正在垒塔……<small>马上出题</small></div>
+  <div class="sg-wrap">
+    <canvas class="sg-cv" id="sgCanvas" width="336" height="430"></canvas>
+    <div class="sg-band" id="sgBand"></div>
+  </div>
+  <div class="sg-tools">
+    <button class="sg-tool go" id="sgGo" onclick="sgFire()" title="按当前角度发射（空格）">🪨 发射</button>
+    <button class="sg-tool ghost" id="sgHintBtn" onclick="sgHint()" title="画出打中正确答案的完整弹道（H）">🧭 看弹道 <b id="sgHintN">2</b></button>
+    <button class="sg-tool" id="sgAmmoBtn" onclick="sgRefill()" title="这道题多给一发石头（A）">🪨 补一发 <b id="sgAmmoN">2</b></button>
+    <button class="sg-tool" id="sgSlowBtn" onclick="sgSlowMo()" title="慢动作看清石头落在哪（S）">🐢 慢一点 <b id="sgSlowN">2</b></button>
+  </div>
+  <div class="sg-judge" id="sgJudge"></div>
+  <div class="sg-tip">在场上<b>按住往后拉</b>蓄力 · <b>松手</b>就发射 · 键盘：<b>←→</b> 调角度 · <b>↑↓</b> 调力气 · <b>空格</b> 发射 · <b>1~4</b> 直接砸第几座塔 · <b>H</b> 看弹道</div>
+</div>
+<div class="screen" id="screen-sling-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="sgLeave()">← 回首页</button>
+    <div class="stats"><span id="sgRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="sgRsEmoji">🪨</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="sgRsTitle">砸到第 1 关</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="sgRsSub">塔更高、墙更厚</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="sg-rs">
+      <div><span style="color:#FFD700" id="sgRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="sgRsLv">1</span><small>砸到第几关</small></div>
+      <div><span style="color:#69F0AE" id="sgRsOk">0</span><small>砸对塔数</small></div>
+      <div><span style="color:#FFAB91" id="sgRsShots">0</span><small>一共几发</small></div>
+      <div><span style="color:#FFF176" id="sgRsCoins">0</span><small>捡了几颗星</small></div>
+      <div><span style="color:#E1BEE7" id="sgRsStreak">0</span><small>最长连对</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="sgRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="sgRsAll">🏅 搬石小工</div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="sgRetry()">🔁 再砸一关</button>
+    <button class="w-btn blue" onclick="sgLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-ramp">
   <div class="top-bar">
     <button class="back-btn" onclick="rpLeave()">← 返回</button>
@@ -6967,6 +7074,7 @@ function updateHomeStats(){
   if(typeof pcNudge==='function')pcNudge();
   if(typeof bmNudge==='function')bmNudge();
   if(typeof rpNudge==='function')rpNudge();
+  if(typeof sgNudge==='function')sgNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -7020,7 +7128,7 @@ function enterMode(mode){
  else if(mode==='sort')srtStart();
  else if(mode==='splat')spStart();
  else if(mode==='picross')pcStart();
- else if(mode==='bomb')bmStart(); else if(mode==='ramp')rpStart();
+ else if(mode==='bomb')bmStart(); else if(mode==='ramp')rpStart(); else if(mode==='sling')sgStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -32386,6 +32494,1057 @@ window.addEventListener('resize',function(){
   rpFit();rpDraw();
 });
 
+
+/* ================= 笔顺投石机（拉满弹弓 · 砸塌写着对答案的那座塔） ================= */
+const SG_W=336,SG_H=430,SG_GY=402,SG_R=13,SG_GRAV=980,SG_MAXV=760,SG_TIME=72;
+const SG_PULL=88,SG_VMAX=721,SG_AX=52,SG_AY=326;
+const SG_TW=34,SG_CH=15,SG_SH=22,SG_CR=3;
+const SG_LB={R:['➡️','往右'],D:['⬇️','往下'],P:['↙️','左下'],N:['↘️','右下'],T:['↗️','右上']};
+const SG_ORD=['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十'];
+const SG_NOTE=[523,587,659,693,784,880,988,1047,1175,1319];
+const SG_RANKS=[
+  {n:0,e:'🪨',t:'搬石小工'},{n:8,e:'🎯',t:'弹弓学徒'},{n:20,e:'🏹',t:'拉弦手'},
+  {n:36,e:'💥',t:'拆塔快手'},{n:56,e:'🧨',t:'火药桶客'},{n:82,e:'⚡',t:'一石中的'},
+  {n:112,e:'🌟',t:'投石高手'},{n:150,e:'👑',t:'石炮将军'},{n:210,e:'🌈',t:'彩虹投石王'}
+];
+/* 塔位：x 中心 + 塔底所在的台面 y */
+/* 塔台高度：弹弓在左下角，塔越往右站得越高，每一座才都砸得到 */
+const SG_TIER=[SG_GY,368,334,300,266,232,198];
+const SG_SKY=[[26,34,1.4],[58,72,1],[96,26,1.6],[132,58,1],[168,28,1.3],[206,66,1],
+  [244,24,1.5],[282,50,1],[312,88,1.2],[74,108,1],[190,102,1.3],[266,118,1]];
+let sg={
+  run:false,over:false,gen:0,timers:[],timerId:null,ts:0,
+  level:1,time:SG_TIME,score:0,hearts:3,combo:0,maxCombo:0,
+  ok:0,levelOk:0,need:3,shots:0,ammo:3,used:0,coins:0,pits:0,first:0,missQ:0,
+  phase:'aim',ang:52,pow:.82,drag:false,dx:0,dy:0,ghost:0,ghostPts:null,hintN:2,slowN:2,refN:2,slow:0,
+  sx:0,sy:0,vx:0,vy:0,spin:0,ft:0,rest:0,inv:0,shake:0,
+  towers:[],walls:[],ledges:[],barrels:[],gots:[],segs:[],debris:[],fx:[],pops:[],trail:[],
+  ans:0,ansLbl:'',ch:'',ty:{},busy:false,assistQ:false,dead:false
+};
+function sgCv(){return document.getElementById('sgCanvas')}
+function sgCtx(){const cv=sgCv();if(!cv)return null;return cv.getContext('2d')}
+function sgNow(){return (window.performance&&performance.now)?performance.now():Date.now()}
+function sgInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function sgAdd(k,n){localStorage.setItem(k,String(sgInt(k)+n))}
+function sgSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function sgRank(n){let r=SG_RANKS[0];for(let i=0;i<SG_RANKS.length;i++)if(n>=SG_RANKS[i].n)r=SG_RANKS[i];return r}
+function sgShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function sgT(fn,ms){const g=sg.gen;const id=setTimeout(function(){if(g!==sg.gen)return;fn()},ms);sg.timers.push(id);return id}
+function sgKillTimers(){sg.timers.forEach(function(t){clearTimeout(t)});sg.timers=[]}
+function sgAmmoFor(l){return l>=6?2:3}
+function sgNeedFor(l){return 2+l}
+/* ---- 画布尺寸 ---- */
+function sgFit(){
+  const cv=sgCv();if(!cv)return;
+  const dpr=Math.min(2,window.devicePixelRatio||1);
+  cv.width=Math.round(SG_W*dpr);cv.height=Math.round(SG_H*dpr);
+  const c=cv.getContext('2d');
+  if(c)c.setTransform(dpr,0,0,dpr,0,0);
+}
+/* ---- 场地：围墙 + 地面 + 石墙 + 高台 ---- */
+function sgRebuild(){
+  const s=[[0,-6,0,SG_H,7],[SG_W,-6,SG_W,SG_H,7],[0,-6,SG_W,-6,7],[-6,SG_GY,SG_W+6,SG_GY,7]];
+  sg.walls.forEach(function(w){s.push([w.x1,w.y1,w.x2,w.y2,6])});
+  sg.ledges.forEach(function(p){s.push([p.x-p.w/2,p.y,p.x+p.w/2,p.y,6])});
+  sg.segs=s;
+}
+function sgTowerTop(t){return t.base-SG_CR*SG_CH-SG_SH}
+function sgTowerSign(t){return t.base-SG_CR*SG_CH-SG_SH/2}
+function sgTowerBox(t){return{x:t.x-SG_TW/2,y:sgTowerTop(t),w:SG_TW,h:SG_CR*SG_CH+SG_SH}}
+function sgLayout(){
+  const lv=sg.level;
+  sg.towers=[];sg.walls=[];sg.ledges=[];sg.barrels=[];sg.gots=[];
+  /* 4 座塔：横向拉开 · 从左到右一级一级升高 */
+  const xs=[];let guard=0;
+  while(xs.length<4&&guard++<400){
+    const x=Math.round(100+Math.random()*200);
+    let far=true;
+    xs.forEach(function(q){if(Math.abs(q-x)<66)far=false});
+    if(far)xs.push(x);
+  }
+  if(xs.length<4){xs.length=0;xs.push(100,167,234,300)}
+  xs.sort(function(a,b){return a-b});
+  const tier=[0];
+  for(let k=1;k<4;k++)tier.push(Math.min(SG_TIER.length-1,tier[k-1]+1+(Math.random()<.42?1:0)));
+  sg.ledges=[];
+  for(let k=0;k<4;k++){
+    const base=SG_TIER[tier[k]];
+    const t={i:k,x:xs[k],base:base,alive:true,opt:null,sol:null};
+    if(base!==SG_GY)sg.ledges.push({x:xs[k],y:base,w:SG_TW+18});
+    sg.towers.push(t);
+  }
+  /* 石墙：挡在弹弓和塔之间 */
+  const wn=Math.min(5,1+lv);guard=0;
+  while(sg.walls.length<wn&&guard++<200){
+    const vert=Math.random()<.72;
+    let w;
+    if(vert){
+      const x=96+Math.random()*190,h=44+Math.random()*(34+lv*7);
+      w={x1:x,y1:SG_GY,x2:x,y2:SG_GY-Math.min(h,150)};
+    }else{
+      const x=110+Math.random()*150,y=250+Math.random()*100,l=40+Math.random()*46;
+      w={x1:x,y1:y,x2:x+l,y2:y};
+    }
+    let okp=true;
+    sg.towers.forEach(function(t){
+      const dx=Math.abs((w.x1+w.x2)/2-t.x),dy=Math.abs((w.y1+w.y2)/2-(t.base-32));
+      if(dx<30&&dy<48)okp=false;
+    });
+    sg.walls.forEach(function(o){
+      if(Math.abs(o.x1-w.x1)<26&&Math.abs(o.y1-w.y1)<26&&Math.abs(o.x2-w.x2)<26)okp=false;
+    });
+    if(okp)sg.walls.push(w);
+  }
+  /* 火药桶：第 3 关起 */
+  if(lv>=3){
+    const bn=Math.min(4,lv-1);guard=0;
+    while(sg.barrels.length<bn&&guard++<200){
+      const x=104+Math.random()*210,y=214+Math.random()*(SG_GY-252);
+      let okp=true;
+      sg.towers.forEach(function(t){if(Math.hypot(t.x-x,sgTowerSign(t)-y)<52)okp=false});
+      sg.walls.forEach(function(w){if(sgPtSeg(x,y,w.x1,w.y1,w.x2,w.y2).d<26)okp=false});
+      sg.barrels.forEach(function(b){if(Math.hypot(b.x-x,b.y-y)<46)okp=false});
+      if(Math.hypot(SG_AX-x,SG_AY-y)<74)okp=false;
+      if(okp)sg.barrels.push({x:x,y:y,r:14});
+    }
+  }
+  /* 星星 */
+  const cn=Math.min(4,2+Math.floor(lv/2));guard=0;
+  while(sg.gots.length<cn&&guard++<200){
+    const x=86+Math.random()*232,y=170+Math.random()*(SG_GY-212);
+    let okp=true;
+    sg.towers.forEach(function(t){if(Math.abs(t.x-x)<34&&y>sgTowerTop(t)-16)okp=false});
+    sg.barrels.forEach(function(b){if(Math.hypot(b.x-x,b.y-y)<36)okp=false});
+    sg.gots.forEach(function(g){if(Math.hypot(g.x-x,g.y-y)<44)okp=false});
+    if(okp)sg.gots.push({x:x,y:y,taken:false});
+  }
+  sgRebuild();
+}
+/* 一整轮布局 + 求解；有塔砸不到就整盘重排，绝不留死局 */
+function sgBuild(){
+  for(let a=0;a<12;a++){
+    sgLayout();sgEnsure();
+    if(sg.towers.every(function(t){return t.sol}))return;
+  }
+  sgSafeLayout();
+}
+/* 兜底阵型：不砌墙 · 四级台阶从左往右升高，一定砸得到 */
+function sgSafeLayout(){
+  sg.towers=[];sg.walls=[];sg.ledges=[];sg.barrels=[];sg.gots=[];
+  const xs=[110,176,242,300];
+  for(let k=0;k<4;k++){
+    const base=SG_TIER[k];
+    const t={i:k,x:xs[k],base:base,alive:true,opt:null,sol:null};
+    if(base!==SG_GY)sg.ledges.push({x:xs[k],y:base,w:SG_TW+18});
+    sg.towers.push(t);
+  }
+  sg.gots.push({x:150,y:214,taken:false},{x:214,y:172,taken:false});
+  sgRebuild();sgEnsure();
+}
+/* ---- 距离 / 轨迹 / 求解（保证每座塔都砸得到） ---- */
+function sgPtSeg(px,py,x1,y1,x2,y2){
+  const dx=x2-x1,dy=y2-y1,L=dx*dx+dy*dy;
+  let t=L>0?((px-x1)*dx+(py-y1)*dy)/L:0;
+  t=Math.max(0,Math.min(1,t));
+  const cx=x1+dx*t,cy=y1+dy*t;
+  return{d:Math.hypot(px-cx,py-cy),cx:cx,cy:cy,t:t};
+}
+function sgBlocked(x,y){
+  const s=sg.segs;
+  for(let i=0;i<s.length;i++){
+    if(sgPtSeg(x,y,s[i][0],s[i][1],s[i][2],s[i][3]).d<SG_R+s[i][4])return true;
+  }
+  return false;
+}
+function sgTowerAt(x,y,skip){
+  for(let i=0;i<sg.towers.length;i++){
+    const t=sg.towers[i];
+    if(!t.alive||i===skip)continue;
+    const b=sgTowerBox(t);
+    if(x>b.x-4&&x<b.x+b.w+4&&y>b.y-4&&y<b.y+b.h+4)return i;
+  }
+  return -1;
+}
+/* 与 sgAdvance 同一套积分（从拉好的石位起算、每步先加重力再限速），保证解出来的弹道真能砸中 */
+function sgTrace(ang,pow,n,fine){
+  const v=sgAimVec(ang,pow);
+  let vx=v.vx,vy=v.vy;
+  const L0=Math.hypot(vx,vy);
+  if(L0>SG_MAXV){vx*=SG_MAXV/L0;vy*=SG_MAXV/L0}
+  const q=sgPullPos(ang,pow);
+  let x=q.x,y=q.y,hit=-2;
+  const p=[];const h=fine?1/360:1/180;
+  for(let i=0;i<n;i++){
+    vy+=SG_GRAV*h;
+    const L=Math.hypot(vx,vy);
+    if(L>SG_MAXV){vx*=SG_MAXV/L;vy*=SG_MAXV/L}
+    x+=vx*h;y+=vy*h;
+    if(x<2||x>SG_W-2||y>SG_H+30)break;
+    p.push({x:x,y:y});
+    if(sgBlocked(x,y)){hit=-3;break}
+    const t=sgTowerAt(x,y,-1);
+    if(t>=0){hit=t;break}
+  }
+  return{pts:p,hit:hit,vx:vx,vy:vy};
+}
+function sgAimVec(ang,pow){
+  const a=ang*Math.PI/180,v=pow*SG_VMAX;
+  return{vx:Math.cos(a)*v,vy:-Math.sin(a)*v};
+}
+/* 解析求角：A u^2 - dx u + (A - dy) = 0（u = tanθ，y 轴朝下） */
+function sgAngRoots(dx,dy,pow){
+  const v=Math.min(SG_VMAX*pow,SG_MAXV);
+  if(dx<14||v<60)return[];
+  const A=SG_GRAV*dx*dx/(2*v*v);
+  const disc=dx*dx-4*A*(A-dy);
+  if(disc<0)return[];
+  const r=Math.sqrt(disc);
+  return[(dx-r)/(2*A),(dx+r)/(2*A)];
+}
+function sgTry(ang,pow,ti,tx,ty){
+  const tr=sgTrace(ang,pow,900);
+  if(tr.hit!==ti||tr.pts.length<12)return null;
+  const last=tr.pts[tr.pts.length-1];
+  if(Math.hypot(last.x-tx,last.y-ty)>58)return null;
+  /* 用与真实物理一样的细分步长再验一遍，避免粗步长漏掉的擦碰 */
+  const fine=sgTrace(ang,pow,1800,true);
+  if(fine.hit!==ti)return null;
+  const fl=fine.pts[fine.pts.length-1];
+  if(Math.hypot(fl.x-tx,fl.y-ty)>58)return null;
+  return{ang:ang,pow:pow,vx:fine.vx,vy:fine.vy,pts:fine.pts};
+}
+function sgSolve(tx,ty,ti){
+  for(let pi=0;pi<14;pi++){
+    const pow=1-pi*0.052;
+    const cand=[];
+    let sx=SG_AX,sy=SG_AY;
+    for(let it=0;it<2;it++){
+      const us=sgAngRoots(tx-sx,ty-sy,pow);
+      if(!us.length)break;
+      for(let k=0;k<us.length;k++){
+        const a0=Math.atan(us[k])*180/Math.PI;
+        if(a0>-6&&a0<88)cand.push(a0);
+      }
+      const q=sgPullPos(cand.length?Math.max(-8,Math.min(88,cand[cand.length-1])):45,pow);
+      sx=q.x;sy=q.y;
+    }
+    for(let j=0;j<cand.length;j++){
+      const offs=[0,-2.4,2.4,-5,5,-9,9];
+      for(let m=0;m<offs.length;m++){
+        const sol=sgTry(Math.max(-8,Math.min(88,cand[j]+offs[m])),pow,ti,tx,ty);
+        if(sol)return sol;
+      }
+    }
+  }
+  for(let a=8;a<=88;a+=3){
+    for(let pw=1;pw>=0.3;pw-=0.05){
+      const sol=sgTry(a,pw,ti,tx,ty);
+      if(sol)return sol;
+    }
+  }
+  return null;
+}
+function sgEnsure(){
+  for(let i=0;i<sg.towers.length;i++){
+    const t=sg.towers[i];
+    t.sol=sgSolve(t.x,sgTowerSign(t)+6,i);
+    let tries=0;
+    while(!t.sol&&sg.walls.length&&tries++<8){
+      let worst=-1,wd=1e9;
+      for(let j=0;j<sg.walls.length;j++){
+        const w=sg.walls[j];
+        const d=sgPtSeg(t.x,sgTowerSign(t),w.x1,w.y1,w.x2,w.y2).d;
+        if(d<wd){wd=d;worst=j}
+      }
+      if(worst<0)break;
+      sg.walls.splice(worst,1);
+      sgRebuild();
+      t.sol=sgSolve(t.x,sgTowerSign(t)+6,i);
+    }
+    if(!t.sol&&sg.walls.length){
+      sg.walls=[];sgRebuild();
+      t.sol=sgSolve(t.x,sgTowerSign(t)+6,i);
+    }
+    if(!t.sol)sgRelocate(t,i);
+    if(!t.sol)for(let k=94;k<=300&&!t.sol;k+=17)if(sgRelocate(t,i,k))break;
+  }
+}
+/* 实在砸不到的塔：挪到靠前的空地上，保证这一题一定有解 */
+function sgRelocate(t,i,onlyX){
+  const spots=onlyX!==undefined?[[onlyX,SG_GY]]
+    :[[94,SG_GY],[128,SG_GY],[162,SG_GY],[196,SG_GY],[230,SG_GY],[264,SG_GY],[300,SG_GY]];
+  for(let k=0;k<spots.length;k++){
+    let free=true;
+    for(let j=0;j<sg.towers.length;j++){
+      const o=sg.towers[j];
+      if(j!==i&&Math.abs(o.x-spots[k][0])<44&&o.base>=spots[k][1]-10)free=false;
+    }
+    if(!free)continue;
+    const ox=t.x,ob=t.base;
+    t.x=spots[k][0];t.base=spots[k][1];
+    sg.ledges=sg.ledges.filter(function(p){return Math.abs(p.x-ox)>=2});
+    sgRebuild();
+    t.sol=sgSolve(t.x,sgTowerSign(t)+6,i);
+    if(t.sol)return true;
+    t.x=ox;t.base=ob;sgRebuild();
+  }
+  return false;
+}
+/* ---- 出题 ---- */
+async function sgData(ch){
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await loadCharData(ch);
+  if(!raw||!raw.medians||raw.medians.length<2)return null;
+  const d={n:raw.medians.length,t:raw.medians.map(ddStrokeDir)};
+  sg.ty[ch]=d;return d;
+}
+async function sgAsk(){
+  if(sg.over||currentMode!=='sling'){sg.busy=false;return}
+  if(sg.busy)return;
+  sg.busy=true;
+  const gen=sg.gen;
+  let ch='',d=null;
+  for(let i=0;i<12;i++){
+    const c=nextInQueue();
+    if(!c)break;
+    const r=await sgData(c);
+    if(r){ch=c;d=r;break}
+  }
+  if(gen!==sg.gen||sg.over||currentMode!=='sling'){sg.busy=false;return}
+  if(!ch){
+    sgSet('sgQuiz','📖 字还没下下来……<small>等一秒就开打</small>');
+    sg.busy=false;
+    sgT(function(){if(!sg.over&&currentMode==='sling')sgAsk()},900);
+    return;
+  }
+  sg.ch=ch;
+  const n=d.n,dirs=d.t;
+  let opts,ans,lbl,qText;
+  if(Math.random()<.45&&n<=12){
+    ans=String(n);lbl=n+' 笔';
+    const nums=[n];
+    while(nums.length<4){
+      const k=n+(Math.random()<.5?-1:1)*(1+Math.floor(Math.random()*3));
+      if(k>0&&k<=24&&nums.indexOf(k)<0)nums.push(k);
+    }
+    opts=sgShuf(nums.slice(0,4)).map(function(k){return{v:String(k),txt:k+' 笔'}});
+    qText='『'+ch+'』一共有几笔？';
+  }else{
+    const idx=Math.floor(Math.random()*dirs.length);
+    const code=dirs[idx];
+    ans=code;lbl=(SG_LB[code]||['?','?'])[1];
+    const right=[{v:code,txt:lbl}];
+    const pool=sgShuf(['R','D','P','N','T'].filter(function(c){return c!==code})).slice(0,3)
+      .map(function(c){return{v:c,txt:SG_LB[c][1]}});
+    opts=sgShuf(right.concat(pool));
+    qText='『'+ch+'』的第'+(SG_ORD[idx]||(idx+1))+'笔往哪写？';
+  }
+  sg.ans=ans;sg.ansLbl=lbl;
+  sg.towers.forEach(function(t,i){t.alive=true;t.opt=opts[i%opts.length]});
+  sg.ammo=sgAmmoFor(sg.level);sg.shots=0;sg.assistQ=false;
+  sg.phase='aim';sg.ghost=0;sg.ghostPts=null;
+  sg.gots.forEach(function(g){g.taken=false});
+  sg.barrels.forEach(function(b){b.boom=0});
+  sg.debris=[];sg.trail=[];
+  sgResetStone();
+  sgSet('sgQuiz','🪨 '+qText+'<small>四座塔上各写一个答案 · 拉弹弓砸对的那一座</small>');
+  sgSay('🪨 新题目来了 —— 四座塔上各写一个答案，砸塌对的那一座，只有 '+sg.ammo+' 发石头','#B9F6CA');
+  sgHud();sgRebuild();sgDraw();
+  sg.busy=false;
+}
+function sgAnsTower(){
+  for(let i=0;i<sg.towers.length;i++){
+    const t=sg.towers[i];
+    if(t.alive&&t.opt&&t.opt.v===sg.ans)return i;
+  }
+  return -1;
+}
+function sgPullPos(ang,pow){
+  const a=ang*Math.PI/180,ux=-Math.cos(a),uy=Math.sin(a);
+  let d=Math.max(0,Math.min(1,pow))*SG_PULL;
+  /* 沿拉线往场内收缩：方向不变，只把力气收短，免得石头被钉在角落里 */
+  const pad=SG_R+9,xm=SG_W-SG_R-9,ym=SG_GY-SG_R-9;
+  if(ux<0)d=Math.min(d,(SG_AX-pad)/(-ux));else if(ux>0)d=Math.min(d,(xm-SG_AX)/ux);
+  if(uy>0)d=Math.min(d,(ym-SG_AY)/uy);else if(uy<0)d=Math.min(d,(SG_AY-pad)/(-uy));
+  return{x:SG_AX+ux*d,y:SG_AY+uy*d};
+}
+function sgResetStone(){
+  const v=sgAimVec(sg.ang,sg.pow);
+  const q=sgPullPos(sg.ang,sg.pow);
+  sg.vx=v.vx;sg.vy=v.vy;
+  sg.sx=q.x;sg.sy=q.y;sg.spin=0;sg.ft=0;sg.rest=0;sg.trail=[];
+}
+/* ---- 瞄准输入 ---- */
+function sgPt(ev){
+  const cv=sgCv();if(!cv)return null;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return null;
+  const x=(ev.clientX-r.left)/r.width*SG_W;
+  const y=(ev.clientY-r.top)/r.height*SG_H;
+  return{x:x,y:y};
+}
+function sgPullFrom(px,py){
+  const dx=SG_AX-px,dy=SG_AY-py;
+  const L=Math.hypot(dx,dy);
+  if(L<1)return null;
+  const d=Math.min(L,SG_PULL);
+  const ang=Math.max(-8,Math.min(88,Math.atan2(-dy/L,Math.max(.14,dx/L))*180/Math.PI));
+  const q=sgPullPos(ang,d/SG_PULL);
+  return{ang:ang,pow:d/SG_PULL,sx:q.x,sy:q.y};
+}
+function sgCanAim(){return sg.run&&!sg.over&&sg.phase==='aim'&&currentMode==='sling'}
+function sgDown(ev){
+  if(!sgCanAim())return;
+  const p=sgPt(ev);if(!p)return;
+  sg.drag=true;
+  const q=sgPullFrom(p.x,p.y);
+  if(q){sg.ang=q.ang;sg.pow=q.pow;sg.sx=q.sx;sg.sy=q.sy}
+  const cv=sgCv();if(cv)cv.classList.add('aim');
+  sgHud();sgDraw();
+}
+function sgMove(ev){
+  if(!sg.drag)return;
+  const p=sgPt(ev);if(!p)return;
+  const q=sgPullFrom(p.x,p.y);
+  if(q){sg.ang=q.ang;sg.pow=q.pow;sg.sx=q.sx;sg.sy=q.sy}
+  sgDraw();
+}
+function sgUp(){
+  if(!sg.drag)return;
+  sg.drag=false;
+  const cv=sgCv();if(cv)cv.classList.remove('aim');
+  if(sg.pow<.16){sgSay('🪨 力气太小了，石头飞不出去 —— 按住往后<b>拉得越满</b>打得越远','#FFE082');sgDraw();return}
+  sgFire();
+}
+function sgFire(){
+  if(!sgCanAim())return;
+  if(sg.pow<.16){sgSay('🪨 先把弹弓<b>拉满</b>再松手（或按 <b>↑</b> 加力）','#FFE082');return}
+  const v=sgAimVec(sg.ang,sg.pow);
+  const L=Math.hypot(v.vx,v.vy);
+  const k=L>SG_MAXV?SG_MAXV/L:1;
+  sg.vx=v.vx*k;sg.vy=v.vy*k;
+  const q=sgPullPos(sg.ang,sg.pow);
+  sg.sx=q.x;sg.sy=q.y;
+  sg.phase='fly';sg.ft=0;sg.rest=0;sg.trail=[];
+  tone(300,.08,'square',.05);
+  sgHud();sgDraw();
+}
+/* ---- 主循环 ---- */
+function sgStartLoop(){sgStopLoop();sg.ts=sgNow();sg.timerId=setInterval(sgTick,60)}
+function sgStopLoop(){if(sg.timerId){clearInterval(sg.timerId);sg.timerId=null}}
+function sgTick(){
+  if(!sg.run||sg.over||currentMode!=='sling'){sgStopLoop();return}
+  const now=sgNow();
+  let dt=(now-sg.ts)/1000;
+  sg.ts=now;
+  if(dt>0.08)dt=0.08;
+  sgAdvance(dt);
+}
+function sgSpark(x,y,col,n){
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,s=60+Math.random()*180;
+    sg.fx.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-40,l:.5+Math.random()*.3,c:col,r:2+Math.random()*2.6});
+  }
+}
+function sgPop(txt,x,y,col){sg.pops.push({t:txt,x:x,y:y,l:.95,c:col})}
+function sgDebris(t,col){
+  const b=sgTowerBox(t);
+  for(let i=0;i<SG_CR;i++){
+    sg.debris.push({x:t.x-SG_TW/2+3,y:b.y+SG_SH+i*SG_CH+2,w:SG_TW-6,h:SG_CH-2,
+      vx:(Math.random()-.5)*260+(t.x<SG_AX?-40:90),vy:-90-Math.random()*180,
+      r:0,vr:(Math.random()-.5)*9,c:col,l:1.5});
+  }
+}
+function sgHitSeg(b,x1,y1,x2,y2,extra,rest,fric){
+  const q=sgPtSeg(b.x,b.y,x1,y1,x2,y2);
+  const R=SG_R+extra;
+  if(q.d>=R||q.d<0.0001)return false;
+  const nx=(b.x-q.cx)/q.d,ny=(b.y-q.cy)/q.d;
+  b.x=q.cx+nx*R;b.y=q.cy+ny*R;
+  const vn=b.vx*nx+b.vy*ny;
+  if(vn<0){
+    const tx=-ny,t2=nx;
+    const vt=b.vx*tx+b.vy*t2;
+    const e=-vn<40?0:rest;
+    const nv=Math.max(0,-vn*e);
+    b.vx=tx*vt*fric+nx*nv;
+    b.vy=t2*vt*fric+ny*nv;
+    if(-vn>170){
+      sgSpark(b.x,b.y,'#CFD8DC',5);
+      tone(160+Math.random()*90,.05,'square',.035);
+    }
+  }
+  return true;
+}
+function sgAdvance(dt){
+  if(sg.slow>0){
+    sg.slow-=dt*1000;
+    if(sg.slow<=0)sg.slow=0;else dt*=0.42;
+  }
+  if(sg.inv>0)sg.inv=Math.max(0,sg.inv-dt*1000);
+  if(sg.ghost>0)sg.ghost=Math.max(0,sg.ghost-dt*1000);
+  if(sg.shake>0)sg.shake=Math.max(0,sg.shake-dt*1000);
+  sg.time-=dt;
+  if(sg.time<=0){sg.time=0;sgHud();sgEnd('time');return}
+  for(let i=sg.debris.length-1;i>=0;i--){
+    const d=sg.debris[i];
+    d.vy+=SG_GRAV*.8*dt;d.x+=d.vx*dt;d.y+=d.vy*dt;d.r+=d.vr*dt;d.l-=dt;
+    if(d.y>SG_GY){d.y=SG_GY;d.vy*=-.28;d.vx*=.7;d.vr*=.6}
+    if(d.l<=0)sg.debris.splice(i,1);
+  }
+  for(let i=sg.pops.length-1;i>=0;i--){
+    const p=sg.pops[i];
+    p.y-=32*dt;p.l-=dt;
+    if(p.l<=0)sg.pops.splice(i,1);
+  }
+  for(let i=sg.fx.length-1;i>=0;i--){
+    const f=sg.fx[i];
+    f.vy+=680*dt;f.x+=f.vx*dt;f.y+=f.vy*dt;f.l-=dt;
+    if(f.l<=0)sg.fx.splice(i,1);
+  }
+  if(sg.phase==='fly'){
+    const b={x:sg.sx,y:sg.sy,vx:sg.vx,vy:sg.vy};
+    const sub=6,h=dt/sub;
+    for(let s=0;s<sub&&sg.phase==='fly';s++){
+      b.vy+=SG_GRAV*h;
+      const L=Math.hypot(b.vx,b.vy);
+      if(L>SG_MAXV){b.vx*=SG_MAXV/L;b.vy*=SG_MAXV/L}
+      b.x+=b.vx*h;b.y+=b.vy*h;
+      sg.ft+=h;
+      const segs=sg.segs;
+      for(let i=0;i<segs.length;i++){
+        sgHitSeg(b,segs[i][0],segs[i][1],segs[i][2],segs[i][3],segs[i][4],0.36,0.988);
+      }
+      for(let i=sg.barrels.length-1;i>=0;i--){
+        const k=sg.barrels[i];
+        if(Math.hypot(k.x-b.x,k.y-b.y)<k.r+SG_R-2){sgBoom(k,b);break}
+      }
+      if(sg.phase!=='fly')break;
+      for(let i=0;i<sg.gots.length;i++){
+        const g=sg.gots[i];
+        if(!g.taken&&Math.hypot(g.x-b.x,g.y-b.y)<SG_R+11){
+          g.taken=true;sg.coins++;sgAdd('hz_sg_coin',1);
+          sg.score+=18;sgPop('⭐ +18',g.x,g.y,'#FFF176');
+          sgSpark(g.x,g.y,'#FFF59D',8);
+          tone(1320,.07,'triangle',.05);
+        }
+      }
+      const ti=sgTowerAt(b.x,b.y,-1);
+      if(ti>=0){sg.sx=b.x;sg.sy=b.y;sgHitTower(ti,b);break}
+      const spd=Math.hypot(b.vx,b.vy);
+      if(b.y>SG_GY-SG_R-3&&spd<48)sg.rest+=h;else sg.rest=0;
+      if(b.x<-30||b.x>SG_W+30||b.y>SG_H+30||sg.rest>0.55||sg.ft>6.2){
+        sg.sx=b.x;sg.sy=b.y;sgShotEnd(b);break;
+      }
+    }
+    if(sg.phase!=='fly'){sgHud();sgDraw();return}
+    sg.sx=b.x;sg.sy=b.y;sg.vx=b.vx;sg.vy=b.vy;
+    sg.spin+=dt*4.2;
+    sg.trail.push({x:sg.sx,y:sg.sy,l:.42});
+    if(sg.trail.length>26)sg.trail.shift();
+    for(let i=sg.trail.length-1;i>=0;i--){
+      sg.trail[i].l-=dt;
+      if(sg.trail[i].l<=0)sg.trail.splice(i,1);
+    }
+  }
+  sgHud();sgDraw();
+}
+/* ---- 判定 ---- */
+function sgBoom(k,b){
+  sg.barrels.splice(sg.barrels.indexOf(k),1);
+  sgSpark(k.x,k.y,'#FF8A65',18);
+  sgPop('💥',k.x,k.y-14,'#FFAB91');
+  sg.shake=280;sg.phase='aim';sg.shots++;sg.used++;
+  tone(90,.22,'sawtooth',.08);
+  if(sg.inv<=0){
+    sg.inv=1500;sg.hearts--;sg.combo=0;sg.pits++;
+    if(sg.hearts<=0){sgHud();sgEnd('heart');return}
+    sgSay('💥 砸中了火药桶 −1 颗心，还剩 <b>'+sg.hearts+'</b> 颗 —— 弹道要绕开它','#FF8A80');
+  }else{
+    sgSay('💥 又是火药桶，石头报废了一发','#FFAB91');
+  }
+  sgNextShot();
+}
+function sgHitTower(i,b){
+  const t=sg.towers[i];
+  t.alive=false;
+  sg.shots++;sg.used++;
+  sg.phase='aim';
+  const good=t.opt&&t.opt.v===sg.ans;
+  sgDebris(t,good?'#8D6E63':'#6D4C41');
+  sgSpark(t.x,sgTowerSign(t),good?'#FFD740':'#FF8A80',16);
+  sg.shake=good?200:120;
+  tone(good?220:120,.16,good?'triangle':'sawtooth',.07);
+  if(good)sgRight(t,b);else sgWrong(t,b);
+  if(sg.phase==='aim')sgNextShot();
+}
+function sgRight(t,b){
+  sg.combo++;sg.maxCombo=Math.max(sg.maxCombo,sg.combo);
+  sg.ok++;sg.levelOk++;
+  const left=Math.max(0,sg.ammo-sg.shots);
+  const one=(sg.shots===1&&!sg.assistQ)?18:0;
+  if(one)sg.first++;
+  const gain=Math.round(46+sg.combo*11+sg.level*7+left*10+one);
+  sg.score+=gain;
+  sg.time=Math.min(SG_TIME+30,sg.time+5);
+  sgPop('🎯 +'+gain,t.x,sgTowerSign(t)-10,'#FFD740');
+  sgBand(one?('🎯 一发入魂 +'+gain):('💥 砸对啦 +'+gain));
+  tone(SG_NOTE[Math.min(SG_NOTE.length-1,sg.combo-1)],.17,'triangle',.07);
+  showComboEffect(sg.combo);
+  const cv=sgCv();
+  if(cv){
+    const q=cv.getBoundingClientRect();
+    spawnStarFly(q.left+t.x/Math.max(1,SG_W)*q.width,q.top+sgTowerSign(t)/Math.max(1,SG_H)*q.height);
+  }
+  if(sg.combo%3===0)spawnConfetti();
+  sgBookAdd(sg.ch);
+  if(sg.levelOk>=sg.need)sgLevelUp();
+  else sgAskLater(760);
+  sgHud();
+}
+function sgWrong(t,b){
+  sg.combo=0;
+  sg.time=Math.max(1,sg.time-4);
+  sg.score=Math.max(0,sg.score-6);
+  sndNo();
+  const left=sg.towers.filter(function(x){return x.alive}).length;
+  sgSay('❌ 那座塔写着「<b>'+t.opt.txt+'</b>」，题目要的是「<b>'+sg.ansLbl+'</b>」—— 扣 4 秒，不过它倒了就排除了（还剩 '+left+' 座）','#FF8A80');
+  sgPop('💢 打歪了',t.x,sgTowerSign(t),'#FF8A80');
+  if(sg.shots>=sg.ammo)sgMiss();
+  else sgHud();
+}
+function sgMiss(){
+  sg.combo=0;sg.missQ++;
+  sg.time=Math.max(1,sg.time-3);
+  sg.score=Math.max(0,sg.score-8);
+  const ai=sgAnsTower();
+  sgSay('🪨 石头打完了还没砸对 —— 正确答案写在'+(ai>=0?('「<b>'+sg.towers[ai].opt.txt+'</b>」那座塔上'):'别的地方')+'，下一题重来','#FFE082');
+  sgAskLater(900);
+  sgHud();
+}
+function sgShotEnd(b){
+  sg.shots++;sg.used++;
+  if(sg.shots>=sg.ammo){sgMiss();return}
+  sg.phase='aim';
+  sgSay('🪨 这一发砸空了 —— 还剩 <b>'+(sg.ammo-sg.shots)+'</b> 发，试着<b>拉满一点</b>或者绕开石墙','#B3E5FC');
+  sgNextShot();
+}
+function sgNextShot(){
+  sg.phase='aim';
+  sgResetStone();
+  sgHud();sgDraw();
+}
+function sgAskLater(ms){
+  sg.phase='judge';
+  const gen=sg.gen;
+  sgT(function(){if(gen!==sg.gen||sg.over||currentMode!=='sling')return;sgAsk()},ms);
+}
+function sgLevelUp(){
+  sg.level++;sg.levelOk=0;sg.need=sgNeedFor(sg.level);
+  const bonus=Math.round(50+sg.time*1.5+sg.level*18);
+  sg.score+=bonus;
+  sg.time=Math.min(SG_TIME+40,sg.time+6);
+  addStars(1+Math.min(6,sg.level));
+  sg.phase='judge';
+  sgBand('🪨 砸进第 '+sg.level+' 关 · 奖励 +'+bonus);
+  tone(1046,.2,'triangle',.08);
+  spawnConfetti();
+  const gen=sg.gen;
+  sgT(function(){
+    if(gen!==sg.gen||sg.over||currentMode!=='sling')return;
+    sgBuild();sgAsk();
+  },900);
+}
+function sgBookAdd(ch){
+  const k='hz_sg_book';
+  const arr=(localStorage.getItem(k)||'').split(',').filter(Boolean);
+  if(arr.indexOf(ch)<0){arr.push(ch);if(arr.length>300)arr.shift();localStorage.setItem(k,arr.join(','))}
+}
+/* ---- 道具 ---- */
+function sgHint(){
+  if(!sg.run||sg.over||currentMode!=='sling')return;
+  if(sg.ghost>0)return;
+  if(sg.hintN<=0){sgSay('🧭 这一局的弹道图用完啦','#FFE082');return}
+  const ai=sgAnsTower();
+  if(ai<0)return;
+  const t=sg.towers[ai];
+  if(!t.sol)t.sol=sgSolve(t.x,sgTowerSign(t)+6,ai);
+  if(!t.sol){sgSay('🧭 这座塔实在打不着，先砸别的排除掉','#FFE082');return}
+  sg.hintN--;sg.score=Math.max(0,sg.score-10);
+  sg.assistQ=true;
+  sg.ghost=2600;sg.ghostPts=t.sol;
+  sg.ang=t.sol.ang;sg.pow=t.sol.pow;
+  sgResetStone();
+  sgSet('sgHintN',String(sg.hintN));
+  if(sg.hintN<=0){const b=document.getElementById('sgHintBtn');if(b)b.classList.add('dead')}
+  sgSay('🧭 照这条<b>青色虚线</b>拉弹弓（已经帮你摆好角度，松手就能砸）· 扣 10 分','#80DEEA');
+  sgHud();sgDraw();
+}
+function sgRefill(){
+  if(!sg.run||sg.over||currentMode!=='sling')return;
+  if(sg.refN<=0){sgSay('🪨 石头搬完啦，这一局没有备用了','#FFE082');return}
+  sg.refN--;sg.ammo++;sg.score=Math.max(0,sg.score-8);
+  sg.assistQ=true;
+  sgSet('sgAmmoN',String(sg.refN));
+  if(sg.refN<=0){const b=document.getElementById('sgAmmoBtn');if(b)b.classList.add('dead')}
+  sgSay('🪨 多搬来一发石头 —— 这道题现在有 <b>'+sg.ammo+'</b> 发，扣 8 分','#FFE082');
+  sgPop('🪨 +1',SG_AX,SG_AY-30,'#FFCC80');
+  sgHud();sgDraw();
+}
+function sgSlowMo(){
+  if(!sg.run||sg.over||currentMode!=='sling')return;
+  if(sg.slow>0){sgSay('🐢 已经在慢动作里了','#B3E5FC');return}
+  if(sg.slowN<=0){sgSay('🐢 慢动作用完啦','#FFE082');return}
+  sg.slowN--;sg.slow=2800;
+  sgSet('sgSlowN',String(sg.slowN));
+  if(sg.slowN<=0){const b=document.getElementById('sgSlowBtn');if(b)b.classList.add('dead')}
+  sgSay('🐢 慢下来 —— 看清石头落在哪儿，好调下一发的角度','#B3E5FC');
+  sgHud();sgDraw();
+}
+function sgAssist(k){
+  if(!sg.run||sg.over||currentMode!=='sling')return;
+  if(k<0||k>=sg.towers.length)return;
+  if(sg.phase==='judge')return;
+  const t=sg.towers[k];
+  if(!t||!t.alive){sgSay('🪨 第 '+(k+1)+' 座塔已经倒了','#FFE082');return}
+  if(sg.shots>=sg.ammo){sgSay('🪨 这道题的石头用完啦','#FFE082');return}
+  sg.assistQ=true;
+  sg.score=Math.max(0,sg.score-8);
+  sg.sx=t.x;sg.sy=sgTowerSign(t);
+  sgHitTower(k,{x:t.x,y:sgTowerSign(t),vx:0,vy:0});
+}
+/* ---- HUD ---- */
+function sgHud(){
+  sgSet('sgScoreTxt','🪨 '+Math.round(sg.score)+' 分');
+  sgSet('sgTimeTxt','⏱ '+Math.max(0,Math.ceil(sg.time))+'s');
+  const R=sgRank(sgInt('hz_sg_ok')+sg.ok);
+  sgSet('sgRankTxt','🏅 '+R.t);
+  sgSet('sgGoalTxt','🎯 差 '+(sg.need-sg.levelOk));
+  sgSet('sgAmmoTxt','🪨 '+Math.max(0,sg.ammo-sg.shots-(sg.phase==='fly'?1:0))+'/'+sg.ammo+' 发');
+  sgSet('sgComboTxt','🔥 连 '+sg.combo);
+  let h='';for(let i=0;i<Math.max(0,sg.hearts);i++)h+='❤️';
+  if(!h)h='💔';
+  sgSet('sgHeartTxt',h);
+  const bar=document.getElementById('sgBar');
+  if(bar){
+    const pct=Math.max(0,Math.min(100,sg.levelOk/sg.need*100));
+    bar.style.width=pct+'%';
+    bar.classList.toggle('low',pct<25);
+  }
+  sgSet('sgBarTxt','🪨 第 '+sg.level+' 关 · 砸对 '+sg.levelOk+' / '+sg.need);
+  const go=document.getElementById('sgGo');
+  if(go)go.classList.toggle('dead',sg.phase!=='aim');
+}
+function sgSay(msg,color){
+  const el=document.getElementById('sgJudge');
+  if(!el)return;
+  el.innerHTML=msg;
+  if(color)el.style.color=color;
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function sgBand(msg){
+  const el=document.getElementById('sgBand');
+  if(!el)return;
+  el.innerHTML=msg;
+  el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+/* ---- 渲染 ---- */
+function sgRound(c,x,y,w,h,r){
+  c.beginPath();
+  c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);
+  c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);
+  c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);c.closePath();
+}
+function sgDraw(){
+  const c=sgCtx();if(!c)return;
+  c.clearRect(0,0,SG_W,SG_H);
+  c.save();
+  if(sg.shake>0)c.translate((Math.random()-.5)*7,(Math.random()-.5)*7);
+  /* 夜空：月牙 + 眨眼的星 */
+  const now=sgNow();
+  c.fillStyle='rgba(255,249,196,.82)';
+  c.beginPath();c.arc(SG_W-40,42,15,0,6.283);c.fill();
+  c.fillStyle='rgba(38,33,66,.95)';
+  c.beginPath();c.arc(SG_W-48,36,13,0,6.283);c.fill();
+  c.fillStyle='#FFF9C4';
+  for(let i=0;i<SG_SKY.length;i++){
+    const q=SG_SKY[i];
+    c.globalAlpha=.18+.34*Math.abs(Math.sin(now/900+i*1.7));
+    c.beginPath();c.arc(q[0],q[1],q[2],0,6.283);c.fill();
+  }
+  c.globalAlpha=1;
+  /* 地面 */
+  c.fillStyle='#22412F';c.fillRect(0,SG_GY,SG_W,SG_H-SG_GY);
+  c.strokeStyle='rgba(129,199,132,.75)';c.lineWidth=2;
+  c.beginPath();c.moveTo(0,SG_GY+1);c.lineTo(SG_W,SG_GY+1);c.stroke();
+  /* 高台 */
+  sg.ledges.forEach(function(p){
+    c.fillStyle='#546E7A';
+    sgRound(c,p.x-p.w/2,p.y,p.w,12,4);c.fill();
+    c.strokeStyle='rgba(255,255,255,.28)';c.lineWidth=1.4;c.stroke();
+  });
+  /* 石墙 */
+  sg.walls.forEach(function(w){
+    const x1=Math.min(w.x1,w.x2),x2=Math.max(w.x1,w.x2);
+    const y1=Math.min(w.y1,w.y2),y2=Math.max(w.y1,w.y2);
+    if(x2-x1<4){
+      c.fillStyle='#78909C';sgRound(c,x1-6,y1,12,y2-y1,4);c.fill();
+      c.strokeStyle='rgba(255,255,255,.22)';c.lineWidth=1.2;c.stroke();
+      c.strokeStyle='rgba(0,0,0,.22)';
+      for(let y=y1+14;y<y2-4;y+=16){c.beginPath();c.moveTo(x1-6,y);c.lineTo(x1+6,y);c.stroke()}
+    }else{
+      c.fillStyle='#78909C';sgRound(c,x1,y1-6,x2-x1,12,4);c.fill();
+      c.strokeStyle='rgba(255,255,255,.22)';c.lineWidth=1.2;c.stroke();
+    }
+  });
+  /* 火药桶 */
+  sg.barrels.forEach(function(b){
+    c.fillStyle='#B71C1C';sgRound(c,b.x-12,b.y-14,24,28,6);c.fill();
+    c.strokeStyle='#FFCCBC';c.lineWidth=2;
+    c.beginPath();c.moveTo(b.x-12,b.y-4);c.lineTo(b.x+12,b.y-4);c.stroke();
+    c.beginPath();c.moveTo(b.x-12,b.y+6);c.lineTo(b.x+12,b.y+6);c.stroke();
+    c.font='12px serif';c.textAlign='center';c.textBaseline='middle';
+    c.fillText('💣',b.x,b.y-22);
+  });
+  /* 星星 */
+  c.font='17px serif';c.textAlign='center';c.textBaseline='middle';
+  sg.gots.forEach(function(g){if(!g.taken)c.fillText('⭐',g.x,g.y)});
+  /* 塔 */
+  sg.towers.forEach(function(t){
+    if(!t.alive)return;
+    const b=sgTowerBox(t);
+    for(let i=0;i<SG_CR;i++){
+      const y=b.y+SG_SH+i*SG_CH;
+      c.fillStyle=i%2?'#8D6E63':'#A1887F';
+      sgRound(c,t.x-SG_TW/2,y+1,SG_TW,SG_CH-2,3);c.fill();
+      c.strokeStyle='rgba(62,39,35,.7)';c.lineWidth=1.2;c.stroke();
+    }
+    c.fillStyle='#6D4C41';
+    c.fillRect(t.x-2,b.y+SG_SH,4,SG_CR*SG_CH-SG_SH);
+    /* 答案牌 */
+    const sy=b.y,sw=Math.max(40,t.opt&&t.opt.txt.length>3?50:44);
+    c.fillStyle='#FFF8E1';sgRound(c,t.x-sw/2,sy,sw,SG_SH-2,5);c.fill();
+    c.strokeStyle='#F57F17';c.lineWidth=1.8;c.stroke();
+    c.fillStyle='#4E342E';c.font='800 11px system-ui,sans-serif';
+    c.fillText(t.opt?t.opt.txt:'?',t.x,sy+SG_SH/2);
+  });
+  /* 弹弓 */
+  c.strokeStyle='#5D4037';c.lineWidth=6;c.lineCap='round';
+  c.beginPath();c.moveTo(SG_AX,SG_AY+36);c.lineTo(SG_AX,SG_AY+8);c.stroke();
+  c.beginPath();c.moveTo(SG_AX,SG_AY+10);c.lineTo(SG_AX-11,SG_AY-6);c.stroke();
+  c.beginPath();c.moveTo(SG_AX,SG_AY+10);c.lineTo(SG_AX+11,SG_AY-6);c.stroke();
+  if(sg.phase==='aim'){
+    c.strokeStyle='#EF9A9A';c.lineWidth=3.4;
+    c.beginPath();c.moveTo(SG_AX-11,SG_AY-6);c.lineTo(sg.sx,sg.sy);c.stroke();
+    c.beginPath();c.moveTo(SG_AX+11,SG_AY-6);c.lineTo(sg.sx,sg.sy);c.stroke();
+  }else{
+    c.strokeStyle='#EF9A9A';c.lineWidth=3.4;
+    c.beginPath();c.moveTo(SG_AX-11,SG_AY-6);c.lineTo(SG_AX,SG_AY+2);c.lineTo(SG_AX+11,SG_AY-6);c.stroke();
+  }
+  /* 弹道预览：拖拽时只给前 9 个点，🧭 看弹道才画整条 */
+  if(sg.phase==='aim'){
+    if(sg.ghost>0&&sg.ghostPts){
+      c.fillStyle='rgba(128,222,234,.92)';
+      sg.ghostPts.pts.forEach(function(p,i){
+        if(i%2)return;
+        c.beginPath();c.arc(p.x,p.y,2.4,0,6.283);c.fill();
+      });
+      const ai=sgAnsTower();
+      if(ai>=0){
+        const t=sg.towers[ai];
+        c.strokeStyle='rgba(128,222,234,'+(0.4+0.5*Math.abs(Math.sin(sgNow()/260)))+')';
+        c.lineWidth=2.4;
+        c.beginPath();c.arc(t.x,sgTowerSign(t),20,0,6.283);c.stroke();
+      }
+    }else{
+      const tr=sgTrace(sg.ang,Math.max(.16,sg.pow),200).pts;
+      for(let i=12;i<Math.min(11*12+12,tr.length);i+=12){
+        const p=tr[i];
+        c.fillStyle='rgba(255,255,255,'+(0.66-(i/12)*0.05)+')';
+        c.beginPath();c.arc(p.x,p.y,3.1-(i/12)*0.19,0,6.283);c.fill();
+      }
+    }
+  }
+  /* 飞行轨迹 + 石头 */
+  sg.trail.forEach(function(p){
+    c.fillStyle='rgba(255,255,255,'+(p.l*0.5)+')';
+    c.beginPath();c.arc(p.x,p.y,3.2,0,6.283);c.fill();
+  });
+  if(sg.phase==='fly'||sg.phase==='aim'){
+    const x=sg.sx,y=sg.sy;
+    c.save();c.translate(x,y);
+    if(sg.phase==='fly')c.rotate(sg.spin);
+    c.fillStyle='#90A4AE';c.beginPath();c.arc(0,0,SG_R,0,6.283);c.fill();
+    c.strokeStyle='#455A64';c.lineWidth=2;c.stroke();
+    c.fillStyle='rgba(255,255,255,.35)';
+    c.beginPath();c.arc(-4,-5,3.4,0,6.283);c.fill();
+    c.restore();
+    c.fillStyle='#ECEFF1';c.font='800 11px system-ui,sans-serif';
+    c.textAlign='center';c.textBaseline='middle';
+    c.fillText(sg.ch||'字',x,y+1);
+  }
+  /* 碎块 */
+  sg.debris.forEach(function(d){
+    c.save();c.translate(d.x+d.w/2,d.y+d.h/2);c.rotate(d.r);
+    c.globalAlpha=Math.max(0,Math.min(1,d.l));
+    c.fillStyle=d.c;c.fillRect(-d.w/2,-d.h/2,d.w,d.h);
+    c.strokeStyle='rgba(0,0,0,.35)';c.lineWidth=1;c.strokeRect(-d.w/2,-d.h/2,d.w,d.h);
+    c.restore();
+  });
+  /* 粒子 */
+  sg.fx.forEach(function(f){
+    c.globalAlpha=Math.max(0,Math.min(1,f.l*2));
+    c.fillStyle=f.c;
+    c.beginPath();c.arc(f.x,f.y,f.r,0,6.283);c.fill();
+    c.globalAlpha=1;
+  });
+  /* 飘字 */
+  sg.pops.forEach(function(p){
+    c.globalAlpha=Math.max(0,Math.min(1,p.l*1.4));
+    c.fillStyle=p.c;c.font='900 13px system-ui,sans-serif';
+    c.textAlign='center';c.textBaseline='middle';
+    c.fillText(p.t,p.x,p.y);
+    c.globalAlpha=1;
+  });
+  c.restore();
+}
+/* ---- 生命周期 ---- */
+function sgStart(){
+  currentMode='sling';sg.gen++;sgKillTimers();sgStopLoop();
+  sg.run=true;sg.over=false;
+  sg.level=1;sg.time=SG_TIME;sg.score=0;sg.hearts=3;
+  sg.combo=0;sg.maxCombo=0;sg.ok=0;sg.levelOk=0;sg.need=3;
+  sg.shots=0;sg.used=0;sg.coins=0;sg.pits=0;sg.first=0;sg.missQ=0;
+  sg.ammo=sgAmmoFor(1);
+  sg.phase='aim';sg.ang=52;sg.pow=.82;sg.drag=false;
+  sg.ghost=0;sg.ghostPts=null;sg.hintN=2;sg.slowN=2;sg.refN=2;sg.slow=0;
+  sg.inv=0;sg.rest=0;sg.shake=0;sg.ft=0;sg.spin=0;
+  sg.towers=[];sg.walls=[];sg.ledges=[];sg.barrels=[];sg.gots=[];
+  sg.debris=[];sg.fx=[];sg.pops=[];sg.trail=[];
+  sg.busy=false;sg.assistQ=false;sg.dead=false;
+  sg.ty=sg.ty||{};
+  showScreen('sling');
+  sgFit();sgBuild();sgResetStone();sgHud();
+  sgSet('sgHintN','2');sgSet('sgSlowN','2');sgSet('sgAmmoN','2');
+  ['sgHintBtn','sgSlowBtn','sgAmmoBtn'].forEach(function(id){
+    const b=document.getElementById(id);if(b)b.classList.remove('dead');
+  });
+  sgSet('sgQuiz','🪨 正在垒塔……<small>马上出题</small>');
+  sgSay('🪨 看清题目 → 按住<b>往后拉满</b>弹弓 → 松手砸塔，砸塌写着对答案的那一座','#B9F6CA');
+  sgStartLoop();
+  const gen=sg.gen;
+  sgT(function(){
+    if(gen!==sg.gen||currentMode!=='sling'||!sg.run||sg.over)return;
+    sgAsk();
+  },30);
+}
+function sgEnd(why){
+  if(sg.over)return;
+  sg.over=true;sg.run=false;
+  sgStopLoop();sgKillTimers();
+  const s=Math.round(sg.score);
+  if(s>sgInt('hz_sg_best'))localStorage.setItem('hz_sg_best',String(s));
+  if(sg.level>sgInt('hz_sg_lv'))localStorage.setItem('hz_sg_lv',String(sg.level));
+  if(sg.maxCombo>sgInt('hz_sg_streak'))localStorage.setItem('hz_sg_streak',String(sg.maxCombo));
+  sgAdd('hz_sg_ok',sg.ok);
+  sgAdd('hz_sg_runs',1);
+  sgAdd('hz_sg_shots',sg.used);
+  sgAdd('hz_sg_first',sg.first);
+  const stars=Math.max(2,Math.min(26,2+Math.floor(s/110)+(sg.level-1)*4+Math.floor(sg.ok/3)));
+  addStars(stars);
+  const best=sgInt('hz_sg_best');
+  const book=(localStorage.getItem('hz_sg_book')||'').split(',').filter(Boolean).length;
+  const R=sgRank(sgInt('hz_sg_ok'));
+  const acc=sg.used?Math.round(sg.ok/sg.used*100):0;
+  sgSet('sgRsStars','⭐ +'+stars);
+  sgSet('sgRsEmoji',sg.level>=5?'🌈':(sg.level>=3?'🪨':(why==='time'?'⏱':'')));
+  sgSet('sgRsTitle',why==='time'?('时间到 · 砸到第 '+sg.level+' 关'):(sg.hearts<=0?'💔 人被火药桶炸趴了':'这一局砸完了'));
+  sgSet('sgRsSub',(why==='time'?'⏱ 漏完了':'❤️ 心用完了')+' —— 这局砸对 <b>'+sg.ok+
+    '</b> 座塔、打了 '+sg.used+' 发石头、命中率 '+acc+'%、捡到 '+sg.coins+' 颗⭐'+
+    (sg.pits?('，被火药桶炸到 '+sg.pits+' 次'):'，一个火药桶都没碰着，漂亮')+
+    '。最长连对 '+sg.maxCombo+' 次、一发入魂 '+sg.first+' 次。');
+  sgSet('sgRsScore',String(s));
+  sgSet('sgRsLv',String(sg.level));
+  sgSet('sgRsOk',String(sg.ok));
+  sgSet('sgRsShots',String(sg.used));
+  sgSet('sgRsCoins',String(sg.coins));
+  sgSet('sgRsStreak',String(sg.maxCombo));
+  sgSet('sgRsBest',best+' 分');
+  sgSet('sgRsAll','🏅 段位 '+R.e+' '+R.t+'（累计砸对 '+sgInt('hz_sg_ok')+' 座塔）'+
+    '\n砸到过第 '+sgInt('hz_sg_lv')+' 关 · 打过 '+sgInt('hz_sg_shots')+' 发石头 · 捡了 '+sgInt('hz_sg_coin')+' 颗星'+
+    '\n累计一发入魂 '+sgInt('hz_sg_first')+' 次 · 最长连对 '+sgInt('hz_sg_streak')+' 次 · 上过 '+sgInt('hz_sg_runs')+' 次战场'+
+    '\n📚 砸对过的字已收录 '+book+' 个');
+  showScreen('sling-result');
+}
+function sgRetry(){sgStart()}
+function sgLeave(){
+  sgStopLoop();sgKillTimers();
+  if(sg.run&&!sg.over){sg.over=true;sg.run=false}
+  sg.drag=false;
+  goHome();
+}
+function sgHelp(){
+  sgSay('🪨 题目在顶上 → 答案写在四座<b>石塔的牌子</b>上 → 在场上<b>按住往后拉</b>（拉得越满力气越大）→ <b>松手</b>发射 → 石头飞过去<b>砸塌写着对答案的那座塔</b>。每题 '+sgAmmoFor(sg.level)+' 发石头，一发砸对最加分；砸错的塔会倒（等于帮你排除），⚠️ 火药桶会炸伤人','#80DEEA');
+}
+function sgNudge(){
+  const dot=document.getElementById('sgCardDot');
+  const tip=document.getElementById('sgCardTip');
+  const ok=sgInt('hz_sg_ok'),lv=sgInt('hz_sg_lv'),runs=sgInt('hz_sg_runs');
+  if(tip){
+    const R=sgRank(ok);
+    tip.textContent=runs?('🏅 '+R.t+' · 砸到过第 '+lv+' 关'):'拉满弹弓 · 砸对那座塔';
+  }
+  if(!dot)return;
+  if(!runs){dot.textContent='🆕';dot.classList.add('on');return}
+  const R=sgRank(ok),R2=SG_RANKS[SG_RANKS.indexOf(R)+1];
+  if(R2&&R2.n-ok<=3){dot.textContent='🏅 差 '+(R2.n-ok)+' 座';dot.classList.add('on');return}
+  dot.classList.remove('on');
+}
+/* ---- 输入绑定 ---- */
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='sling'||!sg.run||sg.over)return;
+  const k=e.key;
+  if(k===' '||k==='Enter'){e.preventDefault();sgFire();return}
+  if(k==='ArrowLeft'||k==='ArrowRight'){
+    e.preventDefault();
+    if(!sgCanAim())return;
+    sg.ang=Math.max(-6,Math.min(88,sg.ang+(k==='ArrowRight'?-3:3)));
+    sgResetStone();sgDraw();return;
+  }
+  if(k==='ArrowUp'||k==='ArrowDown'){
+    e.preventDefault();
+    if(!sgCanAim())return;
+    sg.pow=Math.max(.16,Math.min(1,sg.pow+(k==='ArrowUp'?.06:-.06)));
+    sgResetStone();sgDraw();return;
+  }
+  if(k>='1'&&k<='4'){e.preventDefault();sgAssist(parseInt(k,10)-1);return}
+  if(k==='h'||k==='H'){e.preventDefault();sgHint();return}
+  if(k==='a'||k==='A'){e.preventDefault();sgRefill();return}
+  if(k==='s'||k==='S'){e.preventDefault();sgSlowMo();return}
+  if(k==='?'){e.preventDefault();sgHelp();return}
+});
+(function sgBindInput(){
+  const cv=sgCv();
+  if(!cv||cv.dataset.bound)return;
+  cv.dataset.bound='1';
+  cv.addEventListener('pointerdown',function(e){
+    e.preventDefault();
+    try{cv.setPointerCapture(e.pointerId)}catch(err){}
+    sgDown(e);
+  });
+  cv.addEventListener('pointermove',function(e){
+    if(!sg.drag)return;
+    e.preventDefault();
+    sgMove(e);
+  });
+  window.addEventListener('pointerup',function(){sgUp()});
+  window.addEventListener('pointercancel',function(){sgUp()});
+})();
+window.addEventListener('resize',function(){
+  if(currentMode!=='sling'||!sg.run)return;
+  sgFit();sgDraw();
+});
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
