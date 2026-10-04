@@ -3226,6 +3226,101 @@ button:active{transform:scale(.95)}
 .sg-rs div small{display:block;font-size:10px;opacity:.72;margin-top:2px}
 @media(max-width:420px){.sg-quiz,.sg-bar,.sg-judge,.sg-tip,.sg-tools,.sg-wrap{max-width:300px}
 .sg-hud{max-width:336px;gap:4px}}
+/* ================= 笔顺卡牌远征 ================= */
+.cd-hud{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
+.cd-hud span{flex:0 0 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 6px;font-size:9.5px;color:#fff;white-space:nowrap}
+.cd-hud b{color:#FFD740}
+.cd-clock{width:100%;max-width:322px;height:7px;margin:0 auto;border-radius:99px;overflow:hidden;background:rgba(0,0,0,.34);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.cd-clock i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#9CCC65,#FDD835)}
+.cd-clock i.low{background:linear-gradient(90deg,#FFB74D,#E53935)}
+.cd-foes{display:flex;gap:7px;justify-content:center;align-items:flex-end;width:100%;max-width:322px;margin:9px auto 0;min-height:132px}
+.cd-foes.hit{animation:cdShake .34s}
+@keyframes cdShake{0%,100%{transform:translate(0,0)}25%{transform:translate(-5px,2px)}50%{transform:translate(4px,-3px)}75%{transform:translate(-3px,-1px)}}
+.cd-foe{position:relative;flex:1 1 0;max-width:104px;border-radius:14px;padding:7px 5px 8px;text-align:center;color:#fff;
+  background:linear-gradient(180deg,rgba(94,53,177,.62),rgba(69,39,120,.72));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 5px 14px rgba(0,0,0,.28);transition:transform .18s}
+.cd-foe.tgt{box-shadow:inset 0 0 0 2px #FFD740,0 6px 18px rgba(255,215,64,.28);transform:translateY(-4px)}
+.cd-foe.dead{opacity:.34;transform:translateY(9px) scale(.94);pointer-events:none}
+.cd-foe.boss{background:linear-gradient(180deg,rgba(183,28,28,.6),rgba(88,14,14,.74));max-width:150px}
+.cd-foe-e{font-size:30px;line-height:1.1}
+.cd-foe.boss .cd-foe-e{font-size:40px}
+.cd-foe-n{font-size:10px;font-weight:800;opacity:.86;margin-top:1px}
+.cd-foe-need{margin:4px auto 3px;width:40px;height:32px;border-radius:9px;background:#FFF8E1;color:#4E342E;
+  font-size:19px;font-weight:900;line-height:32px;box-shadow:0 2px 0 rgba(0,0,0,.28)}
+.cd-foe.boss .cd-foe-need{width:48px;color:#B71C1C}
+.cd-foe-need small{display:block;font-size:8px;line-height:1;opacity:.62;font-weight:800;margin-top:-2px}
+.cd-foe-hp{position:relative;height:13px;border-radius:99px;overflow:hidden;background:rgba(0,0,0,.4)}
+.cd-foe-hp i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#66BB6A,#2E7D32);transition:width .22s}
+.cd-foe-hp i.half{background:linear-gradient(90deg,#FFB74D,#EF6C00)}
+.cd-foe-hp i.low{background:linear-gradient(90deg,#FF8A80,#C62828)}
+.cd-foe-hp b{position:absolute;left:0;right:0;top:0;line-height:13px;font-size:8.5px;font-weight:800;color:#fff;
+  text-shadow:0 1px 2px rgba(0,0,0,.7)}
+.cd-foe-armor{position:absolute;top:3px;right:4px;font-size:11px}
+.cd-pop{position:absolute;left:50%;top:6px;transform:translateX(-50%);font-size:15px;font-weight:900;pointer-events:none;
+  color:#FFD740;text-shadow:0 2px 6px rgba(0,0,0,.7);animation:cdPop .95s forwards;white-space:nowrap}
+.cd-pop.bad{color:#FF8A80}
+@keyframes cdPop{0%{opacity:0;transform:translate(-50%,8px) scale(.7)}22%{opacity:1;transform:translate(-50%,-6px) scale(1.18)}
+  100%{opacity:0;transform:translate(-50%,-40px) scale(.92)}}
+.cd-msg{width:100%;max-width:322px;margin:8px auto 0;text-align:center;font-size:12.5px;font-weight:800;min-height:38px;
+  line-height:1.45;color:#fff;padding:6px 8px;border-radius:12px;background:rgba(255,255,255,.1)}
+.cd-msg.pop{animation:cdMsg .36s}
+@keyframes cdMsg{from{transform:scale(.9);opacity:.35}to{transform:scale(1);opacity:1}}
+.cd-hand{display:flex;gap:6px;justify-content:center;width:100%;max-width:322px;margin:9px auto 0;min-height:104px}
+.cd-card{position:relative;flex:1 1 0;max-width:60px;border-radius:12px;padding:8px 3px 7px;text-align:center;cursor:pointer;
+  background:linear-gradient(180deg,#FFFDE7,#FFE0B2);color:#3E2723;box-shadow:0 4px 12px rgba(0,0,0,.3);
+  transition:transform .16s,box-shadow .16s}
+.cd-card:active{transform:scale(.95)}
+.cd-card.sel{transform:translateY(-9px);box-shadow:0 0 0 2px #FFD740,0 9px 20px rgba(255,215,64,.34)}
+.cd-card.dim{opacity:.45;pointer-events:none}
+.cd-card-ch{font-size:31px;font-weight:900;line-height:1.12;font-family:"Kaiti SC","STKaiti","KaiTi",serif}
+.cd-card-n{margin-top:3px;font-size:10px;font-weight:900;color:#8D6E63}
+.cd-card-n.known{color:#E65100;background:#FFF3E0;border-radius:8px;padding:1px 0}
+.cd-card-up{position:absolute;top:-5px;right:-3px;font-size:10px;font-weight:900;background:#7B1FA2;color:#fff;
+  border-radius:99px;padding:1px 4px;box-shadow:0 2px 5px rgba(0,0,0,.34)}
+.cd-card-hint{position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);font-size:9px;font-weight:900;
+  background:#43A047;color:#fff;border-radius:99px;padding:1px 5px;opacity:0;transition:opacity .18s}
+.cd-card.ok .cd-card-hint{opacity:1}
+.cd-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:100%;max-width:322px;margin:11px auto 0}
+.cd-tool{border:none;border-radius:12px;padding:8px 10px;font-size:11.5px;font-weight:800;color:#fff;cursor:pointer;
+  background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.cd-tool:active{transform:scale(.96);background:rgba(255,255,255,.28)}
+.cd-tool b{color:#FFD740}
+.cd-tool.go{background:linear-gradient(180deg,#FFB74D,#E65100);font-size:13px;padding:9px 18px}
+.cd-tool.peek{background:linear-gradient(180deg,#4FC3F7,#0277BD)}
+.cd-tool.dead{opacity:.4;pointer-events:none}
+.cd-tip{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:10.5px;opacity:.8;color:#fff;line-height:1.6}
+.cd-tip b{color:#FFD740}
+.cd-band{position:fixed;left:50%;top:44%;transform:translate(-50%,-50%);z-index:40;pointer-events:none;
+  background:rgba(0,0,0,.72);border-radius:16px;padding:11px 20px;opacity:0;font-size:16px;font-weight:900;color:#fff;
+  white-space:nowrap;text-shadow:0 1px 4px rgba(0,0,0,.7);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.cd-band.on{animation:cdBand 1.9s forwards}
+@keyframes cdBand{0%{opacity:0;transform:translate(-50%,-50%) scale(.72)}16%{opacity:1;transform:translate(-50%,-50%) scale(1.07)}
+  30%,74%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-58%) scale(.96)}}
+.cd-draft{display:none;position:fixed;inset:0;z-index:60;background:rgba(17,12,40,.88);padding:16px 10px;
+  flex-direction:column;align-items:center;justify-content:center;color:#fff}
+.cd-draft.on{display:flex;animation:cdFade .3s}
+@keyframes cdFade{from{opacity:0}to{opacity:1}}
+.cd-draft-h{font-size:16px;font-weight:900;text-align:center;margin-bottom:4px}
+.cd-draft-s{font-size:11px;opacity:.78;margin-bottom:12px;text-align:center}
+.cd-draft-c{display:flex;flex-direction:column;gap:9px;width:100%;max-width:300px}
+.cd-dc{border-radius:14px;padding:11px 13px;cursor:pointer;display:flex;gap:11px;align-items:center;
+  background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.06));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);transition:transform .16s}
+.cd-dc:active{transform:scale(.97)}
+.cd-dc .e{font-size:29px;flex:0 0 38px;text-align:center}
+.cd-dc h4{margin:0;font-size:14px;font-weight:900}
+.cd-dc p{margin:2px 0 0;font-size:11px;opacity:.85;line-height:1.35;font-weight:700}
+.cd-dc small{margin-left:auto;font-size:10px;font-weight:900;color:#FFD740;flex:0 0 auto}
+.cd-dc.rare{box-shadow:inset 0 0 0 2px #FFD740,0 0 20px rgba(255,215,64,.24)}
+.cd-dc.rare h4{color:#FFD740}
+.cd-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.cd-rs div span{display:block;font-size:22px;font-weight:800;line-height:1.2}
+.cd-rs div small{display:block;font-size:10px;opacity:.72;margin-top:2px}
+.cd-book{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;margin-top:8px}
+.cd-book i{font-style:normal;font-size:13px;background:rgba(255,255,255,.14);border-radius:6px;padding:2px 4px}
+@media(max-width:420px){.cd-msg,.cd-hand,.cd-tools,.cd-tip,.cd-clock{max-width:300px}
+.cd-foes{max-width:300px}.cd-hud{max-width:336px;gap:4px}}
 </style>
 
 </head>
@@ -3459,6 +3554,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🪨</div>
       <div class="info"><h3>笔顺投石机</h3><p id="sgCardTip">拉满弹弓 · 砸对那座塔</p></div>
       <span class="rp-badge" id="sgCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('card')">
+      <div class="icon">🃏</div>
+      <div class="info"><h3>笔顺卡牌远征</h3><p id="cdCardTip">数笔画出牌 · 三选一构筑</p></div>
+      <span class="rp-badge" id="cdCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('sky')">
       <div class="icon">☁️</div>
@@ -5734,6 +5834,67 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="srtLeave()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-card">
+  <div class="top-bar">
+    <button class="back-btn" onclick="cdLeave()">← 返回</button>
+    <div class="stats"><span id="cdScoreTxt">🃏 0 分</span><span id="cdWaveTxt">第 1 波</span></div>
+    <button class="icon-btn" onclick="cdHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="cd-hud">
+    <span id="cdRankTxt" title="段位">🏅 摊牌新手</span>
+    <span id="cdHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="cdShieldTxt" title="护盾">🛡 0</span>
+    <span id="cdQiTxt" title="这一回合还能出几张牌">⚡ 2/2</span>
+    <span id="cdComboTxt" title="连击">🔥 连 0</span>
+    <span id="cdPileTxt" title="牌库 / 弃牌">🂠 10</span>
+  </div>
+  <div class="cd-clock"><i id="cdClockBar"></i></div>
+  <div class="cd-foes" id="cdFoes"></div>
+  <div class="cd-msg" id="cdMsg">🃏 正在发牌……<br><small>马上开打</small></div>
+  <div class="cd-hand" id="cdHand"></div>
+  <div class="cd-tools">
+    <button class="cd-tool go" id="cdEndBtn" onclick="cdEndTurn()">⏳ 结束回合</button>
+    <button class="cd-tool peek" id="cdPeekBtn" onclick="cdPeek()">🔍 数一笔 <b id="cdPeekN">2</b></button>
+    <button class="cd-tool" id="cdSwapBtn" onclick="cdSwap()">🔀 换牌 <b id="cdSwapN">2</b></button>
+  </div>
+  <div class="cd-tip">牌上这个字<b>一共几笔</b>，就打中肚子上写着<b>几</b>的那只妖 · 点手牌出牌 · 点妖换目标<br>
+    打空一波<b>三选一</b>挑本事，越打越强 · 数不准会掉❤<br>
+    键盘 <b>1~7</b> 出牌 · <b>Tab</b> 换目标 · <b>空格</b> 结束回合 · <b>P</b> 数一笔 · <b>X</b> 换牌</div>
+  <div class="cd-draft" id="cdDraft"></div>
+  <div class="cd-band" id="cdBand"></div>
+</div>
+<div class="screen" id="screen-card-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="cdLeave()">← 回首页</button>
+    <div class="stats"><span id="cdRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="cdRsEmoji">🃏</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="cdRsTitle">打到第 1 波</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="cdRsSub">妖王还在等你</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="cd-rs">
+      <div><span style="color:#FFD700" id="cdRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="cdRsWave">1</span><small>打到第几波</small></div>
+      <div><span style="color:#69F0AE" id="cdRsKills">0</span><small>打倒几只妖</small></div>
+      <div><span style="color:#FFAB91" id="cdRsPlays">0</span><small>出了几张牌</small></div>
+      <div><span style="color:#FFF176" id="cdRsAcc">0%</span><small>出牌命中率</small></div>
+      <div><span style="color:#E1BEE7" id="cdRsStreak">0</span><small>最长连击</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="cdRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="cdRsAll">🏅 摊牌新手</div>
+      <div class="cd-book" id="cdRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="cdRetry()">🃏 再远征一次</button>
+    <button class="w-btn blue" onclick="cdLeave()">🏠 回首页</button>
+  </div>
+</div>
+
 <div class="screen" id="screen-sling">
   <div class="top-bar">
     <button class="back-btn" onclick="sgLeave()">← 返回</button>
@@ -7075,6 +7236,7 @@ function updateHomeStats(){
   if(typeof bmNudge==='function')bmNudge();
   if(typeof rpNudge==='function')rpNudge();
   if(typeof sgNudge==='function')sgNudge();
+  if(typeof cdNudge==='function')cdNudge();
 }
 function enterMode(mode){
   if(mode==='quiz')startQuiz();
@@ -7128,7 +7290,7 @@ function enterMode(mode){
  else if(mode==='sort')srtStart();
  else if(mode==='splat')spStart();
  else if(mode==='picross')pcStart();
- else if(mode==='bomb')bmStart(); else if(mode==='ramp')rpStart(); else if(mode==='sling')sgStart();
+ else if(mode==='bomb')bmStart(); else if(mode==='ramp')rpStart(); else if(mode==='sling')sgStart(); else if(mode==='card')cdStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -33544,6 +33706,597 @@ document.addEventListener('keydown',function(e){
 window.addEventListener('resize',function(){
   if(currentMode!=='sling'||!sg.run)return;
   sgFit();sgDraw();
+});
+
+/* ================= 笔顺卡牌远征（数笔画出牌 · 每波三选一构筑） ================= */
+const CD_HAND0=5,CD_HAND_MAX=7,CD_QI0=2,CD_QI_MAX=4,CD_HEARTS=3,CD_HEART_MAX=5;
+const CD_CLOCK=20,CD_BOSS_EVERY=4,CD_DECK=14,CD_MISS_MAX=40,CD_BOOK_MAX=300;
+const CD_FOE=[
+  {e:'👾',nm:'小妖'},{e:'🐗',nm:'野猪精'},{e:'🦂',nm:'蝎子精'},{e:'👺',nm:'红脸妖'},
+  {e:'🕷️',nm:'蛛女'},{e:'🐍',nm:'长虫'},{e:'🦇',nm:'夜蝠'},{e:'🐸',nm:'蛤蟆精'},
+  {e:'🦝',nm:'浣熊怪'},{e:'🐙',nm:'章鱼怪'},{e:'🦉',nm:'夜枭'},{e:'🐌',nm:'硬壳虫'}
+];
+const CD_BOSS=[{e:'🐲',nm:'蛟龙大王'},{e:'👹',nm:'暴食鬼王'},{e:'🦁',nm:'金毛犼'},{e:'🐵',nm:'通臂猿猴'}];
+const CD_RANKS=[
+  {n:0,e:'🃏',t:'摊牌新手'},{n:12,e:'✒️',t:'数字小吏'},{n:28,e:'🔥',t:'火牌学徒'},{n:48,e:'⛰️',t:'重锤武士'},
+  {n:74,e:'🛡',t:'铁壁牌手'},{n:106,e:'🎯',t:'鹰眼侠客'},{n:146,e:'👻',t:'追击幽灵'},
+  {n:196,e:'👑',t:'牌堆宗师'},{n:260,e:'🌈',t:'彩虹远征王'}
+];
+/* 强化卡池：每波结束三选一，本局永久，可叠 3 层 —— 挑的不同，局局不同 */
+const CD_UPS=[
+  {k:'fire',e:'🔥',nm:'火苗',d:'每次命中多打 2 点',w:10},
+  {k:'hammer',e:'🔨',nm:'重锤',d:'每打出第 3 张牌，伤害翻倍',w:9},
+  {k:'shield',e:'🛡',nm:'龟壳',d:'立刻 +1 层护盾，替挡一次还手',w:9},
+  {k:'hand',e:'✒️',nm:'墨多',d:'手牌上限 +1 张',w:9},
+  {k:'qi',e:'⚡',nm:'气海',d:'每回合多 1 点气（多出 1 张牌）',w:8},
+  {k:'eye',e:'🎯',nm:'鹰眼',d:'数一笔次数 +1，且不再扣伤害',w:7},
+  {k:'luck',e:'🍀',nm:'幸运',d:'命中后 30% 概率退回 1 点气',w:8},
+  {k:'chase',e:'👻',nm:'追击',d:'连击 ≥3 时顺带蹭伤别的妖',w:7},
+  {k:'scholar',e:'📚',nm:'书虫',d:'打倒的妖多给四成分',w:8},
+  {k:'heart',e:'❤️',nm:'回血',d:'+1 颗心（最多 5 颗）',w:6},
+  {k:'freeze',e:'❄️',nm:'定身',d:'每波第一回合妖不敢还手',w:5,rare:1},
+  {k:'greed',e:'💰',nm:'贪心',d:'每过一波额外 +60 分',w:5,rare:1}
+];
+let cd={
+  run:false,over:false,gen:0,timers:[],timerId:null,
+  wave:1,score:0,hearts:CD_HEARTS,shield:0,combo:0,maxCombo:0,
+  qi:CD_QI0,qiMax:CD_QI0,handMax:CD_HAND0,clock:CD_CLOCK,
+  deck:[],hand:[],dis:[],foes:[],tgt:0,sel:-1,pops:[],
+  ups:{},plays:0,hits:0,kills:0,boss:0,seq:0,turn:0,draft:[],
+  peekN:2,swapN:2,phase:'play',busy:false,ty:{},forced:0
+};
+function cdInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function cdAdd(k,n){if(n)localStorage.setItem(k,String(cdInt(k)+n))}
+function cdSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function cdShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function cdRank(n){let r=CD_RANKS[0];for(let i=0;i<CD_RANKS.length;i++)if(n>=CD_RANKS[i].n)r=CD_RANKS[i];return r}
+function cdT(fn,ms){const g=cd.gen;const id=setTimeout(function(){if(g!==cd.gen)return;fn()},ms);cd.timers.push(id);return id}
+function cdKillTimers(){cd.timers.forEach(function(t){clearTimeout(t)});cd.timers=[]}
+function cdStopLoop(){if(cd.timerId){clearInterval(cd.timerId);cd.timerId=null}}
+function cdStartLoop(){cdStopLoop();cd.timerId=setInterval(function(){cdAdvance(0.2)},200)}
+function cdPick(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:0}
+function cdFoeNeed(f){return f.needs[f.ni]}
+function cdAlive(){return cd.foes.filter(function(f){return f.alive})}
+function cdNeeds(){return cdAlive().map(cdFoeNeed)}
+function cdCounts(){
+  const s=[];[cd.deck,cd.hand,cd.dis].forEach(function(p){
+    p.forEach(function(c){if(s.indexOf(c.n)<0)s.push(c.n)});
+  });return s;
+}
+/* ---- 字与牌库（真笔顺数据：牌面数字就是这个字的笔画数） ---- */
+function cdTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function cdData(ch){
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await cdTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians||raw.medians.length<1)return 0;
+  const n=raw.medians.length;
+  if(n<2||n>16)return 0;
+  cd.ty[ch]=n;return n;
+}
+/* 候补字池：charQueue 要等首屏预加载才建得好，没建好就退回年级字表 / 全字表 */
+function cdCand(){
+  const out=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<CD_DECK+12;i++){
+      const c=list[i];if(c&&out.indexOf(c)<0)out.push(c);
+    }
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(cdShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(cdShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(cdShuf(CHARS.slice()));
+  return out;
+}
+async function cdBuildDeck(){
+  const g=cd.gen;
+  const miss=(localStorage.getItem('hz_cd_miss')||'').split(',').filter(Boolean);
+  const want=[];
+  cdShuf(miss.slice(0,5)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  cdCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  /* 一次性并行下字：网差时也别让孩子干等；多下几个，取前 CD_DECK 张有数据的 */
+  const ns=await Promise.all(want.map(function(c){return cdData(c)}));
+  if(g!==cd.gen||!cd.run)return null;
+  const cards=[];
+  for(let i=0;i<want.length&&cards.length<CD_DECK;i++){
+    if(ns[i])cards.push({ch:want[i],n:ns[i],known:false,peeked:false});
+  }
+  if(cards.length<6)return null;
+  cd.deck=cdShuf(cards);cd.dis=[];cd.hand=[];
+  return true;
+}
+function cdDraw(k){
+  let shuf=0;
+  for(let i=0;i<k;i++){
+    if(!cd.deck.length){
+      if(!cd.dis.length)break;
+      cd.deck=cdShuf(cd.dis);cd.dis=[];shuf++;
+    }
+    const c=cd.deck.pop();c.known=false;c.peeked=false;cd.hand.push(c);
+  }
+  return shuf;
+}
+/* 发牌后兜底：手上必须至少有一张能命中当前某只妖，否则换一张进来 */
+function cdHandMatch(){
+  const ns=cdNeeds();
+  for(let i=0;i<cd.hand.length;i++)if(ns.indexOf(cd.hand[i].n)>=0)return i;
+  return -1;
+}
+function cdEnsure(){
+  if(cdHandMatch()<0){
+    const ns=cdNeeds();
+    let hit=null;
+    const pool=cd.deck.concat(cd.dis);
+    for(let i=0;i<pool.length;i++)if(ns.indexOf(pool[i].n)>=0){hit=pool[i];break}
+    if(!hit){
+      const ck=Object.keys(cd.ty);
+      for(let i=0;i<ck.length;i++){
+        const n=cd.ty[ck[i]];
+        if(ns.indexOf(n)>=0){hit={ch:ck[i],n:n,known:false,peeked:false};break}
+      }
+    }
+    if(hit){
+      const bad=cd.hand.filter(function(c){return ns.indexOf(c.n)<0});
+      const drop=cdPick(bad.length?bad:cd.hand);
+      const i=cd.hand.indexOf(drop);
+      if(i>=0)cd.hand.splice(i,1);
+      if(cd.deck.indexOf(hit)>=0)cd.deck.splice(cd.deck.indexOf(hit),1);
+      else if(cd.dis.indexOf(hit)>=0)cd.dis.splice(cd.dis.indexOf(hit),1);
+      if(drop&&drop!==hit)cd.dis.push(drop);
+      cd.hand.push(hit);cd.forced++;
+    }
+  }
+  return cdHandMatch()>=0;
+}
+/* ---- 一波 ---- */
+function cdStun(){cd.foes.forEach(function(f){f.stun=1})}
+function cdSpawn(){
+  cd.foes=[];cd.tgt=0;cd.sel=-1;cd.pops=[];
+  const w=cd.wave,boss=(w%CD_BOSS_EVERY===0);
+  let ns=cdCounts();if(!ns.length)ns=[2,3,4,5,6,7,8];
+  if(boss){
+    const b=CD_BOSS[Math.floor(w/CD_BOSS_EVERY-1)%CD_BOSS.length];
+    const other=ns.filter(function(x){return x!==cdPick(ns)});
+    const a=cdPick(ns);
+    const f={e:b.e,nm:b.nm,boss:true,alive:true,ni:0,armor:0,stun:0,
+      needs:[a,cdPick(other.length?other:ns)],maxhp:Math.round((6+w*1.9)*2.6)};
+    f.hp=f.maxhp;cd.foes.push(f);
+  }else{
+    const cnt=1+(w>=3?1:0)+(w>=7?1:0);
+    for(let i=0;i<cnt;i++){
+      const m=CD_FOE[Math.floor(Math.random()*CD_FOE.length)];
+      const f={e:m.e,nm:m.nm,boss:false,alive:true,ni:0,stun:0,needs:[cdPick(ns)],
+        maxhp:Math.round((5+w*1.7)*(cnt>2?0.82:1)),armor:(w>=5&&Math.random()<.3)?1:0};
+      f.hp=f.maxhp;cd.foes.push(f);
+    }
+  }
+  if(cd.ups.freeze)cdStun();
+}
+/* ---- 出牌 ---- */
+function cdTarget(){
+  const a=cdAlive();if(!a.length)return null;
+  if(cd.foes[cd.tgt]&&cd.foes[cd.tgt].alive)return cd.foes[cd.tgt];
+  const i=cd.foes.indexOf(a[0]);cd.tgt=i<0?0:i;return a[0];
+}
+function cdDmg(card,f){
+  let d=card.n+(cd.ups.fire||0)*2;
+  if(cd.seq%3===0&&cd.ups.hammer)d*=(1+cd.ups.hammer);
+  if(f&&f.armor)d=Math.max(1,d-3);
+  if(card.peeked&&!cd.ups.eye)d=Math.max(2,d-2);
+  return Math.round(d);
+}
+function cdPlay(i){
+  if(!cd.run||cd.over||cd.phase!=='play')return;
+  if(i<0||i>=cd.hand.length)return;
+  if(cd.qi<=0){cdSay('⚡ 这一回合的气用完啦 —— 按 <b>结束回合</b> 补满','#FFE082');return}
+  const f=cdTarget();if(!f)return;
+  const card=cd.hand[i],ci=cd.foes.indexOf(f);
+  cd.hand.splice(i,1);cd.dis.push(card);cd.qi--;cd.plays++;cd.seq++;cd.sel=-1;
+  if(card.n===cdFoeNeed(f))cdHit(card,f,ci);
+  else cdMiss(card,f,ci);
+  cdHud();cdRender();
+  if(cd.over)return;
+  if(!cdAlive().length){cdWaveClear();return}
+  if(cd.qi<=0)cdT(function(){if(!cd.over&&cd.phase==='play')cdEndTurn()},820);
+}
+function cdHit(card,f,ci){
+  cd.hits++;cd.combo++;cd.maxCombo=Math.max(cd.maxCombo,cd.combo);
+  const d=cdDmg(card,f);
+  let armor='';
+  if(f.armor){f.armor=0;armor=' 🪨 硬壳挡了一下，只打进 '+d+' 点。'}
+  f.hp-=d;
+  const gain=Math.round(6*card.n+cd.combo*4+cd.wave*3);
+  cd.score+=gain;
+  cdFx(ci,'−'+d,false,0);cdFx(ci,'+'+gain,false,20);
+  cdSay('✅ 『<b>'+card.ch+'</b>』正好 <b>'+card.n+'</b> 笔，一牌打中 <b>'+f.nm+'</b> −'+d+'（+'+gain+' 分）'+armor,'#B9F6CA');
+  tone(360+Math.min(8,cd.combo)*44,.1,'triangle',.06);
+  cdShake();showComboEffect(cd.combo);
+  if(cd.combo%3===0)spawnConfetti();
+  if(cd.ups.chase&&cd.combo>=3){
+    const o=cdAlive().filter(function(x){return x!==f});
+    const t=cdPick(o);
+    if(t){
+      t.hp-=3;cdFx(cd.foes.indexOf(t),'👻 −3',false,0);
+      if(t.hp<=0){t.hp=0;t.alive=false;cdKill(t,card);}
+      else cdSay('👻 追击又顺手蹭了 <b>'+t.nm+'</b> 3 点','#B3E5FC');
+    }
+  }
+  if(cd.ups.luck&&Math.random()<0.3&&cd.qi<cd.qiMax){cd.qi++;cdFx(ci,'🍀 +1 气',false,38)}
+  if(f.hp<=0){f.alive=false;f.hp=0;cdKill(f,card)}
+}
+function cdKill(f,card){
+  cd.kills++;
+  const gain=Math.round((40+cd.wave*8)*(1+(cd.ups.scholar||0)*0.4)+(f.boss?200:0));
+  cd.score+=gain;
+  cdBookAdd(card?card.ch:'');
+  cdAdd('hz_cd_kills',1);
+  if(f.boss){
+    cd.boss++;cdAdd('hz_cd_boss',1);spawnConfetti();
+    cdBand('🐲 '+f.nm+' 被『'+(card?card.ch:'?')+'』砸趴 +'+gain);
+    tone(1046,.22,'triangle',.08);
+  }else{
+    cdBand('💥 '+f.nm+' 倒下 +'+gain);
+    tone(660,.12,'square',.05);
+  }
+}
+function cdMiss(card,f,ci){
+  cd.combo=0;cdMissAdd(card.ch);
+  sndNo();cdShake();
+  cdFx(ci,'✗ '+card.n+' 笔',true,0);
+  if(f.stun){cdSay('❄️ 『<b>'+card.ch+'</b>』是 <b>'+card.n+'</b> 笔，这只妖要 <b>'+cdFoeNeed(f)+'</b> 笔 —— 它被定住了，没敢还手','#FFCC80');return}
+  if(cd.shield>0){
+    cd.shield--;
+    cdSay('❌ 『<b>'+card.ch+'</b>』有 <b>'+card.n+'</b> 笔，这只妖要 <b>'+cdFoeNeed(f)+'</b> 笔 —— 🛡 护盾替挡了一下','#FFCC80');
+  }else{
+    cd.hearts--;
+    cdSay('❌ 『<b>'+card.ch+'</b>』有 <b>'+card.n+'</b> 笔，这只妖要 <b>'+cdFoeNeed(f)+'</b> 笔 —— 它趁你手滑打了一下（还剩 '+cd.hearts+' 颗心）','#FF8A80');
+    if(cd.hearts<=0){cdHud();cdRender();cdEnd('heart')}
+  }
+}
+/* ---- 回合 ---- */
+function cdEndTurn(){
+  if(!cd.run||cd.over||cd.phase!=='play')return;
+  cd.turn++;cd.qi=cd.qiMax;cd.clock=CD_CLOCK;
+  cd.foes.forEach(function(f){if(f.alive&&f.boss&&f.needs.length>1)f.ni=(f.ni+1)%f.needs.length});
+  /* 定身只护这一波的第一个回合：过完这回合妖就敢还手 */
+  cd.foes.forEach(function(f){f.stun=0});
+  const s=cdDraw(Math.max(0,cd.handMax-cd.hand.length));
+  cdEnsure();
+  if(s)cdSay('🂡 牌库摸空了，把弃牌堆<b>洗一洗</b>接着打','#B3E5FC');
+  cdHud();cdRender();
+}
+function cdTimeout(){
+  cd.combo=0;sndNo();cdShake();
+  const f=cdTarget();
+  let msg='⏳ 想太久啦，妖抢先动手！';
+  if(f){
+    if(f.stun)msg='⏳ 想太久啦 —— 好在 <b>'+f.nm+'</b> 被定住了';
+    else if(cd.shield>0){cd.shield--;msg='⏳ 想太久啦，🛡 护盾替挡了一下'}
+    else{cd.hearts--;msg='⏳ 想太久啦，<b>'+f.nm+'</b> 打了一下（还剩 '+cd.hearts+' 颗心）'}
+  }
+  cdSay(msg,'#FF8A80');
+  cdHud();
+  if(cd.hearts<=0){cdEnd('heart');return}
+  cdEndTurn();
+}
+function cdWaveClear(){
+  cd.phase='draft';cd.sel=-1;
+  const gain=60+(cd.ups.greed||0)*60+cd.wave*10;
+  cd.score+=gain;
+  if(cd.wave>cdInt('hz_cd_wave'))localStorage.setItem('hz_cd_wave',String(cd.wave));
+  addStars(1+Math.min(4,Math.floor(cd.wave/2)));
+  cdBand('🎉 第 '+cd.wave+' 波清空 +'+gain);
+  tone(880,.18,'triangle',.07);
+  spawnConfetti();
+  cdHud();cdRender();
+  cdT(function(){if(!cd.over&&cd.run)cdOpenDraft()},700);
+}
+/* ---- 三选一构筑 ---- */
+function cdOpenDraft(){
+  if(cd.over||!cd.run||cd.phase!=='draft')return;
+  const avail=CD_UPS.filter(function(u){return (cd.ups[u.k]||0)<3});
+  const bag=[];
+  avail.forEach(function(u){for(let i=0;i<(u.w||6);i++)bag.push(u)});
+  const opts=[];
+  while(opts.length<3&&bag.length){
+    const u=bag[Math.floor(Math.random()*bag.length)];
+    if(opts.indexOf(u)<0)opts.push(u);
+    for(let i=bag.length-1;i>=0;i--)if(bag[i]===u)bag.splice(i,1);
+  }
+  cd.draft=opts;
+  const box=document.getElementById('cdDraft');
+  if(!box)return;
+  box.innerHTML='<div class="cd-draft-h">🎁 打完第 '+cd.wave+' 波 · 三选一挑一张强化卡</div>'+
+    '<div class="cd-draft-s">挑的不一样，这一局就打得完全不一样 —— 下一波 '+
+    ((cd.wave+1)%CD_BOSS_EVERY===0?'<b>妖王</b>要来':'还有妖在等')+'</div>'+
+    '<div class="cd-draft-c">'+opts.map(function(u,i){
+      const c=cd.ups[u.k]||0;
+      return '<div class="cd-dc'+(u.rare?' rare':'')+'" onclick="cdPickUp('+i+')"><div class="e">'+u.e+
+        '</div><div><h4>'+u.nm+'</h4><p>'+u.d+'</p></div><small>'+(c?('带走 ×'+c):'新卡')+'</small></div>';
+    }).join('')+'</div>'+
+    '<div class="cd-draft-s" style="margin-top:12px">点一张带走（键盘 <b>1</b>~<b>'+opts.length+'</b>）</div>';
+  box.classList.add('on');
+}
+function cdPickUp(i){
+  if(cd.phase!=='draft'||!cd.draft||!cd.draft[i])return;
+  const u=cd.draft[i];
+  cd.ups[u.k]=(cd.ups[u.k]||0)+1;
+  cdAdd('hz_cd_ups',1);
+  if(u.k==='shield')cd.shield=Math.min(5,cd.shield+1);
+  if(u.k==='hand')cd.handMax=Math.min(CD_HAND_MAX,cd.handMax+1);
+  if(u.k==='qi')cd.qiMax=Math.min(CD_QI_MAX,cd.qiMax+1);
+  if(u.k==='heart')cd.hearts=Math.min(CD_HEART_MAX,cd.hearts+1);
+  if(u.k==='eye')cd.peekN++;
+  const box=document.getElementById('cdDraft');if(box)box.classList.remove('on');
+  cdBand(u.e+' 带走「'+u.nm+'」×'+cd.ups[u.k]);
+  tone(520,.1,'sine',.05);
+  cd.wave++;cd.turn=0;cd.phase='play';
+  cdSpawn();
+  cdDraw(Math.max(0,cd.handMax-cd.hand.length));
+  cdEnsure();
+  cdHud();cdRender();
+}
+/* ---- 道具 ---- */
+function cdPeek(){
+  if(!cd.run||cd.over||cd.phase!=='play')return;
+  if(cd.peekN<=0){cdSay('🔍 这一局数完啦，剩下的靠自己数','#FFE082');return}
+  let i=(cd.sel>=0&&cd.hand[cd.sel])?cd.sel:cdHandMatch();
+  if(i<0||!cd.hand[i]){cdSay('🔍 先点一张牌，再按数一笔','#FFE082');return}
+  const c=cd.hand[i];
+  if(c.known){cdSay('🔍 『'+c.ch+'』你已经数过啦（不扣次数）','#B3E5FC');return}
+  cd.peekN--;c.known=true;c.peeked=true;cd.sel=i;
+  cdSet('cdPeekN',String(cd.peekN));
+  if(cd.peekN<=0){const b=document.getElementById('cdPeekBtn');if(b)b.classList.add('dead')}
+  cdSay('🔍 『<b>'+c.ch+'</b>』一共 <b>'+c.n+'</b> 笔 —— 不过这张牌打了折扣，只能伤 '+
+    (cd.ups.eye?c.n:Math.max(2,c.n-2))+' 点','#80DEEA');
+  tone(760,.07,'sine',.04);
+  cdHud();cdRender();
+}
+function cdSwap(){
+  if(!cd.run||cd.over||cd.phase!=='play')return;
+  if(cd.swapN<=0){cdSay('🔀 没有备用牌了','#FFE082');return}
+  cd.swapN--;cd.score=Math.max(0,cd.score-10);
+  cdSet('cdSwapN',String(cd.swapN));
+  if(cd.swapN<=0){const b=document.getElementById('cdSwapBtn');if(b)b.classList.add('dead')}
+  cd.dis=cd.dis.concat(cd.hand);cd.hand=[];cd.sel=-1;
+  cdDraw(cd.handMax);cdEnsure();
+  cdSay('🔀 整把手换掉（扣 10 分）—— 新牌再数一遍','#B3E5FC');
+  cdHud();cdRender();
+}
+/* ---- 文案 / 特效 ---- */
+function cdSay(msg,color){
+  const el=document.getElementById('cdMsg');if(!el)return;
+  el.innerHTML=msg;if(color)el.style.color=color;
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function cdBand(msg){
+  const el=document.getElementById('cdBand');if(!el)return;
+  el.innerHTML=msg;el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function cdFx(i,text,bad,dy){
+  const box=document.getElementById('cdFoes');if(!box)return;
+  const d=document.createElement('div');
+  d.className='cd-pop'+(bad?' bad':'');d.textContent=text;
+  d.setAttribute('data-fi',String(i));
+  d.style.top=(6-(dy||0))+'px';
+  const foe=box.children[i];if(foe)foe.appendChild(d);
+  cd.pops.push(d);
+  setTimeout(function(){
+    if(d.parentNode)d.parentNode.removeChild(d);
+    const p=cd.pops.indexOf(d);if(p>=0)cd.pops.splice(p,1);
+  },1000);
+}
+function cdShake(){
+  const box=document.getElementById('cdFoes');if(!box)return;
+  box.classList.remove('hit');void box.offsetWidth;box.classList.add('hit');
+}
+/* ---- 渲染 ---- */
+function cdHud(){
+  cdSet('cdScoreTxt','🃏 '+Math.round(cd.score)+' 分');
+  cdSet('cdWaveTxt',((cd.wave%CD_BOSS_EVERY===0)?'👑 妖王 · 第 '+cd.wave+' 波':('第 '+cd.wave+' 波')));
+  const R=cdRank(cdInt('hz_cd_kills')+cd.kills);
+  cdSet('cdRankTxt','🏅 '+R.t);
+  let h='';for(let i=0;i<Math.max(0,cd.hearts);i++)h+='❤️';
+  cdSet('cdHeartTxt',h||'💔');
+  cdSet('cdShieldTxt','🛡 '+cd.shield);
+  cdSet('cdQiTxt','⚡ '+cd.qi+'/'+cd.qiMax);
+  cdSet('cdComboTxt','🔥 连 '+cd.combo);
+  cdSet('cdPileTxt','🂠 '+cd.deck.length+' / '+cd.dis.length);
+  const eb=document.getElementById('cdEndBtn');
+  if(eb)eb.classList.toggle('dead',cd.phase!=='play');
+}
+function cdRender(){
+  const box=document.getElementById('cdFoes');
+  if(box){
+    const ti=cd.foes.indexOf(cdTarget());
+    box.innerHTML=cd.foes.map(function(f,i){
+      const pct=Math.max(0,Math.min(100,f.hp/f.maxhp*100));
+      const rot=f.needs.length>1?('<small>下回合 '+f.needs[(f.ni+1)%f.needs.length]+'</small>'):'';
+      return '<div class="cd-foe'+(f.boss?' boss':'')+(i===ti?' tgt':'')+(f.alive?'':' dead')+'" onclick="cdAim('+i+')">'+
+        (f.armor?'<div class="cd-foe-armor">🪨</div>':'')+
+        '<div class="cd-foe-e">'+f.e+'</div><div class="cd-foe-n">'+f.nm+'</div>'+
+        '<div class="cd-foe-need">'+cdFoeNeed(f)+rot+'</div>'+
+        '<div class="cd-foe-hp"><i class="'+(pct<30?'low':(pct<60?'half':''))+'" style="width:'+pct+'%"></i>'+
+        '<b>'+Math.max(0,f.hp)+' / '+f.maxhp+'</b></div></div>';
+    }).join('');
+    /* 重画会把妖整体换掉：把还在飞的伤害数字搬回对应那只妖身上 */
+    (cd.pops||[]).forEach(function(d){
+      const fi=parseInt(d.getAttribute('data-fi'),10);
+      const foe=box.children[fi];
+      if(foe&&d.parentNode!==foe)foe.appendChild(d);
+    });
+  }
+  const hb=document.getElementById('cdHand');
+  if(hb){
+    const ns=cdNeeds();
+    hb.innerHTML=cd.hand.map(function(c,i){
+      const up=cd.ups.fire?('🔥×'+cd.ups.fire):'';
+      return '<div class="cd-card'+(cd.sel===i?' sel':'')+(c.known&&ns.indexOf(c.n)>=0?' ok':'')+'" onclick="cdTap('+i+')">'+
+        (up?'<div class="cd-card-up">'+up+'</div>':'')+
+        '<div class="cd-card-ch">'+c.ch+'</div>'+
+        '<div class="cd-card-n'+(c.known?' known':'')+'">'+(c.known?(c.n+' 笔'):'? 笔')+'</div>'+
+        '<div class="cd-card-hint">打得中</div></div>';
+    }).join('');
+  }
+  const bar=document.getElementById('cdClockBar');
+  if(bar){const p=Math.max(0,Math.min(100,cd.clock/CD_CLOCK*100));bar.style.width=p+'%';bar.classList.toggle('low',p<30)}
+}
+function cdAim(i){
+  if(!cd.run||cd.over||cd.phase!=='play')return;
+  if(!cd.foes[i]||!cd.foes[i].alive){cdSay('👾 那只妖已经倒啦','#B3E5FC');return}
+  cd.tgt=i;cdRender();
+  const f=cd.foes[i];
+  cdSay('🎯 目标换成 <b>'+f.nm+'</b> —— 它要 <b>'+cdFoeNeed(f)+'</b> 笔的字','#E1BEE7');
+}
+function cdTap(i){
+  if(!cd.run||cd.over||cd.phase!=='play')return;
+  const f=cdTarget();if(!f)return;
+  if(cd.sel===i){cd.sel=-1;cdPlay(i);return}
+  cd.sel=i;cdRender();
+  const c=cd.hand[i];if(!c)return;
+  cdSay('🃏 『'+c.ch+'』要几笔？这只 <b>'+f.nm+'</b> 等着 <b>'+cdFoeNeed(f)+'</b> 笔 —— 再点一次就打出去','#E1BEE7');
+}
+/* ---- 主循环（纯步进，方便逐帧测） ---- */
+function cdAdvance(dt){
+  if(!cd.run||cd.over||cd.phase!=='play')return false;
+  cd.clock-=dt;
+  if(cd.clock<=0){cd.clock=0;cdTimeout();return true}
+  const bar=document.getElementById('cdClockBar');
+  if(bar){const p=Math.max(0,Math.min(100,cd.clock/CD_CLOCK*100));bar.style.width=p+'%';bar.classList.toggle('low',p<30)}
+  return true;
+}
+/* ---- 图鉴 / 错字手册 ---- */
+function cdBookAdd(ch){
+  if(!ch)return;
+  const k='hz_cd_book';
+  const arr=(localStorage.getItem(k)||'').split(',').filter(Boolean);
+  if(arr.indexOf(ch)<0){arr.push(ch);if(arr.length>CD_BOOK_MAX)arr.shift();localStorage.setItem(k,arr.join(','))}
+}
+function cdMissAdd(ch){
+  if(!ch)return;
+  const k='hz_cd_miss';
+  const arr=(localStorage.getItem(k)||'').split(',').filter(Boolean);
+  if(arr.indexOf(ch)<0){arr.unshift(ch);if(arr.length>CD_MISS_MAX)arr.length=CD_MISS_MAX;localStorage.setItem(k,arr.join(','))}
+}
+/* ---- 生命周期 ---- */
+function cdStart(){cdBoot().catch(function(){})}
+async function cdBoot(){
+  currentMode='card';cd.gen++;cdKillTimers();cdStopLoop();
+  cd.run=true;cd.over=false;
+  cd.wave=1;cd.score=0;cd.hearts=CD_HEARTS;cd.shield=0;cd.combo=0;cd.maxCombo=0;
+  cd.qiMax=CD_QI0;cd.qi=CD_QI0;cd.handMax=CD_HAND0;cd.clock=CD_CLOCK;
+  cd.deck=[];cd.hand=[];cd.dis=[];cd.foes=[];cd.tgt=0;cd.sel=-1;cd.pops=[];
+  cd.ups={};cd.plays=0;cd.hits=0;cd.kills=0;cd.boss=0;cd.seq=0;cd.turn=0;cd.draft=[];
+  cd.peekN=2;cd.swapN=2;cd.phase='play';cd.busy=true;cd.forced=0;
+  showScreen('card');
+  cdSet('cdMsg','🃏 正在发牌……<small>字还没下下来就等一下</small>');
+  cdSet('cdPeekN','2');cdSet('cdSwapN','2');
+  ['cdPeekBtn','cdSwapBtn'].forEach(function(id){const b=document.getElementById(id);if(b)b.classList.remove('dead')});
+  const db=document.getElementById('cdDraft');if(db)db.classList.remove('on');
+  cdHud();cdRender();
+  const g=cd.gen;
+  let ready=false;
+  for(let a=0;a<8&&!ready;a++){
+    ready=await cdBuildDeck();
+    if(!cd.run||cd.over||g!==cd.gen||currentMode!=='card')return;
+    if(!ready)await new Promise(function(r){setTimeout(r,700)});
+  }
+  if(!ready){
+    cdSet('cdMsg','📖 字还没下下来……<small>等一秒再发牌</small>');
+    cdT(function(){if(cd.run&&!cd.over)cdStart()},1200);
+    return;
+  }
+  cd.busy=false;
+  cdAdd('hz_cd_runs',1);
+  cdSpawn();
+  cdDraw(cd.handMax);
+  cdEnsure();
+  cdSay('🃏 看清妖肚子上的<b>数字</b> → 数一数手上哪个字<b>正好几笔</b> → 点那张牌打它','#B9F6CA');
+  cdHud();cdRender();cdStartLoop();
+}
+function cdEnd(why){
+  if(cd.over)return;
+  cd.over=true;cd.run=false;cd.phase='over';
+  cdStopLoop();cdKillTimers();
+  const s=Math.round(cd.score);
+  if(s>cdInt('hz_cd_best'))localStorage.setItem('hz_cd_best',String(s));
+  if(cd.wave>cdInt('hz_cd_wave'))localStorage.setItem('hz_cd_wave',String(cd.wave));
+  if(cd.maxCombo>cdInt('hz_cd_streak'))localStorage.setItem('hz_cd_streak',String(cd.maxCombo));
+  cdAdd('hz_cd_plays',cd.plays);
+  const acc=cd.plays?Math.round(cd.hits/cd.plays*100):0;
+  const stars=Math.max(2,Math.min(26,2+Math.floor(s/110)+(cd.wave-1)*3+Math.floor(cd.kills/4)));
+  addStars(stars);
+  const R=cdRank(cdInt('hz_cd_kills'));
+  const book=(localStorage.getItem('hz_cd_book')||'').split(',').filter(Boolean);
+  cdSet('cdRsStars','⭐ +'+stars);
+  cdSet('cdRsEmoji',cd.wave>CD_BOSS_EVERY*2?'🌈':(cd.boss?'🐲':''));
+  cdSet('cdRsTitle',why==='heart'?'💔 被妖打趴了':'这一局远征结束');
+  cdSet('cdRsSub','打到第 <b>'+cd.wave+'</b> 波、打倒 '+cd.kills+' 只妖'+(cd.boss?('（含 '+cd.boss+' 个妖王）'):'')+
+    '、出了 '+cd.plays+' 张牌、命中率 '+acc+'%、最长连击 '+cd.maxCombo+'。'+
+    (acc>=80?'笔笔画数都数得很稳！':(acc>=50?'有几张牌数糊了，下次先数再打。':'多数几遍就记住了 —— 再来一局。')));
+  cdSet('cdRsScore',String(s));
+  cdSet('cdRsWave',String(cd.wave));
+  cdSet('cdRsKills',String(cd.kills));
+  cdSet('cdRsPlays',String(cd.plays));
+  cdSet('cdRsAcc',acc+'%');
+  cdSet('cdRsStreak',String(cd.maxCombo));
+  cdSet('cdRsBest',cdInt('hz_cd_best')+' 分');
+  cdSet('cdRsAll','🏅 '+R.e+' '+R.t+'（累计打倒 '+cdInt('hz_cd_kills')+' 只妖）'+
+    '\n打到过第 '+cdInt('hz_cd_wave')+' 波 · 最长连击 '+cdInt('hz_cd_streak')+' · 屠过 '+cdInt('hz_cd_boss')+' 个妖王'+
+    '\n出过 '+cdInt('hz_cd_plays')+' 张牌 · 带走 '+cdInt('hz_cd_ups')+' 张强化卡 · 上过 '+cdInt('hz_cd_runs')+' 次远征'+
+    '\n📚 打倒过妖的字已收录 '+book.length+' 个');
+  const bk=document.getElementById('cdRsBook');
+  if(bk)bk.innerHTML=book.slice(-24).map(function(c){return '<i>'+c+'</i>'}).join('');
+  showScreen('card-result');
+}
+function cdRetry(){cdStart()}
+function cdLeave(){
+  cdStopLoop();cdKillTimers();
+  if(cd.run&&!cd.over){cd.over=true;cd.run=false}
+  cd.sel=-1;
+  goHome();
+}
+function cdHelp(){
+  cdSay('🃏 每只妖肚子上的<b>数字</b>就是它要的<b>笔画数</b>。数一数手上哪个字<b>正好几笔</b>，点它一下再点一次就打出去；'+
+    '数错了牌作废、妖还手（🛡 能挡一次）。每回合 '+cd.qiMax+' 点气，用完自动<b>结束回合</b>补满。'+
+    '打完一波<b>三选一</b>拿强化卡，每 '+CD_BOSS_EVERY+' 波来一个<b>妖王</b>（两个口令轮流换）','#80DEEA');
+}
+function cdNudge(){
+  const dot=document.getElementById('cdCardDot');
+  const tip=document.getElementById('cdCardTip');
+  const kills=cdInt('hz_cd_kills'),w=cdInt('hz_cd_wave'),runs=cdInt('hz_cd_runs');
+  if(tip){
+    const R=cdRank(kills);
+    tip.textContent=runs?('🏅 '+R.t+' · 打到过第 '+w+' 波'):'数笔画出牌 · 三选一构筑';
+  }
+  if(dot){dot.classList.toggle('on',!runs);dot.textContent=(!runs?'🆕':'')}
+}
+/* ---- 键盘 ---- */
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='card'||!cd.run||cd.over)return;
+  const k=e.key;
+  if(cd.phase==='draft'){
+    if(k>='1'&&k<='3'){e.preventDefault();cdPickUp(parseInt(k,10)-1)}
+    return;
+  }
+  if(k===' '||k==='Enter'){e.preventDefault();cdEndTurn();return}
+  if(k==='Tab'){
+    e.preventDefault();
+    const a=cdAlive();if(a.length<2)return;
+    const cur=cd.foes.indexOf(cdTarget());
+    for(let i=0;i<cd.foes.length;i++){
+      const j=(cur+1+i)%cd.foes.length;
+      if(cd.foes[j].alive){cd.tgt=j;break}
+    }
+    cdRender();return;
+  }
+  if(k>='1'&&k<='7'){e.preventDefault();cdPlay(parseInt(k,10)-1);return}
+  if(k==='p'||k==='P'){e.preventDefault();cdPeek();return}
+  if(k==='x'||k==='X'){e.preventDefault();cdSwap();return}
+  if(k==='?'){e.preventDefault();cdHelp();return}
+});
+window.addEventListener('resize',function(){
+  if(currentMode!=='card'||!cd.run)return;
+  cdRender();
 });
 
 window.addEventListener('DOMContentLoaded',boot);
