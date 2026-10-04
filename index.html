@@ -3321,6 +3321,67 @@ button:active{transform:scale(.95)}
 .cd-book i{font-style:normal;font-size:13px;background:rgba(255,255,255,.14);border-radius:6px;padding:2px 4px}
 @media(max-width:420px){.cd-msg,.cd-hand,.cd-tools,.cd-tip,.cd-clock{max-width:300px}
 .cd-foes{max-width:300px}.cd-hud{max-width:336px;gap:4px}}
+/* ================= 笔顺小战机（按对下一笔 · 击落字妖机） ================= */
+.jt-hud{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
+.jt-hud span{flex:0 0 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 5px;font-size:9.5px;color:#fff;white-space:nowrap}
+.jt-hud b{color:#FFD740}
+.jt-ask{width:100%;max-width:322px;margin:5px auto 0;min-height:36px;border-radius:12px;background:rgba(255,255,255,.14);
+  font-size:13.5px;font-weight:800;text-align:center;line-height:1.3;padding:6px 9px;color:#fff}
+.jt-ask b{color:#FFD740}
+.jt-ask .big{font-family:"Kaiti SC","STKaiti","KaiTi",serif;font-size:22px;font-weight:900;color:#FFF59D;padding:0 2px}
+.jt-slots{display:flex;gap:4px;justify-content:center;margin-top:5px}
+.jt-slots i{width:9px;height:9px;border-radius:99px;background:rgba(255,255,255,.22);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.jt-slots i.on{background:#FFD740;box-shadow:0 0 7px rgba(255,215,64,.8)}
+.jt-slots i.now{background:rgba(255,255,255,.55);animation:jtNow 1s infinite}
+@keyframes jtNow{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.42);opacity:1}}
+.jt-wrap{position:relative;width:100%;max-width:322px;margin:6px auto 0;border-radius:16px;overflow:hidden;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 8px 22px rgba(0,0,0,.3)}
+.jt-cv{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;
+  background:linear-gradient(180deg,#0B1636,#132A57 52%,#1D1440)}
+.jt-band{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;
+  background:rgba(0,0,0,.66);border-radius:99px;padding:8px 16px;opacity:0;
+  font-size:13px;font-weight:900;color:#fff;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.jt-band.on{animation:jtBand 1.7s forwards}
+@keyframes jtBand{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}
+  30%,76%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-56%) scale(.96)}}
+.jt-guns{display:flex;gap:6px;justify-content:center;width:100%;max-width:322px;margin:8px auto 0}
+.jt-gun{flex:1 1 0;border:none;border-radius:13px;padding:7px 2px 6px;cursor:pointer;color:#fff;font-weight:900;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.22),0 4px 12px rgba(0,0,0,.26);transition:transform .07s}
+.jt-gun:active{transform:scale(.93)}
+.jt-gun .e{display:block;font-size:19px;line-height:1.05}
+.jt-gun .n{display:block;font-size:12px;margin-top:1px}
+.jt-gun .k{display:block;font-size:8.5px;opacity:.72;font-weight:800}
+.jt-gun.g0{background:linear-gradient(180deg,#FF8A80,#B71C1C)}
+.jt-gun.g1{background:linear-gradient(180deg,#4DD0E1,#00695C)}
+.jt-gun.g2{background:linear-gradient(180deg,#7986CB,#1565C0)}
+.jt-gun.g3{background:linear-gradient(180deg,#FFAB91,#BF360C)}
+.jt-gun.jam{opacity:.4;pointer-events:none}
+.jt-guns.jam .jt-gun{opacity:.4;pointer-events:none}
+.jt-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:100%;max-width:322px;margin:7px auto 0}
+.jt-tool{border:none;border-radius:12px;padding:8px 11px;font-size:11.5px;font-weight:800;color:#fff;cursor:pointer;
+  background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.jt-tool:active{transform:scale(.96);background:rgba(255,255,255,.28)}
+.jt-tool b{color:#FFD740}
+.jt-tool.scout{background:linear-gradient(180deg,#4FC3F7,#01579B)}
+.jt-tool.nuke{background:linear-gradient(180deg,#BA68C8,#4A148C)}
+.jt-tool.dead{opacity:.4;pointer-events:none}
+.jt-msg{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:12px;font-weight:700;min-height:34px;
+  line-height:1.45;color:#fff;opacity:.95}
+.jt-msg.pop{animation:jtJudge .4s}
+@keyframes jtJudge{from{transform:scale(.88);opacity:.3}to{transform:scale(1);opacity:1}}
+.jt-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;opacity:.8;color:#fff;line-height:1.6}
+.jt-tip b{color:#FFD740}
+.jt-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center;color:#fff}
+.jt-rs span{display:block;font-size:25px;font-weight:bold}
+.jt-rs small{display:block;font-size:11px;opacity:.75;margin-top:2px}
+.jt-book{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;margin-top:8px}
+.jt-book i{font-style:normal;font-size:13px;background:rgba(255,255,255,.14);border-radius:6px;padding:2px 4px}
+.jt-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:99px;background:#FF6D00;color:#fff;
+  font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 6px;
+  box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.jt-badge.on{display:flex}
+@media(max-width:420px){.jt-ask,.jt-msg,.jt-tools,.jt-tip,.jt-wrap,.jt-guns{max-width:300px}
+.jt-hud{max-width:336px;gap:4px}}
 </style>
 
 </head>
@@ -3554,6 +3615,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🪨</div>
       <div class="info"><h3>笔顺投石机</h3><p id="sgCardTip">拉满弹弓 · 砸对那座塔</p></div>
       <span class="rp-badge" id="sgCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('jet')">
+      <div class="icon">✈️</div>
+      <div class="info"><h3>笔顺小战机</h3><p id="jtCardTip">按对下一笔 · 击落字妖机</p></div>
+      <span class="jt-badge" id="jtCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('card')">
       <div class="icon">🃏</div>
@@ -5834,6 +5900,71 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="srtLeave()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-jet">
+  <div class="top-bar">
+    <button class="back-btn" onclick="jtLeave()">← 返回</button>
+    <div class="stats"><span id="jtScoreTxt">✈️ 0 分</span><span id="jtLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="jtHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="jt-hud">
+    <span id="jtRankTxt" title="段位">🏅 见习飞行</span>
+    <span id="jtHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="jtComboTxt" title="连击">🔥 连 0</span>
+    <span id="jtKillTxt" title="本局击落">💥 0</span>
+    <span id="jtPctTxt" title="命中率">🎯 100%</span>
+    <span id="jtInvTxt" title="护罩">🛡️ 无</span>
+  </div>
+  <div class="jt-ask" id="jtAsk">✈️ 正在起飞……<br><small>稍等一下</small></div>
+  <div class="jt-wrap">
+    <canvas class="jt-cv" id="jtCanvas" width="336" height="430"></canvas>
+    <div class="jt-band" id="jtBand"></div>
+  </div>
+  <div class="jt-guns" id="jtGuns">
+    <button class="jt-gun g0" onclick="jtFire(0)"><span class="e">➡️</span><span class="n">横</span><span class="k">1 / F</span></button>
+    <button class="jt-gun g1" onclick="jtFire(1)"><span class="e">⬇️</span><span class="n">竖</span><span class="k">2 / G</span></button>
+    <button class="jt-gun g2" onclick="jtFire(2)"><span class="e">↙️</span><span class="n">撇</span><span class="k">3 / J</span></button>
+    <button class="jt-gun g3" onclick="jtFire(3)"><span class="e">↘️</span><span class="n">捺</span><span class="k">4 / K</span></button>
+  </div>
+  <div class="jt-tools">
+    <button class="jt-tool scout" id="jtScoutBtn" onclick="jtScout()">🛩 侦察 <b id="jtScoutN">2</b></button>
+    <button class="jt-tool nuke" id="jtNukeBtn" onclick="jtNuke()">💣 清屏弹 <b id="jtNukeN">1</b></button>
+  </div>
+  <div class="jt-msg" id="jtMsg">🛫 起飞成功，准备迎战</div>
+  <div class="jt-tip">妖机身上写着<b>一个汉字</b>，<b>起飞那一闪</b>看清整字 · 想清楚<b>下一笔往哪个方向</b>再按炮台 · 写完整个字就齐射<br>
+    按错炮台会<b>卡壳</b>，敌机还在往下压 · 左右拖动小飞机躲开墨弹 · 每 8 架来一艘<b>旗舰</b><br>
+    键盘 <b>1~4</b> 或 <b>F G J K</b> 开炮 · <b>← →</b> 移动 · <b>S</b> 侦察 · <b>D</b> 清屏弹 · <b>?</b> 玩法</div>
+</div>
+<div class="screen" id="screen-jet-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="jtLeave()">← 回首页</button>
+    <div class="stats"><span id="jtRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="jtRsEmoji">✈️</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="jtRsTitle">被打下来了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="jtRsSub">下一架妖机还在等你</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="jt-rs">
+      <div><span style="color:#FFD700" id="jtRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="jtRsKills">0</span><small>击落几架</small></div>
+      <div><span style="color:#69F0AE" id="jtRsShots">0</span><small>写对几笔</small></div>
+      <div><span style="color:#FFAB91" id="jtRsLv">1</span><small>冲到第几段</small></div>
+      <div><span style="color:#FFF176" id="jtRsAcc">0%</span><small>命中率</small></div>
+      <div><span style="color:#E1BEE7" id="jtRsStreak">0</span><small>最长连击</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="jtRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="jtRsAll">🏅 见习飞行</div>
+      <div class="jt-book" id="jtRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="jtRetry()">✈️ 再战一局</button>
+    <button class="w-btn blue" onclick="jtLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-card">
   <div class="top-bar">
     <button class="back-btn" onclick="cdLeave()">← 返回</button>
@@ -5843,7 +5974,7 @@ button:active{transform:scale(.95)}
   <div class="cd-hud">
     <span id="cdRankTxt" title="段位">🏅 摊牌新手</span>
     <span id="cdHeartTxt" title="生命">❤️❤️❤️</span>
-    <span id="cdShieldTxt" title="护盾">🛡 0</span>
+    <span id="cdShieldTxt" title="护盾">🛡️ 0</span>
     <span id="cdQiTxt" title="这一回合还能出几张牌">⚡ 2/2</span>
     <span id="cdComboTxt" title="连击">🔥 连 0</span>
     <span id="cdPileTxt" title="牌库 / 弃牌">🂠 10</span>
@@ -7236,6 +7367,7 @@ function updateHomeStats(){
   if(typeof bmNudge==='function')bmNudge();
   if(typeof rpNudge==='function')rpNudge();
   if(typeof sgNudge==='function')sgNudge();
+  if(typeof jtNudge==='function')jtNudge();
   if(typeof cdNudge==='function')cdNudge();
 }
 function enterMode(mode){
@@ -7290,7 +7422,7 @@ function enterMode(mode){
  else if(mode==='sort')srtStart();
  else if(mode==='splat')spStart();
  else if(mode==='picross')pcStart();
- else if(mode==='bomb')bmStart(); else if(mode==='ramp')rpStart(); else if(mode==='sling')sgStart(); else if(mode==='card')cdStart();
+ else if(mode==='bomb')bmStart(); else if(mode==='ramp')rpStart(); else if(mode==='sling')sgStart(); else if(mode==='card')cdStart(); else if(mode==='jet')jtStart();
   else if(mode==='labels')startLabels();
   else if(mode==='write')startWrite();
   else if(mode==='collection')showCollection();
@@ -33719,14 +33851,14 @@ const CD_FOE=[
 const CD_BOSS=[{e:'🐲',nm:'蛟龙大王'},{e:'👹',nm:'暴食鬼王'},{e:'🦁',nm:'金毛犼'},{e:'🐵',nm:'通臂猿猴'}];
 const CD_RANKS=[
   {n:0,e:'🃏',t:'摊牌新手'},{n:12,e:'✒️',t:'数字小吏'},{n:28,e:'🔥',t:'火牌学徒'},{n:48,e:'⛰️',t:'重锤武士'},
-  {n:74,e:'🛡',t:'铁壁牌手'},{n:106,e:'🎯',t:'鹰眼侠客'},{n:146,e:'👻',t:'追击幽灵'},
+  {n:74,e:'🛡️',t:'铁壁牌手'},{n:106,e:'🎯',t:'鹰眼侠客'},{n:146,e:'👻',t:'追击幽灵'},
   {n:196,e:'👑',t:'牌堆宗师'},{n:260,e:'🌈',t:'彩虹远征王'}
 ];
 /* 强化卡池：每波结束三选一，本局永久，可叠 3 层 —— 挑的不同，局局不同 */
 const CD_UPS=[
   {k:'fire',e:'🔥',nm:'火苗',d:'每次命中多打 2 点',w:10},
   {k:'hammer',e:'🔨',nm:'重锤',d:'每打出第 3 张牌，伤害翻倍',w:9},
-  {k:'shield',e:'🛡',nm:'龟壳',d:'立刻 +1 层护盾，替挡一次还手',w:9},
+  {k:'shield',e:'🛡️',nm:'龟壳',d:'立刻 +1 层护盾，替挡一次还手',w:9},
   {k:'hand',e:'✒️',nm:'墨多',d:'手牌上限 +1 张',w:9},
   {k:'qi',e:'⚡',nm:'气海',d:'每回合多 1 点气（多出 1 张牌）',w:8},
   {k:'eye',e:'🎯',nm:'鹰眼',d:'数一笔次数 +1，且不再扣伤害',w:7},
@@ -33945,7 +34077,7 @@ function cdMiss(card,f,ci){
   if(f.stun){cdSay('❄️ 『<b>'+card.ch+'</b>』是 <b>'+card.n+'</b> 笔，这只妖要 <b>'+cdFoeNeed(f)+'</b> 笔 —— 它被定住了，没敢还手','#FFCC80');return}
   if(cd.shield>0){
     cd.shield--;
-    cdSay('❌ 『<b>'+card.ch+'</b>』有 <b>'+card.n+'</b> 笔，这只妖要 <b>'+cdFoeNeed(f)+'</b> 笔 —— 🛡 护盾替挡了一下','#FFCC80');
+    cdSay('❌ 『<b>'+card.ch+'</b>』有 <b>'+card.n+'</b> 笔，这只妖要 <b>'+cdFoeNeed(f)+'</b> 笔 —— 🛡️ 护盾替挡了一下','#FFCC80');
   }else{
     cd.hearts--;
     cdSay('❌ 『<b>'+card.ch+'</b>』有 <b>'+card.n+'</b> 笔，这只妖要 <b>'+cdFoeNeed(f)+'</b> 笔 —— 它趁你手滑打了一下（还剩 '+cd.hearts+' 颗心）','#FF8A80');
@@ -33970,7 +34102,7 @@ function cdTimeout(){
   let msg='⏳ 想太久啦，妖抢先动手！';
   if(f){
     if(f.stun)msg='⏳ 想太久啦 —— 好在 <b>'+f.nm+'</b> 被定住了';
-    else if(cd.shield>0){cd.shield--;msg='⏳ 想太久啦，🛡 护盾替挡了一下'}
+    else if(cd.shield>0){cd.shield--;msg='⏳ 想太久啦，🛡️ 护盾替挡了一下'}
     else{cd.hearts--;msg='⏳ 想太久啦，<b>'+f.nm+'</b> 打了一下（还剩 '+cd.hearts+' 颗心）'}
   }
   cdSay(msg,'#FF8A80');
@@ -34097,7 +34229,7 @@ function cdHud(){
   cdSet('cdRankTxt','🏅 '+R.t);
   let h='';for(let i=0;i<Math.max(0,cd.hearts);i++)h+='❤️';
   cdSet('cdHeartTxt',h||'💔');
-  cdSet('cdShieldTxt','🛡 '+cd.shield);
+  cdSet('cdShieldTxt','🛡️ '+cd.shield);
   cdSet('cdQiTxt','⚡ '+cd.qi+'/'+cd.qiMax);
   cdSet('cdComboTxt','🔥 连 '+cd.combo);
   cdSet('cdPileTxt','🂠 '+cd.deck.length+' / '+cd.dis.length);
@@ -34257,7 +34389,7 @@ function cdLeave(){
 }
 function cdHelp(){
   cdSay('🃏 每只妖肚子上的<b>数字</b>就是它要的<b>笔画数</b>。数一数手上哪个字<b>正好几笔</b>，点它一下再点一次就打出去；'+
-    '数错了牌作废、妖还手（🛡 能挡一次）。每回合 '+cd.qiMax+' 点气，用完自动<b>结束回合</b>补满。'+
+    '数错了牌作废、妖还手（🛡️ 能挡一次）。每回合 '+cd.qiMax+' 点气，用完自动<b>结束回合</b>补满。'+
     '打完一波<b>三选一</b>拿强化卡，每 '+CD_BOSS_EVERY+' 波来一个<b>妖王</b>（两个口令轮流换）','#80DEEA');
 }
 function cdNudge(){
@@ -34297,6 +34429,619 @@ document.addEventListener('keydown',function(e){
 window.addEventListener('resize',function(){
   if(currentMode!=='card'||!cd.run)return;
   cdRender();
+});
+
+/* ================= 笔顺小战机（想清楚下一笔往哪儿 · 一炮一炮把字写完击落妖机） ================= */
+const JT_W=336,JT_H=430,JT_HEARTS=3,JT_HEART_MAX=5,JT_BOSS_EVERY=8;
+const JT_MISS_MAX=40,JT_BOOK_MAX=300,JT_POOL=26;
+const JT_START=40,JT_FLOOR=252,JT_PLANE=392,JT_LINE=356,JT_FLASH=1.25;
+const JT_GUNS=[{e:'➡️',nm:'横',c:'#FF6B6B'},{e:'⬇️',nm:'竖',c:'#4ECDC4'},{e:'↙️',nm:'撇',c:'#45B7D1'},{e:'↘️',nm:'捺',c:'#FFA07A'}];
+/* 这一笔往哪儿打 —— 中线是 1024 空间、y 向上，先换成屏幕角（0=右、90=下、180=左、-90=上）。
+   四门炮的角度档：横0 -45°~20° / 捺3 20°~68° / 竖1 68°~102° / 撇2 102°~180°。
+   点按它落下的方向算（右下=捺、左下=撇），提归横；
+   带转角或带钩的笔（横折、竖钩、竖提……）只认它**先走**的那一下方向。 */
+function jtAng(x,y){return Math.atan2(y,x)*180/Math.PI}
+function jtDirOf(m){
+  if(!m||m.length<2)return -1;
+  const segs=[];let total=0;
+  for(let i=1;i<m.length;i++){
+    const sx=m[i][0]-m[i-1][0],sy=m[i-1][1]-m[i][1];
+    const L=Math.sqrt(sx*sx+sy*sy);
+    segs.push([sx,sy,L]);total+=L;
+  }
+  if(total<24)return -1;
+  const at=function(frac){
+    let want=total*frac,x=0,y=0;
+    for(let i=0;i<segs.length&&want>0;i++){
+      const sx=segs[i][0],sy=segs[i][1],L=segs[i][2];
+      if(L<=0)continue;
+      const use=Math.min(L,want);
+      x+=sx*(use/L);y+=sy*(use/L);want-=use;
+    }
+    return [x,y];
+  };
+  const net=at(1),straight=Math.sqrt(net[0]*net[0]+net[1]*net[1]);
+  if(straight<16||straight<total*0.42)return -1;
+  let a;
+  if(straight>=total*0.8)a=jtAng(net[0],net[1]);
+  else{
+    let px=0,py=0,ax=0,ay=0,aa=null;
+    for(let f=0.06;f<=1.001;f+=0.06){
+      const p=at(Math.min(1,f)),sx=p[0]-px,sy=p[1]-py;
+      px=p[0];py=p[1];
+      const sa=jtAng(sx,sy);
+      if(aa===null){ax=sx;ay=sy;aa=sa;continue}
+      let d=Math.abs(sa-jtAng(ax,ay));if(d>180)d=360-d;
+      if(d>58)break;
+      ax+=sx;ay+=sy;
+    }
+    if(Math.sqrt(ax*ax+ay*ay)<14)return -1;
+    a=jtAng(ax,ay);
+  }
+  if(a>-45&&a<=20)return 0;
+  if(a>20&&a<=68)return 3;
+  if(a>68&&a<=102)return 1;
+  if(a>102)return 2;
+  return -1;
+}
+const JT_FOE=[{e:'🛩️',nm:'小灰机'},{e:'🚁',nm:'旋翼妖'},{e:'🎈',nm:'气球妖'},{e:'🛸',nm:'铁飞碟'},
+  {e:'👻',nm:'幽灵机'},{e:'🦅',nm:'铁翅鹰'},{e:'🐝',nm:'黄蜂艇'},{e:'🪁',nm:'纸鸢怪'}];
+const JT_BOSS=[{e:'👾',nm:'电玩魔君'},{e:'🐉',nm:'墨龙旗舰'},{e:'🤖',nm:'铜头战舰'},{e:'🦈',nm:'银鲨母舰'}];
+const JT_RANKS=[
+  {n:0,e:'🛩️',t:'见习飞行'},{n:6,e:'✈️',t:'墨点僚机'},{n:16,e:'🔥',t:'连射老手'},
+  {n:30,e:'🎯',t:'鹰眼射手'},{n:48,e:'🛡️',t:'铁翼护卫'},{n:70,e:'⚡',t:'闪电机长'},
+  {n:96,e:'🌟',t:'星空王牌'},{n:128,e:'👑',t:'万机司令'},{n:168,e:'🌈',t:'彩虹战机王'}
+];
+const JT_NOTE=[392,440,494,523,587,659,698,784,880,988,1047,1175];
+let jt={
+  run:false,over:false,gen:0,timers:[],timerId:null,t:0,
+  lv:1,score:0,hearts:JT_HEARTS,combo:0,maxCombo:0,
+  kills:0,boss:0,shots:0,wrong:0,
+  ch:'',dirs:[],meds:[],n:0,k:0,bossNext:false,foeE:'🛩️',foeNm:'小灰机',
+  ex:168,ey:JT_START,damp:40,dfreq:1,espd:13,bombT:3,wait:0,
+  px:168,drag:false,
+  bullets:[],bombs:[],fx:[],pops:[],
+  jam:0,inv:0,shake:0,reveal:0,flash:0,phase:'boot',busy:false,
+  scoutN:2,nukeN:1,pool:[],idx:{},stars:[]
+};
+function jtCv(){return document.getElementById('jtCanvas')}
+function jtInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function jtAdd(k,n){if(n)localStorage.setItem(k,String(jtInt(k)+n))}
+function jtSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function jtShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function jtPick(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function jtRank(n){let r=JT_RANKS[0];for(let i=0;i<JT_RANKS.length;i++)if(n>=JT_RANKS[i].n)r=JT_RANKS[i];return r}
+function jtT(fn,ms){const g=jt.gen;const id=setTimeout(function(){if(g!==jt.gen)return;fn()},ms);jt.timers.push(id);return id}
+function jtKillTimers(){jt.timers.forEach(function(t){clearTimeout(t)});jt.timers=[]}
+function jtStopLoop(){if(jt.timerId){clearInterval(jt.timerId);jt.timerId=null}}
+function jtStartLoop(){jtStopLoop();jt.timerId=setInterval(function(){jtAdvance(0.05);jtDraw()},50)}
+function jtSpd(){return (11+jt.lv*1.9)*(jt.bossNext?0.62:1)}
+function jtGap(){return Math.max(1.15,3.4-jt.lv*0.2)}
+function jtAcc(){return jt.shots+jt.wrong?Math.round(jt.shots/(jt.shots+jt.wrong)*100):100}
+/* ---- 字与方向（真笔顺数据：dirs 就是这一笔该按哪门炮） ---- */
+function jtTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function jtRec(ch){
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await jtTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians)return 0;
+  const n=raw.medians.length;
+  if(n<2||n>12)return 0;
+  const dirs=[];
+  for(let i=0;i<n;i++){
+    const d=jtDirOf(raw.medians[i]);
+    if(d<0)return 0;
+    dirs.push(d);
+  }
+  let kinds=0;for(let i=0;i<n;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return 0;
+  return {ch:ch,n:n,dirs:dirs,meds:raw.medians};
+}
+function jtCand(){
+  const out=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<JT_POOL+14;i++){
+      const c=list[i];if(c&&out.indexOf(c)<0)out.push(c);
+    }
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(jtShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(jtShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(jtShuf(CHARS.slice()));
+  return out;
+}
+async function jtBuild(){
+  const g=jt.gen;
+  const miss=(localStorage.getItem('hz_jet_miss')||'').split(',').filter(Boolean);
+  const want=[];
+  jtShuf(miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  jtCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  const rs=await Promise.all(want.map(function(c){return jtRec(c)}));
+  if(g!==jt.gen||!jt.run)return false;
+  jt.pool=[];jt.idx={};
+  for(let i=0;i<want.length&&jt.pool.length<JT_POOL;i++){
+    const r=rs[i];
+    if(r){jt.pool.push(r);jt.idx[r.ch]=r}
+  }
+  return jt.pool.length>=6;
+}
+function jtWindow(){
+  const lv=jt.lv;
+  if(jt.bossNext)return [6,12];
+  if(lv<=1)return [2,4];
+  if(lv<=2)return [3,6];
+  if(lv<=4)return [4,8];
+  if(lv<=6)return [5,10];
+  return [6,12];
+}
+function jtPickChar(){
+  if(!jt.pool.length)return null;
+  const w=jtWindow(),lo=w[0],hi=w[1];
+  const miss=jtShuf((localStorage.getItem('hz_jet_miss')||'').split(',').filter(Boolean));
+  const inWin=function(list){
+    const a=[];list.forEach(function(c){const r=jt.idx[c];if(r&&r.n>=lo&&r.n<=hi&&a.indexOf(r)<0)a.push(r)});
+    return a;
+  };
+  let a=inWin(miss);
+  if(!a.length)a=inWin(jt.pool.map(function(r){return r.ch}));
+  if(!a.length){
+    let best=null,bd=99;
+    jt.pool.forEach(function(r){
+      const d=r.n<lo?lo-r.n:(r.n>hi?r.n-hi:0);
+      if(d<bd||(d===bd&&best&&Math.abs(r.n-jt.n)<Math.abs(best.n-jt.n))){bd=d;best=r}
+    });
+    return best;
+  }
+  const fresh=a.filter(function(r){return r.ch!==jt.ch});
+  return jtPick(fresh.length?fresh:a);
+}
+/* ---- 妖机 ---- */
+function jtSpawn(){
+  jt.phase='play';jt.k=0;jt.bullets=[];jt.bombs=[];jt.wait=0;
+  const r=jtPickChar();
+  if(!r){jtSay('📖 字还没下下来……<small>再等一下</small>','#FFE082');jt.wait=1.2;jt.phase='wait';return}
+  jt.ch=r.ch;jt.n=r.n;jt.dirs=r.dirs;jt.meds=r.meds;
+  jt.bossNext=((jt.kills+1)%JT_BOSS_EVERY===0);
+  const b=JT_BOSS[Math.floor((jt.kills+1)/JT_BOSS_EVERY-1)%JT_BOSS.length];
+  const m=jtPick(JT_FOE);
+  jt.foeE=jt.bossNext?b.e:m.e;jt.foeNm=jt.bossNext?b.n:m.n;
+  jt.ey=JT_START;jt.ex=168;jt.t=0;jt.damp=jt.bossNext?26:42;
+  jt.dfreq=0.85+Math.min(1.5,jt.lv*0.11);
+  jt.espd=jtSpd();jt.bombT=jtGap();jt.reveal=0;jt.jam=0;jt.flash=JT_FLASH;
+  jtAsk();jtHud();
+}
+function jtAsk(){
+  const left=jt.n-jt.k;
+  const slots=[];
+  for(let i=0;i<jt.n;i++)slots.push('<i class="'+(i<jt.k?'on':(i===jt.k?'now':''))+'"></i>');
+  if(jt.k>=jt.n){
+    jtSet('jtAsk','✅ 『<span class="big">'+jt.ch+'</span>』整字写完！下一架正在飞来'+
+      '<div class="jt-slots">'+slots.join('')+'</div>');
+    return;
+  }
+  jtSet('jtAsk','🎯 '+(jt.bossNext?(''+jt.foeE+' <b>'+jt.foeNm+'</b> 旗舰 · '):'')+
+    '『<span class="big">'+jt.ch+'</span>』的第 <b>'+(jt.k+1)+'</b> 笔（共 '+jt.n+' 笔）往哪儿打？'+
+    '<div class="jt-slots">'+slots.join('')+'</div>'+
+    '<small>还剩 '+left+' 笔就写完 · 写完就齐射</small>');
+}
+/* ---- 开炮 ---- */
+function jtFire(l){
+  if(!jt.run||jt.over||jt.phase!=='play')return;
+  if(!(l>=0&&l<=3))return;
+  if(jt.jam>0){jtSay('💥 炮台卡壳中……喘口气','#FFCC80');return}
+  const want=jt.dirs[jt.k];
+  if(want===undefined){jtSpawn();return}
+  if(l===want)jtShot(l);else jtFoul(l,want);
+  jtHud();jtAsk();
+}
+function jtShot(l){
+  jt.k++;jt.shots++;jt.combo++;
+  if(jt.combo>jt.maxCombo)jt.maxCombo=jt.combo;
+  const gain=Math.round(6+jt.combo*2+jt.lv*1.5+(jt.bossNext?3:0));
+  jt.score+=gain;
+  const col=JT_GUNS[l].c;
+  const n=1+(jt.combo>=10?2:(jt.combo>=5?1:0));
+  for(let i=0;i<n;i++)jt.bullets.push({x:jt.px+(i-(n-1)/2)*11,y:JT_PLANE-16,vy:520+i*30,c:col});
+  const oy=jt.ey+52,s=jtBox()/1024;
+  const m=jt.meds[jt.k-1];
+  if(m&&m.length){
+    const p=m[m.length-1];
+    jtPop('+'+gain,col,jt.ex+(p[0]-512)*s,oy-(p[1]-512)*s);
+    jtBurst(jt.ex+(p[0]-512)*s,oy-(p[1]-512)*s,col,7);
+  }else jtPop('+'+gain,col,jt.ex,jt.ey);
+  jt.ey=Math.max(JT_START,jt.ey-6);
+  tone(JT_NOTE[Math.min(JT_NOTE.length-1,jt.combo-1)],.09,'triangle',.06);
+  showComboEffect(jt.combo);
+  if(jt.combo%3===0)spawnConfetti();
+  if(jt.k>=jt.n)jtDown();
+}
+function jtFoul(l,want){
+  jt.wrong++;jt.combo=0;jt.jam=700;jtMissAdd(jt.ch);
+  sndNo();jt.shake=260;jtDrop();
+  jtSay('❌ 『<b>'+jt.ch+'</b>』的第 <b>'+(jt.k+1)+'</b> 笔是 '+JT_GUNS[want].e+' <b>'+JT_GUNS[want].nm+
+    '</b>，不是 '+JT_GUNS[l].e+' '+JT_GUNS[l].nm+' —— 炮台卡壳 0.7 秒，妖机趁机丢了一发墨弹','#FF8A80');
+  jtHud();
+}
+function jtDown(){
+  jt.phase='wait';jt.wait=1.05;
+  const bonus=Math.round((30+jt.lv*8)*(jt.bossNext?3:1)+jt.combo*2);
+  jt.score+=bonus;jt.kills++;jtAdd('hz_jet_kills',1);
+  jtBookAdd(jt.ch);
+  jtBurst(jt.ex,jt.ey+52,'#FFD740',26);
+  jtBurst(jt.ex,jt.ey+52,'#FF8A80',18);
+  jtBand('💥 击落 '+jt.foeNm+' +'+bonus);
+  tone(1046,.2,'triangle',.08);spawnConfetti();
+  const nl=1+Math.floor(jt.kills/4);
+  let up='';
+  if(nl>jt.lv){
+    jt.lv=nl;
+    if(jt.lv%3===0&&jt.hearts<JT_HEART_MAX){jt.hearts++;up=' 🎖 升到第 <b>'+jt.lv+'</b> 段，顺手修好一颗心 ❤️'}
+    else up=' 🎖 升到第 <b>'+jt.lv+'</b> 段！字更多、机更快、墨弹更密';
+  }
+  if(jt.bossNext){
+    jt.boss++;jtAdd('hz_jet_boss',1);
+    jtSay('👑 <b>'+jt.foeNm+'</b> 旗舰被一炮一炮打下来了！奖励 +'+bonus+' 分'+up,'#B9F6CA');
+  }else if(up) jtSay('💥 击落 '+jt.foeNm+' +'+bonus+' 分，'+up.trim(),'#B9F6CA');
+  else jtSay('✅ 『<b>'+jt.ch+'</b>』整字写完，一炮打落 '+jt.foeNm+' +'+bonus+' 分','#B9F6CA');
+  jtHud();
+}
+/* ---- 墨弹 / 撞击 ---- */
+function jtDrop(){
+  if(jt.phase!=='play')return;
+  jt.bombs.push({x:jt.ex+(Math.random()*20-10),y:jt.ey+70,vy:86+jt.lv*7});
+}
+function jtBoom(){
+  if(jt.inv>0)return;
+  jt.hearts=Math.max(0,jt.hearts-1);jt.combo=0;jt.inv=1300;jt.shake=300;sndNo();
+  jtBurst(jt.px,JT_PLANE-8,'#FF5252',14);
+  if(jt.hearts<=0){jtHud();jtEnd('heart');return}
+  jtSay('💢 小飞机被墨弹打中！还剩 '+jt.hearts+' 颗心（被撞后会无敌一小会儿）','#FF8A80');
+  jtHud();
+}
+function jtRush(){
+  jt.hearts--;jt.combo=0;jt.ey=JT_START;jt.bombT=jtGap();jt.inv=Math.max(jt.inv,900);jt.shake=320;sndNo();
+  if(jt.hearts<=0){jtAsk();jtHud();jtEnd('rush');return}
+  jtSay('⚠️ <b>'+jt.foeNm+'</b> 压到头顶啦！被打回去重新起飞（还剩 '+jt.hearts+' 颗心）—— 开炮可以把它顶上去','#FF8A80');
+  jtAsk();jtHud();
+}
+/* ---- 道具 ---- */
+function jtScout(){
+  if(!jt.run||jt.over||jt.phase!=='play')return;
+  if(jt.scoutN<=0){jtSay('🛩 侦察机飞完啦，剩下的靠自己想','#FFE082');return}
+  if(jt.k>=jt.n)return;
+  jt.scoutN--;jt.score=Math.max(0,jt.score-8);jt.reveal=1100;
+  jtSet('jtScoutN',String(jt.scoutN));
+  const b=document.getElementById('jtScoutBtn');if(b&&jt.scoutN<=0)b.classList.add('dead');
+  const w=JT_GUNS[jt.dirs[jt.k]];
+  jtSay('🛩 侦察报告：『<b>'+jt.ch+'</b>』的第 '+(jt.k+1)+' 笔是 '+w.e+' <b>'+w.nm+'</b>（虚线那一笔）—— 扣 8 分，看了要记住','#80DEEA');
+  tone(760,.07,'sine',.04);jtHud();
+}
+function jtNuke(){
+  if(!jt.run||jt.over||jt.phase!=='play')return;
+  if(jt.nukeN<=0){jtSay('💣 清屏弹用完啦','#FFE082');return}
+  jt.nukeN--;jt.score=Math.max(0,jt.score-12);
+  jt.bombs=[];jt.inv=Math.max(jt.inv,2600);
+  jt.ey=Math.max(JT_START,jt.ey-72);
+  jtBurst(jt.px,JT_PLANE-10,'#EA80FC',22);
+  jtSet('jtNukeN',String(jt.nukeN));
+  const b=document.getElementById('jtNukeBtn');if(b&&jt.nukeN<=0)b.classList.add('dead');
+  jtSay('💣 清屏弹！墨弹全炸光，2.6 秒无敌护罩，还把妖机顶高了一截（扣 12 分）','#EA80FC');
+  sndReward();jtHud();
+}
+/* ---- 文案 / 特效 ---- */
+function jtSay(msg,color){
+  const el=document.getElementById('jtMsg');if(!el)return;
+  el.innerHTML=msg;if(color)el.style.color=color;
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function jtBand(msg){
+  const el=document.getElementById('jtBand');if(!el)return;
+  el.innerHTML=msg;el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function jtPop(txt,c,x,y){jt.pops.push({txt:txt,c:c,x:x,y:y,life:1})}
+function jtBurst(x,y,c,n){
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,s=40+Math.random()*150;
+    jt.fx.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-40,r:1.6+Math.random()*2.8,c:c,life:0.55+Math.random()*0.5});
+  }
+}
+/* ---- 图鉴 / 错字手册 ---- */
+function jtBookAdd(ch){
+  if(!ch)return;
+  const k='hz_jet_book';
+  const arr=(localStorage.getItem(k)||'').split(',').filter(Boolean);
+  if(arr.indexOf(ch)<0){arr.push(ch);if(arr.length>JT_BOOK_MAX)arr.shift();localStorage.setItem(k,arr.join(','))}
+}
+function jtMissAdd(ch){
+  if(!ch)return;
+  const k='hz_jet_miss';
+  const arr=(localStorage.getItem(k)||'').split(',').filter(Boolean);
+  if(arr.indexOf(ch)<0){arr.unshift(ch);if(arr.length>JT_MISS_MAX)arr.length=JT_MISS_MAX;localStorage.setItem(k,arr.join(','))}
+}
+/* ---- 主循环（纯步进，方便逐帧测） ---- */
+function jtAdvance(dt){
+  if(!jt.run||jt.over)return false;
+  jt.t+=dt;
+  if(jt.jam>0)jt.jam=Math.max(0,jt.jam-dt*1000);
+  if(jt.inv>0)jt.inv=Math.max(0,jt.inv-dt*1000);
+  if(jt.shake>0)jt.shake=Math.max(0,jt.shake-dt*1000);
+  if(jt.reveal>0)jt.reveal=Math.max(0,jt.reveal-dt*1000);
+  if(jt.flash>0)jt.flash=Math.max(0,jt.flash-dt);
+  const guns=document.getElementById('jtGuns');
+  if(guns)guns.classList.toggle('jam',jt.jam>0);
+  if(jt.phase==='play'){
+    jt.ex=168+Math.sin(jt.t*jt.dfreq)*jt.damp;
+    jt.ey+=jt.espd*dt;
+    if(jt.ey>=JT_FLOOR){jtRush();}
+    else{jt.bombT-=dt;if(jt.bombT<=0){jtDrop();jt.bombT=jtGap()}}
+  }else if(jt.phase==='wait'){
+    jt.wait-=dt;
+    if(jt.wait<=0&&!jt.over)jtSpawn();
+  }
+  for(let i=jt.bullets.length-1;i>=0;i--){
+    const b=jt.bullets[i];b.y-=b.vy*dt;
+    if(b.y<=jt.ey+58){jt.bullets.splice(i,1);jtBurst(b.x,b.y,b.c,3)}
+    else if(b.y<-10)jt.bullets.splice(i,1);
+  }
+  for(let i=jt.bombs.length-1;i>=0;i--){
+    const b=jt.bombs[i];b.y+=b.vy*dt;
+    if(Math.abs(b.x-jt.px)<17&&b.y>JT_PLANE-22&&b.y<JT_PLANE+16){jt.bombs.splice(i,1);jtBoom()}
+    else if(b.y>JT_H+12)jt.bombs.splice(i,1);
+  }
+  for(let i=jt.fx.length-1;i>=0;i--){
+    const p=jt.fx[i];p.life-=dt;
+    if(p.life<=0){jt.fx.splice(i,1);continue}
+    p.vy+=340*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;
+  }
+  for(let i=jt.pops.length-1;i>=0;i--){
+    const p=jt.pops[i];p.life-=dt*0.9;p.y-=26*dt;
+    if(p.life<=0)jt.pops.splice(i,1);
+  }
+  return true;
+}
+/* ---- 渲染 ---- */
+function jtBox(){return jt.bossNext?104:88}
+function jtPath(c,m,s,ox,oy){
+  c.beginPath();
+  for(let i=0;i<m.length;i++){
+    const x=ox+(m[i][0]-512)*s,y=oy-(m[i][1]-512)*s;
+    if(i)c.lineTo(x,y);else c.moveTo(x,y);
+  }
+  c.stroke();
+}
+function jtDraw(){
+  const cv=jtCv();if(!cv)return;
+  const c=cv.getContext('2d');if(!c)return;
+  c.setTransform(1,0,0,1,0,0);
+  c.clearRect(0,0,JT_W,JT_H);
+  c.save();
+  if(jt.shake>0)c.translate((Math.random()*6-3),(Math.random()*4-2));
+  /* 星空 */
+  if(!jt.stars.length)for(let i=0;i<30;i++)jt.stars.push({x:Math.random()*JT_W,y:Math.random()*JT_H,r:Math.random()*1.5+.5,ph:Math.random()*6});
+  jt.stars.forEach(function(s){
+    c.globalAlpha=.35+.45*Math.abs(Math.sin(jt.t*1.4+s.ph));
+    c.fillStyle='#E3F2FD';c.beginPath();c.arc(s.x,(s.y+jt.t*10)%JT_H,s.r,0,6.3);c.fill();
+  });
+  c.globalAlpha=1;
+  /* 底线 */
+  const g=c.createLinearGradient(0,JT_LINE-8,0,JT_H);
+  g.addColorStop(0,'rgba(255,82,82,0)');g.addColorStop(1,'rgba(255,82,82,.3)');
+  c.fillStyle=g;c.fillRect(0,JT_LINE-8,JT_W,JT_H-JT_LINE+8);
+  c.strokeStyle='rgba(255,138,138,.6)';c.lineWidth=1.4;c.setLineDash([7,7]);
+  c.beginPath();c.moveTo(0,JT_LINE);c.lineTo(JT_W,JT_LINE);c.stroke();c.setLineDash([]);
+  /* 妖机 + 字全息 */
+  if(jt.ch&&jt.meds&&jt.meds.length){
+    const box=jtBox(),s=box/1024,ox=jt.ex,oy=jt.ey+52;
+    c.strokeStyle=jt.bossNext?'rgba(255,215,64,.5)':'rgba(255,255,255,.2)';
+    c.lineWidth=jt.bossNext?2.4:1.4;
+    c.strokeRect(ox-box/2-9,oy-box/2-9,box+18,box+18);
+    c.fillStyle='rgba(13,27,62,.55)';c.fillRect(ox-box/2-9,oy-box/2-9,box+18,box+18);
+    c.lineCap='round';c.lineJoin='round';c.lineWidth=Math.max(5,box*.068);
+    /* 起飞一闪：整字亮一下再淡掉，笔顺得靠记住 */
+    if(jt.flash>0){
+      c.strokeStyle='rgba(255,255,255,'+(0.46*jt.flash/JT_FLASH).toFixed(3)+')';
+      for(let i=0;i<jt.meds.length;i++){if(jt.meds[i])jtPath(c,jt.meds[i],s,ox,oy)}
+    }
+    for(let i=0;i<jt.k;i++){
+      c.strokeStyle=JT_GUNS[jt.dirs[i]].c;
+      c.shadowColor=JT_GUNS[jt.dirs[i]].c;c.shadowBlur=8;
+      jtPath(c,jt.meds[i],s,ox,oy);
+    }
+    c.shadowBlur=0;
+    if(jt.reveal>0&&jt.k<jt.n&&jt.meds[jt.k]){
+      c.save();c.setLineDash([5,5]);c.strokeStyle='rgba(255,255,255,.9)';c.lineWidth=4;
+      jtPath(c,jt.meds[jt.k],s,ox,oy);c.restore();
+    }
+    c.font=(jt.bossNext?'34px':'28px')+' serif';c.textAlign='center';c.textBaseline='middle';
+    c.fillText(jt.foeE,ox,oy-box/2-26);
+    c.font='900 10px system-ui';c.fillStyle='rgba(255,255,255,.72)';
+    c.fillText(jt.foeNm+' · 还差 '+(jt.n-jt.k)+' 笔',ox,oy+box/2+20);
+  }
+  /* 子弹 */
+  jt.bullets.forEach(function(b){
+    c.strokeStyle=b.c;c.lineWidth=3.4;c.shadowColor=b.c;c.shadowBlur=9;
+    c.beginPath();c.moveTo(b.x,b.y+12);c.lineTo(b.x,b.y);c.stroke();
+  });
+  c.shadowBlur=0;
+  /* 墨弹 */
+  jt.bombs.forEach(function(b){
+    c.fillStyle='#263238';c.beginPath();c.arc(b.x,b.y,8,0,6.3);c.fill();
+    c.fillStyle='rgba(255,255,255,.4)';c.beginPath();c.arc(b.x-2.6,b.y-2.6,2.4,0,6.3);c.fill();
+    c.fillStyle='#FFAB40';c.beginPath();c.arc(b.x,b.y-11,2,0,6.3);c.fill();
+  });
+  /* 粒子 */
+  jt.fx.forEach(function(p){
+    c.globalAlpha=Math.max(0,Math.min(1,p.life*1.7));c.fillStyle=p.c;
+    c.beginPath();c.arc(p.x,p.y,p.r,0,6.3);c.fill();
+  });
+  c.globalAlpha=1;
+  /* 小飞机 */
+  const px=jt.px,py=JT_PLANE;
+  if(jt.inv>0&&(jt.t*10|0)%2)c.globalAlpha=.4;
+  c.fillStyle='#ECEFF1';c.beginPath();
+  c.moveTo(px,py-18);c.lineTo(px+7,py+2);c.lineTo(px+19,py+11);c.lineTo(px+5,py+9);
+  c.lineTo(px,py+15);c.lineTo(px-5,py+9);c.lineTo(px-19,py+11);c.lineTo(px-7,py+2);
+  c.closePath();c.fill();
+  c.fillStyle='#4FC3F7';c.beginPath();c.arc(px,py-5,4.2,0,6.3);c.fill();
+  c.fillStyle='#FF7043';c.fillRect(px-1.6,py+9,3.2,7);
+  c.globalAlpha=1;
+  if(jt.inv>0){
+    c.strokeStyle='rgba(129,212,250,.8)';c.lineWidth=2;
+    c.beginPath();c.arc(px,py,26+Math.sin(jt.t*8)*2.5,0,6.3);c.stroke();
+  }
+  /* 飘字 */
+  jt.pops.forEach(function(p){
+    c.globalAlpha=Math.max(0,Math.min(1,p.life));
+    c.font='900 13px system-ui';c.textAlign='center';c.fillStyle=p.c;
+    c.strokeStyle='rgba(0,0,0,.5)';c.lineWidth=3;
+    c.strokeText(p.txt,p.x,p.y);c.fillText(p.txt,p.x,p.y);
+  });
+  c.globalAlpha=1;
+  c.restore();
+}
+function jtHud(){
+  jtSet('jtScoreTxt','✈️ '+Math.round(jt.score)+' 分');
+  jtSet('jtLvTxt',jt.bossNext?('👾 旗舰 · 第 '+jt.lv+' 段'):('第 '+jt.lv+' 段'));
+  const R=jtRank(jtInt('hz_jet_kills')+jt.kills);
+  jtSet('jtRankTxt','🏅 '+R.t);
+  let h='';for(let i=0;i<Math.max(0,jt.hearts);i++)h+='❤️';
+  jtSet('jtHeartTxt',h||'💔');
+  jtSet('jtComboTxt','🔥 连 '+jt.combo);
+  jtSet('jtKillTxt','💥 '+jt.kills);
+  jtSet('jtPctTxt','🎯 '+jtAcc()+'%');
+  jtSet('jtInvTxt',jt.inv>0?'🛡️ 护罩中':'🛡️ 无');
+}
+/* ---- 生命周期 ---- */
+function jtStart(){jtBoot().catch(function(){})}
+async function jtBoot(){
+  currentMode='jet';jt.gen++;jtKillTimers();jtStopLoop();
+  jt.run=true;jt.over=false;
+  jt.lv=1;jt.score=0;jt.hearts=JT_HEARTS;jt.combo=0;jt.maxCombo=0;
+  jt.kills=0;jt.boss=0;jt.shots=0;jt.wrong=0;
+  jt.ch='';jt.dirs=[];jt.meds=[];jt.n=0;jt.k=0;jt.bossNext=false;
+  jt.ey=JT_START;jt.ex=168;jt.px=168;jt.t=0;
+  jt.bullets=[];jt.bombs=[];jt.fx=[];jt.pops=[];
+  jt.jam=0;jt.inv=0;jt.shake=0;jt.reveal=0;jt.flash=0;jt.wait=0;jt.phase='wait';
+  jt.scoutN=2;jt.nukeN=1;jt.busy=true;
+  showScreen('jet');
+  jtSet('jtAsk','✈️ 正在起飞……<br><small>字还没下下来就等一下</small>');
+  jtSet('jtMsg','🛫 塔台正在调度……');
+  jtSet('jtScoutN','2');jtSet('jtNukeN','1');
+  ['jtScoutBtn','jtNukeBtn'].forEach(function(id){const b=document.getElementById(id);if(b)b.classList.remove('dead')});
+  jtHud();jtDraw();
+  const g=jt.gen;
+  let ready=false;
+  for(let a=0;a<8&&!ready;a++){
+    ready=await jtBuild();
+    if(!jt.run||jt.over||g!==jt.gen||currentMode!=='jet')return;
+    if(!ready)await new Promise(function(r){setTimeout(r,700)});
+  }
+  if(!ready){
+    jtSay('📖 字还没下下来……<small>等一秒再起飞</small>','#FFE082');
+    jtT(function(){if(jt.run&&!jt.over)jtStart()},1200);
+    return;
+  }
+  jt.busy=false;
+  jtAdd('hz_jet_runs',1);
+  jtSpawn();
+  jtSay('✈️ 起飞！妖机身上写着『<b>'+jt.ch+'</b>』—— 想清楚<b>第一笔往哪儿</b>，再按下面四门炮','#B9F6CA');
+  jtHud();jtStartLoop();
+}
+function jtEnd(why){
+  if(jt.over)return;
+  jt.over=true;jt.run=false;jt.phase='over';
+  jtStopLoop();jtKillTimers();
+  const s=Math.round(jt.score);
+  if(s>jtInt('hz_jet_best'))localStorage.setItem('hz_jet_best',String(s));
+  if(jt.lv>jtInt('hz_jet_lv'))localStorage.setItem('hz_jet_lv',String(jt.lv));
+  if(jt.maxCombo>jtInt('hz_jet_streak'))localStorage.setItem('hz_jet_streak',String(jt.maxCombo));
+  jtAdd('hz_jet_shots',jt.shots);
+  const acc=jtAcc();
+  const stars=Math.max(2,Math.min(26,2+Math.floor(s/110)+(jt.lv-1)*3+Math.floor(jt.kills/2)));
+  addStars(stars);
+  const R=jtRank(jtInt('hz_jet_kills'));
+  const book=(localStorage.getItem('hz_jet_book')||'').split(',').filter(Boolean);
+  jtSet('jtRsStars','⭐ +'+stars);
+  jtSet('jtRsEmoji',jt.boss>2?'🌈':(jt.boss?'👾':'✈️'));
+  jtSet('jtRsTitle',why==='heart'?'💥 小飞机被打下来了':(why==='rush'?'⚠️ 被妖机压到头顶':'这次返航了'));
+  jtSet('jtRsSub','打到第 <b>'+jt.lv+'</b> 段、击落 '+jt.kills+' 架妖机'+(jt.boss?('（含 '+jt.boss+' 架旗舰）'):'')+
+    '、写对 '+jt.shots+' 笔、命中率 '+acc+'%、最长连击 '+jt.maxCombo+'。'+
+    (acc>=80?'笔顺方向记得很牢，机长！':(acc>=50?'有几笔想糊了，看清下一笔再按。':'多飞几趟就记住笔顺了 —— 再来一局。')));
+  jtSet('jtRsScore',String(s));
+  jtSet('jtRsKills',String(jt.kills));
+  jtSet('jtRsShots',String(jt.shots));
+  jtSet('jtRsLv',String(jt.lv));
+  jtSet('jtRsAcc',acc+'%');
+  jtSet('jtRsStreak',String(jt.maxCombo));
+  jtSet('jtRsBest',jtInt('hz_jet_best')+' 分');
+  jtSet('jtRsAll','🏅 '+R.e+' '+R.t+'（累计击落 '+jtInt('hz_jet_kills')+' 架）'+
+    '\n冲到过第 '+jtInt('hz_jet_lv')+' 段 · 最长连击 '+jtInt('hz_jet_streak')+' · 打落过 '+jtInt('hz_jet_boss')+' 架旗舰'+
+    '\n写过 '+jtInt('hz_jet_shots')+' 笔 · 上过 '+jtInt('hz_jet_runs')+' 次战'+
+    '\n📚 击落过的字已收录 '+book.length+' 个');
+  const bk=document.getElementById('jtRsBook');
+  if(bk)bk.innerHTML=book.slice(-24).map(function(ch){return '<i>'+ch+'</i>'}).join('');
+  showScreen('jet-result');
+}
+function jtRetry(){jtStart()}
+function jtLeave(){
+  jtStopLoop();jtKillTimers();
+  if(jt.run&&!jt.over){jt.over=true;jt.run=false}
+  goHome();
+}
+function jtHelp(){
+  jtSay('✈️ 妖机机身上写着<b>一个汉字</b>。看题目问「第几笔」，想清楚这一笔往哪个方向，'+
+    '按下面对应的炮台（横 ➡️ / 竖 ⬇️ / 撇 ↙️ / 捺 ↘️，提并入横，点按它落下的方向算）。'+
+    '每架妖机<b>刚起飞时整字会亮一下</b>，那一闪就是全部线索，看仔细。'+
+    '按对就点亮那一笔并顶高妖机，<b>写完整个字</b>就齐射击落；按错卡壳 0.7 秒。'+
+    '用 <b>← →</b> 或直接拖动小飞机躲开墨弹，被压到头顶也算一次撞击。每 8 架来一艘<b>旗舰</b>。','#80DEEA');
+}
+function jtNudge(){
+  const dot=document.getElementById('jtCardDot');
+  const tip=document.getElementById('jtCardTip');
+  const kills=jtInt('hz_jet_kills'),lv=jtInt('hz_jet_lv'),runs=jtInt('hz_jet_runs');
+  if(tip){
+    const R=jtRank(kills);
+    tip.textContent=runs?('🏅 '+R.t+' · 冲到过第 '+lv+' 段'):'按对下一笔 · 击落字妖机';
+  }
+  if(dot){dot.classList.toggle('on',!runs);dot.textContent=(!runs?'🆕':'')}
+}
+/* ---- 键盘 ---- */
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='jet'||!jt.run||jt.over)return;
+  const k=e.key;
+  if(k==='1'||k==='2'||k==='3'||k==='4'){e.preventDefault();jtFire(parseInt(k,10)-1);return}
+  if(k==='f'||k==='F'){e.preventDefault();jtFire(0);return}
+  if(k==='g'||k==='G'){e.preventDefault();jtFire(1);return}
+  if(k==='j'||k==='J'){e.preventDefault();jtFire(2);return}
+  if(k==='k'||k==='K'){e.preventDefault();jtFire(3);return}
+  if(k==='ArrowLeft'){e.preventDefault();jtMove(-22);return}
+  if(k==='ArrowRight'){e.preventDefault();jtMove(22);return}
+  if(k==='s'||k==='S'){e.preventDefault();jtScout();return}
+  if(k==='d'||k==='D'){e.preventDefault();jtNuke();return}
+  if(k==='?'){e.preventDefault();jtHelp();return}
+});
+function jtMove(dx){
+  if(!jt.run||jt.over)return;
+  jt.px=Math.max(22,Math.min(JT_W-22,jt.px+dx));
+}
+function jtPtX(e){
+  const cv=jtCv();if(!cv)return jt.px;
+  const r=cv.getBoundingClientRect();
+  if(!r.width)return jt.px;
+  return Math.max(22,Math.min(JT_W-22,(e.clientX-r.left)*(JT_W/r.width)));
+}
+document.addEventListener('pointerdown',function(e){
+  if(currentMode!=='jet'||!jt.run||jt.over)return;
+  const cv=jtCv();if(!cv||!cv.contains(e.target))return;
+  jt.drag=true;jt.px=jtPtX(e);
+});
+document.addEventListener('pointermove',function(e){
+  if(!jt.drag||currentMode!=='jet'||!jt.run||jt.over)return;
+  jt.px=jtPtX(e);
+});
+document.addEventListener('pointerup',function(){jt.drag=false});
+window.addEventListener('resize',function(){
+  if(currentMode!=='jet'||!jt.run)return;
+  jtDraw();
 });
 
 window.addEventListener('DOMContentLoaded',boot);
