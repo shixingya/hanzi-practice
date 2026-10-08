@@ -3459,6 +3459,23 @@ button:active{transform:scale(.95)}
 @media(max-width:420px){.zp-ask,.zp-msg,.zp-tools,.zp-tip,.zp-wrap,.zp-guns,.zp-opts,.zp-clock{max-width:300px}
 .zp-hud{max-width:336px;gap:4px}}
 
+/* ---- 首页精选 + 玩法实验室 ---- */
+.picks-title{width:100%;color:#fff;font-size:13px;opacity:.82;margin:2px 0 -8px;text-align:center;letter-spacing:1px}
+.mode-card.lab-entry{background:linear-gradient(135deg,#FFF6DE,#FFE6BD);border:2px dashed rgba(150,110,50,.34)}
+.lab-count{margin-left:auto;flex-shrink:0;background:#667eea;color:#fff;font-size:13px;font-weight:bold;padding:4px 12px;border-radius:14px}
+.lab-head{text-align:center;color:#fff;margin:8px 0 2px}
+.lab-head h2{font-size:26px;text-shadow:2px 2px 8px rgba(0,0,0,.3)}
+.lab-head p{font-size:13px;opacity:.86;margin-top:4px}
+.lab-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0 2px;width:100%}
+.lab-tab{background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.3);color:#fff;padding:5px 11px;border-radius:14px;cursor:pointer;font-size:12px;font-family:inherit;white-space:nowrap;transition:background .2s}
+.lab-tab:hover{background:rgba(255,255,255,.32)}
+.lab-tab b{opacity:.8;font-weight:bold}
+.lab-body{width:100%}
+.lab-group{width:100%;scroll-margin-top:12px}
+.lab-gtitle{width:100%;color:#fff;font-size:16px;margin:12px 0 -8px;display:flex;align-items:center;gap:8px;text-shadow:1px 1px 6px rgba(0,0,0,.28)}
+.lab-gtitle small{font-size:11px;opacity:.72;font-weight:normal}
+.lab-gtitle i{flex:1;height:1px;background:rgba(255,255,255,.26)}
+@media(max-width:420px){.lab-head h2{font-size:22px}.lab-gtitle{font-size:14px;margin:10px 0 -10px}.lab-count{padding:3px 9px}}
 </style>
 
 </head>
@@ -3489,7 +3506,8 @@ button:active{transform:scale(.95)}
     <button class="diff-btn grade-btn" data-grade="6上" onclick="setGrade('6上')">六上</button>
     <button class="diff-btn grade-btn" data-grade="6下" onclick="setGrade('6下')">六下</button>
   </div>
-  <div class="mode-cards">
+  <div class="picks-title">🌟 每天练这五个就够</div>
+  <div class="mode-cards" id="homePicks">
     <div class="mode-card" onclick="enterMode('quiz')">
       <div class="icon">⚔️</div>
       <div class="info"><h3>笔顺大闯关</h3><p>选择题答题，赚星星！</p></div>
@@ -3498,82 +3516,146 @@ button:active{transform:scale(.95)}
       <div class="icon">🗺️</div>
       <div class="info"><h3>冒险地图</h3><p>闯关解锁徽章，晒朋友圈！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('challenge')">
-      <div class="icon">⏱️</div>
-      <div class="info"><h3>限时挑战</h3><p>60秒极限答题，挑战最高分！</p></div>
+    <div class="mode-card" onclick="enterMode('write')">
+      <div class="icon">✏️</div>
+      <div class="info"><h3>妙笔生花</h3><p>鼠标描红练写字</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('labels')">
+      <div class="icon">🔍</div>
+      <div class="info"><h3>火眼金睛</h3><p>看编号，学笔顺</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('rhythm')">
       <div class="icon">🎵</div>
       <div class="info"><h3>笔顺音游</h3><p>笔画变音符，按出好节奏！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('tetris')">
-      <div class="icon">🧱</div>
-      <div class="info"><h3>汉字俄罗斯方块</h3><p>答对消方块，答错越堆越高！</p></div>
+  </div>
+  <div class="mode-cards" style="margin-top:0">
+    <div class="mode-card lab-entry" onclick="goLab()">
+      <div class="icon">🧪</div>
+      <div class="info"><h3>玩法实验室</h3><p>还有 57 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">57</span>
     </div>
-    <div class="mode-card" onclick="enterMode('mole')">
-      <div class="icon">🐹</div>
-      <div class="info"><h3>笔顺打地鼠</h3><p>答案变地鼠，眼疾手快打掉它！</p></div>
-    </div>
+  </div>
+  <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
+</div>
+<div class="screen" id="screen-lab">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goHome()">← 首页</button>
+    <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
+    <span style="width:56px"></span>
+  </div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>57 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>15</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>17</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>6</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>6</b></button></div>
+  <div class="lab-body">
+    <div class="lab-group" id="labG1">
+      <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
+      <div class="mode-cards">
     <div class="mode-card" onclick="enterMode('puzzle')">
       <div class="icon">🧩</div>
       <div class="info"><h3>笔顺拼图</h3><p>按笔顺把打碎的汉字拼回来！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('runner')">
-      <div class="icon">🏃</div>
-      <div class="info"><h3>笔顺跑酷</h3><p>三道抢答，冲进正确的那一栏！</p></div>
+    <div class="mode-card" onclick="enterMode('slide')">
+      <div class="icon">🧩</div>
+      <div class="info"><h3>笔顺排排队</h3><p id="slideCardTip">滑动方块 · 把笔画推回 1→n</p></div>
+      <span class="sl-dot" id="slideCardDot">🆕</span>
     </div>
-    <div class="mode-card" onclick="enterMode('boss')">
-      <div class="icon">👹</div>
-      <div class="info"><h3>笔顺大魔王</h3><p>答对蓄力，放大招打倒五位魔王！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('pet')">
-      <div class="icon">🐣</div>
-      <div class="info"><h3>笔顺宠物屋</h3><p id="petCardTip">练字喂养你的汉字神兽！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('hop')">
-      <div class="icon">🦘</div>
-      <div class="info"><h3>笔顺跳房子</h3><p>答对往前跳，和对手抢着冲线！</p></div>
+    <div class="mode-card" onclick="enterMode('memory')">
+      <div class="icon">🕵️</div>
+      <div class="info"><h3>记忆翻翻屋</h3><p>翻开牌，把汉字和它的笔画数配对！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('lian')">
       <div class="icon">🔗</div>
       <div class="info"><h3>笔顺连连消</h3><p>汉字找笔顺线索，连线消消消！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('fruit')">
-      <div class="icon">🍉</div>
-      <div class="info"><h3>笔顺切水果</h3><p>答案飞上天，一刀切开它！</p></div>
+    <div class="mode-card" onclick="enterMode('picross')">
+      <div class="icon">🖼</div>
+      <div class="info"><h3>笔顺数织屋</h3><p id="picrossCardTip">数字推格子 · 把这个字染出来</p></div>
+      <span class="pc-badge" id="picrossCardDot">🆕</span>
     </div>
-    <div class="mode-card" onclick="enterMode('brick')">
-      <div class="icon">🧱</div>
-      <div class="info"><h3>笔顺打砖块</h3><p>控制挡板，用球砸对的那块砖！</p></div>
+    <div class="mode-card" onclick="enterMode('fold')">
+      <div class="icon">✂️</div>
+      <div class="info"><h3>笔顺折纸屋</h3><p id="zpCardTip">半个墨迹猜字 · 再补第一笔</p></div>
+      <span class="zp-badge" id="zpCardDot">🆕</span>
     </div>
-    <div class="mode-card" onclick="enterMode('defense')">
-      <div class="icon">🏰</div>
-      <div class="info"><h3>笔顺塔防</h3><p>答对一题，一炮一个小怪！</p></div>
+    <div class="mode-card" onclick="enterMode('merge')">
+      <div class="icon">🧩</div>
+      <div class="info"><h3>笔顺合合合</h3><p>答对掉字砖，笔画数相同才能合成！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('fish')">
-      <div class="icon">🎣</div>
-      <div class="info"><h3>笔顺钓鱼</h3><p>蓄力抛竿，钓起写着答案的小鱼！</p></div>
+    <div class="mode-card" onclick="enterMode('balance')">
+      <div class="icon">⚖️</div>
+      <div class="info"><h3>笔顺天平屋</h3><p>汉字当砝码，凑够订单笔画数！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('duel')">
-      <div class="icon">🤼</div>
-      <div class="info"><h3>笔顺双人大乱斗</h3><p>分屏抢答拔河，把绳子拉过线！</p></div>
+    <div class="mode-card" onclick="enterMode('push')">
+      <div class="icon">📦</div>
+      <div class="info"><h3>笔顺推箱子</h3><p>汉字箱推到笔画线索格上！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('pipe')">
+      <div class="icon">💧</div>
+      <div class="info"><h3>笔顺水管屋</h3><p>转管道引墨水，按笔顺序开水阀！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('cup')">
+      <div class="icon">🧪</div>
+      <div class="info"><h3>笔顺倒水杯</h3><p>把打翻的笔画墨水，一杯杯按方向倒回来！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('sort')">
+      <div class="icon">🏭</div>
+      <div class="info"><h3>笔顺分拣厂</h3><p id="sortCardTip">传送带送字 · 按规矩投筐 · 满筐发车</p></div>
+      <span class="srt-badge" id="sortCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('four')">
+      <div class="icon">🔴</div>
+      <div class="info"><h3>笔顺四子棋</h3><p>正确答案占两列，答对才有得挑！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('maze')">
+      <div class="icon">🏮</div>
+      <div class="info"><h3>笔顺地宫</h3><p id="mzCardTip">火把只照两格，找钥匙开石门！</p></div>
+      <span class="mz-dot" id="mzCardDot">🏮 第 1 层</span>
     </div>
     <div class="mode-card" onclick="enterMode('dig')">
       <div class="icon">⛏️</div>
       <div class="info"><h3>笔顺挖宝</h3><p>答题领铲子，凭冷热线索挖文物！</p></div>
     </div>
-    <div class="mode-card sk-card" onclick="enterMode('checkin')">
-      <div class="icon">📅</div>
-      <div class="info"><h3>每日签到 · 星运转盘</h3><p id="skCardTip">每天回来领星星，连签越久宝箱越好！</p></div>
-      <span class="sk-dot" id="skDot">1</span>
+      </div>
     </div>
-    <div class="mode-card" onclick="enterMode('snake')">
-      <div class="icon">🐍</div>
-      <div class="info"><h3>笔顺贪吃蛇</h3><p>答对解锁笔画果，开蛇按笔顺吃成字！</p></div>
+    <div class="lab-group" id="labG2">
+      <h4 class="lab-gtitle">👁 记忆与辨认 <small>记住笔顺再答题</small><i></i></h4>
+      <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('detect')">
+      <div class="icon">🧐</div>
+      <div class="info"><h3>笔顺神探</h3><p>只露几笔，从形近字里认出它！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('match3')">
-      <div class="icon">🍬</div>
-      <div class="info"><h3>笔顺消消乐</h3><p>答对解锁交换，三个同方向连成线！</p></div>
+    <div class="mode-card" onclick="enterMode('wordle')">
+      <div class="icon">🔤</div>
+      <div class="info"><h3>笔顺猜字</h3><p>逐笔翻彩牌，最少次数揪出它！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('flash')">
+      <div class="icon">📸</div>
+      <div class="info"><h3>笔顺闪现</h3><p>字只闪一下，凭这一眼答题！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('echo')">
+      <div class="icon">🔊</div>
+      <div class="info"><h3>笔顺回声</h3><p id="echoCardTip">听笔顺 · 凭记忆按回去</p></div>
+      <span class="ec-badge" id="echoCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('challenge')">
+      <div class="icon">⏱️</div>
+      <div class="info"><h3>限时挑战</h3><p>60秒极限答题，挑战最高分！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('fish')">
+      <div class="icon">🎣</div>
+      <div class="info"><h3>笔顺钓鱼</h3><p>蓄力抛竿，钓起写着答案的小鱼！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('bowl')">
+      <div class="icon">🎳</div>
+      <div class="info"><h3>笔顺保龄球</h3><p>答对拿大力球，瞄口袋位一票全倒！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('jump')">
+      <div class="icon">🐰</div>
+      <div class="info"><h3>笔顺跳一跳</h3><p>答案写在平台上，蓄力跳过去！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('plinko')">
+      <div class="icon">🔮</div>
+      <div class="info"><h3>笔顺弹珠台</h3><p>答对一笔投一珠，撞进大奖格！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('scratch')">
       <div class="icon">🎫</div>
@@ -3583,102 +3665,61 @@ button:active{transform:scale(.95)}
       <div class="icon">🀄</div>
       <div class="info"><h3>笔顺多米诺</h3><p>答对一题立一张骨牌，推倒就能领钱！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('stack')">
-      <div class="icon">🗼</div>
-      <div class="info"><h3>笔顺叠叠塔</h3><p>答对发砖，看准时机叠成摩天大楼！</p></div>
-    </div>
-    <div class="mode-card sk-card" onclick="enterMode('gacha')">
-      <div class="icon">🎡</div>
-      <div class="info"><h3>笔顺扭蛋机</h3><p id="ggCardTip">答对题赚 🪙 抽汉字精灵，集齐图鉴！</p></div>
-      <span class="sk-dot" id="ggDot">1</span>
-    </div>
-    <div class="mode-card" onclick="enterMode('bowl')">
-      <div class="icon">🎳</div>
-      <div class="info"><h3>笔顺保龄球</h3><p>答对拿大力球，瞄口袋位一票全倒！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('memory')">
-      <div class="icon">🕵️</div>
-      <div class="info"><h3>记忆翻翻屋</h3><p>翻开牌，把汉字和它的笔画数配对！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('cup')">
-      <div class="icon">🧪</div>
-      <div class="info"><h3>笔顺倒水杯</h3><p>把打翻的笔画墨水，一杯杯按方向倒回来！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('claw')">
-      <div class="icon">🧸</div>
-      <div class="info"><h3>笔顺娃娃机</h3><p>夹中娃娃考笔顺，答对才落袋！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('detect')">
-      <div class="icon">🧐</div>
-      <div class="info"><h3>笔顺神探</h3><p>只露几笔，从形近字里认出它！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('four')">
-      <div class="icon">🔴</div>
-      <div class="info"><h3>笔顺四子棋</h3><p>正确答案占两列，答对才有得挑！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('flash')">
-      <div class="icon">📸</div>
-      <div class="info"><h3>笔顺闪现</h3><p>字只闪一下，凭这一眼答题！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('wordle')">
-      <div class="icon">🔤</div>
-      <div class="info"><h3>笔顺猜字</h3><p>逐笔翻彩牌，最少次数揪出它！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('town')">
-      <div class="icon">🏗️</div>
-      <div class="info"><h3>笔顺小镇</h3><p id="twCardTip">按笔顺砌砖盖楼，收租建成汉字城！</p></div>
-      <span class="tw-dot" id="twCardDot">💰</span>
-    </div>
-        <div class="mode-card" onclick="enterMode('mow')">
-      <div class="icon">🗡️</div>
-      <div class="info"><h3>笔顺无双</h3><p>撞对下一笔才拔刀，割草斩字！</p></div>
-    </div>
     <div class="mode-card" onclick="enterMode('dd')">
       <div class="icon">🐑</div>
       <div class="info"><h3>笔顺堆堆消</h3><p id="ddCardTip">抽最上面的牌，三张同方向就炸！</p></div>
       <span class="dd-dot" id="ddCardDot">🥇 0</span>
     </div>
-    <div class="mode-card" onclick="enterMode('maze')">
-      <div class="icon">🏮</div>
-      <div class="info"><h3>笔顺地宫</h3><p id="mzCardTip">火把只照两格，找钥匙开石门！</p></div>
-      <span class="mz-dot" id="mzCardDot">🏮 第 1 层</span>
+    <div class="mode-card" onclick="enterMode('match3')">
+      <div class="icon">🍬</div>
+      <div class="info"><h3>笔顺消消乐</h3><p>答对解锁交换，三个同方向连成线！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('map')">
-      <div class="icon">🗺️</div>
-      <div class="info"><h3>笔顺星图</h3><p id="mapCardTip">答对才修得出下一关，尽头有龙！</p></div>
-      <span class="map-dot" id="mapCardDot">🆕</span>
+      </div>
     </div>
-    <div class="mode-card" onclick="enterMode('slide')">
-      <div class="icon">🧩</div>
-      <div class="info"><h3>笔顺排排队</h3><p id="slideCardTip">滑动方块 · 把笔画推回 1→n</p></div>
-      <span class="sl-dot" id="slideCardDot">🆕</span>
+    <div class="lab-group" id="labG3">
+      <h4 class="lab-gtitle">⚡ 手速与反应 <small>眼疾手快抢答</small><i></i></h4>
+      <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('mole')">
+      <div class="icon">🐹</div>
+      <div class="info"><h3>笔顺打地鼠</h3><p>答案变地鼠，眼疾手快打掉它！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('echo')">
-      <div class="icon">🔊</div>
-      <div class="info"><h3>笔顺回声</h3><p id="echoCardTip">听笔顺 · 凭记忆按回去</p></div>
-      <span class="ec-badge" id="echoCardDot">🆕</span>
+    <div class="mode-card" onclick="enterMode('runner')">
+      <div class="icon">🏃</div>
+      <div class="info"><h3>笔顺跑酷</h3><p>三道抢答，冲进正确的那一栏！</p></div>
     </div>
-<div class="mode-card" onclick="enterMode('snow')">
-      <div class="icon">⛄</div>
-      <div class="info"><h3>笔顺滚雪球</h3><p id="snowCardTip">答对雪球就变大 · 够大才碾得碎</p></div>
-      <span class="snw-badge" id="snowCardDot">🆕</span>
+    <div class="mode-card" onclick="enterMode('fruit')">
+      <div class="icon">🍉</div>
+      <div class="info"><h3>笔顺切水果</h3><p>答案飞上天，一刀切开它！</p></div>
     </div>
-<div class="mode-card" onclick="enterMode('sort')">
-      <div class="icon">🏭</div>
-      <div class="info"><h3>笔顺分拣厂</h3><p id="sortCardTip">传送带送字 · 按规矩投筐 · 满筐发车</p></div>
-      <span class="srt-badge" id="sortCardDot">🆕</span>
+    <div class="mode-card" onclick="enterMode('brick')">
+      <div class="icon">🧱</div>
+      <div class="info"><h3>笔顺打砖块</h3><p>控制挡板，用球砸对的那块砖！</p></div>
     </div>
-<div class="mode-card" onclick="enterMode('splat')">
+    <div class="mode-card" onclick="enterMode('jet')">
+      <div class="icon">✈️</div>
+      <div class="info"><h3>笔顺小战机</h3><p id="jtCardTip">按对下一笔 · 击落字妖机</p></div>
+      <span class="jt-badge" id="jtCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('hop')">
+      <div class="icon">🦘</div>
+      <div class="info"><h3>笔顺跳房子</h3><p>答对往前跳，和对手抢着冲线！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('sky')">
+      <div class="icon">☁️</div>
+      <div class="info"><h3>笔顺登云梯</h3><p id="skyCardTip">答案写在云上 · 跳对才踩得住</p></div>
+      <span class="cld-badge" id="skyCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('splat')">
       <div class="icon">🦑</div>
       <div class="info"><h3>笔顺喷喷乐</h3><p id="splatCardTip">走位涂地 · 和章鱼抢地盘</p></div>
       <span class="sp-badge" id="splatCardDot">🆕</span>
     </div>
-<div class="mode-card" onclick="enterMode('picross')">
-      <div class="icon">🖼</div>
-      <div class="info"><h3>笔顺数织屋</h3><p id="picrossCardTip">数字推格子 · 把这个字染出来</p></div>
-      <span class="pc-badge" id="picrossCardDot">🆕</span>
+    <div class="mode-card" onclick="enterMode('snow')">
+      <div class="icon">⛄</div>
+      <div class="info"><h3>笔顺滚雪球</h3><p id="snowCardTip">答对雪球就变大 · 够大才碾得碎</p></div>
+      <span class="snw-badge" id="snowCardDot">🆕</span>
     </div>
-<div class="mode-card" onclick="enterMode('bomb')">
+    <div class="mode-card" onclick="enterMode('bomb')">
       <div class="icon">🏝️</div>
       <div class="info"><h3>笔顺炸炸岛</h3><p id="bombCardTip">放炮走位 · 炸掉对的答案</p></div>
       <span class="bm-badge" id="bombCardDot">🆕</span>
@@ -3693,77 +3734,98 @@ button:active{transform:scale(.95)}
       <div class="info"><h3>笔顺投石机</h3><p id="sgCardTip">拉满弹弓 · 砸对那座塔</p></div>
       <span class="rp-badge" id="sgCardDot">🆕</span>
     </div>
-    <div class="mode-card" onclick="enterMode('fold')">
-      <div class="icon">✂️</div>
-      <div class="info"><h3>笔顺折纸屋</h3><p id="zpCardTip">半个墨迹猜字 · 再补第一笔</p></div>
-      <span class="zp-badge" id="zpCardDot">🆕</span>
+    <div class="mode-card" onclick="enterMode('tetris')">
+      <div class="icon">🧱</div>
+      <div class="info"><h3>汉字俄罗斯方块</h3><p>答对消方块，答错越堆越高！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('jet')">
-      <div class="icon">✈️</div>
-      <div class="info"><h3>笔顺小战机</h3><p id="jtCardTip">按对下一笔 · 击落字妖机</p></div>
-      <span class="jt-badge" id="jtCardDot">🆕</span>
-    </div>
-    <div class="mode-card" onclick="enterMode('card')">
-      <div class="icon">🃏</div>
-      <div class="info"><h3>笔顺卡牌远征</h3><p id="cdCardTip">数笔画出牌 · 三选一构筑</p></div>
-      <span class="rp-badge" id="cdCardDot">🆕</span>
-    </div>
-    <div class="mode-card" onclick="enterMode('sky')">
-      <div class="icon">☁️</div>
-      <div class="info"><h3>笔顺登云梯</h3><p id="skyCardTip">答案写在云上 · 跳对才踩得住</p></div>
-      <span class="cld-badge" id="skyCardDot">🆕</span>
+    <div class="mode-card" onclick="enterMode('snake')">
+      <div class="icon">🐍</div>
+      <div class="info"><h3>笔顺贪吃蛇</h3><p>答对解锁笔画果，开蛇按笔顺吃成字！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('hook')">
       <div class="icon">🪝</div>
       <div class="info"><h3>笔顺甩金钩</h3><p id="hookCardTip">看准摆动松钩 · 越沉越值钱</p></div>
       <span class="gk-badge" id="hookCardDot">🆕</span>
     </div>
-<div class="mode-card" onclick="enterMode('plinko')">
-      <div class="icon">🔮</div>
-      <div class="info"><h3>笔顺弹珠台</h3><p>答对一笔投一珠，撞进大奖格！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('pipe')">
-      <div class="icon">💧</div>
-      <div class="info"><h3>笔顺水管屋</h3><p>转管道引墨水，按笔顺序开水阀！</p></div>
-    </div>
-    <div class="mode-card" onclick="enterMode('fortune')">
-      <div class="icon">🎲</div>
-      <div class="info"><h3>笔顺大富翁</h3><p>掷骰子买地收租，先攒够金币就赢！</p></div>
+    <div class="mode-card" onclick="enterMode('claw')">
+      <div class="icon">🧸</div>
+      <div class="info"><h3>笔顺娃娃机</h3><p>夹中娃娃考笔顺，答对才落袋！</p></div>
     </div>
     <div class="mode-card" onclick="enterMode('bubble')">
       <div class="icon">🫧</div>
       <div class="info"><h3>笔顺泡泡龙</h3><p>答对装同色弹，瞄三个连成一片炸！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('balance')">
-      <div class="icon">⚖️</div>
-      <div class="info"><h3>笔顺天平屋</h3><p>汉字当砝码，凑够订单笔画数！</p></div>
+      </div>
     </div>
-    <div class="mode-card" onclick="enterMode('push')">
-      <div class="icon">📦</div>
-      <div class="info"><h3>笔顺推箱子</h3><p>汉字箱推到笔画线索格上！</p></div>
+    <div class="lab-group" id="labG4">
+      <h4 class="lab-gtitle">🏗️ 养成与收集 <small>慢慢攒、长线玩</small><i></i></h4>
+      <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('pet')">
+      <div class="icon">🐣</div>
+      <div class="info"><h3>笔顺宠物屋</h3><p id="petCardTip">练字喂养你的汉字神兽！</p></div>
     </div>
-    <div class="mode-card" onclick="enterMode('jump')">
-      <div class="icon">🐰</div>
-      <div class="info"><h3>笔顺跳一跳</h3><p>答案写在平台上，蓄力跳过去！</p></div>
+    <div class="mode-card" onclick="enterMode('town')">
+      <div class="icon">🏗️</div>
+      <div class="info"><h3>笔顺小镇</h3><p id="twCardTip">按笔顺砌砖盖楼，收租建成汉字城！</p></div>
+      <span class="tw-dot" id="twCardDot">💰</span>
     </div>
-    <div class="mode-card" onclick="enterMode('merge')">
-      <div class="icon">🧩</div>
-      <div class="info"><h3>笔顺合合合</h3><p>答对掉字砖，笔画数相同才能合成！</p></div>
+    <div class="mode-card sk-card" onclick="enterMode('gacha')">
+      <div class="icon">🎡</div>
+      <div class="info"><h3>笔顺扭蛋机</h3><p id="ggCardTip">答对题赚 🪙 抽汉字精灵，集齐图鉴！</p></div>
+      <span class="sk-dot" id="ggDot">1</span>
     </div>
-    <div class="mode-card" onclick="enterMode('labels')">
-      <div class="icon">🔍</div>
-      <div class="info"><h3>火眼金睛</h3><p>看编号，学笔顺</p></div>
+    <div class="mode-card sk-card" onclick="enterMode('checkin')">
+      <div class="icon">📅</div>
+      <div class="info"><h3>每日签到 · 星运转盘</h3><p id="skCardTip">每天回来领星星，连签越久宝箱越好！</p></div>
+      <span class="sk-dot" id="skDot">1</span>
     </div>
-    <div class="mode-card" onclick="enterMode('write')">
-      <div class="icon">✏️</div>
-      <div class="info"><h3>妙笔生花</h3><p>鼠标描红练写字</p></div>
+    <div class="mode-card" onclick="enterMode('fortune')">
+      <div class="icon">🎲</div>
+      <div class="info"><h3>笔顺大富翁</h3><p>掷骰子买地收租，先攒够金币就赢！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('stack')">
+      <div class="icon">🗼</div>
+      <div class="info"><h3>笔顺叠叠塔</h3><p>答对发砖，看准时机叠成摩天大楼！</p></div>
+    </div>
+      </div>
+    </div>
+    <div class="lab-group" id="labG5">
+      <h4 class="lab-gtitle">⚔️ 对战与远征 <small>打魔王、和人斗</small><i></i></h4>
+      <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('boss')">
+      <div class="icon">👹</div>
+      <div class="info"><h3>笔顺大魔王</h3><p>答对蓄力，放大招打倒五位魔王！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('duel')">
+      <div class="icon">🤼</div>
+      <div class="info"><h3>笔顺双人大乱斗</h3><p>分屏抢答拔河，把绳子拉过线！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('mow')">
+      <div class="icon">🗡️</div>
+      <div class="info"><h3>笔顺无双</h3><p>撞对下一笔才拔刀，割草斩字！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('defense')">
+      <div class="icon">🏰</div>
+      <div class="info"><h3>笔顺塔防</h3><p>答对一题，一炮一个小怪！</p></div>
+    </div>
+    <div class="mode-card" onclick="enterMode('card')">
+      <div class="icon">🃏</div>
+      <div class="info"><h3>笔顺卡牌远征</h3><p id="cdCardTip">数笔画出牌 · 三选一构筑</p></div>
+      <span class="rp-badge" id="cdCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('map')">
+      <div class="icon">🗺️</div>
+      <div class="info"><h3>笔顺星图</h3><p id="mapCardTip">答对才修得出下一关，尽头有龙！</p></div>
+      <span class="map-dot" id="mapCardDot">🆕</span>
+    </div>
+      </div>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
 </div>
 <div class="screen" id="screen-quiz">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="quizStars">⭐ 0</span><span id="quizCombo">🔥 x0</span><span id="bgmToggle" onclick="toggleBGM()" style="cursor:pointer">🔊 音乐</span></div>
   </div>
   <div class="progress-bar-wrap"><div class="progress-bar-inner" id="quizProgress"></div></div>
@@ -3777,7 +3839,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-labels">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="labelCharName">-</span></div>
   </div>
   <div class="char-box" id="labelCharBox">
@@ -3791,7 +3853,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-write">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="writeStars">⭐ 0</span><span id="writeCount">已写 0 字</span></div>
   </div>
   <div class="status-line" id="writeStatus">看好了，跟着笔顺写！</div>
@@ -3818,7 +3880,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-challenge-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="challengeResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:30px 20px;color:#fff">
@@ -3861,7 +3923,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-rhythm-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="rhythmResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -3888,7 +3950,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-tetris">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="tetrisScore">得分 0</span><span id="tetrisCleared">消 0 行</span><span id="tetrisCombo">🔥 x0</span></div>
   </div>
   <div class="challenge-goal">🧱 答对笔顺 → 消除一层 | 答错 → 方块叠一层，别让它堆到顶端！</div>
@@ -3905,7 +3967,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-tetris-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="tetrisResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -3932,7 +3994,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-mole">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="moleScore">得分 0</span><span id="moleCombo">🔥 x0</span><span id="moleWave">第 1 题</span></div>
   </div>
   <div class="challenge-goal" id="moleQuestion">🐹 哪只地鼠扛着正确答案？快点它！</div>
@@ -3942,7 +4004,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-mole-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="moleResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -3969,7 +4031,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-puzzle">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="pzScore">得分 0</span><span id="pzDone">已拼 0 字</span><span id="pzCombo">🔥 x0</span></div>
   </div>
   <div class="challenge-goal">🧩 按<b>正确笔顺</b>点击碎片，把打碎的汉字拼回来！</div>
@@ -3993,7 +4055,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-puzzle-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="pzResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4020,7 +4082,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-runner">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="runScore">得分 0</span><span id="runCombo">🔥 x0</span><span id="runDist">0 m</span></div>
   </div>
   <div class="challenge-goal" id="runQuestion">🏃 准备好了吗？</div>
@@ -4040,7 +4102,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-runner-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="runResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4067,7 +4129,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-boss">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="bsScore">伤害 0</span><span id="bsCombo">🔥 x0</span><span id="bsRound">回合 1</span></div>
   </div>
   <div class="challenge-goal" id="bsTitle">👹 魔王登场！</div>
@@ -4097,7 +4159,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-boss-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="bsResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4160,7 +4222,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-hop">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="hpWins">🏅 连胜 0</span><span id="hpRound">第 1 题</span><span id="hpCombo">🔥 x0</span></div>
   </div>
   <div class="challenge-goal" id="hpGoal">🦘 答对就往前跳，先冲线的人赢！</div>
@@ -4184,7 +4246,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-hop-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="hpResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4211,7 +4273,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-lian">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="lnScore">⭐ 0</span><span id="lnLeft">🧩 剩 15</span><span id="lnCombo" style="color:#FFD740">🔥 x0</span><span id="lnTime" style="color:#FFD740">⏱️ 100s</span></div>
   </div>
   <div class="challenge-goal" id="lnGoal">🔗 把「汉字」和它的「笔顺线索」连起来，路径最多拐两个弯！</div>
@@ -4228,7 +4290,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-lian-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="lnResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4255,7 +4317,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-fruit">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="cfScore">🍉 0</span><span id="cfCombo" style="color:#FFD740">🔥 x0</span><span id="cfTime">⏱️ 90s</span></div>
   </div>
   <div class="challenge-goal" id="cfGoal">🍉 题目在上方，把写着正确答案的水果一刀切开！</div>
@@ -4276,7 +4338,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-fruit-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="cfResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4303,7 +4365,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-brick">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="bkScore">🧱 0</span><span id="bkCombo" style="color:#FFD740">🔥 x0</span><span id="bkLv">🚩 第 1 关</span></div>
   </div>
   <div class="challenge-goal" id="bkGoal">🧱 移动挡板把球弹上去，砸掉写着正确答案的砖块！</div>
@@ -4322,7 +4384,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-brick-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="bkResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4349,7 +4411,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-defense">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="tdScore">🏰 0</span><span id="tdCombo" style="color:#FFD740">🔥 x0</span><span id="tdWave">🌊 第 1 波</span></div>
   </div>
   <div class="challenge-goal" id="tdGoal">🏰 答对一题，大炮就打掉一个小怪！别让怪兽走进城门！</div>
@@ -4373,7 +4435,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-defense-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="tdResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4400,7 +4462,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-fish">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="fhScore">🎣 0</span><span id="fhCombo" style="color:#FFD740">🔥 x0</span><span id="fhTime">⏱ 90 秒</span></div>
   </div>
   <div class="challenge-goal" id="fhGoal">🎣 按住水面蓄力，松手抛竿！把钩子扔到写着正确答案的小鱼旁边，咬钩时踩准绿区提竿！</div>
@@ -4431,7 +4493,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-fish-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="fhResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4459,7 +4521,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-duel">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="dlTime">⏱ 90 秒</span><span id="dlFlagPos">🚩 正中</span><span id="dlAiTag">🤖 电脑陪练</span></div>
   </div>
   <div class="challenge-goal" id="dlGoal">🤼 两人分屏抢答！答对把绳子拉向自己，先拉过线的一方获胜；答错对手白拉一格，还会被锁住 1.3 秒！</div>
@@ -4507,7 +4569,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-duel-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="dlResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4535,7 +4597,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-dig">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="dgScore">🏺 0</span><span id="dgCombo" style="color:#FFD740">🔥 x0</span><span id="dgTime">⏱ 70 秒</span></div>
   </div>
   <div class="challenge-goal" id="dgGoal">🏜️ 答题领铲子，点沙格开挖！挖空一格会告诉你离宝物还有几格：🔥 烫 = 就在旁边，❄️ 冷 = 还远着呢</div>
@@ -4561,7 +4623,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-dig-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="dgResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4589,7 +4651,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-checkin">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="skStarsTop">⭐ 0</span><span id="skFlameTxt">🔥 每日签到</span></div>
   </div>
   <div class="challenge-goal" id="skGoal">📅 每天回来点宝箱就能领星星，连签越久宝箱越大方；拆完宝箱还能转一次幸运转盘，手快也有份！</div>
@@ -4631,7 +4693,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-snake">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="snScore">🐍 0</span><span id="snCombo" style="color:#FFD740">🔥 x0</span><span id="snLife">❤️❤️❤️</span></div>
   </div>
   <div class="challenge-goal" id="snGoal">🐍 先答对「这一笔往哪写」才能解锁 🍎 笔画果，再用方向键 / 方向盘开车去吃它，按笔顺一个字一个字串成长蛇！</div>
@@ -4659,7 +4721,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-snake-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="snResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4687,7 +4749,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-match3">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="m3Score">🍬 0</span><span id="m3Moves">👣 15</span><span id="m3Charge" style="color:#FFD740">🔓 x0</span></div>
   </div>
   <div class="challenge-goal" id="m3Goal">🍬 答对题目才解锁一次交换，把三个相同方向的糖块连成一条线！</div>
@@ -4708,7 +4770,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-match3-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="m3ResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4735,7 +4797,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-scratch">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="scScore">🎫 0</span><span id="scCombo" style="color:#FFD740">🔥 x0</span><span id="scTier">🥉 铜卡</span></div>
   </div>
   <div class="challenge-goal" id="scGoal">🎫 答对一题就印出一张刮刮卡，按住屏幕用 🪙 硬币来回刮开银色涂层，刮出三个一样的符号就是 BINGO 大奖！</div>
@@ -4761,7 +4823,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-scratch-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="scResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4790,7 +4852,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-domino">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="dpScore">💰 0</span><span id="dpChain">🀄 链 1/5</span><span id="dpRank">🐣 小板牙</span></div>
   </div>
   <div class="challenge-goal" id="dpGoal">🀄 答对一题立一张骨牌，牌越立越值钱！随时按 <b>🔥 推倒领钱</b> 收手，可一旦答错或手慢，整条链「哗啦」倒塌只留下 <b>35%</b>——见好就收还是搏一条龙？</div>
@@ -4819,7 +4881,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-domino-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="dpResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4847,7 +4909,7 @@ button:active{transform:scale(.95)}
   </div>
 </div><div class="screen" id="screen-stack">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="stkScore">🗼 0 分</span><span id="stkHeight">📏 0 层</span><span id="stkPerfect">✨ 0</span></div>
   </div>
   <div class="challenge-goal" id="stkGoal">🗼 答对一题才发砖，砖在顶上左右滑 —— 看准时机点一下让它落下，<b>切掉的部分就再也用不上了</b>；叠得越正越高，越容易「完美对齐」！</div>
@@ -4872,7 +4934,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-stack-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="stkResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -4900,7 +4962,7 @@ button:active{transform:scale(.95)}
   </div>
 </div><div class="screen" id="screen-gacha">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="ggStars">⭐ 0</span><span id="ggCoin">🪙 0</span></div>
     <button class="icon-btn" onclick="ggOpenBook()" title="精灵图鉴">📖</button>
   </div>
@@ -4951,7 +5013,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-merge">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="mgScore">🧩 0 分</span><span id="mgTop">🏆 1 画</span></div>
     <button class="icon-btn" onclick="mgHelp()" title="怎么玩">❓</button>
   </div>
@@ -4984,7 +5046,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-merge-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="mgResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -5013,7 +5075,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-balance">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="blScoreTxt">⚖️ 0 分</span><span id="blLvTxt">第 1 档</span></div>
     <button class="icon-btn" onclick="blHelp()" title="怎么玩">❓</button>
   </div>
@@ -5055,7 +5117,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-balance-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="blResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -5083,7 +5145,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-memory">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="mmScoreTxt">🃏 0 分</span><span id="mmLvTxt">第 1 关</span></div>
     <button class="icon-btn" onclick="mmHelp()" title="怎么玩">❓</button>
   </div>
@@ -5112,7 +5174,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-memory-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="mmResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -5140,7 +5202,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-cup">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="wcScoreTxt">🧪 0 分</span><span id="wcLvTxt">第 1 关</span></div>
     <button class="icon-btn" onclick="wcHelp()" title="怎么玩">❓</button>
   </div>
@@ -5171,7 +5233,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-cup-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="wcResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -5199,7 +5261,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-claw">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="clScoreTxt">🧸 0 分</span><span id="clLvTxt">第 1 关</span></div>
     <button class="icon-btn" onclick="clHelp()" title="怎么玩">❓</button>
   </div>
@@ -5236,7 +5298,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-claw-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="clResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -5264,7 +5326,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-detect">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="dtScoreTxt">🧐 0 分</span><span id="dtLvTxt">第 1 关</span></div>
     <button class="icon-btn" onclick="dtHelp()" title="怎么玩">❓</button>
   </div>
@@ -5297,7 +5359,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-detect-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="dtResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -5326,7 +5388,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-four">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="c4ScoreTxt">🔴 0 分</span><span id="c4LvTxt">段位 1</span></div>
     <button class="icon-btn" onclick="c4Help()" title="怎么玩">❓</button>
   </div>
@@ -5360,7 +5422,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-four-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="c4ResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -5388,7 +5450,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-flash">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="flScoreTxt">📸 0 分</span><span id="flLvTxt">段位 1 · 快照学徒</span></div>
     <button class="icon-btn" onclick="flHelp()" title="怎么玩">❓</button>
   </div>
@@ -5425,7 +5487,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-flash-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="flResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -5454,7 +5516,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-wordle">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="wdScoreTxt">🔤 0 分</span><span id="wdLvTxt">段位 1 · 猜字新手</span></div>
     <button class="icon-btn" onclick="wdHelp()" title="怎么玩">❓</button>
   </div>
@@ -5487,7 +5549,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-wordle-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="wdResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -5516,7 +5578,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-town">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="twStarsTxt">⭐ 0</span><span id="twTierTxt">🏕 一块荒地</span></div>
     <button class="icon-btn" onclick="twHelp()" title="怎么玩">❓</button>
   </div>
@@ -5572,7 +5634,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-town-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="twRsStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -5637,7 +5699,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-mow-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="mwRsStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:22px 20px 12px;color:#fff">
@@ -5697,7 +5759,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-dd-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="ddRsStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:22px 20px 12px;color:#fff">
@@ -6689,7 +6751,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-maze-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="mzRsStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:22px 20px 12px;color:#fff">
@@ -6720,7 +6782,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-plinko">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="plScoreTxt">💧 0 分</span><span id="plLvTxt">第 1 关</span></div>
     <button class="icon-btn" onclick="plHelp()" title="怎么玩">❓</button>
   </div>
@@ -6756,7 +6818,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-plinko-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="plResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -6784,7 +6846,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-pipe">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="piScoreTxt">💧 0 分</span><span id="piLvTxt">第 1 关</span></div>
     <button class="icon-btn" onclick="piHelp()" title="怎么玩">❓</button>
   </div>
@@ -6819,7 +6881,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-pipe-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="piResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -6847,7 +6909,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-fortune">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="mfScoreTxt">💰 0 金币</span><span id="mfLvTxt">第 1 关</span></div>
     <button class="icon-btn" onclick="mfHelp()" title="怎么玩">❓</button>
   </div>
@@ -6893,7 +6955,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-fortune-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="mfResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -6921,7 +6983,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-bubble">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="bbScoreTxt">🫧 0 分</span><span id="bbLvTxt">第 1 关</span></div>
     <button class="icon-btn" onclick="bbHelp()" title="怎么玩">❓</button>
   </div>
@@ -6964,7 +7026,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-bubble-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="bbResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -6992,7 +7054,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-push">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="tkScoreTxt">📦 0 分</span><span id="tkLvTxt">第 1 关</span></div>
     <button class="icon-btn" onclick="tkHelp()" title="怎么玩">❓</button>
   </div>
@@ -7025,7 +7087,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-push-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="tkResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -7052,7 +7114,7 @@ button:active{transform:scale(.95)}
   </div>
 </div><div class="screen" id="screen-jump">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="jpScoreTxt">🐰 0 分</span><span id="jpHopTxt">第 0 跳</span></div>
     <button class="icon-btn" onclick="jpHelp()" title="怎么玩">❓</button>
   </div>
@@ -7079,7 +7141,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-jump-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="jpResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -7107,7 +7169,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-bowl">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="bwScoreTxt">🎳 0 分</span><span id="bwFrameTxt">第 1 帧</span></div>
     <button class="icon-btn" onclick="bwHelp()" title="怎么玩">❓</button>
   </div>
@@ -7137,7 +7199,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-bowl-result">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="bwResultStars">⭐ 0</span></div>
   </div>
   <div style="text-align:center;padding:24px 20px;color:#fff">
@@ -7165,7 +7227,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-adventure">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="advStars">⭐ 0</span><span id="advBadges">🏅 0/12</span></div>
     <button class="icon-btn" onclick="showBadges()" title="徽章墙">🏅</button>
   </div>
@@ -7248,7 +7310,7 @@ button:active{transform:scale(.95)}
 </div>
 <div class="screen" id="screen-collection">
   <div class="top-bar">
-    <button class="back-btn" onclick="goHome()">← 返回</button>
+    <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="colStars">⭐ 0</span></div>
   </div>
   <h2 style="color:#fff;margin:12px 0;font-size:22px">🎁 动物收藏馆</h2>
@@ -7487,13 +7549,30 @@ function resetAllData(){
   updateAllStarDisplays();
   closeSettings();
 }
+let lastLobby='home';
 function showScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-'+name).classList.add('active');
   currentMode=name;
 }
 function goHome(){
-  stopBGM();updateHomeStats();showScreen('home');
+  lastLobby='home';stopBGM();updateHomeStats();showScreen('home');
+}
+function updateLabStats(){
+  const st=document.getElementById('labStars');if(st)st.textContent='⭐ '+stars;
+  const gd=document.getElementById('labGrade');if(gd)gd.textContent='📚 '+(currentGrade==='all'?'全部':currentGrade);
+}
+function goLab(){
+  lastLobby='lab';stopBGM();updateLabStats();showScreen('lab');window.scrollTo(0,0);
+}
+function goBack(){
+  stopBGM();
+  if(lastLobby==='lab'){updateLabStats();showScreen('lab');window.scrollTo(0,0)}
+  else{updateHomeStats();showScreen('home')}
+}
+function labJump(id){
+  const el=document.getElementById('labG'+id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function updateHomeStats(){
   document.getElementById('homeStars').textContent='⭐ '+stars;
