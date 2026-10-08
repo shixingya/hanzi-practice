@@ -3382,6 +3382,83 @@ button:active{transform:scale(.95)}
 .jt-badge.on{display:flex}
 @media(max-width:420px){.jt-ask,.jt-msg,.jt-tools,.jt-tip,.jt-wrap,.jt-guns{max-width:300px}
 .jt-hud{max-width:336px;gap:4px}}
+/* ================= 笔顺折纸屋（对折洇出半个字 · 猜它是谁再补第一笔） ================= */
+.zp-hud{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;padding:2px 6px 5px;width:100%;max-width:340px;margin:0 auto}
+.zp-hud span{flex:0 0 auto;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:5px 5px;font-size:9.5px;color:#fff;white-space:nowrap}
+.zp-hud b{color:#FFD740}
+.zp-ask{width:100%;max-width:322px;margin:5px auto 0;min-height:36px;border-radius:12px;background:rgba(255,255,255,.14);
+  font-size:13.5px;font-weight:800;text-align:center;line-height:1.3;padding:6px 9px;color:#fff}
+.zp-ask b{color:#FFD740}
+.zp-ask .big{font-family:"Kaiti SC","STKaiti","KaiTi",serif;font-size:22px;font-weight:900;color:#FFF59D;padding:0 2px}
+.zp-slots{display:flex;gap:4px;justify-content:center;margin-top:5px}
+.zp-slots i{width:9px;height:9px;border-radius:99px;background:rgba(255,255,255,.22);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.zp-slots i.on{background:#FFD740;box-shadow:0 0 7px rgba(255,215,64,.8)}
+.zp-clock{width:100%;max-width:322px;height:7px;margin:6px auto 0;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden}
+.zp-clock i{display:block;height:100%;width:100%;border-radius:99px;
+  background:linear-gradient(90deg,#FFCC80,#FF7043);transition:width .12s linear}
+.zp-clock.low i{background:linear-gradient(90deg,#FF5252,#D50000)}
+.zp-wrap{position:relative;width:100%;max-width:322px;margin:6px auto 0;border-radius:16px;overflow:hidden;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.16),0 8px 22px rgba(0,0,0,.3)}
+.zp-cv{display:block;width:100%;height:auto;
+  background:linear-gradient(180deg,#3E2C5A,#5B3B7A 46%,#33254B)}
+.zp-band{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;
+  background:rgba(0,0,0,.66);border-radius:99px;padding:8px 16px;opacity:0;
+  font-size:13px;font-weight:900;color:#fff;white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.zp-band.on{animation:zpBand 1.7s forwards}
+@keyframes zpBand{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}
+  30%,76%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-56%) scale(.96)}}
+.zp-opts{display:flex;gap:6px;justify-content:center;width:100%;max-width:322px;margin:8px auto 0}
+.zp-opt{flex:1 1 0;border:none;border-radius:13px;padding:8px 2px 6px;cursor:pointer;
+  background:linear-gradient(180deg,#FFFDF4,#F3E7CE);box-shadow:inset 0 0 0 2px rgba(120,80,20,.22),0 4px 12px rgba(0,0,0,.24);
+  transition:transform .07s;display:flex;flex-direction:column;align-items:center;gap:1px}
+.zp-opt:active{transform:scale(.93)}
+.zp-opt .z{font-family:"Kaiti SC","STKaiti","KaiTi",serif;font-size:27px;font-weight:900;line-height:1.05;color:#37474F}
+.zp-opt .k{font-size:8.5px;font-weight:800;color:#8D6E63}
+.zp-opt.right{background:linear-gradient(180deg,#B9F6CA,#00C853);box-shadow:inset 0 0 0 2px #fff,0 0 18px rgba(0,200,83,.5)}
+.zp-opt.wrong{background:linear-gradient(180deg,#FF8A80,#B71C1C)}
+.zp-opt.wrong .z,.zp-opt.right .z{color:#fff}
+.zp-opt.dead{opacity:.42;pointer-events:none}
+.zp-opt.hide{visibility:hidden}
+.zp-guns{display:flex;gap:6px;justify-content:center;width:100%;max-width:322px;margin:8px auto 0}
+.zp-gun{flex:1 1 0;border:none;border-radius:13px;padding:7px 2px 6px;cursor:pointer;color:#fff;font-weight:900;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.22),0 4px 12px rgba(0,0,0,.26);transition:transform .07s}
+.zp-gun:active{transform:scale(.93)}
+.zp-gun .e{display:block;font-size:19px;line-height:1.05}
+.zp-gun .n{display:block;font-size:12px;margin-top:1px}
+.zp-gun .k{display:block;font-size:8.5px;opacity:.72;font-weight:800}
+.zp-gun.g0{background:linear-gradient(180deg,#FF8A80,#B71C1C)}
+.zp-gun.g1{background:linear-gradient(180deg,#4DD0E1,#00695C)}
+.zp-gun.g2{background:linear-gradient(180deg,#7986CB,#1565C0)}
+.zp-gun.g3{background:linear-gradient(180deg,#FFAB91,#BF360C)}
+.zp-gun.right{box-shadow:inset 0 0 0 2px #fff,0 0 18px rgba(255,215,64,.7)}
+.zp-gun.wrong{opacity:.45}
+.zp-guns.hide,.zp-opts.hide{display:none}
+.zp-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:100%;max-width:322px;margin:7px auto 0}
+.zp-tool{border:none;border-radius:12px;padding:8px 11px;font-size:11.5px;font-weight:800;color:#fff;cursor:pointer;
+  background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.zp-tool:active{transform:scale(.96);background:rgba(255,255,255,.28)}
+.zp-tool b{color:#FFD740}
+.zp-tool.peek{background:linear-gradient(180deg,#4FC3F7,#01579B)}
+.zp-tool.skip{background:linear-gradient(180deg,#BA68C8,#4A148C)}
+.zp-tool.dead{opacity:.4;pointer-events:none}
+.zp-msg{width:100%;max-width:322px;margin:6px auto 0;text-align:center;font-size:12px;font-weight:700;min-height:34px;
+  line-height:1.45;color:#fff;opacity:.95}
+.zp-msg.pop{animation:zpJudge .4s}
+@keyframes zpJudge{from{transform:scale(.88);opacity:.3}to{transform:scale(1);opacity:1}}
+.zp-tip{width:100%;max-width:322px;margin:5px auto 0;text-align:center;font-size:10.5px;opacity:.8;color:#fff;line-height:1.6}
+.zp-tip b{color:#FFD740}
+.zp-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center;color:#fff}
+.zp-rs span{display:block;font-size:25px;font-weight:bold}
+.zp-rs small{display:block;font-size:11px;opacity:.75;margin-top:2px}
+.zp-book{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;margin-top:8px}
+.zp-book i{font-style:normal;font-size:13px;background:rgba(255,255,255,.14);border-radius:6px;padding:2px 4px}
+.zp-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:99px;background:#FF6D00;color:#fff;
+  font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 6px;
+  box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.zp-badge.on{display:flex}
+@media(max-width:420px){.zp-ask,.zp-msg,.zp-tools,.zp-tip,.zp-wrap,.zp-guns,.zp-opts,.zp-clock{max-width:300px}
+.zp-hud{max-width:336px;gap:4px}}
+
 </style>
 
 </head>
@@ -3615,6 +3692,11 @@ button:active{transform:scale(.95)}
       <div class="icon">🪨</div>
       <div class="info"><h3>笔顺投石机</h3><p id="sgCardTip">拉满弹弓 · 砸对那座塔</p></div>
       <span class="rp-badge" id="sgCardDot">🆕</span>
+    </div>
+    <div class="mode-card" onclick="enterMode('fold')">
+      <div class="icon">✂️</div>
+      <div class="info"><h3>笔顺折纸屋</h3><p id="zpCardTip">半个墨迹猜字 · 再补第一笔</p></div>
+      <span class="zp-badge" id="zpCardDot">🆕</span>
     </div>
     <div class="mode-card" onclick="enterMode('jet')">
       <div class="icon">✈️</div>
@@ -5900,6 +5982,73 @@ button:active{transform:scale(.95)}
     <button class="w-btn blue" onclick="srtLeave()">🏠 回首页</button>
   </div>
 </div>
+<div class="screen" id="screen-fold">
+  <div class="top-bar">
+    <button class="back-btn" onclick="zpLeave()">← 返回</button>
+    <div class="stats"><span id="zpScoreTxt">✂️ 0 分</span><span id="zpLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="zpHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="zp-hud">
+    <span id="zpRankTxt" title="段位">🏅 折纸学徒</span>
+    <span id="zpHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="zpComboTxt" title="连击">🔥 连 0</span>
+    <span id="zpOkTxt" title="本局猜中">📄 0</span>
+    <span id="zpPctTxt" title="命中率">🎯 100%</span>
+    <span id="zpFoldTxt" title="这张怎么折">↕️ 对折</span>
+  </div>
+  <div class="zp-ask" id="zpAsk">✂️ 正在裁纸……<br><small>稍等一下</small></div>
+  <div class="zp-clock"><i id="zpClockFill"></i></div>
+  <div class="zp-wrap">
+    <canvas class="zp-cv" id="zpCanvas" width="336" height="326"></canvas>
+    <div class="zp-band" id="zpBand"></div>
+  </div>
+  <div class="zp-opts" id="zpOpts"></div>
+  <div class="zp-guns hide" id="zpGuns">
+    <button class="zp-gun g0" onclick="zpFire(0)"><span class="e">➡️</span><span class="n">横</span><span class="k">1 / F</span></button>
+    <button class="zp-gun g1" onclick="zpFire(1)"><span class="e">⬇️</span><span class="n">竖</span><span class="k">2 / G</span></button>
+    <button class="zp-gun g2" onclick="zpFire(2)"><span class="e">↙️</span><span class="n">撇</span><span class="k">3 / J</span></button>
+    <button class="zp-gun g3" onclick="zpFire(3)"><span class="e">↘️</span><span class="n">捺</span><span class="k">4 / K</span></button>
+  </div>
+  <div class="zp-tools">
+    <button class="zp-tool peek" id="zpPeekBtn" onclick="zpPeek()">👁 展一角 <b id="zpPeekN">2</b></button>
+    <button class="zp-tool skip" id="zpSkipBtn" onclick="zpSkip()">🔀 换一张 <b id="zpSkipN">1</b></button>
+  </div>
+  <div class="zp-msg" id="zpMsg">📄 纸铺好了，看看这半片墨迹是谁</div>
+  <div class="zp-tip">这张纸<b>对折过</b>，只有半边洇出了墨迹 · 猜猜展开后是<b>哪个字</b>（四个候选都是同一折法）<br>
+    猜中就追问<b>第一笔往哪儿写</b>，答对了纸才「唰」地<b>完全展开</b>，一笔一笔写给你看 · 每 5 张来一张<b>四折</b>（只露一角，奖励 ×2）<br>
+    键盘 <b>1~4</b> 选字 / 选方向 · <b>P</b> 展一角 · <b>X</b> 换一张 · <b>?</b> 玩法</div>
+</div>
+<div class="screen" id="screen-fold-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="zpLeave()">← 回首页</button>
+    <div class="stats"><span id="zpRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="zpRsEmoji">✂️</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="zpRsTitle">纸被风吹跑了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="zpRsSub">下一张纸还在等你展开</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="zp-rs">
+      <div><span style="color:#FFD700" id="zpRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="zpRsOk">0</span><small>认中几个字</small></div>
+      <div><span style="color:#69F0AE" id="zpRsDir">0</span><small>第一笔答对</small></div>
+      <div><span style="color:#FFAB91" id="zpRsLv">1</span><small>冲到第几段</small></div>
+      <div><span style="color:#FFF176" id="zpRsAcc">0%</span><small>命中率</small></div>
+      <div><span style="color:#E1BEE7" id="zpRsStreak">0</span><small>最长连击</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="zpRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="zpRsAll">🏅 折纸学徒</div>
+      <div class="zp-book" id="zpRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="zpRetry()">✂️ 再折一局</button>
+    <button class="w-btn blue" onclick="zpLeave()">🏠 回首页</button>
+  </div>
+</div>
 <div class="screen" id="screen-jet">
   <div class="top-bar">
     <button class="back-btn" onclick="jtLeave()">← 返回</button>
@@ -7369,8 +7518,10 @@ function updateHomeStats(){
   if(typeof sgNudge==='function')sgNudge();
   if(typeof jtNudge==='function')jtNudge();
   if(typeof cdNudge==='function')cdNudge();
+  if(typeof zpNudge==='function')zpNudge();
 }
 function enterMode(mode){
+  if(mode==='fold'){zpStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -35042,6 +35193,769 @@ document.addEventListener('pointerup',function(){jt.drag=false});
 window.addEventListener('resize',function(){
   if(currentMode!=='jet'||!jt.run)return;
   jtDraw();
+});
+
+/* ================= 笔顺折纸屋（纸对折过 · 只洇出半个字 · 猜是谁再补第一笔） ================= */
+const ZP_W=336,ZP_H=326,ZP_HEARTS=3,ZP_HEART_MAX=5,ZP_RICH_EVERY=5;
+const ZP_MISS_MAX=40,ZP_BOOK_MAX=300,ZP_POOL_MIN=8;
+const ZP_G=9,ZP_BAL=0.42,ZP_DMIN=4,ZP_DMINQ=4;
+const ZP_PX=22,ZP_PY=16,ZP_PW=292,ZP_PH=282;   /* 纸面 */
+const ZP_DIRS=[{e:'➡️',nm:'横',c:'#FF6B6B'},{e:'⬇️',nm:'竖',c:'#4ECDC4'},{e:'↙️',nm:'撇',c:'#45B7D1'},{e:'↘️',nm:'捺',c:'#FFA07A'}];
+const ZP_RANKS=[
+  {n:0,e:'✂️',t:'折纸学徒'},{n:8,e:'📄',t:'对折小手'},{n:20,e:'🀄',t:'双折巧手'},
+  {n:38,e:'🪁',t:'纸鸢能手'},{n:60,e:'🎐',t:'风铃纸匠'},{n:88,e:'🏮',t:'灯笼纸师'},
+  {n:122,e:'🦢',t:'白鹤折者'},{n:165,e:'👑',t:'千纸鹤王'},{n:220,e:'🌈',t:'折纸宗师'}
+];
+const ZP_NOTE=[392,440,494,523,587,659,698,784,880,988,1047,1175];
+const zp={
+  run:false,over:false,gen:0,timerId:null,timers:[],t:0,
+  lv:1,score:0,hearts:ZP_HEARTS,combo:0,maxCombo:0,ok:0,bad:0,dirOk:0,dirBad:0,richN:0,
+  phase:'idle',r:null,opts:[],ans:0,rich:false,clock:0,clockMax:12,open:0,wait:0,
+  peek:0,shake:0,fx:[],pops:[],foldN:0,peekN:2,skipN:1,pool:[],idx:{},dust:[]
+};
+function zpCv(){return document.getElementById('zpCanvas')}
+function zpInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function zpAdd(k,n){if(n)localStorage.setItem(k,String(zpInt(k)+n))}
+function zpSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function zpShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function zpPick(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function zpRank(n){let r=ZP_RANKS[0];for(let i=0;i<ZP_RANKS.length;i++)if(n>=ZP_RANKS[i].n)r=ZP_RANKS[i];return r}
+function zpT(fn,ms){const g=zp.gen;const id=setTimeout(function(){if(g!==zp.gen)return;fn()},ms);zp.timers.push(id);return id}
+function zpKillTimers(){zp.timers.forEach(function(t){clearTimeout(t)});zp.timers=[]}
+function zpStopLoop(){if(zp.timerId){zp.timerId=null;clearInterval(_zpIv)}}
+let _zpIv=null;
+function zpStartLoop(){zpStopLoop();_zpIv=setInterval(function(){zpAdvance(0.05);zpDraw()},50);zp.timerId=_zpIv}
+function zpLerp(a,b,t){return a+(b-a)*t}
+function zpClock(){return Math.max(7,14-zp.lv*0.7)}
+function zpClockDir(){return Math.max(4.5,8-zp.lv*0.3)}
+function zpAcc(){return zp.ok+zp.bad?Math.round(zp.ok/(zp.ok+zp.bad)*100):100}
+/* ---- 折痕与「半边墨迹」指纹 ---- */
+function zpBox(ms){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++)for(let j=0;j<ms[i].length;j++){
+    const p=ms[i][j];
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  return {x0:x0,y0:y0,x1:x1,y1:y1};
+}
+function zpInk(ms,ax,c,keepLo){
+  let s=0;
+  for(let i=0;i<ms.length;i++){
+    const m=ms[i];
+    for(let j=1;j<m.length;j++){
+      const a=m[j-1],b=m[j];
+      const va=ax==='v'?a[0]:a[1],vb=ax==='v'?b[0]:b[1];
+      const inA=keepLo?va<=c:va>=c,inB=keepLo?vb<=c:vb>=c;
+      const L=Math.sqrt((b[0]-a[0])*(b[0]-a[0])+(b[1]-a[1])*(b[1]-a[1]));
+      if(inA&&inB)s+=L;
+      else if(inA||inB){
+        const t=Math.abs(c-va)/Math.max(1e-6,Math.abs(vb-va));
+        s+=L*Math.min(1,Math.max(0,t));
+      }
+    }
+  }
+  return s;
+}
+/* 可见半边压在哪些格子上（整字包围盒归一化，位置也参与比较） */
+function zpSig(ms,bx,ax,quad){
+  const W=Math.max(1,bx.x1-bx.x0),H=Math.max(1,bx.y1-bx.y0);
+  const cx=(bx.x0+bx.x1)/2,cy=(bx.y0+bx.y1)/2;
+  const seen={};
+  for(let i=0;i<ms.length;i++){
+    const m=ms[i];
+    for(let j=1;j<m.length;j++){
+      const a=m[j-1],b=m[j];
+      const L=Math.sqrt((b[0]-a[0])*(b[0]-a[0])+(b[1]-a[1])*(b[1]-a[1]));
+      const n=Math.max(1,Math.ceil(L/13));
+      for(let k=0;k<=n;k++){
+        const x=a[0]+(b[0]-a[0])*k/n,y=a[1]+(b[1]-a[1])*k/n;
+        if(ax==='v'){if(x>cx)continue;if(quad&&y<cy)continue}
+        else{if(y<cy)continue;if(quad&&x>cx)continue}
+        const ix=Math.floor((x-bx.x0)/W*ZP_G),iy=Math.floor((y-bx.y0)/H*ZP_G);
+        if(ix<0||ix>=ZP_G||iy<0||iy>=ZP_G)continue;
+        seen[iy*ZP_G+ix]=1;
+      }
+    }
+  }
+  const out=[];for(const k in seen)out.push(+k);
+  return out.sort(function(a,b){return a-b});
+}
+function zpHam(a,b){
+  const A={};let d=0;
+  for(let i=0;i<a.length;i++)A[a[i]]=1;
+  for(let i=0;i<b.length;i++)if(!A[b[i]])d++;
+  const B={};
+  for(let j=0;j<b.length;j++)B[b[j]]=1;
+  for(let i=0;i<a.length;i++)if(!B[a[i]])d++;
+  return d;
+}
+/* 一张可用的字片：笔顺可判 + 折得开 + 半边墨迹够多 */
+function zpMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>12)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){
+    const d=jtDirOf(ms[i]);
+    if(d<0)return null;
+    dirs.push(d);
+  }
+  let kinds=0;for(let i=0;i<ms.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  const bx=zpBox(ms);
+  const W=bx.x1-bx.x0,H=bx.y1-bx.y0;
+  if(W<100||H<100)return null;
+  const cx=(bx.x0+bx.x1)/2,cy=(bx.y0+bx.y1)/2;
+  const vL=zpInk(ms,'v',cx,true),vR=zpInk(ms,'v',cx,false);
+  const hT=zpInk(ms,'h',cy,false),hB=zpInk(ms,'h',cy,true);
+  const bv=Math.min(vL,vR)/Math.max(1,vL,vR),bh=Math.min(hT,hB)/Math.max(1,hT,hB);
+  let ax='v',bal=bv;
+  if(bh>bv){ax='h';bal=bh}
+  if(bal<ZP_BAL)return null;
+  const sig=zpSig(ms,bx,ax,false),sigQ=zpSig(ms,bx,ax,true);
+  if(sig.length<6)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,meds:ms,bx:bx,ax:ax,bal:bal,sig:sig,sigQ:sigQ,qok:sigQ.length>=5};
+}
+function zpCand(){
+  const out=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<ZP_POOL_MIN+40;i++){
+      const c=list[i];if(c&&out.indexOf(c)<0)out.push(c);
+    }
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(zpShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(zpShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(zpShuf(CHARS.slice()));
+  return out;
+}
+function zpTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function zpRec(ch){
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await zpTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians)return null;
+  return zpMake(ch,raw);
+}
+async function zpBuild(){
+  const g=zp.gen;
+  const miss=(localStorage.getItem('hz_fold_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  zpShuf(miss.slice(0,5)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  zpCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  const rs=await Promise.all(want.map(function(c){return zpRec(c)}));
+  if(g!==zp.gen||!zp.run)return false;
+  const got=[];
+  for(let i=0;i<want.length;i++){if(rs[i])got.push(rs[i])}
+  /* 洗掉「墨迹撞车」的字：两张纸的半边看不出差别就别出题 */
+  const bad={};
+  for(let i=0;i<got.length;i++)for(let j=i+1;j<got.length;j++){
+    if(got[i].ax!==got[j].ax)continue;
+    if(zpHam(got[i].sig,got[j].sig)<ZP_DMIN){bad[got[i].ch]=1;bad[got[j].ch]=1}
+  }
+  zp.pool=got.filter(function(r){return !bad[r.ch]});
+  zp.idx={};zp.pool.forEach(function(r){zp.idx[r.ch]=r});
+  return zp.pool.length>=ZP_POOL_MIN;
+}
+function zpWindow(){
+  const lv=zp.lv;
+  if(lv<=1)return [2,5];
+  if(lv<=2)return [3,7];
+  if(lv<=4)return [4,9];
+  return [5,12];
+}
+/* 三个「像但不同」的干扰项 —— 同一折法、指纹够远；池子太小才放宽到别的折法 */
+function zpOptsFor(r,rich){
+  const A=rich?r.sigQ:r.sig;
+  const cand=[];
+  zp.pool.forEach(function(o){
+    if(o.ch===r.ch||o.ax!==r.ax)return;
+    if(rich&&(!o.qok||!r.qok))return;
+    const d=zpHam(A,rich?o.sigQ:o.sig);
+    if(d>=(rich?ZP_DMINQ:ZP_DMIN))cand.push({r:o,d:d});
+  });
+  if(cand.length<3){
+    zp.pool.forEach(function(o){
+      if(o.ch===r.ch||o.ax===r.ax)return;
+      cand.push({r:o,d:99});
+    });
+  }
+  if(cand.length<3)return null;
+  cand.sort(function(a,b){return a.d-b.d});
+  const near=cand.slice(0,Math.min(8,cand.length));
+  const far=cand.slice(Math.max(0,cand.length-8));
+  const bag=zp.lv<=2?far:near;
+  if(bag.length<3)return null;
+  const picks=zpShuf(bag.slice()).slice(0,3);
+  if(picks.length<3)return null;
+  const opts=picks.map(function(p){return p.r});
+  opts.push(r);
+  zpShuf(opts);
+  return {opts:opts,ans:opts.indexOf(r)};
+}
+function zpPickChar(rich){
+  if(!zp.pool.length)return null;
+  const w=zpWindow(),lo=w[0],hi=w[1];
+  const prev=zp.r?zp.r.ch:'';
+  const miss=zpShuf((localStorage.getItem('hz_fold_miss')||'').split(',').filter(Boolean));
+  const inWin=function(list){
+    const a=[];
+    list.forEach(function(c){
+      const r=zp.idx[c];
+      if(!r||r.ch===prev)return;
+      if(r.n>=lo&&r.n<=hi&&a.indexOf(r)<0)a.push(r);
+    });
+    return a;
+  };
+  let list=inWin(miss);
+  if(!list.length)list=inWin(zp.pool.map(function(r){return r.ch}));
+  if(!list.length){
+    /* 窗口里一张都没有：挑笔数最接近的，照样不重复上一张 */
+    let best=null,bd=99;
+    zp.pool.forEach(function(r){
+      if(r.ch===prev)return;
+      const d=r.n<lo?lo-r.n:(r.n>hi?r.n-hi:0);
+      if(d<bd){bd=d;best=r}
+    });
+    list=best?[best]:zp.pool.filter(function(r){return r.ch===prev});
+  }
+  const order=zpShuf(list.slice());
+  for(let i=0;i<order.length;i++){
+    const r=order[i];
+    if(rich&&!r.qok)continue;
+    const o=zpOptsFor(r,!!rich);
+    if(o)return {r:r,o:o};
+  }
+  return null;
+}
+/* ---- 一张新纸 ---- */
+function zpFold(){
+  if(!zp.run||zp.over)return;
+  const nxt=zp.foldN+1;
+  const wantRich=(nxt%ZP_RICH_EVERY===0);
+  let got=wantRich?zpPickChar(true):null;
+  if(!got)got=zpPickChar(false);
+  if(!got){
+    zpSay('📖 纸还没裁好……<small>再等一下</small>','#FFE082');
+    zpT(function(){if(zp.run&&!zp.over)zpFold()},900);
+    return;
+  }
+  zp.foldN=nxt;
+  zp.r=got.r;zp.opts=got.o.opts;zp.ans=got.o.ans;
+  zp.rich=!!(wantRich&&got.r.qok);
+  zp.phase='guess';
+  zp.clock=zp.rich?zpClock()*1.3:zpClock();zp.clockMax=zp.clock;
+  zp.peek=0;zp.open=0;zp.wait=0;
+  if(zp.rich){zp.richN++;zpBand('🀄 四折！只露一只角 · 奖励 ×2')}
+  zpShowOpts(true);zpShowGuns(false);
+  zpRenderOpts();zpAsk();zpHud();
+}
+function zpShowOpts(on){const el=document.getElementById('zpOpts');if(el)el.classList.toggle('hide',!on)}
+function zpShowGuns(on){const el=document.getElementById('zpGuns');if(el)el.classList.toggle('hide',!on)}
+function zpRenderOpts(){
+  const el=document.getElementById('zpOpts');if(!el)return;
+  el.innerHTML=zp.opts.map(function(r,i){
+    return '<button class="zp-opt" id="zpOpt'+i+'" onclick="zpGuess('+i+')"><span class="z">'+r.ch+'</span><span class="k">'+(i+1)+'</span></button>';
+  }).join('');
+}
+function zpAsk(){
+  const r=zp.r;
+  if(!r){zpSet('zpAsk','✂️ 正在裁纸……<br><small>稍等一下</small>');return}
+  const fold=r.ax==='v'?(zp.rich?'🀄 折了两次 · 只露左上角':'↔️ 左右对折 · 露出左半边'):(zp.rich?'🀄 折了两次 · 只露左上角':'↕️ 上下对折 · 露出上半边');
+  if(zp.phase==='guess'){
+    zpSet('zpAsk','📄 '+fold+'，洇出<b>半片墨迹</b> —— 展开后是哪个字？'+
+      '<small style="opacity:.82">这个字共 '+r.n+' 笔</small>');
+  }else if(zp.phase==='dir'){
+    zpSet('zpAsk','✅ 就是『<span class="big">'+r.ch+'</span>』！它的<b>第一笔</b>（共 '+r.n+' 笔）往哪儿写？'+
+      '<div class="zp-slots">'+zpSlots(0)+'</div>');
+  }else if(zp.phase==='open'){
+    zpSet('zpAsk','📖 纸正在展开 —— 按<b>笔顺</b>一笔一笔亮起来');
+  }else if(zp.phase==='reveal'){
+    zpSet('zpAsk','🔍 答案是『<span class="big">'+r.ch+'</span>』');
+  }else{
+    zpSet('zpAsk','📜 下一张纸正在裁……');
+  }
+}
+function zpSlots(k){
+  const r=zp.r,sl=[];
+  if(!r)return '';
+  for(let i=0;i<r.n;i++)sl.push('<i class="'+(i<k?'on':(i===k?'now':''))+'"></i>');
+  return sl.join('');
+}
+/* ---- 猜字 ---- */
+function zpGuess(i){
+  if(!zp.run||zp.over||zp.phase!=='guess')return;
+  if(!(i>=0&&i<zp.opts.length))return;
+  if(i===zp.ans)zpRight(i);else zpWrong(i);
+}
+function zpRight(i){
+  zp.ok++;zp.combo++;
+  if(zp.combo>zp.maxCombo)zp.maxCombo=zp.combo;
+  const gain=Math.round(14+zp.combo*3+zp.lv*2+(zp.rich?14:0));
+  zp.score+=gain;
+  zpAdd('hz_fold_ok',1);
+  const b=document.getElementById('zpOpt'+i);
+  if(b)b.classList.add('right');
+  zpPop('+'+gain,'#FFD740',ZP_PX+ZP_PW/2,ZP_PY+34);
+  zpBurst(ZP_PX+ZP_PW/2,ZP_PY+ZP_PH/2,'#FFD740',10);
+  tone(ZP_NOTE[Math.min(ZP_NOTE.length-1,zp.combo-1)],.1,'triangle',.06);
+  showComboEffect(zp.combo);
+  if(zp.combo%3===0)spawnConfetti();
+  const up=zpLv();
+  zp.phase='dir';zp.clock=zpClockDir();zp.clockMax=zp.clock;
+  zpShowOpts(false);zpShowGuns(true);zpGunsCls();
+  zpSay('🎊 猜中了！『<b>'+zp.r.ch+'</b>』—— 先别展开，<b>第一笔往哪儿写？</b>'+
+    (up?('<br>'+up):''),'#B9F6CA');
+  zpAsk();zpHud();
+}
+function zpWrong(i){
+  zp.bad++;zp.combo=0;zp.hearts--;zp.shake=320;
+  zpMissAdd(zp.r.ch);
+  sndNo();
+  const b=document.getElementById('zpOpt'+i);
+  if(b)b.classList.add('wrong');
+  const ob=document.getElementById('zpOpt'+zp.ans);
+  if(ob)ob.classList.add('right');
+  const r=zp.opts[i];
+  zpSay('❌ 这半片墨迹是『<b>'+zp.r.ch+'</b>』（'+zp.r.n+' 笔），不是『'+r.ch+'』—— 折痕切下来的形状就不一样（还剩 '+Math.max(0,zp.hearts)+' 颗心）','#FF8A80');
+  zpReveal();
+}
+/* ---- 第一笔往哪儿写 ---- */
+function zpFire(l){
+  if(!zp.run||zp.over||zp.phase!=='dir')return;
+  if(!(l>=0&&l<=3))return;
+  const want=zp.r.dirs[0];
+  const g=document.querySelectorAll('#zpGuns .zp-gun');
+  if(l===want){
+    zp.dirOk++;
+    const bonus=Math.round(9+zp.lv*1.5+(zp.rich?9:0));
+    zp.score+=bonus;
+    if(g[l])g[l].classList.add('right');
+    zpBookAdd(zp.r.ch);
+    zpPop('第一笔对 +'+bonus,ZP_DIRS[l].c,ZP_PX+ZP_PW/2,ZP_PY+ZP_PH-30);
+    tone(880,.1,'triangle',.05);
+    if(zp.rich){zpAdd('hz_fold_rich',1)}
+    zpSay('🔥 展开！『<b>'+zp.r.ch+'</b>』第一笔就是 '+ZP_DIRS[l].e+' <b>'+ZP_DIRS[l].nm+
+      '</b> —— +'+bonus+' 分，一笔一笔亮给你看','#B9F6CA');
+  }else{
+    zp.dirBad++;zpMissAdd(zp.r.ch);
+    if(g[l])g[l].classList.add('wrong');
+    const w=ZP_DIRS[want];
+    zpSay('✏️ 差一点 —— 『<b>'+zp.r.ch+'</b>』的第一笔是 '+w.e+' <b>'+w.nm+'，</b>不是 '+ZP_DIRS[l].e+' '+ZP_DIRS[l].nm+
+      '。纸还是展开给你看清这一笔','#FFCC80');
+  }
+  zp.phase='open';zp.open=0;
+  zpShowGuns(false);
+  zpAsk();zpHud();
+}
+function zpGunsCls(){
+  const g=document.querySelectorAll('#zpGuns .zp-gun');
+  for(let i=0;i<g.length;i++)g[i].classList.remove('right','wrong');
+}
+/* ---- 展开 / 下一张 ---- */
+function zpReveal(){
+  if(zp.hearts<=0){zpAsk();zpHud();zpT(function(){zpEnd('heart')},1150);return}
+  zp.phase='reveal';zp.open=0;
+  zpShowOpts(false);zpShowGuns(false);zpGunsCls();
+  zpAsk();zpHud();
+}
+function zpLv(){
+  const nl=1+Math.floor(zp.ok/4);
+  if(nl<=zp.lv)return '';
+  zp.lv=nl;
+  let up='🎖 折到第 <b>'+zp.lv+'</b> 段：字更多、纸折得更狠、时间更短';
+  if(zp.lv%4===0&&zp.hearts<ZP_HEART_MAX){zp.hearts++;up='🎖 折到第 <b>'+zp.lv+'</b> 段，顺手补好一颗心 ❤️'}
+  zpBand('🎖 第 '+zp.lv+' 段');
+  return up;
+}
+/* ---- 超时 ---- */
+function zpTimeout(){
+  if(!zp.r)return;
+  zp.bad++;zp.combo=0;zp.hearts--;zp.shake=320;sndNo();
+  zpMissAdd(zp.r.ch);
+  if(zp.phase==='guess')zpSay('⌛ 纸被风吹跑了！『<b>'+zp.r.ch+'</b>』那半片墨迹没来得及认（还剩 '+Math.max(0,zp.hearts)+' 颗心）','#FF8A80');
+  else zpSay('⌛ 第一笔想太久了 —— 纸自己展开了（还剩 '+Math.max(0,zp.hearts)+' 颗心）','#FF8A80');
+  if(zp.hearts<=0){
+    zp.phase='reveal';zp.open=0;
+    zpShowOpts(false);zpShowGuns(false);
+    zpAsk();zpHud();
+    zpT(function(){zpEnd('time')},1150);
+    return;
+  }
+  if(zp.phase==='guess'){zpReveal();return}
+  zp.phase='open';zp.open=0;
+  zpShowOpts(false);zpShowGuns(false);
+  zpAsk();zpHud();
+}
+/* ---- 道具 ---- */
+function zpPeek(){
+  if(!zp.run||zp.over||zp.phase!=='guess')return;
+  if(zp.peekN<=0){zpSay('👁 那一角已经展完啦，剩下的靠自己想','#FFE082');return}
+  zp.peekN--;zp.score=Math.max(0,zp.score-6);zp.peek=1;
+  zpSet('zpPeekN',String(zp.peekN));
+  const b=document.getElementById('zpPeekBtn');if(b&&zp.peekN<=0)b.classList.add('dead');
+  zpSay('👁 偷偷把折页掀开一小条（扣 6 分）—— 多看这一条，就要自己想清楚','#80DEEA');
+  tone(760,.07,'sine',.04);zpHud();zpDraw();
+}
+function zpSkip(){
+  if(!zp.run||zp.over||(zp.phase!=='guess'&&zp.phase!=='dir'))return;
+  if(zp.skipN<=0){zpSay('🔀 只有这一张备用纸了','#FFE082');return}
+  zp.skipN--;zp.score=Math.max(0,zp.score-8);
+  zpSet('zpSkipN',String(zp.skipN));
+  const b=document.getElementById('zpSkipBtn');if(b&&zp.skipN<=0)b.classList.add('dead');
+  zpFold();
+  zpSay('🔀 换了一张纸（扣 8 分）—— 这张先看清折痕切在哪','#EA80FC');
+  zpHud();
+}
+/* ---- 文案 / 特效 ---- */
+function zpSay(msg,color){
+  const el=document.getElementById('zpMsg');if(!el)return;
+  el.innerHTML=msg;if(color)el.style.color=color;
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function zpBand(msg){
+  const el=document.getElementById('zpBand');if(!el)return;
+  el.innerHTML=msg;el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+}
+function zpPop(txt,c,x,y){zp.pops.push({txt:txt,c:c,x:x,y:y,life:1})}
+function zpBurst(x,y,c,n){
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,s=40+Math.random()*150;
+    zp.fx.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-40,r:1.6+Math.random()*2.8,c:c,life:0.55+Math.random()*0.5});
+  }
+}
+/* ---- 图鉴 / 错字手册 ---- */
+function zpGood(ch){return !!ch&&ch.length===1&&/[一-鿿]/.test(ch)}
+function zpBookAdd(ch){
+  if(!zpGood(ch))return;
+  const k='hz_fold_book';
+  const arr=(localStorage.getItem(k)||'').split(',').filter(Boolean);
+  if(arr.indexOf(ch)<0){arr.push(ch);if(arr.length>ZP_BOOK_MAX)arr.shift();localStorage.setItem(k,arr.join(','))}
+}
+function zpMissAdd(ch){
+  if(!zpGood(ch))return;
+  const k='hz_fold_miss';
+  const arr=(localStorage.getItem(k)||'').split(',').filter(Boolean);
+  if(arr.indexOf(ch)<0){arr.unshift(ch);if(arr.length>ZP_MISS_MAX)arr.length=ZP_MISS_MAX;localStorage.setItem(k,arr.join(','))}
+}
+/* ---- 主循环（纯步进，方便逐帧测） ---- */
+function zpAdvance(dt){
+  if(!zp.run||zp.over)return false;
+  zp.t+=dt;
+  if(zp.shake>0)zp.shake=Math.max(0,zp.shake-dt*1000);
+  if(zp.clock>0&&(zp.phase==='guess'||zp.phase==='dir')){
+    zp.clock-=dt;
+    if(zp.clock<=0){zp.clock=0;zpTimeout();return true}
+  }
+  if(zp.phase==='open'||zp.phase==='reveal'){
+    const dur=zp.r?Math.max(0.8,0.4+zp.r.n*0.1):0.9;
+    zp.open+=dt/dur;
+    if(zp.open>=1){
+      zp.open=1;
+      if(zp.phase==='open'||zp.phase==='reveal'){zp.phase='done';zp.wait=1.1;zpAsk()}
+    }
+  }else if(zp.phase==='done'){
+    zp.wait-=dt;
+    if(zp.wait<=0&&!zp.over)zpFold();
+  }
+  for(let i=zp.fx.length-1;i>=0;i--){
+    const p=zp.fx[i];p.life-=dt;
+    if(p.life<=0){zp.fx.splice(i,1);continue}
+    p.vy+=340*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;
+  }
+  for(let i=zp.pops.length-1;i>=0;i--){
+    const p=zp.pops[i];p.life-=dt*0.85;p.y-=24*dt;
+    if(p.life<=0)zp.pops.splice(i,1);
+  }
+  return true;
+}
+/* ---- 渲染 ---- */
+/* 纸面轮廓（圆角矩形）：墨迹/折痕/阴影一律裁在这张纸里，不许溢出 */
+function zpPaperPath(c){
+  const R=10,x=ZP_PX,y=ZP_PY,w=ZP_PW,h=ZP_PH;
+  c.beginPath();
+  c.moveTo(x+R,y);c.lineTo(x+w-R,y);c.quadraticCurveTo(x+w,y,x+w,y+R);
+  c.lineTo(x+w,y+h-R);c.quadraticCurveTo(x+w,y+h,x+w-R,y+h);
+  c.lineTo(x+R,y+h);c.quadraticCurveTo(x,y+h,x,y+h-R);
+  c.lineTo(x,y+R);c.quadraticCurveTo(x,y,x+R,y);
+  c.closePath();
+}
+function zpPaper(c){
+  const g=c.createLinearGradient(0,0,0,ZP_H);
+  g.addColorStop(0,'#4A3168');g.addColorStop(1,'#2E2145');
+  c.fillStyle=g;c.fillRect(0,0,ZP_W,ZP_H);
+  if(!zp.dust.length)for(let i=0;i<16;i++)zp.dust.push({x:Math.random()*ZP_W,y:Math.random()*ZP_H,r:Math.random()*1.4+.5,ph:Math.random()*6});
+  zp.dust.forEach(function(s){
+    c.globalAlpha=.16+.2*Math.abs(Math.sin(zp.t*1.2+s.ph));
+    c.fillStyle='#FFE0B2';c.beginPath();c.arc(s.x,s.y,s.r,0,6.3);c.fill();
+  });
+  c.globalAlpha=1;
+  c.save();
+  c.shadowColor='rgba(0,0,0,.42)';c.shadowBlur=16;c.shadowOffsetY=7;
+  c.fillStyle='#FBF3E2';
+  const R=10,x=ZP_PX,y=ZP_PY,w=ZP_PW,h=ZP_PH;
+  c.beginPath();
+  c.moveTo(x+R,y);c.lineTo(x+w-R,y);c.quadraticCurveTo(x+w,y,x+w,y+R);
+  c.lineTo(x+w,y+h-R);c.quadraticCurveTo(x+w,y+h,x+w-R,y+h);
+  c.lineTo(x+R,y+h);c.quadraticCurveTo(x,y+h,x,y+h-R);
+  c.lineTo(x,y+R);c.quadraticCurveTo(x,y,x+R,y);
+  c.closePath();c.fill();
+  c.restore();
+  c.strokeStyle='rgba(160,120,60,.07)';c.lineWidth=1;
+  for(let i=1;i<9;i++){c.beginPath();c.moveTo(x+4,y+i*h/9);c.lineTo(x+w-4,y+i*h/9);c.stroke()}
+}
+function zpMap(){
+  const r=zp.r;if(!r)return null;
+  const bx=r.bx,W=bx.x1-bx.x0,H=bx.y1-bx.y0;
+  const pad=34;
+  const s=Math.min((ZP_PW-pad*2)/W,(ZP_PH-pad*2)/H);
+  return {s:s,ox:ZP_PX+ZP_PW/2,oy:ZP_PY+ZP_PH/2,gx:bx.x0+W/2,gy:bx.y0+H/2};
+}
+function zpClipAmt(){
+  if(zp.phase==='open'||zp.phase==='reveal'||zp.phase==='done')return zp.open;
+  return zp.peek?0.22:0;
+}
+/* 当前该露出纸面的哪一块：折痕正好落在纸面正中间，展开就是把这块推到整张纸 */
+function zpRect(){
+  const X0=ZP_PX-6,X1=ZP_PX+ZP_PW+6,Y0=ZP_PY-6,Y1=ZP_PY+ZP_PH+6;
+  const fx=X0+(X1-X0)/2,fy=Y0+(Y1-Y0)/2;
+  const amt=zpClipAmt();
+  const qW=fx-X0,qH=fy-Y0,fW=X1-X0,fH=Y1-Y0;
+  if(!zp.rich){
+    if(zp.r.ax==='v')return {x:X0,y:Y0,w:zpLerp(qW,fW,amt),h:fH};
+    return {x:X0,y:Y0,w:fW,h:zpLerp(qH,fH,amt)};
+  }
+  if(amt<=0.5){
+    const k=amt/0.5;
+    if(zp.r.ax==='v')return {x:X0,y:Y0,w:qW,h:zpLerp(qH,fH,k)};
+    return {x:X0,y:Y0,w:zpLerp(qW,fW,k),h:qH};
+  }
+  const k=(amt-0.5)/0.5;
+  if(zp.r.ax==='v')return {x:X0,y:Y0,w:zpLerp(qW,fW,k),h:fH};
+  return {x:X0,y:Y0,w:fW,h:zpLerp(qH,fH,k)};
+}
+function zpPath(c,m,mp){
+  c.beginPath();
+  for(let i=0;i<m.length;i++){
+    const x=mp.ox+(m[i][0]-mp.gx)*mp.s,y=mp.oy-(m[i][1]-mp.gy)*mp.s;
+    if(i)c.lineTo(x,y);else c.moveTo(x,y);
+  }
+  c.stroke();
+}
+function zpDraw(){
+  const cv=zpCv();if(!cv)return;
+  const c=cv.getContext('2d');if(!c)return;
+  c.setTransform(1,0,0,1,0,0);
+  c.clearRect(0,0,ZP_W,ZP_H);
+  c.save();
+  if(zp.shake>0)c.translate((Math.random()*6-3),(Math.random()*4-2));
+  zpPaper(c);
+  const r=zp.r,mp=zpMap();
+  if(r&&mp){
+    c.save();
+    /* 一切纸上的东西都裁在圆角纸面里 */
+    zpPaperPath(c);c.clip();
+    c.lineCap='round';c.lineJoin='round';
+    const lw=Math.max(7,Math.min(mp.s*40,34));
+    const rc=zpRect();
+    c.save();
+    c.beginPath();c.rect(rc.x,rc.y,rc.w,rc.h);c.clip();
+    /* 压痕：整字淡淡一层 */
+    c.strokeStyle='rgba(120,100,80,.12)';c.lineWidth=lw;
+    for(let i=0;i<r.meds.length;i++)zpPath(c,r.meds[i],mp);
+    /* 墨迹：猜字/问方向时整片是黑的，纸展开时按笔顺一笔一笔亮 */
+    const lit=(zp.phase==='guess'||zp.phase==='dir');
+    const shown=lit?r.n:zp.open*r.n;
+    for(let i=0;i<r.meds.length;i++){
+      if(i>=shown)break;
+      c.lineWidth=lw;
+      const m=r.meds[i];
+      if(i+1<=shown){
+        c.strokeStyle=(!lit&&zp.open<0.999&&i+1>shown-1)?'#FFA000':'#3B3B46';
+        zpPath(c,m,mp);
+        continue;
+      }
+      const cut=Math.max(2,Math.ceil((shown-i)*m.length));
+      c.strokeStyle='#FF7043';
+      zpPath(c,m.slice(0,cut),mp);
+      const p=m[Math.min(m.length-1,cut-1)];
+      c.fillStyle='#FFD740';
+      c.beginPath();c.arc(mp.ox+(p[0]-mp.gx)*mp.s,mp.oy-(p[1]-mp.gy)*mp.s,lw*0.55,0,6.3);c.fill();
+    }
+    c.restore();
+    /* 折痕 = 露出块的右缘/下缘；还折着的那一面压暗，再翻一个小折角 */
+    const amt=zpClipAmt();
+    const X0=ZP_PX-6,X1=ZP_PX+ZP_PW+6,Y0=ZP_PY-6,Y1=ZP_PY+ZP_PH+6;
+    const edgeX=(r.ax==='v'||zp.rich),edgeY=(r.ax==='h'||zp.rich);
+    if(amt<0.999){
+      c.setLineDash([6,6]);c.lineWidth=1.7;c.strokeStyle='rgba(150,110,50,.66)';
+      if(edgeX&&rc.x+rc.w<X1-1){c.beginPath();c.moveTo(rc.x+rc.w,rc.y);c.lineTo(rc.x+rc.w,rc.y+rc.h);c.stroke()}
+      if(edgeY&&rc.y+rc.h<Y1-1){c.beginPath();c.moveTo(rc.x,rc.y+rc.h);c.lineTo(rc.x+rc.w,rc.y+rc.h);c.stroke()}
+      c.setLineDash([]);
+      c.fillStyle='rgba(90,66,40,'+(0.2*(1-amt)).toFixed(3)+')';
+      if(edgeX)c.fillRect(rc.x+rc.w,rc.y,Math.max(0,X1-rc.x-rc.w),rc.h);
+      if(edgeY)c.fillRect(rc.x,rc.y+rc.h,rc.w,Math.max(0,Y1-rc.y-rc.h));
+      /* 折角：把这块的右下角往纸面里翻起来一小片 */
+      const dgx=rc.x+rc.w,dgy=rc.y+rc.h;
+      if(dgx>X0+18&&dgy>Y0+18){
+        c.fillStyle='rgba(255,255,255,.5)';
+        c.beginPath();
+        c.moveTo(dgx,dgy);c.lineTo(dgx-16,dgy);c.lineTo(dgx,dgy-16);
+        c.closePath();c.fill();
+        c.strokeStyle='rgba(150,110,50,.4)';c.lineWidth=1;
+        c.beginPath();c.moveTo(dgx-16,dgy);c.lineTo(dgx,dgy-16);c.stroke();
+      }
+    }
+    /* 猜字阶段：纸上写一句提示 */
+    if(zp.phase==='guess'){
+      c.fillStyle='rgba(120,90,50,.5)';c.font='700 11px system-ui,sans-serif';c.textAlign='left';
+      c.fillText((r.ax==='v'?'左右对折':'上下对折')+(zp.rich?' · 四折':''),ZP_PX+6,ZP_PY+ZP_PH-8);
+    }
+    c.restore();
+  }
+  zp.fx.forEach(function(p){
+    c.globalAlpha=Math.max(0,Math.min(1,p.life*1.6));
+    c.fillStyle=p.c;c.beginPath();c.arc(p.x,p.y,p.r,0,6.3);c.fill();
+  });
+  c.globalAlpha=1;
+  zp.pops.forEach(function(p){
+    c.globalAlpha=Math.max(0,Math.min(1,p.life*1.4));
+    c.fillStyle=p.c;c.font='900 15px system-ui,sans-serif';c.textAlign='center';
+    c.fillText(p.txt,p.x,p.y);
+  });
+  c.globalAlpha=1;c.restore();
+  const fill=document.getElementById('zpClockFill');
+  if(fill){
+    const on=(zp.phase==='guess'||zp.phase==='dir');
+    fill.style.width=on?Math.max(0,Math.min(100,zp.clock/Math.max(0.1,zp.clockMax)*100))+'%':'100%';
+    if(fill.parentNode)fill.parentNode.classList.toggle('low',on&&zp.clock<=3.2);
+  }
+}
+/* ---- HUD ---- */
+function zpHud(){
+  zpSet('zpScoreTxt','✂️ '+Math.round(zp.score)+' 分');
+  zpSet('zpLvTxt',zp.rich?('🀄 四折 · 第 '+zp.lv+' 段'):('第 '+zp.lv+' 段'));
+  const R=zpRank(zpInt('hz_fold_ok')+zp.ok);
+  zpSet('zpRankTxt','🏅 '+R.t);
+  let h='';for(let i=0;i<Math.max(0,zp.hearts);i++)h+='❤️';
+  zpSet('zpHeartTxt',h||'💔');
+  zpSet('zpComboTxt','🔥 连 '+zp.combo);
+  zpSet('zpOkTxt','📄 '+zp.ok);
+  zpSet('zpPctTxt','🎯 '+zpAcc()+'%');
+  zpSet('zpFoldTxt',zp.r?(zp.r.ax==='v'?'↔️ 左右折':'↕️ 上下折'):'↕️ 对折');
+}
+/* ---- 生命周期 ---- */
+function zpStart(){zpBoot().catch(function(){})}
+async function zpBoot(){
+  currentMode='fold';zp.gen++;zpKillTimers();zpStopLoop();
+  zp.run=true;zp.over=false;
+  zp.lv=1;zp.score=0;zp.hearts=ZP_HEARTS;zp.combo=0;zp.maxCombo=0;
+  zp.ok=0;zp.bad=0;zp.dirOk=0;zp.dirBad=0;zp.richN=0;
+  zp.phase='idle';zp.r=null;zp.opts=[];zp.ans=0;zp.rich=false;zp.foldN=0;
+  zp.clock=0;zp.clockMax=12;zp.open=0;zp.peek=0;zp.wait=0;zp.shake=0;
+  zp.fx=[];zp.pops=[];zp.peekN=2;zp.skipN=1;
+  showScreen('fold');
+  zpSet('zpAsk','✂️ 正在裁纸……<br><small>字还没下下来就等一下</small>');
+  zpSet('zpMsg','📄 桌面已铺好，纸正在裁');
+  zpSet('zpPeekN','2');zpSet('zpSkipN','1');
+  ['zpPeekBtn','zpSkipBtn'].forEach(function(id){const b=document.getElementById(id);if(b)b.classList.remove('dead')});
+  const el=document.getElementById('zpOpts');
+  if(el){el.innerHTML='';el.classList.remove('hide')}
+  zpShowGuns(false);
+  zpHud();zpDraw();
+  const g=zp.gen;
+  let ready=false;
+  for(let a=0;a<8&&!ready;a++){
+    ready=await zpBuild();
+    if(!zp.run||zp.over||g!==zp.gen||currentMode!=='fold')return;
+    if(!ready)await new Promise(function(r){setTimeout(r,700)});
+  }
+  if(!ready){
+    zpSay('📖 纸还没裁好……<small>等一秒再折</small>','#FFE082');
+    zpT(function(){if(zp.run&&!zp.over)zpStart()},1200);
+    return;
+  }
+  zpAdd('hz_fold_runs',1);
+  zpFold();
+  zpSay('📄 这张纸<b>对折过</b>，只有半边洇出墨迹 —— 认一认它是哪个字','#B9F6CA');
+  zpHud();zpStartLoop();
+}
+function zpEnd(why){
+  if(zp.over)return;
+  zp.over=true;zp.run=false;zp.phase='over';
+  zpStopLoop();zpKillTimers();
+  const s=Math.round(zp.score);
+  if(s>zpInt('hz_fold_best'))localStorage.setItem('hz_fold_best',String(s));
+  if(zp.lv>zpInt('hz_fold_lv'))localStorage.setItem('hz_fold_lv',String(zp.lv));
+  if(zp.maxCombo>zpInt('hz_fold_streak'))localStorage.setItem('hz_fold_streak',String(zp.maxCombo));
+  zpAdd('hz_fold_dir',zp.dirOk);
+  const acc=zpAcc();
+  const stars=Math.max(2,Math.min(26,2+Math.floor(s/95)+(zp.lv-1)*3+Math.floor(zp.ok/2)));
+  addStars(stars);
+  const R=zpRank(zpInt('hz_fold_ok'));
+  const book=(localStorage.getItem('hz_fold_book')||'').split(',').filter(Boolean);
+  zpSet('zpRsStars','⭐ +'+stars);
+  zpSet('zpRsEmoji',zp.richN>1?'🀄':(zp.ok>6?'✂️':'📄'));
+  zpSet('zpRsTitle',why==='heart'?'💥 三颗心都用完了':(why==='time'?'⌛ 纸被风全吹跑了':'这一叠纸折完了'));
+  zpSet('zpRsSub','折到第 <b>'+zp.lv+'</b> 段、认中 '+zp.ok+' 个字、第一笔答对 '+zp.dirOk+
+    ' 次、四折 '+zp.richN+' 张、命中率 '+acc+'%、最长连击 '+zp.maxCombo+'。'+
+    (acc>=80?'半边墨迹一照一个准，笔顺也记得牢！':(acc>=50?'有几张纸看糊了，注意折痕切在哪。':'多折几张就认出结构了 —— 再来一局。')));
+  zpSet('zpRsScore',String(s));
+  zpSet('zpRsOk',String(zp.ok));
+  zpSet('zpRsDir',String(zp.dirOk));
+  zpSet('zpRsLv',String(zp.lv));
+  zpSet('zpRsAcc',acc+'%');
+  zpSet('zpRsStreak',String(zp.maxCombo));
+  zpSet('zpRsBest',zpInt('hz_fold_best')+' 分');
+  zpSet('zpRsAll','🏅 '+R.e+' '+R.t+'（累计认中 '+zpInt('hz_fold_ok')+' 个字）'+
+    '\n折到过第 '+zpInt('hz_fold_lv')+' 段 · 最长连击 '+zpInt('hz_fold_streak')+' · 四折过关 '+zpInt('hz_fold_rich')+' 张'+
+    '\n第一笔答对 '+zpInt('hz_fold_dir')+' 次 · 上过 '+zpInt('hz_fold_runs')+' 次桌'+
+    '\n📚 展开过的字已收录 '+book.length+' 个');
+  const bk=document.getElementById('zpRsBook');
+  if(bk)bk.innerHTML=book.slice(-24).map(function(ch){return '<i>'+ch+'</i>'}).join('');
+  showScreen('fold-result');
+}
+function zpRetry(){zpStart()}
+function zpLeave(){
+  zpStopLoop();zpKillTimers();
+  if(zp.run&&!zp.over){zp.over=true;zp.run=false}
+  goHome();
+}
+function zpHelp(){
+  zpSay('✂️ 每张纸<b>对折过</b>，只有半边洇出墨迹（左右折露左半，上下折露上半，<b>四折</b>只露一只角）。'+
+    '看这半片墨迹像哪个字，从下面四个候选里点 —— 四个都是<b>同一折法</b>，靠结构和笔画数辨。'+
+    '猜对立刻追问「这个字的<b>第一笔</b>往哪儿写」（横 ➡️ / 竖 ⬇️ / 撇 ↙️ / 捺 ↘️），'+
+    '答对纸才<b>完全展开</b>、按笔顺一笔一笔亮给你看。猜错扣一颗心，纸还是会展开让你认。'+
+    '<b>👁 展一角</b>掀开一小条（扣 6 分），<b>🔀 换一张</b>重发（扣 8 分）。','#80DEEA');
+}
+function zpNudge(){
+  const dot=document.getElementById('zpCardDot');
+  const tip=document.getElementById('zpCardTip');
+  const ok=zpInt('hz_fold_ok'),lv=zpInt('hz_fold_lv'),runs=zpInt('hz_fold_runs');
+  const R=zpRank(ok);
+  if(tip)tip.textContent=runs?('🏅 '+R.t+' · 折到过第 '+lv+' 段'):'半个墨迹猜字 · 再补第一笔';
+  if(dot){dot.classList.toggle('on',!runs);dot.textContent=(!runs?'🆕':'')}
+}
+/* ---- 键盘 ---- */
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='fold'||!zp.run||zp.over)return;
+  const k=e.key;
+  if(k==='p'||k==='P'){e.preventDefault();zpPeek();return}
+  if(k==='x'||k==='X'){e.preventDefault();zpSkip();return}
+  if(k==='?'){e.preventDefault();zpHelp();return}
+  if(zp.phase==='guess'){
+    if(k>='1'&&k<='4'){e.preventDefault();zpGuess(parseInt(k,10)-1)}
+    return;
+  }
+  if(zp.phase==='dir'){
+    if(k>='1'&&k<='4'){e.preventDefault();zpFire(parseInt(k,10)-1);return}
+    const map={f:0,g:1,j:2,k:3};
+    const l=map[k.toLowerCase()];
+    if(l!==undefined){e.preventDefault();zpFire(l)}
+  }
+});
+window.addEventListener('resize',function(){
+  if(currentMode!=='fold'||!zp.run)return;
+  zpDraw();
 });
 
 window.addEventListener('DOMContentLoaded',boot);
