@@ -3476,6 +3476,62 @@ button:active{transform:scale(.95)}
 .lab-gtitle small{font-size:11px;opacity:.72;font-weight:normal}
 .lab-gtitle i{flex:1;height:1px;background:rgba(255,255,255,.26)}
 @media(max-width:420px){.lab-head h2{font-size:22px}.lab-gtitle{font-size:14px;margin:10px 0 -10px}.lab-count{padding:3px 9px}}
+/* ================= 笔顺吃吃棋（答案写在妖兵身上 · 走到旁边一口吃掉 · 战鼓一响全体逼近） ================= */
+.cs-hud{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;width:100%;margin-bottom:8px}
+.cs-hud span{background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.22);border-radius:13px;padding:3px 10px;color:#fff;font-size:12px;white-space:nowrap}
+.cs-ask{width:100%;background:rgba(255,255,255,.14);border-radius:14px;padding:9px 12px;color:#fff;font-size:15px;text-align:center;line-height:1.45;margin-bottom:6px}
+.cs-ask small{font-size:11px;opacity:.72}
+.cs-drum{width:100%;height:9px;background:rgba(0,0,0,.26);border-radius:6px;overflow:hidden;margin-bottom:8px;position:relative}
+.cs-drum i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#FFD54F,#FF7043);transition:width .1s linear}
+.cs-drum.low i{background:linear-gradient(90deg,#FF5252,#D500F9)}
+.cs-drum b{position:absolute;right:6px;top:-1px;font-size:9px;color:#fff;opacity:.85;font-weight:normal}
+.cs-wrap{width:100%;display:flex;gap:10px;align-items:flex-start;justify-content:center;margin-bottom:8px}
+.cs-side{width:96px;flex-shrink:0;text-align:center;color:#fff}
+.cs-side .cs-ch{width:96px;height:96px;background:rgba(255,255,255,.9);border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.cs-svg{width:88px;height:88px;transform:scaleY(-1)}
+.cs-side .cs-left{font-size:11px;opacity:.86;margin-top:4px;line-height:1.3}
+.cs-side .cs-fang{font-size:11px;opacity:.7;margin-top:2px}
+.cs-board{display:grid;gap:2px;flex-shrink:0}
+.cs-c{width:52px;height:52px;border-radius:11px;background:rgba(255,255,255,.09);border:2px solid rgba(255,255,255,.13);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;padding:0;font-family:inherit}
+.cs-c.alt{background:rgba(255,255,255,.14)}
+.cs-c.me{background:radial-gradient(circle at 50% 38%,#FFF3B0,#FFB300);border-color:#FFD740;box-shadow:0 0 12px rgba(255,215,64,.6)}
+.cs-c.me s{font-size:26px;color:#5D3A00;font-weight:bold;text-shadow:none}
+.cs-c.foe{background:radial-gradient(circle at 50% 35%,#5C6BC0,#283593);border-color:#7986CB}
+.cs-c.foe s{font-size:19px;color:#fff;font-weight:bold}
+.cs-c.foe.d0 s{color:#FFB3B3}
+.cs-c.foe.d1 s{color:#B2F5EA}
+.cs-c.foe.d2 s{color:#AEE1FF}
+.cs-c.foe.d3 s{color:#FFD0B0}
+.cs-c.foe.num s{color:#FFF59D}
+.cs-c.adj{border-color:#FFD740;border-style:dashed}
+.cs-c.threat{border-color:#FF5252;background:radial-gradient(circle at 50% 35%,#EF5350,#7f1d1d);animation:csThreat .5s infinite alternate}
+.cs-c.threat::after{content:'⚠️';position:absolute;top:-7px;right:-4px;font-size:12px}
+@keyframes csThreat{from{box-shadow:0 0 3px rgba(255,82,82,.5)}to{box-shadow:0 0 15px rgba(255,82,82,.95)}}
+.cs-c.path{border-color:#69F0AE;border-width:2px;background:rgba(105,240,174,.2)}
+.cs-c.path::before{content:'';position:absolute;width:7px;height:7px;border-radius:50%;background:#69F0AE;opacity:.85}
+.cs-c.hit{animation:csHit .4s}
+@keyframes csHit{0%{transform:scale(1)}35%{transform:scale(1.28)}100%{transform:scale(1)}}
+.cs-c.bite{animation:csBite .4s}
+@keyframes csBite{0%,100%{transform:translate(0,0)}25%{transform:translate(-4px,2px)}75%{transform:translate(4px,-2px)}}
+.cs-c.dead{animation:csDead .34s forwards}
+@keyframes csDead{to{transform:scale(.1) rotate(28deg);opacity:0}}
+.cs-board.cs-shake{animation:csShake .4s}
+@keyframes csShake{0%,100%{transform:translate(0,0)}20%{transform:translate(-6px,3px)}40%{transform:translate(6px,-3px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(4px,2px)}}
+.cs-tools{display:flex;gap:8px;justify-content:center;width:100%;margin-bottom:8px}
+.cs-tool{background:rgba(255,255,255,.17);border:2px solid rgba(255,255,255,.3);color:#fff;border-radius:13px;padding:6px 13px;font-size:13px;cursor:pointer;font-family:inherit}
+.cs-tool b{color:#FFD740}
+.cs-tool:disabled{opacity:.4;cursor:default}
+.cs-msg{width:100%;text-align:center;color:#B9F6CA;font-size:14px;min-height:20px;margin-bottom:6px;line-height:1.4}
+.cs-tip{width:100%;background:rgba(0,0,0,.2);border-radius:12px;padding:9px 12px;color:#fff;font-size:11px;line-height:1.65;opacity:.88;text-align:center}
+.cs-tip b{color:#FFD740}
+.cs-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.cs-badge.on{display:flex}
+.cs-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;color:#fff}
+.cs-rs span{font-size:22px;font-weight:bold;display:block}
+.cs-rs small{font-size:11px;opacity:.72}
+.cs-book{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:9px}
+.cs-book i{background:rgba(255,255,255,.15);border-radius:6px;padding:2px 6px;font-style:normal;font-size:14px;color:#fff}
+@media(max-width:420px){.cs-c{width:44px;height:44px}.cs-wrap{gap:6px}.cs-side{width:82px}.cs-side .cs-ch{width:82px;height:82px}.cs-svg{width:74px;height:74px}}
 </style>
 
 </head>
@@ -3532,8 +3588,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 57 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">57</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 58 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">58</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -3544,8 +3600,8 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>57 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>15</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>17</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>6</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>6</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>58 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>15</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>17</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>6</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>7</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
@@ -3792,6 +3848,11 @@ button:active{transform:scale(.95)}
     <div class="lab-group" id="labG5">
       <h4 class="lab-gtitle">⚔️ 对战与远征 <small>打魔王、和人斗</small><i></i></h4>
       <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('chess')">
+      <div class="icon">♟️</div>
+      <div class="info"><h3>笔顺吃吃棋</h3><p id="csCardTip">答案写成妖兵 · 走近一口吃掉</p></div>
+      <span class="cs-badge" id="csCardDot">🆕</span>
+    </div>
     <div class="mode-card" onclick="enterMode('boss')">
       <div class="icon">👹</div>
       <div class="info"><h3>笔顺大魔王</h3><p>答对蓄力，放大招打倒五位魔王！</p></div>
@@ -3823,7 +3884,72 @@ button:active{transform:scale(.95)}
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
 </div>
-<div class="screen" id="screen-quiz">
+<div class="screen" id="screen-chess">
+  <div class="top-bar">
+    <button class="back-btn" onclick="csLeave()">← 返回</button>
+    <div class="stats"><span id="csScoreTxt">♟️ 0 分</span><span id="csLvTxt">第 1 阵</span></div>
+    <button class="icon-btn" onclick="csHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="cs-hud">
+    <span id="csRankTxt" title="段位">🏅 吃子新手</span>
+    <span id="csHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="csComboTxt" title="连击">🔥 连 0</span>
+    <span id="csOkTxt" title="本局吃对">⚔️ 0</span>
+    <span id="csBreakTxt" title="破阵">🚩 0 阵</span>
+    <span id="csPctTxt" title="命中率">🎯 100%</span>
+  </div>
+  <div class="cs-ask" id="csAsk">♟️ 正在布阵……<br><small>稍等一下</small></div>
+  <div class="cs-drum" id="csDrumWrap"><i id="csDrumFill"></i><b id="csDrumTxt">🥁</b></div>
+  <div class="cs-wrap">
+    <div class="cs-side">
+      <div class="cs-ch" id="csChar"></div>
+      <div class="cs-left" id="csLeftTxt">还剩 ? 笔</div>
+      <div class="cs-fang" id="csFangTxt">🏯 小兵阵</div>
+    </div>
+    <div class="cs-board" id="csBoard"></div>
+  </div>
+  <div class="cs-tools">
+    <button class="cs-tool freeze" id="csFreezeBtn" onclick="csFreeze()">🥁 定身符 <b id="csFreezeN">2</b></button>
+    <button class="cs-tool compass" id="csCompassBtn" onclick="csCompass()">🧭 引路 <b id="csCompassN">1</b></button>
+    <button class="cs-tool end" onclick="csEnd('quit')">🏳️ 收工结算</button>
+  </div>
+  <div class="cs-msg" id="csMsg">点一下<b>贴着自己</b>的妖兵就能吃掉它</div>
+  <div class="cs-tip">答案写在<b>妖兵</b>身上 · 走到它旁边<b>点一下</b>就吃掉 · 吃对才亮一笔<br>
+    <b>战鼓</b>每响一声，所有妖兵逼近一格 · <b>贴脸不吃</b>下一声鼓就咬你一颗心（兵会跳回远处）<br>
+    把整个字一笔不落写完 = <b>破一阵</b>，换下一个字 · 每 4 阵来一座<b>大将阵</b>（兵更多、鼓更快、奖励 ×3）<br>
+    键盘 <b>方向键 / WASD</b> 走一格（那个方向有兵就吃掉）· <b>空格</b> 定身符 · <b>C</b> 引路 · <b>?</b> 玩法</div>
+</div>
+<div class="screen" id="screen-chess-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="csLeave()">← 回首页</button>
+    <div class="stats"><span id="csRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="csRsEmoji">♟️</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="csRsTitle">这一局收工了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="csRsSub">下一座阵还在等你破</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="cs-rs">
+      <div><span style="color:#FFD700" id="csRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="csRsOk">0</span><small>吃对几个答案</small></div>
+      <div><span style="color:#69F0AE" id="csRsBreak">0</span><small>破了几座阵</small></div>
+      <div><span style="color:#FFAB91" id="csRsLv">1</span><small>冲到第几阵</small></div>
+      <div><span style="color:#FFF176" id="csRsAcc">0%</span><small>命中率</small></div>
+      <div><span style="color:#E1BEE7" id="csRsStreak">0</span><small>最长连击</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="csRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="csRsAll">🏅 吃子新手</div>
+      <div class="cs-book" id="csRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="csRetry()">♟️ 再摆一盘</button>
+    <button class="w-btn blue" onclick="csLeave()">🏠 回首页</button>
+  </div>
+</div><div class="screen" id="screen-quiz">
   <div class="top-bar">
     <button class="back-btn" onclick="goBack()">← 返回</button>
     <div class="stats"><span id="quizStars">⭐ 0</span><span id="quizCombo">🔥 x0</span><span id="bgmToggle" onclick="toggleBGM()" style="cursor:pointer">🔊 音乐</span></div>
@@ -7598,9 +7724,11 @@ function updateHomeStats(){
   if(typeof jtNudge==='function')jtNudge();
   if(typeof cdNudge==='function')cdNudge();
   if(typeof zpNudge==='function')zpNudge();
+  if(typeof csNudge==='function')csNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
+  if(mode==='chess'){csStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -36035,6 +36163,594 @@ document.addEventListener('keydown',function(e){
 window.addEventListener('resize',function(){
   if(currentMode!=='fold'||!zp.run)return;
   zpDraw();
+});
+/* ================= 笔顺吃吃棋（答案写在妖兵身上 · 走到旁边一口吃掉 · 战鼓一响全体逼近） ================= */
+const CS_C=6,CS_R=5,CS_HEARTS=3,CS_HEART_MAX=5,CS_MIN_FOE=4,CS_MAX_FOE=7;
+const CS_BOSS_EVERY=4,CS_SPAWN_EVERY=3,CS_MISS_MAX=40,CS_BOOK_MAX=300,CS_POOL_MIN=4,CS_POOL_WANT=16;
+const CS_DIRS=[{e:'➡️',nm:'横',c:'#FF6B6B'},{e:'⬇️',nm:'竖',c:'#4ECDC4'},{e:'↙️',nm:'撇',c:'#45B7D1'},{e:'↘️',nm:'捺',c:'#FFA07A'}];
+const CS_RANKS=[
+  {n:0,e:'🐣',t:'吃子新手'},{n:12,e:'♟️',t:'小兵克星'},{n:28,e:'🛡️',t:'铁壁小将'},
+  {n:48,e:'⚔️',t:'横扫小霸王'},{n:72,e:'🏇',t:'闪骑都尉'},{n:100,e:'👹',t:'破阵猛士'},
+  {n:134,e:'🐲',t:'龙骧将军'},{n:174,e:'👑',t:'棋道霸王'},{n:220,e:'🌟',t:'笔顺棋圣'}
+];
+const CS_NOTE=[392,440,494,523,587,659,698,784,880,988,1047,1175];
+const cs={
+  run:false,over:false,busy:false,gen:0,drumId:0,tickId:0,timers:[],
+  lv:1,score:0,hearts:CS_HEARTS,combo:0,maxCombo:0,ok:0,bad:0,broken:0,bitten:0,walks:0,beats:0,rush:0,
+  me:0,foes:[],rec:null,qi:0,q:null,qW:[],boss:false,first:true,
+  frzBeats:0,nFreeze:2,nCompass:1,drumLen:2000,nextAt:0,low:false,
+  fx:{},lastCls:[],path:[],pathT:0,pool:[],miss:[]
+};
+function csInt(k){return parseInt(localStorage.getItem(k)||'0',10)||0}
+function csAdd(k,n){if(n)localStorage.setItem(k,String(csInt(k)+n))}
+function csSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function csShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function csPick(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function csRank(n){let r=CS_RANKS[0];for(let i=0;i<CS_RANKS.length;i++)if(n>=CS_RANKS[i].n)r=CS_RANKS[i];return r}
+function csAcc(){return cs.ok+cs.bad?Math.round(cs.ok/(cs.ok+cs.bad)*100):100}
+function csT(fn,ms){const g=cs.gen;const id=setTimeout(function(){if(g!==cs.gen)return;fn()},ms);cs.timers.push(id);return id}
+function csKillTimers(){cs.timers.forEach(function(t){clearTimeout(t)});cs.timers=[]}
+/* ---- 棋盘几何 ---- */
+function csXY(i){return {x:i%CS_C,y:Math.floor(i/CS_C)}}
+function csIdx(x,y){return y*CS_C+x}
+function csIn(x,y){return x>=0&&y>=0&&x<CS_C&&y<CS_R}
+function csCheb(a,b){const A=csXY(a),B=csXY(b);return Math.max(Math.abs(A.x-B.x),Math.abs(A.y-B.y))}
+function csFoeAt(i){for(let k=0;k<cs.foes.length;k++)if(cs.foes[k].i===i)return cs.foes[k];return null}
+function csOcc(i){return i===cs.me?1:(csFoeAt(i)?2:0)}
+function csCellFar(minD){
+  const all=CS_C*CS_R,cand=[];
+  for(let i=0;i<all;i++)if(!csOcc(i)&&csCheb(i,cs.me)>=minD)cand.push(i);
+  if(!cand.length)for(let i=0;i<all;i++)if(!csOcc(i))cand.push(i);
+  return cand.length?cand[Math.floor(Math.random()*cand.length)]:-1;
+}
+function csFoeN(){return Math.min(CS_MAX_FOE,CS_MIN_FOE+Math.floor((cs.lv-1)/2)+(cs.boss?2:0))}
+function csDrumMs(){let b=2700-(cs.lv-1)*110-cs.rush*45;if(cs.boss)b*=0.82;return Math.max(1150,b)}
+/* ---- 字池：每一笔都认得出方向、且至少两种方向 ---- */
+function csMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>10)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=jtDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<ms.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp};
+}
+function csCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<40;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(csShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(csShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(csShuf(CHARS.slice()));
+  return out;
+}
+function csTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function csRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await csTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians)return null;
+  return csMake(ch,raw);
+}
+async function csBuild(keep){
+  const g=cs.gen;
+  cs.miss=(localStorage.getItem('hz_chess_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  csShuf(cs.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  csCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)cs.pool=[];
+  for(let k=0;k<want.length&&cs.pool.length<CS_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return csRec(c)}));
+    if(g!==cs.gen||!cs.run)break;
+    for(let i=0;i<rs.length;i++)if(rs[i])cs.pool.push(rs[i]);
+  }
+  return cs.pool.length>=CS_POOL_MIN;
+}
+function csWindow(){return cs.boss?[6,10]:[2,7]}
+function csPickRec(){
+  const w=csWindow();
+  let cand=cs.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  if(!cand.length)cand=cs.pool.slice();
+  if(cs.first){
+    for(let i=0;i<cs.miss.length;i++){
+      for(let k=0;k<cand.length;k++)if(cand[k].ch===cs.miss[i]){cs.first=false;return cand[k]}
+    }
+    cs.first=false;
+  }
+  return cand.length?cand[Math.floor(Math.random()*cand.length)]:(cs.pool.length?csPick(cs.pool):null);
+}
+/* ---- 出题 ---- */
+function csQ(){
+  const r=cs.rec;
+  if(!r||cs.qi<0||cs.qi>r.n)return null;
+  if(cs.qi===0){
+    return {kind:'count',right:String(r.n),text:'「<b>'+r.ch+'</b>」一共有<b>几笔</b>？',sub:'吃掉身上写着正确笔画数的妖兵'};
+  }
+  const k=cs.qi-1,d=r.dirs[k];
+  return {kind:'dir',right:CS_DIRS[d].nm,dir:d,k:k,
+    text:'「<b>'+r.ch+'</b>」的第 <b>'+(k+1)+'</b> 笔往<b>哪个方向</b>写？',sub:'横 ➡️ / 竖 ⬇️ / 撇 ↙️ / 捺 ↘️'};
+}
+function csWrongs(q){
+  const out=[];
+  if(q.kind==='count'){
+    const n=cs.rec.n;
+    for(let v=Math.max(1,n-3);v<=n+3;v++)if(v!==n)out.push(String(v));
+  }else{
+    for(let d=0;d<4;d++)if(CS_DIRS[d].nm!==q.right)out.push(CS_DIRS[d].nm);
+  }
+  return out;
+}
+function csLabel(f,lb,q){
+  f.lb=lb;
+  f.num=q.kind==='count';
+  f.d=-1;
+  if(q.kind==='dir')for(let d=0;d<4;d++)if(CS_DIRS[d].nm===lb)f.d=d;
+}
+function csAsk(){
+  const q=csQ();
+  if(!q){csBreak();return}
+  cs.q=q;cs.qW=csWrongs(q);
+  const n=csFoeN();
+  while(cs.foes.length>n)cs.foes.pop();
+  while(cs.foes.length<n){
+    const i=csCellFar(2);
+    if(i<0)break;
+    cs.foes.push({i:i,lb:'',d:-1,num:false,threat:0});
+  }
+  const labels=[q.right];
+  for(let k=1;k<cs.foes.length;k++)labels.push(csPick(cs.qW)||q.right);
+  csShuf(labels);
+  for(let k=0;k<cs.foes.length;k++)csLabel(cs.foes[k],labels[k]!==undefined?labels[k]:q.right,q);
+  for(let k=0;k<cs.foes.length;k++)cs.foes[k].threat=csCheb(cs.foes[k].i,cs.me)===1?1:0;
+  csSet('csAsk',q.text+(q.sub?'<br><small>'+q.sub+'</small>':''));
+  csCharSvg();csRender();csHud();
+}
+/* ---- 画 ---- */
+function csCharSvg(){
+  const el=document.getElementById('csChar');
+  if(!el)return;
+  const r=cs.rec;
+  if(!r){el.innerHTML='<div style="font-size:34px">♟️</div>';csSet('csLeftTxt','');return}
+  const done=Math.max(0,cs.qi-1);
+  let h='<svg class="cs-svg" viewBox="0 0 1024 1024">';
+  for(let i=0;i<r.paths.length;i++){
+    const lit=i<done,cur=(cs.qi>0&&i===done);
+    h+='<path d="'+r.paths[i]+'" fill="'+(lit?'#2E7D32':(cur?'#FFB74D':'rgba(60,60,90,.13)'))+'"/>';
+  }
+  h+='</svg>';
+  el.innerHTML=h;
+  csSet('csLeftTxt','还剩 <b>'+(r.n-done)+'</b> 笔');
+  csSet('csFangTxt',cs.boss?'👺 大将阵 ×3':'🏯 小兵阵');
+}
+function csCls(i){
+  let c='cs-c'+(((Math.floor(i/CS_C)+i%CS_C)%2)?' alt':'');
+  if(cs.path.indexOf(i)>=0)c+=' path';
+  if(cs.fx[i])c+=' '+cs.fx[i];
+  if(i===cs.me)return c+' me';
+  const f=csFoeAt(i);
+  if(!f)return c;
+  c+=' foe'+(f.num?' num':' d'+f.d);
+  if(f.threat)c+=' threat';else if(csCheb(i,cs.me)===1)c+=' adj';
+  return c;
+}
+function csTxt(i){
+  if(i===cs.me)return cs.rec?cs.rec.ch:'♟️';
+  const f=csFoeAt(i);
+  return f?f.lb:'';
+}
+function csRender(){
+  const g=document.getElementById('csBoard');
+  if(!g)return;
+  g.style.gridTemplateColumns='repeat('+CS_C+',auto)';
+  if(!g.childElementCount){
+    let h='';
+    for(let i=0;i<CS_C*CS_R;i++)h+='<div class="cs-c" id="csC'+i+'" onclick="csTap('+i+')"><s></s></div>';
+    g.innerHTML=h;
+  }
+  for(let i=0;i<CS_C*CS_R;i++){
+    const e=document.getElementById('csC'+i);
+    if(!e)continue;
+    const cls=csCls(i),txt=csTxt(i);
+    if(cs.lastCls[i]!==cls){
+      const nf=(cls.match(/\b(hit|bite|dead)\b/)||[''])[0],of=(cs.lastCls[i]||'').match(/\b(hit|bite|dead)\b/);
+      if(nf&&(!of||of[0]!==nf)){e.className='cs-c';void e.offsetWidth}
+      e.className=cls;cs.lastCls[i]=cls;
+    }
+    const s=e.firstElementChild;
+    if(s&&s.textContent!==txt)s.textContent=txt;
+  }
+}
+function csCellFx(i,c){
+  cs.fx[i]=c;
+  csT(function(){if(cs.fx[i]===c)delete cs.fx[i];csRender()},400);
+}
+function csHud(){
+  csSet('csScoreTxt','♟️ '+Math.round(cs.score)+' 分');
+  csSet('csLvTxt','第 '+cs.lv+' 阵');
+  csSet('csRankTxt','🏅 '+csRank(csInt('hz_chess_ok')).t);
+  let h='';
+  for(let i=0;i<CS_HEART_MAX;i++)h+=(i<cs.hearts?'❤️':'🖤');
+  csSet('csHeartTxt',h);
+  csSet('csComboTxt','🔥 连 '+cs.combo);
+  csSet('csOkTxt','⚔️ '+cs.ok);
+  csSet('csBreakTxt','🚩 '+cs.broken+' 阵');
+  csSet('csPctTxt','🎯 '+csAcc()+'%');
+  const fb=document.getElementById('csFreezeBtn');
+  if(fb)fb.innerHTML='🥁 定身符 <b>'+cs.nFreeze+'</b>';
+  const cb=document.getElementById('csCompassBtn');
+  if(cb)cb.innerHTML='🧭 引路 <b>'+cs.nCompass+'</b>';
+}
+function csSay(t,c){const el=document.getElementById('csMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function csShake(){const b=document.getElementById('csBoard');if(!b)return;b.classList.add('cs-shake');csT(function(){b.classList.remove('cs-shake')},400)}
+/* ---- 图鉴 / 错字手册 ---- */
+function csGood(ch){return ch&&ch.length===1&&CHARS.indexOf(ch)>=0}
+function csBookAdd(ch){
+  if(!csGood(ch))return;
+  const a=(localStorage.getItem('hz_chess_book')||'').split(',').filter(csGood);
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_chess_book',a.slice(-CS_BOOK_MAX).join(','));
+}
+function csMissAdd(ch){
+  if(!csGood(ch))return;
+  let a=(localStorage.getItem('hz_chess_miss')||'').split(',').filter(csGood);
+  a=a.filter(function(c){return c!==ch});
+  a.push(ch);
+  localStorage.setItem('hz_chess_miss',a.slice(-CS_MISS_MAX).join(','));
+}
+/* ---- 妖兵行动 ---- */
+function csStepFoes(){
+  const order=cs.foes.slice().sort(function(a,b){return csCheb(b.i,cs.me)-csCheb(a.i,cs.me)});
+  for(let k=0;k<order.length;k++){
+    const f=order[k],d0=csCheb(f.i,cs.me);
+    if(d0<=1)continue;
+    const A=csXY(f.i),cands=[];
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+      if(!dx&&!dy)continue;
+      const x=A.x+dx,y=A.y+dy;
+      if(!csIn(x,y))continue;
+      const ni=csIdx(x,y);
+      if(ni===cs.me||csFoeAt(ni))continue;
+      cands.push({i:ni,d:csCheb(ni,cs.me)});
+    }
+    if(!cands.length)continue;
+    let best=9;
+    for(let j=0;j<cands.length;j++)if(cands[j].d<best)best=cands[j].d;
+    if(best<d0){
+      const near=cands.filter(function(c){return c.d===best});
+      f.i=near[Math.floor(Math.random()*near.length)].i;
+    }else if(Math.random()<0.4){
+      const same=cands.filter(function(c){return c.d===d0});
+      if(same.length)f.i=same[Math.floor(Math.random()*same.length)].i;
+    }
+    f.threat=csCheb(f.i,cs.me)===1?1:0;
+  }
+}
+function csReinforce(){
+  if(cs.foes.length>=csFoeN())return;
+  const i=csCellFar(3);
+  if(i<0)return;
+  const f={i:i,lb:'',d:-1,num:false,threat:0};
+  cs.foes.push(f);
+  if(cs.q)csLabel(f,(cs.foes.length>1&&Math.random()<0.6)?(csPick(cs.qW)||cs.q.right):cs.q.right,cs.q);
+  f.threat=csCheb(f.i,cs.me)===1?1:0;
+  csSay('🛡️ 又一座妖兵进场（场上 '+cs.foes.length+' 个）','#B3E5FC');
+}
+function csBite(f){
+  cs.hearts--;cs.bitten++;cs.combo=0;cs.rush+=2;
+  csMissAdd(cs.rec?cs.rec.ch:'');
+  tone(190,.2,'sawtooth',.11);
+  csCellFx(f.i,'bite');
+  csShake();
+  const ni=csCellFar(3);
+  if(ni>=0)f.i=ni;
+  f.threat=0;
+  csSay('💥 被「<b>'+f.lb+'</b>」咬了一口，心 -1（它跳回远处再冲）','#FF8A80');
+  if(cs.hearts<=0){cs.hearts=0;csHud();csEnd('bite');return true}
+  return false;
+}
+/* ---- 战鼓 ---- */
+function csDrumOn(){
+  csDrumOff();
+  cs.drumLen=csDrumMs();cs.nextAt=Date.now()+cs.drumLen;
+  cs.drumId=setTimeout(csBeat,cs.drumLen);
+}
+function csDrumOff(){if(cs.drumId){clearTimeout(cs.drumId);cs.drumId=0}}
+function csBeat(){
+  cs.drumId=0;
+  if(!cs.run||cs.over||currentMode!=='chess')return;
+  cs.beats++;cs.rush++;
+  tone(92+Math.min(26,cs.rush*2),.15,'sine',.15);
+  if(cs.frzBeats>0){
+    cs.frzBeats--;
+    csSay('🥁 定身符压住了这一声鼓，妖兵没动（还能压 '+cs.frzBeats+' 声）','#80DEEA');
+  }else{
+    let bit=null;
+    for(let k=0;k<cs.foes.length;k++)if(csCheb(cs.foes[k].i,cs.me)===1){bit=cs.foes[k];break}
+    if(bit){
+      if(csBite(bit)){csHud();csRender();return}
+    }else{
+      csStepFoes();
+      let warn=0;
+      for(let k=0;k<cs.foes.length;k++)if(cs.foes[k].threat)warn++;
+      if(warn)csSay('⚠️ <b>'+warn+'</b> 个妖兵已经贴脸 —— 下一声鼓就咬你，快吃掉它或走开','#FFCC80');
+    }
+    if(cs.beats%CS_SPAWN_EVERY===0)csReinforce();
+  }
+  csHud();csRender();
+  if(cs.run&&!cs.over)csDrumOn();
+}
+function csStartTick(){csStopTick();cs.tickId=setInterval(csTick,100)}
+function csStopTick(){if(cs.tickId){clearInterval(cs.tickId);cs.tickId=0}}
+function csTick(){
+  if(!cs.run||cs.over)return;
+  if(currentMode!=='chess'){csStopTick();return}
+  const left=cs.drumId?Math.max(0,cs.nextAt-Date.now()):0;
+  const p=cs.drumId?Math.max(0,Math.min(1,left/Math.max(1,cs.drumLen))):0;
+  const f=document.getElementById('csDrumFill');
+  if(f)f.style.width=(p*100).toFixed(1)+'%';
+  const t=document.getElementById('csDrumTxt');
+  if(t)t.textContent=p<0.3?'🥁!!':'🥁';
+  const w=document.getElementById('csDrumWrap');
+  const low=p<0.3;
+  if(w&&low!==cs.low){cs.low=low;w.classList.toggle('low',low)}
+  if(cs.pathT>0){
+    cs.pathT-=0.1;
+    if(cs.pathT<=0){cs.pathT=0;cs.path=[];csRender()}
+  }
+}
+/* ---- 走与吃 ---- */
+function csWalk(i){
+  cs.me=i;cs.walks++;
+  tone(300,.04,'sine',.05);
+  for(let k=0;k<cs.foes.length;k++)cs.foes[k].threat=csCheb(cs.foes[k].i,cs.me)===1?1:0;
+  csRender();csHud();
+}
+function csGo(dx,dy){
+  if(!cs.run||cs.over||cs.busy)return false;
+  const A=csXY(cs.me),x=A.x+dx,y=A.y+dy;
+  if(!csIn(x,y)){csShake();tone(165,.08,'square',.05);csSay('🚧 到棋盘边上了，走不出去','#FFCC80');return false}
+  const ni=csIdx(x,y),f=csFoeAt(ni);
+  if(f)return csEat(f);
+  csWalk(ni);
+  return true;
+}
+function csTap(i){
+  if(!cs.run||cs.over||cs.busy)return;
+  if(i===cs.me||!csIn(csXY(i).x,csXY(i).y))return;
+  if(csCheb(i,cs.me)!==1){
+    tone(165,.08,'square',.05);
+    csSay(csFoeAt(i)?'🚧 那个妖兵还<b>够不着</b> —— 一格一格走过去再吃它':'🚧 只能走<b>相邻一格</b>（上下左右、斜着都行）','#FFCC80');
+    return;
+  }
+  const f=csFoeAt(i);
+  if(f)csEat(f);else csWalk(i);
+}
+function csRemoveFoe(f){
+  const k=cs.foes.indexOf(f);
+  if(k>=0)cs.foes.splice(k,1);
+}
+function csEat(f){
+  const q=cs.q;
+  if(!q)return false;
+  if(f.lb===q.right){
+    cs.ok++;cs.combo++;cs.rush=0;
+    if(cs.combo>cs.maxCombo)cs.maxCombo=cs.combo;
+    const g=Math.round(8+cs.combo*2+cs.lv*1.5+(cs.boss?4:0));
+    cs.score+=g;
+    csAdd('hz_chess_ok',1);
+    tone(CS_NOTE[Math.min(CS_NOTE.length-1,cs.combo-1)],.12,'triangle',.1);
+    csCellFx(f.i,'hit');
+    if(cs.combo>=5)showComboEffect(cs.combo);
+    csSay('⚔️ 吃掉「<b>'+f.lb+'</b>」，正是这一笔的答案 +'+g,'#B9F6CA');
+    csRemoveFoe(f);
+    cs.qi++;
+    if(cs.qi>cs.rec.n){csBreak();return true}
+    csAsk();
+    return true;
+  }
+  cs.bad++;cs.combo=0;cs.rush+=2;
+  cs.score=Math.max(0,cs.score-4);
+  csMissAdd(cs.rec.ch);
+  tone(150,.17,'sawtooth',.09);
+  csCellFx(cs.me,'bite');
+  csShake();
+  csSay('💢 「'+f.lb+'」不对 —— 鼓声催急了，全体妖兵逼近一格','#FF8A80');
+  const lb=f.lb;
+  csStepFoes();
+  csRemoveFoe(f);
+  const ni=csCellFar(3);
+  if(ni>=0){
+    const nf={i:ni,lb:lb,d:f.d,num:f.num,threat:csCheb(ni,cs.me)===1?1:0};
+    cs.foes.push(nf);
+  }
+  csRender();csHud();
+  return true;
+}
+/* ---- 破阵 / 换字 ---- */
+function csBreak(){
+  const r=cs.rec;
+  cs.broken++;
+  const g=Math.round((26+cs.lv*7)*(cs.boss?3:1)+cs.combo*2);
+  cs.score+=g;
+  if(r)csBookAdd(r.ch);
+  csAdd('hz_chess_break',1);
+  spawnConfetti();
+  tone(784,.16,'triangle',.12);
+  csT(function(){tone(1047,.2,'triangle',.12)},110);
+  cs.lv=1+Math.floor(cs.broken/2);
+  if(cs.lv>csInt('hz_chess_lv'))localStorage.setItem('hz_chess_lv',String(cs.lv));
+  if(cs.lv%3===0&&cs.hearts<CS_HEART_MAX)cs.hearts++;
+  csSay('🚩 「<b>'+(r?r.ch:'?')+'</b>」整字写完，破阵 +'+g+(cs.boss?'（大将阵 ×3）':''),'#FFD740');
+  csNextChar();
+}
+function csNextChar(){
+  cs.boss=((cs.broken+1)%CS_BOSS_EVERY===0);
+  const r=csPickRec();
+  if(!r){csEnd('pool');return}
+  cs.rec=r;cs.qi=0;cs.foes=[];cs.path=[];cs.pathT=0;
+  cs.me=csIdx(Math.floor(CS_C/2),Math.floor(CS_R/2));
+  cs.frzBeats=0;
+  csAsk();
+  if(cs.run&&!cs.over)csDrumOn();
+}
+/* ---- 道具 ---- */
+function csFreeze(){
+  if(!cs.run||cs.over)return;
+  if(cs.nFreeze<=0){csSay('🥁 定身符用完了','#FFCC80');return}
+  cs.nFreeze--;cs.frzBeats+=3;
+  cs.score=Math.max(0,cs.score-8);
+  tone(660,.12,'sine',.08);
+  csSay('🥁 定身符贴上去 —— 接下来 <b>3 声鼓</b>妖兵都不动（-8 分）','#80DEEA');
+  csHud();
+}
+function csPath(){
+  const q=cs.q;
+  if(!q)return [];
+  const goal={};
+  for(let k=0;k<cs.foes.length;k++)if(cs.foes[k].lb===q.right)goal[cs.foes[k].i]=1;
+  if(!Object.keys(goal).length)return [];
+  const prev={},seen={},qu=[cs.me];
+  seen[cs.me]=1;
+  while(qu.length){
+    const cur=qu.shift();
+    if(goal[cur]&&cur!==cs.me){
+      const out=[];let p=cur;
+      while(p!==undefined&&p!==cs.me){out.unshift(p);p=prev[p]}
+      return out;
+    }
+    const A=csXY(cur);
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+      if(!dx&&!dy)continue;
+      const x=A.x+dx,y=A.y+dy;
+      if(!csIn(x,y))continue;
+      const ni=csIdx(x,y);
+      if(seen[ni])continue;
+      if(goal[ni]===undefined&&csOcc(ni))continue;   /* 只能穿过空格，目标格可以 */
+      seen[ni]=1;prev[ni]=cur;qu.push(ni);
+    }
+  }
+  return [];
+}
+function csCompass(){
+  if(!cs.run||cs.over)return;
+  if(cs.nCompass<=0){csSay('🧭 引路用完了','#FFCC80');return}
+  const p=csPath();
+  if(!p.length){csSay('🧭 现在找不到能走通的路线','#FFCC80');return}
+  cs.nCompass--;cs.score=Math.max(0,cs.score-12);
+  cs.path=p;cs.pathT=3.4;
+  cs.frzBeats=Math.max(cs.frzBeats,1);
+  tone(880,.1,'sine',.08);
+  csSay('🧭 绿格子就是<b>最近的一条吃子路线</b>（-12 分，顺手压住一声鼓）','#69F0AE');
+  csHud();csRender();
+}
+/* ---- 开局 / 结算 ---- */
+function csStopAll(){csDrumOff();csStopTick();csKillTimers();cs.gen++}
+async function csStart(){
+  csStopAll();
+  cs.run=true;cs.over=false;cs.busy=true;
+  cs.lv=1;cs.score=0;cs.hearts=CS_HEARTS;cs.combo=0;cs.maxCombo=0;
+  cs.ok=0;cs.bad=0;cs.broken=0;cs.bitten=0;cs.walks=0;cs.beats=0;cs.rush=0;
+  cs.frzBeats=0;cs.nFreeze=2;cs.nCompass=1;
+  cs.foes=[];cs.q=null;cs.qW=[];cs.rec=null;cs.qi=0;cs.boss=false;cs.first=true;
+  cs.fx={};cs.lastCls=[];cs.path=[];cs.pathT=0;cs.low=false;
+  cs.me=csIdx(Math.floor(CS_C/2),Math.floor(CS_R/2));
+  showScreen('chess');
+  csSet('csAsk','♟️ 正在布阵……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  csRender();csHud();csCharSvg();
+  csSay('🥁 鼓声一响，妖兵就会逼近一格','#B3E5FC');
+  let ok=await csBuild();
+  if(!cs.run||cs.over)return;
+  if(!ok){
+    csSay('🥁 字库有点慢，再摆一次阵……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(!cs.run||cs.over)return;
+    ok=await csBuild(true);
+    if(!cs.run||cs.over)return;
+  }
+  if(!ok){
+    cs.run=false;cs.busy=false;
+    csSet('csAsk','😢 凑不出一个可用的字<br><small>字库还没加载好，稍后再来摆一盘</small>');
+    csSay('先去别的模式练两笔，回来字库就齐了','#FFCC80');
+    return;
+  }
+  csAdd('hz_chess_runs',1);
+  cs.busy=false;
+  csNextChar();
+  csStartTick();
+}
+function csEnd(why){
+  if(cs.over)return;
+  cs.over=true;cs.run=false;cs.busy=false;
+  csStopAll();
+  const s=Math.round(cs.score);
+  if(s>csInt('hz_chess_best'))localStorage.setItem('hz_chess_best',String(s));
+  if(cs.lv>csInt('hz_chess_lv'))localStorage.setItem('hz_chess_lv',String(cs.lv));
+  if(cs.maxCombo>csInt('hz_chess_streak'))localStorage.setItem('hz_chess_streak',String(cs.maxCombo));
+  csAdd('hz_chess_walk',cs.walks);csAdd('hz_chess_bite',cs.bitten);csAdd('hz_chess_beats',cs.beats);
+  const acc=csAcc();
+  const stars=Math.max(2,Math.min(26,2+Math.floor(s/90)+cs.broken*2+Math.floor(cs.ok/3)));
+  addStars(stars);
+  const R=csRank(csInt('hz_chess_ok'));
+  const book=(localStorage.getItem('hz_chess_book')||'').split(',').filter(csGood);
+  csSet('csRsStars','⭐ +'+stars);
+  csSet('csRsEmoji',why==='bite'?'💥':(why==='quit'?'🏳️':(cs.broken>2?'🚩':'♟️')));
+  csSet('csRsTitle',why==='bite'?'💥 心被妖兵咬完了':(why==='quit'?'🏳️ 鸣金收兵':'这一盘下完了'));
+  csSet('csRsSub','破到第 <b>'+cs.lv+'</b> 阵、破阵 '+cs.broken+' 座、吃对 '+cs.ok+' 个答案、被咬 '+cs.bitten+
+    ' 口、走了 '+cs.walks+' 步、命中率 '+acc+'%、最长连击 '+cs.maxCombo+'。'+
+    (acc>=80?'妖兵身上写什么你都认得，走位也够刁！':(acc>=50?'有几口是被贴脸咬的 —— 别贪走位，先吃兵。':'多摆几盘就不怕鼓声了 —— 再来一局。')));
+  csSet('csRsScore',String(s));
+  csSet('csRsOk',String(cs.ok));
+  csSet('csRsBreak',String(cs.broken));
+  csSet('csRsLv',String(cs.lv));
+  csSet('csRsAcc',acc+'%');
+  csSet('csRsStreak',String(cs.maxCombo));
+  csSet('csRsBest',csInt('hz_chess_best')+' 分');
+  csSet('csRsAll','🏅 '+R.e+' '+R.t+'（累计吃对 '+csInt('hz_chess_ok')+' 个答案）'+
+    '\n破到过第 '+csInt('hz_chess_lv')+' 阵 · 最长连击 '+csInt('hz_chess_streak')+' · 累计破阵 '+csInt('hz_chess_break')+' 座'+
+    '\n被咬 '+csInt('hz_chess_bite')+' 口 · 走过 '+csInt('hz_chess_walk')+' 步 · 听过 '+csInt('hz_chess_beats')+' 声鼓 · 上过 '+csInt('hz_chess_runs')+' 次棋盘'+
+    '\n📚 破阵写完的字已收录 '+book.length+' 个');
+  const bk=document.getElementById('csRsBook');
+  if(bk)bk.innerHTML=book.slice(-24).map(function(ch){return '<i>'+ch+'</i>'}).join('');
+  showScreen('chess-result');
+}
+function csRetry(){csStart()}
+function csLeave(){
+  csStopAll();
+  if(cs.run&&!cs.over){cs.over=true;cs.run=false}
+  goHome();
+}
+function csHelp(){
+  csSay('♟️ 答案写在<b>妖兵</b>身上：走到它旁边（上下左右斜都行）<b>点一下</b>就吃掉。'+
+    '吃对才点亮这个字的一笔，把整个字写完就<b>破一阵</b>。'+
+    '<b>战鼓</b>每响一声，所有妖兵逼近一格；<b>贴脸不吃</b>，下一声鼓它就咬你一颗心（咬完跳回远处）。'+
+    '吃错不丢心，但连击清零、鼓会催得更急、妖兵立刻逼近一格。'+
+    '每 <b>'+CS_BOSS_EVERY+'</b> 阵来一座<b>大将阵</b>（兵更多、鼓更快、奖励 ×3）。'+
+    '<b>🥁 定身符</b>压住 3 声鼓（扣 8 分），<b>🧭 引路</b>画出最近路线（扣 12 分）。','#80DEEA');
+}
+function csNudge(){
+  const dot=document.getElementById('csCardDot'),tip=document.getElementById('csCardTip');
+  const ok=csInt('hz_chess_ok'),lv=csInt('hz_chess_lv'),runs=csInt('hz_chess_runs');
+  const R=csRank(ok);
+  if(tip)tip.textContent=runs?('🏅 '+R.t+' · 破到过第 '+lv+' 阵'):'答案写成妖兵 · 走近一口吃掉';
+  if(dot){dot.classList.toggle('on',!runs);dot.textContent=(!runs?'🆕':'')}
+}
+/* ---- 键盘 ---- */
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='chess'||!cs.run||cs.over)return;
+  const k=e.key;
+  if(k===' '){e.preventDefault();csFreeze();return}
+  if(k==='c'||k==='C'){e.preventDefault();csCompass();return}
+  if(k==='?'){e.preventDefault();csHelp();return}
+  const map={
+    arrowup:[0,-1],arrowdown:[0,1],arrowleft:[-1,0],arrowright:[1,0],
+    w:[0,-1],s:[0,1],a:[-1,0],d:[1,0]
+  };
+  const v=map[k.toLowerCase()];
+  if(v){e.preventDefault();csGo(v[0],v[1])}
 });
 
 window.addEventListener('DOMContentLoaded',boot);
