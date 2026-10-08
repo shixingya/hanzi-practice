@@ -3532,6 +3532,68 @@ button:active{transform:scale(.95)}
 .cs-book{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:9px}
 .cs-book i{background:rgba(255,255,255,.15);border-radius:6px;padding:2px 6px;font-style:normal;font-size:14px;color:#fff}
 @media(max-width:420px){.cs-c{width:44px;height:44px}.cs-wrap{gap:6px}.cs-side{width:82px}.cs-side .cs-ch{width:82px;height:82px}.cs-svg{width:74px;height:74px}}
+/* ---------- 笔顺抢椅子 ---------- */
+.qz-hud{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;width:100%;margin-bottom:8px}
+.qz-hud span{background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.22);border-radius:13px;padding:3px 10px;color:#fff;font-size:12px;white-space:nowrap}
+.qz-ask{width:100%;background:rgba(255,255,255,.14);border-radius:14px;padding:12px;color:#fff;font-size:15px;text-align:center;line-height:1.45;margin-bottom:6px;min-height:48px}
+.qz-ask small{font-size:11px;opacity:.72}
+.qz-bar{width:100%;height:11px;background:rgba(0,0,0,.26);border-radius:6px;overflow:hidden;margin-bottom:4px;position:relative}
+.qz-bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#4DD0E1,#7C4DFF);transition:width .1s linear}
+.qz-bar.low i{background:linear-gradient(90deg,#FF5252,#D500F9)}
+.qz-bar b{position:absolute;right:7px;top:-1px;font-size:10px;color:#fff;opacity:.9;font-weight:normal;line-height:11px}
+.qz-bar.grab i{background:linear-gradient(90deg,#FFD54F,#FF7043)}
+.qz-breath{width:100%;height:5px;background:rgba(0,0,0,.2);border-radius:4px;overflow:hidden;margin-bottom:8px}
+.qz-breath i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#A5D6A7,#26A69A)}
+.qz-arena{width:100%;height:334px;position:relative;margin-bottom:6px;touch-action:none;-webkit-user-select:none;user-select:none;border-radius:20px;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.09),rgba(255,255,255,.02) 62%,transparent 70%)}
+.qz-ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:2px dashed rgba(255,255,255,.15);border-radius:50%;pointer-events:none}
+.qz-stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:108px;text-align:center;color:#fff;pointer-events:none;z-index:2}
+.qz-stage .qz-big{font-size:40px}
+.qz-svg{width:78px;height:78px;transform:scaleY(-1);background:rgba(255,255,255,.92);border-radius:14px}
+.qz-stage .qz-left{font-size:11px;opacity:.9;margin-top:3px;line-height:1.3}
+.qz-stage .qz-word{font-size:11px;opacity:.68;margin-top:1px}
+.qz-seat{position:absolute;width:54px;height:66px;transform:translate(-50%,-50%);background:none;border:0;padding:0;display:flex;flex-direction:column;align-items:center;cursor:pointer;font-family:inherit;z-index:3}
+.qz-seat .qz-tag{width:42px;height:26px;border-radius:8px;background:rgba(255,255,255,.94);color:#3B2C6B;font-size:15px;font-weight:bold;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.28);line-height:1}
+.qz-seat .qz-back{width:44px;height:12px;border-radius:4px;background:linear-gradient(#B7783A,#8D5527);margin-top:2px;box-shadow:0 2px 4px rgba(0,0,0,.24)}
+.qz-seat .qz-leg{width:34px;height:22px;border-radius:0 0 8px 8px;background:linear-gradient(#8D5527,#5D3A17);position:relative}
+.qz-seat .qz-leg::after{content:'';position:absolute;left:15px;top:0;bottom:0;width:4px;background:rgba(0,0,0,.22)}
+.qz-seat.d0 .qz-tag{color:#C62828}
+.qz-seat.d1 .qz-tag{color:#00695C}
+.qz-seat.d2 .qz-tag{color:#01579B}
+.qz-seat.d3 .qz-tag{color:#BF360C}
+.qz-seat.num .qz-tag{background:#FFF3C4;color:#6D4C00;font-size:16px}
+.qz-seat.reach .qz-tag{background:#FFE97A;box-shadow:0 0 12px rgba(255,215,64,.85);border:2px solid #FFC400}
+.qz-seat.reach .qz-back{background:linear-gradient(#FFC96B,#B7783A)}
+.qz-seat.mine .qz-tag{outline:2px dashed #69F0AE;outline-offset:2px}
+.qz-grabmode .qz-seat:not(.dead) .qz-tag{animation:qzCard .6s ease-out 1}
+.qz-seat.dead{cursor:default;opacity:.44;transform:translate(-50%,-50%) rotate(-13deg)}
+.qz-seat.dead .qz-tag{background:rgba(255,255,255,.3);color:transparent}
+.qz-seat.dead .qz-back{background:#6B4A22}
+.qz-seat.dead .qz-leg{height:10px;border-radius:0 0 4px 4px}
+.qz-seat .qz-crumb{position:absolute;bottom:-4px;font-size:12px}
+@keyframes qzCard{0%{transform:translateY(-7px) rotate(-6deg);opacity:.4}60%{transform:translateY(0) rotate(2deg);opacity:1}100%{transform:translateY(0) rotate(0)}}
+@keyframes qzPop{0%{transform:translate(-50%,-50%) scale(1)}45%{transform:translate(-50%,-58%) scale(1.22)}100%{transform:translate(-50%,-50%) scale(1)}}
+.qz-seat.pop{animation:qzPop .42s ease-out}
+.qz-me{position:absolute;width:34px;height:34px;transform:translate(-50%,-50%);font-size:27px;line-height:34px;text-align:center;z-index:4;text-shadow:0 2px 6px rgba(0,0,0,.35);pointer-events:none}
+@keyframes qzBob{from{transform:translate(-50%,-50%) translateY(0)}to{transform:translate(-50%,-50%) translateY(-5px)}}
+.qz-me.sprint{animation:qzBob .2s infinite alternate}
+.qz-me.stop{filter:drop-shadow(0 0 8px rgba(255,215,64,.9))}
+.qz-here{position:absolute;width:24px;height:24px;transform:translate(-50%,-50%);font-size:14px;opacity:.6;z-index:3;pointer-events:none;text-align:center;line-height:24px}
+@keyframes qzShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.qz-arena.qz-shake{animation:qzShake .42s}
+.qz-tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;width:100%;margin-bottom:8px}
+.qz-tool{background:rgba(255,255,255,.17);border:2px solid rgba(255,255,255,.3);color:#fff;border-radius:13px;padding:6px 13px;font-size:13px;cursor:pointer;font-family:inherit}
+.qz-tool b{color:#FFD740}
+.qz-msg{width:100%;min-height:38px;background:rgba(0,0,0,.22);border-radius:12px;padding:7px 11px;color:#B3E5FC;font-size:12.5px;line-height:1.45;text-align:center;margin-bottom:8px}
+.qz-tip{width:100%;color:rgba(255,255,255,.62);font-size:11px;line-height:1.6;text-align:center;padding:0 4px}
+.qz-tip b{color:#FFD740;font-weight:normal}
+.qz-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;color:#fff}
+.qz-rs span{font-size:22px;font-weight:bold;display:block}
+.qz-rs small{font-size:11px;opacity:.72}
+.qz-book-t{font-size:12px;opacity:.72;margin:12px 0 6px}
+.qz-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.qz-book i{background:rgba(255,255,255,.18);border-radius:9px;padding:3px 8px;font-size:16px;color:#fff;font-style:normal}
+.qz-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.qz-badge.on{display:flex}
 </style>
 
 </head>
@@ -3588,8 +3650,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 58 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">58</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 59 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">59</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -3600,8 +3662,8 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>58 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>15</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>17</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>6</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>7</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>59 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>15</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>18</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>6</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>7</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
@@ -3735,6 +3797,11 @@ button:active{transform:scale(.95)}
     <div class="lab-group" id="labG3">
       <h4 class="lab-gtitle">⚡ 手速与反应 <small>眼疾手快抢答</small><i></i></h4>
       <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('chairs')">
+      <div class="icon">🪑</div>
+      <div class="info"><h3>笔顺抢椅子</h3><p id="qzCardTip">音乐一停就抢座 · 先跑到答案旁边</p></div>
+      <span class="qz-badge" id="qzCardDot">🆕</span>
+    </div>
     <div class="mode-card" onclick="enterMode('mole')">
       <div class="icon">🐹</div>
       <div class="info"><h3>笔顺打地鼠</h3><p>答案变地鼠，眼疾手快打掉它！</p></div>
@@ -3883,6 +3950,68 @@ button:active{transform:scale(.95)}
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
+</div>
+<div class="screen" id="screen-chairs">
+  <div class="top-bar">
+    <button class="back-btn" onclick="qzLeave()">← 返回</button>
+    <div class="stats"><span id="qzScoreTxt">🪑 0 分</span><span id="qzLvTxt">第 1 轮</span></div>
+    <button class="icon-btn" onclick="qzHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="qz-hud">
+    <span id="qzRankTxt" title="段位">🏅 板凳新人</span>
+    <span id="qzHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="qzComboTxt" title="连击">🔥 连 0</span>
+    <span id="qzOkTxt" title="本局抢中">🪑 0</span>
+    <span id="qzWordTxt" title="写完几个字">📝 0 个字</span>
+    <span id="qzPctTxt" title="命中率">🎯 100%</span>
+  </div>
+  <div class="qz-ask" id="qzAsk">🪑 正在搬椅子……<br><small>稍等一下</small></div>
+  <div class="qz-bar" id="qzBarWrap"><i id="qzBarFill"></i><b id="qzBarTxt">🎵 音乐</b></div>
+  <div class="qz-breath"><i id="qzBreathFill"></i></div>
+  <div class="qz-arena" id="qzArena"></div>
+  <div class="qz-tools">
+    <button class="qz-tool" id="qzReachBtn" onclick="qzReachTool()">🦶 垫脚 <b id="qzReachN">2</b></button>
+    <button class="qz-tool" id="qzSwapBtn" onclick="qzSwapTool()">🔀 换牌 <b id="qzSwapN">1</b></button>
+    <button class="qz-tool" onclick="qzEnd('quit')">🏳️ 散场结算</button>
+  </div>
+  <div class="qz-msg" id="qzMsg">音乐响的时候绕圈跑，看清哪把椅子写着答案</div>
+  <div class="qz-tip">椅子背上的<b>牌子就是答案</b> · 音乐「刺啦」一停就抢座 · <b>身边 2 把</b>够得着，远处的点了要一路跑过去（倒计时照走）<br>
+    <b>按住场地</b>加速跑，但会喘气 —— 喘到底得停下来歇半秒<br>
+    坐对：这个字亮一笔 + 那把椅子<b>当场坐塌</b> · 坐错或太慢：<b>扣一颗心</b><br>
+    整个字写完 = <b>一轮舞会成功</b>（椅子重新摆满）· 每写完 2 个字升 1 级，音乐更短、圈更快、够得着的范围更小<br>
+    键盘 <b>空格</b>按住加速 · <b>1~9</b> 抢第几把椅子 · <b>P</b> 垫脚 · <b>X</b> 换牌 · <b>?</b> 玩法</div>
+</div>
+<div class="screen" id="screen-chairs-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="qzLeave()">← 回首页</button>
+    <div class="stats"><span id="qzRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="qzRsEmoji">🪑</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="qzRsTitle">这一场舞会收场了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="qzRsSub">下一轮音乐还在等你抢座</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="qz-rs">
+      <div><span style="color:#FFD700" id="qzRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="qzRsOk">0</span><small>抢中几个位子</small></div>
+      <div><span style="color:#69F0AE" id="qzRsWord">0</span><small>写完几个字</small></div>
+      <div><span style="color:#FFAB91" id="qzRsLv">1</span><small>冲到第几轮</small></div>
+      <div><span style="color:#FFF176" id="qzRsAcc">0%</span><small>命中率</small></div>
+      <div><span style="color:#E1BEE7" id="qzRsStreak">0</span><small>最长连击</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 历史最高分</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="qzRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="qzRsAll">🏅 板凳新人</div>
+      <div class="qz-book-t" id="qzRsBookT"></div>
+      <div class="qz-book" id="qzRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="qzRetry()">🪑 再抢一轮</button>
+    <button class="w-btn blue" onclick="qzLeave()">🏠 回首页</button>
+  </div>
 </div>
 <div class="screen" id="screen-chess">
   <div class="top-bar">
@@ -7725,10 +7854,12 @@ function updateHomeStats(){
   if(typeof cdNudge==='function')cdNudge();
   if(typeof zpNudge==='function')zpNudge();
   if(typeof csNudge==='function')csNudge();
+  if(typeof qzNudge==='function')qzNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
   if(mode==='chess'){csStart();return}
+  if(mode==='chairs'){qzStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -36753,6 +36884,595 @@ document.addEventListener('keydown',function(e){
   if(v){e.preventDefault();csGo(v[0],v[1])}
 });
 
+/* ===================== 笔顺抢椅子（抢座抢牌 · v1.60.0） ===================== */
+/* ===================== 笔顺抢椅子 v1.60.0 ===================== */
+const QZ_SEATS0=6,QZ_SEATS_MAX=9,QZ_HEARTS=3,QZ_HEART_MAX=5,QZ_MISS_MAX=40,QZ_BOOK_MAX=300;
+const QZ_POOL_MIN=4,QZ_POOL_WANT=16,QZ_DASH_MS=300,QZ_SPRINT=2.05;
+const QZ_DIRS=[{e:'➡️',nm:'横',c:'#FF6B6B'},{e:'⬇️',nm:'竖',c:'#4ECDC4'},{e:'↙️',nm:'撇',c:'#45B7D1'},{e:'↘️',nm:'捺',c:'#FFA07A'}];
+const QZ_RANKS=[
+  {n:0,e:'🪑',t:'板凳新人'},{n:10,e:'🐤',t:'抢座快手'},{n:24,e:'🏃',t:'绕圈小飞毛'},
+  {n:42,e:'🦶',t:'垫脚高手'},{n:64,e:'🌀',t:'旋风抢位手'},{n:90,e:'⚡',t:'先声夺人'},
+  {n:120,e:'🎪',t:'抢位大师'},{n:156,e:'🔥',t:'风火轮王'},{n:200,e:'👑',t:'舞池之王'}
+];
+const QZ_NOTE=[392,440,494,523,587,659,698,784,880,988,1047,1175];
+const qz={
+  run:false,over:false,busy:false,gen:0,rafId:0,last:0,timers:[],bound:false,
+  lv:1,score:0,hearts:QZ_HEARTS,combo:0,maxCombo:0,
+  ok:0,bad:0,late:0,words:0,sits:0,dashes:0,
+  phase:'run',music:1,musicMs:4000,grab:1,grabMs:2900,step:4,
+  breath:1,sprint:false,out:false,
+  ang:0,rot:-Math.PI/2,n:QZ_SEATS0,seats:[],dash:null,
+  rec:null,q:null,qi:0,qW:[],pool:[],miss:[],first:true,
+  nReach:2,nSwap:1,reachBonus:0,reachKey:'',
+  geo:{cx:170,cy:158,R:124,r:96},face:'🐰'
+};
+/* ---- 小工具 ---- */
+function qzInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function qzAdd(k,n){if(n)localStorage.setItem(k,String(qzInt(k)+n))}
+function qzSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function qzSay(t,c){const el=document.getElementById('qzMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function qzShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function qzPick(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function qzRank(n){let r=QZ_RANKS[0];for(let i=0;i<QZ_RANKS.length;i++)if(n>=QZ_RANKS[i].n)r=QZ_RANKS[i];return r}
+function qzAcc(){return qz.ok+qz.bad+qz.late?Math.round(qz.ok/(qz.ok+qz.bad+qz.late)*100):100}
+function qzT(fn,ms){const g=qz.gen;const id=setTimeout(function(){if(g!==qz.gen)return;fn()},ms);qz.timers.push(id);return id}
+function qzKillTimers(){qz.timers.forEach(function(t){clearTimeout(t)});qz.timers=[]}
+/* ---- 场地几何 ---- */
+function qzSeatN(){return Math.min(QZ_SEATS_MAX,QZ_SEATS0+Math.floor((qz.lv-1)/3))}
+function qzReach(){return Math.max(1,2-Math.floor((qz.lv-1)/4))+qz.reachBonus}
+function qzMusicMs(){return Math.max(1600,4000-(qz.lv-1)*180)}
+function qzGrabMs(){return Math.max(1500,2900-(qz.lv-1)*80)}
+function qzSpd(){return 0.62+qz.lv*0.05}
+function qzGap(){return Math.PI*2/qz.n}
+function qzSeatAng(i){return qz.rot+i*qzGap()}
+function qzMeasure(){
+  const el=document.getElementById('qzArena');
+  if(!el||!el.clientWidth)return qz.geo;
+  const w=el.clientWidth,h=el.clientHeight||320,m=Math.min(w,h);
+  qz.geo={cx:w/2,cy:h/2,R:m/2-34,r:m/2-64};
+  return qz.geo;
+}
+function qzPoint(a,r){const g=qz.geo;return {x:g.cx+r*Math.cos(a),y:g.cy+r*Math.sin(a)}}
+function qzSlot(){
+  let k=Math.round((qz.ang-qz.rot)/qzGap());
+  k=((k%qz.n)+qz.n)%qz.n;
+  return k;
+}
+function qzDist(i){const d=Math.abs(i-qzSlot());return Math.min(d,qz.n-d)}
+function qzAlive(){let c=0;for(let i=0;i<qz.n;i++)if(qz.seats[i]&&!qz.seats[i].dead)c++;return c}
+function qzShort(a,b){let d=b-a;while(d>Math.PI)d-=Math.PI*2;while(d<-Math.PI)d+=Math.PI*2;return d}
+function qzRebuild(){
+  const n=qzSeatN();
+  qz.n=n;qz.rot=-Math.PI/2+Math.random()*0.5;
+  qz.seats=[];
+  for(let i=0;i<n;i++)qz.seats.push({i:i,lb:'',d:-1,num:false,dead:false});
+  qz.reachKey='';
+}
+/* ---- 字池：每一笔都认得出方向、且至少两种方向 ---- */
+function qzMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>10)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=jtDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<ms.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp};
+}
+function qzCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<40;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(qzShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(qzShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(qzShuf(CHARS.slice()));
+  return out;
+}
+function qzTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function qzRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await qzTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians)return null;
+  return qzMake(ch,raw);
+}
+async function qzBuild(keep){
+  const g=qz.gen;
+  qz.miss=(localStorage.getItem('hz_chairs_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  qzShuf(qz.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  qzCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)qz.pool=[];
+  for(let k=0;k<want.length&&qz.pool.length<QZ_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return qzRec(c)}));
+    if(g!==qz.gen||!qz.run)break;
+    for(let i=0;i<rs.length;i++)if(rs[i])qz.pool.push(rs[i]);
+  }
+  return qz.pool.length>=QZ_POOL_MIN;
+}
+function qzWindow(){return [2,7]}
+function qzPickRec(){
+  const w=qzWindow();
+  let cand=qz.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  if(!cand.length)cand=qz.pool.slice();
+  if(qz.first){
+    for(let i=0;i<qz.miss.length;i++){
+      for(let k=0;k<cand.length;k++)if(cand[k].ch===qz.miss[i]){qz.first=false;return cand[k]}
+    }
+    qz.first=false;
+  }
+  return cand.length?cand[Math.floor(Math.random()*cand.length)]:(qz.pool.length?qzPick(qz.pool):null);
+}
+/* ---- 出题 ---- */
+function qzQ(){
+  const r=qz.rec;
+  if(!r||qz.qi<0||qz.qi>r.n)return null;
+  if(qz.qi===0)return {kind:'count',right:String(r.n),text:'「<b>'+r.ch+'</b>」一共有<b>几笔</b>？',sub:'音乐一停，坐到牌上写着正确笔画数的椅子'};
+  const k=qz.qi-1,d=r.dirs[k];
+  return {kind:'dir',right:QZ_DIRS[d].nm,dir:d,k:k,
+    text:'「<b>'+r.ch+'</b>」的第 <b>'+(k+1)+'</b> 笔往<b>哪个方向</b>写？',sub:'横 ➡️ / 竖 ⬇️ / 撇 ↙️ / 捺 ↘️'};
+}
+function qzWrongs(q){
+  const out=[];
+  if(q.kind==='count'){
+    const n=qz.rec.n;
+    for(let v=Math.max(1,n-3);v<=n+3;v++)if(v!==n)out.push(String(v));
+  }else{
+    for(let d=0;d<4;d++)if(QZ_DIRS[d].nm!==q.right)out.push(QZ_DIRS[d].nm);
+  }
+  return out;
+}
+function qzLabel(s,lb,q){
+  s.lb=lb;s.num=q.kind==='count';s.d=-1;
+  if(q.kind==='dir')for(let d=0;d<4;d++)if(QZ_DIRS[d].nm===lb)s.d=d;
+}
+function qzLabelAll(){
+  const q=qz.q;
+  if(!q)return;
+  const alive=[];
+  for(let i=0;i<qz.n;i++)if(!qz.seats[i].dead)alive.push(i);
+  const labels=[q.right];
+  for(let k=1;k<alive.length;k++)labels.push(qzPick(qz.qW)||q.right);
+  qzShuf(labels);
+  for(let k=0;k<alive.length;k++)qzLabel(qz.seats[alive[k]],labels[k]!==undefined?labels[k]:q.right,q);
+  for(let i=0;i<qz.n;i++)if(qz.seats[i].dead){qz.seats[i].lb='';qz.seats[i].d=-1}
+  qz.reachKey='';
+}
+function qzAsk(){
+  if(!qz.rec){qzSay('😢 凑不出一个可用的字','#FFCC80');return false}
+  if(qzAlive()<=2)qzRebuild();
+  const q=qzQ();
+  if(!q){qzWordDone();return false}
+  qz.q=q;qz.qW=qzWrongs(q);
+  qzLabelAll();
+  qz.phase='run';qz.music=1;qz.musicMs=qzMusicMs();qz.step=4;qz.dash=null;
+  qz.reachBonus=0;qz.grab=1;
+  qzSet('qzAsk',q.text+'<br><small>'+q.sub+'</small>');
+  qzChar();qzRender();qzHud();
+  return true;
+}
+/* ---- 画 ---- */
+function qzChar(){
+  const el=document.getElementById('qzStage'),r=qz.rec;
+  if(!el)return;
+  if(!r){el.innerHTML='<div class="qz-big">🪑</div><div class="qz-left">正在搬椅子……</div>';return}
+  const done=Math.max(0,qz.qi-1);
+  let h='<svg class="qz-svg" viewBox="0 0 1024 1024">';
+  for(let i=0;i<r.paths.length;i++){
+    const lit=i<done,cur=(qz.qi>0&&i===done);
+    h+='<path d="'+r.paths[i]+'" fill="'+(lit?'#2E7D32':(cur?'#FFB74D':'rgba(60,60,90,.13)'))+'"/>';
+  }
+  h+='</svg>';
+  h+='<div class="qz-left">还剩 <b>'+(r.n-done)+'</b> 笔</div>';
+  h+='<div class="qz-word">「'+r.ch+'」· 第 '+qz.lv+' 轮</div>';
+  el.innerHTML=h;
+}
+function qzRender(){
+  const arena=document.getElementById('qzArena');
+  if(!arena)return;
+  const g=qzMeasure(),gap=qzGap();
+  let h='<div class="qz-ring" style="width:'+(g.R*2)+'px;height:'+(g.R*2)+'px"></div>';
+  h+='<div class="qz-stage" id="qzStage"></div>';
+  for(let i=0;i<qz.n;i++){
+    const s=qz.seats[i],a=qz.rot+i*gap,p=qzPoint(a,g.R);
+    const cls=['qz-seat'];
+    if(s.dead)cls.push('dead');
+    if(!s.dead&&s.num)cls.push('num');
+    if(!s.dead&&s.d>=0)cls.push('d'+s.d);
+    h+='<div class="'+cls.join(' ')+'" id="qzSeat'+i+'" style="left:'+p.x.toFixed(1)+'px;top:'+p.y.toFixed(1)+'px" onclick="qzGrab('+i+')">'+
+      '<div class="qz-tag">'+(s.dead?'':s.lb)+'</div>'+
+      '<div class="qz-back"></div>'+
+      '<div class="qz-leg"></div>'+
+      (s.dead?'<div class="qz-crumb">🪵</div>':'')+
+      '</div>';
+  }
+  const mp=qzPoint(qz.ang,g.r);
+  h+='<div class="qz-me" id="qzMe" style="left:'+mp.x.toFixed(1)+'px;top:'+mp.y.toFixed(1)+'px">'+qz.face+'</div>';
+  const sp=qzPoint(qzSeatAng(qzSlot()),g.r);
+  h+='<div class="qz-here" id="qzHere" style="left:'+sp.x.toFixed(1)+'px;top:'+sp.y.toFixed(1)+'px">👣</div>';
+  arena.className='qz-arena'+(qz.phase==='grab'?' qz-grabmode':'');
+  arena.innerHTML=h;
+  qzChar();
+  qzPaintReach();
+  qzDraw();
+}
+function qzPaintReach(){
+  const key=qzReach()+'|'+qzSlot()+'|'+qz.phase+'|'+qz.n;
+  if(key===qz.reachKey)return;
+  qz.reachKey=key;
+  for(let i=0;i<qz.n;i++){
+    const el=document.getElementById('qzSeat'+i);
+    if(!el)continue;
+    const near=!qz.seats[i].dead&&qzDist(i)<=qzReach()&&qz.phase==='grab';
+    el.classList.toggle('reach',near);
+    el.classList.toggle('mine',i===qzSlot());
+  }
+  const me=document.getElementById('qzMe');
+  if(me)me.classList.toggle('stop',qz.phase==='grab');
+}
+function qzDraw(){
+  const g=qz.geo,me=document.getElementById('qzMe');
+  if(me){
+    const p=qzPoint(qz.ang,g.r);
+    me.style.left=p.x.toFixed(1)+'px';
+    me.style.top=p.y.toFixed(1)+'px';
+    me.classList.toggle('sprint',!!(qz.sprint&&!qz.out&&qz.phase==='run'));
+  }
+  const here=document.getElementById('qzHere');
+  if(here){
+    const p=qzPoint(qzSeatAng(qzSlot()),g.r);
+    here.style.left=p.x.toFixed(1)+'px';
+    here.style.top=p.y.toFixed(1)+'px';
+  }
+  const v=qz.phase==='grab'?qz.grab:qz.music;
+  const f=document.getElementById('qzBarFill');
+  if(f)f.style.width=(Math.max(0,Math.min(1,v))*100).toFixed(1)+'%';
+  const w=document.getElementById('qzBarWrap');
+  if(w)w.classList.toggle('low',v<0.32);
+  qzSet2('qzBarTxt',qz.phase==='grab'?'⏱ 抢座':'🎵 音乐');
+  const br=document.getElementById('qzBreathFill');
+  if(br)br.style.width=(qz.breath*100).toFixed(1)+'%';
+  qzPaintReach();
+}
+function qzSet2(id,v){const el=document.getElementById(id);if(el&&el.textContent!==v)el.textContent=v}
+/* ---- HUD ---- */
+function qzHud(){
+  qzSet('qzScoreTxt','🪑 '+Math.round(qz.score)+' 分');
+  qzSet('qzLvTxt','第 '+qz.lv+' 轮');
+  qzSet('qzRankTxt','🏅 '+qzRank(qzInt('hz_chairs_ok')).t);
+  let h='';
+  const hs=Math.max(QZ_HEARTS,qz.hearts);
+  for(let i=0;i<hs;i++)h+=(i<qz.hearts?'❤️':'🖤');
+  qzSet('qzHeartTxt',h);
+  qzSet('qzComboTxt','🔥 连 '+qz.combo);
+  qzSet('qzOkTxt','🪑 '+qz.ok);
+  qzSet('qzWordTxt','📝 '+qz.words+' 个字');
+  qzSet('qzPctTxt','🎯 '+qzAcc()+'%');
+  qzSet('qzReachN',String(qz.nReach));
+  qzSet('qzSwapN',String(qz.nSwap));
+}
+function qzShake(){const b=document.getElementById('qzArena');if(!b)return;b.classList.add('qz-shake');qzT(function(){b.classList.remove('qz-shake')},420)}
+/* ---- 图鉴 / 错字手册 ---- */
+function qzGood(ch){return ch&&ch.length===1&&CHARS.indexOf(ch)>=0}
+function qzBookAdd(ch){
+  if(!qzGood(ch))return;
+  const a=(localStorage.getItem('hz_chairs_book')||'').split(',').filter(qzGood);
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_chairs_book',a.slice(-QZ_BOOK_MAX).join(','));
+}
+function qzMissAdd(ch){
+  if(!qzGood(ch))return;
+  let a=(localStorage.getItem('hz_chairs_miss')||'').split(',').filter(qzGood);
+  a=a.filter(function(c){return c!==ch});
+  a.push(ch);
+  localStorage.setItem('hz_chairs_miss',a.slice(-QZ_MISS_MAX).join(','));
+}
+/* ---- 主循环 ---- */
+function qzStopLoop(){if(qz.rafId){cancelAnimationFrame(qz.rafId);qz.rafId=0}qz.last=0}
+function qzLoop(ts){
+  if(!qz.run||qz.over){qz.rafId=0;return}
+  const dt=Math.min(90,qz.last?ts-qz.last:16);
+  qz.last=ts;
+  qzTick(dt);
+  qz.rafId=requestAnimationFrame(qzLoop);
+}
+function qzStartLoop(){qzStopLoop();qz.last=0;qz.rafId=requestAnimationFrame(qzLoop)}
+function qzTick(dt){
+  if(qz.busy){qzDraw();return}
+  if(qz.phase==='run'){
+    if(qz.sprint&&!qz.out){
+      qz.breath-=dt/1300;
+      if(qz.breath<=0){qz.breath=0;qz.out=true;tone(190,.12,'sawtooth',.05);qzSay('😮‍💨 喘不上气了 —— 松一会儿劲再冲','#FFCC80')}
+    }else if(!qz.sprint){
+      qz.breath=Math.min(1,qz.breath+dt/900);
+      if(qz.out&&qz.breath>0.35)qz.out=false;
+    }
+    const sp=qzSpd()*(qz.sprint&&!qz.out?QZ_SPRINT:1);
+    qz.ang+=sp*dt/1000;
+    if(qz.ang>Math.PI*4)qz.ang-=Math.PI*2;
+    if(qz.ang<-Math.PI*4)qz.ang+=Math.PI*2;
+    qz.music-=dt/qz.musicMs;
+    const st=Math.max(0,Math.ceil(qz.music*4));
+    if(st!==qz.step){qz.step=st;if(st>0)tone(660+st*40,.03,'sine',.022)}
+    if(qz.music<=0){qz.music=0;qzStopMusic()}
+  }else{
+    if(qz.dash){
+      qz.dash.t+=dt;
+      const f=Math.min(1,qz.dash.t/qz.dash.need);
+      qz.ang=qz.dash.a0+qz.dash.da*f;
+      if(f>=1){const i=qz.dash.i;qz.dash=null;qz.dashes++;qzAdd('hz_chairs_dash',1);qzResolve(i,true);qzDraw();return}
+    }
+    qz.grab-=dt/qz.grabMs;
+    if(qz.grab<=0){qz.grab=0;qzLate()}
+  }
+  qzDraw();
+}
+function qzStopMusic(){
+  qz.phase='grab';qz.grab=1;qz.grabMs=qzGrabMs();qz.sprint=false;qz.reachKey='';
+  tone(240,.1,'square',.06);tone(180,.14,'square',.05);
+  qzShake();
+  const a=document.getElementById('qzArena');
+  if(a)a.className='qz-arena qz-grabmode';
+  qzSay('🛑 音乐停了！点一把<b>黄边</b>的椅子坐下（够不着就先点它 —— 跑过去要花时间）','#FFE082');
+  qzDraw();
+}
+/* ---- 抢座 ---- */
+function qzGrab(i){
+  if(!qz.run||qz.over||qz.busy||qz.hearts<=0)return;
+  const s=qz.seats[i];
+  if(!s)return;
+  if(s.dead){tone(165,.07,'square',.04);qzSay('🪵 这把<b>已经坐塌</b>啦 —— 挑一把还站着的','#FFCC80');return}
+  if(qz.phase!=='grab'){tone(180,.06,'square',.03);qzSay('🎵 音乐还在响 —— 先<b>跑到</b>写着答案的椅子旁边（按住场地加速）','#B3E5FC');return}
+  if(qz.dash)return;
+  const dist=qzDist(i);
+  if(dist<=qzReach()){qzResolve(i,false);return}
+  const tgt=qzSeatAng(i);
+  qz.dash={i:i,t:0,need:(dist-qzReach())*QZ_DASH_MS,a0:qz.ang,da:qzShort(qz.ang,tgt)};
+  tone(520,.06,'triangle',.05);
+  qzSay('🏃 差 <b>'+dist+'</b> 把椅子，正跑过去 —— 抢座时间可没停！','#FFE082');
+}
+function qzResolve(i,ran){
+  const s=qz.seats[i],q=qz.q;
+  if(!s||s.dead||!q)return;
+  if(s.lb!==q.right){qzWrong(i);return}
+  qzGoodSit(i,ran);
+}
+function qzGoodSit(i,ran){
+  const q=qz.q;
+  qz.ok++;qz.combo++;
+  if(qz.combo>qz.maxCombo)qz.maxCombo=qz.combo;
+  const fast=Math.round(qz.grab*6);
+  const near=ran?0:Math.max(0,qzReach()+1-qzDist(i))*2;
+  const g=Math.round(7+qz.combo*1.8+qz.lv*1.5+fast+near);
+  qz.score+=g;
+  qzAdd('hz_chairs_ok',1);qzAdd('hz_chairs_sit',1);
+  tone(QZ_NOTE[Math.min(QZ_NOTE.length-1,qz.combo-1)],.12,'triangle',.1);
+  const el=document.getElementById('qzSeat'+i);
+  if(el)el.classList.add('pop');
+  qz.seats[i].dead=true;qz.seats[i].lb='';
+  if(qz.combo>=5)showComboEffect(qz.combo);
+  qzSay('🪑 抢到位子啦！「<b>'+q.right+'</b>」正是这一笔 +'+g,'#B9F6CA');
+  qz.qi++;
+  if(qz.qi>qz.rec.n){qzWordDone();return true}
+  if(qzAlive()<=2){qzRebuild();qzSay('🦴 椅子全坐塌了，重新搬一排 ——「'+qz.rec.ch+'」还剩 '+qz.rec.n+' 笔','#FFE082')}
+  qzAsk();
+  return true;
+}
+function qzWrong(i){
+  const s=qz.seats[i],q=qz.q;
+  qz.bad++;qz.combo=0;qz.dash=null;
+  qz.hearts=Math.max(0,qz.hearts-1);
+  qz.score=Math.max(0,qz.score-3);
+  qzAdd('hz_chairs_late',1);
+  qzMissAdd(qz.rec.ch);
+  tone(150,.18,'sawtooth',.09);
+  qzShake();
+  qzSet('qzAsk','💺 这把椅子上写着「<b>'+s.lb+'</b>」<br><small>正确答案是「'+q.right+'」，看清牌子再坐</small>');
+  qzSay('💢 坐错了！「'+s.lb+'」不是这一笔（还剩 '+Math.max(0,qz.hearts)+' 颗心）','#FF8A80');
+  qz.busy=true;
+  qzHud();qzRender();
+  if(qz.hearts<=0){qzT(function(){qzEnd('hearts')},900);return}
+  qzT(function(){
+    if(!qz.run||qz.over)return;
+    qz.busy=false;qzAsk();
+  },1100);
+}
+function qzLate(){
+  const q=qz.q;
+  qz.late++;qz.combo=0;qz.dash=null;
+  qz.hearts=Math.max(0,qz.hearts-1);
+  qzAdd('hz_chairs_late',1);
+  if(q)qzMissAdd(qz.rec.ch);
+  tone(140,.2,'sawtooth',.08);
+  qzShake();
+  qzSet('qzAsk','⏰ 音乐停了好久你还没坐下<br><small>'+(q?('这一笔的答案是「'+q.right+'」'):'')+'</small>');
+  qzSay('⏰ 慢了半拍 —— 早该往写着「'+(q?q.right:'答案')+'」的椅子跑了（还剩 '+Math.max(0,qz.hearts)+' 颗心）','#FF8A80');
+  qz.busy=true;
+  qzHud();qzRender();
+  if(qz.hearts<=0){qzT(function(){qzEnd('hearts')},900);return}
+  qzT(function(){
+    if(!qz.run||qz.over)return;
+    qz.busy=false;qzAsk();
+  },1100);
+}
+/* ---- 写完一个字 ---- */
+function qzWordDone(){
+  const r=qz.rec;
+  if(!r)return;
+  qz.words++;
+  qzAdd('hz_chairs_words',1);
+  qzBookAdd(r.ch);
+  const g=Math.round(22+qz.lv*6);
+  qz.score+=g;
+  qz.lv=1+Math.floor(qz.words/2);
+  if(qz.lv>qzInt('hz_chairs_lv'))localStorage.setItem('hz_chairs_lv',String(qz.lv));
+  if(qz.words%3===0&&qz.hearts<QZ_HEART_MAX){qz.hearts++;qzSay('❤️ 连着写完 '+qz.words+' 个字，补你一颗心（现在 '+qz.hearts+' 颗）','#F8BBD0')}
+  spawnConfetti();
+  tone(523,.1,'triangle',.1);tone(659,.12,'triangle',.1);
+  qz.busy=true;
+  qzSet('qzAsk','🎉「<b>'+r.ch+'</b>」写完啦！+'+g+' 分<br><small>椅子重新摆好，下一位小朋友来了</small>');
+  qzRebuild();qzChar();qzHud();qzRender();
+  qzT(function(){
+    if(!qz.run||qz.over)return;
+    qz.busy=false;
+    qzNextChar();
+  },1000);
+}
+function qzNextChar(){
+  const r=qzPickRec();
+  if(!r){
+    qz.busy=false;
+    qzSet('qzAsk','😢 字池空了<br><small>先收工结算，或者等字库补齐</small>');
+    return false;
+  }
+  qz.rec=r;qz.qi=0;
+  qz.busy=false;
+  qzAsk();
+  return true;
+}
+/* ---- 道具 ---- */
+function qzReachTool(){
+  if(!qz.run||qz.over||qz.busy)return;
+  if(qz.nReach<=0){qzSay('🦶 垫脚用完了','#FFCC80');return}
+  qz.nReach--;qz.reachBonus++;qz.reachKey='';
+  qz.score=Math.max(0,qz.score-6);
+  tone(760,.08,'sine',.06);
+  qzSay('🦶 手伸长了 —— 这一回合多够 <b>一把</b>椅子（-6 分）','#69F0AE');
+  qzHud();qzDraw();
+}
+function qzSwapTool(){
+  if(!qz.run||qz.over||qz.busy)return;
+  if(qz.nSwap<=0){qzSay('🔀 换牌用完了','#FFCC80');return}
+  qz.nSwap--;
+  qz.score=Math.max(0,qz.score-9);
+  tone(330,.1,'square',.05);
+  qzLabelAll();
+  qzSay('🔀 椅子背后的牌子哗啦重挂 —— 答案也许就落在你手边（-9 分）','#80DEEA');
+  qzHud();qzRender();
+}
+function qzHelp(){
+  qzSay('🪑 绕着圈子跑，<b>椅子背上贴着答案牌</b>：先看清哪把写着这一笔的正确答案，再往它旁边跑。'+
+    '音乐「刺啦」一停就进入抢座 —— 只有<b>身边 '+qzReach()+' 把</b>椅子够得着，远处的点下去要一路跑过去，而倒计时照走。'+
+    '坐对：这个字亮一笔、那把椅子<b>当场坐塌</b>；坐错或超时：扣一颗心。'+
+    '整字写完 = 一轮舞会成功（换字、椅子重新摆满、彩带）。每写完 2 个字升 1 级：音乐更短、圈更快、椅子更多、够得着的范围更小。'+
+    '<b>🦶 垫脚</b>这一回合多够一把（扣 6 分），<b>🔀 换牌</b>重挂所有答案牌（扣 9 分）。','#80DEEA');
+}
+/* ---- 加速（按住） ---- */
+function qzSprint(on){
+  if(!qz.run||qz.over||qz.busy){qz.sprint=false;return}
+  if(qz.phase!=='run'){qz.sprint=false;return}
+  qz.sprint=!!on;
+}
+function qzBind(){
+  if(qz.bound)return;
+  const a=document.getElementById('qzArena');
+  if(!a)return;
+  qz.bound=true;
+  a.addEventListener('pointerdown',function(){qzSprint(true)});
+  window.addEventListener('pointerup',function(){qzSprint(false)});
+  window.addEventListener('pointercancel',function(){qzSprint(false)});
+  window.addEventListener('resize',function(){if(currentMode==='chairs'&&qz.run)qzRender()});
+}
+/* ---- 键盘 ---- */
+document.addEventListener('keydown',function(e){
+  if(currentMode!=='chairs'||!qz.run||qz.over)return;
+  const k=e.key;
+  if(k===' '||k==='Spacebar'){e.preventDefault();qzSprint(true);return}
+  if(k>='1'&&k<='9'){e.preventDefault();qzGrab(+k-1);return}
+  if(k==='p'||k==='P'){e.preventDefault();qzReachTool();return}
+  if(k==='x'||k==='X'){e.preventDefault();qzSwapTool();return}
+  if(k==='?'){e.preventDefault();qzHelp()}
+});
+document.addEventListener('keyup',function(e){
+  if(currentMode!=='chairs')return;
+  if(e.key===' '||e.key==='Spacebar')qzSprint(false);
+});
+/* ---- 开局 / 结算 ---- */
+function qzStopAll(){qzStopLoop();qzKillTimers();qz.gen++;qz.sprint=false}
+async function qzStart(){
+  qzStopAll();
+  qz.run=true;qz.over=false;qz.busy=true;
+  qz.lv=1;qz.score=0;qz.hearts=QZ_HEARTS;qz.combo=0;qz.maxCombo=0;
+  qz.ok=0;qz.bad=0;qz.late=0;qz.words=0;qz.sits=0;qz.dashes=0;
+  qz.nReach=2;qz.nSwap=1;qz.reachBonus=0;
+  qz.music=1;qz.grab=1;qz.breath=1;qz.out=false;qz.dash=null;
+  qz.rec=null;qz.q=null;qz.qi=0;qz.qW=[];qz.first=true;
+  qzRebuild();
+  qz.ang=qz.rot+qzGap()/2;
+  showScreen('chairs');
+  qzSet('qzAsk','🪑 正在搬椅子……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  qzBind();qzChar();qzRender();qzHud();
+  qzSay('🎵 音乐响起来的时候，绕着圈跑','#B3E5FC');
+  let ok=await qzBuild();
+  if(!qz.run||qz.over)return;
+  if(!ok){
+    qzSay('🎵 字库有点慢，再搬一次椅子……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(!qz.run||qz.over)return;
+    ok=await qzBuild(true);
+    if(!qz.run||qz.over)return;
+  }
+  if(!ok){
+    qz.run=false;qz.busy=false;
+    qzSet('qzAsk','😢 凑不出一个可用的字<br><small>字库还没加载好，稍后再来抢一轮座</small>');
+    qzSay('先去别的模式练两笔，回来椅子就搬齐了','#FFCC80');
+    return;
+  }
+  qzAdd('hz_chairs_games',1);
+  qz.busy=false;
+  qzNextChar();
+  if(!qz.run||qz.over)return;
+  qzStartLoop();
+}
+function qzEnd(reason){
+  if(qz.over)return;
+  qz.over=true;qz.run=false;qz.busy=true;
+  qzStopAll();
+  const sc=Math.round(qz.score);
+  if(sc>qzInt('hz_chairs_best'))localStorage.setItem('hz_chairs_best',String(sc));
+  if(qz.maxCombo>qzInt('hz_chairs_streak'))localStorage.setItem('hz_chairs_streak',String(qz.maxCombo));
+  if(qz.lv>qzInt('hz_chairs_lv'))localStorage.setItem('hz_chairs_lv',String(qz.lv));
+  const stars=Math.floor(sc/110)+qz.words;
+  if(stars>0)addStars(stars);
+  showScreen('chairs-result');
+  const R=qzRank(qzInt('hz_chairs_ok'));
+  qzSet('qzRsStars','⭐ +'+stars);
+  qzSet('qzRsEmoji',reason==='quit'?'🏳️':'🪑');
+  qzSet('qzRsTitle',reason==='quit'?'这一场舞会先散了':'心被塌椅子硌完了');
+  qzSet('qzRsSub',reason==='quit'?'下一次音乐再响，记得提前跑到位':'看清牌子再坐 —— 跑得快，也要答得准');
+  qzSet('qzRsScore',String(sc));
+  qzSet('qzRsOk',String(qz.ok));
+  qzSet('qzRsWord',String(qz.words));
+  qzSet('qzRsLv',String(qz.lv));
+  qzSet('qzRsAcc',qzAcc()+'%');
+  qzSet('qzRsStreak',String(qz.maxCombo));
+  qzSet('qzRsBest',String(qzInt('hz_chairs_best')));
+  qzSet('qzRsAll','🏅 '+R.e+' '+R.t+' · 累计抢中 '+qzInt('hz_chairs_ok')+' 次\n'+
+    '📝 写完 '+qzInt('hz_chairs_words')+' 个字 · 🦴 坐塌 '+qzInt('hz_chairs_sit')+' 把椅子\n'+
+    '🏃 冲刺坐过去 '+qzInt('hz_chairs_dash')+' 次 · ⏰ 没抢到位 '+qzInt('hz_chairs_late')+' 次 · 🎪 玩过 '+qzInt('hz_chairs_games')+' 场');
+  const book=(localStorage.getItem('hz_chairs_book')||'').split(',').filter(qzGood);
+  const bs=document.getElementById('qzRsBook');
+  if(bs)bs.innerHTML=book.slice(-24).map(function(c){return '<i>'+c+'</i>'}).join('');
+  const bt=document.getElementById('qzRsBookT');
+  if(bt)bt.textContent=book.length?('📚 抢位图鉴 · 已收 '+book.length+' 个写完的字'):'📚 还没有一个字写完 —— 整字写完就收进图鉴';
+  updateHomeStats();
+}
+function qzRetry(){qzStart()}
+function qzLeave(){
+  qzStopAll();
+  if(qz.run&&!qz.over){qz.over=true;qz.run=false}
+  goHome();
+}
+function qzNudge(){
+  const dot=document.getElementById('qzCardDot'),tip=document.getElementById('qzCardTip');
+  const ok=qzInt('hz_chairs_ok'),lv=qzInt('hz_chairs_lv'),games=qzInt('hz_chairs_games');
+  const R=qzRank(ok);
+  if(tip)tip.textContent=games?('🏅 '+R.t+' · 抢到第 '+lv+' 轮舞池'):'音乐一停就抢座 · 先跑到答案旁边';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
 window.addEventListener('DOMContentLoaded',boot);
 </script>
 </body>
