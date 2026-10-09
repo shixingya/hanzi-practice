@@ -3744,6 +3744,83 @@ button:active{transform:scale(.95)}
 .fm-book i{background:rgba(255,255,255,.18);border-radius:9px;padding:3px 8px;font-size:16px;color:#fff;font-style:normal}
 .fm-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
 .fm-badge.on{display:flex}
+/* ---------- 笔顺拔河赛 ---------- */
+.tb-hud{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;width:100%;margin-bottom:8px}
+.tb-hud span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:13px;padding:4px 10px;font-size:12.5px;white-space:nowrap}
+.tb-ask{width:100%;background:rgba(255,255,255,.13);border-radius:16px;padding:11px 13px;color:#fff;font-size:16px;text-align:center;line-height:1.45;margin-bottom:8px;min-height:52px}
+.tb-ask small{font-size:11.5px;opacity:.74;display:block;margin-top:3px;line-height:1.4}
+.tb-ask b{color:#FFD740;font-weight:normal}
+.tb-arena{position:relative;width:100%;height:252px;border-radius:18px;overflow:hidden;margin-bottom:9px;background:linear-gradient(180deg,#4FC3F7 0 46%,#AED581 46%,#689F38 100%);box-shadow:inset 0 3px 0 rgba(255,255,255,.22),0 5px 16px rgba(0,0,0,.26)}
+.tb-arena.near{background:linear-gradient(180deg,#F48FB1 0 46%,#A1887F 46%,#5D4037 100%)}
+.tb-arena.strong{background:linear-gradient(180deg,#80DEEA 0 46%,#A5D6A7 46%,#43A047 100%)}
+.tb-pit{position:absolute;right:0;top:46%;bottom:0;width:12%;background:linear-gradient(180deg,rgba(93,64,55,.55),#3E2723);border-left:3px dashed rgba(255,255,255,.42)}
+.tb-pit u{position:absolute;left:-14px;top:6px;font-size:13px;color:#fff;text-decoration:none;writing-mode:vertical-rl;letter-spacing:2px;opacity:.85}
+.tb-line{position:absolute;top:46%;bottom:0;width:0;border-left:2px dashed rgba(255,255,255,.4)}
+.tb-line u{position:absolute;left:-11px;bottom:6px;font-size:17px;text-decoration:none}
+.tb-knot{position:absolute;top:0;bottom:0;left:50%;width:0;transform:translateX(-50%);z-index:4;pointer-events:none}
+.tb-node{position:absolute;left:0;top:52%;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#FF8A80,#C62828 72%);border:3px solid #fff;box-shadow:0 2px 7px rgba(0,0,0,.45)}
+.tb-arena.near .tb-node{box-shadow:0 0 0 4px rgba(255,82,82,.34),0 2px 7px rgba(0,0,0,.45)}
+.tb-card{position:absolute;left:0;top:52%;transform:translate(-50%,-100%);margin-top:-22px;width:64px;height:64px;background:rgba(255,255,255,.94);border-radius:11px;box-shadow:0 3px 9px rgba(0,0,0,.32);overflow:hidden}
+.tb-card svg{width:100%;height:100%;transform:scaleY(-1)}
+.tb-card u{position:absolute;left:0;right:0;bottom:0;background:rgba(38,50,56,.72);color:#fff;font-size:10px;line-height:15px;text-align:center;text-decoration:none}
+.tb-rope{position:absolute;left:2%;right:2%;top:52%;height:8px;margin-top:-4px;border-radius:6px;background:linear-gradient(180deg,#E0B080,#A1887F 58%,#6D4C41);box-shadow:0 2px 4px rgba(0,0,0,.3)}
+.tb-rope.taut{background:linear-gradient(180deg,#FFAB91,#E57373 58%,#B71C1C)}
+.tb-team{position:absolute;top:52%;display:flex;gap:0;font-size:21px;line-height:1;z-index:3;pointer-events:none}
+.tb-us{left:1px;transform:translateY(-50%)}
+.tb-them{right:1px;transform:translateY(-50%);flex-direction:row-reverse}
+.tb-us i,.tb-them i{font-style:normal;filter:drop-shadow(0 2px 3px rgba(0,0,0,.36));animation:tbLean 1s ease-in-out infinite alternate}
+.tb-them i{animation-name:tbLeanR}
+@keyframes tbLean{from{transform:rotate(-4deg)}to{transform:translateY(-3px) rotate(-16deg)}}
+@keyframes tbLeanR{from{transform:rotate(4deg) scaleX(-1)}to{transform:translateY(-3px) rotate(16deg) scaleX(-1)}}
+.tb-us.heave i{animation:tbHeave .34s ease-out}
+@keyframes tbHeave{0%{transform:translateX(0) rotate(-4deg)}45%{transform:translateX(-7px) rotate(-26deg)}100%{transform:translateX(-2px) rotate(-10deg)}}
+.tb-grem{position:absolute;left:50%;top:57%;font-size:27px;z-index:6;cursor:pointer;display:none;transform:translate(-50%,8%);filter:drop-shadow(0 3px 5px rgba(0,0,0,.42));-webkit-tap-highlight-color:transparent}
+.tb-grem.on{display:block;animation:tbGrem .52s ease-in-out infinite alternate}
+@keyframes tbGrem{from{transform:translate(-50%,8%) rotate(-9deg)}to{transform:translate(-50%,-16%) rotate(9deg)}}
+.tb-grem.thrown{display:block;animation:tbThrow .62s ease-out forwards}
+@keyframes tbThrow{0%{transform:translate(-50%,8%) rotate(0)}55%{transform:translate(120%,-190%) rotate(300deg);opacity:1}100%{transform:translate(330%,70%) rotate(720deg);opacity:0}}
+.tb-power{display:flex;align-items:center;gap:8px;width:100%;margin-bottom:8px}
+.tb-charge{position:relative;flex:1;height:17px;border-radius:10px;background:rgba(0,0,0,.26);overflow:hidden}
+.tb-charge i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#FFD54F,#FFB300);transition:width .12s linear}
+.tb-charge b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:normal;text-shadow:0 1px 3px rgba(0,0,0,.55);letter-spacing:1px}
+.tb-charge.full{box-shadow:0 0 0 2px rgba(255,235,59,.5),0 0 12px rgba(255,215,64,.6);animation:tbFull 1s ease-in-out infinite alternate}
+@keyframes tbFull{from{box-shadow:0 0 0 2px rgba(255,235,59,.38),0 0 8px rgba(255,215,64,.4)}to{box-shadow:0 0 0 4px rgba(255,235,59,.62),0 0 18px rgba(255,215,64,.72)}}
+.tb-grips{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;margin-bottom:8px}
+.tb-grip{border:none;border-radius:14px;padding:10px 2px 7px;font-family:inherit;font-size:15px;line-height:1.15;cursor:pointer;color:#263238;box-shadow:0 4px 0 rgba(0,0,0,.24);transition:transform .09s,box-shadow .09s;-webkit-tap-highlight-color:transparent}
+.tb-grip b{display:block;font-size:10px;opacity:.62;font-weight:normal;margin-top:2px}
+.tb-grip:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.24)}
+.tb-grip.d0{background:#FFE082}.tb-grip.d1{background:#B3E5FC}.tb-grip.d2{background:#C5E1A5}.tb-grip.d3{background:#F8BBD0}
+.tb-grip.flash{animation:tbFlash .3s}
+@keyframes tbFlash{0%,100%{transform:none}40%{transform:translateY(4px) scale(1.07)}}
+.tb-tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;width:100%;margin-bottom:8px}
+.tb-tool{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.26);color:#fff;border-radius:13px;padding:7px 12px;font-size:13px;font-family:inherit;cursor:pointer}
+.tb-tool:disabled{opacity:.42;cursor:default}
+.tb-tool b{color:#FFD740;font-weight:normal}
+.tb-msg{width:100%;background:rgba(0,0,0,.26);border-radius:14px;padding:10px 12px;color:#fff;font-size:14px;text-align:center;line-height:1.5;min-height:42px;margin-bottom:8px}
+.tb-msg b{color:#FFD740;font-weight:normal}
+.tb-tip{width:100%;background:rgba(255,255,255,.09);border-radius:14px;padding:11px 13px;color:rgba(255,255,255,.82);font-size:12px;line-height:1.72;text-align:center}
+.tb-tip b{color:#FFD740;font-weight:normal}
+.tb-fx{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;overflow:hidden;z-index:5}
+.tb-pop{position:absolute;font-size:15px;font-weight:bold;color:#FFEB3B;text-shadow:0 2px 6px rgba(0,0,0,.55);pointer-events:none;z-index:7;animation:tbPopUp .95s ease-out forwards;transform:translateX(-50%)}
+@keyframes tbPopUp{0%{opacity:0;transform:translate(-50%,8px)}25%{opacity:1}100%{opacity:0;transform:translate(-50%,-40px)}}
+.tb-bit{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:6;animation:tbBit .74s ease-out forwards}
+@keyframes tbBit{0%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(var(--bx,0),var(--by,26px)) scale(.4)}}
+.tb-rib{position:absolute;width:6px;height:14px;border-radius:2px;pointer-events:none;z-index:6;animation:tbRib 1.1s ease-out forwards}
+@keyframes tbRib{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--rx,0),var(--ry,-90px)) rotate(var(--rr,240deg))}}
+.tb-shake{animation:tbShake .42s}
+@keyframes tbShake{0%,100%{transform:translateX(0)}18%{transform:translateX(-7px)}38%{transform:translateX(6px)}58%{transform:translateX(-4px)}78%{transform:translateX(3px)}}
+.tb-splash{position:absolute;font-size:24px;pointer-events:none;z-index:7;animation:tbSplash .9s ease-out forwards;transform:translate(-50%,-50%)}
+@keyframes tbSplash{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,-160%) scale(1.5)}}
+.tb-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+/* .mode-card 一直是 static，17 张卡的 🆕 角标都飘到屏幕顶上去了；给卡片立个定位基准 */
+#screen-lab .mode-card{position:relative}
+.tb-badge.on{display:flex}
+.tb-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;color:#fff}
+.tb-rs span{font-size:22px;font-weight:bold;display:block}
+.tb-rs small{font-size:11px;opacity:.72}
+.tb-book-t{font-size:12px;opacity:.72;margin:12px 0 6px}
+.tb-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.tb-book i{background:rgba(255,255,255,.18);border-radius:9px;padding:3px 8px;font-size:16px;color:#fff;font-style:normal}
 </style>
 
 </head>
@@ -3800,8 +3877,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 61 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">61</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 62 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">62</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -3812,8 +3889,8 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>61 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>15</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>19</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>7</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>62 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>15</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>19</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
@@ -4075,6 +4152,11 @@ button:active{transform:scale(.95)}
     <div class="lab-group" id="labG5">
       <h4 class="lab-gtitle">⚔️ 对战与远征 <small>打魔王、和人斗</small><i></i></h4>
       <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('tug')">
+      <div class="icon">🪢</div>
+      <div class="info"><h3>笔顺拔河赛</h3><p id="tbCardTip">答对一笔拽一下，别被拖进泥坑</p></div>
+      <span class="tb-badge" id="tbCardDot">🆕</span>
+    </div>
     <div class="mode-card" onclick="enterMode('chess')">
       <div class="icon">♟️</div>
       <div class="info"><h3>笔顺吃吃棋</h3><p id="csCardTip">答案写成妖兵 · 走近一口吃掉</p></div>
@@ -4110,6 +4192,88 @@ button:active{transform:scale(.95)}
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
+</div>
+<div class="screen" id="screen-tug">
+  <div class="top-bar">
+    <button class="back-btn" onclick="tbLeave()">← 返回</button>
+    <div class="stats"><span id="tbScoreTxt">🪢 0 分</span><span id="tbLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="tbHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="tb-hud">
+    <span id="tbRankTxt" title="称号">🪢 拉绳新手</span>
+    <span id="tbHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="tbComboTxt" title="连击">🔥 连 0</span>
+    <span id="tbHelpTxt" title="帮手">🐰 0</span>
+    <span id="tbWordTxt" title="赢了几绳">🏆 0</span>
+    <span id="tbPitTxt" title="离泥坑还有多久">🕳️ --</span>
+    <span id="tbPctTxt" title="命中率">🎯 100%</span>
+  </div>
+  <div class="tb-ask" id="tbAsk">🪢 正在系绳子……<br><small>稍等一下</small></div>
+  <div class="tb-arena" id="tbArena">
+    <div class="tb-pit"><u>泥坑</u></div>
+    <div class="tb-line" id="tbLineL"><u>🏁</u></div>
+    <div class="tb-line" id="tbLineR"><u>🕳️</u></div>
+    <div class="tb-rope" id="tbRope"></div>
+    <div class="tb-team tb-us" id="tbUs"></div>
+    <div class="tb-team tb-them" id="tbThem"></div>
+    <div class="tb-knot" id="tbKnot"><div class="tb-card" id="tbCard"></div><i class="tb-node"></i></div>
+    <div class="tb-grem" id="tbGrem" onclick="tbSwat()">🦝</div>
+    <div class="tb-fx" id="tbFx"></div>
+  </div>
+  <div class="tb-power">
+    <div class="tb-charge" id="tbChargeBox"><i id="tbCharge"></i><b id="tbChargeTxt">🥁 一鼓作气 0%</b></div>
+  </div>
+  <div class="tb-grips" id="tbGrips">
+    <button class="tb-grip d0" onclick="tbAnswer(0)">横 ➡️<b>A</b></button>
+    <button class="tb-grip d1" onclick="tbAnswer(1)">竖 ⬇️<b>S</b></button>
+    <button class="tb-grip d2" onclick="tbAnswer(2)">撇 ↙️<b>D</b></button>
+    <button class="tb-grip d3" onclick="tbAnswer(3)">捺 ↘️<b>F</b></button>
+  </div>
+  <div class="tb-tools">
+    <button class="tb-tool" id="tbDrumBtn" onclick="tbDrum()" disabled>🥁 一鼓作气</button>
+    <button class="tb-tool" id="tbSwatBtn" onclick="tbSwat()">🦝 拍走小妖</button>
+    <button class="tb-tool" onclick="tbEnd('quit')">🏳️ 收工结算</button>
+  </div>
+  <div class="tb-msg" id="tbMsg">绳子中间的<b>红结</b>就是命：答对一笔，全队往左拽一下</div>
+  <div class="tb-tip">每一绳挂一个<b>字</b>：看清<b>下一笔往哪个方向</b>，按下面四只手（横/竖/撇/捺）拽绳<br>
+    顶上<b>妖队一直在拽</b>：红结<b>每时每刻都在往右滑</b>，滑进<b>泥坑 🕳️</b> 就掉一颗心，这一笔笔还得重拽回来<br>
+    <b>答对才往左</b>：整字写完 = <b>赢一绳</b>，妖队被拖进泥坑<br>
+    <b>连击满 3 就来帮手</b> 🐰：每只兔子都<b>站在绳上帮你拽</b>（妖力打折、拉力更猛），答错会被拽走一只<br>
+    蓄力条满了按 <b>🥁 一鼓作气</b>：猛地拽一大截，妖队<b>1.4 秒脚下打滑</b>拽不动<br>
+    <b>🦝 小妖</b>爬上手时妖力翻倍 —— <b>点它一下</b>（或按 G）扔进泥坑<br>
+    键盘 <b>A/S/D/F</b> 四只手 · <b>空格</b> 打鼓 · <b>G</b> 拍小妖 · <b>?</b> 玩法</div>
+</div>
+<div class="screen" id="screen-tug-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="tbLeave()">← 回首页</button>
+    <div class="stats"><span id="tbRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="tbRsEmoji">🪢</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="tbRsTitle">这一场打完了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="tbRsSub">下一场妖队更沉，先把连击攒起来叫帮手</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="tb-rs">
+      <div><span style="color:#FFD700" id="tbRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="tbRsOk">0</span><small>答对几笔</small></div>
+      <div><span style="color:#69F0AE" id="tbRsWord">0</span><small>赢了几绳</small></div>
+      <div><span style="color:#FFAB91" id="tbRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="tbRsAcc">0%</span><small>命中率</small></div>
+      <div><span style="color:#E1BEE7" id="tbRsStreak">0</span><small>最长连击</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 一场最多赢几绳</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="tbRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="tbRsAll">🪢 拉绳新手</div>
+      <div class="tb-book-t" id="tbRsBookT"></div>
+      <div class="tb-book" id="tbRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="tbRetry()">🪢 再拽一场</button>
+    <button class="w-btn blue" onclick="tbLeave()">🏠 回首页</button>
+  </div>
 </div>
 <div class="screen" id="screen-farm">
   <div class="top-bar">
@@ -8173,6 +8337,7 @@ function updateHomeStats(){
   if(typeof qzNudge==='function')qzNudge();
   if(typeof wrNudge==='function')wrNudge();
   if(typeof fmNudge==='function')fmNudge();
+  if(typeof tbNudge==='function')tbNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -8180,6 +8345,7 @@ function enterMode(mode){
   if(mode==='chairs'){qzStart();return}
   if(mode==='wire'){wrStart();return}
   if(mode==='farm'){fmStart();return}
+  if(mode==='tug'){tbStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -39177,6 +39343,580 @@ function fmNudge(){
   const hv=fmInt('hz_farm_harvest'),days=fmInt('hz_farm_days'),games=fmInt('hz_farm_games');
   const R=fmRank(hv);
   if(tip)tip.textContent=games?(R.e+' '+R.t+' · 摘了 '+hv+' 个果 · 种到第 '+days+' 天'):'按笔顺浇水，字就长成一颗果子';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+/* ===================== 笔顺拔河赛（红结即倒计时 · 答对才拽得回 · 连击叫帮手 · v1.63.0） ===================== */
+const TB_HEARTS=3,TB_HEART_MAX=5,TB_MISS_MAX=40,TB_BOOK_MAX=300;
+const TB_POOL_MIN=3,TB_POOL_WANT=14,TB_HELP_MAX=6,TB_COMBOS=3;
+const TB_LEFT=0.12,TB_RIGHT=0.88,TB_DRUM_MS=1400,TB_GRACE_MS=900;
+const TB_CHARGE_MAX=1,TB_CHARGE_STEP=0.27;
+const TB_HINT_MS=4000;
+const TB_DIRS=['横','竖','撇','捺'];
+const TB_RANKS=[
+  {n:0,e:'🪢',t:'拉绳新手'},{n:3,e:'💪',t:'咬得住牙'},{n:7,e:'🐰',t:'帮手成群'},
+  {n:12,e:'🥁',t:'一鼓作气'},{n:18,e:'🦏',t:'绳上铁锚'},{n:26,e:'🐊',t:'妖队发怵'},
+  {n:36,e:'🏔',t:'压得住山'},{n:50,e:'🌊',t:'力拔山河'},{n:70,e:'👑',t:'拔河之王'}
+];
+const TB_NOTE=[330,392,440,494,523,587,659,698,784,880,988,1047];
+const tb={
+  run:false,over:false,busy:false,gen:0,rafId:0,last:0,timers:[],bound:false,
+  lv:1,score:0,hearts:TB_HEARTS,combo:0,maxCombo:0,
+  ok:0,bad:0,words:0,slips:0,drums:0,swats:0,helpers:0,
+  pos:0.5,vel:0,charge:0,freeze:0,grace:0,
+  grem:false,gremCd:0,rec:null,qi:0,pool:[],miss:[],think:0,hinted:false
+};
+/* ---- 小工具 ---- */
+function tbInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function tbAdd(k,n){if(n)localStorage.setItem(k,String(tbInt(k)+n))}
+function tbSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function tbSay(t,c){const el=document.getElementById('tbMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function tbShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function tbPick(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function tbRank(n){let r=TB_RANKS[0];for(let i=0;i<TB_RANKS.length;i++)if(n>=TB_RANKS[i].n)r=TB_RANKS[i];return r}
+function tbAcc(){return tb.ok+tb.bad?Math.round(tb.ok/(tb.ok+tb.bad)*100):100}
+function tbT(fn,ms){const g=tb.gen;const id=setTimeout(function(){if(g!==tb.gen)return;fn()},ms);tb.timers.push(id);return id}
+function tbKillTimers(){tb.timers.forEach(function(t){clearTimeout(t)});tb.timers=[]}
+/* ---- 难度曲线 ---- */
+function tbStealBase(){return Math.min(0.082,0.030+(tb.lv-1)*0.0062)}
+function tbSteal(){
+  if(tb.freeze>0)return 0;
+  const s=tbStealBase()/(1+tb.helpers*0.16);
+  return tb.grem?s*2.15:s;
+}
+function tbPull(){return 1.05+tb.combo*0.05+tb.helpers*0.055}
+function tbGremMs(){return Math.max(5200,9000-(tb.lv-1)*460)}
+function tbDevils(){return Math.min(6,2+Math.floor((tb.lv-1)/2))}
+function tbWindow(){return tb.lv>=5?[2,9]:[2,7]}
+function tbPinned(){return tb.pos<=TB_LEFT+0.06}
+function tbLeft(){return tbSteal()>0?(TB_RIGHT-tb.pos)/tbSteal():0}
+/* ---- 字池：沿用种字田那套「贴桶边界的直笔淘汰」，四只手才一眼有答案 ---- */
+function tbMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>10)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=fmDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp};
+}
+function tbCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<80;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(tbShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(tbShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(tbShuf(CHARS.slice()));
+  return out;
+}
+function tbTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function tbRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await tbTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians)return null;
+  return tbMake(ch,raw);
+}
+async function tbBuild(keep){
+  const g=tb.gen;
+  tb.miss=(localStorage.getItem('hz_tug_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  tbShuf(tb.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  tbCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)tb.pool=[];
+  for(let k=0;k<want.length&&tb.pool.length<TB_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return tbRec(c)}));
+    if(g!==tb.gen||!tb.run)break;
+    for(let i=0;i<rs.length;i++)if(rs[i])tb.pool.push(rs[i]);
+  }
+  return tb.pool.length>=TB_POOL_MIN;
+}
+function tbNewRec(){
+  const w=tbWindow(),used={};
+  if(tb.rec&&tb.qi<tb.rec.n)used[tb.rec.ch]=1;
+  let cand=tb.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  if(!cand.length)cand=tb.pool.slice();
+  if(!cand.length)return null;
+  for(let i=0;i<tb.miss.length;i++){
+    for(let k=0;k<cand.length;k++)if(cand[k].ch===tb.miss[i]&&!used[cand[k].ch])return cand[k];
+  }
+  for(let i=0;i<40;i++){const c=tbPick(cand);if(c&&!used[c.ch])return c}
+  return cand[0];
+}
+/* ---- 错字手册 / 战旗图鉴 ---- */
+function tbMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_tug_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_tug_miss',a.slice(0,TB_MISS_MAX).join(','));
+}
+function tbMissDel(ch){
+  const a=(localStorage.getItem('hz_tug_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_tug_miss',a.join(','));
+}
+function tbBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_tug_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_tug_book',a.slice(0,TB_BOOK_MAX).join(','));
+}
+/* ---- 盘面 ---- */
+function tbTeams(){
+  const u=document.getElementById('tbUs'),t=document.getElementById('tbThem');
+  if(!u||!t)return;
+  let h='';for(let i=0;i<=tb.helpers;i++)h+='<i>🐰</i>';
+  u.innerHTML=h;
+  h='';for(let i=0;i<tbDevils();i++)h+='<i>🐊</i>';
+  t.innerHTML=h;
+}
+function tbCardArt(){
+  const el=document.getElementById('tbCard');
+  if(!el)return;
+  if(!tb.rec){el.innerHTML='';return}
+  let h='<svg viewBox="0 0 1024 1024">';
+  for(let i=0;i<tb.rec.paths.length;i++){
+    const lit=i<tb.qi,cur=(tb.qi<tb.rec.n&&i===tb.qi);
+    h+='<path d="'+tb.rec.paths[i]+'" fill="'+(lit?'#2E7D32':(cur?'#FFB74D':'rgba(60,60,90,.13)'))+'"/>';
+  }
+  h+='</svg><u>'+tb.qi+'/'+tb.rec.n+'</u>';
+  el.innerHTML=h;
+}
+function tbGremSync(){
+  const el=document.getElementById('tbGrem');
+  if(!el)return;
+  el.classList.toggle('on',tb.grem);
+}
+function tbAsk(){
+  if(!tb.rec){tbSet('tbAsk','🪢 场上还没挂上字<br><small>字库有点慢，稍后再来拽</small>');return}
+  tbSet('tbAsk','「<b>'+tb.rec.ch+'</b>」的第 <b>'+(tb.qi+1)+'</b> 笔往哪个方向拽？<small>横 ➡️ / 竖 ⬇️ / 撇 ↙️ / 捺 ↘️ · <b>答对才拽得动</b>（现在 '+tb.qi+'/'+tb.rec.n+' 笔）'+(tb.hinted?'<br>🐰 <b>这一笔是「'+TB_DIRS[tb.rec.dirs[tb.qi]]+'」</b>，看准了再拽':'')+'</small>');
+}
+/* ---- 拽绳 ---- */
+function tbFlash(d){
+  const box=document.getElementById('tbGrips');
+  if(!box)return;
+  const b=box.children[d];
+  if(!b)return;
+  b.classList.remove('flash');void b.offsetWidth;b.classList.add('flash');
+}
+function tbHeave(){
+  const el=document.getElementById('tbUs');
+  if(!el)return;
+  el.classList.remove('heave');void el.offsetWidth;el.classList.add('heave');
+  tbT(function(){if(el)el.classList.remove('heave')},420);
+}
+function tbAnswer(d){
+  if(!tb.run||tb.over||tb.busy)return;
+  if(d<0||d>3)return;
+  tb.think=0;tb.hinted=false;
+  tbFlash(d);
+  if(!tb.rec){tbSay('🪢 绳上还没挂字 —— 等一秒钟','#FFCC80');return}
+  const want=tb.rec.dirs[tb.qi];
+  if(d===want)tbRight(want);else tbWrong(want,d);
+}
+function tbRight(want){
+  const at=tb.qi+1;
+  tb.qi++;
+  tb.ok++;tbAdd('hz_tug_ok',1);
+  tb.combo++;if(tb.combo>tb.maxCombo)tb.maxCombo=tb.combo;
+  tb.charge=Math.min(TB_CHARGE_MAX,tb.charge+TB_CHARGE_STEP);
+  let help='';
+  if(tb.combo%TB_COMBOS===0&&tb.helpers<TB_HELP_MAX){
+    tb.helpers++;
+    tbAdd('hz_tug_helpers',1);
+    help=' 🐰 <b>第 '+tb.helpers+' 只兔子跳上绳帮你拽</b>';
+    tone(1047,.1,'triangle',.05);
+    tbTeams();
+  }
+  const grip=tbPinned();
+  const pts=6+Math.round(tb.combo*0.7)+tb.lv+(grip?tb.lv*2:0);
+  tb.score+=pts;
+  tb.vel-=tbPull();
+  tone(TB_NOTE[Math.min(TB_NOTE.length-1,tb.combo)],.09,'triangle',.06);
+  tbBits('#81D4FA');tbPop('+'+pts,'#B3E5FC');tbHeave();
+  tbCardArt();
+  if(tb.qi>=tb.rec.n){tbWordWin();return}
+  tbSay('💪 <b>'+TB_DIRS[want]+'</b> 拽对了 —— 红结往左窜了一截（+'+pts+'）'+
+    (grip?' <b>压着妖队打，分更高！</b>':'')+help+'<br>还差 '+(tb.rec.n-tb.qi)+' 笔','#69F0AE');
+  tbAsk();tbHud();
+}
+function tbWrong(want,got){
+  const at=tb.qi+1;
+  tb.bad++;tbAdd('hz_tug_bad',1);
+  tb.combo=0;
+  tb.charge=Math.max(0,tb.charge-0.34);
+  tb.score=Math.max(0,tb.score-5);
+  tbMissAdd(tb.rec.ch);
+  const lost=tb.helpers>0;
+  if(lost)tb.helpers=Math.max(0,tb.helpers-1);
+  tb.vel+=tbPull()*0.72;
+  tone(150,.2,'sawtooth',.07);
+  tbBits('#90A4AE');tbShake();
+  tbSay('💢 「'+tb.rec.ch+'」的第 '+at+' 笔要 <b>'+TB_DIRS[want]+'</b>，你拽的是 <b>'+TB_DIRS[got]+'</b> —— '+
+    (lost?'一只兔子<b>被拽跑了</b> 🐰':'')+'妖队趁乱<b>猛拽一把</b>，红结向右窜','#FF8A80');
+  tbTeams();tbAsk();tbHud();
+}
+/* ---- 🥁 一鼓作气 ---- */
+function tbDrum(){
+  if(!tb.run||tb.over||tb.busy)return;
+  if(tb.charge<TB_CHARGE_MAX){
+    tbSay('🥁 劲儿还没攒够 —— 再答对几笔（现在 '+Math.round(tb.charge*100)+'%）','#FFCC80');
+    return;
+  }
+  tb.charge=0;
+  tb.freeze=TB_DRUM_MS;
+  tb.drums++;tbAdd('hz_tug_drum',1);
+  tb.vel-=2.5;
+  tone(392,.12,'square',.07);
+  tbT(function(){if(tb.run)tone(523,.12,'square',.06)},110);
+  tbT(function(){if(tb.run)tone(659,.18,'square',.06)},220);
+  tbRibs(22);tbHeave();
+  tbSay('🥁 <b>一鼓作气</b>！全队猛地一拽，妖队<b>脚下打滑 1.4 秒</b>拽不动了','#FFD740');
+  tbHud();
+}
+/* ---- 🦝 捣乱小妖 ---- */
+function tbGremOn(){
+  if(!tb.run||tb.over||tb.rec===null)return;
+  tb.grem=true;
+  tb.gremCd=tbGremMs();
+  tbGremSync();
+  tone(300,.14,'triangle',.05);
+  tbSay('🦝 <b>小妖</b>爬到你手上捣乱 —— 妖力<b>翻倍</b>！<b>点它一下</b>（或按 <b>G</b>）把它扔进泥坑','#FFCC80');
+}
+function tbSwat(){
+  if(!tb.run||tb.over||tb.busy)return;
+  if(!tb.grem){tbSay('🦝 手上现在没有小妖 —— 它一爬上来就点，妖力会<b>翻倍</b>','#B3E5FC');return}
+  tb.grem=false;
+  tb.gremCd=tbGremMs();
+  tb.swats++;tbAdd('hz_tug_swat',1);
+  tb.score+=8;
+  tb.charge=Math.min(TB_CHARGE_MAX,tb.charge+0.34);
+  tone(880,.08,'sine',.06);
+  tbT(function(){if(tb.run)tone(523,.14,'sine',.05)},90);
+  const el=document.getElementById('tbGrem');
+  if(el){
+    el.classList.remove('on');
+    el.classList.add('thrown');
+    tbT(function(){if(el)el.classList.remove('thrown')},700);
+  }
+  tbBits('#A1887F');tbPop('+8','#FFCC80');
+  tbSay('👏 一把把小妖<b>甩进泥坑</b>！（+8 · 蓄力 +34%）','#69F0AE');
+  tbGremSync();tbHud();
+}
+/* ---- 输一绳 / 赢一绳 ---- */
+function tbSlip(){
+  tb.slips++;tbAdd('hz_tug_slips',1);
+  tb.hearts=Math.max(0,tb.hearts-1);
+  tb.combo=0;tb.charge=0;
+  const gone=tb.helpers;
+  tb.helpers=0;
+  tb.pos=0.5;tb.vel=0;
+  tb.grem=false;tb.gremCd=tbGremMs();
+  tb.grace=TB_GRACE_MS;
+  tone(180,.32,'sawtooth',.08);
+  tbShake();tbSplash();
+  tbMissAdd(tb.rec?tb.rec.ch:'');
+  tbTeams();tbGremSync();
+  tbSay('🕳️ <b>被拖进泥坑了</b>！掉一颗心（还剩 '+tb.hearts+' 颗）'+(gone?'，'+gone+' 只帮手也跑了':'')+
+    ' —— 红结回到正中，<b>字还记着</b>，赶紧答对一笔拽回来','#FF8A80');
+  if(tb.hearts<=0){tbEnd('hearts');return}
+  tbHud();
+}
+function tbWordWin(){
+  const ch=tb.rec.ch;
+  tb.words++;tbAdd('hz_tug_words',1);
+  tbBookAdd(ch);tbMissDel(ch);
+  const far=Math.round((TB_RIGHT-tb.pos)*14);
+  const pts=24+tb.lv*6+Math.max(0,far);
+  tb.score+=pts;
+  tone(659,.1,'sine',.06);
+  tbT(function(){if(tb.run)tone(880,.1,'sine',.06)},110);
+  tbT(function(){if(tb.run)tone(1047,.2,'sine',.06)},220);
+  tbRibs(30);tbBits('#FFD740');tbPop('+'+pts,'#FFD740');
+  if(tb.words%2===0&&tb.hearts<TB_HEART_MAX){
+    tb.hearts++;
+    tbT(function(){if(tb.run)tbSay('❤️ 赢了两绳，补一颗心（现在 '+tb.hearts+' 颗）','#FF8A80')},900);
+  }
+  const nl=1+Math.floor(tb.words/2);
+  const up=nl>tb.lv;
+  if(up){
+    tb.lv=nl;
+    tb.gremCd=Math.min(tb.gremCd,tbGremMs());
+    tbTeams();
+  }
+  tbSay('🏆 <b>'+ch+'</b> 一笔不落地拽完了！妖队被拖进泥坑（+'+pts+'）'+(up?'<br>🔺 升到第 '+tb.lv+' 段：<b>妖队又多一只，绳更长了</b>':''),'#FFD740');
+  tb.pos=0.5;tb.vel=0;tb.grace=TB_GRACE_MS;
+  if(!tbNext()){tbEnd('nodata');return}
+  tbHud();
+}
+function tbNext(){
+  const r=tbNewRec();
+  tb.rec=r;tb.qi=0;tb.think=0;tb.hinted=false;
+  if(!r)return false;
+  tbCardArt();tbAsk();
+  return true;
+}
+/* ---- 特效 ---- */
+function tbPx(){
+  const el=document.getElementById('tbArena');
+  if(!el)return {x:120,y:130};
+  const a=el.getBoundingClientRect();
+  return {x:a.width*tb.pos,y:a.height*0.52};
+}
+function tbKill(el,ms){setTimeout(function(){if(el&&el.parentNode)el.parentNode.removeChild(el)},ms)}
+function tbFxHost(){return document.getElementById('tbFx')}
+/* 孩子连点时特效会成串排队，超预算就掐掉最老的，免得低端手机卡帧 */
+const TB_FX_MAX=240;
+function tbFxPut(host,el,ms){
+  while(host.children.length>=TB_FX_MAX)host.removeChild(host.children[0]);
+  host.appendChild(el);tbKill(el,ms);
+}
+function tbPop(txt,c){
+  const host=tbFxHost();if(!host)return;
+  const p=tbPx();
+  const el=document.createElement('div');
+  el.className='tb-pop';el.textContent=txt;
+  el.style.left=p.x+'px';el.style.top=(p.y-40)+'px';
+  if(c)el.style.color=c;
+  tbFxPut(host,el,1000);
+}
+function tbBits(c){
+  const host=tbFxHost();if(!host)return;
+  const p=tbPx();
+  for(let i=0;i<9;i++){
+    const el=document.createElement('div');
+    el.className='tb-bit';
+    el.style.left=p.x+'px';el.style.top=p.y+'px';
+    el.style.background=c||'#81D4FA';
+    el.style.setProperty('--bx',((Math.random()*2-1)*46).toFixed(0)+'px');
+    el.style.setProperty('--by',(-20+Math.random()*46).toFixed(0)+'px');
+    tbFxPut(host,el,780);
+  }
+}
+function tbRibs(n){
+  const host=tbFxHost();if(!host)return;
+  const p=tbPx();
+  for(let i=0;i<(n||16);i++){
+    const el=document.createElement('div');
+    el.className='tb-rib';
+    el.style.left=(p.x+(Math.random()*2-1)*70).toFixed(0)+'px';
+    el.style.top=p.y+'px';
+    el.style.background=['#FFD740','#4FC3F7','#FF8A80','#A5D6A7','#F48FB1'][i%5];
+    el.style.setProperty('--rx',((Math.random()*2-1)*80).toFixed(0)+'px');
+    el.style.setProperty('--ry',(-70-Math.random()*90).toFixed(0)+'px');
+    el.style.setProperty('--rr',(Math.random()*520-260).toFixed(0)+'deg');
+    el.style.animationDelay=(Math.random()*180).toFixed(0)+'ms';
+    tbFxPut(host,el,1320);
+  }
+}
+function tbSplash(){
+  const host=tbFxHost();if(!host)return;
+  const el=document.createElement('div');
+  el.className='tb-splash';el.textContent='💦';
+  el.style.left='90%';el.style.top='62%';
+  tbFxPut(host,el,960);
+}
+function tbShake(){
+  const el=document.getElementById('tbArena');
+  if(!el)return;
+  el.classList.remove('tb-shake');void el.offsetWidth;el.classList.add('tb-shake');
+}
+/* ---- HUD / 绘制 ---- */
+function tbHud(){
+  const R=tbRank(tbInt('hz_tug_words'));
+  tbSet('tbRankTxt',R.e+' '+R.t);
+  let h='';
+  const hs=Math.max(TB_HEARTS,tb.hearts);
+  for(let i=0;i<hs;i++)h+=(i<tb.hearts?'❤️':'🖤');
+  tbSet('tbHeartTxt',h);
+  tbSet('tbComboTxt','🔥 连 '+tb.combo);
+  tbSet('tbHelpTxt','🐰 '+tb.helpers);
+  tbSet('tbWordTxt','🏆 '+tb.words);
+  tbSet('tbPctTxt','🎯 '+tbAcc()+'%');
+  tbSet('tbScoreTxt','🪢 '+Math.round(tb.score)+' 分');
+  tbSet('tbLvTxt','第 '+tb.lv+' 段');
+}
+function tbDraw(){
+  const k=Math.max(0,Math.min(1,tb.pos));
+  const knot=document.getElementById('tbKnot');
+  if(knot)knot.style.left=(k*100).toFixed(2)+'%';
+  const gm=document.getElementById('tbGrem');
+  if(gm)gm.style.left=(Math.min(0.99,k+0.055)*100).toFixed(2)+'%';
+  const rope=document.getElementById('tbRope');
+  if(rope)rope.classList.toggle('taut',k>=0.66);
+  const ar=document.getElementById('tbArena');
+  if(ar){
+    ar.classList.toggle('near',k>=0.74);
+    ar.classList.toggle('strong',tbPinned());
+  }
+  const f=document.getElementById('tbCharge');
+  if(f)f.style.width=(Math.max(0,Math.min(1,tb.charge/TB_CHARGE_MAX))*100).toFixed(1)+'%';
+  const box=document.getElementById('tbChargeBox');
+  if(box)box.classList.toggle('full',tb.charge>=TB_CHARGE_MAX);
+  tbSet('tbChargeTxt',tb.freeze>0?'🥁 妖队打滑中！':('🥁 一鼓作气 '+Math.round(tb.charge/TB_CHARGE_MAX*100)+'%'));
+  const secs=tbLeft();
+  tbSet('tbPitTxt',tb.freeze>0?'🕳️ 妖队打滑':(secs>0?'🕳️ 还有 '+Math.max(1,Math.ceil(secs))+' 秒':'🕳️ --'));
+  const sw=document.getElementById('tbSwatBtn');
+  if(sw)sw.disabled=!tb.grem;
+  const db=document.getElementById('tbDrumBtn');
+  if(db)db.disabled=tb.charge<TB_CHARGE_MAX;
+}
+/* ---- 循环 ---- */
+function tbStartLoop(){tbStopLoop();tb.last=0;tb.rafId=requestAnimationFrame(tbLoop)}
+function tbStopLoop(){if(tb.rafId){cancelAnimationFrame(tb.rafId);tb.rafId=0}tb.last=0}
+function tbLoop(ts){
+  if(!tb.run||tb.over){tb.rafId=0;return}
+  tb.rafId=requestAnimationFrame(tbLoop);
+  if(!tb.last)tb.last=ts;
+  let dt=(ts-tb.last)/1000;tb.last=ts;
+  if(dt>0.05)dt=0.05;
+  if(dt<0)dt=0;
+  tbTick(dt);
+}
+function tbTick(dt){
+  if(!tb.run||tb.over)return;
+  const ms=dt*1000;
+  if(tb.freeze>0)tb.freeze=Math.max(0,tb.freeze-ms);
+  if(tb.grace>0)tb.grace=Math.max(0,tb.grace-ms);
+  else tb.pos+=(tbSteal()+tb.vel)*dt;
+  if(tb.vel)tb.vel*=Math.pow(0.88,dt*60);
+  if(tb.vel&&Math.abs(tb.vel)<0.004)tb.vel=0;
+  if(tb.pos<TB_LEFT){
+    tb.pos=TB_LEFT;
+    if(tb.vel<0)tb.vel=0;
+  }
+  if(!tb.grem){
+    tb.gremCd-=ms;
+    if(tb.gremCd<=0)tbGremOn();
+  }
+  /* 卡住 4 秒就把这一笔的方向念出来：绳一直在走，别让孩子干耗着 */
+  tb.think+=ms;
+  if(!tb.hinted&&tb.think>=TB_HINT_MS&&tb.rec){tb.hinted=true;tbAsk()}
+  if(tb.pos>=TB_RIGHT){tbSlip();return}
+  tbDraw();
+}
+/* ---- 开局 / 结算 ---- */
+function tbStopAll(){tbStopLoop();tbKillTimers();tb.gen++}
+async function tbStart(){
+  tbStopAll();
+  const g=tb.gen;
+  /* 字库是异步的：连点两次入口时旧的那次必须作废，否则会往新场上再挂一个字 */
+  const stale=function(){return g!==tb.gen||!tb.run||tb.over};
+  tb.run=true;tb.over=false;tb.busy=true;
+  tb.lv=1;tb.score=0;tb.hearts=TB_HEARTS;tb.combo=0;tb.maxCombo=0;
+  tb.ok=0;tb.bad=0;tb.words=0;tb.slips=0;tb.drums=0;tb.swats=0;tb.helpers=0;
+  tb.pos=0.5;tb.vel=0;tb.charge=0;tb.freeze=0;tb.grace=TB_GRACE_MS;
+  tb.grem=false;tb.gremCd=tbGremMs();
+  tb.rec=null;tb.qi=0;tb.think=0;tb.hinted=false;
+  tb.pool=[];
+  showScreen('tug');
+  tbBind();
+  const LL=document.getElementById('tbLineL'),LR=document.getElementById('tbLineR');
+  if(LL)LL.style.left=(TB_LEFT*100)+'%';
+  if(LR)LR.style.left=(TB_RIGHT*100)+'%';
+  tbHud();tbTeams();tbCardArt();tbDraw();
+  tbSet('tbAsk','🪢 正在系绳子……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  tbSay('🪢 绳子中间的<b>红结</b>就是命：<b>答对一笔</b>，全队往左拽一下','#A5D6A7');
+  let ok=await tbBuild();
+  if(stale())return;
+  if(!ok){
+    tbSay('🪢 字库有点慢，再系一次……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await tbBuild(true);
+    if(stale())return;
+  }
+  if(!ok){
+    tb.run=false;tb.busy=false;
+    tbSet('tbAsk','😢 凑不出一个可用的字<br><small>字库还没加载好，稍后再来拽</small>');
+    tbSay('先去别的模式练两笔，回来绳就系好了','#FFCC80');
+    return;
+  }
+  tbAdd('hz_tug_games',1);
+  tb.busy=false;
+  if(!tbNext()){tbEnd('nodata');return}
+  if(stale())return;
+  tbHud();tbDraw();
+  tbStartLoop();
+}
+function tbEnd(reason){
+  if(tb.over)return;
+  tb.over=true;tb.run=false;tb.busy=true;
+  tbStopAll();
+  const sc=Math.round(tb.score);
+  localStorage.setItem('hz_tug_best',String(Math.max(tb.words,tbInt('hz_tug_best'))));
+  localStorage.setItem('hz_tug_streak',String(Math.max(tb.maxCombo,tbInt('hz_tug_streak'))));
+  localStorage.setItem('hz_tug_lv',String(Math.max(tb.lv,tbInt('hz_tug_lv'))));
+  const stars=Math.floor(sc/110)+tb.words*2;
+  if(stars>0)addStars(stars);
+  showScreen('tug-result');
+  const R=tbRank(tbInt('hz_tug_words'));
+  const T={
+    hearts:['🕳️','全队被拖进泥坑了','<b>连击</b>攒到 3 就有兔子跳上绳帮你拽 —— <b>帮手越多，妖队越拽不动你</b><br>快进泥坑时先按 <b>🥁 一鼓作气</b>'],
+    quit:['🏳️','今天先拽到这儿','下一场妖队还是这么沉，先把连击攒起来'],
+    nodata:['😢','字库没准备好','先去别的模式练两笔，回来绳就系好了']
+  };
+  const t=T[reason]||T.quit;
+  tbSet('tbRsEmoji',t[0]);
+  tbSet('tbRsTitle',t[1]);
+  tbSet('tbRsSub',t[2]);
+  tbSet('tbRsScore',String(sc));
+  tbSet('tbRsOk',String(tb.ok));
+  tbSet('tbRsWord',String(tb.words));
+  tbSet('tbRsLv',String(tb.lv));
+  tbSet('tbRsAcc',tbAcc()+'%');
+  tbSet('tbRsStreak',String(tb.maxCombo));
+  tbSet('tbRsStars','⭐ '+stars);
+  tbSet('tbRsBest',String(tbInt('hz_tug_best')));
+  const book=(localStorage.getItem('hz_tug_book')||'').split(',').filter(function(c){return c.length===1});
+  tbSet('tbRsAll','🏅 '+R.e+' '+R.t+' · 累计赢 '+tbInt('hz_tug_words')+' 绳\n'+
+    '🪢 下了 '+tbInt('hz_tug_games')+' 场 · 💪 答对 '+tbInt('hz_tug_ok')+' 笔 · 💢 答错 '+tbInt('hz_tug_bad')+' 次\n'+
+    '🕳️ 掉进泥坑 '+tbInt('hz_tug_slips')+' 次 · 🐰 叫来 '+tbInt('hz_tug_helpers')+' 只帮手 · 🥁 打鼓 '+tbInt('hz_tug_drum')+' 回 · 🦝 拍走 '+tbInt('hz_tug_swat')+' 只小妖');
+  tbSet('tbRsBookT',book.length?('🚩 战旗图鉴 · 已拽完 '+book.length+' 个整字'):'');
+  const bh=document.getElementById('tbRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function tbRetry(){tbStart()}
+function tbLeave(){
+  tbStopAll();
+  if(tb.run&&!tb.over){tb.over=true;tb.run=false}
+  goHome();
+}
+function tbHelp(){
+  tbSay('🪢 绳中间的<b>红结</b>就是你的命：顶上<b>妖队一直在拽</b>，红结<b>每时每刻往右滑</b>，'+
+    '滑进<b>泥坑 🕳️</b> 就<b>掉一颗心</b>、帮手全跑、红结回到正中。<br>'+
+    '绳上挂着一个<b>字</b>：题目是「这个字的<b>下一笔</b>往哪个方向」，按 <b>四只手</b>（横/竖/撇/捺）—— '+
+    '<b>答对才拽得动</b>：红结猛地往左窜一截，字亮一笔。<br>'+
+    '<b>连击满 3 就来帮手</b> 🐰：每只兔子<b>真的站在绳上帮你拽</b>（妖力打折、拉力更猛），<b>答错会被拽跑一只</b>。<br>'+
+    '蓄力条满了按 <b>🥁 一鼓作气</b>（<b>空格</b>）：拽得最狠，妖队<b>1.4 秒打滑</b>拽不动。<br>'+
+    '<b>🦝 小妖</b>爬上手时妖力<b>翻倍</b> —— <b>点它</b>（或按 <b>G</b>）扔进泥坑。<br>'+
+    '把整个字<b>一笔不落地</b>拽完就<b>赢一绳</b>：+大分、进图鉴；每 2 绳升 1 段：<b>妖队多一只、绳更长、小妖来得更快</b>。'+
+    '红结压到<b>左边 🏁 安全线</b>附近时答对，分数翻倍 —— 那是你反压妖队的时候。','#A5D6A7');
+}
+/* ---- 输入 ---- */
+function tbBind(){
+  if(tb.bound)return;
+  tb.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='tug'||!tb.run||tb.over)return;
+    const k=e.key;
+    if(k==='a'||k==='A'){tbAnswer(0);e.preventDefault();return}
+    if(k==='s'||k==='S'){tbAnswer(1);e.preventDefault();return}
+    if(k==='d'||k==='D'){tbAnswer(2);e.preventDefault();return}
+    if(k==='f'||k==='F'){tbAnswer(3);e.preventDefault();return}
+    if(k===' '){tbDrum();e.preventDefault();return}
+    if(k==='g'||k==='G'){tbSwat();return}
+    if(k==='?'){tbHelp();return}
+  });
+}
+function tbNudge(){
+  const dot=document.getElementById('tbCardDot'),tip=document.getElementById('tbCardTip');
+  const w=tbInt('hz_tug_words'),games=tbInt('hz_tug_games'),slips=tbInt('hz_tug_slips');
+  const R=tbRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 赢了 '+w+' 绳 · 掉坑 '+slips+' 次'):'答对一笔拽一下，别被拖进泥坑';
   if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
 }
 window.addEventListener('DOMContentLoaded',boot);
