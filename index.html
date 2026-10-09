@@ -3664,6 +3664,86 @@ button:active{transform:scale(.95)}
 .wr-book i{background:rgba(255,255,255,.18);border-radius:9px;padding:3px 8px;font-size:16px;color:#fff;font-style:normal}
 .wr-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
 .wr-badge.on{display:flex}
+/* ---------- 笔顺种字田 ---------- */
+.fm-hud{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;width:100%;margin-bottom:8px}
+.fm-hud span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:13px;padding:4px 10px;font-size:12.5px;white-space:nowrap}
+.fm-ask{width:100%;background:rgba(255,255,255,.13);border-radius:16px;padding:11px 13px;color:#fff;font-size:16px;text-align:center;line-height:1.45;margin-bottom:8px;min-height:52px}
+.fm-ask small{font-size:11.5px;opacity:.74;display:block;margin-top:3px;line-height:1.4}
+.fm-ask b{color:#FFD740;font-weight:normal}
+.fm-day{position:relative;width:100%;height:20px;background:rgba(0,0,0,.24);border-radius:11px;overflow:hidden;margin-bottom:9px}
+.fm-day i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#FFD54F,#FFB74D 62%,#F57C00);transition:width .12s linear}
+.fm-day b{position:absolute;right:8px;top:0;bottom:0;display:flex;align-items:center;font-size:11px;color:#fff;font-weight:normal;text-shadow:0 1px 3px rgba(0,0,0,.4);z-index:2}
+.fm-day u{position:absolute;top:-1px;font-size:15px;z-index:3;transform:translateX(-50%);text-decoration:none;transition:left .12s linear}
+.fm-day.dusk i{background:linear-gradient(90deg,#FFB74D,#EF6C00 70%,#8E24AA)}
+.fm-field{position:relative;width:100%;background:linear-gradient(180deg,#8D6E63,#6D4C41 55%,#5D4037);border-radius:18px;padding:9px;box-shadow:inset 0 3px 0 rgba(255,255,255,.13),0 5px 16px rgba(0,0,0,.26);margin-bottom:9px;overflow:hidden}
+.fm-rows{position:absolute;left:0;right:0;top:0;bottom:0;background:repeating-linear-gradient(180deg,rgba(0,0,0,.09) 0 2px,transparent 2px 26px);pointer-events:none}
+.fm-grid{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fm-plot{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(0,0,0,.2));border:2px solid rgba(255,255,255,.16);border-radius:14px;padding:5px 4px 6px;text-align:center;cursor:pointer;transition:transform .12s,border-color .16s,background .16s;-webkit-tap-highlight-color:transparent}
+.fm-plot:active{transform:scale(.97)}
+.fm-plot.sel{border-color:#FFEE58;background:linear-gradient(180deg,rgba(255,238,88,.18),rgba(0,0,0,.18));transform:translateY(-2px)}
+.fm-plot.dry{border-color:#FF7043}
+.fm-plot.ripe{border-color:#FFD740;box-shadow:0 0 0 3px rgba(255,215,64,.24),0 0 14px rgba(255,215,64,.42);animation:fmPulse 1.05s ease-in-out infinite}
+.fm-plot.dead{border-color:rgba(255,255,255,.1);opacity:.5}
+.fm-plot.empty{opacity:.42;cursor:default}
+@keyframes fmPulse{0%,100%{box-shadow:0 0 0 3px rgba(255,215,64,.2),0 0 10px rgba(255,215,64,.32)}50%{box-shadow:0 0 0 6px rgba(255,215,64,.3),0 0 20px rgba(255,215,64,.55)}}
+.fm-th{height:6px;border-radius:4px;background:rgba(0,0,0,.32);overflow:hidden;margin-bottom:4px}
+.fm-th i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#4FC3F7,#29B6F6);transition:width .12s linear}
+.fm-th.low i{background:linear-gradient(90deg,#FFB74D,#FB8C00)}
+.fm-th.out i{background:#EF5350}
+.fm-th.ripe{background:rgba(0,0,0,.42)}
+.fm-th.ripe i{background:linear-gradient(90deg,#FFD740,#FFA000)}
+.fm-art{position:relative;height:66px;display:flex;align-items:center;justify-content:center}
+.fm-svg{width:58px;height:58px;transform:scaleY(-1);background:rgba(255,255,255,.9);border-radius:9px}
+.fm-plot.dry .fm-svg,.fm-plot.dead .fm-svg{filter:grayscale(.72)}
+.fm-crop{position:absolute;right:-1px;bottom:-3px;font-size:21px;line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+.fm-plot.ripe .fm-crop{font-size:26px;animation:fmBob .78s ease-in-out infinite alternate}
+@keyframes fmBob{from{transform:translateY(0)}to{transform:translateY(-5px)}}
+.fm-cap{font-size:10.5px;color:#fff;opacity:.94;line-height:1.25;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fm-cap b{color:#FFD740;font-weight:normal}
+.fm-crow{position:absolute;font-size:26px;z-index:6;pointer-events:none;filter:drop-shadow(0 3px 5px rgba(0,0,0,.4));animation:fmFly 1.2s ease-in forwards}
+@keyframes fmFly{0%{transform:translate(52px,-30px) scale(.62);opacity:0}20%{transform:translate(4px,-2px) scale(1);opacity:1}44%{transform:translate(-4px,8px) scale(1.08)}100%{transform:translate(-150px,-54px) scale(.8);opacity:0}}
+.fm-sprink{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;z-index:5}
+.fm-drop{position:absolute;width:5px;height:8px;border-radius:0 0 5px 5px;background:#4FC3F7;opacity:.9;animation:fmFall .62s ease-in forwards}
+@keyframes fmFall{0%{transform:translateY(-14px);opacity:.15}30%{opacity:1}100%{transform:translateY(30px);opacity:0}}
+.fm-cans{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;margin-bottom:8px}
+.fm-can{border:none;border-radius:14px;padding:9px 2px 7px;font-family:inherit;font-size:15px;line-height:1.15;cursor:pointer;color:#263238;box-shadow:0 4px 0 rgba(0,0,0,.24);transition:transform .09s,box-shadow .09s;-webkit-tap-highlight-color:transparent}
+.fm-can b{display:block;font-size:10px;opacity:.62;font-weight:normal;margin-top:2px}
+.fm-can:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.24)}
+.fm-can.d0{background:#FFE082}.fm-can.d1{background:#B3E5FC}.fm-can.d2{background:#C5E1A5}.fm-can.d3{background:#F8BBD0}
+.fm-can.off{opacity:.4;pointer-events:none}
+.fm-can.flash{animation:fmCanFlash .34s}
+@keyframes fmCanFlash{0%,100%{transform:none}40%{transform:translateY(4px) scale(1.06)}}
+.fm-tools{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;width:100%;margin-bottom:8px}
+.fm-tool{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.26);color:#fff;border-radius:13px;padding:7px 12px;font-size:13px;font-family:inherit;cursor:pointer}
+.fm-tool:disabled{opacity:.42;cursor:default}
+.fm-tool b{color:#FFD740;font-weight:normal}
+.fm-shop{width:100%;background:rgba(255,255,255,.11);border:1px dashed rgba(255,255,255,.3);border-radius:15px;padding:9px;margin-bottom:8px;display:none}
+.fm-shop.on{display:block}
+.fm-shop h4{color:#fff;font-size:13px;font-weight:normal;margin:0 0 8px;opacity:.86;text-align:center}
+.fm-bad{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.fm-badc{background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:7px 5px;text-align:center;color:#fff;cursor:pointer;font-family:inherit;font-size:11px;line-height:1.3}
+.fm-badc:disabled{opacity:.45;cursor:default}
+.fm-badc i{display:block;font-size:21px;font-style:normal;margin-bottom:2px}
+.fm-badc em{display:block;font-style:normal;opacity:.66;font-size:10px;margin-top:2px}
+.fm-badc b{color:#FFD740;font-weight:normal}
+.fm-msg{width:100%;background:rgba(0,0,0,.26);border-radius:14px;padding:10px 12px;color:#fff;font-size:14px;text-align:center;line-height:1.5;min-height:42px;margin-bottom:8px}
+.fm-msg b{color:#FFD740;font-weight:normal}
+.fm-tip{width:100%;background:rgba(255,255,255,.09);border-radius:14px;padding:11px 13px;color:rgba(255,255,255,.82);font-size:12px;line-height:1.72;text-align:center}
+.fm-tip b{color:#FFD740;font-weight:normal}
+.fm-pop{position:absolute;font-size:15px;font-weight:bold;color:#FFEB3B;text-shadow:0 2px 6px rgba(0,0,0,.55);pointer-events:none;z-index:7;animation:fmPopUp .95s ease-out forwards;transform:translateX(-50%)}
+@keyframes fmPopUp{0%{opacity:0;transform:translate(-50%,8px)}25%{opacity:1}100%{opacity:0;transform:translate(-50%,-38px)}}
+.fm-bit{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:6;animation:fmBit .72s ease-out forwards}
+@keyframes fmBit{0%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(var(--bx,0),var(--by,26px)) scale(.4)}}
+.fm-shake{animation:fmShake .4s}
+@keyframes fmShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+.fm-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;color:#fff}
+.fm-rs span{font-size:22px;font-weight:bold;display:block}
+.fm-rs small{font-size:11px;opacity:.72}
+.fm-book-t{font-size:12px;opacity:.72;margin:12px 0 6px}
+.fm-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.fm-book i{background:rgba(255,255,255,.18);border-radius:9px;padding:3px 8px;font-size:16px;color:#fff;font-style:normal}
+.fm-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.fm-badge.on{display:flex}
 </style>
 
 </head>
@@ -3720,8 +3800,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 60 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">60</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 61 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">61</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -3732,8 +3812,8 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>60 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>15</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>19</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>6</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>7</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>61 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>15</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>19</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>7</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
@@ -3958,6 +4038,11 @@ button:active{transform:scale(.95)}
     <div class="lab-group" id="labG4">
       <h4 class="lab-gtitle">🏗️ 养成与收集 <small>慢慢攒、长线玩</small><i></i></h4>
       <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('farm')">
+      <div class="icon">🌾</div>
+      <div class="info"><h3>笔顺种字田</h3><p id="fmCardTip">按笔顺浇水，字就长成一颗果子</p></div>
+      <span class="fm-badge" id="fmCardDot">🆕</span>
+    </div>
     <div class="mode-card" onclick="enterMode('pet')">
       <div class="icon">🐣</div>
       <div class="info"><h3>笔顺宠物屋</h3><p id="petCardTip">练字喂养你的汉字神兽！</p></div>
@@ -4025,6 +4110,80 @@ button:active{transform:scale(.95)}
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
+</div>
+<div class="screen" id="screen-farm">
+  <div class="top-bar">
+    <button class="back-btn" onclick="fmLeave()">← 返回</button>
+    <div class="stats"><span id="fmScoreTxt">🍎 0 分</span><span id="fmLvTxt">第 1 天</span></div>
+    <button class="icon-btn" onclick="fmHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="fm-hud">
+    <span id="fmRankTxt" title="称号">🌱 种字新手</span>
+    <span id="fmHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="fmComboTxt" title="连击">🔥 连 0</span>
+    <span id="fmBasketTxt" title="果篮">🧺 0</span>
+    <span id="fmOkTxt" title="浇对几笔">💧 0</span>
+    <span id="fmPctTxt" title="命中率">🎯 100%</span>
+  </div>
+  <div class="fm-ask" id="fmAsk">🌱 正在翻地……<br><small>稍等一下</small></div>
+  <div class="fm-day" id="fmDayWrap"><i id="fmDayFill"></i><u id="fmSun">☀️</u><b id="fmDayTxt">☀️ 一上午</b></div>
+  <div class="fm-field" id="fmField">
+    <div class="fm-rows"></div>
+    <div class="fm-grid" id="fmGrid"></div>
+    <div class="fm-sprink" id="fmSprink"></div>
+  </div>
+  <div class="fm-cans" id="fmCans">
+    <button class="fm-can d0" onclick="fmWater(0)">横 ➡️<b>A</b></button>
+    <button class="fm-can d1" onclick="fmWater(1)">竖 ⬇️<b>S</b></button>
+    <button class="fm-can d2" onclick="fmWater(2)">撇 ↙️<b>D</b></button>
+    <button class="fm-can d3" onclick="fmWater(3)">捺 ↘️<b>F</b></button>
+  </div>
+  <div class="fm-tools">
+    <button class="fm-tool" id="fmShopBtn" onclick="fmShop()">🪙 集市 <b id="fmShopN">0</b></button>
+    <button class="fm-tool" onclick="fmPickBest()">🧺 摘最熟的</button>
+    <button class="fm-tool" id="fmRainBtn" onclick="fmRain()">🌧️ 求雨 <b id="fmRainN">1</b></button>
+    <button class="fm-tool" onclick="fmEnd('quit')">🌇 收工结算</button>
+  </div>
+  <div class="fm-shop" id="fmShopBox"></div>
+  <div class="fm-msg" id="fmMsg">点一格选中它，再按下面四个水壶浇这一笔</div>
+  <div class="fm-tip">每一株都是一个字：<b>按笔顺浇对一笔，它就抽长一截</b>（水壶上写的就是这一笔的方向）<br>
+    浇错<b>涝了</b>：这一笔白浇、退回上一截，还会<b>更渴</b> —— 看清格子上的字再下手<br>
+    顶上那根<b>蓝条是渴</b>：渴到底会打蔫 🥀，再不管就<b>枯死扣一颗心</b><br>
+    整字浇完就<b>成熟</b>，顶上金条走完之前点它一下摘进果篮；<b>磨蹭太久乌鸦 🐦 会来叼走</b><br>
+    果子既能换星星也能在 <b>🪙 集市</b> 换升级：💧 喷灌 / 🌾 稻草人 / 🪴 堆肥<br>
+    键盘 <b>A/S/D/F</b> 四个水壶 · <b>1~6</b> 选格子 · <b>←/→</b> 换格 · <b>H</b> 摘最熟的 · <b>R</b> 求雨 · <b>B</b> 集市 · <b>?</b> 玩法</div>
+</div>
+<div class="screen" id="screen-farm-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="fmLeave()">← 回首页</button>
+    <div class="stats"><span id="fmRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="fmRsEmoji">🌇</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="fmRsTitle">今天收工了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="fmRsSub">明天太阳升起，田里还有没浇完的字</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="fm-rs">
+      <div><span style="color:#FFD700" id="fmRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="fmRsOk">0</span><small>浇对几笔</small></div>
+      <div><span style="color:#69F0AE" id="fmRsWord">0</span><small>摘了几个果</small></div>
+      <div><span style="color:#FFAB91" id="fmRsLv">1</span><small>第几天</small></div>
+      <div><span style="color:#FFF176" id="fmRsAcc">0%</span><small>命中率</small></div>
+      <div><span style="color:#E1BEE7" id="fmRsStreak">0</span><small>最长连击</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏆 单日最高收成</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740" id="fmRsBest">0</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="fmRsAll">🌱 种字新手</div>
+      <div class="fm-book-t" id="fmRsBookT"></div>
+      <div class="fm-book" id="fmRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="fmRetry()">🌅 再种一天</button>
+    <button class="w-btn blue" onclick="fmLeave()">🏠 回首页</button>
+  </div>
 </div>
 <div class="screen" id="screen-wire">
   <div class="top-bar">
@@ -8013,12 +8172,14 @@ function updateHomeStats(){
   if(typeof csNudge==='function')csNudge();
   if(typeof qzNudge==='function')qzNudge();
   if(typeof wrNudge==='function')wrNudge();
+  if(typeof fmNudge==='function')fmNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
   if(mode==='chess'){csStart();return}
   if(mode==='chairs'){qzStart();return}
   if(mode==='wire'){wrStart();return}
+  if(mode==='farm'){fmStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -38295,6 +38456,727 @@ function wrNudge(){
   const ok=wrInt('hz_wire_ok'),lv=wrInt('hz_wire_lv'),games=wrInt('hz_wire_games');
   const R=wrRank(ok);
   if(tip)tip.textContent=games?(R.e+' '+R.t+' · 走到第 '+lv+' 段'):'往哪边倒就摘哪边的旗 · 别摔下去';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+/* ===================== 笔顺种字田（一格一个字 · 按笔顺浇水抽长 · 熟了就抢收 · v1.62.0） ===================== */
+const FM_HEARTS=3,FM_HEART_MAX=5,FM_MISS_MAX=40,FM_BOOK_MAX=300;
+const FM_POOL_MIN=4,FM_POOL_WANT=16,FM_CAND_MAX=80,FM_SLOT0=3,FM_SLOT_MAX=6,FM_RAIN0=1;
+const FM_DIRS=['横','竖','撇','捺'];
+const FM_FRUIT=['🍎','🍊','🍇','🍓','🥕','🍋','🍅','🍈','🍑','🍐'];
+const FM_RANKS=[
+  {n:0,e:'🌱',t:'种字新手'},{n:8,e:'💧',t:'浇水小能手'},{n:20,e:'🪴',t:'育苗人'},
+  {n:38,e:'🧺',t:'采果人'},{n:60,e:'🌾',t:'满手麦香'},{n:88,e:'🍎',t:'果篮大户'},
+  {n:120,e:'🚜',t:'拖拉机手'},{n:160,e:'🌳',t:'汉字果园主'},{n:220,e:'👑',t:'笔顺大地主'}
+];
+const FM_SHOP=[
+  {k:'spr',e:'💧',t:'自动喷灌',d:'定时给最渴的一株补水',cost:[3,5]},
+  {k:'scare',e:'🌾',t:'稻草人',d:'保鲜窗更长，乌鸦难下手',cost:[4,6]},
+  {k:'compost',e:'🪴',t:'堆肥',d:'浇错不再泡回一截',cost:[5,8]}
+];
+const FM_NOTE=[392,440,494,523,587,659,698,784,880,988,1047,1175];
+const fm={
+  run:false,over:false,busy:false,gen:0,rafId:0,last:0,timers:[],bound:false,
+  day:1,lv:1,score:0,hearts:FM_HEARTS,combo:0,maxCombo:0,
+  ok:0,bad:0,harvest:0,basket:0,stolen:0,withered:0,
+  slots:FM_SLOT0,plots:[],sel:0,shopOpen:false,rain:1,
+  spr:0,scare:0,compost:0,sprCd:0,
+  dayMs:0,dayMsMax:115000,
+  pool:[],miss:[]
+};
+/* ---- 小工具 ---- */
+function fmInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function fmAdd(k,n){if(n)localStorage.setItem(k,String(fmInt(k)+n))}
+function fmSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function fmSay(t,c){const el=document.getElementById('fmMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function fmShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function fmPick(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function fmRank(n){let r=FM_RANKS[0];for(let i=0;i<FM_RANKS.length;i++)if(n>=FM_RANKS[i].n)r=FM_RANKS[i];return r}
+function fmAcc(){return fm.ok+fm.bad?Math.round(fm.ok/(fm.ok+fm.bad)*100):100}
+function fmT(fn,ms){const g=fm.gen;const id=setTimeout(function(){if(g!==fm.gen)return;fn()},ms);fm.timers.push(id);return id}
+function fmKillTimers(){fm.timers.forEach(function(t){clearTimeout(t)});fm.timers=[]}
+/* ---- 难度曲线 ---- */
+function fmDayMs(){return Math.max(75000,115000-(fm.day-1)*3500)}
+function fmSlots(){return Math.min(FM_SLOT_MAX,FM_SLOT0+Math.floor(fm.lv/2))}
+function fmDryMs(){return Math.max(6200,12800-(fm.lv-1)*820-(fm.day-1)*420)}
+function fmDieMs(){return Math.max(3200,5200-(fm.lv-1)*260)}
+function fmRipeMs(){return Math.round(8000*(1+0.6*fm.scare))}
+function fmSprMs(){return [0,7000,4500][fm.spr]||0}
+function fmWindow(){return fm.lv>=4?[2,9]:[2,7]}
+const FM_EDGE_MARG=8;
+/* 四个水壶的题必须一眼有答案：直笔贴着桶边界（说不清算横还是捺）的笔画淘汰；
+   弯笔（净矢量短）交给 jtDirOf 自己判断 —— 那种字本来就没有「一眼方向」，
+   但全按直笔标准挑，字库只剩 2%，田里翻来覆去就那几个字 */
+function fmNetAng(m){
+  let total=0;
+  for(let i=1;i<m.length;i++){
+    const dx=m[i][0]-m[i-1][0],dy=m[i][1]-m[i-1][1];
+    total+=Math.sqrt(dx*dx+dy*dy);
+  }
+  if(total<24)return -1e9;
+  const nx=m[m.length-1][0]-m[0][0],ny=m[0][1]-m[m.length-1][1];
+  const s=Math.sqrt(nx*nx+ny*ny);
+  if(s<total*0.8)return -1e9;
+  return jtAng(nx,ny);
+}
+function fmDirOf(m){
+  const d=jtDirOf(m);
+  if(d<0)return -1;
+  const a=fmNetAng(m);
+  if(a<-1e8)return d;
+  const E=[-45,20,68,102];
+  for(let i=0;i<E.length;i++)if(Math.abs(a-E[i])<FM_EDGE_MARG)return -1;
+  return d;
+}
+/* ---- 字池：每一笔都认得出方向、且至少两种方向 ---- */
+function fmMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>10)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=fmDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<ms.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp};
+}
+function fmCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<FM_CAND_MAX;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(fmShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(fmShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(fmShuf(CHARS.slice()));
+  return out;
+}
+function fmTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function fmRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await fmTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians)return null;
+  return fmMake(ch,raw);
+}
+async function fmBuild(keep){
+  const g=fm.gen;
+  fm.miss=(localStorage.getItem('hz_farm_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  fmShuf(fm.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  fmCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)fm.pool=[];
+  for(let k=0;k<want.length&&fm.pool.length<FM_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return fmRec(c)}));
+    if(g!==fm.gen||!fm.run)break;
+    for(let i=0;i<rs.length;i++)if(rs[i])fm.pool.push(rs[i]);
+  }
+  return fm.pool.length>=FM_POOL_MIN;
+}
+function fmNewRec(){
+  const w=fmWindow(),used={};
+  for(let i=0;i<fm.plots.length;i++){const q=fm.plots[i];if(q&&q.rec)used[q.rec.ch]=1}
+  let cand=fm.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  if(!cand.length)cand=fm.pool.slice();
+  if(!cand.length)return null;
+  for(let i=0;i<fm.miss.length;i++){
+    for(let k=0;k<cand.length;k++)if(cand[k].ch===fm.miss[i]&&!used[cand[k].ch])return cand[k];
+  }
+  for(let i=0;i<40;i++){const c=fmPick(cand);if(c&&!used[c.ch])return c}
+  return cand[0];
+}
+/* ---- 错字手册 / 果篮图鉴 ---- */
+function fmMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_farm_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_farm_miss',a.slice(0,FM_MISS_MAX).join(','));
+}
+function fmMissDel(ch){
+  const a=(localStorage.getItem('hz_farm_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_farm_miss',a.join(','));
+}
+function fmBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_farm_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_farm_book',a.slice(0,FM_BOOK_MAX).join(','));
+}
+/* ---- 田 ---- */
+function fmStage(p){
+  if(!p.rec)return '🌰';
+  if(p.ripe>0)return p.fruit;
+  if(p.th<=0)return '🥀';
+  const f=p.qi/p.rec.n;
+  return f<=0?'🌰':(f<0.4?'🌱':(f<0.75?'🌿':'🌷'));
+}
+function fmCapTxt(p){
+  if(!p.rec)return '这块地空着';
+  if(p.ripe>0)return '「'+p.rec.ch+'」<b>熟了！点一下摘</b>';
+  if(p.th<=0)return '「'+p.rec.ch+'」<b>快渴死了</b>';
+  return '「'+p.rec.ch+'」还 <b>'+(p.rec.n-p.qi)+'</b> 笔';
+}
+function fmPlotArt(p){
+  if(!p.node)return;
+  let h='<div class="fm-th"><i></i></div>';
+  h+='<div class="fm-art">';
+  if(p.rec){
+    h+='<svg class="fm-svg" viewBox="0 0 1024 1024">';
+    for(let i=0;i<p.rec.paths.length;i++){
+      const lit=i<p.qi,cur=(p.qi<p.rec.n&&i===p.qi);
+      h+='<path d="'+p.rec.paths[i]+'" fill="'+(lit?'#2E7D32':(cur?'#FFB74D':'rgba(60,60,90,.13)'))+'"/>';
+    }
+    h+='</svg>';
+  }
+  h+='<span class="fm-crop"></span>';
+  h+='</div><div class="fm-cap"></div>';
+  p.node.innerHTML=h;
+  p.thEl=p.node.querySelector('.fm-th');
+  p.cropEl=p.node.querySelector('.fm-crop');
+  p.capEl=p.node.querySelector('.fm-cap');
+  p.capTxt='';p.cropTxt='';
+  fmPlotSync(p);
+}
+function fmPlotSync(p){
+  if(!p.node)return;
+  const st=fmStage(p);
+  if(p.cropEl&&p.cropTxt!==st){p.cropEl.textContent=st;p.cropTxt=st}
+  const ct=fmCapTxt(p);
+  if(p.capEl&&p.capTxt!==ct){p.capEl.innerHTML=ct;p.capTxt=ct}
+  if(p.thEl){
+    const ripe=p.ripe>0;
+    const w=ripe?Math.max(0,Math.min(1,p.ripe/Math.max(1,p.ripeMax)))*100:Math.max(0,Math.min(1,p.th))*100;
+    const bar=p.thEl.firstElementChild;
+    if(bar)bar.style.width=w.toFixed(1)+'%';
+    p.thEl.classList.toggle('ripe',ripe);
+    p.thEl.classList.toggle('low',!ripe&&p.th>0&&p.th<0.34);
+    p.thEl.classList.toggle('out',!ripe&&p.th<=0);
+  }
+  p.node.classList.toggle('sel',fm.plots[fm.sel]===p);
+  p.node.classList.toggle('dry',!!p.rec&&p.th<=0&&p.ripe<=0);
+  p.node.classList.toggle('ripe',!!p.rec&&p.ripe>0);
+  p.node.classList.toggle('empty',!p.rec);
+}
+function fmGridBuild(){
+  const host=document.getElementById('fmGrid');
+  if(!host)return;
+  let h='';
+  for(let i=0;i<fm.slots;i++)h+='<div class="fm-plot" id="fmPlot'+i+'" onclick="fmTap('+i+')"></div>';
+  host.innerHTML=h;
+  for(let i=0;i<fm.slots;i++){fm.plots[i].node=document.getElementById('fmPlot'+i);fmPlotArt(fm.plots[i])}
+}
+function fmPlotNew(i,rec){
+  return {i:i,rec:rec,qi:0,th:1,wilt:0,ripe:0,ripeMax:1,fruit:'🍎',node:null,thEl:null,cropEl:null,capEl:null,capTxt:'',cropTxt:''};
+}
+function fmReplant(p){
+  const r=fmNewRec();
+  p.rec=r;p.qi=0;p.th=1;p.wilt=0;p.ripe=0;p.fruit='';
+  if(!r){fmPlotArt(p);return false}
+  p.fruit=FM_FRUIT[r.ch.charCodeAt(0)%FM_FRUIT.length];
+  fmPlotArt(p);
+  return true;
+}
+/* ---- 选中 / 题目 ---- */
+function fmUrgent(){
+  let best=-1,bk=1e9;
+  for(let i=0;i<fm.plots.length;i++){
+    const p=fm.plots[i];
+    if(!p||!p.rec)continue;
+    const k=p.ripe>0?(p.ripe-1e7):(p.th<=0?(p.wilt-1e6):p.th);
+    if(k<bk){bk=k;best=i}
+  }
+  return best;
+}
+function fmSel(i){
+  const p=fm.plots[i];
+  if(!p)return;
+  fm.sel=i;
+  for(let k=0;k<fm.plots.length;k++)fmPlotSync(fm.plots[k]);
+  fmAsk();
+}
+function fmTap(i){
+  if(!fm.run||fm.over||fm.busy)return;
+  const p=fm.plots[i];
+  if(!p||!p.rec){fmSay('🟫 这块地还空着，点旁边有苗的格子','#FFCC80');return}
+  if(p.ripe>0){fmSel(i);fmPickPlot(p);return}
+  fmSel(i);
+}
+function fmAsk(){
+  const p=fm.plots[fm.sel];
+  if(!p||!p.rec){fmSet('fmAsk','🌱 这块地空着<br><small>点一格有苗的</small>');return}
+  if(p.ripe>0){fmSet('fmAsk','🍎 「<b>'+p.rec.ch+'</b>」整字浇完了<br><small>点这格摘进果篮 · 金条走完乌鸦就来了</small>');return}
+  const d=p.rec.dirs[p.qi];
+  fmSet('fmAsk','「<b>'+p.rec.ch+'</b>」的第 <b>'+(p.qi+1)+'</b> 笔往哪个方向浇？<small>横 ➡️ / 竖 ⬇️ / 撇 ↙️ / 捺 ↘️ · 浇对这一笔它就抽长一截（现在 '+p.qi+'/'+p.rec.n+' 笔）· 这一株渴得还剩 '+Math.ceil(p.th*100)+'%</small>');
+}
+/* ---- 浇水 ---- */
+function fmCanFlash(d){
+  const box=document.getElementById('fmCans');
+  if(!box)return;
+  const b=box.children[d];
+  if(!b)return;
+  b.classList.remove('flash');void b.offsetWidth;b.classList.add('flash');
+}
+function fmWater(d){
+  if(!fm.run||fm.over||fm.busy)return;
+  if(d<0||d>3)return;
+  fmCanFlash(d);
+  const p=fm.plots[fm.sel];
+  if(!p||!p.rec){fmSay('🟫 这块地还空着，先点一格有苗的地方','#FFCC80');return}
+  if(p.ripe>0){fmSay('🍎 「'+p.rec.ch+'」已经熟了 —— <b>点这格摘进果篮</b>，再浇水就泡烂了','#FFCC80');return}
+  const want=p.rec.dirs[p.qi];
+  if(d===want)fmGrow(p,want);else fmFlood(p,want,d);
+}
+function fmGrow(p,want){
+  p.qi++;p.th=1;p.wilt=0;
+  fm.ok++;fmAdd('hz_farm_ok',1);
+  fm.combo++;if(fm.combo>fm.maxCombo)fm.maxCombo=fm.combo;
+  const pts=5+Math.round(fm.combo*0.6)+fm.lv;
+  fm.score+=pts;
+  tone(FM_NOTE[Math.min(FM_NOTE.length-1,fm.combo)],.09,'triangle',.06);
+  fmBits(p,'#4FC3F7');fmPop(p,'+'+pts,'#81D4FA');
+  fmPlotArt(p);
+  if(p.qi>=p.rec.n){fmRipe(p);fmHud();return}
+  fmSay('💧 <b>'+FM_DIRS[want]+'</b> 浇对了 —— 「'+p.rec.ch+'」抽长一截，还剩 '+(p.rec.n-p.qi)+' 笔（+'+pts+'）','#69F0AE');
+  fmAsk();fmHud();
+}
+function fmFlood(p,want,got){
+  fm.bad++;fmAdd('hz_farm_bad',1);
+  fm.combo=0;
+  fm.score=Math.max(0,fm.score-4);
+  fmMissAdd(p.rec.ch);
+  const back=fm.compost<1;
+  const at=p.qi+1;
+  if(back)p.qi=Math.max(0,p.qi-1);
+  if(fm.compost<2)p.th=Math.max(0,p.th-0.34);
+  tone(150,.18,'sawtooth',.07);
+  fmBits(p,'#90A4AE');fmShake();
+  fmPlotArt(p);
+  fmSay('💢 这一笔不是 <b>'+FM_DIRS[got]+'</b>，「'+p.rec.ch+'」的第 '+at+' 笔要 <b>'+FM_DIRS[want]+'</b> —— '+
+    (back?'浇多了水，<b>这一截泡回去了</b>':'🪴 堆肥护住了这一截')+(fm.compost<2?'，而且它更渴了':''),'#FF8A80');
+  fmAsk();fmHud();
+}
+/* ---- 成熟 · 抢收 · 乌鸦 ---- */
+function fmRipe(p){
+  p.ripe=fmRipeMs();p.ripeMax=p.ripe;
+  tone(784,.12,'triangle',.07);
+  fmT(function(){tone(1047,.16,'triangle',.06)},120);
+  fmSay('🍎 「'+p.rec.ch+'」<b>一笔不落地浇完了</b> —— 熟了！<b>点这格摘进果篮</b>，金条走完乌鸦就来','#FFD740');
+  fmPlotSync(p);
+  if(fm.plots[fm.sel]===p)fmAsk();
+}
+function fmPickPlot(p){
+  if(!p||!p.rec||p.ripe<=0)return false;
+  const fast=Math.round(p.ripe/p.ripeMax*8);
+  const pts=20+fm.lv*4+fast;
+  fm.score+=pts;
+  fm.harvest++;fm.basket++;
+  fmAdd('hz_farm_harvest',1);
+  fmBookAdd(p.rec.ch);fmMissDel(p.rec.ch);
+  tone(659,.1,'sine',.06);
+  fmT(function(){tone(880,.1,'sine',.06)},110);
+  fmT(function(){tone(1047,.16,'sine',.06)},220);
+  fmPop(p,'+'+pts,'#FFD740');fmBits(p,'#FFD740');
+  const ch=p.rec.ch,fr=p.fruit;
+  fmSay('🧺 摘下 <b>'+fr+' '+ch+'</b>！整字一笔不落地浇完（+'+pts+'）'+(fast>=6?' · <b>抢收真快</b>':''),'#FFD740');
+  if(fm.harvest%4===0&&fm.hearts<FM_HEART_MAX){
+    fm.hearts++;
+    fmT(function(){if(fm.run)fmSay('❤️ 收成好，补一颗心（现在 '+fm.hearts+' 颗）','#FF8A80')},900);
+  }
+  const nl=1+Math.floor(fm.harvest/3);
+  const grow=nl>fm.lv;
+  if(grow)fm.lv=nl;
+  fmReplant(p);
+  if(grow)fmExpand();
+  fmAsk();fmHud();fmShopRender();
+  return true;
+}
+function fmPickBest(){
+  if(!fm.run||fm.over||fm.busy)return;
+  let best=null;
+  for(let i=0;i<fm.plots.length;i++){
+    const p=fm.plots[i];
+    if(p&&p.rec&&p.ripe>0&&(!best||p.ripe<best.ripe))best=p;
+  }
+  if(!best){fmSay('🧺 田里还没有熟透的果子 —— 先把蓝条见底的那几株浇上水','#B3E5FC');return}
+  fmSel(best.i);fmPickPlot(best);
+}
+function fmSteal(p){
+  fm.stolen++;fmAdd('hz_farm_stolen',1);
+  fm.combo=0;
+  const ch=p.rec?p.rec.ch:'';
+  fmCrow(p);
+  tone(420,.16,'sawtooth',.06);
+  fmT(function(){if(fm.run)tone(240,.22,'sawtooth',.06)},130);
+  fmSay('🐦 乌鸦叼走了 <b>'+ch+'</b>！熟了就<b>快点摘</b>（也可以按 <b>H</b> 摘最熟的）','#FF8A80');
+  fmMissAdd(ch);
+  fmReplant(p);
+  if(fm.plots[fm.sel]===p)fmAsk();
+  fmHud();
+}
+function fmWither(p){
+  fm.withered++;fmAdd('hz_farm_wither',1);
+  fm.hearts=Math.max(0,fm.hearts-1);
+  fm.combo=0;
+  const ch=p.rec?p.rec.ch:'';
+  tone(180,.3,'sawtooth',.08);fmShake();
+  fmMissAdd(ch);
+  fmSay('🥀 「'+ch+'」<b>渴死了</b> —— 扣一颗心（还剩 '+fm.hearts+'）· 蓝条见底的那株要先浇','#FF8A80');
+  if(fm.hearts<=0){fmEnd('hearts');return}
+  fmReplant(p);
+  if(fm.plots[fm.sel]===p)fmAsk();
+  fmHud();
+}
+function fmExpand(){
+  const n=fmSlots();
+  while(fm.plots.length<n)fm.plots.push(fmPlotNew(fm.plots.length,null));
+  if(n>fm.slots){
+    fm.slots=n;
+    fmGridBuild();
+    for(let i=0;i<fm.plots.length;i++){
+      const p=fm.plots[i];
+      if(p&&!p.rec)fmReplant(p);
+      else if(p)fmPlotArt(p);
+    }
+    fmSay('🚜 田扩到 '+n+' 格！第 '+fm.lv+' 段：渴得更快了，果子也更值钱','#A5D6A7');
+  }
+}
+/* ---- 道具：求雨 · 集市 ---- */
+function fmRain(){
+  if(!fm.run||fm.over||fm.busy)return;
+  if(fm.rain<=0){fmSay('🌧️ 今天的雨用完了 —— 去 <b>🪙 集市</b> 换个 💧 喷灌，或按笔顺自己浇','#B3E5FC');return}
+  fm.rain--;
+  for(let i=0;i<fm.plots.length;i++){
+    const p=fm.plots[i];
+    if(!p||!p.rec)continue;
+    p.th=1;p.wilt=0;fmPlotSync(p);
+  }
+  tone(523,.1,'sine',.05);fmT(function(){if(fm.run)tone(659,.14,'sine',.05)},110);
+  fmDrops(26);
+  fmSay('🌧️ 一场透雨 —— 所有蓝条补满（一局 '+FM_RAIN0+' 次，段位越高雨越多，最多 3 次）','#4FC3F7');
+  fmHud();
+}
+function fmShop(){
+  if(!fm.run||fm.over)return;
+  fm.shopOpen=!fm.shopOpen;
+  const box=document.getElementById('fmShopBox');
+  if(box)box.classList.toggle('on',fm.shopOpen);
+  if(fm.shopOpen)fmShopRender();
+}
+function fmShopRender(){
+  const box=document.getElementById('fmShopBox');
+  if(!box||!fm.shopOpen)return;
+  let h='<h4>🪙 集市 · 用 <b>'+fm.basket+'</b> 个果子换升级（摘下来的果既能换星星也能换农具）</h4><div class="fm-bad">';
+  for(let i=0;i<FM_SHOP.length;i++){
+    const s=FM_SHOP[i],lv=fm[s.k],max=lv>=2;
+    const c=max?0:s.cost[lv];
+    h+='<button class="fm-badc" '+(max||fm.basket<c?'disabled':'')+' onclick="fmBuy(\''+s.k+'\')">'+
+      '<i>'+s.e+'</i>'+s.t+' <b>Lv'+lv+'</b><em>'+(max?'已升满':('要 '+c+' 果 · '+s.d))+'</em></button>';
+  }
+  h+='</div>';
+  box.innerHTML=h;
+  fmSet('fmShopN',String(fm.basket));
+}
+function fmBuy(k){
+  if(!fm.run||fm.over)return;
+  let s=null;
+  for(let i=0;i<FM_SHOP.length;i++)if(FM_SHOP[i].k===k)s=FM_SHOP[i];
+  if(!s)return;
+  const lv=fm[k];
+  if(lv>=2){fmSay('🪙 '+s.t+' 已经升满了','#FFCC80');return}
+  const c=s.cost[lv];
+  if(fm.basket<c){fmSay('🪙 果子不够换 '+s.t+'（要 '+c+' 个，篮里只有 '+fm.basket+' 个）','#FFCC80');return}
+  fm.basket-=c;fm[k]=lv+1;
+  if(k==='spr')fm.sprCd=fmSprMs();
+  tone(880,.1,'sine',.06);fmT(function(){if(fm.run)tone(1175,.16,'sine',.06)},120);
+  fmSay('🛠️ 换上 <b>'+s.e+' '+s.t+' Lv'+fm[k]+'</b> —— '+(k==='spr'?'每 '+(fmSprMs()/1000).toFixed(1)+' 秒自动给最渴的一株补水':(k==='scare'?'保鲜窗长到 '+(fmRipeMs()/1000).toFixed(1)+' 秒，乌鸦更难下手':'浇错不再泡回一截'+(fm[k]>1?'，而且不再让它更渴':''))),'#A5D6A7');
+  fmShopRender();fmHud();
+}
+/* ---- 特效 ---- */
+function fmXY(p){
+  const host=document.getElementById('fmField');
+  if(!host||!p||!p.node)return {x:60,y:60};
+  const a=host.getBoundingClientRect(),b=p.node.getBoundingClientRect();
+  return {x:b.left-a.left+b.width/2,y:b.top-a.top+24};
+}
+function fmKill(el,ms){setTimeout(function(){if(el&&el.parentNode)el.parentNode.removeChild(el)},ms)}
+function fmPop(p,txt,c){
+  const host=document.getElementById('fmField');
+  if(!host)return;
+  const a=fmXY(p);
+  const el=document.createElement('div');
+  el.className='fm-pop';el.textContent=txt;
+  el.style.left=a.x+'px';el.style.top=(a.y-8)+'px';
+  if(c)el.style.color=c;
+  host.appendChild(el);
+  fmKill(el,1000);
+}
+function fmBits(p,c){
+  const host=document.getElementById('fmField');
+  if(!host)return;
+  const a=fmXY(p);
+  for(let i=0;i<8;i++){
+    const el=document.createElement('div');
+    el.className='fm-bit';
+    el.style.left=a.x+'px';el.style.top=a.y+'px';
+    el.style.background=c||'#4FC3F7';
+    el.style.setProperty('--bx',((Math.random()*2-1)*44).toFixed(0)+'px');
+    el.style.setProperty('--by',(-14+Math.random()*44).toFixed(0)+'px');
+    host.appendChild(el);
+    fmKill(el,760);
+  }
+}
+function fmDrops(n){
+  const host=document.getElementById('fmSprink');
+  if(!host)return;
+  for(let i=0;i<(n||10);i++){
+    const el=document.createElement('div');
+    el.className='fm-drop';
+    el.style.left=(4+Math.random()*92).toFixed(1)+'%';
+    el.style.top=(Math.random()*46).toFixed(1)+'%';
+    el.style.animationDelay=(Math.random()*420).toFixed(0)+'ms';
+    host.appendChild(el);
+    fmKill(el,1200);
+  }
+}
+function fmCrow(p){
+  const host=document.getElementById('fmField');
+  if(!host)return;
+  const a=fmXY(p);
+  const el=document.createElement('div');
+  el.className='fm-crow';el.textContent='🐦';
+  el.style.left=a.x+'px';el.style.top=a.y+'px';
+  host.appendChild(el);
+  fmKill(el,1350);
+}
+function fmShake(){
+  const el=document.getElementById('fmField');
+  if(!el)return;
+  el.classList.remove('fm-shake');void el.offsetWidth;el.classList.add('fm-shake');
+}
+/* ---- HUD / 绘制 ---- */
+function fmHud(){
+  const R=fmRank(fmInt('hz_farm_harvest'));
+  fmSet('fmRankTxt',R.e+' '+R.t);
+  let h='';
+  const hs=Math.max(FM_HEARTS,fm.hearts);
+  for(let i=0;i<hs;i++)h+=(i<fm.hearts?'❤️':'🖤');
+  fmSet('fmHeartTxt',h);
+  fmSet('fmComboTxt','🔥 连 '+fm.combo);
+  fmSet('fmBasketTxt','🧺 '+fm.basket);
+  fmSet('fmOkTxt','💧 '+fm.ok);
+  fmSet('fmPctTxt','🎯 '+fmAcc()+'%');
+  fmSet('fmScoreTxt','🍎 '+Math.round(fm.score)+' 分');
+  fmSet('fmLvTxt','第 '+fm.day+' 天 · 第 '+fm.lv+' 段');
+  fmSet('fmRainN',String(fm.rain));
+  fmSet('fmShopN',String(fm.basket));
+  const rb=document.getElementById('fmRainBtn');
+  if(rb)rb.disabled=fm.rain<=0;
+}
+function fmDraw(){
+  const f=document.getElementById('fmDayFill'),w=document.getElementById('fmDayWrap');
+  const k=fm.dayMsMax?Math.max(0,Math.min(1,fm.dayMs/fm.dayMsMax)):0;
+  if(f)f.style.width=(k*100).toFixed(1)+'%';
+  const sun=document.getElementById('fmSun');
+  if(sun)sun.style.left=(8+(1-k)*84).toFixed(1)+'%';
+  if(w)w.classList.toggle('dusk',k<0.26);
+  const left=Math.ceil(fm.dayMs/1000);
+  fmSet('fmDayTxt',(k>0.66?'☀️ 上午':(k>0.33?'🌤 下午':'🌇 快收工'))+' 还剩 '+left+' 秒');
+  for(let i=0;i<fm.plots.length;i++)fmPlotSync(fm.plots[i]);
+  const box=document.getElementById('fmCans');
+  if(box){
+    const p=fm.plots[fm.sel];
+    const on=!!(p&&p.rec&&p.ripe<=0);
+    for(let i=0;i<box.children.length;i++)box.children[i].classList.toggle('off',!on);
+  }
+}
+/* ---- 循环 ---- */
+function fmStartLoop(){fmStopLoop();fm.last=0;fm.rafId=requestAnimationFrame(fmLoop)}
+function fmStopLoop(){if(fm.rafId){cancelAnimationFrame(fm.rafId);fm.rafId=0}fm.last=0}
+function fmLoop(ts){
+  if(!fm.run||fm.over){fm.rafId=0;return}
+  fm.rafId=requestAnimationFrame(fmLoop);
+  if(!fm.last)fm.last=ts;
+  let dt=(ts-fm.last)/1000;fm.last=ts;
+  if(dt>0.05)dt=0.05;
+  if(dt<0)dt=0;
+  fmTick(dt);
+}
+function fmTick(dt){
+  if(!fm.run||fm.over)return;
+  const ms=dt*1000;
+  fm.dayMs-=ms;
+  if(fm.dayMs<=0){fm.dayMs=0;fmDraw();fmEnd('sunset');return}
+  const dry=fmDryMs(),die=fmDieMs();
+  for(let i=0;i<fm.plots.length;i++){
+    const p=fm.plots[i];
+    if(!p||!p.rec)continue;
+    if(p.ripe>0){
+      p.ripe-=ms;
+      if(p.ripe<=0){p.ripe=0;fmSteal(p)}
+      continue;
+    }
+    if(p.th>0){
+      p.th-=ms/dry;
+      if(p.th<0)p.th=0;
+    }
+    if(p.th<=0){
+      p.wilt+=ms;
+      if(p.wilt>=die){fmWither(p);continue}
+    }
+  }
+  if(fm.spr>0){
+    fm.sprCd-=ms;
+    if(fm.sprCd<=0){
+      fm.sprCd=fmSprMs();
+      let t=null;
+      for(let i=0;i<fm.plots.length;i++){
+        const p=fm.plots[i];
+        if(!p||!p.rec||p.ripe>0)continue;
+        if(!t||p.th<t.th)t=p;
+      }
+      if(t&&t.th<0.92){
+        t.th=1;t.wilt=0;
+        tone(660,.06,'sine',.04);
+        fmBits(t,'#4FC3F7');
+        fmSay('💧 喷灌给「'+t.rec.ch+'」补满了水','#81D4FA');
+      }
+    }
+  }
+  const sp=fm.plots[fm.sel];
+  if(!sp||!sp.rec){
+    const u=fmUrgent();
+    if(u>=0)fmSel(u);
+  }
+  fmDraw();
+}
+/* ---- 开局 / 结算 ---- */
+function fmStopAll(){fmStopLoop();fmKillTimers();fm.gen++}
+async function fmStart(){
+  fmStopAll();
+  const g=fm.gen;
+  /* 翻地要等字库：手快连点两次、或退出又进来时，旧的那次必须作废，
+     否则它会往新一天的田里再 push 一排格子 */
+  const stale=function(){return g!==fm.gen||!fm.run||fm.over};
+  fm.run=true;fm.over=false;fm.busy=true;
+  fm.day=fmInt('hz_farm_days')+1;
+  fm.lv=1;fm.score=0;fm.hearts=FM_HEARTS;fm.combo=0;fm.maxCombo=0;
+  fm.ok=0;fm.bad=0;fm.harvest=0;fm.basket=0;fm.stolen=0;fm.withered=0;
+  fm.spr=0;fm.scare=0;fm.compost=0;fm.sprCd=0;
+  fm.slots=FM_SLOT0;fm.sel=0;fm.shopOpen=false;
+  fm.dayMsMax=fmDayMs();fm.dayMs=fm.dayMsMax;
+  fm.plots=[];
+  const box=document.getElementById('fmShopBox');
+  if(box){box.classList.remove('on');box.innerHTML=''}
+  showScreen('farm');
+  fmBind();
+  fm.rain=FM_RAIN0+Math.min(2,Math.floor(fmInt('hz_farm_lv')/4));
+  fmHud();
+  fmSet('fmAsk','🌱 正在翻地……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  fmSay('🌱 一格一个字：按笔顺浇对一笔，它就抽长一截','#A5D6A7');
+  let ok=await fmBuild();
+  if(stale())return;
+  if(!ok){
+    fmSay('🌱 字库有点慢，再翻一次地……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await fmBuild(true);
+    if(stale())return;
+  }
+  if(!ok){
+    fm.run=false;fm.busy=false;
+    fmSet('fmAsk','😢 凑不出一个可用的字<br><small>字库还没加载好，稍后再来种一天</small>');
+    fmSay('先去别的模式练两笔，回来田就翻好了','#FFCC80');
+    return;
+  }
+  fmAdd('hz_farm_games',1);
+  fm.plots=[];
+  for(let i=0;i<fm.slots;i++)fm.plots.push(fmPlotNew(i,null));
+  fmGridBuild();
+  for(let i=0;i<fm.plots.length;i++)fmReplant(fm.plots[i]);
+  fm.busy=false;
+  fmSel(fmUrgent()>=0?fmUrgent():0);
+  fmHud();fmDraw();
+  if(stale())return;
+  fmStartLoop();
+}
+function fmEnd(reason){
+  if(fm.over)return;
+  fm.over=true;fm.run=false;fm.busy=true;
+  fmStopAll();
+  const sc=Math.round(fm.score);
+  localStorage.setItem('hz_farm_best',String(Math.max(sc,fmInt('hz_farm_best'))));
+  localStorage.setItem('hz_farm_streak',String(Math.max(fm.maxCombo,fmInt('hz_farm_streak'))));
+  localStorage.setItem('hz_farm_lv',String(Math.max(fm.lv,fmInt('hz_farm_lv'))));
+  localStorage.setItem('hz_farm_days',String(fmInt('hz_farm_days')+1));
+  const stars=Math.floor(sc/110)+fm.harvest;
+  if(stars>0)addStars(stars);
+  showScreen('farm-result');
+  const R=fmRank(fmInt('hz_farm_harvest'));
+  const T={
+    sunset:['🌇','太阳下山，收工','明天蓝条会干得更快 —— 记得先摘熟透的那几颗'],
+    hearts:['🥀','一整片都旱死了','<b>蓝条见底</b>的那株优先浇：宁可少摘一颗果，也别让它枯死<br>🌧️ 求雨和 💧 喷灌就是用来救急的'],
+    quit:['🌇','今天先种到这儿','田里的字还记着，回来接着浇'],
+    nodata:['😢','字库没准备好','先去别的模式练两笔，回来田就翻好了']
+  };
+  const t=T[reason]||T.quit;
+  fmSet('fmRsEmoji',t[0]);
+  fmSet('fmRsTitle',t[1]);
+  fmSet('fmRsSub',t[2]);
+  fmSet('fmRsScore',String(sc));
+  fmSet('fmRsOk',String(fm.ok));
+  fmSet('fmRsWord',String(fm.harvest));
+  fmSet('fmRsLv',String(fm.day));
+  fmSet('fmRsAcc',fmAcc()+'%');
+  fmSet('fmRsStreak',String(fm.maxCombo));
+  fmSet('fmRsStars','⭐ '+stars);
+  fmSet('fmRsBest',String(fmInt('hz_farm_best')));
+  const book=(localStorage.getItem('hz_farm_book')||'').split(',').filter(function(c){return c.length===1});
+  fmSet('fmRsAll','🏅 '+R.e+' '+R.t+' · 累计摘 '+fmInt('hz_farm_harvest')+' 个果\n'+
+    '🌾 种了 '+fmInt('hz_farm_days')+' 天 · 💧 浇对 '+fmInt('hz_farm_ok')+' 笔 · 🥀 旱死 '+fmInt('hz_farm_wither')+' 株\n'+
+    '🐦 被乌鸦叼走 '+fmInt('hz_farm_stolen')+' 个 · 💢 浇错 '+fmInt('hz_farm_bad')+' 次 · 🚜 下地 '+fmInt('hz_farm_games')+' 场');
+  fmSet('fmRsBookT',book.length?('🧺 果篮图鉴 · 已收 '+book.length+' 个浇完的字'):'');
+  const bh=document.getElementById('fmRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function fmRetry(){fmStart()}
+function fmLeave(){
+  fmStopAll();
+  if(fm.run&&!fm.over){fm.over=true;fm.run=false}
+  goHome();
+}
+function fmHelp(){
+  fmSay('🌱 田里<b>一格一个字</b>：点一格选中它，题目就是「这个字的下一笔往哪个方向」，'+
+    '按下面 <b>四个水壶</b>（横/竖/撇/捺）浇 —— <b>浇对一笔它就抽长一截</b>，浇错这一截<b>泡回去</b>还更渴。'+
+    '每株顶上那根<b>蓝条是渴</b>：渴到底打蔫 🥀，再不管就<b>枯死扣一颗心</b>。'+
+    '整字一笔不落地浇完就<b>成熟</b>：顶上金条走完之前<b>点这格摘进果篮</b>，转完乌鸦 🐦 会来叼走。'+
+    '果子在 <b>🪙 集市</b> 能换 💧 喷灌 / 🌾 稻草人 / 🪴 堆肥（各 2 级），换掉就少几个星星 —— 卖还是留，自己拿主意。'+
+    '每摘 3 个果升 1 段：<b>田多一格</b>、渴得更快；<b>一局 = 一天</b>，太阳下山就结算。','#A5D6A7');
+}
+/* ---- 输入 ---- */
+function fmBind(){
+  if(fm.bound)return;
+  fm.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='farm'||!fm.run||fm.over)return;
+    const k=e.key;
+    if(k==='a'||k==='A'){fmWater(0);e.preventDefault();return}
+    if(k==='s'||k==='S'){fmWater(1);e.preventDefault();return}
+    if(k==='d'||k==='D'){fmWater(2);e.preventDefault();return}
+    if(k==='f'||k==='F'){fmWater(3);e.preventDefault();return}
+    if(k>='1'&&k<='6'){const i=+k-1;if(i<fm.slots)fmTap(i);e.preventDefault();return}
+    if(k==='ArrowLeft'){fmTap((fm.sel+fm.slots-1)%fm.slots);e.preventDefault();return}
+    if(k==='ArrowRight'){fmTap((fm.sel+1)%fm.slots);e.preventDefault();return}
+    if(k==='h'||k==='H'){fmPickBest();return}
+    if(k==='r'||k==='R'){fmRain();return}
+    if(k==='b'||k==='B'){fmShop();return}
+    if(k==='?'){fmHelp();return}
+  });
+}
+function fmNudge(){
+  const dot=document.getElementById('fmCardDot'),tip=document.getElementById('fmCardTip');
+  const hv=fmInt('hz_farm_harvest'),days=fmInt('hz_farm_days'),games=fmInt('hz_farm_games');
+  const R=fmRank(hv);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 摘了 '+hv+' 个果 · 种到第 '+days+' 天'):'按笔顺浇水，字就长成一颗果子';
   if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
 }
 window.addEventListener('DOMContentLoaded',boot);
