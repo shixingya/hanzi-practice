@@ -4146,6 +4146,92 @@ button:active{transform:scale(.95)}
 .sj-badge.on{display:flex}
 .sj-arena.sj-shake{animation:sjShake .34s}
 @keyframes sjShake{0%,100%{transform:translateX(0)}22%{transform:translateX(-7px)}46%{transform:translateX(6px)}72%{transform:translateX(-3px)}}
+/* ---------- 笔顺热气球 ---------- */
+.rq-hud{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;width:100%;margin-bottom:8px}
+.rq-hud span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:13px;padding:4px 10px;font-size:12.5px;white-space:nowrap}
+.rq-ask{width:100%;background:rgba(255,255,255,.13);border-radius:16px;padding:11px 13px;color:#fff;font-size:16px;text-align:center;line-height:1.45;margin-bottom:8px;min-height:52px}
+.rq-ask small{font-size:11.5px;opacity:.74;display:block;margin-top:3px;line-height:1.4}
+.rq-ask em{font-style:normal;color:#FFE082;font-weight:bold}
+.rq-arena{position:relative;width:100%;max-width:430px;aspect-ratio:1/1;margin:0 auto 9px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#1E3A6B 0%,#3A6EA5 22%,#6FA8DC 44%,#A8D4EE 64%,#D7EEF7 80%,#F2E3C6 92%,#C9A875 100%);box-shadow:inset 0 3px 0 rgba(255,255,255,.2),0 5px 16px rgba(0,0,0,.3);cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
+.rq-far{position:absolute;inset:0;pointer-events:none}
+.rq-far i{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);box-shadow:0 0 6px rgba(255,255,255,.5)}
+.rq-far i.a{left:12%;top:9%;width:3px;height:3px}
+.rq-far i.b{left:38%;top:5%;width:2px;height:2px}
+.rq-far i.c{right:22%;top:14%;width:2.5px;height:2.5px}
+.rq-far i.d{left:66%;top:7%;width:2px;height:2px}
+.rq-far b{position:absolute;left:6%;bottom:16%;width:0;height:0;border-style:solid;border-color:transparent transparent rgba(255,255,255,.14);border-width:0 40px 34px 40px}
+.rq-ground{position:absolute;left:0;right:0;bottom:0;height:8%;background:linear-gradient(180deg,#D7A86E,#8D6E4A);pointer-events:none;box-shadow:inset 0 2px 0 rgba(255,255,255,.28)}
+.rq-ground i{position:absolute;left:0;right:0;top:-6px;height:7px;background-image:repeating-linear-gradient(90deg,transparent 0 9px,rgba(141,110,74,.6) 9px 11px,transparent 11px 20px)}
+.rq-svg{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+.rq-svg .band{fill:rgba(255,255,255,.16);stroke:rgba(255,255,255,.34);stroke-width:.4}
+.rq-svg .lane.hot .band{fill:rgba(255,241,118,.42);stroke:#FFF176;stroke-width:.8}
+.rq-svg .lane.dim .band{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.16)}
+.rq-svg .lab{font-size:6.4px;font-weight:bold;fill:#fff;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:1.6px}
+.rq-svg .lane.hot .lab{fill:#FFF176;font-size:7.4px}
+.rq-svg .tick{stroke:rgba(255,255,255,.5);stroke-width:.35}
+.rq-svg .bell{fill:none;stroke:#FFD740;stroke-width:.9;stroke-dasharray:1.6 1.4}
+.rq-svg .lane.hot .bell{stroke:#FFF59D;stroke-width:1.3}
+.rq-svg .fly{fill:none;stroke:rgba(255,238,88,.75);stroke-width:.6;stroke-dasharray:2.2 2}
+.rq-svg .cross{stroke:rgba(255,255,255,.7);stroke-width:.5}
+.rq-bal{position:absolute;transform:translate(-50%,-50%);width:13%;padding-bottom:13%;font-size:30px;line-height:1;z-index:6;pointer-events:none;filter:drop-shadow(0 4px 8px rgba(0,0,0,.42))}
+.rq-bal i{position:absolute;left:50%;top:96%;transform:translateX(-50%);font-size:15px;opacity:0;transition:opacity .08s}
+.rq-bal.fire i{opacity:1;animation:rqFlame .22s ease-in-out infinite alternate}
+@keyframes rqFlame{0%{transform:translateX(-50%) scale(.8) translateY(-1px)}100%{transform:translateX(-50%) scale(1.15) translateY(2px)}}
+.rq-bal u{position:absolute;left:50%;top:-15px;transform:translateX(-50%);font-size:11px;font-weight:bold;text-decoration:none;white-space:nowrap;color:#FFF8E1;background:rgba(0,0,0,.32);border-radius:9px;padding:1px 6px;opacity:0;transition:opacity .12s}
+.rq-bal.say u{opacity:1}
+.rq-bal.rq-crash{animation:rqCrash .4s ease-out}
+@keyframes rqCrash{0%{transform:translate(-50%,-50%) scale(1)}35%{transform:translate(-50%,-42%) scale(1.12) rotate(9deg)}100%{transform:translate(-50%,-50%) scale(1)}}
+.rq-warn{position:absolute;left:3%;right:3%;height:0;border-top:2px dashed rgba(255,138,80,.9);z-index:4;pointer-events:none;animation:rqWarnBlink .4s steps(2,end) infinite}
+.rq-warn span{position:absolute;top:-13px;font-size:13px;font-weight:bold;color:#FFD740;text-shadow:0 1px 3px rgba(0,0,0,.55);white-space:nowrap}
+.rq-warn span.in{left:0}
+.rq-warn span.out{right:0}
+@keyframes rqWarnBlink{0%,100%{opacity:1}50%{opacity:.22}}
+.rq-bird{position:absolute;transform:translate(-50%,-50%);font-size:24px;line-height:1;z-index:5;pointer-events:none;filter:drop-shadow(0 3px 5px rgba(0,0,0,.4))}
+.rq-bird.flip{transform:translate(-50%,-50%) scaleX(-1)}
+.rq-pick{position:absolute;transform:translate(-50%,-50%);font-size:22px;line-height:1;z-index:5;pointer-events:none;filter:drop-shadow(0 0 10px rgba(255,235,59,.85));animation:rqBob 1.1s ease-in-out infinite alternate}
+@keyframes rqBob{0%{margin-top:-2px}100%{margin-top:3px}}
+.rq-wind{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.26);border:1px solid rgba(255,255,255,.24);border-radius:11px;padding:3px 9px;font-size:11.5px;color:#FFF8E1;z-index:4;pointer-events:none}
+.rq-flag{position:absolute;right:8px;top:8px;background:rgba(0,0,0,.26);border:1px solid rgba(255,255,255,.24);border-radius:11px;padding:3px 9px;font-size:11.5px;color:#FFF8E1;z-index:4;pointer-events:none}
+.rq-card{position:absolute;right:7px;bottom:9%;width:20%;padding-bottom:20%;background:rgba(255,255,255,.9);border-radius:11px;box-shadow:0 3px 10px rgba(0,0,0,.24);z-index:4;overflow:hidden;pointer-events:none}
+.rq-card svg{position:absolute;inset:0;width:100%;height:100%}
+.rq-card u{position:absolute;left:0;right:0;bottom:1px;text-align:center;font-size:9px;color:#5D4037;text-decoration:none}
+.rq-fx{position:absolute;inset:0;z-index:8;pointer-events:none;overflow:hidden}
+.rq-fx .rq-leaf{position:absolute;width:6px;height:6px;border-radius:2px;animation:rqLeaf 1.25s ease-out forwards}
+@keyframes rqLeaf{0%{transform:translate(0,0) rotate(0);opacity:1}100%{transform:translate(var(--lx),var(--ly)) rotate(var(--lr));opacity:0}}
+.rq-fx .rq-pop{position:absolute;transform:translateX(-50%);font-size:14px;font-weight:bold;white-space:nowrap;text-shadow:0 2px 5px rgba(0,0,0,.5);animation:rqPop 1s ease-out forwards}
+@keyframes rqPop{0%{margin-top:0;opacity:0}18%{opacity:1}100%{margin-top:-42px;opacity:0}}
+.rq-fx .rq-hit{position:absolute;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;border:2px solid #FFF176;animation:rqHit .6s ease-out forwards}
+@keyframes rqHit{0%{transform:translate(-50%,-50%) scale(.4);opacity:1}100%{transform:translate(-50%,-50%) scale(3.4);opacity:0}}
+.rq-meter{display:flex;gap:8px;align-items:center;width:100%;margin-bottom:8px}
+.rq-fuel{flex:1;height:20px;border-radius:10px;background:rgba(0,0,0,.3);overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.2)}
+.rq-fuel i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#FFB74D,#FFE082);transition:width .06s linear}
+.rq-fuel.low i{background:linear-gradient(90deg,#FF5252,#FF8A65)}
+.rq-fuel b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11.5px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6);font-weight:normal}
+.rq-clock{min-width:74px;text-align:center;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:4px 6px;font-size:12px;color:#FFF8E1}
+.rq-dpad{display:flex;gap:8px;align-items:stretch;width:100%;margin-bottom:8px}
+.rq-side{display:flex;gap:6px;flex:1}
+.rq-key{flex:1;min-width:46px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);border-radius:12px;color:#fff;font-size:19px;padding:9px 0}
+.rq-key:active{background:rgba(255,255,255,.32)}
+.rq-fire{flex:1.3;background:linear-gradient(180deg,#FFB74D,#F57C00);border:none;border-radius:12px;color:#3E2723;font-size:15px;font-weight:bold;padding:9px 0;box-shadow:0 3px 0 rgba(0,0,0,.26)}
+.rq-fire:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.26)}
+.rq-fire.on{box-shadow:0 0 16px rgba(255,235,59,.95);filter:brightness(1.14)}
+.rq-tools{display:flex;gap:7px;width:100%;margin-bottom:8px;flex-wrap:wrap}
+.rq-tool{flex:1;min-width:70px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:11px;color:#fff;font-size:12.5px;padding:8px 4px}
+.rq-tool:disabled{opacity:.42}
+.rq-tool.on{background:rgba(255,238,88,.3);border-color:#FFEE58;color:#FFF8E1;font-weight:bold}
+.rq-msg{width:100%;min-height:44px;background:rgba(0,0,0,.26);border-radius:14px;padding:9px 12px;color:#fff;font-size:13px;line-height:1.5;margin-bottom:8px}
+.rq-tip{width:100%;background:rgba(0,0,0,.22);border-radius:14px;padding:10px 12px;color:#E1F5FE;font-size:12px;line-height:1.75;margin-bottom:8px}
+.rq-tip b{color:#FFE082}
+.rq-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.rq-rs div span{font-size:26px;font-weight:bold;display:block}
+.rq-rs div small{font-size:11px;opacity:.75;color:#fff}
+.rq-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:8px}
+.rq-book i{width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,.16);color:#fff;font-style:normal;font-size:14px;display:flex;align-items:center;justify-content:center}
+.rq-book-t{font-size:12px;opacity:.78;color:#fff;margin-top:10px}
+.rq-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.rq-badge.on{display:flex}
+.rq-arena.rq-shake{animation:rqShake .34s}
+@keyframes rqShake{0%,100%{transform:translateX(0)}22%{transform:translateX(-7px)}46%{transform:translateX(6px)}72%{transform:translateX(-3px)}}
 </style>
 
 </head>
@@ -4202,8 +4288,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 66 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">66</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 67 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">67</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -4214,8 +4300,8 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>66 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>16</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>22</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>67 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>16</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>13</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>23</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
@@ -4354,6 +4440,11 @@ button:active{transform:scale(.95)}
     <div class="lab-group" id="labG3">
       <h4 class="lab-gtitle">⚡ 手速与反应 <small>眼疾手快抢答</small><i></i></h4>
       <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('balloon')">
+      <div class="icon">🎈</div>
+      <div class="info"><h3>笔顺热气球</h3><p id="rqCardTip">按住喷火升空，从写着这一笔方向的那条云带穿上去</p></div>
+      <span class="rq-badge" id="rqCardDot">🆕</span>
+    </div>
     <div class="mode-card" onclick="enterMode('shoot')">
       <div class="icon">🏹</div>
       <div class="info"><h3>笔顺神射</h3><p id="sjCardTip">屏住呼吸，把这一笔射进那一块</p></div>
@@ -4624,6 +4715,98 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="lzRetry()">🚣 再划一场</button>
     <button class="w-btn blue" onclick="lzLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-balloon">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rqLeave()">← 返回</button>
+    <div class="stats"><span id="rqScoreTxt">🎯 0 分</span><span id="rqLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="rqHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="rq-hud">
+    <span id="rqRankTxt" title="称号">🎈 升空新手</span>
+    <span id="rqHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="rqComboTxt" title="连击">🔥 连 0</span>
+    <span id="rqBellTxt" title="穿过几个十环">🎐 0</span>
+    <span id="rqWordTxt" title="穿完几个字">🏆 0</span>
+    <span id="rqAltTxt" title="当前高度">⛰ 0 m</span>
+    <span id="rqFallTxt" title="坠地几次">💥 0</span>
+  </div>
+  <div class="rq-ask" id="rqAsk">🎈 正在充气……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="rq-arena" id="rqArena" onpointerdown="rqDown(event)" onpointermove="rqMove(event)" onpointerup="rqUp(event)" onpointercancel="rqUp(event)">
+    <div class="rq-far"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i><b></b></div>
+    <svg class="rq-svg" id="rqSvg" viewBox="0 0 100 100"></svg>
+    <div class="rq-ground"><i></i></div>
+    <div class="rq-warn" id="rqWarn" style="display:none"><span id="rqWarnLab">🐦»</span></div>
+    <div class="rq-bird" id="rqBird" style="display:none">🐦</div>
+    <div class="rq-pick" id="rqPick" style="display:none">✨</div>
+    <div class="rq-bal" id="rqBal" style="left:50%;top:80%">🎈<i>🔥</i><u id="rqBalLab"></u></div>
+    <div class="rq-wind" id="rqWind">🍃 无风</div>
+    <div class="rq-flag" id="rqFlag">🎐 带不动</div>
+    <div class="rq-card" id="rqChar"></div>
+    <div class="rq-fx" id="rqFx"></div>
+  </div>
+  <div class="rq-meter">
+    <div class="rq-fuel" id="rqFuelBox"><i id="rqFuel"></i><b id="rqFuelTxt">⛽ 燃料 100%</b></div>
+    <div class="rq-clock" id="rqClock">🎈 空中</div>
+  </div>
+  <div class="rq-dpad">
+    <div class="rq-side">
+      <button class="rq-key" id="rqKeyL" onpointerdown="rqKey('l',1);return false" onpointerup="rqKey('l',0);return false" onpointercancel="rqKey('l',0);return false">◀</button>
+      <button class="rq-key" id="rqKeyR" onpointerdown="rqKey('r',1);return false" onpointerup="rqKey('r',0);return false" onpointercancel="rqKey('r',0);return false">▶</button>
+      <button class="rq-key" id="rqKeyD" onpointerdown="rqKey('d',1);return false" onpointerup="rqKey('d',0);return false" onpointercancel="rqKey('d',0);return false">▼</button>
+    </div>
+    <button class="rq-fire" id="rqFireBtn" onpointerdown="rqBurn(true);return false" onpointerup="rqBurn(false);return false" onpointercancel="rqBurn(false);return false">🔥 按住升空</button>
+  </div>
+  <div class="rq-tools">
+    <button class="rq-tool" id="rqSlowBtn" onclick="rqSlow()" disabled>🐢 缓降</button>
+    <button class="rq-tool" id="rqHintBtn" onclick="rqHint()">🦉 指带</button>
+    <button class="rq-tool" onclick="rqEnd('quit')">🏁 收工结算</button>
+  </div>
+  <div class="rq-msg" id="rqMsg">热气球跟别的游戏不一样：<b>一直按住 🔥 才升得起来</b> —— <b>从写着这一笔方向的那条云带里穿上去</b>，离 🎐 风铃越近分越高</div>
+  <div class="rq-tip">天上飘着 <b>四条云带</b>，每条写着一个方向：<b>横 / 竖 / 撇 / 捺</b>（<b>每局换顺序</b>，别背位置）。题目问「<b>这一笔往哪个方向</b>」，你就把气球 <b>升到那条带里、从下往上穿过去</b><br>
+    <b>按住 🔥（或空格 / ↑）</b> 喷火上升、松手就往下坠；<b>◀ ▶</b> 左右挪、<b>▼</b> 放气加速下降。手机上是 <b>按住天空拖动</b>：手指在哪，气球往哪飞<br>
+    每条带上挂着一颗会 <b>左右滑的 🎐 风铃</b>：穿过的落点 <b>正对着风铃 = 10 环</b>，偏一点 8、6、4、2 环 —— 得分 <b>6 + 环数×1.4 + 连击×0.5 + 段数×2</b>（<b>十环再 +3</b>）<br>
+    💢 <b>穿错带</b>：扣 5 分、连击清零、这一笔 <b>原地再穿一次</b>，这个字进 <b>错字手册</b><br>
+    ⛽ <b>燃料</b>：一管约 4 秒、<b>够从地面一路烧到最高的那条带</b>；烧空了升不动只能干坠。<b>穿对一条 +30%</b>、吃到 ✨ 火种补一管，<b>松手才回气最快</b> —— <b>别乱喷</b><br>
+    💥 <b>掉到地上 = 掉一颗心</b>（3 颗起、最多 5 颗）、连击清零，气球被弹回半空接着穿；<b>心掉光才结算</b><br>
+    🍃 <b>风</b>（2 段起）把气球横着推，<b>1~3 段</b>头顶画出 <b>黄色预测航线</b>，<b>4 段起收掉</b> 要自己估<br>
+    🎐 云带 <b>2 段起左右滑</b>、<b>5 段起还会上下浮</b>；<b>F / 🐢 缓降</b>：1.5 秒 <b>带子定住、重力打 4 折</b>（升段补次数，最多攒 2 次）<br>
+    🐦 2 段起 <b>飞鸟横穿</b>：先在 <b>那条高度闪 1.6 秒橙色虚线</b> 报信，虚线一出现就 <b>上下挪一层躲开</b>；撞上 <b>掉一颗心 + 猛地一沉</b>（撞完天上安静 2.6 秒、鸟也只从离你远的航线来）；✨ <b>火种</b> 别错过<br>
+    🦉 <b>卡住 6.5 秒</b>，猫头鹰把正确那条带 <b>整条点亮 1.7 秒</b>；<b>H</b> 可以主动要<br>
+    ⚡ <b>一笔不落地穿完整个字 = 穿完一字</b>（+24 + 段数×6，<b>没坠地也没穿错再加 12</b>），<b>每 2 字升 1 段</b>（最多 9 段）：带更滑、风更歪、燃料更省不了<br>
+    <code>?</code> 看玩法 · 战绩落盘 <code>hz_balloon_*</code></div>
+</div>
+<div class="screen" id="screen-balloon-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rqLeave()">← 回首页</button>
+    <div class="stats"><span id="rqRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="rqRsEmoji">🎈</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="rqRsTitle">这一场飞完了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="rqRsSub">下一场先把「喷火 → 对准 → 穿上去」走顺</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="rq-rs">
+      <div><span style="color:#FFD700" id="rqRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="rqRsOk">0</span><small>穿对几笔</small></div>
+      <div><span style="color:#69F0AE" id="rqRsWord">0</span><small>穿完几字</small></div>
+      <div><span style="color:#FFAB91" id="rqRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="rqRsBell">0</span><small>十环几个</small></div>
+      <div><span style="color:#E1BEE7" id="rqRsStreak">0</span><small>最长连击</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一天最多穿完几字 · ⛰ 本场最高升空</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740"><span id="rqRsBest">0</span> 字 · <span id="rqRsPeak">0</span> m</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="rqRsAll">🎈 升空新手</div>
+      <div class="rq-book-t" id="rqRsBookT"></div>
+      <div class="rq-book" id="rqRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="rqRetry()">🎈 再飞一场</button>
+    <button class="w-btn blue" onclick="rqLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-shoot">
@@ -9058,6 +9241,7 @@ function updateHomeStats(){
   if(typeof npNudge==='function')npNudge();
   if(typeof ksNudge==='function')ksNudge();
   if(typeof sjNudge==='function')sjNudge();
+  if(typeof rqNudge==='function')rqNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -9070,6 +9254,7 @@ function enterMode(mode){
   if(mode==='patrol'){npStart();return}
   if(mode==='shuttle'){ksStart();return}
   if(mode==='shoot'){sjStart();return}
+  if(mode==='balloon'){rqStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -43750,6 +43935,807 @@ function sjHelp(){
     '🐦 <b>答案鸟</b>（4 段起）翅膀上写着方向：射中<b>对的</b>那只 +8 并直接点亮这一笔，射中<b>错的</b>那只照样算错。<br>'+
     '🦉 <b>站着不动 6.5 秒</b>，猫头鹰把正确那块<b>点亮 1.7 秒</b>；<b>H</b> 可以主动要。<br>'+
     '一笔不落地射完整个字 = <b>射完一字</b>（+24 + 段数×6，<b>没脱靶也没射错再加 12</b>），每 2 字升 1 段（最多 9 段）：<b>手更抖、风更歪、靶更会躲</b>。','#A5D6A7');
+}
+
+/* ===================== 笔顺热气球（按住喷火才升得起来 · 从写着这一笔方向的云带门洞里穿上去 · v1.68.0） ===================== */
+const RQ_HEARTS=3,RQ_HEART_MAX=5,RQ_MISS_MAX=40,RQ_BOOK_MAX=300;
+const RQ_POOL_MIN=3,RQ_POOL_WANT=14;
+const RQ_X0=8,RQ_X1=92,RQ_Y0=10,RQ_Y1=88;
+const RQ_LANE_Y=[17,35,53,71];
+const RQ_GRAV=30,RQ_THRUST=70,RQ_DRAG=2.2,RQ_SIDE=22,RQ_DOWN=15;
+const RQ_BURN_MS=4200,RQ_LEAK_MS=5000,RQ_GAIN_LANE=30,RQ_GAIN_PICK=45,RQ_GAIN_LV=40;
+const RQ_CD_MS=900,RQ_GATE0=9,RQ_GATE_K=0.5,RQ_GATE_MIN=4.5;
+const RQ_WIND_K=0.9,RQ_SLOW_MS=1500,RQ_SLOW_G=0.4;
+const RQ_HINT_MS=6500,RQ_HINT_SHOW_MS=1700;
+const RQ_BIRD_MS=11000,RQ_BIRD_R=6,RQ_BIRD_GRACE=2600,RQ_PICK_MS=8200,RQ_PICK_R=7;
+const RQ_BIRD_WARN_MS=1600;
+const RQ_DIRS=['横','竖','撇','捺'];
+const RQ_COL=['#FF6B6B','#4ECDC4','#45B7D1','#FFA07A'];
+const RQ_RANKS=[
+  {n:0,e:'🎈',t:'升空新手'},{n:3,e:'🧭',t:'认得风向'},{n:7,e:'🪶',t:'点火有节奏'},
+  {n:12,e:'🌤️',t:'云中穿行'},{n:18,e:'🎐',t:'风铃猎手'},{n:26,e:'⭐',t:'摘星飞手'},
+  {n:36,e:'🏆',t:'天空之王'},{n:50,e:'🌙',t:'月光航线'},{n:72,e:'🐉',t:'热气球大师'}
+];
+const RQ_NOTE=[330,392,440,494,523,587,659,698,784,880,988,1047];
+const rq={
+  run:false,over:false,busy:false,gen:0,rafId:0,last:0,timers:[],bound:0,
+  lv:1,score:0,hearts:RQ_HEARTS,combo:0,maxCombo:0,
+  ok:0,bad:0,words:0,passes:0,falls:0,birds:0,bells:0,picks:0,
+  t:0,playMs:0,peak:0,
+  x:50,y:80,vx:0,vy:0,prevY:80,fuel:1,
+  laneDir:[0,1,2,3],gateCd:[0,0,0,0],bobT:0,
+  wind:0,windMs:0,slow:0,slowsN:1,shotCd:0,think:0,hinted:0,hintMs:0,
+  bird:null,birdMs:0,birdGrace:0,warn:null,spawns:0,pk:null,pickMs:0,
+  keys:{l:0,r:0,d:0},burn:false,relight:0,aim:{on:0,x:50,y:50},
+  rec:null,n:0,qi:0,pool:[],miss:[],wordBad:0,wordMiss:0,
+  fuelTxt:'',clockTxt:'',windTxt:'',flagTxt:'',altTxt:'',barTxt:'',
+  sayMs:0,nagMs:0
+};
+/* ---- 小工具 ---- */
+function rqInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function rqAdd(k,n){if(n)localStorage.setItem(k,String(rqInt(k)+n))}
+function rqSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function rqSay(t,c){const el=document.getElementById('rqMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function rqShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function rqOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function rqRank(n){let r=RQ_RANKS[0];for(let i=0;i<RQ_RANKS.length;i++)if(n>=RQ_RANKS[i].n)r=RQ_RANKS[i];return r}
+function rqT(fn,ms){const g=rq.gen;const id=setTimeout(function(){if(g!==rq.gen)return;fn()},ms);rq.timers.push(id);return id}
+function rqKillTimers(){rq.timers.forEach(function(t){clearTimeout(t)});rq.timers=[]}
+function rqClamp(v,a,b){return v<a?a:(v>b?b:v)}
+/* ---- 难度曲线 ---- */
+function rqGate(){return Math.max(RQ_GATE_MIN,RQ_GATE0-rq.lv*RQ_GATE_K)}
+function rqAmp(){return rq.lv<2?0:Math.min(34,6+rq.lv*2.2)}
+function rqSpd(){return rq.lv<2?0:0.42+rq.lv*0.055}
+function rqBobAmp(){return (rq.lv<5||rq.slow>0)?0:1.6+(rq.lv-4)*0.5}
+function rqWindMax(){return rq.lv<=1?0:2+rq.lv*0.8}
+function rqWindRoll(){const m=rqWindMax();rq.wind=m?Math.round((Math.random()*2-1)*m*10)/10:0}
+function rqBirdIv(){return Math.max(5600,RQ_BIRD_MS-rq.lv*620)}
+function rqGrav(){return RQ_GRAV*(rq.slow>0?RQ_SLOW_G:1)}
+function rqBurnRate(){return (rq.slow>0?0.6:1)/RQ_BURN_MS}
+/* 第 i 条带当前的中心线高度 / 门洞横坐标 */
+function rqLaneY(i){
+  const a=rqBobAmp();
+  return a?RQ_LANE_Y[i]+Math.round(Math.sin(rq.bobT*0.9+i*1.7)*a*10)/10:RQ_LANE_Y[i];
+}
+function rqBellX(i){
+  const a=rqAmp();
+  if(!a||rq.slow>0)return 50;
+  return rqClamp(Math.round((50+Math.sin(rq.t*rqSpd()+i*1.9)*a)*10)/10,14,86);
+}
+/* ---- 字池：每一笔都一眼认得出方向的字 ---- */
+function rqMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>10)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=fmDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp};
+}
+function rqCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<80;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(rqShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(rqShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(rqShuf(CHARS.slice()));
+  return out;
+}
+function rqTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function rqRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=rqTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians)return null;
+  return rqMake(ch,raw);
+}
+async function rqBuild(keep){
+  const g=rq.gen;
+  rq.miss=(localStorage.getItem('hz_balloon_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  rqShuf(rq.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  rqCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)rq.pool=[];
+  for(let k=0;k<want.length&&rq.pool.length<RQ_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return rqRec(c)}));
+    if(g!==rq.gen||!rq.run)break;
+    for(let i=0;i<rs.length;i++)if(rs[i])rq.pool.push(rs[i]);
+  }
+  return rq.pool.length>=RQ_POOL_MIN;
+}
+function rqNewRec(){
+  const w=rq.lv>=5?[2,9]:[2,7],used={};
+  if(rq.rec&&rq.qi<rq.n)used[rq.rec.ch]=1;
+  let cand=rq.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  if(!cand.length)cand=rq.pool.slice();
+  if(!cand.length)return null;
+  for(let i=0;i<rq.miss.length;i++){
+    for(let k=0;k<cand.length;k++)if(cand[k].ch===rq.miss[i]&&!used[cand[k].ch])return cand[k];
+  }
+  for(let i=0;i<40;i++){const c=rqOne(cand);if(c&&!used[c.ch])return c}
+  return cand[0];
+}
+/* ---- 错字手册 / 航线图鉴 ---- */
+function rqMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_balloon_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_balloon_miss',a.slice(0,RQ_MISS_MAX).join(','));
+}
+function rqMissDel(ch){
+  const a=(localStorage.getItem('hz_balloon_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_balloon_miss',a.join(','));
+}
+function rqBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_balloon_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_balloon_book',a.slice(0,RQ_BOOK_MAX).join(','));
+}
+/* ---- 场上：云带 / 字卡 / 题目 ---- */
+function rqArt(){
+  const svg=document.getElementById('rqSvg');if(!svg)return;
+  let h='';
+  for(let i=0;i<4;i++){
+    const y=RQ_LANE_Y[i];
+    h+='<g class="lane" id="rqLane'+i+'" transform="translate(0,0)">'+
+      '<rect class="band" x="2" y="'+(y-4.2)+'" width="96" height="8.4" rx="4.2"/>'+
+      '<text class="lab" x="7" y="'+y+'">'+RQ_DIRS[i]+'</text>'+
+      '<text class="lab" x="93" y="'+y+'">'+RQ_DIRS[i]+'</text>'+
+      '</g>';
+  }
+  h+='<g id="rqGates"></g><polyline id="rqFly" class="fly" points=""/>';
+  svg.innerHTML=h;
+}
+function rqShuffle(){
+  rq.laneDir=rqShuf([0,1,2,3]);
+  for(let i=0;i<4;i++){
+    const g=document.getElementById('rqLane'+i);if(!g)continue;
+    const t=RQ_DIRS[rq.laneDir[i]];
+    const lab=g.querySelectorAll('text');
+    for(let k=0;k<lab.length;k++)lab[k].textContent=t;
+  }
+}
+function rqGates(){
+  const g=document.getElementById('rqGates');if(!g)return;
+  const w=rqGate();
+  let h='';
+  for(let i=0;i<4;i++){
+    const bx=rqBellX(i),y=rqLaneY(i);
+    h+='<circle class="bell" cx="'+bx.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+w.toFixed(2)+'"/>'+
+      '<circle class="tick" cx="'+bx.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(w*0.34).toFixed(2)+'"/>'+
+      '<text class="lab" x="'+bx.toFixed(1)+'" y="'+y.toFixed(1)+'">🎐</text>';
+  }
+  g.innerHTML=h;
+}
+function rqCharArt(){
+  const el=document.getElementById('rqChar');
+  if(!el)return;
+  if(!rq.rec){el.innerHTML='';return}
+  let h='<svg viewBox="0 0 1024 1024">';
+  for(let i=0;i<rq.rec.paths.length;i++){
+    const lit=i<rq.qi,cur=(rq.qi<rq.n&&i===rq.qi);
+    h+='<path d="'+rq.rec.paths[i]+'" fill="'+(lit?RQ_COL[rq.rec.dirs[i]]:(cur?'rgba(255,241,118,.6)':'rgba(93,64,55,.22)'))+'"/>';
+  }
+  h+='</svg><u>'+rq.qi+'/'+rq.n+' 笔</u>';
+  el.innerHTML=h;
+}
+function rqWant(){return rq.rec&&rq.qi<rq.n?rq.rec.dirs[rq.qi]:-1}
+function rqWantLane(){const w=rqWant();if(w<0)return -1;for(let i=0;i<4;i++)if(rq.laneDir[i]===w)return i;return -1}
+function rqAsk(){
+  if(!rq.rec){rqSet('rqAsk','🎈 天上还没挂好字<br><small>字库有点慢，稍等一下</small>');return}
+  rqSet('rqAsk','「<b>'+rq.rec.ch+'</b>」的第 <b>'+(rq.qi+1)+'</b> 笔往哪个方向？<small>升到那条云带里，对准 🎐 风铃的洞 <b>从下往上穿过去</b>'+
+    (rq.hintMs>0?'<br>🦉 <em>正确那条带已经点亮</em>，把气球升到它下面再拉上去':'')+'</small>');
+}
+/* ---- 粒子 ---- */
+function rqFxHost(){return document.getElementById('rqFx')}
+function rqPut(host,el,ms){
+  host.appendChild(el);
+  rqT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+  while(host.children.length>70)host.removeChild(host.firstChild);
+}
+function rqBits(x,y,col,n){
+  const host=rqFxHost();if(!host)return;
+  for(let i=0;i<(n||14);i++){
+    const el=document.createElement('div');
+    el.className='rq-leaf';
+    el.style.left=x.toFixed(1)+'%';el.style.top=y.toFixed(1)+'%';
+    el.style.background=col||'#FFD740';
+    el.style.setProperty('--lx',((Math.random()*2-1)*80).toFixed(0)+'px');
+    el.style.setProperty('--ly',((Math.random()*2-1)*80).toFixed(0)+'px');
+    el.style.setProperty('--lr',(Math.random()*520-260).toFixed(0)+'deg');
+    el.style.animationDelay=(Math.random()*120).toFixed(0)+'ms';
+    rqPut(host,el,1300);
+  }
+}
+function rqConfetti(x,y){
+  const host=rqFxHost();if(!host)return;
+  for(let i=0;i<22;i++){
+    const el=document.createElement('div');
+    el.className='rq-leaf';
+    el.style.left=x.toFixed(1)+'%';el.style.top=y.toFixed(1)+'%';
+    el.style.background=['#FFD740','#A5D6A7','#F48FB1','#80DEEA','#FFAB91'][i%5];
+    el.style.setProperty('--lx',((Math.random()*2-1)*120).toFixed(0)+'px');
+    el.style.setProperty('--ly',(30+Math.random()*100).toFixed(0)+'px');
+    el.style.setProperty('--lr',(Math.random()*520-260).toFixed(0)+'deg');
+    el.style.animationDelay=(Math.random()*160).toFixed(0)+'ms';
+    rqPut(host,el,1400);
+  }
+}
+function rqPop(x,y,txt,col){
+  const host=rqFxHost();if(!host)return;
+  const el=document.createElement('div');
+  el.className='rq-pop';el.innerHTML=txt;
+  el.style.left=x.toFixed(1)+'%';el.style.top=y.toFixed(1)+'%';
+  if(col)el.style.color=col;
+  rqPut(host,el,1000);
+}
+function rqHitFx(x,y,col){
+  const host=rqFxHost();if(!host)return;
+  const el=document.createElement('div');
+  el.className='rq-hit';
+  el.style.left=x.toFixed(1)+'%';el.style.top=y.toFixed(1)+'%';
+  if(col)el.style.borderColor=col;
+  rqPut(host,el,620);
+}
+function rqShake(){
+  const el=document.getElementById('rqArena');if(!el)return;
+  el.classList.remove('rq-shake');void el.offsetWidth;el.classList.add('rq-shake');
+}
+function rqSayBal(txt,ms){
+  const el=document.getElementById('rqBalLab');
+  if(!el)return;
+  el.textContent=txt;
+  const b=document.getElementById('rqBal');
+  if(b)b.classList.add('say');
+  rq.sayMs=ms||1100;
+}
+/* ---- 判定：穿过一条云带 ---- */
+function rqPass(i){
+  const want=rqWant(),d=rq.laneDir[i];
+  const bx=rqBellX(i);
+  const dist=Math.abs(rq.x-bx),g=rqGate();
+  if(dist>g){
+    if(rq.nagMs<=0){
+      rq.nagMs=2600;
+      rqSay('☁️ <b>云带是实的</b>：这条带上的 <b>'+RQ_DIRS[d]+'</b> 洞在 <b>'+Math.round(bx)+'%</b> 那一头，对准 🎐 再穿','#B3E5FC');
+    }
+    return;
+  }
+  const band=Math.min(4,Math.floor(dist/(g/5)));
+  const ring=10-band*2;
+  rq.gateCd[i]=RQ_CD_MS;
+  rq.passes++;rqAdd('hz_balloon_pass',1);
+  if(d===want)rqGood(i,ring,d);else rqBad(i,d,want);
+}
+function rqGood(i,ring,d){
+  const x=rq.x,y=rqLaneY(i),at=rq.qi+1;
+  rq.qi++;rq.ok++;rqAdd('hz_balloon_ok',1);
+  rq.combo++;
+  if(rq.combo>rq.maxCombo)rq.maxCombo=rq.combo;
+  rq.think=0;rq.hinted=0;rq.hintMs=0;
+  let pts=6+ring*1.4+rq.combo*0.5+rq.lv*2;
+  const bull=(ring>=10);
+  if(bull){pts+=3;rq.bells++;rqAdd('hz_balloon_bells',1)}
+  pts=Math.round(pts);
+  rq.score+=pts;
+  rq.fuel=Math.min(1,rq.fuel+RQ_GAIN_LANE/100);
+  tone(RQ_NOTE[Math.min(rq.combo-1,RQ_NOTE.length-1)],.09,'sine',.05);
+  rqBits(x,y,RQ_COL[d],bull?22:14);
+  rqPop(x,y-4,'+'+pts,RQ_COL[d]);
+  rqHitFx(x,y,bull?'#FFF176':RQ_COL[d]);
+  rqCharArt();
+  rqSayBal(RQ_DIRS[d]);
+  if(bull)rqPop(x,y-11,'🎐 十环 +3','#FFF176');
+  rqAsk();rqHud();
+  if(rq.combo>0&&rq.combo%5===0){
+    rqConfetti(x,y);tone(1319,.12,'sine',.05);
+    rqSay('🎉 <b>连 '+rq.combo+' 穿</b> 满堂彩！第 <b>'+at+'</b> 笔 <b>'+RQ_DIRS[d]+'</b> 亮了','#FFE082');
+  }else{
+    rqSay('✅ 第 <b>'+at+'</b> 笔 <b>'+RQ_DIRS[d]+'</b> 从 <b>'+ring+' 环</b> 穿过去了（+'+pts+'·⛽ +'+RQ_GAIN_LANE+'）· 还差 '+(rq.n-rq.qi)+' 笔 · '+(rq.lv>=4?'<b>4 段起没有预测航线了</b>，风偏自己估':'头顶那条 <b>黄虚线就是预测航线</b>'),'#69F0AE');
+  }
+  if(rq.qi>=rq.n)rqWordWin();
+}
+function rqBad(i,d,want){
+  const x=rq.x,y=rqLaneY(i);
+  rq.bad++;rqAdd('hz_balloon_bad',1);
+  rq.wordBad++;rq.combo=0;
+  rq.score=Math.max(0,rq.score-5);
+  rqMissAdd(rq.rec.ch);
+  rqShake();rqBits(x,y,'#90A4AE',10);rqPop(x,y-4,'-5','#FF8A80');
+  rqHitFx(x,y,'#FF8A80');
+  tone(196,.16,'sawtooth',.06);
+  rqAsk();rqHud();
+  rqSay('💢 「<b>'+rq.rec.ch+'</b>」的第 <b>'+(rq.qi+1)+'</b> 笔要 <b>'+RQ_DIRS[want]+'</b>，你穿进了 <b>'+RQ_DIRS[d]+'</b> 那条带（扣 5 分、连击清零），这一笔<b>再穿一次</b>：掉到 <b>'+RQ_DIRS[want]+'</b> 那条带下面，再拉上来','#FF8A80');
+}
+function rqCrash(){
+  rq.falls++;rqAdd('hz_balloon_falls',1);
+  rq.wordMiss++;rq.combo=0;
+  rq.hearts=Math.max(0,rq.hearts-1);
+  rq.y=70;rq.vy=0;
+  rqShake();rqPop(rq.x,RQ_Y1-3,'💥 坠地','#FF8A80');
+  tone(170,.24,'sawtooth',.07);
+  rqT(function(){if(rq.run)tone(110,.2,'sawtooth',.06)},120);
+  const b=document.getElementById('rqBal');
+  if(b){b.classList.remove('rq-crash');void b.offsetWidth;b.classList.add('rq-crash')}
+  rqAsk();rqHud();
+  if(rq.hearts<=0){rqSay('💥 <b>最后一颗心也掉了</b>：气球撒了气……这一场到此为止','#FF8A80');rqEnd('fall');return}
+  rqSay('💥 <b>坠地</b>：气球砸回地面，掉一颗心（还剩 '+rq.hearts+' 颗）、连击清零 —— <b>这一笔还在</b>，重新点火烧上来','#FFAB91');
+}
+function rqHitBird(){
+  const b=rq.bird;if(!b)return;
+  rq.birds++;rqAdd('hz_balloon_birds',1);
+  rq.combo=0;rq.hearts=Math.max(0,rq.hearts-1);
+  rq.vy+=20;rq.birdGrace=RQ_BIRD_GRACE;
+  rqBirdOff();
+  rqShake();rqPop(rq.x,rq.y-4,'🐦 撞上鸟群','#FF8A80');
+  tone(220,.18,'sawtooth',.06);
+  rqHud();
+  if(rq.hearts<=0){rqSay('🐦 <b>鸟群把最后一点浮力撞没了</b>：这一场到此为止','#FF8A80');rqEnd('bird');return}
+  rqSay('🐦 <b>撞进鸟群</b>：掉一颗心（还剩 '+rq.hearts+' 颗）、气球猛地一沉 —— <b>赶紧点火</b>把它拉起来','#FFAB91');
+}
+function rqWordWin(){
+  const ch=rq.rec.ch;
+  rq.words++;rqAdd('hz_balloon_words',1);
+  rqBookAdd(ch);rqMissDel(ch);
+  const clean=rq.wordMiss===0&&rq.wordBad===0;
+  const bonus=24+rq.lv*6+(clean?12:0);
+  rq.score+=bonus;
+  tone(659,.1,'sine',.06);
+  rqT(function(){if(rq.run)tone(880,.1,'sine',.06)},110);
+  rqT(function(){if(rq.run)tone(1047,.2,'sine',.06)},220);
+  rqConfetti(rq.x,rq.y);rqPop(rq.x,rq.y-8,'+'+bonus,'#FFD740');
+  rq.fuel=Math.min(1,rq.fuel+0.2);
+  if(rq.words%2===0&&rq.hearts<RQ_HEART_MAX){
+    rq.hearts++;
+    rqT(function(){if(rq.run)rqSay('❤️ 穿完两字，补一颗心（现在 '+rq.hearts+' 颗）','#FF8A80')},900);
+  }
+  const nl=1+Math.floor(rq.words/2);
+  const up=nl>rq.lv;
+  let upTxt='';
+  if(up){
+    rq.lv=Math.min(9,nl);
+    rq.slowsN=Math.min(2,rq.slowsN+1);
+    rq.fuel=Math.min(1,rq.fuel+RQ_GAIN_LV/100);
+    rqWindRoll();
+    upTxt='<br>🔺 升到第 '+rq.lv+' 段：<b>门洞更小、'+(rq.lv>=2?'风更歪、带子会滑、':'')+(rq.lv>=5?'云带还会上下浮、':'')+'🐢 补一次</b>';
+  }
+  const next=rqNewRec();
+  rq.rec=next;
+  if(!next){rqEnd('nodata');return}
+  rqShuffle();
+  rqLegStart();
+  rqSay('🏆 <b>'+ch+'</b> 一笔不落地全穿中了（+'+bonus+'）'+(clean?'· <b>没坠地也没穿错</b>再加 12':'')+
+    '<br>🎐 换了新字，<b>四条带的方向重排了</b> —— 读字，别背位置'+upTxt,'#FFD740');
+}
+function rqLegStart(){
+  rq.qi=0;rq.wordMiss=0;rq.wordBad=0;rq.think=0;rq.hinted=0;
+  rq.n=rq.rec?rq.rec.n:0;
+  rq.gateCd=[0,0,0,0];
+  rqCharArt();rqAsk();rqHud();rqGates();
+}
+/* ---- 道具 / 提示 / 燃烧 ---- */
+function rqSlow(){
+  if(!rq.run||rq.over||rq.busy)return;
+  if(rq.slowsN<=0){rqSay('🐢 缓降用完了 —— <b>升一段</b>补一次（现在连击 '+rq.combo+'）','#B3E5FC');return}
+  rq.slowsN--;rq.slow=RQ_SLOW_MS;rqAdd('hz_balloon_props',1);
+  tone(523,.14,'sine',.05);
+  rqSay('🐢 <b>缓降</b>！1.5 秒<b>云带定住不动、重力打 4 折</b> —— 趁这几秒对准那个洞','#B39DDB');
+  rqHud();
+}
+function rqHint(){
+  if(!rq.run||rq.over||!rq.rec||rq.qi>=rq.n)return;
+  rq.hinted=1;rqAdd('hz_balloon_hints',1);
+  rq.hintMs=RQ_HINT_SHOW_MS;rq.think=0;
+  tone(784,.1,'sine',.05);
+  const w=rqWant();
+  rqSay('🦉 <b>'+RQ_DIRS[w]+'</b> —— 从上往下数第 <b>'+(rqWantLane()+1)+'</b> 条带亮起来了，升到它下面再拉上去','#FFE082');
+  rqAsk();
+}
+function rqBurn(on){
+  if(!rq.run||rq.over)return;
+  rq.burn=!!on;
+  if(on)rq.relight=0;
+  const btn=document.getElementById('rqFireBtn');
+  if(btn)btn.classList.toggle('on',!!rq.burn);
+}
+/* ---- 循环 ---- */
+function rqStartLoop(){rqStopLoop();rq.last=0;rq.rafId=requestAnimationFrame(rqLoop)}
+function rqStopLoop(){if(rq.rafId){cancelAnimationFrame(rq.rafId);rq.rafId=0}rq.last=0}
+function rqLoop(ts){
+  if(!rq.run||rq.over){rq.rafId=0;return}
+  rq.rafId=requestAnimationFrame(rqLoop);
+  if(!rq.last)rq.last=ts;
+  let dt=(ts-rq.last)/1000;rq.last=ts;
+  if(dt>0.05)dt=0.05;
+  if(dt<0)dt=0;
+  rqTick(dt);
+}
+function rqTick(dt){
+  const ms=dt*1000;
+  rq.t+=dt;rq.playMs+=ms;rq.bobT+=dt;
+  /* 输入 → 力 */
+  let side=(rq.keys.r-rq.keys.l)*RQ_SIDE;
+  let down=rq.keys.d?RQ_DOWN:0;
+  let fire=rq.burn&&!rq.relight;
+  if(rq.aim.on){
+    const dx=rq.aim.x-rq.x,dy=rq.aim.y-rq.y;
+    side=rqClamp(dx*3.2,-RQ_SIDE,RQ_SIDE);
+    if(dy<-1.5&&rq.fuel>0&&!rq.relight)fire=true;
+    else if(dy>3)down=RQ_DOWN;
+  }
+  if(fire){
+    if(rq.fuel>0)rq.vy-=RQ_THRUST*dt;
+    rq.fuel=Math.max(0,rq.fuel-ms*rqBurnRate());
+    if(rq.fuel<=0){rqBurn(false);rq.relight=1;rqSay('⛽ <b>燃料烧空了</b>：火自己熄了、升不动只能干坠 —— 现在<b>松手就在回气</b>（约 '+Math.round(RQ_LEAK_MS/1000)+' 秒满），<b>再按一次 🔥 / 空格</b> 重新点着','#FFCC80')}
+  }else{
+    rq.fuel=Math.min(1,rq.fuel+ms/RQ_LEAK_MS);
+  }
+  rq.vy+=rqGrav()*dt;
+  rq.vy+=down*dt;
+  rq.vy-=rq.vy*RQ_DRAG*dt;
+  rq.prevY=rq.y;
+  rq.x=rqClamp(rq.x+(side+rq.wind*RQ_WIND_K)*dt,RQ_X0,RQ_X1);
+  rq.y=rqClamp(rq.y+rq.vy*dt,RQ_Y0,RQ_Y1);
+  if(rq.y<=RQ_Y0&&rq.vy<0)rq.vy=0;
+  const alt=Math.max(0,Math.round((RQ_Y1-rq.y)*10));
+  if(alt>rq.peak)rq.peak=alt;
+  /* 穿过云带（只认往上穿） */
+  for(let i=0;i<4;i++){
+    if(rq.gateCd[i]>0)continue;
+    const ly=rqLaneY(i);
+    if(rq.prevY>ly&&rq.y<=ly&&rq.vy<0){rqPass(i);if(!rq.run||rq.over)return}
+  }
+  if(rq.y>=RQ_Y1){rqCrash();if(!rq.run||rq.over)return}
+  /* 计时器 */
+  for(let i=0;i<4;i++)if(rq.gateCd[i]>0)rq.gateCd[i]=Math.max(0,rq.gateCd[i]-ms);
+  if(rq.nagMs>0)rq.nagMs=Math.max(0,rq.nagMs-ms);
+  if(rq.sayMs>0){rq.sayMs=Math.max(0,rq.sayMs-ms);if(!rq.sayMs){const b=document.getElementById('rqBal');if(b)b.classList.remove('say')}}
+  if(rq.slow>0)rq.slow=Math.max(0,rq.slow-ms);
+  if(rq.hintMs>0){rq.hintMs=Math.max(0,rq.hintMs-ms);if(rq.hintMs===0)rqAsk()}
+  else if(rq.rec&&rq.qi<rq.n){rq.think+=ms;if(rq.think>=RQ_HINT_MS)rqHint()}
+  /* 风 */
+  if(rq.lv>=2){
+    rq.windMs+=ms;
+    const iv=3600+((rq.gen*7)%2800);
+    if(rq.windMs>=iv){rq.windMs=0;rqWindRoll()}
+  }
+  /* 鸟：先在那条高度亮 1.6 秒虚线预警，再飞进来 */
+  if(rq.birdGrace>0)rq.birdGrace=Math.max(0,rq.birdGrace-ms);
+  if(rq.lv>=2){
+    rq.birdMs+=ms;
+    if(!rq.bird&&!rq.warn&&rq.birdGrace<=0&&rq.birdMs>=rqBirdIv()-RQ_BIRD_WARN_MS)rqBirdPlan();
+    if(rq.warn&&rq.birdMs>=rqBirdIv()){const w=rq.warn;rqWarnOff();rq.birdMs=0;rqBirdSpawn(w)}
+  }
+  rqBirdStep(dt);
+  /* 火种 */
+  rq.pickMs+=ms;
+  if(!rq.pk&&rq.pickMs>=RQ_PICK_MS){rq.pickMs=0;rqPickSpawn()}
+  rqPickStep(dt);
+  rqDraw();rqHudLight();
+}
+/* ---- 飞鸟 / 火种 ---- */
+function rqWarnOff(){
+  rq.warn=null;
+  const el=document.getElementById('rqWarn');
+  if(el)el.style.display='none';
+}
+/* 别在气球头顶上下鸟：挑一条离它最远的航线，并提前亮出虚线让孩子躲 */
+function rqBirdPlan(){
+  const fromLeft=Math.random()<0.5;
+  let by=22,yb=-1;
+  for(let i=0;i<8;i++){
+    const c=22+Math.random()*50,d=Math.abs(c-rq.y);
+    if(d>yb){yb=d;by=c}
+  }
+  rq.warn={y:by,dir:fromLeft?1:-1};
+  const el=document.getElementById('rqWarn'),lab=document.getElementById('rqWarnLab');
+  if(el){
+    el.style.display='block';el.style.top=by.toFixed(1)+'%';
+    if(lab){lab.textContent=fromLeft?'🐦»':'«🐦';lab.className=fromLeft?'in':'out'}
+  }
+  tone(660,.09,'square',.035);
+  if(!rq.spawns)rqSay('🐦 <b>鸟群预警</b>：这条 <b>橙色虚线</b> 的高度马上要有鸟横穿 —— <b>上下挪一层躲开它</b>','#FFD54F');
+}
+function rqBirdSpawn(w){
+  if(rq.bird)return;
+  const p=w||{y:rq.y+20,dir:Math.random()<0.5?1:-1};
+  rq.spawns++;
+  rq.bird={x:p.dir>0?-6:106,y:p.y,dir:p.dir};
+  const el=document.getElementById('rqBird');
+  if(el){el.style.display='block';el.classList.toggle('flip',p.dir<0)}
+  tone(880,.08,'triangle',.04);
+}
+function rqBirdOff(){
+  rq.bird=null;
+  const el=document.getElementById('rqBird');if(el)el.style.display='none';
+  rqWarnOff();
+}
+function rqBirdStep(dt){
+  const b=rq.bird;if(!b)return;
+  b.x+=b.dir*(16+rq.lv*1.1)*dt;
+  b.y+=Math.sin(rq.t*2.4+b.x*0.1)*5*dt;
+  if(rq.run&&!rq.over&&Math.hypot(b.x-rq.x,b.y-rq.y)<=RQ_BIRD_R){rqHitBird();return}
+  if(b.x<-8||b.x>108)rqBirdOff();
+}
+function rqPickSpawn(){
+  if(rq.pk)return;
+  const fromLeft=Math.random()<0.5;
+  rq.pk={x:fromLeft?-6:106,y:20+Math.random()*52,dir:fromLeft?1:-1};
+  const el=document.getElementById('rqPick');
+  if(el)el.style.display='block';
+  tone(1046,.09,'triangle',.035);
+}
+function rqPickOff(){
+  rq.pk=null;
+  const el=document.getElementById('rqPick');if(el)el.style.display='none';
+}
+function rqPickStep(dt){
+  const p=rq.pk;if(!p)return;
+  p.x+=p.dir*(11+rq.lv*0.7)*dt;
+  p.y+=Math.sin(rq.t*1.6+p.x*0.08)*3*dt;
+  if(rq.run&&!rq.over&&Math.hypot(p.x-rq.x,p.y-rq.y)<=RQ_PICK_R){
+    rq.picks++;rqAdd('hz_balloon_picks',1);
+    rq.fuel=Math.min(1,rq.fuel+RQ_GAIN_PICK/100);
+    rq.score+=6;
+    rqPop(p.x,p.y-4,'⛽ +'+RQ_GAIN_PICK,'#FFE082');
+    rqBits(p.x,p.y,'#FFF176',12);
+    tone(1318,.12,'sine',.05);
+    rqSay('✨ <b>接到火种</b>：燃料补 '+RQ_GAIN_PICK+'%、+6 分 —— 烧空了就等它','#FFE082');
+    rqPickOff();rqHud();return;
+  }
+  if(p.x<-8||p.x>108)rqPickOff();
+}
+/* ---- 画 ---- */
+function rqDraw(){
+  const b=document.getElementById('rqBal');
+  if(b){
+    b.style.left=rq.x.toFixed(2)+'%';b.style.top=rq.y.toFixed(2)+'%';
+    b.classList.toggle('fire',!!(rq.burn&&rq.fuel>0));
+  }
+  rqGates();
+  const wl=rqWantLane();
+  for(let i=0;i<4;i++){
+    const g=document.getElementById('rqLane'+i);if(!g)continue;
+    g.setAttribute('transform','translate(0,'+(rqLaneY(i)-RQ_LANE_Y[i]).toFixed(2)+')');
+    const hot=rq.hintMs>0&&i===wl;
+    g.classList.toggle('hot',hot);
+    g.classList.toggle('dim',rq.hintMs>0&&!hot);
+  }
+  const fl=document.getElementById('rqFly');
+  if(fl){
+    if(rq.lv<=3){
+      const lead=rq.wind*RQ_WIND_K*1.6;
+      fl.style.display='';
+      fl.setAttribute('points',rq.x.toFixed(1)+','+rq.y.toFixed(1)+' '+(rqClamp(rq.x+lead,RQ_X0,RQ_X1)).toFixed(1)+',8');
+    }else fl.style.display='none';
+  }
+  const bd=document.getElementById('rqBird');
+  if(bd&&rq.bird){bd.style.left=rq.bird.x.toFixed(1)+'%';bd.style.top=rq.bird.y.toFixed(1)+'%'}
+  const pd=document.getElementById('rqPick');
+  if(pd&&rq.pk){pd.style.left=rq.pk.x.toFixed(1)+'%';pd.style.top=rq.pk.y.toFixed(1)+'%'}
+}
+function rqHudLight(){
+  const ft=document.getElementById('rqFuel'),fb=document.getElementById('rqFuelBox'),ftx=document.getElementById('rqFuelTxt');
+  if(ft){
+    const w=(Math.max(0,Math.min(1,rq.fuel))*100).toFixed(0)+'%';
+    if(rq.barTxt!==w){rq.barTxt=w;ft.style.width=w}
+    if(fb)fb.classList.toggle('low',rq.fuel<0.26);
+  }
+  if(ftx){
+    const s='⛽ 燃料 '+(rq.fuel*100).toFixed(0)+'%';
+    if(rq.fuelTxt!==s){rq.fuelTxt=s;ftx.textContent=s}
+  }
+  const ct=document.getElementById('rqClock');
+  if(ct){
+    const s=rq.slow>0?'🐢 缓降 '+(rq.slow/1000).toFixed(1)+'s':(rq.burn&&rq.fuel>0?'🔥 喷火中':(rq.vy<0?'🎈 上升中':(rq.fuel<=0.02?'⛽ 烧空了':'🎈 下滑中')));
+    if(rq.clockTxt!==s){rq.clockTxt=s;ct.textContent=s}
+  }
+  const at=document.getElementById('rqAltTxt');
+  if(at){
+    const s='⛰ '+Math.max(0,Math.round((RQ_Y1-rq.y)*10))+' m';
+    if(rq.altTxt!==s){rq.altTxt=s;at.textContent=s}
+  }
+  const wd=document.getElementById('rqWind');
+  if(wd){
+    const s=rq.wind===0?'🍃 无风':(rq.wind>0?'🍃 强风 →':'🍃 ← 强风');
+    if(rq.windTxt!==s){rq.windTxt=s;wd.textContent=s}
+  }
+  const fg=document.getElementById('rqFlag');
+  if(fg){
+    const t=rq.lv<2?'🎐 门不动':(rq.lv<5?'🎐 门在滑':'🎐 门在滑 · 带会浮');
+    if(rq.flagTxt!==t){rq.flagTxt=t;fg.textContent=t}
+  }
+}
+function rqHud(){
+  const R=rqRank(rqInt('hz_balloon_words'));
+  rqSet('rqRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<RQ_HEART_MAX;i++)hs+=(i<rq.hearts?'❤️':'🖤');
+  rqSet('rqHeartTxt',hs||'🖤');
+  rqSet('rqComboTxt','🔥 连 '+rq.combo);
+  rqSet('rqBellTxt','🎐 '+rq.bells);
+  rqSet('rqWordTxt','🏆 '+rq.words);
+  rqSet('rqFallTxt','💥 '+rq.falls);
+  rqSet('rqScoreTxt','🎯 '+Math.round(rq.score)+' 分');
+  rqSet('rqLvTxt','第 '+rq.lv+' 段');
+  const sb=document.getElementById('rqSlowBtn');
+  if(sb){sb.disabled=rq.slowsN<=0;sb.textContent='🐢 缓降 ×'+rq.slowsN}
+}
+/* ---- 输入 ---- */
+function rqBind(){
+  if(rq.bound)return;
+  rq.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='balloon'||!rq.run||rq.over)return;
+    const k=e.key;
+    if(k==='ArrowLeft'||k==='a'||k==='A'){rqKey('l',1);e.preventDefault();return}
+    if(k==='ArrowRight'||k==='d'||k==='D'){rqKey('r',1);e.preventDefault();return}
+    if(k==='ArrowDown'||k==='s'||k==='S'){rqKey('d',1);e.preventDefault();return}
+    if(k===' '||k==='ArrowUp'||k==='w'||k==='W'){if(!e.repeat)rqBurn(true);e.preventDefault();return}
+    if(k==='f'||k==='F'){rqSlow();return}
+    if(k==='h'||k==='H'){rqHint();return}
+    if(k==='?'){rqHelp();return}
+  });
+  window.addEventListener('keyup',function(e){
+    if(currentMode!=='balloon')return;
+    const k=e.key;
+    if(k==='ArrowLeft'||k==='a'||k==='A')rqKey('l',0);
+    else if(k==='ArrowRight'||k==='d'||k==='D')rqKey('r',0);
+    else if(k==='ArrowDown'||k==='s'||k==='S')rqKey('d',0);
+    else if(k===' '||k==='ArrowUp'||k==='w'||k==='W')rqBurn(false);
+  });
+}
+function rqKey(k,on){
+  if(!rq.run||rq.over)return;
+  rq.keys[k]=on;
+}
+function rqPoint(e){
+  const el=document.getElementById('rqArena');if(!el)return null;
+  const r=el.getBoundingClientRect();
+  if(!r.width||!r.height)return null;
+  return {x:rqClamp((e.clientX-r.left)/r.width*100,RQ_X0,RQ_X1),y:rqClamp((e.clientY-r.top)/r.height*100,RQ_Y0,RQ_Y1)};
+}
+function rqDown(e){
+  if(!rq.run||rq.over)return;
+  const p=rqPoint(e);if(!p)return;
+  rq.aim.on=1;rq.aim.x=p.x;rq.aim.y=p.y;rq.think=0;rq.relight=0;
+  const el=document.getElementById('rqArena');
+  if(el&&e&&e.pointerId!=null&&el.setPointerCapture){try{el.setPointerCapture(e.pointerId)}catch(_){}}
+  if(e&&e.preventDefault)e.preventDefault();
+}
+function rqMove(e){
+  if(!rq.run||rq.over||!rq.aim.on)return;
+  const p=rqPoint(e);if(!p)return;
+  rq.aim.x=p.x;rq.aim.y=p.y;rq.think=0;
+}
+function rqUp(){
+  if(!rq.aim.on)return;
+  rq.aim.on=0;
+}
+/* ---- 生命周期 ---- */
+function rqStopAll(){rqStopLoop();rqKillTimers();rq.gen++}
+async function rqStart(){
+  rqStopAll();
+  const g=rq.gen;
+  const stale=function(){return g!==rq.gen||!rq.run||rq.over};
+  rq.run=true;rq.over=false;rq.busy=true;
+  rq.lv=1;rq.score=0;rq.hearts=RQ_HEARTS;rq.combo=0;rq.maxCombo=0;
+  rq.ok=0;rq.bad=0;rq.words=0;rq.passes=0;rq.falls=0;rq.birds=0;rq.bells=0;rq.picks=0;
+  rq.t=0;rq.playMs=0;rq.peak=0;
+  rq.x=50;rq.y=80;rq.vx=0;rq.vy=0;rq.prevY=80;rq.fuel=1;
+  rq.gateCd=[0,0,0,0];rq.bobT=0;
+  rq.wind=0;rq.windMs=0;rq.slow=0;rq.slowsN=1;rq.think=0;rq.hinted=0;rq.hintMs=0;
+  rq.bird=null;rq.birdMs=0;rq.birdGrace=0;rq.spawns=0;rq.pk=null;rq.pickMs=0;
+  rq.keys={l:0,r:0,d:0};rq.burn=false;rq.relight=0;rq.aim={on:0,x:50,y:50};
+  rq.pool=[];rq.rec=null;rq.n=0;rq.qi=0;rq.wordBad=0;rq.wordMiss=0;
+  rq.fuelTxt='';rq.clockTxt='';rq.windTxt='';rq.flagTxt='';rq.altTxt='';rq.barTxt='';
+  rq.sayMs=0;rq.nagMs=0;
+  showScreen('balloon');
+  rqBind();
+  rqArt();
+  rqShuffle();
+  rqCharArt();rqHud();rqGates();rqDraw();rqHudLight();
+  rqSet('rqAsk','🎈 正在充气……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  rqSay('🎈 热气球跟别的游戏不一样：<b>一直按住 🔥 才升得起来</b> —— <b>从写着这一笔方向的那条云带里穿上去</b>，离 🎐 风铃越近分越高','#A5D6A7');
+  const fx=document.getElementById('rqFx');if(fx)fx.innerHTML='';
+  const be=document.getElementById('rqBird');if(be)be.style.display='none';
+  rqWarnOff();
+  const pe=document.getElementById('rqPick');if(pe)pe.style.display='none';
+  let ok=await rqBuild();
+  if(stale())return;
+  if(!ok){
+    rqSay('🎈 字库有点慢，再充一次气……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await rqBuild(true);
+    if(stale())return;
+  }
+  if(!ok||!rq.pool.length){
+    rq.run=false;rq.busy=false;
+    rqSet('rqAsk','😢 凑不出一个可用的字<br><small>字库还没加载好，稍后再来飞</small>');
+    rqSay('先去别的模式练两笔，回来热气球就升空了','#FFCC80');
+    return;
+  }
+  rqAdd('hz_balloon_games',1);
+  rq.busy=false;
+  rq.rec=rqNewRec();
+  if(!rq.rec){rqEnd('nodata');return}
+  rqShuffle();
+  rqWindRoll();
+  rqLegStart();
+  if(stale())return;
+  rqHud();rqDraw();
+  rqStartLoop();
+}
+function rqEnd(reason){
+  if(rq.over)return;
+  rq.over=true;rq.run=false;rq.busy=true;
+  rqStopAll();
+  const sc=Math.round(rq.score);
+  localStorage.setItem('hz_balloon_best',String(Math.max(rq.words,rqInt('hz_balloon_best'))));
+  localStorage.setItem('hz_balloon_streak',String(Math.max(rq.maxCombo,rqInt('hz_balloon_streak'))));
+  localStorage.setItem('hz_balloon_lv',String(Math.max(rq.lv,rqInt('hz_balloon_lv'))));
+  rqAdd('hz_balloon_ms',Math.round(rq.playMs/1000));
+  const stars=Math.floor(sc/110)+rq.words*2;
+  if(stars>0)addStars(stars);
+  showScreen('balloon-result');
+  const R=rqRank(rqInt('hz_balloon_words'));
+  const T={
+    fall:['💥','气球撒了气','<b>掉到地上不掉命</b>，掉的是心：宁可 <b>点一下火</b> 慢慢爬，也别把 <b>⛽ 燃料</b> 一次烧空 —— 烧空就只能干坠'],
+    bird:['🐦','撞进鸟群了','2 段起天上会有鸟横穿，来之前会先在 <b>那条高度闪橙色虚线</b>：看到虚线就上下挪一层，<b>别拿心去换高度</b>'],
+    quit:['🏁','今天收工了','下一场先把「对准 🎐 → 点火烧上去」走顺，十环一个个攒'],
+    nodata:['😢','字库没准备好','先去别的模式练两笔，回来热气球就升空了']
+  };
+  const t=T[reason]||T.quit;
+  rqSet('rqRsEmoji',t[0]);
+  rqSet('rqRsTitle',t[1]);
+  rqSet('rqRsSub',t[2]);
+  rqSet('rqRsScore',String(sc));
+  rqSet('rqRsOk',String(rq.ok));
+  rqSet('rqRsWord',String(rq.words));
+  rqSet('rqRsLv',String(rq.lv));
+  rqSet('rqRsBell',String(rq.bells));
+  rqSet('rqRsStreak',String(rq.maxCombo));
+  rqSet('rqRsStars','⭐ '+stars);
+  rqSet('rqRsBest',String(rqInt('hz_balloon_best')));
+  rqSet('rqRsPeak',String(rq.peak));
+  const book=(localStorage.getItem('hz_balloon_book')||'').split(',').filter(function(c){return c.length===1});
+  rqSet('rqRsAll','🏅 '+R.e+' '+R.t+' · 累计穿完 '+rqInt('hz_balloon_words')+' 个字\n'+
+    '🎈 穿过 '+rqInt('hz_balloon_pass')+' 次门 · ✅ 穿对 '+rqInt('hz_balloon_ok')+' 笔 · 💢 穿错 '+rqInt('hz_balloon_bad')+' 次 · 💥 坠地 '+rqInt('hz_balloon_falls')+' 回\n'+
+    '🎐 十环 '+rqInt('hz_balloon_bells')+' 个 · ✨ 火种 '+rqInt('hz_balloon_picks')+' 个 · 🐦 撞鸟 '+rqInt('hz_balloon_birds')+' 次 · 🐢 缓降 '+rqInt('hz_balloon_props')+' 次');
+  rqSet('rqRsBookT',book.length?('🎈 航线图鉴 · 已穿完 '+book.length+' 个整字'):'');
+  const bh=document.getElementById('rqRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function rqRetry(){rqStart()}
+function rqLeave(){
+  rqStopAll();
+  if(rq.run&&!rq.over){rq.over=true;rq.run=false}
+  goHome();
+}
+function rqNudge(){
+  const dot=document.getElementById('rqCardDot'),tip=document.getElementById('rqCardTip');
+  const w=rqInt('hz_balloon_words'),games=rqInt('hz_balloon_games'),falls=rqInt('hz_balloon_falls'),bells=rqInt('hz_balloon_bells');
+  const R=rqRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 穿完 '+w+' 字 · 十环 '+bells+' 个 · 坠地 '+falls+' 回'):'按住喷火，从写着这一笔方向的那条云带穿上去';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function rqHelp(){
+  rqSay('🎈 天上有 <b>四条云带</b>，一条写一个方向（<b>每换一个字第顺序重排</b>）：题目问「这一笔往哪个方向」，就把气球 <b>升到那条带下面，再点火烧上去、从下往上穿过去</b>。<br>'+
+    '<b>按住 空格 / ↑ / 🔥</b> 喷火上升，松手就往下坠；<b>← → / A D</b> 左右挪，<b>↓ / S</b> 放气加速下降。手机上是 <b>按住天空拖动</b>：手指在哪，气球往哪飞。<br>'+
+    '每条带上挂着一颗会 <b>左右滑的 🎐 风铃</b>，风铃那里才是 <b>洞</b>：穿在洞上才算数（<b>云带其余部分是实的</b>，穿过去不扣分也不给分）；<b>正对风铃 = 10 环</b>，偏一点 8 / 6 / 4 / 2 环。<br>'+
+    '穿<b>对</b>：亮一笔、+<b>6 + 环数×1.4 + 连击×0.5 + 段数×2</b>（<b>十环 20 分</b>再加 3），还补 <b>⛽ 30% 燃料</b>；穿<b>错带</b>：扣 5 分、连击清零、这一笔 <b>再穿一次</b>，这个字进 <b>错字手册</b>。<br>'+
+    '⛽ <b>燃料</b>：喷火就在烧（一管约 4 秒，<b>够从地面一路烧到最高的那条带</b>），烧空了 <b>自己熄火、升不动只能干坠</b>；<b>松手就在回气</b>（约 5 秒满）、再按一次 <b>🔥 / 空格</b> 重新点着，接 ✨ 火种补一管 —— <b>点一下、停一下</b> 比一直按着省得多。<br>'+
+    '💥 <b>掉到地上掉一颗心</b>（3 颗起、最多 5 颗）、连击清零，气球被弹回半空接着穿；心掉光才结算。<br>'+
+    '🍃 <b>风</b>（2 段起）把气球横着推，<b>1~3 段</b>头顶画出 <b>黄色预测航线</b>，<b>4 段起收掉</b> 要自己估。<br>'+
+    '🎐 门 <b>2 段起左右滑</b>、<b>5 段起整条云带上下浮</b>；<b>F / 🐢 缓降</b>：1.5 秒 <b>带子定住 + 重力打 4 折</b>（升段补次数，最多攒 2 次）。<br>'+
+    '🐦 <b>飞鸟</b>（2 段起）横穿天空：先在 <b>要飞过的那条高度闪 1.6 秒橙色虚线</b>，看到虚线就上下挪一层躲开；撞上 <b>掉一颗心 + 猛地一沉</b>（撞完天上安静 2.6 秒再来说，鸟也从不落在你头顶）；🦉 <b>卡住 6.5 秒</b> 猫头鹰把正确那条带 <b>点亮 1.7 秒</b>，<b>H</b> 可以主动要。<br>'+
+    '一笔不落地穿完整个字 = <b>穿完一字</b>（+24 + 段数×6，<b>没坠地也没穿错再加 12</b>），<b>每 2 字升 1 段</b>（最多 9 段）：<b>门更小、风更歪、带更会躲</b>。','#A5D6A7');
 }
 
 window.addEventListener('DOMContentLoaded',boot);
