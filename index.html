@@ -4305,6 +4305,63 @@ button:active{transform:scale(.95)}
 .bp-book-t{font-size:11px;opacity:.7;color:#fff;margin-top:9px}
 .bp-badge{position:absolute;right:6px;top:6px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
 .bp-badge.on{display:flex}
+/* ================= v1.70 笔顺台球 ================= */
+.tq-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.tq-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.tq-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.tq-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.tq-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.tq-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.tq-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.tq-mini path{transition:opacity .25s}
+.tq-mini .xh{stroke:rgba(255,255,255,.16);stroke-width:6;stroke-dasharray:14 12}
+.tq-mini .cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:10px;color:#B3E5FE;letter-spacing:.5px}
+.tq-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:#3E2723;box-shadow:inset 0 0 30px rgba(0,0,0,.6)}
+.tq-svg{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair}
+.tq-ball.lit{filter:drop-shadow(0 0 10px rgba(255,241,118,.95))}
+.tq-mark{animation:tqMark 1s ease-in-out infinite}
+@keyframes tqMark{0%,100%{opacity:.15}50%{opacity:.95}}
+.tq-dust{animation:tqDust .5s ease-out forwards}
+@keyframes tqDust{0%{r:6;opacity:.9}100%{r:34;opacity:0}}
+.tq-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.tq-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:tqBit .72s ease-out forwards}
+@keyframes tqBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.tq-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF176;text-shadow:0 2px 6px rgba(0,0,0,.6);animation:tqPopUp .95s ease-out forwards;white-space:nowrap}
+@keyframes tqPopUp{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-40px}}
+.tq-shake{animation:tqShake .32s}
+@keyframes tqShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(7px)}75%{transform:translateX(-3px)}}
+.tq-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.tq-power{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(255,255,255,.14);overflow:hidden}
+.tq-power i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:13px;background:linear-gradient(90deg,#66BB6A,#FFD740 62%,#FF7043);transition:width .06s linear}
+.tq-power b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.tq-clock{font-size:12px;color:#fff;background:rgba(255,255,255,.14);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.tq-dpad{display:flex;gap:9px;width:calc(100% - 28px);margin:9px auto 0}
+.tq-turn{flex:0 0 68px;padding:14px 4px;border:none;border-radius:16px;font-size:16px;font-weight:bold;color:#E1F5FE;background:rgba(255,255,255,.16);cursor:pointer}
+.tq-turn:active{background:rgba(255,255,255,.3)}
+.tq-shoot{flex:1;padding:16px 8px;border:none;border-radius:18px;font-size:18px;font-weight:bold;color:#3E2723;background:linear-gradient(180deg,#FFF9C4,#FBC02D);box-shadow:0 5px 0 #A67C00;cursor:pointer}
+.tq-shoot:active{transform:translateY(3px);box-shadow:0 2px 0 #A67C00}
+.tq-shoot:disabled{opacity:.45;box-shadow:0 5px 0 rgba(0,0,0,.3)}
+.tq-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0}
+.tq-tool{flex:1;padding:9px 4px;border:none;border-radius:13px;font-size:13px;color:#E1F5FE;background:rgba(255,255,255,.14);cursor:pointer}
+.tq-tool:disabled{opacity:.4}
+.tq-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.28);color:#A5D6A7;font-size:13px;line-height:1.65;min-height:44px}
+.tq-msg b{color:#fff}
+.tq-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.tq-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.tq-badge{position:absolute;right:8px;top:8px;font-size:12px;color:#FFE082;background:rgba(0,0,0,.4);border-radius:11px;padding:3px 10px;display:none}
+.tq-badge.on{display:block}
+.tq-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.tq-rs span{display:block;font-size:24px;font-weight:bold}
+.tq-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.tq-book-t{font-size:12px;color:#B3E5FE;margin-top:12px}
+.tq-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.tq-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.tq-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.tq-cdot.on{display:flex}
+@media (max-width:600px){
+  .tq-stage{flex-direction:column}
+  .tq-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
 </style>
 
 </head>
@@ -4361,8 +4418,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 68 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">68</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 69 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">69</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -4373,8 +4430,8 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>68 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>16</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>23</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>69 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>16</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>24</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
@@ -4518,6 +4575,11 @@ button:active{transform:scale(.95)}
     <div class="lab-group" id="labG3">
       <h4 class="lab-gtitle">⚡ 手速与反应 <small>眼疾手快抢答</small><i></i></h4>
       <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('billiard')">
+      <div class="icon">🎱</div>
+      <div class="info"><h3>笔顺台球</h3><p id="tqCardTip">每颗球画着这个字的一笔，按笔顺一颗颗打进袋</p></div>
+      <span class="tq-cdot" id="tqCardDot">🆕</span>
+    </div>
     <div class="mode-card" onclick="enterMode('balloon')">
       <div class="icon">🎈</div>
       <div class="info"><h3>笔顺热气球</h3><p id="rqCardTip">按住喷火升空，从写着这一笔方向的那条云带穿上去</p></div>
@@ -4793,6 +4855,103 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="lzRetry()">🚣 再划一场</button>
     <button class="w-btn blue" onclick="lzLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-billiard">
+  <div class="top-bar">
+    <button class="back-btn" onclick="tqLeave()">← 返回</button>
+    <div class="stats"><span id="tqScoreTxt">🎯 0 分</span><span id="tqLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="tqHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="tq-hud">
+    <span id="tqRankTxt" title="称号">🎱 撞球新手</span>
+    <span id="tqHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="tqComboTxt" title="连击">🔥 连 0</span>
+    <span id="tqFrameTxt" title="清台几个字">🏁 0</span>
+    <span id="tqLeftTxt" title="这一台还差几笔">🀫 还 0 笔</span>
+    <span id="tqFoulTxt" title="犯规几次">⚠️ 0</span>
+    <span id="tqShotTxt" title="出杆几杆">🎱 0 杆</span>
+  </div>
+  <div class="tq-ask" id="tqAsk">🎱 正在摆球……<br><small>在字库里挑「一笔一笔摆得开」的字</small></div>
+  <div class="tq-stage">
+    <div class="tq-mini">
+      <svg viewBox="0 -1024 1024 1024" id="tqMiniSvg"></svg>
+      <div class="cap" id="tqMiniCap">这个字</div>
+    </div>
+    <div class="tq-tbl">
+      <svg class="tq-svg" id="tqSvg" viewBox="0 0 760 400" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient id="tqFelt" cx="42%" cy="34%" r="82%">
+            <stop offset="0%" stop-color="#2E7D5B"/><stop offset="58%" stop-color="#1B5E43"/><stop offset="100%" stop-color="#113B2B"/>
+          </radialGradient>
+          <radialGradient id="tqBal" cx="34%" cy="28%" r="78%">
+            <stop offset="0%" stop-color="rgba(255,255,255,.95)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+        </defs>
+        <g id="tqStatic"></g>
+        <g id="tqAim"></g>
+        <g id="tqBalls"></g>
+        <g id="tqTop"></g>
+      </svg>
+      <div class="tq-badge" id="tqBadge">🦉</div>
+      <div class="tq-fx" id="tqFx"></div>
+    </div>
+  </div>
+  <div class="tq-meter">
+    <div class="tq-power" id="tqPowerBox"><i id="tqPowerBar"></i><b id="tqPowerTxt">💥 力量 55%</b></div>
+    <div class="tq-clock" id="tqClock">🎯 瞄准中</div>
+  </div>
+  <div class="tq-dpad">
+    <button class="tq-turn" onpointerdown="tqTurn(-1);return false">↺ 左</button>
+    <button class="tq-shoot" id="tqShootBtn" onpointerdown="tqChargeStart();return false" onpointerup="tqChargeEnd();return false" onpointercancel="tqChargeEnd();return false">🎱 按住蓄力 · 松手出杆</button>
+    <button class="tq-turn" onpointerdown="tqTurn(1);return false">右 ↻</button>
+  </div>
+  <div class="tq-tools">
+    <button class="tq-tool" id="tqAidBtn" onclick="tqAid()" disabled>🔍 辅助线</button>
+    <button class="tq-tool" id="tqRackBtn" onclick="tqRerack()" disabled>🔄 重摆</button>
+    <button class="tq-tool" onclick="tqEnd('quit')">🏁 结算离场</button>
+  </div>
+  <div class="tq-msg" id="tqMsg">台面上散着 <b>这个字被打散的一笔一笔</b>：<b>按笔顺</b> 把它们一颗颗打进袋 —— <b>打错顺序就是犯规</b>，白球落袋要 <b>掉一颗心</b></div>
+  <div class="tq-tip">台面 = <b>一个被打散的字</b>：每颗球上都画着 <b>一笔的形状</b>，你要按 <b>正确笔顺</b> 一颗颗打进袋，左边小格里的字会 <b>一笔一笔长回来</b>。<br>
+    <b>🎯 瞄准</b>：<b>点/拖台面</b> 让白球朝那个方向，<code>←</code> <code>→</code> 或 <b>↺ ↻</b> 一点点挪角度<br>
+    <b>🎱 出杆</b>：<b>按住大按钮</b>（或 <code>空格</code>）力量条来回涨，<b>松手就打</b>；<code>↑</code> <code>↓</code> 微调力量、<code>回车</code> 按当前力量直接出杆<br>
+    ✅ <b>打对下一笔</b>：<b>6 + 第几笔×2 + 段数</b> 分 ×连击倍率；❌ <b>打错</b> = <b>犯规</b>：扣 8 分、连击清零、那颗球 <b>弹回台面</b>，这个字进 <b>错字手册</b><br>
+    💚 <b>白球落袋</b> = 甩袋：掉一颗心（3 颗起、最多 5 颗），白球回置球点；<b>⚠️ 每累计 4 次犯规也掉一颗心</b>；<b>心掉光才结算</b><br>
+    🔍 <b>辅助线</b>（<code>H</code>）：1.4 秒画出白球的 <b>预测路线（会撞库反弹）</b> 并点亮 <b>该打的下一笔</b>；🔄 <b>重摆</b>（<code>R</code>）：球挤成一团时把剩下的球重新撒开<br>
+    🏁 <b>整台按笔顺打完 = 清台</b>：一大笔奖励 + 这个字收进图鉴，<b>一杆不犯规清台再加 15 分</b>；<b>每 2 个清台升 1 段</b>（最多 9 段）：<b>袋口变小、台上多挡钉</b>，同时补一颗心、一次辅助线、一次重摆<br>
+    🦉 卡住 12 秒会 <b>提示这一笔的笔顺规则</b>；<b>连 3 杆空杆</b>（一颗球都没碰到）白送一次辅助线<br>
+    <code>?</code> 看玩法 · 战绩落盘 <code>hz_tq_*</code></div>
+</div>
+<div class="screen" id="screen-billiard-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="tqLeave()">← 回首页</button>
+    <div class="stats"><span id="tqRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="tqRsEmoji">🎱</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="tqRsTitle">这一场打完了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="tqRsSub">下一场先把「<b>认出这一笔 → 想清它排第几 → 一杆打准</b>」走顺</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="tq-rs">
+      <div><span style="color:#FFD700" id="tqRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="tqRsFrame">0</span><small>清台几个字</small></div>
+      <div><span style="color:#69F0AE" id="tqRsPot">0</span><small>打进几笔</small></div>
+      <div><span style="color:#FFAB91" id="tqRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="tqRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="tqRsFoul">0</span><small>犯规 / 甩袋</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多清台几个字 · 出杆总数</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740"><span id="tqRsBest">0</span> 字 · <span id="tqRsShots">0</span> 杆</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="tqRsAll">🎱 撞球新手</div>
+      <div class="tq-book-t" id="tqRsBookT"></div>
+      <div class="tq-book" id="tqRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="tqRetry()">🎱 再打一局</button>
+    <button class="w-btn blue" onclick="tqLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-blow">
@@ -9402,6 +9561,7 @@ function updateHomeStats(){
   if(typeof sjNudge==='function')sjNudge();
   if(typeof rqNudge==='function')rqNudge();
   if(typeof bpNudge==='function')bpNudge();
+  if(typeof tqNudge==='function')tqNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -9416,6 +9576,7 @@ function enterMode(mode){
   if(mode==='shoot'){sjStart();return}
   if(mode==='balloon'){rqStart();return}
   if(mode==='blow'){bpStart();return}
+  if(mode==='billiard'){tqStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -45390,6 +45551,900 @@ function bpHelp(){
     '🌬️ <b>3 段起泡泡自己漏气</b>：倒计时走完 <b>自动鼓一口</b> —— 系统 <b>永远不会告诉你写完了没</b>，犹豫本身就是风险。<br>'+
     '🧺 <b>每刚好吹满 3 个字升 1 段</b>（最多 9 段）：字更长、每一口更值钱、漏气更急，同时补一颗心、一次偷看、一个备用字。','#A5D6A7');
 }
+
+/* ================= v1.70 笔顺台球（按笔顺清台 · 撞库绕球 · 打错顺序就犯规） ================= */
+const TQ_W=760,TQ_H=400;
+const TQ_X0=38,TQ_X1=722,TQ_Y0=38,TQ_Y1=362,TQ_R=16;
+const TQ_POCKETS=[[54,54],[380,54],[706,54],[54,346],[380,346],[706,346]];
+const TQ_SPOT=[186,200];
+const TQ_PR0=27,TQ_PR_MIN=21,TQ_PR_PAD=6;
+const TQ_FRIC=1.15,TQ_STOPV=21,TQ_RE_W=0.74,TQ_RE_B=0.96,TQ_RE_P=0.86;
+const TQ_STEP=1/120,TQ_MAX_SUB=12,TQ_SOFT=130;
+const TQ_POW0=150,TQ_POW_K=12.5,TQ_CHARGE_RATE=118;
+const TQ_MAX_SHOT_MS=13000,TQ_NAG_MS=12000,TQ_AID_MS=1400;
+const TQ_HEARTS=3,TQ_HEART_MAX=5,TQ_MISS_MAX=40,TQ_BOOK_MAX=300;
+const TQ_POOL_MIN=4,TQ_POOL_WANT=16;
+const TQ_DIRN=['横','竖','撇','捺','折'];
+const TQ_COL=['#FF6B6B','#4ECDC4','#45B7D1','#FFA07A','#B39DDB'];
+const TQ_RULE=['先横后竖','先撇后捺','从上到下','从左到右','这一笔排在后面'];
+const TQ_NOTE=[262,294,330,392,440,523,587,659,784,880,988,1047,1175,1319,1397,1568];
+const TQ_RANKS=[
+  {n:0,e:'🎱',t:'撞球新手'},{n:3,e:'🀙',t:'会打直球'},{n:8,e:'🎯',t:'瞄得准'},
+  {n:15,e:'🧤',t:'擦粉上手'},{n:24,e:'🏆',t:'清台熟手'},{n:36,e:'⭐',t:'一杆进洞'},
+  {n:52,e:'🥇',t:'台球高手'},{n:74,e:'🌈',t:'花式玩家'},{n:105,e:'🐉',t:'清台大师'}
+];
+const tq={
+  run:false,over:false,busy:true,gen:0,rafId:0,timers:[],last:0,acc:0,
+  pool:[],rec:null,paths:[],meds:[],dirs:[],sigs:[],boxes:[],scl:0.03,n:0,k:0,miss:[],
+  balls:[],cue:{x:TQ_SPOT[0],y:TQ_SPOT[1],vx:0,vy:0,out:0},cueEl:null,pegs:[],
+  lv:1,score:0,hearts:TQ_HEARTS,combo:0,maxCombo:0,
+  frames:0,pots:0,fouls:0,scratches:0,shots:0,empties:0,perfect:0,shotPots:0,
+  aidsN:2,reracksN:1,aids:0,reracks:0,foulFrame:0,scFrame:0,perfectThis:false,
+  ang:0,power:55,chargeDir:1,charging:false,
+  contact:false,shotMs:0,aidMs:0,trace:[],autoTrace:[],think:0,playMs:0,t:0,
+  tones:0,clearing:false,hudTxt:{},bound:false,ptrBound:false
+};
+function tqInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function tqAdd(k,n){if(n)localStorage.setItem(k,String(tqInt(k)+n))}
+function tqSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function tqSay(t,c){const el=document.getElementById('tqMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function tqShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;const t=a[i];a[i]=a[j];a[j]=t}return a}
+function tqOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function tqClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function tqRank(n){let r=TQ_RANKS[0];for(let i=0;i<TQ_RANKS.length;i++)if(n>=TQ_RANKS[i].n)r=TQ_RANKS[i];return r}
+function tqPR(){return Math.max(TQ_PR_MIN,TQ_PR0-(tq.lv-1))}
+function tqPegN(){return tq.lv<4?0:Math.min(5,tq.lv-3)}
+function tqDn(d){return d<0?4:d}
+function tqTone(f,d,t,v){if(tq.tones<=0)return;tq.tones--;tone(f,d,t,v)}
+function tqT(fn,ms){const g=tq.gen;const id=setTimeout(function(){if(g!==tq.gen)return;fn()},ms);tq.timers.push(id);return id}
+function tqKillTimers(){tq.timers.forEach(function(t){clearTimeout(t)});tq.timers=[]}
+/* ---- 字库：每一笔都画得出形状、且不是清一色 ---- */
+function tqBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function tqSig(d){return String(d||'').replace(/\s+/g,'')}
+function tqDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function tqMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>10)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const sigs=[];
+  for(let i=0;i<ms.length;i++){
+    if(!tqBox(ms[i]))return null;
+    sigs.push(tqSig(tqDOf(sp,i)));
+  }
+  let same=true;
+  for(let i=1;i<sigs.length;i++)if(sigs[i]!==sigs[0]){same=false;break}
+  if(same)return null;
+  return {ch:ch,n:ms.length};
+}
+function tqCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<90;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(tqShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(tqShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(tqShuf(CHARS.slice()));
+  return out;
+}
+function tqTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function tqRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=tqTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians)return null;
+  if(!tqMake(ch,raw))return null;
+  return {ch:ch,raw:raw};
+}
+async function tqBuild(keep){
+  const g=tq.gen;
+  const stale=function(){return g!==tq.gen||!tq.run};
+  tq.miss=(localStorage.getItem('hz_tq_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  tqShuf(tq.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  tqCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)tq.pool=[];
+  for(let k=0;k<want.length&&tq.pool.length<TQ_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return tqRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])tq.pool.push(rs[i]);
+  }
+  return tq.pool.length>=TQ_POOL_MIN;
+}
+function tqNewRec(){
+  const w=tq.lv>=5?[3,10]:[2,7],used={};
+  if(tq.rec)used[tq.rec.ch]=1;
+  let cand=tq.pool.filter(function(r){const n=r.raw.medians.length;return n>=w[0]&&n<=w[1]});
+  if(!cand.length)cand=tq.pool.slice();
+  if(!cand.length)return null;
+  for(let i=0;i<tq.miss.length;i++){
+    for(let k=0;k<cand.length;k++)if(cand[k].ch===tq.miss[i]&&!used[cand[k].ch])return cand[k];
+  }
+  for(let i=0;i<40;i++){const c=tqOne(cand);if(c&&!used[c.ch])return c}
+  return cand[0];
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function tqMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_tq_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_tq_miss',a.slice(0,TQ_MISS_MAX).join(','));
+}
+function tqMissDel(ch){
+  const a=(localStorage.getItem('hz_tq_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_tq_miss',a.join(','));
+}
+function tqBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_tq_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_tq_book',a.slice(0,TQ_BOOK_MAX).join(','));
+}
+/* ---- 台面几何 ---- */
+function tqNearPocket(x,y){
+  const pr=tqPR();
+  for(let i=0;i<TQ_POCKETS.length;i++){
+    const p=TQ_POCKETS[i];
+    if(Math.hypot(x-p[0],y-p[1])<pr)return i;
+  }
+  return -1;
+}
+function tqFree(x,y){
+  if(x<TQ_X0+TQ_R+6||x>TQ_X1-TQ_R-6||y<TQ_Y0+TQ_R+6||y>TQ_Y1-TQ_R-6)return false;
+  if(Math.hypot(x-TQ_SPOT[0],y-TQ_SPOT[1])<54)return false;
+  if(tqNearPocket(x,y)>=0)return false;
+  for(let i=0;i<tq.balls.length;i++){
+    const b=tq.balls[i];
+    if(b.out)continue;
+    if(Math.hypot(x-b.x,y-b.y)<TQ_R*2+7)return false;
+  }
+  for(let i=0;i<tq.pegs.length;i++){
+    const p=tq.pegs[i];
+    if(Math.hypot(x-p.x,y-p.y)<TQ_R+p.r+8)return false;
+  }
+  return true;
+}
+function tqSpot(){
+  for(let i=0;i<160;i++){
+    const x=TQ_X0+TQ_R+18+Math.random()*(TQ_X1-TQ_X0-TQ_R*2-36);
+    const y=TQ_Y0+TQ_R+14+Math.random()*(TQ_Y1-TQ_Y0-TQ_R*2-28);
+    if(tqFree(x,y))return {x:x,y:y};
+  }
+  for(let y=TQ_Y0+TQ_R+24;y<TQ_Y1-TQ_R-12;y+=34)
+    for(let x=TQ_X0+TQ_R+42;x<TQ_X1-TQ_R-18;x+=34)
+      if(tqFree(x,y))return {x:x,y:y};
+  return {x:TQ_X1-TQ_R-44,y:TQ_H/2};
+}
+function tqPegSpot(){
+  for(let i=0;i<120;i++){
+    const x=TQ_X0+TQ_R+34+Math.random()*(TQ_X1-TQ_X0-TQ_R*2-68);
+    const y=TQ_Y0+TQ_R+26+Math.random()*(TQ_Y1-TQ_Y0-TQ_R*2-52);
+    if(tqNearPocket(x,y)>=0)continue;
+    if(Math.hypot(x-tq.cue.x,y-tq.cue.y)<130)continue;
+    let ok=true;
+    for(let k=0;k<tq.pegs.length;k++)if(Math.hypot(x-tq.pegs[k].x,y-tq.pegs[k].y)<74){ok=false;break}
+    if(ok)return {x:x,y:y,r:13};
+  }
+  return null;
+}
+/* ---- 特效 ---- */
+function tqFxHost(){return document.getElementById('tqFx')}
+function tqPut(host,el,ms){
+  host.appendChild(el);
+  tqT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function tqBits(x,y,col,n){
+  const host=tqFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='tq-bit';
+    b.style.left=(x/TQ_W*100)+'%';b.style.top=(y/TQ_H*100)+'%';
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=24+Math.random()*46;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r).toFixed(1)+'px');
+    tqPut(host,b,760);
+  }
+}
+function tqPop(x,y,txt,col){
+  const host=tqFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='tq-pop';
+  el.style.left=(x/TQ_W*100)+'%';el.style.top=(y/TQ_H*100)+'%';
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  tqPut(host,el,980);
+}
+function tqDust(x,y){
+  const g=document.getElementById('tqTop');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r','6');
+  c.setAttribute('fill','none');c.setAttribute('stroke','rgba(255,255,255,.8)');
+  c.setAttribute('stroke-width','3');c.setAttribute('class','tq-dust');
+  g.appendChild(c);
+  tqT(function(){if(c.parentNode)c.parentNode.removeChild(c)},600);
+}
+function tqShake(){
+  const el=document.querySelector('.tq-tbl');if(!el)return;
+  el.classList.remove('tq-shake');void el.offsetWidth;el.classList.add('tq-shake');
+}
+/* ---- 渲染 ---- */
+function tqRenderStatic(){
+  const g=document.getElementById('tqStatic');if(!g)return;
+  const pr=tqPR();
+  let h='<rect x="0" y="0" width="'+TQ_W+'" height="'+TQ_H+'" rx="24" fill="#4E342E"/>'+
+    '<rect x="22" y="22" width="'+(TQ_W-44)+'" height="'+(TQ_H-44)+'" rx="14" fill="url(#tqFelt)"/>';
+  for(let i=0;i<TQ_POCKETS.length;i++)
+    h+='<circle cx="'+TQ_POCKETS[i][0]+'" cy="'+TQ_POCKETS[i][1]+'" r="'+pr+'" fill="#08160F" stroke="rgba(255,255,255,.14)" stroke-width="2"/>';
+  h+='<rect x="'+TQ_X0+'" y="'+TQ_Y0+'" width="'+(TQ_X1-TQ_X0)+'" height="'+(TQ_Y1-TQ_Y0)+'" rx="10" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="5"/>'+
+    '<rect x="22" y="22" width="'+(TQ_W-44)+'" height="'+(TQ_H-44)+'" rx="14" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="3"/>'+
+    '<circle cx="'+TQ_SPOT[0]+'" cy="'+TQ_SPOT[1]+'" r="4" fill="rgba(255,255,255,.28)"/>';
+  for(let i=0;i<tq.pegs.length;i++)
+    h+='<circle cx="'+tq.pegs[i].x.toFixed(1)+'" cy="'+tq.pegs[i].y.toFixed(1)+'" r="'+tq.pegs[i].r+'" fill="#5D4037" stroke="rgba(255,255,255,.3)" stroke-width="2"/>'+
+      '<circle cx="'+(tq.pegs[i].x-3).toFixed(1)+'" cy="'+(tq.pegs[i].y-3).toFixed(1)+'" r="4" fill="rgba(255,255,255,.22)"/>';
+  g.innerHTML=h;
+}
+function tqPoly(i){
+  const m=tq.meds[i];
+  let d='';
+  for(let k=0;k<m.length;k++)d+=(k?'L':'M')+m[k][0].toFixed(0)+' '+m[k][1].toFixed(0);
+  return d;
+}
+function tqBallFace(b){
+  const si=b.si,col=TQ_COL[tqDn(tq.dirs[si])],box=tq.boxes[si],s=tq.scl;
+  const ox=-(box.x+box.w/2)*s,oy=(box.y+box.h/2)*s-2.5;
+  const tf='translate('+ox.toFixed(1)+','+oy.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')';
+  return '<circle r="'+TQ_R+'" fill="'+col+'" stroke="rgba(0,0,0,.34)" stroke-width="2"/>'+
+    '<g transform="'+tf+'" opacity=".96">'+
+      '<path d="'+tq.paths[si]+'" fill="#FFFDF0"/>'+
+      '<path d="'+tqPoly(si)+'" fill="none" stroke="#FFFDF0" stroke-width="'+(2.6/s).toFixed(1)+'" stroke-linecap="round" stroke-linejoin="round"/>'+
+    '</g>'+
+    '<text y="11.5" font-size="9.5" text-anchor="middle" fill="rgba(0,0,0,.62)" font-weight="bold">'+TQ_DIRN[tqDn(tq.dirs[si])]+'</text>'+
+    '<circle r="'+(TQ_R-3)+'" fill="url(#tqBal)" opacity=".32"/>';
+}
+function tqRenderBalls(){
+  const g=document.getElementById('tqBalls');if(!g)return;
+  let h='<g id="tqCueG"><circle r="'+TQ_R+'" fill="#FFFDE7" stroke="rgba(0,0,0,.3)" stroke-width="2"/>'+
+    '<circle cx="-5" cy="-6" r="4.5" fill="rgba(255,80,80,.5)"/></g>';
+  for(let i=0;i<tq.balls.length;i++)h+='<g id="tqB'+i+'">'+tqBallFace(tq.balls[i])+'</g>';
+  g.innerHTML=h;
+  for(let i=0;i<tq.balls.length;i++)tq.balls[i].el=document.getElementById('tqB'+i);
+  tq.cueEl=document.getElementById('tqCueG');
+  tqTrace();
+  tqDraw();
+  tqDrawAim();
+}
+function tqMini(){
+  const svg=document.getElementById('tqMiniSvg');
+  if(!svg)return;
+  if(!tq.rec){svg.innerHTML='';return}
+  let h='<g transform="scale(1,-1)"><path class="xh" d="M512 40V984M40 512H984" fill="none"/>';
+  for(let i=0;i<tq.n;i++){
+    const lit=i<tq.k,col=TQ_COL[tqDn(tq.dirs[i])];
+    h+='<path d="'+tq.paths[i]+'" fill="'+(lit?col:'rgba(255,255,255,.10)')+'" opacity="'+(lit?(i===tq.k-1?1:.9):1)+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  tqSet('tqMiniCap',tq.k>=tq.n?'写完了 · '+tq.n+' 笔':'已长回 '+tq.k+' / '+tq.n+' 笔');
+}
+function tqCalcTrace(){
+  let x=tq.cue.x,y=tq.cue.y,dx=Math.cos(tq.ang),dy=Math.sin(tq.ang),b=0;
+  const pts=[[x,y]];
+  for(let i=0;i<2400;i++){
+    x+=dx*2;y+=dy*2;
+    if(x<TQ_X0+TQ_R){x=TQ_X0+TQ_R;dx=-dx;b++}
+    else if(x>TQ_X1-TQ_R){x=TQ_X1-TQ_R;dx=-dx;b++}
+    else if(y<TQ_Y0+TQ_R){y=TQ_Y0+TQ_R;dy=-dy;b++}
+    else if(y>TQ_Y1-TQ_R){y=TQ_Y1-TQ_R;dy=-dy;b++}
+    if(b>2){pts.push([x,y]);break}
+    if(tqNearPocket(x,y)>=0){pts.push([x,y]);break}
+    let hit=false;
+    for(let j=0;j<tq.balls.length;j++){
+      const o=tq.balls[j];
+      if(o.out)continue;
+      if(Math.hypot(x-o.x,y-o.y)<TQ_R*2){pts.push([x,y]);hit=true;break}
+    }
+    if(hit)break;
+    for(let j=0;j<tq.pegs.length;j++){
+      const p=tq.pegs[j];
+      if(Math.hypot(x-p.x,y-p.y)<TQ_R+p.r){pts.push([x,y]);hit=true;break}
+    }
+    if(hit)break;
+    if(i%4===0)pts.push([x,y]);
+  }
+  return pts;
+}
+function tqTrace(){tq.autoTrace=tqCalcTrace();return tq.autoTrace}
+function tqDraw(){
+  if(tq.cueEl){
+    tq.cueEl.setAttribute('transform','translate('+tq.cue.x.toFixed(1)+','+tq.cue.y.toFixed(1)+')');
+    tq.cueEl.style.display=tq.cue.out?'none':'';
+  }
+  for(let i=0;i<tq.balls.length;i++){
+    const b=tq.balls[i];
+    if(!b.el)continue;
+    b.el.setAttribute('transform','translate('+b.x.toFixed(1)+','+b.y.toFixed(1)+')');
+    b.el.style.display=b.out?'none':'';
+  }
+}
+function tqDrawAim(){
+  const g=document.getElementById('tqAim');
+  if(!g)return;
+  if(!tq.run||tq.over||tq.busy||tq.cue.out||!tq.rec){g.innerHTML='';return}
+  const L=120+tq.power*1.05;
+  const ex=tq.cue.x+Math.cos(tq.ang)*L,ey=tq.cue.y+Math.sin(tq.ang)*L;
+  const bx=tq.cue.x-Math.cos(tq.ang)*(TQ_R+4+tq.power*0.14),by=tq.cue.y-Math.sin(tq.ang)*(TQ_R+4+tq.power*0.14);
+  const bxx=tq.cue.x-Math.cos(tq.ang)*(TQ_R+56+tq.power*0.14),byy=tq.cue.y-Math.sin(tq.ang)*(TQ_R+56+tq.power*0.14);
+  let h='<line x1="'+bx.toFixed(1)+'" y1="'+by.toFixed(1)+'" x2="'+bxx.toFixed(1)+'" y2="'+byy.toFixed(1)+'" stroke="#8D6E63" stroke-width="6" stroke-linecap="round"/>'+
+    '<line x1="'+tq.cue.x.toFixed(1)+'" y1="'+tq.cue.y.toFixed(1)+'" x2="'+ex.toFixed(1)+'" y2="'+ey.toFixed(1)+'" stroke="rgba(255,255,255,.5)" stroke-width="2.5" stroke-dasharray="9 8" stroke-linecap="round"/>';
+  const aid=tq.aidMs>0;
+  const pts=aid?tq.autoTrace:(tq.lv<=2?tq.autoTrace:[]);
+  if(pts.length>1){
+    let d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);
+    for(let i=1;i<pts.length;i++)d+='L'+pts[i][0].toFixed(1)+' '+pts[i][1].toFixed(1);
+    h+='<path d="'+d+'" fill="none" stroke="'+(aid?'rgba(255,235,59,.92)':'rgba(255,255,255,.22)')+'" stroke-width="'+(aid?4:2)+'" stroke-dasharray="6 8" stroke-linecap="round"/>';
+  }
+  if(aid&&tq.k<tq.n){
+    for(let i=0;i<tq.balls.length;i++){
+      const b=tq.balls[i];
+      if(b.out||tq.sigs[b.si]!==tq.sigs[tq.k])continue;
+      h+='<circle cx="'+b.x.toFixed(1)+'" cy="'+b.y.toFixed(1)+'" r="'+(TQ_R+9)+'" fill="none" stroke="#FFEB3B" stroke-width="3" stroke-dasharray="7 6" class="tq-mark"/>';
+    }
+  }
+  g.innerHTML=h;
+}
+function tqHudLight(){
+  const s={
+    pow:'💥 力量 '+Math.round(tq.power)+'%',
+    clock:tq.charging?'💪 蓄力中':(tq.busy?'🎱 球在走':(tq.aidMs>0?'🔍 辅助线':(tq.run&&!tq.over?'🎯 瞄准中':'🎱 等着出杆'))),
+    left:'🀫 还 '+Math.max(0,tq.n-tq.k)+' 笔',
+    badge:tq.aidMs>0?'🔍 辅助线':(tq.lv>=4?'🚧 挡钉 ×'+tq.pegs.length:'🎱 干净台')
+  };
+  const pb=document.getElementById('tqPowerBar');
+  if(pb)pb.style.width=Math.min(100,tq.power)+'%';
+  const pt=document.getElementById('tqPowerTxt');
+  if(pt&&tq.hudTxt.pow!==s.pow){tq.hudTxt.pow=s.pow;pt.textContent=s.pow}
+  const ck=document.getElementById('tqClock');
+  if(ck&&tq.hudTxt.clock!==s.clock){tq.hudTxt.clock=s.clock;ck.textContent=s.clock}
+  const lf=document.getElementById('tqLeftTxt');
+  if(lf&&tq.hudTxt.left!==s.left){tq.hudTxt.left=s.left;lf.textContent=s.left}
+  const bd=document.getElementById('tqBadge');
+  if(bd){
+    if(tq.hudTxt.badge!==s.badge){tq.hudTxt.badge=s.badge;bd.textContent=s.badge}
+    bd.classList.toggle('on',s.badge!=='🎱 干净台');
+  }
+}
+function tqHud(){
+  const R=tqRank(tqInt('hz_tq_words'));
+  tqSet('tqRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<TQ_HEART_MAX;i++)hs+=(i<tq.hearts?'❤️':'🖤');
+  tqSet('tqHeartTxt',hs||'🖤');
+  tqSet('tqComboTxt','🔥 连 '+tq.combo);
+  tqSet('tqFrameTxt','🏁 '+tq.frames);
+  tqSet('tqFoulTxt','⚠️ '+tq.fouls);
+  tqSet('tqShotTxt','🎱 '+tq.shots+' 杆');
+  tqSet('tqScoreTxt','🎯 '+Math.round(tq.score)+' 分');
+  tqSet('tqLvTxt','第 '+tq.lv+' 段 · 袋口 '+tqPR());
+  const ad=document.getElementById('tqAidBtn');
+  if(ad){ad.disabled=tq.aidsN<=0;ad.textContent='🔍 辅助线 ×'+tq.aidsN}
+  const rk=document.getElementById('tqRackBtn');
+  if(rk){rk.disabled=tq.reracksN<=0;rk.textContent='🔄 重摆 ×'+tq.reracksN}
+  const sb=document.getElementById('tqShootBtn');
+  if(sb)sb.disabled=!tq.run||tq.over||tq.busy||!!tq.cue.out;
+  tqHudLight();
+}
+function tqAsk(){
+  if(!tq.rec)return;
+  tqSet('tqAsk','🎱 「<b>'+tq.rec.ch+'</b>」散成了 '+tq.n+' 颗球<br><small>每颗球上都画着它的一笔 —— <b>按笔顺</b> 一颗颗打进袋，左边小格里的字就一笔一笔长回来（还差 '+Math.max(0,tq.n-tq.k)+' 笔）</small>');
+}
+/* ---- 摆球 ---- */
+function tqSetRack(){
+  tq.rec=tqNewRec();
+  if(!tq.rec){tqEnd('nodata');return false}
+  const raw=tq.rec.raw,ms=raw.medians,sp=raw.strokes;
+  tq.n=ms.length;tq.k=0;
+  tq.paths=[];tq.meds=[];tq.dirs=[];tq.sigs=[];tq.boxes=[];
+  let mx=160;
+  for(let i=0;i<tq.n;i++){
+    const b=tqBox(ms[i])||{x:0,y:0,w:1024,h:1024};
+    tq.boxes.push(b);
+    tq.meds.push(ms[i]);
+    tq.paths.push(tqDOf(sp,i)||'M0 0');
+    tq.dirs.push(fmDirOf(ms[i]));
+    tq.sigs.push(tqSig(tqDOf(sp,i)));
+    mx=Math.max(mx,Math.max(b.w,b.h));
+  }
+  tq.scl=20/mx;
+  tq.balls=[];
+  for(let i=0;i<tq.n;i++){
+    const p=tqSpot();
+    tq.balls.push({si:i,x:p.x,y:p.y,x0:p.x,y0:p.y,vx:0,vy:0,out:0,pending:0,el:null});
+  }
+  tq.pegs=[];
+  for(let i=0;i<tqPegN();i++){
+    const p=tqPegSpot();
+    if(p)tq.pegs.push(p);
+  }
+  tq.cue.x=TQ_SPOT[0];tq.cue.y=TQ_SPOT[1];tq.cue.vx=0;tq.cue.vy=0;tq.cue.out=0;
+  tq.ang=0;tq.power=55;tq.charging=false;tq.chargeDir=1;
+  tq.think=0;tq.acc=0;tq.shotMs=0;tq.foulFrame=0;tq.scFrame=0;tq.shotPots=0;tq.clearing=false;
+  tqRenderStatic();tqRenderBalls();tqMini();tqAsk();tqHud();
+  return true;
+}
+function tqRerack(){
+  if(!tq.run||tq.over||tq.busy||!tq.rec)return;
+  if(tq.reracksN<=0){tqSay('🔄 <b>没有重摆次数了</b>：每升 1 段补一次（最多攒 3 次）','#B3E5FC');return}
+  tq.reracksN--;tq.reracks++;tqAdd('hz_tq_reracks',1);
+  for(let i=0;i<tq.balls.length;i++){
+    const b=tq.balls[i];
+    if(b.out)continue;
+    const p=tqSpot();
+    b.x=p.x;b.y=p.y;b.x0=p.x;b.y0=p.y;b.vx=0;b.vy=0;
+  }
+  tq.combo=0;
+  tqSay('🔄 <b>重新撒开</b>：剩下的 '+Math.max(0,tq.n-tq.k)+' 颗球换了位置 —— 连击清零','#B3E5FC');
+  tone(392,.1,'square',.04);
+  tqRenderBalls();tqHud();
+}
+function tqAid(){
+  if(!tq.run||tq.over||tq.busy||!tq.rec)return;
+  if(tq.aidsN<=0){tqSay('🔍 <b>辅助线用完了</b>：每升 1 段补 1 次，连 3 杆空杆也白送一次','#B3E5FC');return}
+  tq.aidsN--;tq.aids++;tqAdd('hz_tq_aids',1);
+  tq.think=0;tq.aidMs=TQ_AID_MS;tqTrace();
+  tone(880,.09,'triangle',.04);
+  tqSay('🔍 <b>黄线画出来了</b>：白球会这么走（<b>会撞库反弹</b>），<b>亮圈的球就是下一笔</b> —— 只给 '+(TQ_AID_MS/1000)+' 秒','#FFD740');
+  tqHud();
+  tqDrawAim();
+  tqT(function(){tq.aidMs=0;tqDrawAim();tqHudLight()},TQ_AID_MS);
+}
+/* ---- 出杆 ---- */
+function tqPower(v){tq.power=tqClamp(tq.power+v,10,100);tqTrace();tqDrawAim();tqHudLight()}
+function tqTurn(d){
+  if(!tq.run||tq.over)return;
+  tq.ang+=d*0.03;
+  if(tq.ang>Math.PI*2)tq.ang-=Math.PI*2;
+  if(tq.ang<0)tq.ang+=Math.PI*2;
+  tq.think=0;
+  tqTrace();tqDrawAim();tqHudLight();
+}
+function tqAimTo(x,y){
+  if(!tq.run||tq.over||tq.busy||tq.cue.out)return;
+  const dx=x-tq.cue.x,dy=y-tq.cue.y;
+  if(Math.hypot(dx,dy)<10)return;
+  tq.ang=Math.atan2(dy,dx);
+  tq.think=0;
+  tqTrace();tqDrawAim();tqHudLight();
+}
+function tqChargeStart(){
+  if(!tq.run||tq.over||tq.busy||tq.cue.out)return;
+  tq.charging=true;tq.chargeDir=1;tq.power=10;tq.think=0;
+  tone(220,.05,'sine',.03);
+  tqHudLight();
+}
+function tqChargeEnd(){
+  if(!tq.charging)return;
+  tq.charging=false;
+  tqHudLight();
+  tqShoot();
+}
+function tqMoving(){
+  if(!tq.cue.out&&Math.hypot(tq.cue.vx,tq.cue.vy)>0)return true;
+  for(let i=0;i<tq.balls.length;i++){
+    const b=tq.balls[i];
+    if(!b.out&&Math.hypot(b.vx,b.vy)>0)return true;
+  }
+  return false;
+}
+function tqShoot(){
+  if(!tq.run||tq.over||tq.busy||!tq.rec||tq.cue.out)return;
+  const sp=TQ_POW0+tq.power*TQ_POW_K;
+  tq.cue.vx=Math.cos(tq.ang)*sp;tq.cue.vy=Math.sin(tq.ang)*sp;
+  tq.shots++;tqAdd('hz_tq_shots',1);
+  tq.contact=false;tq.shotMs=0;tq.shotPots=0;tq.acc=0;tq.think=0;
+  tq.aidMs=0;tq.busy=true;
+  tone(1180,.05,'triangle',.05);
+  tqHud();
+  tqDrawAim();
+}
+/* ---- 物理 ---- */
+function tqInPocket(b){
+  const cap=tqPR()-TQ_PR_PAD;
+  for(let i=0;i<TQ_POCKETS.length;i++){
+    const p=TQ_POCKETS[i];
+    if(Math.hypot(b.x-p[0],b.y-p[1])<cap)return i;
+  }
+  return -1;
+}
+function tqCollide(a,b){
+  const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy),min=TQ_R*2;
+  if(d<=0||d>=min)return;
+  if(a===tq.cue||b===tq.cue)tq.contact=1;
+  const nx=dx/d,ny=dy/d,ov=(min-d)/2+0.02;
+  a.x-=nx*ov;a.y-=ny*ov;b.x+=nx*ov;b.y+=ny*ov;
+  const va=a.vx*nx+a.vy*ny,vb=b.vx*nx+b.vy*ny;
+  if(va-vb<=0)return;
+  const m=(va-vb)*(1+TQ_RE_B)/2;
+  a.vx-=m*nx;a.vy-=m*ny;b.vx+=m*nx;b.vy+=m*ny;
+  if(Math.hypot(a.vx,a.vy)<TQ_STOPV){a.vx=0;a.vy=0}
+  if(Math.hypot(b.vx,b.vy)<TQ_STOPV){b.vx=0;b.vy=0}
+  if(va-vb>TQ_SOFT)tqTone(1500+Math.random()*260,.03,'square',tqClamp((va-vb)/1600,.02,.055));
+}
+function tqPegHit(b,p){
+  const dx=b.x-p.x,dy=b.y-p.y,d=Math.hypot(dx,dy),min=TQ_R+p.r;
+  if(d<=0||d>=min)return;
+  const nx=dx/d,ny=dy/d;
+  b.x=p.x+nx*(min+0.02);b.y=p.y+ny*(min+0.02);
+  const vn=b.vx*nx+b.vy*ny;
+  if(vn>=0)return;
+  b.vx-=(1+TQ_RE_P)*vn*nx;b.vy-=(1+TQ_RE_P)*vn*ny;
+  if(-vn>TQ_SOFT)tqTone(760,.04,'sine',.04);
+}
+function tqCushion(b){
+  let hit=0,sp=0;
+  if(b.x<TQ_X0+TQ_R){sp=Math.abs(b.vx);b.x=TQ_X0+TQ_R;b.vx=-b.vx*TQ_RE_W;hit=1}
+  else if(b.x>TQ_X1-TQ_R){sp=Math.abs(b.vx);b.x=TQ_X1-TQ_R;b.vx=-b.vx*TQ_RE_W;hit=1}
+  if(b.y<TQ_Y0+TQ_R){sp=Math.max(sp,Math.abs(b.vy));b.y=TQ_Y0+TQ_R;b.vy=-b.vy*TQ_RE_W;hit=1}
+  else if(b.y>TQ_Y1-TQ_R){sp=Math.max(sp,Math.abs(b.vy));b.y=TQ_Y1-TQ_R;b.vy=-b.vy*TQ_RE_W;hit=1}
+  if(hit){
+    if(Math.abs(b.vx)<TQ_STOPV*0.6)b.vx=0;
+    if(Math.abs(b.vy)<TQ_STOPV*0.6)b.vy=0;
+    if(sp>TQ_SOFT)tqTone(300,.035,'sine',.028);
+  }
+}
+function tqPhys(h){
+  const B=[];
+  if(!tq.cue.out)B.push(tq.cue);
+  for(let i=0;i<tq.balls.length;i++)if(!tq.balls[i].out)B.push(tq.balls[i]);
+  const potted=[];
+  for(let i=0;i<B.length;i++){
+    const b=B[i];
+    b.x+=b.vx*h;b.y+=b.vy*h;
+    if(b.vx||b.vy){
+      const f=Math.exp(-TQ_FRIC*h);
+      b.vx*=f;b.vy*=f;
+      if(Math.hypot(b.vx,b.vy)<TQ_STOPV){b.vx=0;b.vy=0}
+    }
+    const pk=tqInPocket(b);
+    if(pk>=0){potted.push({b:b,p:pk});continue}
+    tqCushion(b);
+  }
+  for(let i=0;i<B.length;i++)
+    for(let j=i+1;j<B.length;j++)tqCollide(B[i],B[j]);
+  for(let i=0;i<B.length;i++)
+    for(let j=0;j<tq.pegs.length;j++)tqPegHit(B[i],tq.pegs[j]);
+  for(let i=0;i<potted.length;i++)tqPot(potted[i].b,potted[i].p);
+}
+/* ---- 落袋判定 ---- */
+function tqAccept(b){
+  if(tq.k>=tq.n)return false;
+  return tq.sigs[b.si]===tq.sigs[tq.k];
+}
+function tqPot(b,pi){
+  b.out=1;
+  const px=TQ_POCKETS[pi][0],py=TQ_POCKETS[pi][1];
+  if(b===tq.cue){tqDust(px,py);return}
+  tqDust(px,py);
+  if(tqAccept(b)){
+    const ord=tq.k,dir=tq.dirs[ord];
+    tq.k++;tq.pots++;tq.combo++;tq.shotPots++;
+    tqAdd('hz_tq_pots',1);
+    if(tq.combo>tq.maxCombo)tq.maxCombo=tq.combo;
+    let gain=Math.round((6+(ord+1)*2+tq.lv)*(1+tq.combo*0.05));
+    let msg='✅ <b>落袋！</b>「'+tq.rec.ch+'」的第 <b>'+tq.k+'</b> 笔是 <b>'+TQ_DIRN[tqDn(dir)]+'</b>：+'+gain+' 分'+(tq.combo>1?' · 🔥 连 '+tq.combo:'');
+    if(tq.shotPots>=2){
+      const extra=12*(tq.shotPots-1);
+      gain+=extra;
+      msg='✨ <b>一杆 '+tq.shotPots+' 落！</b>一杆连着打进 '+tq.shotPots+' 笔，额外 <b>+'+extra+'</b> 分';
+      tqAdd('hz_tq_multi',1);
+    }
+    tq.score+=gain;
+    tqBits(px,py,TQ_COL[tqDn(dir)],12);
+    tqPop(px,py-16,'+'+gain,'#FFD740');
+    tone(TQ_NOTE[Math.min(TQ_NOTE.length-1,tq.k-1)],.13,'triangle',.06);
+    tqSay(msg,'#FFD740');
+    tqMini();tqAsk();tqHud();
+    if(tq.combo>=3)speakEncourage();
+    if(tq.k>=tq.n)tqFrameClear();
+  }else{
+    b.pending=1;
+    tq.fouls++;tq.foulFrame++;tq.combo=0;tq.shotPots=0;
+    tq.score=Math.max(0,tq.score-8);
+    tqAdd('hz_tq_fouls',1);
+    tqMissAdd(tq.rec.ch);
+    const want=tq.dirs[tq.k];
+    tqSay('⚠️ <b>犯规</b>：这颗球上画的是 <b>'+TQ_DIRN[tqDn(tq.dirs[b.si])]+'</b> 那笔，可「'+tq.rec.ch+'」的 <b>下一笔是「'+TQ_DIRN[tqDn(want)]+'</b>」—— 扣 8 分、连击清零、<b>球弹回台面</b>，这个字进 <b>错字手册</b>','#FF8A80');
+    tqShake();
+    tone(190,.2,'sawtooth',.06);
+    if(tq.fouls%4===0){
+      tq.hearts--;
+      tqSay('💔 <b>累计犯规 '+tq.fouls+' 次</b>：掉一颗心（还剩 '+tq.hearts+' 颗）—— <b>先想清这一笔排第几，再出杆</b>','#FF8A80');
+      if(tq.hearts<=0){tqHud();tqEnd('foul');return}
+    }
+    tqHud();
+  }
+}
+function tqFrameClear(){
+  tq.frames++;
+  tq.perfectThis=(tq.foulFrame===0&&tq.scFrame===0);
+  let gain=24+tq.n*5+tq.lv*4;
+  let msg='🏁 <b>清台！</b>「'+tq.rec.ch+'」'+tq.n+' 笔 <b>全部按笔顺</b> 打进袋：+'+gain+' 分';
+  if(tq.perfectThis){
+    gain+=15;tq.perfect++;tqAdd('hz_tq_perfect',1);
+    msg+=' · 🌟 <b>一台不犯规，再加 15 分</b>';
+  }
+  tq.score+=gain;
+  tqAdd('hz_tq_words',1);tqBookAdd(tq.rec.ch);
+  tqMissDel(tq.rec.ch);
+  tqPop(TQ_W/2,TQ_H/2,tq.perfectThis?'🌟 一台不犯规':'🏁 清台','#FFF176');
+  tqBits(TQ_W/2,TQ_H/2,'#FFF176',26);
+  [523,659,784,1047].forEach(function(f,i){tqT(function(){tone(f,.15,'triangle',.055)},i*80)});
+  tqSay(msg,'#69F0AE');
+  speakEncourage();
+  tqLvCheck();
+  tq.clearing=true;
+  tqHud();
+}
+function tqLvCheck(){
+  const nl=Math.min(9,1+Math.floor(tq.frames/2));
+  if(nl<=tq.lv)return;
+  tq.lv=nl;
+  tq.hearts=Math.min(TQ_HEART_MAX,tq.hearts+1);
+  tq.aidsN=Math.min(4,tq.aidsN+1);
+  tq.reracksN=Math.min(3,tq.reracksN+1);
+  const peg=tqPegN();
+  tqSay('⚡ <b>第 '+tq.lv+' 段</b>：袋口缩到 <b>'+tqPR()+'</b>'+(peg?'、台上多 <b>'+peg+' 颗 🚧 挡钉</b>':'')+' —— 字更长、每一笔更值钱；补一颗心、一次辅助线、一次重摆','#FFD740');
+  [659,784,988].forEach(function(f,i){tqT(function(){tone(f,.13,'triangle',.055)},i*95)});
+  tqHud();
+}
+/* ---- 一杆结束 ---- */
+function tqResolveShot(){
+  if(!tq.busy)return;
+  tq.cue.vx=0;tq.cue.vy=0;
+  for(let i=0;i<tq.balls.length;i++){tq.balls[i].vx=0;tq.balls[i].vy=0}
+  for(let i=0;i<tq.balls.length;i++){
+    const b=tq.balls[i];
+    if(!b.pending)continue;
+    b.pending=0;b.out=0;
+    if(tqFree(b.x0,b.y0)){b.x=b.x0;b.y=b.y0}
+    else{const p=tqSpot();b.x=p.x;b.y=p.y;b.x0=p.x;b.y0=p.y}
+  }
+  if(tq.cue.out){
+    tq.scratches++;tq.scFrame++;tqAdd('hz_tq_sc',1);
+    tq.hearts--;tq.combo=0;
+    const p=tqSpot();
+    tq.cue.x=p.x;tq.cue.y=p.y;tq.cue.out=0;
+    tqSay('💚 <b>白球落袋 = 甩袋</b>：掉一颗心（还剩 '+tq.hearts+' 颗）、连击清零 —— 白球回到 <b>置球点</b>','#FF8A80');
+    tqShake();
+    tone(160,.24,'sawtooth',.06);
+  }else if(!tq.contact&&!tq.clearing){
+    tq.empties++;tqAdd('hz_tq_empty',1);
+    if(tq.empties>=3){
+      tq.empties=0;tq.aidsN=Math.min(4,tq.aidsN+1);
+      tqSay('🎁 <b>连着三杆空杆</b>：白送一次 🔍 辅助线 —— 先 <b>点台面定方向</b>，再按住蓄力','#B3E5FC');
+    }else{
+      tqSay('🌫️ <b>空杆</b>：一颗球都没碰到（'+tq.empties+'/3）—— 对准 <b>球心连线</b>，或者 <b>撞库绕过去</b>','#B3E5FC');
+    }
+    tone(300,.09,'sine',.03);
+  }else{
+    tq.empties=0;
+  }
+  if(tq.hearts<=0){tq.busy=true;tqHud();tqEnd('scratch');return}
+  if(tq.clearing){
+    tq.clearing=false;
+    tq.busy=true;
+    tqT(function(){if(tq.run&&!tq.over){tq.busy=false;if(!tqSetRack())return;tqHud()}},640);
+  }else{
+    tq.busy=false;
+  }
+  tqHud();
+  tqDrawAim();
+}
+function tqNag(){
+  if(!tq.rec||tq.k>=tq.n)return;
+  const want=tq.dirs[tq.k];
+  tqSay('🦉 <b>别盯着不动</b>：「'+tq.rec.ch+'」的下一笔是 <b>'+TQ_DIRN[tqDn(want)]+'</b>（'+(TQ_RULE[tqDn(want)]||'从左上开始写')+'）—— 台面上 <b>画着这一笔的那颗球</b> 就是目标','#A5D6A7');
+  tone(587,.09,'sine',.035);
+}
+/* ---- 循环 ---- */
+function tqStartLoop(){tqStopLoop();tq.last=0;tq.rafId=requestAnimationFrame(tqLoop)}
+function tqStopLoop(){if(tq.rafId){cancelAnimationFrame(tq.rafId);tq.rafId=0}tq.last=0}
+function tqLoop(ts){
+  if(!tq.run||tq.over){tq.rafId=0;return}
+  const dt=tq.last?Math.min(0.05,(ts-tq.last)/1000):0.016;
+  tq.last=ts;
+  tqTick(dt);
+  tq.rafId=requestAnimationFrame(tqLoop);
+}
+function tqTick(dt){
+  const ms=dt*1000;
+  tq.t+=dt;tq.playMs+=ms;
+  tq.tones=6;
+  if(!tq.busy)tq.think+=ms;
+  if(tq.charging){
+    tq.power+=tq.chargeDir*TQ_CHARGE_RATE*dt;
+    if(tq.power>=100){tq.power=100;tq.chargeDir=-1}
+    if(tq.power<=10){tq.power=10;tq.chargeDir=1}
+    tqHudLight();
+  }
+  if(tq.aidMs>0)tq.aidMs=Math.max(0,tq.aidMs-ms);
+  if(tq.busy){
+    tq.acc+=dt;
+    let guard=0;
+    while(tq.acc>=TQ_STEP&&guard<TQ_MAX_SUB){tq.acc-=TQ_STEP;tqPhys(TQ_STEP);guard++}
+    if(tq.acc>TQ_STEP)tq.acc=0;
+    tq.shotMs+=ms;
+    if(!tqMoving()||tq.shotMs>TQ_MAX_SHOT_MS)tqResolveShot();
+    tqDraw();
+  }else{
+    if(tq.think>=TQ_NAG_MS){tq.think=0;tqNag()}
+    if(tq.charging)tqDrawAim();
+  }
+  tqHudLight();
+}
+/* ---- 输入绑定 ---- */
+function tqBind(){
+  if(tq.bound)return;
+  tq.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='billiard'||!tq.run||tq.over)return;
+    const k=e.key;
+    if(k===' '){if(!e.repeat&&!tq.charging&&!tq.busy&&!tq.cue.out)tqChargeStart();e.preventDefault();return}
+    if(k==='Enter'){if(!e.repeat){if(tq.charging)tqChargeEnd();else tqShoot()}e.preventDefault();return}
+    if(k==='ArrowLeft'){if(!e.repeat)tqTurn(-1);e.preventDefault();return}
+    if(k==='ArrowRight'){if(!e.repeat)tqTurn(1);e.preventDefault();return}
+    if(k==='ArrowUp'){if(!e.repeat)tqPower(6);e.preventDefault();return}
+    if(k==='ArrowDown'){if(!e.repeat)tqPower(-6);e.preventDefault();return}
+    if(k==='h'||k==='H'){if(!e.repeat)tqAid();return}
+    if(k==='r'||k==='R'){if(!e.repeat)tqRerack();return}
+    if(k==='?'){tqHelp();return}
+  });
+  window.addEventListener('keyup',function(e){
+    if(currentMode!=='billiard')return;
+    if(e.key===' '&&tq.charging)tqChargeEnd();
+  });
+}
+function tqPointer(){
+  const svg=document.getElementById('tqSvg');
+  if(!svg||tq.ptrBound)return;
+  tq.ptrBound=true;
+  const toVB=function(ev){
+    const r=svg.getBoundingClientRect();
+    if(!r.width||!r.height)return null;
+    return {x:(ev.clientX-r.left)/r.width*TQ_W,y:(ev.clientY-r.top)/r.height*TQ_H};
+  };
+  let down=false;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='billiard')return;
+    down=true;
+    try{svg.setPointerCapture(ev.pointerId)}catch(e){}
+    const p=toVB(ev);
+    if(p)tqAimTo(p.x,p.y);
+    ev.preventDefault();
+  });
+  svg.addEventListener('pointermove',function(ev){
+    if(!down)return;
+    const p=toVB(ev);
+    if(p)tqAimTo(p.x,p.y);
+  });
+  const up=function(){down=false};
+  svg.addEventListener('pointerup',up);
+  svg.addEventListener('pointercancel',up);
+}
+/* ---- 生命周期 ---- */
+function tqStopAll(){tqStopLoop();tqKillTimers();tq.gen++}
+async function tqStart(){
+  tqStopAll();
+  const g=tq.gen;
+  const stale=function(){return g!==tq.gen||!tq.run||tq.over};
+  tq.run=true;tq.over=false;tq.busy=true;
+  tq.lv=1;tq.score=0;tq.hearts=TQ_HEARTS;tq.combo=0;tq.maxCombo=0;
+  tq.frames=0;tq.pots=0;tq.fouls=0;tq.scratches=0;tq.shots=0;tq.empties=0;tq.perfect=0;tq.shotPots=0;
+  tq.aidsN=2;tq.reracksN=1;tq.aids=0;tq.reracks=0;tq.foulFrame=0;tq.scFrame=0;tq.perfectThis=false;
+  tq.aidMs=0;tq.trace=[];tq.autoTrace=[];tq.think=0;tq.playMs=0;tq.t=0;tq.acc=0;tq.shotMs=0;tq.hudTxt={};
+  tq.pool=[];tq.rec=null;tq.n=0;tq.k=0;tq.balls=[];tq.pegs=[];tq.clearing=false;
+  tq.cue.x=TQ_SPOT[0];tq.cue.y=TQ_SPOT[1];tq.cue.vx=0;tq.cue.vy=0;tq.cue.out=0;
+  tq.ang=0;tq.power=55;tq.charging=false;tq.chargeDir=1;
+  showScreen('billiard');
+  tqBind();tqPointer();
+  tqRenderStatic();tqMini();
+  tqSet('tqAsk','🎱 正在摆球……<br><small>在字库里挑「一笔一笔摆得开」的字</small>');
+  tqSay('台面 = <b>一个被打散的字</b>：每颗球上画着它的一笔。要按 <b>正确笔顺</b> 一颗颗打进袋 —— <b>打错顺序是犯规</b>，<b>白球落袋掉一颗心</b>','#A5D6A7');
+  let ok=await tqBuild();
+  if(stale())return;
+  if(!ok){
+    tqSay('🎱 字库有点慢，再摆一局试试……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await tqBuild(true);
+    if(stale())return;
+  }
+  if(!ok||!tq.pool.length){
+    tq.run=false;tq.busy=false;
+    tqSet('tqAsk','😢 凑不出一张台面<br><small>字库还没加载好，稍后再来打一局</small>');
+    tqSay('先去别的模式练两笔，回来台面就摆好了','#FFCC80');
+    return;
+  }
+  tqAdd('hz_tq_games',1);
+  tq.busy=false;
+  if(!tqSetRack())return;
+  if(stale())return;
+  tqHud();
+  tqStartLoop();
+}
+function tqEnd(reason){
+  if(tq.over)return;
+  tq.over=true;tq.run=false;tq.busy=true;tq.charging=false;
+  tqStopAll();
+  const sc=Math.round(tq.score);
+  localStorage.setItem('hz_tq_best',String(Math.max(tq.frames,tqInt('hz_tq_best'))));
+  localStorage.setItem('hz_tq_streak',String(Math.max(tq.maxCombo,tqInt('hz_tq_streak'))));
+  localStorage.setItem('hz_tq_lv',String(Math.max(tq.lv,tqInt('hz_tq_lv'))));
+  tqAdd('hz_tq_ms',Math.round(tq.playMs/1000));
+  const stars=Math.floor(sc/120)+tq.frames*3;
+  if(stars>0)addStars(stars);
+  tqDrawAim();
+  showScreen('billiard-result');
+  const R=tqRank(tqInt('hz_tq_words'));
+  const T={
+    scratch:['💚','白球掉进袋里了','<b>甩袋一次掉一颗心</b>：出杆前想想 <b>白球会停在哪儿</b>，宁可轻推叫位，别把它也送进袋'],
+    foul:['⚠️','犯规太多了','<b>打错一笔也会掉心</b>：先把这个字 <b>在心里写一遍</b>，再决定这一杆打哪颗球'],
+    quit:['🏁','今天收工了','下一局先把「<b>认形状 → 排第几 → 一杆打准</b>」走顺：<b>一台不犯规</b> 再加 15 分'],
+    nodata:['😢','字库没准备好','先去别的模式练两笔，回来台面就摆好了']
+  };
+  const t=T[reason]||T.quit;
+  tqSet('tqRsEmoji',t[0]);
+  tqSet('tqRsTitle',t[1]);
+  tqSet('tqRsSub',t[2]);
+  tqSet('tqRsScore',String(sc));
+  tqSet('tqRsFrame',String(tq.frames));
+  tqSet('tqRsPot',String(tq.pots));
+  tqSet('tqRsLv',String(tq.lv));
+  tqSet('tqRsStreak',String(tq.maxCombo));
+  tqSet('tqRsFoul',tq.fouls+' / '+tq.scratches);
+  tqSet('tqRsStars','⭐ '+stars);
+  tqSet('tqRsBest',String(tqInt('hz_tq_best')));
+  tqSet('tqRsShots',String(tqInt('hz_tq_shots')));
+  const book=(localStorage.getItem('hz_tq_book')||'').split(',').filter(function(c){return c.length===1});
+  tqSet('tqRsAll','🏅 '+R.e+' '+R.t+' · 累计清台 '+tqInt('hz_tq_words')+' 个字\n'+
+    '🎱 出了 '+tqInt('hz_tq_shots')+' 杆 · ✅ 打进 '+tqInt('hz_tq_pots')+' 笔 · 🌟 不犯规清台 '+tqInt('hz_tq_perfect')+' 次\n'+
+    '⚠️ 犯规 '+tqInt('hz_tq_fouls')+' 次 · 💚 甩袋 '+tqInt('hz_tq_sc')+' 次 · 🌫️ 空杆 '+tqInt('hz_tq_empty')+' 杆\n'+
+    '🔍 辅助线 '+tqInt('hz_tq_aids')+' 次 · 🔄 重摆 '+tqInt('hz_tq_reracks')+' 次 · 最高打到第 '+tqInt('hz_tq_lv')+' 段');
+  tqSet('tqRsBookT',book.length?('🎱 清台图鉴 · 已收 '+book.length+' 个字'):'');
+  const bh=document.getElementById('tqRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function tqRetry(){tqStart()}
+function tqLeave(){
+  tqStopAll();
+  if(tq.run&&!tq.over){tq.over=true;tq.run=false}
+  goHome();
+}
+function tqNudge(){
+  const dot=document.getElementById('tqCardDot'),tip=document.getElementById('tqCardTip');
+  const w=tqInt('hz_tq_words'),pf=tqInt('hz_tq_perfect'),games=tqInt('hz_tq_games'),fl=tqInt('hz_tq_fouls');
+  const R=tqRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 清台 '+w+' 字 · 不犯规 '+pf+' 次 · 犯规 '+fl+' 次'):'每颗球画着这个字的一笔，按笔顺一颗颗打进袋';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function tqHelp(){
+  tqSay('🎱 台面上散着 <b>「'+(tq.rec?tq.rec.ch:'这个字')+'」被打散的一笔一笔</b>：每颗球上都画着 <b>其中一笔的形状</b>，角上还写着它的 <b>方向</b>。你只做一件事 —— <b>按正确笔顺</b> 把它们一颗颗打进袋。<br>'+
+    '<b>🎯 瞄准</b>：<b>点一下台面（或拖）</b> 白球就朝那个方向，<code>←</code> <code>→</code> 微调角度；<b>🎱 出杆</b>：<b>按住大按钮</b>（或 <code>空格</code>）力量条来回涨、<b>松手就打</b>，<code>↑</code> <code>↓</code> 改力量、<code>回车</code> 按当前力量直接出。<br>'+
+    '✅ <b>打对下一笔</b>：得 <b>6 + 第几笔×2 + 段数</b> 分 ×（1 + 连击×0.05），左边小格里的字 <b>当场长回一笔</b>；<b>一杆连着进两颗以上 = ✨ 一杆多落</b>，每多一颗再 +12。<br>'+
+    '⚠️ <b>打错顺序 = 犯规</b>：扣 8 分、连击清零、那颗球 <b>弹回台面</b>，这个字进 <b>错字手册</b>（下一局优先重打）；<b>每累计 4 次犯规掉一颗心</b>。<br>'+
+    '💚 <b>白球落袋 = 甩袋</b>：掉一颗心（3 颗起、最多 5 颗）、连击清零，白球回到置球点；<b>心掉光才结算</b> —— 打准之前先想想白球会停在哪儿。<br>'+
+    '🔍 <b>辅助线</b>（<code>H</code>）：1.4 秒画出白球 <b>会撞库反弹的预测路线</b>，并把 <b>该打的下一笔</b> 亮圈出来（起手 2 次，升段补 1 次、连 3 杆空杆白送）；🔄 <b>重摆</b>（<code>R</code>）：把剩下的球重新撒开，连击清零。<br>'+
+    '🏁 <b>整台按笔顺打完 = 清台</b>：<b>24 + 笔数×5 + 段数×4</b> 分，<b>一台不犯规再加 15</b>，这个字收进图鉴；<b>每 2 个清台升 1 段</b>（最多 9 段）：<b>袋口从 27 缩到 21</b>、<b>4 段起台面多 🚧 挡钉</b>，同时补一颗心、一次辅助线、一次重摆。<br>'+
+    '🦉 卡住 12 秒会提示 <b>下一笔的方向和笔顺规则</b>；<b>1~2 段常驻淡黄预测线</b>，3 段起要靠手感。','#A5D6A7');
+}
+
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
