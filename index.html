@@ -4588,6 +4588,90 @@ button:active{transform:scale(.95)}
   .pn-stage{flex-direction:column}
   .pn-mini{flex:0 0 auto;width:88px;margin:0 auto}
 }
+/* ================= v1.74 笔顺花灯阵 ================= */
+.ld-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.ld-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.ld-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.ld-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.ld-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.ld-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.ld-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.ld-cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:11px;color:#B3E5FC}
+.ld-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#131B3A 0%,#1E1235 52%,#0B0A1E 100%);box-shadow:inset 0 0 34px rgba(0,0,0,.66)}
+.ld-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+.ld-xh{stroke:rgba(255,255,255,.14);stroke-width:5;stroke-dasharray:16 14}
+.ld-frame{fill:none;stroke:rgba(255,255,255,.22);stroke-width:5}
+.ld-s{stroke:rgba(255,255,255,.5);stroke-linecap:round}
+.ld-s.dim{opacity:.16}
+.ld-s.got{opacity:1}
+.ld-lant{cursor:pointer}
+.ld-lant .ld-body{fill:url(#ldOffG);stroke:rgba(255,255,255,.14);stroke-width:2;transition:fill .18s linear}
+.ld-lant.on .ld-body{fill:url(#ldOnG);stroke:#FFE082;stroke-width:2.5}
+.ld-lant .ld-glow{opacity:0;transition:opacity .2s linear}
+.ld-lant.on .ld-glow{opacity:.5}
+.ld-lant .ld-rib{stroke:rgba(0,0,0,.26);stroke-width:1.5;fill:none}
+.ld-lant .ld-cap2,.ld-lant .ld-base{fill:#8D6E63;stroke:rgba(0,0,0,.35);stroke-width:1.5}
+.ld-lant.on .ld-cap2,.ld-lant.on .ld-base{fill:#D4A017}
+.ld-lant.on .ld-tag{fill:#7A4E00;opacity:.95}
+.ld-lant .ld-tag{fill:rgba(255,255,255,.4)}
+.ld-lant.lock{cursor:default}
+.ld-lant.lock .ld-body{fill:url(#ldLockG);stroke:#FFD740;stroke-width:3}
+.ld-lant.lock .ld-glow{opacity:.72}
+/* 反灯描一圈青色虚线：连锁翻斜对角，得让孩子一眼认出方向被镜子换掉了 */
+.ld-lant.mir .ld-body{stroke-dasharray:7 5;stroke:#4DD0E1;stroke-width:2.6}
+.ld-lant.flip{animation:ldFlip .34s ease-out}
+@keyframes ldFlip{0%{transform:scale(1)}45%{transform:scale(1.16)}100%{transform:scale(1)}}
+.ld-lant.bad{animation:ldBad .36s}
+@keyframes ldBad{0%,100%{transform:translateX(0)}30%{transform:translateX(-7px)}65%{transform:translateX(6px)}}
+.ld-lock{font-size:13px;opacity:.9}
+.ld-fogt{font-size:26px}
+.ld-mirt{font-size:16px;fill:#B3E5FC;font-weight:bold}
+.ld-ring{fill:none;stroke:#FFEB3B;stroke-width:3;stroke-dasharray:9 7;animation:ldMark .7s ease-out infinite}
+@keyframes ldMark{0%,100%{opacity:.3}50%{opacity:1}}
+.ld-prev{fill:none;stroke:#80DEEA;stroke-width:2.5;stroke-dasharray:6 6;opacity:.9;animation:ldMark .8s ease-out infinite}
+.ld-no{font-size:12px;font-weight:bold;fill:rgba(255,255,255,.5)}
+.ld-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.ld-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:ldBit .72s ease-out forwards}
+@keyframes ldBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.ld-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF176;text-shadow:0 2px 6px rgba(0,0,0,.6);animation:ldPop .95s ease-out forwards;white-space:nowrap}
+@keyframes ldPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.ld-shake{animation:ldShake .3s}
+@keyframes ldShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(7px)}75%{transform:translateX(-3px)}}
+.ld-oils{display:flex;gap:5px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:34px;padding:6px;border-radius:14px;background:rgba(0,0,0,.3);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap}
+.ld-nd{width:22px;height:22px;line-height:22px;border-radius:7px;background:rgba(255,193,7,.85);color:#263238;font-size:12px;text-align:center;font-weight:bold}
+.ld-nd.used{background:rgba(255,255,255,.12);color:rgba(255,255,255,.32)}
+.ld-more{font-size:12px;color:#90A4AE}
+.ld-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.ld-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(255,255,255,.14);overflow:hidden}
+.ld-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#FFCA28,#FFD740 40%,#FFF176 80%);transition:width .12s linear}
+.ld-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.ld-clock{font-size:12px;color:#fff;background:rgba(255,255,255,.14);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.ld-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#FFE082;background:rgba(0,0,0,.26);border-radius:14px;padding:9px 10px;line-height:1.5}
+.ld-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.ld-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0}
+.ld-tool{flex:1;padding:11px 4px;border:none;border-radius:13px;font-size:13px;color:#E1F5FE;background:rgba(255,255,255,.14);cursor:pointer}
+.ld-tool.on{background:#FFD740;color:#263238}
+.ld-tool:disabled{opacity:.4}
+.ld-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.28);color:#A5D6A7;font-size:13px;line-height:1.65;min-height:44px}
+.ld-msg b{color:#fff}
+.ld-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.ld-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.ld-badge{position:absolute;right:8px;top:8px;font-size:12px;color:#FFE082;background:rgba(0,0,0,.4);border-radius:11px;padding:3px 10px;display:none}
+.ld-badge.on{display:block}
+.ld-slow{position:absolute;left:8px;top:8px;font-size:12px;color:#B3E5FC;background:rgba(0,0,0,.4);border-radius:11px;padding:3px 10px;display:none}
+.ld-slow.on{display:block}
+.ld-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.ld-rs span{display:block;font-size:24px;font-weight:bold}
+.ld-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.ld-book-t{font-size:12px;color:#B3E5FE;margin-top:12px}
+.ld-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.ld-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.ld-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.ld-cdot.on{display:flex}
+@media (max-width:600px){
+  .ld-stage{flex-direction:column}
+  .ld-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
 </style>
 
 </head>
@@ -4644,8 +4728,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 72 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">72</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 73 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">73</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -4656,12 +4740,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>72 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>18</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>73 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>19</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" onclick="enterMode('lights')">
+      <div class="icon">🏮</div>
+      <div class="info"><h3>笔顺花灯阵</h3><p id="ldCardTip">一盏灯按下去，四盏跟着翻 —— 只有挂着下一笔的那盏锁得死</p></div>
+      <span class="ld-cdot" id="ldCardDot">🆕</span>
+    </div>
 <div class="mode-card" onclick="enterMode('pin')">
       <div class="icon">📌</div>
       <div class="info"><h3>笔顺拔钉</h3><p id="pnCardTip">一摞木板压着这个字，认出钉头上刻的那一笔才拔得开</p></div>
@@ -5096,6 +5185,112 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="lzRetry()">🚣 再划一场</button>
     <button class="w-btn blue" onclick="lzLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-lights">
+  <div class="top-bar">
+    <button class="back-btn" onclick="ldLeave()">← 返回</button>
+    <div class="stats"><span id="ldScoreTxt">🎯 0 分</span><span id="ldLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="ldHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="ld-hud">
+    <span id="ldRankTxt" title="称号">🏮 点灯小娃</span>
+    <span id="ldHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="ldComboTxt" title="连击">🔥 连 0</span>
+    <span id="ldLevelTxt" title="过了几盘">🚀 0 盘</span>
+    <span id="ldLeftTxt" title="还剩几笔">🀫 还 0 笔</span>
+    <span id="ldMissTxt" title="点错几盏">🙅 0</span>
+    <span id="ldLitTxt" title="顺灯点亮几笔">🏮 0</span>
+    <span id="ldDarkTxt" title="擦火柴点亮几笔">🖤 0</span>
+    <span id="ldPrevTxt" title="预览几次">🔮 0</span>
+  </div>
+  <div class="ld-ask" id="ldAsk">🏮 正在挂灯……<br><small>在字库里挑「每一笔都认得出形状」的字</small></div>
+  <div class="ld-stage">
+    <div class="ld-mini">
+      <svg viewBox="0 -1024 1024 1024" id="ldMiniSvg"></svg>
+      <div class="cap" id="ldMiniCap">这个字</div>
+    </div>
+    <div class="ld-tbl">
+      <svg class="ld-svg" id="ldSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="ldOffG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3A3550"/><stop offset="55%" stop-color="#2A2438"/><stop offset="100%" stop-color="#1C1828"/>
+          </linearGradient>
+          <linearGradient id="ldOnG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFE9A8"/><stop offset="45%" stop-color="#FFC107"/><stop offset="100%" stop-color="#E8823A"/>
+          </linearGradient>
+          <linearGradient id="ldLockG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFF3C4"/><stop offset="50%" stop-color="#FFD740"/><stop offset="100%" stop-color="#B8860B"/>
+          </linearGradient>
+          <radialGradient id="ldHaloG" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0%" stop-color="rgba(255,214,90,.8)"/><stop offset="100%" stop-color="rgba(255,160,40,0)"/>
+          </radialGradient>
+        </defs>
+        <g id="ldStatic"></g>
+        <g id="ldRack"></g>
+        <g id="ldHintG"></g>
+        <g id="ldTopG"></g>
+      </svg>
+      <div class="ld-badge" id="ldBadge">🌫</div>
+      <div class="ld-slow" id="ldSlowTag">🔮 预览中</div>
+      <div class="ld-fx" id="ldFx"></div>
+    </div>
+  </div>
+  <div class="ld-oils" id="ldOils"></div>
+  <div class="ld-meter">
+    <div class="ld-tl" id="ldTtlBox"><i id="ldTtlBar"></i><b id="ldTtlTxt">🏮 这一盘还一笔没锁</b></div>
+    <div class="ld-clock" id="ldClock">🔦 该点第 1 笔</div>
+  </div>
+  <div class="ld-hintline" id="ldHintLine">👇 <b>点亮挂着这一笔的那盏灯</b>（键盘 <code>1</code> <code>2</code> <code>3</code>）</div>
+  <div class="ld-tools">
+    <button class="ld-tool" id="ldHintBtn" onclick="ldHint()" disabled>💡 指认目标</button>
+    <button class="ld-tool" id="ldPrevBtn" onclick="ldPreview()" disabled>🔮 预览连锁</button>
+    <button class="ld-tool" id="ldWipeBtn" onclick="ldWipe()" disabled>🌫 擦雾</button>
+    <button class="ld-tool" onclick="ldRestring(false)">🔄 重挂</button>
+    <button class="ld-tool" onclick="ldEnd('quit')">🏁 结算离场</button>
+  </div>
+  <div class="ld-msg" id="ldMsg">架子上挂着一片 <b>花灯</b>，每盏灯面贴着这个字的 <b>一笔</b>。按 <b>笔顺</b> 点：只有挂着 <b>下一笔</b> 的那盏会 <b>锁死长亮</b>，别的灯 <b>按了会连锁翻转</b>（自己 + 上下左右一起变）</div>
+  <div class="ld-tip">夜里搭起 <b>一盏一盏方灯</b>（3×3 → 4×3 → 4×4，越练越大），灯面上贴着这个字的 <b>真实笔形</b>。灯有 <b>亮</b> 有 <b>暗</b>，按一下 <b>这盏 + 上下左右四盏一起翻转</b> —— 这就是「花灯阵」最磨人的地方：<b>你永远无法只动一盏</b>。<br>
+    🏮 <b>顺灯</b>：要点的灯 <b>正好亮着</b> 时按下 —— 花 <b>1 滴灯油</b>，这一笔 <b>锁死长亮</b>（🔒 以后谁都翻不动它），左边米字格 <b>当场长回一笔</b>，还吃 <b>连击加成</b><br>
+    🖤 <b>擦火柴</b>：灯 <b>灭着</b> 也点得着 —— 多花 <b>2 滴灯油</b>，笔一样锁上，但 <b>没有连击加成</b>、这一盘 <b>不算一步不差</b>；所以先 <b>用别的灯把连锁翻对</b>，再点它<br>
+    🙅 <b>点错灯</b>：贴的不是下一笔 —— 花 <b>1 滴油</b>、扣 <b>4 分</b>、连击清零，<b>但连锁照翻</b>（这一步是你自己 <b>铺的路</b>，也算战术）；<b>每累计 3 次掉一颗心</b>（3 颗起、最多 5 颗）<br>
+    🛢 <b>灯油</b>：每盘发 <b>笔数 + max(3, 9−段数)</b> 滴，<b>油用光这一盘重新挂</b>（不扣心，但这盘白点了）—— 会算的人 <b>先翻灯再点笔</b>，乱点的人油不够用<br>
+    🔮 <b>预览连锁</b>（<code>V</code>）：虚线圈出 <b>按下去会连带翻掉哪几盏</b>，每盘 <b>头 3 次免费</b>，之后每次 <b>1 滴油</b>；💡（<code>H</code>）圈出 <b>下一笔在哪盏</b>；🌫（<code>W</code>）挑一盏雾灯 <b>擦开看一眼</b>（不动连锁）；🔄（<code>R</code>）同一个字 <b>重挂</b><br>
+    🌫 <b>雾灯</b>：<b>第 5 段</b> 起有些灯面 <b>被夜雾糊住</b>，点它 <b>不扣分不吃油</b>，只是 <b>把雾擦开看一眼</b>（擦开前谁也不知道贴着什么）；🪞 <b>反灯</b>：<b>第 7 段</b> 起阵里混进几盏 <b>拉的是斜对角</b> 而不是十字 —— 刚才数的全作废<br>
+    ⚡ <b>越练越难也越会</b>：<b>每 2 盘升 1 段</b>（最多 9 段），盘越挂越大、<b>第 3 段起同一笔会贴在两盏灯上</b>（点哪盏都算）、字从 2~6 笔换到 3~8 笔<br>
+    🏁 <b>把这个字的笔全锁上 = 过一盘</b>：<b>20 + 笔数×5 + 段数×4</b> 分、<b>剩油×5</b> 再加、<b>一步不差（全顺灯且一次没错）再多 15</b>；点错的字进 <b>错字手册</b>，下一盘优先重挂它<br>
+    👆 <b>点已锁的灯</b>：报「第 N 笔 <b>已经锁住了</b>，现在该点 <b>第 M 笔</b>（方向）」· 发呆 12 秒猫头鹰自己报 <b>下一笔在第几排第几盏、现在亮还是灭</b> · 战绩落盘 <code>hz_ld_*</code></div>
+</div>
+<div class="screen" id="screen-lights-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="ldLeave()">← 回首页</button>
+    <div class="stats"><span id="ldRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="ldRsEmoji">🏮</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="ldRsTitle">灯阵收了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="ldRsSub">下一次先 <b>算清连锁</b>，再决定 <b>是把它翻亮，还是直接擦火柴</b></p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="ld-rs">
+      <div><span style="color:#FFD700" id="ldRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="ldRsLevel">0</span><small>过了几盘</small></div>
+      <div><span style="color:#69F0AE" id="ldRsHit">0</span><small>点亮几笔</small></div>
+      <div><span style="color:#FFAB91" id="ldRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="ldRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="ldRsMiss">0</span><small>🙅 点错 / 🖤 火柴</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多过几盘 · 一共锁上多少盏灯</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740"><span id="ldRsBest">0</span> 盘 · <span id="ldRsBoards">0</span> 🏮</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="ldRsAll">🏮 点灯小娃</div>
+      <div class="ld-book-t" id="ldRsBookT"></div>
+      <div class="ld-book" id="ldRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
+    <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-pin">
@@ -10107,6 +10302,7 @@ function updateHomeStats(){
   if(typeof rbNudge==='function')rbNudge();
   if(typeof fwNudge==='function')fwNudge();
   if(typeof pnNudge==='function')pnNudge();
+  if(typeof ldNudge==='function')ldNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -10125,6 +10321,7 @@ function enterMode(mode){
   if(mode==='robot'){rbStart();return}
   if(mode==='flywheel'){fwStart();return}
   if(mode==='pin'){pnStart();return}
+  if(mode==='lights'){ldStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -49683,6 +49880,950 @@ function pnHelp(){
     '🪡 <b>针数</b> = 笔数 + 余量，<b>用光这一塔重新摞</b>（不扣心，但这一塔白拆了）。<br>'+
     '🏁 <b>一摞板全拆完 = 过一关</b>：<b>20 + 拔开几笔×5 + 关卡×4</b> 分，<b>剩针×5</b> 再加，<b>一钉不错再多 15</b>；<b>每 2 关升 1 段</b>（最多 9 段）。<br>'+
     '🦉 发呆 12 秒会提示 <b>这块板压第几笔、真钉几号</b>；<code>1</code> <code>2</code> <code>3</code> 选钉子、点下面的板能问它 <b>压着第几笔、还隔几块</b>；战绩落盘 <code>hz_pin_*</code>','#A5D6A7');
+}
+
+/* ================= v1.74 笔顺花灯阵（一盏灯按下去四盏跟着翻 · 只有挂着下一笔的那盏锁得死） ================= */
+const LD_W=700,LD_H=470,LD_CX=350,LD_CY=250,LD_BEAM=58,LD_G=300;
+const LD_HEARTS=3,LD_HEART_MAX=5,LD_MISS_HEART=3,LD_MISS_MAX=40,LD_BOOK_MAX=300;
+const LD_POOL_MIN=4,LD_POOL_WANT=16;
+const LD_NAG_MS=12000,LD_HINT_MS=2600,LD_PREV_MS=2400,LD_NEXT_MS=1050,LD_DRY_MS=880,LD_RING_MS=55;
+const LD_COOL=0.16,LD_OIL_LOCK=1,LD_OIL_DARK=2,LD_OIL_MISS=1,LD_MISS_SCORE=4,LD_PREV_FREE=3,LD_PREV_MAX=5;
+const LD_DIRN=['横','竖','撇','捺','折'];
+const LD_COL=['rgba(255,107,107,','rgba(78,205,196,','rgba(69,183,209,','rgba(255,160,122,','rgba(179,157,219,'];
+const LD_RULE=['先横后竖','先撇后捺','从上到下','从左到右','这一笔排在后面'];
+const LD_NOTE=[988,880,784,659,587,523,440,392,330,294,262,220,196,175,165,147];
+const LD_RANKS=[
+  {n:0,e:'🏮',t:'点灯小娃'},{n:3,e:'⏱',t:'手很快'},{n:8,e:'👀',t:'找得到笔'},
+  {n:15,e:'🔒',t:'一盏不差'},{n:24,e:'🫙',t:'省油好手'},{n:36,e:'✨',t:'一步不差'},
+  {n:52,e:'🌕',t:'花灯匠'},{n:74,e:'💎',t:'灯阵不倒'},{n:105,e:'🌈',t:'花灯大师'}
+];
+const ld={
+  run:false,over:false,busy:false,gen:0,rafId:0,timers:[],last:0,
+  pool:[],miss:[],rec:null,n:0,
+  cells:[],gl:[],xg:[],rev:[],at:[],lit:0,litN:0,darkN:0,i:0,lastI:-1,
+  cols:3,rows:3,step:110,L:90,gx0:0,gy0:0,fogN:0,mirN:0,dupN:0,
+  oilMax:0,oil:0,prevFree:0,prevN:0,prevSet:null,
+  hintMs:0,prevMs:0,think:0,playMs:0,t:0,tones:0,hudTxt:{},cool:0,
+  lv:1,score:0,hearts:LD_HEARTS,combo:0,maxCombo:0,
+  levels:0,hits:0,wrongs:0,fogPeeks:0,wipes:0,hints:0,prevs:0,respins:0,
+  cleanBoard:true,hintN:2,respinN:2,wipeN:2,
+  bound:false,ptrBound:false,clearing:false,wait:false
+};
+function ldInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function ldAdd(k,n){if(n)localStorage.setItem(k,String(ldInt(k)+n))}
+function ldSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function ldSay(t,c){const el=document.getElementById('ldMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function ldShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function ldOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function ldClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function ldRank(n){let r=LD_RANKS[0];for(let i=0;i<LD_RANKS.length;i++)if(n>=LD_RANKS[i].n)r=LD_RANKS[i];return r}
+function ldDn(d){return d<0?4:d}
+function ldTone(f,d,t,v){if(ld.tones<=0)return;ld.tones--;tone(f,d,t,v)}
+function ldT(fn,ms){const g=ld.gen;const id=setTimeout(function(){if(g!==ld.gen)return;fn()},ms);ld.timers.push(id);return id}
+function ldKillTimers(){ld.timers.forEach(function(t){clearTimeout(t)});ld.timers=[]}
+/* ---- 难度：阵多大、几盏重影、几盏雾、几盏反灯、多少油 ---- */
+function ldGridOf(lv){return lv<=2?{c:3,r:3}:(lv<=5?{c:4,r:3}:{c:4,r:4})}
+function ldDupOf(lv){return lv<=2?0:(lv<=4?1:2)}
+function ldFogOf(lv){return lv<=4?0:(lv<=6?2:3)}
+function ldMirOf(lv){return lv<=6?0:(lv<=7?2:3)}
+function ldOilNeed(){return ld.n+Math.max(3,9-ld.lv)}
+function ldGeom(){
+  const g=ldGridOf(ld.lv),c=g.c,r=g.r;
+  const step=Math.min(110,Math.floor(636/c),Math.floor(330/r));
+  const L=Math.max(46,step-20);
+  return {c:c,r:r,step:step,L:L,x0:LD_CX-(c-1)*step/2,y0:LD_CY-(r-1)*step/2+8};
+}
+function ldFogLeft(){
+  for(let i=0;i<ld.cells.length;i++)if(ld.cells[i].fog&&!ld.cells[i].seen)return true;
+  return false;
+}
+function ldAt(k){
+  const out=[];
+  if(k==null)k=ld.i;
+  if(ld.gl[k]&&ld.rev[k]===1)return out;
+  for(let i=0;i<ld.cells.length;i++){
+    const c=ld.cells[i];
+    if(c.gi===k&&c.self&&!c.lock)out.push(i);
+  }
+  return out;
+}
+function ldRC(i){return {r:Math.floor(i/ld.cols),c:i%ld.cols}}
+function ldName(i){const p=ldRC(i);return '第 '+(p.r+1)+' 排第 '+(p.c+1)+' 盏'}
+/* ---- 字库：每一笔都画得出形状 ---- */
+function ldBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function ldSig(d){return String(d||'').replace(/\s+/g,'')}
+function ldDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function ldPoly(m){
+  let d='';
+  for(let k=0;k<m.length;k++)d+=(k?'L':'M')+m[k][0].toFixed(0)+' '+m[k][1].toFixed(0);
+  return d;
+}
+function ldMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>8)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const sigs=[];
+  for(let i=0;i<ms.length;i++){
+    if(!ldBox(ms[i]))return null;
+    sigs.push(ldSig(ldDOf(sp,i)));
+  }
+  let same=true;
+  for(let i=1;i<sigs.length;i++)if(sigs[i]!==sigs[0]){same=false;break}
+  if(same)return null;
+  return {ch:ch,n:ms.length};
+}
+function ldCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<90;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(ldShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(ldShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(ldShuf(CHARS.slice()));
+  return out;
+}
+function ldTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function ldRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  /* 首屏 preloadGrade 会和挂灯抢 CDN 连接，6 秒是给排队留的余量 */
+  if(!raw||!raw.medians)raw=ldTO(loadCharData(ch),6000);
+  if(!raw||!raw.medians)return null;
+  if(!ldMake(ch,raw))return null;
+  return {ch:ch,raw:raw};
+}
+async function ldBuild(keep){
+  const g=ld.gen;
+  const stale=function(){return g!==ld.gen||!ld.run};
+  ld.miss=(localStorage.getItem('hz_ld_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  ldShuf(ld.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  ldCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)ld.pool=[];
+  for(let k=0;k<want.length&&ld.pool.length<LD_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ldRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])ld.pool.push(rs[i]);
+  }
+  return ld.pool.length>=LD_POOL_MIN;
+}
+function ldNewRec(){
+  const w=ld.lv>=4?[3,8]:[2,6],used={};
+  if(ld.rec)used[ld.rec.ch]=1;
+  let cand=ld.pool.filter(function(r){const n=r.raw.medians.length;return n>=w[0]&&n<=w[1]});
+  if(!cand.length)cand=ld.pool.slice();
+  if(!cand.length)return null;
+  for(let i=0;i<ld.miss.length;i++){
+    for(let k=0;k<cand.length;k++)if(cand[k].ch===ld.miss[i]&&!used[cand[k].ch])return cand[k];
+  }
+  for(let i=0;i<40;i++){const c=ldOne(cand);if(c&&!used[c.ch])return c}
+  return cand[0];
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function ldMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_ld_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_ld_miss',a.slice(0,LD_MISS_MAX).join(','));
+}
+function ldMissDel(ch){
+  const a=(localStorage.getItem('hz_ld_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_ld_miss',a.join(','));
+}
+function ldBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_ld_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_ld_book',a.slice(0,LD_BOOK_MAX).join(','));
+}
+/* ---- 笔形：灯面上那一块，最长边缩到灯宽的 46% ---- */
+function ldGly(d,poly,box,dir,scl,si){return {d:d||'M0 0',poly:poly||'',box:box||{x:0,y:0,w:1024,h:1024},dir:dir,scl:scl,si:si}}
+function ldStrokes(rec){
+  const raw=rec.raw,ms=raw.medians,sp=raw.strokes||[];
+  const gm=ldGeom(),lim=gm.L*0.46;
+  const boxes=[],dirs=[];
+  let mx=120;
+  for(let i=0;i<ms.length;i++){
+    const b=ldBox(ms[i])||{x:0,y:0,w:1024,h:1024};
+    boxes.push(b);dirs.push(fmDirOf(ms[i]));
+    mx=Math.max(mx,Math.max(b.w,b.h));
+  }
+  const scl=lim/mx,gl=[];
+  for(let i=0;i<ms.length;i++)gl.push(ldGly(ldDOf(sp,i),ldPoly(ms[i]),boxes[i],dirs[i],scl,i));
+  return gl;
+}
+function ldGlyHTML(g,cx,cy,alpha){
+  const b=g.box,s=g.scl;
+  const tx=cx-s*(b.x+b.w/2),ty=cy+s*(b.y+b.h/2);
+  return '<g transform="translate('+tx.toFixed(1)+','+ty.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path d="'+g.d+'" fill="'+LD_COL[ldDn(g.dir)]+(alpha===undefined?'0.96)':alpha)+')"/></g>';
+}
+function ldFace(c){
+  if(c.gi==null||c.gi<0)return null;
+  return c.self?ld.gl[c.gi]:ld.xg[c.gi];
+}
+/* ---- 挂阵：n 笔贴进 T 盏灯，剩下是空灯；重影、雾、反灯按段数混进来 ---- */
+function ldTryHang(){
+  ld.gl=ldStrokes(ld.rec);
+  ld.n=ld.gl.length;
+  if(ld.n<2||ld.n>8)return false;
+  const gm=ldGeom(),T=gm.c*gm.r;
+  if(T<ld.n+ldDupOf(ld.lv))return false;
+  ld.cols=gm.c;ld.rows=gm.r;ld.step=gm.step;ld.L=gm.L;
+  ld.gx0=gm.x0;ld.gy0=gm.y0;
+  ld.xg=[];
+  const free=[];
+  for(let i=0;i<T;i++)free.push(i);
+  ldShuf(free);
+  ld.cells=[];
+  for(let i=0;i<T;i++){
+    const p={r:Math.floor(i/gm.c),c:i%gm.c};
+    ld.cells.push({i:i,r:p.r,c:p.c,gi:-1,lit:0,lock:0,fog:0,seen:0,mir:0,ghost:0,self:1,el:null,faceEl:null,fogEl:null,tagEl:null});
+  }
+  for(let k=0;k<ld.n;k++){
+    const idx=free.pop();
+    ld.cells[idx].gi=k;
+  }
+  /* 重影：同一笔贴在第二盏灯上（点哪盏都算，锁上后另一盏变成空灯） */
+  ld.dupN=0;
+  const dn=ldDupOf(ld.lv);
+  if(dn&&ld.n>1){
+    const ks=[];
+    for(let k=0;k<ld.n;k++)ks.push(k);
+    ldShuf(ks);
+    for(let d=0;d<dn&&free.length;d++){
+      const idx=free.pop(),k=ks[d%ks.length];
+      ld.cells[idx].gi=k;ld.dupN++;
+    }
+  }
+  /* 空灯：从别的字上掉下来的笔形冒充（和 v1.72 的干扰笔同源思路） */
+  const foreign=[];
+  for(let i=0;i<free.length;i++)foreign.push(free[i]);
+  ldShuf(foreign);
+  const mixN=Math.min(foreign.length,ld.lv>=3?Math.max(1,Math.min(3,ld.lv-1)):0);
+  for(let m=0;m<mixN;m++){
+    const other=ldOne(ld.pool.filter(function(x){return x.ch!==ld.rec.ch}));
+    if(!other)break;
+    const g=ldOne(ldStrokes(other));
+    if(!g)break;
+    ld.xg.push(g);
+    const idx=foreign[m];
+    ld.cells[idx].gi=ld.xg.length-1;
+    ld.cells[idx].self=0;
+  }
+  /* 雾灯 + 反灯 */
+  ld.fogN=0;ld.mirN=0;
+  const pool=[];
+  for(let i=0;i<T;i++)pool.push(i);
+  ldShuf(pool);
+  const fn=ldFogOf(ld.lv);
+  for(let k=0;k<fn&&pool.length;k++){const idx=pool.pop();ld.cells[idx].fog=1;ld.cells[idx].seen=0;ld.fogN++}
+  const mn=ldMirOf(ld.lv);
+  for(let k=0;k<mn&&pool.length;k++){const idx=pool.pop();ld.cells[idx].mir=1;ld.mirN++}
+  /* 初始亮暗：贴着真笔的灯偏向亮一点，免得整盘摸黑 */
+  for(let i=0;i<T;i++){
+    const c=ld.cells[i];
+    c.lit=(c.gi>=0&&c.self)?(Math.random()<0.62?1:0):(Math.random()<0.48?1:0);
+  }
+  ld.oilMax=ldOilNeed();ld.oil=ld.oilMax;
+  ld.prevFree=LD_PREV_FREE;ld.prevN=LD_PREV_MAX;
+  ld.at=ldAt();
+  return true;
+}
+function ldHangAgain(){
+  for(let a=0;a<40;a++)if(ldTryHang())return true;
+  return false;
+}
+/* ---- 连锁：十字（反灯是斜对角），已锁的灯翻不动 ---- */
+function ldNbrs(idx,skipSelf){
+  const out=[],c=ld.cells[idx];
+  if(!c)return out;
+  if(!c.lock&&!skipSelf)out.push({i:idx,ring:0});
+  const pat=c.mir?[[1,1],[1,-1],[-1,1],[-1,-1]]:[[0,1],[0,-1],[1,0],[-1,0]];
+  for(let k=0;k<pat.length;k++){
+    const r=c.r+pat[k][0],cc=c.c+pat[k][1];
+    if(r<0||r>=ld.rows||cc<0||cc>=ld.cols)continue;
+    const j=r*ld.cols+cc,o=ld.cells[j];
+    if(o&&!o.lock)out.push({i:j,ring:1});
+  }
+  return out;
+}
+function ldChain(idx,skipSelf){
+  const set=ldNbrs(idx,skipSelf);
+  for(let k=0;k<set.length;k++)ld.cells[set[k].i].lit=ld.cells[set[k].i].lit?0:1;
+  ldAnimChain(set);
+  return set;
+}
+function ldAnimChain(set){
+  for(let k=0;k<set.length;k++){
+    const c=ld.cells[set[k].i];
+    if(!c.el)continue;
+    c.el.classList.remove('flip');
+    void c.el.getBoundingClientRect();
+    c.el.style.animationDelay=(set[k].ring*LD_RING_MS)+'ms';
+    c.el.classList.add('flip');
+    ldTone(LD_NOTE[Math.min(LD_NOTE.length-1,(set[k].ring?4:0)+k)],.07,'square',.03);
+  }
+}
+/* ---- 特效 ---- */
+function ldFxHost(){return document.getElementById('ldFx')}
+function ldPut(host,el,ms){
+  host.appendChild(el);
+  ldT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function ldBits(x,y,col,n){
+  const host=ldFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='ld-bit';
+    b.style.left=(x/LD_W*100)+'%';b.style.top=(y/LD_H*100)+'%';
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=22+Math.random()*46;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r).toFixed(1)+'px');
+    ldPut(host,b,760);
+  }
+}
+function ldPop(x,y,txt,col){
+  const host=ldFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='ld-pop';
+  el.style.left=(x/LD_W*100)+'%';el.style.top=(y/LD_H*100)+'%';
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  ldPut(host,el,980);
+}
+function ldShakeFx(){
+  const el=document.querySelector('.ld-tbl');if(!el)return;
+  el.classList.remove('ld-shake');void el.offsetWidth;el.classList.add('ld-shake');
+}
+function ldRipple(x,y,col){
+  const g=document.getElementById('ldTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+  c.setAttribute('r','26');
+  c.setAttribute('fill','none');c.setAttribute('stroke',col||'rgba(255,120,120,.85)');
+  c.setAttribute('stroke-width','3');c.setAttribute('class','ld-ring');
+  g.appendChild(c);
+  ldT(function(){if(c.parentNode)c.parentNode.removeChild(c)},860);
+}
+function ldXY(i){
+  const c=ld.cells[i];
+  return {x:ld.gx0+c.c*ld.step,y:ld.gy0+c.r*ld.step};
+}
+/* ---- 渲染 ---- */
+function ldRenderStatic(){
+  const g=document.getElementById('ldStatic');if(!g)return;
+  let h='<circle cx="628" cy="52" r="22" fill="rgba(255,249,196,.5)"/>'+
+    '<circle cx="620" cy="48" r="22" fill="rgba(19,27,58,.9)"/>';
+  const st=[[40,26],[96,44],[150,20],[214,52],[286,24],[352,44],[420,18],[470,40],[540,26],[60,132],[660,150],[24,300],[676,320],[120,430],[560,436]];
+  for(let i=0;i<st.length;i++)h+='<circle cx="'+st[i][0]+'" cy="'+st[i][1]+'" r="'+(i%3===0?2.2:1.4)+'" fill="rgba(255,255,255,'+(i%2?.5:.3)+')"/>';
+  h+='<rect x="26" y="'+LD_BEAM+'" width="648" height="13" rx="6" fill="#6D4C41"/>'+
+    '<rect x="26" y="'+LD_BEAM+'" width="648" height="4" rx="2" fill="rgba(255,255,255,.16)"/>'+
+    '<rect x="30" y="'+(LD_BEAM+13)+'" width="12" height="380" rx="6" fill="#5D4037"/>'+
+    '<rect x="658" y="'+(LD_BEAM+13)+'" width="12" height="380" rx="6" fill="#5D4037"/>'+
+    '<text x="350" y="462" font-size="11" text-anchor="middle" fill="rgba(255,255,255,.45)">🏮 按一下 = 这盏 + 上下左右一起翻；只有挂着下一笔的那盏锁得死</text>';
+  g.innerHTML=h;
+}
+function ldLantHTML(c){
+  const hL=ld.L/2,p=ldXY(c.i),face=ldFace(c);
+  let h='<g transform="translate('+p.x.toFixed(1)+','+p.y.toFixed(1)+')">';
+  h+='<g class="ld-lant" id="ldL'+c.i+'">';
+  h+='<line x1="0" y1="'+(-hL).toFixed(1)+'" x2="0" y2="'+((LD_BEAM+13)-p.y).toFixed(1)+'" stroke="rgba(255,255,255,.24)" stroke-width="1.6"/>';
+  h+='<ellipse class="ld-glow" cx="0" cy="0" rx="'+(hL*1.5).toFixed(1)+'" ry="'+(hL*1.5).toFixed(1)+'" fill="url(#ldHaloG)"/>';
+  h+='<rect class="ld-body" x="'+(-hL)+'" y="'+(-hL)+'" width="'+hL*2+'" height="'+hL*2+'" rx="'+(hL*0.22).toFixed(1)+'"/>';
+  h+='<path class="ld-rib" d="M'+(-hL*0.55)+' '+(-hL)+'V'+hL+'M'+(hL*0.55)+' '+(-hL)+'V'+hL+'M'+(-hL)+' '+(-hL*0.4)+'H'+hL+'M'+(-hL)+' '+(hL*0.4)+'H'+hL+'"/>';
+  h+='<rect class="ld-cap2" x="'+(-hL*0.44)+'" y="'+(-hL-8)+'" width="'+(hL*0.88).toFixed(1)+'" height="8" rx="3"/>';
+  h+='<rect class="ld-base" x="'+(-hL*0.4)+'" y="'+hL+'" width="'+(hL*0.8).toFixed(1)+'" height="7" rx="3"/>';
+  h+='<path class="ld-tag" d="M-3 '+(hL+7)+'h6l-2 12h-2z"/>';
+  if(c.gi>=0&&face)h+='<g class="ld-face" id="ldF'+c.i+'">'+ldGlyHTML(face,0,-2)+'</g>';
+  if(c.fog)h+='<text class="ld-fogt" id="ldG'+c.i+'" y="9" text-anchor="middle">🌫</text>';
+  if(c.mir)h+='<text class="ld-mirt" x="'+(hL-6).toFixed(1)+'" y="'+(-hL+11).toFixed(1)+'" text-anchor="end">🪞</text>';
+  h+='<text class="ld-lock" id="ldK'+c.i+'" x="0" y="0" text-anchor="middle" style="display:none">🔒</text>';
+  h+='<text class="ld-no" x="0" y="'+(hL+27).toFixed(1)+'" text-anchor="middle">'+(c.i+1)+'</text>';
+  h+='</g></g>';
+  return h;
+}
+function ldRenderRack(){
+  const g=document.getElementById('ldRack');if(!g)return;
+  if(!ld.cells.length){g.innerHTML='';return}
+  let h='';
+  for(let i=0;i<ld.cells.length;i++)h+=ldLantHTML(ld.cells[i]);
+  g.innerHTML=h;
+  for(let i=0;i<ld.cells.length;i++){
+    const c=ld.cells[i];
+    c.el=document.getElementById('ldL'+i);
+    c.faceEl=document.getElementById('ldF'+i);
+    c.fogEl=document.getElementById('ldG'+i);
+    c.lockEl=document.getElementById('ldK'+i);
+  }
+  ldRepaint();
+}
+function ldRepaint(){
+  for(let i=0;i<ld.cells.length;i++){
+    const c=ld.cells[i];
+    if(!c.el)continue;
+    c.el.setAttribute('class','ld-lant'+(c.lock?' lock':(c.lit?' on':''))+(c.mir?' mir':''));
+    if(c.fogEl)c.fogEl.style.display=(c.fog&&!c.seen)?'block':'none';
+    if(c.faceEl)c.faceEl.style.display=(c.gi>=0&&(!c.fog||c.seen))?'block':'none';
+    if(c.lockEl){
+      c.lockEl.style.display=c.lock?'block':'none';
+      c.lockEl.setAttribute('y',(ld.L/2-8).toFixed(1));
+    }
+  }
+}
+function ldReveal(i){
+  const e=document.getElementById('ldS'+i);
+  if(e)e.setAttribute('class','ld-s got');
+}
+function ldHintLayer(){
+  const g=document.getElementById('ldHintG');if(!g)return;
+  let h='';
+  const at=ldAt();
+  if(ld.hintMs>0&&at.length){
+    const c=ld.cells[at[0]];
+    if(c){
+      const p=ldXY(c.i);
+      h+='<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="'+(ld.L/2+12).toFixed(1)+'" fill="rgba(255,235,59,.16)"/>'+
+        '<circle class="ld-ring" cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="'+(ld.L/2+12).toFixed(1)+'"/>';
+    }
+  }
+  if(ld.prevMs>0&&ld.prevSet){
+    for(let k=0;k<ld.prevSet.length;k++){
+      const c=ld.cells[ld.prevSet[k].i];if(!c)continue;
+      const p=ldXY(c.i);
+      h+='<circle class="ld-prev" cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="'+(ld.L/2+7).toFixed(1)+'"/>';
+    }
+  }
+  g.innerHTML=h;
+}
+function ldMini(){
+  const svg=document.getElementById('ldMiniSvg');
+  if(!svg)return;
+  if(!ld.rec||!ld.n){svg.innerHTML='';return}
+  const sp=ld.rec.raw.strokes||[];
+  let h='<g transform="scale(1,-1)"><path d="M512 40V984M40 512H984" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="14 12"/>';
+  for(let i=0;i<ld.n;i++){
+    const dir=ld.gl[i]?ld.gl[i].dir:-1,r=ld.rev[i];
+    h+='<path id="ldS'+i+'" class="ld-s'+(r===1?' got':'')+'" d="'+ldDOf(sp,i)+'" fill="'+(r===1?LD_COL[ldDn(dir)]+'0.96)':(i===ld.i?'rgba(255,224,130,.3)':'rgba(255,255,255,.09)'))+'" opacity="'+(i===ld.lastI?1:.92)+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  ldSet('ldMiniCap',ld.lit>=ld.n?'锁齐了 · '+ld.n+' 笔':'锁 '+ld.lit+' / '+ld.n+' 笔');
+}
+function ldRenderOils(){
+  const box=document.getElementById('ldOils');
+  if(!box)return;
+  let h='';
+  for(let i=0;i<ld.oilMax;i++)h+='<div class="ld-nd'+(i<ld.oil?'':' used')+'">'+(i<ld.oil?'🛢':'·')+'</div>';
+  h+='<span class="ld-more">🛢 灯油 '+ld.oil+' / '+ld.oilMax+' · 顺灯 1 滴，擦火柴 2 滴，用光这一盘重新挂</span>';
+  box.innerHTML=h;
+}
+function ldMeterView(){
+  const bar=document.getElementById('ldTtlBar'),tt=document.getElementById('ldTtlTxt'),ck=document.getElementById('ldClock');
+  const f=ld.n?ldClamp(ld.lit/ld.n,0,1):0;
+  const w=(f*100).toFixed(1)+'%';
+  let txt='';
+  if(!ld.cells.length)txt='🏮 灯阵还没挂起来';
+  else if(ld.lit>=ld.n)txt='🏁 这一盘全锁上了';
+  else txt='🏮 已锁 '+ld.lit+' / '+ld.n+' 笔 · 顺灯 '+ld.litN+' 盏 · 油还剩 '+Math.max(0,ld.oil)+' 滴';
+  if(bar&&ld.hudTxt.mbar!==w){ld.hudTxt.mbar=w;bar.style.width=w}
+  if(tt&&ld.hudTxt.mtxt!==txt){ld.hudTxt.mtxt=txt;tt.textContent=txt}
+  let c='🔦 ';
+  if(ld.cool>0)c+='✋ 手刚出过';
+  else if(ld.prevMs>0)c+='🔮 预览中';
+  else if(!ld.rec)c+='——';
+  else if(ld.lit>=ld.n)c+='这一盘点齐了';
+  else c+='该点第 '+(ld.i+1)+' 笔 · '+LD_DIRN[ldDn(ld.gl[ld.i].dir)];
+  if(ck&&ld.hudTxt.ck!==c){ld.hudTxt.ck=c;ck.textContent=c}
+  const sl=document.getElementById('ldSlowTag');
+  if(sl){
+    const t=ld.prevMs>0?'🔮 预览连锁中':(ld.hintMs>0?'💡 已圈出目标':'');
+    sl.textContent=t;sl.classList.toggle('on',!!t);
+  }
+}
+function ldHudLight(){
+  const sc=document.getElementById('ldScoreTxt'),t='🎯 '+Math.round(ld.score)+' 分';
+  if(sc&&ld.hudTxt.sc!==t){ld.hudTxt.sc=t;sc.textContent=t}
+  const lf=document.getElementById('ldLeftTxt'),s='🀫 还 '+Math.max(0,ld.n-ld.lit)+' 笔';
+  if(lf&&ld.hudTxt.left!==s){ld.hudTxt.left=s;lf.textContent=s}
+  const bd=document.getElementById('ldBadge');
+  if(bd){
+    let bg='🏮 '+ld.cols+'×'+ld.rows+' 阵';
+    if(ld.fogN||ld.mirN){
+      const q=[];
+      if(ld.fogN)q.push('🌫 雾灯 ×'+ld.fogN);
+      if(ld.mirN)q.push('🪞 反灯 ×'+ld.mirN);
+      bg=q.join(' · ');
+    }else if(ld.cleanBoard&&ld.lit>0)bg='✨ 一步不差';
+    if(ld.hudTxt.badge!==bg){ld.hudTxt.badge=bg;bd.textContent=bg}
+    bd.classList.toggle('on',!!(ld.fogN||ld.mirN||ld.cleanBoard));
+  }
+  ldMeterView();
+}
+function ldHud(){
+  const R=ldRank(ldInt('hz_ld_words'));
+  ldSet('ldRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<LD_HEART_MAX;i++)hs+=(i<ld.hearts?'❤️':'🖤');
+  ldSet('ldHeartTxt',hs||'🖤');
+  ldSet('ldComboTxt','🔥 连 '+ld.combo);
+  ldSet('ldLevelTxt','🚀 '+ld.levels+' 盘');
+  ldSet('ldMissTxt','🙅 '+ld.wrongs);
+  ldSet('ldLitTxt','🏮 '+ld.litN);
+  ldSet('ldDarkTxt','🖤 '+ld.darkN);
+  ldSet('ldPrevTxt','🔮 '+ld.prevs);
+  ldSet('ldLvTxt','第 '+ld.lv+' 段 · '+ld.cols+'×'+ld.rows+' 阵');
+  const hb=document.getElementById('ldHintBtn');
+  if(hb){hb.disabled=ld.hintN<=0;hb.textContent='💡 指认目标 ×'+ld.hintN}
+  const pb=document.getElementById('ldPrevBtn');
+  if(pb){
+    pb.disabled=ld.prevN<=0;
+    pb.textContent='🔮 预览 ×'+ld.prevN+(ld.prevFree>0?'（免费 '+ld.prevFree+' 次）':'');
+  }
+  const wb=document.getElementById('ldWipeBtn');
+  if(wb){wb.disabled=ld.wipeN<=0||!ldFogLeft();wb.textContent='🌫 擦雾 ×'+ld.wipeN}
+  ldRenderOils();ldLine();ldHudLight();
+}
+function ldLine(){
+  const el=document.getElementById('ldHintLine');if(!el)return;
+  if(!ld.rec||ld.lit>=ld.n){el.innerHTML='👇 <b>这一盘全锁上了</b> · 点已锁的灯能问它锁的是第几笔';return}
+  const dir=ld.gl[ld.i].dir;
+  el.innerHTML='👇 <b>点亮挂着「'+LD_DIRN[ldDn(dir)]+'」的那盏灯</b>（按 <code>1</code>～<code>9</code> 或直接用手指点；<code>V</code> 先预览连锁）';
+}
+function ldAskText(){
+  if(!ld.rec)return;
+  ldSet('ldAsk','🏮 「<b>'+ld.rec.ch+'</b>」拆成 '+ld.n+' 笔贴在 '+ld.cols+'×'+ld.rows+' 盏灯上<br><small>'+
+    (ld.lit>=ld.n?'这个字 <b>全锁上了</b>':
+    '该点 <b>第 '+(ld.i+1)+' 笔「'+LD_DIRN[ldDn(ld.gl[ld.i].dir)]+'」</b>：'+(ld.dupN?'同一笔可能 <b>贴在两盏灯上</b>，' : '')+
+    '按下去 <b>上下左右跟着翻</b> · 还剩 <b>'+Math.max(0,ld.n-ld.lit)+' 笔</b>、<b>'+ld.oil+' 滴油</b>')+'</small>');
+}
+/* ---- 出手 ---- */
+function ldPress(idx){
+  if(!ld.run||ld.over||!ld.rec||ld.clearing||ld.wait)return;
+  const c=ld.cells[idx];
+  if(!c)return;
+  if(ld.cool>0){ldSay('✋ <b>手刚出过</b>：缓 '+(LD_COOL*1000|0)+' 毫秒 —— 先看清这盏灯面贴的是哪一笔','#B3E5FC');return}
+  ld.cool=LD_COOL;ld.think=0;
+  if(c.lock){ldAskLock(c);return}
+  if(c.fog&&!c.seen){ldFog(c);return}
+  if(c.gi>=0&&c.self&&c.gi===ld.i&&ld.rev[c.gi]!==1){ldLock(c);return}
+  ldWrong(c);
+}
+function ldAskLock(c){
+  const j=c.gi;
+  const done=ld.lit>=ld.n;
+  ldSay('🔒 <b>'+ldName(c.i)+' 已经锁住了</b>：它长亮着 <b>第 '+(j+1)+' 笔「'+LD_DIRN[ldDn(ld.gl[j]?ld.gl[j].dir:-1)]+'」</b>，<b>谁都翻不动它</b>。'+
+    (done?'这个字 <b>已经点齐了</b>':'现在该点 <b>第 '+(ld.i+1)+' 笔「'+LD_DIRN[ldDn(ld.gl[ld.i].dir)]+'」</b>')+'','#B3E5FC');
+  tone(420,.07,'sine',.03);
+}
+function ldFog(c){
+  c.seen=1;ld.fogPeeks++;ldAdd('hz_ld_fog',1);
+  ldRepaint();ldChain(c.i,false);
+  const face=ldFace(c),p=ldXY(c.i);
+  ldBits(p.x,p.y,'#B3E5FC',8);
+  ldPop(p.x,p.y-ld.L/2-16,'🌫 擦开了','#B3E5FC');
+  tone(520,.1,'sine',.04);
+  const nm=c.gi<0?'一盏 <b>空灯</b>':(c.self?'「'+LD_DIRN[ldDn(face.dir)]+'」——第 <b>'+(c.gi+1)+' 笔</b>':'「'+LD_DIRN[ldDn(face.dir)]+'」（<b>别的字掉下来的笔形</b>）');
+  ldSay('🌫 <b>擦开雾</b>：'+ldName(c.i)+' 贴着 '+nm+' —— 擦雾 <b>不吃油、不算点错</b>，但这一下 <b>连锁照翻</b>（'+(c.mir?'它还是 🪞 反灯，翻的是 <b>斜对角</b>':'这盏 + 上下左右一起翻了')+'）',
+    (c.gi>=0&&c.gi===ld.i)?'#FFD740':'#B3E5FC');
+  ldHintLayer();ldAskText();ldHud();
+}
+function ldLock(c){
+  const i=ld.i,dir=ld.gl[i].dir,wasLit=!!c.lit;
+  c.lock=1;c.lit=1;ld.rev[i]=1;
+  ld.lit++;ld.hits++;ld.lastI=i;
+  ldAdd('hz_ld_lit',1);ldAdd('hz_ld_boards',1);
+  /* 重影：同一笔的另一盏灯变成空灯 */
+  for(let k=0;k<ld.cells.length;k++){
+    const o=ld.cells[k];
+    if(o!==c&&o.gi===i){o.gi=-1;o.ghost=1;if(o.faceEl)o.faceEl.style.display='none'}
+  }
+  let gain;
+  if(wasLit){
+    ld.oil-=LD_OIL_LOCK;ld.litN++;ld.combo++;
+    if(ld.combo>ld.maxCombo)ld.maxCombo=ld.combo;
+    gain=Math.round((6+(i+1)*2+ld.lv*2)*(1+ld.combo*0.05));
+  }else{
+    ld.oil-=LD_OIL_DARK;ld.darkN++;ld.cleanBoard=false;
+    ldAdd('hz_ld_dark',1);
+    gain=6+(i+1)*2+ld.lv*2;
+  }
+  ld.score+=gain;ld.i++;
+  ld.at=ldAt();
+  const p=ldXY(c.i);
+  ldChain(c.i,true);
+  ldBits(p.x,p.y,LD_COL[ldDn(dir)],wasLit?16:10);
+  ldPop(p.x,p.y-ld.L/2-18,(wasLit?'🏮 顺灯 +':'🖤 火柴 +')+gain,wasLit?'#FFD740':'#B0BEC5');
+  ldTone(LD_NOTE[Math.min(LD_NOTE.length-1,ld.lit-1)],.14,'triangle',.06);
+  ldSay((wasLit?'🏮 <b>顺灯锁上了！</b>':'🖤 <b>擦火柴也点着了</b>（多花 1 滴油、<b>没有连击加成</b>）')+'「'+ld.rec.ch+'」的第 <b>'+(i+1)+'</b> 笔是 <b>'+
+    LD_DIRN[ldDn(dir)]+'</b>（'+(LD_RULE[ldDn(dir)]||'从左上开始写')+'）：+'+gain+' 分'+
+    (wasLit&&ld.combo>1?' · 🔥 连 '+ld.combo:'')+' · 🛢 还剩 '+Math.max(0,ld.oil)+' 滴 · 这一下 <b>连带翻了 '+
+    (ldNbrs(c.i,true).length)+' 盏</b>',
+    ld.lit>=ld.n?'#69F0AE':'#FFD740');
+  if(ld.combo>=3)speakEncourage();
+  ldRepaint();ldReveal(i);ldMini();ldAskText();ldHud();
+  if(ld.lit>=ld.n){ldBoardClear();return}
+  if(ld.oil<=0){ldDry();return}
+  ldHintLayer();ldLine();ldHudLight();
+}
+function ldWrong(c){
+  const i=ld.i,want=ld.gl[i].dir;
+  ld.oil-=LD_OIL_MISS;
+  ld.score=Math.max(0,ld.score-LD_MISS_SCORE);
+  ld.combo=0;ld.wrongs++;ld.cleanBoard=false;
+  ldAdd('hz_ld_wrong',1);
+  ldMissAdd(ld.rec.ch);
+  const p=ldXY(c.i);
+  ldChain(c.i,false);
+  ldShakeFx();ldRipple(p.x,p.y);ldBits(p.x,p.y,'#FF8A66',10);
+  tone(190,.2,'sawtooth',.06);
+  ldPop(p.x,p.y-ld.L/2-16,'🙅 −'+LD_MISS_SCORE,'#FF8A80');
+  let why;
+  if(c.gi<0)why=c.ghost?'这盏是 <b>刚才那笔留下的空壳</b>（那一笔已经锁在别处了）':'这盏是 <b>空灯</b>，灯面上没贴这个字的笔';
+  else if(!c.self)why='它贴的是 <b>别的字掉下来的「'+LD_DIRN[ldDn(ldFace(c).dir)]+'」</b>，冒充这个字的笔形';
+  else why='它贴的是「'+LD_DIRN[ldDn(ld.gl[c.gi].dir)]+'」，那是 <b>第 '+(c.gi+1)+' 笔</b>，'+(c.gi<i?'已经过去了':'<b>还排在后面</b>（'+(LD_RULE[ldDn(ld.gl[c.gi].dir)]||'')+'）');
+  ldSay('🙅 <b>点错了</b>：'+ldName(c.i)+' —— '+why+'。现在该点的是 <b>第 '+(i+1)+' 笔「'+LD_DIRN[ldDn(want)]+'」</b>：扣 '+LD_MISS_SCORE+' 分、吃 <b>1 滴油</b>（还剩 '+
+    Math.max(0,ld.oil)+' 滴）、连击清零 —— 不过 <b>连锁照翻</b>，想清楚这一翻是不是 <b>你要的铺垫</b>','#FF8A80');
+  ldRepaint();ldHud();
+  if(ld.wrongs%LD_MISS_HEART===0){
+    ld.hearts--;
+    ldSay('💔 <b>累计点错 '+ld.wrongs+' 次</b>：掉一颗心（还剩 '+ld.hearts+' 颗）—— 伸手前先 <b>🔮 预览一下连锁</b>，再决定点哪盏','#FF8A80');
+    if(ld.hearts<=0){ldEnd('miss');return}
+  }
+  if(ld.oil<=0){ldDry();return}
+  ldLine();ldHudLight();
+}
+function ldDry(){
+  ldAdd('hz_ld_dry',1);ld.combo=0;
+  ldSay('🫙 <b>灯油用光了</b>：这一盘 <b>重新挂一次</b>（油补满、锁过的灯全灭回来）—— 点之前先 <b>把这盏灯面的形状念成笔名</b>','#FF8A80');
+  tone(150,.22,'sawtooth',.05);
+  ldShakeFx();ldHud();
+  ld.wait=true;
+  ldT(function(){ldRestring(true)},LD_DRY_MS);
+}
+/* ---- 过盘 / 升段 ---- */
+function ldBoardClear(){
+  ld.levels++;
+  const clean=ld.cleanBoard,n=ld.n;
+  let gain=20+n*5+ld.lv*4;
+  let msg='🏁 <b>这一盘点齐了！</b>「'+ld.rec.ch+'」的 '+n+' 笔全锁上了：+'+gain+' 分';
+  const lb=Math.max(0,ld.oil)*5;
+  gain+=lb;
+  if(lb)msg+=' · 🫙 还剩 '+ld.oil+' 滴油，<b>再加 '+lb+'</b>';
+  if(clean){
+    gain+=15;ldAdd('hz_ld_perfect',1);
+    msg+=' · ✨ <b>一步不差（全顺灯、一次没错），再加 15 分</b>';
+  }else if(ld.darkN)msg+=' · 🖤 擦过 '+ld.darkN+' 次火柴，下次试着 <b>先把它翻亮</b>';
+  ld.score+=gain;
+  ldAdd('hz_ld_words',1);ldBookAdd(ld.rec.ch);ldMissDel(ld.rec.ch);
+  ldPop(LD_CX,LD_CY-140,clean?'✨ 一步不差':'🏁 点齐','#FFF176');
+  ldBits(LD_CX,LD_CY-70,'#FFF176',26);
+  ldBits(LD_CX,LD_CY+50,'#FFE082',16);
+  [523,659,784,1047].forEach(function(f,i){ldT(function(){tone(f,.15,'triangle',.055)},i*80)});
+  ldSay(msg,'#69F0AE');
+  speakEncourage();
+  ldLvCheck();
+  ld.clearing=true;ld.wait=true;
+  ldMini();ldAskText();ldHud();
+  ldT(function(){ld.clearing=false;ldNextRec()},LD_NEXT_MS);
+}
+function ldLvCheck(){
+  const nl=Math.min(9,1+Math.floor(ld.levels/2));
+  if(nl<=ld.lv)return;
+  ld.lv=nl;
+  ld.hearts=Math.min(LD_HEART_MAX,ld.hearts+1);
+  ld.hintN=Math.min(4,ld.hintN+1);
+  ld.respinN=Math.min(4,ld.respinN+1);
+  ld.wipeN=Math.min(4,ld.wipeN+1);
+  const g=ldGridOf(ld.lv);
+  /* 过盘那句要留在屏上，所以升段的播报晚半拍再说 */
+  ldT(function(){
+    ldSay('⚡ <b>第 '+ld.lv+' 段</b>：灯阵挂成 <b>'+g.c+'×'+g.r+'</b>（'+(g.c*g.r)+' 盏）、油 '+ldOilNeed()+' 起步'+
+      (ldDupOf(ld.lv)?'、有 <b>'+ldDupOf(ld.lv)+' 笔贴在两盏灯上</b>':'')+
+      (ldMirOf(ld.lv)?'、混进 <b>'+ldMirOf(ld.lv)+' 盏 🪞 反灯</b>（翻 <b>斜对角</b>）':(ldFogOf(ld.lv)?'、混进 <b>'+ldFogOf(ld.lv)+' 盏 🌫 雾灯</b>（点它只擦雾）':''))+
+      ' —— 补一颗心、一次💡、一次🌫、一次🔄','#FFD740');
+    [659,784,988].forEach(function(f,i){ldT(function(){tone(f,.13,'triangle',.055)},i*95)});
+  },640);
+  ldHud();
+}
+/* ---- 重挂 / 换字 ---- */
+function ldResetBoard(){
+  ld.cleanBoard=true;ld.hintMs=0;ld.prevMs=0;ld.prevSet=null;
+  ld.lit=0;ld.darkN=0;ld.litN=0;ld.i=0;ld.lastI=-1;
+  ld.fogPeeks=0;ld.think=0;
+  ld.prevFree=LD_PREV_FREE;ld.prevN=LD_PREV_MAX;
+  ld.rev=[];
+  for(let i=0;i<20;i++)ld.rev.push(0);
+}
+function ldRestring(force){
+  if(!ld.run||ld.over||!ld.rec)return;
+  if(!force){
+    if(ld.respinN<=0){ldSay('🔄 <b>没有重挂次数了</b>：每升 1 段补一次（最多攒 4 次）','#B3E5FC');return}
+    ld.respinN--;ld.respins++;ld.combo=0;
+    ldSay('🔄 <b>重新挂过</b>：同一个字换个摆法（油补满、锁过的灯全灭回来、连击清零）','#B3E5FC');
+    tone(392,.1,'square',.04);
+  }
+  ldResetBoard();
+  if(!ldHangAgain()){ldEnd('nodata');return}
+  ld.wait=false;
+  ldRenderRack();ldRenderOils();ldHintLayer();ldMini();ldAskText();ldHud();
+}
+function ldNextRec(){
+  ld.rec=ldNewRec();
+  if(!ld.rec){ldEnd('nodata');return}
+  ldResetBoard();
+  if(!ldHangAgain()){ldEnd('nodata');return}
+  ld.wait=false;
+  ldRenderRack();ldRenderOils();ldMini();ldAskText();ldHud();
+}
+/* ---- 工具 ---- */
+function ldHint(){
+  if(!ld.run||ld.over||!ld.rec)return;
+  if(ld.hintN<=0){ldSay('💡 <b>指认用完了</b>：每升 1 段补 1 次','#B3E5FC');return}
+  if(ld.lit>=ld.n){ldSay('💡 这一盘的笔 <b>全锁上了</b>','#A5D6A7');return}
+  ld.hintN--;ld.hints++;ldAdd('hz_ld_hints',1);
+  ld.think=0;ld.hintMs=LD_HINT_MS;
+  tone(880,.09,'triangle',.04);
+  const c=ld.cells[ld.at[0]],dir=ld.gl[ld.i].dir;
+  ldSay('💡 <b>圈出来了</b>：第 '+(ld.i+1)+' 笔「'+LD_DIRN[ldDn(dir)]+'」挂在 <b>'+ldName(ld.at[0])+'</b>'+(ld.at.length>1?'（另有 <b>1 盏重影</b>）':'')+
+    '，现在 <b>'+(c&&c.lit?'亮着 —— 直接点，1 滴油、吃连击加成':'灭着 —— 点它要花 2 滴油，先用别的灯把它 <b>翻亮</b>')+'</b>；只圈 '+(LD_HINT_MS/1000)+' 秒','#FFD740');
+  ldHintLayer();ldHud();
+}
+function ldPreview(){
+  if(!ld.run||ld.over||!ld.rec)return;
+  if(ld.prevN<=0){ldSay('🔮 <b>这一盘预览用完了</b>：每盘最多 '+LD_PREV_MAX+' 次','#B3E5FC');return}
+  if(ld.lit>=ld.n){ldSay('🔮 这一盘 <b>全锁上了</b>','#A5D6A7');return}
+  const idx=ld.at[0];
+  if(idx==null){ldSay('🔮 <b>找不到挂着这一笔的灯</b>：用 💡 指认一下','#FFCC80');return}
+  let paid='';
+  if(ld.prevFree>0)ld.prevFree--;
+  else{
+    ld.oil-=LD_OIL_LOCK;
+    paid='（这次 <b>花了 1 滴油</b>，还剩 '+Math.max(0,ld.oil)+' 滴）';
+  }
+  ld.prevN--;ld.prevs++;ldAdd('hz_ld_peek',1);
+  ld.think=0;ld.prevMs=LD_PREV_MS;
+  ld.prevSet=ldNbrs(idx,true);
+  tone(700,.09,'triangle',.04);
+  const c=ld.cells[idx];
+  let on=0,off=0;
+  for(let k=0;k<ld.prevSet.length;k++){const o=ld.cells[ld.prevSet[k].i];if(o&&o.lit)on++;else off++}
+  ldSay('🔮 <b>预览</b>：按下 '+ldName(idx)+' 会连带翻掉 <b>'+ld.prevSet.length+' 盏</b>（'+(c.mir?'🪞 反灯，翻的是 <b>斜对角</b>':'十字的四邻')+
+    '）：<b>'+on+' 盏会灭、'+off+' 盏会亮</b> '+paid+' —— 数清这些，才知道 <b>下一笔那盏点完还亮不亮</b>','#80DEEA');
+  ldHintLayer();ldHudLight();ldHud();
+  if(ld.oil<=0)ldDry();
+}
+function ldWipe(){
+  if(!ld.run||ld.over||!ld.rec)return;
+  if(!ldFogLeft()){ldSay('🌫 <b>这一盘没有雾灯</b>：第 5 段起才会挂上被夜雾糊住的灯','#B3E5FC');return}
+  if(ld.wipeN<=0){ldSay('🌫 <b>擦雾次数用完了</b>：每升 1 段补 1 次','#B3E5FC');return}
+  let idx=-1;
+  for(let i=0;i<ld.cells.length;i++)if(ld.cells[i].fog&&!ld.cells[i].seen){idx=i;break}
+  if(idx<0){ldSay('🌫 雾 <b>全擦开了</b>','#A5D6A7');return}
+  ld.wipeN--;ld.wipes++;ldAdd('hz_ld_wipe',1);
+  const c=ld.cells[idx];c.seen=1;ld.think=0;
+  tone(600,.1,'sine',.04);
+  const face=ldFace(c),p=ldXY(idx);
+  ldBits(p.x,p.y,'#B3E5FC',7);
+  ldSay('🌫 <b>擦开一盏雾灯</b>：'+ldName(idx)+' 贴着 '+
+    (c.gi<0?'<b>空灯</b>':(c.self?'「'+LD_DIRN[ldDn(face.dir)]+'」（第 <b>'+(c.gi+1)+' 笔</b>）':'「'+LD_DIRN[ldDn(face.dir)]+'」（<b>别的字的笔形</b>）'))+
+    ' —— 擦雾 <b>不动连锁</b>，只是看一眼','#B3E5FC');
+  ldRepaint();ldHud();
+}
+function ldNag(){
+  if(!ld.rec||ld.lit>=ld.n||!ld.at.length)return;
+  const i=ld.i,c=ld.cells[ld.at[0]],dir=ld.gl[i].dir;
+  ldSay('🦉 <b>别乱按</b>：现在该点 <b>第 '+(i+1)+' 笔「'+LD_DIRN[ldDn(dir)]+'」</b>（'+(LD_RULE[ldDn(dir)]||'从左上开始写')+
+    '）—— 它在 <b>'+ldName(ld.at[0])+'</b>，现在 <b>'+(c&&c.lit?'亮着':'灭着')+'</b>：'+
+    (c&&c.lit?'<b>直接点</b>，1 滴油还吃连击':'要么 <b>花 2 滴油擦火柴</b>，要么 <b>点别的灯把它翻亮</b>')+
+    '。油还剩 <b>'+ld.oil+' 滴</b>','#A5D6A7');
+  tone(587,.09,'sine',.035);
+  ldAdd('hz_ld_nags',1);
+}
+/* ---- 循环 ---- */
+function ldStartLoop(){ldStopLoop();ld.last=0;ld.rafId=requestAnimationFrame(ldLoop)}
+function ldStopLoop(){if(ld.rafId){cancelAnimationFrame(ld.rafId);ld.rafId=0}ld.last=0}
+function ldLoop(ts){
+  if(!ld.run||ld.over){ld.rafId=0;return}
+  const dt=ld.last?Math.min(0.05,(ts-ld.last)/1000):0.016;
+  ld.last=ts;
+  ldTick(dt);
+  ld.rafId=requestAnimationFrame(ldLoop);
+}
+function ldTick(dt){
+  const ms=dt*1000;
+  ld.t+=dt;ld.playMs+=ms;
+  ld.tones=6;
+  if(ld.cool>0)ld.cool=Math.max(0,ld.cool-dt);
+  if(ld.hintMs>0){
+    ld.hintMs=Math.max(0,ld.hintMs-ms);
+    if(!ld.hintMs)ldHintLayer();
+  }
+  if(ld.prevMs>0){
+    ld.prevMs=Math.max(0,ld.prevMs-ms);
+    if(!ld.prevMs){ld.prevSet=null;ldHintLayer()}
+  }
+  if(!ld.clearing&&!ld.wait&&ld.lit<ld.n)ld.think+=ms;
+  if(ld.think>=LD_NAG_MS){ld.think=0;ldNag()}
+  ldHudLight();
+}
+/* ---- 输入 ---- */
+function ldBind(){
+  if(ld.bound)return;
+  ld.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='lights'||!ld.run||ld.over)return;
+    const k=e.key;
+    if(k>='1'&&k<='9'){if(!e.repeat&&ld.cells.length)ldPress(+k-1);return}
+    if(k===' '||k==='Enter'){
+      if(!e.repeat)ldSay('🏮 <b>这一版没有单一答案键</b>：灯阵上 '+(ld.at.length?'第 '+(ld.at[0]+1)+' 盏':'——')+' 挂着下一笔，按 <code>1</code>～<code>9</code> 或直接点它','#B3E5FC');
+      e.preventDefault();return;
+    }
+    if(k==='h'||k==='H'){if(!e.repeat)ldHint();return}
+    if(k==='v'||k==='V'){if(!e.repeat)ldPreview();return}
+    if(k==='w'||k==='W'){if(!e.repeat)ldWipe();return}
+    if(k==='r'||k==='R'){if(!e.repeat)ldRestring(false);return}
+    if(k==='?'){ldHelp();return}
+  });
+}
+function ldPointer(){
+  const svg=document.getElementById('ldSvg');
+  if(!svg||ld.ptrBound)return;
+  ld.ptrBound=true;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='lights')return;
+    const r=svg.getBoundingClientRect();
+    if(!r.width||!r.height)return;
+    const x=(ev.clientX-r.left)/r.width*LD_W,y=(ev.clientY-r.top)/r.height*LD_H;
+    ldTapAt(x,y);
+    ev.preventDefault();
+  });
+}
+function ldTapAt(x,y){
+  if(!ld.cells.length)return;
+  const lim=ld.L/2+10;
+  for(let i=0;i<ld.cells.length;i++){
+    const p=ldXY(i);
+    if(Math.abs(x-p.x)<=lim&&Math.abs(y-p.y)<=lim){ldPress(i);return}
+  }
+}
+/* ---- 生命周期 ---- */
+function ldStopAll(){ldStopLoop();ldKillTimers();ld.gen++}
+async function ldStart(){
+  ldStopAll();
+  const g=ld.gen;
+  const stale=function(){return g!==ld.gen||!ld.run||ld.over};
+  ld.run=true;ld.over=false;ld.busy=false;ld.clearing=false;ld.wait=false;
+  ld.lv=1;ld.score=0;ld.hearts=LD_HEARTS;ld.combo=0;ld.maxCombo=0;
+  ld.levels=0;ld.hits=0;ld.wrongs=0;ld.fogPeeks=0;ld.wipes=0;ld.hints=0;ld.prevs=0;ld.respins=0;ld.darkN=0;ld.litN=0;
+  ld.hintN=2;ld.respinN=2;ld.wipeN=2;
+  ld.hintMs=0;ld.prevMs=0;ld.prevSet=null;ld.think=0;ld.playMs=0;ld.t=0;ld.cool=0;
+  ld.pool=[];ld.miss=[];ld.rec=null;ld.n=0;ld.cells=[];ld.gl=[];ld.xg=[];ld.rev=[];ld.at=[];
+  ld.lit=0;ld.i=0;ld.lastI=-1;ld.fogN=0;ld.mirN=0;ld.dupN=0;
+  ld.cols=3;ld.rows=3;ld.step=110;ld.L=90;ld.oilMax=0;ld.oil=0;ld.prevFree=LD_PREV_FREE;ld.prevN=LD_PREV_MAX;
+  ld.crawl=false;ld.hudTxt={};
+  showScreen('lights');
+  ldBind();ldPointer();
+  ldRenderStatic();ldRenderRack();ldRenderOils();ldMini();ldHintLayer();
+  ldSet('ldAsk','🏮 正在挂灯……<br><small>在字库里挑「每一笔都认得出形状」的字</small>');
+  ldSay('架子上挂着一片 <b>花灯</b>，灯面贴着这个字的 <b>一笔</b>。按一下 <b>这盏 + 上下左右一起翻</b> —— <b>你永远无法只动一盏</b>。只有挂着 <b>下一笔</b> 的那盏 <b>锁得死</b>：亮着点花 1 滴油，灭着点花 2 滴','#A5D6A7');
+  let ok=await ldBuild();
+  if(stale())return;
+  if(!ok){
+    ldSay('🏮 灯有点少，再挂一次试试……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await ldBuild(true);
+    if(stale())return;
+  }
+  if(!ok||!ld.pool.length){
+    ld.run=false;
+    ldSet('ldAsk','😢 挂不起一阵灯<br><small>字库还没加载好，稍后再来点灯</small>');
+    ldSay('先去别的模式练两笔，回来灯就齐了','#FFCC80');
+    return;
+  }
+  ldAdd('hz_ld_games',1);
+  ld.rec=ldNewRec();
+  if(!ld.rec){ld.run=false;return}
+  ldResetBoard();
+  if(!ldHangAgain()){ld.run=false;return}
+  if(!ld.run||ld.over||stale())return;
+  ldRenderRack();ldRenderOils();ldMini();ldAskText();ldHud();
+  ldStartLoop();
+}
+function ldEnd(reason){
+  if(ld.over)return;
+  ld.over=true;ld.run=false;ld.wait=false;ld.clearing=false;
+  ldStopAll();
+  const sc=Math.round(ld.score);
+  localStorage.setItem('hz_ld_best',String(Math.max(ld.levels,ldInt('hz_ld_best'))));
+  localStorage.setItem('hz_ld_streak',String(Math.max(ld.maxCombo,ldInt('hz_ld_streak'))));
+  localStorage.setItem('hz_ld_lv',String(Math.max(ld.lv,ldInt('hz_ld_lv'))));
+  ldAdd('hz_ld_ms',Math.round(ld.playMs/1000));
+  const stars=Math.floor(sc/120)+ld.levels*3;
+  if(stars>0)addStars(stars);
+  ldHintLayer();
+  showScreen('lights-result');
+  const R=ldRank(ldInt('hz_ld_words'));
+  const T={
+    miss:['🙅','点错太多次了','<b>每 '+LD_MISS_HEART+' 次点错掉一颗心</b>：伸手前先 <b>🔮 预览连锁</b>，看清 <b>这一按会翻掉哪几盏</b>'],
+    quit:['🏁','今天收工了','下一阵先走顺「<b>第几笔 → 找那盏灯 → 算清连锁</b>」：<b>顺灯</b> 吃连击加成，<b>一步不差</b> 再加 15 分'],
+    nodata:['😢','灯没准备好','先去别的模式练两笔，回来灯就齐了']
+  };
+  const t=T[reason]||T.quit;
+  ldSet('ldRsEmoji',t[0]);
+  ldSet('ldRsTitle',t[1]);
+  ldSet('ldRsSub',t[2]);
+  ldSet('ldRsScore',String(sc));
+  ldSet('ldRsLevel',String(ld.levels));
+  ldSet('ldRsHit',String(ld.hits));
+  ldSet('ldRsLv',String(ld.lv));
+  ldSet('ldRsStreak',String(ld.maxCombo));
+  ldSet('ldRsMiss',ld.wrongs+' / '+ld.darkN);
+  ldSet('ldRsStars','⭐ '+stars);
+  ldSet('ldRsBest',String(ldInt('hz_ld_best')));
+  ldSet('ldRsBoards',String(ldInt('hz_ld_boards')));
+  ldSet('ldRsAll','🏅 '+R.e+' '+R.t+' · 累计点齐 '+ldInt('hz_ld_words')+' 个字\n'+
+    '🏮 顺灯 '+ldInt('hz_ld_lit')+' 盏 · 🖤 擦火柴 '+ldInt('hz_ld_dark')+' 次 · ✨ 一步不差 '+ldInt('hz_ld_perfect')+' 盘\n'+
+    '🙅 点错 '+ldInt('hz_ld_wrong')+' 次 · 🌫 擦雾 '+ldInt('hz_ld_fog')+' 盏 · 🔮 预览 '+ldInt('hz_ld_peek')+' 次\n'+
+    '🫙 用光油 '+ldInt('hz_ld_dry')+' 次 · 💡 指认 '+ldInt('hz_ld_hints')+' 次 · 🧮 数雾 '+ldInt('hz_ld_wipe')+' 次\n'+
+    '🦉 发呆提示 '+ldInt('hz_ld_nags')+' 次 · 🏮 锁上 '+ldInt('hz_ld_boards')+' 盏灯 · 最高挂到第 '+ldInt('hz_ld_lv')+' 段');
+  const book=(localStorage.getItem('hz_ld_book')||'').split(',').filter(function(c){return c.length===1});
+  ldSet('ldRsBookT',book.length?('🏮 花灯档案 · 已点齐 '+book.length+' 个字'):'');
+  const bh=document.getElementById('ldRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function ldRetry(){ldStart()}
+function ldLeave(){
+  ldStopAll();
+  if(ld.run&&!ld.over){ld.over=true;ld.run=false}
+  goHome();
+}
+function ldNudge(){
+  const dot=document.getElementById('ldCardDot'),tip=document.getElementById('ldCardTip');
+  const w=ldInt('hz_ld_words'),p=ldInt('hz_ld_perfect'),games=ldInt('hz_ld_games'),wr=ldInt('hz_ld_wrong');
+  const R=ldRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 点齐 '+w+' 个字 · 一步不差 '+p+' 盘 · 点错 '+wr+' 盏'):'按一盏四盏跟着翻，只有挂着下一笔的那盏锁得死';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function ldHelp(){
+  ldSay('🏮 架子上挂着 <b>'+ld.cols+'×'+ld.rows+'</b> 盏方灯（'+ld.cells.length+' 盏），灯面贴着「<b>'+(ld.rec?ld.rec.ch:'这个字')+'</b>」的 <b>一笔</b>；有些是 <b>空灯</b>、有些是 <b>别的字掉下来的笔形</b>。<br>'+
+    '🔻 <b>按一下 = 连锁翻转</b>：这盏 + <b>上下左右四盏</b> 一起亮↔暗（🪞 反灯翻 <b>斜对角</b>）—— 所以 <b>你永远无法只动一盏</b>，这就是花灯阵最磨人的地方。<br>'+
+    '🔒 <b>只有下一笔那盏锁得死</b>：贴着 <b>第 '+(ld.i+1)+' 笔「'+(ld.gl[ld.i]?LD_DIRN[ldDn(ld.gl[ld.i].dir)]:'——')+'」</b> 的那盏按下去就 <b>永久长亮</b>、左边米字格 <b>长回一笔</b>，以后谁都翻不动它。<b>顺灯</b>（它正亮着）花 <b>1 滴油</b> 且吃 <b>连击加成</b>；<b>擦火柴</b>（它灭着）花 <b>2 滴油</b>、没有加成、这一盘 <b>不算一步不差</b>。<br>'+
+    '🙅 <b>点到别的灯</b>：花 1 滴油、扣 '+LD_MISS_SCORE+' 分、连击清零，<b>但连锁照翻</b> —— 高手会 <b>故意点错一盏来翻亮目标</b>，这叫 <b>铺垫</b>；<b>每累计 '+LD_MISS_HEART+' 次掉一颗心</b>（3 颗起、最多 5 颗）。<br>'+
+    '🛢 <b>灯油</b> = 笔数 + max(3, 9−段数)，<b>用光这一盘重新挂</b>（不扣心，但这一盘白点了）。🔮（<code>V</code>）预览 <b>按目标会翻掉哪几盏</b>，每盘 <b>头 '+LD_PREV_FREE+' 次免费</b>、之后 1 滴油一次（最多 '+LD_PREV_MAX+' 次）；💡（<code>H</code>）圈出目标 '+(LD_HINT_MS/1000)+' 秒；🌫（<code>W</code>）擦开一盏雾灯（<b>不动连锁</b>）；🔄（<code>R</code>）同一个字重挂。<br>'+
+    '🌫 <b>雾灯</b>（<b>第 5 段</b> 起）点它 <b>不扣分不吃油</b>，只把雾擦开看一眼；🪞 <b>反灯</b>（<b>第 7 段</b> 起）翻 <b>斜对角</b>；<b>第 3 段</b> 起同一笔 <b>贴在两盏灯</b> 上，点哪盏都算，锁上后另一盏变空壳。<br>'+
+    '🏁 <b>笔笔锁齐 = 过一盘</b>：<b>20 + 笔数×5 + 段数×4</b> 分、<b>剩油×5</b> 再加、<b>一步不差再多 15</b>；<b>每 2 盘升 1 段</b>（最多 9 段）：灯阵从 3×3 长到 4×4。<br>'+
+    '🦉 发呆 12 秒会报 <b>下一笔在第几排第几盏、现在亮还是灭</b>；按 <code>1</code>～<code>9</code> 点灯、点已锁的灯问一句；战绩落盘 <code>hz_ld_*</code>','#A5D6A7');
 }
 
 window.addEventListener('DOMContentLoaded',boot);
