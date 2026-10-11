@@ -4504,6 +4504,90 @@ button:active{transform:scale(.95)}
   .fw-stage{flex-direction:column}
   .fw-mini{flex:0 0 auto;width:88px;margin:0 auto}
 }
+/* ================= v1.73 笔顺拔钉 ================= */
+.pn-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.pn-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.pn-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.pn-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.pn-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.pn-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.pn-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.pn-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#3E2B22 0%,#241811 62%,#16100C 100%);box-shadow:inset 0 0 30px rgba(0,0,0,.6)}
+.pn-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+.pn-xh{stroke:rgba(255,255,255,.14);stroke-width:5;stroke-dasharray:16 14}
+.pn-frame{fill:none;stroke:rgba(255,255,255,.22);stroke-width:5}
+.pn-s{stroke:rgba(255,255,255,.5);stroke-linecap:round}
+.pn-s.dim{opacity:.16}
+.pn-s.got{opacity:1}
+.pn-s.bad{opacity:.5}
+.pn-plank rect{stroke:rgba(0,0,0,.4);stroke-width:2}
+.pn-plank .pn-wood{fill:url(#pnWoodG)}
+.pn-plank .pn-edge{fill:rgba(255,255,255,.12)}
+.pn-plank.live .pn-wood{fill:url(#pnWoodHotG)}
+.pn-plank.live rect{stroke:#FFD740;stroke-width:2.5}
+.pn-plank{transition:none}
+.pn-plank.fall{animation:pnFall .52s cubic-bezier(.35,.6,.6,1) forwards}
+@keyframes pnFall{0%{transform:translate(0,0) rotate(0);opacity:1}100%{transform:translate(10px,300px) rotate(15deg);opacity:0}}
+.pn-pin{cursor:pointer}
+.pn-pin .pn-head{fill:#B0BEC5;stroke:rgba(0,0,0,.45);stroke-width:2}
+.pn-pin.live .pn-head{fill:url(#pnHeadG)}
+.pn-pin.live:hover .pn-head,.pn-pin.live:active .pn-head{fill:#FFE082}
+.pn-pin.buried .pn-head{fill:#455A64;stroke:rgba(0,0,0,.5)}
+.pn-pin.pulled{animation:pnPull .42s ease-out forwards;pointer-events:none}
+@keyframes pnPull{0%{transform:translate(0,0) rotate(0);opacity:1}100%{transform:translate(-26px,-96px) rotate(-34deg);opacity:0}}
+.pn-ttl{fill:#69F0AE}
+.pn-ttl.mid{fill:#FFB74D}
+.pn-ttl.low{fill:#FF5252}
+.pn-coin{fill:#FFC107;stroke:#8D6E00;stroke-width:1.5}
+.pn-coin-t{font-size:10px;fill:#5D4037;font-weight:bold}
+.pn-ring{fill:none;stroke:#FFEB3B;stroke-width:3;stroke-dasharray:9 7;animation:pnMark .7s ease-out infinite}
+@keyframes pnMark{0%,100%{opacity:.3}50%{opacity:1}}
+.pn-jx{font-size:13px;font-weight:bold;fill:#FFE082}
+.pn-pin.buried .pn-jx{fill:rgba(255,255,255,.34)}
+.pn-pin.bent .pn-head{fill:#37474F;stroke:rgba(255,138,128,.8)}
+.pn-pin.bent{opacity:.55;pointer-events:auto}
+.pn-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pn-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:pnBit .72s ease-out forwards}
+@keyframes pnBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.pn-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF176;text-shadow:0 2px 6px rgba(0,0,0,.6);animation:pnPop .95s ease-out forwards;white-space:nowrap}
+@keyframes pnPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.pn-shake{animation:pnShake .3s}
+@keyframes pnShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(7px)}75%{transform:translateX(-3px)}}
+.pn-needles{display:flex;gap:5px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:34px;padding:6px;border-radius:14px;background:rgba(0,0,0,.3);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap}
+.pn-nd{width:22px;height:22px;line-height:22px;border-radius:7px;background:rgba(255,215,64,.85);color:#263238;font-size:13px;text-align:center;font-weight:bold}
+.pn-nd.used{background:rgba(255,255,255,.12);color:rgba(255,255,255,.32)}
+.pn-more{font-size:12px;color:#90A4AE}
+.pn-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.pn-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(255,255,255,.14);overflow:hidden}
+.pn-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#EF5350,#FFB74D 30%,#66BB6A 60%);transition:width .1s linear}
+.pn-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.pn-clock{font-size:12px;color:#fff;background:rgba(255,255,255,.14);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.pn-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#FFE082;background:rgba(0,0,0,.26);border-radius:14px;padding:9px 10px;line-height:1.5}
+.pn-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.pn-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0}
+.pn-tool{flex:1;padding:11px 4px;border:none;border-radius:13px;font-size:13px;color:#E1F5FE;background:rgba(255,255,255,.14);cursor:pointer}
+.pn-tool.on{background:#FFD740;color:#263238}
+.pn-tool:disabled{opacity:.4}
+.pn-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.28);color:#A5D6A7;font-size:13px;line-height:1.65;min-height:44px}
+.pn-msg b{color:#fff}
+.pn-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.pn-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.pn-badge{position:absolute;right:8px;top:8px;font-size:12px;color:#FFE082;background:rgba(0,0,0,.4);border-radius:11px;padding:3px 10px;display:none}
+.pn-badge.on{display:block}
+.pn-slow{position:absolute;left:8px;top:8px;font-size:12px;color:#B3E5FC;background:rgba(0,0,0,.4);border-radius:11px;padding:3px 10px;display:none}
+.pn-slow.on{display:block}
+.pn-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.pn-rs span{display:block;font-size:24px;font-weight:bold}
+.pn-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.pn-book-t{font-size:12px;color:#B3E5FE;margin-top:12px}
+.pn-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.pn-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.pn-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.pn-cdot.on{display:flex}
+@media (max-width:600px){
+  .pn-stage{flex-direction:column}
+  .pn-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
 </style>
 
 </head>
@@ -4560,8 +4644,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 71 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">71</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 72 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">72</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -4572,12 +4656,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>71 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>17</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>72 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>18</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" onclick="enterMode('pin')">
+      <div class="icon">📌</div>
+      <div class="info"><h3>笔顺拔钉</h3><p id="pnCardTip">一摞木板压着这个字，认出钉头上刻的那一笔才拔得开</p></div>
+      <span class="pn-cdot" id="pnCardDot">🆕</span>
+    </div>
     <div class="mode-card" onclick="enterMode('robot')">
       <div class="icon">🤖</div>
       <div class="info"><h3>笔顺机器人</h3><p id="rbCardTip">先把箭头排成一排，再按执行让它一格一格走</p></div>
@@ -5007,6 +5096,109 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="lzRetry()">🚣 再划一场</button>
     <button class="w-btn blue" onclick="lzLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-pin">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pnLeave()">← 返回</button>
+    <div class="stats"><span id="pnScoreTxt">🎯 0 分</span><span id="pnLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="pnHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="pn-hud">
+    <span id="pnRankTxt" title="称号">📌 拔钉新手</span>
+    <span id="pnHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="pnComboTxt" title="连击">🔥 连 0</span>
+    <span id="pnLevelTxt" title="过了几关">🚀 0 关</span>
+    <span id="pnLeftTxt" title="还剩几块板">🀫 还 0 块</span>
+    <span id="pnMissTxt" title="拔错几次">🙅 0</span>
+    <span id="pnSlipTxt" title="塌掉几块板">⬇️ 0</span>
+    <span id="pnCoinTxt" title="吸出几枚币">🪙 0</span>
+  </div>
+  <div class="pn-ask" id="pnAsk">📌 正在摞塔……<br><small>在字库里挑「每一笔都认得出形状」的字</small></div>
+  <div class="pn-stage">
+    <div class="pn-mini">
+      <svg viewBox="0 -1024 1024 1024" id="pnMiniSvg"></svg>
+      <div class="cap" id="pnMiniCap">这个字</div>
+    </div>
+    <div class="pn-tbl">
+      <svg class="pn-svg" id="pnSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="pnWoodG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#A1775B"/><stop offset="52%" stop-color="#7E553B"/><stop offset="100%" stop-color="#5C3B26"/>
+          </linearGradient>
+          <linearGradient id="pnWoodHotG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#C79A72"/><stop offset="52%" stop-color="#9C6E48"/><stop offset="100%" stop-color="#6E472C"/>
+          </linearGradient>
+          <radialGradient id="pnHeadG" cx="0.35" cy="0.3" r="0.8">
+            <stop offset="0%" stop-color="#FFF59D"/><stop offset="60%" stop-color="#FFD740"/><stop offset="100%" stop-color="#C99A00"/>
+          </radialGradient>
+        </defs>
+        <g id="pnStatic"></g>
+        <g id="pnWall"></g>
+        <g id="pnTower"></g>
+        <g id="pnHintG"></g>
+        <g id="pnTopG"></g>
+      </svg>
+      <div class="pn-badge" id="pnBadge">🎭</div>
+      <div class="pn-slow" id="pnSlowTag">🐢 慢速</div>
+      <div class="pn-fx" id="pnFx"></div>
+    </div>
+  </div>
+  <div class="pn-needles" id="pnNeedles"></div>
+  <div class="pn-meter">
+    <div class="pn-tl" id="pnTtlBox"><i id="pnTtlBar"></i><b id="pnTtlTxt">⏳ 这块板还不会塌</b></div>
+    <div class="pn-clock" id="pnClock">🔨 拆第 1 笔</div>
+  </div>
+  <div class="pn-hintline" id="pnHintLine">👇 <b>点板上刻着这一笔的那根钉子</b>（键盘 <code>1</code> <code>2</code> <code>3</code>）</div>
+  <div class="pn-tools">
+    <button class="pn-tool" id="pnHintBtn" onclick="pnHint()" disabled>💡 指认真钉</button>
+    <button class="pn-tool" id="pnMagBtn" onclick="pnMagnet()" disabled>🧲 吸币</button>
+    <button class="pn-tool" id="pnHamBtn" onclick="pnHammer()" disabled>🔨 砸板</button>
+    <button class="pn-tool" id="pnCrawlBtn" onclick="pnCrawl()">🐢 慢速</button>
+    <button class="pn-tool" onclick="pnReStack(false)">🔄 重摞</button>
+    <button class="pn-tool" onclick="pnEnd('quit')">🏁 结算离场</button>
+  </div>
+  <div class="pn-msg" id="pnMsg">一摞 <b>木板</b> 把这个字 <b>一笔一笔压住了</b>：只有 <b>最上面那块板</b> 拆得开，所以拆板顺序 <b>就是这个字的笔顺</b></div>
+  <div class="pn-tip">塔上一摞 <b>木板</b>，每块板压住这个字的 <b>一笔</b>（板从上到下 = 笔顺第 1 笔到第 n 笔）。<br>
+    📌 <b>拔钉</b>：每块板钉着 <b>1~3 根钉子</b>，钉头上刻着一个 <b>真实笔画形状</b> —— 只有刻着 <b>这一笔</b> 的那根 <b>真钉</b> 拔得动，拔开这块板就 <b>哗啦掉下去</b>，那一笔 <b>当场亮出来</b><br>
+    🎭 <b>假钉</b>：<b>第 3 段</b> 起每块板混进假钉（<b>别的字的笔形</b>），<b>第 5 段</b> 起的假钉 <b>就是这个字自己的另一笔</b>（更难认）—— 拔它 <b>拔不动</b>：扣 7 分、连击清零、<b>吃掉一枚 ✦ 针</b>、这根钉子 <b>拔弯</b>，<b>每累计 3 次掉一颗心</b><br>
+    ⏳ <b>催拆条</b>：最上面那块板有个 <b>倒计时</b>，<b>压着哨拔出来分最高（×1.6）</b>，但 <b>条走完板子就自己塌了</b> —— 那一笔 <b>白丢</b>（扣 3 分、这一关不算干净）<br>
+    🪙 <b>金币</b>：有些板子底下 <b>压着金币</b>，板子一掉就 <b>砸碎了</b>；按 🧲（<code>G</code>）可以在拆板前 <b>把它吸出来</b>（+12 一枚），但吸币要 <b>0.9 秒</b>，催拆条 <b>还在走</b><br>
+    🔨 <b>砸板</b>（<code>T</code>）：来不及就硬砸开 —— 省时间，但这一笔 <b>算没拆出来</b>、<b>✨ 一钉不错</b> 也没了；💡（<code>H</code>）圈出真钉、🔄（<code>R</code>）同一个字重新摞、🐢（<code>F</code>）催拆条走慢<br>
+    ✦ <b>针数</b>：每关的针有限（笔数 + 余量），<b>拔错一次吃一枚</b>，<b>针用光这一关重新摞</b>（不扣心，但这一关白拆了）<br>
+    🏁 <b>把一摞板全拆完 = 过一关</b>：<b>20 + 笔数×5 + 关卡×4</b> 分，<b>剩针×5</b> 再加，<b>一钉不错再多 15</b>；<b>每 2 关升 1 段</b>（最多 9 段）：板更多、假钉更多、催拆更快<br>
+    👀 <b>点下面被压住的板</b>：问它 <b>压着第几笔</b>、<b>还要等几块板</b> · 战绩落盘 <code>hz_pin_*</code></div>
+</div>
+<div class="screen" id="screen-pin-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pnLeave()">← 回首页</button>
+    <div class="stats"><span id="pnRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="pnRsEmoji">📌</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="pnRsTitle">拔钉收工了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="pnRsSub">下一次先 <b>认出钉头上刻的是哪一笔</b>，再决定 <b>要不要停下来吸币</b></p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="pn-rs">
+      <div><span style="color:#FFD700" id="pnRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="pnRsLevel">0</span><small>过了几关</small></div>
+      <div><span style="color:#69F0AE" id="pnRsHit">0</span><small>拔对几笔</small></div>
+      <div><span style="color:#FFAB91" id="pnRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="pnRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="pnRsMiss">0</span><small>🙅 拔错 / ⬇️ 塌板</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多拆几关 · 一共吸出多少币</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740"><span id="pnRsBest">0</span> 关 · <span id="pnRsCoins">0</span> 🪙</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="pnRsAll">📌 拔钉新手</div>
+      <div class="pn-book-t" id="pnRsBookT"></div>
+      <div class="pn-book" id="pnRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="pnRetry()">📌 再摞一塔</button>
+    <button class="w-btn blue" onclick="pnLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-flywheel">
@@ -9914,6 +10106,7 @@ function updateHomeStats(){
   if(typeof tqNudge==='function')tqNudge();
   if(typeof rbNudge==='function')rbNudge();
   if(typeof fwNudge==='function')fwNudge();
+  if(typeof pnNudge==='function')pnNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -9931,6 +10124,7 @@ function enterMode(mode){
   if(mode==='billiard'){tqStart();return}
   if(mode==='robot'){rbStart();return}
   if(mode==='flywheel'){fwStart();return}
+  if(mode==='pin'){pnStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -48557,6 +48751,938 @@ function fwHelp(){
     '💡 <b>指认下一笔</b>（<code>H</code>）：圈出下一笔那一格，并报 <b>它还有几秒到口</b>；🔄 <b>重新排盘</b>（<code>R</code>）：同一个字换个摆法；🐢 <b>慢速</b>（<code>F</code>）：盘速 ×0.55。<br>'+
     '🏁 <b>把一个字的笔全部按顺序接住 = 过一关</b>：<b>20 + 笔数×5 + 关卡×4</b> 分，<b>剩针×5</b> 再加，<b>一次没抢错再多 15</b>；<b>每 2 关升 1 段</b>（最多 9 段）：盘更快、格子更多、口子更窄、混进 🎭 干扰笔和 ⬛ 空槽，<b>第 4 段起会突然反转</b>、<b>第 6 段起会突然提速</b>。<br>'+
     '🦉 空按 13 秒会提示 <b>下一笔在哪、几秒后到口</b>；<code>?</code> 看玩法 · 战绩落盘 <code>hz_fw_*</code>','#A5D6A7');
+}
+
+/* ================= v1.73 笔顺拔钉（一摞木板把这个字压住了 · 每块板上钉着真假钉子 · 只有刻着这一笔的真钉拔得开） ================= */
+const PN_W=700,PN_H=470,PN_CX=350,PN_CY=240,PN_G=300;
+const PN_PLH=38,PN_STEP=46,PN_PLMIN=300,PN_R=18;
+const PN_HEARTS=3,PN_HEART_MAX=5,PN_MISS_HEART=3,PN_MISS_MAX=40,PN_BOOK_MAX=300;
+const PN_POOL_MIN=4,PN_POOL_WANT=16;
+const PN_NAG_MS=12000,PN_HINT_MS=2200,PN_NEXT_MS=900,PN_DRY_MS=820,PN_MAG_MS=900;
+const PN_COOL=0.14,PN_COIN=12,PN_NEAR=0.25;
+const PN_DIRN=['横','竖','撇','捺','折'];
+const PN_COL=['rgba(255,107,107,','rgba(78,205,196,','rgba(69,183,209,','rgba(255,160,122,','rgba(179,157,219,'];
+const PN_RULE=['先横后竖','先撇后捺','从上到下','从左到右','这一笔排在后面'];
+const PN_NOTE=[262,294,330,392,440,523,587,659,784,880,988,1047,1175,1319,1397,1568];
+const PN_RANKS=[
+  {n:0,e:'📌',t:'拔钉新手'},{n:3,e:'⏱',t:'掐着秒表'},{n:8,e:'👀',t:'认得出笔'},
+  {n:15,e:'🎯',t:'一钉到底'},{n:24,e:'🧲',t:'吸币好手'},{n:36,e:'✨',t:'一钉不错'},
+  {n:52,e:'🏅',t:'压哨高手'},{n:74,e:'💎',t:'塔不倒'},{n:105,e:'🌈',t:'拔钉大师'}
+];
+const pn={
+  run:false,over:false,busy:false,gen:0,rafId:0,timers:[],last:0,
+  pool:[],miss:[],rec:null,n:0,
+  pl:[],gl:[],xg:[],rev:[],wallEls:[],lit:0,dead:0,lastI:-1,
+  needleMax:0,needles:0,decoyN:0,
+  crawl:false,magMs:0,magI:-1,magP:null,
+  hintMs:0,think:0,playMs:0,t:0,tones:0,hudTxt:{},cool:0,ttlMax:0,live:-1,
+  lv:1,score:0,hearts:PN_HEARTS,combo:0,maxCombo:0,
+  levels:0,hits:0,wrongs:0,slips:0,coins:0,near:0,hints:0,hammers:0,mags:0,respins:0,
+  cleanLvl:true,hintN:2,respinN:2,magN:2,hamN:1,
+  bound:false,ptrBound:false,clearing:false,wait:false,pendingDry:false
+};
+function pnInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function pnAdd(k,n){if(n)localStorage.setItem(k,String(pnInt(k)+n))}
+function pnSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function pnSay(t,c){const el=document.getElementById('pnMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function pnShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function pnOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function pnClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function pnRank(n){let r=PN_RANKS[0];for(let i=0;i<PN_RANKS.length;i++)if(n>=PN_RANKS[i].n)r=PN_RANKS[i];return r}
+function pnDn(d){return d<0?4:d}
+function pnTone(f,d,t,v){if(pn.tones<=0)return;pn.tones--;tone(f,d,t,v)}
+function pnT(fn,ms){const g=pn.gen;const id=setTimeout(function(){if(g!==pn.gen)return;fn()},ms);pn.timers.push(id);return id}
+function pnKillTimers(){pn.timers.forEach(function(t){clearTimeout(t)});pn.timers=[]}
+function pnPinsLeft(p){let c=0;if(p)for(let j=0;j<p.pins.length;j++)if(!p.pins[j].used)c++;return c}
+/* ---- 难度：钉数、催拆秒数、假钉来路、币、针数 ---- */
+function pnDecoyCfg(){return pn.lv<=2?0:(pn.lv<=4?1:2)}
+function pnPinsOf(lv){return 1+(lv<=2?0:(lv<=4?1:2))}
+function pnTtlOf(lv){return Math.max(3200,9000-lv*700)}
+function pnSelfDecoy(){return pn.lv>=5}
+function pnNeedleMax(){return pn.n+Math.max(2,7-pn.lv)}
+function pnCoinCfg(){return Math.random()<(0.18+pn.lv*0.035)?(Math.random()<0.3?2:1):0}
+/* ---- 字库：每一笔都画得出形状 ---- */
+function pnBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function pnSig(d){return String(d||'').replace(/\s+/g,'')}
+function pnDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function pnPoly(m){
+  let d='';
+  for(let k=0;k<m.length;k++)d+=(k?'L':'M')+m[k][0].toFixed(0)+' '+m[k][1].toFixed(0);
+  return d;
+}
+function pnMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>8)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const sigs=[];
+  for(let i=0;i<ms.length;i++){
+    if(!pnBox(ms[i]))return null;
+    sigs.push(pnSig(pnDOf(sp,i)));
+  }
+  let same=true;
+  for(let i=1;i<sigs.length;i++)if(sigs[i]!==sigs[0]){same=false;break}
+  if(same)return null;
+  return {ch:ch,n:ms.length};
+}
+function pnCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<90;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(pnShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(pnShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(pnShuf(CHARS.slice()));
+  return out;
+}
+function pnTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function pnRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=pnTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians)return null;
+  if(!pnMake(ch,raw))return null;
+  return {ch:ch,raw:raw};
+}
+async function pnBuild(keep){
+  const g=pn.gen;
+  const stale=function(){return g!==pn.gen||!pn.run};
+  pn.miss=(localStorage.getItem('hz_pin_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  pnShuf(pn.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  pnCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)pn.pool=[];
+  for(let k=0;k<want.length&&pn.pool.length<PN_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return pnRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])pn.pool.push(rs[i]);
+  }
+  return pn.pool.length>=PN_POOL_MIN;
+}
+function pnNewRec(){
+  const w=pn.lv>=4?[3,8]:[2,6],used={};
+  if(pn.rec)used[pn.rec.ch]=1;
+  let cand=pn.pool.filter(function(r){const n=r.raw.medians.length;return n>=w[0]&&n<=w[1]});
+  if(!cand.length)cand=pn.pool.slice();
+  if(!cand.length)return null;
+  for(let i=0;i<pn.miss.length;i++){
+    for(let k=0;k<cand.length;k++)if(cand[k].ch===pn.miss[i]&&!used[cand[k].ch])return cand[k];
+  }
+  for(let i=0;i<40;i++){const c=pnOne(cand);if(c&&!used[c.ch])return c}
+  return cand[0];
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function pnMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_pin_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_pin_miss',a.slice(0,PN_MISS_MAX).join(','));
+}
+function pnMissDel(ch){
+  const a=(localStorage.getItem('hz_pin_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_pin_miss',a.join(','));
+}
+function pnBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_pin_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_pin_book',a.slice(0,PN_BOOK_MAX).join(','));
+}
+/* ---- 笔形：钉头上那一点点大，最长边缩到 21px ---- */
+function pnGly(d,poly,box,dir,scl,si){return {d:d||'M0 0',poly:poly||'',box:box||{x:0,y:0,w:1024,h:1024},dir:dir,scl:scl,si:si}}
+function pnStrokes(rec){
+  const raw=rec.raw,ms=raw.medians,sp=raw.strokes||[];
+  const boxes=[],dirs=[];
+  let mx=150;
+  for(let i=0;i<ms.length;i++){
+    const b=pnBox(ms[i])||{x:0,y:0,w:1024,h:1024};
+    boxes.push(b);dirs.push(fmDirOf(ms[i]));
+    mx=Math.max(mx,Math.max(b.w,b.h));
+  }
+  const scl=23/mx,gl=[];
+  for(let i=0;i<ms.length;i++)gl.push(pnGly(pnDOf(sp,i),pnPoly(ms[i]),boxes[i],dirs[i],scl,i));
+  return gl;
+}
+function pnGlyHTML(g,cx,cy,alpha){
+  const b=g.box,s=g.scl;
+  const tx=cx-s*(b.x+b.w/2),ty=cy+s*(b.y+b.h/2);
+  return '<g transform="translate('+tx.toFixed(1)+','+ty.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path d="'+g.d+'" fill="'+PN_COL[pnDn(g.dir)]+(alpha===undefined?'0.95)':alpha)+')"/></g>';
+}
+function pnPinGly(p){return p.self?pn.gl[p.gi]:pn.xg[p.gi]}
+/* ---- 摞塔：第 i 块板压住第 i 笔，板从上到下 = 笔顺 ---- */
+function pnTop(){
+  for(let i=0;i<pn.pl.length;i++)if(!pn.pl[i].gone)return i;
+  return -1;
+}
+function pnDecoyPin(i){
+  if(pnSelfDecoy()){
+    if(pn.n<2)return {gi:null,self:false,real:false,used:0};
+    let k=Math.floor(Math.random()*pn.n);
+    if(k===i)k=(k+1)%pn.n;
+    return {gi:k,self:true,real:false,used:0};
+  }
+  const other=pnOne(pn.pool.filter(function(x){return x.ch!==pn.rec.ch}))||pn.pool[0];
+  if(!other)return {gi:null,self:false,real:false,used:0};
+  const og=pnStrokes(other),g=pnOne(og);
+  if(!g)return {gi:null,self:false,real:false,used:0};
+  pn.xg.push(g);
+  return {gi:pn.xg.length-1,self:false,real:false,used:0};
+}
+function pnTryStack(){
+  pn.gl=pnStrokes(pn.rec);
+  pn.n=pn.gl.length;
+  if(pn.n<2||pn.n>8)return false;
+  const th=pn.n*PN_STEP-(PN_STEP-PN_PLH),y0=PN_CY-th/2;
+  if(y0<52||y0+th>PN_H-44)return false;
+  pn.xg=[];
+  const pinN=pnPinsOf(pn.lv),dec=pinN-1;
+  pn.pl=[];
+  pn.decoyN=0;
+  for(let i=0;i<pn.n;i++){
+    const w=PN_PLMIN+Math.floor(Math.random()*92);
+    const x=pnClamp(PN_CX-w/2+Math.round(Math.random()*100-50),14,PN_W-14-w);
+    const y=y0+i*PN_STEP;
+    const pins=[];
+    const real=pinN>1?Math.floor(Math.random()*pinN):0;
+    for(let j=0;j<pinN;j++){
+      if(j===real)pins.push({gi:i,self:true,real:true,used:0});
+      else{
+        const d=pnDecoyPin(i);
+        if(d.gi!=null&&d.gi>=0)pn.decoyN++;
+        pins.push(d);
+      }
+    }
+    const cn=pnCoinCfg(),coins=[];
+    for(let c=0;c<cn;c++)coins.push({x:x+w-20-c*22,y:y+19,got:0});
+    pn.pl.push({x:x,y:y,w:w,gone:0,slip:0,pins:pins,real:real,coins:coins,ttl:0,ttlMax:0,
+      el:null,pinEls:[],glyEls:[],ttlEl:null,coinEls:[]});
+  }
+  pn.needleMax=pnNeedleMax();
+  pn.needles=pn.needleMax;
+  pn.ttlMax=pnTtlOf(pn.lv);
+  return true;
+}
+function pnStackAgain(){
+  for(let a=0;a<40;a++)if(pnTryStack())return true;
+  return false;
+}
+/* ---- 特效 ---- */
+function pnFxHost(){return document.getElementById('pnFx')}
+function pnPut(host,el,ms){
+  host.appendChild(el);
+  pnT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function pnBits(x,y,col,n){
+  const host=pnFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='pn-bit';
+    b.style.left=(x/PN_W*100)+'%';b.style.top=(y/PN_H*100)+'%';
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=22+Math.random()*44;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r).toFixed(1)+'px');
+    pnPut(host,b,760);
+  }
+}
+function pnPop(x,y,txt,col){
+  const host=pnFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='pn-pop';
+  el.style.left=(x/PN_W*100)+'%';el.style.top=(y/PN_H*100)+'%';
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  pnPut(host,el,980);
+}
+function pnShake(){
+  const el=document.querySelector('.pn-tbl');if(!el)return;
+  el.classList.remove('pn-shake');void el.offsetWidth;el.classList.add('pn-shake');
+}
+function pnRipple(x,y,col){
+  const g=document.getElementById('pnTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+  c.setAttribute('r','18');
+  c.setAttribute('fill','none');c.setAttribute('stroke',col||'rgba(255,120,120,.85)');
+  c.setAttribute('stroke-width','3');c.setAttribute('class','pn-ring');
+  g.appendChild(c);
+  pnT(function(){if(c.parentNode)c.parentNode.removeChild(c)},820);
+}
+/* ---- 渲染 ---- */
+function pnRenderStatic(){
+  const g=document.getElementById('pnStatic');if(!g)return;
+  const top=PN_CY-PN_G/2,lft=PN_CX-PN_G/2;
+  g.innerHTML='<rect x="'+(lft-10)+'" y="'+(top-10)+'" width="'+(PN_G+20)+'" height="'+(PN_G+20)+'" rx="10" fill="rgba(0,0,0,.3)"/>'+
+    '<rect x="'+lft+'" y="'+top+'" width="'+PN_G+'" height="'+PN_G+'" rx="4" fill="rgba(255,255,255,.045)"/>'+
+    '<text x="'+PN_CX+'" y="'+(PN_H-9)+'" font-size="11" text-anchor="middle" fill="rgba(255,255,255,.45)">🔨 上面的板压着下面的板：拆板顺序 = 这个字的笔顺</text>';
+}
+function pnRenderWall(){
+  const g=document.getElementById('pnWall');if(!g)return;
+  const top=PN_CY-PN_G/2,bot=PN_CY+PN_G/2,lft=PN_CX-PN_G/2;
+  const s=PN_G/1024;
+  let h='<g transform="translate('+lft+','+bot+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path class="pn-xh" d="M512 40V984M40 512H984M90 90L934 934M934 90L90 934" fill="none"/>'+
+    '<rect class="pn-frame" x="40" y="40" width="944" height="944" rx="24"/>';
+  for(let i=0;i<pn.n;i++)h+='<path class="pn-s dim" id="pnS'+i+'" d="'+pn.gl[i].poly+'" fill="none" stroke-width="86"/>';
+  g.innerHTML=h+'</g>';
+  pn.wallEls=[];
+  for(let i=0;i<pn.n;i++)pn.wallEls.push(document.getElementById('pnS'+i));
+}
+function pnPinX(p,j){return p.x+26+(j+0.5)*(p.w-80)/p.pins.length}
+function pnRenderTower(){
+  const g=document.getElementById('pnTower');if(!g)return;
+  if(!pn.pl.length){g.innerHTML='';return}
+  let h='';
+  for(let i=0;i<pn.pl.length;i++){
+    const p=pn.pl[i];
+    h+='<g class="pn-plank" id="pnP'+i+'">';
+    h+='<rect x="'+p.x+'" y="'+p.y+'" width="'+p.w+'" height="'+PN_PLH+'" rx="7" class="pn-wood"/>';
+    h+='<rect x="'+(p.x+5)+'" y="'+(p.y+4)+'" width="'+(p.w-10)+'" height="5" rx="3" class="pn-edge"/>';
+    for(let c=0;c<p.coins.length;c++){
+      h+='<g id="pnC'+i+'_'+c+'"><circle class="pn-coin" cx="'+p.coins[c].x+'" cy="'+p.coins[c].y+'" r="9"/>'+
+        '<text class="pn-coin-t" x="'+p.coins[c].x+'" y="'+(p.coins[c].y+3.6)+'" text-anchor="middle">●</text></g>';
+    }
+    for(let j=0;j<p.pins.length;j++){
+      const px=pnPinX(p,j),py=p.y+19,pin=p.pins[j];
+      h+='<g class="pn-pin buried" id="pnB'+i+'_'+j+'" transform="translate('+px.toFixed(1)+','+py.toFixed(1)+')">';
+      h+='<circle class="pn-head" r="'+PN_R+'"/>';
+      if(pin.gi!=null&&pin.gi>=0)h+='<g class="pn-gly" opacity=".38">'+pnGlyHTML(pnPinGly(pin),0,0,'0.85)')+'</g>';
+      h+='<text class="pn-jx" x="'+(-PN_R-7).toFixed(1)+'" y="4.5" text-anchor="middle">'+(j+1)+'</text>';
+      h+='</g>';
+    }
+    h+='<rect id="pnT'+i+'" x="'+(p.x+4)+'" y="'+(p.y+PN_PLH-5)+'" width="'+(p.w-8)+'" height="4" rx="2" class="pn-ttl" style="display:none"/>';
+    h+='</g>';
+  }
+  g.innerHTML=h;
+  for(let i=0;i<pn.pl.length;i++){
+    const p=pn.pl[i];
+    p.el=document.getElementById('pnP'+i);
+    p.pinEls=[];p.glyEls=[];
+    for(let j=0;j<p.pins.length;j++){
+      const e=document.getElementById('pnB'+i+'_'+j);
+      p.pinEls.push(e);
+      p.glyEls.push(e?e.querySelector('.pn-gly'):null);
+    }
+    p.ttlEl=document.getElementById('pnT'+i);
+    p.coinEls=[];
+    for(let c=0;c<p.coins.length;c++)p.coinEls.push(document.getElementById('pnC'+i+'_'+c));
+  }
+  pnLive(pnTop());
+}
+function pnLive(i){
+  for(let k=0;k<pn.pl.length;k++){
+    const o=pn.pl[k];
+    if(!o.el)continue;
+    o.el.classList.remove('live');
+    if(o.ttlEl)o.ttlEl.style.display='none';
+    for(let j=0;j<o.pinEls.length;j++){
+      if(o.pinEls[j]&&!o.pins[j].used)o.pinEls[j].classList.remove('live');
+      if(o.glyEls[j])o.glyEls[j].setAttribute('opacity','.38');
+    }
+  }
+  pn.live=i;
+  if(i<0||!pn.pl[i])return;
+  const p=pn.pl[i];
+  if(p.gone)return;
+  if(!p.ttlMax){p.ttlMax=pn.ttlMax;p.ttl=pn.ttlMax}
+  if(p.el)p.el.classList.add('live');
+  for(let j=0;j<p.pinEls.length;j++){
+    if(p.pinEls[j]&&!p.pins[j].used)p.pinEls[j].classList.add('live');
+    if(p.glyEls[j])p.glyEls[j].setAttribute('opacity','1');
+  }
+  if(p.ttlEl)p.ttlEl.style.display='block';
+}
+function pnReveal(i,how){
+  const e=pn.wallEls[i];if(!e)return;
+  e.setAttribute('class','pn-s '+(how==='bad'?'bad':'got'));
+  e.style.stroke=how==='bad'?'rgba(176,190,197,.8)':PN_COL[pnDn(pn.gl[i].dir)]+'0.95)';
+}
+function pnHintLayer(){
+  const g=document.getElementById('pnHintG');if(!g)return;
+  if(!pn.hintMs||pn.live<0||!pn.pl.length){g.innerHTML='';return}
+  const p=pn.pl[pn.live];
+  if(!p||p.gone){g.innerHTML='';return}
+  const px=pnPinX(p,p.real),py=p.y+19;
+  g.innerHTML='<circle cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="25" fill="rgba(255,235,59,.15)"/>'+
+    '<circle class="pn-ring" cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="25"/>';
+}
+function pnMini(){
+  const svg=document.getElementById('pnMiniSvg');
+  if(!svg)return;
+  if(!pn.rec||!pn.n){svg.innerHTML='';return}
+  const sp=pn.rec.raw.strokes||[];
+  let h='<g transform="scale(1,-1)"><path d="M512 40V984M40 512H984" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="14 12"/>';
+  for(let i=0;i<pn.n;i++){
+    const dir=pn.gl[i]?pn.gl[i].dir:-1,r=pn.rev[i];
+    h+='<path d="'+pnDOf(sp,i)+'" fill="'+(r===1?PN_COL[pnDn(dir)]+'0.95)':(r===2?'rgba(176,190,197,.6)':'rgba(255,255,255,.09)'))+'" opacity="'+(i===pn.lastI?1:.92)+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  pnSet('pnMiniCap',pn.lit>=pn.n?'亮齐了 · '+pn.n+' 笔':'亮 '+pn.lit+' / '+pn.n+' 笔');
+}
+function pnRenderNeedles(){
+  const box=document.getElementById('pnNeedles');
+  if(!box)return;
+  let h='';
+  for(let i=0;i<pn.needleMax;i++)h+='<div class="pn-nd'+(i<pn.needles?'':' used')+'">'+(i<pn.needles?'✦':'·')+'</div>';
+  h+='<span class="pn-more">✦ 针 '+pn.needles+' / '+pn.needleMax+' · 用完这一塔重新摞</span>';
+  box.innerHTML=h;
+}
+function pnTtlView(){
+  const p=pn.live>=0?pn.pl[pn.live]:null;
+  const bar=document.getElementById('pnTtlBar'),tt=document.getElementById('pnTtlTxt'),ck=document.getElementById('pnClock');
+  let w='',txt='';
+  if(p&&!p.gone&&p.ttlMax){
+    const f=pnClamp(p.ttl/p.ttlMax,0,1);
+    w=(f*100).toFixed(1)+'%';
+    txt='⏳ 这块板还 '+(Math.max(0,p.ttl)/1000).toFixed(1)+' 秒塌 · 剩不到 '+Math.round(PN_NEAR*100)+'% 再拔 = 1.6 倍分';
+    if(p.ttlEl){
+      p.ttlEl.setAttribute('width',Math.max(0,(p.w-8)*f).toFixed(1));
+      p.ttlEl.setAttribute('class','pn-ttl'+(f<0.28?' low':(f<0.55?' mid':'')));
+    }
+  }else{
+    w='100%';
+    txt=pn.clearing?'🏁 这一塔拆完了':(pn.wait?'⏳ 换字中':'⏳ 塔上没板了');
+  }
+  if(bar&&pn.hudTxt.ttl!==w){pn.hudTxt.ttl=w;bar.style.width=w}
+  if(tt&&pn.hudTxt.tt!==txt){pn.hudTxt.tt=txt;tt.textContent=txt}
+  let c='🔨 ';
+  if(pn.magMs>0)c='🧲 吸币中…';
+  else if(pn.cool>0)c='✋ 手刚出过';
+  else if(!pn.rec)c+='——';
+  else if(pn.live<0)c+='塔空了';
+  else c+='拆第 '+(pn.live+1)+' 笔 · '+PN_DIRN[pnDn(pn.gl[pn.live].dir)];
+  if(ck&&pn.hudTxt.ck!==c){pn.hudTxt.ck=c;ck.textContent=c}
+}
+function pnHudLight(){
+  const left=pn.pl.length-pn.pl.filter(function(p){return p.gone}).length;
+  const lf=document.getElementById('pnLeftTxt'),s='🀫 还 '+left+' 块';
+  if(lf&&pn.hudTxt.left!==s){pn.hudTxt.left=s;lf.textContent=s}
+  const sc=document.getElementById('pnScoreTxt'),t='🎯 '+Math.round(pn.score)+' 分';
+  if(sc&&pn.hudTxt.sc!==t){pn.hudTxt.sc=t;sc.textContent=t}
+  const bd=document.getElementById('pnBadge');
+  if(bd){
+    const bg=pn.decoyN?('🎭 假钉 ×'+pn.decoyN):'📌 一板一钉';
+    if(pn.hudTxt.badge!==bg){pn.hudTxt.badge=bg;bd.textContent=bg}
+    bd.classList.toggle('on',!!pn.decoyN);
+  }
+  const sl=document.getElementById('pnSlowTag');
+  if(sl)sl.classList.toggle('on',pn.crawl);
+  pnTtlView();
+}
+function pnHud(){
+  const R=pnRank(pnInt('hz_pin_words'));
+  pnSet('pnRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<PN_HEART_MAX;i++)hs+=(i<pn.hearts?'❤️':'🖤');
+  pnSet('pnHeartTxt',hs||'🖤');
+  pnSet('pnComboTxt','🔥 连 '+pn.combo);
+  pnSet('pnLevelTxt','🚀 '+pn.levels+' 关');
+  pnSet('pnMissTxt','🙅 '+pn.wrongs);
+  pnSet('pnSlipTxt','⬇️ '+pn.slips);
+  pnSet('pnCoinTxt','🪙 '+pn.coins);
+  pnSet('pnLvTxt','第 '+pn.lv+' 段 · '+pn.n+' 块板');
+  const hb=document.getElementById('pnHintBtn');
+  if(hb){hb.disabled=pn.hintN<=0;hb.textContent='💡 指认真钉 ×'+pn.hintN}
+  const mg=document.getElementById('pnMagBtn');
+  if(mg){mg.disabled=pn.magN<=0;mg.textContent='🧲 吸币 ×'+pn.magN}
+  const hm=document.getElementById('pnHamBtn');
+  if(hm){hm.disabled=pn.hamN<=0;hm.textContent='🔨 砸板 ×'+pn.hamN}
+  const cb=document.getElementById('pnCrawlBtn');
+  if(cb){cb.textContent=pn.crawl?'🐇 常速':'🐢 慢速';cb.classList.toggle('on',pn.crawl)}
+  pnRenderNeedles();pnLine();pnHudLight();
+}
+function pnLine(){
+  const el=document.getElementById('pnHintLine');if(!el)return;
+  if(!pn.rec||pn.live<0){el.innerHTML='👇 <b>这一塔拆完了</b> · 点下面的板能问它压着第几笔';return}
+  const p=pn.pl[pn.live],dir=pn.gl[pn.live].dir;
+  let k='';
+  for(let j=0;j<p.pins.length;j++)if(!p.pins[j].used)k+=(k?' <code>':'<code>')+(j+1)+'</code>';
+  if(p.pins.length===1)k='<code>空格</code>';
+  el.innerHTML='👇 <b>点板上刻着「'+PN_DIRN[pnDn(dir)]+'」的那根钉子</b>（键盘 '+(k||'——')+'）';
+}
+function pnAskText(){
+  if(!pn.rec)return;
+  const i=pn.live;
+  pnSet('pnAsk','📌 「<b>'+pn.rec.ch+'</b>」被 '+pn.n+' 块板压住了<br><small>'+(i<0?'这一塔 <b>拆完了</b>':
+    '最上面这块板压着 <b>第 '+(i+1)+' 笔「'+PN_DIRN[pnDn(pn.gl[i].dir)]+'」</b>：在 '+pn.pl[i].pins.length+
+    ' 根钉子里 <b>认出钉头上刻的那一笔</b> · 还剩 '+Math.max(0,pn.n-pn.lit-pn.dead)+' 块板')+'</small>');
+}
+/* ---- 出手 ---- */
+function pnPull(i,j){
+  if(!pn.run||pn.over||!pn.rec||pn.clearing||pn.wait)return;
+  const p=pn.pl[i];
+  if(!p||p.gone)return;
+  if(i!==pnTop()){pnPeek(i);return}
+  const pin=p.pins[j];
+  if(!pin)return;
+  if(pin.used){
+    pnSay('📌 <b>'+(j+1)+' 号钉子已经拔过了</b>'+(pin.real?'（它就是刚才那根真钉）':'（被你 <b>拔弯了</b>，拔不动了）')+'：这块板还剩 '+pnPinsLeft(p)+' 根能拔','#B3E5FC');
+    return;
+  }
+  if(pn.cool>0){pnSay('✋ <b>手刚出过</b>：缓 '+(PN_COOL*1000)+' 毫秒 —— 先把钉头上的形状念成笔名','#B3E5FC');return}
+  pn.cool=PN_COOL;pn.think=0;
+  if(pin.gi==null||pin.gi<0){pnPeek(i);return}
+  if(pin.real){pnHit(i,j,p,pin);return}
+  pnWrong(i,j,p,pin);
+}
+function pnHit(i,j,p,pin){
+  const dir=pn.gl[i].dir,near=p.ttl/p.ttlMax<PN_NEAR;
+  pin.used=1;p.gone=1;pn.rev[i]=1;
+  pn.lit++;pn.hits++;pn.lastI=i;
+  pnAdd('hz_pin_hits',1);pnAdd('hz_pin_towers',1);
+  pn.combo++;
+  if(pn.combo>pn.maxCombo)pn.maxCombo=pn.combo;
+  let gain=Math.round((6+(i+1)*2+pn.lv*2)*(1+pn.combo*0.05));
+  if(near){gain=Math.round(gain*1.6);pn.near++;pnAdd('hz_pin_near',1)}
+  pn.score+=gain;
+  if(p.pinEls[j])p.pinEls[j].classList.add('pulled');
+  if(p.el)p.el.classList.add('fall');
+  if(p.ttlEl)p.ttlEl.style.display='none';
+  const px=pnPinX(p,j),py=p.y+19;
+  let smashed=0;
+  for(let c=0;c<p.coins.length;c++){
+    if(p.coins[c].got)continue;
+    smashed++;p.coins[c].got=1;
+    if(p.coinEls[c]&&p.coinEls[c].parentNode)p.coinEls[c].parentNode.removeChild(p.coinEls[c]);
+  }
+  pnBits(px,py,PN_COL[pnDn(dir)],near?18:12);
+  pnPop(px,py-24,(near?'⏱ 压哨 +':'+')+gain,near?'#FF8A65':'#FFD740');
+  pnTone(PN_NOTE[Math.min(PN_NOTE.length-1,pn.lit-1)],.14,'triangle',.06);
+  const nx=pnTop();
+  pnLive(nx);
+  pnSay('✅ <b>拔开了！</b>「'+pn.rec.ch+'」的第 <b>'+(i+1)+'</b> 笔是 <b>'+PN_DIRN[pnDn(dir)]+'</b>'+(near?' · <b>压哨拔，1.6 倍分</b>':'')+'：+'+gain+' 分'+
+    (pn.combo>1?' · 🔥 连 '+pn.combo:'')+(smashed?' · 🪙 板子一掉，压着的 '+smashed+' 枚币 <b>砸碎了</b>':'')+
+    (nx<0?'，<b>这一塔拆完了</b>':'，下一块板压着 <b>第 '+(nx+1)+' 笔「'+PN_DIRN[pnDn(pn.gl[nx].dir)]+'」</b>'),'#FFD740');
+  if(pn.combo>=3)speakEncourage();
+  pnReveal(i,'ok');pnMini();pnAskText();pnHud();
+  if(nx<0){pnLevelClear();return}
+  pnHintLayer();pnLine();pnHudLight();
+}
+function pnWrong(i,j,p,pin){
+  const gl=pnPinGly(pin),want=pn.gl[i].dir;
+  pin.used=1;
+  pn.wrongs++;pn.combo=0;pn.cleanLvl=false;
+  pn.score=Math.max(0,pn.score-7);
+  pn.needles--;
+  pnAdd('hz_pin_wrong',1);
+  pnMissAdd(pn.rec.ch);
+  if(p.pinEls[j]){p.pinEls[j].classList.add('bent');p.pinEls[j].classList.remove('live')}
+  if(p.glyEls[j])p.glyEls[j].setAttribute('opacity','.2');
+  pnSay('🙅 <b>'+(j+1)+' 号是假钉</b>：钉头上刻的是「'+PN_DIRN[pnDn(gl.dir)]+'」，可这块板压着 <b>第 '+(i+1)+' 笔「'+PN_DIRN[pnDn(want)]+'」</b>（'+
+    (PN_RULE[pnDn(want)]||'从左上开始写')+'）'+
+    (pnSelfDecoy()?' —— 它 <b>也是这个字的笔</b>，只是 <b>排在别处</b>':' —— 它是 <b>别的字的笔形</b>，混进来骗你的')+
+    '：扣 7 分、吃一枚 ✦ 针（还剩 '+Math.max(0,pn.needles)+' 枚）、连击清零 —— 这根 <b>拔弯了</b>，板上还能拔 '+pnPinsLeft(p)+' 根','#FF8A80');
+  const px=pnPinX(p,j),py=p.y+19;
+  pnShake();pnRipple(px,py);pnBits(px,py,'#FF8A66',10);
+  tone(190,.2,'sawtooth',.06);
+  pnLine();pnHud();
+  if(pn.wrongs%PN_MISS_HEART===0){
+    pn.hearts--;
+    pnSay('💔 <b>累计拔错 '+pn.wrongs+' 次</b>：掉一颗心（还剩 '+pn.hearts+' 颗）—— 伸手前 <b>先在心里把这个字写一遍</b>','#FF8A80');
+    if(pn.hearts<=0){pnEnd('miss');return}
+  }
+  if(pn.needles<=0){pnDry();return}
+}
+function pnSlip(i,byH){
+  const p=pn.pl[i];
+  if(!p||p.gone)return;
+  p.gone=1;p.slip=1;pn.rev[i]=2;pn.dead++;
+  pn.slips++;
+  if(!byH){pn.score=Math.max(0,pn.score-3);pn.combo=0}
+  pn.cleanLvl=false;
+  pnAdd('hz_pin_slip',1);
+  const dir=pn.gl[i].dir;
+  for(let j=0;j<p.pins.length;j++){p.pins[j].used=1;if(p.pinEls[j])p.pinEls[j].classList.remove('live')}
+  if(p.el)p.el.classList.add('fall');
+  if(p.ttlEl)p.ttlEl.style.display='none';
+  pnBits(pnPinX(p,p.real),p.y+19,'#90A4AE',8);
+  pnPop(p.x+p.w/2,p.y+10,(byH?'🔨 砸掉 ':'⬇️ 塌了 ')+PN_DIRN[pnDn(dir)],'#B0BEC5');
+  tone(byH?240:170,.18,'sine',.05);
+  pnReveal(i,'bad');
+  const nx=pnTop();
+  pnLive(nx);
+  pnSay((byH?'🔨 <b>硬砸开第 '+(i+1)+' 块板</b>':'⬇️ <b>催拆条走完了</b>，第 '+(i+1)+' 块板 <b>自己塌了</b>')+'：压着的 <b>「'+PN_DIRN[pnDn(dir)]+'」</b> 这一笔 <b>白丢</b>（'+
+    (byH?'<b>不扣分、不吃针</b>':'扣 3 分、连击清零、<b>不吃针</b>')+'）· ✨ 一钉不错 没了 · 还剩 '+Math.max(0,pn.n-pn.lit-pn.dead)+' 块板','#FFCC80');
+  pnMini();pnAskText();pnHud();
+  if(nx<0){pnLevelClear();return}
+  pnHintLayer();pnLine();pnHudLight();
+}
+function pnDry(){
+  pn.pendingDry=true;pnAdd('hz_pin_dry',1);pn.combo=0;
+  pnSay('🪡 <b>针用光了</b>：这一塔 <b>重新摞一次</b>（针补满、板子全部压回去）—— 拔之前 <b>把每个钉头上的形状念成笔名</b>','#FF8A80');
+  tone(150,.22,'sawtooth',.05);
+  pnShake();pnHud();
+  pn.wait=true;pn.live=-1;
+  pnT(function(){pnReStack(true)},PN_DRY_MS);
+}
+/* ---- 过关 / 升段 ---- */
+function pnLevelClear(){
+  pn.levels++;
+  const clean=pn.cleanLvl,lit=pn.lit;
+  let gain=20+lit*5+pn.lv*4;
+  let msg='🏁 <b>这一塔拆完了！</b>「'+pn.rec.ch+'」的 '+pn.n+' 块板按笔顺拔开 '+lit+' 块：+'+gain+' 分';
+  const lb=Math.max(0,pn.needles)*5;
+  gain+=lb;
+  if(lb)msg+=' · 🪡 还剩 '+pn.needles+' 枚针，<b>再加 '+lb+'</b>';
+  if(clean){
+    gain+=15;pnAdd('hz_pin_clean',1);
+    msg+=' · ✨ <b>一钉不错，再加 15 分</b>';
+  }else if(pn.dead)msg+=' · ⬇️ 白丢了 '+pn.dead+' 笔，下次 <b>先认形状再伸手</b>';
+  pn.score+=gain;
+  pnAdd('hz_pin_words',1);pnBookAdd(pn.rec.ch);pnMissDel(pn.rec.ch);
+  pnPop(PN_CX,PN_CY-120,clean?'✨ 一钉不错':'🏁 拆完','#FFF176');
+  pnBits(PN_CX,PN_CY-60,'#FFF176',24);
+  pnBits(PN_CX,PN_CY+40,'#FFE082',14);
+  [523,659,784,1047].forEach(function(f,i){pnT(function(){tone(f,.15,'triangle',.055)},i*80)});
+  pnSay(msg,'#69F0AE');
+  speakEncourage();
+  pnLvCheck();
+  pn.clearing=true;pn.wait=true;
+  pnMini();pnAskText();pnHud();
+  pnT(function(){pn.clearing=false;pnNextRec()},PN_NEXT_MS);
+}
+function pnLvCheck(){
+  const nl=Math.min(9,1+Math.floor(pn.levels/2));
+  if(nl<=pn.lv)return;
+  pn.lv=nl;
+  pn.hearts=Math.min(PN_HEART_MAX,pn.hearts+1);
+  pn.hintN=Math.min(4,pn.hintN+1);
+  pn.respinN=Math.min(4,pn.respinN+1);
+  pn.magN=Math.min(4,pn.magN+1);
+  pn.hamN=Math.min(3,pn.hamN+1);
+  pnSay('⚡ <b>第 '+pn.lv+' 段</b>：每块板 <b>'+pnPinsOf(pn.lv)+' 根钉子</b>、催拆 '+(pnTtlOf(pn.lv)/1000).toFixed(1)+' 秒'+
+    (pnDecoyCfg()?(pnSelfDecoy()?'、假钉刻的是 <b>这个字自己的另一笔</b>':'、混进 <b>别的字的笔形</b> 当假钉'):'、<b>一块板一根钉</b>（不用挑）')+
+    ' —— 补一颗心、一次💡、一次🧲、一次🔨、一次🔄','#FFD740');
+  [659,784,988].forEach(function(f,i){pnT(function(){tone(f,.13,'triangle',.055)},i*95)});
+  pnHud();
+}
+/* ---- 重摞 / 换字 ---- */
+function pnResetLvl(){
+  pn.cleanLvl=true;pn.hintMs=0;pn.pendingDry=false;
+  pn.dead=0;pn.lit=0;pn.lastI=-1;
+  pn.needleMax=pnNeedleMax();pn.needles=pn.needleMax;
+  pn.magMs=0;pn.magI=-1;pn.magP=null;pn.live=-1;pn.think=0;
+  pn.rev=[];
+  for(let i=0;i<20;i++)pn.rev.push(0);
+}
+function pnReStack(force){
+  if(!pn.run||pn.over||!pn.rec)return;
+  if(!force){
+    if(pn.respinN<=0){pnSay('🔄 <b>没有重摞次数了</b>：每升 1 段补一次（最多攒 4 次）','#B3E5FC');return}
+    pn.respinN--;pn.respins++;pn.combo=0;
+    pnSay('🔄 <b>重新摞过</b>：同一个字换个摆法（针补满、板压回去、连击清零）','#B3E5FC');
+    tone(392,.1,'square',.04);
+  }
+  pnResetLvl();
+  if(!pnStackAgain()){pnEnd('nodata');return}
+  pn.wait=false;
+  pnRenderWall();pnRenderTower();pnRenderNeedles();pnHintLayer();pnMini();pnAskText();pnHud();
+}
+function pnNextRec(){
+  pn.rec=pnNewRec();
+  if(!pn.rec){pnEnd('nodata');return}
+  pnResetLvl();
+  if(!pnStackAgain()){pnEnd('nodata');return}
+  pn.wait=false;
+  pnRenderWall();pnRenderTower();pnRenderNeedles();pnMini();pnAskText();pnHud();
+}
+/* ---- 工具 ---- */
+function pnHint(){
+  if(!pn.run||pn.over||!pn.rec)return;
+  if(pn.hintN<=0){pnSay('💡 <b>指认用完了</b>：每升 1 段补 1 次','#B3E5FC');return}
+  const i=pn.live;
+  if(i<0){pnSay('💡 这一塔的板子 <b>全拆完了</b>','#A5D6A7');return}
+  pn.hintN--;pn.hints++;pnAdd('hz_pin_hints',1);
+  pn.think=0;pn.hintMs=PN_HINT_MS;
+  tone(880,.09,'triangle',.04);
+  const p=pn.pl[i],dir=pn.gl[i].dir;
+  pnSay('💡 <b>圈出来了</b>：这块板压着 <b>第 '+(i+1)+' 笔「'+PN_DIRN[pnDn(dir)]+'」</b>，真钉是 <b>'+(p.real+1)+' 号</b>（钉头上刻的就是它）—— 催拆条还剩 <b>'+
+    (Math.max(0,p.ttl)/1000).toFixed(1)+' 秒</b>，只圈 '+(PN_HINT_MS/1000)+' 秒','#FFD740');
+  pnHintLayer();pnHud();
+}
+function pnMagnet(){
+  if(!pn.run||pn.over||!pn.rec)return;
+  const i=pn.live;
+  if(i<0){pnSay('🧲 <b>塔上没板了</b>','#B3E5FC');return}
+  if(pn.magMs>0){pnSay('🧲 <b>正在吸呢</b>：还要 '+(Math.max(0,pn.magMs)/1000).toFixed(1)+' 秒，催拆条 <b>可不会等你</b>','#B3E5FC');return}
+  if(pn.magN<=0){pnSay('🧲 <b>吸币次数用完了</b>：每升 1 段补 1 次','#B3E5FC');return}
+  const p=pn.pl[i];
+  let left=0;for(let c=0;c<p.coins.length;c++)if(!p.coins[c].got)left++;
+  pn.magN--;pn.mags++;pnAdd('hz_pin_mag',1);
+  if(!left){
+    pnSay('🧲 <b>这块板底下没压币</b>：次数照扣（还剩 '+pn.magN+' 次）—— 币是 <b>板右端那一点金圆</b>，下次先看清','#FFCC80');
+    tone(260,.1,'sine',.04);pnHud();return;
+  }
+  pn.magMs=PN_MAG_MS;pn.magI=i;pn.magP=p;
+  tone(659,.08,'triangle',.04);
+  pnSay('🧲 <b>吸币中</b>（'+(PN_MAG_MS/1000)+' 秒）：这块板下有 '+left+' 枚币，吸到 <b>一枚 '+PN_COIN+' 分</b> —— 但催拆条 <b>还在走</b>，这就是 <b>贪币还是抢笔</b>','#80DEEA');
+  pnHud();
+}
+function pnMagDone(){
+  const p=pn.magP;
+  pn.magI=-1;pn.magP=null;
+  if(!p)return;
+  if(pn.pl.indexOf(p)<0){pnSay('🧲 <b>塔都重摞了</b>：币没吸成','#FFCC80');return}
+  if(p.gone){
+    pnSay('🪙 <b>币被压碎了</b>：吸币要 '+(PN_MAG_MS/1000)+' 秒，那块板 <b>在吸完之前就没了</b> —— 贪币得先 <b>看还剩几秒</b>','#FFCC80');
+    tone(200,.14,'sine',.04);return;
+  }
+  let got=0,fx=p.x+p.w-20,fy=p.y+19;
+  for(let c=0;c<p.coins.length;c++){
+    if(p.coins[c].got)continue;
+    p.coins[c].got=1;got++;fx=p.coins[c].x;fy=p.coins[c].y;
+    if(p.coinEls[c]&&p.coinEls[c].parentNode)p.coinEls[c].parentNode.removeChild(p.coinEls[c]);
+  }
+  if(!got){pnSay('🧲 <b>板下是空的</b>','#B3E5FC');return}
+  pn.coins+=got;pnAdd('hz_pin_coins',got);
+  const gain=PN_COIN*got;
+  pn.score+=gain;
+  pnBits(fx,fy,'#FFC107',12);
+  pnPop(fx,fy-20,'🪙 +'+gain,'#FFCA28');
+  [784,1047].forEach(function(f,k){pnT(function(){tone(f,.11,'triangle',.05)},k*70)});
+  pnSay('🪙 <b>吸出来 '+got+' 枚币</b>：+'+gain+' 分 —— 这些币 <b>不用再等板子掉</b>，一枚 '+PN_COIN+' 分','#FFCA28');
+  pnAskText();pnHudLight();
+}
+function pnHammer(){
+  if(!pn.run||pn.over||!pn.rec)return;
+  const i=pn.live;
+  if(i<0){pnSay('🔨 <b>没板子可砸了</b>','#B3E5FC');return}
+  if(pn.hamN<=0){pnSay('🔨 <b>砸板次数用完了</b>：每升 1 段补 1 次','#B3E5FC');return}
+  pn.hamN--;pn.hammers++;pnAdd('hz_pin_ham',1);
+  pn.think=0;
+  pnSay('🔨 <b>抡起锤子</b>：来不及认钉子就 <b>硬砸</b> —— 不扣分、不吃针，但这一笔 <b>算白丢</b>','#B39DDB');
+  pnSlip(i,true);
+}
+function pnCrawl(){
+  pn.crawl=!pn.crawl;
+  if(pn.crawl)pnAdd('hz_pin_slow',1);
+  pnHud();
+  pnSay(pn.crawl?'🐢 <b>慢速</b>：催拆条 ×0.55，够时间把钉头念成笔名':'🐇 <b>常速</b>：催拆条回到本段速度','#B3E5FC');
+}
+function pnPeek(i){
+  if(!pn.run||pn.over||!pn.rec||!pn.pl[i])return;
+  const p=pn.pl[i],dir=pn.gl[i].dir;
+  if(p.gone){
+    pnSay('👀 <b>这块板已经没了</b>：那一笔「'+PN_DIRN[pnDn(dir)]+'」'+(p.slip?'是 <b>塌掉的</b>，<b>白丢了</b>':'<b>已经亮出来了</b>')+'（看左边米字格）','#A5D6A7');
+    return;
+  }
+  if(i===pn.live){
+    pnSay('👀 <b>这就是当前要拆的板</b>：压着 <b>第 '+(i+1)+' 笔「'+PN_DIRN[pnDn(dir)]+'」</b>，'+
+      (p.pins.length===1?'<b>只有一根钉子</b>，直接拔':'钉头上 <b>认形状</b> 挑对那根（还能拔 '+pnPinsLeft(p)+' 根）')+
+      ' · 催拆条剩 '+(Math.max(0,p.ttl)/1000).toFixed(1)+' 秒','#B3E5FC');
+    return;
+  }
+  pnSay('👀 <b>这块板还压在下头</b>：它压着 <b>第 '+(i+1)+' 笔「'+PN_DIRN[pnDn(dir)]+'」</b>，前面 <b>还隔着 '+(i-pn.live)+' 块板</b> —— 现在拔不到它，<b>也不扣分</b>；先拆第 '+(pn.live+1)+' 笔','#B3E5FC');
+}
+function pnNag(){
+  if(!pn.rec||pn.live<0)return;
+  const i=pn.live,p=pn.pl[i],dir=pn.gl[i].dir,rp=p.pins[p.real];
+  pnSay('🦉 <b>别乱拔</b>：现在要拆 <b>第 '+(i+1)+' 笔「'+PN_DIRN[pnDn(dir)]+'」</b>（'+(PN_RULE[pnDn(dir)]||'从左上开始写')+
+    '）—— 把 '+p.pins.length+' 个钉头 <b>一个个念成笔名</b>：'+(rp&&rp.gi!=null?'<b>'+(p.real+1)+' 号</b>刻的「'+PN_DIRN[pnDn(pnPinGly(rp).dir)]+'」<b>就是它</b>':'<b>'+(p.real+1)+' 号</b>是真钉')+
+    '。催拆条只剩 <b>'+(Math.max(0,p.ttl)/1000).toFixed(1)+' 秒</b>','#A5D6A7');
+  tone(587,.09,'sine',.035);
+}
+/* ---- 循环 ---- */
+function pnStartLoop(){pnStopLoop();pn.last=0;pn.rafId=requestAnimationFrame(pnLoop)}
+function pnStopLoop(){if(pn.rafId){cancelAnimationFrame(pn.rafId);pn.rafId=0}pn.last=0}
+function pnLoop(ts){
+  if(!pn.run||pn.over){pn.rafId=0;return}
+  const dt=pn.last?Math.min(0.05,(ts-pn.last)/1000):0.016;
+  pn.last=ts;
+  pnTick(dt);
+  pn.rafId=requestAnimationFrame(pnLoop);
+}
+function pnTick(dt){
+  const ms=dt*1000;
+  pn.t+=dt;pn.playMs+=ms;
+  pn.tones=6;
+  if(pn.cool>0)pn.cool=Math.max(0,pn.cool-dt);
+  if(pn.hintMs>0){
+    pn.hintMs=Math.max(0,pn.hintMs-ms);
+    if(!pn.hintMs)pnHintLayer();
+  }
+  if(pn.magMs>0){
+    pn.magMs-=ms;
+    if(pn.magMs<=0){pn.magMs=0;pnMagDone()}
+  }
+  if(!pn.clearing&&!pn.wait&&pn.live>=0){
+    pn.think+=ms;
+    const p=pn.pl[pn.live];
+    if(p&&!p.gone&&p.ttlMax){
+      p.ttl-=ms*(pn.crawl?0.55:1);
+      if(p.ttl<=0){p.ttl=0;pnTtlView();pnSlip(pn.live,false);return}
+    }
+  }
+  if(pn.think>=PN_NAG_MS){pn.think=0;pnNag()}
+  pnHudLight();
+}
+/* ---- 输入 ---- */
+function pnBind(){
+  if(pn.bound)return;
+  pn.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='pin'||!pn.run||pn.over)return;
+    const k=e.key;
+    if(k>='1'&&k<='9'){if(!e.repeat&&pn.live>=0)pnPull(pn.live,+k-1);return}
+    if(k===' '||k==='Enter'){
+      if(!e.repeat&&pn.live>=0){
+        const p=pn.pl[pn.live];
+        if(p&&p.pins.length===1)pnPull(pn.live,0);
+        else pnSay('📌 <b>这块板有 '+p.pins.length+' 根钉子</b>：按 <code>1</code> <code>2</code>'+(p.pins.length>2?' <code>3</code>':'')+' 选一根（或用手指点它）','#B3E5FC');
+      }
+      e.preventDefault();return;
+    }
+    if(k==='h'||k==='H'){if(!e.repeat)pnHint();return}
+    if(k==='g'||k==='G'){if(!e.repeat)pnMagnet();return}
+    if(k==='t'||k==='T'){if(!e.repeat)pnHammer();return}
+    if(k==='r'||k==='R'){if(!e.repeat)pnReStack(false);return}
+    if(k==='f'||k==='F'){if(!e.repeat)pnCrawl();return}
+    if(k==='?'){pnHelp();return}
+  });
+}
+function pnPointer(){
+  const svg=document.getElementById('pnSvg');
+  if(!svg||pn.ptrBound)return;
+  pn.ptrBound=true;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='pin')return;
+    const r=svg.getBoundingClientRect();
+    if(!r.width||!r.height)return;
+    const x=(ev.clientX-r.left)/r.width*PN_W,y=(ev.clientY-r.top)/r.height*PN_H;
+    pnTap(x,y);
+    ev.preventDefault();
+  });
+}
+function pnTap(x,y){
+  if(!pn.pl.length)return;
+  for(let i=0;i<pn.pl.length;i++){
+    const p=pn.pl[i];
+    if(p.gone)continue;
+    if(y<p.y-2||y>p.y+PN_PLH+2)continue;
+    if(x<p.x-34||x>p.x+p.w+8)continue;
+    for(let j=0;j<p.pins.length;j++){
+      const dx=x-pnPinX(p,j),dy=y-(p.y+19);
+      if(dx*dx+dy*dy<=(PN_R+7)*(PN_R+7)){pnPull(i,j);return}
+    }
+    pnPeek(i);return;
+  }
+}
+/* ---- 生命周期 ---- */
+function pnStopAll(){pnStopLoop();pnKillTimers();pn.gen++}
+async function pnStart(){
+  pnStopAll();
+  const g=pn.gen;
+  const stale=function(){return g!==pn.gen||!pn.run||pn.over};
+  pn.run=true;pn.over=false;pn.busy=false;pn.clearing=false;pn.wait=false;pn.pendingDry=false;
+  pn.lv=1;pn.score=0;pn.hearts=PN_HEARTS;pn.combo=0;pn.maxCombo=0;
+  pn.levels=0;pn.hits=0;pn.wrongs=0;pn.slips=0;pn.coins=0;pn.near=0;pn.hints=0;pn.hammers=0;pn.mags=0;pn.respins=0;
+  pn.hintN=2;pn.respinN=2;pn.magN=2;pn.hamN=1;
+  pn.hintMs=0;pn.think=0;pn.playMs=0;pn.t=0;pn.cool=0;pn.magMs=0;pn.magI=-1;pn.magP=null;pn.live=-1;pn.ttlMax=0;
+  pn.pool=[];pn.miss=[];pn.rec=null;pn.n=0;pn.pl=[];pn.gl=[];pn.xg=[];pn.rev=[];pn.wallEls=[];
+  pn.lit=0;pn.dead=0;pn.lastI=-1;pn.decoyN=0;pn.needleMax=0;pn.needles=0;
+  pn.crawl=pn.crawl||false;pn.hudTxt={};
+  showScreen('pin');
+  pnBind();pnPointer();
+  pnRenderStatic();pnRenderWall();pnRenderTower();pnRenderNeedles();pnMini();pnHintLayer();
+  pnSet('pnAsk','📌 正在摞塔……<br><small>在字库里挑「每一笔都认得出形状」的字</small>');
+  pnSay('一摞 <b>木板</b> 把这个字 <b>一笔一笔压住了</b>：只有 <b>最上面那块板</b> 拆得开，所以 <b>拆板顺序就是这个字的笔顺</b>。钉头上刻着笔形 —— <b>认对才拔得开</b>，拔错吃一枚 ✦ 针','#A5D6A7');
+  let ok=await pnBuild();
+  if(stale())return;
+  if(!ok){
+    pnSay('📌 木板有点少，再摞一次试试……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await pnBuild(true);
+    if(stale())return;
+  }
+  if(!ok||!pn.pool.length){
+    pn.run=false;
+    pnSet('pnAsk','😢 摞不起一座塔<br><small>字库还没加载好，稍后再来拔钉</small>');
+    pnSay('先去别的模式练两笔，回来板子就齐了','#FFCC80');
+    return;
+  }
+  pnAdd('hz_pin_games',1);
+  pn.rec=pnNewRec();
+  if(!pn.rec){pn.run=false;return}
+  pnResetLvl();
+  if(!pnStackAgain()){pn.run=false;return}
+  if(!pn.run||pn.over||stale())return;
+  pnRenderWall();pnRenderTower();pnRenderNeedles();pnMini();pnAskText();pnHud();
+  pnStartLoop();
+}
+function pnEnd(reason){
+  if(pn.over)return;
+  pn.over=true;pn.run=false;pn.wait=false;pn.clearing=false;
+  pnStopAll();
+  const sc=Math.round(pn.score);
+  localStorage.setItem('hz_pin_best',String(Math.max(pn.levels,pnInt('hz_pin_best'))));
+  localStorage.setItem('hz_pin_streak',String(Math.max(pn.maxCombo,pnInt('hz_pin_streak'))));
+  localStorage.setItem('hz_pin_lv',String(Math.max(pn.lv,pnInt('hz_pin_lv'))));
+  pnAdd('hz_pin_ms',Math.round(pn.playMs/1000));
+  const stars=Math.floor(sc/120)+pn.levels*3;
+  if(stars>0)addStars(stars);
+  pnHintLayer();
+  showScreen('pin-result');
+  const R=pnRank(pnInt('hz_pin_words'));
+  const T={
+    miss:['🙅','拔错太多次了','<b>每 '+PN_MISS_HEART+' 次拔错掉一颗心</b>：伸手前把每个钉头 <b>念成笔名</b>，再对照 <b>这块板压着第几笔</b>'],
+    quit:['🏁','今天收工了','下一塔先走顺「<b>第几笔 → 念钉头形状 → 拔真钉</b>」：<b>一钉不错</b> 再加 15 分，<b>压哨拔</b> 是 1.6 倍分'],
+    nodata:['😢','板子没准备好','先去别的模式练两笔，回来板子就齐了']
+  };
+  const t=T[reason]||T.quit;
+  pnSet('pnRsEmoji',t[0]);
+  pnSet('pnRsTitle',t[1]);
+  pnSet('pnRsSub',t[2]);
+  pnSet('pnRsScore',String(sc));
+  pnSet('pnRsLevel',String(pn.levels));
+  pnSet('pnRsHit',String(pn.hits));
+  pnSet('pnRsLv',String(pn.lv));
+  pnSet('pnRsStreak',String(pn.maxCombo));
+  pnSet('pnRsMiss',pn.wrongs+' / '+pn.slips);
+  pnSet('pnRsStars','⭐ '+stars);
+  pnSet('pnRsBest',String(pnInt('hz_pin_best')));
+  pnSet('pnRsCoins',String(pnInt('hz_pin_coins')));
+  pnSet('pnRsAll','🏅 '+R.e+' '+R.t+' · 累计拆完 '+pnInt('hz_pin_words')+' 个字\n'+
+    '📌 拔对 '+pnInt('hz_pin_hits')+' 笔 · ⏱ 压哨 '+pnInt('hz_pin_near')+' 次 · ✨ 一钉不错 '+pnInt('hz_pin_clean')+' 塔\n'+
+    '🙅 拔错 '+pnInt('hz_pin_wrong')+' 次 · ⬇️ 塌板 '+pnInt('hz_pin_slip')+' 块 · 🪙 吸出 '+pnInt('hz_pin_coins')+' 枚币\n'+
+    '🪡 用光针 '+pnInt('hz_pin_dry')+' 次 · 💡 指认 '+pnInt('hz_pin_hints')+' 次 · 🔨 砸板 '+pnInt('hz_pin_ham')+' 次\n'+
+    '🧲 吸币 '+pnInt('hz_pin_mag')+' 次 · 🐢 慢速 '+pnInt('hz_pin_slow')+' 次 · 🗄️ 拆掉 '+pnInt('hz_pin_towers')+' 块板 · 最高摞到第 '+pnInt('hz_pin_lv')+' 段');
+  const book=(localStorage.getItem('hz_pin_book')||'').split(',').filter(function(c){return c.length===1});
+  pnSet('pnRsBookT',book.length?('📌 拔钉档案 · 已拆完 '+book.length+' 个字'):'');
+  const bh=document.getElementById('pnRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function pnRetry(){pnStart()}
+function pnLeave(){
+  pnStopAll();
+  if(pn.run&&!pn.over){pn.over=true;pn.run=false}
+  goHome();
+}
+function pnNudge(){
+  const dot=document.getElementById('pnCardDot'),tip=document.getElementById('pnCardTip');
+  const w=pnInt('hz_pin_words'),nr=pnInt('hz_pin_near'),games=pnInt('hz_pin_games'),wr=pnInt('hz_pin_wrong');
+  const R=pnRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 拆完 '+w+' 个字 · 压哨 '+nr+' 次 · 拔错 '+wr+' 次'):'一摞板压住这个字，认出钉头上刻的那一笔才拔得开';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function pnHelp(){
+  pnSay('📌 塔上一摞 <b>木板</b>，每块压着「<b>'+(pn.rec?pn.rec.ch:'这个字')+'</b>」的一笔：<b>上面的板压着下面的</b>，只能拆 <b>最上面那块</b> —— <b>拆板顺序就是这个字的笔顺</b>。<br>'+
+    '🔎 <b>认</b>：每块板钉着 <b>'+pnPinsOf(pn.lv)+' 根钉子</b>，钉头上刻着 <b>真实笔画形状</b>。刻着 <b>这块板压的那一笔</b> 的才是真钉：<b>第 1、2 段</b> 一块板一根钉（不用挑），<b>第 3 段</b> 起两根、<b>第 5 段</b> 起三根，且假钉改成 <b>这个字自己的另一笔</b>。<br>'+
+    '📌 <b>拔对</b>：<b>6 + 第几笔×2 + 段数×2</b> 分 ×（1 + 连击×0.05）：板 <b>哗啦掉下去</b>、那一笔 <b>当场亮出来</b>；⏱ <b>压哨拔</b>（催拆条剩不到 '+Math.round(PN_NEAR*100)+'%）= <b>1.6 倍</b>分。<br>'+
+    '🙅 <b>拔错假钉</b>：扣 7 分、吃一枚 ✦ 针、连击清零，钉子 <b>拔弯</b> 了；<b>每累计 '+PN_MISS_HEART+' 次掉一颗心</b>（3 颗起、最多 5 颗）。⬇️ <b>催拆条走完</b>：这块板 <b>自己塌</b>、那一笔 <b>白丢</b>（扣 3 分、不吃针）。<br>'+
+    '🪙 有的板 <b>底下压着金币</b>，板一掉就 <b>砸碎</b>；🧲（<code>G</code>）花 <b>'+(PN_MAG_MS/1000)+' 秒</b> 提前吸出来（一枚 '+PN_COIN+' 分），催拆条 <b>照走</b>。🔨（<code>T</code>）硬砸：不扣分不吃针，可那一笔 <b>算白丢</b>。💡（<code>H</code>）圈真钉 '+(PN_HINT_MS/1000)+' 秒、🔄（<code>R</code>）重新摞、🐢（<code>F</code>）催拆条 ×0.55。<br>'+
+    '🪡 <b>针数</b> = 笔数 + 余量，<b>用光这一塔重新摞</b>（不扣心，但这一塔白拆了）。<br>'+
+    '🏁 <b>一摞板全拆完 = 过一关</b>：<b>20 + 拔开几笔×5 + 关卡×4</b> 分，<b>剩针×5</b> 再加，<b>一钉不错再多 15</b>；<b>每 2 关升 1 段</b>（最多 9 段）。<br>'+
+    '🦉 发呆 12 秒会提示 <b>这块板压第几笔、真钉几号</b>；<code>1</code> <code>2</code> <code>3</code> 选钉子、点下面的板能问它 <b>压着第几笔、还隔几块</b>；战绩落盘 <code>hz_pin_*</code>','#A5D6A7');
 }
 
 window.addEventListener('DOMContentLoaded',boot);
