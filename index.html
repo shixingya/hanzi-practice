@@ -4362,6 +4362,79 @@ button:active{transform:scale(.95)}
   .tq-stage{flex-direction:column}
   .tq-mini{flex:0 0 auto;width:88px;margin:0 auto}
 }
+/* ================= v1.71 笔顺机器人 ================= */
+.rb-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.rb-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.rb-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.rb-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.rb-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.rb-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.rb-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.rb-mini .xh{stroke:rgba(255,255,255,.16);stroke-width:6;stroke-dasharray:14 12}
+.rb-mini .cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:10px;color:#B3E5FE;letter-spacing:.5px}
+.rb-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:#22303B;box-shadow:inset 0 0 30px rgba(0,0,0,.6)}
+.rb-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+.rb-cell{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.14);stroke-width:1.5}
+.rb-cell.hit{fill:rgba(105,240,174,.22)}
+.rb-wall{fill:#5C4638;stroke:rgba(255,255,255,.22);stroke-width:2}
+.rb-glyph{transition:opacity .2s}
+.rb-glyph.got{opacity:.14}
+.rb-mark{animation:rbMark 1s ease-in-out infinite}
+@keyframes rbMark{0%,100%{opacity:.2}50%{opacity:1}}
+.rb-smoke{animation:rbSmoke .8s ease-out forwards}
+@keyframes rbSmoke{0%{r:6;opacity:.85}100%{r:30;opacity:0}}
+.rb-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.rb-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:rbBit .72s ease-out forwards}
+@keyframes rbBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.rb-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF176;text-shadow:0 2px 6px rgba(0,0,0,.6);animation:rbPopUp .95s ease-out forwards;white-space:nowrap}
+@keyframes rbPopUp{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-40px}}
+.rb-shake{animation:rbShake .32s}
+@keyframes rbShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(7px)}75%{transform:translateX(-3px)}}
+.rb-slots{display:flex;gap:6px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:46px;padding:6px;border-radius:14px;background:rgba(0,0,0,.3);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap}
+.rb-slot{width:38px;height:38px;line-height:38px;border-radius:10px;background:rgba(255,255,255,.16);color:#fff;font-size:19px;text-align:center;cursor:pointer;animation:rbIn .18s ease-out}
+.rb-slot:hover{background:rgba(255,120,120,.4)}
+.rb-slot.now{background:#FFD740;color:#263238}
+@keyframes rbIn{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+.rb-more{font-size:12px;color:#90A4AE}
+.rb-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.rb-power{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(255,255,255,.14);overflow:hidden}
+.rb-power i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#26A69A,#66BB6A 55%,#FFF176);transition:width .18s linear}
+.rb-power b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.rb-clock{font-size:12px;color:#fff;background:rgba(255,255,255,.14);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.rb-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:min(100% - 28px,420px);margin:9px auto 0}
+.rb-pad button{padding:13px 4px;border:none;border-radius:14px;font-size:20px;font-weight:bold;color:#E1F5FE;background:rgba(255,255,255,.16);cursor:pointer}
+.rb-pad button:active{background:rgba(255,255,255,.32)}
+.rb-pad .u{grid-column:2}
+.rb-pad .l{grid-column:1;grid-row:2}
+.rb-pad .r{grid-column:3;grid-row:2}
+.rb-pad .d{grid-column:2;grid-row:2}
+.rb-pad .undo{grid-column:3;grid-row:1;font-size:14px;color:#FFCC80}
+.rb-go{display:flex;gap:9px;width:calc(100% - 28px);margin:9px auto 0}
+.rb-run{flex:1;padding:16px 8px;border:none;border-radius:18px;font-size:19px;font-weight:bold;color:#0D2B3E;background:linear-gradient(180deg,#B9F6CA,#4DD08C);box-shadow:0 5px 0 #1B6E46;cursor:pointer}
+.rb-run:active{transform:translateY(3px);box-shadow:0 2px 0 #1B6E46}
+.rb-run:disabled{opacity:.45;box-shadow:0 5px 0 rgba(0,0,0,.3)}
+.rb-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0}
+.rb-tool{flex:1;padding:9px 4px;border:none;border-radius:13px;font-size:13px;color:#E1F5FE;background:rgba(255,255,255,.14);cursor:pointer}
+.rb-tool.on{background:#FFD740;color:#263238}
+.rb-tool:disabled{opacity:.4}
+.rb-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.28);color:#A5D6A7;font-size:13px;line-height:1.65;min-height:44px}
+.rb-msg b{color:#fff}
+.rb-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.rb-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.rb-badge{position:absolute;right:8px;top:8px;font-size:12px;color:#FFE082;background:rgba(0,0,0,.4);border-radius:11px;padding:3px 10px;display:none}
+.rb-badge.on{display:block}
+.rb-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.rb-rs span{display:block;font-size:24px;font-weight:bold}
+.rb-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.rb-book-t{font-size:12px;color:#B3E5FE;margin-top:12px}
+.rb-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.rb-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.rb-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.rb-cdot.on{display:flex}
+@media (max-width:600px){
+  .rb-stage{flex-direction:column}
+  .rb-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
 </style>
 
 </head>
@@ -4418,8 +4491,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 69 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">69</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 70 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">70</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -4430,12 +4503,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>69 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>16</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>24</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>70 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>17</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>24</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+    <div class="mode-card" onclick="enterMode('robot')">
+      <div class="icon">🤖</div>
+      <div class="info"><h3>笔顺机器人</h3><p id="rbCardTip">先把箭头排成一排，再按执行让它一格一格走</p></div>
+      <span class="rb-cdot" id="rbCardDot">🆕</span>
+    </div>
     <div class="mode-card" onclick="enterMode('patrol')">
       <div class="icon">🐭</div>
       <div class="info"><h3>笔顺夜巡</h3><p id="npCardTip">蹲下别出声，摸对垫子搬回洞</p></div>
@@ -4855,6 +4933,108 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="lzRetry()">🚣 再划一场</button>
     <button class="w-btn blue" onclick="lzLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-robot">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rbLeave()">← 返回</button>
+    <div class="stats"><span id="rbScoreTxt">🎯 0 分</span><span id="rbLvTxt">第 1 关</span></div>
+    <button class="icon-btn" onclick="rbHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="rb-hud">
+    <span id="rbRankTxt" title="称号">🔧 上螺丝学徒</span>
+    <span id="rbHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="rbComboTxt" title="连击">🔥 连 0</span>
+    <span id="rbLevelTxt" title="过了几关">🚀 0 关</span>
+    <span id="rbLeftTxt" title="这个字还差几笔">🀫 还 0 笔</span>
+    <span id="rbBugTxt" title="踩错几次">🐞 0</span>
+    <span id="rbStepTxt" title="走了几格">👣 0 步</span>
+  </div>
+  <div class="rb-ask" id="rbAsk">🤖 正在组装机器人……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="rb-stage">
+    <div class="rb-mini">
+      <svg viewBox="0 -1024 1024 1024" id="rbMiniSvg"></svg>
+      <div class="cap" id="rbMiniCap">这个字</div>
+    </div>
+    <div class="rb-tbl">
+      <svg class="rb-svg" id="rbSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="rbBotG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#B3E5FC"/><stop offset="100%" stop-color="#4FC3F7"/>
+          </linearGradient>
+        </defs>
+        <g id="rbStatic"></g>
+        <g id="rbHintG"></g>
+        <g id="rbCells"></g>
+        <g id="rbBot"></g>
+        <g id="rbTop"></g>
+      </svg>
+      <div class="rb-badge" id="rbBadge">🧱</div>
+      <div class="rb-fx" id="rbFx"></div>
+    </div>
+  </div>
+  <div class="rb-slots" id="rbSlots"></div>
+  <div class="rb-meter">
+    <div class="rb-power" id="rbPowerBox"><i id="rbPowerBar"></i><b id="rbPowerTxt">🔋 电量 100%</b></div>
+    <div class="rb-clock" id="rbClock">🛠️ 排指令中</div>
+  </div>
+  <div class="rb-pad">
+    <button class="u" onpointerdown="rbPush(0);return false">⬆️</button>
+    <button class="undo" onpointerdown="rbUndo();return false">↩️ 退一格</button>
+    <button class="l" onpointerdown="rbPush(3);return false">⬅️</button>
+    <button class="d" onpointerdown="rbPush(2);return false">⬇️</button>
+    <button class="r" onpointerdown="rbPush(1);return false">➡️</button>
+  </div>
+  <div class="rb-go">
+    <button class="rb-run" id="rbRunBtn" onpointerdown="rbRun();return false">🚀 执行指令</button>
+  </div>
+  <div class="rb-tools">
+    <button class="rb-tool" id="rbHintBtn" onclick="rbHint()" disabled>💡 路线提示</button>
+    <button class="rb-tool" id="rbRedoBtn" onclick="rbRelayout(false)">🔄 重新摆</button>
+    <button class="rb-tool" id="rbFastBtn" onclick="rbFast()">🐢 慢速</button>
+    <button class="rb-tool" onclick="rbEnd('quit')">🏁 结算离场</button>
+  </div>
+  <div class="rb-msg" id="rbMsg">机器人 <b>不会自己动</b>：先把 ⬆️⬇️⬅️➡️ <b>排成一排指令</b>，再按 🚀 执行 —— 它 <b>一格一格照着走</b>，踩到 <b>下一笔</b> 才算收进肚子里</div>
+  <div class="rb-tip">地上散着 <b>一个字的每一笔</b>：机器人要按 <b>正确笔顺</b> 一格一格走过去把它们 <b>挨个踩收</b>，左边小格里的字会 <b>一笔一笔长回来</b>。<br>
+    <b>🛠️ 排指令</b>：点 <b>⬆️ ⬇️ ⬅️ ➡️</b>（或按键盘方向键）一格一格往指令条上 <b>添箭头</b>，点条上的箭头 <b>就删掉它</b>，<code>退格</code> 退最后一格<br>
+    <b>🚀 执行</b>（<code>空格</code>）：机器人照指令走，<b>走一格吃一格电</b>；撞墙会 <b>停下来</b>，剩下的指令 <b>留在条上</b> 让你改<br>
+    ✅ <b>踩对下一笔</b>：<b>5 + 第几笔×2 + 关卡</b> 分 ×连击倍率；🐞 <b>踩错顺序</b> = <b>bug</b>：扣 6 分、连击清零、这一趟 <b>当场停下</b><br>
+    🔋 <b>电量</b>：每关给一格一格的电量，<b>省着走分更高</b>（过关按剩余电量 ×2 加分）；电用光了这一关 <b>重新摆</b><br>
+    💡 <b>路线提示</b>（<code>H</code>）：画出到 <b>下一笔</b> 的 <b>最短路线</b>（<b>不带弯的直路</b>），一次一发；🔄 <b>重新摆</b>（<code>R</code>）：换个走法重来<br>
+    🚧 <b>第 3 关起多砖墙</b>、<b>第 4 关起混进别字的干扰笔</b>、格子也越铺越大 —— <b>先想好一整条路，再按执行</b><br>
+    🏁 <b>把一个字的笔全部按顺序收齐 = 过一回关</b>：<b>18 + 笔数×4 + 关卡×3</b> 分，<b>一趟不踩错再加 12</b>；<b>每 2 关升 1 段</b>（最多 9 段）：补一颗心、一次提示<br>
+    🐢 右下角 <b>慢速/加速</b> 能改机器人走路快慢；<code>?</code> 看玩法 · 战绩落盘 <code>hz_rb_*</code></div>
+</div>
+<div class="screen" id="screen-robot-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rbLeave()">← 回首页</button>
+    <div class="stats"><span id="rbRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="rbRsEmoji">🤖</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="rbRsTitle">机器人收工了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="rbRsSub">下一趟先把「<b>看清这一笔排第几 → 想好一整条路 → 再按执行</b>」走顺</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="rb-rs">
+      <div><span style="color:#FFD700" id="rbRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="rbRsLevel">0</span><small>过了几关</small></div>
+      <div><span style="color:#69F0AE" id="rbRsPot">0</span><small>收了几笔</small></div>
+      <div><span style="color:#FFAB91" id="rbRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="rbRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="rbRsBug">0</span><small>🐞 / 电量耗尽</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多过几关 · 一共走了几格</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFD740"><span id="rbRsBest">0</span> 关 · <span id="rbRsSteps">0</span> 格</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="rbRsAll">🔧 上螺丝学徒</div>
+      <div class="rb-book-t" id="rbRsBookT"></div>
+      <div class="rb-book" id="rbRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="rbRetry()">🤖 再跑一趟</button>
+    <button class="w-btn blue" onclick="rbLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-billiard">
@@ -9562,6 +9742,7 @@ function updateHomeStats(){
   if(typeof rqNudge==='function')rqNudge();
   if(typeof bpNudge==='function')bpNudge();
   if(typeof tqNudge==='function')tqNudge();
+  if(typeof rbNudge==='function')rbNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -9577,6 +9758,7 @@ function enterMode(mode){
   if(mode==='balloon'){rqStart();return}
   if(mode==='blow'){bpStart();return}
   if(mode==='billiard'){tqStart();return}
+  if(mode==='robot'){rbStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -46445,6 +46627,910 @@ function tqHelp(){
     '🦉 卡住 12 秒会提示 <b>下一笔的方向和笔顺规则</b>；<b>1~2 段常驻淡黄预测线</b>，3 段起要靠手感。','#A5D6A7');
 }
 
+
+/* ================= v1.71 笔顺机器人（先排一整条指令 · 再按执行 · 踩错顺序就是 bug） ================= */
+const RB_W=700,RB_H=470,RB_CELL=88;
+const RB_HEARTS=3,RB_HEART_MAX=5,RB_BUG_HEART=3,RB_MISS_MAX=40,RB_BOOK_MAX=300;
+const RB_POOL_MIN=4,RB_POOL_WANT=16;
+const RB_SLOW=340,RB_FAST=180,RB_NAG_MS=15000,RB_HINT_MS=1900,RB_NEXT_MS=620,RB_DRY_MS=720;
+const RB_DIRN=['横','竖','撇','捺','折'];
+const RB_ARROW=['⬆️','➡️','⬇️','⬅️'];
+const RB_DX=[0,1,0,-1],RB_DY=[-1,0,1,0];
+const RB_COL=['#FF6B6B','#4ECDC4','#45B7D1','#FFA07A','#B39DDB'];
+const RB_RULE=['先横后竖','先撇后捺','从上到下','从左到右','这一笔排在后面'];
+const RB_NOTE=[262,294,330,392,440,523,587,659,784,880,988,1047,1175,1319,1397,1568];
+const RB_RANKS=[
+  {n:0,e:'🔧',t:'上螺丝学徒'},{n:3,e:'🤖',t:'会走直线'},{n:8,e:'🧭',t:'认得方向'},
+  {n:15,e:'🛠️',t:'路线熟手'},{n:24,e:'🚦',t:'一次跑通'},{n:36,e:'🛰️',t:'导航员'},
+  {n:52,e:'🏅',t:'零 bug 工程师'},{n:74,e:'💎',t:'省电高手'},{n:105,e:'🌈',t:'程序大师'}
+];
+const rb={
+  run:false,over:false,busy:true,gen:0,rafId:0,timers:[],last:0,
+  pool:[],miss:[],rec:null,n:0,k:0,cols:5,rows:4,grid:[],gl:[],
+  rx:0,ry:0,c0:0,r0:0,px:0,py:0,fx0:0,fy0:0,tx:0,ty:0,toC:0,toR:0,animT:0,botEl:null,
+  nWall:0,nDecoy:0,walk:0,
+  prog:[],pc:0,moving:false,stopped:false,clearing:false,wait:false,pendingDry:false,
+  energy:0,energyMax:0,fast:false,hintMs:0,think:0,playMs:0,t:0,tones:0,hudTxt:{},
+  lv:1,score:0,hearts:RB_HEARTS,combo:0,maxCombo:0,
+  levels:0,pots:0,bugs:0,dry:0,steps:0,perfect:0,hints:0,relayouts:0,cleanLvl:true,
+  hintN:2,redoN:2,bound:false,ptrBound:false
+};
+function rbInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function rbAdd(k,n){if(n)localStorage.setItem(k,String(rbInt(k)+n))}
+function rbSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function rbSay(t,c){const el=document.getElementById('rbMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function rbShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function rbOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function rbClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function rbRank(n){let r=RB_RANKS[0];for(let i=0;i<RB_RANKS.length;i++)if(n>=RB_RANKS[i].n)r=RB_RANKS[i];return r}
+function rbDn(d){return d<0?4:d}
+function rbTone(f,d,t,v){if(rb.tones<=0)return;rb.tones--;tone(f,d,t,v)}
+function rbT(fn,ms){const g=rb.gen;const id=setTimeout(function(){if(g!==rb.gen)return;fn()},ms);rb.timers.push(id);return id}
+function rbKillTimers(){rb.timers.forEach(function(t){clearTimeout(t)});rb.timers=[]}
+function rbSlotsN(){return Math.min(12,7+rb.lv)}
+function rbWallCfg(){return rb.lv<3?0:Math.min(7,rb.lv-1)}
+function rbDecoyCfg(){return rb.lv<4?0:Math.min(4,rb.lv-3)}
+function rbDims(){return rb.lv<=2?[5,4]:(rb.lv<=4?[6,4]:[6,5])}
+function rbGapMax(){return rb.lv<=2?2:(rb.lv<=5?3:4)}
+/* ---- 字库：每一笔都画得出形状、且不是清一色 ---- */
+function rbBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function rbSig(d){return String(d||'').replace(/\s+/g,'')}
+function rbDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function rbPoly(m){
+  let d='';
+  for(let k=0;k<m.length;k++)d+=(k?'L':'M')+m[k][0].toFixed(0)+' '+m[k][1].toFixed(0);
+  return d;
+}
+function rbMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>10)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const sigs=[];
+  for(let i=0;i<ms.length;i++){
+    if(!rbBox(ms[i]))return null;
+    sigs.push(rbSig(rbDOf(sp,i)));
+  }
+  let same=true;
+  for(let i=1;i<sigs.length;i++)if(sigs[i]!==sigs[0]){same=false;break}
+  if(same)return null;
+  return {ch:ch,n:ms.length};
+}
+function rbCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<90;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(rbShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(rbShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(rbShuf(CHARS.slice()));
+  return out;
+}
+function rbTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function rbRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=rbTO(loadCharData(ch),2600);
+  if(!raw||!raw.medians)return null;
+  if(!rbMake(ch,raw))return null;
+  return {ch:ch,raw:raw};
+}
+async function rbBuild(keep){
+  const g=rb.gen;
+  const stale=function(){return g!==rb.gen||!rb.run};
+  rb.miss=(localStorage.getItem('hz_rb_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  rbShuf(rb.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  rbCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)rb.pool=[];
+  for(let k=0;k<want.length&&rb.pool.length<RB_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return rbRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])rb.pool.push(rs[i]);
+  }
+  return rb.pool.length>=RB_POOL_MIN;
+}
+function rbNewRec(){
+  const w=rb.lv>=5?[3,9]:[2,7],used={};
+  if(rb.rec)used[rb.rec.ch]=1;
+  let cand=rb.pool.filter(function(r){const n=r.raw.medians.length;return n>=w[0]&&n<=w[1]});
+  if(!cand.length)cand=rb.pool.slice();
+  if(!cand.length)return null;
+  for(let i=0;i<rb.miss.length;i++){
+    for(let k=0;k<cand.length;k++)if(cand[k].ch===rb.miss[i]&&!used[cand[k].ch])return cand[k];
+  }
+  for(let i=0;i<40;i++){const c=rbOne(cand);if(c&&!used[c.ch])return c}
+  return cand[0];
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function rbMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_rb_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_rb_miss',a.slice(0,RB_MISS_MAX).join(','));
+}
+function rbMissDel(ch){
+  const a=(localStorage.getItem('hz_rb_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_rb_miss',a.join(','));
+}
+function rbBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_rb_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_rb_book',a.slice(0,RB_BOOK_MAX).join(','));
+}
+/* ---- 网格 ---- */
+function rbIdx(c,r){return r*rb.cols+c}
+function rbInside(c,r){return c>=0&&r>=0&&c<rb.cols&&r<rb.rows}
+function rbFree(c,r){return rbInside(c,r)&&rb.grid[rbIdx(c,r)].kind!=='wall'}
+function rbOX(){return (RB_W-rb.cols*RB_CELL)/2}
+function rbOY(){return (RB_H-rb.rows*RB_CELL)/2}
+function rbCX(c){return rbOX()+c*RB_CELL+RB_CELL/2}
+function rbCY(r){return rbOY()+r*RB_CELL+RB_CELL/2}
+function rbGly(d,poly,box,dir,scl,si){
+  return {d:d||'M0 0',poly:poly||'',box:box||{x:0,y:0,w:1024,h:1024},dir:dir,scl:scl,si:si};
+}
+function rbStrokes(rec){
+  const raw=rec.raw,ms=raw.medians,sp=raw.strokes||[];
+  const gl=[];
+  let mx=150;
+  const boxes=[],dirs=[];
+  for(let i=0;i<ms.length;i++){
+    const b=rbBox(ms[i])||{x:0,y:0,w:1024,h:1024};
+    boxes.push(b);dirs.push(fmDirOf(ms[i]));
+    mx=Math.max(mx,Math.max(b.w,b.h));
+  }
+  const scl=52/mx;
+  for(let i=0;i<ms.length;i++)gl.push(rbGly(rbDOf(sp,i),rbPoly(ms[i]),boxes[i],dirs[i],scl,i));
+  return gl;
+}
+function rbWalkOf(cols,rows,limit){
+  const N=cols*rows;
+  let c=Math.random()<0.5?0:cols-1,r=Math.floor(Math.random()*rows);
+  const seen=new Uint8Array(N),out=[[c,r]];
+  seen[rbIdx(c,r)]=1;
+  while(out.length<Math.min(N,limit)){
+    const opts=[];
+    for(let k=0;k<4;k++){
+      const nc=c+RB_DX[k],nr=r+RB_DY[k];
+      if(rbInside(nc,nr)&&!seen[nc+nr*cols])opts.push([nc,nr]);
+    }
+    if(!opts.length)break;
+    const p=rbOne(opts);
+    c=p[0];r=p[1];seen[c+r*cols]=1;out.push([c,r]);
+  }
+  if(out.length<N&&out.length<limit){
+    /* 随机走死了就换成蛇形绕场一周 —— 一定铺得满 */
+    out.length=0;
+    for(let r2=0;r2<rows;r2++)for(let k=0;k<cols;k++)out.push([(r2&1)?cols-1-k:k,r2]);
+  }
+  return out;
+}
+function rbTryGen(){
+  const d=rbDims();
+  rb.cols=d[0];rb.rows=d[1];
+  const N=rb.cols*rb.rows;
+  rb.grid=[];
+  for(let i=0;i<N;i++)rb.grid.push({kind:'empty',g:-1,got:0});
+  rb.gl=rbStrokes(rb.rec);
+  rb.n=rb.gl.length;
+  /* 末端留几个格子放砖墙/干扰笔，不然长字铺满整台就添不上东西 */
+  const tail=rbWallCfg()+rbDecoyCfg();
+  const walk=rbWalkOf(rb.cols,rb.rows,Math.min(N,rb.n*rbGapMax()+2+tail));
+  if(walk.length<rb.n+1)return false;
+  const room=Math.min(walk.length-1,N-2-tail);
+  if(room<rb.n)return false;
+  const base=rbClamp(Math.floor(room/rb.n),1,rbGapMax());
+  const idxs=[];
+  let p=0;
+  for(let i=0;i<rb.n;i++){
+    const min=p+1;
+    const want=p+base+(Math.random()<0.5?1:0);
+    const maxA=room-(rb.n-1-i);
+    p=Math.max(min,Math.min(want,maxA));
+    if(p>maxA)return false;
+    idxs.push(p);
+  }
+  rb.c0=walk[0][0];rb.r0=walk[0][1];
+  rb.rx=rb.c0;rb.ry=rb.r0;
+  const onWalk=new Uint8Array(N);
+  for(let i=0;i<=idxs[rb.n-1];i++)onWalk[walk[i][1]*rb.cols+walk[i][0]]=1;
+  for(let i=0;i<rb.n;i++){
+    const w=walk[idxs[i]];
+    const g=rbIdx(w[0],w[1]);
+    if(rb.grid[g].kind!=='empty')return false;
+    rb.grid[g].kind='stroke';rb.grid[g].g=i;
+  }
+  rb.walk=idxs[rb.n-1];
+  const spare=[];
+  for(let i=0;i<N;i++)if(!onWalk[i]&&rb.grid[i].kind==='empty')spare.push(i);
+  rbShuf(spare);
+  let sp=0;
+  rb.nWall=Math.min(rbWallCfg(),Math.max(0,spare.length-1));
+  for(let w=0;w<rb.nWall;w++){
+    const i=spare[sp++];rb.grid[i].kind='wall';rb.grid[i].g=-1;
+  }
+  rb.nDecoy=Math.min(rbDecoyCfg(),Math.max(0,spare.length-sp));
+  for(let q=0;q<rb.nDecoy;q++){
+    const i=spare[sp++];
+    const other=rbOne(rb.pool.filter(function(x){return x.ch!==rb.rec.ch}))||rb.pool[0];
+    if(!other){rb.nDecoy=q;break}
+    const og=rbStrokes(other);
+    const g=rbOne(og);
+    if(!g){rb.nDecoy=q;break}
+    rb.gl.push(rbGly(g.d,g.poly,g.box,g.dir,g.scl,-1));
+    rb.grid[i].kind='decoy';rb.grid[i].g=rb.gl.length-1;
+  }
+  rb.energyMax=rb.walk+Math.max(3,9-rb.lv);
+  rb.energy=rb.energyMax;
+  return true;
+}
+function rbGen(){
+  for(let a=0;a<40;a++)if(rbTryGen())return true;
+  return false;
+}
+/* ---- BFS：提示与 nag 用 ---- */
+function rbNextCell(){
+  for(let i=0;i<rb.grid.length;i++){
+    const c=rb.grid[i];
+    if(c.kind==='stroke'&&!c.got&&c.g===rb.k)return i;
+  }
+  return -1;
+}
+function rbBfs(to){
+  if(to<0||!rb.grid.length)return null;
+  const N=rb.cols*rb.rows,from=rbIdx(rb.rx,rb.ry);
+  if(from===to)return [];
+  const prev=new Int32Array(N).fill(-1),mv=new Int8Array(N).fill(-1),seen=new Uint8Array(N);
+  const q=[from];seen[from]=1;
+  for(let h=0;h<q.length;h++){
+    const cur=q[h],cc=cur%rb.cols,cr=(cur-cc)/rb.cols;
+    for(let k=0;k<4;k++){
+      const nc=cc+RB_DX[k],nr=cr+RB_DY[k];
+      if(!rbFree(nc,nr))continue;
+      const ni=rbIdx(nc,nr);
+      if(seen[ni])continue;
+      seen[ni]=1;prev[ni]=cur;mv[ni]=k;q.push(ni);
+      if(ni===to){
+        const out=[];let x=ni;
+        while(x!==from){out.push(mv[x]);x=prev[x]}
+        return out.reverse();
+      }
+    }
+  }
+  return null;
+}
+/* ---- 特效 ---- */
+function rbFxHost(){return document.getElementById('rbFx')}
+function rbPut(host,el,ms){
+  host.appendChild(el);
+  rbT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function rbBits(x,y,col,n){
+  const host=rbFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='rb-bit';
+    b.style.left=(x/RB_W*100)+'%';b.style.top=(y/RB_H*100)+'%';
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=22+Math.random()*44;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r).toFixed(1)+'px');
+    rbPut(host,b,760);
+  }
+}
+function rbPop(x,y,txt,col){
+  const host=rbFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='rb-pop';
+  el.style.left=(x/RB_W*100)+'%';el.style.top=(y/RB_H*100)+'%';
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  rbPut(host,el,980);
+}
+function rbSmoke(x,y){
+  const g=document.getElementById('rbTop');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r','6');
+  c.setAttribute('fill','none');c.setAttribute('stroke','rgba(255,120,120,.85)');
+  c.setAttribute('stroke-width','3');c.setAttribute('class','rb-smoke');
+  g.appendChild(c);
+  rbT(function(){if(c.parentNode)c.parentNode.removeChild(c)},820);
+}
+function rbShake(){
+  const el=document.querySelector('.rb-tbl');if(!el)return;
+  el.classList.remove('rb-shake');void el.offsetWidth;el.classList.add('rb-shake');
+}
+/* ---- 渲染 ---- */
+function rbRenderStatic(){
+  const g=document.getElementById('rbStatic');if(!g)return;
+  if(!rb.grid.length){g.innerHTML='<rect x="0" y="0" width="'+RB_W+'" height="'+RB_H+'" rx="22" fill="#1B2A36"/>';return}
+  const ox=rbOX(),oy=rbOY();
+  let h='<rect x="0" y="0" width="'+RB_W+'" height="'+RB_H+'" rx="22" fill="#1B2A36"/>';
+  for(let i=0;i<rb.grid.length;i++){
+    const c=i%rb.cols,r=(i-c)/rb.cols;
+    if(rb.grid[i].kind!=='wall')continue;
+    const x=ox+c*RB_CELL,y=oy+r*RB_CELL;
+    h+='<rect class="rb-wall" x="'+(x+4)+'" y="'+(y+4)+'" width="'+(RB_CELL-8)+'" height="'+(RB_CELL-8)+'" rx="9"/>'+
+      '<rect x="'+(x+12)+'" y="'+(y+18)+'" width="'+(RB_CELL-24)+'" height="9" rx="3" fill="rgba(255,255,255,.16)"/>'+
+      '<rect x="'+(x+12)+'" y="'+(y+40)+'" width="'+(RB_CELL-24)+'" height="9" rx="3" fill="rgba(255,255,255,.12)"/>';
+  }
+  const sx=ox+rb.c0*RB_CELL,sy=oy+rb.r0*RB_CELL;
+  h+='<rect x="'+(sx+7)+'" y="'+(sy+7)+'" width="'+(RB_CELL-14)+'" height="'+(RB_CELL-14)+'" rx="12" fill="none" stroke="rgba(79,195,247,.5)" stroke-width="2" stroke-dasharray="7 6"/>'+
+    '<text x="'+(sx+RB_CELL/2)+'" y="'+(sy+RB_CELL-10)+'" font-size="10" text-anchor="middle" fill="rgba(179,229,252,.8)">起点</text>'+
+    '<text x="'+(ox+rb.cols*RB_CELL-4)+'" y="'+(oy+rb.rows*RB_CELL+14)+'" font-size="11" text-anchor="end" fill="rgba(255,255,255,.4)">🔋 每走一格吃一格电 · 省着走分更高</text>';
+  g.innerHTML=h;
+}
+function rbGlyphHTML(gl){
+  const b=gl.box,s=gl.scl;
+  const ox=-(b.x+b.w/2)*s,oy=(b.y+b.h/2)*s;
+  return '<g transform="translate('+ox.toFixed(1)+','+oy.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')" opacity=".97">'+
+    '<path d="'+gl.d+'" fill="'+RB_COL[rbDn(gl.dir)]+'"/>'+
+    '<path d="'+gl.poly+'" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="'+(2/s).toFixed(1)+'" stroke-linecap="round"/>'+
+  '</g>';
+}
+function rbRenderCells(){
+  const g=document.getElementById('rbCells');if(!g)return;
+  if(!rb.grid.length){g.innerHTML='';return}
+  const ox=rbOX(),oy=rbOY();
+  let h='';
+  for(let i=0;i<rb.grid.length;i++){
+    const c=i%rb.cols,r=(i-c)/rb.cols;
+    const x=ox+c*RB_CELL,y=oy+r*RB_CELL;
+    const cell=rb.grid[i];
+    h+='<rect class="rb-cell" id="rbCell'+i+'" x="'+(x+3)+'" y="'+(y+3)+'" width="'+(RB_CELL-6)+'" height="'+(RB_CELL-6)+'" rx="12"/>';
+    if(cell.kind==='wall'||cell.kind==='empty')continue;
+    const gl=rb.gl[cell.g];
+    h+='<g id="rbGly'+i+'" class="rb-glyph'+(cell.got?' got':'')+'" transform="translate('+rbCX(c).toFixed(1)+','+rbCY(r).toFixed(1)+')">'+rbGlyphHTML(gl)+'</g>';
+    const lab=cell.kind==='decoy'?RB_DIRN[rbDn(gl.dir)]:(rb.lv<=2?('第'+(cell.g+1)+'笔'):RB_DIRN[rbDn(gl.dir)]);
+    h+='<text x="'+rbCX(c).toFixed(1)+'" y="'+(y+RB_CELL-9)+'" font-size="11" text-anchor="middle" fill="'+(cell.got?'rgba(255,255,255,.22)':'rgba(255,255,255,.72)')+'">'+lab+'</text>';
+  }
+  g.innerHTML=h;
+}
+function rbRenderBot(){
+  const g=document.getElementById('rbBot');if(!g)return;
+  if(!rb.botEl){
+    g.innerHTML='<g id="rbBotEl">'+
+      '<rect x="-19" y="-14" width="38" height="32" rx="10" fill="url(#rbBotG)" stroke="rgba(0,0,0,.3)" stroke-width="2"/>'+
+      '<rect x="-11" y="-8" width="8" height="7" rx="2" fill="#0D2B3E"/><rect x="3" y="-8" width="8" height="7" rx="2" fill="#0D2B3E"/>'+
+      '<path d="M-6 6 Q0 11 6 6" fill="none" stroke="#0D2B3E" stroke-width="2.4" stroke-linecap="round"/>'+
+      '<line x1="0" y1="-14" x2="0" y2="-24" stroke="#90A4AE" stroke-width="3"/><circle cx="0" cy="-27" r="4" fill="#FFD740"/>'+
+      '<rect x="-25" y="-4" width="5" height="14" rx="2.5" fill="#4FC3F7"/><rect x="20" y="-4" width="5" height="14" rx="2.5" fill="#4FC3F7"/>'+
+    '</g>';
+    rb.botEl=document.getElementById('rbBotEl');
+  }
+  rb.botEl.setAttribute('transform','translate('+rb.px.toFixed(1)+','+rb.py.toFixed(1)+')');
+}
+function rbMini(){
+  const svg=document.getElementById('rbMiniSvg');
+  if(!svg)return;
+  if(!rb.rec){svg.innerHTML='';return}
+  const raw=rb.rec.raw,ms=raw.medians,sp=raw.strokes||[];
+  let h='<g transform="scale(1,-1)"><path class="xh" d="M512 40V984M40 512H984" fill="none"/>';
+  for(let i=0;i<rb.n;i++){
+    const dir=rb.gl[i]?rb.gl[i].dir:-1;
+    const lit=i<rb.k;
+    h+='<path d="'+rbDOf(sp,i)+'" fill="'+(lit?RB_COL[rbDn(dir)]:'rgba(255,255,255,.10)')+'" opacity="'+(lit?(i===rb.k-1?1:.9):1)+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  rbSet('rbMiniCap',rb.k>=rb.n?'收齐了 · '+rb.n+' 笔':'已收 '+rb.k+' / '+rb.n+' 笔');
+}
+function rbRenderProg(){
+  const box=document.getElementById('rbSlots');
+  if(!box)return;
+  const cap=rbSlotsN();
+  let h='';
+  if(!rb.prog.length)h='<span class="rb-more">🛠️ 指令条空着 —— 点下面的 ⬆️⬅️➡️⬇️ 往这儿排</span>';
+  for(let i=0;i<rb.prog.length;i++)
+    h+='<div class="rb-slot'+(rb.busy&&i===rb.pc?' now':'')+'" data-i="'+i+'">'+RB_ARROW[rb.prog[i]]+'</div>';
+  if(rb.prog.length)h+='<span class="rb-more">'+rb.prog.length+' / '+cap+' 格</span>';
+  box.innerHTML=h;
+}
+function rbHintLayer(){
+  const g=document.getElementById('rbHintG');
+  if(!g)return;
+  if(!rb.hintMs||rb.k>=rb.n||!rb.grid.length){g.innerHTML='';return}
+  const to=rbNextCell(),p=rbBfs(to);
+  let h='';
+  if(to>=0){
+    const tc=to%rb.cols,tr=(to-tc)/rb.cols;
+    h+='<circle cx="'+rbCX(tc).toFixed(1)+'" cy="'+rbCY(tr).toFixed(1)+'" r="'+(RB_CELL/2+3)+'" fill="none" stroke="#FFEB3B" stroke-width="3" stroke-dasharray="8 7" class="rb-mark"/>';
+    if(p&&p.length){
+      let x=rbCX(rb.rx),y=rbCY(rb.ry),d='M'+x.toFixed(1)+' '+y.toFixed(1);
+      for(let i=0;i<p.length;i++){
+        x+=RB_DX[p[i]]*RB_CELL;y+=RB_DY[p[i]]*RB_CELL;
+        d+='L'+x.toFixed(1)+' '+y.toFixed(1);
+      }
+      h+='<path d="'+d+'" fill="none" stroke="rgba(255,235,59,.9)" stroke-width="5" stroke-dasharray="12 10" stroke-linecap="round"/>';
+    }
+  }
+  g.innerHTML=h;
+}
+function rbHudLight(){
+  const s={
+    pow:'🔋 电量 '+rb.energy+' / '+rb.energyMax+' 格',
+    clock:rb.busy?(rb.moving?'🤖 正在走':'🤖 看着它走'):(rb.hintMs>0?'💡 画路线':'🛠️ 排指令中'),
+    left:'🀫 还 '+Math.max(0,rb.n-rb.k)+' 笔',
+    step:'👣 '+rb.steps+' 步',
+    sc:'🎯 '+Math.round(rb.score)+' 分',
+    badge:rb.nWall?('🧱 墙 ×'+rb.nWall):(rb.nDecoy?('🎭 干扰笔 ×'+rb.nDecoy):'🍃 干净地板')
+  };
+  const pb=document.getElementById('rbPowerBar');
+  if(pb)pb.style.width=(rb.energyMax?Math.max(0,rb.energy/rb.energyMax*100):0)+'%';
+  const pt=document.getElementById('rbPowerTxt');
+  if(pt&&rb.hudTxt.pow!==s.pow){rb.hudTxt.pow=s.pow;pt.textContent=s.pow}
+  const ck=document.getElementById('rbClock');
+  if(ck&&rb.hudTxt.clock!==s.clock){rb.hudTxt.clock=s.clock;ck.textContent=s.clock}
+  const lf=document.getElementById('rbLeftTxt');
+  if(lf&&rb.hudTxt.left!==s.left){rb.hudTxt.left=s.left;lf.textContent=s.left}
+  const st=document.getElementById('rbStepTxt');
+  if(st&&rb.hudTxt.step!==s.step){rb.hudTxt.step=s.step;st.textContent=s.step}
+  const sc=document.getElementById('rbScoreTxt');
+  if(sc&&rb.hudTxt.sc!==s.sc){rb.hudTxt.sc=s.sc;sc.textContent=s.sc}
+  const bd=document.getElementById('rbBadge');
+  if(bd){
+    if(rb.hudTxt.badge!==s.badge){rb.hudTxt.badge=s.badge;bd.textContent=s.badge}
+    bd.classList.toggle('on',s.badge!=='🍃 干净地板');
+  }
+}
+function rbHud(){
+  const R=rbRank(rbInt('hz_rb_words'));
+  rbSet('rbRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<RB_HEART_MAX;i++)hs+=(i<rb.hearts?'❤️':'🖤');
+  rbSet('rbHeartTxt',hs||'🖤');
+  rbSet('rbComboTxt','🔥 连 '+rb.combo);
+  rbSet('rbLevelTxt','🚀 '+rb.levels+' 关');
+  rbSet('rbBugTxt','🐞 '+rb.bugs);
+  rbSet('rbLvTxt','第 '+rb.lv+' 关 · '+rb.cols+'×'+rb.rows);
+  const hb=document.getElementById('rbHintBtn');
+  if(hb){hb.disabled=rb.hintN<=0;hb.textContent='💡 路线提示 ×'+rb.hintN}
+  const db=document.getElementById('rbRedoBtn');
+  if(db){db.disabled=rb.redoN<=0;db.textContent='🔄 重新摆 ×'+rb.redoN}
+  const fb=document.getElementById('rbFastBtn');
+  if(fb){fb.textContent=rb.fast?'🐇 加速中':'🐢 慢速';fb.classList.toggle('on',rb.fast)}
+  const go=document.getElementById('rbRunBtn');
+  if(go)go.disabled=!rb.run||rb.over||rb.busy||!rb.rec;
+  rbHudLight();
+}
+function rbAsk(){
+  if(!rb.rec)return;
+  rbSet('rbAsk','🤖 「<b>'+rb.rec.ch+'</b>」的 '+rb.n+' 笔散在地板上<br><small>按 <b>正确笔顺</b> 一格一格走过去踩收 —— 先 <b>把一整条路排成指令</b>，再按 🚀 执行（还差 '+Math.max(0,rb.n-rb.k)+' 笔）</small>');
+}
+/* ---- 指令条 ---- */
+function rbPush(d){
+  if(!rb.run||rb.over||!rb.rec)return;
+  if(rb.busy){rbSay('🤖 <b>它正在走</b>：等这一趟结束再改指令（撞墙会自己停）','#B3E5FC');return}
+  const cap=rbSlotsN();
+  if(rb.prog.length>=cap){rbSay('🛠️ <b>指令条排满了</b>（最多 '+cap+' 格）：先按 🚀 让它走一段，回来再接着排 —— 或点条上的箭头删一格','#FFD740');return}
+  rb.prog.push(d);rb.think=0;
+  rbRenderProg();rbHudLight();
+  tone(520+d*70,.035,'square',.03);
+}
+function rbUndo(){
+  if(!rb.run||rb.over||rb.busy)return;
+  if(!rb.prog.length){rbSay('↩️ 指令条已经空了','#B3E5FC');return}
+  rb.prog.pop();rb.think=0;
+  rbRenderProg();rbHudLight();
+  tone(300,.04,'square',.03);
+}
+function rbClear(){
+  if(!rb.run||rb.over||rb.busy)return;
+  if(!rb.prog.length)return;
+  rb.prog=[];rb.think=0;rbRenderProg();rbHudLight();
+  rbSay('🧹 <b>指令条清空了</b>：重新想一条路 —— 先看清 <b>下一笔是哪一笔</b>','#B3E5FC');
+}
+function rbFast(){
+  rb.fast=!rb.fast;rbHud();
+  rbSay(rb.fast?'🐇 <b>加速</b>：机器人走得快一倍，看结果更快':'🐢 <b>慢速</b>：一步一步看清楚它踩了哪格','#B3E5FC');
+}
+/* ---- 执行 ---- */
+function rbRun(){
+  if(!rb.run||rb.over||rb.busy||!rb.rec)return;
+  if(!rb.prog.length){
+    rbSay('🛠️ <b>指令条还是空的</b>：点下面的 ⬆️⬅️➡️⬇️ 排几步，再按 🚀 执行','#FFD740');
+    tone(300,.09,'sine',.03);return;
+  }
+  rb.busy=true;rb.pc=0;rb.stopped=false;rb.think=0;rb.moving=false;rb.wait=false;
+  tone(760,.09,'triangle',.05);
+  rbRenderProg();rbHud();
+}
+function rbBeginStep(){
+  const d=rb.prog[rb.pc];
+  const nc=rb.rx+RB_DX[d],nr=rb.ry+RB_DY[d];
+  if(!rbInside(nc,nr)||(rb.grid[rbIdx(nc,nr)].kind==='wall')){
+    rb.pc++;rb.stopped=true;
+    if(!rbInside(nc,nr)){
+      rbSay('🧱 <b>撞到边框了</b>：第 '+rb.pc+' 步走不出去（地板只有 <b>'+rb.cols+'×'+rb.rows+'</b>）—— 这一步已划掉，剩下的指令 <b>接着改</b>','#FFCC80');
+      rbBits(rb.px,rb.py,'#90A4AE',7);
+    }else{
+      rbSay('🧱 <b>撞砖墙了</b>：第 '+rb.pc+' 步那格是 <b>墙</b>，机器人 <b>停在这</b> —— 绕一绕，剩下的指令接着改','#FFCC80');
+      rbBits(rb.px,rb.py,'#8D6E63',9);
+    }
+    rbShake();
+    tone(175,.13,'sine',.05);
+    return;
+  }
+  if(rb.energy<=0){rb.stopped=true;rbOutOfPower();return}
+  rb.energy--;rb.steps++;rbAdd('hz_rb_steps',1);
+  rb.fx0=rb.px;rb.fy0=rb.py;
+  rb.tx=rbCX(nc);rb.ty=rbCY(nr);
+  rb.toC=nc;rb.toR=nr;rb.moving=true;rb.animT=0;
+  rb.pc++;
+  rbTone(300+Math.min(9,rb.combo)*24,.03,'square',.028);
+  rbHudLight();
+}
+function rbOnArrive(){
+  rb.rx=rb.toC;rb.ry=rb.toR;
+  const i=rbIdx(rb.rx,rb.ry),cell=rb.grid[i];
+  if(cell.kind==='stroke'&&!cell.got){
+    if(cell.g===rb.k)rbCollect(i,cell);
+    else rbBug(i,cell,'order');
+  }else if(cell.kind==='decoy'){
+    rbBug(i,cell,'decoy');
+  }else{
+    rbTone(200,.02,'sine',.02);
+  }
+  rbHudLight();
+}
+function rbCollect(i,cell){
+  cell.got=1;
+  const ord=rb.k,dir=rb.gl[cell.g].dir;
+  rb.k++;rb.pots++;rb.combo++;
+  rbAdd('hz_rb_pots',1);
+  if(rb.combo>rb.maxCombo)rb.maxCombo=rb.combo;
+  const gain=Math.round((5+(ord+1)*2+rb.lv)*(1+rb.combo*0.05));
+  rb.score+=gain;
+  rbBits(rbCX(rb.rx),rbCY(rb.ry),RB_COL[rbDn(dir)],12);
+  rbPop(rbCX(rb.rx),rbCY(rb.ry)-18,'+'+gain,'#FFD740');
+  rbTone(RB_NOTE[Math.min(RB_NOTE.length-1,rb.k-1)],.14,'triangle',.06);
+  rbSay('✅ <b>踩对了！</b>「'+rb.rec.ch+'」的第 <b>'+rb.k+'</b> 笔是 <b>'+RB_DIRN[rbDn(dir)]+'</b>：+'+gain+' 分'+(rb.combo>1?' · 🔥 连 '+rb.combo:''),'#FFD740');
+  rbRenderCells();rbMini();rbAsk();rbHud();
+  if(rb.combo>=3)speakEncourage();
+  if(rb.k>=rb.n)rbLevelClear();
+}
+function rbBug(i,cell,kind){
+  rb.bugs++;rb.combo=0;rb.cleanLvl=false;
+  rb.score=Math.max(0,rb.score-6);
+  rbAdd('hz_rb_bugs',1);
+  rbMissAdd(rb.rec.ch);
+  const gl=rb.gl[cell.g];
+  const gi=rbNextGlyph(),want=rb.gl[gi]?rb.gl[gi].dir:-1;
+  if(kind==='decoy')
+    rbSay('🐞 <b>踩到干扰笔</b>：那一格是 <b>别的字</b> 掉下来的「'+RB_DIRN[rbDn(gl.dir)]+'」，不是「'+rb.rec.ch+'」的笔 —— 扣 6 分、连击清零、这一趟 <b>当场停下</b>','#FF8A80');
+  else
+    rbSay('🐞 <b>顺序错了</b>：那格画的是「'+RB_DIRN[rbDn(gl.dir)]+'」，可「'+rb.rec.ch+'」的 <b>下一笔是「'+RB_DIRN[rbDn(want)]+'」</b>（'+(RB_RULE[rbDn(want)]||'从左上开始写')+'）—— 扣 6 分、这一趟停下','#FF8A80');
+  rbShake();rbSmoke(rbCX(rb.rx),rbCY(rb.ry));rbBits(rbCX(rb.rx),rbCY(rb.ry),'#FF8A66',10);
+  tone(190,.2,'sawtooth',.06);
+  rb.stopped=true;
+  if(rb.bugs%RB_BUG_HEART===0){
+    rb.hearts--;
+    rbSay('💔 <b>累计 '+rb.bugs+' 个 bug</b>：掉一颗心（还剩 '+rb.hearts+' 颗）—— <b>先在心里把这个字写一遍</b>，再排路线','#FF8A80');
+    if(rb.hearts<=0){rbHud();rbEnd('bug');return}
+  }
+  rbHud();
+}
+function rbNextGlyph(){
+  const i=rbNextCell();
+  return i<0?rb.k:rb.grid[i].g;
+}
+function rbOutOfPower(){
+  rb.dry++;rbAdd('hz_rb_dry',1);rb.combo=0;rb.pendingDry=true;
+  rbSay('🪫 <b>电用光了</b>：这一关 <b>重新摆一张图</b>（电量补满）—— 排指令前 <b>先数清楚要走几格</b>','#FF8A80');
+  tone(150,.22,'sawtooth',.05);
+  rbShake();
+  rbHud();
+}
+function rbRelayout(force){
+  if(!rb.run||rb.over||!rb.rec)return;
+  if(rb.busy&&!force)return;
+  if(!force){
+    if(rb.redoN<=0){rbSay('🔄 <b>没有重摆次数了</b>：每升 1 段补一次（最多攒 4 次）','#B3E5FC');return}
+    rb.redoN--;rb.relayouts++;rbAdd('hz_rb_relayouts',1);
+    rb.combo=0;
+    rbSay('🔄 <b>换个走法</b>：同一个字重新摆开（电量补满、已收的笔清零、连击清零）','#B3E5FC');
+    tone(392,.1,'square',.04);
+  }
+  rb.prog=[];rb.k=0;rb.cleanLvl=true;rb.hintMs=0;rb.pc=0;rb.stopped=false;rb.pendingDry=false;rb.wait=false;
+  if(!rbGen()){rbEnd('nodata');return}
+  rb.busy=false;
+  rb.px=rbCX(rb.rx);rb.py=rbCY(rb.ry);
+  rbRenderStatic();rbRenderCells();rbRenderBot();rbRenderProg();rbMini();rbAsk();rbHintLayer();rbHud();
+}
+function rbLevelClear(){
+  rb.levels++;
+  const clean=rb.cleanLvl;
+  let gain=18+rb.n*4+rb.lv*3;
+  let msg='🏁 <b>过了一关！</b>「'+rb.rec.ch+'」的 '+rb.n+' 笔 <b>全按笔顺</b> 踩收齐：+'+gain+' 分';
+  const leftBonus=Math.max(0,rb.energy)*2;
+  gain+=leftBonus;
+  if(leftBonus)msg+=' · 🔋 还剩 '+rb.energy+' 格电，<b>再加 '+leftBonus+'</b>';
+  if(clean){
+    gain+=12;rb.perfect++;rbAdd('hz_rb_perfect',1);
+    msg+=' · 🚦 <b>一趟没有 bug，再加 12 分</b>';
+  }
+  rb.score+=gain;
+  rbAdd('hz_rb_words',1);rbBookAdd(rb.rec.ch);rbMissDel(rb.rec.ch);
+  rbPop(RB_W/2,RB_H/2,clean?'🚦 零 bug 跑通':'🏁 过关','#FFF176');
+  rbBits(RB_W/2,RB_H/2,'#FFF176',26);
+  [523,659,784,1047].forEach(function(f,i){rbT(function(){tone(f,.15,'triangle',.055)},i*80)});
+  rbSay(msg,'#69F0AE');
+  speakEncourage();
+  rbLvCheck();
+  rb.clearing=true;rb.stopped=true;
+  rbHud();
+}
+function rbLvCheck(){
+  const nl=Math.min(9,1+Math.floor(rb.levels/2));
+  if(nl<=rb.lv)return;
+  rb.lv=nl;
+  rb.hearts=Math.min(RB_HEART_MAX,rb.hearts+1);
+  rb.hintN=Math.min(4,rb.hintN+1);
+  rb.redoN=Math.min(4,rb.redoN+1);
+  rbSay('⚡ <b>第 '+rb.lv+' 段</b>：地板 '+(rb.lv<=2?'5×4':(rb.lv<=4?'6×4':'6×5'))+'、指令条最多 '+rbSlotsN()+' 格、'+
+    (rbWallCfg()?'多 <b>'+rbWallCfg()+' 处 🧱 砖墙</b>':'')+(rbDecoyCfg()?'、混进 <b>'+rbDecoyCfg()+' 笔 🎭 干扰笔</b>':'')+
+    ' —— 补一颗心、一次提示、一次重摆','#FFD740');
+  [659,784,988].forEach(function(f,i){rbT(function(){tone(f,.13,'triangle',.055)},i*95)});
+  rbHud();
+}
+/* ---- 一趟走完 ---- */
+function rbResolveRun(){
+  rb.busy=false;rb.moving=false;
+  rb.prog=rb.pc<rb.prog.length?rb.prog.slice(rb.pc):[];
+  rb.pc=0;
+  if(rb.hearts<=0){rbEnd('bug');return}
+  if(rb.pendingDry){
+    rb.pendingDry=false;rb.busy=true;rb.wait=true;
+    rbHud();
+    rbT(function(){rbRelayout(true)},RB_DRY_MS);
+    return;
+  }
+  if(rb.clearing){
+    rb.clearing=false;rb.cleanLvl=true;
+    rb.busy=true;rb.wait=true;
+    rbHud();
+    rbT(function(){rbNextRec()},RB_NEXT_MS);
+    return;
+  }
+  rb.hintMs=0;
+  rbHintLayer();rbRenderProg();rbHud();
+}
+function rbNextRec(){
+  rb.rec=rbNewRec();
+  if(!rb.rec){rbEnd('nodata');return}
+  if(!rbGen()){rbEnd('nodata');return}
+  rb.prog=[];rb.k=0;rb.cleanLvl=true;rb.pc=0;rb.stopped=false;rb.wait=false;rb.hintMs=0;
+  rb.px=rbCX(rb.rx);rb.py=rbCY(rb.ry);
+  rb.botEl=null;
+  rb.busy=false;
+  rbRenderStatic();rbRenderCells();rbRenderBot();rbRenderProg();rbMini();rbAsk();rbHud();
+}
+function rbNag(){
+  if(!rb.rec||rb.k>=rb.n)return;
+  const gi=rbNextGlyph(),dir=rb.gl[gi]?rb.gl[gi].dir:-1;
+  const p=rbBfs(rbNextCell());
+  rbSay('🦉 <b>别空着</b>：「'+rb.rec.ch+'」的下一笔是 <b>'+RB_DIRN[rbDn(dir)]+'</b>（'+(RB_RULE[rbDn(dir)]||'从左上开始写')+'）'+
+    (p&&p.length?' —— 从机器人这儿走 <b>'+p.length+' 格</b> 就到，第一步 <b>'+RB_ARROW[p[0]]+'</b>':'')+'：排好一整条再按 🚀','#A5D6A7');
+  tone(587,.09,'sine',.035);
+}
+/* ---- 点格子问一句 ---- */
+function rbPeek(c,r){
+  if(!rb.run||rb.over||rb.busy||!rb.rec)return;
+  const i=rbIdx(c,r),cell=rb.grid[i];
+  if(cell.kind==='wall'){rbSay('🧱 <b>这格是砖墙</b>：撞上去这一趟就停了 —— 排指令时 <b>绕开它</b>','#B3E5FC');return}
+  if(cell.kind==='empty'){rbSay('🍃 <b>空地板</b>：踩上去什么都不发生 —— 白走一格、吃一格电','#B3E5FC');return}
+  if(cell.kind==='decoy'){rbSay('🎭 <b>这一笔不属于「'+rb.rec.ch+'」</b>：它是 <b>'+RB_DIRN[rbDn(rb.gl[cell.g].dir)]+'</b>，从别的字上掉下来的 —— 踩上去算 bug','#FFCC80');return}
+  if(cell.got){rbSay('✅ <b>这一笔已经收进肚子了</b>：现在该收 <b>第 '+(rb.k+1)+' 笔</b>','#A5D6A7');return}
+  const p=rbBfs(i);
+  rbSay('👀 <b>那格画的是「'+RB_DIRN[rbDn(rb.gl[cell.g].dir)]+'」</b>：离机器人 <b>'+((p&&p.length)||'?')+' 格</b> —— 它 <b>排第几</b>？先想这个，再排路线','#B3E5FC');
+}
+/* ---- 提示 ---- */
+function rbHint(){
+  if(!rb.run||rb.over||rb.busy||!rb.rec)return;
+  if(rb.hintN<=0){rbSay('💡 <b>提示用完了</b>：每升 1 段补 1 次','#B3E5FC');return}
+  rb.hintN--;rb.hints++;rbAdd('hz_rb_hints',1);
+  rb.think=0;rb.hintMs=RB_HINT_MS;
+  const p=rbBfs(rbNextCell());
+  tone(880,.09,'triangle',.04);
+  rbSay('💡 <b>黄线画出来了</b>：从机器人到 <b>下一笔</b> 的 <b>最短路线</b>（'+(p?p.length+' 格':'这格走不通')+'）—— 照着它排箭头，只给 '+(RB_HINT_MS/1000)+' 秒','#FFD740');
+  rbHintLayer();rbHud();
+}
+/* ---- 循环 ---- */
+function rbStartLoop(){rbStopLoop();rb.last=0;rb.rafId=requestAnimationFrame(rbLoop)}
+function rbStopLoop(){if(rb.rafId){cancelAnimationFrame(rb.rafId);rb.rafId=0}rb.last=0}
+function rbLoop(ts){
+  if(!rb.run||rb.over){rb.rafId=0;return}
+  const dt=rb.last?Math.min(0.05,(ts-rb.last)/1000):0.016;
+  rb.last=ts;
+  rbTick(dt);
+  rb.rafId=requestAnimationFrame(rbLoop);
+}
+function rbTick(dt){
+  const ms=dt*1000;
+  rb.t+=dt;rb.playMs+=ms;
+  rb.tones=6;
+  if(!rb.busy)rb.think+=ms;
+  if(rb.hintMs>0){
+    rb.hintMs=Math.max(0,rb.hintMs-ms);
+    if(!rb.hintMs)rbHintLayer();
+  }
+  if(rb.busy){
+    if(rb.wait){/* 等下一关 / 重新摆 */}
+    else if(rb.moving){
+      const per=rb.fast?RB_FAST:RB_SLOW;
+      rb.animT+=ms;
+      const t=Math.min(1,rb.animT/per);
+      rb.px=rb.fx0+(rb.tx-rb.fx0)*t;
+      rb.py=rb.fy0+(rb.ty-rb.fy0)*t;
+      rbRenderBot();
+      if(t>=1){rb.moving=false;rb.px=rb.tx;rb.py=rb.ty;rbRenderBot();rbOnArrive()}
+    }else if(!rb.stopped&&rb.pc<rb.prog.length){
+      rbBeginStep();
+    }else{
+      rbResolveRun();
+    }
+  }else if(rb.think>=RB_NAG_MS){
+    rb.think=0;rbNag();
+  }
+  rbHudLight();
+}
+/* ---- 输入 ---- */
+function rbBind(){
+  if(rb.bound)return;
+  rb.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='robot'||!rb.run||rb.over)return;
+    const k=e.key;
+    if(k==='ArrowUp'){if(!e.repeat)rbPush(0);e.preventDefault();return}
+    if(k==='ArrowRight'){if(!e.repeat)rbPush(1);e.preventDefault();return}
+    if(k==='ArrowDown'){if(!e.repeat)rbPush(2);e.preventDefault();return}
+    if(k==='ArrowLeft'){if(!e.repeat)rbPush(3);e.preventDefault();return}
+    if(k===' '||k==='Enter'){if(!e.repeat)rbRun();e.preventDefault();return}
+    if(k==='Backspace'){if(!e.repeat)rbUndo();e.preventDefault();return}
+    if(k==='Escape'){rbClear();return}
+    if(k==='h'||k==='H'){if(!e.repeat)rbHint();return}
+    if(k==='r'||k==='R'){if(!e.repeat)rbRelayout(false);return}
+    if(k==='f'||k==='F'){if(!e.repeat)rbFast();return}
+    if(k==='?'){rbHelp();return}
+  });
+}
+function rbPointer(){
+  const svg=document.getElementById('rbSvg');
+  if(!svg||rb.ptrBound)return;
+  rb.ptrBound=true;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='robot')return;
+    const r=svg.getBoundingClientRect();
+    if(!r.width||!r.height)return;
+    const x=(ev.clientX-r.left)/r.width*RB_W,y=(ev.clientY-r.top)/r.height*RB_H;
+    const c=Math.floor((x-rbOX())/RB_CELL),rr=Math.floor((y-rbOY())/RB_CELL);
+    if(rbInside(c,rr))rbPeek(c,rr);
+    ev.preventDefault();
+  });
+  const box=document.getElementById('rbSlots');
+  if(box)box.addEventListener('pointerdown',function(ev){
+    const t=ev.target&&ev.target.closest?ev.target.closest('.rb-slot'):null;
+    if(!t||rb.busy)return;
+    const i=+t.getAttribute('data-i');
+    if(isNaN(i))return;
+    rb.prog.splice(i,1);rb.think=0;rbRenderProg();rbHudLight();
+    tone(280,.04,'square',.03);
+  });
+}
+/* ---- 生命周期 ---- */
+function rbStopAll(){rbStopLoop();rbKillTimers();rb.gen++}
+async function rbStart(){
+  rbStopAll();
+  const g=rb.gen;
+  const stale=function(){return g!==rb.gen||!rb.run||rb.over};
+  rb.run=true;rb.over=false;rb.busy=true;
+  rb.lv=1;rb.score=0;rb.hearts=RB_HEARTS;rb.combo=0;rb.maxCombo=0;
+  rb.levels=0;rb.pots=0;rb.bugs=0;rb.dry=0;rb.steps=0;rb.perfect=0;rb.hints=0;rb.relayouts=0;
+  rb.hintN=2;rb.redoN=2;rb.cleanLvl=true;
+  rb.hintMs=0;rb.think=0;rb.playMs=0;rb.t=0;rb.prog=[];rb.pc=0;rb.moving=false;rb.stopped=false;
+  rb.clearing=false;rb.wait=false;rb.pendingDry=false;rb.animT=0;
+  rb.pool=[];rb.miss=[];rb.rec=null;rb.n=0;rb.k=0;rb.grid=[];rb.gl=[];rb.botEl=null;rb.hudTxt={};
+  rb.nWall=0;rb.nDecoy=0;rb.walk=0;rb.fast=rb.fast||false;
+  showScreen('robot');
+  rbBind();rbPointer();
+  rbRenderStatic();rbRenderCells();rbMini();rbRenderProg();
+  rbSet('rbAsk','🤖 正在组装机器人……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  rbSay('机器人 <b>不会自己动</b>：先按 ⬆️⬅️➡️⬇️ 把 <b>一整条路排成指令</b>，再按 🚀 执行 —— 它一格一格照着走，<b>踩到下一笔</b> 才算收进肚子','#A5D6A7');
+  let ok=await rbBuild();
+  if(stale())return;
+  if(!ok){
+    rbSay('🤖 字库有点慢，再装一次试试……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await rbBuild(true);
+    if(stale())return;
+  }
+  if(!ok||!rb.pool.length){
+    rb.run=false;rb.busy=false;
+    rbSet('rbAsk','😢 凑不出一块地板<br><small>字库还没加载好，稍后再来跑一趟</small>');
+    rbSay('先去别的模式练两笔，回来地板就摆好了','#FFCC80');
+    return;
+  }
+  rbAdd('hz_rb_games',1);
+  rb.busy=false;
+  rbNextRec();
+  if(!rb.run||rb.over)return;
+  if(stale())return;
+  rbHud();
+  rbStartLoop();
+}
+function rbEnd(reason){
+  if(rb.over)return;
+  rb.over=true;rb.run=false;rb.busy=true;rb.wait=false;
+  rbStopAll();
+  const sc=Math.round(rb.score);
+  localStorage.setItem('hz_rb_best',String(Math.max(rb.levels,rbInt('hz_rb_best'))));
+  localStorage.setItem('hz_rb_streak',String(Math.max(rb.maxCombo,rbInt('hz_rb_streak'))));
+  localStorage.setItem('hz_rb_lv',String(Math.max(rb.lv,rbInt('hz_rb_lv'))));
+  rbAdd('hz_rb_ms',Math.round(rb.playMs/1000));
+  const stars=Math.floor(sc/110)+rb.levels*3;
+  if(stars>0)addStars(stars);
+  rbHintLayer();
+  showScreen('robot-result');
+  const R=rbRank(rbInt('hz_rb_words'));
+  const T={
+    bug:['🐞','bug 攒太多了','<b>每 '+RB_BUG_HEART+' 个 bug 掉一颗心</b>：排指令之前先在 <b>心里把这个字写一遍</b>，看清这一笔 <b>排第几</b> 再动箭头'],
+    quit:['🏁','今天收工了','下一趟先把「<b>认出这一笔排第几 → 数清要走几格 → 一次排完</b>」走顺：<b>一趟没 bug</b> 再加 12 分'],
+    nodata:['😢','字库没准备好','先去别的模式练两笔，回来地板就摆好了']
+  };
+  const t=T[reason]||T.quit;
+  rbSet('rbRsEmoji',t[0]);
+  rbSet('rbRsTitle',t[1]);
+  rbSet('rbRsSub',t[2]);
+  rbSet('rbRsScore',String(sc));
+  rbSet('rbRsLevel',String(rb.levels));
+  rbSet('rbRsPot',String(rb.pots));
+  rbSet('rbRsLv',String(rb.lv));
+  rbSet('rbRsStreak',String(rb.maxCombo));
+  rbSet('rbRsBug',rb.bugs+' / '+rb.dry);
+  rbSet('rbRsStars','⭐ '+stars);
+  rbSet('rbRsBest',String(rbInt('hz_rb_best')));
+  rbSet('rbRsSteps',String(rbInt('hz_rb_steps')));
+  const book=(localStorage.getItem('hz_rb_book')||'').split(',').filter(function(c){return c.length===1});
+  rbSet('rbRsAll','🏅 '+R.e+' '+R.t+' · 累计跑通 '+rbInt('hz_rb_words')+' 关\n'+
+    '🤖 走了 '+rbInt('hz_rb_steps')+' 格 · ✅ 收了 '+rbInt('hz_rb_pots')+' 笔 · 🚦 零 bug 跑通 '+rbInt('hz_rb_perfect')+' 关\n'+
+    '🐞 bug '+rbInt('hz_rb_bugs')+' 次 · 🪫 断电 '+rbInt('hz_rb_dry')+' 次\n'+
+    '💡 提示 '+rbInt('hz_rb_hints')+' 次 · 🔄 重摆 '+rbInt('hz_rb_relayouts')+' 次 · 最高跑到第 '+rbInt('hz_rb_lv')+' 段');
+  rbSet('rbRsBookT',book.length?('🤖 机器人档案 · 已跑通 '+book.length+' 个字'):'');
+  const bh=document.getElementById('rbRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function rbRetry(){rbStart()}
+function rbLeave(){
+  rbStopAll();
+  if(rb.run&&!rb.over){rb.over=true;rb.run=false}
+  goHome();
+}
+function rbNudge(){
+  const dot=document.getElementById('rbCardDot'),tip=document.getElementById('rbCardTip');
+  const w=rbInt('hz_rb_words'),pf=rbInt('hz_rb_perfect'),games=rbInt('hz_rb_games'),bg=rbInt('hz_rb_bugs');
+  const R=rbRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 跑通 '+w+' 关 · 零 bug '+pf+' 关 · bug '+bg+' 次'):'先把箭头排成一排，再按执行让它一格一格走';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function rbHelp(){
+  rbSay('🤖 地板上是 <b>「'+(rb.rec?rb.rec.ch:'这个字')+'」的一笔一笔</b>：机器人 <b>不会自己动</b>，你得先把 ⬆️⬅️➡️⬇️ <b>排成一排指令</b>，再按 🚀 让它 <b>一格一格照着走</b> —— 走到 <b>下一笔</b> 那格就收进肚子。<br>'+
+    '🛠️ <b>排</b>：点按钮或按键盘 <code>↑</code> <code>↓</code> <code>←</code> <code>→</code> 加箭头，指令条最多 '+rbSlotsN()+' 格；<b>点条上的箭头</b> 就删掉它，<code>退格</code> 退最后一格、<code>Esc</code> 全清。<br>'+
+    '🚀 <b>执行</b>（<code>空格</code>）：每走一格吃一格 <b>🔋 电量</b>；<b>撞墙 / 撞边框</b> 会停，那一步自动划掉，<b>剩下的指令留在条上</b> 让你改 —— 这就是 <b>debug</b>。<br>'+
+    '✅ <b>踩对下一笔</b>：<b>5 + 第几笔×2 + 关卡</b> 分 ×（1 + 连击×0.05），左边小格里的字 <b>当场长回一笔</b>；🐞 <b>踩错顺序 / 踩到干扰笔</b> = <b>bug</b>：扣 6 分、连击清零、这一趟当场停下。<br>'+
+    '💔 <b>每累计 '+RB_BUG_HEART+' 个 bug 掉一颗心</b>（3 颗起、最多 5 颗）；🪫 <b>电用光了</b> 这一关重新摆一张图（不扣心，但这一趟白跑了）。<br>'+
+    '💡 <b>路线提示</b>（<code>H</code>）：画出机器人到 <b>下一笔</b> 的 <b>最短路线</b>（'+(RB_HINT_MS/1000)+' 秒）；🔄 <b>重新摆</b>（<code>R</code>）：同一个字换个摆法；🐇 <b>加速</b>（<code>F</code>）看结果更快；<b>点地板任意一格</b> 可以问它是什么。<br>'+
+    '🏁 <b>把一个字的笔全按顺序收齐 = 过一关</b>：<b>18 + 笔数×4 + 关卡×3</b> 分，<b>剩余电量×2</b> 再加，<b>一趟没 bug 再多 12</b>；<b>每 2 关升 1 段</b>（最多 9 段）：地板更大、添 🧱 砖墙、混进 🎭 干扰笔，同时补一颗心、一次提示、一次重摆。<br>'+
+    '🦉 卡住 15 秒会提示 <b>下一笔的方向</b> 和 <b>第一步往哪走</b>；<code>?</code> 看玩法 · 战绩落盘 <code>hz_rb_*</code>','#A5D6A7');
+}
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
