@@ -4856,6 +4856,99 @@ button:active{transform:scale(.95)}
   .tg-stage{flex-direction:column}
   .tg-mini{flex:0 0 auto;width:88px;margin:0 auto}
 }
+/* ================= v1.77 笔顺光路阵 ================= */
+.ls-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.ls-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.ls-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.ls-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.ls-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.ls-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.ls-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.ls-cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:11px;color:#FFE0B2}
+.ls-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#14264F 0%,#1B2F63 44%,#0B1734 100%);box-shadow:inset 0 0 34px rgba(0,0,0,.6);transition:box-shadow .2s}
+.ls-tbl.hot{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 26px rgba(178,255,89,.3)}
+.ls-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+.ls-board{fill:rgba(6,14,36,.55);stroke:rgba(120,190,255,.34);stroke-width:3}
+.ls-grid{stroke:rgba(120,190,255,.13);stroke-width:1.4;fill:none}
+.ls-star{fill:rgba(255,255,255,.5)}
+.ls-cur{fill:rgba(255,241,118,.1);stroke:#FFF176;stroke-width:3;stroke-dasharray:9 7;animation:lsCur .9s ease-in-out infinite;pointer-events:none}
+@keyframes lsCur{0%,100%{opacity:.35}50%{opacity:1}}
+.ls-mir{cursor:pointer}
+.ls-mir .ls-bar{fill:url(#lsMetal);stroke:#CFD8DC;stroke-width:2}
+.ls-mir .ls-hi{stroke:rgba(255,255,255,.85);stroke-width:2;fill:none}
+.ls-mir.freeze{cursor:not-allowed}
+.ls-mir.freeze .ls-bar{fill:url(#lsIce);stroke:#B39DDB}
+.ls-fz{font-size:13px;pointer-events:none}
+.ls-sign .ls-plate{stroke-width:3}
+.ls-sign .ls-arw{font-size:22px;text-anchor:middle}
+.ls-sign .ls-nm{font-size:12px;font-weight:bold;fill:#fff;text-anchor:middle}
+.ls-sign .ls-hook{fill:none;stroke:rgba(255,255,255,.5);stroke-width:2}
+.ls-sign.burnt .ls-plate{fill:#37474F;stroke:#546E7A}
+.ls-sign.burnt .ls-arw,.ls-sign.burnt .ls-nm{opacity:.4}
+.ls-smoke{font-size:15px;text-anchor:middle}
+.ls-wall{font-size:30px;text-anchor:middle}
+.ls-lmp .ls-body{fill:#455A64;stroke:#B0BEC5;stroke-width:2}
+.ls-lmp .ls-lens{fill:#FFF59D;stroke:#FFF176;stroke-width:1.5}
+.ls-lmp .ls-emo{font-size:14px;text-anchor:middle}
+.ls-bglow{fill:none;stroke-width:17;stroke-linecap:round;stroke-linejoin:round;opacity:.2}
+/* 光束和顶层标记压在镜子上：不吃指针，否则点在光路过的那面镜子会翻不动 */
+#lsBeamG,#lsTopG{pointer-events:none}
+.ls-bcore{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
+.ls-bflow{fill:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3 24;opacity:.85;animation:lsFlow .5s linear infinite}
+@keyframes lsFlow{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-27}}
+.ls-bhead{fill:#fff;opacity:.95;animation:lsCur .7s ease-in-out infinite}
+.ls-btag{font-size:11.5px;font-weight:bold;text-anchor:middle;stroke:rgba(0,0,0,.6);stroke-width:3;paint-order:stroke}
+.ls-spark{fill:#FFF176;animation:lsSpark .5s ease-out forwards}
+@keyframes lsSpark{0%{r:3;opacity:1}100%{r:16;opacity:0}}
+.ls-mark{fill:none;stroke:#40C4FF;stroke-width:3;animation:lsMark .7s ease-out infinite}
+@keyframes lsMark{0%,100%{opacity:.3}50%{opacity:1}}
+.ls-ring{fill:none;stroke:#FFEB3B;stroke-width:3;stroke-dasharray:9 7;animation:lsMark .7s ease-out infinite}
+.ls-flash{fill:rgba(255,64,129,.35);animation:lsFlash .6s ease-out forwards}
+@keyframes lsFlash{0%{opacity:1}100%{opacity:0}}
+.ls-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.ls-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:lsBit .74s ease-out forwards}
+@keyframes lsBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.ls-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF59D;text-shadow:0 1px 4px rgba(0,0,0,.7);animation:lsPop .95s ease-out forwards;white-space:nowrap}
+@keyframes lsPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.ls-shake{animation:lsShake .3s}
+@keyframes lsShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(7px)}75%{transform:translateX(-3px)}}
+.ls-slots{display:flex;gap:5px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:34px;padding:6px;border-radius:14px;background:rgba(0,0,0,.36);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap}
+.ls-nd{width:22px;height:22px;line-height:22px;border-radius:7px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.32);font-size:12px;text-align:center;font-weight:bold}
+.ls-nd.in{background:#66BB6A;color:#1B5E20}
+.ls-nd.now{background:#FFF176;color:#4E342E}
+.ls-more{font-size:12px;color:#FFE0B2}
+.ls-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.ls-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(0,0,0,.4);overflow:hidden}
+.ls-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#26A69A,#9CCC65 55%,#FFEE58 88%);transition:width .1s linear}
+.ls-tl.low i{background:linear-gradient(90deg,#FF8A65,#FF5252)}
+.ls-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.ls-clock{font-size:12px;color:#fff;background:rgba(0,0,0,.4);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.ls-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#E8F5E9;background:rgba(0,0,0,.34);border-radius:14px;padding:9px 10px;line-height:1.5}
+.ls-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.ls-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0}
+.ls-tool{flex:1;padding:11px 4px;border:none;border-radius:13px;font-size:13px;color:#ECEFF1;background:rgba(255,255,255,.14);cursor:pointer;font-family:inherit}
+.ls-tool.on{background:#FF7043;color:#3E2723;font-weight:bold}
+.ls-tool:disabled{opacity:.4}
+.ls-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.3);color:#FFE0B2;font-size:13px;line-height:1.65;min-height:44px}
+.ls-msg b{color:#fff}
+.ls-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.ls-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.ls-badge{position:absolute;right:8px;top:8px;font-size:11px;color:#0D47A1;background:rgba(255,255,255,.82);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+.ls-badge.on{display:block}
+.ls-slow{position:absolute;left:8px;top:8px;font-size:12px;color:#fff;background:rgba(255,64,129,.86);border-radius:11px;padding:3px 10px;display:none}
+.ls-slow.on{display:block}
+.ls-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.ls-rs span{display:block;font-size:24px;font-weight:bold}
+.ls-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.ls-book-t{font-size:12px;color:#FFE0B2;margin-top:12px}
+.ls-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.ls-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.ls-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.ls-cdot.on{display:flex}
+@media (max-width:600px){
+  .ls-stage{flex-direction:column}
+  .ls-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
 </style>
 
 </head>
@@ -4912,8 +5005,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 75 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">75</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 76 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">76</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -4924,12 +5017,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>75 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>21</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>76 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>22</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" onclick="enterMode('laser')">
+      <div class="icon">🪞</div>
+      <div class="info"><h3>笔顺光路阵</h3><p id="lsCardTip">翻镜子改变光走的路 —— 让光照到写对方向那块牌再发射，电池越漏光越短</p></div>
+      <span class="ls-cdot" id="lsCardDot">🆕</span>
+    </div>
 <div class="mode-card" onclick="enterMode('tangle')">
       <div class="icon">🪢</div>
       <div class="info"><h3>笔顺解绳结</h3><p id="tgCardTip">绳上按笔顺穿着木牌 —— 挪牌让任何两段绳都不交叠，结就解开了</p></div>
@@ -5485,6 +5583,111 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-laser">
+  <div class="top-bar">
+    <button class="back-btn" onclick="lsLeave()">← 返回</button>
+    <div class="stats"><span id="lsScoreTxt">🎯 0 分</span><span id="lsLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="lsHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="ls-hud">
+    <span id="lsRankTxt" title="称号">🔦 照路新手</span>
+    <span id="lsHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="lsComboTxt" title="连击">🔥 连 0</span>
+    <span id="lsLitTxt" title="点亮了几笔">✅ 0 笔</span>
+    <span id="lsFlipTxt" title="翻了几次镜">🪞 0</span>
+    <span id="lsShotTxt" title="发射了几次">🔦 0</span>
+    <span id="lsBurnTxt" title="烧焦几块牌">💨 0</span>
+    <span id="lsDryTxt" title="打空几次">⏳ 0</span>
+  </div>
+  <div class="ls-ask" id="lsAsk">🔦 正在给手电筒装电池……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="ls-stage">
+    <div class="ls-mini">
+      <svg viewBox="0 -1024 1024 1024" id="lsMiniSvg"></svg>
+      <div class="ls-cap" id="lsMiniCap">这个字</div>
+    </div>
+    <div class="ls-tbl" id="lsTbl">
+      <svg class="ls-svg" id="lsSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="lsMetal" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F5F7F8"/><stop offset=".46" stop-color="#9FB2BC"/><stop offset="1" stop-color="#45626E"/>
+          </linearGradient>
+          <linearGradient id="lsIce" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#D1C4E9"/><stop offset=".5" stop-color="#9575CD"/><stop offset="1" stop-color="#5E35B1"/>
+          </linearGradient>
+        </defs>
+        <g id="lsStatic"></g>
+        <g id="lsCellG"></g>
+        <g id="lsBeamG">
+          <polyline id="lsBglow" class="ls-bglow" points=""/>
+          <polyline id="lsBcore" class="ls-bcore" points=""/>
+          <polyline id="lsBflow" class="ls-bflow" points=""/>
+          <circle id="lsBhead" class="ls-bhead" r="7" cx="-40" cy="-40"/>
+          <text id="lsBtag" class="ls-btag" x="-40" y="-40"></text>
+        </g>
+        <g id="lsTopG"></g>
+      </svg>
+      <div class="ls-fx" id="lsFx"></div>
+      <div class="ls-badge" id="lsBadge">🪞</div>
+      <div class="ls-slow" id="lsSpinTag">🌀 镜子自己翻了</div>
+    </div>
+  </div>
+  <div class="ls-slots" id="lsSlots"></div>
+  <div class="ls-meter">
+    <div class="ls-tl" id="lsBattBox"><i id="lsBattBar"></i><b id="lsBattTxt">🔋 电池满格</b></div>
+    <div class="ls-clock" id="lsClock">🪞 ——</div>
+  </div>
+  <div class="ls-hintline" id="lsHintLine">👇 <b>点一下 🪞 镜子</b> 就翻面（键盘 <b>方向键移光标 + <code>Enter</code> 翻镜</b>）—— 盯住 <b>光</b> 照到哪，对了就按 <code>空格</code> <b>发射</b></div>
+  <div class="ls-tools">
+    <button class="ls-tool on" id="lsFireBtn" onclick="lsFire()">🔦 发射<b style="font-size:11px"> 空格</b></button>
+    <button class="ls-tool" id="lsMarkBtn" onclick="lsMark()" disabled>✨ 照牌</button>
+    <button class="ls-tool" id="lsBattBtn" onclick="lsBatt()" disabled>🔋 换电池</button>
+    <button class="ls-tool" onclick="lsRespin(false)">🔄 重摆阵</button>
+    <button class="ls-tool" onclick="lsEnd('quit')">🏁 结算离场</button>
+  </div>
+  <div class="ls-msg" id="lsMsg">阵里摆着 <b>🪞 镜子</b> 和几块 <b>写着方向的木牌</b>，手电筒的光 <b>一直在照</b> —— 光打到 <b>镜子</b> 就拐 90°，打到 <b>牌</b> 就停。翻镜子改变 <b>光走的路</b>，让光 <b>先照到这一笔方向那块牌</b>，再按 <b>发射</b>；🔋 电池会漏，<b>光也越走越短</b></div>
+  <div class="ls-tip">黑蓝色的是 <b>光路阵</b>（<b>8×5</b> 的格子）：左边 <b>🔦 手电筒</b> 一直往里照，阵里散着 <b>🪞 镜子</b>、🧱 <b>砖墙</b> 和几块 <b>木牌</b>（牌上写着 <b>横 ➡️ / 竖 ⬇️ / 撇 ↙️ / 捺 ↘️</b>）。<b>预览光是真的光</b> —— 你看到的这条路，按下发射就是这条路。<br>
+    🪞 <b>翻镜子</b>：点一下镜子 <b>换个斜面</b>（<code>/</code> 变 <code>\\</code>），光路 <b>当场重画</b>；键盘 <b>方向键</b> 移光标 + <code>Enter</code> 翻镜，<code>空格</code> 发射<br>
+    🎯 <b>照对才打</b>：光 <b>变成绿色</b> 就是照到了这一笔该亮的牌 —— 这时发射：吃 <b>连击</b>、<b>剩电池越多分越高</b>，米字格 <b>当场亮一笔</b>；照到 <b>别的牌</b>（光 <b>变红</b>）打上去那块牌 <b>当场烧焦</b>、掉一颗心<br>
+    🔋 <b>电池 = 射程</b>：电池一路漏，<b>光最远只能走这么多格</b> —— 看着光 <b>差半格够不着</b> 是最难受的；电池漏光 <b>掉一颗心</b> 并重摆这一阵（3 颗起、最多 5 颗，每打完 3 个字补一颗）<br>
+    ❄️ <b>冻镜</b>（<b>第 5 段</b> 起）：冻住的镜子 <b>翻不动</b>，但它 <b>正好在解上</b>，当参照物；🌀 <b>鬼翻</b>（<b>第 5 段</b> 起）约 <b>4.6 秒</b> 有面镜子 <b>自己翻一下</b>，路全变 —— 别慌，<b>每一阵都是先摆好解再打乱的，永远翻得回去</b><br>
+    ✨ <b>照牌</b>（<code>Q</code>）圈出 <b>该照的那块牌</b>；🔋 <b>换电池</b>（<code>W</code>）<b>补满</b> 光又走得远了；🔄（<code>R</code>）<b>重摆一阵</b>（本题不换）—— 三种 <b>每场各 2 次</b>，升段各补 1 次<br>
+    🌀 <b>光打空不罚</b>：撞 🧱 砖墙、飞出阵外、在两面镜子中间 <b>打转</b>、够不着 —— 都只是 <b>浪费电池</b>，看准了再打<br>
+    ⚡ <b>越练越难也越会</b>：<b>每 2 个字升 1 段</b>（最多 9 段）—— 路 <b>越拐越多</b>、镜子更多更杂、错牌更密、电池更不耐用，字也从 2~6 笔换到 3~8 笔<br>
+    🏁 <b>整个字一笔不落全照亮</b>：<b>26 + 笔数×4 + 段数×6</b> 分，一路 <b>没打错、没漏光</b> 再多 <b>18</b>；打错过的字进 <b>错字手册</b>，下一阵优先摆它<br>
+    👀 发呆 11 秒 🐰 会报 <b>该照的牌在阵的哪个方位</b> · 战绩落盘 <code>hz_laser_*</code></div>
+</div>
+<div class="screen" id="screen-laser-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="lsLeave()">← 回首页</button>
+    <div class="stats"><span id="lsRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="lsRsEmoji">🔦</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="lsRsTitle">整个字照亮了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="lsRsSub">下一次先 <b>看光走到哪儿</b>，再想 <b>翻哪面镜</b> —— 别急着发射</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="ls-rs">
+      <div><span style="color:#FFD700" id="lsRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="lsRsWords">0</span><small>照亮几个字</small></div>
+      <div><span style="color:#69F0AE" id="lsRsLit">0</span><small>点亮几笔</small></div>
+      <div><span style="color:#FFAB91" id="lsRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="lsRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="lsRsMiss">0</span><small>💨 烧焦 / ⏳ 打空</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多照几个字 · 一共照亮过几个字</div>
+      <div style="font-size:24px;font-weight:bold;color:#AED581"><span id="lsRsBest">0</span> 个 · <span id="lsRsAll2">0</span> 🔦</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="lsRsAll">🔦 照路新手</div>
+      <div class="ls-book-t" id="lsRsBookT"></div>
+      <div class="ls-book" id="lsRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="lsRetry()">🔦 再照一场</button>
+    <button class="w-btn blue" onclick="lsLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-tangle">
@@ -10683,6 +10886,7 @@ function updateHomeStats(){
   if(typeof ldNudge==='function')ldNudge();
   if(typeof hdNudge==='function')hdNudge();
   if(typeof tgNudge==='function')tgNudge();
+  if(typeof lsNudge==='function')lsNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -10704,6 +10908,7 @@ function enterMode(mode){
   if(mode==='lights'){ldStart();return}
   if(mode==='herd'){hdStart();return}
   if(mode==='tangle'){tgStart();return}
+  if(mode==='laser'){lsStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -53461,6 +53666,982 @@ function tgHelp(){
     '⚡ <b>每 2 盘升 1 段</b>（最多 9 段）：字从 2~6 笔换到 3~8 笔、<b>第 6 段</b> 起变 <b>两根绳 · 两个字</b>（跨绳交叉也算结）、钉珠 / 石头 / 风一件件上。<br>'+
     '🏁 <b>结全解开 = 过一盘</b>：<b>24 + 笔数×5 + 段数×5</b> 分 + <b>剩钟×0.7</b> + <b>一次没散再 16</b>。<br>'+
     '👆 <b>手指按住牌拖</b>（松手 <b>当场算结</b>）· <code>1</code>~<code>9</code> 选牌 + <b>方向键</b> 每下挪 '+TG_STEP+' 像素 · <code>空格</code> 问一句 · 发呆 12 秒自动报方位 · 战绩落盘 <code>hz_tg_*</code>','#C5E1A5');
+}
+
+/* ================= v1.77 笔顺光路阵（翻镜子改变光走的路 · 光只照对一块牌才发射 · 电池越漏光越短） ================= */
+const LS_W=700,LS_H=470;
+const LS_CW=8,LS_CH=5,LS_CELL=76,LS_X0=46,LS_Y0=64,LS_N=LS_CW*LS_CH;
+const LS_BX=LS_X0-9,LS_BY=LS_Y0-9,LS_BW=LS_CW*LS_CELL+18,LS_BH=LS_CH*LS_CELL+18;
+const LS_HEARTS=3,LS_HEART_MAX=5,LS_MISS_MAX=40,LS_BOOK_MAX=300;
+const LS_POOL_MIN=4,LS_POOL_WANT=16;
+const LS_NAG_MS=11000,LS_MARK_MS=2800,LS_NEXT_MS=1250,LS_SPIN_MS=4600,LS_FLASH_MS=620;
+const LS_BEAM0=14,LS_BEAM1=40,LS_PATH_MAX=18,LS_MAKE_TRY=200,LS_WRONG_PEN=5,LS_CLEAN_BONUS=18;
+const LS_DIRS=['横','竖','撇','捺'];
+const LS_ARW=['➡️','⬇️','↙️','↘️'];
+const LS_PLATE=['#E57373','#4DB6AC','#64B5F6','#FFB74D'];
+const LS_INK=['#FF8A80','#80CBC4','#82B1FF','#FFD180'];
+const LS_DX=[1,0,-1,0],LS_DY=[0,1,0,-1];
+const LS_REF=[{0:3,1:2,2:1,3:0},{0:1,1:0,2:3,3:2}];
+const LS_DEG=[-45,45],LS_LDEG=[0,90,180,270];
+const LS_AIMC={ok:'#B2FF59',bad:'#FF5252',none:'#FFD54F',wall:'#FFD54F',burnt:'#B0BEC5',out:'#FFD54F',loop:'#FF4081',bat:'#FFA726',gold:'#FFF176'};
+const LS_NOTE=[523,587,659,698,784,880,988,1046];
+const LS_RANKS=[
+  {n:0,e:'🔦',t:'照路新手'},{n:3,e:'🪞',t:'认得斜面'},{n:8,e:'💡',t:'会拐光了'},
+  {n:15,e:'✨',t:'一镜到位'},{n:24,e:'⚡',t:'快手照路'},{n:36,e:'🌈',t:'光路通透'},
+  {n:52,e:'🌟',t:'点亮能手'},{n:74,e:'💎',t:'一次没断'},{n:105,e:'👑',t:'光影大师'}
+];
+const ls={
+  run:false,over:false,gen:0,rafId:0,timers:[],last:0,t:0,playMs:0,tones:0,think:0,
+  pool:[],miss:[],rec:null,dirs:[],n:0,qi:0,
+  g:[],launch:-1,path:[],pathLen:0,
+  bat:1,busy:false,gold:null,goldMs:0,
+  aim:'none',aimEnd:'',aimSign:-1,cap:LS_BEAM1,beamLen:0,
+  cur:-1,markMs:0,flash:-1,flashMs:0,spinMs:0,spinTag:0,ovKey:'',hudTxt:{},
+  lv:1,score:0,hearts:LS_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,flips:0,shots:0,dry:0,burnt:0,spins:0,marks:0,batts:0,respins:0,nags:0,
+  markN:2,battN:2,respinN:2,cleanWord:true,
+  bound:false,ptrBound:false
+};
+function lsInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function lsAdd(k,n){if(n)localStorage.setItem(k,String(lsInt(k)+n))}
+function lsSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function lsSay(t,c){const el=document.getElementById('lsMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function lsShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function lsOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function lsClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function lsRank(n){let r=LS_RANKS[0];for(let i=0;i<LS_RANKS.length;i++)if(n>=LS_RANKS[i].n)r=LS_RANKS[i];return r}
+function lsTone(f,d,t,v){if(ls.tones<=0)return;ls.tones--;tone(f,d,t,v)}
+function lsT(fn,ms){const g=ls.gen;const id=setTimeout(function(){const k=ls.timers.indexOf(id);if(k>=0)ls.timers.splice(k,1);if(g!==ls.gen)return;fn()},ms);ls.timers.push(id);return id}
+function lsKillTimers(){ls.timers.forEach(function(t){clearTimeout(t)});ls.timers=[]}
+/* ---- 难度：拐几道弯、摆几面闲镜、几块错牌、几堵墙、冻不冻镜、鬼不鬼翻 ---- */
+function lsTurnsOf(lv){return lv<=2?1:(lv<=4?2:(lv<=6?3:4))}
+function lsMirOf(lv){return Math.min(7,lsTurnsOf(lv)+Math.floor(lv/2))}
+function lsWrongOf(lv){return Math.min(5,1+Math.floor(lv/2))}
+function lsWallOf(lv){return lv<4?0:Math.min(5,lv-3)}
+function lsFrzOf(lv){return lv<5?0:(lv<8?1:2)}
+function lsSpinOf(lv){return lv<5?0:1}
+function lsBatSec(){return Math.max(11,20-ls.lv*1.2)}
+function lsBatAt(lv){return Math.max(11,20-lv*1.2)}
+function lsBeamMax(){return LS_BEAM0+Math.round((LS_BEAM1-LS_BEAM0)*lsClamp(ls.bat,0,1))}
+function lsNeed(){return ls.dirs[ls.qi]}
+function lsCx(i){return LS_X0+(i%LS_CW)*LS_CELL+LS_CELL/2}
+function lsCy(i){return LS_Y0+Math.floor(i/LS_CW)*LS_CELL+LS_CELL/2}
+function lsNext(i,d){
+  const c=(i%LS_CW)+LS_DX[d],r=Math.floor(i/LS_CW)+LS_DY[d];
+  if(c<0||c>=LS_CW||r<0||r>=LS_CH)return -1;
+  return r*LS_CW+c;
+}
+function lsMirType(inD,outD){for(let m=0;m<2;m++)if(LS_REF[m][inD]===outD)return m;return -1}
+function lsCellN(){let m=0,s=0,w=0,f=0;for(let i=0;i<LS_N;i++){const g=ls.g[i];if(!g)continue;if(g.t==='M'){m++;if(g.frz)f++}else if(g.t==='S')s++;else if(g.t==='W')w++}return {mir:m,sign:s,wall:w,frz:f}}
+/* ---- 名字：让判词说得出牌在阵的哪个方位 ---- */
+function lsNameOf(i){
+  const c=i%LS_CW,r=Math.floor(i/LS_CW);
+  const vx=c<2.7?'左':(c>5.3?'右':'中'),hy=r<1.7?'上':(r>3.3?'下':'中');
+  if(vx==='中'&&hy==='中')return '阵中间';
+  if(vx==='中')return hy+'边';
+  if(hy==='中')return vx+'边';
+  return vx+hy+'角';
+}
+/* ---- 字库：每一笔方向都说得清（沿用种字田那道 ±8° 边界否决） ---- */
+function lsSig(d){return String(d||'').replace(/\s+/g,'')}
+function lsDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function lsMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>9)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){
+    const d=fmDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    dirs.push(d);
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,raw:raw};
+}
+function lsCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<90;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(lsShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(lsShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(lsShuf(CHARS.slice()));
+  return out;
+}
+function lsTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function lsRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  /* 首屏 preloadGrade 会和取字抢 CDN 连接，6 秒是给排队留的余量 */
+  if(!raw||!raw.medians)raw=lsTO(loadCharData(ch),6000);
+  if(!raw||!raw.medians)return null;
+  return lsMake(ch,raw);
+}
+async function lsBuildPool(keep){
+  const g=ls.gen;
+  const stale=function(){return g!==ls.gen||!ls.run};
+  ls.miss=(localStorage.getItem('hz_laser_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  lsShuf(ls.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  lsCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)ls.pool=[];
+  for(let k=0;k<want.length&&ls.pool.length<LS_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return lsRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])ls.pool.push(rs[i]);
+  }
+  return ls.pool.length>=LS_POOL_MIN;
+}
+function lsPickRec(){
+  const w=ls.lv>=4?[3,8]:[2,6];
+  const used={};
+  const take=function(){
+    let cand=ls.pool.filter(function(r){
+      if(!r||used[r.ch])return false;
+      return r.n>=w[0]&&r.n<=w[1];
+    });
+    if(!cand.length)cand=ls.pool.filter(function(r){return r&&!used[r.ch]});
+    if(!cand.length)return null;
+    for(let i=0;i<ls.miss.length;i++){
+      for(let k=0;k<cand.length;k++)if(cand[k].ch===ls.miss[i]){used[cand[k].ch]=1;return cand[k]}
+    }
+    for(let i=0;i<40;i++){const c=lsOne(cand);if(c){used[c.ch]=1;return c}}
+    const c=cand[0];used[c.ch]=1;return c;
+  };
+  return take();
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function lsMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_laser_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_laser_miss',a.slice(0,LS_MISS_MAX).join(','));
+}
+function lsMissDel(ch){
+  const a=(localStorage.getItem('hz_laser_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_laser_miss',a.join(','));
+}
+function lsBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_laser_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_laser_book',a.slice(0,LS_BOOK_MAX).join(','));
+}
+/* ---- 光线：一格一格走，撞镜拐 90°、撞牌就停、电池用光就断（纯函数，测试可以直接调） ---- */
+function lsTrace(cap){
+  const out={pts:[],end:'',sg:null,cell:-1,bounces:[],steps:0};
+  if(ls.launch<0)return out;
+  const mx=(cap===undefined?lsBeamMax():cap);
+  let i=ls.launch,d=ls.g[ls.launch].dir,s=0;
+  const seen={};
+  seen[i*4+d]=1;
+  out.pts.push({x:lsCx(i),y:lsCy(i)});
+  while(s<mx){
+    const j=lsNext(i,d);
+    if(j<0){
+      out.pts.push({x:lsCx(i)+LS_DX[d]*(LS_CELL/2+7),y:lsCy(i)+LS_DY[d]*(LS_CELL/2+7)});
+      out.end='out';out.cell=i;out.steps=s;return out;
+    }
+    i=j;s++;
+    const g=ls.g[i],p={x:lsCx(i),y:lsCy(i)};
+    if(g&&g.t==='M'){
+      d=LS_REF[g.m][d];
+      out.pts.push(p);out.bounces.push(i);out.cell=i;
+      if(seen[i*4+d]){out.end='loop';out.steps=s;return out}
+      seen[i*4+d]=1;
+    }else if(g&&g.t==='W'){out.pts.push(p);out.end='wall';out.cell=i;out.steps=s;return out}
+    else if(g&&g.t==='S'){
+      out.pts.push(p);out.cell=i;out.steps=s;
+      if(g.burnt){out.end='burnt';out.sg=g}
+      else{out.end='sign';out.sg=g}
+      return out;
+    }else if(g&&g.t==='L'){out.pts.push(p);out.end='wall';out.cell=i;out.steps=s;return out}
+    else{out.pts.push(p);out.cell=i}
+  }
+  const last=out.pts[out.pts.length-1];
+  out.pts.push({x:last.x+LS_DX[d]*LS_CELL*0.55,y:last.y+LS_DY[d]*LS_CELL*0.55});
+  out.end='bat';out.steps=s;return out;
+}
+function lsAimOf(tr){
+  if(tr.end==='sign')return tr.sg&&tr.sg.ok?'ok':'bad';
+  if(tr.end==='burnt')return 'bad';
+  return 'none';
+}
+/* ---- 摆阵：先按解走出一条路，再把镜子打乱 —— 所以每一阵都翻得回去 ---- */
+function lsBuild(need,turns){
+  const side=Math.floor(Math.random()*4);
+  let li,d;
+  if(side===0){li=Math.floor(Math.random()*LS_CH)*LS_CW;d=0}
+  else if(side===1){li=(LS_CH-1)*LS_CW+Math.floor(Math.random()*LS_CW);d=3}
+  else if(side===2){li=Math.floor(Math.random()*LS_CH)*LS_CW+LS_CW-1;d=2}
+  else{li=Math.floor(Math.random()*LS_CW);d=1}
+  const ldir=d;
+  const path=[li],used={};used[li]=1;
+  const mirs=[];
+  const walk=function(n){
+    for(let s=0;s<n;s++){
+      const j=lsNext(path[path.length-1],d);
+      if(j<0||used[j])return false;
+      used[j]=1;path.push(j);
+    }
+    return true;
+  };
+  for(let k=0;k<turns;k++){
+    if(!walk(1+Math.floor(Math.random()*2)))return false;
+    const nd=(d+(Math.random()<0.5?1:3))%4;
+    const mt=lsMirType(d,nd);
+    if(mt<0)return false;
+    mirs.push({i:path[path.length-1],sol:mt});
+    d=nd;
+  }
+  if(!walk(1+Math.floor(Math.random()*2)))return false;
+  const minLen=turns>0?5:2;
+  if(path.length<minLen||path.length>LS_PATH_MAX)return false;
+  const g=new Array(LS_N);for(let i=0;i<LS_N;i++)g[i]=null;
+  g[li]={t:'L',dir:ldir};
+  for(let k=0;k<mirs.length;k++)g[mirs[k].i]={t:'M',sol:mirs[k].sol,m:Math.random()<0.5?0:1,frz:0};
+  const end=path[path.length-1];
+  g[end]={t:'S',d:need,ok:1,burnt:0};
+  const free=[];
+  for(let i=0;i<LS_N;i++)if(!g[i])free.push(i);
+  lsShuf(free);
+  const wn=lsWrongOf(ls.lv),wa=lsWallOf(ls.lv),dc=Math.max(0,lsMirOf(ls.lv)-mirs.length);
+  if(free.length<wn+wa+dc)return false;
+  const others=[];for(let dd=0;dd<4;dd++)if(dd!==need)others.push(dd);
+  let p=0;
+  for(let k=0;k<wn;k++){g[free[p++]]={t:'S',d:others[Math.floor(Math.random()*others.length)],ok:0,burnt:0}}
+  for(let k=0;k<wa;k++)g[free[p++]]={t:'W'};
+  for(let k=0;k<dc;k++)g[free[p++]]={t:'M',sol:-1,m:Math.random()<0.5?0:1,frz:0};
+  /* 冻镜：只冻解上那几面，且至少留一面能翻 */
+  const pm=mirs.slice();lsShuf(pm);
+  const fz=Math.min(lsFrzOf(ls.lv),Math.max(0,pm.length-1));
+  for(let k=0;k<fz;k++){const c=g[pm[k].i];c.frz=1;c.m=c.sol}
+  const save=ls.g;
+  ls.g=g;ls.launch=li;ls.path=path.slice();ls.pathLen=path.length;
+  if(!lsSolOk()){ls.g=save;return false}
+  /* 一开局就照对不算阵：把解上的镜子再翻几下 */
+  let guard=0;
+  while(lsWinNow()&&guard<6){
+    guard++;
+    const can=mirs.filter(function(m){return !g[m.i].frz});
+    if(!can.length)break;
+    const c=lsOne(can);
+    g[c.i].m=g[c.i].m?0:1;
+  }
+  if(lsWinNow()){ls.g=save;return false}
+  return true;
+}
+function lsSolOk(){
+  const bk=[];
+  for(let i=0;i<LS_N;i++){const g=ls.g[i];if(g&&g.t==='M'&&g.sol>=0){bk.push({i:i,m:g.m});g.m=g.sol}}
+  const t=lsTrace(LS_BEAM1);
+  for(let k=0;k<bk.length;k++)ls.g[bk[k].i].m=bk[k].m;
+  return t.end==='sign'&&t.sg&&t.sg.ok===1;
+}
+function lsWinNow(){
+  const t=lsTrace(LS_BEAM1);
+  return t.end==='sign'&&!!(t.sg&&t.sg.ok);
+}
+function lsGen(){
+  const need=lsNeed();
+  if(need===undefined||need<0)return false;
+  for(let a=0;a<LS_MAKE_TRY;a++)if(lsBuild(need,lsTurnsOf(ls.lv)))return true;
+  for(let a=0;a<LS_MAKE_TRY;a++)if(lsBuild(need,2))return true;
+  for(let a=0;a<LS_MAKE_TRY;a++)if(lsBuild(need,1))return true;
+  for(let a=0;a<LS_MAKE_TRY;a++)if(lsBuild(need,0))return true;
+  return false;
+}
+/* ---- 特效 ---- */
+function lsFxHost(){return document.getElementById('lsFx')}
+function lsPut(host,el,ms){
+  host.appendChild(el);
+  lsT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function lsBits(x,y,col,n){
+  const host=lsFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='ls-bit';
+    b.style.left=(x/LS_W*100)+'%';b.style.top=(y/LS_H*100)+'%';
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=20+Math.random()*44;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r).toFixed(1)+'px');
+    lsPut(host,b,760);
+  }
+}
+function lsPop(x,y,txt,col){
+  const host=lsFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='ls-pop';
+  el.style.left=(x/LS_W*100)+'%';el.style.top=(y/LS_H*100)+'%';
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  lsPut(host,el,980);
+}
+function lsShakeFx(){
+  const el=document.querySelector('.ls-tbl');if(!el)return;
+  el.classList.remove('ls-shake');void el.offsetWidth;el.classList.add('ls-shake');
+}
+function lsRing(x,y,r,col){
+  const g=document.getElementById('lsTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+  c.setAttribute('r',String(Math.round(r)));c.setAttribute('fill','none');
+  c.setAttribute('stroke',col||'rgba(255,235,59,.9)');c.setAttribute('stroke-width','3');
+  c.setAttribute('class','ls-ring');
+  g.appendChild(c);
+  lsT(function(){if(c.parentNode)c.parentNode.removeChild(c)},880);
+}
+function lsSpark(i){
+  const g=document.getElementById('lsTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',lsCx(i));c.setAttribute('cy',lsCy(i));c.setAttribute('r','3');
+  c.setAttribute('class','ls-spark');
+  g.appendChild(c);
+  lsT(function(){if(c.parentNode)c.parentNode.removeChild(c)},540);
+}
+/* ---- 渲染 ---- */
+function lsRenderStatic(){
+  const g=document.getElementById('lsStatic');if(!g)return;
+  let h='<rect class="ls-board" x="'+LS_BX+'" y="'+LS_BY+'" width="'+LS_BW+'" height="'+LS_BH+'" rx="20"/>';
+  for(let c=1;c<LS_CW;c++){
+    const x=LS_X0+c*LS_CELL;
+    h+='<line class="ls-grid" x1="'+x+'" y1="'+(LS_Y0+4)+'" x2="'+x+'" y2="'+(LS_Y0+LS_CH*LS_CELL-4)+'"/>';
+  }
+  for(let r=1;r<LS_CH;r++){
+    const y=LS_Y0+r*LS_CELL;
+    h+='<line class="ls-grid" x1="'+(LS_X0+4)+'" y1="'+y+'" x2="'+(LS_X0+LS_CW*LS_CELL-4)+'" y2="'+y+'"/>';
+  }
+  const st=[[78,52],[300,456],[560,58],[648,300],[150,440],[672,438],[24,180],[420,30]];
+  for(let i=0;i<st.length;i++)h+='<circle class="ls-star" cx="'+st[i][0]+'" cy="'+st[i][1]+'" r="'+(i%3===0?1.9:1.2)+'" opacity="'+(i%2?.5:.32)+'"/>';
+  g.innerHTML=h;
+}
+function lsCellHTML(i){
+  const g=ls.g[i];if(!g)return '';
+  const x=lsCx(i),y=lsCy(i);
+  if(g.t==='M'){
+    return '<g class="ls-mir'+(g.frz?' freeze':'')+'" id="lsM'+i+'" data-m="'+g.m+'" transform="translate('+x+','+y+')">'+
+      '<g transform="rotate('+LS_DEG[g.m]+')"><rect class="ls-bar" x="-30" y="-6" width="60" height="12" rx="6"/>'+
+      '<line class="ls-hi" x1="-24" y1="-2.5" x2="24" y2="-2.5"/></g>'+
+      (g.frz?'<text class="ls-fz" x="22" y="-20">❄️</text>':'')+'</g>';
+  }
+  if(g.t==='S'){
+    return '<g class="ls-sign'+(g.burnt?' burnt':'')+'" id="lsS'+i+'" data-ok="'+(g.ok?1:0)+'" data-d="'+g.d+'" transform="translate('+x+','+y+')">'+
+      '<path class="ls-hook" d="M-9 -27 q9 -12 18 0"/>'+
+      '<rect class="ls-plate" x="-27" y="-27" width="54" height="54" rx="13" fill="'+LS_PLATE[g.d]+'"/>'+
+      '<text class="ls-arw" y="1">'+LS_ARW[g.d]+'</text>'+
+      '<text class="ls-nm" y="21">'+LS_DIRS[g.d]+'</text>'+
+      (g.burnt?'<text class="ls-smoke" y="-32">💨</text>':'')+'</g>';
+  }
+  if(g.t==='W')return '<text class="ls-wall" x="'+x+'" y="'+(y+11)+'">🧱</text>';
+  if(g.t==='L'){
+    return '<g class="ls-lmp" id="lsLmp" transform="translate('+x+','+y+') rotate('+LS_LDEG[g.dir]+')">'+
+      '<rect class="ls-body" x="-30" y="-12" width="44" height="24" rx="10"/>'+
+      '<rect class="ls-lens" x="12" y="-8" width="13" height="16" rx="4"/></g>';
+  }
+  return '';
+}
+function lsRenderCells(){
+  const g=document.getElementById('lsCellG');if(!g)return;
+  let h='';
+  for(let i=0;i<LS_N;i++)h+=lsCellHTML(i);
+  g.innerHTML=h;
+}
+function lsView(i){
+  const el=document.getElementById('lsM'+i),g=ls.g[i];
+  if(!el||!g)return;
+  const w=el.querySelector('g');
+  if(w)w.setAttribute('transform','rotate('+LS_DEG[g.m]+')');
+  el.setAttribute('data-m',String(g.m));
+}
+function lsBeam(){
+  const gl=document.getElementById('lsBglow'),co=document.getElementById('lsBcore'),
+    fl=document.getElementById('lsBflow'),hd=document.getElementById('lsBhead'),tg=document.getElementById('lsBtag');
+  if(!gl||!co||!fl||!hd||!tg)return;
+  let pts=[],col=LS_AIMC.none,tag='';
+  if(ls.busy&&ls.gold){pts=ls.gold;col=LS_AIMC.gold;tag='🎯 照亮这一笔'}
+  else if(ls.run&&!ls.over&&ls.launch>=0){
+    const t=lsTrace();
+    pts=t.pts;
+    ls.aimEnd=t.end;ls.aimSign=t.sg?t.cell:-1;ls.cap=lsBeamMax();ls.beamLen=t.steps;
+    ls.aim=lsAimOf(t);
+    if(ls.aim==='ok'){col=LS_AIMC.ok;tag='🎯 打出去！'}
+    else if(ls.aim==='bad'){col=t.end==='burnt'?LS_AIMC.burnt:LS_AIMC.bad;tag=t.end==='burnt'?'💨 焦的':'⚠️ 这块不对'}
+    else col=t.end==='loop'?LS_AIMC.loop:(t.end==='bat'?LS_AIMC.bat:LS_AIMC.none);
+  }
+  const tbl=document.getElementById('lsTbl');
+  if(tbl)tbl.classList.toggle('hot',ls.aim==='ok'&&!ls.busy);
+  if(pts.length<2){
+    gl.setAttribute('points','');co.setAttribute('points','');fl.setAttribute('points','');
+    hd.setAttribute('cx','-40');hd.setAttribute('cy','-40');tg.textContent='';
+    return;
+  }
+  const s=pts.map(function(p){return p.x.toFixed(1)+','+p.y.toFixed(1)}).join(' ');
+  const last=pts[pts.length-1];
+  gl.setAttribute('points',s);co.setAttribute('points',s);fl.setAttribute('points',s);
+  gl.setAttribute('stroke',col);co.setAttribute('stroke',col);fl.setAttribute('stroke',col);
+  gl.setAttribute('opacity',ls.busy?'0.34':String(+(0.14+0.5*lsClamp(ls.bat,0,1)).toFixed(2)));
+  hd.setAttribute('cx',last.x.toFixed(1));hd.setAttribute('cy',last.y.toFixed(1));
+  hd.setAttribute('fill',col);
+  tg.setAttribute('x',lsClamp(last.x,40,LS_W-40).toFixed(1));
+  tg.setAttribute('y',(lsClamp(last.y,54,LS_H-14)-18).toFixed(1));
+  tg.setAttribute('fill',col);
+  tg.textContent=tag;
+}
+function lsTopLayer(){
+  const g=document.getElementById('lsTopG');if(!g)return;
+  const key=[ls.cur,ls.markMs>0?'m':'',ls.flash,ls.flashMs>0?'f':'',ls.launch].join('/');
+  if(key===ls.ovKey)return;
+  ls.ovKey=key;
+  let h='';
+  if(ls.flash>=0&&ls.flashMs>0){
+    const i=ls.flash;
+    h+='<rect class="ls-flash" x="'+(lsCx(i)-LS_CELL/2+3)+'" y="'+(lsCy(i)-LS_CELL/2+3)+'" width="'+(LS_CELL-6)+'" height="'+(LS_CELL-6)+'" rx="14"/>';
+  }
+  if(ls.markMs>0&&ls.launch>=0){
+    for(let i=0;i<LS_N;i++){
+      const g2=ls.g[i];
+      if(g2&&g2.t==='S'&&g2.ok&&!g2.burnt){
+        h+='<circle class="ls-mark" cx="'+lsCx(i)+'" cy="'+lsCy(i)+'" r="34"/>'+
+          '<text x="'+lsCx(i)+'" y="'+(lsCy(i)-40)+'" text-anchor="middle" font-size="11.5" fill="#40C4FF" font-weight="bold">✨ 该照这块</text>';
+        break;
+      }
+    }
+  }
+  if(ls.cur>=0){
+    h+='<rect class="ls-cur" x="'+(lsCx(ls.cur)-LS_CELL/2+4)+'" y="'+(lsCy(ls.cur)-LS_CELL/2+4)+'" width="'+(LS_CELL-8)+'" height="'+(LS_CELL-8)+'" rx="14"/>';
+  }
+  g.innerHTML=h;
+}
+function lsMini(){
+  const svg=document.getElementById('lsMiniSvg');
+  if(!svg)return;
+  if(!ls.rec){svg.innerHTML='';return}
+  const sp=ls.rec.raw.strokes||[];
+  let h='<g transform="scale(1,-1)"><path d="M512 40V984M40 512H984" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="14 12"/>';
+  for(let i=0;i<ls.n;i++){
+    const got=i<ls.qi;
+    h+='<path d="'+lsDOf(sp,i)+'" fill="'+(got?LS_INK[ls.dirs[i]]:(i===ls.qi?'rgba(255,245,157,.95)':'rgba(255,255,255,.22)'))+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  lsSet('lsMiniCap',ls.rec.ch+' '+ls.qi+'/'+ls.n+' 笔');
+}
+function lsSlotsHTML(){
+  let h='';
+  for(let i=0;i<ls.n;i++)h+='<div class="ls-nd'+(i<ls.qi?' in':(i===ls.qi?' now':''))+'">'+(i<ls.qi?'✓':(i+1))+'</div>';
+  return h+'<span class="ls-more"></span>';
+}
+function lsSlots(){
+  const box=document.getElementById('lsSlots');
+  if(box)box.innerHTML=lsSlotsHTML();
+  ls.hudTxt.slots='';
+  lsSlotsLight();
+}
+function lsSlotsLight(){
+  const m=document.querySelectorAll('.ls-slots .ls-more');
+  const last=m[m.length-1];
+  if(!last)return;
+  const t='🔦 「'+(ls.rec?ls.rec.ch:'—')+'」第 '+(ls.qi+1)+'/'+ls.n+' 笔要 <b>'+LS_DIRS[lsNeed()]+' '+LS_ARW[lsNeed()]+'</b>';
+  if(ls.hudTxt.slots!==t){ls.hudTxt.slots=t;last.innerHTML=t}
+}
+function lsMeter(){
+  const bar=document.getElementById('lsBattBar'),tt=document.getElementById('lsBattTxt'),
+    bx=document.getElementById('lsBattBox'),ck=document.getElementById('lsClock');
+  const w=(lsClamp(ls.bat,0,1)*100).toFixed(1)+'%';
+  if(bx)bx.classList.toggle('low',ls.bat<=0.25);
+  if(bar&&ls.hudTxt.bar!==w){ls.hudTxt.bar=w;bar.style.width=w}
+  const left=Math.max(0,Math.ceil(ls.bat*lsBatSec()));
+  const t='🔋 电池 '+Math.round(lsClamp(ls.bat,0,1)*100)+'% · 光最远走 '+lsBeamMax()+' 格';
+  if(tt&&ls.hudTxt.btt!==t){ls.hudTxt.btt=t;tt.textContent=t}
+  const c=lsSpinOf(ls.lv)?('🪞 拐 '+lsTurnsOf(ls.lv)+' 道弯 · 🌀 会自己翻'):('🪞 拐 '+lsTurnsOf(ls.lv)+' 道弯 · 这一阵 '+ls.pathLen+' 格长');
+  if(ck&&ls.hudTxt.ck!==c){ls.hudTxt.ck=c;ck.textContent=c}
+  const sl=document.getElementById('lsSpinTag');
+  if(sl)sl.classList.toggle('on',ls.spinTag>0);
+  const bd=document.getElementById('lsBadge');
+  if(bd){
+    const n=lsCellN(),q=[];
+    if(n.frz)q.push('❄️ 冻镜 ×'+n.frz);
+    if(n.mir)q.push('🪞 镜子 ×'+n.mir);
+    if(n.wall)q.push('🧱 ×'+n.wall);
+    if(n.sign)q.push('🪧 牌 ×'+n.sign);
+    if(ls.combo>=5)q.push('🌈 连 '+ls.combo);
+    const bg=q.join(' · ');
+    if(ls.hudTxt.badge!==bg){ls.hudTxt.badge=bg;bd.textContent=bg}
+    bd.classList.toggle('on',!!bg);
+  }
+  lsSlotsLight();
+}
+function lsHudLight(){
+  const sc=document.getElementById('lsScoreTxt'),t='🎯 '+Math.round(ls.score)+' 分';
+  if(sc&&ls.hudTxt.sc!==t){ls.hudTxt.sc=t;sc.textContent=t}
+  const ft=document.getElementById('lsFlipTxt'),f='🪞 '+ls.flips;
+  if(ft&&ls.hudTxt.fl!==f){ls.hudTxt.fl=f;ft.textContent=f}
+  const st=document.getElementById('lsShotTxt'),s='🔦 '+ls.shots;
+  if(st&&ls.hudTxt.sh!==s){ls.hudTxt.sh=s;st.textContent=s}
+  const bt=document.getElementById('lsBurnTxt'),b='💨 '+ls.burnt;
+  if(bt&&ls.hudTxt.bu!==b){ls.hudTxt.bu=b;bt.textContent=b}
+  const dt=document.getElementById('lsDryTxt'),dd='⏳ '+ls.dry;
+  if(dt&&ls.hudTxt.dr!==dd){ls.hudTxt.dr=dd;dt.textContent=dd}
+  const lt=document.getElementById('lsLitTxt'),l='✅ '+ls.lits+' 笔';
+  if(lt&&ls.hudTxt.lt!==l){ls.hudTxt.lt=l;lt.textContent=l}
+  const cb=document.getElementById('lsComboTxt'),c='🔥 连 '+ls.combo;
+  if(cb&&ls.hudTxt.cb!==c){ls.hudTxt.cb=c;cb.textContent=c}
+  const lv=document.getElementById('lsLvTxt'),v='第 '+ls.lv+' 段 · '+(ls.rec?ls.rec.ch:'—')+' '+ls.n+' 笔';
+  if(lv&&ls.hudTxt.lv!==v){ls.hudTxt.lv=v;lv.textContent=v}
+  lsMeter();
+}
+function lsHud(){
+  const R=lsRank(lsInt('hz_laser_words'));
+  lsSet('lsRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<LS_HEART_MAX;i++)hs+=(i<ls.hearts?'❤️':'🖤');
+  lsSet('lsHeartTxt',hs||'🖤');
+  lsSet('lsComboTxt','🔥 连 '+ls.combo);
+  lsSet('lsLitTxt','✅ '+ls.lits+' 笔');
+  lsSet('lsFlipTxt','🪞 '+ls.flips);
+  lsSet('lsShotTxt','🔦 '+ls.shots);
+  lsSet('lsBurnTxt','💨 '+ls.burnt);
+  lsSet('lsDryTxt','⏳ '+ls.dry);
+  lsSet('lsLvTxt','第 '+ls.lv+' 段 · '+(ls.rec?ls.rec.ch:'—')+' '+ls.n+' 笔');
+  const mb=document.getElementById('lsMarkBtn');
+  if(mb){mb.disabled=ls.markN<=0;mb.textContent='✨ 照牌 ×'+ls.markN}
+  const bb=document.getElementById('lsBattBtn');
+  if(bb){bb.disabled=ls.battN<=0;bb.textContent='🔋 换电池 ×'+ls.battN}
+  lsMini();lsSlots();lsLine();lsHudLight();
+}
+function lsLine(){
+  const el=document.getElementById('lsHintLine');if(!el)return;
+  if(!ls.run||ls.over||ls.launch<0){el.innerHTML='🔦 <b>正在装电池</b>……';return}
+  if(ls.busy){el.innerHTML='🎯 <b>这一笔照亮了</b> —— 下一阵镜子正在摆';return}
+  const nd=LS_DIRS[lsNeed()];
+  if(ls.aim==='ok'){el.innerHTML='🎯 <b>光已经照在「'+nd+'」那块牌上</b> —— 按 <code>空格</code> 或点 <b>🔦 发射</b> 打出去！';return}
+  if(ls.aim==='bad'){el.innerHTML='⚠️ 光现在照的是 <b>别的牌</b> —— 打上去它就 <b>烧焦</b>、掉一颗心。再翻翻 <b>🪞 镜子</b>，把路改成「'+nd+'」';return}
+  const why={wall:'被 🧱 <b>砖墙</b> 吃掉了',out:'<b>飞出阵外</b> 了',loop:'在两面镜子中间 <b>打转</b>',burnt:'撞在 <b>烧焦的牌</b> 上',bat:'<b>电池不够</b>，走不到那么远'}[ls.aimEnd]||'还没照到牌';
+  el.innerHTML='🪞 <b>点镜子翻面</b>（键盘 <b>方向键移光标 + <code>Enter</code></b>）· 现在的光 '+why+' —— 要照到 <b>「'+nd+' '+LS_ARW[lsNeed()]+'」</b>';
+}
+function lsAskText(){
+  const nd=lsNeed();
+  lsSet('lsAsk','🔦 <b>'+ls.rec.ch+'</b> 的第 '+(ls.qi+1)+' 笔（共 '+ls.n+' 笔）—— 把光引到写着 <b>'+LS_DIRS[nd]+' '+LS_ARW[nd]+'</b> 的那块牌<br><small>'+
+    '镜子 <b>'+lsCellN().mir+' 面</b>（拐 '+lsTurnsOf(ls.lv)+' 道弯）· 错牌 <b>'+lsWrongOf(ls.lv)+' 块</b> · 电池还能撑 <b>'+Math.max(0,Math.ceil(ls.bat*lsBatSec()))+' 秒</b> · <b>光越走越短</b></small>');
+}
+/* ---- 翻镜 / 发射 ---- */
+function lsFlip(i,quiet){
+  if(!ls.run||ls.over)return false;
+  if(ls.busy){if(!quiet)lsSay('⚡ <b>这一笔刚照亮</b>，下一阵镜子正在摆……','#B3E5FC');return false}
+  const g=ls.g[i];
+  if(!g||g.t!=='M'){
+    if(!quiet)lsSay('🚫 <b>那格没有镜子</b>：只有 <b>🪞 镜子</b> 翻得动（点镜子，或把光标移过去按 <code>Enter</code>）','#FFCC80');
+    return false;
+  }
+  if(g.frz){if(!quiet)lsSay('❄️ <b>这面镜子冻住了</b>：翻不动 —— 它 <b>正好卡在解上</b>，拿它当 <b>参照物</b> 想别的镜子怎么翻','#FFCC80');return false}
+  g.m=g.m?0:1;
+  ls.flips++;lsAdd('hz_laser_flips',1);
+  ls.think=0;
+  lsView(i);lsBeam();lsTopLayer();lsLine();lsMeter();
+  lsTone(g.m?640:520,.05,'triangle',.03);
+  return true;
+}
+function lsFire(){
+  if(!ls.run||ls.over||ls.busy||ls.launch<0)return false;
+  ls.shots++;lsAdd('hz_laser_shots',1);ls.think=0;
+  const t=lsTrace();
+  ls.aim=lsAimOf(t);ls.aimEnd=t.end;ls.aimSign=t.sg?t.cell:-1;
+  if(t.end==='sign'&&t.sg&&t.sg.ok){lsRight(t);return true}
+  if(t.sg){lsWrong(t);return true}
+  lsDry(t);
+  return true;
+}
+function lsRight(t){
+  const gain=Math.round(8+ls.combo*0.7+ls.lv*1.5+ls.bat*12);
+  const nd=LS_DIRS[lsNeed()];
+  ls.combo++;ls.maxCombo=Math.max(ls.maxCombo,ls.combo);
+  ls.score+=gain;ls.lits++;lsAdd('hz_laser_lits',1);
+  ls.busy=true;ls.gold=t.pts.slice();ls.goldMs=LS_NEXT_MS;
+  for(let k=0;k<t.bounces.length;k++)lsSpark(t.bounces[k]);
+  lsRing(lsCx(t.cell),lsCy(t.cell),40,'rgba(178,255,89,.9)');
+  lsPop(lsCx(t.cell),lsCy(t.cell)-46,'+'+gain+' 照亮「'+nd+'」','#B2FF59');
+  lsBits(lsCx(t.cell),lsCy(t.cell),'#B2FF59',10);
+  lsTone(LS_NOTE[Math.min(LS_NOTE.length-1,ls.combo-1)],.11,'triangle',.05);
+  if(ls.combo>=5)lsTone(1174,.1,'sine',.04);
+  ls.qi++;
+  lsSay('🎯 <b>第 '+ls.qi+' 笔「'+nd+'」照亮了</b>：+'+gain+' 分（连击 <b>×'+ls.combo+'</b>、剩电池 '+Math.round(ls.bat*100)+'% 折 '+Math.round(ls.bat*12)+'）—— 路 <b>留在阵上</b>，下一阵更绕','#C5E1A5');
+  lsMini();lsHud();lsBeam();
+  if(ls.qi>=ls.n)lsWordDone();
+  lsT(lsAdvance,LS_NEXT_MS);
+}
+function lsWrong(t){
+  const g=t.sg,i=t.cell,nd=LS_DIRS[lsNeed()];
+  g.burnt=1;
+  ls.burnt++;lsAdd('hz_laser_burnt',1);
+  ls.combo=0;ls.cleanWord=false;
+  ls.score=Math.max(0,ls.score-LS_WRONG_PEN);
+  lsMissAdd(ls.rec.ch);
+  lsBits(lsCx(i),lsCy(i),'#B0BEC5',12);
+  lsShakeFx();
+  tone(190,.26,'sawtooth',.05);
+  lsRenderCells();lsTopLayer();
+  lsSay('💥 <b>打错牌</b>：光打在「<b>'+LS_DIRS[g.d]+' '+LS_ARW[g.d]+'</b>」上（'+lsNameOf(i)+'），可这一笔要 <b>'+nd+'</b> —— 这块牌 <b>烧焦了</b>（光到这儿就灭），扣 <b>'+LS_WRONG_PEN+' 分</b>、掉一颗心','#EF9A9A');
+  lsLoseHeart('照错牌');
+  if(ls.over)return;
+  lsBeam();lsHud();
+}
+function lsDry(t){
+  ls.dry++;lsAdd('hz_laser_dry',1);
+  const x=lsCx(t.cell),y=lsCy(t.cell);
+  lsBits(x,y,'#FFD54F',6);
+  tone(330,.1,'sine',.035);
+  const T={
+    wall:'🧱 <b>光撞在砖墙上就灭了</b> —— 砖墙 <b>不吃牌、不反光</b>，绕着它走',
+    out:'🌌 <b>光从阵里飞出去了</b> —— 最后一面镜子 <b>再翻一下</b>，把它接回来',
+    loop:'🌀 <b>光在两面镜子中间打转</b>，谁也照不到 —— 翻开 <b>其中一面</b> 就断掉这个圈',
+    burnt:'💨 <b>光撞在烧焦的牌上</b>（'+lsNameOf(t.cell)+'）—— 焦牌 <b>把光吃掉了</b>，换条路',
+    bat:'🔋 <b>电池不够，光走不到那么远</b>：现在最远 <b>'+lsBeamMax()+' 格</b>，这一阵的牌在 <b>'+ls.pathLen+' 格</b> 外 —— 用 <b>🔋 换电池</b>，或者快点翻镜'
+  };
+  lsSay((T[t.end]||'⏳ <b>光打空了</b>')+'：<b>打空不扣分</b>，只浪费电池（这场已经空了 <b>'+ls.dry+' 次</b>）','#FFE0B2');
+  lsHudLight();
+}
+/* ---- 电池漏光 / 鬼翻 ---- */
+function lsTimeout(){
+  ls.combo=0;ls.cleanWord=false;
+  if(ls.rec)lsMissAdd(ls.rec.ch);
+  tone(150,.34,'sawtooth',.05);
+  lsShakeFx();
+  lsSay('🔋 <b>电池漏光了</b>，手电筒熄了一瞬 —— 还是「'+(ls.rec?ls.rec.ch:'—')+'」第 '+(ls.qi+1)+' 笔，<b>这一阵重新摆</b>','#FFCC80');
+  lsLoseHeart('电池漏光');
+  if(ls.over)return;
+  lsNewBoard();
+}
+function lsSpin(){
+  const can=[];
+  for(let i=0;i<LS_N;i++){const g=ls.g[i];if(g&&g.t==='M'&&!g.frz)can.push(i)}
+  if(!can.length)return;
+  const i=lsOne(can);
+  ls.g[i].m=ls.g[i].m?0:1;
+  ls.spins++;lsAdd('hz_laser_spins',1);
+  ls.spinTag=2200;ls.flash=i;ls.flashMs=LS_FLASH_MS;
+  lsBits(lsCx(i),lsCy(i),'#FF80AB',8);
+  tone(760,.1,'sine',.04);
+  lsView(i);lsBeam();lsTopLayer();lsLine();
+  lsSay('🌀 <b>有面镜子自己翻了一下</b>（'+lsNameOf(i)+'）：光路 <b>当场全变</b> —— 别慌，镜子 <b>翻回去就行</b>，每一阵都有解','#F8BBD0');
+  lsMeter();
+}
+/* ---- 升段 / 换题 / 换字 ---- */
+function lsLvCheck(){
+  const nl=Math.min(9,1+Math.floor(ls.words/2));
+  if(nl<=ls.lv)return false;
+  ls.lv=nl;
+  localStorage.setItem('hz_laser_lv',String(Math.max(ls.lv,lsInt('hz_laser_lv'))));
+  let up=0;
+  if(ls.markN<3){ls.markN++;up++}
+  if(ls.battN<3){ls.battN++;up++}
+  if(ls.respinN<3){ls.respinN++;up++}
+  lsT(function(){
+    if(!ls.run||ls.over)return;
+    lsSay('⚡ <b>升到第 '+ls.lv+' 段</b>：光路 <b>拐 '+lsTurnsOf(ls.lv)+' 道弯</b>、镜子 <b>'+lsMirOf(ls.lv)+' 面</b>、错牌 <b>'+lsWrongOf(ls.lv)+' 块</b>'+
+      (ls.lv>=5?'、🌀 <b>镜子会自己翻</b>':'')+(ls.lv>=8?'、🧱 <b>砖墙 '+lsWallOf(ls.lv)+' 堵</b>':'')+'，电池也更不耐用'+(up?' · <b>道具各补 '+up+' 次</b>':''),'#FFE082');
+  },640);
+  return true;
+}
+function lsWordDone(){
+  const ch=ls.rec.ch;
+  const bonus=26+ls.n*4+ls.lv*6;
+  const cleanB=ls.cleanWord?LS_CLEAN_BONUS:0;
+  ls.score+=bonus+cleanB;
+  ls.words++;lsAdd('hz_laser_words',1);
+  if(ls.cleanWord)lsAdd('hz_laser_perfect',1);
+  lsBookAdd(ch);lsMissDel(ch);
+  const refill=ls.words%3===0&&ls.hearts<LS_HEART_MAX;
+  if(refill)ls.hearts++;
+  lsPop(350,240,'🏁 +'+(bonus+cleanB)+(cleanB?' ✨':''),'#FFF176');
+  lsBits(350,240,'#FFF176',22);
+  tone(659,.1,'triangle',.05);lsTone(784,.1,'triangle',.05);lsTone(988,.16,'triangle',.05);
+  try{spawnConfetti()}catch(e){}
+  lsLvCheck();
+  lsSay('🏁 <b>「'+ch+'」整个字被光打通了</b>（'+ls.n+' 笔一笔没落）：+'+bonus+' 分'+
+    (cleanB?' · ✨ <b>一次没打错、电池没漏光</b> 再 +'+LS_CLEAN_BONUS:'')+
+    (refill?' · 🔋 手稳，<b>补一颗心</b>':'')+
+    ' —— 第 '+ls.lv+' 段：'+lsTurnsOf(ls.lv)+' 道弯、'+lsMirOf(ls.lv)+' 面镜子','#AED581');
+  if(ls.words%4===0){try{showRewardEgg()}catch(e){}}
+  lsMini();lsHud();
+}
+function lsNewBoard(){
+  if(!lsGen()){lsEnd('nodata');return false}
+  ls.bat=1;ls.think=0;ls.spinMs=LS_SPIN_MS;ls.markMs=0;
+  ls.gold=null;ls.goldMs=0;ls.flash=-1;ls.flashMs=0;ls.ovKey='';
+  ls.cur=-1;
+  for(let i=0;i<LS_N;i++){const g=ls.g[i];if(g&&g.t==='M'){ls.cur=i;break}}
+  lsBeam();
+  lsRenderCells();lsTopLayer();lsMini();lsHud();lsAskText();lsLine();
+  return true;
+}
+function lsNewWord(){
+  const rec=lsPickRec();
+  if(!rec){lsEnd('nodata');return false}
+  ls.rec=rec;ls.n=rec.n;ls.dirs=rec.dirs.slice();ls.qi=0;ls.cleanWord=true;
+  return lsNewBoard();
+}
+function lsAdvance(){
+  if(!ls.run||ls.over)return;
+  ls.busy=false;ls.gold=null;ls.goldMs=0;
+  if(ls.qi>=ls.n)lsNewWord();
+  else lsNewBoard();
+}
+/* ---- 工具 ---- */
+function lsMark(){
+  if(!ls.run||ls.over)return;
+  if(ls.busy)return;
+  if(ls.markN<=0){lsSay('✨ <b>照牌用完了</b>（每场 2 次，升一段补 1 次）—— 自己看：<b>光现在照到哪儿</b>，翻哪面镜能改','#FFCC80');return}
+  ls.markN--;ls.marks++;lsAdd('hz_laser_marks',1);
+  ls.markMs=LS_MARK_MS;ls.ovKey='';
+  lsTone(880,.1,'sine',.045);
+  lsTopLayer();lsHud();
+  lsSay('✨ <b>圈出来了</b>：这一笔要 <b>'+LS_DIRS[lsNeed()]+'</b>，该照的牌在 <b>'+lsNameOf(lsSignCell())+'</b> —— 电池 <b>还剩 '+Math.round(ls.bat*100)+'%</b>，光够不够走得过去自己看','#B3E5FC');
+}
+function lsSignCell(){
+  for(let i=0;i<LS_N;i++){const g=ls.g[i];if(g&&g.t==='S'&&g.ok&&!g.burnt)return i}
+  return -1;
+}
+function lsBatt(){
+  if(!ls.run||ls.over)return;
+  if(ls.busy){lsSay('⚡ <b>这一笔刚照亮</b>，下一阵镜子正在摆……','#B3E5FC');return}
+  if(ls.battN<=0){lsSay('🔋 <b>备用电量用完了</b>（每场 2 次，升一段补 1 次）—— 电池漏光会 <b>掉一颗心</b>，所以下一阵 <b>先看光够不够长</b> 再翻镜','#FFCC80');return}
+  ls.battN--;ls.batts++;lsAdd('hz_laser_batts',1);
+  ls.bat=1;
+  lsBits(lsCx(ls.launch),lsCy(ls.launch),'#26A69A',12);
+  lsPop(350,200,'🔋 满电','#80CBC4');
+  tone(523,.1,'sine',.05);lsTone(784,.12,'sine',.05);
+  lsBeam();lsMeter();lsHud();lsLine();
+  lsSay('🔋 <b>换上新的电池</b>：光又能走满 <b>'+lsBeamMax()+' 格</b> 了 —— 射程 <b>就是时间</b>，看着光够不够得着','#C5E1A5');
+}
+function lsRespin(force){
+  if(!ls.run||ls.over)return;
+  if(ls.busy)return;
+  if(!force){
+    if(ls.respinN<=0){lsSay('🔄 <b>重摆用完了</b>（每场 2 次，升一段补 1 次）—— 翻不回去就 <b>点镜子</b> 一面面试','#FFCC80');return}
+    ls.respinN--;ls.respins++;lsAdd('hz_laser_respins',1);
+  }
+  if(!lsNewBoard())return;
+  lsSay('🔄 <b>这一阵镜子重新摆过了</b>（还是「'+(ls.rec?ls.rec.ch:'—')+'」第 '+(ls.qi+1)+' 笔，电池也换满的）：路 <b>一定有</b>，慢慢翻','#B3E5FC');
+}
+function lsNag(){
+  if(!ls.run||ls.over||ls.busy)return;
+  ls.nags++;lsAdd('hz_laser_nags',1);
+  const si=lsSignCell();
+  tone(440,.08,'sine',.03);
+  lsSay('🐰 <b>看哪儿呢</b>：这一笔要 <b>'+LS_DIRS[lsNeed()]+'</b>，那块牌在 <b>'+(si>=0?lsNameOf(si):'——')+'</b> —— 光现在 <b>'+
+    ({wall:'撞墙',out:'飞出去',loop:'打转',burnt:'撞焦牌',bat:'不够长',sign:'照对牌了',none:'还在空地上'}[ls.aimEnd]||'乱走')+'</b>，翻 <b>挨着光尽头的那面镜子</b> 试试','#FFE082');
+}
+function lsLoseHeart(why){
+  ls.hearts--;
+  lsShakeFx();
+  const last=ls.hearts<=0;
+  const tail=last?'💔 '+why+' 太多，心全丢了……':'💔 <b>丢一颗心</b>（'+why+'）：还剩 <b>'+ls.hearts+'</b> 颗 —— 每打通 <b>3 个字</b> 补一颗';
+  if(last)lsSay(tail,'#EF9A9A');
+  else{
+    /* 上一句（打错哪块牌 / 电池漏光）才是教学要点，别让这句把它盖掉 */
+    const el=document.getElementById('lsMsg');
+    if(el&&el.innerHTML)el.innerHTML=el.innerHTML+'<br><span style="color:#FFCC80">'+tail+'</span>';
+    else lsSay(tail,'#FFCC80');
+  }
+  lsHud();
+  if(last)lsEnd('miss');
+}
+/* ---- 循环 ---- */
+function lsStartLoop(){lsStopLoop();ls.last=0;ls.rafId=requestAnimationFrame(lsLoop)}
+function lsStopLoop(){if(ls.rafId){cancelAnimationFrame(ls.rafId);ls.rafId=0}ls.last=0}
+function lsLoop(ts){
+  if(!ls.run||ls.over){ls.rafId=0;return}
+  const dt=ls.last?Math.min(0.05,(ts-ls.last)/1000):0.016;
+  ls.last=ts;
+  lsTick(dt);
+  ls.rafId=requestAnimationFrame(lsLoop);
+}
+function lsTick(dt){
+  const ms=dt*1000;
+  ls.t+=dt;ls.playMs+=ms;
+  ls.tones=6;
+  if(ls.markMs>0){
+    ls.markMs=Math.max(0,ls.markMs-ms);
+    if(!ls.markMs)lsTopLayer();
+  }
+  if(ls.flashMs>0){
+    ls.flashMs=Math.max(0,ls.flashMs-ms);
+    if(!ls.flashMs){ls.flash=-1;lsTopLayer()}
+  }
+  if(ls.spinTag>0)ls.spinTag=Math.max(0,ls.spinTag-ms);
+  if(ls.busy){ls.goldMs=Math.max(0,ls.goldMs-ms);lsMeter();return}
+  if(!ls.rec||ls.over)return;
+  ls.think+=ms;
+  ls.bat-=dt/Math.max(1,lsBatSec());
+  if(ls.bat<=0){ls.bat=0;lsTimeout();return}
+  if(lsSpinOf(ls.lv)){
+    ls.spinMs-=ms;
+    if(ls.spinMs<=0){ls.spinMs=LS_SPIN_MS;lsSpin()}
+  }
+  if(ls.think>=LS_NAG_MS){ls.think=0;lsNag()}
+  lsBeam();lsHudLight();
+}
+/* ---- 输入 ---- */
+function lsBind(){
+  if(ls.bound)return;
+  ls.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='laser'||!ls.run||ls.over)return;
+    const k=e.key,K=String(k||'').toLowerCase();
+    if(K==='arrowleft'||K==='arrowright'||K==='arrowup'||K==='arrowdown'){
+      if(e.repeat)return;
+      if(ls.cur<0)ls.cur=0;
+      let c=ls.cur%LS_CW,r=Math.floor(ls.cur/LS_CW);
+      if(K==='arrowleft')c--;
+      else if(K==='arrowright')c++;
+      else if(K==='arrowup')r--;
+      else r++;
+      ls.cur=lsClamp(r,0,LS_CH-1)*LS_CW+lsClamp(c,0,LS_CW-1);
+      ls.think=0;
+      lsTopLayer();
+      const g=ls.g[ls.cur];
+      lsSay(g&&g.t==='M'?(g.frz?'❄️ <b>光标停在冻镜上</b>：翻不动，当 <b>参照物</b>':'🪞 <b>光标停在这面镜子</b> 上：按 <code>Enter</code> 翻面，光路 <b>当场重画</b>'):'👉 光标移到 <b>镜子</b> 上再按 <code>Enter</code> 翻面（光 <b>只会撞镜子拐弯</b>）','#B3E5FC');
+      e.preventDefault();return;
+    }
+    if(K==='enter'){
+      if(!e.repeat)lsFlip(ls.cur);
+      e.preventDefault();return;
+    }
+    if(k===' '){
+      if(!e.repeat)lsFire();
+      e.preventDefault();return;
+    }
+    if(K==='f'){if(!e.repeat)lsFire();return}
+    if(K==='q'){if(!e.repeat)lsMark();return}
+    if(K==='w'){if(!e.repeat)lsBatt();return}
+    if(K==='r'){if(!e.repeat)lsRespin(false);return}
+    if(k==='?'){lsHelp();return}
+  });
+}
+function lsPointer(){
+  const svg=document.getElementById('lsSvg');
+  if(!svg||ls.ptrBound)return;
+  ls.ptrBound=true;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='laser'||!ls.run||ls.over)return;
+    const el=ev.target.closest?ev.target.closest('.ls-mir'):null;
+    if(!el)return;
+    const i=parseInt(String(el.id||'').replace('lsM',''),10);
+    if(isNaN(i))return;
+    ls.cur=i;
+    lsFlip(i);
+    lsTopLayer();
+    if(ev.preventDefault)ev.preventDefault();
+  });
+}
+/* ---- 生命周期 ---- */
+function lsStopAll(){lsStopLoop();lsKillTimers();ls.gen++;ls.busy=false;ls.gold=null}
+async function lsStart(){
+  lsStopAll();
+  const g=ls.gen;
+  const stale=function(){return g!==ls.gen||!ls.run||ls.over};
+  ls.run=true;ls.over=false;
+  ls.lv=1;ls.score=0;ls.hearts=LS_HEARTS;ls.combo=0;ls.maxCombo=0;
+  ls.words=0;ls.lits=0;ls.flips=0;ls.shots=0;ls.dry=0;ls.burnt=0;ls.spins=0;
+  ls.marks=0;ls.batts=0;ls.respins=0;ls.nags=0;
+  ls.markN=2;ls.battN=2;ls.respinN=2;
+  ls.markMs=0;ls.flash=-1;ls.flashMs=0;ls.spinTag=0;ls.spinMs=0;ls.think=0;ls.playMs=0;ls.t=0;ls.ovKey='';ls.hudTxt={};
+  ls.pool=[];ls.miss=[];ls.rec=null;ls.dirs=[];ls.n=0;ls.qi=0;
+  ls.g=new Array(LS_N);ls.launch=-1;ls.path=[];ls.pathLen=0;
+  ls.aim='none';ls.aimEnd='';ls.aimSign=-1;ls.cur=-1;
+  ls.bat=1;ls.gold=null;ls.goldMs=0;ls.cleanWord=true;
+  showScreen('laser');
+  lsBind();lsPointer();
+  lsRenderStatic();lsRenderCells();lsBeam();lsTopLayer();lsMini();lsHud();
+  lsSet('lsAsk','🔦 正在给手电筒装电池……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  lsSay('阵里摆着 <b>🪞 镜子</b> 和几块 <b>写着方向的木牌</b>，<b>🔦 手电筒的光一直在照</b> —— 光 <b>撞镜子拐 90°</b>、<b>撞牌就停</b>。翻镜子改变 <b>光走的路</b>，让光 <b>照到这一笔方向那块牌</b>（光会 <b>变绿</b>）再按 <b>发射</b>；🔋 电池一路漏，<b>光也越走越短</b>','#C5E1A5');
+  let ok=await lsBuildPool();
+  if(stale())return;
+  if(!ok){
+    lsSay('🔦 电池还没装上，再装一次……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await lsBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!ls.pool.length){
+    ls.run=false;
+    lsSet('lsAsk','😢 字库没加载好<br><small>稍后再来照路</small>');
+    lsSay('先去别的模式练两笔，回来字就齐了','#FFCC80');
+    return;
+  }
+  lsAdd('hz_laser_games',1);
+  if(!lsNewWord())return;
+  if(!ls.run||ls.over||stale())return;
+  lsStartLoop();
+}
+function lsEnd(reason){
+  if(ls.over)return;
+  ls.over=true;ls.run=false;
+  lsStopAll();
+  const sc=Math.round(ls.score);
+  localStorage.setItem('hz_laser_best',String(Math.max(ls.words,lsInt('hz_laser_best'))));
+  localStorage.setItem('hz_laser_streak',String(Math.max(ls.maxCombo,lsInt('hz_laser_streak'))));
+  localStorage.setItem('hz_laser_lv',String(Math.max(ls.lv,lsInt('hz_laser_lv'))));
+  lsAdd('hz_laser_ms',Math.round(ls.playMs/1000));
+  const stars=Math.floor(sc/120)+ls.words*3;
+  if(stars>0)addStars(stars);
+  showScreen('laser-result');
+  const R=lsRank(lsInt('hz_laser_words'));
+  const T={
+    miss:['💨','烧得太多，心丢了','<b>打错一块牌就烧焦一块</b>（光到那儿就灭）：发射前 <b>盯一眼光变没变绿</b>，绿了再打'],
+    quit:['🏁','今天收工了','下一场先把 <b>射程当时间看</b>：<b>光够不够长走到那块牌</b>，够长再慢慢翻镜'],
+    nodata:['😢','字库没加载好','先去别的模式练两笔，回来字就齐了']
+  };
+  const t=T[reason]||T.quit;
+  lsSet('lsRsEmoji',t[0]);
+  lsSet('lsRsTitle',reason==='nodata'?t[1]:(reason==='miss'?(ls.words?'心丢了 · 已照亮 '+ls.words+' 个字':t[1]):t[1]));
+  lsSet('lsRsSub',t[2]);
+  lsSet('lsRsScore',String(sc));
+  lsSet('lsRsWords',String(ls.words));
+  lsSet('lsRsLit',String(ls.lits));
+  lsSet('lsRsLv',String(ls.lv));
+  lsSet('lsRsStreak',String(ls.maxCombo));
+  lsSet('lsRsMiss',ls.burnt+' / '+ls.dry);
+  lsSet('lsRsStars','⭐ '+stars);
+  lsSet('lsRsBest',String(lsInt('hz_laser_best')));
+  lsSet('lsRsAll2',String(lsInt('hz_laser_words')));
+  lsSet('lsRsAll','🏅 '+R.e+' '+R.t+' · 累计打通 '+lsInt('hz_laser_words')+' 个字\n'+
+    '🔦 发射 '+lsInt('hz_laser_shots')+' 次 · ✅ 点亮 '+lsInt('hz_laser_lits')+' 笔 · 🪞 翻镜 '+lsInt('hz_laser_flips')+' 下\n'+
+    '💨 烧焦 '+lsInt('hz_laser_burnt')+' 块 · ⏳ 打空 '+lsInt('hz_laser_dry')+' 次 · 🌀 鬼翻 '+lsInt('hz_laser_spins')+' 回\n'+
+    '✨ 照牌 '+lsInt('hz_laser_marks')+' 次 · 🔋 换电池 '+lsInt('hz_laser_batts')+' 次 · 🔄 重摆 '+lsInt('hz_laser_respins')+' 次\n'+
+    '👀 发呆提示 '+lsInt('hz_laser_nags')+' 次 · 🚀 一局最多 '+lsInt('hz_laser_best')+' 个字 · 最高照到第 '+lsInt('hz_laser_lv')+' 段');
+  const book=(localStorage.getItem('hz_laser_book')||'').split(',').filter(function(c){return c.length===1});
+  lsSet('lsRsBookT',book.length?('🔦 光路档案 · 已打通 '+book.length+' 个字'):'');
+  const bh=document.getElementById('lsRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function lsRetry(){lsStart()}
+function lsLeave(){
+  lsStopAll();
+  if(ls.run&&!ls.over){ls.over=true;ls.run=false}
+  goHome();
+}
+function lsNudge(){
+  const dot=document.getElementById('lsCardDot'),tip=document.getElementById('lsCardTip');
+  const w=lsInt('hz_laser_words'),p=lsInt('hz_laser_perfect'),games=lsInt('hz_laser_games'),sh=lsInt('hz_laser_shots');
+  const R=lsRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 打通 '+w+' 个字 · 发射 '+sh+' 次 · 一次没断 '+p+' 次'):'翻镜子改变光走的路 —— 让光照到写对方向那块牌再发射，电池越漏光越短';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function lsHelp(){
+  lsSay('🔦 黑蓝格子上是 <b>光路阵</b>（<b>'+LS_CW+'×'+LS_CH+'</b>）：边上一只 <b>🔦 手电筒</b> 一直往里照，阵里摆着 <b>🪞 '+lsCellN().mir+' 面镜子</b>、🧱 <b>'+lsCellN().wall+' 堵砖墙</b>、<b>🪧 '+lsCellN().sign+' 块木牌</b>（牌上写着 <b>横 ➡️ / 竖 ⬇️ / 撇 ↙️ / 捺 ↘️</b>）。你只有一件手法：<b>翻镜子</b>。<br>'+
+    '🪞 <b>翻面</b>：镜子有 <code>/</code> 和 <code>\\</code> 两个斜面，光撞上去 <b>拐 90°</b> —— 点一下 <b>当场换个斜面</b>，光路 <b>立刻重画</b>（键盘 <b>方向键移光标 + <code>Enter</code></b>）。<br>'+
+    '🎯 <b>预览就是真弹道</b>：光 <b>变绿</b> = 现在这条路正好照到这一笔该亮的牌（第 '+(ls.qi+1)+' 笔「<b>'+LS_DIRS[lsNeed()]+'</b>」）；<b>变红</b> = 照到别的牌，<b>按发射它就烧焦</b>（掉一颗心）；<b>黄/粉</b> = 飞出阵、撞墙、在两面镜子中间打转 —— <b>打空不扣分</b>，只费电池。<br>'+
+    '🔋 <b>电池 = 射程</b>：本题 <b>'+lsBatSec().toFixed(1)+' 秒</b> 漏完，漏到哪儿 <b>光就只能走那么远格</b>（现在 <b>'+lsBeamMax()+' 格</b>，这一阵的牌在 <b>'+ls.pathLen+' 格</b> 外）。<b>漏光 = 掉一颗心 + 重摆这一阵</b> —— 这是全游戏最难受的「差半格够不着」。<br>'+
+    '❄️ <b>冻镜</b>（<b>第 5 段</b> 起 1~2 面）：翻不动，但它 <b>正好卡在解上</b>，当参照物；🌀 <b>鬼翻</b>（<b>第 5 段</b> 起）约 <b>'+(LS_SPIN_MS/1000)+' 秒</b> 有面镜子 <b>自己翻一下</b>，路全变 —— 镜子 <b>翻回去就行</b>。<br>'+
+    '🧱 <b>砖墙</b>（<b>第 4 段</b> 起）把光吃掉；每一阵都是 <b>先按解摆好路、再把镜子打乱</b> 生成的，所以 <b>永远翻得回去</b>。<br>'+
+    '✨（<code>Q</code>）圈出 <b>该照的牌在哪个方位</b>；🔋（<code>W</code>）<b>补满电池</b>，射程立刻变长；🔄（<code>R</code>）<b>重摆这一阵</b>（本题不换字）—— 三种 <b>每场各 2 次</b>，升段各补 1 次。<br>'+
+    '⚡ <b>每打通 2 个字升 1 段</b>（最多 9 段）：弯 <b>1→4 道</b>、镜子 <b>1→7 面</b>、错牌 <b>1→5 块</b>、电池 <b>'+ lsBatAt(1).toFixed(1) +'→'+lsBatAt(9).toFixed(1)+' 秒</b>，字也从 2~6 笔换到 3~8 笔。<br>'+
+    '🏁 <b>整个字一笔不落全照亮</b>：<b>26 + 笔数×4 + 段数×6</b> 分；一路 <b>没打错、电池没漏光</b> 再多 <b>'+LS_CLEAN_BONUS+'</b>；每 3 个字 <b>补一颗心</b>（3 起、最多 5）。<br>'+
+    '👀 发呆 11 秒 🐰 报方位 · 战绩落盘 <code>hz_laser_*</code>','#C5E1A5');
 }
 
 window.addEventListener('DOMContentLoaded',boot);
