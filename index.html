@@ -4773,6 +4773,89 @@ button:active{transform:scale(.95)}
   .hd-stage{flex-direction:column}
   .hd-mini{flex:0 0 auto;width:88px;margin:0 auto}
 }
+/* ================= v1.76 笔顺解绳结 ================= */
+.tg-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.tg-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.tg-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.tg-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.tg-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.tg-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.tg-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.tg-cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:11px;color:#FFE0B2}
+.tg-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#F3E5C6 0%,#E8D3A9 42%,#D9BE8E 100%);box-shadow:inset 0 0 30px rgba(90,58,16,.34)}
+.tg-svg{display:block;width:100%;height:auto;touch-action:none;cursor:default}
+.tg-frame{fill:none;stroke:rgba(120,80,30,.34);stroke-width:4}
+.tg-plank{fill:#C9A66B}
+.tg-grain{stroke:rgba(120,80,30,.16);stroke-width:2;fill:none}
+.tg-post{fill:#8D6E63}
+.tg-rope{fill:none;stroke:#8D6E63;stroke-width:6;stroke-linecap:round}
+.tg-rope.clean{stroke:#7CB342}
+.tg-rope.bad{stroke:#E53935}
+.tg-rope.now{stroke:#FFB300;stroke-width:8;stroke-dasharray:14 8;animation:tgDash .9s linear infinite}
+@keyframes tgDash{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-44}}
+.tg-knot{font-size:19px;font-weight:bold;fill:#C62828;stroke:#FFF3E0;stroke-width:3;paint-order:stroke;pointer-events:none;animation:tgPulse .8s ease-in-out infinite}
+@keyframes tgPulse{0%,100%{opacity:.55}50%{opacity:1}}
+.tg-bead{cursor:grab}
+.tg-bead.drag{cursor:grabbing}
+.tg-bead.pin{cursor:not-allowed}
+.tg-bd{fill:#EFEBE9;stroke:#8D6E63;stroke-width:3}
+.tg-bead.clean .tg-bd{stroke:#7CB342}
+.tg-bead.bad .tg-bd{stroke:#E53935}
+.tg-bead.now .tg-bd{stroke:#FFB300;stroke-width:5}
+.tg-bead.drag .tg-bd{stroke:#29B6F6;stroke-width:5}
+.tg-hole{fill:#5D4037}
+.tg-num{font-size:11px;font-weight:bold;fill:#8D6E63;text-anchor:middle}
+.tg-pin{font-size:14px}
+.tg-gly{pointer-events:none}
+.tg-rock{font-size:26px}
+.tg-ghost{fill:none;stroke:#29B6F6;stroke-width:3;stroke-dasharray:7 6;animation:tgMark .7s ease-out infinite}
+.tg-mark{fill:none;stroke:#29B6F6;stroke-width:3;animation:tgMark .6s ease-out infinite}
+@keyframes tgMark{0%,100%{opacity:.3}50%{opacity:1}}
+.tg-ring{fill:none;stroke:#FFEB3B;stroke-width:3;stroke-dasharray:9 7;animation:tgMark .7s ease-out infinite}
+.tg-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.tg-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:tgBit .72s ease-out forwards}
+@keyframes tgBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.tg-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#4E342E;text-shadow:0 1px 0 rgba(255,255,255,.8);animation:tgPop .95s ease-out forwards;white-space:nowrap}
+@keyframes tgPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.tg-shake{animation:tgShake .3s}
+@keyframes tgShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(7px)}75%{transform:translateX(-3px)}}
+.tg-slots{display:flex;gap:5px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:34px;padding:6px;border-radius:14px;background:rgba(0,0,0,.3);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap}
+.tg-nd{width:22px;height:22px;line-height:22px;border-radius:7px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.32);font-size:12px;text-align:center;font-weight:bold}
+.tg-nd.in{background:#66BB6A;color:#1B5E20}
+.tg-nd.now{background:#FFF176;color:#5D4037}
+.tg-more{font-size:12px;color:#FFE0B2}
+.tg-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.tg-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(0,0,0,.34);overflow:hidden}
+.tg-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#66BB6A,#9CCC65 55%,#FFEE58 88%);transition:width .12s linear}
+.tg-tl.low i{background:linear-gradient(90deg,#FF8A65,#FF5252)}
+.tg-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.tg-clock{font-size:12px;color:#fff;background:rgba(0,0,0,.34);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.tg-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#FFF3E0;background:rgba(0,0,0,.3);border-radius:14px;padding:9px 10px;line-height:1.5}
+.tg-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.tg-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0}
+.tg-tool{flex:1;padding:11px 4px;border:none;border-radius:13px;font-size:13px;color:#FFF3E0;background:rgba(255,255,255,.14);cursor:pointer}
+.tg-tool.on{background:#FFB74D;color:#4E342E}
+.tg-tool:disabled{opacity:.4}
+.tg-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.28);color:#FFE0B2;font-size:13px;line-height:1.65;min-height:44px}
+.tg-msg b{color:#fff}
+.tg-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.tg-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.tg-badge{position:absolute;right:8px;top:8px;font-size:12px;color:#4E342E;background:rgba(255,255,255,.78);border-radius:11px;padding:3px 10px;display:none}
+.tg-badge.on{display:block}
+.tg-slow{position:absolute;left:8px;top:8px;font-size:12px;color:#0D47A1;background:rgba(255,255,255,.78);border-radius:11px;padding:3px 10px;display:none}
+.tg-slow.on{display:block}
+.tg-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.tg-rs span{display:block;font-size:24px;font-weight:bold}
+.tg-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.tg-book-t{font-size:12px;color:#FFE0B2;margin-top:12px}
+.tg-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.tg-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.tg-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FF7043;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.tg-cdot.on{display:flex}
+@media (max-width:600px){
+  .tg-stage{flex-direction:column}
+  .tg-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
 </style>
 
 </head>
@@ -4829,8 +4912,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 74 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">74</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 75 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">75</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -4841,12 +4924,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>74 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>20</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>75 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>21</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" onclick="enterMode('tangle')">
+      <div class="icon">🪢</div>
+      <div class="info"><h3>笔顺解绳结</h3><p id="tgCardTip">绳上按笔顺穿着木牌 —— 挪牌让任何两段绳都不交叠，结就解开了</p></div>
+      <span class="tg-cdot" id="tgCardDot">🆕</span>
+    </div>
 <div class="mode-card" onclick="enterMode('herd')">
       <div class="icon">🐑</div>
       <div class="info"><h3>笔顺牧羊犬</h3><p id="hdCardTip">羊怕狗，只能靠走位把它逼进圈 —— 背上贴着下一笔的那只才收</p></div>
@@ -5397,6 +5485,97 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-tangle">
+  <div class="top-bar">
+    <button class="back-btn" onclick="tgLeave()">← 返回</button>
+    <div class="stats"><span id="tgScoreTxt">🎯 0 分</span><span id="tgLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="tgHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="tg-hud">
+    <span id="tgRankTxt" title="称号">🪢 解绳小白</span>
+    <span id="tgHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="tgComboTxt" title="连击">🔥 连 0</span>
+    <span id="tgLevelTxt" title="过了几盘">🚀 0 盘</span>
+    <span id="tgKnotTxt" title="还剩几处交叠">🪢 还 0 结</span>
+    <span id="tgMoveTxt" title="挪了几次牌">👆 0</span>
+    <span id="tgRockTxt" title="被石头挡回几次">🪨 0</span>
+    <span id="tgDryTxt" title="打散重摆几次">⏳ 0</span>
+  </div>
+  <div class="tg-ask" id="tgAsk">🪢 正在把麻绳穿好……<br><small>在字库里挑「每一笔都认得出形状」的字</small></div>
+  <div class="tg-stage">
+    <div class="tg-mini">
+      <svg viewBox="0 -1024 1024 1024" id="tgMiniSvg"></svg>
+      <div class="tg-cap" id="tgMiniCap">这个字</div>
+    </div>
+    <div class="tg-tbl">
+      <svg class="tg-svg" id="tgSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <g id="tgStatic"></g>
+        <g id="tgRopeG"></g>
+        <g id="tgKnotG"></g>
+        <g id="tgBeadG"></g>
+        <g id="tgTopG"></g>
+      </svg>
+      <div class="tg-fx" id="tgFx"></div>
+      <div class="tg-badge" id="tgBadge">🪢</div>
+      <div class="tg-slow" id="tgGustTag">🌬 起风了</div>
+    </div>
+  </div>
+  <div class="tg-slots" id="tgSlots"></div>
+  <div class="tg-meter">
+    <div class="tg-tl" id="tgTtlBox"><i id="tgTimeBar"></i><b id="tgTimeTxt">🪢 这一盘还没穿好</b></div>
+    <div class="tg-clock" id="tgClock">⏳ ——</div>
+  </div>
+  <div class="tg-hintline" id="tgHintLine">👇 用 <b>手指按住木牌拖</b>，或按 <b><code>1</code>~<code>9</code> 挑牌 + <b>方向键</b> 挪</b> —— 绳子 <b>两段一交叠就是一个结</b></div>
+  <div class="tg-tools">
+    <button class="tg-tool" id="tgMarkBtn" onclick="tgMark()" disabled>💡 指结</button>
+    <button class="tg-tool" id="tgMagBtn" onclick="tgMagnet()" disabled>🧲 提绳</button>
+    <button class="tg-tool" onclick="tgRespin(false)">🔄 重摆</button>
+    <button class="tg-tool" onclick="tgEnd('quit')">🏁 结算离场</button>
+  </div>
+  <div class="tg-msg" id="tgMsg">一根麻绳按 <b>笔顺</b> 穿着 <b>木牌</b>，每张牌上刻着这个字的 <b>一笔</b>。绳子 <b>不能打结</b> —— <b>拖动木牌</b>，让 <b>任何两段绳都不交叠</b>；交叠一次就 <b>攒一个结</b>，把结 <b>全解开</b> 这一盘就理平了</div>
+  <div class="tg-tip">木板上拉着 <b>一根绳</b>（<b>第 6 段</b> 起变 <b>两根绳 · 两个字</b>）：绳按笔顺穿着 <b>木牌</b>，两头 <b>系在木桩上不能动</b>。<b>两段绳一交叠就是结</b> —— 你的手法只有 <b>挪牌</b>：把牌 <b>拖到别处</b>，绳就跟着重排。<br>
+    🪢 <b>按笔顺理</b>：左边米字格里 <b>淡黄色那笔</b> 对应的牌就是 <b>现在该理的这块</b> —— 挪它（或挪挡它的牌）直到 <b>它两侧绳都不交叠</b>：吃 <b>连击加成</b>，米字格 <b>当场亮一笔</b><br>
+    ✨ <b>结解开就加分</b>：一次拖动 <b>消掉几个结</b> 就加 <b>几个 ×（4 + 段数）</b>；先理 <b>该理的那块</b> 给 <b>顺结大奖</b>，理了别的牌 <b>+6 分</b>（不算连击，也 <b>不扣分</b> —— 摆错了随时能拖回来）<br>
+    📌 <b>钉珠</b>（<b>第 3 段</b> 起）：有的牌 <b>被钉子钉住了</b> 拖不动 —— 它 <b>正好在正确的位置</b>，把它当 <b>参照物</b> 想别的牌该去哪；🪨 <b>石头</b>（<b>第 5 段</b> 起）：牌 <b>不能压在石头上</b>，往那儿拖会被 <b>挡回来</b>（每累计 4 次挡回掉一颗心）<br>
+    🌬 <b>风</b>（<b>第 8 段</b> 起）：约 5.5 秒 <b>吹跑一块牌</b>，绳会 <b>重新打结</b> —— 别慌，<b>摆回原位</b> 就解开<br>
+    ⏳ <b>催场钟</b>：每盘发 <b>24 + 笔数×6 − 段数×2</b> 秒，<b>钟走光这一盘的牌被重新打散</b>（掉一颗心）；最后 12 秒 <b>钟变红</b><br>
+    💡 <b>指结</b>（<code>H</code>）：圈出 <b>惹祸最多的那块牌</b>，并画一个 <b>蓝圈</b> 提示 <b>可以摆去哪</b>；🧲 <b>提绳</b>（<code>M</code>）<b>直接把那块牌提到好位置</b>；🔄（<code>R</code>）<b>换一个字</b> 重穿 —— 三种 <b>每场各 2 次</b><br>
+    ⚡ <b>越练越难也越会</b>：<b>每 2 盘升 1 段</b>（最多 9 段）—— 字从 2~6 笔换到 3~8 笔、绳 <b>越绕越宽</b>、钉珠 / 石头 / 双绳 / 风一件件上；<b>每 3 盘补一颗心</b><br>
+    🏁 <b>结全解开 = 过一盘</b>：<b>24 + 笔数×5 + 段数×5</b> 分、<b>剩下的钟×0.7</b> 再加、<b>一次没散再多 16</b>；打散过的字进 <b>错字手册</b>，下一盘优先穿它<br>
+    👆 <b>手指按住木牌拖</b>（松手 <b>当场算结</b>）· 键盘 <b><code>1</code>~<code>9</code> 选牌、方向键挪 10 像素</b> · 发呆 12 秒自动报 <b>该理的牌在哪个方位、离哪儿近</b> · 战绩落盘 <code>hz_tg_*</code></div>
+</div>
+<div class="screen" id="screen-tangle-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="tgLeave()">← 回首页</button>
+    <div class="stats"><span id="tgRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="tgRsEmoji">🪢</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="tgRsTitle">绳子理平了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="tgRsSub">下一次别 <b>一块牌来回拖</b> —— 先看 <b>哪两段交叉</b>，挪 <b>共用端点的那块</b></p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="tg-rs">
+      <div><span style="color:#FFD700" id="tgRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="tgRsLevel">0</span><small>过了几盘</small></div>
+      <div><span style="color:#69F0AE" id="tgRsHit">0</span><small>理平几块牌</small></div>
+      <div><span style="color:#FFAB91" id="tgRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="tgRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="tgRsMiss">0</span><small>⏳ 打散 / 🪨 挡回</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多过几盘 · 一共理平过几个字</div>
+      <div style="font-size:24px;font-weight:bold;color:#AED581"><span id="tgRsBest">0</span> 盘 · <span id="tgRsWords">0</span> 🪢</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="tgRsAll">🪢 解绳小白</div>
+      <div class="tg-book-t" id="tgRsBookT"></div>
+      <div class="tg-book" id="tgRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="tgRetry()">🪢 再理一场</button>
+    <button class="w-btn blue" onclick="tgLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-herd">
@@ -10503,6 +10682,7 @@ function updateHomeStats(){
   if(typeof pnNudge==='function')pnNudge();
   if(typeof ldNudge==='function')ldNudge();
   if(typeof hdNudge==='function')hdNudge();
+  if(typeof tgNudge==='function')tgNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -10523,6 +10703,7 @@ function enterMode(mode){
   if(mode==='pin'){pnStart();return}
   if(mode==='lights'){ldStart();return}
   if(mode==='herd'){hdStart();return}
+  if(mode==='tangle'){tgStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -52091,6 +52272,1195 @@ function hdHelp(){
     '⚡ <b>每 2 盘升 1 段</b>（最多 9 段）：场上从 '+hd.sheep.length+' 只越来越挤、圈从 62 缩到 '+Math.max(38,62-(9-1)*3)+'、<b>第 3 段</b> 起同一笔 <b>贴在两只羊</b> 上（赶哪只都算）、字从 2~6 笔换到 3~8 笔。<br>'+
     '🏁 <b>笔笔收齐 = 过一盘</b>：<b>26 + 笔数×6 + 段数×5</b> 分 + <b>剩钟×0.7</b> + <b>一只没撞再 18</b>；撞过圈、跑散过的字进 <b>错字手册</b>，下一场优先放它。<br>'+
     '🐕 发呆 12 秒狗子会报 <b>该收的那只在场子哪块、离圈几步</b>；战绩落盘 <code>hz_herd_*</code>','#C5E1A5');
+}
+
+/* ================= v1.76 笔顺解绳结（麻绳按笔顺穿木牌 · 挪牌挪到任何两段绳都不交叠） ================= */
+const TG_W=700,TG_H=470;
+const TG_AX0=40,TG_AY0=140,TG_AX1=660,TG_AY1=440;
+const TG_R=30,TG_GLY=22,TG_STEP=10,TG_GAP=64;
+const TG_HEARTS=3,TG_HEART_MAX=5,TG_MISS_PEN=4,TG_MISS_MAX=40,TG_BOOK_MAX=300;
+const TG_POOL_MIN=4,TG_POOL_WANT=16;
+const TG_ROCK_MIN=46,TG_ROCK_R=TG_ROCK_MIN+TG_R;
+const TG_NAG_MS=12000,TG_MARK_MS=2800,TG_NEXT_MS=1250,TG_GUST_MS=5500;
+const TG_FLAT=6,TG_KNOT_PEN=4,TG_TANGLE_TRY=90,TG_SOLVE_TRY=140,TG_HINT_TRY=48;
+const TG_DIRN=['横','竖','撇','捺','折'];
+const TG_COL=['#C62828','#00695C','#1565C0','#E65100','#6A1B9A'];
+const TG_RULE=['先横后竖','先撇后捺','从上到下','从左到右','这一笔排在后面'];
+const TG_NOTE=[523,587,659,698,784,880,988,1046];
+const TG_RANKS=[
+  {n:0,e:'🪢',t:'解绳小白'},{n:3,e:'🧵',t:'认得交叉'},{n:8,e:'👆',t:'会挪牌了'},
+  {n:15,e:'✨',t:'一次没散'},{n:24,e:'⚡',t:'快手解绳'},{n:36,e:'🌀',t:'先看再挪'},
+  {n:52,e:'🌟',t:'理绳能手'},{n:74,e:'💎',t:'绳结不倒'},{n:105,e:'🌈',t:'理绳大师'}
+];
+const tg={
+  run:false,over:false,gen:0,rafId:0,timers:[],last:0,t:0,playMs:0,tones:0,think:0,
+  pool:[],miss:[],rec:null,ropes:[],beads:[],segs:[],knots:[],n:0,
+  rock:[],gustMs:0,gustTag:0,
+  drag:null,dragFrom:null,sel:-1,hint:null,ovKey:'',
+  markMs:0,lowMs:0,hudTxt:{},
+  lv:1,score:0,hearts:TG_HEARTS,combo:0,maxCombo:0,
+  levels:0,hits:0,dry:0,rocks:0,gusts:0,moves:0,marks:0,magnets:0,respins:0,
+  clock:0,clockMax:0,cleanBoard:true,
+  markN:2,magN:2,respinN:2,
+  bound:false,ptrBound:false,clearing:false
+};
+function tgInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function tgAdd(k,n){if(n)localStorage.setItem(k,String(tgInt(k)+n))}
+function tgSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function tgSay(t,c){const el=document.getElementById('tgMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function tgShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function tgOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function tgClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function tgDist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
+function tgRank(n){let r=TG_RANKS[0];for(let i=0;i<TG_RANKS.length;i++)if(n>=TG_RANKS[i].n)r=TG_RANKS[i];return r}
+function tgDn(d){return d<0||d>4?4:d}
+function tgGlyOf(r,k){const rope=tg.ropes[r];const g=rope&&rope.gl[k];return g||null}
+function tgDirOf(r,k){const g=tgGlyOf(r,k);return g?TG_DIRN[tgDn(g.dir)]:'——'}
+function tgRuleOf(r,k){const g=tgGlyOf(r,k);return g?TG_RULE[tgDn(g.dir)]:'——'}
+function tgTone(f,d,t,v){if(tg.tones<=0)return;tg.tones--;tone(f,d,t,v)}
+function tgT(fn,ms){const g=tg.gen;const id=setTimeout(function(){const k=tg.timers.indexOf(id);if(k>=0)tg.timers.splice(k,1);if(g!==tg.gen)return;fn()},ms);tg.timers.push(id);return id}
+function tgKillTimers(){tg.timers.forEach(function(t){clearTimeout(t)});tg.timers=[]}
+/* ---- 难度：钉几块牌、放几块石头、几根绳、起不起风 ---- */
+function tgPinOf(lv){return lv<=2?0:(lv<=4?1:2)}
+function tgRockOf(lv){return lv<=4?0:(lv<=6?1:(lv<=7?2:3))}
+function tgRopeOf(lv){return lv<=5?1:2}
+function tgGustOf(lv){return lv<=7?0:1}
+function tgClockOf(){return Math.max(30,24+tg.n*6-tg.lv*2)}
+function tgNameOf(p){
+  const tx=(p.x-TG_AX0)/(TG_AX1-TG_AX0),ty=(p.y-TG_AY0)/(TG_AY1-TG_AY0);
+  const vx=tx<.34?'左':(tx>.66?'右':'中'),hy=ty<.34?'上':(ty>.67?'下':'中');
+  if(vx==='中'&&hy==='中')return '板子中间';
+  if(vx==='中')return hy+'边';
+  if(hy==='中')return vx+'边';
+  return vx+hy+'角';
+}
+/* ---- 字库：每一笔都画得出形状（和牧羊犬同一道筛子） ---- */
+function tgBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function tgSig(d){return String(d||'').replace(/\s+/g,'')}
+function tgDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function tgMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>8)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const sigs=[];
+  for(let i=0;i<ms.length;i++){
+    if(!tgBox(ms[i]))return null;
+    sigs.push(tgSig(tgDOf(sp,i)));
+  }
+  let same=true;
+  for(let i=1;i<sigs.length;i++)if(sigs[i]!==sigs[0]){same=false;break}
+  if(same)return null;
+  return {ch:ch,n:ms.length};
+}
+function tgCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<90;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(tgShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(tgShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(tgShuf(CHARS.slice()));
+  return out;
+}
+function tgTO(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(function(){r(0)},ms)})])}
+async function tgRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  /* 首屏 preloadGrade 会和穿绳抢 CDN 连接，6 秒是给排队留的余量 */
+  if(!raw||!raw.medians)raw=tgTO(loadCharData(ch),6000);
+  if(!raw||!raw.medians)return null;
+  if(!tgMake(ch,raw))return null;
+  return {ch:ch,raw:raw};
+}
+async function tgBuild(keep){
+  const g=tg.gen;
+  const stale=function(){return g!==tg.gen||!tg.run};
+  tg.miss=(localStorage.getItem('hz_tg_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  tgShuf(tg.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  tgCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)tg.pool=[];
+  for(let k=0;k<want.length&&tg.pool.length<TG_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return tgRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])tg.pool.push(rs[i]);
+  }
+  return tg.pool.length>=TG_POOL_MIN;
+}
+function tgPick(cnt){
+  const w=tg.lv>=4?[3,8]:[2,6],used={},out=[];
+  const take=function(){
+    let cand=tg.pool.filter(function(r){
+      if(!r||used[r.ch])return false;
+      const n=r.raw.medians.length;
+      return n>=w[0]&&n<=w[1];
+    });
+    if(!cand.length)cand=tg.pool.filter(function(r){return r&&!used[r.ch]});
+    if(!cand.length)return null;
+    for(let i=0;i<tg.miss.length;i++){
+      for(let k=0;k<cand.length;k++)if(cand[k].ch===tg.miss[i]){used[cand[k].ch]=1;return cand[k]}
+    }
+    for(let i=0;i<40;i++){const c=tgOne(cand);if(c){used[c.ch]=1;return c}}
+    const c=cand[0];used[c.ch]=1;return c;
+  };
+  for(let i=0;i<cnt;i++){const r=take();if(!r)break;out.push(r)}
+  return out;
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function tgMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_tg_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_tg_miss',a.slice(0,TG_MISS_MAX).join(','));
+}
+function tgMissDel(ch){
+  const a=(localStorage.getItem('hz_tg_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_tg_miss',a.join(','));
+}
+function tgBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_tg_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_tg_book',a.slice(0,TG_BOOK_MAX).join(','));
+}
+/* ---- 笔形：牌上刻的那一笔，最长边缩到 22 ---- */
+function tgGly(d,box,dir){
+  const b=box||{x:0,y:0,w:1024,h:1024};
+  return {d:d||'M0 0',box:b,dir:dir,scl:TG_GLY/Math.max(120,Math.max(b.w,b.h))};
+}
+function tgStrokes(rec){
+  const ms=rec.raw.medians,sp=rec.raw.strokes||[],out=[];
+  for(let i=0;i<ms.length;i++)out.push(tgGly(tgDOf(sp,i),tgBox(ms[i]),fmDirOf(ms[i])));
+  return out;
+}
+function tgGlyHTML(g){
+  const b=g.box,s=g.scl;
+  const tx=-1-s*(b.x+b.w/2),ty=-1+s*(b.y+b.h/2);
+  return '<g class="tg-gly" transform="translate('+tx.toFixed(1)+','+ty.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path d="'+g.d+'" fill="'+TG_COL[tgDn(g.dir)]+'"/></g>';
+}
+/* ---- 几何：两段绳交不交叠 ---- */
+function tgEnd2(seg,which){
+  const bi=which?seg.bi:seg.ai;
+  return bi>=0?tg.beads[bi]:(which?seg.pB:seg.pA);
+}
+function tgSegX(a,b){
+  const p=tgEnd2(a,0),q=tgEnd2(a,1),r=tgEnd2(b,0),s=tgEnd2(b,1);
+  const rx=q.x-p.x,ry=q.y-p.y,sx=s.x-r.x,sy=s.y-r.y;
+  const den=rx*sy-ry*sx;
+  if(Math.abs(den)<1e-9)return null;
+  const t=((r.x-p.x)*sy-(r.y-p.y)*sx)/den;
+  const u=((r.x-p.x)*ry-(r.y-p.y)*rx)/den;
+  if(!(t>0.02&&t<0.98&&u>0.02&&u<0.98))return null;
+  return {x:p.x+rx*t,y:p.y+ry*t};
+}
+function tgShare(a,b){
+  const x=[a.ai,a.bi],y=[b.ai,b.bi];
+  for(let i=0;i<2;i++)for(let j=0;j<2;j++)if(x[i]>=0&&x[i]===y[j])return true;
+  return false;
+}
+function tgScan(){
+  const out=[];
+  for(let i=0;i<tg.segs.length;i++){
+    for(let j=i+1;j<tg.segs.length;j++){
+      if(tgShare(tg.segs[i],tg.segs[j]))continue;
+      const p=tgSegX(tg.segs[i],tg.segs[j]);
+      if(p)out.push({x:p.x,y:p.y,i:i,j:j});
+    }
+  }
+  return out;
+}
+function tgCalc(){tg.knots=tgScan();return tg.knots.length}
+function tgRockHit(p){
+  for(let i=0;i<tg.rock.length;i++)if(tgDist(p,tg.rock[i])<TG_ROCK_R)return true;
+  return false;
+}
+/* ---- 穿绳：先生成一套「绝不交叠」的解，再把牌打乱（保证永远有解） ---- */
+function tgBandOf(r,cnt){
+  if(cnt<2)return {y:286,half:106};
+  return r===0?{y:222,half:60}:{y:376,half:54};
+}
+function tgChainOf(r,rec,cnt){
+  const bd=tgBandOf(r,cnt),gl=tgStrokes(rec);
+  const rope={r:r,word:rec,gl:gl,n:gl.length,postL:{x:TG_AX0+18,y:bd.y,i:-1},postR:{x:TG_AX1-18,y:bd.y,i:-1},idx:[]};
+  tg.ropes.push(rope);
+  const x0=TG_AX0+78,x1=TG_AX1-78,sp=(x1-x0)/(gl.length+1);
+  for(let i=0;i<gl.length;i++){
+    const jitter=(Math.random()*2-1)*sp*0.2;
+    const y=tgClamp(bd.y+(Math.random()*2-1)*bd.half*0.72,TG_AY0+TG_R+4,TG_AY1-TG_R-4);
+    const b={i:tg.beads.length,r:r,k:i,x:x0+sp*(i+1)+jitter,y:y,sx:x0+sp*(i+1)+jitter,sy:y,gly:gl[i],pin:0,tidy:false,bad:false,adj:[]};
+    rope.idx.push(b.i);
+    tg.beads.push(b);
+  }
+}
+function tgChains(recs){
+  tg.ropes=[];tg.beads=[];tg.segs=[];tg.knots=[];
+  for(let r=0;r<recs.length;r++)tgChainOf(r,recs[r],recs.length);
+  tg.n=tg.beads.length;
+  for(let r=0;r<tg.ropes.length;r++){
+    const rope=tg.ropes[r];
+    const pts=[rope.postL].concat(rope.idx.map(function(i){return tg.beads[i]}),[rope.postR]);
+    for(let k=0;k<pts.length-1;k++){
+      const a=pts[k],b=pts[k+1];
+      const si=tg.segs.length;
+      tg.segs.push({ai:a.i,bi:b.i,pA:a,pB:b,bad:false});
+      if(a.i>=0)tg.beads[a.i].adj.push(si);
+      if(b.i>=0)tg.beads[b.i].adj.push(si);
+    }
+  }
+}
+function tgPinPick(){
+  const pn=tgPinOf(tg.lv);
+  for(let k=0;k<pn;k++){
+    const cand=tgShuf(tg.beads.filter(function(b){return !b.pin&&b.k>0&&b.k<tg.ropes[b.r].n-1}));
+    if(!cand.length)break;
+    const b=cand[0];
+    b.pin=1;b.x=b.sx;b.y=b.sy;
+    tgAdd('hz_tg_pins',1);
+  }
+}
+function tgSeparate(){
+  for(let it=0;it<10;it++){
+    let moved=false;
+    for(let i=0;i<tg.beads.length;i++){
+      for(let j=i+1;j<tg.beads.length;j++){
+        const a=tg.beads[i],b=tg.beads[j];
+        const d=tgDist(a,b);
+        if(d>=TG_GAP||d<0.01)continue;
+        moved=true;
+        const dx=(b.x-a.x)/d,dy=(b.y-a.y)/d,push=(TG_GAP-d)/2+1;
+        if(!b.pin){b.x=tgClamp(b.x+dx*push,TG_AX0+TG_R,TG_AX1-TG_R);b.y=tgClamp(b.y+dy*push,TG_AY0+TG_R,TG_AY1-TG_R)}
+        if(!a.pin){a.x=tgClamp(a.x-dx*push,TG_AX0+TG_R,TG_AX1-TG_R);a.y=tgClamp(a.y-dy*push,TG_AY0+TG_R,TG_AY1-TG_R)}
+      }
+    }
+    if(!moved)break;
+  }
+}
+function tgForceKnot(){
+  const free=tg.beads.filter(function(b){return !b.pin});
+  function room(b){
+    for(let i=0;i<tg.beads.length;i++){const o=tg.beads[i];
+      if(o!==b&&tgDist(b,o)<TG_GAP)return false}
+    return true;
+  }
+  for(let i=0;i<free.length;i++){
+    for(let j=i+1;j<free.length;j++){
+      const u=free[i],v=free[j],px=u.x,py=u.y,qx=v.x,qy=v.y;
+      u.x=qx;u.y=qy;v.x=px;v.y=py;
+      if(tgCalc()>0)return true;
+      u.x=px;u.y=py;v.x=qx;v.y=qy;
+    }
+  }
+  for(let i=0;i<free.length;i++){
+    const b=free[i],px=b.x,py=b.y;
+    for(let t=0;t<120;t++){
+      b.x=TG_AX0+TG_R+Math.random()*(TG_AX1-TG_AX0-2*TG_R);
+      b.y=TG_AY0+TG_R+Math.random()*(TG_AY1-TG_AY0-2*TG_R);
+      if(tgLegal(b)!==''||!room(b))continue;
+      if(tgCalc()>0)return true;
+    }
+    b.x=px;b.y=py;
+  }
+  tgCalc();
+  return false;
+}
+function tgTangle(){
+  for(let r=0;r<tg.ropes.length;r++){
+    const rope=tg.ropes[r];
+    const free=rope.idx.map(function(i){return tg.beads[i]}).filter(function(b){return !b.pin});
+    if(free.length<2)continue;
+    const spots=free.map(function(b){return {x:b.sx,y:b.sy}});
+    let got=0;
+    for(let t=0;t<TG_TANGLE_TRY;t++){
+      tgShuf(spots);
+      for(let i=0;i<free.length;i++){
+        const b=free[i],p=spots[i];
+        b.x=tgClamp(p.x+(Math.random()*2-1)*26,TG_AX0+TG_R,TG_AX1-TG_R);
+        b.y=tgClamp(p.y+(Math.random()*2-1)*24,TG_AY0+TG_R,TG_AY1-TG_R);
+      }
+      tgSeparate();
+      tgBeadsOffRock();
+      got=tgCalc();
+      if(got>0)break;
+    }
+  }
+  /* 随机抖不出交叉（牌少或排得太顺）时硬压一个结出来：不然钟不走，这一盘卡死 */
+  if(!tg.knots.length)tgForceKnot();
+}
+function tgRoom(b,min){
+  const m=min===undefined?TG_GAP:min;
+  for(let i=0;i<tg.beads.length;i++){const o=tg.beads[i];if(o!==b&&tgDist(b,o)<m)return false}
+  return true;
+}
+function tgRockPlace(){
+  tg.rock=[];
+  const rn=tgRockOf(tg.lv);
+  /* 石头只照着「解」来放：一块石头的禁放圈绝不压住任何一块牌的原位（压住了这一盘就解不开），
+     两块石头的圈也尽量少叠。开局的牌是原位打乱 + 抖一点，抖到石头上由 tgBeadsOffRock 挪开，
+     所以这儿不用卡牌现在的位置。贪心会自己堵死后面的路：整套试几轮取放得最多的那次；
+     牌多的盘挤不出三块，就把石石间距一档一档让开——先松后紧，宁可圈搭边也别少放一块。 */
+  const sol=TG_ROCK_R+12;
+  /* 石头中心只许落在「牌本来摆得下」的那片范围里：摆到够不着的边角，玩家一拖就先撞上越界，台词会串台 */
+  const rx0=TG_AX0+TG_R+6,rx1=TG_AX1-TG_R-12,ry0=TG_AY0+TG_R+2,ry1=TG_AY1-TG_R-8;
+  let placed=[];
+  for(let si=0;si<3&&placed.length<rn;si++){
+    const sep=TG_ROCK_R+[56,42,28][si];
+    for(let att=0;att<5&&placed.length<rn;att++){
+      const cand=[],jx=Math.random()*14,jy=Math.random()*14;
+      for(let k=0;k<rn;k++){
+        let best=null,bd=-1e9;
+        for(let x=rx0+jx;x<=rx1;x+=12){
+          for(let y=ry0+jy;y<=ry1;y+=12){
+            const p={x:x,y:y};
+            let d=1e9;
+            for(let i=0;i<cand.length;i++)d=Math.min(d,tgDist(p,cand[i])-sep);
+            for(let i=0;i<tg.beads.length;i++){
+              const b=tg.beads[i];
+              d=Math.min(d,tgDist(p,{x:b.sx,y:b.sy})-sol);
+            }
+            if(d>bd){bd=d;best={x:Math.round(x),y:Math.round(y)}}
+          }
+        }
+        if(!best||bd<0)break;
+        cand.push(best);
+      }
+      if(cand.length>placed.length)placed=cand;
+    }
+  }
+  for(let i=0;i<placed.length;i++){tg.rock.push(placed[i]);tgAdd('hz_tg_rocks',1)}
+}
+function tgRockEdge(p){
+  for(let i=0;i<tg.rock.length;i++)if(tgDist(p,tg.rock[i])<TG_ROCK_R+8)return false;
+  return true;
+}
+function tgBeadsOffRock(){
+  for(let i=0;i<tg.beads.length;i++){
+    const b=tg.beads[i];
+    if(b.pin||(tgLegal(b)===''&&tgRockEdge(b)))continue;
+    const px=b.x,py=b.y,lim=[TG_GAP,42];
+    /* 抖到石头上就往外挪：落点要「不压石头、圈不搭在牌上、又不挤邻牌」，越让越松，实在没辙就留在原地 */
+    let done=false;
+    for(let p=0;p<lim.length&&!done;p++){
+      for(let t=0;t<90&&!done;t++){
+        const a=Math.random()*Math.PI*2,r=10+Math.random()*80;
+        b.x=px+Math.cos(a)*r;b.y=py+Math.sin(a)*r;
+        if(tgLegal(b)===''&&tgRockEdge(b)&&tgRoom(b,lim[p]))done=true;
+      }
+      if(!done){b.x=px;b.y=py}
+    }
+  }
+}
+function tgTidyAll(){
+  for(let i=0;i<tg.segs.length;i++)tg.segs[i].bad=false;
+  for(let i=0;i<tg.beads.length;i++){tg.beads[i].bad=false;tg.beads[i].tidy=false}
+  for(let k=0;k<tg.knots.length;k++){
+    const a=tg.segs[tg.knots[k].i],b=tg.segs[tg.knots[k].j];
+    a.bad=true;b.bad=true;
+    if(a.ai>=0)tg.beads[a.ai].bad=true;
+    if(a.bi>=0)tg.beads[a.bi].bad=true;
+    if(b.ai>=0)tg.beads[b.ai].bad=true;
+    if(b.bi>=0)tg.beads[b.bi].bad=true;
+  }
+  for(let i=0;i<tg.beads.length;i++){
+    const b=tg.beads[i];
+    let bad=false;
+    for(let k=0;k<b.adj.length;k++)if(tg.segs[b.adj[k]].bad)bad=true;
+    b.tidy=!bad;
+  }
+}
+function tgRefresh(){tg.knots=tgScan();tgTidyAll()}
+function tgFocus(){
+  for(let i=0;i<tg.beads.length;i++)if(!tg.beads[i].tidy&&!tg.beads[i].pin)return tg.beads[i];
+  for(let i=0;i<tg.beads.length;i++)if(tg.beads[i].bad&&!tg.beads[i].pin)return tg.beads[i];
+  return null;
+}
+function tgKnotsOf(b){
+  let k=0;
+  for(let i=0;i<b.adj.length;i++)if(tg.segs[b.adj[i]].bad)k++;
+  return k;
+}
+function tgWorst(){
+  let b=null,c=0;
+  for(let i=0;i<tg.beads.length;i++){
+    const x=tg.beads[i];
+    if(x.pin)continue;
+    const k=tgKnotsOf(x);
+    if(k>c){c=k;b=x}
+  }
+  return b||tgFocus();
+}
+function tgSpotNear(b){
+  for(let t=0;t<26;t++){
+    const p={x:TG_AX0+TG_R+8+Math.random()*(TG_AX1-TG_AX0-2*TG_R-16),y:TG_AY0+TG_R-2+Math.random()*(TG_AY1-TG_AY0-2*TG_R+4)};
+    if(tgRockHit(p))continue;
+    let ok=true;
+    for(let i=0;i<tg.beads.length;i++){
+      const o=tg.beads[i];
+      if(o===b)continue;
+      if(tgDist(p,o)<TG_GAP){ok=false;break}
+    }
+    if(ok)return p;
+  }
+  return {x:b.sx,y:b.sy};
+}
+function tgBestSpot(b,tries){
+  const prev={x:b.x,y:b.y};
+  let best=null,bk=1e9,bd=1e9;
+  for(let t=0;t<tries;t++){
+    const p=tgSpotNear(b);
+    b.x=p.x;b.y=p.y;
+    const k=tgCalc();
+    const d=Math.abs(p.x-b.sx)+Math.abs(p.y-b.sy);
+    if(k<bk||(k===bk&&d<bd)){bk=k;bd=d;best={x:p.x,y:p.y,knots:k}}
+    if(k===0)break;
+  }
+  b.x=prev.x;b.y=prev.y;tgCalc();
+  return best;
+}
+function tgHang(recs){
+  tgChains(recs);
+  if(tg.n<2||tg.n>16)return false;
+  tgPinPick();
+  tgRockPlace();
+  tgTangle();
+  tgRefresh();
+  tg.clockMax=tgClockOf();tg.clock=tg.clockMax;
+  tg.hint=null;tg.markMs=0;tg.gustMs=tgGustOf(tg.lv)?TG_GUST_MS:0;
+  tg.sel=tg.beads.length?tg.beads[0].i:-1;
+  tg.cleanBoard=true;tg.ovKey='';
+  return true;
+}
+/* ---- 特效 ---- */
+function tgFxHost(){return document.getElementById('tgFx')}
+function tgPut(host,el,ms){
+  host.appendChild(el);
+  tgT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function tgBits(x,y,col,n){
+  const host=tgFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='tg-bit';
+    b.style.left=(x/TG_W*100)+'%';b.style.top=(y/TG_H*100)+'%';
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=20+Math.random()*44;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r).toFixed(1)+'px');
+    tgPut(host,b,760);
+  }
+}
+function tgPop(x,y,txt,col){
+  const host=tgFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='tg-pop';
+  el.style.left=(x/TG_W*100)+'%';el.style.top=(y/TG_H*100)+'%';
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  tgPut(host,el,980);
+}
+function tgShakeFx(){
+  const el=document.querySelector('.tg-tbl');if(!el)return;
+  el.classList.remove('tg-shake');void el.offsetWidth;el.classList.add('tg-shake');
+}
+function tgRing(x,y,r,col){
+  const g=document.getElementById('tgTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+  c.setAttribute('r',String(Math.round(r)));c.setAttribute('fill','none');
+  c.setAttribute('stroke',col||'rgba(255,235,59,.9)');c.setAttribute('stroke-width','3');
+  c.setAttribute('class','tg-ring');
+  g.appendChild(c);
+  tgT(function(){if(c.parentNode)c.parentNode.removeChild(c)},860);
+}
+/* ---- 渲染 ---- */
+function tgRenderStatic(){
+  const g=document.getElementById('tgStatic');if(!g)return;
+  let h='<rect class="tg-plank" x="14" y="26" width="672" height="84" rx="16" opacity=".5"/>'+
+    '<path class="tg-grain" d="M22 44 Q180 38 340 46 Q520 54 678 42"/>'+
+    '<path class="tg-grain" d="M22 68 Q200 76 360 66 Q540 58 678 70"/>'+
+    '<path class="tg-grain" d="M22 92 Q170 86 330 94 Q510 100 678 88"/>';
+  const fl=[[64,106,'🌿'],[224,100,'🪵'],[400,106,'🌿'],[556,98,'🪵'],[646,108,'🌿']];
+  for(let i=0;i<fl.length;i++)h+='<text x="'+fl[i][0]+'" y="'+fl[i][1]+'" text-anchor="middle" font-size="15" opacity=".5">'+fl[i][2]+'</text>';
+  for(let r=0;r<tg.ropes.length;r++){
+    const rope=tg.ropes[r];
+    const ps=[rope.postL,rope.postR];
+    for(let k=0;k<2;k++){
+      const p=ps[k];
+      h+='<rect class="tg-post" x="'+(p.x-5).toFixed(1)+'" y="'+(p.y-16).toFixed(1)+'" width="10" height="34" rx="4"/>'+
+        '<circle cx="'+p.x.toFixed(1)+'" cy="'+(p.y-16).toFixed(1)+'" r="5.4" fill="#6D4C41"/>'+
+        '<text x="'+p.x.toFixed(1)+'" y="'+(p.y+31).toFixed(1)+'" text-anchor="middle" font-size="10.5" fill="#5D4037" font-weight="bold">系死结</text>';
+    }
+  }
+  for(let i=0;i<tg.rock.length;i++){
+    const p=tg.rock[i];
+    h+='<text class="tg-rock" x="'+p.x.toFixed(1)+'" y="'+(p.y+9).toFixed(1)+'" text-anchor="middle">🪨</text>'+
+      '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="'+TG_ROCK_R+'" fill="none" stroke="rgba(121,85,72,.3)" stroke-width="2" stroke-dasharray="6 6"/>';
+  }
+  h+='<rect x="'+TG_AX0+'" y="'+TG_AY0+'" width="'+(TG_AX1-TG_AX0)+'" height="'+(TG_AY1-TG_AY0)+'" rx="20" class="tg-frame" opacity=".3"/>';
+  g.innerHTML=h;
+}
+function tgRopeHTML(){
+  const f=tgFocus();
+  let h='';
+  for(let i=0;i<tg.segs.length;i++){
+    const s=tg.segs[i],a=tgEnd2(s,0),b=tgEnd2(s,1);
+    let cls='clean';
+    if(s.bad)cls='bad';
+    else if(f&&(s.ai===f.i||s.bi===f.i))cls='now';
+    h+='<line class="tg-rope '+cls+'" x1="'+a.x.toFixed(1)+'" y1="'+a.y.toFixed(1)+'" x2="'+b.x.toFixed(1)+'" y2="'+b.y.toFixed(1)+'"/>';
+  }
+  return h;
+}
+function tgKnotHTML(){
+  let h='';
+  for(let k=0;k<tg.knots.length;k++){
+    const p=tg.knots[k];
+    h+='<text class="tg-knot" x="'+p.x.toFixed(1)+'" y="'+(p.y+7).toFixed(1)+'" text-anchor="middle">✕</text>';
+  }
+  return h;
+}
+function tgBeadHTML(b){
+  const f=tgFocus();
+  let cls='tg-bead';
+  if(b.pin)cls+=' pin';
+  cls+=f&&f.i===b.i?' now':(b.tidy?' clean':' bad');
+  let h='<g class="'+cls+'" id="tgB'+b.i+'" transform="translate('+b.x.toFixed(1)+','+b.y.toFixed(1)+')">';
+  h+='<ellipse cx="0" cy="34" rx="16" ry="3.4" fill="rgba(90,58,16,.22)"/>';
+  h+='<circle class="tg-bd" cx="0" cy="0" r="'+TG_R+'"/>';
+  h+='<circle class="tg-hole" cx="0" cy="'+(-TG_R+6)+'" r="2.6"/><circle class="tg-hole" cx="0" cy="'+(TG_R-6)+'" r="2.6"/>';
+  h+=tgGlyHTML(b.gly);
+  h+='<circle cx="-20" cy="-20" r="9.4" fill="#FFF8E1" stroke="#8D6E63" stroke-width="1.6"/>';
+  h+='<text class="tg-num" x="-20" y="-16.4">'+(b.k+1)+'</text>';
+  if(b.pin)h+='<text class="tg-pin" x="19" y="-13" text-anchor="middle">📌</text>';
+  return h+'</g>';
+}
+function tgRenderRopes(){
+  const g=document.getElementById('tgRopeG');
+  if(g)g.innerHTML=tgRopeHTML();
+  const k=document.getElementById('tgKnotG');
+  if(k)k.innerHTML=tgKnotHTML();
+}
+function tgRenderBeads(){
+  const g=document.getElementById('tgBeadG');
+  if(g)g.innerHTML=tg.beads.map(tgBeadHTML).join('');
+  tg.ovKey='';
+}
+function tgBeadView(){
+  for(let i=0;i<tg.beads.length;i++){
+    const b=tg.beads[i],el=document.getElementById('tgB'+b.i);
+    if(!el)continue;
+    el.setAttribute('transform','translate('+b.x.toFixed(1)+','+b.y.toFixed(1)+')');
+  }
+  tgRenderRopes();
+  tgTopLayer();
+}
+function tgTopLayer(){
+  const g=document.getElementById('tgTopG');if(!g)return;
+  const key=(tg.markMs>0?'m':'')+(tg.hint?'h':'');
+  if(key===tg.ovKey&&!tg.markMs)return;
+  tg.ovKey=key;
+  let h='';
+  if(tg.markMs>0){
+    const w=tgWorst();
+    if(w)h+='<circle class="tg-mark" cx="'+w.x.toFixed(1)+'" cy="'+w.y.toFixed(1)+'" r="'+(TG_R+8)+'"/>'+
+      '<text x="'+w.x.toFixed(1)+'" y="'+(w.y-TG_R-16).toFixed(1)+'" text-anchor="middle" font-size="12" fill="#0277BD" font-weight="bold">惹祸的是这块</text>';
+    if(tg.hint)h+='<circle class="tg-ghost" cx="'+tg.hint.x.toFixed(1)+'" cy="'+tg.hint.y.toFixed(1)+'" r="'+(TG_R-2)+'"/>'+
+      '<text x="'+tg.hint.x.toFixed(1)+'" y="'+(tg.hint.y+TG_R+18).toFixed(1)+'" text-anchor="middle" font-size="11.5" fill="#01579B" font-weight="bold">摆这儿试试</text>';
+  }
+  g.innerHTML=h;
+}
+function tgLitN(){
+  let c=0;
+  for(let i=0;i<tg.beads.length;i++)if(tg.beads[i].tidy)c++;
+  return c;
+}
+function tgMini(){
+  const svg=document.getElementById('tgMiniSvg');
+  if(!svg)return;
+  const rope=tg.ropes[0];
+  if(!rope||!rope.n){svg.innerHTML='';return}
+  const sp=rope.word.raw.strokes||[],f=tgFocus();
+  let h='<g transform="scale(1,-1)"><path d="M512 40V984M40 512H984" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="14 12"/>';
+  for(let i=0;i<rope.n;i++){
+    const b=tg.beads[rope.idx[i]];
+    const got=b&&b.tidy;
+    h+='<path d="'+tgDOf(sp,i)+'" fill="'+(got?TG_COL[tgDn(rope.gl[i].dir)]:(f&&b&&f.i===b.i?'rgba(255,245,157,.95)':'rgba(255,255,255,.22)'))+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  tgSet('tgMiniCap','理平 '+tgLitN()+' / '+tg.n+' 块');
+}
+function tgSlotsHTML(){
+  const f=tgFocus();
+  let h='';
+  for(let r=0;r<tg.ropes.length;r++){
+    const rope=tg.ropes[r];
+    if(tg.ropes.length>1)h+='<span class="tg-more">「'+rope.word.ch+'」</span>';
+    for(let i=0;i<rope.n;i++){
+      const b=tg.beads[rope.idx[i]];
+      h+='<div class="tg-nd'+(b.tidy?' in':(f&&f.i===b.i?' now':''))+'">'+(b.tidy?'🪢':(i+1))+(b.pin?'📌':'')+'</div>';
+    }
+  }
+  return h+'<span class="tg-more"></span>';
+}
+function tgRenderSlots(){
+  const box=document.getElementById('tgSlots');
+  if(!box)return;
+  box.innerHTML=tgSlotsHTML();
+  tg.hudTxt.slots='';
+  tgSlotsLight();
+}
+function tgSlotsLight(){
+  const m=document.querySelectorAll('.tg-slots .tg-more');
+  const last=m[m.length-1];
+  if(!last)return;
+  const t='🪢 还叠 '+tg.knots.length+' 处 · 理平 '+tgLitN()+' / '+tg.n+' 块牌';
+  if(tg.hudTxt.slots!==t){tg.hudTxt.slots=t;last.textContent=t}
+}
+function tgMeterView(){
+  const bar=document.getElementById('tgTimeBar'),tt=document.getElementById('tgTimeTxt'),ck=document.getElementById('tgClock'),bx=document.getElementById('tgTtlBox');
+  const w=((tg.clockMax?tgClamp(tg.clock/tg.clockMax,0,1):0)*100).toFixed(1)+'%';
+  const f=tgFocus();
+  let txt='';
+  if(!tg.knots.length)txt='🏁 这一盘的绳全理平了';
+  else txt='🪢 还叠 '+tg.knots.length+' 处 · 该理 '+(f?'「'+tgDirOf(f.r,f.k)+'」这块牌':'没有能挪的牌');
+  if(bx)bx.classList.toggle('low',tg.clock<=12);
+  if(bar&&tg.hudTxt.tbar!==w){tg.hudTxt.tbar=w;bar.style.width=w}
+  if(tt&&tg.hudTxt.ttxt!==txt){tg.hudTxt.ttxt=txt;tt.textContent=txt}
+  let c='⏳ ';
+  if(tgGustOf(tg.lv)&&tg.gustMs>0)c+='🌬 '+Math.ceil(tg.gustMs/1000)+' 秒后起风';
+  else if(!tg.knots.length)c+='这一盘理平了';
+  else c+='剩 '+Math.max(0,Math.ceil(tg.clock))+' 秒';
+  if(ck&&tg.hudTxt.ck!==c){tg.hudTxt.ck=c;ck.textContent=c}
+  const sl=document.getElementById('tgGustTag');
+  if(sl){
+    sl.textContent=tg.gustTag>0?'🌬 风刚吹跑一块牌':'💡 已圈出惹祸的牌';
+    sl.classList.toggle('on',tg.gustTag>0||tg.markMs>0);
+  }
+}
+function tgHudLight(){
+  const sc=document.getElementById('tgScoreTxt'),t='🎯 '+Math.round(tg.score)+' 分';
+  if(sc&&tg.hudTxt.sc!==t){tg.hudTxt.sc=t;sc.textContent=t}
+  const kn=document.getElementById('tgKnotTxt'),s='🪢 还 '+tg.knots.length+' 结';
+  if(kn&&tg.hudTxt.kn!==s){tg.hudTxt.kn=s;kn.textContent=s}
+  const mv=document.getElementById('tgMoveTxt'),m='👆 '+tg.moves;
+  if(mv&&tg.hudTxt.mv!==m){tg.hudTxt.mv=m;mv.textContent=m}
+  const rk=document.getElementById('tgRockTxt'),r='🪨 '+tg.rocks;
+  if(rk&&tg.hudTxt.rk!==r){tg.hudTxt.rk=r;rk.textContent=r}
+  const dy=document.getElementById('tgDryTxt'),d='⏳ '+tg.dry;
+  if(dy&&tg.hudTxt.dy!==d){tg.hudTxt.dy=d;dy.textContent=d}
+  const bd=document.getElementById('tgBadge');
+  if(bd){
+    const q=[];
+    if(tg.ropes.length>1)q.push('🪢 '+tg.ropes.length+' 根绳');
+    let pn=0;
+    for(let i=0;i<tg.beads.length;i++)if(tg.beads[i].pin)pn++;
+    if(pn)q.push('📌 钉珠 ×'+pn);
+    if(tg.rock.length)q.push('🪨 石头 ×'+tg.rock.length);
+    if(tgGustOf(tg.lv))q.push('🌬 有风');
+    if(!tg.knots.length&&tg.cleanBoard)q.push('✨ 一次没散');
+    const bg=q.join(' · ');
+    if(tg.hudTxt.badge!==bg){tg.hudTxt.badge=bg;bd.textContent=bg}
+    bd.classList.toggle('on',!!bg);
+  }
+  tgMeterView();tgSlotsLight();
+}
+function tgHud(){
+  const R=tgRank(tgInt('hz_tg_words'));
+  tgSet('tgRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<TG_HEART_MAX;i++)hs+=(i<tg.hearts?'❤️':'🖤');
+  tgSet('tgHeartTxt',hs||'🖤');
+  tgSet('tgComboTxt','🔥 连 '+tg.combo);
+  tgSet('tgLevelTxt','🚀 '+tg.levels+' 盘');
+  tgSet('tgKnotTxt','🪢 还 '+tg.knots.length+' 结');
+  tgSet('tgMoveTxt','👆 '+tg.moves);
+  tgSet('tgRockTxt','🪨 '+tg.rocks);
+  tgSet('tgDryTxt','⏳ '+tg.dry);
+  tgSet('tgLvTxt','第 '+tg.lv+' 段 · '+tg.n+' 块牌');
+  const mb=document.getElementById('tgMarkBtn');
+  if(mb){mb.disabled=tg.markN<=0;mb.textContent='💡 指结 ×'+tg.markN}
+  const gb=document.getElementById('tgMagBtn');
+  if(gb){gb.disabled=tg.magN<=0;gb.textContent='🧲 提绳 ×'+tg.magN}
+  tgRenderSlots();tgLine();tgHudLight();
+}
+function tgLine(){
+  const el=document.getElementById('tgHintLine');if(!el)return;
+  if(!tg.knots.length){el.innerHTML='👇 <b>这一盘理平了</b> · 下一根绳正在穿牌';return}
+  const f=tgFocus();
+  if(!f){el.innerHTML='📌 <b>交叠全卡在钉住的牌上</b>：挪 <b>挨着它的牌</b> 让路';return}
+  el.innerHTML='👇 <b>把第 '+(f.k+1)+' 笔「'+tgDirOf(f.r,f.k)+'」那块牌挪开</b>（按住拖 · 或 <code>'+(f.i+1)+'</code> 选中再按 <b>方向键</b>）—— 挪到 <b>两侧绳都不交叉</b>';
+}
+function tgAskText(){
+  if(!tg.ropes.length)return;
+  const ws=[],f=tgFocus();
+  for(let r=0;r<tg.ropes.length;r++)ws.push('<b>'+tg.ropes[r].word.ch+'</b>('+tg.ropes[r].n+' 笔)');
+  tgSet('tgAsk','🪢 绳上穿着 '+ws.join(' + ')+'<br><small>'+
+    (tg.knots.length?('现在 <b>叠着 '+tg.knots.length+' 个结</b>：该理 '+(f?'第 '+(f.k+1)+' 笔「'+tgDirOf(f.r,f.k)+'」那块牌，它在 <b>'+tgNameOf(f)+'</b>':'没有能挪的牌')):'<b>绳全理平了</b>')+
+    ' · 牌 '+tgLitN()+'/'+tg.n+' · 剩 <b>'+Math.max(0,Math.ceil(tg.clock))+' 秒</b></small>');
+}
+/* ---- 挪牌 ---- */
+function tgLegal(p){
+  if(p.x<TG_AX0+TG_R-6||p.x>TG_AX1-TG_R+6||p.y<TG_AY0+TG_R-8||p.y>TG_AY1-TG_R+8)return 'out';
+  if(tgRockHit(p))return 'rock';
+  return '';
+}
+function tgBlocked(b,why){
+  tg.rocks++;tgAdd('hz_tg_rockhit',1);
+  tgBits(b.x,b.y,'rgba(141,110,99,.9)',6);
+  tone(220,.1,'square',.04);
+  tgSay('🪨 <b>挪不动</b>：'+(why==='rock'?'那块 <b>石头</b> 挡住了 —— 牌 <b>不能压在石头上</b>（看虚线圈）':'那是 <b>板子外头</b>，绳够不着')+'。牌 <b>弹回原位</b>，这场已经顶回 <b>'+tg.rocks+' 次</b>','#FFCC80');
+  if(tg.rocks%TG_MISS_PEN===0)tgLoseHeart('顶石头');
+  tgHud();
+}
+function tgMoveTo(b,x,y){
+  if(b.pin){
+    tgSay('📌 <b>这块牌被钉子钉住了</b>：它 <b>正好停在解上</b> —— 把它当 <b>参照物</b>，想 <b>挨着它的牌</b> 该挪去哪','#FFCC80');
+    return false;
+  }
+  const p={x:x,y:y},why=tgLegal(p);
+  if(why){tgBlocked(b,why);return false}
+  b.x=x;b.y=y;
+  return true;
+}
+function tgDrop(b){
+  if(tg.clearing)return;
+  const f=tgFocus(),fWas=f?f.i:-1;
+  const prev=[];
+  for(let i=0;i<tg.beads.length;i++)prev.push(tg.beads[i].tidy);
+  const before=tg.knots.length;
+  tgRefresh();
+  tg.moves++;tgAdd('hz_tg_moves',1);
+  tg.hint=null;tg.markMs=0;tg.ovKey='';
+  const removed=Math.max(0,before-tg.knots.length);
+  if(removed>0){
+    const g=removed*(TG_KNOT_PEN+tg.lv);
+    tg.score+=g;tgAdd('hz_tg_knots',removed);
+    tgPop(b.x,b.y-38,'+'+g+' 解开 '+removed+' 处','#2E7D32');
+    tgBits(b.x,b.y,'#A5D6A7',10);
+    tgTone(TG_NOTE[Math.min(TG_NOTE.length-1,removed+1)],.1,'triangle',.05);
+  }
+  let shun=false,other=0;
+  for(let i=0;i<tg.beads.length;i++){
+    const x=tg.beads[i];
+    if(!x.tidy||prev[i])continue;
+    if(x.i===fWas){shun=true;tg.hits++;tgAdd('hz_tg_tidy',1)}
+    else other++;
+  }
+  if(shun){
+    const gain=Math.round((10+f.k*2+tg.lv*3)*(1+tg.combo*0.06));
+    tg.score+=gain;
+    tg.combo++;tg.maxCombo=Math.max(tg.maxCombo,tg.combo);
+    tgPop(f.x,f.y-58,'🔥 顺结 +'+gain,'#E65100');
+    tgRing(f.x,f.y,TG_R+12,'rgba(255,179,0,.9)');
+    tgTone(TG_NOTE[Math.min(TG_NOTE.length-1,f.k)],.12,'triangle',.05);
+  }
+  if(other){
+    tg.score+=other*TG_FLAT;
+    tgPop(b.x,b.y+6,'+'+other*TG_FLAT+' 顺带理平','#00695C');
+  }
+  tg.think=0;
+  tgRenderBeads();tgMini();tgAskText();tgHud();tgLine();
+  if(!tg.knots.length){tgBoardClear();return}
+  const w=tgWorst();
+  tgSay('🪢 还剩 <b>'+tg.knots.length+' 处交叠</b>：'+(removed?'这次 <b>解开 '+removed+' 处</b>（+'+removed*(TG_KNOT_PEN+tg.lv)+'）、':'')+
+    (shun?'<b>顺结</b> 吃连击 ×'+tg.combo+'；':(other?'顺手理平别的牌 <b>+'+other*TG_FLAT+'</b>；':''))+
+    (w&&w!==f?'先挪 <b>第 '+(w.k+1)+' 笔「'+tgDirOf(w.r,w.k)+'」</b>，它身上挂着 <b>'+tgKnotsOf(w)+' 处</b>交叉':'')+
+    '。想快一点就 <b>看是哪两段交叉</b> —— 挪 <b>那两段共用的这块牌</b>','#FFE0B2');
+}
+function tgTimeout(){
+  tg.dry++;tgAdd('hz_tg_dry',1);
+  tg.combo=0;tg.cleanBoard=false;
+  for(let r=0;r<tg.ropes.length;r++)tgMissAdd(tg.ropes[r].word.ch);
+  tone(180,.3,'sawtooth',.05);
+  tgShakeFx();
+  tgSay('⏳ <b>钟走光了</b>：手一抖，这一盘的牌 <b>又被打散了</b> —— 还是「<b>'+tg.ropes.map(function(r){return r.word.ch}).join('、')+'</b>」，重新理','#FFCC80');
+  tgLoseHeart('绳被打散');
+  if(tg.over)return;
+  tgRedisperse();
+}
+function tgRedisperse(){
+  for(let i=0;i<tg.beads.length;i++){
+    const b=tg.beads[i];
+    if(!b.pin){b.x=b.sx;b.y=b.sy}
+  }
+  tgTangle();
+  tgRefresh();
+  tg.clockMax=tgClockOf();tg.clock=tg.clockMax;
+  tg.hint=null;tg.markMs=0;tg.gustMs=tgGustOf(tg.lv)?TG_GUST_MS:0;
+  tg.sel=tg.beads.length?tg.beads[0].i:-1;
+  tgRenderBeads();tgRenderRopes();tgMini();tgAskText();tgHud();tgLine();
+}
+function tgGust(){
+  const free=tg.beads.filter(function(b){return !b.pin});
+  if(!free.length)return;
+  const b=tgOne(free),p=tgSpotNear(b);
+  b.x=p.x;b.y=p.y;
+  tg.gusts++;tgAdd('hz_tg_gusts',1);
+  tgRefresh();
+  tg.gustTag=2200;
+  tgBits(b.x,b.y,'rgba(176,190,197,.9)',10);
+  tone(392,.14,'sine',.04);
+  tgSay('🌬 <b>一阵风把「'+tgDirOf(b.r,b.k)+'」那块牌吹到了 '+tgNameOf(b)+'</b>：绳 <b>重新叠了 '+tg.knots.length+' 处</b> —— 每根绳 <b>都有解</b>，摆回 <b>原位</b> 就解开，别慌','#B3E5FC');
+  tgRenderBeads();tgRenderRopes();tgMini();tgAskText();tgHud();tgLine();
+}
+/* ---- 过盘 / 升段 ---- */
+function tgBoardClear(){
+  tg.clearing=true;
+  const bonus=24+tg.n*5+tg.lv*5;
+  const timeB=Math.round(Math.max(0,tg.clock)*0.7);
+  const cleanB=tg.cleanBoard?16:0;
+  tg.score+=bonus+timeB+cleanB;
+  tg.levels++;
+  tgAdd('hz_tg_words',tg.ropes.length);tgAdd('hz_tg_boards',1);
+  if(tg.cleanBoard)tgAdd('hz_tg_perfect',1);
+  for(let r=0;r<tg.ropes.length;r++){tgBookAdd(tg.ropes[r].word.ch);tgMissDel(tg.ropes[r].word.ch)}
+  const last=tg.beads[tg.beads.length-1];
+  tgPop(last?last.x:350,(last?last.y:250)-44,'🏁 +'+(bonus+timeB+cleanB)+(cleanB?' ✨':''),'#2E7D32');
+  tgBits(350,268,'#FFF176',20);
+  tgRing(350,268,78,'rgba(255,241,118,.9)');
+  tone(659,.1,'triangle',.05);tgTone(784,.1,'triangle',.05);tgTone(988,.16,'triangle',.05);
+  const refill=tg.levels%3===0&&tg.hearts<TG_HEART_MAX;
+  if(refill)tg.hearts++;
+  tgLvCheck();
+  tgSay('🏁 <b>绳全理平了</b>：'+tg.ropes.map(function(r){return r.word.ch}).join('、')+' 一共 '+tg.n+' 块牌 —— +'+bonus+' 分、剩钟折 +'+timeB+
+    (cleanB?' · ✨ 一次没散 再 +16':'')+(refill?' · 🪢 手稳，<b>补一颗心</b>':'')+' —— 第 '+tg.lv+' 段的绳更绕','#AED581');
+  tgMini();tgHud();tgMeterView();
+  tgT(tgNextRec,TG_NEXT_MS);
+}
+function tgLvCheck(){
+  const nl=Math.min(9,1+Math.floor(tg.levels/2));
+  if(nl>tg.lv)tg.lv=nl;
+  localStorage.setItem('hz_tg_lv',String(Math.max(tg.lv,tgInt('hz_tg_lv'))));
+}
+function tgNextRec(){
+  if(!tg.run||tg.over)return;
+  const recs=tgPick(tgRopeOf(tg.lv));
+  if(!recs.length){tg.run=false;return}
+  tg.rec=recs[0];
+  tgResetBoard(recs);
+  if(!tg.run)return;
+  tgSay('🪢 新绳子上穿的是「<b>'+tg.ropes.map(function(r){return r.word.ch}).join('、')+'</b>」：'+tg.n+' 块牌。绳 <b>两头系死在木桩上</b> —— 先看清 <b>哪两段交叉</b>，那块牌 <b>身上一人一半</b>','#C5E1A5');
+}
+function tgResetBoard(recs){
+  tg.clearing=false;tg.hint=null;tg.markMs=0;tg.gustTag=0;tg.lowMs=0;tg.think=0;
+  if(!tgHang(recs)){tg.run=false;return}
+  tgRenderStatic();tgRenderBeads();tgRenderRopes();tgMini();tgAskText();tgHud();tgLine();
+}
+function tgRespin(force){
+  if(!tg.run||tg.over||tg.clearing)return;
+  if(!force){
+    if(tg.respinN<=0){tgSay('🔄 换绳用完了：这一根的结就这么解吧','#B3E5FC');return}
+    tg.respinN--;tg.respins++;tgAdd('hz_tg_respins',1);
+  }
+  const recs=tgPick(tgRopeOf(tg.lv));
+  if(!recs.length)return;
+  tg.rec=recs[0];
+  tgResetBoard(recs);
+  /* 换过绳就不算「一次没散」了（tgHang 会把它摆回 true，所以只能在这儿按下来） */
+  if(!force)tg.cleanBoard=false;
+  tone(523,.1,'sine',.04);
+  tgSay('🔄 换一根绳：「<b>'+tg.ropes.map(function(r){return r.word.ch}).join('、')+'</b>」—— 第 1 笔是 <b>'+tgDirOf(0,0)+'</b>','#B3E5FC');
+}
+/* ---- 工具 ---- */
+function tgMark(){
+  if(!tg.run||tg.over||tg.clearing)return;
+  if(tg.markN<=0){tgSay('💡 灯芯烧完了：这一场指结用完了','#B3E5FC');return}
+  const w=tgWorst();
+  if(!w){tgSay('💡 已经没有交叠要指了，<b>直接收尾</b> 吧','#FFCC80');return}
+  tg.markN--;tg.marks++;tgAdd('hz_tg_marks',1);
+  tg.sel=w.i;
+  const s=tgBestSpot(w,TG_HINT_TRY);
+  tg.hint=s||null;
+  tg.markMs=TG_MARK_MS;tg.ovKey='';tg.think=0;
+  tone(880,.09,'sine',.04);
+  tgSay('💡 <b>第 '+(w.k+1)+' 笔「'+tgDirOf(w.r,w.k)+'」</b>那块牌 <b>挂着 '+tgKnotsOf(w)+' 处交叉</b>，它在 <b>'+tgNameOf(w)+'</b>。'+
+    (s?'<b>蓝圈</b> 是试出来的 <b>好位置</b>（'+tgNameOf(s)+'，那儿只剩 <b>'+s.knots+' 处</b>结）—— 拖过去看看':'蓝圈 <b>一时没找到好位置</b>：先挪 <b>挨着它的牌</b> 让路'),'#81D4FA');
+  tgHud();tgTopLayer();
+}
+function tgMagnet(){
+  if(!tg.run||tg.over||tg.clearing)return;
+  if(tg.magN<=0){tgSay('🧲 磁铁没劲儿了：这一场提绳用完了','#B3E5FC');return}
+  const w=tgWorst();
+  if(!w){tgSay('🧲 没牌可提：绳已经平了','#FFCC80');return}
+  tg.magN--;tg.magnets++;tgAdd('hz_tg_magnets',1);
+  const s=tgBestSpot(w,TG_SOLVE_TRY);
+  tg.sel=w.i;tg.think=0;
+  if(!s){tgSay('🧲 <b>这块牌实在没处摆</b>：用 <code>🔄</code> 换一根绳，或先挪 <b>挨着它的牌</b>','#FFCC80');return}
+  tgBits(w.x,w.y,'rgba(129,212,250,.9)',8);
+  tone(1046,.1,'sine',.04);
+  w.x=s.x;w.y=s.y;
+  tgSay('🧲 <b>绳子自己提过去啦</b>：「'+tgDirOf(w.r,w.k)+'」挪到了 <b>'+tgNameOf(w)+'</b>','#B3E5FC');
+  tgDrop(w);
+}
+function tgNag(){
+  if(!tg.knots.length)return;
+  const f=tgFocus();
+  if(!f){tgSay('🪢 交叠卡在 <b>钉住的牌</b> 上：挪 <b>挨着它的牌</b> 让路','#FFCC80');return}
+  tgSay('🪢 <b>别只是盯着看啦</b>：该理的是 <b>第 '+(f.k+1)+' 笔「'+tgDirOf(f.r,f.k)+'」</b> 那块牌，它在 <b>'+tgNameOf(f)+'</b>，'+
+    '身上一共挂着 <b>'+tgKnotsOf(f)+' 处交叉</b>。它 <b>两侧绳</b> 各跟谁交叉？把这块牌 <b>拖离那条线</b>（钟剩 <b>'+Math.max(0,Math.ceil(tg.clock))+' 秒</b>）','#FFE082');
+  tone(587,.09,'sine',.035);
+  tgAdd('hz_tg_nags',1);
+}
+function tgLoseHeart(why){
+  tg.hearts--;
+  tone(196,.22,'square',.05);
+  tgShakeFx();
+  if(tg.hearts<=0){tgSay('💔 '+why+' 太多，心全丢了……','#EF9A9A');tgEnd('miss');return}
+  tgSay('💔 <b>丢一颗心</b>（'+why+'）：还剩 <b>'+tg.hearts+'</b> 颗 —— 心可以 <b>每 3 盘补一颗</b>','#FFCC80');
+  tgHud();
+}
+/* ---- 循环 ---- */
+function tgStartLoop(){tgStopLoop();tg.last=0;tg.rafId=requestAnimationFrame(tgLoop)}
+function tgStopLoop(){if(tg.rafId){cancelAnimationFrame(tg.rafId);tg.rafId=0}tg.last=0}
+function tgLoop(ts){
+  if(!tg.run||tg.over){tg.rafId=0;return}
+  const dt=tg.last?Math.min(0.05,(ts-tg.last)/1000):0.016;
+  tg.last=ts;
+  tgTick(dt);
+  tg.rafId=requestAnimationFrame(tgLoop);
+}
+function tgTick(dt){
+  const ms=dt*1000;
+  tg.t+=dt;tg.playMs+=ms;
+  tg.tones=6;
+  if(tg.markMs>0){
+    tg.markMs=Math.max(0,tg.markMs-ms);
+    if(!tg.markMs)tgTopLayer();
+  }
+  if(tg.gustTag>0)tg.gustTag=Math.max(0,tg.gustTag-ms);
+  if(!tg.clearing&&tg.knots.length){
+    tg.clock-=dt;tg.think+=ms;
+    if(tg.clock<=12){
+      tg.lowMs+=ms;
+      if(tg.lowMs>=1000){tg.lowMs=0;tgTone(659,.06,'square',.03)}
+    }
+    if(tg.gustMs>0){
+      tg.gustMs-=ms;
+      if(tg.gustMs<=0){tg.gustMs=TG_GUST_MS;tgGust()}
+    }
+    if(tg.clock<=0){tgTimeout();return}
+    if(tg.think>=TG_NAG_MS){tg.think=0;tgNag()}
+  }
+  tgBeadView();
+  tgHudLight();
+}
+/* ---- 输入 ---- */
+function tgBind(){
+  if(tg.bound)return;
+  tg.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='tangle'||!tg.run||tg.over)return;
+    const k=e.key,K=String(k||'').toLowerCase();
+    if(K==='arrowleft'||K==='arrowright'||K==='arrowup'||K==='arrowdown'){
+      if(e.repeat)return;
+      const b=tg.beads[tg.sel>=0?tg.sel:0];
+      if(!b){e.preventDefault();return}
+      const dx=(K==='arrowleft'?-TG_STEP:(K==='arrowright'?TG_STEP:0));
+      const dy=(K==='arrowup'?-TG_STEP:(K==='arrowdown'?TG_STEP:0));
+      if(tgMoveTo(b,b.x+dx,b.y+dy))tgDrop(b);
+      e.preventDefault();return;
+    }
+    if(K>='1'&&K<='9'){
+      const i=+K-1;
+      if(tg.beads[i]){
+        tg.sel=i;tg.think=0;
+        const b=tg.beads[i];
+        tgSay('👉 选中 <b>第 '+(b.k+1)+' 笔「'+tgDirOf(b.r,b.k)+'」</b>（<b>'+tgNameOf(b)+'</b>，身上 <b>'+tgKnotsOf(b)+' 处交叉</b>）：方向键 <b>每按一下挪 '+TG_STEP+' 像素</b>，挪完 <b>当场算结</b>；按住 <b>拖</b> 更快','#B3E5FC');
+        tgRenderBeads();tgTopLayer();
+      }
+      e.preventDefault();return;
+    }
+    if(k===' '||k==='Enter'){
+      if(!e.repeat)tgNag();
+      e.preventDefault();return;
+    }
+    if(K==='h'){if(!e.repeat)tgMark();return}
+    if(K==='m'){if(!e.repeat)tgMagnet();return}
+    if(K==='r'){if(!e.repeat)tgRespin(false);return}
+    if(k==='?'){tgHelp();return}
+  });
+}
+function tgPointer(){
+  const svg=document.getElementById('tgSvg');
+  if(!svg||tg.ptrBound)return;
+  tg.ptrBound=true;
+  const at=function(ev){
+    const r=svg.getBoundingClientRect();
+    if(!r.width||!r.height)return null;
+    return {x:(ev.clientX-r.left)/r.width*TG_W,y:(ev.clientY-r.top)/r.height*TG_H};
+  };
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='tangle'||!tg.run||tg.over||tg.clearing)return;
+    const el=ev.target.closest?ev.target.closest('.tg-bead'):null;
+    if(!el)return;
+    const b=tg.beads[parseInt(el.id.replace('tgB',''),10)];
+    if(!b)return;
+    if(b.pin){
+      tgSay('📌 <b>这块牌被钉子钉住了</b>：它 <b>正好停在解上</b> —— 把它当 <b>参照物</b> 想别的牌该去哪','#FFCC80');
+      return;
+    }
+    const p=at(ev);
+    if(!p)return;
+    tg.drag=b;tg.sel=b.i;
+    tg.dragFrom={x:b.x,y:b.y,ox:p.x-b.x,oy:p.y-b.y};
+    el.classList.add('drag');
+    tg.think=0;
+    try{svg.setPointerCapture(ev.pointerId)}catch(err){}
+    ev.preventDefault();
+  });
+  svg.addEventListener('pointermove',function(ev){
+    if(!tg.drag)return;
+    const p=at(ev);
+    if(!p)return;
+    const b=tg.drag;
+    b.x=tgClamp(p.x-tg.dragFrom.ox,TG_AX0+TG_R-6,TG_AX1-TG_R+6);
+    b.y=tgClamp(p.y-tg.dragFrom.oy,TG_AY0+TG_R-8,TG_AY1-TG_R+8);
+    tgRefresh();
+    tgBeadView();tgMeterView();
+    ev.preventDefault();
+  });
+  svg.addEventListener('pointerup',function(ev){
+    if(!tg.drag)return;
+    const b=tg.drag,from=tg.dragFrom;
+    const el=document.getElementById('tgB'+b.i);
+    if(el)el.classList.remove('drag');
+    tg.drag=null;tg.dragFrom=null;
+    if(!tg.run||tg.over||tg.clearing){tgRefresh();tgRenderBeads();tgRenderRopes();return}
+    if(tgRockHit(b)){
+      b.x=from.x;b.y=from.y;
+      tgBlocked(b,'rock');
+      tgRefresh();tgRenderBeads();tgRenderRopes();
+      if(ev.preventDefault)ev.preventDefault();
+      return;
+    }
+    tgDrop(b);
+    if(ev.preventDefault)ev.preventDefault();
+  });
+  svg.addEventListener('pointercancel',function(){
+    if(!tg.drag)return;
+    const b=tg.drag,from=tg.dragFrom;
+    b.x=from.x;b.y=from.y;
+    tg.drag=null;tg.dragFrom=null;
+    tgRefresh();tgRenderBeads();tgRenderRopes();
+  });
+}
+/* ---- 生命周期 ---- */
+function tgStopAll(){tgStopLoop();tgKillTimers();tg.gen++;tg.drag=null;tg.dragFrom=null}
+async function tgStart(){
+  tgStopAll();
+  const g=tg.gen;
+  const stale=function(){return g!==tg.gen||!tg.run||tg.over};
+  tg.run=true;tg.over=false;tg.clearing=false;
+  tg.lv=1;tg.score=0;tg.hearts=TG_HEARTS;tg.combo=0;tg.maxCombo=0;
+  tg.levels=0;tg.hits=0;tg.dry=0;tg.rocks=0;tg.gusts=0;tg.moves=0;tg.marks=0;tg.magnets=0;tg.respins=0;
+  tg.markN=2;tg.magN=2;tg.respinN=2;
+  tg.markMs=0;tg.gustMs=0;tg.gustTag=0;tg.lowMs=0;tg.think=0;tg.playMs=0;tg.t=0;tg.ovKey='';
+  tg.pool=[];tg.miss=[];tg.rec=null;tg.ropes=[];tg.beads=[];tg.segs=[];tg.knots=[];tg.rock=[];tg.n=0;
+  tg.hint=null;tg.sel=-1;tg.hudTxt={};
+  showScreen('tangle');
+  tgBind();tgPointer();
+  tgRenderStatic();tgRenderRopes();tgRenderBeads();tgMini();tgRenderSlots();tgHud();
+  tgSet('tgAsk','🪢 正在把麻绳穿好……<br><small>在字库里挑「每一笔都认得出形状」的字</small>');
+  tgSay('一根麻绳按 <b>笔顺</b> 穿着 <b>木牌</b>，每张牌上刻着这个字的 <b>一笔</b>。绳 <b>两头系死在木桩上</b> —— 你只能 <b>挪牌</b>：让 <b>任何两段绳都不交叠</b>，结就解开了','#C5E1A5');
+  let ok=await tgBuild();
+  if(stale())return;
+  if(!ok){
+    tgSay('🪢 牌还没钻好孔，再穿一次……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await tgBuild(true);
+    if(stale())return;
+  }
+  if(!ok||!tg.pool.length){
+    tg.run=false;
+    tgSet('tgAsk','😢 牌穿不上绳<br><small>字库还没加载好，稍后再来解绳结</small>');
+    tgSay('先去别的模式练两笔，回来牌就齐了','#FFCC80');
+    return;
+  }
+  tgAdd('hz_tg_games',1);
+  const recs=tgPick(tgRopeOf(tg.lv));
+  if(!recs.length){tg.run=false;return}
+  tg.rec=recs[0];
+  tgResetBoard(recs);
+  if(!tg.run||tg.over||stale())return;
+  tgStartLoop();
+}
+function tgEnd(reason){
+  if(tg.over)return;
+  tg.over=true;tg.run=false;tg.clearing=false;
+  tgStopAll();
+  const sc=Math.round(tg.score);
+  localStorage.setItem('hz_tg_best',String(Math.max(tg.levels,tgInt('hz_tg_best'))));
+  localStorage.setItem('hz_tg_streak',String(Math.max(tg.maxCombo,tgInt('hz_tg_streak'))));
+  localStorage.setItem('hz_tg_lv',String(Math.max(tg.lv,tgInt('hz_tg_lv'))));
+  tgAdd('hz_tg_ms',Math.round(tg.playMs/1000));
+  const stars=Math.floor(sc/120)+tg.levels*3;
+  if(stars>0)addStars(stars);
+  showScreen('tangle-result');
+  const R=tgRank(tgInt('hz_tg_words'));
+  const T={
+    miss:['🪨','手被石头绊住了','<b>每顶回 '+TG_MISS_PEN+' 次掉一颗心</b>：牌 <b>不能压在石头上</b> —— 动手前先看 <b>石头的虚线圈</b>'],
+    quit:['🏁','今天收工了','下一场先走顺「<b>看交叉 → 找共用端点 → 挪那块牌</b>」：<b>顺结</b> 吃连击，<b>一次没散</b> 再多 16 分'],
+    nodata:['😢','牌没穿上绳','先去别的模式练两笔，回来牌就齐了']
+  };
+  const t=T[reason]||T.quit;
+  tgSet('tgRsEmoji',t[0]);
+  tgSet('tgRsTitle',t[1]);
+  tgSet('tgRsSub',t[2]);
+  tgSet('tgRsScore',String(sc));
+  tgSet('tgRsLevel',String(tg.levels));
+  tgSet('tgRsHit',String(tg.hits));
+  tgSet('tgRsLv',String(tg.lv));
+  tgSet('tgRsStreak',String(tg.maxCombo));
+  tgSet('tgRsMiss',tg.dry+' / '+tg.rocks);
+  tgSet('tgRsStars','⭐ '+stars);
+  tgSet('tgRsBest',String(tgInt('hz_tg_best')));
+  tgSet('tgRsWords',String(tgInt('hz_tg_words')));
+  tgSet('tgRsAll','🏅 '+R.e+' '+R.t+' · 累计理平 '+tgInt('hz_tg_words')+' 个字\n'+
+    '🪢 过盘 '+tgInt('hz_tg_boards')+' 盘 · 解开交叠 '+tgInt('hz_tg_knots')+' 处 · 挪牌 '+tgInt('hz_tg_moves')+' 次\n'+
+    '🔥 顺结 '+tgInt('hz_tg_tidy')+' 次 · ✨ 一次没散 '+tgInt('hz_tg_perfect')+' 盘 · ⏳ 打散 '+tgInt('hz_tg_dry')+' 盘\n'+
+    '🪨 被石头挡回 '+tgInt('hz_tg_rockhit')+' 次 · 🌬 吹跑 '+tgInt('hz_tg_gusts')+' 块 · 📌 遇上钉珠 '+tgInt('hz_tg_pins')+' 块\n'+
+    '💡 指结 '+tgInt('hz_tg_marks')+' 次 · 🧲 提绳 '+tgInt('hz_tg_magnets')+' 次 · 🔄 换绳 '+tgInt('hz_tg_respins')+' 次\n'+
+    '👀 发呆提示 '+tgInt('hz_tg_nags')+' 次 · 🚀 一局最多 '+tgInt('hz_tg_best')+' 盘 · 最高理到第 '+tgInt('hz_tg_lv')+' 段');
+  const book=(localStorage.getItem('hz_tg_book')||'').split(',').filter(function(c){return c.length===1});
+  tgSet('tgRsBookT',book.length?('🪢 绳结档案 · 已理平 '+book.length+' 个字'):'');
+  const bh=document.getElementById('tgRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function tgRetry(){tgStart()}
+function tgLeave(){
+  tgStopAll();
+  if(tg.run&&!tg.over){tg.over=true;tg.run=false}
+  goHome();
+}
+function tgNudge(){
+  const dot=document.getElementById('tgCardDot'),tip=document.getElementById('tgCardTip');
+  const w=tgInt('hz_tg_words'),p=tgInt('hz_tg_perfect'),games=tgInt('hz_tg_games'),kn=tgInt('hz_tg_knots');
+  const R=tgRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 理平 '+w+' 个字 · 解开 '+kn+' 处结 · 一次没散 '+p+' 盘'):'绳上按笔顺穿着木牌 —— 挪牌让任何两段绳都不交叠，结就解开了';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function tgHelp(){
+  tgSay('🪢 木板上拉着 <b>'+tg.ropes.length+' 根绳</b>，按 <b>笔顺</b> 穿着 <b>'+tg.n+' 块木牌</b>（刻着「<b>'+tg.ropes.map(function(r){return r.word.ch}).join('、')+'</b>」的每一笔）。绳 <b>两头系死在木桩上</b> 不能动，你唯一的手法是 <b>挪牌</b>。<br>'+
+    '✕ <b>结怎么算</b>：<b>两段绳一交叠就长一个结</b>（共用同一块牌的两段 <b>不算</b>）。顶上 <b>🪢 还 N 结</b> 就是剩下的交叠数 —— <b>归零 = 过一盘</b>。<br>'+
+    '🪢 <b>按笔顺理</b>：左边米字格里 <b>淡黄那一笔</b> 对应的牌，就是 <b>现在该理的这块</b>（第 '+(tgFocus()?(tgFocus().k+1):0)+' 笔「'+(tgFocus()?tgDirOf(tgFocus().r,tgFocus().k):'——')+'」）。把它理到 <b>两侧绳都不交叉</b> → <b>顺结</b> = <b>10 + 第几笔×2 + 段数×3</b> 再乘连击，米字格 <b>当场亮一笔</b>。<br>'+
+    '✨ <b>加分</b>：一次拖动 <b>解开几处结</b> 就加 <b>几 ×（'+TG_KNOT_PEN+' + 段数）</b>；顺手理平 <b>别的牌</b> 每块 <b>+'+TG_FLAT+'</b>（不算连击、<b>不扣分</b>）—— 摆错了 <b>随时拖回来</b>。<br>'+
+    '📌 <b>钉珠</b>（<b>第 3 段</b> 起 1~2 块）：拖不动，但它 <b>正好停在解上</b>，当 <b>参照物</b>；🪨 <b>石头</b>（<b>第 5 段</b> 起 1~3 块）：牌 <b>不能压在石头上</b>，往那儿拖 <b>弹回原位</b>，<b>每累计 '+TG_MISS_PEN+' 次掉一颗心</b>（3 颗起、最多 '+TG_HEART_MAX+' 颗，每 3 盘补一颗）。<br>'+
+    '⏳ <b>催场钟</b> = <b>24 + 笔数×6 − 段数×2</b> 秒，走光这一盘 <b>牌被重新打散</b>（掉一颗心、进 <b>错字手册</b>）；剩 12 秒 <b>钟变红</b>。<br>'+
+    '💡（<code>H</code>）指结：圈出 <b>挂着最多交叉的那块牌</b> + <b>蓝圈</b> 提示试出来的好位置；🧲（<code>M</code>）提绳：<b>直接把那块牌提到好位置</b>；🔄（<code>R</code>）换一根绳 —— <b>每场各 2 次</b>。<br>'+
+    '🌬 <b>风</b>（<b>第 8 段</b> 起）：约 <b>'+(TG_GUST_MS/1000)+' 秒</b> 吹跑一块牌、绳重新打结 —— 每根绳 <b>都由「先摆好再打乱」生成</b>，所以 <b>永远有解</b>，摆回原位就解开。<br>'+
+    '⚡ <b>每 2 盘升 1 段</b>（最多 9 段）：字从 2~6 笔换到 3~8 笔、<b>第 6 段</b> 起变 <b>两根绳 · 两个字</b>（跨绳交叉也算结）、钉珠 / 石头 / 风一件件上。<br>'+
+    '🏁 <b>结全解开 = 过一盘</b>：<b>24 + 笔数×5 + 段数×5</b> 分 + <b>剩钟×0.7</b> + <b>一次没散再 16</b>。<br>'+
+    '👆 <b>手指按住牌拖</b>（松手 <b>当场算结</b>）· <code>1</code>~<code>9</code> 选牌 + <b>方向键</b> 每下挪 '+TG_STEP+' 像素 · <code>空格</code> 问一句 · 发呆 12 秒自动报方位 · 战绩落盘 <code>hz_tg_*</code>','#C5E1A5');
 }
 
 window.addEventListener('DOMContentLoaded',boot);
