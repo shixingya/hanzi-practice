@@ -4949,6 +4949,125 @@ button:active{transform:scale(.95)}
   .ls-stage{flex-direction:column}
   .ls-mini{flex:0 0 auto;width:88px;margin:0 auto}
 }
+/* ================= v1.78 笔顺齿轮坊 ================= */
+.gr-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.gr-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.gr-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.gr-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.gr-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.gr-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.gr-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.gr-cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:11px;color:#FFE0B2}
+.gr-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#2A2118 0%,#332A1D 44%,#1A140E 100%);box-shadow:inset 0 0 34px rgba(0,0,0,.6);transition:box-shadow .2s}
+.gr-tbl.hot{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 26px rgba(178,255,89,.28)}
+.gr-tbl.dead{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 30px rgba(255,82,82,.4)}
+.gr-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+.gr-board{fill:rgba(24,18,12,.62);stroke:rgba(255,202,110,.3);stroke-width:3}
+.gr-cell{stroke:rgba(255,224,178,.1);stroke-width:1.4}
+.gr-cell.dark{fill:rgba(255,255,255,.028)}
+.gr-cell.lite{fill:rgba(255,214,140,.09)}
+.gr-bolt{fill:rgba(255,236,200,.24)}
+.gr-cur{fill:rgba(255,241,118,.1);stroke:#FFF176;stroke-width:3;stroke-dasharray:9 7;animation:grCur .9s ease-in-out infinite;pointer-events:none}
+@keyframes grCur{0%,100%{opacity:.35}50%{opacity:1}}
+/* ---- 齿轮 ---- */
+/* 咬合点、纸带、顶层标记不吃指针；皮带要留指针（点皮带 = 拆皮带） */
+#grMeshG,#grPaperG,#grTopG{pointer-events:none}
+.gr-gear{cursor:pointer}
+.gr-gear.locked{cursor:default}
+.gr-gear.walled{cursor:not-allowed}
+.gr-gear .gr-teeth{stroke-width:2}
+.gr-gear.free .gr-teeth{fill:url(#grBrass);stroke:#8D6E2E}
+.gr-gear.fix .gr-teeth{fill:url(#grSteel);stroke:#78909C}
+.gr-gear.motor .gr-teeth{fill:url(#grSteel);stroke:#B0BEC5}
+.gr-gear.tgt .gr-teeth{fill:url(#grCopper);stroke:#8D4E2A}
+.gr-gear.lit .gr-teeth{stroke:#B2FF59;stroke-width:3.2}
+.gr-gear.sel .gr-teeth{stroke:#FFD54F;stroke-width:4;stroke-dasharray:7 5}
+.gr-spoke{stroke:rgba(0,0,0,.42);stroke-width:4;fill:none;stroke-linecap:round}
+.gr-dot{fill:rgba(255,255,255,.85)}
+.gr-hub{fill:#2B211A;stroke:rgba(255,236,200,.5);stroke-width:2}
+.gr-rim{fill:none;stroke-width:5;opacity:0}
+.gr-rim.on{opacity:.95}
+.gr-face{fill:#FFF8E1;stroke:rgba(0,0,0,.34);stroke-width:2}
+.gr-gear.tgt .gr-face{fill:#FFF3E0}
+.gr-gear.fix .gr-face{fill:#ECEFF1}
+.gr-arw{font-size:19px;font-weight:bold;text-anchor:middle}
+.gr-nm{font-size:11.5px;font-weight:bold;fill:#5D4037;text-anchor:middle}
+.gr-gear.bad .gr-teeth{stroke:#FF5252;stroke-width:3}
+.gr-gear.bad .gr-fc{animation:grWob .42s ease-in-out infinite}
+@keyframes grWob{0%,100%{transform:translate(0,0)}25%{transform:translate(-1.6px,1.2px)}75%{transform:translate(1.6px,-1.2px)}}
+.gr-mesh{fill:#FFE082;animation:grMesh .62s ease-in-out infinite}
+@keyframes grMesh{0%,100%{opacity:.2}50%{opacity:.9}}
+.gr-mesh.off{opacity:0;animation:none}
+/* ---- 皮带 ---- */
+.gr-belt .gr-bl{fill:none;stroke:#455A64;stroke-width:6;stroke-linecap:round}
+.gr-belt .gr-bl2{fill:none;stroke:#90A4AE;stroke-width:2;stroke-linecap:round}
+.gr-belt.sel .gr-bl{stroke:#FFD54F}
+.gr-belt.jam .gr-bl{stroke:#FF5252;stroke-width:7}
+.gr-beltHit{stroke:transparent;stroke-width:26;fill:none;cursor:pointer;pointer-events:stroke}
+.gr-pick{fill:none;stroke:#FFD54F;stroke-width:4;stroke-dasharray:8 6;animation:grCur .8s ease-in-out infinite;pointer-events:none}
+/* ---- 墙 / 马达 ---- */
+.gr-wall{font-size:28px;text-anchor:middle}
+.gr-moto{font-size:15px;text-anchor:middle}
+.gr-mbody{fill:#37474F;stroke:#B0BEC5;stroke-width:2}
+/* ---- 纸带 ---- */
+.gr-paper{fill:#FFF8E1;stroke:rgba(255,214,140,.5);stroke-width:2}
+.gr-pbox{fill:rgba(0,0,0,.06);stroke:rgba(0,0,0,.14);stroke-width:1.4}
+.gr-pnow{fill:rgba(255,241,118,.24);stroke:#F9A825;stroke-width:2.4}
+.gr-ptxt{font-size:10.5px;font-weight:bold;fill:#8D6E63;text-anchor:middle}
+/* ---- 特效层 ---- */
+.gr-flash{fill:rgba(255,64,129,.3);animation:grFlash .62s ease-out forwards}
+@keyframes grFlash{0%{opacity:1}100%{opacity:0}}
+.gr-ring{fill:none;stroke:#FFEB3B;stroke-width:3;stroke-dasharray:9 7;animation:grMark .7s ease-out infinite}
+.gr-mark{fill:none;stroke:#40C4FF;stroke-width:3.4;stroke-dasharray:11 8;animation:grMark .9s ease-out infinite;pointer-events:none}
+@keyframes grMark{0%,100%{opacity:.3}50%{opacity:1}}
+.gr-smoke{font-size:17px;text-anchor:middle;animation:grRise 1.5s ease-out forwards}
+@keyframes grRise{0%{opacity:0;transform:translateY(4px)}20%{opacity:1}100%{opacity:0;transform:translateY(-26px)}}
+.gr-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.gr-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:grBit .74s ease-out forwards}
+@keyframes grBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.gr-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF59D;text-shadow:0 1px 4px rgba(0,0,0,.7);animation:grPop .95s ease-out forwards;white-space:nowrap}
+@keyframes grPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.gr-shake{animation:grShake .34s}
+@keyframes grShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px) rotate(-.5deg)}50%{transform:translateX(8px) rotate(.5deg)}80%{transform:translateX(-3px)}}
+/* ---- 零件篮 / 计量条 ---- */
+.gr-basket{display:flex;gap:6px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:36px;padding:6px;border-radius:14px;background:rgba(0,0,0,.36);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap}
+.gr-nd{min-width:24px;height:24px;line-height:24px;border-radius:8px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.34);font-size:12px;text-align:center;font-weight:bold;padding:0 4px}
+.gr-nd.in{background:#FFB74D;color:#3E2723}
+.gr-nd.belt{background:#4DD0E1;color:#013740}
+.gr-nd.now{background:#FFF176;color:#4E342E}
+.gr-more{font-size:12px;color:#FFE0B2}
+.gr-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.gr-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(0,0,0,.4);overflow:hidden}
+.gr-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#FFA726,#FFD54F 62%,#FFF176 90%);transition:width .1s linear}
+.gr-tl.low i{background:linear-gradient(90deg,#FF8A65,#FF5252)}
+.gr-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.gr-clock{font-size:12px;color:#fff;background:rgba(0,0,0,.4);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.gr-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#FFF3E0;background:rgba(0,0,0,.34);border-radius:14px;padding:9px 10px;line-height:1.5}
+.gr-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.gr-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0}
+.gr-tool{flex:1;padding:11px 4px;border:none;border-radius:13px;font-size:13px;color:#ECEFF1;background:rgba(255,255,255,.14);cursor:pointer;font-family:inherit}
+.gr-tool.on{background:#FFB300;color:#3E2723;font-weight:bold}
+.gr-tool:disabled{opacity:.4}
+.gr-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.3);color:#FFE0B2;font-size:13px;line-height:1.65;min-height:44px;overflow-anchor:none}
+.gr-msg b{color:#fff}
+.gr-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.gr-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.gr-badge{position:absolute;right:8px;top:8px;font-size:11px;color:#3E2723;background:rgba(255,248,225,.88);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+.gr-badge.on{display:block}
+.gr-slow{position:absolute;left:8px;top:8px;font-size:12px;color:#fff;background:rgba(255,64,129,.86);border-radius:11px;padding:3px 10px;display:none}
+.gr-slow.on{display:block}
+.gr-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.gr-rs span{display:block;font-size:24px;font-weight:bold}
+.gr-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.gr-book-t{font-size:12px;color:#FFE0B2;margin-top:12px}
+.gr-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.gr-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.gr-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FFB300;color:#3E2723;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.gr-cdot.on{display:flex}
+@media (max-width:600px){
+  .gr-stage{flex-direction:column}
+  .gr-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
 </style>
 
 </head>
@@ -5005,8 +5124,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 76 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">76</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 77 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">77</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -5017,12 +5136,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>76 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>22</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>77 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>23</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" onclick="enterMode('gear')">
+      <div class="icon">⚙️</div>
+      <div class="info"><h3>笔顺齿轮坊</h3><p id="grCardTip">咬住的轮必定反着转、皮带套住的轮同向 —— 把马达的转动送到每块刻字轮，方向对上就自己印字</p></div>
+      <span class="gr-cdot" id="grCardDot">🆕</span>
+    </div>
 <div class="mode-card" onclick="enterMode('laser')">
       <div class="icon">🪞</div>
       <div class="info"><h3>笔顺光路阵</h3><p id="lsCardTip">翻镜子改变光走的路 —— 让光照到写对方向那块牌再发射，电池越漏光越短</p></div>
@@ -5583,6 +5707,112 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-gear">
+  <div class="top-bar">
+    <button class="back-btn" onclick="grLeave()">← 返回</button>
+    <div class="stats"><span id="grScoreTxt">🎯 0 分</span><span id="grLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="grHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="gr-hud">
+    <span id="grRankTxt" title="称号">🔧 捡扳手的</span>
+    <span id="grHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="grComboTxt" title="连击">🔥 连 0</span>
+    <span id="grLitTxt" title="印了几笔">✅ 0 笔</span>
+    <span id="grMeshTxt" title="咬合了几对">⚙️ 0</span>
+    <span id="grBeltTxt" title="拉了几条皮带">🎗 0</span>
+    <span id="grJamTxt" title="卡死几次">🔒 0</span>
+    <span id="grFallTxt" title="散架几次">🪫 0</span>
+  </div>
+  <div class="gr-ask" id="grAsk">🔧 正在给机器上油……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="gr-stage">
+    <div class="gr-mini">
+      <svg viewBox="0 -1024 1024 1024" id="grMiniSvg"></svg>
+      <div class="gr-cap" id="grMiniCap">这个字</div>
+    </div>
+    <div class="gr-tbl" id="grTbl">
+      <svg class="gr-svg" id="grSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="grBrass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFF1B8"/><stop offset=".45" stop-color="#D8A82C"/><stop offset="1" stop-color="#7A5A12"/>
+          </linearGradient>
+          <linearGradient id="grSteel" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F4F7F8"/><stop offset=".46" stop-color="#A5B7C1"/><stop offset="1" stop-color="#4B636F"/>
+          </linearGradient>
+          <linearGradient id="grCopper" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFD1A8"/><stop offset=".45" stop-color="#D9834A"/><stop offset="1" stop-color="#8A431B"/>
+          </linearGradient>
+        </defs>
+        <g id="grStatic"></g>
+        <g id="grBeltG"></g>
+        <g id="grGearG"></g>
+        <g id="grMeshG"></g>
+        <g id="grPaperG"></g>
+        <g id="grTopG"></g>
+      </svg>
+      <div class="gr-fx" id="grFx"></div>
+      <div class="gr-badge" id="grBadge">⚙️</div>
+      <div class="gr-slow" id="grLooseTag">🪫 有块轮自己掉下来了</div>
+    </div>
+  </div>
+  <div class="gr-basket" id="grBasket"></div>
+  <div class="gr-meter">
+    <div class="gr-tl" id="grClockBox"><i id="grClockBar"></i><b id="grClockTxt">⏳ 时钟满格</b></div>
+    <div class="gr-clock" id="grPlan">⚙️ ——</div>
+  </div>
+  <div class="gr-hintline" id="grHintLine">👇 选 <b>⚙️ 装轮</b>，<b>点一下空格子</b>就装上一个齿轮（<code>方向键</code> 移光标 + <code>Enter</code>）—— 装上的轮 <b>再点一下</b> 就退回篮子</div>
+  <div class="gr-tools">
+    <button class="gr-tool on" id="grTGear" onclick="grPickTool(0)">⚙️ 装轮<b style="font-size:11px"> 1</b></button>
+    <button class="gr-tool" id="grTBelt" onclick="grPickTool(1)">🎗 拉皮带<b style="font-size:11px"> 2</b></button>
+    <button class="gr-tool" id="grHintBtn" onclick="grHint()" disabled>💡 指路</button>
+    <button class="gr-tool" id="grGiveBtn" onclick="grGive()" disabled>🎁 送件</button>
+    <button class="gr-tool" onclick="grRespin(false)">🔄 重摆</button>
+    <button class="gr-tool" onclick="grEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="gr-msg" id="grMsg">墙上一台 <b>⚙️ 齿轮机</b>：左下角那台 <b>🔌 马达</b> 一直在转。齿轮 <b>咬在一起</b> 就 <b>必定反着转</b>，<b>🎗 皮带</b> 连的两个轮 <b>同方向</b>。牌子上的 <b>↻ / ↺</b> 写着这块轮 <b>该朝哪儿转</b> —— 把转动从马达送过去、<b>方向对上</b>，机器一转就 <b>按笔顺在纸带上印字</b></div>
+  <div class="gr-tip">黄铜色的板子上是 <b>齿轮墙</b>（<b>7×4</b> 的格子，深浅两色 <b>交错</b> 像棋盘）：角落一台 <b>🔌 马达</b> 一直顺时针转，墙上钉着几块 <b>刻字轮</b>（牌面就是这个字其中一笔的 <b>真实笔形</b>，横红、竖青、撇蓝、捺橘、折紫，和左边米字格同一套颜色），牌角上写着一个 <b>↻ 或 ↺</b>。<br>
+    ⚙️ <b>咬合必反向</b>：两个齿轮 <b>挨着</b> 就自动咬住，一个顺时针 <b>另一个一定逆时针</b> —— 板子的深浅格不是装饰：<b>同一种颜色的格子转向一定相同</b>，每咬一次就 <b>换一种颜色</b><br>
+    🎗 <b>皮带不反转</b>：皮带跨过 <b>两格以上</b>（中间要空着）套住两个轮，两头 <b>转向一模一样</b> —— 想让某块轮 <b>反过来</b>，要么 <b>多咬一个轮</b>，要么 <b>拉一条皮带</b><br>
+    🔒 <b>会卡死</b>：同一个地方 <b>又被皮带要求同向、又被咬合要求反向</b>，整台机器 <b>卡死停转</b>、冒烟 —— 拆掉那条 <b>变红的皮带</b> 就活了（累计卡死 3 次掉一颗心）<br>
+    ✅ <b>颜色对上就印</b>：轮子转起来时轮圈会亮色（<b>橙 = ↻ 顺</b>、<b>青 = ↺ 逆</b>），和牌子上的箭头 <b>同色</b> 就是装对了 —— 该印的那一笔 <b>自动打进纸带</b>、米字格 <b>当场亮一笔</b>、吃 <b>连击</b>；方向反了 <b>不扣分</b>，轮子会 <b>发抖发红</b> 提醒你别扭<br>
+    🧱 <b>砖块</b>（<b>第 3 段</b> 起）钉死了装不进轮也拉不过皮带；⚓ <b>焊死的轮</b>（<b>第 4 段</b> 起）拆不掉，但它 <b>正好在解上</b>，当参照物；🪫 <b>松脱</b>（<b>第 6 段</b> 起）约 <b>6 秒</b> 有块装好的轮 <b>自己掉回篮子</b> —— 别慌，<b>每一台机器都是先装好再拆给你看的，永远装得回去</b><br>
+    ⏳ <b>催场钟</b>：每盘发 <b>`32 + 笔数×7 − 段数×2`</b> 秒（下限 34），走光机器 <b>散架</b>（拆掉几块轮）并掉一颗心，<b>最后 12 秒整条变红</b><br>
+    📦 <b>零件很金贵</b>：齿轮和皮带都 <b>只有这么多</b>（够解 + 一点点余量），<b>省下来的零件换成加分</b>；印一笔吃 <b>`round((10 + 第几笔×2 + 段数×2) × (1 + 连击×0.06))`</b>，一次装配 <b>连串印出多笔</b> 再多 <b`(串长−1)×(6+段数×2)`</b><br>
+    🚀 <b>过一盘</b>：<b>`24 + 笔数×6 + 段数×5`</b> 分，<b>剩下的钟 ×0.7</b> 再加，<b>剩齿轮 ×4</b>、<b>剩皮带 ×6</b>，<b>一次没卡死再多 20</b>；<b>每 2 盘升 1 段</b>（最多 9 段）、<b>每 3 盘补一颗心</b>（最多 5 颗）<br>
+    💡 <b>指路</b>（<code>Q</code>）圈出 <b>下一块该点亮的轮</b> 和 <b>该装轮的那几格</b>；🎁 <b>送件</b>（<code>W</code>）直接 <b>替你把一条解上的皮带拉好</b>（看完就懂皮带要跨几格）；🔄（<code>R</code>）<b>拆光重装</b> 这一台机器 —— 三种 <b>每场各 2 次</b>，升段各补 1 次<br>
+    👀 发呆 12 秒会报「该点亮的轮在 <b>板子哪一块</b>、它要 <b>↻ 还是 ↺</b>、现在 <b>没连上还是方向反了</b>」· 战绩落盘 <code>hz_gear_*</code></div>
+</div>
+<div class="screen" id="screen-gear-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="grLeave()">← 回首页</button>
+    <div class="stats"><span id="grRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="grRsEmoji">🔧</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="grRsTitle">机器转起来了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="grRsSub">下一次先想 <b>这块轮要朝哪儿转</b>，再想 <b>要咬几个轮</b></p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="gr-rs">
+      <div><span style="color:#FFD700" id="grRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="grRsWords">0</span><small>装好几个字</small></div>
+      <div><span style="color:#69F0AE" id="grRsLit">0</span><small>印出几笔</small></div>
+      <div><span style="color:#FFAB91" id="grRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="grRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="grRsMiss">0</span><small>🔒 卡死 / 🪫 散架</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多装几个字 · 一共装好过几个字</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFE082"><span id="grRsBest">0</span> 个 · <span id="grRsAll2">0</span> ⚙️</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="grRsAll">🔧 捡扳手的</div>
+      <div class="gr-book-t" id="grRsBookT"></div>
+      <div class="gr-book" id="grRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="grRetry()">⚙️ 再装一台</button>
+    <button class="w-btn blue" onclick="grLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-laser">
@@ -10887,6 +11117,7 @@ function updateHomeStats(){
   if(typeof hdNudge==='function')hdNudge();
   if(typeof tgNudge==='function')tgNudge();
   if(typeof lsNudge==='function')lsNudge();
+  if(typeof grNudge==='function')grNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -10909,6 +11140,7 @@ function enterMode(mode){
   if(mode==='herd'){hdStart();return}
   if(mode==='tangle'){tgStart();return}
   if(mode==='laser'){lsStart();return}
+  if(mode==='gear'){grStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -54643,6 +54875,1576 @@ function lsHelp(){
     '🏁 <b>整个字一笔不落全照亮</b>：<b>26 + 笔数×4 + 段数×6</b> 分；一路 <b>没打错、电池没漏光</b> 再多 <b>'+LS_CLEAN_BONUS+'</b>；每 3 个字 <b>补一颗心</b>（3 起、最多 5）。<br>'+
     '👀 发呆 11 秒 🐰 报方位 · 战绩落盘 <code>hz_laser_*</code>','#C5E1A5');
 }
+
+/* ================= v1.78 笔顺齿轮坊（咬合必定反向 · 皮带同向不改 · 方向对上机器就自己按笔顺印字） ================= */
+const GR_W=700,GR_H=470;
+const GR_CW=7,GR_CH=4,GR_CELL=80,GR_X0=64,GR_Y0=52,GR_N=GR_CW*GR_CH;
+const GR_BX=GR_X0-12,GR_BY=GR_Y0-12,GR_BW=GR_CW*GR_CELL+24,GR_BH=GR_CH*GR_CELL+24;
+const GR_R=40,GR_RR=32,GR_RF=23,GR_RIM=27,GR_BLT=41;
+const GR_PX=GR_X0,GR_PY=392,GR_PH=58;
+const GR_HEARTS=3,GR_HEART_MAX=5,GR_MISS_MAX=40,GR_BOOK_MAX=300;
+const GR_POOL_MIN=4,GR_POOL_WANT=16;
+const GR_NAG_MS=12000,GR_HINT_MS=3200,GR_NEXT_MS=1300,GR_PRINT_MS=520,GR_LOOSE_MS=6000,GR_FLASH_MS=620,GR_TAG_MS=2200;
+const GR_SPD=116,GR_BELT_MIN=2,GR_GEN_TRY=60,GR_JAM_PEN=6,GR_JAM_MAX=3,GR_CLEAN_BONUS=20;
+const GR_DIRS=['横','竖','撇','捺'],GR_ARW=['➡️','⬇️','↙️','↘️'];
+const GR_PLATE=['#E57373','#4DB6AC','#64B5F6','#FFB74D'],GR_INK=['#FF8A80','#80CBC4','#82B1FF','#FFD180'];
+const GR_DC=['#FFB74D','#4DD0E1'],GR_DA=['↻','↺'],GR_DN=['顺时针','逆时针'];
+const GR_NOTE=[523,587,659,698,784,880,988,1046];
+const GR_RANKS=[
+  {n:0,e:'🔧',t:'捡扳手的'},{n:3,e:'⚙️',t:'认得咬合'},{n:8,e:'🎗',t:'会拉皮带'},
+  {n:15,e:'✨',t:'方向对得上'},{n:24,e:'⚡',t:'快手装机'},{n:36,e:'🌀',t:'一整串都转'},
+  {n:52,e:'🌟',t:'印字师傅'},{n:74,e:'💎',t:'一台不卡'},{n:105,e:'👑',t:'机械大师'}
+];
+const gr={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,tones:0,think:0,timers:[],
+  pool:[],miss:[],rec:null,n:0,qi:0,gly:[],want:[],tgt:[],
+  cell:[],belts:[],motor:-1,turn:[],mesh:[],badBelt:[],badMesh:[],jam:false,jamWas:false,
+  sol:null,tool:0,sel:-1,cur:-1,
+  gearN:0,beltN:0,gearMax:0,beltMax:0,
+  clock:1,clockSec:60,red:false,beep:0,
+  ang:0,gels:[],
+  printMs:0,nextMs:0,printRun:0,
+  lv:1,score:0,hearts:GR_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,puts:0,beltPuts:0,jams:0,falls:0,unbelt:0,taps:0,
+  hints:0,gives:0,respins:0,nags:0,looseMs:0,looseTag:0,looseN:0,
+  hintMs:0,hintCells:[],
+  hintN:2,giveN:2,respinN:2,cleanWord:true,jamWord:0,
+  bound:false,ptrBound:false,hudTxt:{}
+};
+function grInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function grAdd(k,n){if(n)localStorage.setItem(k,String(grInt(k)+n))}
+function grSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function grSay(t,c){const el=document.getElementById('grMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function grShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function grOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function grClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function grDn(d){return d<0||d>3?0:d}
+function grRank(n){let r=GR_RANKS[0];for(let i=0;i<GR_RANKS.length;i++)if(n>=GR_RANKS[i].n)r=GR_RANKS[i];return r}
+function grTone(f,d,t,v){if(gr.tones<=0)return;gr.tones--;tone(f,d,t,v)}
+function grT(fn,ms){const g=gr.gen;const id=setTimeout(function(){const k=gr.timers.indexOf(id);if(k>=0)gr.timers.splice(k,1);if(g!==gr.gen)return;fn()},ms);gr.timers.push(id);return id}
+function grKillTimers(){gr.timers.forEach(function(t){clearTimeout(t)});gr.timers=[]}
+/* ---- 难度：几条皮带是必须的、每条链走几格、几块砖、几个焊死的轮、松不松脱 ---- */
+function grBeltNeed(lv){return lv<2?0:(lv<6?1:(lv<9?2:3))}
+function grWallOf(lv){return lv<3?0:Math.min(4,lv-2)}
+function grFixOf(lv){return lv<4?0:Math.min(3,lv-3)}
+function grLooseOf(lv){return lv>=6?1:0}
+function grSpareGear(lv){return lv<=2?2:1}
+function grSpareBelt(lv){return lv>=4?1:0}
+function grStepsOf(lv,n){
+  const want=lv<3?1:(lv<7?2:(n>5?2:3));
+  /* 每一笔要占「中间轮 steps 格 + 刻字轮自己 1 格」，另外留一格给马达 */
+  const room=Math.floor((GR_N-grWallOf(lv)-1)/Math.max(2,n))-1;
+  return grClamp(Math.min(want,Math.max(1,room)),1,3);
+}
+function grClockOf(){return Math.max(34,32+gr.n*7-gr.lv*2)}
+function grLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+/* ---- 格子几何 ---- */
+function grCI(c,r){return r*GR_CW+c}
+function grCol(i){return i%GR_CW}
+function grRow(i){return Math.floor(i/GR_CW)}
+function grCx(i){return GR_X0+grCol(i)*GR_CELL+GR_CELL/2}
+function grCy(i){return GR_Y0+grRow(i)*GR_CELL+GR_CELL/2}
+function grCol0(i){return (grCol(i)+grRow(i))&1}
+function grNb(i){
+  const o=[],c=grCol(i),r=grRow(i);
+  if(c>0)o.push(i-1);
+  if(c<GR_CW-1)o.push(i+1);
+  if(r>0)o.push(i-GR_CW);
+  if(r<GR_CH-1)o.push(i+GR_CW);
+  return o;
+}
+function grNameOf(i){
+  const c=grCol(i),r=grRow(i);
+  const vx=c<2?'左':(c>4?'右':'中'),hy=r<1?'上':(r>2?'下':'中');
+  if(vx==='中'&&hy==='中')return '板子中间';
+  if(vx==='中')return hy+'边';
+  if(hy==='中')return vx+'边';
+  return vx+hy+'角';
+}
+function grHasAt(cell,i){const c=cell&&cell[i];return !!(c&&c.t!=='W')}
+/* ---- 传动求解：咬合 = 反向，皮带 = 同向；一个地方两种要求打架就整台卡死 ---- */
+function grSolveOf(has,belts,motor,deep){
+  const w=new Array(GR_N).fill(-2),turn=new Array(GR_N).fill(-1);
+  const mesh=[],badBelt=[],badMesh=[];
+  const E=[];
+  for(let i=0;i<GR_N;i++){
+    if(!has[i])continue;
+    const nb=grNb(i);
+    for(let k=0;k<nb.length;k++)if(nb[k]>i&&has[nb[k]])E.push([i,nb[k],1,-1]);
+  }
+  for(let i=0;i<E.length;i++)mesh.push([E[i][0],E[i][1]]);
+  (belts||[]).forEach(function(b,bi){
+    if(b&&b.a!==b.b&&has[b.a]&&has[b.b])E.push([b.a,b.b,0,bi]);
+  });
+  let jam=false;
+  if(motor>=0&&has[motor]){
+    w[motor]=0;
+    const q=[motor];
+    while(q.length){
+      const i=q.shift();
+      for(let k=0;k<E.length;k++){
+        const e=E[k];
+        const j=e[0]===i?e[1]:(e[1]===i?e[0]:-1);
+        if(j<0)continue;
+        const nw=w[i]^e[2];
+        if(w[j]===-2){w[j]=nw;q.push(j)}
+        else if(w[j]!==nw){
+          jam=true;
+          if(e[3]>=0){if(badBelt.indexOf(e[3])<0)badBelt.push(e[3])}
+          else badMesh.push([e[0],e[1]]);
+        }
+      }
+    }
+    for(let i=0;i<GR_N;i++)if(has[i]&&w[i]>=0)turn[i]=w[i];
+  }
+  if(jam)for(let i=0;i<GR_N;i++)turn[i]=-1;
+  if(jam&&deep!==1){
+    /* 网格只有咬合的话永远不会矛盾（同色同向）—— 卡死一定和某条皮带有关：逐条试拆，能拆活的标红 */
+    for(let bi=0;bi<(belts||[]).length;bi++){
+      const rest=[];
+      for(let k=0;k<belts.length;k++)if(k!==bi)rest.push(belts[k]);
+      if(!grSolveOf(has,rest,motor,1).jam&&badBelt.indexOf(bi)<0)badBelt.push(bi);
+    }
+  }
+  return {turn:turn,w:w,jam:jam,badBelt:badBelt,badMesh:badMesh,mesh:mesh};
+}
+/* ---- 皮带合法性： straight、跨两格以上、中间全空着、两头都得是轮 ---- */
+function grBeltLink(a,b,cell,belts){
+  const out={ok:false,why:'',at:-1};
+  if(a<0||b<0||a===b){out.why='same';return out}
+  if(!grHasAt(cell,a)||!grHasAt(cell,b)){out.why='nogear';return out}
+  const ca=grCol(a),ra=grRow(a),cb=grCol(b),rb=grRow(b);
+  if(ca!==cb&&ra!==rb){out.why='turn';return out}
+  const dc=cb-ca,dr=rb-ra;
+  const d=Math.abs(dc)+Math.abs(dr);
+  if(d<GR_BELT_MIN){out.why='near';return out}
+  const sc=dc===0?0:(dc>0?1:-1),sr=dr===0?0:(dr>0?1:-1);
+  let c=ca+sc,r=ra+sr;
+  while(c!==cb||r!==rb){
+    const i=grCI(c,r);
+    if(cell[i]){out.why='block';out.at=i;return out}
+    c+=sc;r+=sr;
+  }
+  for(let k=0;k<(belts||[]).length;k++){
+    const x=belts[k];
+    if(x&&((x.a===a&&x.b===b)||(x.a===b&&x.b===a))){out.why='dup';return out}
+  }
+  out.ok=true;return out;
+}
+/* ---- 字库：每一笔方向都说得清（沿用 ±8° 边界否决） ---- */
+function grSig(d){return String(d||'').replace(/\s+/g,'')}
+function grDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function grMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>8)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){
+    const d=fmDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    dirs.push(d);
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,raw:raw};
+}
+function grCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<90;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(grShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(grShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(grShuf(CHARS.slice()));
+  return out;
+}
+function grTO(p,ms){return Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},ms)})])}
+async function grRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  /* 首屏 preloadGrade 会和取字抢 CDN 连接，6 秒是给排队留的余量 */
+  if(!raw||!raw.medians)raw=grTO(loadCharData(ch),6000);
+  if(!raw||!raw.medians)return null;
+  return grMake(ch,raw);
+}
+async function grBuildPool(keep){
+  const g=gr.gen;
+  const stale=function(){return g!==gr.gen||!gr.run};
+  gr.miss=(localStorage.getItem('hz_gear_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  grShuf(gr.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  grCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)gr.pool=[];
+  for(let k=0;k<want.length&&gr.pool.length<GR_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return grRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])gr.pool.push(rs[i]);
+  }
+  return gr.pool.length>=GR_POOL_MIN;
+}
+function grPickRec(){
+  const w=gr.lv>=4?[3,8]:[2,6];
+  const used={};
+  const take=function(){
+    /* 错字手册优先到笔画窗口之前：卡住过的那个字下一台一定摆回来 */
+    for(let i=0;i<gr.miss.length;i++){
+      for(let k=0;k<gr.pool.length;k++){
+        const r=gr.pool[k];
+        if(r&&!used[r.ch]&&r.n>=2&&r.ch===gr.miss[i]){used[r.ch]=1;return r}
+      }
+    }
+    let cand=gr.pool.filter(function(r){
+      if(!r||used[r.ch])return false;
+      return r.n>=w[0]&&r.n<=w[1];
+    });
+    if(!cand.length)cand=gr.pool.filter(function(r){return r&&!used[r.ch]});
+    if(!cand.length)return null;
+    for(let i=0;i<40;i++){const c=grOne(cand);if(c){used[c.ch]=1;return c}}
+    const c=cand[0];used[c.ch]=1;return c;
+  };
+  return take();
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function grMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_gear_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_gear_miss',a.slice(0,GR_MISS_MAX).join(','));
+}
+function grMissDel(ch){
+  const a=(localStorage.getItem('hz_gear_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_gear_miss',a.join(','));
+}
+function grBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_gear_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_gear_book',a.slice(0,GR_BOOK_MAX).join(','));
+}
+/* ---- 图纸生成：先按解把机器装好，再拆下来给孩子装（所以永远装得回去） ---- */
+function grWalkNext(cur,used){
+  const cand=[];
+  const nb=grNb(cur);
+  for(let k=0;k<nb.length;k++){
+    const j=nb[k];
+    if(used[j])continue;
+    let alone=true;
+    const jn=grNb(j);
+    for(let m=0;m<jn.length;m++)if(used[jn[m]]&&jn[m]!==cur){alone=false;break}
+    if(alone)cand.push(j);
+  }
+  return cand.length?cand[Math.floor(Math.random()*cand.length)]:-1;
+}
+function grBeltSpot(a,used){
+  /* 只跨单数格：皮带不改方向、咬合每格必翻 —— 跨单数格才逼出「非皮带不可」的关 */
+  const DS=[3,3,3,5];
+  const dirs=[[1,0],[-1,0],[0,1],[0,-1]];
+  for(let t=0;t<40;t++){
+    const dd=dirs[Math.floor(Math.random()*4)],len=DS[Math.floor(Math.random()*DS.length)];
+    const c=grCol(a)+dd[0]*len,r=grRow(a)+dd[1]*len;
+    if(c<0||c>=GR_CW||r<0||r>=GR_CH)continue;
+    const b=grCI(c,r);
+    if(used[b])continue;
+    const line=[];
+    let free=true;
+    for(let s=1;s<len;s++){
+      const i=grCI(grCol(a)+dd[0]*s,grRow(a)+dd[1]*s);
+      if(used[i]){free=false;break}
+      line.push(i);
+    }
+    if(!free)continue;
+    let alone=true;
+    const bn=grNb(b);
+    for(let m=0;m<bn.length;m++)if(used[bn[m]]){alone=false;break}
+    if(!alone)continue;
+    /* 皮带线中间那几格一并占掉：后面接着长链子不许把轮子摞到皮带路上，否则玩家拉不出来 */
+    for(let s=0;s<line.length;s++)used[line[s]]=1;
+    return b;
+  }
+  return -1;
+}
+function grTry(rec,cfg){
+  const steps=cfg.steps,beltNeed=cfg.belts;
+  const used=new Array(GR_N).fill(0),w=new Array(GR_N).fill(0);
+  const mi=grCI(Math.floor(Math.random()*2),Math.floor(Math.random()*GR_CH));
+  used[mi]=1;
+  const gears=[mi],tg=[],want=[],bl=[],chain=[];
+  let beltLeft=beltNeed;
+  for(let k=0;k<rec.n;k++){
+    /* 每次都从「枝条尖」往下接：从中间出发必然走不动（邻居全被占了） */
+    let cur=k===0?mi:(Math.random()<0.72?tg[k-1]:gears[gears.length-1]);
+    const fresh=[cur];
+    if(beltLeft>0&&Math.random()<0.8){
+      const b=grBeltSpot(cur,used);
+      if(b>=0){
+        bl.push({a:cur,b:b});
+        used[b]=1;gears.push(b);w[b]=w[cur];cur=b;fresh.push(b);beltLeft--;
+      }
+    }
+    for(let s=0;s<steps;s++){
+      const nx=grWalkNext(cur,used);
+      if(nx<0)return null;
+      used[nx]=1;gears.push(nx);w[nx]=w[cur]^1;cur=nx;fresh.push(nx);
+    }
+    /* 刻字轮自己也占一格：路上必须留至少一个空位给孩子装轮，否则机器一开局就自己转起来了 */
+    const sg=grWalkNext(cur,used);
+    if(sg<0)return null;
+    used[sg]=1;w[sg]=w[cur]^1;gears.push(sg);fresh.push(sg);
+    tg.push(sg);want.push(w[sg]);chain.push(fresh.slice(1));
+  }
+  if(beltNeed>0&&bl.length<beltNeed-1)return null;
+  const has=new Array(GR_N).fill(0);
+  for(let i=0;i<gears.length;i++)has[gears[i]]=1;
+  const r=grSolveOf(has,bl,mi);
+  if(r.jam)return null;
+  for(let k=0;k<tg.length;k++)if(r.turn[tg[k]]!==want[k])return null;
+  const path=gears.filter(function(i){return i!==mi&&tg.indexOf(i)<0});
+  return {mi:mi,tg:tg,want:want,gears:gears,path:path,bl:bl,chain:chain,used:used,w:w};
+}
+function grGen(rec,lv){
+  const bn=grBeltNeed(lv),st=grStepsOf(lv,rec.n),wl=grWallOf(lv),fx=grFixOf(lv);
+  const lad=[
+    {belts:bn,steps:st,walls:wl,fix:fx},
+    {belts:bn,steps:Math.max(1,st-1),walls:wl,fix:fx},
+    {belts:bn,steps:st,walls:Math.max(0,wl-2),fix:Math.max(0,fx-1)},
+    {belts:Math.max(0,bn-1),steps:Math.max(1,st-1),walls:wl,fix:Math.max(0,fx-1)},
+    {belts:bn,steps:1,walls:0,fix:0},
+    {belts:Math.max(0,bn-1),steps:1,walls:0,fix:0},
+    {belts:0,steps:1,walls:0,fix:0}
+  ];
+  for(let L=0;L<lad.length;L++){
+    for(let t=0;t<GR_GEN_TRY;t++){
+      const r=grTry(rec,lad[L]);
+      if(r){r.cfg=lad[L];return r}
+    }
+  }
+  return null;
+}
+function grBeltLineCells(bl){
+  const out=[];
+  (bl||[]).forEach(function(x){
+    const dc=grCol(x.b)-grCol(x.a),dr=grRow(x.b)-grRow(x.a);
+    const sc=dc===0?0:(dc>0?1:-1),sr=dr===0?0:(dr>0?1:-1);
+    let c=grCol(x.a)+sc,r=grRow(x.a)+sr;
+    while(c!==grCol(x.b)||r!==grRow(x.b)){out.push(grCI(c,r));c+=sc;r+=sr}
+  });
+  return out;
+}
+function grNewBoard(){
+  const s=grGen(gr.rec,gr.lv);
+  if(!s)return false;
+  const cell=new Array(GR_N).fill(null);
+  cell[s.mi]={t:'M'};
+  for(let k=0;k<s.tg.length;k++)cell[s.tg[k]]={t:'S',k:k};
+  /* 焊死的轮不许挨着刻字轮：那样一开局机器就自己接上了，这一笔白送 */
+  const touchTg=new Array(GR_N).fill(0);
+  for(let k=0;k<s.tg.length;k++){const nb=grNb(s.tg[k]);for(let q=0;q<nb.length;q++)touchTg[nb[q]]=1}
+  const canFix=s.path.filter(function(i){return !touchTg[i]});
+  const fixN=Math.min(s.cfg.fix,canFix.length);
+  const fix=canFix.slice(0).sort(function(){return Math.random()-0.5}).slice(0,fixN);
+  for(let i=0;i<fix.length;i++)cell[fix[i]]={t:'F',fix:1};
+  const usedLine=grBeltLineCells(s.bl);
+  const free=[];
+  for(let i=0;i<GR_N;i++){
+    if(cell[i])continue;
+    if(usedLine.indexOf(i)>=0)continue;
+    if(s.path.indexOf(i)>=0)continue;
+    free.push(i);
+  }
+  grShuf(free);
+  const wallN=Math.min(s.cfg.walls,Math.max(0,free.length-6));
+  const walls=free.slice(0,wallN);
+  for(let i=0;i<walls.length;i++)cell[walls[i]]={t:'W'};
+  gr.cell=cell;
+  gr.motor=s.mi;
+  gr.tgt=s.tg.slice();
+  gr.want=s.want.slice();
+  gr.belts=[];
+  gr.gly=grGlyOf(gr.rec);
+  gr.n=gr.rec.n;
+  gr.qi=0;
+  gr.gearMax=s.path.length-fix.length+grSpareGear(gr.lv);
+  gr.gearN=gr.gearMax;
+  gr.beltMax=s.bl.length+grSpareBelt(gr.lv);
+  gr.beltN=gr.beltMax;
+  gr.clockSec=grClockOf();
+  gr.clock=1;
+  gr.red=false;gr.beep=0;
+  gr.cleanWord=true;gr.jamWord=0;gr.printRun=0;
+  gr.hintMs=0;gr.hintCells=[];
+  gr.looseMs=GR_LOOSE_MS;gr.looseTag=0;
+  gr.think=0;gr.sel=-1;gr.tool=0;
+  gr.jamWas=false;
+  gr.sol={mi:s.mi,tg:s.tg.slice(),want:s.want.slice(),gears:s.gears.slice(),path:s.path.slice(),bl:s.bl.map(function(x){return {a:x.a,b:x.b}}),chain:s.chain.map(function(c){return c.slice()}),walls:walls.slice(),fix:fix.slice(),needBelt:s.bl.length};
+  grStruct();
+  grRenderGears();grRenderBelts();grPaper();grMini();grHud();grAskText();
+  return true;
+}
+/* ---- 笔形：牌面就是这个字的真实一笔 ---- */
+function grBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function grGly(d,box,dir,size){
+  const b=box||{x:0,y:0,w:200,h:200};
+  return {d:d||'M0 0',box:b,dir:dir,s:(size||44)/Math.max(140,Math.max(b.w,b.h))};
+}
+function grGlyHTML(g){
+  const b=g.box,s=g.s;
+  const tx=-s*(b.x+b.w/2),ty=s*(b.y+b.h/2);
+  return '<g transform="translate('+tx.toFixed(1)+','+ty.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path d="'+g.d+'" fill="'+GR_INK[grDn(g.dir)]+'"/></g>';
+}
+function grGlyOf(rec){
+  const ms=(rec&&rec.raw&&rec.raw.medians)||[],sp=(rec&&rec.raw&&rec.raw.strokes)||[],out=[];
+  for(let i=0;i<rec.n;i++){
+    const m=ms[i]||[[0,0],[100,100]];
+    out.push(grGly(grDOf(sp,i)||'M0 0 L60 60',grBox(m)||{x:0,y:0,w:200,h:200},grDn(rec.dirs[i]),44));
+  }
+  return out;
+}
+/* ---- 求解 + 结构变化后的一整套反应 ---- */
+function grStruct(){
+  const has=[];
+  for(let i=0;i<GR_N;i++)has.push(grHasAt(gr.cell,i)?1:0);
+  const r=grSolveOf(has,gr.belts,gr.motor);
+  gr.jam=r.jam;gr.turn=r.turn;gr.mesh=r.mesh;gr.badBelt=r.badBelt;gr.badMesh=r.badMesh;
+  grRenderMesh();
+  grPaintGearCls();
+  grRenderBeltCls();
+  if(r.jam&&!gr.jamWas)grOnJam();
+  gr.jamWas=r.jam;
+  grMeter();grLine();grBasketLight();
+  return r;
+}
+function grTargetOK(k){
+  if(k<0||k>=gr.tgt.length)return false;
+  const i=gr.tgt[k];
+  return gr.turn[i]>=0&&gr.turn[i]===gr.want[k];
+}
+/* ---- 动作：装轮 / 拆轮 / 拉皮带 / 拆皮带 ---- */
+function grPickTool(t){
+  if(!gr.run||gr.over)return;
+  gr.tool=t|0;gr.sel=-1;
+  grPaintGearCls();grRenderBeltCls();
+  const a=document.getElementById('grTGear'),b=document.getElementById('grTBelt');
+  if(a)a.classList.toggle('on',gr.tool===0);
+  if(b)b.classList.toggle('on',gr.tool===1);
+  gr.think=0;
+  grLine();
+  grSay(gr.tool===0?
+    '⚙️ <b>装轮</b>：点一个 <b>空格子</b> 就装上一个齿轮（<b>再点这个轮</b> 就退回篮子）。挨着的轮 <b>自动咬住</b>，一个顺时针 <b>另一个一定逆时针</b>':
+    '🎗 <b>拉皮带</b>：先点一个 <b>轮</b>，再点 <b>同一直线上另一个轮</b>（<b>中间要空着、至少跨两格</b>）。皮带两头的轮 <b>转向一模一样</b> —— 想让某块轮反过来，皮带比多咬一个轮省零件','#B3E5FC');
+}
+function grTap(i){
+  if(!gr.run||gr.over)return false;
+  if(i<0||i>=GR_N)return false;
+  gr.think=0;
+  if(gr.nextMs>0)return false;
+  const c=gr.cell[i];
+  if(gr.tool===1){
+    if(c&&c.t==='W'){grSay('🧱 <b>砖块</b>钉在墙上，皮带 <b>拉不过去</b> —— 换一条直路','#FFCC80');return false}
+    if(!grHasAt(gr.cell,i)){grSay('🎗 皮带 <b>两头都要套在轮上</b> —— 先点一个 <b>齿轮</b>','#FFCC80');return false}
+    if(gr.sel<0){gr.sel=i;grPaintGearCls();grRenderBeltCls();grLine();grSay('🎗 起点在 <b>'+grNameOf(i)+'</b>：再点 <b>同一直线上</b> 的另一个轮（<b>横着或竖着、中间空着</b>）就拉上皮带。再点一次起点 = 取消','#B3E5FC');return true}
+    if(gr.sel===i){gr.sel=-1;grPaintGearCls();grRenderBeltCls();grSay('🎗 取消了这条皮带的起点','#B0BEC5');return true}
+    const l=grBeltLink(gr.sel,i,gr.cell,gr.belts);
+    if(!l.ok){
+      const why={
+        near:'两个轮 <b>挨着</b> 就已经咬住了（咬住必反向）—— 皮带要 <b>跨两格以上</b> 才拉得到',
+        turn:'皮带 <b>只会直着拉</b>：两个轮得在 <b>同一行或同一列</b>',
+        nogear:'皮带两头 <b>都得套在齿轮上</b>',
+        block:'直线上 <b>第 '+(grCol(l.at)+1)+' 列第 '+(grRow(l.at)+1)+' 行</b> 挡着东西 —— 皮带 <b>中间必须空着</b>（有轮子会撞上去，有砖块过不去）',
+        dup:'这两个轮 <b>已经有一条皮带</b> 了：点那条 <b>变红的皮带</b> 就能拆',
+        same:'皮带不能套 <b>同一个轮</b> 两头'
+      }[l.why]||'这条路拉不通';
+      if(l.why==='block'){grMark([l.at]);grSay('🎗 <b>过不去</b>：'+why,'#FFCC80')}
+      else grSay('🎗 <b>拉不上</b>：'+why,'#FFCC80');
+      gr.sel=-1;grPaintGearCls();grRenderBeltCls();
+      return false;
+    }
+    if(gr.beltN<=0){grSay('📦 <b>皮带用完了</b>！点一个装好的轮 <b>退回来</b>，或者按 <b>🔄 重摆</b>','#FFCC80');gr.sel=-1;return false}
+    gr.belts.push({a:gr.sel,b:i});
+    gr.beltN--;gr.beltPuts++;grAdd('hz_gear_belts',1);
+    gr.sel=-1;gr.printRun=0;
+    grTone(240,0.1,'sawtooth',0.05);
+    grStruct();grRenderGears();grRenderBelts();
+    /* 一拉就卡死时，机器卡死的提示比「拉上了」更要紧，别把它盖掉 */
+    if(!gr.jam)grSay('🎗 皮带拉上了：这两个轮 <b>一起同方向转</b>（'+GR_DA[gr.turn[i]>=0?gr.turn[i]:0]+'）—— 看牌子上的箭头 <b>颜色对上了没</b>','#C5E1A5');
+    return true;
+  }
+  if(c&&c.t==='W'){grSay('🧱 <b>这块砖</b> 钉死了：装不进齿轮，皮带也 <b>拉不过去</b> —— 绕着它走','#FFCC80');return true}
+  if(c&&(c.t==='S'||c.t==='F')){
+    const k=c.k!==undefined?c.k:gr.tgt.indexOf(i);
+    const ft=gr.turn[i];
+    grSay(c.t==='S'?
+      '⚓ 这块是 <b>刻字轮</b>：钉在板子上 <b>拆不掉</b>，牌上的 <b>'+GR_DA[grDn(gr.want[k])]+'</b> 就是它 <b>该转的方向</b> —— 用 ⚙️ 咬合（改方向）或 🎗 皮带（不改方向）把转动送过来':
+      '🔩 <b>焊死的轮</b> 拆不掉，但它 <b>正好在解上</b> —— 拿它当 <b>参照物</b>：它现在朝 <b>'+(ft<0?'还没连上马达':GR_DN[ft])+'</b> 转，隔壁那格咬上去就一定 <b>反过来</b>','#B3E5FC');
+    grMark([i]);
+    return true;
+  }
+  if(c&&c.t==='M'){grSay('🔌 <b>马达</b> 一直 <b>顺时针 ↻</b> 转，它 <b>不动也不拆</b> —— 整台机器的转向都是从它数出来的','#B3E5FC');grMark([i]);return true}
+  if(c&&c.t==='G'){
+    gr.cell[i]=null;gr.gearN++;gr.puts=Math.max(0,gr.puts-1);
+    gr.printRun=0;
+    grTone(300,0.05,'square',0.04);
+    grStruct();grRenderGears();grRenderBelts();
+    grSay('🧲 齿轮退回 <b>篮子</b>（还剩 '+gr.gearN+' 个）—— 篮子金贵，<b>省下来的零件过一盘换成加分</b>','#B0BEC5');
+    return true;
+  }
+  if(gr.gearN<=0){grSay('📦 <b>篮子里没齿轮了</b>！点一个装好的轮 <b>退回来</b>，或者按 <b>🔄 重摆</b> 全部退回','#FFCC80');return false}
+  gr.cell[i]={t:'G'};
+  gr.gearN--;gr.puts++;grAdd('hz_gear_mesh',1);
+  gr.printRun=0;
+  grTone(420,0.05,'square',0.05);
+  grBits(grCx(i),grCy(i),'#FFD54F',5);
+  grStruct();grRenderGears();grRenderBelts();
+  if(gr.jam)return true;
+  const d=gr.turn[i];
+  grSay(d<0?'⚙️ 装上这块还 <b>没连到马达</b>：再 <b>挨着它装一块</b>，一路接回 🔌 马达':
+    '⚙️ 装上了，它跟着转 <b>'+GR_DA[d]+'</b>（'+GR_DN[d]+'）—— 每咬一个轮就 <b>换一次方向</b>，深一格浅一格方向不一样','#C5E1A5');
+  return true;
+}
+function grUnbelt(bi){
+  if(bi<0||bi>=gr.belts.length)return false;
+  const b=gr.belts[bi];
+  gr.belts.splice(bi,1);
+  gr.beltN++;gr.unbelt++;
+  gr.printRun=0;
+  grTone(200,0.07,'sawtooth',0.04);
+  grStruct();grRenderGears();grRenderBelts();
+  grSay('🧲 皮带拆掉了（'+grNameOf(b.a)+' ↔ '+grNameOf(b.b)+'），退回篮子 <b>'+gr.beltN+' 条</b> —— 皮带两头的轮 <b>转向一样</b>，拆掉它就 <b>得靠咬合绕过去</b>','#B0BEC5');
+  return true;
+}
+function grRemoveAt(i){
+  const c=gr.cell[i];
+  if(!c)return false;
+  if(c.t==='G'){gr.cell[i]=null;gr.gearN++;gr.printRun=0;grStruct();grRenderGears();grRenderBelts();return true}
+  if(c.t==='M'||c.t==='S'||c.t==='F'||c.t==='W')grTap(i);
+  return false;
+}
+/* ---- 卡死 / 掉心 / 散架 / 松脱 ---- */
+function grOnJam(){
+  gr.jamWas=true;gr.jams++;gr.jamWord++;
+  gr.score=Math.max(0,gr.score-GR_JAM_PEN);
+  gr.combo=0;gr.cleanWord=false;
+  grAdd('hz_gear_jams',1);
+  grMissAdd(gr.rec&&gr.rec.ch);
+  grShakeFx();grFlash();grTblCls('dead',620);
+  const at=gr.badBelt.length?gr.belts[gr.badBelt[0]]:null;
+  if(at){grPop(grCx(at.b),grCy(at.b)-GR_R-6,'🔒 卡死','#FF5252');grSmoke(at.a);grSmoke(at.b)}
+  else{const e=gr.badMesh[0];if(e){grSmoke(e[0]);grSmoke(e[1])}}
+  grTone(120,0.3,'sawtooth',0.12);
+  grTone(96,0.34,'sawtooth',0.1);
+  grSay(at||gr.badBelt.length?
+    '🔒 <b>机器卡死了！</b>同一个地方 <b>皮带要它同向、咬合要它反向</b>，两头拧不过去 —— 整台停转。<b>点那条变红的 🎗 皮带</b> 拆掉就活了（本字已卡 '+gr.jamWord+'/'+GR_JAM_MAX+' 次）':
+    '🔒 <b>机器卡死了！</b>齿轮 <b>咬住就必定反向</b>，可这条路 <b>绕回了自己</b> —— <b>拆掉刚装上的那块 ⚙️</b>（点它一下）就活了（本字已卡 '+gr.jamWord+'/'+GR_JAM_MAX+' 次）','#FF8A80');
+  if(gr.jamWord>=GR_JAM_MAX){gr.jamWord=0;grLoseHeart('jam')}
+}
+function grLoseHeart(why,quiet){
+  gr.hearts--;
+  gr.combo=0;
+  grTblCls('dead',520);
+  grTone(180,0.22,'triangle',0.09);
+  grHud();
+  if(!quiet){
+    if(why==='jam')grSay('💔 <b>又卡死</b>，掉一颗心！下次拉皮带之前 <b>先看清这条直线是不是已经被齿轮咬住了</b> —— 那是同向和反向打架的地方','#FF8A80');
+    else if(why==='clock')grSay('💔 <b>钟走光了</b>，掉一颗心 —— 时钟 <b>最后 12 秒会变红</b>，看见红色先把手上这块装完','#FF8A80');
+    else grSay('💔 掉一颗心','#FF8A80');
+  }
+  if(gr.hearts<=0){gr.hearts=0;grEnd('miss')}
+}
+function grClockOut(){
+  gr.falls++;grAdd('hz_gear_falls',1);
+  gr.clock=1;gr.clockSec=grClockOf();gr.red=false;
+  let took=0;
+  const order=[];
+  for(let i=0;i<GR_N;i++)if(gr.cell[i]&&gr.cell[i].t==='G')order.push(i);
+  grShuf(order);
+  for(let k=0;k<order.length&&took<3;k++){gr.cell[order[k]]=null;gr.gearN++;took++}
+  let cut=0;
+  if(gr.belts.length&&Math.random()<0.7){gr.belts.splice(Math.floor(Math.random()*gr.belts.length),1);gr.beltN++;cut=1}
+  gr.printRun=0;
+  grShakeFx();
+  grTone(150,0.26,'square',0.09);
+  grStruct();grRenderGears();grRenderBelts();
+  grSay('🪫 <b>钟走光，机器散架了</b>：拆掉 '+took+' 块齿轮'+(cut?'、断掉 1 条皮带':'')+'，零件都 <b>退回篮子</b> 了 —— 已经印好的笔 <b>不抹掉</b>。💔 掉一颗心（时钟 <b>最后 12 秒会变红</b>，看见红色先把手上这块装完）','#FFCC80');
+  grLoseHeart('clock',1);
+}
+function grLoose(){
+  if(!grLooseOf(gr.lv))return;
+  const cand=[];
+  for(let i=0;i<GR_N;i++)if(gr.cell[i]&&gr.cell[i].t==='G'&&gr.turn[i]>=0)cand.push(i);
+  if(!cand.length)return;
+  const i=grOne(cand);
+  gr.cell[i]=null;gr.gearN++;
+  gr.looseN++;gr.looseTag=GR_TAG_MS;
+  gr.printRun=0;
+  grTone(210,0.12,'triangle',0.06);
+  grStruct();grRenderGears();grRenderBelts();
+  const el=document.getElementById('grLooseTag');
+  if(el)el.innerHTML='🪫 '+grNameOf(i)+' 有块轮自己掉回篮子了';
+  grSay('🪫 <b>松脱</b>：'+grNameOf(i)+' 那块齿轮 <b>自己掉回篮子</b> 了（还剩 '+gr.gearN+' 个）—— 机器 <b>断在这一格</b>，装回去就又转起来','#FFCC80');
+}
+/* ---- 印字 ---- */
+function grTryPrint(){
+  if(gr.nextMs>0||gr.printMs>0||gr.jam)return false;
+  if(gr.qi>=gr.n)return false;
+  if(!grTargetOK(gr.qi))return false;
+  grPrint(gr.qi);
+  return true;
+}
+function grPrint(k){
+  const i=gr.tgt[k];
+  gr.qi=k+1;
+  gr.lits++;gr.combo++;gr.printRun++;
+  gr.maxCombo=Math.max(gr.maxCombo,gr.combo);
+  grAdd('hz_gear_lits',1);
+  let gain=Math.round((10+k*2+gr.lv*2)*(1+gr.combo*0.06));
+  let chain=0;
+  if(gr.printRun>1){chain=6+gr.lv*2;gain+=chain}
+  if(gr.clock>0.6)gain+=Math.round(gr.clock*8);
+  gr.score+=gain;
+  gr.printMs=GR_PRINT_MS;
+  grRing(grCx(i),grCy(i),GR_R+8,'#B2FF59');
+  grBits(grCx(i),grCy(i),GR_PLATE[grDn(gr.rec.dirs[k])],10);
+  grPop(grCx(i),grCy(i)-GR_R-6,'+'+gain,'#B2FF59');
+  if(chain)grT(grPop2.bind(null,grCx(i),grCy(i)-GR_R-26,'🎐 连串 +'+chain),180);
+  grTone(GR_NOTE[Math.min(GR_NOTE.length-1,k+(gr.printRun>1?2:0))],0.15,'triangle',0.1);
+  grPaper();grMini();grHudLight();grAskText();grLine();
+  if(gr.qi>=gr.n){gr.nextMs=GR_PRINT_MS;grT(grWin,GR_PRINT_MS+120)}
+}
+function grPop2(x,y,t){grPop(x,y,t,'#FFEE58')}
+function grWin(){
+  if(gr.over||gr.qi<gr.n)return;
+  gr.words++;
+  grAdd('hz_gear_words',1);
+  const spare=gr.gearN*4+gr.beltN*6;
+  let gain=24+gr.n*6+gr.lv*5+Math.round(gr.clock*10*0.7)+spare;
+  if(gr.cleanWord){gain+=GR_CLEAN_BONUS;grAdd('hz_gear_perfect',1)}
+  gr.score+=gain;
+  grAdd('hz_gear_score',Math.round(gain));
+  grPop(GR_X0+GR_BW/2-20,GR_PY-10,'🏁 +'+gain,'#FFF176');
+  grTone(659,0.14,'triangle',0.1);
+  grTone(784,0.16,'triangle',0.1);
+  grT(grTone.bind(null,1046,0.2,'triangle',0.1),150);
+  grBookAdd(gr.rec.ch);
+  grMissDel(gr.rec.ch);
+  const oldLv=gr.lv;
+  gr.lv=grLvOf(gr.words);
+  if(gr.lv>oldLv){
+    gr.hintN++;gr.giveN++;gr.respinN++;
+    grSay('🚀 <b>升到第 '+gr.lv+' 段</b>！皮带更 <b>必须</b>、砖块和焊死的轮更多'+(gr.lv>=6?'、还有 <b>🪫 松脱</b>':'')+' —— 三件工具各补 1 次','#FFF176');
+  }else if(gr.words%3===0&&gr.hearts<GR_HEART_MAX){
+    gr.hearts++;
+    grSay('❤️ 又装好一个字，<b>补一颗心</b>（现在 '+gr.hearts+' 颗）','#F8BBD0');
+  }else{
+    grSay('🏁 <b>'+gr.rec.ch+'</b> 整个字印出来了！省下的零件换成 <b>+'+spare+'</b> 分 —— 下一台机器正在画图纸','#C5E1A5');
+  }
+  gr.hudTxt={};
+  grHud();
+  grT(grNextWord,GR_NEXT_MS);
+}
+function grNextWord(){
+  if(!gr.run||gr.over)return;
+  if(!grNewWord()){grEnd('nodata');return}
+}
+function grNewWord(){
+  const rec=grPickRec();
+  if(!rec)return false;
+  gr.rec=rec;
+  gr.n=rec.n;
+  gr.qi=0;
+  gr.printRun=0;
+  gr.think=0;
+  gr.clock=1;gr.clockSec=grClockOf();gr.red=false;
+  gr.cleanWord=true;gr.jamWord=0;
+  gr.sel=-1;gr.tool=0;
+  gr.hintMs=0;gr.hintCells=[];
+  gr.looseMs=GR_LOOSE_MS;
+  const t=document.getElementById('grTGear'),u=document.getElementById('grTBelt');
+  if(t)t.classList.add('on');
+  if(u)u.classList.remove('on');
+  if(!grNewBoard()){
+    gr.rec=null;
+    return false;
+  }
+  grSay('⚙️ 新机器 <b>'+gr.rec.ch+'</b>（'+gr.n+' 笔）：牌上的 <b>'+GR_DA[0]+'/'+GR_DA[1]+'</b> 写着这块轮 <b>该朝哪儿转</b>。从 <b>🔌 马达</b> 一路咬过去 —— <b>每咬一个轮方向就翻一次</b>，翻错了拿 <b>🎗 皮带</b> 救','#C5E1A5');
+  return true;
+}
+/* ---- 工具 ---- */
+function grHint(){
+  if(!gr.run||gr.over)return;
+  if(gr.hintN<=0)return;
+  if(gr.qi>=gr.n)return;
+  gr.hintN--;gr.hints++;grAdd('hz_gear_hints',1);
+  grToolBtns();
+  const ch=(gr.sol&&gr.sol.chain[gr.qi])||[];
+  const cells=ch.filter(function(i){return !grHasAt(gr.cell,i)});
+  const belts=gr.sol?gr.sol.bl.filter(function(b){
+    let on=false;
+    for(let k=0;k<gr.belts.length;k++)if((gr.belts[k].a===b.a&&gr.belts[k].b===b.b)||(gr.belts[k].a===b.b&&gr.belts[k].b===b.a))on=true;
+    return !on&&ch.indexOf(b.b)>=0;
+  }):[];
+  const marks=cells.slice(0,5).length?cells.slice(0,5):[gr.tgt[gr.qi]];
+  gr.hintCells=marks;
+  gr.hintMs=GR_HINT_MS;
+  grMark(marks);
+  belts.slice(0,2).forEach(function(b){grRing((grCx(b.a)+grCx(b.b))/2,(grCy(b.a)+grCy(b.b))/2,16,'#FFD54F')});
+  grTone(880,0.1,'sine',0.07);
+  const nd=gr.rec.dirs[gr.qi],tp=belts[0];
+  const bt=tp?('，再拉 <b>黄圈</b> 那条 <b>🎗 皮带</b>（从 '+grNameOf(tp.a)+' 跨 <b>'+
+    (Math.abs(grCol(tp.b)-grCol(tp.a))+Math.abs(grRow(tp.b)-grRow(tp.a)))+' 格</b>到 '+grNameOf(tp.b)+'）'):'';
+  grSay('💡 要点亮的是「<b>'+GR_DIRS[nd]+' '+GR_ARW[nd]+'</b>」这块轮（'+grNameOf(gr.tgt[gr.qi])+'，它要 <b>'+GR_DA[grDn(gr.want[gr.qi])]+'</b>）—— <b>蓝圈</b> 那几格装上齿轮'+bt+'，一路接回 🔌 马达','#FFF176');
+  grHudLight();
+}
+function grGive(){
+  if(!gr.run||gr.over)return;
+  if(gr.giveN<=0)return;
+  gr.giveN--;gr.gives++;grAdd('hz_gear_gives',1);
+  grToolBtns();
+  const sol=gr.sol;
+  if(!sol)return;
+  /* 1) 先把解上还没拉的皮带拉好（缺轮就先补轮） */
+  for(let k=0;k<sol.bl.length;k++){
+    const b=sol.bl[k];
+    let have=false;
+    for(let m=0;m<gr.belts.length;m++){
+      const x=gr.belts[m];
+      if((x.a===b.a&&x.b===b.b)||(x.a===b.b&&x.b===b.a))have=true;
+    }
+    if(have)continue;
+    let put=0;
+    [b.a,b.b].forEach(function(i){
+      if(!grHasAt(gr.cell,i)&&gr.gearN>0){gr.cell[i]={t:'G'};gr.gearN--;put++}
+    });
+    const l=grBeltLink(b.a,b.b,gr.cell,gr.belts);
+    if(l.ok&&gr.beltN>0){
+      gr.belts.push({a:b.a,b:b.b});gr.beltN--;gr.beltPuts++;
+      grRing(grCx(b.b),grCy(b.b),GR_R+6,'#FFD54F');
+      grSay('🎁 替你拉好一条 <b>皮带</b>：'+grNameOf(b.a)+' ↔ '+grNameOf(b.b)+' —— 皮带两头的轮 <b>转向一样</b>，这就是它 <b>比多咬一个轮省事</b> 的地方','#FFF176');
+      gr.printRun=0;
+      grStruct();grRenderGears();grRenderBelts();grHudLight();
+      return true;
+    }
+    if(put)for(let m=0;m<put;m++){gr.gearN++}
+  }
+  /* 2) 没皮带可送就送一个解上的齿轮 */
+  for(let k=0;k<sol.gears.length;k++){
+    const i=sol.gears[k];
+    if(grHasAt(gr.cell,i))continue;
+    if(gr.gearN<=0)break;
+    gr.cell[i]={t:'G'};gr.gearN--;gr.puts++;
+    gr.printRun=0;
+    grStruct();grRenderGears();grRenderBelts();
+    grRing(grCx(i),grCy(i),GR_R+6,'#FFD54F');
+    grBits(grCx(i),grCy(i),'#FFD54F',8);
+    grSay('🎁 替你装上 <b>'+grNameOf(i)+'</b> 那块齿轮（'+(gr.turn[i]>=0?'它转 <b>'+GR_DA[gr.turn[i]]+'</b> —— 挨着它的下一格一定 <b>反过来</b>':'它还没连上马达 —— 继续挨着装，一路接回 🔌')+'）','#FFF176');
+    grHudLight();
+    return true;
+  }
+  /* 3) 都装好了就补零件 */
+  gr.gearN+=2;gr.gearMax+=2;
+  grSay('🎁 这台已经装得差不多了，<b>补你 2 个齿轮</b>（篮子 '+gr.gearN+' 个）','#FFF176');
+  grHudLight();
+  return true;
+}
+function grHasArr(){
+  const has=[];
+  for(let i=0;i<GR_N;i++)has.push(grHasAt(gr.cell,i)?1:0);
+  return has;
+}
+function grRespin(change){
+  if(!gr.run||gr.over)return;
+  if(change){
+    if(!grNewWord())return;
+    grSay('🔄 换一台机器：新字的图纸已经画好 —— 老规矩，<b>先想方向再装轮</b>','#B3E5FC');
+    return;
+  }
+  if(gr.respinN<=0){grSay('🔄 重摆的机会用完了：手动 <b>点齿轮</b> 也能一块块退回篮子','#FFCC80');return}
+  gr.respinN--;gr.respins++;grAdd('hz_gear_resets',1);
+  for(let i=0;i<GR_N;i++)if(gr.cell[i]&&gr.cell[i].t==='G')gr.cell[i]=null;
+  gr.belts=[];
+  gr.gearN=gr.gearMax;gr.beltN=gr.beltMax;
+  gr.clock=1;gr.clockSec=grClockOf();gr.red=false;
+  gr.sel=-1;gr.printRun=0;gr.jamWas=false;
+  grStruct();grRenderGears();grRenderBelts();grHudLight();grAskText();
+  grSay('🔄 <b>拆光重装</b>：'+gr.gearMax+' 个齿轮、'+gr.beltMax+' 条皮带都回到篮子里了，时钟重新走 —— 这一台 <b>图纸没变</b>，装法你刚才已经看过了','#B3E5FC');
+  return true;
+}
+/* ---- 渲染 ---- */
+function grTeethD(){
+  const T=10,pts=[];
+  for(let k=0;k<T;k++){
+    const b=k*Math.PI*2/T,s=Math.PI*2/T;
+    pts.push([GR_RR,b+s*0.04]);
+    pts.push([GR_R,b+s*0.22]);
+    pts.push([GR_R,b+s*0.46]);
+    pts.push([GR_RR,b+s*0.64]);
+  }
+  let d='';
+  for(let i=0;i<pts.length;i++){
+    const r=pts[i][0],a=pts[i][1];
+    d+=(i?'L':'M')+(Math.cos(a)*r).toFixed(1)+' '+(Math.sin(a)*r).toFixed(1);
+  }
+  return d+'Z';
+}
+const GR_TEETH=grTeethD();
+function grBeltPath(a,b){
+  const ax=grCx(a),ay=grCy(a),bx=grCx(b),by=grCy(b),r=GR_BLT;
+  if(ay===by){
+    const L=Math.min(ax,bx),Rr=Math.max(ax,bx);
+    return 'M'+L.toFixed(1)+' '+(ay-r).toFixed(1)+'L'+Rr.toFixed(1)+' '+(ay-r).toFixed(1)+
+      'A'+r+' '+r+' 0 0 1 '+Rr.toFixed(1)+' '+(ay+r).toFixed(1)+
+      'L'+L.toFixed(1)+' '+(ay+r).toFixed(1)+
+      'A'+r+' '+r+' 0 0 1 '+L.toFixed(1)+' '+(ay-r).toFixed(1)+'Z';
+  }
+  const T=Math.min(ay,by),Bt=Math.max(ay,by),x=ax;
+  return 'M'+(x-r).toFixed(1)+' '+T.toFixed(1)+'L'+(x-r).toFixed(1)+' '+Bt.toFixed(1)+
+    'A'+r+' '+r+' 0 0 1 '+(x+r).toFixed(1)+' '+Bt.toFixed(1)+
+    'L'+(x+r).toFixed(1)+' '+T.toFixed(1)+
+    'A'+r+' '+r+' 0 0 1 '+(x-r).toFixed(1)+' '+T.toFixed(1)+'Z';
+}
+function grRenderStatic(){
+  const g=document.getElementById('grStatic');
+  if(!g)return;
+  let h='<rect class="gr-board" x="'+GR_BX+'" y="'+GR_BY+'" width="'+GR_BW+'" height="'+GR_BH+'" rx="20"/>';
+  for(let i=0;i<GR_N;i++){
+    const c=grCol(i),r=grRow(i);
+    h+='<rect class="gr-cell '+((c+r)%2?'lite':'dark')+'" id="grC'+i+'" x="'+(GR_X0+c*GR_CELL+3)+'" y="'+(GR_Y0+r*GR_CELL+3)+'" width="'+(GR_CELL-6)+'" height="'+(GR_CELL-6)+'" rx="14"/>';
+  }
+  const bo=[[GR_BX+14,GR_BY+14],[GR_BX+GR_BW-14,GR_BY+14],[GR_BX+14,GR_BY+GR_BH-14],[GR_BX+GR_BW-14,GR_BY+GR_BH-14]];
+  for(let i=0;i<bo.length;i++)h+='<circle class="gr-bolt" cx="'+bo[i][0]+'" cy="'+bo[i][1]+'" r="4"/>';
+  h+='<rect class="gr-paper" x="'+(GR_PX-6)+'" y="'+GR_PY+'" width="'+(GR_CW*GR_CELL+12)+'" height="'+GR_PH+'" rx="10"/>';
+  h+='<text class="gr-ptxt" x="'+(GR_PX+8)+'" y="'+(GR_PY-6)+'" text-anchor="start">📜 纸带 · 印出来的笔按笔顺排在这儿</text>';
+  g.innerHTML=h;
+}
+function grGearHTML(i){
+  const c=gr.cell[i];
+  if(!c)return '';
+  if(c.t==='W')return '<g class="gr-gear walled" id="grG'+i+'" data-t="W" transform="translate('+grCx(i)+','+grCy(i)+')"><text class="gr-wall" y="11">🧱</text></g>';
+  const x=grCx(i),y=grCy(i);
+  const cls=c.t==='M'?'motor':(c.t==='S'?'tgt':(c.t==='F'?'fix':(c.t==='G'?'free':'locked')));
+  let h='<g class="gr-gear '+cls+'" id="grG'+i+'" data-t="'+c.t+'" transform="translate('+x+','+y+')">';
+  h+='<g class="gr-spin" data-d="-1"><path class="gr-teeth" d="'+GR_TEETH+'"/>'+
+    '<line class="gr-spoke" x1="-19" y1="0" x2="19" y2="0"/><line class="gr-spoke" x1="0" y1="-19" x2="0" y2="19"/>'+
+    '<circle class="gr-dot" cx="0" cy="'+(-GR_RR+7)+'" r="3.4"/></g>';
+  h+='<circle class="gr-rim" r="'+GR_RIM+'"/>';
+  h+='<g class="gr-fc">';
+  if(c.t==='S'){
+    const k=c.k!==undefined?c.k:i,dir=gr.gly[k],d=dir?grDn(dir.dir):0;
+    h+='<circle class="gr-face" r="'+GR_RF+'" fill="'+GR_PLATE[d]+'"/>';
+    h+='<g transform="scale(0.78)">'+grGlyHTML(dir)+'</g>';
+    h+='<text class="gr-arw" x="'+(GR_RF-5)+'" y="'+(-GR_RF+9)+'" fill="'+GR_DC[gr.want[k]]+'">'+GR_DA[gr.want[k]]+'</text>';
+    h+='<text class="gr-nm" y="'+(GR_RF-5)+'">'+(k+1)+'</text>';
+  }else if(c.t==='M'){
+    h+='<circle class="gr-face" r="'+GR_RF+'"/>';
+    h+='<text class="gr-moto" y="6">🔌</text>';
+    h+='<text class="gr-arw" x="'+(GR_RF-6)+'" y="'+(-GR_RF+9)+'" fill="'+GR_DC[0]+'">'+GR_DA[0]+'</text>';
+  }else{
+    h+='<circle class="gr-hub" r="6"/>';
+    if(c.t==='F')h+='<text class="gr-moto" x="'+(-GR_RF+8)+'" y="'+(-GR_RF+10)+'">🔩</text>';
+  }
+  h+='</g></g>';
+  return h;
+}
+function grRenderGears(){
+  const g=document.getElementById('grGearG');
+  if(!g)return;
+  let h='';
+  for(let i=0;i<GR_N;i++)h+=grGearHTML(i);
+  g.innerHTML=h;
+  gr.gels=[];
+  const list=g.querySelectorAll('.gr-gear .gr-spin');
+  for(let k=0;k<list.length;k++)gr.gels.push(list[k]);
+  grPaintGearCls();
+  grSpinRender();
+  const p=document.getElementById('grTopG');
+  if(p)grCursor();
+}
+function grPaintGearCls(){
+  for(let i=0;i<GR_N;i++){
+    const el=document.getElementById('grG'+i),c=gr.cell[i];
+    if(!el||!c)continue;
+    const t=gr.turn[i];
+    const locked=(c.t==='S'||c.t==='F'||c.t==='M'||c.t==='W');
+    el.classList.toggle('locked',locked);
+    let bad=false,good=false;
+    if(c.t==='S'&&t>=0){bad=t!==gr.want[c.k];good=!bad}
+    el.classList.toggle('bad',bad);
+    el.classList.toggle('lit',good);
+    const rim=el.querySelector('.gr-rim');
+    if(rim){
+      rim.classList.toggle('on',t>=0);
+      rim.setAttribute('stroke',t>=0?GR_DC[t]:'#90A4AE');
+    }
+    if(gr.sel===i)el.classList.add('sel');else el.classList.remove('sel');
+    const sp=el.querySelector('.gr-spin');
+    if(sp)sp.setAttribute('data-d',String(t));
+  }
+}
+function grRenderBelts(){
+  const g=document.getElementById('grBeltG');
+  if(!g)return;
+  let h='';
+  for(let k=0;k<gr.belts.length;k++){
+    const b=gr.belts[k];
+    h+='<g class="gr-belt" id="grB'+k+'" data-b="'+k+'">'+
+      '<path class="gr-beltHit" d="'+grBeltPath(b.a,b.b)+'"/>'+
+      '<path class="gr-bl" d="'+grBeltPath(b.a,b.b)+'"/>'+
+      '<path class="gr-bl2" d="'+grBeltPath(b.a,b.b)+'"/></g>';
+  }
+  g.innerHTML=h;
+  grRenderBeltCls();
+}
+function grRenderBeltCls(){
+  for(let k=0;k<gr.belts.length;k++){
+    const el=document.getElementById('grB'+k);
+    if(!el)continue;
+    el.classList.toggle('jam',gr.jam&&gr.badBelt.indexOf(k)>=0);
+    el.classList.toggle('sel',gr.tool===1&&gr.sel>=0&&gr.sel===gr.belts[k].a);
+  }
+}
+function grRenderMesh(){
+  const g=document.getElementById('grMeshG');
+  if(!g)return;
+  let h='';
+  for(let k=0;k<gr.mesh.length;k++){
+    const e=gr.mesh[k];
+    const x=(grCx(e[0])+grCx(e[1]))/2,y=(grCy(e[0])+grCy(e[1]))/2;
+    const on=gr.turn[e[0]]>=0&&gr.turn[e[1]]>=0;
+    h+='<circle class="gr-mesh'+(on?'':' off')+'" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="3"/>';
+  }
+  g.innerHTML=h;
+}
+function grSpinRender(){
+  if(!gr.gels||!gr.gels.length)return;
+  for(let k=0;k<gr.gels.length;k++){
+    const el=gr.gels[k];
+    const d=+(el.getAttribute('data-d')||'-1');
+    if(d<0){el.setAttribute('transform','rotate(0)');continue}
+    el.setAttribute('transform','rotate('+(d?(-gr.ang%360):(gr.ang%360)).toFixed(1)+')');
+  }
+}
+function grPaper(){
+  const g=document.getElementById('grPaperG');
+  if(!g)return;
+  if(!gr.rec){g.innerHTML='';return}
+  const n=gr.n,w=Math.min(70,(GR_CW*GR_CELL)/n),gap=2;
+  const x0=GR_X0+((GR_CW*GR_CELL)-n*(w+gap))/2;
+  let h='';
+  for(let k=0;k<n;k++){
+    const x=x0+k*(w+gap),y=GR_PY+6,side=Math.min(w-12,GR_PH-14);
+    const inIt=k<gr.qi,now=k===gr.qi;
+    h+='<rect class="'+(now?'gr-pnow':'gr-pbox')+'" x="'+x.toFixed(1)+'" y="'+y+'" width="'+(w-gap).toFixed(1)+'" height="'+(GR_PH-12)+'" rx="7"/>';
+    if(inIt){
+      const gl=gr.gly[k];
+      h+='<g transform="translate('+(x+(w-gap)/2).toFixed(1)+','+(y+(GR_PH-12)/2).toFixed(1)+') scale('+((side/44)*0.9).toFixed(3)+')">'+grGlyHTML(gl)+'</g>';
+    }else h+='<text class="gr-ptxt" x="'+(x+(w-gap)/2).toFixed(1)+'" y="'+(y+(GR_PH-12)/2+4).toFixed(1)+'">'+(k+1)+'</text>';
+  }
+  g.innerHTML=h;
+}
+function grMini(){
+  const svg=document.getElementById('grMiniSvg');
+  if(!svg)return;
+  if(!gr.rec){svg.innerHTML='';return}
+  const sp=(gr.rec.raw&&gr.rec.raw.strokes)||[];
+  let h='<g transform="scale(1,-1)"><path d="M512 40V984M40 512H984" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="14 12"/>';
+  for(let i=0;i<gr.n;i++){
+    const got=i<gr.qi;
+    const col=got?GR_INK[grDn(gr.rec.dirs[i])]:(i===gr.qi?'rgba(255,245,157,.95)':'rgba(255,255,255,.22)');
+    h+='<path d="'+grDOf(sp,i)+'" fill="'+col+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  grSet('grMiniCap',gr.rec.ch+' '+gr.qi+'/'+gr.n+' 笔');
+}
+function grBasketHTML(){
+  let h='';
+  const g=Math.min(10,gr.gearN),b=Math.min(6,gr.beltN);
+  for(let i=0;i<g;i++)h+='<div class="gr-nd in">⚙️</div>';
+  if(gr.gearN>10)h+='<div class="gr-nd in">×'+gr.gearN+'</div>';
+  for(let i=0;i<b;i++)h+='<div class="gr-nd belt">🎗</div>';
+  if(gr.beltN>6)h+='<div class="gr-nd belt">×'+gr.beltN+'</div>';
+  if(!gr.gearN)h+='<div class="gr-nd">⚙️ 0</div>';
+  if(!gr.beltN&&gr.beltMax)h+='<div class="gr-nd">🎗 0</div>';
+  return h+'<span class="gr-more"></span>';
+}
+function grBasket(){
+  const el=document.getElementById('grBasket');
+  if(el){const h=grBasketHTML();el.setAttribute('data-h',h);el.innerHTML=h}
+  gr.hudTxt.bask='';
+  grBasketLight();
+}
+function grBasketLight(){
+  const el=document.getElementById('grBasket');
+  if(!el)return;
+  const chips=grBasketHTML();
+  if((el.getAttribute('data-h')||'')!==chips){el.setAttribute('data-h',chips);el.innerHTML=chips}
+  const more=el.querySelector('.gr-more');
+  if(!more)return;
+  if(!gr.rec){if(gr.hudTxt.bask!==''){gr.hudTxt.bask='';more.innerHTML=''}return}
+  const k=Math.min(gr.qi,gr.n-1),nd=gr.rec.dirs[k];
+  const t=gr.qi>=gr.n?'🏁 这一台已经印满了':
+    '📦 <b>'+gr.gearN+'</b> 个齿轮 · <b>'+gr.beltN+'</b> 条皮带 · 要点亮的是第 '+(gr.qi+1)+' 笔「<b>'+GR_DIRS[nd]+' '+GR_ARW[nd]+'</b>」那块轮（要 <b>'+GR_DA[grDn(gr.want[k])]+'</b>）';
+  if(gr.hudTxt.bask!==t){gr.hudTxt.bask=t;more.innerHTML=t}
+}
+function grMeter(){
+  const bar=document.getElementById('grClockBar'),tt=document.getElementById('grClockTxt'),
+    bx=document.getElementById('grClockBox'),pl=document.getElementById('grPlan');
+  const w=(grClamp(gr.clock,0,1)*100).toFixed(1)+'%';
+  if(bx)bx.classList.toggle('low',gr.clock<=12/Math.max(1,gr.clockSec));
+  if(bar&&gr.hudTxt.bar!==w){gr.hudTxt.bar=w;bar.style.width=w}
+  const left=Math.max(0,Math.ceil(gr.clock*gr.clockSec));
+  const t='⏳ 还有 '+left+' 秒 · 印 '+gr.qi+'/'+gr.n+' 笔';
+  if(tt&&gr.hudTxt.tt!==t){gr.hudTxt.tt=t;tt.textContent=t}
+  const c=(gr.sol?('🎗 这台必须用 '+gr.sol.needBelt+' 条皮带'):'🎗 图纸还没画')+' · ⚙️ 篮 '+gr.gearN+'/'+gr.gearMax;
+  if(pl&&gr.hudTxt.pl!==c){gr.hudTxt.pl=c;pl.textContent=c}
+  const tg=document.getElementById('grLooseTag');
+  if(tg)tg.classList.toggle('on',gr.looseTag>0);
+  const bd=document.getElementById('grBadge');
+  if(bd){
+    const q=[];
+    let nf=0,ns=0,nw=0,ng=0;
+    for(let i=0;i<GR_N;i++){const c2=gr.cell[i];if(!c2)continue;if(c2.t==='F')nf++;else if(c2.t==='S')ns++;else if(c2.t==='W')nw++;else if(c2.t==='G')ng++}
+    if(ng)q.push('⚙️ 已装 ×'+ng);
+    if(nf)q.push('🔩 焊死 ×'+nf);
+    if(nw)q.push('🧱 ×'+nw);
+    if(gr.belts.length)q.push('🎗 ×'+gr.belts.length);
+    if(gr.mesh.length)q.push('咬合 ×'+gr.mesh.length);
+    if(gr.combo>=5)q.push('🌈 连 '+gr.combo);
+    const bg=q.join(' · ');
+    if(gr.hudTxt.badge!==bg){gr.hudTxt.badge=bg;bd.textContent=bg}
+    bd.classList.toggle('on',!!bg);
+  }
+  grBasketLight();
+}
+function grHudLight(){
+  const sc=document.getElementById('grScoreTxt'),t='🎯 '+Math.round(gr.score)+' 分';
+  if(sc&&gr.hudTxt.sc!==t){gr.hudTxt.sc=t;sc.textContent=t}
+  const lv=document.getElementById('grLvTxt'),v='第 '+gr.lv+' 段 · '+(gr.rec?gr.rec.ch:'—')+' '+gr.n+' 笔';
+  if(lv&&gr.hudTxt.lv!==v){gr.hudTxt.lv=v;lv.textContent=v}
+  const lt=document.getElementById('grLitTxt'),l='✅ '+gr.lits+' 笔';
+  if(lt&&gr.hudTxt.lt!==l){gr.hudTxt.lt=l;lt.textContent=l}
+  const cb=document.getElementById('grComboTxt'),c='🔥 连 '+gr.combo;
+  if(cb&&gr.hudTxt.cb!==c){gr.hudTxt.cb=c;cb.textContent=c}
+  const mt=document.getElementById('grMeshTxt'),m='⚙️ '+gr.puts;
+  if(mt&&gr.hudTxt.mu!==m){gr.hudTxt.mu=m;mt.textContent=m}
+  const bt=document.getElementById('grBeltTxt'),b='🎗 '+gr.beltPuts;
+  if(bt&&gr.hudTxt.bu!==b){gr.hudTxt.bu=b;bt.textContent=b}
+  const jt=document.getElementById('grJamTxt'),j='🔒 '+gr.jams;
+  if(jt&&gr.hudTxt.jm!==j){gr.hudTxt.jm=j;jt.textContent=j}
+  const ft=document.getElementById('grFallTxt'),f='🪫 '+gr.falls;
+  if(ft&&gr.hudTxt.fa!==f){gr.hudTxt.fa=f;ft.textContent=f}
+  grMeter();
+}
+function grHud(){
+  const R=grRank(grInt('hz_gear_words'));
+  grSet('grRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<GR_HEART_MAX;i++)hs+=(i<gr.hearts?'❤️':'🖤');
+  grSet('grHeartTxt',hs||'🖤');
+  grSet('grScoreTxt','🎯 '+Math.round(gr.score)+' 分');
+  grSet('grLvTxt','第 '+gr.lv+' 段 · '+(gr.rec?gr.rec.ch:'—')+' '+gr.n+' 笔');
+  grSet('grComboTxt','🔥 连 '+gr.combo);
+  grSet('grLitTxt','✅ '+gr.lits+' 笔');
+  grSet('grMeshTxt','⚙️ '+gr.puts);
+  grSet('grBeltTxt','🎗 '+gr.beltPuts);
+  grSet('grJamTxt','🔒 '+gr.jams);
+  grSet('grFallTxt','🪫 '+gr.falls);
+  const hb=document.getElementById('grHintBtn');
+  if(hb){hb.disabled=gr.hintN<=0;hb.textContent='💡 指路 ×'+gr.hintN}
+  const gb=document.getElementById('grGiveBtn');
+  if(gb){gb.disabled=gr.giveN<=0;gb.textContent='🎁 送件 ×'+gr.giveN}
+  grMini();grBasket();grPaper();grHudLight();
+}
+function grToolBtns(){
+  const hb=document.getElementById('grHintBtn');
+  if(hb){hb.disabled=gr.hintN<=0;hb.textContent='💡 指路 ×'+gr.hintN}
+  const gb=document.getElementById('grGiveBtn');
+  if(gb){gb.disabled=gr.giveN<=0;gb.textContent='🎁 送件 ×'+gr.giveN}
+}
+function grAskText(){
+  if(!gr.rec)return;
+  if(gr.qi>=gr.n){
+    grSet('grAsk','🏁 <b>'+gr.rec.ch+'</b> 的 '+gr.n+' 笔全印出来了 —— 这台收工，下一台机器正在画图纸<br><small>'+
+      '篮里 <b>'+gr.gearN+' 个齿轮 · '+gr.beltN+' 条皮带</b> · 这台 <b>要用 '+((gr.sol&&gr.sol.needBelt)||0)+' 条皮带</b> · ⏳ <b>'+Math.max(0,Math.ceil(gr.clock*gr.clockSec))+' 秒</b> · 咬合 <b>'+gr.mesh.length+' 处</b></small>');
+    return;
+  }
+  const k=Math.min(gr.qi,gr.n-1),nd=gr.rec.dirs[k];
+  grSet('grAsk','⚙️ <b>'+gr.rec.ch+'</b> 的第 '+(gr.qi+1)+' 笔（共 '+gr.n+' 笔）—— 让写着 <b>'+GR_DIRS[nd]+' '+GR_ARW[nd]+'</b> 的那块轮 <b>朝 '+GR_DA[gr.want[k]]+' 转起来</b><br><small>'+
+    '篮里 <b>'+gr.gearN+' 个齿轮 · '+gr.beltN+' 条皮带</b> · 这台 <b>要用 '+((gr.sol&&gr.sol.needBelt)||0)+' 条皮带</b> · ⏳ <b>'+Math.max(0,Math.ceil(gr.clock*gr.clockSec))+' 秒</b> · 咬合 <b>'+gr.mesh.length+' 处</b></small>');
+}
+function grLine(){
+  const el=document.getElementById('grHintLine');
+  if(!el)return;
+  if(!gr.run||gr.over||!gr.rec){el.innerHTML='🔧 <b>正在给机器上油</b>……';return}
+  if(gr.jam){el.innerHTML='🔒 <b>机器卡死了</b> —— 点那条 <b>变红的 🎗 皮带</b> 拆掉（键盘 <code>X</code> 拆光标处的轮）';return}
+  if(gr.nextMs>0){el.innerHTML='🏁 <b>整个字印出来了</b> —— 下一台机器正在画图纸';return}
+  if(gr.qi>=gr.n){el.innerHTML='🏁 印满了 —— 等机器收工';return}
+  const k=gr.qi,i=gr.tgt[k],t=gr.turn[i];
+  if(t>=0&&t===gr.want[k]){el.innerHTML='✨ <b>方向对上了！</b>「'+GR_DIRS[gr.rec.dirs[k]]+'」这块轮正在 <b>'+GR_DN[t]+'</b> 转 —— 纸带 <b>马上自己印这一笔</b>';return}
+  if(t>=0){el.innerHTML='🔄 这块轮在转，可是 <b>方向反了</b>（它 '+GR_DA[t]+'、牌子要 '+GR_DA[gr.want[k]]+'）—— <b>绕远一格</b>（咬合翻向）或 <b>拉 🎗 皮带</b>（跨单数格才翻得动）';return}
+  if(gr.tool===1&&gr.sel>=0){el.innerHTML='🎗 皮带起点在 <b>'+grNameOf(gr.sel)+'</b> —— 再点一个 <b>同行或同列、中间空着</b> 的轮（<code>方向键</code> 移光标 + <code>Enter</code>）';return}
+  el.innerHTML='⚙️ <b>点空格子装齿轮</b>（<code>方向键</code> 移光标 + <code>Enter</code>，<code>1</code>=装轮 <code>2</code>=皮带，再点一下 <b>退回来</b>）—— 把 <b>🔌 马达</b> 的转动接到 '+grNameOf(i)+' 那块轮，它要 <b>'+GR_DA[gr.want[k]]+'</b>';
+}
+/* ---- 特效 ---- */
+function grFxHost(){return document.getElementById('grFx')}
+function grPut(host,el,ms){
+  host.appendChild(el);
+  grT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function grBits(x,y,col,n){
+  const host=grFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='gr-bit';
+    b.style.left=(x/GR_W*100)+'%';b.style.top=(y/GR_H*100)+'%';
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=20+Math.random()*44;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r).toFixed(1)+'px');
+    grPut(host,b,760);
+  }
+}
+function grPop(x,y,txt,col){
+  const host=grFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='gr-pop';
+  el.style.left=(x/GR_W*100)+'%';el.style.top=(y/GR_H*100)+'%';
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  grPut(host,el,980);
+}
+function grShakeFx(){
+  const el=document.querySelector('.gr-tbl');if(!el)return;
+  el.classList.remove('gr-shake');void el.offsetWidth;el.classList.add('gr-shake');
+}
+function grTblCls(cls,ms){
+  const el=document.getElementById('grTbl');
+  if(!el)return;
+  el.classList.add(cls);
+  grT(function(){el.classList.remove(cls)},ms);
+}
+function grRing(x,y,r,col){
+  const g=document.getElementById('grTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+  c.setAttribute('r',String(Math.round(r)));c.setAttribute('fill','none');
+  c.setAttribute('stroke',col||'rgba(255,235,59,.9)');c.setAttribute('stroke-width','3');
+  c.setAttribute('class','gr-ring');
+  g.appendChild(c);
+  grT(function(){if(c.parentNode)c.parentNode.removeChild(c)},920);
+}
+function grMark(cells){
+  const g=document.getElementById('grTopG');if(!g)return;
+  (cells||[]).forEach(function(i){
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',grCx(i));c.setAttribute('cy',grCy(i));c.setAttribute('r',String(GR_R+6));
+    c.setAttribute('fill','none');c.setAttribute('stroke','#40C4FF');c.setAttribute('stroke-width','3.4');
+    c.setAttribute('class','gr-mark');
+    g.appendChild(c);
+    grT(function(){if(c.parentNode)c.parentNode.removeChild(c)},GR_HINT_MS);
+  });
+}
+function grSmoke(i){
+  const g=document.getElementById('grTopG');if(!g)return;
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x',grCx(i));t.setAttribute('y',grCy(i)-GR_R-4);
+  t.setAttribute('class','gr-smoke');t.textContent='💨';
+  g.appendChild(t);
+  grT(function(){if(t.parentNode)t.parentNode.removeChild(t)},1500);
+}
+function grFlash(){
+  const g=document.getElementById('grTopG');if(!g)return;
+  const r=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  r.setAttribute('x',GR_BX);r.setAttribute('y',GR_BY);
+  r.setAttribute('width',GR_BW);r.setAttribute('height',GR_BH);
+  r.setAttribute('rx','20');r.setAttribute('class','gr-flash');
+  g.appendChild(r);
+  grT(function(){if(r.parentNode)r.parentNode.removeChild(r)},GR_FLASH_MS+40);
+}
+function grCursor(){
+  const g=document.getElementById('grTopG');
+  if(!g)return;
+  const old=document.getElementById('grCurBox');
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  if(gr.cur===undefined||gr.cur<0||gr.cur>=GR_N)return;
+  const c=grCol(gr.cur),r=grRow(gr.cur);
+  const el=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  el.setAttribute('id','grCurBox');
+  el.setAttribute('x',GR_X0+c*GR_CELL+2);el.setAttribute('y',GR_Y0+r*GR_CELL+2);
+  el.setAttribute('width',GR_CELL-4);el.setAttribute('height',GR_CELL-4);
+  el.setAttribute('rx','14');el.setAttribute('class','gr-cur');
+  g.appendChild(el);
+}
+/* ---- 主循环 ---- */
+function grStartLoop(){grStopLoop();gr.last=0;gr.rafId=requestAnimationFrame(grLoop)}
+function grStopLoop(){if(gr.rafId){cancelAnimationFrame(gr.rafId);gr.rafId=0}gr.last=0}
+function grLoop(ts){
+  if(!gr.run||gr.over){gr.rafId=0;return}
+  const dt=gr.last?Math.min(0.05,(ts-gr.last)/1000):0.016;
+  gr.last=ts;
+  grTick(dt);
+  gr.rafId=requestAnimationFrame(grLoop);
+}
+function grTick(dt){
+  const ms=dt*1000;
+  gr.t+=dt;gr.playMs+=ms;
+  gr.tones=6;
+  gr.ang+=GR_SPD*dt;
+  grSpinRender();
+  if(gr.hintMs>0){
+    gr.hintMs=Math.max(0,gr.hintMs-ms);
+    if(!gr.hintMs)gr.hintCells=[];
+  }
+  if(gr.looseTag>0)gr.looseTag=Math.max(0,gr.looseTag-ms);
+  if(gr.printMs>0){gr.printMs=Math.max(0,gr.printMs-ms);if(!gr.printMs)grTryPrint();return}
+  if(gr.nextMs>0){gr.nextMs=Math.max(0,gr.nextMs-ms);grMeter();return}
+  if(!gr.rec||gr.over)return;
+  gr.think+=ms;
+  gr.clock-=dt/Math.max(1,gr.clockSec);
+  const left=Math.ceil(gr.clock*gr.clockSec);
+  if(gr.clock<=12/Math.max(1,gr.clockSec)&&gr.clock>0){
+    gr.beep+=ms;
+    if(gr.beep>=1000){gr.beep=0;grTone(900,0.05,'sine',0.05)}
+    if(!gr.red){gr.red=true;grSay('⚠️ <b>时钟变红了</b>：还剩 '+left+' 秒就走光 —— 机器会 <b>散架</b>（拆掉几块齿轮）并掉一颗心。先把 <b>最近那块轮</b> 接上','#FFCC80')}
+  }
+  if(gr.clock<=0){gr.clock=0;grClockOut();return}
+  if(grLooseOf(gr.lv)){
+    gr.looseMs-=ms;
+    if(gr.looseMs<=0){gr.looseMs=GR_LOOSE_MS;grLoose()}
+  }
+  if(gr.think>=GR_NAG_MS){gr.think=0;grNag()}
+  grTryPrint();
+  grHudLight();
+}
+/* ---- 输入 ---- */
+function grCursorSay(){
+  const i=gr.cur,c=gr.cell[i],t=gr.turn[i];
+  if(!gr.rec)return;
+  let s;
+  if(c&&c.t==='S'){
+    const k=c.k!==undefined?c.k:gr.tgt.indexOf(i);
+    s='👉 光标在 <b>刻字轮</b>（第 '+(k+1)+' 笔「'+GR_DIRS[grDn(gr.rec.dirs[k])]+'」）：它要 <b>'+GR_DA[grDn(gr.want[k])]+'</b>，现在 <b>'+(t<0?'还没连上马达':GR_DN[t])+'</b>';
+  }else if(c&&c.t==='G'){
+    s='👉 光标在 <b>你装的齿轮</b> 上：按 <code>Enter</code> <b>退回篮子</b>（现在转 '+(t>=0?GR_DA[t]:'没连上')+'）';
+  }else if(c&&c.t==='W'){
+    s='👉 光标在 <b>🧱 砖块</b> 上：装不了轮、皮带也拉不过去';
+  }else if(c&&c.t==='F'){
+    s='👉 光标在 <b>🔩 焊死的轮</b> 上：拆不掉，现在 <b>'+(t<0?'还没连上马达':GR_DN[t])+'</b> —— 隔壁那格咬上去一定反过来';
+  }else if(c&&c.t==='M'){
+    s='👉 光标在 <b>🔌 马达</b>：它一直 <b>↻ 顺时针</b>，整台机器的方向都从它数起';
+  }else{
+    s='👉 光标在 <b>'+grNameOf(i)+'</b> 的空格上：按 <code>Enter</code> <b>装一个齿轮</b>';
+  }
+  grSay(s,'#B3E5FC');
+}
+function grBind(){
+  if(gr.bound)return;
+  gr.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='gear'||!gr.run||gr.over)return;
+    const k=e.key,K=String(k||'').toLowerCase();
+    if(K==='arrowleft'||K==='arrowright'||K==='arrowup'||K==='arrowdown'){
+      if(e.repeat)return;
+      if(gr.cur===undefined||gr.cur<0)gr.cur=0;
+      let c=grCol(gr.cur),r=grRow(gr.cur);
+      if(K==='arrowleft')c--;
+      else if(K==='arrowright')c++;
+      else if(K==='arrowup')r--;
+      else r++;
+      gr.cur=grClamp(r,0,GR_CH-1)*GR_CW+grClamp(c,0,GR_CW-1);
+      gr.think=0;
+      grCursor();
+      grCursorSay();
+      e.preventDefault();return;
+    }
+    if(K==='enter'){if(!e.repeat)grTap(gr.cur<0?0:gr.cur);e.preventDefault();return}
+    if(k===' '){if(!e.repeat)grTap(gr.cur<0?0:gr.cur);e.preventDefault();return}
+    if(K==='1'){if(!e.repeat)grPickTool(0);return}
+    if(K==='2'){if(!e.repeat)grPickTool(1);return}
+    if(K==='x'){if(!e.repeat)grRemoveAt(gr.cur<0?0:gr.cur);return}
+    if(K==='q'){if(!e.repeat)grHint();return}
+    if(K==='w'){if(!e.repeat)grGive();return}
+    if(K==='r'){if(!e.repeat)grRespin(false);return}
+    if(k==='?'){grHelp();return}
+  });
+}
+function grPointer(){
+  const svg=document.getElementById('grSvg');
+  if(!svg||gr.ptrBound)return;
+  gr.ptrBound=true;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='gear'||!gr.run||gr.over)return;
+    if(!ev.target.closest)return;
+    const bl=ev.target.closest('.gr-belt');
+    if(bl){
+      const bi=parseInt(String(bl.getAttribute('data-b')),10);
+      if(!isNaN(bi)){gr.think=0;grUnbelt(bi);if(ev.preventDefault)ev.preventDefault()}
+      return;
+    }
+    const ge=ev.target.closest('.gr-gear');
+    const ce=ge?null:ev.target.closest('.gr-cell');
+    let i=-1;
+    if(ge)i=parseInt(String(ge.id||'').replace('grG',''),10);
+    else if(ce)i=parseInt(String(ce.id||'').replace('grC',''),10);
+    if(isNaN(i)||i<0)return;
+    gr.cur=i;
+    grCursor();
+    grTap(i);
+    if(ev.preventDefault)ev.preventDefault();
+  });
+}
+/* ---- 生命周期 ---- */
+function grStopAll(){grStopLoop();grKillTimers();gr.gen++;gr.printMs=0;gr.nextMs=0}
+async function grStart(){
+  grStopAll();
+  const g=gr.gen;
+  const stale=function(){return g!==gr.gen||!gr.run||gr.over};
+  gr.run=true;gr.over=false;
+  gr.timers=[];
+  gr.lv=1;gr.score=0;gr.hearts=GR_HEARTS;gr.combo=0;gr.maxCombo=0;
+  gr.words=0;gr.lits=0;gr.puts=0;gr.beltPuts=0;gr.jams=0;gr.falls=0;gr.unbelt=0;
+  gr.hints=0;gr.gives=0;gr.respins=0;gr.nags=0;gr.looseN=0;
+  gr.hintN=2;gr.giveN=2;gr.respinN=2;
+  gr.hintMs=0;gr.hintCells=[];gr.looseTag=0;gr.looseMs=GR_LOOSE_MS;gr.think=0;gr.playMs=0;gr.t=0;gr.hudTxt={};
+  gr.pool=[];gr.miss=[];gr.rec=null;gr.n=0;gr.qi=0;gr.gly=[];gr.want=[];gr.tgt=[];
+  gr.cell=new Array(GR_N).fill(null);gr.belts=[];gr.motor=-1;
+  gr.turn=new Array(GR_N).fill(-1);gr.mesh=[];gr.badBelt=[];gr.badMesh=[];
+  gr.jam=false;gr.jamWas=false;gr.sol=null;gr.tool=0;gr.sel=-1;gr.cur=-1;
+  gr.gearN=0;gr.beltN=0;gr.gearMax=0;gr.beltMax=0;
+  gr.clock=1;gr.clockSec=60;gr.red=false;gr.beep=0;
+  gr.ang=0;gr.gels=[];gr.printRun=0;gr.cleanWord=true;gr.jamWord=0;
+  showScreen('gear');
+  grBind();grPointer();
+  grPickTool(0);
+  grRenderStatic();grRenderGears();grRenderBelts();grRenderMesh();grPaper();grMini();grHud();grLine();
+  grSet('grAsk','🔧 正在给机器上油……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  grSay('墙上一台 <b>⚙️ 齿轮机</b>：<b>🔌 马达</b> 一直转。齿轮 <b>咬在一起必定反着转</b>（板子的深浅格就是转向：<b>同色同向</b>），<b>🎗 皮带</b> 套住的两个轮 <b>同方向</b>。牌上的 <b>↻ / ↺</b> 写着这块轮 <b>该朝哪儿转</b> —— 方向对上，机器就 <b>自己按笔顺在纸带上印字</b>','#C5E1A5');
+  let ok=await grBuildPool();
+  if(stale())return;
+  if(!ok){
+    grSay('🔧 油还没上完，再上一次……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await grBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!gr.pool.length){
+    gr.run=false;
+    grSet('grAsk','😢 字库没加载好<br><small>稍后再来装机</small>');
+    grSay('先去别的模式练两笔，回来字就齐了','#FFCC80');
+    return;
+  }
+  grAdd('hz_gear_games',1);
+  if(!grNewWord()){gr.run=false;grSet('grAsk','😢 图纸没画好<br><small>稍后再来装机</small>');return}
+  if(!gr.run||gr.over||stale())return;
+  grStartLoop();
+}
+function grEnd(reason){
+  if(gr.over)return;
+  gr.over=true;gr.run=false;
+  grStopAll();
+  const sc=Math.round(gr.score);
+  localStorage.setItem('hz_gear_best',String(Math.max(gr.words,grInt('hz_gear_best'))));
+  localStorage.setItem('hz_gear_streak',String(Math.max(gr.maxCombo,grInt('hz_gear_streak'))));
+  localStorage.setItem('hz_gear_lv',String(Math.max(gr.lv,grInt('hz_gear_lv'))));
+  grAdd('hz_gear_ms',Math.round(gr.playMs/1000));
+  const stars=Math.floor(sc/130)+gr.words*3;
+  if(stars>0)addStars(stars);
+  showScreen('gear-result');
+  const R=grRank(grInt('hz_gear_words'));
+  const T={
+    miss:['🔩','心丢完了，机器停了','<b>卡死 3 次</b> 或 <b>钟走光</b> 都会丢心：拉皮带前先看清 <b>这条直线上有没有轮子已经咬住</b>，那是同向和反向打架的地方'],
+    quit:['🏁','今天收工了','下次装机先想 <b>这块轮该朝哪儿转</b>，再数 <b>要咬几个轮</b> —— 方向不对就 <b>拉皮带</b>'],
+    nodata:['😢','图纸没画好','先去别的模式练两笔，回来字就齐了']
+  };
+  const t=T[reason]||T.quit;
+  grSet('grRsEmoji',t[0]);
+  grSet('grRsTitle',reason==='nodata'?t[1]:(reason==='miss'?(gr.words?'心丢了 · 已装好 '+gr.words+' 个字':t[1]):t[1]));
+  grSet('grRsSub',t[2]);
+  grSet('grRsScore',String(sc));
+  grSet('grRsWords',String(gr.words));
+  grSet('grRsLit',String(gr.lits));
+  grSet('grRsLv',String(gr.lv));
+  grSet('grRsStreak',String(gr.maxCombo));
+  grSet('grRsMiss',gr.jams+' / '+gr.falls);
+  grSet('grRsStars','⭐ '+stars);
+  grSet('grRsBest',String(grInt('hz_gear_best')));
+  grSet('grRsAll2',String(grInt('hz_gear_words')));
+  grSet('grRsAll','🏅 '+R.e+' '+R.t+' · 累计装好 '+grInt('hz_gear_words')+' 个字\n'+
+    '⚙️ 装上 '+grInt('hz_gear_mesh')+' 个齿轮 · 🎗 拉过 '+grInt('hz_gear_belts')+' 条皮带 · ✅ 印出 '+grInt('hz_gear_lits')+' 笔\n'+
+    '🔒 卡死 '+grInt('hz_gear_jams')+' 次 · 🪫 散架 '+grInt('hz_gear_falls')+' 回 · 🃏 一次不卡 '+grInt('hz_gear_perfect')+' 台\n'+
+    '💡 指路 '+grInt('hz_gear_hints')+' 次 · 🎁 送件 '+grInt('hz_gear_gives')+' 次 · 🔄 重摆 '+grInt('hz_gear_resets')+' 回\n'+
+    '👀 发呆提示 '+grInt('hz_gear_nags')+' 次 · 🚀 一局最多 '+grInt('hz_gear_best')+' 个字 · 最高装到第 '+grInt('hz_gear_lv')+' 段');
+  const book=(localStorage.getItem('hz_gear_book')||'').split(',').filter(function(c){return c.length===1});
+  grSet('grRsBookT',book.length?('📜 装机档案 · 已印满 '+book.length+' 个字'):'');
+  const bh=document.getElementById('grRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function grRetry(){grStart()}
+function grLeave(){
+  grStopAll();
+  if(gr.run&&!gr.over){gr.over=true;gr.run=false}
+  goHome();
+}
+function grNudge(){
+  const dot=document.getElementById('grCardDot'),tip=document.getElementById('grCardTip');
+  const w=grInt('hz_gear_words'),p=grInt('hz_gear_perfect'),games=grInt('hz_gear_games'),jt=grInt('hz_gear_jams');
+  const R=grRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 装好 '+w+' 个字 · 印出 '+grInt('hz_gear_lits')+' 笔 · 一次不卡 '+p+' 台'):'咬住的轮必定反着转、皮带套住的轮同向 —— 把马达的转动送到每块刻字轮，方向对上就自己印字';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function grNag(){
+  if(!gr.rec||gr.qi>=gr.n)return;
+  const k=gr.qi,i=gr.tgt[k],t=gr.turn[i];
+  const need=gr.want[k],nd=gr.rec.dirs[k];
+  gr.nags++;grAdd('hz_gear_nags',1);
+  grMark([i]);
+  grTone(660,0.08,'sine',0.06);
+  grSay('🐰 该点亮的是 <b>'+grNameOf(i)+'</b> 那块轮（第 '+(k+1)+' 笔「<b>'+GR_DIRS[nd]+' '+GR_ARW[nd]+'</b>」，牌上写着 <b>'+GR_DN[need]+' '+GR_DA[need]+'</b>）—— 它现在 <b>'+(t<0?'还没连到马达':GR_DN[t]+'转着，方向'+(t===need?'对上了':'反了'))+'</b>。<br>'+
+    (t<0?'👉 从 <b>🔌 马达</b> 开始 <b>一格一格挨着装</b>，装到它身上（每咬一个轮方向翻一次 —— 数一数 <b>隔了几格</b>：隔 <b>偶数格同向</b>、<b>奇数格反向</b>）':
+    (t===need?'👉 方向已经对了，纸带 <b>马上自己印</b>：再往前接 <b>下一块轮</b>':'👉 想让它反过来：<b>要么把路绕远一格</b>（多咬一个轮就翻），<b>要么拉一条 🎗 皮带</b> 跨过去（皮带 <b>不改方向</b>，跨 <b>单数格</b> 正好把整条路的奇偶翻过来）')),'#FFF176');
+}
+function grHelp(){
+  const n=gr.cell.filter(function(c){return c&&c.t==='G'}).length;
+  grSay('⚙️ 黄铜板上是 <b>齿轮墙</b>（<b>'+GR_CW+'×'+GR_CH+'</b>，深浅格 <b>交错</b> 像棋盘）：角落一台 <b>🔌 马达</b> 一直 <b>↻ 顺时针</b>，墙上钉着 <b>'+gr.n+' 块刻字轮</b>（牌面就是这个字其中一笔的 <b>真实笔形</b>，横红、竖青、撇蓝、捺橘，和左边米字格同一套颜色），牌角写着 <b>'+GR_DA[0]+'/'+GR_DA[1]+'</b> = 这块轮 <b>该朝哪儿转</b>。<br>'+
+    '🔩 <b>唯一规矩</b>：两个齿轮 <b>挨着就自动咬住</b>，咬住 <b>必定反向</b> —— 所以 <b>同一种颜色的格子上转向一定相同</b>，每咬一次就 <b>换一种颜色</b>。板子的深浅不是装饰，是 <b>方向表</b>。<br>'+
+    '🎗 <b>皮带不反转</b>：皮带 <b>直着</b> 套两个轮（<b>同一行或同一列、跨两格以上、中间必须空着</b>），两头 <b>转向一模一样</b> —— 需要 <b>同向</b> 时皮带比多咬两个轮省零件；跨 <b>单数格</b> 的皮带还能把整条路的奇偶 <b>翻过来</b>。<br>'+
+    '🔒 <b>会卡死</b>：同一个地方皮带要它同向、咬合要它反向，<b>两头拧不过去</b> —— 整台机器 <b>停转冒烟</b>、扣 '+GR_JAM_PEN+' 分、<b>累计 '+GR_JAM_MAX+' 次掉一颗心</b>。点那条 <b>变红的皮带</b> 拆掉就活了。<br>'+
+    '✅ <b>颜色对上就印</b>：轮子转起来轮圈会亮色（<b>橙 = '+GR_DA[0]+' 顺</b>、<b>青 = '+GR_DA[1]+' 逆</b>），和牌子上的箭头 <b>同色</b> 就装对了 —— 第 '+(gr.qi+1)+' 笔 <b>自动打进纸带</b>、米字格 <b>当场亮一笔</b>、吃 <b>连击</b>；方向反了 <b>不扣分</b>，轮子 <b>发抖发红</b> 提醒你别扭。<br>'+
+    '⚙️ 点 <b>空格子</b> 装轮（键盘 <code>方向键</code>+<code>Enter</code>），<b>再点这个轮</b> 退回篮子（<code>X</code> 同效）；<code>1</code> 装轮 <code>2</code> 拉皮带（皮带：点轮 A 再点轮 B，点皮带本身 = 拆）。<br>'+
+    '📦 <b>零件很金贵</b>：这台 <b>'+gr.gearMax+' 个齿轮 + '+gr.beltMax+' 条皮带</b>（够装解 + 一点点余量），现在篮里还有 <b>'+gr.gearN+' + '+gr.beltN+'</b> —— <b>省下来的过盘换成加分</b>（齿轮 ×4、皮带 ×6）。<br>'+
+    '🧱 <b>砖块</b>（<b>第 3 段</b> 起 '+gr.cell.filter(function(c){return c&&c.t==='W'}).length+' 块）装不进轮也拉不过皮带；🔩 <b>焊死的轮</b>（<b>第 4 段</b> 起 '+gr.cell.filter(function(c){return c&&c.t==='F'}).length+' 块）拆不掉，但 <b>正好在解上</b> 当参照物；🪫 <b>松脱</b>（<b>第 6 段</b> 起）约 <b>'+(GR_LOOSE_MS/1000)+' 秒</b> 掉一块装好的轮回篮子 —— 每一台都是 <b>先装好再拆给你看的，永远装得回去</b>。<br>'+
+    '⏳ <b>催场钟</b>：这台发 <b>'+gr.clockSec+' 秒</b>，走光机器 <b>散架</b>（拆 3 块轮、断一条皮带）并掉一颗心，<b>最后 12 秒变红</b>；已印好的笔 <b>不抹掉</b>。<br>'+
+    '💡（<code>Q</code>）圈出 <b>下一块该点亮的轮</b> 和 <b>该装轮的格子</b>；🎁（<code>W</code>）<b>替你把解上的一条皮带拉好</b>（看一遍就懂皮带跨几格）；🔄（<code>R</code>）<b>拆光重装</b> —— 三种 <b>每场各 2 次</b>，升段各补 1 次。<br>'+
+    '⚡ <b>印一笔</b> <code>round((10 + 第几笔×2 + 段数×2) × (1 + 连击×0.06))</code>，一次装配 <b>连串印出多笔</b> 再多 <code>(串长−1)×(6+段数×2)</code>；<b>每 2 个字升 1 段</b>（最多 9 段）：必须用的皮带 <b>'+grBeltNeed(1)+'→'+grBeltNeed(9)+' 条</b>、链走 '+grStepsOf(1,5)+'→'+grStepsOf(9,3)+' 格。<br>'+
+    '🏁 <b>整个字印满</b>：<b>24 + 笔数×6 + 段数×5</b> 分 + 剩钟×0.7 + <b>剩零件</b>；一次没卡死再多 <b>'+GR_CLEAN_BONUS+'</b>；每 3 个字 <b>补一颗心</b>（3 起、最多 5）。卡过死的字进 <b>错字手册</b>，下一台优先摆它。<br>'+
+    '👀 发呆 '+(GR_NAG_MS/1000)+' 秒 🐰 报方位和方向 · 战绩落盘 <code>hz_gear_*</code>','#C5E1A5');
+}
+/* ---- 测试钩子 ---- */
+window.grvCI=function(c,r){return r*GR_CW+c};
+window.GR={CW:GR_CW,CH:GR_CH,N:GR_N,CELL:GR_CELL,X0:GR_X0,Y0:GR_Y0,R:GR_R};
+window.grvInv=function(){
+  const cnt={G:0,F:0,S:0,W:0,M:0};
+  for(let i=0;i<GR_N;i++){const c=gr.cell[i];if(c)cnt[c.t]=(cnt[c.t]||0)+1}
+  return {
+    run:gr.run,over:gr.over,lv:gr.lv,score:gr.score,hearts:gr.hearts,
+    combo:gr.combo,maxCombo:gr.maxCombo,words:gr.words,lits:gr.lits,
+    puts:gr.puts,beltPuts:gr.beltPuts,jams:gr.jams,falls:gr.falls,unbelt:gr.unbelt,nags:gr.nags,
+    hints:gr.hints,gives:gr.gives,respins:gr.respins,looseN:gr.looseN,
+    ch:gr.rec?gr.rec.ch:'',n:gr.n,qi:gr.qi,dirs:gr.rec?gr.rec.dirs.slice():[],
+    motor:gr.motor,tgt:gr.tgt.slice(),want:gr.want.slice(),turn:gr.turn.slice(),
+    belts:gr.belts.map(function(b){return b.a+'-'+b.b}),
+    cell:gr.cell.map(function(c){return c?c.t+(c.k!==undefined?c.k:'')+(c.fix?'*':''):''}),
+    jam:gr.jam,badBelt:gr.badBelt.slice(),badMesh:gr.badMesh.length,mesh:gr.mesh.length,
+    gearN:gr.gearN,beltN:gr.beltN,gearMax:gr.gearMax,beltMax:gr.beltMax,
+    clock:gr.clock,clockSec:gr.clockSec,red:gr.red,cleanWord:gr.cleanWord,jamWord:gr.jamWord,
+    tool:gr.tool,sel:gr.sel,cur:gr.cur,printRun:gr.printRun,printMs:gr.printMs,nextMs:gr.nextMs,
+    playMs:gr.playMs,ang:gr.ang,tones:gr.tones,
+    sol:gr.sol?{mi:gr.sol.mi,gears:gr.sol.gears.slice(),bl:gr.sol.bl.map(function(b){return b.a+'-'+b.b}),
+      needBelt:gr.sol.needBelt,walls:gr.sol.walls.slice(),fix:gr.sol.fix.slice(),
+      chain:gr.sol.chain.map(function(c){return c.slice()})}:null,
+    cnt:cnt
+  };
+};
+window.grvSolve=function(has,belts,motor){return grSolveOf(has,belts||[],motor)};
+window.grvBelt=function(a,b){return grBeltLink(a,b,gr.cell,gr.belts)};
+window.grvGen=function(rec,lv){
+  const r=grGen(rec,lv);
+  if(!r)return {ok:0};
+  return {ok:1,mi:r.mi,tg:r.tg.slice(),want:r.want.slice(),gears:r.gears.length,path:r.path.length,
+    belts:r.bl.length,cfg:r.cfg,chain:r.chain.map(function(c){return c.slice()})};
+};
+window.grvSteps=function(lv,n){return grStepsOf(lv,n)};
+window.grvClock=function(lv,n){const o=gr.lv,b=gr.n;gr.lv=lv;gr.n=n;const s=grClockOf();gr.lv=o;gr.n=b;return s};
+window.grvDish=function(){gr.ang=0;grSpinRender()};
+window.grvWin=function(){grWin()};
+window.grvPrint=function(){return grTryPrint()};
+window.grvLoose=function(){grLoose()};
+window.grvClockOut=function(){grClockOut()};
+window.grvStruct=function(){return grStruct()};
+window.grvTick=function(dt){grTick(dt||0.05)};
+window.grvPump=function(n,dt){for(let i=0;i<(n||20);i++)grTick(dt||0.05)};
+window.grvSolveBoard=function(){
+  if(!gr.sol)return -1;
+  let put=0;
+  for(let k=0;k<gr.sol.gears.length;k++){
+    const i=gr.sol.gears[k];
+    if(grHasAt(gr.cell,i))continue;
+    if(gr.gearN<=0)break;
+    gr.cell[i]={t:'G'};gr.gearN--;gr.puts++;put++;
+  }
+  let bel=0;
+  for(let k=0;k<gr.sol.bl.length;k++){
+    const b=gr.sol.bl[k];
+    const l=grBeltLink(b.a,b.b,gr.cell,gr.belts);
+    if(l.ok&&gr.beltN>0){gr.belts.push({a:b.a,b:b.b});gr.beltN--;gr.beltPuts++;bel++}
+  }
+  gr.printRun=0;
+  grStruct();grRenderGears();grRenderBelts();grHudLight();
+  return put*100+bel;
+};
+window.grvStage=function(p){
+  p=p||{};
+  grKillTimers();gr.gen++;
+  gr.run=true;gr.over=false;
+  gr.timers=[];
+  gr.lv=p.lv||1;gr.score=p.score||0;gr.hearts=p.hearts===undefined?GR_HEARTS:p.hearts;
+  gr.combo=p.combo||0;gr.maxCombo=p.maxCombo||gr.combo;
+  gr.words=p.words||0;gr.lits=p.lits||0;
+  gr.puts=p.puts||0;gr.beltPuts=p.beltPuts||0;gr.jams=p.jams||0;gr.falls=p.falls||0;
+  gr.unbelt=0;gr.nags=0;gr.hints=0;gr.gives=0;gr.respins=0;gr.looseN=0;
+  gr.hintN=p.hintN===undefined?2:p.hintN;
+  gr.giveN=p.giveN===undefined?2:p.giveN;
+  gr.respinN=p.respinN===undefined?2:p.respinN;
+  gr.hintMs=0;gr.hintCells=[];gr.looseTag=0;gr.looseMs=GR_LOOSE_MS;
+  gr.think=0;gr.playMs=0;gr.t=0;gr.ang=0;gr.hudTxt={};
+  gr.printMs=0;gr.nextMs=0;gr.printRun=0;
+  gr.jamWas=false;gr.cleanWord=p.cleanWord===undefined?true:p.cleanWord;gr.jamWord=0;
+  gr.tool=p.tool||0;gr.sel=p.sel===undefined?-1:p.sel;gr.cur=p.cur===undefined?-1:p.cur;
+  const dirs=p.dirs||[0,1,2,3].slice(0,p.n||4);
+  const strokes=[],medians=[];
+  for(let i=0;i<dirs.length;i++){strokes.push('M100 400 L600 400 L600 460 L100 460 Z');medians.push([[100,430],[600,430]])}
+  gr.rec={ch:p.ch||'妈',n:dirs.length,dirs:dirs,raw:{strokes:strokes,medians:medians}};
+  gr.n=dirs.length;
+  gr.gly=grGlyOf(gr.rec);
+  gr.cell=new Array(GR_N).fill(null);
+  gr.belts=[];
+  gr.motor=p.motor===undefined?-1:p.motor;
+  if(gr.motor>=0)gr.cell[gr.motor]={t:'M'};
+  gr.tgt=(p.tgt||[]).map(function(x){return typeof x==='number'?x:x.i});
+  gr.want=(p.tgt||[]).map(function(x){return typeof x==='number'?0:(x.want|0)});
+  for(let k=0;k<gr.tgt.length;k++)gr.cell[gr.tgt[k]]={t:'S',k:k};
+  (p.gears||[]).forEach(function(i){if(!gr.cell[i])gr.cell[i]={t:'G'}});
+  (p.fix||[]).forEach(function(i){if(!gr.cell[i])gr.cell[i]={t:'F',fix:1}});
+  (p.walls||[]).forEach(function(i){if(!gr.cell[i])gr.cell[i]={t:'W'}});
+  (p.belts||[]).forEach(function(b){gr.belts.push({a:b.a!==undefined?b.a:b[0],b:b.b!==undefined?b.b:b[1]})});
+  gr.qi=p.qi||0;
+  gr.gearMax=p.gearMax===undefined?4:p.gearMax;
+  gr.gearN=p.gearN===undefined?gr.gearMax:p.gearN;
+  gr.beltMax=p.beltMax===undefined?2:p.beltMax;
+  gr.beltN=p.beltN===undefined?gr.beltMax:p.beltN;
+  gr.clockSec=p.clockSec||grClockOf();
+  gr.clock=p.clock===undefined?1:p.clock;
+  gr.red=!!p.red;gr.beep=0;
+  gr.sol=p.sol===null?null:(p.sol||{mi:gr.motor,tg:gr.tgt.slice(),want:gr.want.slice(),
+    gears:gr.tgt.slice(),path:[],bl:gr.belts.map(function(b){return {a:b.a,b:b.b}}),
+    chain:gr.tgt.map(function(){return []}),walls:[],fix:[],needBelt:gr.belts.length});
+  grRenderStatic();
+  grStruct();
+  grRenderGears();grRenderBelts();grRenderMesh();grPaper();grMini();grBasket();grHud();grAskText();grLine();
+  if(p.say)grSay(p.say,'#C5E1A5');
+  return 1;
+};
+window.grvSet=function(k,v){if(k==='clock')gr.clock=v;else if(k==='qi')gr.qi=v;else if(k==='ang')gr.ang=v;else if(k==='looseMs')gr.looseMs=v;else if(k==='think')gr.think=v;else if(k==='gearN')gr.gearN=v;else if(k==='beltN')gr.beltN=v;else if(k==='hearts')gr.hearts=v;else if(k==='printRun')gr.printRun=v;else if(k==='nextMs')gr.nextMs=v;else if(k==='jamWord')gr.jamWord=v;else if(k==='rec')gr.rec=v;};
+window.grvTool=function(t){grPickTool(t)};
+window.grvTap=function(i){return grTap(i)};
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
