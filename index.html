@@ -5205,6 +5205,124 @@ button:active{transform:scale(.95)}
 .mx-more{flex:1 1 100%;text-align:center;font-size:11.5px;color:#B0BEC5;margin-top:3px;line-height:1.5}
 .mx-more b{color:#FFF176}
 .mx-phead{font-size:12px;font-weight:bold;fill:#FFE082;text-anchor:middle}
+/* ================= v1.80 笔顺水闸 ================= */
+.wt-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.wt-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.wt-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.wt-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.wt-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.wt-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.wt-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.wt-cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:11px;color:#B3E5FC}
+.wt-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#0E2230 0%,#143043 44%,#081521 100%);box-shadow:inset 0 0 34px rgba(0,0,0,.6);transition:box-shadow .2s}
+.wt-tbl.hot{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 26px rgba(79,195,247,.32)}
+.wt-tbl.dead{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 30px rgba(255,82,82,.4)}
+.wt-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+/* ---- 玻璃管 / 水 ---- */
+.wt-deck{fill:rgba(8,16,24,.5);stroke:rgba(120,210,255,.2);stroke-width:2.4}
+.wt-tube{fill:rgba(180,235,255,.05);stroke:rgba(178,235,255,.42);stroke-width:2.6;pointer-events:none}
+.wt-tube.here{stroke:#FFF176;stroke-width:3.4}
+.wt-water{fill:url(#wtAqua);pointer-events:none;transition:y .34s cubic-bezier(.3,1.2,.5,1),height .34s cubic-bezier(.3,1.2,.5,1)}
+.wt-wsur{fill:rgba(224,254,255,.62);pointer-events:none;transition:y .34s cubic-bezier(.3,1.2,.5,1)}
+.wt-sill{stroke:rgba(255,213,79,.85);stroke-width:2.2;stroke-dasharray:8 6;pointer-events:none}
+.wt-sillTxt{font-size:10.5px;font-weight:bold;fill:#FFE082;text-anchor:middle;pointer-events:none}
+.wt-hit{fill:transparent;cursor:pointer}
+.wt-cur{fill:rgba(255,241,118,.08);stroke:#FFF176;stroke-width:3;stroke-dasharray:9 7;animation:wtCur .9s ease-in-out infinite;pointer-events:none}
+@keyframes wtCur{0%,100%{opacity:.35}50%{opacity:1}}
+.wt-ghost{fill:rgba(255,241,118,.1);stroke:#FFF176;stroke-width:2.2;stroke-dasharray:7 6;pointer-events:none}
+/* ---- 底部水道 / 闸门 ---- */
+.wt-chan{fill:rgba(120,200,255,.1);stroke:rgba(178,235,255,.3);stroke-width:2.4;pointer-events:none}
+.wt-valve{cursor:pointer}
+.wt-vbody{fill:#37474F;stroke:#90A4AE;stroke-width:2.2;transition:fill .18s}
+.wt-valve.open .wt-vbody{fill:#1B5E20;stroke:#69F0AE}
+.wt-valve.shut .wt-vbody{fill:#7F1D1D;stroke:#FF8A80}
+.wt-vmark{font-size:15px;font-weight:bold;text-anchor:middle;fill:#fff;pointer-events:none}
+.wt-vwheel{fill:none;stroke:#CFD8DC;stroke-width:2.4;pointer-events:none}
+/* ---- 浮标 ---- */
+.wt-float{cursor:pointer;transition:transform .34s cubic-bezier(.3,1.2,.5,1)}
+.wt-fbob{animation:wtBob 2.1s ease-in-out infinite}
+@keyframes wtBob{0%,100%{transform:translateY(0) rotate(-1.6deg)}50%{transform:translateY(-3px) rotate(1.6deg)}}
+.wt-cork{fill:url(#wtCork);stroke:#8D6E63;stroke-width:2.2}
+.wt-float.hvy .wt-cork{stroke:#37474F;stroke-width:3}
+.wt-float.fgn .wt-cork{fill:#B0BEC5;stroke:#546E7A;stroke-dasharray:6 5}
+.wt-float.up .wt-cork{stroke:#FFF176;stroke-width:3.4}
+.wt-float.now .wt-cork{stroke:#69F0AE;stroke-width:3.4}
+.wt-face{fill:#FFF8E1;stroke:rgba(0,0,0,.28);stroke-width:1.8}
+.wt-float.fgn .wt-face{fill:#ECEFF1}
+.wt-num{font-size:12px;font-weight:bold;text-anchor:middle;fill:#37474F}
+.wt-tag{font-size:11px;font-weight:bold;text-anchor:middle;fill:#B71C1C}
+.wt-weight{font-size:11px;text-anchor:middle;pointer-events:none}
+.wt-float.out{opacity:0;pointer-events:none;transition:opacity .3s}
+/* ---- 进水管口 ---- */
+#wtHoseG{transition:transform .26s ease-out}
+.wt-hose{fill:url(#wtSteel);stroke:#78909C;stroke-width:2.4;pointer-events:none}
+.wt-hoseTxt{font-size:12px;font-weight:bold;text-anchor:middle;fill:#FFF176;pointer-events:none}
+.wt-drop{fill:#4FC3F7;pointer-events:none;animation:wtFall .42s linear infinite}
+@keyframes wtFall{0%{opacity:0;transform:translateY(-10px)}25%{opacity:1}100%{opacity:.2;transform:translateY(26px)}}
+.wt-leak{fill:none;stroke:#FF8A80;stroke-width:2.6;stroke-dasharray:5 5;pointer-events:none}
+.wt-drip{fill:#4FC3F7;pointer-events:none;animation:wtFall 1.1s linear infinite}
+/* ---- 纸带（已印的笔） ---- */
+#wtPaperG,#wtTopG,#wtfxG{pointer-events:none}
+.wt-paper{fill:#FFF8E1;stroke:rgba(144,202,241,.5);stroke-width:2}
+.wt-pbox{fill:rgba(0,0,0,.06);stroke:rgba(0,0,0,.14);stroke-width:1.4}
+.wt-pnow{fill:rgba(255,241,118,.24);stroke:#F9A825;stroke-width:2.4}
+.wt-ptxt{font-size:10.5px;font-weight:bold;fill:#546E7A;text-anchor:middle}
+.wt-phead{font-size:12px;font-weight:bold;fill:#FFE082;text-anchor:middle}
+/* ---- 特效 ---- */
+.wt-flash{fill:rgba(79,195,247,.26);animation:wtFlash .62s ease-out forwards}
+@keyframes wtFlash{0%{opacity:1}100%{opacity:0}}
+.wt-mark{fill:none;stroke:#40C4FF;stroke-width:3.4;stroke-dasharray:11 8;animation:wtMark .9s ease-out infinite}
+@keyframes wtMark{0%,100%{opacity:.3}50%{opacity:1}}
+.wt-ring{animation:wtRing .92s ease-out forwards}
+@keyframes wtRing{0%{stroke-width:5;opacity:1}100%{stroke-width:1;opacity:0;transform:scale(1.5)}}
+.wt-spark{font-size:17px;text-anchor:middle;animation:wtRise 1.1s ease-out forwards}
+@keyframes wtRise{0%{opacity:0;transform:translateY(4px)}20%{opacity:1}100%{opacity:0;transform:translateY(-24px)}}
+.wt-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.wt-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:wtBit .74s ease-out forwards}
+@keyframes wtBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.wt-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF59D;text-shadow:0 1px 4px rgba(0,0,0,.7);animation:wtPop .95s ease-out forwards;white-space:nowrap}
+@keyframes wtPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.wt-shake{animation:wtShake .34s}
+@keyframes wtShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px) rotate(-.5deg)}50%{transform:translateX(8px) rotate(.5deg)}80%{transform:translateX(-3px)}}
+/* ---- 计量 / 按钮 / 文案 ---- */
+.wt-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.wt-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(0,0,0,.4);overflow:hidden}
+.wt-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#00838F,#26C6DA 62%,#B2EBF2 90%);transition:width .1s linear}
+.wt-tl.low i{background:linear-gradient(90deg,#FF8A65,#FF5252)}
+.wt-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.wt-clock{font-size:12px;color:#fff;background:rgba(0,0,0,.4);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.wt-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#E1F5FE;background:rgba(0,0,0,.34);border-radius:14px;padding:9px 10px;line-height:1.5}
+.wt-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.wt-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0}
+.wt-tool{flex:1;padding:11px 4px;border:none;border-radius:13px;font-size:13px;color:#ECEFF1;background:rgba(255,255,255,.14);cursor:pointer;font-family:inherit}
+.wt-tool.on{background:#26C6DA;color:#01223A;font-weight:bold}
+.wt-tool.go{background:#FFC400;color:#3E2723;font-weight:bold}
+.wt-tool:disabled{opacity:.4}
+.wt-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.3);color:#B3E5FC;font-size:13px;line-height:1.65;min-height:44px;overflow-anchor:none}
+.wt-msg b{color:#fff}
+.wt-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.wt-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.wt-badge{position:absolute;right:8px;top:8px;font-size:11px;color:#01223A;background:rgba(230,245,255,.9);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+.wt-badge.on{display:block}
+.wt-slow{position:absolute;left:8px;top:8px;font-size:12px;color:#fff;background:rgba(0,151,167,.9);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap}
+.wt-slow.on{display:block}
+.wt-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.wt-rs span{display:block;font-size:24px;font-weight:bold}
+.wt-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.wt-book-t{font-size:12px;color:#B3E5FC;margin-top:12px}
+.wt-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.wt-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.wt-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#26C6DA;color:#01223A;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.wt-cdot.on{display:flex}
+.wt-nd{font-style:normal;font-size:11px;color:#CFD8DC;background:rgba(255,255,255,.1);border-radius:10px;padding:3px 9px;white-space:nowrap}
+.wt-nd.in{color:#fff;background:rgba(38,198,218,.3)}
+.wt-nd.dead{color:#fff;background:rgba(255,82,82,.3)}
+.wt-more{flex:1 1 100%;text-align:center;font-size:11.5px;color:#B0BEC5;margin-top:3px;line-height:1.5}
+.wt-more b{color:#FFF176}
+@media (max-width:600px){
+  .wt-stage{flex-direction:column}
+  .wt-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
 </style>
 
 </head>
@@ -5261,8 +5379,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 78 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">78</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 79 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">79</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -5273,13 +5391,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>78 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>24</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>79 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>25</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
-<div class="mode-card" onclick="enterMode('magnet')">
+<div class="mode-card" onclick="enterMode('sluice')">
+      <div class="icon">🚰</div>
+      <div class="info"><h3>笔顺水闸</h3><p id="wtCardTip">6 根玻璃管底下一条水道、5 道闸门 —— 水一连通就一样高，把一瓢瓢水摊到你想抬的那根管，顶着写有这一笔的浮标冒头</p></div>
+      <span class="wt-cdot" id="wtCardDot">🆕</span>
+    </div><div class="mode-card" onclick="enterMode('magnet')">
       <div class="icon">🧲</div>
       <div class="info"><h3>笔顺磁力场</h3><p id="mxCardTip">同极相斥、异极相吸 —— 把电磁笔放到哪一格、朝哪一极，一通电它那一横一竖上的磁牌同时滑动，把该印的那一笔送进印字台</p></div>
       <span class="mx-cdot" id="mxCardDot">🆕</span>
@@ -5850,6 +5972,113 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-sluice">
+  <div class="top-bar">
+    <button class="back-btn" onclick="wtLeave()">← 返回</button>
+    <div class="stats"><span id="wtScoreTxt">🎯 0 分</span><span id="wtLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="wtHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="wt-hud">
+    <span id="wtRankTxt" title="称号">🚰 提桶的</span>
+    <span id="wtHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="wtComboTxt" title="连击">🔥 连 0</span>
+    <span id="wtLitTxt" title="印了几笔">✅ 0 笔</span>
+    <span id="wtPourTxt" title="放了几瓢">💧 0</span>
+    <span id="wtSavedTxt" title="连着收了几笔">🫳 0</span>
+    <span id="wtSpillTxt" title="溢掉几瓢">🌊 0</span>
+    <span id="wtWrongTxt" title="收错几次">🚫 0</span>
+  </div>
+  <div class="wt-ask" id="wtAsk">🚰 正在往管里放水……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="wt-stage">
+    <div class="wt-mini">
+      <svg viewBox="0 -1024 1024 1024" id="wtMiniSvg"></svg>
+      <div class="wt-cap" id="wtMiniCap">这个字</div>
+    </div>
+    <div class="wt-tbl" id="wtTbl">
+      <svg class="wt-svg" id="wtSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="wtAqua" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#4FC3F7" stop-opacity=".92"/><stop offset=".5" stop-color="#0288D1" stop-opacity=".95"/><stop offset="1" stop-color="#01579B"/>
+          </linearGradient>
+          <linearGradient id="wtCork" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFCC80"/><stop offset=".5" stop-color="#EF9A35"/><stop offset="1" stop-color="#8D5524"/>
+          </linearGradient>
+          <linearGradient id="wtSteel" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F4F7F8"/><stop offset=".46" stop-color="#A5B7C1"/><stop offset="1" stop-color="#4B636F"/>
+          </linearGradient>
+        </defs>
+        <g id="wtStatic"></g>
+        <g id="wtWaterG"></g>
+        <g id="wtValveG"></g>
+        <g id="wtFloatG"></g>
+        <g id="wtHoseG"></g>
+        <g id="wtPaperG"></g>
+        <g id="wtfxG"></g>
+        <g id="wtTopG"></g>
+      </svg>
+      <div class="wt-fx" id="wtFx"></div>
+      <div class="wt-badge" id="wtBadge">🚰</div>
+      <div class="wt-slow" id="wtWaveTag">🌊 浪头刚打过</div>
+    </div>
+  </div>
+  <div class="wt-basket" id="wtBasket" style="display:flex;gap:6px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:36px;padding:6px;border-radius:14px;background:rgba(0,0,0,.36);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap"></div>
+  <div class="wt-meter">
+    <div class="wt-tl" id="wtClockBox"><i id="wtClockBar"></i><b id="wtClockTxt">🌊 潮水满格</b></div>
+    <div class="wt-clock" id="wtPowTxt">💧 ——</div>
+  </div>
+  <div class="wt-hintline" id="wtHintLine">👇 <b>点一根管子</b> 把 <b>🚰 进水管口</b> 挪过去，点 <b>底部闸门</b> 开合，再按 <code>空格</code> <b>💧 放一瓢</b></div>
+  <div class="wt-tools">
+    <button class="wt-tool go" id="wtPourBtn" onclick="wtPour()">💧 放水<b style="font-size:11px"> 空格</b></button>
+    <button class="wt-tool" id="wtGateBtn" onclick="wtGates()">🎚 齐闸<b style="font-size:11px"> X</b></button>
+    <button class="wt-tool" id="wtPrevBtn" onclick="wtPreview()" disabled>💡 预览<b style="font-size:11px"> Q</b></button>
+    <button class="wt-tool" id="wtUndoBtn" onclick="wtUndo()" disabled>🔄 倒带<b style="font-size:11px"> R</b></button>
+    <button class="wt-tool" id="wtReBtn" onclick="wtRespin()">🔁 重摆<b style="font-size:11px"> T</b></button>
+    <button class="wt-tool" onclick="wtEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="wt-msg" id="wtMsg">眼前是 <b>6 根一样的玻璃管</b>，底下用一条 <b>水道</b> 串着，水道上有 <b>5 道闸门</b>。每根管里漂着一只 <b>木浮标</b>，浮标上就是这个字其中一笔的 <b>真实笔形</b>（横红、竖青、撇蓝、捺橘），角上写着 <b>第几笔</b>。水 <b>只在开着闸的管之间流</b>，一连通 <b>液面就一样高</b> —— 这是 <b>连通器</b>，也是这一盘唯一的物理</div>
+  <div class="wt-tip">每根管上画着一条 <b>🎯 冒头线</b>（有 <b>高有低</b>）：管里的水涨到那条线，浮标就 <b>漂到管口冒头</b>，点它一下就把这一笔 <b>印到左边的米字格</b>。你手上只有一瓢一瓢的 <b>💧 水</b>（一共发几十瓢），<b>水口挂在哪儿、闸开哪几道</b> 都由你定<br>
+    🚰 <b>一瓢水浇在哪根管，就顺着开着的水道摊平到整组</b>：组里管子越多，每根涨得越少 —— 想 <b>单独抬高一根</b>，先 <b>把闸关上</b><br>
+    ⚖️ <b>水会自己找平</b>：一根水多、一根水少，<b>开闸就白送</b>（高的把低的顶起来，<b>一瓢不用花</b>）；可这一开，高的那根也 <b>掉下来了</b> —— 先想清楚 <b>谁要先冒头</b><br>
+    ⏱ <b>水量是算过的</b>：这一盘 <b>军师</b> 先替你把每一笔都漂上来过一遍，发你的瓢 = <b>刚好够 + 一点点余量</b>；<b>漫过管口的水就地流走</b>，白泼了<br>
+    ⚓ <b>重浮标</b>（挂着 🪨）吃水深，要多涨 <b>1.2 格</b> 才冒头；🚫 <b>杂字浮标</b>（挂着 ?）不是这个字的笔，点它会 <b>炸开泡沫、扣 8 分</b>、断连击，<b>连错 3 次掉一颗心</b>；还没轮到那一笔的浮标 <b>点回去不扣分</b><br>
+    🕳 <b>漏缝</b>（<b>第 5 段</b> 起）那一组每浇一瓢先 <b>漏掉 0.5 格</b>，水停在这儿就是浪费；🪵 <b>木塞</b>（<b>第 3 段</b> 起）把闸门 <b>堵死</b>，点一下 <b>拔塞</b>（不花瓢）才谈得上开合；🌊 <b>浪头</b>（<b>第 6 段</b> 起）每 <b>3 瓢</b> 有一根管被 <b>拍高或拍低 1.5 格</b>，左上角会报是哪一根<br>
+    🌊 <b>涨潮钟</b>：每阵发 <code>30 + 笔数×6 − 段数×2</code> 秒（下限 30），走光 <b>退潮</b>、掉一颗心、这一阵 <b>重摆</b>（<b>已经印出来的笔不抹掉</b>）；💧 <b>瓢用光</b> 字还没印满，同样 <b>掉一颗心</b><br>
+    💡 <b>预览</b>（<code>Q</code>）画出 <b>再放一瓢之后每根管的水位</b> 和谁会冒头；🔄 <b>倒带</b>（<code>R</code>）<b>退回上一瓢之前</b>；🔁 <b>重摆</b>（<code>T</code>）剩下的笔 <b>另摆一盘</b>；🎚 <b>齐闸</b>（<code>X</code>）一键 <b>全开 / 全关</b> —— 预览 <b>2</b> 次、倒带 <b>3</b> 次、重摆 <b>1</b> 次，<b>升段各补 1 次</b><br>
+    📈 <b>收一笔</b> 吃 <code>round((14 + 第几笔×2 + 段数×3) × (1 + 连击×0.05))</code>，<b>不添一瓢连着收第二笔</b> 再多 <code>6 + 段数×2</code>；<b>整个字印满</b>：<code>26 + 笔数×6 + 段数×6 + 剩瓢×3</code>，<b>一次没收错再多 22</b>；<b>每 2 个字升 1 段</b>（最多 9 段）、<b>每 3 个字补一颗心</b>（最多 5 颗）<br>
+    👀 发呆 12 秒 🐰 会报「<b>该收那一笔在哪根管</b>、它 <b>冒头线多高</b>、下一瓢 <b>浇哪根、闸该怎么开</b>」· 战绩落盘 <code>hz_sluice_*</code></div>
+</div>
+<div class="screen" id="screen-sluice-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="wtLeave()">← 回首页</button>
+    <div class="stats"><span id="wtRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="wtRsEmoji">🚰</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="wtRsTitle">水放得稳</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="wtRsSub">下一次先想 <b>这一瓢水摊到几根管</b>，再定 <b>水口挂哪儿、闸开哪道</b></p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="wt-rs">
+      <div><span style="color:#FFD700" id="wtRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="wtRsWords">0</span><small>收好这几个字</small></div>
+      <div><span style="color:#69F0AE" id="wtRsLit">0</span><small>印出几笔</small></div>
+      <div><span style="color:#FFAB91" id="wtRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="wtRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="wtRsMiss">0</span><small>🚫 收错 / 🌊 退潮</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多收几个字 · 一共收好过几个字</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFE082"><span id="wtRsBest">0</span> 个 · <span id="wtRsAll2">0</span> 🚰</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="wtRsAll">🚰 提桶的</div>
+      <div class="wt-book-t" id="wtRsBookT"></div>
+      <div class="wt-book" id="wtRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="wtRetry()">🚰 再放一瓢</button>
+    <button class="w-btn blue" onclick="wtLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-magnet">
@@ -11371,6 +11600,7 @@ function updateHomeStats(){
   if(typeof lsNudge==='function')lsNudge();
   if(typeof grNudge==='function')grNudge();
   if(typeof mxNudge==='function')mxNudge();
+  if(typeof wtNudge==='function')wtNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -11395,6 +11625,7 @@ function enterMode(mode){
   if(mode==='laser'){lsStart();return}
   if(mode==='gear'){grStart();return}
   if(mode==='magnet'){mxStart();return}
+  if(mode==='sluice'){wtStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -58505,6 +58736,1906 @@ window.mxvSet=function(k,v){
   else return 0;
   return 1;
 };
+/* ================= v1.80 笔顺水闸（连通器 · 一瓢水摊到一组 · 开闸白送水位 · 顶着这一笔的浮标冒头就收） ================= */
+const WT_W=700,WT_H=470;
+const WT_NT=6,WT_NV=5;
+const WT_TW=82,WT_TT=54,WT_TB=392,WT_X0=39,WT_P=108;
+const WT_FULL=10,WT_U=(WT_TB-WT_TT)/WT_FULL;
+const WT_CY0=390,WT_CY1=426,WT_PY=436,WT_PH=30;
+const WT_DOLE=1.6,WT_LEAK=0.5,WT_HEAVY=1.2;
+const WT_RF=17;
+const WT_HEARTS=3,WT_HEART_MAX=5,WT_MISS_MAX=40,WT_BOOK_MAX=300;
+const WT_POOL_MIN=4,WT_POOL_WANT=16,WT_STROKE_MAX=6;
+const WT_NAG_MS=12000,WT_GHOST_MS=2800,WT_NEXT_MS=1300,WT_POUR_MS=460,WT_PRINT_MS=760,WT_TAG_MS=2400,WT_FLASH_MS=620;
+const WT_POUR_MAX=8,WT_WRONG_PEN=8,WT_WRONG_MAX=3,WT_CLEAN_BONUS=22,WT_GEN_TRY=70,WT_PLAN_MAX=20,WT_HIST_MAX=8,WT_BUD_MAX=26;
+const WT_DIRS=['横','竖','撇','捺'],WT_ARW=['➡️','⬇️','↙️','↘️'];
+const WT_O=['①','②','③','④','⑤','⑥'];
+const WT_INK=['#FF8A80','#80CBC4','#82B1FF','#FFD180'];
+const WT_NOTE=[392,440,494,523,587,659,698,784];
+const WT_RANKS=[
+  {n:0,e:'🪣',t:'提桶的'},{n:3,e:'🚰',t:'会开水口'},{n:8,e:'⚖️',t:'懂得找平'},
+  {n:15,e:'🌊',t:'潮水由我'},{n:24,e:'⚓',t:'关得住闸'},{n:36,e:'🧠',t:'军师算水'},
+  {n:52,e:'🌟',t:'治水师傅'},{n:74,e:'💎',t:'一滴不洒'},{n:105,e:'👑',t:'水利之王'}
+];
+const wt={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,tones:0,think:0,timers:[],
+  pool:[],miss:[],rec:null,n:0,qi:0,gly:[],S:null,tid:1,
+  powMax:0,pow:0,pours:0,clock:1,clockSec:60,red:false,beep:0,
+  lv:1,score:0,hearts:WT_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,saved:0,spills:0,wrongs:0,waves:0,deads:0,
+  previewN:2,undoN:3,respN:1,
+  previews:0,rewinds:0,respins:0,nags:0,
+  ghostMs:0,ghost:null,waveTag:0,nextMs:0,pourMs:0,printMs:0,printRun:0,since:0,
+  cleanWord:true,wrongWord:0,hist:[],
+  hose:-1,cur:-1,bound:false,ptrBound:false,hudTxt:{},sol:null,lastWhy:''
+};
+function wtInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function wtAdd(k,n){if(n)localStorage.setItem(k,String(wtInt(k)+n))}
+function wtSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function wtSay(t,c){const el=document.getElementById('wtMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function wtShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function wtOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function wtClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function wtRnd(v){return Math.round(v*1000)/1000}
+function wtDn(d){return d<0||d>3?0:d}
+function wtRank(n){let r=WT_RANKS[0];for(let i=0;i<WT_RANKS.length;i++)if(n>=WT_RANKS[i].n)r=WT_RANKS[i];return r}
+function wtTone(f,d,t,v){if(wt.tones<=0)return;wt.tones--;tone(f,d,t,v)}
+function wtT(fn,ms){const g=wt.gen;const id=setTimeout(function(){const k=wt.timers.indexOf(id);if(k>=0)wt.timers.splice(k,1);if(g!==wt.gen)return;fn()},ms);wt.timers.push(id);return id}
+function wtKillTimers(){wt.timers.forEach(function(t){clearTimeout(t)});wt.timers=[]}
+/* ---- 难度：几只杂字标、几只重标、几道漏缝、几个木塞、有没有浪头 ---- */
+function wtFgnOf(lv){return lv<3?0:Math.min(3,lv-2)}
+function wtHvyOf(lv){return lv<4?0:Math.min(3,lv-3)}
+function wtLeakOf(lv){return lv<5?0:Math.min(2,lv-4)}
+function wtCorkOf(lv){return lv<3?0:(lv>=7?2:1)}
+function wtWaveOf(lv){return lv>=6}
+function wtSpare(lv){return lv<=2?2:1}
+function wtSillPool(lv){return lv<=2?[5,6]:(lv<=4?[5,6,7]:[6,7,8])}
+function wtClockOf(){return Math.max(30,30+wt.n*6-wt.lv*2)}
+function wtLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+/* ---- 几何 ---- */
+function wtTX(i){return WT_X0+i*WT_P}
+function wtCX(i){return WT_X0+i*WT_P+WT_TW/2}
+function wtVX(j){return WT_X0+WT_TW+j*WT_P+(WT_P-WT_TW)/2}
+function wtBW(){return WT_TW+(WT_NT-1)*WT_P}
+function wtLY(l){return WT_TB-wtClamp(l,0,WT_FULL)*WT_U}
+function wtName(i){return '第 '+(i+1)+' 根管'}
+function wtVName(j){return WT_O[j]+WT_O[j+1]+' 之间的闸'}
+/* ---- 连通器：开着的闸把管子串成一组 ---- */
+function wtGroups(open){
+  const g=[];let cur=[0];
+  for(let i=1;i<WT_NT;i++){
+    if(open[i-1])cur.push(i);
+    else{g.push(cur);cur=[i]}
+  }
+  g.push(cur);return g;
+}
+function wtGroupOf(open,i){
+  let a=i;while(a>0&&open[a-1])a--;
+  let b=i;while(b<WT_NT-1&&open[b])b++;
+  const r=[];for(let k=a;k<=b;k++)r.push(k);
+  return r;
+}
+function wtMask(open){let m=0;for(let j=0;j<WT_NV;j++)if(open[j])m|=(1<<j);return m}
+function wtMaskTo(m){const o=[];for(let j=0;j<WT_NV;j++)o.push((m>>j)&1);return o}
+/* 找平：一组里液面一样高，漫过管口的水就地流走（返回泼掉的量） */
+function wtFlow(S){
+  const G=wtGroups(S.open);let sp=0;
+  for(let k=0;k<G.length;k++){
+    const g=G[k];let s=0;
+    for(let i=0;i<g.length;i++)s+=S.v[g[i]];
+    let per=s/g.length;
+    if(per>WT_FULL){sp+=(per-WT_FULL)*g.length;per=WT_FULL}
+    for(let i=0;i<g.length;i++)S.v[g[i]]=wtRnd(per);
+  }
+  return sp;
+}
+function wtOpen(S,m){
+  S.open=wtMaskTo(m);
+  return wtFlow(S);
+}
+/* 一瓢水：浇进水口那一组，摊平到每根；组里有漏缝就先漏掉一截 */
+function wtPourOne(S,tube){
+  const g=wtGroupOf(S.open,tube),m=g.length;
+  let tax=0;
+  for(let i=0;i<m;i++)if(S.lk[g[i]])tax+=WT_LEAK;
+  const add=Math.max(0,WT_DOLE-tax);
+  const per=add/m;
+  let sp=0;
+  for(let i=0;i<m;i++){
+    const q=g[i],nv=S.v[q]+per;
+    if(nv>WT_FULL){sp+=nv-WT_FULL;S.v[q]=WT_FULL}
+    else S.v[q]=wtRnd(nv);
+  }
+  return {per:per,m:m,leak:tax,spill:sp};
+}
+/* 冒头线：这只标要多高的水才漂得起来 */
+function wtNeed(S,i){
+  const f=S.fl[i];
+  return S.sill[i]+((f&&f.hvy)?WT_HEAVY:0);
+}
+function wtUp(S,i){
+  const f=S.fl[i];
+  return !!(f&&S.v[i]>=wtNeed(S,i)-1e-9);
+}
+function wtUpN(S){let n=0;for(let i=0;i<WT_NT;i++)if(wtUp(S,i))n++;return n}
+function wtTubeOf(S,k){
+  for(let i=0;i<WT_NT;i++){const f=S.fl[i];if(f&&!f.fgn&&f.k===k)return i}
+  return -1;
+}
+/* ---- 水位读数 / 组况（文案和军师共用一份算法） ---- */
+function wtLevels(S){
+  const q=[];
+  for(let i=0;i<WT_NT;i++){
+    const f=S.fl[i];
+    if(f&&f.fgn)q.push(WT_O[i]+S.v[i].toFixed(1)+'🚫');
+    else if(f)q.push(WT_O[i]+S.v[i].toFixed(1)+'#'+(f.k+1));
+    else q.push(WT_O[i]+S.v[i].toFixed(1));
+  }
+  return q.join(' ');
+}
+function wtGrps(S){
+  const G=wtGroups(S.open),q=[];
+  for(let i=0;i<G.length;i++){
+    const g=G[i];
+    q.push(g.length>1?(WT_O[g[0]]+'~'+WT_O[g[g.length-1]]+'通'):(WT_O[g[0]]+'独'));
+  }
+  return q.join(' ');
+}
+function wtGrpName(S,tube){
+  const g=wtGroupOf(S.open,tube),q=[];
+  for(let i=0;i<g.length;i++)q.push(WT_O[g[i]]);
+  return q.join('');
+}
+/* ---- 军师：下一瓢浇哪根、闸开哪几道（生成器和提示共用一份算法） ---- */
+function wtHeur(S,sp){
+  let h=sp/2;
+  for(let i=0;i<WT_NT;i++){
+    const f=S.fl[i];
+    if(!f||f.fgn||f.k<S.qi)continue;
+    h+=Math.max(0,wtNeed(S,i)-S.v[i]);
+  }
+  return h;
+}
+function wtPlanStep(S){
+  if(!S||S.qi>=S.n)return null;
+  const t=wtTubeOf(S,S.qi);
+  if(t<0)return {lost:1,tube:-1};
+  const need=wtNeed(S,t);
+  if(S.v[t]>=need-1e-9)return {tube:t,mask:wtMask(S.open),pours:0,need:need,now:1,h:0};
+  let best=null;
+  for(let m=0;m<32;m++){
+    const C=wtClone(S);
+    let sp=wtOpen(C,m),p=0;
+    while(C.v[t]<need-1e-9&&p<WT_POUR_MAX){
+      const b=C.v[t];
+      sp+=wtPourOne(C,t).spill;p++;
+      if(C.v[t]<=b+1e-9)break;
+    }
+    if(C.v[t]<need-1e-9)continue;
+    const h=wtHeur(C,sp);
+    if(!best||p<best.pours||(p===best.pours&&h<best.h-1e-9))best={tube:t,mask:m,pours:p,need:need,h:h};
+  }
+  if(!best)return {free:1,tube:t,need:need};
+  return best;
+}
+function wtClone(S){
+  return {
+    v:S.v.slice(),sill:S.sill.slice(),lk:S.lk.slice(),open:S.open.slice(),cork:S.cork.slice(),
+    qi:S.qi,n:S.n,
+    fl:S.fl.map(function(f){return f?{id:f.id,k:f.k,fgn:f.fgn,hvy:f.hvy}:null})
+  };
+}
+function wtSimPlan(S0){
+  const S=wtClone(S0),plan=[];
+  let pours=0;
+  for(let step=0;step<WT_PLAN_MAX;step++){
+    if(S.qi>=S.n)return {ok:true,plan:plan,pours:pours};
+    const p=wtPlanStep(S);
+    if(!p)return {ok:false,why:'nosolve',plan:plan,pours:pours};
+    if(p.lost)return {ok:false,why:'lost',plan:plan,pours:pours};
+    if(p.free)return {ok:false,why:'free',plan:plan,pours:pours};
+    wtOpen(S,p.mask);
+    for(let i=0;i<p.pours;i++)wtPourOne(S,p.tube);
+    S.qi++;pours+=p.pours;
+    plan.push({tube:p.tube,mask:p.mask,pours:p.pours,need:p.need});
+    if(pours>WT_BUD_MAX)return {ok:false,why:'long',plan:plan,pours:pours};
+  }
+  return {ok:false,why:'deep',plan:plan,pours:pours};
+}
+/* ---- 笔形：浮标脸就是这个字其中一笔的真形 ---- */
+function wtBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function wtDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function wtGly(d,box,dir,size){
+  const b=box||{x:0,y:0,w:200,h:200};
+  return {d:d||'M0 0',box:b,dir:dir,s:(size||44)/Math.max(140,Math.max(b.w,b.h))};
+}
+function wtGlyHTML(g){
+  const b=g.box,s=g.s;
+  const tx=-s*(b.x+b.w/2),ty=s*(b.y+b.h/2);
+  return '<g transform="translate('+tx.toFixed(1)+','+ty.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path d="'+g.d+'" fill="'+WT_INK[wtDn(g.dir)]+'"/></g>';
+}
+function wtGlyOf(rec){
+  const ms=(rec&&rec.raw&&rec.raw.medians)||[],sp=(rec&&rec.raw&&rec.raw.strokes)||[],out=[];
+  for(let i=0;i<rec.n;i++){
+    const m=ms[i]||[[0,0],[100,100]];
+    out.push(wtGly(wtDOf(sp,i)||'M0 0 L60 60',wtBox(m)||{x:0,y:0,w:200,h:200},wtDn(rec.dirs[i]),44));
+  }
+  return out;
+}
+/* ---- 字库：每一笔方向都说得清 ---- */
+function wtMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>WT_STROKE_MAX)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){
+    const d=fmDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    dirs.push(d);
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,raw:raw};
+}
+function wtCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<90;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(wtShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(wtShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(wtShuf(CHARS.slice()));
+  return out;
+}
+function wtTO(p,ms){return Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},ms)})])}
+async function wtRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=wtTO(loadCharData(ch),6000);
+  if(!raw||!raw.medians)return null;
+  return wtMake(ch,raw);
+}
+async function wtBuildPool(keep){
+  const g=wt.gen;
+  const stale=function(){return g!==wt.gen||!wt.run};
+  wt.miss=(localStorage.getItem('hz_sluice_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  wtShuf(wt.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  wtCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)wt.pool=[];
+  for(let k=0;k<want.length&&wt.pool.length<WT_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return wtRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])wt.pool.push(rs[i]);
+  }
+  return wt.pool.length>=WT_POOL_MIN;
+}
+function wtPickRec(){
+  const w=wt.lv>=4?[3,WT_STROKE_MAX]:[2,5];
+  const used={};
+  const take=function(){
+    for(let i=0;i<wt.miss.length;i++){
+      for(let k=0;k<wt.pool.length;k++){
+        const r=wt.pool[k];
+        if(r&&!used[r.ch]&&r.n>=2&&r.ch===wt.miss[i]){used[r.ch]=1;return r}
+      }
+    }
+    let cand=wt.pool.filter(function(r){return r&&!used[r.ch]&&r.n>=w[0]&&r.n<=w[1]});
+    if(!cand.length)cand=wt.pool.filter(function(r){return r&&!used[r.ch]&&r.n<=WT_STROKE_MAX});
+    if(!cand.length)return null;
+    for(let i=0;i<40;i++){const c=wtOne(cand);if(c){used[c.ch]=1;return c}}
+    const c=cand[0];used[c.ch]=1;return c;
+  };
+  return take();
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function wtMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_sluice_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_sluice_miss',a.slice(0,WT_MISS_MAX).join(','));
+}
+function wtMissDel(ch){
+  const a=(localStorage.getItem('hz_sluice_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_sluice_miss',a.join(','));
+}
+function wtBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_sluice_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_sluice_book',a.slice(0,WT_BOOK_MAX).join(','));
+}
+/* ---- 摆盘：先让军师把这一盘的水算得通，算得通才端给孩子 ---- */
+function wtTry(rec,cfg,from){
+  const n=rec.n;
+  if(n>WT_NT){wt.lastWhy='toostroke';return null}
+  if(from>=n){wt.lastWhy='done';return null}
+  const pool=wtSillPool(wt.lv);
+  const sill=[],v=[],lk=[],cork=[];
+  for(let i=0;i<WT_NT;i++){
+    sill[i]=pool[Math.floor(Math.random()*pool.length)];
+    v[i]=wtRnd(1+Math.random()*4.6);
+    lk[i]=0;cork[i]=0;
+  }
+  /* 每一笔一只浮标，摊到不同的管里；笔顺靠前的不一定靠右 */
+  const tubes=wtShuf([0,1,2,3,4,5]);
+  const fl=new Array(WT_NT).fill(null);
+  for(let k=from;k<n;k++)fl[tubes[k-from]]={id:wt.tid++,k:k,fgn:0,hvy:0};
+  const free=tubes.slice(n-from);
+  /* 六根管全被真浮标占满时（6 笔的字）也得摆得出来：杂字标要几只就腾几只的位置 */
+  if(free.length<cfg.fgn){wt.lastWhy='spare';return null}
+  const jf=wtShuf(free.slice()).slice(0,cfg.fgn);
+  for(let i=0;i<jf.length;i++)fl[jf[i]]={id:wt.tid++,k:-1,fgn:1,hvy:0};
+  /* 重浮标只挂在「多吃的水深也够不着管口」的那根管上，否则永远漂不起来 */
+  const realT=[];
+  for(let i=0;i<WT_NT;i++)if(fl[i]&&!fl[i].fgn)realT.push(i);
+  const canH=wtShuf(realT.filter(function(i){return sill[i]+WT_HEAVY<WT_FULL-0.4}));
+  if(canH.length<cfg.hvy){wt.lastWhy='nohvy';return null}
+  for(let i=0;i<cfg.hvy;i++)fl[canH[i]].hvy=1;
+  /* 漏缝只挂在没挂标的空管：漏水是浪费，不该把这一笔堵死 */
+  const noF=[];
+  for(let i=0;i<WT_NT;i++)if(!fl[i])noF.push(i);
+  const canL=wtShuf(noF.slice());
+  if(canL.length<cfg.leak){wt.lastWhy='noleak';return null}
+  for(let i=0;i<cfg.leak;i++)lk[canL[i]]=1;
+  for(let i=0;i<cfg.cork;i++)cork[Math.floor(Math.random()*WT_NV)]=1;
+  /* 开局不能已经有标冒头（白送） */
+  for(let i=0;i<WT_NT;i++){
+    const f=fl[i];
+    if(f&&!f.fgn&&v[i]>=sill[i]+(f.hvy?WT_HEAVY:0)-0.2){wt.lastWhy='preup';return null}
+  }
+  const S={v:v,sill:sill,lk:lk,cork:cork,open:[0,0,0,0,0],fl:fl,qi:from,n:n};
+  const sim=wtSimPlan(S);
+  if(!sim.ok){wt.lastWhy=sim.why;return null}
+  wt.lastWhy='';
+  return {v:v,sill:sill,lk:lk,cork:cork,fl:fl,plan:sim.plan,pulses:sim.pours,cfg:cfg};
+}
+function wtGen(rec,lv,from){
+  const f0=wtFgnOf(lv),h0=wtHvyOf(lv),l0=wtLeakOf(lv),c=wtCorkOf(lv);
+  /* 难度表只是上限：六根管先要装下这一笔一笔的真浮标，剩下的空位才轮到 🚫 杂字标和 🕳 漏缝。
+     先按管数把上限裁到摆得下，再逐级往下松，免得高段数一紧张就把难度全松没了 */
+  const real=rec.n-(from||0),free=WT_NT-real;
+  const f=Math.max(0,Math.min(f0,free));
+  const l=Math.max(0,Math.min(l0,free-f));
+  const h=Math.max(0,Math.min(h0,real));
+  const lad=[
+    {fgn:f,hvy:h,leak:l,cork:c},
+    {fgn:f,hvy:h,leak:l,cork:0},
+    {fgn:f,hvy:h,leak:Math.max(0,l-1),cork:0},
+    {fgn:f,hvy:Math.max(0,h-1),leak:0,cork:0},
+    {fgn:Math.max(0,f-1),hvy:0,leak:0,cork:0},
+    {fgn:0,hvy:0,leak:0,cork:0}
+  ];
+  const o=wt.lv;wt.lv=lv;
+  for(let L=0;L<lad.length;L++){
+    for(let t=0;t<WT_GEN_TRY;t++){
+      const r=wtTry(rec,lad[L],from||0);
+      if(r){r.cfg=lad[L];wt.lv=o;return r}
+    }
+  }
+  wt.lv=o;
+  return null;
+}
+function wtNewBoard(fromQi){
+  const from=fromQi||0;
+  const s=wtGen(wt.rec,wt.lv,from);
+  if(!s)return false;
+  wt.S={v:s.v.slice(),sill:s.sill.slice(),lk:s.lk.slice(),cork:s.cork.slice(),open:[0,0,0,0,0],
+    fl:s.fl.map(function(f){return f?{id:f.id,k:f.k,fgn:f.fgn,hvy:f.hvy}:null}),qi:from,n:wt.n};
+  wt.pours=0;wt.since=0;
+  wt.powMax=s.pulses+wtSpare(wt.lv);
+  wt.pow=wt.powMax;
+  wt.clockSec=wtClockOf();
+  wt.clock=1;wt.red=false;wt.beep=0;
+  wt.wrongWord=0;wt.printRun=0;wt.think=0;
+  wt.ghostMs=0;wt.ghost=null;wt.hist=[];wt.waveTag=0;
+  wt.sol={plan:s.plan.map(function(p){return {tube:p.tube,mask:p.mask,pours:p.pours,need:p.need}}),
+    pulses:s.pulses,need:s.pulses,cfg:s.cfg};
+  wt.cur=-1;wt.hose=-1;
+  wtRenderStatic();wtBoard();wtHosePaint();wtPaper();wtMini();wtBasket();wtHud();wtAskText();wtLine();
+  return true;
+}
+
+/* ---- 浪头：第 6 段起每 3 瓢有一根管被拍高一截 / 拍低一截 ---- */
+const WT_WV=1.5;
+/* ---- 组况小算手：文案和实际物理共用一份 ---- */
+function wtLkN(S,tube){
+  const g=wtGroupOf(S.open,tube);let n=0;
+  for(let i=0;i<g.length;i++)if(S.lk[g[i]])n++;
+  return n;
+}
+function wtGrpSay(S,tube){
+  const g=wtGroupOf(S.open,tube),m=g.length,lk=wtLkN(S,tube);
+  const per=Math.max(0,WT_DOLE-WT_LEAK*lk)/m;
+  return {m:m,lk:lk,per:per,name:wtGrpName(S,tube)};
+}
+function wtOpenSay(m){
+  const q=[];
+  for(let j=0;j<WT_NV;j++)q.push(WT_O[j]+WT_O[j+1]+(m&(1<<j)?'开':'关'));
+  return q.join(' ');
+}
+/* ---- 挪水口 ---- */
+function wtMoveHose(i){
+  const S=wt.S;
+  if(!S)return false;
+  if(i<0||i>=WT_NT)return false;
+  wt.hose=i;wt.think=0;
+  wtHosePaint();wtTubeCls();
+  wtTone(480+i*36,0.05,'triangle',0.05);
+  const r=wtGrpSay(S,i);
+  wtSay('🚰 水口挂在 <b>'+wtName(i)+'</b>（'+WT_O[i]+'）：'+
+    (r.m>1?('它和 <b>'+r.name+'</b> 通着，一共 <b>'+r.m+' 根</b> —— 一瓢 <b>'+WT_DOLE.toFixed(1)+' 格水摊成 '+r.m+' 份</b>，每根只涨 <b>'+r.per.toFixed(2)+'</b> 格。<b>想单独抬高这一根，先把闸关上</b>'):
+      ('这一根 <b>关着闸、独一份</b> —— 一瓢 <b>'+WT_DOLE.toFixed(1)+' 格</b> 全落在它身上。<b>关闸 + 挪水口</b> 是把某一根管顶上去的正路'))+
+    (r.lk?'（这一组有 <b>🕳 漏缝</b>，先漏掉 '+(WT_LEAK*r.lk).toFixed(1)+' 格）':''),'#B3E5FC');
+  wtLine();wtBasketLight();
+  return true;
+}
+/* ---- 放一瓢 ---- */
+function wtPour(){
+  if(!wt.run||wt.over)return false;
+  const S=wt.S;if(!S)return false;
+  if(wt.pourMs>0||wt.nextMs>0)return false;
+  if(S.qi>=S.n)return false;
+  if(wt.pow<=0){
+    wtSay('🪫 <b>水瓢用完了</b>：还剩一条路 —— <b>开闸白送水位</b>（点闸门、或按 <code>X</code> 齐闸），让高的那根管把低的顶起来；实在抬不动就 <b>🔄 倒带</b>、<b>🔁 重摆</b>','#FFCC80');
+    return false;
+  }
+  if(wt.hose<0){
+    const t=wtTubeOf(S,S.qi);
+    if(t<0){wtSay('🚰 水口还没挂上管子：先 <b>点一根管子</b>','#FFCC80');return false}
+    wt.hose=t;wtHosePaint();wtTubeCls();
+  }
+  wt.hist.push(wtSnap());
+  if(wt.hist.length>WT_HIST_MAX)wt.hist.shift();
+  const before=S.v.slice();
+  wt.pow--;wt.pours++;wt.since++;
+  wtAdd('hz_sluice_pours',1);
+  wt.think=0;
+  const r=wtPourOne(S,wt.hose);
+  if(r.spill>0.01){wt.spills++;wtAdd('hz_sluice_spills',1)}
+  wt.pourMs=WT_POUR_MS;
+  wtHosePaint();wtWater();wtFloats();wtTubeCls();wtMeter();wtHudLight();wtToolBtns();
+  wtTone(660,0.06,'sine',0.05);
+  wtTone(420,0.12,'sine',0.04);
+  wtPop(wtCX(wt.hose),wtLY(before[wt.hose])-34,'💧 +'+r.per.toFixed(2),'#81D4FA');
+  if(r.m>1)wtPop(wtCX(wt.hose),wtLY(before[wt.hose])-8,'摊给 '+r.name,'#4FC3F7');
+  if(r.spill>0.01){wtPop(wtTX(wt.hose)+WT_TW+10,WT_TT+8,'🌊 漫出 '+r.spill.toFixed(1),'#FF8A80');wtSay('🌊 <b>漫过管口的水就地流走了</b>（泼掉 '+r.spill.toFixed(1)+' 格）—— 水位顶到 <b>'+WT_FULL+'</b> 就是底，再浇也白浇','#FFCC80')}
+  else if(r.lk)wtSay('💧 这一瓢浇进 <b>'+wtName(wt.hose)+'</b>（'+r.name+' 一组 '+r.m+' 根，每根 +'+r.per.toFixed(2)+' 格）—— 组里有 <b>🕳 漏缝</b>，先漏掉 '+(WT_LEAK*r.lk).toFixed(1)+' 格：'+wtLevels(S),'#B3E5FC');
+  else if(r.m>1)wtSay('💧 一瓢水摊给 <b>'+r.name+'</b> '+r.m+' 根（每根 +'+r.per.toFixed(2)+' 格）：'+wtLevels(S)+'<br>想只抬一根？<b>把连着它的闸关上</b>','#B3E5FC');
+  else wtSay('💧 独一份：+'+WT_DOLE.toFixed(1)+' 格全落进 <b>'+wtName(wt.hose)+'</b>，现在 '+S.v[wt.hose].toFixed(1)+' 格（'+wtLevels(S)+'）','#B3E5FC');
+  wtT(wtPourOut,WT_POUR_MS+10);
+  return true;
+}
+function wtPourOut(){
+  wt.pourMs=0;
+  if(!wt.run||wt.over)return;
+  wtHosePaint();
+  if(wtWaveOf(wt.lv)&&wt.pours%3===0)wtWave();
+  wtCheckPow();
+  wtPaintAll();
+}
+/* ---- 开闸 / 关闸：水自己找平，一瓢不用花 ---- */
+function wtToggleValve(j){
+  const S=wt.S;
+  if(!S)return false;
+  if(j<0||j>=WT_NV)return false;
+  if(S.qi>=S.n)return false;
+  if(S.cork[j]){
+    S.cork[j]=0;wtValves();wt.think=0;
+    wtTone(240,0.1,'square',0.05);
+    wtPop(wtVX(j),WT_CY0-6,'🪵 拔塞','#FFE082');
+    wtSay('🪵 <b>拔掉木塞</b>：'+wtVName(j)+' 能动了 —— 再点一次就 <b>'+(S.open[j]?'关':'开')+'</b> 这道闸（拔塞 <b>不花水瓢</b>）','#FFE082');
+    wtLine();wtToolBtns();wtBasket();
+    return true;
+  }
+  wt.hist.push(wtSnap());
+  if(wt.hist.length>WT_HIST_MAX)wt.hist.shift();
+  const before=S.v.slice();
+  const to=S.open[j]?0:1;
+  S.open[j]=to;
+  const sp=wtFlow(S);
+  if(sp>0.01){wt.spills++;wtAdd('hz_sluice_spills',1)}
+  wt.think=0;
+  wtValves();wtWater();wtFloats();wtTubeCls();wtMeter();
+  wtTone(to?520:200,0.09,'triangle',0.06);
+  const a=wtGroupOf(S.open,j),b=wtGroupOf(S.open,j+1);
+  let up='',dn='';
+  for(let i=0;i<WT_NT;i++){
+    const d=S.v[i]-before[i];
+    if(d>0.02)up+=(up?' ':'')+WT_O[i]+'+'+d.toFixed(1);
+    else if(d<-0.02)dn+=(dn?' ':'')+WT_O[i]+d.toFixed(1);
+  }
+  if(to)wtSay('🎚 开了 '+wtVName(j)+'：<b>'+wtGrpName(S,j)+'</b> 串成一组（'+a.length+b.length+' 根）—— 液面自己找平：'+
+    (up?'<b>顶起来 '+up+'</b>':'')+((up&&dn)?' · ':'')+(dn?'<b>掉下来 '+dn+'</b>':'')+
+    '<br>⚖️ 这一手 <b>一瓢水没花</b>，可高的那根也掉下来了 —— 想让它先冒头就别急着开','#B3E5FC');
+  else wtSay('🎚 关了 '+wtVName(j)+'：<b>'+WT_O[j]+'</b> 和 <b>'+WT_O[j+1]+'</b> 断开，各自的水 <b>各归各</b>：'+wtLevels(S)+'<br>👉 现在往任何一根浇水，都 <b>只摊给自己那一组</b>','#B3E5FC');
+  if(sp>0.01)wtSay('🌊 <b>找平把水顶过管口</b>，泼掉 '+sp.toFixed(1)+' 格 —— 一组里水位差太大时，开闸会 <b>白洒</b>：'+wtLevels(S),'#FFCC80');
+  wtCheckPow();
+  wtPaintAll();
+  return true;
+}
+/* ---- 齐闸：一键全开 / 全关 ---- */
+function wtGates(){
+  const S=wt.S;
+  if(!S||wt.over||S.qi>=S.n)return false;
+  let allOpen=true,allClose=true,moved=0;
+  for(let j=0;j<WT_NV;j++){
+    if(S.cork[j])continue;
+    if(S.open[j])allClose=false;else allOpen=false;
+  }
+  const to=allClose?1:0;
+  const before=S.v.slice();
+  for(let j=0;j<WT_NV;j++){
+    if(S.cork[j]||S.open[j]===to)continue;
+    S.open[j]=to;moved++;
+  }
+  if(!moved){
+    wtSay('🎚 闸门 <b>一道也动不了</b>：'+(to?'已经全开了':'已经全关了')+(S.cork.filter(function(c){return c}).length?'，还有 <b>🪵 木塞</b> 堵着 —— 点它拔掉':''),'#FFCC80');
+    return false;
+  }
+  wt.hist.push(wtSnap());
+  if(wt.hist.length>WT_HIST_MAX)wt.hist.shift();
+  const sp=wtFlow(S);
+  if(sp>0.01){wt.spills++;wtAdd('hz_sluice_spills',1)}
+  wt.think=0;
+  let up='',dn='';
+  for(let i=0;i<WT_NT;i++){
+    const d=S.v[i]-before[i];
+    if(d>0.02)up+=(up?' ':'')+WT_O[i]+'+'+d.toFixed(1);
+    else if(d<-0.02)dn+=(dn?' ':'')+WT_O[i]+d.toFixed(1);
+  }
+  wtValves();wtWater();wtFloats();wtTubeCls();wtMeter();
+  wtTone(to?600:180,0.1,'triangle',0.06);
+  wtTblCls('hot',420);
+  wtSay((to?'🎚 <b>齐开</b>：6 根管子全串成一组，水一摊平 —— ':'🎚 <b>齐关</b>：6 根各自成一组，水 <b>一动不动</b> —— ')+
+    (up?'<b>顶起 '+up+'</b> ':'')+(dn?'<b>掉下 '+dn+'</b>':'')+
+    '<br>现在 '+wtGrps(S)+'：'+wtLevels(S),'#B3E5FC');
+  wtCheckPow();
+  wtPaintAll();
+  return true;
+}
+/* ---- 收水：点冒头的浮标，把这一笔印到米字格 ---- */
+function wtTake(i){
+  const S=wt.S;
+  if(!S||i<0||i>=WT_NT)return false;
+  if(S.qi>=S.n)return false;
+  const f=S.fl[i];
+  if(!f)return wtMoveHose(i);
+  if(!wtUp(S,i)){
+    const need=wtNeed(S,i),d=need-S.v[i];
+    wt.think=0;
+    wtSay('🙈 '+WT_O[i]+' 里的 <b>'+(f.fgn?'杂字浮标':'第 '+(f.k+1)+' 笔「'+WT_DIRS[wtDn(wt.rec.dirs[f.k])]+'」')+'</b> 还没冒头：水位 <b>'+S.v[i].toFixed(1)+'</b>，<b>🎯 冒头线在 '+need.toFixed(1)+'</b>，还差 <b>'+d.toFixed(1)+' 格</b>'+
+      (f.hvy?'（这只标挂着 <b>🪨</b>，多吃 '+WT_HEAVY+' 格）':'')+
+      '<br>👉 把 <b>🚰 水口</b> 挪过来浇一瓢（关着闸一瓢就够 '+WT_DOLE.toFixed(1)+' 格），或 <b>开闸</b> 让隔壁高水位的 <b>白送</b> 一点过来','#B3E5FC');
+    wtLine();
+    return false;
+  }
+  const el=document.getElementById('wtF'+f.id);
+  if(f.fgn){
+    if(el){el.classList.add('out');wtT(function(){if(el.parentNode)el.parentNode.removeChild(el)},340)}
+    S.fl[i]=null;
+    wtBurst(i);
+    wtOnWrong(1);
+    wtPaintAll();
+    return true;
+  }
+  if(f.k>S.qi){
+    wtPop(wtCX(i),wtLY(S.v[i])-30,'⏳ 还没轮到','#B0BEC5');
+    wtSay('⏳ 这只标上写着 <b>第 '+(f.k+1)+' 笔</b>，可现在该收的是 <b>第 '+(S.qi+1)+' 笔</b>：先按笔顺来，<b>点回去不扣分</b>。🫳 按 <code>W</code> 直接收该收那一笔','#B3E5FC');
+    wt.think=0;
+    return true;
+  }
+  const chained=(wt.since===0&&wt.printRun>0);
+  S.fl[i]=null;S.qi++;
+  wt.since=0;wt.think=0;
+  if(chained){wt.saved++;wtAdd('hz_sluice_saved',1)}
+  if(el){el.classList.add('out');wtT(function(){if(el.parentNode)el.parentNode.removeChild(el)},340)}
+  wtRing(wtCX(i),wtLY(S.v[i]),26,'#FFD740');
+  wtBits(wtCX(i),wtLY(S.v[i]),'#4FC3F7',12);
+  wtSparks(i);
+  wtFlash();
+  wtTone(520,0.09,'sine',0.06);
+  wtPrint(f.k,chained);
+  wtWater();wtFloats();wtTubeCls();wtMeter();
+  if(S.qi>=S.n){
+    wt.nextMs=WT_NEXT_MS;
+    wtT(wtWin,WT_PRINT_MS+140);
+  }else wtCheckPow();
+  wtPaintAll();
+  return true;
+}
+function wtTakeNext(){
+  const S=wt.S;
+  if(!S||S.qi>=S.n)return false;
+  const t=wtTubeOf(S,S.qi);
+  if(t<0){wtSay('🫳 场上 <b>找不到第 '+(S.qi+1)+' 笔</b> 那只标了 —— 按 <b>🔁 重摆</b> 另摆一盘','#FFCC80');return false}
+  if(wtUp(S,t))return wtTake(t);
+  wtMoveHose(t);
+  wtSay('🫳 该收的是 <b>第 '+(S.qi+1)+' 笔</b>，它在 <b>'+wtName(t)+'</b>（'+WT_O[t]+'）：水位 <b>'+S.v[t].toFixed(1)+'</b>，冒头线 <b>'+wtNeed(S,t).toFixed(1)+'</b>，差 <b>'+(wtNeed(S,t)-S.v[t]).toFixed(1)+' 格</b> —— 🚰 水口已经挪过来，按 <code>空格</code> <b>放一瓢</b>（或开闸借隔壁的水）','#FFF176');
+  return true;
+}
+function wtTapTube(i){
+  const S=wt.S;
+  if(!S||i<0||i>=WT_NT)return false;
+  if(wtUp(S,i))return wtTake(i);
+  return wtMoveHose(i);
+}
+/* ---- 杂字浮标 / 掉心 ---- */
+function wtBurst(i){
+  const S=wt.S;
+  wtBits(wtCX(i),wtLY(S.v[i]),'#B0BEC5',16);
+  wtRing(wtCX(i),wtLY(S.v[i]),30,'#FF8A80');
+  wtPop(wtCX(i),wtLY(S.v[i])-26,'🫧 炸开泡沫','#FF8A80');
+}
+function wtPrint(k,chained){
+  if(!wt.rec)return;
+  wt.lits++;wt.combo++;wt.printRun++;
+  wt.maxCombo=Math.max(wt.maxCombo,wt.combo);
+  let gain=Math.round((14+k*2+wt.lv*3)*(1+wt.combo*0.05));
+  let bonus=0;
+  if(chained){bonus=6+wt.lv*2;gain+=bonus}
+  if(wt.clock>0.6)gain+=Math.round(wt.clock*6);
+  wt.score+=gain;
+  wt.printMs=WT_PRINT_MS;
+  const i=wt.S?wtTubeOf(wt.S,k):-1;
+  const x=i>=0?wtCX(i):WT_W/2,y=i>=0?wtLY(wt.S.v[i])-40:120;
+  wtPop(x,y,'+'+gain,'#B2FF59');
+  if(bonus)wtT(wtPop.bind(null,x,y-30,'🫳 连着收 +'+bonus,'#80D8FF'),170);
+  wtTone(WT_NOTE[Math.min(WT_NOTE.length-1,k+(chained?2:0))],0.15,'triangle',0.1);
+  if(chained)wtTblCls('hot',520);
+  wtAdd('hz_sluice_lits',1);
+  wtPaper();wtMini();wtHudLight();wtAskText();wtBasketLight();wtLine();
+}
+function wtOnWrong(n){
+  wt.score=Math.max(0,wt.score-WT_WRONG_PEN*n);
+  wt.combo=0;wt.cleanWord=false;
+  wt.wrongs+=n;wt.wrongWord++;
+  wtAdd('hz_sluice_wrongs',n);
+  wtMissAdd(wt.rec&&wt.rec.ch);
+  wtShakeFx();wtFlash();wtTblCls('dead',620);
+  wtTone(120,0.3,'sawtooth',0.12);
+  wtSay('🚫 <b>收错标了！</b>那只浮标上的笔形 <b>根本不是这个字的笔</b>（挂着 <b>?</b> 的杂字标）：当场 <b>炸成泡沫</b>，扣 '+WT_WRONG_PEN*n+' 分、<b>连击断了</b>（本字已错 '+wt.wrongWord+'/'+WT_WRONG_MAX+' 次）—— <b>先认笔形再收</b>','#FF8A80');
+  if(wt.wrongWord>=WT_WRONG_MAX){wt.wrongWord=0;wtLoseHeart('wrong')}
+}
+function wtLoseHeart(why,quiet){
+  wt.hearts--;
+  wt.combo=0;
+  wtTblCls('dead',520);
+  wtTone(180,0.22,'triangle',0.09);
+  wtHud();
+  if(!quiet){
+    if(why==='wrong')wtSay('💔 <b>连着收错三次</b>，掉一颗心 —— 认标看的是 <b>笔形</b>：横平竖直、撇往左下、捺往右下','#FF8A80');
+    else if(why==='clock')wtSay('💔 <b>退潮</b>，掉一颗心 —— 潮水钟 <b>最后 12 秒整张台子变红</b>，看见红色先把 <b>手上这一瓢收掉</b>','#FF8A80');
+    else if(why==='pow')wtSay('💔 <b>水瓢见底</b>，掉一颗心 —— 一瓢只涨 '+WT_DOLE.toFixed(1)+' 格：<b>先算清谁要先冒头，再决定水口挂哪儿</b>','#FF8A80');
+    else wtSay('💔 掉一颗心','#FF8A80');
+  }
+  if(wt.hearts<=0){wt.hearts=0;wtEnd('miss')}
+}
+function wtPowerOut(kind){
+  if(!wt.run||wt.over)return;
+  const word=kind==='clock'?'🌊 <b>潮水钟走光了</b>':'🪣 <b>水瓢用光了</b>';
+  wt.deads++;wtAdd('hz_sluice_deads',1);
+  wtShakeFx();
+  wtTblCls('dead',560);
+  wtSay(word+'：这一阵 <b>退潮</b> 了 —— 剩下的笔 <b>重新摆一盘</b>（已经印出来的笔 <b>一笔不抹</b>）。💔 掉一颗心','#FFCC80');
+  wtLoseHeart(kind,1);
+  if(wt.over)return;
+  wtRedress();
+}
+function wtCheckPow(){
+  const S=wt.S;
+  if(!S||wt.over||!wt.run)return false;
+  if(S.qi>=S.n||wt.pow>0)return false;
+  if(wtUpN(S)>0)return false;
+  wtPowerOut('pow');
+  return true;
+}
+function wtRedress(){
+  if(!wt.rec||!wt.S)return false;
+  const from=wt.S.qi;
+  if(!wtNewBoard(from)){wtEnd('nodata');return false}
+  wtSay('🌊 <b>重新涨潮</b>：第 '+(from+1)+' 笔起的浮标 <b>另摆一盘</b>，水瓢 <b>'+wt.powMax+' 瓢</b>、钟 <b>'+wt.clockSec+' 秒</b> 重新发 —— 已经印好的 <b>'+from+'/'+wt.n+'</b> 笔还在纸上','#B3E5FC');
+  return true;
+}
+/* ---- 浪头 ---- */
+function wtWave(){
+  const S=wt.S;if(!S)return;
+  const cur=wtTubeOf(S,S.qi);
+  const cand=[];
+  for(let i=0;i<WT_NT;i++)if(i!==cur)cand.push(i);
+  const t=wtOne(cand);
+  if(t<0)return;
+  const up=Math.random()<0.5;
+  S.v[t]=wtClamp(S.v[t]+(up?WT_WV:-WT_WV),0,WT_FULL);
+  wt.waves++;wt.waveTag=WT_TAG_MS;
+  wtAdd('hz_sluice_waves',1);
+  wtWater();wtFloats();wtMeter();
+  wtPop(wtCX(t),WT_TT+16,(up?'🌊 拍高':'🌊 拍低')+' '+WT_WV.toFixed(1),'#FF80AB');
+  wtTone(up?880:200,0.1,'sine',0.05);
+  const el=document.getElementById('wtWaveTag');
+  if(el)el.innerHTML='🌊 '+WT_O[t]+' 被拍'+(up?'高':'低')+'了 '+WT_WV.toFixed(1)+' 格';
+  wtSay('🌊 <b>浪头打过</b>：'+wtName(t)+'（'+WT_O[t]+'）被 <b>拍'+(up?'高':'低')+'</b> 了 '+WT_WV.toFixed(1)+' 格 —— 水位读数变了：'+wtLevels(S),(up?'#B3E5FC':'#FFCC80'));
+}
+/* ---- 收字 / 换字 ---- */
+function wtWin(){
+  if(wt.over||!wt.S||wt.S.qi<wt.n)return;
+  wt.words++;
+  wtAdd('hz_sluice_words',1);
+  let gain=26+wt.n*6+wt.lv*6+wt.pow*3;
+  if(wt.cleanWord){gain+=WT_CLEAN_BONUS;wtAdd('hz_sluice_perfect',1)}
+  wt.score+=gain;
+  wtAdd('hz_sluice_score',Math.round(gain));
+  wtPop(WT_W/2,WT_TT+6,'🏁 +'+gain,'#FFF176');
+  wtTone(659,0.14,'triangle',0.1);
+  wtTone(784,0.16,'triangle',0.1);
+  wtT(wtTone.bind(null,1046,0.2,'triangle',0.1),150);
+  wtBookAdd(wt.rec.ch);
+  wtMissDel(wt.rec.ch);
+  const oldLv=wt.lv;
+  wt.lv=wtLvOf(wt.words);
+  if(wt.lv>oldLv){
+    wt.previewN++;wt.undoN++;wt.respN++;
+    wtSay('🚀 <b>升到第 '+wt.lv+' 段</b>！台上多了 <b>🚫 杂字标 '+wtFgnOf(wt.lv)+' 只 · 🪨 重浮标 '+wtHvyOf(wt.lv)+' 只</b>'+(wt.lv>=5?' · 🕳 漏缝 '+wtLeakOf(wt.lv)+' 道':'')+(wt.lv>=6?' · 🌊 <b>浪头</b>（每 3 瓢拍高一截）':'')+(wt.lv>=3?' · 🪵 木塞 '+wtCorkOf(wt.lv)+' 个':'')+' —— 预览 / 倒带 / 重摆各补 1 次','#FFF176');
+  }else if(wt.words%3===0&&wt.hearts<WT_HEART_MAX){
+    wt.hearts++;
+    wtSay('❤️ 又收好一个字，<b>补一颗心</b>（现在 '+wt.hearts+' 颗）','#F8BBD0');
+  }else{
+    wtSay('🏁 <b>'+wt.rec.ch+'</b> 的 '+wt.n+' 笔全冒头收好了！还剩 <b>'+wt.pow+' 瓢水</b> 换成 <b>+'+(wt.pow*3)+'</b> 分 —— 下一盘正在摆浮标','#C5E1A5');
+  }
+  wt.hudTxt={};
+  wtHud();
+  wtT(wtNextWord,WT_NEXT_MS);
+}
+function wtNextWord(){
+  if(!wt.run||wt.over)return;
+  if(!wtNewWord()){wtEnd('nodata');return}
+}
+function wtNewWord(){
+  const rec=wtPickRec();
+  if(!rec)return false;
+  wt.rec=rec;
+  wt.n=rec.n;
+  wt.qi=0;
+  wt.gly=wtGlyOf(rec);
+  wt.printRun=0;wt.think=0;wt.since=0;
+  wt.cleanWord=true;wt.wrongWord=0;
+  wt.ghostMs=0;wt.ghost=null;
+  if(!wtNewBoard(0)){wt.rec=null;return false}
+  wtSay('🚰 新盘子 <b>'+rec.ch+'</b>（'+rec.n+' 笔）：6 根管里漂着 '+rec.n+' 只 <b>木浮标</b>，标面就是其中一笔的 <b>真笔形</b>，角上写着 <b>第几笔</b>。先把 <b>🚰 水口</b> 挪到该收那一笔所在的管子，<b>空格</b> 放瓢把它 <b>顶到 🎯 冒头线</b> 上面 —— 冒头了 <b>点浮标</b> 就印出来','#C5E1A5');
+  return true;
+}
+/* ---- 预览 / 倒带 / 重摆 ---- */
+function wtPreview(){
+  if(!wt.run||wt.over)return false;
+  const S=wt.S;if(!S||S.qi>=S.n)return false;
+  if(wt.pourMs>0||wt.nextMs>0)return false;
+  if(wt.previewN<=0){wtSay('💡 <b>预览用完了</b>：还有 <b>🔄 倒带</b> 退回上一瓢之前','#FFCC80');return false}
+  const t=wt.hose>=0?wt.hose:wtTubeOf(S,S.qi);
+  if(t<0){wtSay('💡 想预览先 <b>点一根管子</b> 把 🚰 水口挂上','#FFCC80');return false}
+  wt.previewN--;wt.previews++;wtAdd('hz_sluice_previews',1);
+  const C=wtClone(S);
+  const r=wtPourOne(C,t);
+  const up=[];
+  for(let i=0;i<WT_NT;i++)if(wtUp(C,i))up.push(i);
+  wt.ghost={v:C.v.slice(),up:up,tube:t,m:r.m,leak:r.leak,spill:r.spill};
+  wt.ghostMs=WT_GHOST_MS;
+  wtRenderGhosts();
+  wtTone(620,0.08,'sine',0.05);
+  const p=wtPlanStep(S);
+  wtSay('👀 <b>预览</b>（还剩 '+wt.previewN+' 次）：这一瓢浇进 <b>'+wtName(t)+'</b>（'+r.name+' '+r.m+' 根）之后 —— '+wtLevels(C)+
+    '<br>会冒头的是'+(up.length?up.map(function(i){const f=C.fl[i];return ' <b>'+WT_O[i]+(f&&f.fgn?' 杂字标':' 第'+(f.k+1)+'笔')+'</b>'}).join('、'):'<b> 谁也没有</b>')+
+    (r.leak?'；先漏掉 '+(WT_LEAK*r.leak).toFixed(1)+' 格':'')+
+    (r.spill>0.01?'；泼掉 '+r.spill.toFixed(1)+' 格':'')+
+    (p&&p.tube>=0&&!p.lost&&!p.free?'。<br>👉 军师算的更省水：水口挂 <b>'+wtName(p.tube)+'</b>，闸 '+wtOpenSay(p.mask)+'，还要 <b>'+p.pours+' 瓢</b>':''),
+    '#E1F5FE');
+  wtToolBtns();wtHudLight();
+  return true;
+}
+function wtSnap(){
+  const S=wt.S;
+  return {S:wtClone(S),pow:wt.pow,pours:wt.pours,pourMs:0,score:wt.score,combo:wt.combo,lits:wt.lits,
+    saved:wt.saved,spills:wt.spills,wrongs:wt.wrongs,deads:wt.deads,printRun:wt.printRun,
+    cleanWord:wt.cleanWord,since:wt.since,hose:wt.hose,clock:wt.clock,red:wt.red};
+}
+function wtRestore(s){
+  wt.S=s.S;
+  wt.pow=s.pow;wt.pours=s.pours;wt.score=s.score;wt.combo=s.combo;wt.lits=s.lits;
+  wt.saved=s.saved;wt.spills=s.spills;wt.wrongs=s.wrongs;wt.deads=s.deads;
+  wt.printRun=s.printRun;wt.cleanWord=s.cleanWord;wt.since=s.since;wt.hose=s.hose;
+  wt.clock=s.clock;wt.red=s.red;
+  wt.ghostMs=0;wt.ghost=null;
+  wtBoard();wtPaper();wtMini();wtHud();wtAskText();wtLine();
+}
+function wtUndo(){
+  if(!wt.run||wt.over)return false;
+  if(wt.pourMs>0||wt.nextMs>0)return false;
+  if(!wt.hist.length){wtSay('🔄 <b>还没有动过水</b>：倒带是退回 <b>上一瓢 / 上一次开闸之前</b> 的水位','#FFCC80');return false}
+  if(wt.undoN<=0){wtSay('🔄 <b>倒带用完了</b>：水一摊开就 <b>收不回来</b> 了 —— 下一步先看清谁的要先冒头','#FFCC80');return false}
+  wt.undoN--;wt.rewinds++;wtAdd('hz_sluice_rewinds',1);
+  wtTone(320,0.14,'sine',0.06);
+  wtRestore(wt.hist.pop());
+  wtSay('🔄 <b>倒带</b>：水位、闸门、浮标 <b>一模一样还原</b>（水瓢剩 '+wt.pow+'/'+wt.powMax+'、印 '+wt.S.qi+'/'+wt.n+' 笔，倒带还剩 '+wt.undoN+' 次）—— 连通器的水记得刚才怎么流的，你也记一下','#B3E5FC');
+  wtToolBtns();
+  return true;
+}
+function wtRespin(){
+  if(!wt.run||wt.over)return false;
+  if(wt.nextMs>0)return false;
+  if(wt.respN<=0){wtSay('🔁 <b>重摆的机会用完了</b>：还有 <b>🎚 开闸找平</b> 和 <b>🔄 倒带</b> 两条路','#FFCC80');return false}
+  wt.respN--;wt.respins++;wtAdd('hz_sluice_resets',1);
+  if(wtRedress())wtSay('🔁 <b>另摆一盘</b>：剩下的笔 <b>另摆一盘浮标</b>（重摆还剩 '+wt.respN+' 次）—— 这一盘军师 <b>算得通</b>，照 <b>提示线</b> 走','#B3E5FC');
+  wtToolBtns();
+  return true;
+}
+
+/* ================= v1.80 笔顺水闸 · C：渲染 / 特效 / 主循环 / 输入 ================= */
+/* ---- 台面（每盘重画一次）---- */
+function wtRenderStatic(){
+  const g=document.getElementById('wtStatic');if(!g)return;
+  const S=wt.S;
+  let h='<rect class="wt-deck" x="'+(WT_X0-16)+'" y="'+(WT_TT-14)+'" width="'+(wtBW()+32)+'" height="'+(WT_CY1-WT_TT+18)+'" rx="20"/>';
+  h+='<rect class="wt-chan" x="'+(WT_X0-4)+'" y="'+WT_CY0+'" width="'+(wtBW()+8)+'" height="'+(WT_CY1-WT_CY0)+'" rx="12"/>';
+  for(let i=0;i<WT_NT;i++){
+    const x=wtTX(i),cx=wtCX(i);
+    h+='<text class="wt-sillTxt" x="'+cx+'" y="'+(WT_TT-4)+'" font-size="13">'+WT_O[i]+'</text>';
+    h+='<rect class="wt-tube" id="wtTube'+i+'" x="'+x+'" y="'+WT_TT+'" width="'+WT_TW+'" height="'+(WT_TB-WT_TT)+'" rx="11"/>';
+    if(S){
+      const sy=wtLY(S.sill[i]);
+      h+='<line class="wt-sill" x1="'+(x+3)+'" y1="'+sy.toFixed(1)+'" x2="'+(x+WT_TW-3)+'" y2="'+sy.toFixed(1)+'"/>';
+      h+='<text class="wt-sillTxt" x="'+cx+'" y="'+(sy-5).toFixed(1)+'" font-size="10.5">🎯'+S.sill[i]+'</text>';
+      if(S.lk[i]){
+        const ly=WT_TB-92;
+        h+='<path class="wt-leak" d="M'+(x+5)+' '+ly+'l-6 9l7 8l-6 9"/>';
+        h+='<circle class="wt-drip" cx="'+(x+2)+'" cy="'+(ly+30)+'" r="2.6"/>';
+        h+='<text class="wt-sillTxt" x="'+(x+13)+'" y="'+(ly-6)+'" font-size="10">🕳</text>';
+      }
+    }
+    h+='<rect class="wt-hit" id="wtHit'+i+'" data-t="'+i+'" x="'+(x-5)+'" y="'+(WT_TT-16)+'" width="'+(WT_TW+10)+'" height="'+(WT_TB-WT_TT+20)+'" rx="12"/>';
+  }
+  for(let j=0;j<WT_NV;j++){
+    h+='<rect class="wt-hit" data-v="'+j+'" x="'+(wtVX(j)-19)+'" y="'+WT_CY0+'" width="38" height="'+(WT_CY1-WT_CY0)+'" rx="12"/>';
+  }
+  h+='<text class="wt-phead" x="'+(WT_X0+WT_TW/2)+'" y="'+(WT_PY+20)+'">🚰 水闸台</text>';
+  g.innerHTML=h;
+}
+/* ---- 可变层：水 / 闸门 / 浮标（建一次，之后只改属性和类，让 CSS 动起来）---- */
+function wtFloatHTML(i,f){
+  const S=wt.S;
+  const dir=f.fgn?-1:wtDn(wt.rec.dirs[f.k]);
+  const y=wtLY(S.v[i])-14;
+  let h='<g class="wt-float'+(f.hvy?' hvy':'')+(f.fgn?' fgn':'')+'" id="wtF'+f.id+'" data-i="'+i+'" style="transform:translate('+wtCX(i).toFixed(1)+'px,'+y.toFixed(1)+'px)"><g class="wt-fbob">';
+  h+='<rect class="wt-cork" x="-15" y="-8" width="30" height="26" rx="9"/>';
+  h+='<circle class="wt-face" cx="0" cy="-7" r="'+WT_RF+'"/>';
+  h+='<g transform="translate(0,-7) scale(0.6)">';
+  h+=f.fgn?'<text class="wt-tag" x="0" y="5">?</text>':wtGlyHTML(wt.gly[f.k]);
+  h+='</g>';
+  h+='<text class="wt-num" x="0" y="14">'+(f.fgn?'?':(f.k+1))+'</text>';
+  if(!f.fgn)h+='<text class="wt-weight" x="0" y="-26" font-size="10">'+WT_ARW[dir]+'</text>';
+  if(f.hvy)h+='<text class="wt-weight" x="0" y="27">🪨</text>';
+  return h+'</g></g>';
+}
+function wtBoard(){
+  const S=wt.S;if(!S)return;
+  const w=document.getElementById('wtWaterG');
+  if(w){
+    let h='';
+    for(let i=0;i<WT_NT;i++){
+      const x=wtTX(i)+4,y=wtLY(S.v[i]);
+      h+='<rect class="wt-water" id="wtW'+i+'" x="'+x+'" y="'+y.toFixed(1)+'" width="'+(WT_TW-8)+'" height="'+Math.max(0,WT_TB-y).toFixed(1)+'" rx="7"/>';
+      h+='<line class="wt-wsur" id="wtS'+i+'" x1="'+x+'" y1="'+y.toFixed(1)+'" x2="'+(x+WT_TW-8)+'" y2="'+y.toFixed(1)+'"/>';
+    }
+    w.innerHTML=h;
+  }
+  const v=document.getElementById('wtValveG');
+  if(v){
+    let h='';
+    const cy=(WT_CY0+WT_CY1)/2;
+    for(let j=0;j<WT_NV;j++){
+      h+='<g class="wt-valve '+(S.open[j]?'open':'shut')+'" id="wtValve'+j+'" data-j="'+j+'" style="transform:translate('+wtVX(j).toFixed(1)+'px,'+cy+'px)">'+
+        '<circle class="wt-vwheel" cx="0" cy="0" r="16"/>'+
+        '<rect class="wt-vbody" x="-11" y="-11" width="22" height="22" rx="6"/>'+
+        '<text class="wt-vmark" x="0" y="5">'+(S.open[j]?'开':'关')+'</text>'+
+        '<text class="wt-vmark wt-corkTxt" x="0" y="-21" font-size="12">'+(S.cork[j]?'🪵':'')+'</text>'+
+        '</g>';
+    }
+    v.innerHTML=h;
+  }
+  const fg=document.getElementById('wtFloatG');
+  if(fg){
+    let h='';
+    for(let i=0;i<WT_NT;i++){const f=S.fl[i];if(f)h+=wtFloatHTML(i,f)}
+    fg.innerHTML=h;
+  }
+  const gg=document.getElementById('wtGhostG');
+  if(gg&&gg.parentNode)gg.parentNode.removeChild(gg);
+  const cb=document.getElementById('wtCurBox');
+  if(cb&&cb.parentNode)cb.parentNode.removeChild(cb);
+  wtWater();wtValves();wtFloats();wtTubeCls();wtHosePaint();
+}
+function wtWater(){
+  const S=wt.S;if(!S)return;
+  for(let i=0;i<WT_NT;i++){
+    const r=document.getElementById('wtW'+i),l=document.getElementById('wtS'+i);
+    const y=wtLY(S.v[i]);
+    if(r){r.setAttribute('y',y.toFixed(1));r.setAttribute('height',Math.max(0,WT_TB-y).toFixed(1))}
+    if(l){l.setAttribute('y1',y.toFixed(1));l.setAttribute('y2',y.toFixed(1))}
+  }
+}
+function wtValves(){
+  const S=wt.S;if(!S)return;
+  for(let j=0;j<WT_NV;j++){
+    const el=document.getElementById('wtValve'+j);if(!el)continue;
+    el.classList.toggle('open',!!S.open[j]);
+    el.classList.toggle('shut',!S.open[j]);
+    const mk=el.querySelector('.wt-vmark');
+    if(mk)mk.textContent=S.open[j]?'开':'关';
+    const ck=el.querySelector('.wt-corkTxt');
+    if(ck)ck.textContent=S.cork[j]?'🪵':'';
+  }
+}
+function wtFloats(){
+  const S=wt.S;if(!S)return;
+  for(let i=0;i<WT_NT;i++){
+    const f=S.fl[i];if(!f)continue;
+    const el=document.getElementById('wtF'+f.id);if(!el)continue;
+    el.style.transform='translate('+wtCX(i).toFixed(1)+'px,'+(wtLY(S.v[i])-14).toFixed(1)+'px)';
+    el.setAttribute('data-i',String(i));
+    const up=wtUp(S,i);
+    el.classList.toggle('up',up);
+    el.classList.toggle('now',up&&!f.fgn&&f.k===S.qi);
+  }
+}
+function wtTubeCls(){
+  const S=wt.S;if(!S)return;
+  for(let i=0;i<WT_NT;i++){
+    const el=document.getElementById('wtTube'+i);if(!el)continue;
+    el.classList.toggle('here',wt.hose===i);
+  }
+}
+function wtHosePaint(){
+  const g=document.getElementById('wtHoseG');if(!g)return;
+  const t=wt.hose;
+  const x=t>=0?wtCX(t):(WT_X0-22),y=t>=0?(WT_TT-30):(WT_TT+22);
+  const drop=wt.pourMs>0?1:0;
+  g.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)';
+  if(g.getAttribute('data-t')===String(t)&&g.getAttribute('data-d')===String(drop))return;
+  let h='<path class="wt-hose" d="M-11 -46L11 -46L11 -14L17 -6L17 0L-17 0L-17 -6L-11 -14Z"/>'+
+    '<text class="wt-hoseTxt" x="0" y="-24">🚰</text>';
+  if(drop)h+='<g id="wtDropG"><circle class="wt-drop" cx="0" cy="8" r="3.4"/><circle class="wt-drop" cx="-5" cy="8" r="2.4" style="animation-delay:.14s"/><circle class="wt-drop" cx="5" cy="8" r="2.2" style="animation-delay:.28s"/></g>';
+  g.innerHTML=h;
+  g.setAttribute('data-t',String(t));
+  g.setAttribute('data-d',String(drop));
+}
+/* ---- 纸带 / 米字格 / 料牌 / 计量 ---- */
+function wtPaper(){
+  const g=document.getElementById('wtPaperG');if(!g)return;
+  if(!wt.rec){g.innerHTML='';return}
+  const n=wt.n,px=WT_X0+WT_TW,pw=WT_X0+wtBW()-px,bw=pw/Math.max(1,n);
+  const qi=(wt.S&&wt.S.qi)||0;
+  let h='<rect class="wt-paper" x="'+px+'" y="'+WT_PY+'" width="'+pw+'" height="'+WT_PH+'" rx="12"/>';
+  for(let k=0;k<n;k++){
+    const x=px+k*bw,inIt=k<qi,now=k===qi;
+    h+='<rect class="'+(now?'wt-pnow':'wt-pbox')+'" x="'+(x+3).toFixed(1)+'" y="'+(WT_PY+4)+'" width="'+(bw-6).toFixed(1)+'" height="'+(WT_PH-8)+'" rx="8"/>';
+    if(inIt&&wt.gly[k]){
+      const sc=((Math.min(bw-8,WT_PH-8))/44*0.92).toFixed(3);
+      h+='<g transform="translate('+(x+bw/2).toFixed(1)+','+(WT_PY+WT_PH/2)+') scale('+sc+')">'+wtGlyHTML(wt.gly[k])+'</g>';
+    }else h+='<text class="wt-ptxt" x="'+(x+bw/2).toFixed(1)+'" y="'+(WT_PY+WT_PH/2+4)+'">'+(k+1)+'</text>';
+  }
+  g.innerHTML=h;
+}
+function wtMini(){
+  const svg=document.getElementById('wtMiniSvg');
+  if(!svg)return;
+  if(!wt.rec){svg.innerHTML='';return}
+  const sp=(wt.rec.raw&&wt.rec.raw.strokes)||[];
+  let h='<g transform="scale(1,-1)"><path d="M512 40V984M40 512H984" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="14 12"/>';
+  for(let i=0;i<wt.n;i++){
+    const got=wt.S&&i<wt.S.qi;
+    const col=got?WT_INK[wtDn(wt.rec.dirs[i])]:((wt.S&&i===wt.S.qi)?'rgba(255,245,157,.95)':'rgba(255,255,255,.22)');
+    h+='<path d="'+wtDOf(sp,i)+'" fill="'+col+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  wtSet('wtMiniCap',wt.rec.ch+' '+((wt.S&&wt.S.qi)||0)+'/'+wt.n+' 笔');
+}
+function wtBasketHTML(){
+  const S=wt.S;
+  if(!S||!wt.rec)return '';
+  let wait=0,fgn=0,up=0,lk=0,ck=0,hv=0;
+  for(let i=0;i<WT_NT;i++){
+    if(S.lk[i])lk++;
+    if(S.cork[i])ck++;
+    const f=S.fl[i];
+    if(!f)continue;
+    if(f.fgn)fgn++;
+    else{wait++;if(f.hvy)hv++}
+    if(wtUp(S,i))up++;
+  }
+  let h='<div class="wt-nd in">🚰 水口 '+(wt.hose>=0?WT_O[wt.hose]:'—')+'</div>';
+  h+='<div class="wt-nd in">💧 剩 '+wt.pow+'/'+wt.powMax+'</div>';
+  h+='<div class="wt-nd">🎚 闸开 '+S.open.filter(function(o){return o}).length+'/'+WT_NV+'</div>';
+  h+='<div class="wt-nd'+(up?' in':'')+'">🎯 冒头 ×'+up+'</div>';
+  h+='<div class="wt-nd">⚓ 待漂 ×'+(wait-up)+'</div>';
+  if(fgn)h+='<div class="wt-nd dead">🚫 杂字标 ×'+fgn+'</div>';
+  if(hv)h+='<div class="wt-nd dead">🪨 ×'+hv+'</div>';
+  if(lk)h+='<div class="wt-nd dead">🕳 ×'+lk+'</div>';
+  if(ck)h+='<div class="wt-nd">🪵 ×'+ck+'</div>';
+  return h+'<span class="wt-more"></span>';
+}
+function wtBasket(){
+  const el=document.getElementById('wtBasket');
+  if(el){const h=wtBasketHTML();el.setAttribute('data-h',h);el.innerHTML=h}
+  wt.hudTxt.bask='';
+  wtBasketLight();
+}
+function wtBasketLight(){
+  const el=document.getElementById('wtBasket');
+  if(!el)return;
+  const chips=wtBasketHTML();
+  if((el.getAttribute('data-h')||'')!==chips){el.setAttribute('data-h',chips);el.innerHTML=chips}
+  const more=el.querySelector('.wt-more');
+  if(!more)return;
+  if(!wt.rec||!wt.S){if(wt.hudTxt.bask!==''){wt.hudTxt.bask='';more.innerHTML=''}return}
+  const S=wt.S;
+  const k=Math.min(S.qi,wt.n-1),nd=wtDn(wt.rec.dirs[k]);
+  const t=S.qi>=wt.n?'🏁 这一盘已经收满':
+    '🎯 该收的是 <b>第 '+(S.qi+1)+' 笔「'+WT_DIRS[nd]+' '+WT_ARW[nd]+'」</b>，在 <b>'+WT_O[wtTubeOf(S,S.qi)]+'</b> · 💧 瓢 <b>'+wt.pow+'/'+wt.powMax+'</b> · 已放 <b>'+wt.pours+'</b> 瓢';
+  if(wt.hudTxt.bask!==t){wt.hudTxt.bask=t;more.innerHTML=t}
+}
+function wtMeter(){
+  const bar=document.getElementById('wtClockBar'),tt=document.getElementById('wtClockTxt'),bx=document.getElementById('wtClockBox');
+  const w=(wtClamp(wt.clock,0,1)*100).toFixed(1)+'%';
+  if(bx)bx.classList.toggle('low',wt.clock<=12/Math.max(1,wt.clockSec));
+  if(bar&&wt.hudTxt.bar!==w){wt.hudTxt.bar=w;bar.style.width=w}
+  const left=Math.max(0,Math.ceil(wt.clock*wt.clockSec));
+  const t='🌊 还有 '+left+' 秒 · 收 '+((wt.S&&wt.S.qi)||0)+'/'+wt.n+' 笔';
+  if(tt&&wt.hudTxt.tt!==t){wt.hudTxt.tt=t;tt.textContent=t}
+  const p='💧 '+wt.pow+'/'+wt.powMax;
+  const pt=document.getElementById('wtPowTxt');
+  if(pt&&wt.hudTxt.pt!==p){wt.hudTxt.pt=p;pt.textContent=p}
+  const st=document.getElementById('wtWaveTag');
+  if(st)st.classList.toggle('on',wt.waveTag>0);
+  const bd=document.getElementById('wtBadge');
+  if(bd)bd.style.top=wt.waveTag>0?'34px':'8px';
+  if(bd&&wt.S){
+    const bg=wtGrps(wt.S);
+    if(wt.hudTxt.badge!==bg){wt.hudTxt.badge=bg;bd.textContent=bg}
+    bd.classList.toggle('on',!!bg);
+  }
+  wtBasketLight();
+}
+function wtHudLight(){
+  const sc=document.getElementById('wtScoreTxt'),t='🎯 '+Math.round(wt.score)+' 分';
+  if(sc&&wt.hudTxt.sc!==t){wt.hudTxt.sc=t;sc.textContent=t}
+  const lv=document.getElementById('wtLvTxt'),v='第 '+wt.lv+' 段 · '+(wt.rec?wt.rec.ch:'—')+' '+wt.n+' 笔';
+  if(lv&&wt.hudTxt.lv!==v){wt.hudTxt.lv=v;lv.textContent=v}
+  const lt=document.getElementById('wtLitTxt'),l='✅ '+wt.lits+' 笔';
+  if(lt&&wt.hudTxt.lt!==l){wt.hudTxt.lt=l;lt.textContent=l}
+  const cb=document.getElementById('wtComboTxt'),c='🔥 连 '+wt.combo;
+  if(cb&&wt.hudTxt.cb!==c){wt.hudTxt.cb=c;cb.textContent=c}
+  const pu=document.getElementById('wtPourTxt'),p='💧 '+wt.pours;
+  if(pu&&wt.hudTxt.pu!==p){wt.hudTxt.pu=p;pu.textContent=p}
+  const sv=document.getElementById('wtSavedTxt'),s='🫳 '+wt.saved;
+  if(sv&&wt.hudTxt.sv!==s){wt.hudTxt.sv=s;sv.textContent=s}
+  const sp=document.getElementById('wtSpillTxt'),r='🌊 '+wt.spills;
+  if(sp&&wt.hudTxt.sp!==r){wt.hudTxt.sp=r;sp.textContent=r}
+  const wr=document.getElementById('wtWrongTxt'),rr='🚫 '+wt.wrongs;
+  if(wr&&wt.hudTxt.wr!==rr){wt.hudTxt.wr=rr;wr.textContent=rr}
+  wtMeter();
+}
+function wtHud(){
+  const R=wtRank(wtInt('hz_sluice_words'));
+  wtSet('wtRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<WT_HEART_MAX;i++)hs+=(i<wt.hearts?'❤️':'🖤');
+  wtSet('wtHeartTxt',hs||'🖤');
+  wtSet('wtScoreTxt','🎯 '+Math.round(wt.score)+' 分');
+  wtSet('wtLvTxt','第 '+wt.lv+' 段 · '+(wt.rec?wt.rec.ch:'—')+' '+wt.n+' 笔');
+  wtSet('wtComboTxt','🔥 连 '+wt.combo);
+  wtSet('wtLitTxt','✅ '+wt.lits+' 笔');
+  wtSet('wtPourTxt','💧 '+wt.pours);
+  wtSet('wtSavedTxt','🫳 '+wt.saved);
+  wtSet('wtSpillTxt','🌊 '+wt.spills);
+  wtSet('wtWrongTxt','🚫 '+wt.wrongs);
+  wtToolBtns();
+  wtMini();wtBasket();wtPaper();wtHudLight();
+}
+function wtToolBtns(){
+  const p=document.getElementById('wtPourBtn'),g=document.getElementById('wtGateBtn');
+  const S=wt.S;
+  if(p){
+    p.disabled=(!S||wt.pow<=0||S.qi>=S.n||wt.pourMs>0||wt.nextMs>0);
+    p.innerHTML='💧 放水<b style="font-size:11px"> 空格 ×'+wt.pow+'</b>';
+  }
+  if(g)g.innerHTML='🎚 齐闸<b style="font-size:11px"> X</b>';
+  const pv=document.getElementById('wtPrevBtn');
+  if(pv){pv.disabled=wt.previewN<=0;pv.textContent='💡 预览 ×'+wt.previewN}
+  const un=document.getElementById('wtUndoBtn');
+  if(un){un.disabled=wt.undoN<=0||!wt.hist.length;un.textContent='🔄 倒带 ×'+wt.undoN}
+  const rb=document.getElementById('wtReBtn');
+  if(rb){rb.disabled=wt.respN<=0;rb.textContent='🔁 重摆 ×'+wt.respN}
+}
+function wtAskText(){
+  if(!wt.rec||!wt.S)return;
+  const st='💧 瓢 <b>'+wt.pow+'/'+wt.powMax+'</b> · 已放 <b>'+wt.pours+'</b> 瓢 · 🌊 溢 <b>'+wt.spills+'</b> 次 · ⏳ <b>'+Math.max(0,Math.ceil(wt.clock*wt.clockSec))+' 秒</b>';
+  if(wt.S.qi>=wt.n){
+    wtSet('wtAsk','🏁 <b>'+wt.rec.ch+'</b> 的 '+wt.n+' 笔全冒头收好了 —— 下一盘正在摆浮标<br><small>'+st+'</small>');
+    return;
+  }
+  const k=Math.min(wt.S.qi,wt.n-1),nd=wtDn(wt.rec.dirs[k]);
+  wtSet('wtAsk','🚰 <b>'+wt.rec.ch+'</b> 的第 '+(wt.S.qi+1)+' 笔（共 '+wt.n+' 笔）—— 把写着 <b>'+WT_DIRS[nd]+' '+WT_ARW[nd]+'</b> 那只标 <b>顶到 🎯 冒头线</b>，点它收水<br><small>'+st+'</small>');
+}
+function wtLine(){
+  const el=document.getElementById('wtHintLine');
+  if(!el)return;
+  if(!wt.run||wt.over||!wt.S){el.innerHTML='🚰 正在往管里放水……';return}
+  if(wt.nextMs>0){el.innerHTML='🏁 <b>字收满了</b> —— 下一盘浮标正在摆';return}
+  if(wt.pourMs>0){el.innerHTML='💧 水正在摊平…… 等液面 <b>停住</b>';return}
+  if(wt.S.qi>=wt.n){el.innerHTML='🏁 收满了 —— 等这一盘结帐';return}
+  const p=wtPlanStep(wt.S);
+  if(!p){el.innerHTML='🚰 军师 <b>算不出下一步</b> —— 按 <b>🔁 重摆</b> 另摆一盘';return}
+  if(p.lost){el.innerHTML='🚰 场上 <b>没有第 '+(wt.S.qi+1)+' 笔</b> 那只标了 —— 按 <b>🔁 重摆</b>';return}
+  if(p.free){el.innerHTML='⚖️ 这一根 <b>已经顶到管口了</b>（水漫出去也白漫）—— 先 <b>开闸</b> 找平，或 <b>🔁 重摆</b>';return}
+  if(p.now){el.innerHTML='✨ <b>第 '+(wt.S.qi+1)+' 笔已经冒头</b>：<b>点 '+WT_O[p.tube]+' 号管口的浮标</b>（或按 <code>W</code>）把这一笔 <b>印出来</b>';return}
+  if(wt.hose===p.tube&&wtMask(wt.S.open)===p.mask){
+    el.innerHTML='💧 水口、闸门都对了：<b>空格 放一瓢</b> —— 这一瓢摊给 '+wtGrpName(wt.S,p.tube)+'，'+(p.pours<=wt.pow?'还要 <b>'+p.pours+' 瓢</b>':'瓢 <b>只够 '+wt.pow+' 瓢</b>，先开闸借水');
+    return;
+  }
+  el.innerHTML='👉 水口挪到 <b>'+WT_O[p.tube]+'</b>（点管子 / <code>'+(p.tube+1)+'</code>）· 闸 <b>'+wtOpenSay(p.mask)+'</b>（点闸门 / <code>X</code> 齐闸）—— 军师算还要 <b>'+p.pours+' 瓢</b>，再按 <code>空格</code>';
+}
+function wtPaintAll(){
+  wtWater();wtValves();wtFloats();wtTubeCls();wtHosePaint();
+  wtMeter();wtHudLight();wtAskText();wtLine();wtToolBtns();
+}
+/* ---- 预览虚影 / 光标 / 特效 ---- */
+function wtRenderGhosts(){
+  const g=document.getElementById('wtTopG');
+  if(!g)return;
+  const old=document.getElementById('wtGhostG');
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  const G=wt.ghost,S=wt.S;
+  if(!G||!S||wt.ghostMs<=0)return;
+  let h='<g id="wtGhostG">';
+  for(let i=0;i<WT_NT;i++){
+    const d=G.v[i]-S.v[i];
+    if(d<=0.001)continue;
+    const y1=wtLY(G.v[i]),y2=wtLY(S.v[i]);
+    h+='<rect class="wt-ghost" x="'+(wtTX(i)+6)+'" y="'+y1.toFixed(1)+'" width="'+(WT_TW-12)+'" height="'+(y2-y1).toFixed(1)+'" rx="7"/>';
+    h+='<text class="wt-sillTxt" x="'+wtCX(i)+'" y="'+(y1+14).toFixed(1)+'">+'+d.toFixed(2)+'</text>';
+  }
+  for(let i=0;i<G.up.length;i++)h+='<text class="wt-spark" x="'+wtCX(G.up[i])+'" y="'+(WT_TT-18)+'">💧✨</text>';
+  h+='</g>';
+  g.insertAdjacentHTML('beforeend',h);
+}
+function wtFxHost(){return document.getElementById('wtFx')}
+function wtPut(host,el,ms){
+  host.appendChild(el);
+  wtT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function wtBits(x,y,col,n){
+  const host=wtFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='wt-bit';
+    b.style.left=(x/WT_W*100)+'%';b.style.top=(y/WT_H*100)+'%';
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=18+Math.random()*40;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r+16).toFixed(1)+'px');
+    wtPut(host,b,760);
+  }
+}
+function wtPop(x,y,txt,col){
+  const host=wtFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='wt-pop';
+  el.style.left=(x/WT_W*100)+'%';el.style.top=(y/WT_H*100)+'%';
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  wtPut(host,el,980);
+}
+function wtShakeFx(){
+  const el=document.querySelector('.wt-tbl');if(!el)return;
+  el.classList.remove('wt-shake');void el.offsetWidth;el.classList.add('wt-shake');
+}
+function wtTblCls(cls,ms){
+  const el=document.getElementById('wtTbl');
+  if(!el)return;
+  el.classList.add(cls);
+  wtT(function(){el.classList.remove(cls)},ms);
+}
+function wtRing(x,y,r,col){
+  const g=document.getElementById('wtTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+  c.setAttribute('r',String(Math.round(r)));c.setAttribute('fill','none');
+  c.setAttribute('stroke',col||'rgba(255,235,59,.9)');c.setAttribute('stroke-width','3');
+  c.setAttribute('class','wt-ring');
+  g.appendChild(c);
+  wtT(function(){if(c.parentNode)c.parentNode.removeChild(c)},920);
+}
+function wtMark(tubes){
+  const g=document.getElementById('wtTopG');if(!g)return;
+  (tubes||[]).forEach(function(i){
+    if(i<0)return;
+    const c=document.createElementNS('http://www.w3.org/2000/svg','rect');
+    c.setAttribute('x',String(wtTX(i)-4));c.setAttribute('y',String(WT_TT-8));
+    c.setAttribute('width',String(WT_TW+8));c.setAttribute('height',String(WT_TB-WT_TT+14));
+    c.setAttribute('rx','14');c.setAttribute('fill','none');
+    c.setAttribute('stroke','#40C4FF');c.setAttribute('stroke-width','3.4');
+    c.setAttribute('class','wt-mark');
+    g.appendChild(c);
+    wtT(function(){if(c.parentNode)c.parentNode.removeChild(c)},WT_GHOST_MS);
+  });
+}
+function wtSparks(i){
+  const g=document.getElementById('wtTopG');if(!g)return;
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x',String(wtCX(i)));t.setAttribute('y',String(wtLY(wt.S.v[i])-40));
+  t.setAttribute('class','wt-spark');t.textContent='💧 ✨ 🖌';
+  g.appendChild(t);
+  wtT(function(){if(t.parentNode)t.parentNode.removeChild(t)},1200);
+}
+function wtFlash(){
+  const g=document.getElementById('wtTopG');if(!g)return;
+  const r=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  r.setAttribute('x',WT_X0-16);r.setAttribute('y',WT_TT-14);
+  r.setAttribute('width',wtBW()+32);r.setAttribute('height',WT_CY1-WT_TT+18);
+  r.setAttribute('rx','20');r.setAttribute('class','wt-flash');
+  g.appendChild(r);
+  wtT(function(){if(r.parentNode)r.parentNode.removeChild(r)},WT_FLASH_MS+40);
+}
+function wtCursor(){
+  const g=document.getElementById('wtTopG');
+  if(!g)return;
+  const old=document.getElementById('wtCurBox');
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  if(wt.cur<0||wt.cur>=WT_NT+WT_NV)return;
+  const el=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  el.setAttribute('id','wtCurBox');
+  if(wt.cur%2===0){
+    const i=wt.cur/2;
+    el.setAttribute('x',String(wtTX(i)-6));el.setAttribute('y',String(WT_TT-14));
+    el.setAttribute('width',String(WT_TW+12));el.setAttribute('height',String(WT_TB-WT_TT+20));
+    el.setAttribute('rx','14');
+  }else{
+    const j=(wt.cur-1)/2;
+    el.setAttribute('x',String(wtVX(j)-19));el.setAttribute('y',String(WT_CY0));
+    el.setAttribute('width','38');el.setAttribute('height',String(WT_CY1-WT_CY0));
+    el.setAttribute('rx','12');
+  }
+  el.setAttribute('class','wt-cur');
+  g.appendChild(el);
+}
+/* ---- 主循环 ---- */
+function wtStartLoop(){wtStopLoop();wt.last=0;wt.rafId=requestAnimationFrame(wtLoop)}
+function wtStopLoop(){if(wt.rafId){cancelAnimationFrame(wt.rafId);wt.rafId=0}wt.last=0}
+function wtLoop(ts){
+  if(!wt.run||wt.over){wt.rafId=0;return}
+  const dt=wt.last?Math.min(0.05,(ts-wt.last)/1000):0.016;
+  wt.last=ts;
+  wtTick(dt);
+  wt.rafId=requestAnimationFrame(wtLoop);
+}
+function wtTick(dt){
+  const ms=dt*1000;
+  wt.t+=dt;wt.playMs+=ms;
+  wt.tones=6;
+  if(wt.ghostMs>0){
+    wt.ghostMs=Math.max(0,wt.ghostMs-ms);
+    if(!wt.ghostMs){wt.ghost=null;const g=document.getElementById('wtGhostG');if(g&&g.parentNode)g.parentNode.removeChild(g)}
+  }
+  if(wt.waveTag>0)wt.waveTag=Math.max(0,wt.waveTag-ms);
+  if(wt.printMs>0)wt.printMs=Math.max(0,wt.printMs-ms);
+  if(wt.nextMs>0){wt.nextMs=Math.max(0,wt.nextMs-ms);wtMeter();return}
+  if(wt.pourMs>0){wt.pourMs=Math.max(0,wt.pourMs-ms);wtMeter();return}
+  if(!wt.rec||!wt.S||wt.over)return;
+  wt.think+=ms;
+  wt.clock-=dt/Math.max(1,wt.clockSec);
+  const left=Math.ceil(wt.clock*wt.clockSec);
+  if(wt.clock<=12/Math.max(1,wt.clockSec)&&wt.clock>0){
+    wt.beep+=ms;
+    if(wt.beep>=1000){wt.beep=0;wtTone(900,0.05,'sine',0.05)}
+    if(!wt.red){wt.red=true;wtSay('⚠️ <b>台子边缘发红了</b>：还剩 '+left+' 秒就 <b>退潮</b> —— 退潮 <b>掉一颗心</b>、这一阵重摆（已印的笔 <b>一笔不抹</b>）。先把 <b>该收那一笔</b> 顶到冒头线，点掉它','#FFCC80')}
+  }
+  if(wt.clock<=0){wt.clock=0;wtPowerOut('clock');return}
+  if(wt.think>=WT_NAG_MS){wt.think=0;wtNag()}
+  wtHudLight();
+}
+/* ---- 输入 ---- */
+function wtCursorSay(){
+  const S=wt.S;if(!S||!wt.rec)return;
+  const s=wt.cur;
+  let s2;
+  if(s%2===0){
+    const i=s/2,f=S.fl[i];
+    if(f&&f.fgn)s2='👉 光标在 <b>'+wtName(i)+'</b>（'+WT_O[i]+'）：里面漂着一只 <b>🚫 杂字浮标</b>（标面不是这个字的笔）—— 它冒头了也别点，<b>点它炸泡沫、扣分、断连击</b>';
+    else if(f)s2='👉 光标在 <b>'+wtName(i)+'</b>（'+WT_O[i]+'）：漂着 <b>第 '+(f.k+1)+' 笔「'+WT_DIRS[wtDn(wt.rec.dirs[f.k])]+'」</b>'+(f.hvy?'（挂着 <b>🪨</b>，多吃 '+WT_HEAVY+' 格）':'')+'，水位 <b>'+S.v[i].toFixed(1)+'</b> / 冒头线 <b>'+wtNeed(S,i).toFixed(1)+'</b>'+(f.k===S.qi?' —— <b>就是该收这一笔</b>':' —— 还没轮到它')+'。按 <code>Enter</code> <b>把水口挪过来</b>（冒头了就收）';
+    else s2='👉 光标在 <b>'+wtName(i)+'</b>（'+WT_O[i]+'）：管里 <b>没标</b>，水位 <b>'+S.v[i].toFixed(1)+'</b>（'+(S.lk[i]?'<b>🕳 有漏缝</b>':'不漏')+'）—— 往这一组浇水 <b>水停在这里就是浪费</b>，但 <b>开闸找平</b> 时它可以帮别人分担';
+  }else{
+    const j=(s-1)/2;
+    s2='👉 光标在 <b>'+wtVName(j)+'</b>（'+WT_O[j]+' 和 '+WT_O[j+1]+' 之间）：现在 <b>'+(S.open[j]?'开着':'关着')+'</b>'+(S.cork[j]?'，还堵着 <b>🪵 木塞</b>':'')+' —— 按 <code>Enter</code> '+(S.cork[j]?'<b>拔塞</b>':(S.open[j]?'<b>关闸</b>（水不再互借）':'<b>开闸</b>：两根管立刻 <b>一样高</b>，一瓢不用花'));
+  }
+  wtSay(s2,'#B3E5FC');
+}
+function wtBind(){
+  if(wt.bound)return;
+  wt.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='sluice'||!wt.run||wt.over)return;
+    const k=e.key,K=String(k||'').toLowerCase();
+    if(K==='arrowleft'||K==='arrowright'||K==='arrowup'||K==='arrowdown'){
+      if(e.repeat)return;
+      if(wt.cur<0)wt.cur=0;
+      let s=wt.cur;
+      if(K==='arrowleft')s--;
+      else if(K==='arrowright')s++;
+      else if(K==='arrowup'||K==='arrowdown'){
+        const step=K==='arrowup'?-1:1;
+        s=(s%2===0)?wtClamp(s+step,0,WT_NT+WT_NV-1):wtClamp(s+step*2,0,WT_NT+WT_NV-1);
+      }
+      wt.cur=wtClamp(s,0,WT_NT+WT_NV-1);
+      if(K==='arrowleft'&&s<0)wt.cur=0;
+      if(K==='arrowright'&&s>WT_NT+WT_NV-1)wt.cur=WT_NT+WT_NV-1;
+      wt.think=0;
+      wtCursor();wtCursorSay();
+      e.preventDefault();return;
+    }
+    if(K==='enter'){if(!e.repeat)wtTapSlot(wt.cur<0?0:wt.cur);e.preventDefault();return}
+    if(k===' '){if(!e.repeat)wtPour();e.preventDefault();return}
+    if(K>='1'&&K<='6'){if(!e.repeat)wtMoveHose(+K-1);return}
+    if(K==='0'){if(!e.repeat)wtMoveHose(WT_NT-1);return}
+    if(K==='x'){if(!e.repeat)wtGates();return}
+    if(K==='w'){if(!e.repeat)wtTakeNext();return}
+    if(K==='q'){if(!e.repeat)wtPreview();return}
+    if(K==='r'){if(!e.repeat)wtUndo();return}
+    if(K==='t'){if(!e.repeat)wtRespin();return}
+    if(k==='?'){wtHelp();return}
+  });
+}
+function wtTapSlot(s){
+  if(s<0||s>=WT_NT+WT_NV)return false;
+  wt.cur=s;wtCursor();
+  if(s%2===0)return wtTapTube(s/2);
+  return wtToggleValve((s-1)/2);
+}
+function wtPointer(){
+  const svg=document.getElementById('wtSvg');
+  if(!svg||wt.ptrBound)return;
+  wt.ptrBound=true;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='sluice'||!wt.run||wt.over||!wt.S)return;
+    if(!ev.target.closest)return;
+    const fe=ev.target.closest('.wt-float');
+    if(fe){
+      const i=parseInt(String(fe.getAttribute('data-i')),10);
+      wt.think=0;
+      if(!isNaN(i))wtTake(i);
+      if(ev.preventDefault)ev.preventDefault();
+      return;
+    }
+    const ve=ev.target.closest('.wt-valve');
+    if(ve){
+      const j=parseInt(String(ve.getAttribute('data-j')),10);
+      wt.think=0;
+      if(!isNaN(j)){wt.cur=2*j+1;wtCursor();wtToggleValve(j)}
+      if(ev.preventDefault)ev.preventDefault();
+      return;
+    }
+    const hit=ev.target.closest('.wt-hit');
+    if(!hit)return;
+    const jv=hit.getAttribute('data-v');
+    if(jv!==null){
+      const j=parseInt(jv,10);
+      wt.think=0;
+      if(!isNaN(j)){wt.cur=2*j+1;wtCursor();wtToggleValve(j)}
+      if(ev.preventDefault)ev.preventDefault();
+      return;
+    }
+    const tv=hit.getAttribute('data-t');
+    if(tv===null)return;
+    const i=parseInt(tv,10);
+    if(isNaN(i))return;
+    wt.cur=2*i;wtCursor();
+    wtTapTube(i);
+    if(ev.preventDefault)ev.preventDefault();
+  });
+}
+
+/* ================= v1.80 笔顺水闸 · D：生命周期 / 军师提示 / 帮助 / 测试钩子 ================= */
+function wtStopAll(){wtStopLoop();wtKillTimers();wt.gen++;wt.pourMs=0;wt.nextMs=0;wt.printMs=0}
+async function wtStart(){
+  wtStopAll();
+  const g=wt.gen;
+  const stale=function(){return g!==wt.gen||!wt.run||wt.over};
+  wt.run=true;wt.over=false;
+  wt.timers=[];
+  wt.lv=1;wt.score=0;wt.hearts=WT_HEARTS;wt.combo=0;wt.maxCombo=0;
+  wt.words=0;wt.lits=0;wt.pours=0;wt.saved=0;wt.spills=0;wt.wrongs=0;wt.waves=0;wt.deads=0;
+  wt.previewN=2;wt.undoN=3;wt.respN=1;
+  wt.previews=0;wt.rewinds=0;wt.respins=0;wt.nags=0;
+  wt.ghostMs=0;wt.ghost=null;wt.waveTag=0;wt.think=0;wt.playMs=0;wt.t=0;wt.hudTxt={};
+  wt.pool=[];wt.miss=[];wt.rec=null;wt.n=0;wt.qi=0;wt.gly=[];wt.S=null;wt.tid=1;
+  wt.powMax=0;wt.pow=0;wt.clock=1;wt.clockSec=60;wt.red=false;wt.beep=0;
+  wt.printRun=0;wt.cleanWord=true;wt.wrongWord=0;wt.hist=[];wt.since=0;
+  wt.hose=-1;wt.cur=-1;wt.sol=null;
+  showScreen('sluice');
+  wtBind();wtPointer();
+  wtRenderStatic();wtBoard();wtHosePaint();wtPaper();wtMini();wtBasket();wtHud();wtAskText();wtLine();
+  wtSet('wtAsk','🚰 正在往管里放水……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  wtSay('眼前是 <b>6 根一样的玻璃管</b>，底下用一条 <b>水道</b> 串着，水道上 <b>5 道闸门</b>。每根管里漂着一只 <b>木浮标</b>，标面就是这个字其中一笔的 <b>真实笔形</b>（横红、竖青、撇蓝、捺橘），角上写着 <b>第几笔</b>。水 <b>只在开着闸的管之间流</b>，一连通 <b>液面就一样高</b> —— 这是 <b>连通器</b>，也是这一盘唯一的物理');
+  let ok=await wtBuildPool();
+  if(stale())return;
+  if(!ok){
+    wtSay('🚰 水还没蓄起来，再放一次……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await wtBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!wt.pool.length){
+    wt.run=false;
+    wtSet('wtAsk','😢 字库没加载好<br><small>稍后再来开水闸</small>');
+    wtSay('先去别的模式练两笔，回来字就齐了','#FFCC80');
+    return;
+  }
+  wtAdd('hz_sluice_games',1);
+  if(!wtNewWord()){wt.run=false;wtSet('wtAsk','😢 浮标没摆好<br><small>稍后再来开水闸</small>');return}
+  if(!wt.run||wt.over||stale())return;
+  wtStartLoop();
+}
+function wtEnd(reason){
+  if(wt.over)return;
+  wt.over=true;wt.run=false;
+  wtStopAll();
+  const sc=Math.round(wt.score);
+  localStorage.setItem('hz_sluice_best',String(Math.max(wt.words,wtInt('hz_sluice_best'))));
+  localStorage.setItem('hz_sluice_streak',String(Math.max(wt.maxCombo,wtInt('hz_sluice_streak'))));
+  localStorage.setItem('hz_sluice_lv',String(Math.max(wt.lv,wtInt('hz_sluice_lv'))));
+  wtAdd('hz_sluice_ms',Math.round(wt.playMs/1000));
+  const stars=Math.floor(sc/130)+wt.words*3;
+  if(stars>0)addStars(stars);
+  showScreen('sluice-result');
+  const R=wtRank(wtInt('hz_sluice_words'));
+  const T={
+    miss:['🪣','心丢完了，水断了','<b>收错三次</b>、<b>潮水钟走光</b>、<b>水瓢见底</b> 都会丢心：动手前 <b>先认笔形</b>，再算 <b>这一瓢摊到几根管</b>'],
+    quit:['🏁','今天收工了','下次先想 <b>这一瓢水摊到几根管</b>，再定 <b>水口挂哪儿、闸开哪道</b> —— 一开闸 <b>水自己找平、一瓢不用花</b>'],
+    nodata:['😢','浮标没摆好','先去别的模式练两笔，回来字就齐了']
+  };
+  const t=T[reason]||T.quit;
+  wtSet('wtRsEmoji',t[0]);
+  wtSet('wtRsTitle',reason==='nodata'?t[1]:(reason==='miss'?(wt.words?'心丢了 · 已收好 '+wt.words+' 个字':t[1]):t[1]));
+  wtSet('wtRsSub',t[2]);
+  wtSet('wtRsScore',String(sc));
+  wtSet('wtRsWords',String(wt.words));
+  wtSet('wtRsLit',String(wt.lits));
+  wtSet('wtRsLv',String(wt.lv));
+  wtSet('wtRsStreak',String(wt.maxCombo));
+  wtSet('wtRsMiss',wt.wrongs+' / '+wt.deads);
+  wtSet('wtRsStars','⭐ '+stars);
+  wtSet('wtRsBest',String(wtInt('hz_sluice_best')));
+  wtSet('wtRsAll2',String(wtInt('hz_sluice_words')));
+  wtSet('wtRsAll','🏅 '+R.e+' '+R.t+' · 累计收好 '+wtInt('hz_sluice_words')+' 个字\n'+
+    '💧 放过 '+wtInt('hz_sluice_pours')+' 瓢 · 🫳 连着收 '+wtInt('hz_sluice_saved')+' 笔 · 🌊 溢掉 '+wtInt('hz_sluice_spills')+' 次\n'+
+    '🚫 收错 '+wtInt('hz_sluice_wrongs')+' 次 · 💔 退潮 '+wtInt('hz_sluice_deads')+' 回 · 🌊 浪头 '+wtInt('hz_sluice_waves')+' 回 · 💎 一次没错 '+wtInt('hz_sluice_perfect')+' 盘\n'+
+    '💡 预览 '+wtInt('hz_sluice_previews')+' 次 · 🔄 倒带 '+wtInt('hz_sluice_rewinds')+' 次 · 🔁 重摆 '+wtInt('hz_sluice_resets')+' 回\n'+
+    '👀 发呆提示 '+wtInt('hz_sluice_nags')+' 次 · 🚀 一局最多 '+wtInt('hz_sluice_best')+' 个字 · 最高玩到第 '+wtInt('hz_sluice_lv')+' 段');
+  const book=(localStorage.getItem('hz_sluice_book')||'').split(',').filter(function(c){return c.length===1});
+  wtSet('wtRsBookT',book.length?('📜 水闸档案 · 已收满 '+book.length+' 个字'):'');
+  const bh=document.getElementById('wtRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function wtRetry(){wtStart()}
+function wtLeave(){
+  wtStopAll();
+  if(wt.run&&!wt.over){wt.over=true;wt.run=false}
+  goHome();
+}
+function wtNudge(){
+  const dot=document.getElementById('wtCardDot'),tip=document.getElementById('wtCardTip');
+  const w=wtInt('hz_sluice_words'),p=wtInt('hz_sluice_perfect'),games=wtInt('hz_sluice_games');
+  const R=wtRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 收好 '+w+' 个字 · 印出 '+wtInt('hz_sluice_lits')+' 笔 · 一次没错 '+p+' 盘'):'6 根玻璃管底下一条水道、5 道闸门 —— 水一连通就一样高，把一瓢瓢水摊到你想抬的那根管，顶着写有这一笔的浮标冒头';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function wtNag(){
+  if(!wt.rec||!wt.S||wt.S.qi>=wt.n)return;
+  const S=wt.S,k=S.qi,t=wtTubeOf(S,k);
+  wt.nags++;wtAdd('hz_sluice_nags',1);
+  wtTone(660,0.08,'sine',0.06);
+  if(t<0){wtSay('🐰 场上 <b>找不到第 '+(k+1)+' 笔</b> 那只标了（可能被 <b>🚫 炸掉</b> 了）：按 <b>🔁 重摆</b> 剩下的笔另摆一盘','#FFF176');return}
+  wtMark([t]);
+  const nd=wtDn(wt.rec.dirs[k]),p=wtPlanStep(S);
+  wtSay('🐰 该收的是「<b>'+WT_DIRS[nd]+' '+WT_ARW[nd]+'</b>」第 '+(k+1)+' 笔，它漂在 <b>'+wtName(t)+'</b>（'+WT_O[t]+'）：水位 <b>'+S.v[t].toFixed(1)+'</b>，<b>🎯 冒头线在 '+wtNeed(S,t).toFixed(1)+'</b>'+(S.fl[t].hvy?'（挂着 <b>🪨</b>，多吃 '+WT_HEAVY+' 格）':'')+
+    (p&&p.now?'<br>👉 <b>它已经冒头了</b>：点 '+WT_O[t]+' 号管口那只浮标（或按 <code>W</code>）':
+      (p&&!p.lost&&!p.free?'<br>👉 下一瓢：水口挂 <b>'+WT_O[p.tube]+'</b>、闸 <b>'+wtOpenSay(p.mask)+'</b> —— 摊给 <b>'+wtGrpName(S,p.tube)+'</b>，<b>'+p.pours+' 瓢</b> 后它冒头（手上还剩 '+wt.pow+' 瓢）':
+        '<br>👉 一时算不出浇法：按 <b>🔁 重摆</b> 另摆一盘（还剩 '+wt.respN+' 次）')),'#FFF176');
+}
+function wtHelp(){
+  const S=wt.S;
+  const t=S&&S.qi<S.n?wtTubeOf(S,S.qi):-1;
+  const nd=S&&t>=0?wtDn(wt.rec.dirs[S.qi]):-1;
+  wtSay('深蓝台子上是 <b>6 根一样的玻璃管</b>（编号 <b>①~⑥</b>），底下用一条 <b>水道</b> 串着，水道上 <b>5 道闸门</b>（点闸门 <b>开 / 关</b>，按 <code>X</code> <b>齐闸</b>）。每根管里漂一只 <b>木浮标</b>，标面就是这个字其中一笔的 <b>真实笔形</b>：横红、竖青、撇蓝、捺橘，和左边米字格同一套颜色，角上写着 <b>第几笔</b><br>'+
+    '⚖️ <b>连通器</b>：水 <b>只在开着闸的管之间流</b>，一连通 <b>液面立刻一样高</b> —— 一根水多、一根水少，<b>开闸就白送</b>（高的把低的顶起来，<b>一瓢不用花</b>），可高的那根也 <b>掉下来</b><br>'+
+    '🚰 <b>一瓢水 '+WT_DOLE.toFixed(1)+' 格</b>：浇在 <b>水口</b> 那根管上，就 <b>顺着开着的水道摊平到整组</b> —— 组里管子越多每根涨得越少；<b>想单独抬高一根，先把闸关上</b><br>'+
+    '🎯 <b>冒头线</b>（每根管 <b>有高有低</b>，本盘 <b>'+(S?S.sill.join('/'):'?')+'</b>）：水位涨到那条线，浮标就 <b>漂到管口冒头</b>，<b>点它</b> 把这一笔印到米字格；<b>按笔顺收</b>，收早了弹回不罚<br>'+
+    '🌊 <b>漫过管口的水就地流走</b>：水位顶到 <b>'+WT_FULL+'</b> 就是底，再多浇 <b>白泼</b>（左上角报溢了几次）<br>'+
+    '⚓ <b>重浮标</b>（挂 <b>🪨</b>'+((S&&S.fl.filter(function(f){return f&&f.hvy}).length)?' 本盘 '+S.fl.filter(function(f){return f&&f.hvy}).length+' 只':'')+'）吃水深，要多涨 <b>'+WT_HEAVY+'</b> 格才冒头；🚫 <b>杂字浮标</b>（挂 <b>?</b>）不是这个字的笔，点它 <b>炸泡沫</b>：扣 '+WT_WRONG_PEN+' 分、断连击，<b>连错 '+WT_WRONG_MAX+' 次掉一颗心</b><br>'+
+    '🕳 <b>漏缝</b>（<b>第 5 段</b> 起'+(S?' 本盘 '+S.lk.filter(function(l){return l}).length+' 道':'')+'）：那一组每浇一瓢先漏掉 <b>'+WT_LEAK.toFixed(1)+' 格</b>；🪵 <b>木塞</b>（<b>第 3 段</b> 起'+(S?' 本盘 '+S.cork.filter(function(c){return c}).length+' 个':'')+'）把闸门 <b>堵死</b>，点一下 <b>拔塞</b>（不花瓢）才能开合；🌊 <b>浪头</b>（<b>第 6 段</b> 起）每 <b>3 瓢</b> 有根管被 <b>拍高 / 拍低 '+WT_WV.toFixed(1)+' 格</b><br>'+
+    '💧 <b>水量是算过的</b>：这一盘 <b>军师</b> 先替你把每一笔都漂上来过一遍，发你的瓢 = <b>刚好够 + '+(wtSpare(wt.lv))+' 瓢余量</b>（本盘 <b>'+wt.powMax+'</b> 瓢）<br>'+
+    '⏱ <b>潮水钟</b>：每阵发 <b>'+wt.clockSec+' 秒</b>（<code>30 + 笔数×6 − 段数×2</code>），走光 <b>退潮</b>、掉一颗心、这一阵 <b>重摆</b>（<b>已印的笔不抹</b>）；💧 <b>瓢用光</b> 字还没收满、场上 <b>又没标冒头</b>，同样 <b>掉一颗心</b><br>'+
+    '💡 <b>预览</b>（<code>Q</code>）画出 <b>再放一瓢之后每根管的水位</b> 和谁会冒头；🔄 <b>倒带</b>（<code>R</code>）退回 <b>上一瓢 / 上一次开闸之前</b>；🔁 <b>重摆</b>（<code>T</code>）剩下的笔另摆一盘；🫳 <code>W</code> <b>直接收该收那一笔</b>；<code>1</code>~<code>6</code> 挪水口 · <code>方向键</code> 走 11 格轨道（偶数管、奇数闸）+ <code>Enter</code> 动手<br>'+
+    '📈 <b>收一笔</b> 吃 <code>round((14 + 第几笔×2 + 段数×3) × (1 + 连击×0.05))</code>，<b>不添一瓢连着收第二笔</b> 再多 <code>6 + 段数×2</code>；<b>整个字收满</b>：<code>26 + 笔数×6 + 段数×6 + 剩瓢×3</code>，<b>一次没收错再多 '+WT_CLEAN_BONUS+'</b>；<b>每 2 个字升 1 段</b>（最多 9 段）、<b>每 3 个字补一颗心</b>（最多 '+WT_HEART_MAX+' 颗）<br>'+
+    (t>=0?'🎯 现在该收 <b>第 '+(S.qi+1)+' 笔「'+WT_DIRS[nd]+' '+WT_ARW[nd]+'」</b>：它在 <b>'+wtName(t)+'</b>（'+WT_O[t]+'），水位 <b>'+S.v[t].toFixed(1)+'</b>、冒头线 <b>'+wtNeed(S,t).toFixed(1)+'</b>':'🎯 这一盘已经收满')+
+    '<br>👀 发呆 '+(WT_NAG_MS/1000)+' 秒 🐰 报方位 · 战绩落盘 <code>hz_sluice_*</code>','#C5E1A5');
+}
+/* ---- 测试钩子 ---- */
+window.WT={NT:WT_NT,NV:WT_NV,FULL:WT_FULL,DOLE:WT_DOLE,LEAK:WT_LEAK,HEAVY:WT_HEAVY,WV:WT_WV,
+  PLAN_MAX:WT_PLAN_MAX,GN:WT_GEN_TRY,STMAX:WT_STROKE_MAX,BUD:WT_BUD_MAX,PMAX:WT_POUR_MAX,HM:WT_HIST_MAX,PRT:WT_PRINT_MS};
+window.wtvGeom=function(){return {W:WT_W,H:WT_H,TT:WT_TT,TB:WT_TB,X0:WT_X0,P:WT_P,TW:WT_TW,U:WT_U,CY0:WT_CY0,CY1:WT_CY1,PY:WT_PY,PH:WT_PH}};
+window.wtvS=function(o){
+  o=o||{};
+  const n=o.n===undefined?4:o.n;
+  const fl=new Array(WT_NT).fill(null);
+  (o.fl||[]).forEach(function(f){fl[f.i]={id:wt.tid++,k:f.k,fgn:f.fgn||0,hvy:f.hvy||0}});
+  return {v:(o.v||[0,0,0,0,0,0]).slice(),sill:(o.sill||[6,6,6,6,6,6]).slice(),
+    lk:(o.lk||[0,0,0,0,0,0]).slice(),cork:(o.cork||[0,0,0,0,0]).slice(),
+    open:(o.open||[0,0,0,0,0]).slice(),fl:fl,qi:o.qi||0,n:n};
+};
+window.wtvOut=function(S,r){
+  return {v:S.v.map(function(x){return +x.toFixed(3)}),spill:+(r&&r.spill?r.spill:0).toFixed(3),
+    per:+(r&&r.per?r.per:0).toFixed(3),m:r?r.m:0,leak:r?+r.leak.toFixed(3):0,
+    up:S.fl.map(function(f,i){return f&&wtUp(S,i)?i:-1}).filter(function(i){return i>=0}),
+    need:S.sill.map(function(s,i){return +wtNeed(S,i).toFixed(3)})};
+};
+window.wtvMove=function(o){
+  const S=window.wtvS(o);
+  if(o.mask!==undefined)wtOpen(S,o.mask);
+  let sp=0,r=null;
+  for(let i=0;i<(o.pours||0);i++){r=wtPourOne(S,o.tube||0);sp+=r.spill}
+  const out=window.wtvOut(S,r);out.spillTotal=+sp.toFixed(3);
+  out.levels=wtLevels(S);out.grps=wtGrps(S);
+  return out;
+};
+window.wtvFlow=function(o){
+  const S=window.wtvS(o);
+  const sp=wtOpen(S,o.mask===undefined?31:o.mask);
+  const out=window.wtvOut(S,null);out.flowSpill=+sp.toFixed(3);
+  return out;
+};
+window.wtvPlan=function(o){
+  const S=window.wtvS(o);
+  const p=wtPlanStep(S);
+  return p?{tube:p.tube,mask:p.mask,pours:p.pours,need:p.need===undefined?-1:+p.need.toFixed(3),now:p.now?1:0,
+    lost:p.lost?1:0,free:p.free?1:0,h:p.h===undefined?-1:+p.h.toFixed(3)}:{none:1};
+};
+window.wtvSim=function(o){
+  const S=window.wtvS(o);
+  const r=wtSimPlan(S);
+  return {ok:r.ok?1:0,why:r.why||'',pours:r.pours,plan:r.plan.map(function(p){return {tube:p.tube,mask:p.mask,pours:p.pours}})};
+};
+window.wtvReplay=function(o){
+  const S=window.wtvS(o);
+  const plan=(o.plan||[]).slice();
+  const log=[];
+  let pours=0,spills=0,steps=0;
+  for(let i=0;i<plan.length;i++){
+    if(S.qi>=S.n)break;
+    const p=plan[i];
+    steps++;
+    wtOpen(S,p.mask);
+    for(let k=0;k<(p.pours||0);k++){spills+=wtPourOne(S,p.tube).spill;pours++}
+    const t=p.tube;
+    if(!wtUp(S,t))return {ok:0,why:'没冒头@'+i,steps:steps,pours:pours,qi:S.qi,log:log};
+    S.fl[t]=null;S.qi++;
+    log.push(i+' 瓢'+pours+' qi'+S.qi+' 水'+S.v.map(function(x){return x.toFixed(1)}).join('|'));
+  }
+  return {ok:S.qi>=S.n?1:0,why:S.qi>=S.n?'':'收不满',qi:S.qi,n:S.n,pours:pours,spills:+spills.toFixed(3),steps:steps,log:log};
+};
+window.wtvGen=function(rec,lv,from){
+  const r=wtGen(rec,lv,from||0);
+  if(!r)return {ok:0,why:wt.lastWhy||'?'};
+  return {ok:1,pulses:r.pulses,plan:r.plan.map(function(p){return {tube:p.tube,mask:p.mask,pours:p.pours,need:+p.need.toFixed(2)}}),
+    v:r.v.slice(),sill:r.sill.slice(),lk:r.lk.slice(),cork:r.cork.slice(),
+    fl:r.fl.map(function(f,i){return f?{i:i,k:f.k,fgn:f.fgn,hvy:f.hvy}:null}).filter(function(x){return x}),
+    cfg:r.cfg};
+};
+window.wtvDiff=function(lv){
+  return {fgn:wtFgnOf(lv),hvy:wtHvyOf(lv),leak:wtLeakOf(lv),cork:wtCorkOf(lv),wave:wtWaveOf(lv)?1:0,
+    spare:wtSpare(lv),sill:wtSillPool(lv).join(','),strokes:(lv<4?'2-5':'3-6'),lv:wtLvOf(lv*2-1)};
+};
+window.wtvClock=function(lv,n){const o=wt.lv,b=wt.n;wt.lv=lv;wt.n=n;const s=wtClockOf();wt.lv=o;wt.n=b;return s};
+window.wtvKeys=function(){
+  const keys=[];
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf('hz_sluice_')===0)keys.push(k)}
+  return keys.sort();
+};
+window.wtvInv=function(){
+  const S=wt.S;
+  if(!S)return {ok:0};
+  const bad=[];
+  for(let i=0;i<WT_NT;i++){
+    if(S.v[i]<0||S.v[i]>WT_FULL+1e-9)bad.push('水位越界@'+i);
+    if(S.sill[i]<1||S.sill[i]>WT_FULL-1)bad.push('冒头线越界@'+i);
+    if(S.lk[i]&&S.fl[i]&&!S.fl[i].fgn)bad.push('漏缝压真标@'+i);
+    if(S.fl[i]&&S.fl[i].hvy&&S.sill[i]+WT_HEAVY>WT_FULL)bad.push('重标顶不出@'+i);
+  }
+  if(S.qi<0||S.qi>S.n)bad.push('qi越界'+S.qi);
+  for(let k=S.qi;k<S.n;k++)if(wtTubeOf(S,k)<0)bad.push('第'+(k+1)+'笔的标丢了');
+  const seen={};
+  for(let i=0;i<WT_NT;i++){const f=S.fl[i];if(f&&!f.fgn){if(seen[f.k])bad.push('一笔两只标@'+f.k);seen[f.k]=1}}
+  if(wt.hose>=WT_NT||wt.hose<-1)bad.push('水口越界');
+  if(wt.pow<0||wt.pow>wt.powMax)bad.push('瓢越界'+wt.pow);
+  if(wt.clock<0||wt.clock>1.001)bad.push('钟越界'+wt.clock);
+  return {ok:bad.length?0:1,bad:bad,fl:S.fl.length,real:Object.keys(seen).length,qi:S.qi,n:S.n};
+};
+window.wtvBad=function(){
+  const S=wt.S;const bad=[];
+  if(!S)return {bad:bad,skip:1};
+  const r=window.wtvInv();
+  if(!r.ok)bad.push.apply(bad,r.bad);
+  /* 浮标 DOM 与状态一致 */
+  const els=document.querySelectorAll('#wtFloatG .wt-float');
+  let live=0;
+  for(let i=0;i<WT_NT;i++)if(S.fl[i])live++;
+  const out=document.querySelectorAll('#wtFloatG .wt-float.out').length;
+  if(els.length-out!==live)bad.push('标元素数'+(els.length-out)+'≠'+live);
+  for(let i=0;i<WT_NT;i++){
+    const f=S.fl[i];if(!f)continue;
+    const el=document.getElementById('wtF'+f.id);
+    if(!el){bad.push('标'+f.id+'没画');continue}
+    if(el.getAttribute('data-i')!==String(i))bad.push('标'+f.id+'所在管不符');
+    const up=wtUp(S,i);
+    if(el.classList.contains('up')!==up)bad.push('标'+f.id+'冒头类不符');
+    if(el.classList.contains('now')!==(up&&!f.fgn&&f.k===S.qi))bad.push('标'+f.id+'该收类不符');
+    const ty=wtLY(S.v[i])-14;
+    /* 浏览器会把 CSSOM 写回的 transform 归一化（translate(80.0px, 209.0px) → translate(80px, 209px)），
+       所以只能按数值比，不能拿字符串找茬 */
+    const mm=/translate\(\s*([-\d.]+)px[,\s]+([-\d.]+)px\s*\)/.exec((el.getAttribute('style')||'')+(el.style?el.style.transform:''));
+    if(!mm)bad.push('标'+f.id+'没有位移');
+    else if(Math.abs(+mm[2]-ty)>0.06)bad.push('标'+f.id+'高度不符');
+  }
+  /* 水位 rect 与状态一致 */
+  for(let i=0;i<WT_NT;i++){
+    const w=document.getElementById('wtW'+i);
+    if(!w){bad.push('水'+i+'没画');continue}
+    if(Math.abs(+w.getAttribute('y')-wtLY(S.v[i]))>0.2)bad.push('水'+i+'面不符');
+  }
+  /* 闸门与状态一致 */
+  for(let j=0;j<WT_NV;j++){
+    const el=document.getElementById('wtValve'+j);
+    if(!el){bad.push('闸'+j+'没画');continue}
+    if(el.classList.contains('open')!==!!S.open[j])bad.push('闸'+j+'开关不符');
+    const mk=el.querySelector('.wt-vmark');
+    if(mk&&mk.textContent!==(S.open[j]?'开':'关'))bad.push('闸'+j+'字不符');
+    const ck=el.querySelector('.wt-corkTxt');
+    if(ck&&ck.textContent!==(S.cork[j]?'🪵':''))bad.push('闸'+j+'塞不符');
+  }
+  if(document.querySelectorAll('#wtStatic .wt-tube').length!==WT_NT)bad.push('管数不对');
+  if(document.querySelectorAll('#wtStatic .wt-hit').length!==WT_NT+WT_NV)bad.push('点击层数不对');
+  if(document.querySelectorAll('#wtStatic .wt-sill').length!==WT_NT)bad.push('冒头线数不对');
+  if(document.querySelectorAll('#wtPaperG rect').length!==wt.n+1)bad.push('纸带格数≠笔数+1');
+  if(wt.rec&&wt.n!==wt.rec.n)bad.push('n≠rec.n');
+  if(S.qi>=wt.n&&!wt.nextMs&&!wt.over)bad.push('收满了却没结帐');
+  const bask=document.getElementById('wtBasket');
+  if(bask&&bask.getAttribute('data-h')!==wtBasketHTML())bad.push('料牌和状态不符');
+  const hb=document.getElementById('wtHoseG');
+  if(hb&&hb.getAttribute('data-t')!==String(wt.hose))bad.push('水口位置不符');
+  return {bad:bad,up:wtUpN(S),levels:wtLevels(S),grps:wtGrps(S)};
+};
+window.wtvSnap=function(){
+  const S=wt.S;
+  return {
+    scr:(document.querySelector('.screen.active')||{}).id||'',mode:currentMode,
+    run:wt.run?1:0,over:wt.over?1:0,pool:wt.pool.length,gen:wt.gen,
+    ch:wt.rec?wt.rec.ch:'',n:wt.n,qi:S?S.qi:-1,dirs:wt.rec?wt.rec.dirs.join(''):'',
+    lv:wt.lv,score:Math.round(wt.score),hearts:wt.hearts,combo:wt.combo,maxCombo:wt.maxCombo,
+    words:wt.words,lits:wt.lits,pours:wt.pours,saved:wt.saved,spills:wt.spills,wrongs:wt.wrongs,
+    waves:wt.waves,deads:wt.deads,nags:wt.nags,previews:wt.previews,rewinds:wt.rewinds,respins:wt.respins,
+    pow:wt.pow,powMax:wt.powMax,clock:+wt.clock.toFixed(4),clockSec:wt.clockSec,red:wt.red?1:0,
+    hose:wt.hose,since:wt.since,printRun:wt.printRun,think:Math.round(wt.think),
+    previewN:wt.previewN,undoN:wt.undoN,respN:wt.respN,
+    clean:wt.cleanWord?1:0,wrongWord:wt.wrongWord,
+    flv:S?S.fl.filter(function(f){return f}).length:-1,
+    hvyN:S?S.fl.filter(function(f){return f&&f.hvy}).length:-1,
+    lkN:S?S.lk.filter(function(l){return l}).length:-1,
+    ckN:S?S.cork.filter(function(c){return c}).length:-1,
+    sils:S?S.sill.join(','):'',
+    v:S?S.v.map(function(x){return +x.toFixed(2)}).join(','):''
+  };
+};
+window.wtvDom=function(){
+  const S=wt.S;
+  return {
+    hose:wt.hose,cur:wt.cur,tool:'',
+    sol:wt.sol?wt.sol.pulses:-1,need:wt.sol?wt.sol.need:-1,
+    pourMs:Math.round(wt.pourMs),nextMs:Math.round(wt.nextMs),think:Math.round(wt.think),
+    ghostMs:Math.round(wt.ghostMs),
+    domTube:document.querySelectorAll('#wtStatic .wt-tube').length,
+    domSill:document.querySelectorAll('#wtStatic .wt-sill').length,
+    domHit:document.querySelectorAll('#wtStatic .wt-hit').length,
+    domWater:document.querySelectorAll('#wtWaterG .wt-water').length,
+    domValve:document.querySelectorAll('#wtValveG .wt-valve').length,
+    domFloat:document.querySelectorAll('#wtFloatG .wt-float').length,
+    domPaper:document.querySelectorAll('#wtPaperG rect').length,
+    domHose:document.querySelectorAll('#wtHoseG .wt-hose').length,
+    baskTxt:(document.getElementById('wtBasket')||{}).textContent||'',
+    numTxt:[].slice.call(document.querySelectorAll('#wtFloatG .wt-num')).map(function(e){return e.textContent}).join(','),
+    domGhost:document.querySelectorAll('.wt-ghost').length,
+    domCur:document.querySelectorAll('#wtCurBox').length,
+    here:document.querySelectorAll('#wtStatic .wt-tube.here').length,
+    up:document.querySelectorAll('#wtFloatG .wt-float.up').length,
+    now:document.querySelectorAll('#wtFloatG .wt-float.now').length,
+    cap:(document.getElementById('wtMiniCap')||{}).textContent||'',
+    ask:(document.getElementById('wtAsk')||{}).textContent||'',
+    line:(document.getElementById('wtHintLine')||{}).textContent||'',
+    msg:(document.getElementById('wtMsg')||{}).innerHTML||'',
+    powTxt:(document.getElementById('wtPowTxt')||{}).textContent||'',
+    clkTxt:(document.getElementById('wtClockTxt')||{}).textContent||'',
+    badge:(document.getElementById('wtBadge')||{}).textContent||'',
+    scoreTxt:(document.getElementById('wtScoreTxt')||{}).textContent||'',
+    rankTxt:(document.getElementById('wtRankTxt')||{}).textContent||'',
+    heartTxt:(document.getElementById('wtHeartTxt')||{}).textContent||'',
+    lvTxt:(document.getElementById('wtLvTxt')||{}).textContent||'',
+    litTxt:(document.getElementById('wtLitTxt')||{}).textContent||'',
+    pourTxt:(document.getElementById('wtPourTxt')||{}).textContent||'',
+    savedTxt:(document.getElementById('wtSavedTxt')||{}).textContent||'',
+    spillTxt:(document.getElementById('wtSpillTxt')||{}).textContent||'',
+    wrongTxt:(document.getElementById('wtWrongTxt')||{}).textContent||'',
+    tip:(document.querySelector('.wt-tip')||{}).innerHTML||'',
+    tblCls:(document.getElementById('wtTbl')||{}).className||''
+  };
+};
+window.wtvBtn=function(){
+  const g=function(id){const e=document.getElementById(id);return e?e:0};
+  const po=g('wtPourBtn'),ga=g('wtGateBtn'),pv=g('wtPrevBtn'),un=g('wtUndoBtn'),rb=g('wtReBtn');
+  return {
+    pourDis:po.disabled?1:0,gateDis:ga.disabled?1:0,prevDis:pv.disabled?1:0,undoDis:un.disabled?1:0,reDis:rb.disabled?1:0,
+    pourTxt:(po.textContent||'').trim(),gateTxt:(ga.textContent||'').trim(),
+    prevTxt:(pv.textContent||'').trim(),undoTxt:(un.textContent||'').trim(),reTxt:(rb.textContent||'').trim(),
+    waveOn:document.getElementById('wtWaveTag')?document.getElementById('wtWaveTag').classList.contains('on'):false,
+    badgeOn:document.getElementById('wtBadge')?document.getElementById('wtBadge').classList.contains('on'):false,
+    markN:document.querySelectorAll('.wt-mark').length,ringN:document.querySelectorAll('.wt-ring').length,
+    bitN:document.querySelectorAll('.wt-bit').length,popN:document.querySelectorAll('.wt-pop').length,
+    sparkN:document.querySelectorAll('.wt-spark').length,ghostN:document.querySelectorAll('.wt-ghost').length,
+    dropN:document.querySelectorAll('.wt-drop').length,
+    dead:document.getElementById('wtTbl')?document.getElementById('wtTbl').classList.contains('dead'):false,
+    hot:document.getElementById('wtTbl')?document.getElementById('wtTbl').classList.contains('hot'):false,
+    low:document.getElementById('wtClockBox')?document.getElementById('wtClockBox').classList.contains('low'):false,
+    barW:(document.getElementById('wtClockBar')||{}).style?document.getElementById('wtClockBar').style.width:'',
+    basket:document.querySelectorAll('#wtBasket .wt-nd').length,
+    more:(document.querySelector('#wtBasket .wt-more')||{}).innerHTML||'',
+    cardDot:(document.getElementById('wtCardDot')||{}).textContent||''
+  };
+};
+window.wtvSolve=function(){
+  if(!wt.sol||!wt.S)return -1;
+  const S=wt.S;
+  let got=0;
+  for(let k=0;k<wt.sol.plan.length;k++){
+    const p=wt.sol.plan[k];
+    wtOpen(S,p.mask);
+    for(let i=0;i<p.pours;i++)wtPourOne(S,p.tube);
+    if(!wtUp(S,p.tube))return -1;
+    S.fl[p.tube]=null;S.qi++;got++;
+    if(S.qi>=wt.n)break;
+  }
+  wtBoard();wtPaper();wtMini();wtHud();wtAskText();wtLine();
+  return S.qi;
+};
+window.wtvStage=function(p){
+  p=p||{};
+  wtStopAll();wt.gen++;
+  wt.run=true;wt.over=false;
+  wt.timers=[];
+  wt.lv=p.lv||1;wt.score=p.score||0;wt.hearts=p.hearts===undefined?WT_HEARTS:p.hearts;
+  wt.combo=p.combo||0;wt.maxCombo=p.maxCombo||wt.combo;
+  wt.words=p.words||0;wt.lits=p.lits||0;
+  wt.pours=p.pours||0;wt.saved=p.saved||0;wt.spills=p.spills||0;wt.wrongs=p.wrongs||0;
+  wt.waves=0;wt.deads=0;wt.nags=0;wt.previews=0;wt.rewinds=0;wt.respins=0;
+  wt.previewN=p.previewN===undefined?2:p.previewN;
+  wt.undoN=p.undoN===undefined?3:p.undoN;
+  wt.respN=p.respN===undefined?1:p.respN;
+  wt.ghostMs=0;wt.ghost=null;wt.waveTag=0;
+  wt.think=0;wt.playMs=0;wt.t=0;wt.hudTxt={};
+  wt.printMs=0;wt.nextMs=0;wt.pourMs=0;wt.printRun=p.printRun||0;wt.since=p.since===undefined?0:p.since;
+  wt.cleanWord=p.cleanWord===undefined?true:p.cleanWord;wt.wrongWord=p.wrongWord||0;
+  wt.hist=[];wt.cur=p.cur===undefined?-1:p.cur;wt.tid=1;
+  /* 方向表必须和盘上的浮标一样多：钩子摆了 n 笔就要有 n 个方向，不然第 5 笔没有笔形可画 */
+  const dirs=p.dirs||[0,1,2,3,0,1,2,3].slice(0,p.n||4);
+  const strokes=[],medians=[];
+  for(let i=0;i<dirs.length;i++){strokes.push('M100 400 L600 400 L600 460 L100 460 Z');medians.push([[100,430],[600,430]])}
+  wt.rec={ch:p.ch||'妈',n:dirs.length,dirs:dirs,raw:{strokes:strokes,medians:medians}};
+  wt.n=dirs.length;
+  wt.gly=wtGlyOf(wt.rec);
+  const fl=new Array(WT_NT).fill(null);
+  (p.fl||[]).forEach(function(f){fl[f.i]={id:wt.tid++,k:f.k,fgn:f.fgn||0,hvy:f.hvy||0}});
+  wt.S={v:(p.v||[0,0,0,0,0,0]).slice(),sill:(p.sill||[6,6,6,6,6,6]).slice(),
+    lk:(p.lk||[0,0,0,0,0,0]).slice(),cork:(p.cork||[0,0,0,0,0]).slice(),
+    open:(p.open||[0,0,0,0,0]).slice(),fl:fl,qi:p.qi||0,n:wt.n};
+  wt.powMax=p.powMax===undefined?8:p.powMax;
+  wt.pow=p.pow===undefined?wt.powMax:p.pow;
+  wt.clockSec=p.clockSec||wtClockOf();
+  wt.clock=p.clock===undefined?1:p.clock;
+  wt.red=!!p.red;wt.beep=0;
+  wt.hose=p.hose===undefined?-1:p.hose;
+  wt.sol=p.sol===undefined?null:p.sol;
+  showScreen('sluice');
+  wtBind();wtPointer();
+  wtRenderStatic();wtBoard();wtHosePaint();wtPaper();wtMini();wtBasket();wtHud();wtAskText();wtLine();
+  if(p.say)wtSay(p.say,'#C5E1A5');
+  return 1;
+};
+window.wtvSet=function(k,v){
+  if(!wt.S&&k!=='rec')return 0;
+  if(k==='clock')wt.clock=v;
+  else if(k==='pow')wt.pow=v;
+  else if(k==='think')wt.think=v;
+  else if(k==='qi')wt.S.qi=v;
+  else if(k==='hose')wt.hose=v;
+  else if(k==='since')wt.since=v;
+  else if(k==='printRun')wt.printRun=v;
+  else if(k==='stormTag'||k==='waveTag')wt.waveTag=v;
+  else if(k==='ghostMs')wt.ghostMs=v;
+  else if(k==='hearts')wt.hearts=v;
+  else if(k==='wrongWord')wt.wrongWord=v;
+  else if(k==='pourMs')wt.pourMs=v;
+  else if(k==='nextMs')wt.nextMs=v;
+  else if(k==='previewN')wt.previewN=v;
+  else if(k==='undoN')wt.undoN=v;
+  else if(k==='respN')wt.respN=v;
+  else if(k==='lv')wt.lv=v;
+  else if(k==='rec')wt.rec=v;
+  else return 0;
+  return 1;
+};
+window.wtvLevels=function(){return wt.S?wtLevels(wt.S):''};
+window.wtvGrps=function(){return wt.S?wtGrps(wt.S):''};
+window.wtvV=function(i){return wt.S?(wt.S.v[i]===undefined?null:wt.S.v[i]):null};
+window.wtvUp=function(i){return wt.S&&wtUp(wt.S,i)?1:0};
+window.wtvNeed=function(i){return wt.S?+wtNeed(wt.S,i).toFixed(3):-1};
+window.wtvY=function(l){return +wtLY(l).toFixed(2)};
+window.wtvPlanStep=function(){const p=wtPlanStep(wt.S);return p?{tube:p.tube,mask:p.mask,pours:p.pours,now:p.now?1:0,lost:p.lost?1:0,free:p.free?1:0}:{none:1}};
+window.wtvTick=function(dt){wtTick(dt||0.05)};
+window.wtvPump=function(n,dt){for(let i=0;i<(n||20);i++)wtTick(dt||0.05)};
+window.wtvPour=function(){return wtPour()?1:0};
+window.wtvGates=function(){return wtGates()?1:0};
+window.wtvToggle=function(j){return wtToggleValve(j)?1:0};
+window.wtvMoveHose=function(i){return wtMoveHose(i)?1:0};
+window.wtvTapTube=function(i){return wtTapTube(i)?1:0};
+window.wtvTapSlot=function(s){return wtTapSlot(s)?1:0};
+window.wtvTake=function(i){return wtTake(i)?1:0};
+window.wtvTakeNext=function(){return wtTakeNext()?1:0};
+window.wtvPreview=function(){const b=wt.previewN;wtPreview();return wt.previewN<b?1:0};
+window.wtvUndo=function(){const b=wt.undoN;wtUndo();return wt.undoN<b?1:0};
+window.wtvRespin=function(){const b=wt.respN;wtRespin();return wt.respN<b?1:0};
+window.wtvRedress=function(){return wtRedress()?1:0};
+window.wtvNewBoard=function(from){return wtNewBoard(from||0)?1:0};
+window.wtvWave=function(){wtWave();return wt.waves};
+window.wtvWin=function(){wtWin();return wt.score};
+window.wtvPrint=function(k,ch){wtPrint(k||0,ch||0);return wt.score};
+window.wtvWrong=function(n){wtOnWrong(n||1);return wt.score};
+window.wtvLoseHeart=function(w){wtLoseHeart(w||'wrong');return wt.hearts};
+window.wtvPowerOut=function(k){wtPowerOut(k||'clock')};
+window.wtvCheckPow=function(){return wtCheckPow()?1:0};
+window.wtvNag=function(){wtNag();return wt.nags};
+window.wtvHelp=function(){wtHelp();return (document.getElementById('wtMsg')||{}).innerHTML||''};
+window.wtvAsk=function(){const el=document.getElementById('wtAsk');return el?el.textContent:''};
+window.wtvLineT=function(){const el=document.getElementById('wtHintLine');return el?el.textContent:''};
+window.wtvSay=function(){const el=document.getElementById('wtMsg');return el?el.innerHTML:''};
+window.wtvEnd=function(r){wtEnd(r||'quit');return Math.round(wt.score)};
+window.wtvRank=function(n){const R=wtRank(n);return R.e+' '+R.t};
+window.wtvT=function(ms){return wtT(function(){},ms||10)};
+
 window.addEventListener('DOMContentLoaded',boot);
 </script>
 </body>
