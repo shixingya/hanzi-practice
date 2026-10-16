@@ -5323,6 +5323,160 @@ button:active{transform:scale(.95)}
   .wt-stage{flex-direction:column}
   .wt-mini{flex:0 0 auto;width:88px;margin:0 auto}
 }
+/* ================= v1.81 笔顺电路坊 ================= */
+.ct-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.ct-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.ct-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.ct-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.ct-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.ct-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.ct-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.ct-cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:11px;color:#FFE082}
+.ct-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#0B2430 0%,#123344 44%,#07161F 100%);box-shadow:inset 0 0 34px rgba(0,0,0,.6);transition:box-shadow .2s}
+.ct-tbl.hot{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 26px rgba(255,213,79,.34)}
+/* 钟只剩十来秒：判词说「板子边缘发红了」，那就得真的红一圈（放在 .dead 前面，断电的红盖过它） */
+.ct-tbl.warn{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 0 3px rgba(255,82,82,.8),inset 0 0 26px rgba(255,82,82,.3)}
+.ct-tbl.dead{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 30px rgba(255,82,82,.45)}
+.ct-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+/* ---- 板子 / 铜箔 ---- */
+.ct-deck{fill:rgba(6,26,20,.72);stroke:rgba(120,220,160,.22);stroke-width:2.4}
+.ct-rail{fill:#C98A3C;stroke:#F1C27D;stroke-width:1.6;pointer-events:none}
+.ct-railTxt{font-size:11px;font-weight:bold;fill:#FFD79A;text-anchor:end;pointer-events:none}
+.ct-head{font-size:12px;font-weight:bold;fill:rgba(255,215,154,.75);text-anchor:middle;letter-spacing:3px;pointer-events:none}
+.ct-socketTxt{font-size:12px;font-weight:bold;fill:#90A4AE;text-anchor:middle;pointer-events:none}
+.ct-sock{fill:#4E5B62;stroke:#8FA3AD;stroke-width:1.8;pointer-events:none}
+.ct-lead{stroke:#B7C6CE;stroke-width:2.6;pointer-events:none}
+.ct-tap{stroke:#C98A3C;stroke-width:3;stroke-dasharray:5 4;pointer-events:none}
+.ct-pad{fill:#2A3A44;stroke:#8FA9B6;stroke-width:2.2;transition:fill .16s,stroke .16s}
+.ct-pad.pos{fill:#FFC246;stroke:#FFE9B0}
+.ct-pad.neg{fill:#78909C;stroke:#CFD8DC}
+.ct-pad.lit{stroke:#FFF176;stroke-width:3}
+.ct-pad.grab{fill:#40C4FF;stroke:#FFF176;stroke-width:3.2;animation:ctGrab .7s ease-in-out infinite}
+.ct-pad.hot{fill:#FF5252;stroke:#FFCDD2}
+@keyframes ctGrab{0%,100%{r:7}50%{r:9.5}}
+/* ---- 电池 / 保险丝 ---- */
+.ct-bat{cursor:pointer}
+.ct-batBody{fill:#1B3A2A;stroke:#69F0AE;stroke-width:2.4}
+.ct-batTop{fill:#FFC246;stroke:#8D6E2E;stroke-width:1.6}
+.ct-batBot{fill:#B0BEC5;stroke:#607D8B;stroke-width:1.6}
+.ct-batTxt{fill:#B9F6CA;font-weight:bold;text-anchor:middle;pointer-events:none}
+.ct-plusTxt{font-size:14px;font-weight:bold;fill:#FFD79A;pointer-events:none}
+.ct-fuse{fill:#FFF59D;stroke:#FF8F00;stroke-width:2.2;transition:fill .2s}
+.ct-bat.blown .ct-fuse{fill:#37474F;stroke:#FF5252;stroke-dasharray:4 3}
+.ct-bat.blown .ct-batBody{stroke:#FF5252}
+/* ---- 板上印好的走线 / 闸刀 / 虚焊 ---- */
+.ct-trace{fill:none;stroke:#C98A3C;stroke-width:5;stroke-linecap:round;pointer-events:none}
+.ct-trace.off{stroke:rgba(201,138,60,.3);stroke-dasharray:7 6}
+.ct-trace.bad{stroke:rgba(201,138,60,.32);stroke-width:4;stroke-dasharray:3 7}
+.ct-bad{fill:rgba(255,82,82,.16);stroke:#FF8A80;stroke-width:2.4;stroke-dasharray:5 4;cursor:pointer;pointer-events:all;animation:ctBad 1.4s ease-in-out infinite}
+@keyframes ctBad{0%,100%{opacity:.55}50%{opacity:1}}
+.ct-sw{cursor:pointer;pointer-events:all}
+.ct-swBox{fill:#263238;stroke:#78909C;stroke-width:2}
+.ct-swBar{stroke:#FF8A80;stroke-width:3.4;stroke-linecap:round;transition:transform .18s;transform-origin:-11px 6px}
+.ct-sw.shut .ct-swBox{stroke:#69F0AE}
+.ct-sw.shut .ct-swBar{stroke:#69F0AE;transform:rotate(35deg)}
+.ct-sw.open .ct-swBar{transform:rotate(0deg)}
+.ct-swDot{fill:#CFD8DC}
+.ct-swTxt{font-size:10px;fill:#B0BEC5;text-anchor:middle;pointer-events:none}
+/* ---- 跳线 ---- */
+.ct-wire{fill:none;stroke:#40C4FF;stroke-width:4.2;stroke-linecap:round;pointer-events:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+.ct-wireHit{fill:none;stroke:transparent;stroke-width:20;stroke-linecap:round;cursor:pointer;pointer-events:stroke}
+/* ---- 灯泡 ---- */
+.ct-bulb{cursor:pointer}
+.ct-halo{fill:rgba(255,235,59,0);transition:fill .22s;pointer-events:none}
+.ct-bulb.lit .ct-halo{fill:rgba(255,235,59,.24);animation:ctHalo 1.5s ease-in-out infinite}
+@keyframes ctHalo{0%,100%{opacity:.7}50%{opacity:1}}
+.ct-glass{fill:rgba(200,225,240,.13);stroke:rgba(225,245,255,.55);stroke-width:2.4;transition:fill .2s,stroke .2s}
+.ct-bulb.on .ct-glass{fill:rgba(255,241,118,.2);stroke:#FFF176}
+.ct-bulb.lit .ct-glass{fill:rgba(255,238,88,.55);stroke:#FFF59D;stroke-width:3}
+.ct-bulb.dim-volt .ct-glass,.ct-bulb.dim-fuse .ct-glass{fill:rgba(255,138,101,.14);stroke:rgba(255,171,145,.7);stroke-dasharray:6 5}
+.ct-bulb.fgn .ct-glass{fill:rgba(176,190,197,.14);stroke:rgba(176,190,197,.62);stroke-dasharray:5 5}
+.ct-bulb.loose .ct-glass{stroke:#FFD54F;stroke-dasharray:4 4}
+.ct-bulb.done .ct-glass{fill:rgba(105,240,174,.22);stroke:#69F0AE}
+.ct-bulb.now .ct-glass{stroke:#69F0AE;stroke-width:3.2}
+.ct-fil{fill:none;stroke:rgba(255,255,255,.4);stroke-width:2;pointer-events:none}
+.ct-bulb.lit .ct-fil{stroke:#FFF176}
+.ct-face{fill:rgba(255,255,255,.94);stroke:rgba(0,0,0,.24);stroke-width:1.6;pointer-events:none}
+.ct-bulb.fgn .ct-face{fill:#ECEFF1}
+.ct-bulb .ct-tag{font-size:17px;font-weight:bold;fill:#B71C1C;text-anchor:middle;pointer-events:none}
+.ct-num{font-size:11px;font-weight:bold;fill:#37474F;text-anchor:middle;pointer-events:none}
+.ct-watt{font-size:12px;text-anchor:middle;pointer-events:none}
+/* ---- 点击层 ---- */
+.ct-hit{fill:transparent;cursor:pointer}
+#ctHitG{pointer-events:none}
+#ctHitG .ct-hit{pointer-events:all}
+#ctPaperG,#ctTopG{pointer-events:none}
+/* ---- 光标 / 预览 ---- */
+.ct-cur{fill:rgba(255,241,118,.08);stroke:#FFF176;stroke-width:3;stroke-dasharray:9 7;animation:ctCur .9s ease-in-out infinite}
+@keyframes ctCur{0%,100%{opacity:.35}50%{opacity:1}}
+.ct-ghost{fill:none;stroke:#FFF176;stroke-width:4;stroke-dasharray:9 7;stroke-linecap:round;opacity:.85;animation:ctCur .8s ease-in-out infinite}
+.ct-ghostPad{fill:rgba(64,196,255,.18);stroke:#40C4FF;stroke-width:2.6;animation:ctCur .8s ease-in-out infinite}
+/* ---- 纸带 ---- */
+.ct-paper{fill:#FFF8E1;stroke:rgba(144,202,241,.5);stroke-width:2;pointer-events:none}
+.ct-pbox{fill:rgba(0,0,0,.16);stroke:rgba(255,255,255,.22);stroke-width:1.4;pointer-events:none}
+.ct-pnow{fill:rgba(255,241,118,.26);stroke:#F9A825;stroke-width:2.4;pointer-events:none}
+.ct-ptxt{font-size:10.5px;font-weight:bold;fill:#78909C;text-anchor:middle;pointer-events:none}
+.ct-phead{font-size:12px;font-weight:bold;fill:#FFE082;text-anchor:middle;pointer-events:none}
+/* ---- 特效 ---- */
+.ct-flash{fill:rgba(255,235,59,.22);animation:ctFlash .64s ease-out forwards}
+@keyframes ctFlash{0%{opacity:1}100%{opacity:0}}
+.ct-mark{fill:none;stroke:#40C4FF;stroke-width:3.4;stroke-dasharray:11 8;animation:ctCur .9s ease-in-out infinite}
+.ct-ring{animation:ctRing .92s ease-out forwards}
+@keyframes ctRing{0%{stroke-width:5;opacity:1}100%{stroke-width:1;opacity:0;transform:scale(1.5)}}
+.ct-spark{font-size:17px;text-anchor:middle;animation:ctRise 1.15s ease-out forwards}
+@keyframes ctRise{0%{opacity:0;transform:translateY(4px)}20%{opacity:1}100%{opacity:0;transform:translateY(-26px)}}
+.ct-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.ct-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:ctBit .76s ease-out forwards}
+@keyframes ctBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.ct-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF59D;text-shadow:0 1px 4px rgba(0,0,0,.7);animation:ctPop .96s ease-out forwards;white-space:nowrap}
+@keyframes ctPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.ct-shake{animation:ctShake .34s}
+@keyframes ctShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px) rotate(-.5deg)}50%{transform:translateX(8px) rotate(.5deg)}80%{transform:translateX(-3px)}}
+/* ---- 计量 / 按钮 / 文案 ---- */
+.ct-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.ct-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(0,0,0,.4);overflow:hidden}
+.ct-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#00695C,#26A69A 58%,#FFF176 96%);transition:width .1s linear}
+.ct-tl.low i{background:linear-gradient(90deg,#FF8A65,#FF5252)}
+.ct-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.ct-clock{font-size:12px;color:#fff;background:rgba(0,0,0,.4);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.ct-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#FFF8E1;background:rgba(0,0,0,.34);border-radius:14px;padding:9px 10px;line-height:1.5}
+.ct-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.ct-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0;position:sticky;bottom:6px;z-index:6;box-sizing:border-box;padding:5px;border-radius:16px;background:rgba(0,0,0,.45)}
+.ct-tool{flex:1;padding:11px 4px;border:none;border-radius:13px;font-size:13px;color:#ECEFF1;background:rgba(255,255,255,.14);cursor:pointer;font-family:inherit}
+.ct-tool.on{background:#40C4FF;color:#01223A;font-weight:bold}
+.ct-tool.go{background:#FFC400;color:#3E2723;font-weight:bold}
+.ct-tool:disabled{opacity:.4}
+.ct-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.3);color:#FFF8E1;font-size:13px;line-height:1.65;min-height:44px;overflow-anchor:none}
+.ct-msg b{color:#fff}
+.ct-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.ct-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.ct-badge{position:absolute;right:8px;top:8px;font-size:11px;color:#102A1E;background:rgba(220,245,225,.9);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+.ct-badge.on{display:block}
+.ct-tagline{position:absolute;left:8px;top:8px;font-size:12px;color:#fff;background:rgba(230,74,25,.92);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap}
+.ct-tagline.on{display:block}
+.ct-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.ct-rs span{display:block;font-size:24px;font-weight:bold}
+.ct-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.ct-book-t{font-size:12px;color:#FFE082;margin-top:12px}
+.ct-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.ct-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.ct-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FFC400;color:#102A1E;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.ct-cdot.on{display:flex}
+.ct-nd{font-style:normal;font-size:11px;color:#CFD8DC;background:rgba(255,255,255,.1);border-radius:10px;padding:3px 9px;white-space:nowrap}
+.ct-nd.in{color:#fff;background:rgba(255,193,66,.3)}
+.ct-nd.dead{color:#fff;background:rgba(255,82,82,.3)}
+.ct-more{flex:1 1 100%;text-align:center;font-size:11.5px;color:#B0BEC5;margin-top:3px;line-height:1.5}
+.ct-more b{color:#FFF176}
+@media (max-width:600px){
+  .ct-stage{flex-direction:column}
+  .ct-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
+@media (min-width:700px){
+  /* 板子画布是 700 单位宽的：520 的通道里 24 个焊盘会缩成一团，宽屏给电路坊让出一条 */
+  #screen-circuit{max-width:860px}
+  /* 笔记本只有 760 高：板子让出底部一截，通电钟和工具条才能跟板子同屏，不用来回滚 */
+  .ct-svg{max-height:calc(100vh - 320px)}
+}
 </style>
 
 </head>
@@ -5379,8 +5533,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 79 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">79</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 80 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">80</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -5391,12 +5545,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>79 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>25</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>80 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>26</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="ctCard" onclick="enterMode('circuit')">
+      <div class="icon">⚡</div>
+      <div class="info"><h3>笔顺电路坊</h3><p id="ctCardTip">一块电路板、上下两条铜箔、六只灯泡：点两个焊盘拉一根跳线，把写着这一笔的灯泡接成回路 —— 串联分压、并联各走各的，＋ 直接搭 − 就烧保险丝</p></div>
+      <span class="ct-cdot" id="ctCardDot">🆕</span>
+    </div>
 <div class="mode-card" onclick="enterMode('sluice')">
       <div class="icon">🚰</div>
       <div class="info"><h3>笔顺水闸</h3><p id="wtCardTip">6 根玻璃管底下一条水道、5 道闸门 —— 水一连通就一样高，把一瓢瓢水摊到你想抬的那根管，顶着写有这一笔的浮标冒头</p></div>
@@ -5972,6 +6131,112 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-circuit">
+  <div class="top-bar">
+    <button class="back-btn" onclick="ctLeave()">← 返回</button>
+    <div class="stats"><span id="ctScoreTxt">🎯 0 分</span><span id="ctLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="ctHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="ct-hud">
+    <span id="ctRankTxt" title="称号">⚡ 装电池的</span>
+    <span id="ctHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="ctComboTxt" title="连击">🔥 连 0</span>
+    <span id="ctLitTxt" title="点亮几笔">✅ 0 笔</span>
+    <span id="ctLayTxt" title="拉了几根线">🔌 0</span>
+    <span id="ctSaveTxt" title="没添线连着亮">🫳 0</span>
+    <span id="ctShortTxt" title="短路几次">⚡ 0</span>
+    <span id="ctWrongTxt" title="点错几次">🚫 0</span>
+  </div>
+  <div class="ct-ask" id="ctAsk">⚡ 正在给板子上电……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="ct-stage">
+    <div class="ct-mini">
+      <svg viewBox="0 -1024 1024 1024" id="ctMiniSvg"></svg>
+      <div class="ct-cap" id="ctMiniCap">这个字</div>
+    </div>
+    <div class="ct-tbl" id="ctTbl">
+      <svg class="ct-svg" id="ctSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient id="ctGlow" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#FFF59D" stop-opacity=".9"/><stop offset="1" stop-color="#FFF59D" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="ctCopper" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F1C27D"/><stop offset=".5" stop-color="#C98A3C"/><stop offset="1" stop-color="#8A5A22"/>
+          </linearGradient>
+        </defs>
+        <g id="ctStatic"></g>
+        <g id="ctTraceG"></g>
+        <g id="ctWireG"></g>
+        <g id="ctBulbG"></g>
+        <g id="ctPaperG"></g>
+        <g id="ctHitG"></g>
+        <g id="ctTopG"></g>
+      </svg>
+      <div class="ct-fx" id="ctFx"></div>
+      <div class="ct-badge" id="ctBadge">⚡</div>
+      <div class="ct-tagline" id="ctTag">⚡ 保险丝断了</div>
+    </div>
+  </div>
+  <div class="ct-meter">
+    <div class="ct-tl" id="ctClockBox"><i id="ctClockBar"></i><b id="ctClockTxt">⚡ 电已通上</b></div>
+    <div class="ct-clock" id="ctPowTxt">🔌 ——</div>
+  </div>
+  <div class="ct-tools">
+    <button class="ct-tool go" id="ctWireBtn" onclick="ctGrabNext()">✋ 拿线<b style="font-size:11px"> 空格</b></button>
+    <button class="ct-tool" id="ctSwBtn" onclick="ctSwitches()">⎓ 全合<b style="font-size:11px"> X</b></button>
+    <button class="ct-tool" id="ctPrevBtn" onclick="ctPreview()" disabled>💡 预览<b style="font-size:11px"> Q</b></button>
+    <button class="ct-tool" id="ctUndoBtn" onclick="ctUndo()" disabled>🔄 倒带<b style="font-size:11px"> R</b></button>
+    <button class="ct-tool" id="ctReBtn" onclick="ctRespin()">🔁 重摆<b style="font-size:11px"> T</b></button>
+    <button class="ct-tool" onclick="ctEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="ct-basket" id="ctBasket" style="display:flex;gap:6px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:36px;padding:6px;border-radius:14px;background:rgba(0,0,0,.36);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap"></div>
+  <div class="ct-hintline" id="ctHintLine">👇 <b>点两个焊盘</b> 就拉一根 <b>🔌 跳线</b>，再点同一对 <b>拆掉退线</b>；点 <b>灯泡</b> 把亮着这一笔印出来</div>
+  <div class="ct-msg" id="ctMsg">眼前是一块 <b>电路板</b>：上面一条 <b>＋ 铜箔</b>、下面一条 <b>− 铜箔</b>，左边一只 <b>🔋 电池</b>（带着 <b>保险丝</b>）。板上插着 <b>6 只小灯泡</b>，灯泡玻璃上就是这个字其中一笔的 <b>真实笔形</b>（横红、竖青、撇蓝、捺橘），角上写着 <b>第几笔</b>。<b>点两个焊盘拉一根跳线</b>，把灯 <b>接成回路</b> —— 电从 ＋ 出发、<b>挨个穿过灯泡</b>、回到 −，这一笔就亮了</div>
+  <div class="ct-tip">每只灯泡有 <b>左脚 / 右脚</b> 两只脚，上下各有一个 <b>接线柱</b> 直接长在 <b>铜箔</b> 上：<b>点两个焊盘</b> 就拉一根 <b>🔌 跳线</b>（再点同一对 <b>拆掉、退回线盘，一分不扣</b>）<br>
+    💡 <b>灯泡是支路的一员</b>：电从 <b>＋</b> 出发、<b>挨个穿过灯泡</b>、回到 <b>−</b> —— 首尾 <b>成一条路</b> 才亮；只 <b>一脚接着电</b> 的灯 <b>不亮</b><br>
+    🔋 <b>串联分压</b>：一条支路上串几只，就 <b>一共吃掉几伏</b>（普通灯 <b>1V</b>、挂 <b>🏋</b> 的大瓦数灯 <b>2V</b>），<b>超过电池电压谁也点不着</b><br>
+    🪜 <b>并联各走各的</b>：另一条支路 <b>单独从 ＋ 走到 −</b>，每只灯 <b>都吃满电压</b> —— <b>串着省线、并联费线</b>，这是本盘唯一的取舍<br>
+    ✂ <b>一条支路最多串 3~4 只</b>（第 3 段起）：超过就 <b>谁也分不到电</b>；两只脚被 <b>接到一起</b> 的灯会被 <b>短接</b>（标着 <b>短</b>）<br>
+    ⚡ <b>短路</b>：把 <b>＋ 箔直接搭上 − 箔</b>（没经过任何灯泡）—— <b>保险丝当场烧断、整板全黑</b>：先 <b>点那根线两头各一次拆掉</b>，再 <b>点电池 🔋</b>（或按 <code>F</code>）<b>换保险丝</b>，两步都不花钱<br>
+    🎯 <b>按笔顺收</b>：灯泡角上写着 <b>第几笔</b>，只有 <b>该收那一笔</b> 亮着时点它才 <b>印到米字格</b>；还没轮到的 <b>点回去不扣分</b>；🚫 <b>杂灯泡</b>（挂着 <b>?</b>）不是这个字的笔，点它 <b>烧灯丝</b>：扣 8 分、断连击，<b>连错 3 次掉一颗心</b><br>
+    ⎓ <b>闸刀</b>（第 4 段起）长在印好的走线上，拉开时这一段不通，点它合上（<code>X</code> 一键全合）；🔧 <b>虚焊</b>（第 5 段起）看着连着其实锡没吃上，点它补焊；🔩 <b>松灯座</b>（第 6 段起）两只脚没搭上簧片，点一下拧紧 —— 这三样 <b>全都免费</b>，是白送的路<br>
+    🔌 <b>线是算过的</b>：这一盘 <b>军师</b> 先把每一笔都点亮过一遍，发你的线 = <b>刚好够 + 一点余量</b>；线盘空了 <b>不扣心</b>，只能拆了挪<br>
+    ⏱ <b>通电钟</b>：每阵发 <code>30 + 笔数×6 − 段数×2</code> 秒（下限 30），最后 12 秒 <b>板子边缘变红</b>，走光 <b>断电</b>、掉一颗心、剩下的笔 <b>另插一盘</b>（<b>已经印出来的笔不抹掉</b>）<br>
+    💡 <b>预览</b>（<code>Q</code>）画出 <b>军师下一步接上之后谁会亮</b>，会短路提前报警；🔄 <b>倒带</b>（<code>R</code>）退回 <b>上一根线 / 上一次拨闸之前</b>；🔁 <b>重摆</b>（<code>T</code>）剩下的笔另插一盘 —— 预览 <b>2</b> 次、倒带 <b>3</b> 次、重摆 <b>1</b> 次，<b>升段各补 1 次</b><br>
+    📈 <b>点亮一笔</b> 吃 <code>round((14 + 第几笔×2 + 段数×3) × (1 + 连击×0.05))</code>，<b>不添一根线连着亮第二笔</b> 再多 <code>6 + 段数×2</code>；<b>整个字收满</b>：<code>26 + 笔数×6 + 段数×6 + 剩线×3</code>，<b>一次没点错再多 22</b>；<b>每 2 个字升 1 段</b>（最多 9 段）、<b>每 3 个字补一颗心</b>（最多 5 颗）<br>
+    👀 发呆 12 秒 🐰 会报「<b>该点亮那一笔插在哪只灯座</b>、它 <b>两只脚各搭在哪儿</b>、下一步 <b>拉哪根线 / 合哪把闸</b>」· 战绩落盘 <code>hz_circuit_*</code></div>
+</div>
+<div class="screen" id="screen-circuit-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="ctLeave()">← 回首页</button>
+    <div class="stats"><span id="ctRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="ctRsEmoji">⚡</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="ctRsTitle">电接得稳</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="ctRsSub">下一次先想 <b>这一条支路串几只、一共吃几伏</b></p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="ct-rs">
+      <div><span style="color:#FFD700" id="ctRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="ctRsWords">0</span><small>点亮这几个字</small></div>
+      <div><span style="color:#69F0AE" id="ctRsLit">0</span><small>点亮几笔</small></div>
+      <div><span style="color:#FFAB91" id="ctRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="ctRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="ctRsMiss">0</span><small>🚫 点错 / 💔 断电</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多点亮几个字 · 一共点亮过几个字</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFE082"><span id="ctRsBest">0</span> 个 · <span id="ctRsAll2">0</span> ⚡</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="ctRsAll">⚡ 装电池的</div>
+      <div class="ct-book-t" id="ctRsBookT"></div>
+      <div class="ct-book" id="ctRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="ctRetry()">⚡ 再上一块板</button>
+    <button class="w-btn blue" onclick="ctLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-sluice">
@@ -11601,6 +11866,7 @@ function updateHomeStats(){
   if(typeof grNudge==='function')grNudge();
   if(typeof mxNudge==='function')mxNudge();
   if(typeof wtNudge==='function')wtNudge();
+  if(typeof ctNudge==='function')ctNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -11626,6 +11892,7 @@ function enterMode(mode){
   if(mode==='gear'){grStart();return}
   if(mode==='magnet'){mxStart();return}
   if(mode==='sluice'){wtStart();return}
+  if(mode==='circuit'){ctStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -60635,6 +60902,2451 @@ window.wtvSay=function(){const el=document.getElementById('wtMsg');return el?el.
 window.wtvEnd=function(r){wtEnd(r||'quit');return Math.round(wt.score)};
 window.wtvRank=function(n){const R=wtRank(n);return R.e+' '+R.t};
 window.wtvT=function(ms){return wtT(function(){},ms||10)};
+
+/* ================= v1.81 笔顺电路坊（一块电路板 · 拉跳线把灯泡按笔顺点亮 · 串联分压 · 并联各走各的） ================= */
+const CT_W=700,CT_H=470;
+const CT_NS=6;
+const CT_X0=130,CT_P=94,CT_BY=236,CT_R=31,CT_PX=40;
+const CT_RY=96,CT_NY=376,CT_BX0=12,CT_BX1=76;
+const CT_PY=406,CT_PH=30;
+const CT_RF=17;
+const CT_HEARTS=3,CT_HEART_MAX=5,CT_MISS_MAX=40,CT_BOOK_MAX=300;
+const CT_POOL_MIN=4,CT_POOL_WANT=16,CT_STROKE_MAX=5;
+const CT_NAG_MS=12000,CT_GHOST_MS=2800,CT_NEXT_MS=1300,CT_ZAP_MS=520,CT_PRINT_MS=760,CT_TAG_MS=2400,CT_FLASH_MS=620;
+const CT_WRONG_PEN=8,CT_WRONG_MAX=3,CT_CLEAN_BONUS=22,CT_GEN_TRY=70,CT_PLAN_MAX=24,CT_HIST_MAX=8,CT_PATH_MAX=80;
+const CT_DIRS=['横','竖','撇','捺'],CT_ARW=['➡️','⬇️','↙️','↘️'];
+const CT_O=['①','②','③','④','⑤','⑥'];
+const CT_INK=['#FF8A80','#80CBC4','#82B1FF','#FFD180'];
+const CT_NOTE=[392,440,494,523,587,659,698,784];
+const CT_RANKS=[
+  {n:0,e:'🔋',t:'装电池的'},{n:3,e:'💡',t:'点亮第一只'},{n:8,e:'⎓',t:'会拨开关'},
+  {n:15,e:'🔌',t:'串得起来'},{n:24,e:'⚡',t:'分得住压'},{n:36,e:'🧠',t:'军师接线'},
+  {n:52,e:'🌟',t:'电工师傅'},{n:74,e:'💎',t:'一根不废'},{n:105,e:'👑',t:'电网之主'}
+];
+const ct={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,tones:0,think:0,timers:[],
+  pool:[],miss:[],rec:null,n:0,qi:0,gly:[],S:null,tid:1,
+  powMax:0,pow:0,lays:0,clock:1,clockSec:60,red:false,beep:0,
+  lv:1,score:0,hearts:CT_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,saved:0,takes:0,shorts:0,blows:0,wrongs:0,sws:0,slds:0,looses:0,deads:0,
+  previewN:2,undoN:3,respN:1,
+  previews:0,rewinds:0,respins:0,nags:0,
+  ghostMs:0,ghost:null,tagMs:0,nextMs:0,printMs:0,printRun:0,since:0,
+  cleanWord:true,wrongWord:0,hist:[],
+  grab:'',cur:-1,bound:false,ptrBound:false,hudTxt:{},sol:null,lastWhy:''
+};
+function ctInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function ctAdd(k,n){if(n)localStorage.setItem(k,String(ctInt(k)+n))}
+function ctSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function ctSay(t,c){const el=document.getElementById('ctMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function ctShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function ctOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function ctClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function ctDn(d){return d<0||d>3?0:d}
+function ctRank(n){let r=CT_RANKS[0];for(let i=0;i<CT_RANKS.length;i++)if(n>=CT_RANKS[i].n)r=CT_RANKS[i];return r}
+function ctTone(f,d,t,v){if(ct.tones<=0)return;ct.tones--;tone(f,d,t,v)}
+function ctT(fn,ms){const g=ct.gen;const id=setTimeout(function(){const k=ct.timers.indexOf(id);if(k>=0)ct.timers.splice(k,1);if(g!==ct.gen)return;fn()},ms);ct.timers.push(id);return id}
+function ctKillTimers(){ct.timers.forEach(function(t){clearTimeout(t)});ct.timers=[]}
+/* ---- 难度：几只杂灯泡、几只大瓦数、几道虚焊、几只开关、有没有松灯座 ---- */
+function ctFgnOf(lv){return lv<3?0:Math.min(2,lv-2)}
+function ctBigOf(lv){return lv<4?0:Math.min(2,lv-3)}
+function ctSwOf(lv){return lv<4?0:Math.min(3,lv-3)}
+function ctBadOf(lv){return lv<5?0:Math.min(2,lv-4)}
+function ctTrOf(lv){return lv<2?0:Math.min(3,1+Math.floor(lv/2))}
+function ctLooseOf(lv){return lv>=6?1:0}
+function ctFuseOf(lv){return lv<3?99:(lv<7?4:3)}
+function ctVoltsOf(lv){return lv<=2?6:(lv<=4?5:4)}
+function ctSpare(lv){return lv<=2?2:1}
+function ctClockOf(){return Math.max(30,30+ct.n*6-ct.lv*2)}
+function ctLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+/* ---- 几何 ---- */
+function ctCX(i){return CT_X0+i*CT_P}
+function ctLX(i){return ctCX(i)-CT_PX}
+function ctRX(i){return ctCX(i)+CT_PX}
+function ctPadXY(k){
+  const m=/^([TLRBPM])(\d*)$/.exec(k);
+  if(!m)return {x:CT_W/2,y:CT_BY};
+  const t=m[1],i=m[2]===''?0:+m[2];
+  if(t==='P')return {x:CT_BX1-6,y:CT_RY};
+  if(t==='M')return {x:CT_BX1-6,y:CT_NY};
+  if(t==='T')return {x:ctCX(i),y:CT_RY};
+  if(t==='B')return {x:ctCX(i),y:CT_NY};
+  if(t==='L')return {x:ctLX(i),y:CT_BY};
+  return {x:ctRX(i),y:CT_BY};
+}
+function ctSocket(i){const S=ct.S;return S?S.bulbs[i]:null}
+function ctOf(i){return CT_O[i]||('#'+(i+1))}
+/* 焊盘叫什么：调用处自己决定加粗范围，这里给纯文本，免得套出 <b><b>…</b></b> */
+function ctPadName(k){
+  const m=/^([TLRBPM])(\d*)$/.exec(k);
+  if(!m)return k;
+  const t=m[1],i=+m[2]||0;
+  if(t==='P')return '电池 ＋ 极';
+  if(t==='M')return '电池 − 极';
+  if(t==='T')return '＋ 铜箔 上的 '+ctOf(i)+' 号接线柱';
+  if(t==='B')return '− 铜箔 上的 '+ctOf(i)+' 号接线柱';
+  return ctOf(i)+' 号灯的 '+(t==='L'?'左脚':'右脚');
+}
+function ctBName(i){const b=ctSocket(i);return ctOf(i)+' 号灯'+(b&&!b.fgn?'（第 '+(b.k+1)+' 笔）':'')}
+/* ---- 元件导通表：灯泡 i 的左右脚分别接在哪个电气节点上 ---- */
+function ctKey(a,b){return a<b?a+'|'+b:b+'|'+a}
+function ctHasWire(S,a,b){
+  const k=ctKey(a,b);
+  for(let i=0;i<S.wires.length;i++)if(ctKey(S.wires[i].a,S.wires[i].b)===k)return i;
+  return -1;
+}
+/* ---- 并查集：铜箔（两条轨）+ 走线（合上的开关、补好的虚焊）+ 孩子拉的跳线 ---- */
+function ctNet(S){
+  const p={};
+  function add(k){if(!(k in p))p[k]=k}
+  function find(k){add(k);while(p[k]!==k){p[k]=p[p[k]];k=p[k]}return k}
+  function uni(a,b){const x=find(a),y=find(b);if(x!==y)p[x]=y}
+  add('P');add('M');
+  for(let i=0;i<S.n2;i++){
+    add('T'+i);add('B'+i);add('L'+i);add('R'+i);
+    uni('P','T'+i);uni('M','B'+i);
+  }
+  for(let i=0;i<S.tr.length;i++){
+    const t=S.tr[i];
+    if(t.sw>=0&&!S.sw[t.sw])continue;
+    if(t.bad&&!S.sld[i])continue;
+    uni(t.a,t.b);
+  }
+  for(let i=0;i<S.wires.length;i++)uni(S.wires[i].a,S.wires[i].b);
+  return {find:find};
+}
+/* ---- 支路枚举：从 ＋ 走到 −，灯泡是边，铜箔节点是点 ---- */
+function ctPaths(S,u){
+  const gp=u.find('P'),gm=u.find('M');
+  if(gp===gm)return {short:1,paths:[]};
+  const adj={};
+  for(let i=0;i<S.n2;i++){
+    const b=S.bulbs[i];
+    if(!b)continue;
+    b.byp=0;
+    if(b.loose)continue;
+    const a=u.find('L'+i),c=u.find('R'+i);
+    if(a===c){b.byp=1;continue}
+    if(!adj[a])adj[a]=[];if(!adj[c])adj[c]=[];
+    adj[a].push({to:c,i:i});adj[c].push({to:a,i:i});
+  }
+  const out=[];
+  (function dfs(node,acc,used){
+    if(out.length>=CT_PATH_MAX)return;
+    if(node===gm){out.push(acc.slice());return}
+    const e=adj[node]||[];
+    for(let j=0;j<e.length;j++){
+      const q=e[j];
+      if(used[q.i])continue;
+      used[q.i]=1;acc.push(q.i);
+      dfs(q.to,acc,used);
+      acc.pop();used[q.i]=0;
+      if(out.length>=CT_PATH_MAX)return;
+    }
+  })(gp,[],{});
+  return {short:0,paths:out};
+}
+function ctDrop(b){return b&&b.big?2:1}
+/* ---- 一次评估：谁是活路（电压够、没超保险丝），谁只是「差一点」 ---- */
+function ctEval(S){
+  const u=ctNet(S),r=ctPaths(S,u),V=S.volts,FM=ctFuseOf(ct.lv);
+  for(let i=0;i<S.n2;i++){if(S.bulbs[i]){const b=S.bulbs[i];b.on=0;b.dim='';b.lit=0;b.path=null}}
+  S.short=r.short?1:0;
+  if(r.short)S.blown=1;
+  S.hot=0;S.hotN=0;
+  if(r.short||S.blown)return {u:u,paths:[]};
+  const ps=r.paths;
+  for(let j=0;j<ps.length;j++){
+    const p=ps[j];let d=0;
+    for(let q=0;q<p.length;q++)d+=ctDrop(S.bulbs[p[q]]);
+    const over=p.length>FM;
+    p._d=d;
+    if(d<=V&&!over){for(let q=0;q<p.length;q++)S.bulbs[p[q]].on=1}
+    else{
+      const why=d>V?'volt':'fuse';
+      if(why==='fuse'&&p.length>S.hotN){S.hot=1;S.hotN=p.length;S.hotPath=p.slice()}
+      for(let q=0;q<p.length;q++){const b=S.bulbs[p[q]];if(!b.on){b.dim=why;b.path=p}}
+    }
+  }
+  const want=ctBulbOf(S,S.qi);
+  for(let i=0;i<S.n2;i++){const b=S.bulbs[i];if(b){if(b.on)b.dim='';b.lit=b.on&&(i===want||b.done)?1:0}}
+  return {u:u,paths:ps};
+}
+function ctLit(S,i){return !!(S.bulbs[i]&&S.bulbs[i].lit)}
+/* 该收那一笔插在第几号座：qi 是笔号，不是灯座号 */
+function ctWantLit(S){return ctLit(S,ctBulbOf(S,S.qi))}
+function ctOnN(S){let n=0;for(let i=0;i<S.n2;i++)if(S.bulbs[i]&&S.bulbs[i].lit)n++;return n}
+function ctBulbOf(S,k){for(let i=0;i<S.n2;i++){const b=S.bulbs[i];if(b&&!b.fgn&&b.k===k)return i}return -1}
+/* ---- 读数 / 文案共用的算法 ---- */
+function ctWhy(S,i,u){
+  const b=S.bulbs[i];
+  if(!b)return '这只灯座是空的';
+  if(b.loose)return '灯座 <b>松了</b>（点一下拧紧）';
+  const a=u.find('L'+i),c=u.find('R'+i);
+  if(a===c)return '两只脚 <b>接到了一起</b>（这只灯被短接，电从旁边绕过去了）';
+  const ps=ctPaths(S,u).paths;
+  let best=null;
+  for(let j=0;j<ps.length;j++)if(ps[j].indexOf(i)>=0)best=ps[j];
+  if(!best)return '它 <b>没成回路</b>：一脚还没 <b>接到 ＋ 铜箔</b>，另一脚还没 <b>接到 − 铜箔</b>';
+  let d=0;for(let q=0;q<best.length;q++)d+=ctDrop(S.bulbs[best[q]]);
+  if(d>S.volts)return '它和 <b>'+best.map(function(x){return ctOf(x)}).join('、')+'</b> 串成一条支路，一共要 <b>'+d+'V</b>，电池只有 <b>'+S.volts+'V</b> —— <b>分不够压</b>';
+  if(best.length>ctFuseOf(ct.lv))return '它这条支路串了 <b>'+best.length+' 只</b>，超过这条支路上限 <b>'+ctFuseOf(ct.lv)+' 只</b> —— 串太多，<b>谁也分不到电</b>';
+  return '它在一条活路上';
+}
+function ctPSay(S,u,i,side){
+  const g=u.find(side+i);
+  if(g===u.find('P'))return '＋';
+  if(g===u.find('M'))return '−';
+  const who=[];
+  for(let j=0;j<S.n2;j++){
+    const b=S.bulbs[j];if(!b||b.loose||j===i)continue;
+    if(u.find('L'+j)===g||u.find('R'+j)===g)who.push(ctOf(j));
+  }
+  return who.length?('（和 '+who.join('、')+' 连在一起）'):'孤零零';
+}
+/* ---- 军师：把剩下的笔分成几条支路（串联省线、但一共不能吃超过电池电压） ---- */
+function ctRuns(n,drops,V,FM){
+  const runs=[];let cur=[],sum=0;
+  for(let i=0;i<n;i++){
+    const d=drops[i];
+    if(d>V)return null;
+    if(cur.length&&(sum+d>V||cur.length+1>FM)){runs.push(cur);cur=[];sum=0}
+    cur.push(i);sum+=d;
+  }
+  if(cur.length)runs.push(cur);
+  return runs;
+}
+function ctClone(S){
+  return {
+    n2:S.n2,qi:S.qi,n:S.n,volts:S.volts,
+    bulbs:S.bulbs.map(function(b){return b?{id:b.id,col:b.col,k:b.k,fgn:b.fgn,big:b.big,loose:b.loose,done:b.done,on:0,dim:'',lit:0,byp:0}:null}),
+    wires:S.wires.map(function(w){return {id:w.id,a:w.a,b:w.b}}),
+    tr:S.tr.map(function(t){return {a:t.a,b:t.b,sw:t.sw,bad:t.bad,up:t.up}}),
+    sw:S.sw.slice(),sld:S.sld.slice(),
+    blown:0,short:0,hot:0,hotN:0,hotPath:null
+  };
+}
+function ctPlanRun(S,step){
+  // step: {kind:'wire',a,b} | {kind:'sw',i} | {kind:'fix',i} | {kind:'tight',i}
+  if(step.kind==='wire'){
+    if(ctHasWire(S,step.a,step.b)>=0)return 0;
+    S.wires.push({id:9000+S.wires.length,a:step.a,b:step.b});
+    return 1;
+  }
+  if(step.kind==='sw'){if(S.sw[step.i])return 0;S.sw[step.i]=1;return 1}
+  if(step.kind==='tight'){const b=S.bulbs[step.i];if(!b||!b.loose)return 0;b.loose=0;return 1}
+  if(S.sld[step.i])return 0;S.sld[step.i]=1;return 1;
+}
+/* 从「已经拉好的线」出发，把剩下的笔一路点亮 —— 生成器和提示共用 */
+function ctSimPlan(S0,steps){
+  const S=ctClone(S0);
+  let laid=0;
+  const plan=[];
+  /* 一根线常常一次点亮好几笔（串联一条路），能收的都得挨着收掉，不然会误判成无解 */
+  const tapAll=function(){
+    for(;;){
+      ctEval(S);
+      if(S.qi>=S.n||!ctWantLit(S))break;
+      plan.push({tap:1,i:S.qi});
+      S.qi++;
+    }
+  };
+  for(let q=0;q<steps.length;q++){
+    tapAll();
+    if(S.qi>=S.n)break;
+    const st=steps[q];
+    if(!st)continue;
+    const before=S.wires.length;
+    ctPlanRun(S,st);
+    ctEval(S);
+    plan.push({kind:st.kind,a:st.a,b:st.b,i:st.i,laid:S.wires.length>before?1:0});
+    laid+=S.wires.length-before;
+  }
+  tapAll();
+  return {ok:S.qi>=S.n,plan:plan,laid:laid,qi:S.qi};
+}
+/* 摆一盘：先按笔顺把灯泡排到随机灯座上，再让军师把剩下的笔分成几条支路 */
+function ctTry(rec,cfg,from){
+  const n=rec.n;
+  if(n>CT_NS){ct.lastWhy='toostroke';return null}
+  if(from>=n){ct.lastWhy='done';return null}
+  const V=ctVoltsOf(ct.lv),FM=ctFuseOf(ct.lv);
+  const cols=ctShuf([0,1,2,3,4,5]);
+  const bulbs=new Array(CT_NS).fill(null);
+  const real=cols.slice(0,n-from);
+  for(let i=0;i<real.length;i++){
+    const k=from+i;
+    bulbs[real[i]]={id:ct.tid++,col:real[i],k:k,fgn:0,big:0,loose:0,done:k<from,on:0,dim:'',lit:0,byp:0};
+  }
+  const free=cols.slice(n-from);
+  if(free.length<cfg.fgn){ct.lastWhy='spare';return null}
+  const jf=ctShuf(free.slice()).slice(0,cfg.fgn);
+  for(let i=0;i<jf.length;i++)bulbs[jf[i]]={id:ct.tid++,col:jf[i],k:-1,fgn:1,big:0,loose:0,done:0,on:0,dim:'',lit:0,byp:0};
+  const realIdx=[];
+  for(let i=0;i<CT_NS;i++)if(bulbs[i]&&!bulbs[i].fgn)realIdx.push(i);
+  const canBig=ctShuf(realIdx.slice());
+  if(canBig.length<cfg.big){ct.lastWhy='nobig';return null}
+  for(let i=0;i<cfg.big;i++)bulbs[canBig[i]].big=1;
+  /* 松灯座只挂在真灯泡上：拧紧不花钱，但拧之前这条支路就是断的 */
+  const canL=ctShuf(realIdx.slice());
+  if(canL.length<cfg.loose){ct.lastWhy='noloose';return null}
+  for(let i=0;i<cfg.loose;i++)bulbs[canL[i]].loose=1;
+  /* 支路划分：按笔顺切成几段，每段吃压不超过电池 */
+  const drops=[];
+  for(let k=from;k<n;k++){const i=ctBulbOf({n2:CT_NS,bulbs:bulbs},k);drops.push(ctDrop(bulbs[i]))}
+  const runs=ctRuns(drops.length,drops,V,FM);
+  if(!runs){ct.lastWhy='noruns';return null}
+  /* 把每条支路内部的「首尾相连」先画成板上的铜箔走线，剩下的才要孩子自己拉 */
+  const links=[];
+  for(let r=0;r<runs.length;r++){
+    const run=runs[r];
+    for(let q=0;q+1<run.length;q++){
+      const ia=ctBulbOf({n2:CT_NS,bulbs:bulbs},from+run[q]),ib=ctBulbOf({n2:CT_NS,bulbs:bulbs},from+run[q+1]);
+      links.push({a:'R'+ia,b:'L'+ib,run:r});
+    }
+  }
+  const trN=Math.min(cfg.tr,links.length);
+  const chosen=ctShuf(links.slice()).slice(0,trN);
+  const tr=[],sw=[],sld=[];
+  const usedLink={};
+  for(let i=0;i<chosen.length;i++){
+    const L=chosen[i];
+    const s=i<cfg.sw?sw.length:-1;
+    const bad=i<cfg.bad?1:0;
+    if(s>=0)sw.push(0);
+    tr.push({a:L.a,b:L.b,sw:s,bad:bad,up:!!L.up});
+    sld.push(0);
+    usedLink[ctKey(L.a,L.b)]=1;
+  }
+  if(sw.length<cfg.sw||tr.filter(function(x){return x.bad}).length<cfg.bad){ct.lastWhy='nosw';return null}
+  /* 需要孩子拉的线：每条支路「＋ 进 − 出」+ 没画成铜箔的那些首尾相连 */
+  const steps=[];
+  for(let r=0;r<runs.length;r++){
+    const run=runs[r];
+    const ia=ctBulbOf({n2:CT_NS,bulbs:bulbs},from+run[0]);
+    steps.push({kind:'wire',a:'L'+ia,b:'T'+ia});
+    for(let q=0;q+1<run.length;q++){
+      const ib=ctBulbOf({n2:CT_NS,bulbs:bulbs},from+run[q+1]);
+      const ia2=ctBulbOf({n2:CT_NS,bulbs:bulbs},from+run[q]);
+      if(!usedLink[ctKey('R'+ia2,'L'+ib)])steps.push({kind:'wire',a:'R'+ia2,b:'L'+ib});
+    }
+    const iz=ctBulbOf({n2:CT_NS,bulbs:bulbs},from+run[run.length-1]);
+    steps.push({kind:'wire',a:'R'+iz,b:'B'+iz});
+  }
+  for(let i=0;i<tr.length;i++){
+    if(tr[i].sw>=0)steps.push({kind:'sw',i:tr[i].sw});
+    if(tr[i].bad)steps.push({kind:'fix',i:i});
+  }
+  for(let i=0;i<CT_NS;i++)if(bulbs[i]&&bulbs[i].loose)steps.push({kind:'tight',i:i});
+  const S={n2:CT_NS,qi:from,n:n,volts:V,bulbs:bulbs,wires:[],tr:tr,sw:sw,sld:sld,blown:0,short:0,hot:0,hotN:0,hotPath:null};
+  ctEval(S);
+  if(ctWantLit(S)){ct.lastWhy='prelit';return null}
+  const sim=ctSimPlan(S,steps);
+  if(!sim.ok){ct.lastWhy='nosolve';return null}
+  ct.lastWhy='';
+  return {S:S,steps:steps,plan:sim.plan,laid:sim.laid,cfg:cfg,runs:runs,V:V};
+}
+function ctGen(rec,lv,from){
+  const f0=ctFgnOf(lv),b0=ctBigOf(lv),s0=ctSwOf(lv),d0=ctBadOf(lv),t0=ctTrOf(lv),lo0=ctLooseOf(lv);
+  /* 难度表只是上限：灯座先要装下这一笔一只的真灯泡，剩下的空位才轮到 🚫 杂灯泡；
+     开关和虚焊都得长在画得出来的走线上，装不下就由松弛梯子逐级往下减 */
+  const real=rec.n-(from||0),free=CT_NS-real;
+  const f=Math.max(0,Math.min(f0,free));
+  const b=Math.max(0,Math.min(b0,real));
+  const lo=Math.max(0,Math.min(lo0,real));
+  const maxLink=Math.max(0,real-Math.ceil(real/2));
+  const t=Math.max(0,Math.min(t0,maxLink));
+  const s=Math.max(0,Math.min(s0,t));
+  const d=Math.max(0,Math.min(d0,t));
+  const lad=[
+    {fgn:f,big:b,sw:s,bad:d,tr:t,loose:lo},
+    {fgn:f,big:b,sw:s,bad:d,tr:t,loose:0},
+    {fgn:f,big:b,sw:s,bad:0,tr:t,loose:0},
+    {fgn:f,big:b,sw:Math.max(0,s-1),bad:0,tr:t,loose:0},
+    {fgn:f,big:b,sw:0,bad:0,tr:Math.max(0,t-1),loose:0},
+    {fgn:f,big:Math.max(0,b-1),sw:0,bad:0,tr:0,loose:0},
+    {fgn:0,big:0,sw:0,bad:0,tr:0,loose:0}
+  ];
+  const o=ct.lv;ct.lv=lv;
+  for(let L=0;L<lad.length;L++){
+    for(let q=0;q<CT_GEN_TRY;q++){
+      const r=ctTry(rec,lad[L],from||0);
+      if(r){r.cfg=lad[L];ct.lv=o;return r}
+    }
+  }
+  ct.lv=o;
+  return null;
+}
+/* ---- 笔形：灯泡脸就是这个字其中一笔的真形 ---- */
+function ctBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function ctDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function ctGly(d,box,dir,size){
+  const b=box||{x:0,y:0,w:200,h:200};
+  return {d:d||'M0 0',box:b,dir:dir,s:(size||44)/Math.max(140,Math.max(b.w,b.h))};
+}
+function ctGlyHTML(g){
+  const b=g.box,s=g.s;
+  const tx=-s*(b.x+b.w/2),ty=s*(b.y+b.h/2);
+  return '<g transform="translate('+tx.toFixed(1)+','+ty.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path d="'+g.d+'" fill="'+CT_INK[ctDn(g.dir)]+'"/></g>';
+}
+function ctGlyOf(rec){
+  const ms=(rec&&rec.raw&&rec.raw.medians)||[],sp=(rec&&rec.raw&&rec.raw.strokes)||[],out=[];
+  for(let i=0;i<rec.n;i++){
+    const m=ms[i]||[[0,0],[100,100]];
+    out.push(ctGly(ctDOf(sp,i)||'M0 0 L60 60',ctBox(m)||{x:0,y:0,w:200,h:200},ctDn(rec.dirs[i]),44));
+  }
+  return out;
+}
+/* ---- 字库：每一笔方向都说得清 ---- */
+function ctMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>CT_STROKE_MAX)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){
+    const d=fmDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    dirs.push(d);
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,raw:raw};
+}
+/* 灯板字库：把全字库 1453 个字挨个过了一遍 ctMake，能过的就这 78 个 ——
+   笔数不超过 5、每一笔都认得出方向、而且不止一种方向。
+   先从这里挑：随机扫 90 个字只能碰上三两个，字池攒不满就上不了板。 */
+const CT_LETTERS='十人八小上下日水石田木禾白子不去个长门见对书本牛马飞入'
+  +'什么双王方气生叫主以尤区巨于记市民丝贝互仙勾丰父欠未击乎代计且斗示巧'
+  +'付兰专丈扎仅叉兰议歹矛冈矛仪辽曰瓦';
+function ctCand(){
+  const out=[],push=function(list,max){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<(max||90);i++){
+      const c=list[i];
+      if(c&&CHARS.indexOf(c)>=0&&out.indexOf(c)<0)out.push(c);
+    }
+  };
+  push(ctShuf(CT_LETTERS.split('')),CT_POOL_WANT*4);
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(ctShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(ctShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(ctShuf(CHARS.slice()));
+  return out;
+}
+function ctTO(p,ms){return Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},ms)})])}
+async function ctRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await ctTO(loadCharData(ch),6000);
+  if(!raw||!raw.medians)return null;
+  return ctMake(ch,raw);
+}
+async function ctBuildPool(keep){
+  const g=ct.gen;
+  const stale=function(){return g!==ct.gen||!ct.run};
+  ct.miss=(localStorage.getItem('hz_circuit_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  ctShuf(ct.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  ctCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)ct.pool=[];
+  for(let k=0;k<want.length&&ct.pool.length<CT_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])ct.pool.push(rs[i]);
+  }
+  return ct.pool.length>=CT_POOL_MIN;
+}
+function ctPickRec(){
+  const w=ct.lv>=4?[3,CT_STROKE_MAX]:[2,4];
+  const used={};
+  const take=function(){
+    for(let i=0;i<ct.miss.length;i++){
+      for(let k=0;k<ct.pool.length;k++){
+        const r=ct.pool[k];
+        if(r&&!used[r.ch]&&r.n>=2&&r.ch===ct.miss[i]){used[r.ch]=1;return r}
+      }
+    }
+    let cand=ct.pool.filter(function(r){return r&&!used[r.ch]&&r.n>=w[0]&&r.n<=w[1]});
+    if(!cand.length)cand=ct.pool.filter(function(r){return r&&!used[r.ch]&&r.n<=CT_STROKE_MAX});
+    if(!cand.length)return null;
+    for(let i=0;i<40;i++){const c=ctOne(cand);if(c){used[c.ch]=1;return c}}
+    const c=cand[0];used[c.ch]=1;return c;
+  };
+  return take();
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function ctMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_circuit_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_circuit_miss',a.slice(0,CT_MISS_MAX).join(','));
+}
+function ctMissDel(ch){
+  const a=(localStorage.getItem('hz_circuit_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_circuit_miss',a.join(','));
+}
+function ctBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_circuit_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_circuit_book',a.slice(0,CT_BOOK_MAX).join(','));
+}
+/* ---- 换盘 ---- */
+function ctNewBoard(fromQi){
+  const from=fromQi||0;
+  const s=ctGen(ct.rec,ct.lv,from);
+  if(!s)return false;
+  ct.S=s.S;
+  ct.S.wires=[];
+  for(let i=0;i<s.S.wires.length;i++)ct.S.wires.push({id:i+1,a:s.S.wires[i].a,b:s.S.wires[i].b});
+  ct.tid=Math.max(ct.tid,1000);
+  for(let i=0;i<ct.S.bulbs.length;i++)if(ct.S.bulbs[i])ct.S.bulbs[i].id=ct.tid++;
+  ct.lays=0;ct.since=0;
+  ct.powMax=s.laid+ctSpare(ct.lv);
+  ct.pow=ct.powMax;
+  ct.clockSec=ctClockOf();
+  ct.clock=1;ct.red=false;ct.beep=0;
+  ct.wrongWord=0;ct.printRun=0;ct.think=0;
+  ct.ghostMs=0;ct.ghost=null;ct.hist=[];ct.tagMs=0;ct.grab='';
+  ct.sol={steps:s.steps,plan:s.plan,laid:s.laid,V:s.V,runs:s.runs,cfg:s.cfg};
+  ct.cur=-1;
+  ctEval(ct.S);
+  ctRenderStatic();ctBoard();ctPaper();ctMini();ctBasket();ctHud();ctAskText();ctLine();
+  ctPadCls();ctMeter();ctToolBtns();ctCursor();
+  return true;
+}
+
+/* ================= v1.81 笔顺电路坊 · B：接线 / 合闸 / 点灯 / 收字 ================= */
+/* ---- 读数：每只灯座现在是什么情况 ---- */
+function ctReads(S){
+  const q=[];
+  for(let i=0;i<S.n2;i++){
+    const b=S.bulbs[i];
+    if(!b){q.push(ctOf(i)+'·');continue}
+    let m='○';
+    if(b.lit)m='💡';
+    else if(b.on)m='✓';
+    else if(b.loose)m='🔩';
+    else if(b.byp)m='短';
+    else if(b.dim==='volt')m='⚡';
+    else if(b.dim==='fuse')m='✂';
+    q.push(ctOf(i)+(b.fgn?'🚫':'#'+(b.k+1))+m);
+  }
+  return q.join(' ');
+}
+function ctBrSay(S,i){
+  const b=S.bulbs[i];
+  if(!b||!b.path||!b.path.length)return '还没成支路';
+  let d=0;for(let q=0;q<b.path.length;q++)d+=ctDrop(S.bulbs[b.path[q]]);
+  return b.path.map(function(x){return ctOf(x)}).join('→')+' 一条支路 · 一共要 <b>'+d+'V</b>／电池 <b>'+S.volts+'V</b>';
+}
+function ctFootSay(S,u,i){
+  const b=S.bulbs[i];if(!b)return '空的';
+  const g=function(k){
+    if(u.find(k)===u.find('P'))return '<b>＋ 箔</b>';
+    if(u.find(k)===u.find('M'))return '<b>− 箔</b>';
+    const who=[];
+    for(let j=0;j<S.n2;j++){
+      const o=S.bulbs[j];if(!o||j===i)continue;
+      if(u.find('L'+j)===u.find(k)||u.find('R'+j)===u.find(k))who.push(ctOf(j)+(u.find('L'+j)===u.find(k)?'左脚':'右脚'));
+    }
+    return who.length?('（和 '+who.join('、')+' 连在一起）'):'<b>悬空</b>';
+  };
+  return '左脚 '+(b.loose?'🔩':g('L'+i))+' · 右脚 '+(b.loose?'🔩':g('R'+i));
+}
+function ctFuseSay(S){
+  return '🔋 电池 '+S.volts+'V · 一条支路最多串 '+ctFuseOf(ct.lv)+' 只灯';
+}
+/* ---- 军师下一步：从解法里挑第一条还没做完的动作 ---- */
+function ctNextStep(){
+  const S=ct.S,sol=ct.sol;
+  if(!S||!sol)return null;
+  for(let q=0;q<sol.steps.length;q++){
+    const st=sol.steps[q];
+    if(st.kind==='wire'){if(ctHasWire(S,st.a,st.b)<0)return st;continue}
+    if(st.kind==='sw'){if(!S.sw[st.i])return st;continue}
+    if(st.kind==='tight'){const b=S.bulbs[st.i];if(b&&b.loose)return st;continue}
+    if(!S.sld[st.i])return st;
+  }
+  return null;
+}
+function ctStepSay(st){
+  if(!st)return '';
+  if(st.kind==='wire')return '把 <b>'+ctPadName(st.a)+'</b> 和 <b>'+ctPadName(st.b)+'</b> 连起来';
+  if(st.kind==='sw')return '合上 <b>'+ctOf(st.sw)+' 号闸刀</b>';
+  if(st.kind==='tight')return '把 <b>'+ctBName(st.i)+'</b> 拧紧';
+  const t=ct.S&&ct.S.tr[st.i];
+  return '补焊走线 <b>'+(t?(ctPadName(t.a)+' ↔ '+ctPadName(t.b)):'那段虚焊')+'</b>';
+}
+/* ---- 点焊盘：两下拉成一根线，再点同一对就拆掉 ---- */
+function ctTapPad(k){
+  const S=ct.S;
+  if(!S||S.qi>=S.n)return false;
+  if(ct.nextMs>0)return false;
+  if(ct.grab!==k){
+    if(ct.grab===''){
+      ct.grab=k;ct.think=0;
+      ctTone(700,0.05,'triangle',0.04);
+      ctSay('✋ 线头捏在 <b>'+ctPadName(k)+'</b> 上了：再点 <b>另一个焊盘</b> 就把这根线拉过去（线盘还剩 <b>'+ct.pow+'/'+ct.powMax+'</b> 根）。<br>👉 想撂下就再点它一次，或按 <code>Esc</code>','#B3E5FC');
+      ctCursor();ctWires();ctPadCls();ctLine();ctToolBtns();
+      return true;
+    }
+    return ctWire(ct.grab,k);
+  }
+  ct.grab='';
+  ctSay('✋ 线撂下了（没花线）','#B3E5FC');
+  ctCursor();ctWires();ctPadCls();ctLine();ctToolBtns();
+  return true;
+}
+function ctWire(a,b){
+  const S=ct.S;
+  if(!S)return false;
+  if(a===b){ct.grab='';return false}
+  const old=ctHasWire(S,a,b);
+  ct.grab='';
+  if(old>=0){
+    ct.hist.push(ctSnap());
+    if(ct.hist.length>CT_HIST_MAX)ct.hist.shift();
+    S.wires.splice(old,1);
+    ct.pow++;ct.takes++;
+    ctTone(300,0.07,'triangle',0.04);
+    ctPop((ctPadXY(a).x+ctPadXY(b).x)/2,(ctPadXY(a).y+ctPadXY(b).y)/2-14,'✂️ 拆线 还你 1 根','#B0BEC5');
+    ctSay('✂️ <b>拆掉这根线</b>：'+ctPadName(a)+' ↔ '+ctPadName(b)+' —— 线 <b>退回线盘</b>（现在 '+ct.pow+'/'+ct.powMax+' 根）。<b>接错了拆了重来，一分不扣</b>','#B3E5FC');
+    ctAfter();
+    return true;
+  }
+  if(ct.pow<=0){
+    ct.think=0;
+    ctSay('🪫 <b>线盘空了</b>：'+ctPadName(a)+' ↔ '+ctPadName(b)+' 拉不了 —— 剩下的路只有 <b>拆一根挪过来</b>（点它两头就退回线盘）、<b>⎓ 合闸</b>、<b>💡 补焊</b>、<b>🔩 拧紧</b>，或者 <b>🔄 倒带</b>、<b>🔁 重摆</b>','#FFCC80');
+    ctLine();ctPadCls();
+    return false;
+  }
+  ct.hist.push(ctSnap());
+  if(ct.hist.length>CT_HIST_MAX)ct.hist.shift();
+  S.wires.push({a:a,b:b});
+  ct.pow--;ct.lays++;ct.since++;
+  ctAdd('hz_circuit_lays',1);
+  ct.think=0;
+  const before=!!S.blown;
+  ctEval(S);
+  ctBoard();
+  if(S.blown&&!before)ctBlown(a,b);
+  else{
+    ctTone(520,0.07,'sine',0.05);
+    ctPop((ctPadXY(a).x+ctPadXY(b).x)/2,(ctPadXY(a).y+ctPadXY(b).y)/2-16,'🔌 接上了','#81D4FA');
+    const u=ctNet(S);
+    if(ctWantLit(S))ctSay('🔌 <b>'+ctPadName(a)+' ↔ '+ctPadName(b)+'</b> 一接上，'+ctBName(S.qi)+' <b>亮了</b>！点它（或按 <code>W</code>）把这一笔 <b>印到米字格</b><br>'+ctReads(S),'#C5E1A5');
+    else ctSay('🔌 接上 <b>'+ctPadName(a)+' ↔ '+ctPadName(b)+'</b>：'+ctReads(S)+'<br>🎯 该亮的 '+ctBName(S.qi)+' 现在 '+ctFootSay(S,u,S.qi)+' · '+ctBrSay(S,S.qi)+'<br>'+ctFuseSay(S),'#B3E5FC');
+  }
+  ctAfter();
+  return true;
+}
+/* ---- 通盘重算 + 全量轻绘：任何动作之后都走这里 ---- */
+function ctAfter(){
+  const S=ct.S;if(!S)return;
+  ctEval(S);
+  ctWires();ctTraces();ctBulbs();ctPadCls();ctMeter();ctHudLight();ctToolBtns();
+  if(S.qi<S.n&&!S.blown&&ctWantLit(S))ctTblCls('hot',520);
+  ctAskText();ctLine();ctBasket();
+}
+/* ---- 保险丝断了：整板黑，必须拆线 + 换保险丝 ---- */
+function ctBlown(a,b){
+  const S=ct.S;
+  S.blown=1;S.short=1;
+  ct.shorts++;ct.blows++;ct.tagMs=CT_TAG_MS;
+  ctAdd('hz_circuit_shorts',1);
+  ctAdd('hz_circuit_blows',1);
+  ctShakeFx();ctTblCls('dead',700);
+  const x=ctPadXY(a).x,y=ctPadXY(a).y;
+  ctPop(x,y-18,'⚡ 短路！','#FF8A80');
+  ctBits((x+ctPadXY(b).x)/2,(y+ctPadXY(b).y)/2,'#FFAB40',18);
+  ctTone(90,0.34,'sawtooth',0.13);
+  ctTone(140,0.24,'square',0.07);
+  ctSay('⚡ <b>短路了！</b>这根线让 <b>＋ 箔直接搭上了 − 箔</b>（'+ctPadName(a)+' ↔ '+ctPadName(b)+'），电 <b>没经过任何灯泡</b>就绕回电池 —— <b>保险丝当场烧断</b>，整块板 <b>全黑</b>。<br>👉 先 <b>再点这两头一次</b> 把这根线拆掉，再 <b>点电池 🔋 换保险丝</b>（都不花钱）','#FF8A80');
+}
+function ctTapBattery(){
+  const S=ct.S;
+  if(!S)return false;
+  if(!S.blown){
+    ct.think=0;
+    ctSay('🔋 电池 <b>好着呢</b>：'+ctFuseSay(S)+' —— 保险丝只在 <b>＋ 箔直接搭到 − 箔</b>（短路）时才烧','#B3E5FC');
+    return true;
+  }
+  S.blown=0;
+  ctEval(S);
+  ct.tagMs=CT_TAG_MS;
+  ctTone(420,0.09,'triangle',0.05);
+  ctPop(56,CT_RY+40,'🔋 换好保险丝','#FFE082');
+  if(S.blown){
+    ct.blows++;ctAdd('hz_circuit_blows',1);
+    ctShakeFx();ctTblCls('dead',700);
+    ctTone(90,0.3,'sawtooth',0.12);
+    ctSay('💥 <b>刚换上又烧了</b>：那根 <b>短路的线还在板上</b> —— 先把它 <b>拆掉</b>（点它的两头各一次），再换保险丝','#FF8A80');
+    ctAfter();
+    return true;
+  }
+  ctSay('🔋 <b>保险丝换好了</b>：板子重新带电 —— 现在 '+ctReads(S)+'<br>👉 短路的教训：<b>线只能挂在 灯脚 和 铜箔 之间</b>，<b>千万别把 ＋ 箔和 − 箔直接连起来</b>','#C5E1A5');
+  ctAfter();
+  return true;
+}
+/* ---- 拧紧松掉的灯座 ---- */
+function ctTighten(i){
+  const S=ct.S,b=S.bulbs[i];
+  if(!b||!b.loose)return false;
+  ct.hist.push(ctSnap());
+  if(ct.hist.length>CT_HIST_MAX)ct.hist.shift();
+  b.loose=0;
+  ct.looses++;ctAdd('hz_circuit_looses',1);
+  ct.think=0;
+  ctTone(240,0.09,'square',0.05);
+  ctPop(ctCX(i),CT_BY-40,'🔩 拧上了','#FFE082');
+  ctSay('🔩 <b>把 '+ctBName(i)+' 拧到灯座上</b>：刚才它 <b>松着</b>，两只脚 <b>没搭上簧片</b>，这条支路就是 <b>断的</b>（拧它 <b>不花线</b>）—— 再点一次这颗灯看看亮没亮','#FFE082');
+  ctAfter();
+  return true;
+}
+/* ---- 补虚焊（点板上的走线） ---- */
+function ctSolder(i){
+  const S=ct.S,t=S.tr[i];
+  if(!t||!t.bad)return false;
+  if(S.sld[i]){
+    ct.think=0;
+    ctSay('🔧 这段 <b>已经补好了</b>：'+ctPadName(t.a)+' ↔ '+ctPadName(t.b),'#B3E5FC');
+    return true;
+  }
+  ct.hist.push(ctSnap());
+  if(ct.hist.length>CT_HIST_MAX)ct.hist.shift();
+  S.sld[i]=1;
+  ct.slds++;ctAdd('hz_circuit_slds',1);
+  ct.think=0;
+  ctTone(600,0.07,'sine',0.05);
+  ctPop((ctPadXY(t.a).x+ctPadXY(t.b).x)/2,CT_BY-46,'🔧 补焊','#80DEEA');
+  ctSay('🔧 <b>补上这道虚焊</b>：板上印好的走线 <b>'+ctPadName(t.a)+' ↔ '+ctPadName(t.b)+'</b> 看着连着、其实 <b>锡没吃上</b>，电 <b>过不去</b>（补它 <b>不花线</b>）'+(t.sw>=0?'，这一小段上还有一把 <b>闸刀</b>':''),'#80DEEA');
+  ctAfter();
+  return true;
+}
+/* ---- 拨闸刀（板上的开关） ---- */
+function ctTapSwitch(j){
+  const S=ct.S;
+  if(!S||j<0||j>=S.sw.length)return false;
+  ct.hist.push(ctSnap());
+  if(ct.hist.length>CT_HIST_MAX)ct.hist.shift();
+  const to=S.sw[j]?0:1;
+  S.sw[j]=to;
+  if(to){ct.sws++;ctAdd('hz_circuit_sws',1)}
+  ct.think=0;
+  ctTone(to?560:210,0.08,'triangle',0.05);
+  const t=ctTrOfSw(S,j);
+  ctSay((to?'⎓ <b>合上闸刀</b>':'⎓ <b>拉开闸刀</b>')+'：'+(t?('板上的走线 <b>'+ctPadName(t.a)+' ↔ '+ctPadName(t.b)+'</b> '+(to?'<b>接通了</b> —— 电从这儿过':'<b>断开了</b> —— 这条支路到此为止')):'')+'<br>现在 '+ctReads(S)+'（拨闸刀 <b>不花线</b>）','#B3E5FC');
+  ctAfter();
+  return true;
+}
+function ctTrOfSw(S,j){
+  for(let i=0;i<S.tr.length;i++)if(S.tr[i].sw===j)return S.tr[i];
+  return null;
+}
+/* ---- ⎓ 全合：一键把所有闸刀合上 ---- */
+function ctSwitches(){
+  const S=ct.S;
+  if(!S||S.qi>=S.n||ct.nextMs>0)return false;
+  let n=0;
+  for(let j=0;j<S.sw.length;j++)if(!S.sw[j])n++;
+  if(!n){
+    ctSay('⎓ <b>没有能合的闸刀</b>：'+(S.sw.length?'已经全合上了':'这一盘 <b>一把闸刀都没有</b>')+(S.tr.filter(function(t){return t.bad}).length?'，不过还有 <b>虚焊</b> 要点着补':''),'#FFCC80');
+    return false;
+  }
+  ct.hist.push(ctSnap());
+  if(ct.hist.length>CT_HIST_MAX)ct.hist.shift();
+  for(let j=0;j<S.sw.length;j++)if(!S.sw[j]){S.sw[j]=1;ct.sws++;ctAdd('hz_circuit_sws',1)}
+  ct.think=0;
+  ctTone(640,0.1,'triangle',0.06);
+  ctTblCls('hot',420);
+  const before=!!S.blown;
+  ctAfter();
+  if(S.blown&&!before)ctBlown('P','M');
+  else ctSay('⎓ <b>闸刀全合上</b>：板上的走线 <b>一次性都接通</b>（这一手不花线）—— '+ctReads(S)+'<br>🎯 该亮的 '+ctBName(S.qi)+'：'+ctBrSay(S,S.qi),'#B3E5FC');
+  return true;
+}
+/* ---- 点灯：亮了就印，没亮就问军师，杂灯就炸 ---- */
+function ctTapBulb(i){
+  const S=ct.S;
+  if(!S||i<0||i>=S.n2)return false;
+  if(ct.nextMs>0)return false;
+  const b=S.bulbs[i];
+  if(!b){
+    ct.think=0;
+    ctSay(ctOf(i)+' 号 <b>灯座是空的</b>：这一盘没有灯泡插在这儿 —— 线可以 <b>借它的焊盘</b> 当中转（点 '+ctOf(i)+' 上下的焊盘就行）','#B3E5FC');
+    return false;
+  }
+  if(b.loose)return ctTighten(i);
+  if(S.qi>=S.n){ct.think=0;ctSay('🏁 这一盘已经 <b>收满了</b>，下一盘正在摆','#B3E5FC');return false}
+  if(b.fgn){
+    ctBurst(i);
+    ctOnWrong(1);
+    ctAfter();
+    return true;
+  }
+  if(!b.on){
+    ct.think=0;
+    const u=ctNet(S);
+    ctSay('🙈 '+ctBName(i)+' 现在 <b>不亮</b>：'+ctWhy(S,i,u)+
+      '<br>👀 它的 '+ctFootSay(S,u,i)+'<br>🔌 线盘还剩 <b>'+ct.pow+'/'+ct.powMax+'</b> 根 · '+ctFuseSay(S)+
+      (ctNextStep()?'<br>👉 军师下一步：<b>'+ctStepSay(ctNextStep())+'</b>':''),'#B3E5FC');
+    ctMarkPads(S,i);
+    ctLine();
+    return false;
+  }
+  if(b.dim==='volt'||b.dim==='fuse'){
+    ct.think=0;
+    ctSay('⚡ '+ctBName(i)+' 通着电却 <b>点不着</b>：'+ctWhy(S,i,ctNet(S))+
+      '<br>👉 把它那条支路 <b>拆短</b>（拆掉一根串着的线，让别的灯自己一条路），或 <b>🔁 重摆</b> 换个分法','#FFCC80');
+    return false;
+  }
+  if(b.k>S.qi){
+    ctPop(ctCX(i),CT_BY-44,'⏳ 还没轮到','#B0BEC5');
+    ctSay('⏳ 这只灯上写着 <b>第 '+(b.k+1)+' 笔</b>，可现在该收的是 <b>第 '+(S.qi+1)+' 笔</b>：先按笔顺来，<b>点回去不扣分</b>。🫳 按 <code>W</code> 直接收该收那一笔（它现在 '+(ctWantLit(S)?'已经亮了':'还没亮')+'）','#B3E5FC');
+    ct.think=0;
+    return true;
+  }
+  if(b.done){ct.think=0;ctSay(ctBName(i)+' <b>早收过了</b>，它一直亮着给后面的灯让电','#B3E5FC');return false}
+  return ctTake(i);
+}
+function ctMarkPads(S,i){
+  const b=S.bulbs[i];if(!b)return;
+  ctMark(['L'+i,'R'+i]);
+}
+function ctTake(i){
+  const S=ct.S,b=S.bulbs[i];
+  if(!b||!ctLit(S,i))return false;
+  const chained=(ct.since===0&&ct.printRun>0);
+  b.done=1;S.qi++;
+  ct.since=0;ct.think=0;
+  if(chained){ct.saved++;ctAdd('hz_circuit_saved',1)}
+  ctRing(ctCX(i),CT_BY,30,'#FFD740');
+  ctBits(ctCX(i),CT_BY,'#FFD54F',14);
+  ctSparks(i);
+  ctFlash();
+  ctTone(560,0.09,'sine',0.06);
+  ctPrint(b.k,chained);
+  ctBoard();
+  if(S.qi>=S.n){
+    ct.nextMs=CT_NEXT_MS;
+    ctT(ctWin,CT_PRINT_MS+140);
+  }
+  ctAfter();
+  return true;
+}
+function ctTakeNext(){
+  const S=ct.S;
+  if(!S||S.qi>=S.n)return false;
+  const i=ctBulbOf(S,S.qi);
+  if(i<0){ctSay('🫳 场上 <b>找不到第 '+(S.qi+1)+' 笔</b> 那只灯了 —— 按 <b>🔁 重摆</b> 另摆一盘','#FFCC80');return false}
+  if(ctLit(S,i))return ctTake(i);
+  if(S.bulbs[i].loose)return ctTighten(i);
+  ctTapBulb(i);
+  const st=ctNextStep();
+  ctSay('🫳 该收的是 <b>第 '+(S.qi+1)+' 笔</b>，它插在 <b>'+ctBName(i)+'</b>：现在 '+ctFootSay(S,ctNet(S),i)+'<br>👉 '+(st?'<b>'+ctStepSay(st)+'</b>（线盘还剩 '+ct.pow+' 根）':'照军师的路子都接完了，可它 <b>'+ctWhy(S,i,ctNet(S))+'</b> —— 按 <b>🔁 重摆</b> 换个分法'),'#FFF176');
+  if(st&&st.kind==='wire'){ct.grab='';ctGhostPads(st.a,st.b)}
+  return true;
+}
+/* ---- 杂灯泡 / 掉心 ---- */
+function ctBurst(i){
+  const S=ct.S,b=S.bulbs[i];
+  if(!b)return;
+  S.bulbs[i]=null;
+  /* 灯没了：DOM 里那只壳也得跟着撤（点击层留着，空座照样点得着、报「灯座是空的」） */
+  const el=document.getElementById('ctB'+b.id);
+  if(el&&el.parentNode)el.parentNode.removeChild(el);
+  ctBits(ctCX(i),CT_BY,'#B0BEC5',16);
+  ctRing(ctCX(i),CT_BY,34,'#FF8A80');
+  ctPop(ctCX(i),CT_BY-28,'💥 灯丝烧了','#FF8A80');
+  ctTone(110,0.26,'sawtooth',0.12);
+}
+function ctPrint(k,chained){
+  if(!ct.rec)return;
+  ct.lits++;ct.combo++;ct.printRun++;
+  ct.maxCombo=Math.max(ct.maxCombo,ct.combo);
+  let gain=Math.round((14+k*2+ct.lv*3)*(1+ct.combo*0.05));
+  let bonus=0;
+  if(chained){bonus=6+ct.lv*2;gain+=bonus}
+  if(ct.clock>0.6)gain+=Math.round(ct.clock*6);
+  ct.score+=gain;
+  ct.printMs=CT_PRINT_MS;
+  ctPop(ctCX(Math.min(CT_NS-1,k)),CT_BY-56,'+'+gain,'#B2FF59');
+  if(bonus)ctT(ctPop.bind(null,ctCX(Math.min(CT_NS-1,k)),CT_BY-90,'🫳 没添线连着亮 +'+bonus,'#80D8FF'),170);
+  ctTone(CT_NOTE[Math.min(CT_NOTE.length-1,k+(chained?2:0))],0.15,'triangle',0.1);
+  if(chained)ctTblCls('hot',520);
+  ctAdd('hz_circuit_lits',1);
+  ctPaper();ctMini();ctHudLight();ctAskText();ctLine();
+}
+function ctOnWrong(n){
+  n=n||1;
+  ct.score=Math.max(0,ct.score-CT_WRONG_PEN*n);
+  ct.combo=0;ct.cleanWord=false;
+  ct.wrongs+=n;ct.wrongWord+=n;
+  ctAdd('hz_circuit_wrongs',n);
+  ctMissAdd(ct.rec&&ct.rec.ch);
+  ctShakeFx();ctFlash();ctTblCls('dead',620);
+  ctTone(120,0.3,'sawtooth',0.12);
+  ctSay('🚫 <b>点错灯了！</b>那只灯泡上的笔形 <b>根本不是这个字的笔</b>（挂着 <b>?</b> 的杂灯泡）：一按就 <b>烧断灯丝</b>，扣 '+CT_WRONG_PEN*n+' 分、<b>连击断了</b>（本字已错 '+Math.min(ct.wrongWord,CT_WRONG_MAX)+'/'+CT_WRONG_MAX+' 次）—— <b>先看笔形再点灯</b>','#FF8A80');
+  if(ct.wrongWord>=CT_WRONG_MAX){ct.wrongWord=0;ctLoseHeart('wrong')}
+}
+function ctLoseHeart(why,quiet){
+  ct.hearts--;
+  ct.combo=0;
+  ctTblCls('dead',520);
+  ctTone(180,0.22,'triangle',0.09);
+  ctHud();
+  if(!quiet){
+    if(why==='wrong')ctSay('💔 <b>连着点错三次</b>，掉一颗心 —— 认灯看的是 <b>笔形</b>：横红、竖青、撇蓝、捺橘，和左边米字格同一套颜色','#FF8A80');
+    else if(why==='clock')ctSay('💔 <b>电闸跳了</b>，掉一颗心 —— 通电钟 <b>最后 12 秒整块板子变红</b>，看见红色先把 <b>手上这一笔收掉</b>','#FF8A80');
+    else ctSay('💔 掉一颗心','#FF8A80');
+  }
+  if(ct.hearts<=0){ct.hearts=0;ctEnd('miss')}
+}
+function ctPowerOut(kind){
+  if(!ct.run||ct.over)return;
+  const word=kind==='clock'?'🌙 <b>通电钟走光了</b>':'🔌 <b>接不下去了</b>';
+  ct.deads++;ctAdd('hz_circuit_deads',1);
+  ctShakeFx();
+  ctTblCls('dead',560);
+  ctSay(word+'：这一阵 <b>断电</b> 了 —— 剩下的笔 <b>重新摆一盘</b>（已经印出来的笔 <b>一笔不抹</b>）。💔 掉一颗心','#FFCC80');
+  ctLoseHeart(kind,1);
+  if(ct.over)return;
+  ctRedress();
+}
+function ctRedress(){
+  if(!ct.rec||!ct.S)return false;
+  const from=ct.S.qi;
+  if(!ctNewBoard(from)){ctEnd('nodata');return false}
+  ctSay('🔌 <b>重新来电</b>：第 '+(from+1)+' 笔起的灯泡 <b>另摆一盘</b>，线盘 <b>'+ct.powMax+' 根</b>、钟 <b>'+ct.clockSec+' 秒</b> 重新发 —— 已经印好的 <b>'+from+'/'+ct.n+'</b> 笔还在纸上','#B3E5FC');
+  return true;
+}
+/* ---- 收字 / 换字 ---- */
+function ctWin(){
+  if(ct.over||!ct.S||ct.S.qi<ct.n)return;
+  ct.words++;
+  ctAdd('hz_circuit_words',1);
+  let gain=26+ct.n*6+ct.lv*6+ct.pow*3;
+  if(ct.cleanWord){gain+=CT_CLEAN_BONUS;ctAdd('hz_circuit_perfect',1)}
+  ct.score+=gain;
+  ctAdd('hz_circuit_score',Math.round(gain));
+  ctPop(CT_W/2,CT_BY-70,'🏁 +'+gain,'#FFF176');
+  ctTone(659,0.14,'triangle',0.1);
+  ctTone(784,0.16,'triangle',0.1);
+  ctT(ctTone.bind(null,1046,0.2,'triangle',0.1),150);
+  ctBookAdd(ct.rec.ch);
+  ctMissDel(ct.rec.ch);
+  const oldLv=ct.lv;
+  ct.lv=ctLvOf(ct.words);
+  if(ct.lv>oldLv){
+    ct.previewN++;ct.undoN++;ct.respN++;
+    ctSay('🚀 <b>升到第 '+ct.lv+' 段</b>！板上多了 <b>🚫 杂灯泡 '+ctFgnOf(ct.lv)+' 只 · 🏋 大瓦数 '+ctBigOf(ct.lv)+' 只</b>'+(ct.lv>=3?' · ⎓ 闸刀 '+ctSwOf(ct.lv)+' 把 · 一条支路最多串 '+ctFuseOf(ct.lv)+' 只':'')+(ct.lv>=5?' · 🔧 虚焊 '+ctBadOf(ct.lv)+' 道':'')+(ct.lv>=6?' · 🔩 松灯座':'')+' · 电池 <b>'+ctVoltsOf(ct.lv)+'V</b> —— 预览 / 倒带 / 重摆各补 1 次','#FFF176');
+  }else if(ct.words%3===0&&ct.hearts<CT_HEART_MAX){
+    ct.hearts++;
+    ctSay('❤️ 又收好一个字，<b>补一颗心</b>（现在 '+ct.hearts+' 颗）','#F8BBD0');
+  }else{
+    ctSay('🏁 <b>'+ct.rec.ch+'</b> 的 '+ct.n+' 笔全点亮收好了！线盘 <b>剩 '+ct.pow+' 根</b> 换成 <b>+'+(ct.pow*3)+'</b> 分 —— 下一盘正在插灯泡','#C5E1A5');
+  }
+  ct.hudTxt={};
+  ctHud();
+  ctT(ctNextWord,CT_NEXT_MS);
+}
+function ctNextWord(){
+  if(!ct.run||ct.over)return;
+  if(!ctNewWord()){ctEnd('nodata');return}
+}
+function ctNewWord(){
+  const rec=ctPickRec();
+  if(!rec)return false;
+  ct.rec=rec;
+  ct.n=rec.n;
+  ct.qi=0;
+  ct.gly=ctGlyOf(rec);
+  ct.printRun=0;ct.think=0;ct.since=0;
+  ct.cleanWord=true;ct.wrongWord=0;
+  ct.ghostMs=0;ct.ghost=null;
+  if(!ctNewBoard(0)){ct.rec=null;return false}
+  ctSay('⚡ 新盘子 <b>'+rec.ch+'</b>（'+rec.n+' 笔）：这块 <b>电路板</b> 上插着 '+rec.n+' 只 <b>小灯泡</b>，灯泡玻璃上就是这个字其中一笔的 <b>真笔形</b>，角上写着 <b>第几笔</b>。上面那条 <b>＋ 铜箔</b>、下面那条 <b>− 铜箔</b> 各接电池一极 —— <b>点两个焊盘拉一根跳线</b>，把该收那一笔的灯 <b>接成一条通路</b>：一脚搭 ＋ 箔、一脚搭 − 箔，中间串几只灯 <b>一共吃的压不能超过电池</b>。亮了就 <b>点它</b> 印到米字格','#C5E1A5');
+  return true;
+}
+/* ---- 预览 / 倒带 / 重摆 ---- */
+function ctPreview(){
+  if(!ct.run||ct.over)return false;
+  const S=ct.S;if(!S||S.qi>=S.n)return false;
+  if(ct.nextMs>0)return false;
+  if(ct.previewN<=0){ctSay('💡 <b>预览用完了</b>：还有 <b>🔄 倒带</b> 退回上一根线之前','#FFCC80');return false}
+  const st=ctNextStep();
+  if(!st){ctSay('💡 军师列的 <b>动作已经全做完了</b>，可'+ctBName(S.qi)+' 还是 '+ctWhy(S,S.qi,ctNet(S))+' —— 按 <b>🔁 重摆</b> 换个分法','#FFCC80');return false}
+  ct.previewN--;ct.previews++;ctAdd('hz_circuit_previews',1);
+  const C=ctClone(S);
+  ctPlanRun(C,st);
+  ctEval(C);
+  const up=[];
+  for(let i=0;i<C.n2;i++)if(C.bulbs[i]&&C.bulbs[i].lit)up.push(i);
+  const on=[];
+  for(let i=0;i<C.n2;i++)if(C.bulbs[i]&&C.bulbs[i].on)on.push(i);
+  ct.ghost={st:st,lit:up,on:on,blown:!!C.blown};
+  ct.ghostMs=CT_GHOST_MS;
+  ctRenderGhosts();
+  ctTone(620,0.08,'sine',0.05);
+  const litSay=up.length?(' <b>'+up.map(function(x){const b=C.bulbs[x];return ctOf(x)+(b.fgn?' 杂灯泡':' 第'+(b.k+1)+'笔')}).join('、')+'</b>'):'<b> 一只也没有</b>';
+  const tq=ctBulbOf(C,C.qi);
+  const body=C.blown?'<br>💥 <b>会短路！保险丝立刻烧断，整块板子全黑</b> —— 这根线 <b>别拉</b>'
+    :('<br>会亮的是'+litSay+' · 通路上现在 '+on.length+' 只灯'+
+      (C.qi<C.n?'<br>🎯 该收的第 '+(C.qi+1)+' 笔：'+ctBName(C.qi)+' —— '+ctBrSay(C,tq):''));
+  ctSay('👀 <b>预览</b>（还剩 '+ct.previewN+' 次）：'+
+    (st.kind==='wire'?'拉上 <b>'+ctPadName(st.a)+' ↔ '+ctPadName(st.b)+'</b>':'做掉 <b>'+ctStepSay(st)+'</b>')+
+    ' 之后 —— '+ctReads(C)+body,C.blown?'#FF8A80':'#E1F5FE');
+  ctToolBtns();ctHudLight();
+  return true;
+}
+function ctSnap(){
+  const S=ct.S;
+  return {S:ctClone(S),pow:ct.pow,lays:ct.lays,score:ct.score,combo:ct.combo,lits:ct.lits,
+    saved:ct.saved,shorts:ct.shorts,blows:ct.blows,wrongs:ct.wrongs,sws:ct.sws,slds:ct.slds,looses:ct.looses,
+    deads:ct.deads,takes:ct.takes,printRun:ct.printRun,cleanWord:ct.cleanWord,since:ct.since,
+    clock:ct.clock,red:ct.red,grab:''};
+}
+function ctRestore(s){
+  ct.S=s.S;
+  ct.pow=s.pow;ct.lays=s.lays;ct.score=s.score;ct.combo=s.combo;ct.lits=s.lits;
+  ct.saved=s.saved;ct.shorts=s.shorts;ct.blows=s.blows;ct.wrongs=s.wrongs;
+  ct.sws=s.sws;ct.slds=s.slds;ct.looses=s.looses;ct.deads=s.deads;ct.takes=s.takes;
+  ct.printRun=s.printRun;ct.cleanWord=s.cleanWord;ct.since=s.since;
+  ct.clock=s.clock;ct.red=s.red;ct.grab='';
+  ct.ghostMs=0;ct.ghost=null;
+  ctEval(ct.S);
+  ctBoard();ctPaper();ctMini();ctHud();ctAskText();ctLine();
+}
+function ctUndo(){
+  if(!ct.run||ct.over)return false;
+  if(ct.nextMs>0)return false;
+  if(!ct.hist.length){ctSay('🔄 <b>还没动过手</b>：倒带是退回 <b>上一根线 / 上一次拨闸之前</b> 的板子','#FFCC80');return false}
+  if(ct.undoN<=0){ctSay('🔄 <b>倒带用完了</b>：线一接上就 <b>得自己拆</b>（点它两头）—— 下一步先想清这条支路要吃几伏','#FFCC80');return false}
+  ct.undoN--;ct.rewinds++;ctAdd('hz_circuit_rewinds',1);
+  ctTone(320,0.14,'sine',0.06);
+  ctRestore(ct.hist.pop());
+  ctSay('🔄 <b>倒带</b>：线、闸刀、灯座 <b>一模一样还原</b>（线盘剩 '+ct.pow+'/'+ct.powMax+' 根、印 '+ct.S.qi+'/'+ct.n+' 笔，倒带还剩 '+ct.undoN+' 次）—— 电走没走过这条路，你记一下','#B3E5FC');
+  ctAfter();ctToolBtns();
+  return true;
+}
+function ctRespin(){
+  if(!ct.run||ct.over)return false;
+  if(ct.nextMs>0)return false;
+  if(ct.respN<=0){ctSay('🔁 <b>重摆的机会用完了</b>：还有 <b>拆线</b> 和 <b>🔄 倒带</b> 两条路','#FFCC80');return false}
+  ct.respN--;ct.respins++;ctAdd('hz_circuit_resets',1);
+  if(ctRedress())ctSay('🔁 <b>另摆一盘</b>：剩下的笔 <b>另插一盘灯泡</b>（重摆还剩 '+ct.respN+' 次）—— 这一盘军师 <b>接得通</b>，照 <b>提示线</b> 走','#B3E5FC');
+  ctToolBtns();
+  return true;
+}
+
+/* ================= v1.81 笔顺电路坊 · C：渲染 / 特效 / 主循环 / 输入 ================= */
+const CT_HIT=15;
+/* ---- 板子（每盘重画一次）：铜箔、电池、灯座、焊盘 ---- */
+function ctRenderStatic(){
+  const g=document.getElementById('ctStatic');if(!g)return;
+  let h='<rect class="ct-deck" x="8" y="34" width="684" height="424" rx="20"/>';
+  h+='<rect class="ct-rail" x="'+CT_BX1+'" y="'+(CT_RY-7)+'" width="584" height="14" rx="7"/>';
+  h+='<rect class="ct-rail" x="'+CT_BX1+'" y="'+(CT_NY-7)+'" width="584" height="14" rx="7"/>';
+  h+='<text class="ct-railTxt" x="652" y="'+(CT_RY-13)+'">＋ 铜箔</text>';
+  h+='<text class="ct-railTxt" x="652" y="'+(CT_NY+24)+'">− 铜箔</text>';
+  /* 电池 + 保险丝 */
+  h+='<g class="ct-bat" id="ctBat" data-bat="1">';
+  h+='<rect class="ct-batBody" x="'+CT_BX0+'" y="'+(CT_RY+18)+'" width="'+(CT_BX1-CT_BX0)+'" height="'+(CT_NY-CT_RY-36)+'" rx="12"/>';
+  h+='<rect class="ct-batTop" x="'+(CT_BX0+16)+'" y="'+(CT_RY+6)+'" width="32" height="14" rx="5"/>';
+  h+='<rect class="ct-batBot" x="'+(CT_BX0+16)+'" y="'+(CT_NY-20)+'" width="32" height="14" rx="5"/>';
+  h+='<text class="ct-batTxt" x="'+((CT_BX0+CT_BX1)/2)+'" y="'+((CT_RY+CT_NY)/2-6)+'" transform="rotate(-90 '+((CT_BX0+CT_BX1)/2)+' '+((CT_RY+CT_NY)/2-6)+')" font-size="13">🔋 电池</text>';
+  h+='<text class="ct-batTxt" x="'+((CT_BX0+CT_BX1)/2)+'" y="'+((CT_RY+CT_NY)/2+22)+'" font-size="15">⚡</text>';
+  h+='<text class="ct-plusTxt" x="'+(CT_BX1-24)+'" y="'+(CT_RY-13)+'" font-size="14">＋</text>';
+  h+='<text class="ct-plusTxt" x="'+(CT_BX1-24)+'" y="'+(CT_NY+24)+'" font-size="14">−</text>';
+  h+='<circle class="ct-fuse" id="ctFuse" cx="'+((CT_BX0+CT_BX1)/2)+'" cy="'+(CT_RY+40)+'" r="9"/>';
+  h+='</g>';
+  for(let i=0;i<CT_NS;i++){
+    const cx=ctCX(i);
+    h+='<text class="ct-socketTxt" x="'+cx+'" y="'+(CT_BY-52)+'" font-size="13">'+CT_O[i]+'</text>';
+    h+='<rect class="ct-sock" x="'+(cx-13)+'" y="'+(CT_BY+24)+'" width="26" height="20" rx="5"/>';
+    h+='<line class="ct-lead" x1="'+(cx-CT_PX+9)+'" y1="'+CT_BY+'" x2="'+(cx-14)+'" y2="'+CT_BY+'"/>';
+    h+='<line class="ct-lead" x1="'+(cx+14)+'" y1="'+CT_BY+'" x2="'+(cx+CT_PX-9)+'" y2="'+CT_BY+'"/>';
+    h+='<line class="ct-tap" x1="'+cx+'" y1="'+(CT_RY+8)+'" x2="'+cx+'" y2="'+(CT_RY+26)+'"/>';
+    h+='<line class="ct-tap" x1="'+cx+'" y1="'+(CT_NY-8)+'" x2="'+cx+'" y2="'+(CT_NY-26)+'"/>';
+    ['T','L','R','B'].forEach(function(sd){
+      const p=ctPadXY(sd+i);
+      h+='<circle class="ct-pad" id="ctPad'+sd+i+'" cx="'+p.x+'" cy="'+p.y+'" r="7"/>';
+    });
+  }
+  h+='<text class="ct-head" x="'+((CT_X0+ctCX(CT_NS-1))/2)+'" y="'+(CT_RY-26)+'">⚡ 电路坊</text>';
+  g.innerHTML=h;
+}
+/* ---- 焊盘命中区（在动态层之上，永远可点）---- */
+/* 器件都画在自己那条走线的中点上：两条线的中点会撞车（一横一竖重合、搭上电源箔的只差十几单位），
+   叠在一起时后画的盖住先画的，被压住的那座闸刀就点不动 —— 每条带各自从左到右让开一个身位 */
+function ctDevXOf(kind){
+  const S=ct.S,out=[],pts=[];
+  if(!S)return out;
+  for(let i=0;i<S.tr.length;i++){
+    const tr=S.tr[i];
+    if(kind==='sw'){if(!(tr.sw>=0))continue}
+    else if(!tr.bad)continue;
+    pts.push({i:i,x:(ctPadXY(tr.a).x+ctPadXY(tr.b).x)/2});
+  }
+  pts.sort(function(a,b){return a.x-b.x});
+  const gap=kind==='sw'?40:26,lo=ctCX(0)-CT_PX-12,hi=ctCX(CT_NS-1)+CT_PX+12;
+  for(let k=0;k<pts.length;k++){
+    out[pts[k].i]=k?Math.max(pts[k].x,out[pts[k-1].i]+gap):pts[k].x;
+  }
+  if(!pts.length)return out;
+  const over=out[pts[pts.length-1].i]-hi;
+  if(over>0)for(let k=0;k<pts.length;k++)out[pts[k].i]-=over;
+  const under=lo-out[pts[0].i];
+  if(under>0)for(let k=0;k<pts.length;k++)out[pts[k].i]+=under;
+  return out;
+}
+function ctHitsHTML(){
+  let h='';
+  for(let i=0;i<CT_NS;i++){
+    h+='<circle class="ct-hit ct-bulbHit" data-b="'+i+'" cx="'+ctCX(i)+'" cy="'+CT_BY+'" r="'+(CT_R+3)+'"/>';
+    ['T','L','R','B'].forEach(function(sd){
+      const p=ctPadXY(sd+i);
+      h+='<circle class="ct-hit" data-pad="'+sd+i+'" cx="'+p.x+'" cy="'+p.y+'" r="'+CT_HIT+'"/>';
+    });
+  }
+  h+='<rect class="ct-hit" data-bat="1" x="'+(CT_BX0-2)+'" y="'+(CT_RY+2)+'" width="'+(CT_BX1-CT_BX0+6)+'" height="'+(CT_NY-CT_RY-4)+'" rx="12"/>';
+  /* 闸刀和虚焊画在灯泡底下：不给它们自己的点击层，真鼠标一点就被灯晕和灯泡吃掉 */
+  const S=ct.S;
+  if(S){
+    const swX=ctDevXOf('sw'),bdX=ctDevXOf('bad');
+    for(let i=0;i<S.tr.length;i++){
+      const tr=S.tr[i];
+      if(!(tr.sw>=0||tr.bad))continue;
+      if(tr.sw>=0)h+='<circle class="ct-hit" data-sw="'+tr.sw+'" cx="'+swX[i].toFixed(1)+'" cy="302" r="16"/>';
+      if(tr.bad)h+='<circle class="ct-hit" data-tr="'+i+'" cx="'+bdX[i].toFixed(1)+'" cy="258" r="12"/>';
+    }
+  }
+  return h;
+}
+/* ---- 灯泡 ---- */
+function ctBulbHTML(i){
+  const S=ct.S,b=S.bulbs[i];
+  if(!b)return '';
+  const cls='ct-bulb'+(b.fgn?' fgn':'')+(b.big?' big':'')+(b.loose?' loose':'')+(b.on?' on':'')+(b.lit?' lit':'')+(b.done?' done':'')+
+    (!b.fgn&&b.k===S.qi?' now':'')+(b.dim?' dim-'+b.dim:'');
+  let h='<g class="'+cls+'" id="ctB'+b.id+'" data-b="'+i+'" transform="translate('+ctCX(i)+','+CT_BY+')">';
+  h+='<circle class="ct-halo" cx="0" cy="0" r="48"/>';
+  h+='<circle class="ct-glass" cx="0" cy="0" r="'+CT_R+'"/>';
+  h+='<path class="ct-fil" d="M-9 12C-9 2 -4 2 -4 12M4 12C4 2 9 2 9 12"/>';
+  h+='<circle class="ct-face" cx="0" cy="-4" r="'+CT_RF+'"/>';
+  h+='<g transform="translate(0,-5) scale(0.6)">';
+  h+=b.fgn?'<text class="ct-tag" x="0" y="5">?</text>':ctGlyHTML(ct.gly[b.k]);
+  h+='</g>';
+  h+='<text class="ct-num" x="0" y="15">'+(b.fgn?'?':(b.k+1))+'</text>';
+  if(b.big&&!b.fgn)h+='<text class="ct-watt" x="0" y="-38" font-size="11">🏋 2V</text>';
+  if(b.loose)h+='<text class="ct-watt" x="0" y="-38">🔩</text>';
+  if(b.done)h+='<text class="ct-watt" x="0" y="34">✅</text>';
+  h+='</g>';
+  return h;
+}
+/* ---- 动态层重建 ---- */
+function ctPathD(a,b,up){
+  const p=ctPadXY(a),q=ctPadXY(b);
+  const mx=(p.x+q.x)/2,my=(p.y+q.y)/2;
+  const d=Math.abs(q.x-p.x)+Math.abs(q.y-p.y);
+  let cy=my+(up?-1:1)*Math.min(58,16+d*0.13);
+  cy=ctClamp(cy,CT_RY+18,CT_NY-18);
+  return 'M'+p.x+' '+p.y+'Q'+mx.toFixed(1)+' '+cy.toFixed(1)+' '+q.x+' '+q.y;
+}
+function ctBoard(){
+  const S=ct.S;if(!S)return;
+  const t=document.getElementById('ctTraceG');
+  if(t){
+    const swX=ctDevXOf('sw'),bdX=ctDevXOf('bad');
+    let h='';
+    for(let i=0;i<S.tr.length;i++){
+      const tr=S.tr[i];
+      h+='<path class="ct-trace" id="ctTr'+i+'" data-tr="'+i+'" d="'+ctPathD(tr.a,tr.b,0)+'"/>';
+      if(tr.sw>=0){
+        h+='<g class="ct-sw'+(S.sw[tr.sw]?' shut':' open')+'" id="ctSw'+tr.sw+'" data-sw="'+tr.sw+'" transform="translate('+swX[i].toFixed(1)+',302)">'+
+          '<rect class="ct-swBox" x="-19" y="-14" width="38" height="28" rx="9"/>'+
+          '<line class="ct-swBar" x1="-11" y1="6" x2="11" y2="-8"/>'+
+          '<circle class="ct-swDot" cx="-11" cy="6" r="3.2"/><circle class="ct-swDot" cx="11" cy="6" r="3.2"/>'+
+          '<text class="ct-swTxt" x="0" y="-18" font-size="10">⎓</text></g>';
+      }
+      if(tr.bad)h+='<circle class="ct-bad" id="ctBad'+i+'" data-tr="'+i+'" cx="'+bdX[i].toFixed(1)+'" cy="258" r="11"/>';
+    }
+    t.innerHTML=h;
+  }
+  const bg=document.getElementById('ctBulbG');
+  if(bg){
+    let h='';
+    for(let i=0;i<S.n2;i++)h+=ctBulbHTML(i);
+    bg.innerHTML=h;
+  }
+  const hg=document.getElementById('ctHitG');
+  if(hg)hg.innerHTML=ctHitsHTML();
+  const gg=document.getElementById('ctGhostG');
+  if(gg&&gg.parentNode)gg.parentNode.removeChild(gg);
+  const cb=document.getElementById('ctCurBox');
+  if(cb&&cb.parentNode)cb.parentNode.removeChild(cb);
+  ctTraces();ctWires();ctBulbs();ctPadCls();
+}
+function ctTraces(){
+  const S=ct.S;if(!S)return;
+  for(let i=0;i<S.tr.length;i++){
+    const el=document.getElementById('ctTr'+i);if(!el)continue;
+    const tr=S.tr[i];
+    const live=(tr.sw<0||S.sw[tr.sw])&&(!tr.bad||S.sld[i]);
+    el.classList.toggle('off',!live);
+    el.classList.toggle('bad',!!(tr.bad&&!S.sld[i]));
+  }
+  /* 闸刀自己也要跟着合闸 / 拉开变脸：只画一次就会永远停在摆盘时的样子 */
+  for(let j=0;j<S.sw.length;j++){
+    const se=document.getElementById('ctSw'+j);if(!se)continue;
+    se.classList.toggle('shut',!!S.sw[j]);
+    se.classList.toggle('open',!S.sw[j]);
+  }
+}
+function ctWires(){
+  const S=ct.S;if(!S)return;
+  const w=document.getElementById('ctWireG');
+  if(!w)return;
+  let h='';
+  for(let i=0;i<S.wires.length;i++){
+    const d=ctPathD(S.wires[i].a,S.wires[i].b,1);
+    h+='<path class="ct-wire" d="'+d+'"/><path class="ct-wireHit" data-w="'+i+'" d="'+d+'"/>';
+  }
+  w.innerHTML=h;
+}
+function ctBulbs(){
+  const S=ct.S;if(!S)return;
+  for(let i=0;i<S.n2;i++){
+    const b=S.bulbs[i];if(!b)continue;
+    const el=document.getElementById('ctB'+b.id);if(!el)continue;
+    el.classList.toggle('on',!!b.on);
+    el.classList.toggle('lit',!!b.lit);
+    el.classList.toggle('loose',!!b.loose);
+    el.classList.toggle('now',!b.fgn&&b.k===S.qi);
+    el.classList.toggle('dim-volt',b.dim==='volt');
+    el.classList.toggle('dim-fuse',b.dim==='fuse');
+  }
+}
+function ctPadCls(){
+  const S=ct.S;if(!S)return;
+  const u=ctNet(S);
+  const gp=u.find('P'),gm=u.find('M');
+  for(let i=0;i<S.n2;i++){
+    ['T','L','R','B'].forEach(function(sd){
+      const el=document.getElementById('ctPad'+sd+i);if(!el)return;
+      const g=u.find(sd+i);
+      el.classList.toggle('pos',g===gp);
+      el.classList.toggle('neg',g===gm);
+      el.classList.toggle('hot',!!(S.blown&&(g===gp||g===gm)));
+      el.classList.toggle('grab',ct.grab===sd+i);
+      el.classList.toggle('lit',sd!=='T'&&sd!=='B'&&!!(S.bulbs[i]&&S.bulbs[i].lit));
+    });
+  }
+  const fuse=document.getElementById('ctFuse');
+  if(fuse)fuse.classList.toggle('blown',!!S.blown);
+  const bat=document.getElementById('ctBat');
+  if(bat)bat.classList.toggle('blown',!!S.blown);
+}
+/* ---- 纸带 / 米字格 ---- */
+function ctPaper(){
+  const g=document.getElementById('ctPaperG');if(!g)return;
+  if(!ct.rec){g.innerHTML='';return}
+  const n=ct.n,px=96,pw=676-px,bw=pw/Math.max(1,n);
+  const qi=(ct.S&&ct.S.qi)||0;
+  let h='<rect class="ct-paper" x="'+px+'" y="'+CT_PY+'" width="'+pw+'" height="'+CT_PH+'" rx="11"/>';
+  for(let k=0;k<n;k++){
+    const x=px+k*bw,inIt=k<qi,now=k===qi;
+    h+='<rect class="'+(now?'ct-pnow':'ct-pbox')+'" x="'+(x+3).toFixed(1)+'" y="'+(CT_PY+3)+'" width="'+(bw-6).toFixed(1)+'" height="'+(CT_PH-6)+'" rx="8"/>';
+    if(inIt&&ct.gly[k]){
+      const sc=((Math.min(bw-8,CT_PH-8))/44*0.92).toFixed(3);
+      h+='<g transform="translate('+(x+bw/2).toFixed(1)+','+(CT_PY+CT_PH/2)+') scale('+sc+')">'+ctGlyHTML(ct.gly[k])+'</g>';
+    }else h+='<text class="ct-ptxt" x="'+(x+bw/2).toFixed(1)+'" y="'+(CT_PY+CT_PH/2+4)+'">'+(k+1)+'</text>';
+  }
+  h+='<text class="ct-phead" x="'+(px-8)+'" y="'+(CT_PY+CT_PH/2+4)+'" text-anchor="end">📄</text>';
+  g.innerHTML=h;
+}
+function ctMini(){
+  const svg=document.getElementById('ctMiniSvg');
+  if(!svg)return;
+  if(!ct.rec){svg.innerHTML='';return}
+  const sp=(ct.rec.raw&&ct.rec.raw.strokes)||[];
+  let h='<g transform="scale(1,-1)"><path d="M512 40V984M40 512H984" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="14 12"/>';
+  for(let i=0;i<ct.n;i++){
+    const got=ct.S&&i<ct.S.qi;
+    const col=got?CT_INK[ctDn(ct.rec.dirs[i])]:((ct.S&&i===ct.S.qi)?'rgba(255,245,157,.95)':'rgba(255,255,255,.22)');
+    h+='<path d="'+ctDOf(sp,i)+'" fill="'+col+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  ctSet('ctMiniCap',ct.rec.ch+' '+((ct.S&&ct.S.qi)||0)+'/'+ct.n+' 笔');
+}
+/* ---- 零件栏 ---- */
+function ctBasketHTML(){
+  const S=ct.S;
+  if(!S||!ct.rec)return '';
+  let lit=0,on=0,fgn=0,big=0,loose=0,bad=0,sw=0,swc=0;
+  for(let i=0;i<S.n2;i++){
+    const b=S.bulbs[i];
+    if(b){
+      if(b.lit)lit++;
+      else if(b.on)on++;
+      if(b.fgn)fgn++;
+      if(b.big&&!b.fgn)big++;
+      if(b.loose)loose++;
+    }
+  }
+  for(let i=0;i<S.tr.length;i++){if(S.tr[i].bad&&!S.sld[i])bad++;if(S.tr[i].sw>=0){sw++;if(S.sw[S.tr[i].sw])swc++}}
+  let h='<div class="ct-nd in">🔋 '+S.volts+'V</div>';
+  h+='<div class="ct-nd in">🔌 线 '+ct.pow+'/'+ct.powMax+'</div>';
+  h+='<div class="ct-nd'+(lit?' in':'')+'">💡 亮 ×'+lit+'</div>';
+  h+='<div class="ct-nd">✓ 通路 ×'+on+'</div>';
+  if(sw)h+='<div class="ct-nd">⎓ 闸合 '+swc+'/'+sw+'</div>';
+  if(bad)h+='<div class="ct-nd dead">🔧 虚焊 ×'+bad+'</div>';
+  if(loose)h+='<div class="ct-nd dead">🔩 松座 ×'+loose+'</div>';
+  if(fgn)h+='<div class="ct-nd dead">🚫 杂灯 ×'+fgn+'</div>';
+  if(big)h+='<div class="ct-nd">🏋 ×'+big+'</div>';
+  if(S.blown)h+='<div class="ct-nd dead">⚡ 保险丝断了</div>';
+  return h+'<span class="ct-more"></span>';
+}
+function ctBasket(){
+  const el=document.getElementById('ctBasket');
+  if(el){const h=ctBasketHTML();el.setAttribute('data-h',h);el.innerHTML=h}
+  ct.hudTxt.bask='';
+  ctBasketLight();
+}
+function ctBasketLight(){
+  const el=document.getElementById('ctBasket');
+  if(!el)return;
+  const chips=ctBasketHTML();
+  if((el.getAttribute('data-h')||'')!==chips){el.setAttribute('data-h',chips);el.innerHTML=chips}
+  const more=el.querySelector('.ct-more');
+  if(!more)return;
+  if(!ct.rec||!ct.S){if(ct.hudTxt.bask!==''){ct.hudTxt.bask='';more.innerHTML=''}return}
+  const S=ct.S;
+  const i=ctBulbOf(S,Math.min(S.qi,S.n-1));
+  const t=S.qi>=S.n?'🏁 这一盘已经收满':
+    '🎯 该点亮的是 <b>第 '+(S.qi+1)+' 笔「'+CT_DIRS[ctDn(ct.rec.dirs[S.qi])]+' '+CT_ARW[ctDn(ct.rec.dirs[S.qi])]+'」</b>，插在 <b>'+CT_O[i<0?0:i]+'</b> 号灯座 · 🔌 线 <b>'+ct.pow+'/'+ct.powMax+'</b> · 已拉 <b>'+ct.lays+'</b> 根';
+  if(ct.hudTxt.bask!==t){ct.hudTxt.bask=t;more.innerHTML=t}
+}
+/* ---- 计量 ---- */
+function ctMeter(){
+  const bar=document.getElementById('ctClockBar'),tt=document.getElementById('ctClockTxt'),bx=document.getElementById('ctClockBox');
+  const w=(ctClamp(ct.clock,0,1)*100).toFixed(1)+'%';
+  if(bx)bx.classList.toggle('low',ct.clock<=12/Math.max(1,ct.clockSec));
+  const tbl=document.getElementById('ctTbl');
+  if(tbl)tbl.classList.toggle('warn',!!(ct.red&&ct.clock>0));
+  if(bar&&ct.hudTxt.bar!==w){ct.hudTxt.bar=w;bar.style.width=w}
+  const left=Math.max(0,Math.ceil(ct.clock*ct.clockSec));
+  const t='⏱ 还有 '+left+' 秒 · 亮 '+((ct.S&&ct.S.qi)||0)+'/'+ct.n+' 笔';
+  if(tt&&ct.hudTxt.tt!==t){ct.hudTxt.tt=t;tt.textContent=t}
+  const p='🔌 '+ct.pow+'/'+ct.powMax;
+  const pt=document.getElementById('ctPowTxt');
+  if(pt&&ct.hudTxt.pt!==p){ct.hudTxt.pt=p;pt.textContent=p}
+  const bd=document.getElementById('ctBadge');
+  if(bd&&ct.S){
+    const bg=ctBadgeSay(ct.S);
+    if(ct.hudTxt.badge!==bg){ct.hudTxt.badge=bg;bd.textContent=bg}
+    bd.classList.toggle('on',!!bg);
+  }
+  const tg=document.getElementById('ctTag');
+  if(tg){
+    tg.classList.toggle('on',ct.tagMs>0);
+    const tx=ct.S&&ct.S.blown?'⚡ 保险丝断了 · 拆线再点电池':'🔋 保险丝换好了';
+    if(ct.tagMs>0&&ct.hudTxt.tag!==tx){ct.hudTxt.tag=tx;tg.textContent=tx}
+  }
+  ctBasketLight();
+}
+function ctBadgeSay(S){
+  if(S.blown)return '⚡ 短路 · 保险丝断了 —— 拆线再点电池';
+  const on=[];
+  for(let i=0;i<S.n2;i++)if(S.bulbs[i]&&S.bulbs[i].on)on.push(CT_O[i]);
+  const q=['🔋 '+S.volts+'V'];
+  q.push('通路 '+(on.length?on.join(''):'—'));
+  const i=ctBulbOf(S,S.qi);
+  if(i>=0&&S.bulbs[i]&&S.bulbs[i].path)q.push('🎯'+CT_O[i]+' 吃 '+ctDrop(S.bulbs[i])+'V/'+ctDropN(S,S.bulbs[i].path)+'V');
+  return q.join(' · ');
+}
+function ctDropN(S,p){let d=0;for(let i=0;i<p.length;i++)d+=ctDrop(S.bulbs[p[i]]);return d}
+function ctHudLight(){
+  const sc=document.getElementById('ctScoreTxt'),t='🎯 '+Math.round(ct.score)+' 分';
+  if(sc&&ct.hudTxt.sc!==t){ct.hudTxt.sc=t;sc.textContent=t}
+  const lv=document.getElementById('ctLvTxt'),v='第 '+ct.lv+' 段 · '+(ct.rec?ct.rec.ch:'—')+' '+ct.n+' 笔';
+  if(lv&&ct.hudTxt.lv!==v){ct.hudTxt.lv=v;lv.textContent=v}
+  const lt=document.getElementById('ctLitTxt'),l='✅ '+ct.lits+' 笔';
+  if(lt&&ct.hudTxt.lt!==l){ct.hudTxt.lt=l;lt.textContent=l}
+  const cb=document.getElementById('ctComboTxt'),c='🔥 连 '+ct.combo;
+  if(cb&&ct.hudTxt.cb!==c){ct.hudTxt.cb=c;cb.textContent=c}
+  const la=document.getElementById('ctLayTxt'),a='🔌 '+ct.lays;
+  if(la&&ct.hudTxt.la!==a){ct.hudTxt.la=a;la.textContent=a}
+  const sa=document.getElementById('ctSaveTxt'),s='🫳 '+ct.saved;
+  if(sa&&ct.hudTxt.sa!==s){ct.hudTxt.sa=s;sa.textContent=s}
+  const sh=document.getElementById('ctShortTxt'),r='⚡ '+ct.shorts;
+  if(sh&&ct.hudTxt.sh!==r){ct.hudTxt.sh=r;sh.textContent=r}
+  const wr=document.getElementById('ctWrongTxt'),w2='🚫 '+ct.wrongs;
+  if(wr&&ct.hudTxt.wr!==w2){ct.hudTxt.wr=w2;wr.textContent=w2}
+  ctMeter();
+}
+function ctHud(){
+  const R=ctRank(ctInt('hz_circuit_words'));
+  ctSet('ctRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<CT_HEART_MAX;i++)hs+=(i<ct.hearts?'❤️':'🖤');
+  ctSet('ctHeartTxt',hs||'🖤');
+  ctSet('ctScoreTxt','🎯 '+Math.round(ct.score)+' 分');
+  ctSet('ctLvTxt','第 '+ct.lv+' 段 · '+(ct.rec?ct.rec.ch:'—')+' '+ct.n+' 笔');
+  ctSet('ctComboTxt','🔥 连 '+ct.combo);
+  ctSet('ctLitTxt','✅ '+ct.lits+' 笔');
+  ctSet('ctLayTxt','🔌 '+ct.lays);
+  ctSet('ctSaveTxt','🫳 '+ct.saved);
+  ctSet('ctShortTxt','⚡ '+ct.shorts);
+  ctSet('ctWrongTxt','🚫 '+ct.wrongs);
+  ctToolBtns();
+  ctMini();ctBasket();ctPaper();ctHudLight();
+}
+function ctToolBtns(){
+  const w=document.getElementById('ctWireBtn'),s=document.getElementById('ctSwBtn');
+  const S=ct.S;
+  if(w){
+    w.disabled=(!S||ct.pow<=0||S.qi>=S.n||ct.nextMs>0);
+    w.innerHTML='✋ 拿线<b style="font-size:11px"> 空格 ×'+ct.pow+'</b>';
+    w.classList.toggle('on',!!ct.grab);
+  }
+  if(s){
+    let n=0;
+    if(S)for(let j=0;j<S.sw.length;j++)if(!S.sw[j])n++;
+    s.disabled=!n;
+    s.innerHTML='⎓ 全合<b style="font-size:11px"> X</b>';
+  }
+  const pv=document.getElementById('ctPrevBtn');
+  if(pv){pv.disabled=ct.previewN<=0;pv.textContent='💡 预览 ×'+ct.previewN}
+  const un=document.getElementById('ctUndoBtn');
+  if(un){un.disabled=ct.undoN<=0||!ct.hist.length;un.textContent='🔄 倒带 ×'+ct.undoN}
+  const rb=document.getElementById('ctReBtn');
+  if(rb){rb.disabled=ct.respN<=0;rb.textContent='🔁 重摆 ×'+ct.respN}
+}
+function ctAskText(){
+  if(!ct.rec||!ct.S)return;
+  const st='🔌 线盘 <b>'+ct.pow+'/'+ct.powMax+'</b> · 已拉 <b>'+ct.lays+'</b> 根 · ⚡ 短路 <b>'+ct.shorts+'</b> 次 · ⏱ <b>'+Math.max(0,Math.ceil(ct.clock*ct.clockSec))+' 秒</b>';
+  if(ct.S.qi>=ct.n){
+    ctSet('ctAsk','🏁 <b>'+ct.rec.ch+'</b> 的 '+ct.n+' 笔全点亮收好了 —— 下一盘正在插灯泡<br><small>'+st+'</small>');
+    return;
+  }
+  ctSet('ctAsk','⚡ <b>'+ct.rec.ch+'</b> 的第 '+(ct.S.qi+1)+' 笔（共 '+ct.n+' 笔）—— 把插在它上面那只灯泡 <b>接成一条通路</b>：一脚搭 <b>＋ 铜箔</b>，一脚搭 <b>− 铜箔</b>，点亮它再点掉<br><small>'+st+'</small>');
+}
+function ctLine(){
+  const el=document.getElementById('ctHintLine');
+  if(!el)return;
+  if(!ct.run||ct.over||!ct.S){el.innerHTML='⚡ 正在给板子上电……';return}
+  if(ct.nextMs>0){el.innerHTML='🏁 <b>字收满了</b> —— 下一盘灯泡正在插';return}
+  const S=ct.S;
+  if(S.qi>=S.n){el.innerHTML='🏁 收满了 —— 等这一盘结帐';return}
+  if(S.blown){el.innerHTML='⚡ <b>保险丝断了</b>：整板全黑 —— 先把短路那根线 <b>点它两头拆掉</b>，再 <b>点电池 🔋</b> 换保险丝';return}
+  const i=ctBulbOf(S,S.qi);
+  if(i<0){el.innerHTML='🚫 场上 <b>没有第 '+(S.qi+1)+' 笔</b> 那只灯了 —— 按 <b>🔁 重摆</b> 另插一盘';return}
+  if(ctLit(S,i)){el.innerHTML='✨ <b>第 '+(S.qi+1)+' 笔已经点亮</b>：<b>点 '+CT_O[i]+' 号灯座那只灯泡</b>（或按 <code>W</code>）把这一笔 <b>印出来</b>';return}
+  const st=ctNextStep();
+  if(!st){el.innerHTML='⚡ 军师的路子 <b>走完了</b>，可它还 <b>'+ctWhy(S,i,ctNet(S))+'</b> —— 按 <b>🔁 重摆</b> 换个分法';return}
+  if(st.kind!=='wire'){el.innerHTML='👉 先 <b>'+ctStepSay(st)+'</b>（这一手 <b>不花线</b>），它一通电就亮 —— 再 <b>点 '+CT_O[i]+' 号灯泡</b> 印这一笔';return}
+  if(ct.grab===st.a||ct.grab===st.b){
+    el.innerHTML='✋ 线头捏在 <b>'+ctPadName(ct.grab)+'</b> 上：再点 <b>'+ctPadName(ct.grab===st.a?st.b:st.a)+'</b> 就把这根线拉上（'+ctOf(i)+' 号灯那条支路）';
+    return;
+  }
+  el.innerHTML='👉 <b>点 '+ctPadName(st.a)+'，再点 '+ctPadName(st.b)+'</b> 拉一根跳线（<code>方向键</code> 走焊盘 · <code>空格</code> 落线）—— 这一根给 '+ctBName(i)+' 接上';
+}
+function ctPaintAll(){
+  ctTraces();ctWires();ctBulbs();ctPadCls();ctCursor();
+  ctMeter();ctHudLight();ctAskText();ctLine();ctToolBtns();
+}
+/* ---- 预览虚影 ---- */
+function ctRenderGhosts(){
+  const g=document.getElementById('ctTopG');
+  if(!g)return;
+  const old=document.getElementById('ctGhostG');
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  const G=ct.ghost,S=ct.S;
+  if(!G||!S||ct.ghostMs<=0)return;
+  let h='<g id="ctGhostG">';
+  if(G.st)h+='<path class="ct-ghost" d="'+ctPathD(G.st.a,G.st.b,1)+'"/>';
+  for(let i=0;i<G.lit.length;i++)h+='<text class="ct-spark" x="'+ctCX(G.lit[i])+'" y="'+(CT_BY-58)+'">💡</text>';
+  if(G.blown)h+='<text class="ct-spark" x="'+((ctPadXY(G.st.a).x+ctPadXY(G.st.b).x)/2).toFixed(1)+'" y="210">💥⚡</text>';
+  h+='</g>';
+  g.insertAdjacentHTML('beforeend',h);
+}
+function ctGhostPads(a,b){
+  const g=document.getElementById('ctTopG');if(!g)return;
+  [a,b].forEach(function(k){
+    const p=ctPadXY(k);
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',String(p.x));c.setAttribute('cy',String(p.y));c.setAttribute('r','19');
+    c.setAttribute('class','ct-ghostPad');
+    g.appendChild(c);
+    ctT(function(){if(c.parentNode)c.parentNode.removeChild(c)},CT_GHOST_MS);
+  });
+}
+/* ---- 特效 ---- */
+function ctFxHost(){return document.getElementById('ctFx')}
+function ctPut(host,el,ms){
+  host.appendChild(el);
+  ctT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function ctBits(x,y,col,n){
+  const host=ctFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='ct-bit';
+    b.style.left=(x/CT_W*100)+'%';b.style.top=(y/CT_H*100)+'%';
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=18+Math.random()*42;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r+16).toFixed(1)+'px');
+    ctPut(host,b,780);
+  }
+}
+function ctPop(x,y,txt,col){
+  const host=ctFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='ct-pop';
+  el.style.left=(x/CT_W*100)+'%';el.style.top=(y/CT_H*100)+'%';
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  ctPut(host,el,980);
+}
+function ctShakeFx(){
+  const el=document.querySelector('.ct-tbl');if(!el)return;
+  el.classList.remove('ct-shake');void el.offsetWidth;el.classList.add('ct-shake');
+}
+function ctTblCls(cls,ms){
+  const el=document.getElementById('ctTbl');
+  if(!el)return;
+  el.classList.add(cls);
+  ctT(function(){el.classList.remove(cls)},ms);
+}
+function ctRing(x,y,r,col){
+  const g=document.getElementById('ctTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+  c.setAttribute('r',String(Math.round(r)));c.setAttribute('fill','none');
+  c.setAttribute('stroke',col||'rgba(255,235,59,.9)');c.setAttribute('stroke-width','3');
+  c.setAttribute('class','ct-ring');
+  g.appendChild(c);
+  ctT(function(){if(c.parentNode)c.parentNode.removeChild(c)},920);
+}
+function ctMark(pads){
+  const g=document.getElementById('ctTopG');if(!g)return;
+  (pads||[]).forEach(function(k){
+    const p=ctPadXY(k);
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',String(p.x));c.setAttribute('cy',String(p.y));
+    c.setAttribute('r','20');c.setAttribute('fill','none');
+    c.setAttribute('stroke','#40C4FF');c.setAttribute('stroke-width','3.2');
+    c.setAttribute('class','ct-mark');
+    g.appendChild(c);
+    ctT(function(){if(c.parentNode)c.parentNode.removeChild(c)},CT_GHOST_MS);
+  });
+}
+function ctSparks(i){
+  const g=document.getElementById('ctTopG');if(!g)return;
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x',String(ctCX(i)));t.setAttribute('y',String(CT_BY-64));
+  t.setAttribute('class','ct-spark');t.textContent='💡 ✨ 🖌';
+  g.appendChild(t);
+  ctT(function(){if(t.parentNode)t.parentNode.removeChild(t)},1200);
+}
+function ctFlash(){
+  const g=document.getElementById('ctTopG');if(!g)return;
+  const r=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  r.setAttribute('x','8');r.setAttribute('y','34');
+  r.setAttribute('width','684');r.setAttribute('height','424');
+  r.setAttribute('rx','20');r.setAttribute('class','ct-flash');
+  g.appendChild(r);
+  ctT(function(){if(r.parentNode)r.parentNode.removeChild(r)},CT_FLASH_MS+40);
+}
+function ctCursor(){
+  const g=document.getElementById('ctTopG');
+  if(!g)return;
+  const old=document.getElementById('ctCurBox');
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  const list=ctPadList();
+  if(ct.cur<0||ct.cur>=list.length)return;
+  const p=ctPadXY(list[ct.cur]);
+  const el=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  el.setAttribute('id','ctCurBox');
+  el.setAttribute('cx',String(p.x));el.setAttribute('cy',String(p.y));el.setAttribute('r','18');
+  el.setAttribute('class','ct-cur');
+  g.appendChild(el);
+}
+function ctPadList(){
+  const q=['P','M'];
+  for(let i=0;i<CT_NS;i++)q.push('T'+i,'L'+i,'R'+i,'B'+i);
+  return q;
+}
+/* ---- 主循环 ---- */
+function ctStartLoop(){ctStopLoop();ct.last=0;ct.rafId=requestAnimationFrame(ctLoop)}
+function ctStopLoop(){if(ct.rafId){cancelAnimationFrame(ct.rafId);ct.rafId=0}ct.last=0}
+function ctLoop(ts){
+  if(!ct.run||ct.over){ct.rafId=0;return}
+  const dt=ct.last?Math.min(0.05,(ts-ct.last)/1000):0.016;
+  ct.last=ts;
+  ctTick(dt);
+  ct.rafId=requestAnimationFrame(ctLoop);
+}
+function ctTick(dt){
+  const ms=dt*1000;
+  ct.t+=dt;ct.playMs+=ms;
+  ct.tones=6;
+  if(ct.ghostMs>0){
+    ct.ghostMs=Math.max(0,ct.ghostMs-ms);
+    if(!ct.ghostMs){ct.ghost=null;const g=document.getElementById('ctGhostG');if(g&&g.parentNode)g.parentNode.removeChild(g)}
+  }
+  if(ct.tagMs>0)ct.tagMs=Math.max(0,ct.tagMs-ms);
+  if(ct.printMs>0)ct.printMs=Math.max(0,ct.printMs-ms);
+  if(ct.nextMs>0){ct.nextMs=Math.max(0,ct.nextMs-ms);ctMeter();return}
+  if(!ct.rec||!ct.S||ct.over)return;
+  ct.think+=ms;
+  ct.clock-=dt/Math.max(1,ct.clockSec);
+  const left=Math.ceil(ct.clock*ct.clockSec);
+  if(ct.clock<=12/Math.max(1,ct.clockSec)&&ct.clock>0){
+    ct.beep+=ms;
+    if(ct.beep>=1000){ct.beep=0;ctTone(900,0.05,'sine',0.05)}
+    if(!ct.red){ct.red=true;ctMeter();ctSay('⚠️ <b>板子边缘发红了</b>：还剩 '+left+' 秒就 <b>断电</b> —— 断电 <b>掉一颗心</b>、剩下的笔重摆（已印的笔 <b>一笔不抹</b>）。先把 <b>该亮那一笔</b> 接通路点掉','#FFCC80')}
+  }
+  if(ct.clock<=0){ct.clock=0;ctPowerOut('clock');return}
+  if(ct.think>=CT_NAG_MS){ct.think=0;ctNag()}
+  ctHudLight();
+}
+/* ---- 输入 ---- */
+function ctCursorSay(){
+  const S=ct.S;if(!S||!ct.rec)return;
+  const list=ctPadList(),k=list[ct.cur];
+  const m=/^([TLRBPM])(\d*)$/.exec(k),t=m[1],i=m[2]===''?0:+m[2];
+  const u=ctNet(S);
+  let s;
+  if(t==='P')s='👉 光标在 <b>电池 ＋ 极</b>：它通着上面那条 <b>＋ 铜箔</b> —— 按 <code>Enter</code> 把线头捏在这儿（短路就是把这一极和 − 极直接连起来）';
+  else if(t==='M')s='👉 光标在 <b>电池 − 极</b>：它通着下面那条 <b>− 铜箔</b> —— 按 <code>Enter</code> 把线头捏在这儿';
+  else if(t==='T'||t==='B')s='👉 光标在 <b>'+ctPadName(k)+'</b>：这一条铜箔上的一个 <b>接线柱</b>，它和电池那一极 <b>本来就是通的</b> —— 按 <code>Enter</code> 捏线头（拉灯脚 ↔ 这儿 = 这一脚接到 '+t+' 极）';
+  else{
+    const b=S.bulbs[i];
+    s='👉 光标在 <b>'+ctOf(i)+' 号灯的'+(t==='L'?'左脚':'右脚')+'</b>：'+
+      (b?'这只灯'+(b.fgn?'挂着 <b>🚫</b>（不是这个字的笔）':'写着 <b>第 '+(b.k+1)+' 笔</b>')+(b.big?'、是 <b>🏋 大瓦数（吃 2V）</b>':'、吃 <b>1V</b>')+(b.loose?'，<b>灯座松着</b>':'')+'。':'（灯座空的）')+
+      '现在它 '+(u.find(k)===u.find('P')?'<b>搭在 ＋ 箔</b>':(u.find(k)===u.find('M')?'<b>搭在 − 箔</b>':'<b>悬空</b>'))+' —— 按 <code>Enter</code> 捏线头';
+  }
+  ctSay(s,'#B3E5FC');
+}
+function ctBind(){
+  if(ct.bound)return;
+  ct.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='circuit'||!ct.run||ct.over)return;
+    const k=e.key,K=String(k||'').toLowerCase();
+    const N=ctPadList().length;
+    if(K==='escape'){if(ct.grab!==''){ct.grab='';ctPadCls();ctWires();ctLine();ctToolBtns();ctSay('✋ 线撂下了（没花线）','#B3E5FC')}return}
+    if(K==='arrowleft'||K==='arrowright'||K==='arrowup'||K==='arrowdown'){
+      if(e.repeat)return;
+      if(ct.cur<0)ct.cur=0;
+      let c=ct.cur;
+      if(K==='arrowleft')c--;
+      else if(K==='arrowright')c++;
+      else c=ctClamp(c+(K==='arrowup'?-4:4),0,N-1);
+      ct.cur=ctClamp(c,0,N-1);
+      if(c<0)ct.cur=0;
+      if(c>N-1)ct.cur=N-1;
+      ct.think=0;
+      ctCursor();ctCursorSay();
+      e.preventDefault();return;
+    }
+    if(K==='enter'){if(!e.repeat)ctTapSlot(ct.cur<0?0:ct.cur);e.preventDefault();return}
+    if(k===' '){if(!e.repeat)ctTapSlot(ct.cur<0?2:ct.cur);e.preventDefault();return}
+    if(K>='1'&&K<='6'){if(!e.repeat)ctTapBulb(+K-1);return}
+    if(K==='0'){if(!e.repeat)ctTapBulb(CT_NS-1);return}
+    if(K==='x'){if(!e.repeat)ctSwitches();return}
+    if(K==='w'){if(!e.repeat)ctTakeNext();return}
+    if(K==='q'){if(!e.repeat)ctPreview();return}
+    if(K==='r'){if(!e.repeat)ctUndo();return}
+    if(K==='t'){if(!e.repeat)ctRespin();return}
+    if(K==='f'){if(!e.repeat)ctTapBattery();return}
+  });
+}
+function ctTapSlot(c){
+  const list=ctPadList();
+  if(c<0||c>=list.length)return false;
+  ct.cur=c;ctCursor();
+  return ctTapPad(list[c]);
+}
+function ctCutWire(idx){
+  const S=ct.S;
+  if(!S||idx<0||idx>=S.wires.length)return false;
+  const w=S.wires[idx];
+  ct.hist.push(ctSnap());
+  if(ct.hist.length>CT_HIST_MAX)ct.hist.shift();
+  S.wires.splice(idx,1);
+  ct.pow++;ct.takes++;ct.grab='';
+  ctTone(300,0.07,'triangle',0.04);
+  ctPop((ctPadXY(w.a).x+ctPadXY(w.b).x)/2,Math.min(ctPadXY(w.a).y,ctPadXY(w.b).y)-10,'✂️ 拆线 还你 1 根','#B0BEC5');
+  ctSay('✂️ <b>拆掉这根线</b>：'+ctPadName(w.a)+' ↔ '+ctPadName(w.b)+' —— 线 <b>退回线盘</b>（'+ct.pow+'/'+ct.powMax+' 根），<b>接错了拆了重来，一分不扣</b>','#B3E5FC');
+  ctBoard();
+  ctAfter();
+  return true;
+}
+function ctPointer(){
+  const svg=document.getElementById('ctSvg');
+  if(!svg||ct.ptrBound)return;
+  ct.ptrBound=true;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='circuit'||!ct.run||ct.over||!ct.S)return;
+    if(!ev.target.closest)return;
+    const we=ev.target.closest('.ct-wireHit');
+    if(we){
+      const i=parseInt(String(we.getAttribute('data-w')),10);
+      ct.think=0;
+      if(!isNaN(i))ctCutWire(i);
+      if(ev.preventDefault)ev.preventDefault();
+      return;
+    }
+    const se=ev.target.closest('[data-sw]');
+    if(se){
+      const j=parseInt(String(se.getAttribute('data-sw')),10);
+      ct.think=0;
+      if(!isNaN(j))ctTapSwitch(j);
+      if(ev.preventDefault)ev.preventDefault();
+      return;
+    }
+    const be=ev.target.closest('[data-bat]');
+    if(be){
+      ct.think=0;ctTapBattery();
+      if(ev.preventDefault)ev.preventDefault();
+      return;
+    }
+    const te=ev.target.closest('[data-tr]');
+    if(te){
+      const i=parseInt(String(te.getAttribute('data-tr')),10);
+      ct.think=0;
+      if(!isNaN(i))ctSolder(i);
+      if(ev.preventDefault)ev.preventDefault();
+      return;
+    }
+    const pe=ev.target.closest('[data-pad]');
+    if(pe){
+      const kk=pe.getAttribute('data-pad');
+      const list=ctPadList();
+      ct.cur=list.indexOf(kk);
+      ctCursor();
+      ct.think=0;
+      ctTapPad(kk);
+      if(ev.preventDefault)ev.preventDefault();
+      return;
+    }
+    const bl=ev.target.closest('[data-b]');
+    if(bl){
+      const i=parseInt(String(bl.getAttribute('data-b')),10);
+      ct.think=0;
+      if(!isNaN(i))ctTapBulb(i);
+      if(ev.preventDefault)ev.preventDefault();
+    }
+  });
+}
+
+/* ================= v1.81 笔顺电路坊 · D：生命周期 / 军师提示 / 帮助 / 测试钩子 ================= */
+function ctStopAll(){ctStopLoop();ctKillTimers();ct.gen++;ct.tagMs=0;ct.nextMs=0;ct.printMs=0;ct.ghostMs=0;ct.ghost=null}
+async function ctStart(){
+  ctStopAll();
+  const g=ct.gen;
+  const stale=function(){return g!==ct.gen||!ct.run||ct.over};
+  ct.run=true;ct.over=false;
+  ct.timers=[];
+  ct.lv=1;ct.score=0;ct.hearts=CT_HEARTS;ct.combo=0;ct.maxCombo=0;
+  ct.words=0;ct.lits=0;ct.saved=0;ct.takes=0;ct.shorts=0;ct.blows=0;ct.wrongs=0;
+  ct.sws=0;ct.slds=0;ct.looses=0;ct.deads=0;ct.lays=0;
+  ct.previewN=2;ct.undoN=3;ct.respN=1;
+  ct.previews=0;ct.rewinds=0;ct.respins=0;ct.nags=0;
+  ct.tagMs=0;ct.nextMs=0;ct.printMs=0;ct.ghostMs=0;ct.ghost=null;
+  ct.think=0;ct.playMs=0;ct.t=0;ct.hudTxt={};
+  ct.pool=[];ct.miss=[];ct.rec=null;ct.n=0;ct.qi=0;ct.gly=[];ct.S=null;ct.tid=1;
+  ct.powMax=0;ct.pow=0;ct.clock=1;ct.clockSec=60;ct.red=false;ct.beep=0;
+  ct.printRun=0;ct.cleanWord=true;ct.wrongWord=0;ct.hist=[];ct.since=0;
+  ct.grab='';ct.cur=-1;ct.sol=null;ct.lastWhy='';
+  showScreen('circuit');
+  ctBind();ctPointer();
+  ctRenderStatic();ctPaper();ctMini();ctBasket();ctHud();ctLine();
+  ctSet('ctAsk','⚡ 正在给板子上电……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  ctSay('眼前是一块 <b>电路板</b>：上面一条 <b>＋ 铜箔</b>、下面一条 <b>− 铜箔</b>，左边一只 <b>🔋 电池</b>（带着 <b>保险丝</b>）。板上插着 <b>6 只小灯泡</b>，灯泡玻璃上就是这个字其中一笔的 <b>真实笔形</b>（横红、竖青、撇蓝、捺橘），角上写着 <b>第几笔</b>。<b>点两个焊盘拉一根跳线</b>，把灯 <b>接成回路</b> —— 电从 ＋ 出发、<b>挨个穿过灯泡</b>、回到 −，这一笔就亮了');
+  let ok=await ctBuildPool();
+  if(stale())return;
+  if(!ok){
+    ctSay('⚡ 电还没通，再上一次板……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await ctBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!ct.pool.length){
+    ct.run=false;
+    ctSet('ctAsk','😢 字库没加载好<br><small>稍后再来上板</small>');
+    ctSay('先去别的模式练两笔，回来字就齐了','#FFCC80');
+    return;
+  }
+  ctAdd('hz_circuit_games',1);
+  if(!ctNewWord()){ct.run=false;ctSet('ctAsk','😢 灯泡没插好<br><small>稍后再来上板</small>');return}
+  if(!ct.run||ct.over||stale())return;
+  ctStartLoop();
+}
+function ctEnd(reason){
+  if(ct.over)return;
+  ct.over=true;ct.run=false;
+  ctStopAll();
+  const sc=Math.round(ct.score);
+  localStorage.setItem('hz_circuit_best',String(Math.max(ct.words,ctInt('hz_circuit_best'))));
+  localStorage.setItem('hz_circuit_streak',String(Math.max(ct.maxCombo,ctInt('hz_circuit_streak'))));
+  localStorage.setItem('hz_circuit_lv',String(Math.max(ct.lv,ctInt('hz_circuit_lv'))));
+  ctAdd('hz_circuit_ms',Math.round(ct.playMs/1000));
+  const stars=Math.floor(sc/130)+ct.words*3;
+  if(stars>0)addStars(stars);
+  showScreen('circuit-result');
+  const R=ctRank(ctInt('hz_circuit_words'));
+  const T={
+    miss:['🔌','心丢完了，板子凉了','<b>点错三次</b>、<b>通电钟走光</b> 都会丢心：动手前 <b>先看笔形</b>，再算 <b>这一条支路要吃几伏</b>'],
+    quit:['🏁','今天收工了','下次先想 <b>这一条支路串几只、一共吃几伏</b>，再定 <b>线拉哪儿、闸合不合</b> —— 串着省线，并联费线但各吃全压'],
+    nodata:['😢','灯泡没插好','先去别的模式练两笔，回来字就齐了']
+  };
+  const t=T[reason]||T.quit;
+  ctSet('ctRsEmoji',t[0]);
+  ctSet('ctRsTitle',reason==='nodata'?t[1]:(reason==='miss'?(ct.words?'心丢了 · 已收好 '+ct.words+' 个字':t[1]):t[1]));
+  ctSet('ctRsSub',t[2]);
+  ctSet('ctRsScore',String(sc));
+  ctSet('ctRsWords',String(ct.words));
+  ctSet('ctRsLit',String(ct.lits));
+  ctSet('ctRsLv',String(ct.lv));
+  ctSet('ctRsStreak',String(ct.maxCombo));
+  ctSet('ctRsMiss',ct.wrongs+' / '+ct.deads);
+  ctSet('ctRsStars','⭐ '+stars);
+  ctSet('ctRsBest',String(ctInt('hz_circuit_best')));
+  ctSet('ctRsAll2',String(ctInt('hz_circuit_words')));
+  ctSet('ctRsAll','🏅 '+R.e+' '+R.t+' · 累计点亮 '+ctInt('hz_circuit_words')+' 个字\n'+
+    '🔌 拉过 '+ctInt('hz_circuit_lays')+' 根线 · 🫳 没添线连着亮 '+ctInt('hz_circuit_saved')+' 笔 · 🔩 拧紧 '+ctInt('hz_circuit_looses')+' 只松灯座\n'+
+    '⚡ 短路 '+ctInt('hz_circuit_shorts')+' 次（烧保险 '+ctInt('hz_circuit_blows')+' 回）· 🚫 点错 '+ctInt('hz_circuit_wrongs')+' 次 · 💔 断电 '+ctInt('hz_circuit_deads')+' 回\n'+
+    '⎓ 合闸 '+ctInt('hz_circuit_sws')+' 把 · 🔧 补焊 '+ctInt('hz_circuit_slds')+' 道 · 💎 一根线不浪费 '+ctInt('hz_circuit_perfect')+' 盘\n'+
+    '💡 预览 '+ctInt('hz_circuit_previews')+' 次 · 🔄 倒带 '+ctInt('hz_circuit_rewinds')+' 次 · 🔁 重摆 '+ctInt('hz_circuit_resets')+' 回\n'+
+    '👀 发呆提示 '+ctInt('hz_circuit_nags')+' 次 · 🚀 一局最多 '+ctInt('hz_circuit_best')+' 个字 · 最高玩到第 '+ctInt('hz_circuit_lv')+' 段');
+  const book=(localStorage.getItem('hz_circuit_book')||'').split(',').filter(function(c){return c.length===1});
+  ctSet('ctRsBookT',book.length?('📜 电路档案 · 已点亮 '+book.length+' 个字'):'');
+  const bh=document.getElementById('ctRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function ctRetry(){ctStart()}
+function ctGrabNext(){
+  const S=ct.S;
+  if(!S||S.qi>=S.n||ct.nextMs>0)return false;
+  const st=ctNextStep();
+  if(!st||st.kind!=='wire')return ctTakeNext();
+  return ctTapPad(ct.grab===st.a?st.b:st.a);
+}
+function ctLeave(){
+  ctStopAll();
+  if(ct.run&&!ct.over){ct.over=true;ct.run=false}
+  goHome();
+}
+function ctNudge(){
+  const dot=document.getElementById('ctCardDot'),tip=document.getElementById('ctCardTip');
+  const w=ctInt('hz_circuit_words'),p=ctInt('hz_circuit_perfect'),games=ctInt('hz_circuit_games');
+  const R=ctRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 点亮 '+w+' 个字 · 拉过 '+ctInt('hz_circuit_lays')+' 根线 · 一次没错 '+p+' 盘'):'一块电路板、上下两条铜箔、六只灯泡：点两个焊盘拉一根跳线，把写着这一笔的灯泡接成回路 —— 串联分压、并联各走各的，＋ 直接搭 − 就烧保险丝';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function ctNag(){
+  if(!ct.rec||!ct.S||ct.S.qi>=ct.n)return;
+  const S=ct.S,i=ctBulbOf(S,S.qi);
+  ct.nags++;ctAdd('hz_circuit_nags',1);
+  ctTone(660,0.08,'sine',0.06);
+  if(i<0){ctSay('🐰 板上 <b>找不到第 '+(S.qi+1)+' 笔</b> 那只灯了：按 <b>🔁 重摆</b> 剩下的笔另插一盘','#FFF176');return}
+  ctMarkPads(S,i);
+  const st=ctNextStep(),u=ctNet(S);
+  ctSay('🐰 该点亮的是「<b>'+CT_DIRS[ctDn(ct.rec.dirs[S.qi])]+' '+CT_ARW[ctDn(ct.rec.dirs[S.qi])]+'</b>」第 '+(S.qi+1)+' 笔，它插在 <b>'+ctOf(i)+'</b> 号灯座：现在 '+ctFootSay(S,u,i)+'<br>🔌 线盘还剩 <b>'+ct.pow+'/'+ct.powMax+'</b> 根 · '+ctBrSay(S,i)+' · '+ctFuseSay(S)+
+    (ctLit(S,i)?'<br>👉 <b>它已经亮了</b>：点 '+ctOf(i)+' 号那只灯泡（或按 <code>W</code>）把这一笔印出来':
+      (st?'<br>👉 军师下一步：<b>'+ctStepSay(st)+'</b>'+(st.kind==='wire'?'（线盘够）':'（这一手 <b>不花线</b>）'):'<br>👉 军师的路子走完了它还不亮：按 <b>🔁 重摆</b> 另插一盘（还剩 '+ct.respN+' 次）')),'#FFF176');
+  if(st&&st.kind==='wire')ctGhostPads(st.a,st.b);
+}
+function ctHelp(){
+  const S=ct.S;
+  const i=S&&S.qi<S.n?ctBulbOf(S,S.qi):-1;
+  const nd=S&&i>=0?ctDn(ct.rec.dirs[S.qi]):-1;
+  const swN=S?S.sw.length:0,badN=S?S.tr.filter(function(t,i){return t.bad&&!S.sld[i]}).length:0;
+  ctSay('深蓝台子上是一块 <b>电路板</b>：上边一条 <b>＋ 铜箔</b>、下边一条 <b>− 铜箔</b>，左边 <b>🔋 电池</b>（'+(S?S.volts:'?')+'V，肚子里带 <b>保险丝</b>）。板上 <b>6 只灯座</b>（编号 <b>①~⑥</b>），每座两只脚（<b>左脚 / 右脚</b>），上下各一个 <b>接线柱</b> 直接长在铜箔上<br>'+
+    '💡 <b>灯泡是这条支路的一员</b>：电从 <b>＋</b> 出发，<b>挨个穿过灯泡</b>，回到 <b>−</b> —— <b>首尾成一条路</b> 才亮；<b>点两个焊盘</b> 就拉一根 <b>跳线</b>，再点同一对 <b>拆掉退回线盘</b>（一分不扣）<br>'+
+    '🔋 <b>串联分压</b>：一条支路上串几只，就 <b>一共吃掉几伏</b>（普通灯 <b>1V</b>、挂 <b>🏋</b> 的大瓦数灯 <b>2V</b>），<b>超过电池电压谁也点不着</b>（本盘 <b>'+(S?S.volts:'?')+'V</b>）<br>'+
+    '🪜 <b>并联各走各的</b>：另一条支路 <b>单独从 ＋ 走到 −</b>，每只灯 <b>都吃满电压</b> —— 串着 <b>省线</b>，并联 <b>费线</b>，这是本盘唯一的取舍<br>'+
+    '✂ <b>一条支路最多串 '+(S?ctFuseOf(ct.lv):'?')+' 只</b>：超过就 <b>谁也分不到电</b>（标着 <b>✂</b>）；两只脚被一根线 <b>接到一起</b> 的灯会被 <b>短接</b>（标着 <b>短</b>）<br>'+
+    '⚡ <b>短路</b>：把 <b>＋ 箔直接搭上 − 箔</b>（没经过任何灯泡）—— <b>保险丝当场烧断、整板全黑</b>：先 <b>点那根线两头各一次拆掉</b>，再 <b>点电池换保险丝</b>（都不花钱）<br>'+
+    '🎯 <b>按笔顺收</b>：灯泡角上写着 <b>第几笔</b>，只有 <b>该收那一笔</b> 亮着时点它才 <b>印到米字格</b>；还没轮到 <b>点回去不扣分</b>；🚫 <b>杂灯泡</b>（挂着 <b>?</b>）不是这个字的笔，点它 <b>烧灯丝</b>：扣 '+CT_WRONG_PEN+' 分、断连击，<b>连错 '+CT_WRONG_MAX+' 次掉一颗心</b><br>'+
+    '⎓ <b>闸刀</b>（第 4 段起，本盘 <b>'+swN+'</b> 把）长在印好的走线上，<b>拉开时这一段不通</b>；点它 <b>合上</b>（按 <code>X</code> 一键全合）—— <b>不花线</b>；🔧 <b>虚焊</b>（第 5 段起，本盘 <b>'+badN+'</b> 道）看着连着其实 <b>锡没吃上</b>，点它 <b>补焊</b>；🔩 <b>松灯座</b>（第 6 段起）两只脚 <b>没搭上簧片</b>，点一下 <b>拧紧</b> —— 这三样 <b>都免费</b>，是白送的路<br>'+
+    '🔌 <b>线是算过的</b>：这一盘 <b>军师</b> 先把每一笔都点亮过一遍，发你的线 = <b>刚好够 + '+(ctSpare(ct.lv))+' 根余量</b>（本盘 <b>'+ct.powMax+'</b> 根）；拆线 <b>退回线盘</b>，线盘空了 <b>不扣心</b>，只能拆了挪<br>'+
+    '⏱ <b>通电钟</b>：每阵发 <b>'+ct.clockSec+' 秒</b>（<code>30 + 笔数×6 − 段数×2</code>），最后 12 秒 <b>板子边缘变红</b>，走光 <b>断电</b>、掉一颗心、剩下的笔 <b>另插一盘</b>（已印的笔 <b>一笔不抹</b>）<br>'+
+    '💡 <b>预览</b>（<code>Q</code>）画出 <b>军师下一步接上之后谁会亮</b>，会短路还提前报警；🔄 <b>倒带</b>（<code>R</code>）退回 <b>上一根线 / 上一次拨闸之前</b>；🔁 <b>重摆</b>（<code>T</code>）剩下的笔另插一盘；🫳 <code>W</code> <b>直接收该收那一笔</b>；<code>1</code>~<code>6</code> 点灯 · <code>F</code> 点电池 · <code>方向键</code> 走 26 个焊盘 + <code>空格</code> 落线<br>'+
+    '📈 <b>点亮一笔</b> 吃 <code>round((14 + 第几笔×2 + 段数×3) × (1 + 连击×0.05))</code>，<b>不添一根线连着亮第二笔</b> 再多 <code>6 + 段数×2</code>；<b>整个字收满</b>：<code>26 + 笔数×6 + 段数×6 + 剩线×3</code>，<b>一次没点错再多 '+CT_CLEAN_BONUS+'</b>；<b>每 2 个字升 1 段</b>（最多 9 段）、<b>每 3 个字补一颗心</b>（最多 '+CT_HEART_MAX+' 颗）<br>'+
+    (i>=0?'🎯 现在该点亮 <b>第 '+(S.qi+1)+' 笔「'+CT_DIRS[nd]+' '+CT_ARW[nd]+'」</b>：它在 <b>'+ctOf(i)+'</b> 号灯座，'+ctFootSay(S,ctNet(S),i)+' · '+ctBrSay(S,i):'🎯 这一盘已经收满')+
+    '<br>👀 发呆 '+(CT_NAG_MS/1000)+' 秒 🐰 报方位 · 战绩落盘 <code>hz_circuit_*</code>','#C5E1A5');
+}
+/* ---- 测试钩子 ---- */
+window.CT={NS:CT_NS,W:CT_W,H:CT_H,HIT:CT_HIT,PLAN_MAX:CT_PLAN_MAX,GN:CT_GEN_TRY,SM:CT_STROKE_MAX,
+  PMAX:CT_PATH_MAX,HM:CT_HIST_MAX,PRT:CT_PRINT_MS,NMS:CT_NEXT_MS,GMS:CT_GHOST_MS,NAG:CT_NAG_MS,
+  WPN:CT_WRONG_PEN,WMAX:CT_WRONG_MAX,CLEAN:CT_CLEAN_BONUS,HTS:CT_HEARTS,HMAX:CT_HEART_MAX,RF:CT_RF};
+window.ctvGeom=function(){return {W:CT_W,H:CT_H,NS:CT_NS,X0:CT_X0,P:CT_P,BY:CT_BY,R:CT_R,PX:CT_PX,RY:CT_RY,NY:CT_NY,BX0:CT_BX0,BX1:CT_BX1,PY:CT_PY,PH:CT_PH}};
+window.ctvS=function(o){
+  o=o||{};
+  const n=o.n===undefined?4:o.n;
+  const bulbs=new Array(CT_NS).fill(null);
+  (o.bulbs||[]).forEach(function(b){
+    bulbs[b.i]={id:ct.tid++,col:b.i,k:(b.k===undefined?-1:b.k),fgn:b.fgn||0,big:b.big||0,loose:b.loose||0,
+      done:b.done||0,on:0,dim:'',lit:0,byp:0};
+  });
+  const tr=(o.tr||[]).map(function(t){return {a:t.a,b:t.b,sw:(t.sw===undefined?-1:t.sw),bad:t.bad||0,up:0}});
+  return {n2:CT_NS,qi:o.qi||0,n:n,volts:(o.volts===undefined?6:o.volts),bulbs:bulbs,
+    wires:(o.wires||[]).map(function(w,i){return {id:i+1,a:w[0],b:w[1]}}),
+    tr:tr,sw:(o.sw||[]).slice(),sld:(o.sld||[]).slice(),
+    blown:o.blown||0,short:0,hot:0,hotN:0,hotPath:null};
+};
+window.ctvOut=function(S){
+  const on=[],lit=[],dim=[],byp=[],loose=[];
+  for(let i=0;i<S.n2;i++){
+    const b=S.bulbs[i];if(!b)continue;
+    if(b.on)on.push(i);
+    if(b.lit)lit.push(i);
+    if(b.dim)dim.push(i+':'+b.dim);
+    if(b.byp)byp.push(i);
+    if(b.loose)loose.push(i);
+  }
+  return {v:ctReads(S),on:on,lit:lit,dim:dim,byp:byp,loose:loose,
+    blown:S.blown?1:0,short:S.short?1:0,wires:S.wires.length,paths:S.hotN};
+};
+window.ctvNet=function(o){
+  const S=o.S||window.ctvS(o);
+  const u=ctNet(S),gp=u.find('P'),gm=u.find('M'),g={};
+  ['P','M'].concat(function(){const q=[];for(let i=0;i<S.n2;i++)q.push('T'+i,'L'+i,'R'+i,'B'+i);return q}())
+    .forEach(function(k){g[k]=u.find(k)===gp?'P':(u.find(k)===gm?'M':String(u.find(k)))});
+  return {groups:g,short:gp===gm?1:0};
+};
+window.ctvPaths=function(o){
+  const S=o.S||window.ctvS(o);
+  const u=ctNet(S),r=ctPaths(S,u);
+  return {short:r.short?1:0,paths:r.paths.map(function(p){
+    let d=0;for(let i=0;i<p.length;i++)d+=ctDrop(S.bulbs[p[i]]);
+    return {s:p.join('-'),n:p.length,d:d};
+  })};
+};
+window.ctvEval=function(o){
+  const S=o.S||window.ctvS(o);
+  const lv=o.lv===undefined?ct.lv:o.lv;
+  const g=ct.lv;ct.lv=lv;
+  ctEval(S);
+  const out=window.ctvOut(S);
+  ct.lv=g;
+  return out;
+};
+window.ctvRuns=function(n,V,FM,drops){
+  const d=drops||[];
+  for(let i=0;i<n;i++)if(!d.length)d.push(1);
+  const r=ctRuns(n,d,V,FM);
+  return r?{runs:r.map(function(x){return x.join('+')}),n:r.length}:null;
+};
+window.ctvPlan=function(){
+  const st=ctNextStep();
+  return st?{kind:st.kind,a:st.a||'',b:st.b||'',i:(st.i===undefined?-1:st.i),say:ctStepSay(st)}:{none:1};
+};
+window.ctvSim=function(o){
+  const S=o.S||window.ctvS(o);
+  const steps=o.steps||[];
+  const g=ct.lv;ct.lv=o.lv===undefined?ct.lv:o.lv;
+  const r=ctSimPlan(S,steps);
+  ct.lv=g;
+  return {ok:r.ok?1:0,plan:r.plan.map(function(p){return p.tap?('收'+p.i):(p.kind+' '+(p.a||'')+(p.b||'')+(p.i===undefined?'':'#'+p.i))}),laid:r.laid,qi:r.qi};
+};
+window.ctvReplay=function(o){
+  /* 在真盘上照军师的 steps 走一遍，看每一笔真能点亮 */
+  const S=window.ctvS(o),steps=(o.steps||[]).slice();
+  const g=ct.lv;ct.lv=o.lv===undefined?ct.lv:o.lv;
+  const log=[];
+  let laid=0,nag=0;
+  /* 一根线常一次点亮好几笔：挨着收干，才和玩家真能做的动作一致 */
+  const drain=function(){
+    for(;;){
+      ctEval(S);
+      if(S.qi>=S.n||!ctWantLit(S))break;
+      S.qi++;log.push('收'+S.qi);
+    }
+  };
+  for(let q=0;q<steps.length&&S.qi<S.n;q++){
+    drain();
+    if(S.qi>=S.n)break;
+    const st=steps[q];
+    if(!ctPlanRun(S,st)){nag++;continue}
+    if(st.kind==='wire')laid++;
+    ctEval(S);
+  }
+  drain();
+  ct.lv=g;
+  return {ok:S.qi>=S.n?1:0,qi:S.qi,n:S.n,laid:laid,skip:nag,log:log,reads:ctReads(S)};
+};
+window.ctvGen=function(o){
+  o=o||{};
+  const rec=o.rec||{ch:'灯',n:o.n||4,dirs:(o.dirs||[0,1,2,3,0]).slice(0,o.n||4),
+    raw:{strokes:['M100 400 L600 400 L600 460 L100 460 Z','M400 100 L460 100 L460 700 L400 700 Z',
+      'M600 140 L520 420 L560 450 L640 170 Z','M300 200 L520 460 L560 430 L340 180 Z',
+      'M100 400 L600 400 L600 460 L100 460 Z'],
+      medians:[[[100,430],[600,430]],[[430,100],[430,700]],[[600,140],[520,420]],[[300,200],[520,460]],[[100,430],[600,430]]]}};
+  const lv=o.lv===undefined?1:o.lv;
+  const r=ctGen(rec,lv,o.from||0);
+  if(!r)return {ok:0,why:ct.lastWhy||'?'};
+  return {ok:1,laid:r.laid,V:r.V,runs:r.runs.map(function(x){return x.join('+')}),
+    steps:r.steps.map(function(st){return {kind:st.kind,a:st.a||'',b:st.b||'',i:(st.i===undefined?-1:st.i)}}),
+    plan:r.plan.length,
+    bulbs:r.S.bulbs.map(function(b,i){return b?{i:i,k:b.k,fgn:b.fgn,big:b.big,loose:b.loose}:null}).filter(function(x){return x}),
+    tr:r.S.tr.map(function(t){return {a:t.a,b:t.b,sw:t.sw,bad:t.bad}}),
+    cfg:r.cfg,reads:ctReads(r.S)};
+};
+window.ctvDiff=function(lv){
+  return {fgn:ctFgnOf(lv),big:ctBigOf(lv),sw:ctSwOf(lv),bad:ctBadOf(lv),tr:ctTrOf(lv),loose:ctLooseOf(lv),
+    fuse:ctFuseOf(lv),volts:ctVoltsOf(lv),spare:ctSpare(lv),
+    strokes:(lv<4?'2-4':'3-5'),lv:ctLvOf(lv*2-1)};
+};
+window.ctvClock=function(lv,n){const o=ct.lv,b=ct.n;ct.lv=lv;ct.n=n;const s=ctClockOf();ct.lv=o;ct.n=b;return s};
+window.ctvKeys=function(){
+  const keys=[];
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf('hz_circuit_')===0)keys.push(k)}
+  return keys.sort();
+};
+window.ctvInv=function(){
+  const S=ct.S;
+  if(!S)return {ok:0,bad:['没板子']};
+  const bad=[];
+  if(S.n2!==CT_NS)bad.push('灯座数≠6');
+  if(S.qi<0||S.qi>S.n)bad.push('qi越界'+S.qi);
+  if(S.n<2||S.n>CT_STROKE_MAX)bad.push('笔数越界'+S.n);
+  if(S.volts<4||S.volts>6)bad.push('电池越界'+S.volts);
+  const seen={};
+  for(let i=0;i<CT_NS;i++){
+    const b=S.bulbs[i];
+    if(!b)continue;
+    if(b.fgn){if(b.k!==-1)bad.push('杂灯带笔号@'+i);continue}
+    if(b.k<0||b.k>=S.n)bad.push('笔号越界@'+i+'='+b.k);
+    if(seen[b.k])bad.push('一笔两只灯@'+b.k);
+    seen[b.k]=1;
+    if(b.big&&ctDrop(b)>S.volts)bad.push('大瓦数吃不过电池@'+i);
+    if(b.done&&b.k>=S.qi)bad.push('没收完就标了已收@'+i);
+    if(!b.done&&b.k<S.qi)bad.push('收过了还挂着@'+i);
+  }
+  for(let k=S.qi;k<S.n;k++)if(ctBulbOf(S,k)<0)bad.push('第'+(k+1)+'笔的灯丢了');
+  const wk={};
+  for(let i=0;i<S.wires.length;i++){
+    const w=S.wires[i];
+    if(!w||!w.a||!w.b)bad.push('空线@'+i);
+    else if(w.a===w.b)bad.push('自环线@'+i);
+    else if(!/^[TLRBPM]\d*$/.test(w.a)||!/^[TLRBPM]\d*$/.test(w.b))bad.push('焊盘名不合法@'+i);
+    else if(wk[ctKey(w.a,w.b)])bad.push('重线@'+w.a+':'+w.b);
+    else wk[ctKey(w.a,w.b)]=1;
+  }
+  for(let i=0;i<S.tr.length;i++){
+    const t=S.tr[i];
+    if(!/^[TLRBPM]\d*$/.test(t.a)||!/^[TLRBPM]\d*$/.test(t.b))bad.push('走线焊盘不合法@'+i);
+    if(t.sw>=S.sw.length)bad.push('闸刀号越界@'+i);
+    if(S.sld.length&&i>=S.sld.length)bad.push('虚焊表短了@'+i);
+  }
+  for(let j=0;j<S.sw.length;j++)if(S.sw[j]!==0&&S.sw[j]!==1)bad.push('闸刀值@'+j);
+  /* 器件不许互相压住，也不许压住焊盘的圆心：被压住的那一个真鼠标点不动，盘就解不开了 */
+  {
+    const swX=ctDevXOf('sw'),bdX=ctDevXOf('bad'),pl=ctPadList(),pc=[];
+    for(let i=0;i<pl.length;i++)pc.push(ctPadXY(pl[i]));
+    const far=(x1,y1,x2,y2,r)=>Math.abs(x1-x2)>=r||Math.abs(y1-y2)>=r;
+    for(let i=0;i<S.tr.length;i++){
+      if(swX[i]!=null){
+        for(let j=0;j<pc.length;j++)if(!far(pc[j].x,pc[j].y,swX[i],302,18))bad.push('闸刀压住焊盘@'+i);
+        for(let j=i+1;j<S.tr.length;j++)if(swX[j]!=null&&!far(swX[i],302,swX[j],302,33))bad.push('两座闸刀叠住@'+i+','+j);
+      }
+      if(bdX[i]!=null){
+        for(let j=0;j<pc.length;j++)if(!far(pc[j].x,pc[j].y,bdX[i],258,14))bad.push('虚焊点压住焊盘@'+i);
+        for(let j=i+1;j<S.tr.length;j++)if(bdX[j]!=null&&!far(bdX[i],258,bdX[j],258,25))bad.push('两处虚焊叠住@'+i+','+j);
+      }
+    }
+  }
+  if(ct.pow<0||ct.pow>ct.powMax)bad.push('线盘越界'+ct.pow);
+  if(ct.powMax<1)bad.push('线盘太少'+ct.powMax);
+  if(ct.lays<0)bad.push('拉线数负');
+  if(ct.clock<0||ct.clock>1.001)bad.push('钟越界'+ct.clock);
+  if(ct.hearts<0||ct.hearts>CT_HEART_MAX)bad.push('心越界'+ct.hearts);
+  if(ct.lv<1||ct.lv>9)bad.push('段数越界'+ct.lv);
+  if(ct.wrongWord<0||ct.wrongWord>CT_WRONG_MAX)bad.push('本字错数越界'+ct.wrongWord);
+  if(ct.hist.length>CT_HIST_MAX)bad.push('倒带栈超'+CT_HIST_MAX);
+  if(ct.rec&&ct.n!==ct.rec.n)bad.push('n≠rec.n');
+  if(ct.rec&&ct.gly.length!==ct.n)bad.push('笔形数≠笔数');
+  if(S.blown&&ctWantLit(S))bad.push('断保险还亮着');
+  return {ok:bad.length?0:1,bad:bad,sockets:CT_NS,real:Object.keys(seen).length,wires:S.wires.length,
+    qi:S.qi,n:S.n,tr:S.tr.length,sw:S.sw.length};
+};
+window.ctvBad=function(){
+  const S=ct.S,bad=[];
+  if(!S)return {bad:bad,skip:1};
+  const r=window.ctvInv();
+  if(!r.ok)bad.push.apply(bad,r.bad);
+  /* 静态层 */
+  if(document.querySelectorAll('#ctStatic .ct-pad').length!==CT_NS*4)bad.push('焊盘数≠24');
+  if(document.querySelectorAll('#ctStatic .ct-rail').length!==2)bad.push('铜箔条数≠2');
+  if(!document.getElementById('ctFuse'))bad.push('保险丝没画');
+  if(document.querySelectorAll('#ctStatic .ct-tap').length!==CT_NS*2)bad.push('接线柱引线数≠12');
+  /* 灯泡 DOM 与状态一致 */
+  let live=0;
+  for(let i=0;i<CT_NS;i++)if(S.bulbs[i])live++;
+  const els=document.querySelectorAll('#ctBulbG .ct-bulb');
+  if(els.length!==live)bad.push('灯元素数'+els.length+'≠'+live);
+  for(let i=0;i<CT_NS;i++){
+    const b=S.bulbs[i];if(!b)continue;
+    const el=document.getElementById('ctB'+b.id);
+    if(!el){bad.push('灯'+b.id+'没画');continue}
+    if(el.getAttribute('data-b')!==String(i))bad.push('灯'+b.id+'所在座不符');
+    if(el.classList.contains('on')!==!!b.on)bad.push('灯'+b.id+'通路类不符');
+    if(el.classList.contains('lit')!==!!b.lit)bad.push('灯'+b.id+'点亮类不符');
+    if(el.classList.contains('now')!==(!b.fgn&&b.k===S.qi))bad.push('灯'+b.id+'该收类不符');
+    if(el.classList.contains('fgn')!==!!b.fgn)bad.push('灯'+b.id+'杂灯类不符');
+    if(el.classList.contains('big')!==!!b.big)bad.push('灯'+b.id+'大瓦数类不符');
+    if(el.classList.contains('loose')!==!!(S.bulbs[i]&&S.bulbs[i].loose))bad.push('灯'+b.id+'松座类不符');
+    const num=el.querySelector('.ct-num');
+    if(num&&num.textContent!==String(b.fgn?'?':(b.k+1)))bad.push('灯'+b.id+'笔号不符');
+  }
+  /* 点击层 */
+  if(document.querySelectorAll('#ctHitG .ct-bulbHit').length!==CT_NS)bad.push('灯泡命中区≠6');
+  if(document.querySelectorAll('#ctHitG [data-pad]').length!==CT_NS*4)bad.push('焊盘命中区≠24');
+  if(!document.querySelector('#ctHitG [data-bat]'))bad.push('电池没点击层');
+  /* 跳线 */
+  const w=document.querySelectorAll('#ctWireG .ct-wire').length;
+  const h=document.querySelectorAll('#ctWireG .ct-wireHit').length;
+  if(w!==S.wires.length||h!==S.wires.length)bad.push('线层'+w+'/'+h+'≠'+S.wires.length);
+  /* 走线 / 闸刀 / 虚焊 */
+  if(document.querySelectorAll('#ctTraceG .ct-trace').length!==S.tr.length)bad.push('走线数不符');
+  let swDom=0,badDom=0;
+  for(let i=0;i<S.tr.length;i++){
+    const t=S.tr[i],el=document.getElementById('ctTr'+i);
+    if(!el){bad.push('走线'+i+'没画');continue}
+    const liveT=(t.sw<0||S.sw[t.sw])&&(!t.bad||S.sld[i]);
+    if(el.classList.contains('off')!==!liveT)bad.push('走线'+i+'通断类不符');
+    if(el.classList.contains('bad')!==!!(t.bad&&!S.sld[i]))bad.push('走线'+i+'虚焊类不符');
+    if(t.sw>=0){
+      swDom++;
+      const se=document.getElementById('ctSw'+t.sw);
+      if(!se){bad.push('闸刀'+t.sw+'没画');continue}
+      if(se.classList.contains('shut')!==!!S.sw[t.sw])bad.push('闸刀'+t.sw+'合开类不符');
+    }
+    if(t.bad)badDom++;
+  }
+  if(document.querySelectorAll('#ctTraceG [data-sw]').length!==swDom)bad.push('闸刀点击数不符');
+  if(document.querySelectorAll('#ctTraceG .ct-bad').length!==badDom)bad.push('虚焊点数不符');
+  /* 电池 / 保险丝 */
+  const fu=document.getElementById('ctFuse');
+  if(fu&&fu.classList.contains('blown')!==!!S.blown)bad.push('保险丝类不符');
+  const bt=document.getElementById('ctBat');
+  if(bt&&bt.classList.contains('blown')!==!!S.blown)bad.push('电池变黑类不符');
+  /* 焊盘颜色 */
+  const u=ctNet(S),gp=u.find('P'),gm=u.find('M');
+  for(let i=0;i<CT_NS;i++){
+    ['T','L','R','B'].forEach(function(sd){
+      const el=document.getElementById('ctPad'+sd+i);
+      if(!el){bad.push('焊盘'+sd+i+'没画');return}
+      const g=u.find(sd+i);
+      if(el.classList.contains('pos')!==(g===gp))bad.push('焊盘'+sd+i+'正极色不符');
+      if(el.classList.contains('neg')!==(g===gm))bad.push('焊盘'+sd+i+'负极色不符');
+      if(el.classList.contains('grab')!==(ct.grab===sd+i))bad.push('焊盘'+sd+i+'捏线类不符');
+    });
+  }
+  /* 纸带 / 米字格 */
+  if(document.querySelectorAll('#ctPaperG rect').length!==ct.n+1)bad.push('纸带格数≠笔数+1');
+  const sp=(ct.rec&&ct.rec.raw&&ct.rec.raw.strokes)||[];
+  if(document.querySelectorAll('#ctMiniSvg path').length!==ct.n+1)bad.push('米字格笔数不符');
+  if(sp.length!==ct.n)bad.push('笔料数≠笔数');
+  /* 料牌 */
+  const bask=document.getElementById('ctBasket');
+  if(bask&&bask.getAttribute('data-h')!==ctBasketHTML())bad.push('料牌和状态不符');
+  /* 计时 / 按钮 */
+  const bar=document.getElementById('ctClockBar');
+  /* 钟条每帧才刷一次，模型里的 clock 是连续走的：允许画慢 2 个百分点，别把动画差当成 bug */
+  if(bar){const wd=parseFloat(bar.style.width)||0,wk=ctClamp(ct.clock,0,1)*100;
+    if(Math.abs(wd-wk)>2)bad.push('通电钟宽度不符 '+bar.style.width+'≠'+wk.toFixed(1)+'%')}
+  const pt=document.getElementById('ctPowTxt');
+  if(pt&&pt.textContent!=='🔌 '+ct.pow+'/'+ct.powMax)bad.push('线盘读数不符');
+  const pv=document.getElementById('ctPrevBtn');
+  if(pv&&pv.disabled!==(ct.previewN<=0))bad.push('预览按钮不符');
+  const un=document.getElementById('ctUndoBtn');
+  if(un&&un.disabled!==(ct.undoN<=0||!ct.hist.length))bad.push('倒带按钮不符');
+  const rb=document.getElementById('ctReBtn');
+  if(rb&&rb.disabled!==(ct.respN<=0))bad.push('重摆按钮不符');
+  const wb=document.getElementById('ctWireBtn');
+  if(wb&&wb.disabled!==(ct.pow<=0||S.qi>=S.n||ct.nextMs>0))bad.push('拿线按钮不符');
+  let openSw=0;
+  for(let j=0;j<S.sw.length;j++)if(!S.sw[j])openSw++;
+  const sb=document.getElementById('ctSwBtn');
+  if(sb&&sb.disabled!==!openSw)bad.push('齐闸按钮不符');
+  if(S.qi>=S.n&&!ct.nextMs&&!ct.over)bad.push('收满了却没结帐');
+  return {bad:bad,lit:ctWantLit(S)?1:0,on:ctOnN(S),up:ctOnN(S),blown:S.blown?1:0,
+    wires:S.wires.length,tr:Ntr(S),sw:S.sw.length,sockets:live};
+};
+function Ntr(S){return S.tr.length}
+/* ---- 现场快照 / DOM 读数 ---- */
+window.ctvSnap=function(){
+  const S=ct.S;
+  return {
+    scr:(document.querySelector('.screen.active')||{}).id||'',mode:currentMode,
+    run:ct.run?1:0,over:ct.over?1:0,pool:ct.pool.length,gen:ct.gen,
+    ch:ct.rec?ct.rec.ch:'',n:ct.n,qi:S?S.qi:-1,dirs:ct.rec?ct.rec.dirs.join(''):'',
+    lv:ct.lv,score:Math.round(ct.score),hearts:ct.hearts,combo:ct.combo,maxCombo:ct.maxCombo,
+    words:ct.words,lits:ct.lits,saved:ct.saved,takes:ct.takes,shorts:ct.shorts,blows:ct.blows,
+    wrongs:ct.wrongs,sws:ct.sws,slds:ct.slds,looses:ct.looses,deads:ct.deads,lays:ct.lays,
+    nags:ct.nags,previews:ct.previews,rewinds:ct.rewinds,respins:ct.respins,
+    pow:ct.pow,powMax:ct.powMax,clock:+ct.clock.toFixed(4),clockSec:ct.clockSec,red:ct.red?1:0,
+    since:ct.since,printRun:ct.printRun,think:Math.round(ct.think),
+    previewN:ct.previewN,undoN:ct.undoN,respN:ct.respN,
+    clean:ct.cleanWord?1:0,wrongWord:ct.wrongWord,
+    sol:ct.sol?ct.sol.steps.length:-1,hist:ct.hist.length,
+    volts:S?S.volts:-1,
+    bulbsN:S?S.bulbs.filter(function(b){return b}).length:-1,
+    fgnN:S?S.bulbs.filter(function(b){return b&&b.fgn}).length:-1,
+    bigN:S?S.bulbs.filter(function(b){return b&&b.big&&!b.fgn}).length:-1,
+    looseN:S?S.bulbs.filter(function(b){return b&&b.loose}).length:-1,
+    trN:S?S.tr.length:-1,swN:S?S.sw.length:-1,badN:S?S.tr.filter(function(t){return t.bad}).length:-1,
+    blown:S&&S.blown?1:0,
+    wires:S?S.wires.length:-1,
+    grab:ct.grab
+  };
+};
+window.ctvDom=function(){
+  const S=ct.S;
+  return {
+    grab:ct.grab,cur:ct.cur,
+    sol:ct.sol?ct.sol.steps.length:-1,laid:ct.sol?ct.sol.laid:-1,
+    tagMs:Math.round(ct.tagMs),nextMs:Math.round(ct.nextMs),think:Math.round(ct.think),
+    ghostMs:Math.round(ct.ghostMs),printMs:Math.round(ct.printMs),
+    domPad:document.querySelectorAll('#ctStatic .ct-pad').length,
+    domRail:document.querySelectorAll('#ctStatic .ct-rail').length,
+    domBulb:document.querySelectorAll('#ctBulbG .ct-bulb').length,
+    domWire:document.querySelectorAll('#ctWireG .ct-wire').length,
+    domWireHit:document.querySelectorAll('#ctWireG .ct-wireHit').length,
+    domTrace:document.querySelectorAll('#ctTraceG .ct-trace').length,
+    domSw:document.querySelectorAll('#ctTraceG [data-sw]').length,
+    domBad:document.querySelectorAll('#ctTraceG .ct-bad').length,
+    domHit:document.querySelectorAll('#ctHitG .ct-hit').length,
+    domPaper:document.querySelectorAll('#ctPaperG rect').length,
+    domMini:document.querySelectorAll('#ctMiniSvg path').length,
+    domGhost:document.querySelectorAll('.ct-ghost').length,
+    domGhostPad:document.querySelectorAll('.ct-ghostPad').length,
+    domCur:document.querySelectorAll('#ctCurBox').length,
+    lit:document.querySelectorAll('#ctBulbG .ct-bulb.lit').length,
+    on:document.querySelectorAll('#ctBulbG .ct-bulb.on').length,
+    now:document.querySelectorAll('#ctBulbG .ct-bulb.now').length,
+    fgn:document.querySelectorAll('#ctBulbG .ct-bulb.fgn').length,
+    posPad:document.querySelectorAll('#ctStatic .ct-pad.pos').length,
+    numTxt:[].slice.call(document.querySelectorAll('#ctBulbG .ct-num')).map(function(e){return e.textContent}).join(','),
+    cap:(document.getElementById('ctMiniCap')||{}).textContent||'',
+    ask:(document.getElementById('ctAsk')||{}).textContent||'',
+    line:(document.getElementById('ctHintLine')||{}).textContent||'',
+    msg:(document.getElementById('ctMsg')||{}).innerHTML||'',
+    powTxt:(document.getElementById('ctPowTxt')||{}).textContent||'',
+    clkTxt:(document.getElementById('ctClockTxt')||{}).textContent||'',
+    badge:(document.getElementById('ctBadge')||{}).textContent||'',
+    tag:(document.getElementById('ctTag')||{}).textContent||'',
+    scoreTxt:(document.getElementById('ctScoreTxt')||{}).textContent||'',
+    rankTxt:(document.getElementById('ctRankTxt')||{}).textContent||'',
+    heartTxt:(document.getElementById('ctHeartTxt')||{}).textContent||'',
+    lvTxt:(document.getElementById('ctLvTxt')||{}).textContent||'',
+    litTxt:(document.getElementById('ctLitTxt')||{}).textContent||'',
+    comboTxt:(document.getElementById('ctComboTxt')||{}).textContent||'',
+    layTxt:(document.getElementById('ctLayTxt')||{}).textContent||'',
+    saveTxt:(document.getElementById('ctSaveTxt')||{}).textContent||'',
+    shortTxt:(document.getElementById('ctShortTxt')||{}).textContent||'',
+    wrongTxt:(document.getElementById('ctWrongTxt')||{}).textContent||'',
+    tip:(document.querySelector('.ct-tip')||{}).innerHTML||'',
+    baskTxt:(document.getElementById('ctBasket')||{}).textContent||'',
+    tblCls:(document.getElementById('ctTbl')||{}).className||''
+  };
+};
+window.ctvBtn=function(){
+  const g=function(id){const e=document.getElementById(id);return e?e:0};
+  const wb=g('ctWireBtn'),sb=g('ctSwBtn'),pv=g('ctPrevBtn'),un=g('ctUndoBtn'),rb=g('ctReBtn');
+  return {
+    wireDis:wb.disabled?1:0,swDis:sb.disabled?1:0,prevDis:pv.disabled?1:0,undoDis:un.disabled?1:0,reDis:rb.disabled?1:0,
+    wireTxt:(wb.textContent||'').trim(),swTxt:(sb.textContent||'').trim(),
+    prevTxt:(pv.textContent||'').trim(),undoTxt:(un.textContent||'').trim(),reTxt:(rb.textContent||'').trim(),
+    wireOn:document.getElementById('ctWireBtn')?document.getElementById('ctWireBtn').classList.contains('on'):false,
+    badgeOn:document.getElementById('ctBadge')?document.getElementById('ctBadge').classList.contains('on'):false,
+    tagOn:document.getElementById('ctTag')?document.getElementById('ctTag').classList.contains('on'):false,
+    markN:document.querySelectorAll('.ct-mark').length,ringN:document.querySelectorAll('.ct-ring').length,
+    bitN:document.querySelectorAll('.ct-bit').length,popN:document.querySelectorAll('.ct-pop').length,
+    sparkN:document.querySelectorAll('.ct-spark').length,ghostN:document.querySelectorAll('.ct-ghost').length,
+    fuseBlown:document.getElementById('ctFuse')?document.getElementById('ctFuse').classList.contains('blown'):false,
+    dead:document.getElementById('ctTbl')?document.getElementById('ctTbl').classList.contains('dead'):false,
+    hot:document.getElementById('ctTbl')?document.getElementById('ctTbl').classList.contains('hot'):false,
+    warn:document.getElementById('ctTbl')?document.getElementById('ctTbl').classList.contains('warn'):false,
+    low:document.getElementById('ctClockBox')?document.getElementById('ctClockBox').classList.contains('low'):false,
+    barW:(document.getElementById('ctClockBar')||{}).style?document.getElementById('ctClockBar').style.width:'',
+    basket:document.querySelectorAll('#ctBasket .ct-nd').length,
+    more:(document.querySelector('#ctBasket .ct-more')||{}).innerHTML||'',
+    cardDot:(document.getElementById('ctCardDot')||{}).textContent||'',
+    cardTip:(document.getElementById('ctCardTip')||{}).textContent||''
+  };
+};
+window.ctvSolve=function(){
+  if(!ct.sol||!ct.S)return -1;
+  const S=ct.S;
+  const drain=function(){
+    for(;;){
+      ctEval(S);
+      if(S.qi>=S.n||!ctWantLit(S))break;
+      S.qi++;
+    }
+  };
+  for(let k=0;k<ct.sol.steps.length&&S.qi<S.n;k++){
+    drain();
+    if(S.qi>=S.n)break;
+    if(!ctPlanRun(S,ct.sol.steps[k]))continue;
+    ctEval(S);
+  }
+  drain();
+  ctBoard();ctPaper();ctMini();ctHud();ctAskText();ctLine();
+  return S.qi;
+};
+window.ctvStage=function(p){
+  p=p||{};
+  ctStopAll();ct.gen++;
+  ct.run=true;ct.over=false;
+  ct.timers=[];
+  ct.lv=p.lv||1;ct.score=p.score||0;ct.hearts=p.hearts===undefined?CT_HEARTS:p.hearts;
+  ct.combo=p.combo||0;ct.maxCombo=p.maxCombo||ct.combo;
+  ct.words=p.words||0;ct.lits=p.lits||0;ct.saved=p.saved||0;ct.takes=p.takes||0;
+  ct.shorts=p.shorts||0;ct.blows=p.blows||0;ct.wrongs=p.wrongs||0;ct.sws=p.sws||0;
+  ct.slds=p.slds||0;ct.looses=p.looses||0;ct.deads=0;ct.nags=0;
+  ct.previews=0;ct.rewinds=0;ct.respins=0;
+  ct.previewN=p.previewN===undefined?2:p.previewN;
+  ct.undoN=p.undoN===undefined?3:p.undoN;
+  ct.respN=p.respN===undefined?1:p.respN;
+  ct.ghostMs=0;ct.ghost=null;ct.tagMs=0;
+  ct.think=0;ct.playMs=0;ct.t=0;ct.hudTxt={};
+  ct.printMs=0;ct.nextMs=0;ct.printRun=p.printRun||0;ct.since=p.since===undefined?0:p.since;
+  ct.cleanWord=p.cleanWord===undefined?true:p.cleanWord;ct.wrongWord=p.wrongWord||0;
+  ct.hist=[];ct.cur=p.cur===undefined?-1:p.cur;ct.grab='';ct.tid=1;
+  /* 方向表必须和板上的灯泡一样多：钩子摆了 n 笔就要有 n 个方向，不然第 5 笔没有笔形可画 */
+  const dirs=p.dirs||(p.rec&&p.rec.dirs?p.rec.dirs.slice():[0,1,2,3,0].slice(0,p.n===undefined?4:p.n));
+  let rec;
+  if(p.rec&&p.rec.raw&&p.rec.raw.strokes&&p.rec.raw.strokes.length===dirs.length){
+    /* 摆盘也能摆真字：截图要的是玩家真能看见的那个字，不是米字格里糊一条白带子 */
+    rec={ch:p.rec.ch,n:dirs.length,dirs:dirs,raw:{strokes:p.rec.raw.strokes.slice(),
+      medians:p.rec.raw.medians.map(function(m){return m.map(function(q){return q.slice()})})}};
+  }else{
+    const strokes=[],medians=[];
+    for(let i=0;i<dirs.length;i++){
+      strokes.push('M100 400 L600 400 L600 460 L100 460 Z');
+      medians.push([[100,430],[600,430]]);
+    }
+    /* ch 也得是真在课程字表 CHARS 里的字：ctBookAdd/ctMissAdd 都拿 CHARS.indexOf 把关，
+       假的占位字（原先用「灯」，1453 字表里没这个字）会让摆盘局里的错字永远进不了手册、收满也永远不进档案 */
+    rec={ch:p.ch||'本',n:dirs.length,dirs:dirs,raw:{strokes:strokes,medians:medians}};
+  }
+  ct.rec=rec;
+  ct.n=dirs.length;
+  ct.gly=ctGlyOf(ct.rec);
+  const S=window.ctvS({n:ct.n,qi:p.qi||0,volts:p.volts,bulbs:p.bulbs,wires:p.wires,tr:p.tr,sw:p.sw,sld:p.sld,blown:p.blown});
+  ct.S=S;
+  ct.lays=p.lays===undefined?S.wires.length:p.lays;
+  ct.powMax=p.powMax===undefined?8:p.powMax;
+  ct.pow=p.pow===undefined?ct.powMax:p.pow;
+  ct.clockSec=p.clockSec||ctClockOf();
+  ct.clock=p.clock===undefined?1:p.clock;
+  ct.red=!!p.red;ct.beep=0;
+  ct.sol=p.sol===undefined?null:p.sol;
+  ct.tid=Math.max(ct.tid,1000);
+  ctEval(S);
+  showScreen('circuit');
+  ctBind();ctPointer();
+  ctRenderStatic();ctBoard();ctPaper();ctMini();ctBasket();ctHud();ctAskText();ctLine();
+  if(p.say)ctSay(p.say,'#C5E1A5');
+  return 1;
+};
+window.ctvSet=function(k,v){
+  if(!ct.S&&k!=='rec')return 0;
+  if(k==='clock')ct.clock=v;
+  else if(k==='pow')ct.pow=v;
+  else if(k==='powMax')ct.powMax=v;
+  else if(k==='think')ct.think=v;
+  else if(k==='qi')ct.S.qi=v;
+  else if(k==='since')ct.since=v;
+  else if(k==='printRun')ct.printRun=v;
+  else if(k==='grab')ct.grab=v;
+  else if(k==='cur')ct.cur=v;
+  else if(k==='tagMs')ct.tagMs=v;
+  else if(k==='ghostMs')ct.ghostMs=v;
+  else if(k==='hearts')ct.hearts=v;
+  else if(k==='combo')ct.combo=v;
+  else if(k==='wrongWord')ct.wrongWord=v;
+  else if(k==='nextMs')ct.nextMs=v;
+  else if(k==='blown')ct.S.blown=v?1:0;
+  else if(k==='sw'){ct.S.sw[v.i]=v.on?1:0}
+  else if(k==='previewN')ct.previewN=v;
+  else if(k==='undoN')ct.undoN=v;
+  else if(k==='respN')ct.respN=v;
+  else if(k==='lv')ct.lv=v;
+  else if(k==='n')ct.n=v;
+  else if(k==='rec')ct.rec=v;
+  else return 0;
+  return 1;
+};
+window.ctvPad=function(k){const p=ctPadXY(k);return {x:+p.x.toFixed(1),y:+p.y.toFixed(1),name:ctPadName(k),list:ctPadList()}};
+window.ctvSocket=function(i){
+  const S=ct.S,b=S&&S.bulbs[i];
+  return b?{i:i,k:b.k,fgn:b.fgn,big:b.big,loose:b.loose,done:b.done,on:b.on?1:0,lit:b.lit?1:0,dim:b.dim||'',byp:b.byp?1:0,
+    drop:ctDrop(b),why:ctWhy(S,i,ctNet(S)),foot:ctFootSay(S,ctNet(S),i),br:ctBrSay(S,i),
+    path:b.path?b.path.join('-'):''}:{i:i,empty:1};
+};
+window.ctvWhy=function(i){const S=ct.S;if(!S||!S.bulbs[i])return 'empty';return ctWhy(S,i,ctNet(S))};
+window.ctvLit=function(i){return ct.S&&ctLit(ct.S,i)?1:0};
+window.ctvReads=function(){return ct.S?ctReads(ct.S):''};
+window.ctvBadge=function(){return ct.S?ctBadgeSay(ct.S):''};
+window.ctvBasketT=function(){return ctBasketHTML()};
+window.ctvMeter=function(){ctMeter();return (document.getElementById('ctClockTxt')||{}).textContent||''};
+window.ctvTick=function(dt){ctTick(dt||0.05)};
+window.ctvPump=function(n,dt){for(let i=0;i<(n||20);i++)ctTick(dt||0.05)};
+window.ctvTapPad=function(k){return ctTapPad(k)?1:0};
+window.ctvWire=function(a,b){const n=ct.S?ct.S.wires.length:-1;const ok=ctWire(a,b);return {ok:ok?1:0,d:(ct.S?ct.S.wires.length:-1)-n,pow:ct.pow,blown:ct.S&&ct.S.blown?1:0,reads:ct.S?ctReads(ct.S):''}};
+window.ctvCut=function(i){return ctCutWire(i)?1:0};
+window.ctvTapBulb=function(i){return ctTapBulb(i)?1:0};
+window.ctvTapSlot=function(c){return ctTapSlot(c)?1:0};
+window.ctvSwitch=function(j){return ctTapSwitch(j)?1:0};
+window.ctvSwitches=function(){return ctSwitches()?1:0};
+window.ctvSolder=function(i){return ctSolder(i)?1:0};
+window.ctvTighten=function(i){return ctTighten(i)?1:0};
+window.ctvBattery=function(){return ctTapBattery()?1:0};
+window.ctvTake=function(i){return ctTake(i)?1:0};
+window.ctvTakeNext=function(){return ctTakeNext()?1:0};
+window.ctvGrabNext=function(){return ctGrabNext()?1:0};
+window.ctvPreview=function(){const b=ct.previewN;ctPreview();return ct.previewN<b?1:0};
+window.ctvUndo=function(){const b=ct.undoN;ctUndo();return ct.undoN<b?1:0};
+window.ctvRespin=function(){const b=ct.respN;ctRespin();return ct.respN<b?1:0};
+window.ctvRedress=function(){return ctRedress()?1:0};
+window.ctvNewBoard=function(from){return ctNewBoard(from||0)?1:0};
+window.ctvWin=function(){ctWin();return ct.score};
+window.ctvPrint=function(k,ch){ctPrint(k||0,ch||0);return ct.score};
+window.ctvWrong=function(n){ctOnWrong(n||1);return ct.score};
+window.ctvLoseHeart=function(w){ctLoseHeart(w||'wrong');return ct.hearts};
+window.ctvPowerOut=function(k){ctPowerOut(k||'clock')};
+window.ctvNag=function(){ctNag();return ct.nags};
+window.ctvHelp=function(){ctHelp();return (document.getElementById('ctMsg')||{}).innerHTML||''};
+window.ctvAsk=function(){const el=document.getElementById('ctAsk');return el?el.textContent:''};
+window.ctvLineT=function(){const el=document.getElementById('ctHintLine');return el?el.textContent:''};
+window.ctvSay=function(){const el=document.getElementById('ctMsg');return el?el.innerHTML:''};
+window.ctvEnd=function(r){ctEnd(r||'quit');return Math.round(ct.score)};
+window.ctvRank=function(n){const R=ctRank(n);return R.e+' '+R.t};
+window.ctvStepSay=function(){const st=ctNextStep();return st?ctStepSay(st):''};
+window.ctvCursor=function(c){ct.cur=c;ctCursor();ctCursorSay();return (document.getElementById('ctMsg')||{}).innerHTML||''};
+window.ctvT=function(ms){return ctT(function(){},ms||10)};
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
