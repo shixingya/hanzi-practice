@@ -5068,6 +5068,143 @@ button:active{transform:scale(.95)}
   .gr-stage{flex-direction:column}
   .gr-mini{flex:0 0 auto;width:88px;margin:0 auto}
 }
+/* ================= v1.79 笔顺磁力场 ================= */
+.mx-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.mx-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.mx-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.mx-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.mx-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.mx-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.mx-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.mx-cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:11px;color:#B3E5FC}
+.mx-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#12212E 0%,#182A3A 44%,#0B1620 100%);box-shadow:inset 0 0 34px rgba(0,0,0,.6);transition:box-shadow .2s}
+.mx-tbl.hot{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 26px rgba(79,195,247,.3)}
+.mx-tbl.dead{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 30px rgba(255,82,82,.4)}
+.mx-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+.mx-board{fill:rgba(8,16,24,.66);stroke:rgba(120,210,255,.28);stroke-width:3}
+.mx-cell{stroke:rgba(178,235,255,.1);stroke-width:1.4}
+.mx-cell.dark{fill:rgba(255,255,255,.026)}
+.mx-cell.lite{fill:rgba(120,200,255,.07)}
+.mx-cell.ins{fill:rgba(84,39,107,.5);stroke:rgba(206,147,255,.4);stroke-width:2}
+.mx-bolt{fill:rgba(200,240,255,.2)}
+.mx-cur{fill:rgba(255,241,118,.1);stroke:#FFF176;stroke-width:3;stroke-dasharray:9 7;animation:mxCur .9s ease-in-out infinite;pointer-events:none}
+@keyframes mxCur{0%,100%{opacity:.35}50%{opacity:1}}
+/* ---- 磁场线（预览 / 通电瞬间） ---- */
+#mxFieldG,#mxPaperG,#mxTopG{pointer-events:none}
+.mx-fl{fill:none;stroke-width:2.4;stroke-linecap:round;opacity:.6;stroke-dasharray:10 8;animation:mxFlow 1s linear infinite}
+.mx-fl.pull{stroke:#4FC3F7}
+.mx-fl.push{stroke:#FFB74D}
+@keyframes mxFlow{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-18}}
+.mx-ar{fill:none;stroke-width:4;stroke-linecap:round;stroke-dasharray:9 7;animation:mxCur .8s ease-in-out infinite}
+.mx-ar.pull{stroke:#4FC3F7}
+.mx-ar.push{stroke:#FFB74D}
+.mx-ah{stroke-width:2}
+.mx-ah.pull{fill:#4FC3F7;stroke:#4FC3F7}
+.mx-ah.push{fill:#FFB74D;stroke:#FFB74D}
+/* ---- 磁牌 ---- */
+.mx-tile{cursor:pointer}
+.mx-body{stroke-width:2.6}
+.mx-tile.n .mx-body{fill:url(#mxRedMag);stroke:#8E1D1D}
+.mx-tile.s .mx-body{fill:url(#mxBlueMag);stroke:#12496E}
+.mx-tile.dead .mx-body{fill:url(#mxGreyMag);stroke:#546E7A}
+.mx-tile.dead{cursor:default}
+.mx-face{fill:#FFF8E1;stroke:rgba(0,0,0,.3);stroke-width:2}
+.mx-tile.s .mx-face{fill:#E1F5FE}
+.mx-tile.dead .mx-face{fill:#CFD8DC}
+.mx-nm{font-size:12px;font-weight:bold;text-anchor:middle;fill:#37474F}
+.mx-pol{font-size:12px;font-weight:bold;text-anchor:middle;fill:#fff}
+.mx-arw{font-size:19px;font-weight:bold;text-anchor:middle}
+.mx-tile.now .mx-body{stroke:#FFF176;stroke-width:4}
+.mx-tile.sel .mx-body{stroke:#FFD54F;stroke-width:4;stroke-dasharray:7 5}
+.mx-tile.bad .mx-body{stroke:#FF5252;stroke-width:4}
+.mx-tile.bad .mx-fc{animation:mxWob .42s ease-in-out infinite}
+@keyframes mxWob{0%,100%{transform:translate(0,0)}25%{transform:translate(-1.6px,1.2px)}75%{transform:translate(1.6px,-1.2px)}}
+.mx-tile.glid{opacity:.5}
+/* ---- 电磁笔 ---- */
+.mx-pen{cursor:pointer;transition:transform .25s ease-out}
+.mx-penbody{fill:url(#mxSteel);stroke:#78909C;stroke-width:2.4}
+.mx-pen.n .mx-h1{fill:#EF5350}
+.mx-pen.n .mx-h2{fill:#90A4AE}
+.mx-pen.s .mx-h1{fill:#90A4AE}
+.mx-pen.s .mx-h2{fill:#42A5F5}
+.mx-penTxt{font-size:11px;font-weight:bold;text-anchor:middle;fill:#263238}
+.mx-penGlow{fill:none;stroke-width:3;opacity:.75;animation:mxGlow 1.2s ease-in-out infinite}
+.mx-pen.n .mx-penGlow{stroke:#FF8A65}
+.mx-pen.s .mx-penGlow{stroke:#4FC3F7}
+@keyframes mxGlow{0%,100%{opacity:.28}50%{opacity:.9}}
+/* ---- 印字台 / 铁栅 ---- */
+.mx-hole{fill:rgba(255,241,118,.16);stroke:#F9A825;stroke-width:3}
+.mx-holeTxt{font-size:12px;font-weight:bold;fill:#FFE082;text-anchor:middle}
+.mx-wall{font-size:28px;text-anchor:middle}
+/* ---- 纸带 ---- */
+.mx-paper{fill:#FFF8E1;stroke:rgba(144,202,241,.5);stroke-width:2}
+.mx-pbox{fill:rgba(0,0,0,.06);stroke:rgba(0,0,0,.14);stroke-width:1.4}
+.mx-pnow{fill:rgba(255,241,118,.24);stroke:#F9A825;stroke-width:2.4}
+.mx-ptxt{font-size:10.5px;font-weight:bold;fill:#546E7A;text-anchor:middle}
+/* ---- 特效层 ---- */
+.mx-flash{fill:rgba(79,195,247,.26);animation:mxFlash .62s ease-out forwards}
+@keyframes mxFlash{0%{opacity:1}100%{opacity:0}}
+.mx-mark{fill:none;stroke:#40C4FF;stroke-width:3.4;stroke-dasharray:11 8;animation:mxMark .9s ease-out infinite;pointer-events:none}
+@keyframes mxMark{0%,100%{opacity:.3}50%{opacity:1}}
+.mx-spark{font-size:17px;text-anchor:middle;animation:mxRise 1.1s ease-out forwards}
+@keyframes mxRise{0%{opacity:0;transform:translateY(4px)}20%{opacity:1}100%{opacity:0;transform:translateY(-24px)}}
+.mx-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.mx-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:mxBit .74s ease-out forwards}
+@keyframes mxBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.mx-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF59D;text-shadow:0 1px 4px rgba(0,0,0,.7);animation:mxPop .95s ease-out forwards;white-space:nowrap}
+@keyframes mxPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.mx-shake{animation:mxShake .34s}
+@keyframes mxShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px) rotate(-.5deg)}50%{transform:translateX(8px) rotate(.5deg)}80%{transform:translateX(-3px)}}
+/* ---- 电量条 / 计量 ---- */
+.mx-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.mx-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(0,0,0,.4);overflow:hidden}
+.mx-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#42A5F5,#4FC3F7 62%,#B3E5FC 90%);transition:width .1s linear}
+.mx-tl.low i{background:linear-gradient(90deg,#FF8A65,#FF5252)}
+.mx-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.mx-clock{font-size:12px;color:#fff;background:rgba(0,0,0,.4);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.mx-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#E1F5FE;background:rgba(0,0,0,.34);border-radius:14px;padding:9px 10px;line-height:1.5}
+.mx-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.mx-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0}
+.mx-tool{flex:1;padding:11px 4px;border:none;border-radius:13px;font-size:13px;color:#ECEFF1;background:rgba(255,255,255,.14);cursor:pointer;font-family:inherit}
+.mx-tool.on{background:#29B6F6;color:#01223A;font-weight:bold}
+.mx-tool.go{background:#FFC400;color:#3E2723;font-weight:bold}
+.mx-tool:disabled{opacity:.4}
+.mx-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.3);color:#B3E5FC;font-size:13px;line-height:1.65;min-height:44px;overflow-anchor:none}
+.mx-msg b{color:#fff}
+.mx-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.mx-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.mx-badge{position:absolute;right:8px;top:8px;font-size:11px;color:#01223A;background:rgba(230,245,255,.9);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+.mx-badge.on{display:block}
+.mx-slow{position:absolute;left:8px;top:8px;font-size:12px;color:#fff;background:rgba(255,64,129,.86);border-radius:11px;padding:3px 10px;display:none}
+.mx-slow.on{display:block}
+.mx-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.mx-rs span{display:block;font-size:24px;font-weight:bold}
+.mx-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.mx-book-t{font-size:12px;color:#B3E5FC;margin-top:12px}
+.mx-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.mx-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.mx-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#29B6F6;color:#01223A;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.mx-cdot.on{display:flex}
+@media (max-width:600px){
+  .mx-stage{flex-direction:column}
+  .mx-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
+/* ---- v1.79 补丁：滑动 / 篮子 / 虚影 / 干扰牌 ---- */
+.mx-tile,.mx-pen{transition:transform .25s ease-out}
+.mx-wall,.mx-hole,.mx-phead{pointer-events:none}
+.mx-cell.mx-holeC{cursor:pointer}
+.mx-tile.fgn .mx-body{stroke-dasharray:7 5;opacity:.82}
+.mx-tile.fgn .mx-face{fill:#ECEFF1}
+.mx-ring{animation:mxRing .92s ease-out forwards}
+@keyframes mxRing{0%{stroke-width:5;opacity:1}100%{stroke-width:1;opacity:0;transform:scale(1.5)}}
+.mx-mark2{fill:none;stroke:#FFF176;stroke-width:2.4;stroke-dasharray:6 6;opacity:.7;animation:mxCur .9s ease-in-out infinite}
+.mx-glid{fill:rgba(255,241,118,.12);stroke:#FFF176;stroke-width:2.2;stroke-dasharray:7 6}
+.mx-nd{font-style:normal;font-size:11px;color:#CFD8DC;background:rgba(255,255,255,.1);border-radius:10px;padding:3px 9px;white-space:nowrap}
+.mx-nd.in{color:#fff;background:rgba(79,195,247,.3)}
+.mx-nd.dead{color:#fff;background:rgba(255,82,82,.3)}
+.mx-more{flex:1 1 100%;text-align:center;font-size:11.5px;color:#B0BEC5;margin-top:3px;line-height:1.5}
+.mx-more b{color:#FFF176}
+.mx-phead{font-size:12px;font-weight:bold;fill:#FFE082;text-anchor:middle}
 </style>
 
 </head>
@@ -5124,8 +5261,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 77 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">77</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 78 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">78</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -5136,12 +5273,18 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>77 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>23</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>78 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>24</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" onclick="enterMode('magnet')">
+      <div class="icon">🧲</div>
+      <div class="info"><h3>笔顺磁力场</h3><p id="mxCardTip">同极相斥、异极相吸 —— 把电磁笔放到哪一格、朝哪一极，一通电它那一横一竖上的磁牌同时滑动，把该印的那一笔送进印字台</p></div>
+      <span class="mx-cdot" id="mxCardDot">🆕</span>
+    </div>
+    
 <div class="mode-card" onclick="enterMode('gear')">
       <div class="icon">⚙️</div>
       <div class="info"><h3>笔顺齿轮坊</h3><p id="grCardTip">咬住的轮必定反着转、皮带套住的轮同向 —— 把马达的转动送到每块刻字轮，方向对上就自己印字</p></div>
@@ -5707,6 +5850,115 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-magnet">
+  <div class="top-bar">
+    <button class="back-btn" onclick="mxLeave()">← 返回</button>
+    <div class="stats"><span id="mxScoreTxt">🎯 0 分</span><span id="mxLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="mxHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="mx-hud">
+    <span id="mxRankTxt" title="称号">🔧 玩铁屑的</span>
+    <span id="mxHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="mxComboTxt" title="连击">🔥 连 0</span>
+    <span id="mxLitTxt" title="印了几笔">✅ 0 笔</span>
+    <span id="mxPulseTxt" title="通了几次电">⚡ 0</span>
+    <span id="mxStickTxt" title="粘成几串">🔗 0</span>
+    <span id="mxDropTxt" title="甩掉几张">💨 0</span>
+    <span id="mxWrongTxt" title="送错几次">🚫 0</span>
+  </div>
+  <div class="mx-ask" id="mxAsk">🧲 正在给磁场通电……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="mx-stage">
+    <div class="mx-mini">
+      <svg viewBox="0 -1024 1024 1024" id="mxMiniSvg"></svg>
+      <div class="mx-cap" id="mxMiniCap">这个字</div>
+    </div>
+    <div class="mx-tbl" id="mxTbl">
+      <svg class="mx-svg" id="mxSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="mxRedMag" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFC1B0"/><stop offset=".45" stop-color="#E8574B"/><stop offset="1" stop-color="#8E1D1D"/>
+          </linearGradient>
+          <linearGradient id="mxBlueMag" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#C7EBFF"/><stop offset=".45" stop-color="#3E9BD6"/><stop offset="1" stop-color="#12496E"/>
+          </linearGradient>
+          <linearGradient id="mxGreyMag" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ECEFF1"/><stop offset=".5" stop-color="#90A4AE"/><stop offset="1" stop-color="#455A64"/>
+          </linearGradient>
+          <linearGradient id="mxSteel" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F4F7F8"/><stop offset=".46" stop-color="#A5B7C1"/><stop offset="1" stop-color="#4B636F"/>
+          </linearGradient>
+        </defs>
+        <g id="mxStatic"></g>
+        <g id="mxFieldG"></g>
+        <g id="mxTileG"></g>
+        <g id="mxPenG"></g>
+        <g id="mxPaperG"></g>
+        <g id="mxTopG"></g>
+      </svg>
+      <div class="mx-fx" id="mxFx"></div>
+      <div class="mx-badge" id="mxBadge">🧲</div>
+      <div class="mx-slow" id="mxStormTag">🌀 有张牌自己翻了个面</div>
+    </div>
+  </div>
+  <div class="mx-basket" id="mxBasket" style="display:flex;gap:6px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:36px;padding:6px;border-radius:14px;background:rgba(0,0,0,.36);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap"></div>
+  <div class="mx-meter">
+    <div class="mx-tl" id="mxClockBox"><i id="mxClockBar"></i><b id="mxClockTxt">⏳ 磁场满格</b></div>
+    <div class="mx-clock" id="mxPowTxt">⚡ ——</div>
+  </div>
+  <div class="mx-hintline" id="mxHintLine">👇 <b>点一个空格</b> 把 <b>🧲 电磁笔</b> 放过去（<code>方向键</code> 移光标 + <code>Enter</code>），再按 <code>空格</code> <b>⚡ 通电</b></div>
+  <div class="mx-tools">
+    <button class="mx-tool go" id="mxZap" onclick="mxZap()">⚡ 通电<b style="font-size:11px"> 空格</b></button>
+    <button class="mx-tool on" id="mxTPen" onclick="mxPickTool(0)">🧲 移笔<b style="font-size:11px"> 1</b></button>
+    <button class="mx-tool" id="mxTFlip" onclick="mxPickTool(1)">🎯 翻牌<b style="font-size:11px"> 2</b></button>
+    <button class="mx-tool" id="mxPrevBtn" onclick="mxPreview()" disabled>💡 预览</button>
+    <button class="mx-tool" id="mxUndoBtn" onclick="mxUndo()" disabled>🔄 倒带</button>
+    <button class="mx-tool" id="mxReBtn" onclick="mxRespin()">🔁 重摆</button>
+    <button class="mx-tool" onclick="mxEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="mx-msg" id="mxMsg">板子上是一片 <b>🧲 磁场</b>：每张牌都带着 <b>N（红）</b> 或 <b>S（蓝）</b> 一极，牌面就是这个字其中一笔的 <b>真实笔形</b>。你手上有一只 <b>🧲 电磁笔</b> —— <b>放到哪格、朝哪极</b> 都由你定，按 <b>⚡ 通电</b> 的那一下，<b>它那一横一竖上的牌同时</b> 动起来：<b>异极吸过来、同极斥开</b>，<b>两格以内一跳就是两格</b></div>
+  <div class="mx-tip">深蓝板子上是 <b>磁场台</b>（<b>6×5</b> 的格子）：散着几张 <b>磁牌</b>（牌面就是这个字其中一笔的 <b>真实笔形</b>，横红、竖青、撇蓝、捺橘，和左边米字格同一套颜色，角上写着第几笔），每张牌顶上一极 <b>N 红</b> 或 <b>S 蓝</b>。底行两格是 <b>🈳 印字台</b><br>
+    🧲 <b>同极相斥、异极相吸</b>：电磁笔 <b>翻个面</b>（点它 / <code>X</code>）整场力的方向就 <b>全反</b> —— 想吸过来放 <b>异极</b>，想推开放 <b>同极</b><br>    ✚ <b>十字场</b>：笔只管得住 <b>自己那一横一竖</b> 上的牌，<b>斜着够不着</b>；笔 <b>自己那格</b> 挡路，牌撞上来就停<br>
+    ⚡ <b>一步全动</b>：通电一次，那一横一竖上 <b>每张牌同时</b> 朝（或背离）笔滑 <b>一格</b>；<b>两格以内</b> 磁力强、直接滑 <b>两格</b> —— 推一张会 <b>把整行都带上</b>，得先把整盘看一遍<br>
+    🔗 <b>会粘、会甩</b>：两张 <b>异极</b> 牌撞上就 <b>啪地粘成一串</b>（一串 <b>最多两张</b>，尾巴那张跟着串头走、自己不动）；串 <b>撞上边框或 🧱 铁栅</b> 会 <b>甩掉尾巴</b> —— 甩下来的那张 <b>定住一步</b>，正好给你腾手。🎯 <b>翻牌</b> 点串上任何一张 = <b>翻成同极弹开</b><br>
+    🚫 <b>送错要认</b>：印字台 <b>只收该印的那一笔</b> —— 送早了（还没轮到）<b>弹回原位、不扣分</b>；牌面 <b>不是这个字的笔</b>（挂着 <b>?</b> 的废牌）撞上就 <b>当场打下来</b>：扣 <b>8 分</b>、断连击，<b>连错 3 次掉一颗心</b><br>
+    🧱 <b>铁栅</b>（<b>第 3 段</b> 起）挡磁场、撞上去就停还会甩牌；🟪 <b>绝缘格</b>（<b>第 5 段</b> 起）牌踩上去 <b>卡一步</b> 才走得动；🌀 <b>磁暴</b>（<b>第 6 段</b> 起）每 <b>3 次通电</b> 有张牌 <b>自己翻面</b>，左上角会报是哪一格<br>
+    ⏳ <b>磁场钟</b>：每阵发 <code>30 + 笔数×6 − 段数×2</code> 秒（下限 30），走光 <b>断电</b>、掉一颗心、这一阵 <b>重摆</b>（<b>已经印出来的笔不抹掉</b>）；⚡ <b>电量</b> = 这盘 <b>军师算出的通电次数 + 余量</b>（低段 +2、高段 +1），一次通电 1 格，<b>用完也掉一颗心</b><br>
+    💡 <b>预览</b>（<code>Q</code>）画出 <b>每张牌的新位置</b>；🎯 <b>翻牌</b>（<code>2</code> 或 <code>W</code>）把 <b>你点的那张牌</b> 翻面 / <b>拆串</b>；🔄 <b>倒带</b>（<code>R</code>）<b>退回上一次通电之前</b>，板面一模一样还原；🔁 <b>重摆</b>（<code>T</code>）剩下的牌 <b>另摆一盘</b> —— 预览 <b>2</b> 次、翻牌 <b>2</b> 次、倒带 <b>3</b> 次、重摆 <b>1</b> 次，<b>升段各补 1 次</b><br>
+    📈 <b>印一笔</b> 吃 <code>round((14 + 第几笔×2 + 段数×3) × (1 + 连击×0.05))</code>，<b>一串送进两张</b>再多 <code>6 + 段数×2</code>；<b>整个字印满</b>：<code>26 + 笔数×6 + 段数×6 + 剩电×3</code>，<b>一次没送错再多 22</b>；<b>每 2 个字升 1 段</b>（最多 9 段）、<b>每 3 个字补一颗心</b>（最多 5 颗）<br>
+    👀 发呆 12 秒 🐰 会报「<b>该印的那张牌在第几行第几列</b>、它 <b>N 还是 S</b>、下一步 <b>笔该放哪格、该吸还是该斥</b>」· 战绩落盘 <code>hz_magnet_*</code></div>
+</div>
+<div class="screen" id="screen-magnet-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="mxLeave()">← 回首页</button>
+    <div class="stats"><span id="mxRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="mxRsEmoji">🧲</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="mxRsTitle">磁场稳住了</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="mxRsSub">下一次先想 <b>这张牌要往哪儿走</b>，再定 <b>笔放哪儿、朝哪极</b></p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="mx-rs">
+      <div><span style="color:#FFD700" id="mxRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="mxRsWords">0</span><small>收好这几个字</small></div>
+      <div><span style="color:#69F0AE" id="mxRsLit">0</span><small>印出几笔</small></div>
+      <div><span style="color:#FFAB91" id="mxRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="mxRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="mxRsMiss">0</span><small>🚫 送错 / ⚡ 断电</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多收几个字 · 一共收好过几个字</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFE082"><span id="mxRsBest">0</span> 个 · <span id="mxRsAll2">0</span> 🧲</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="mxRsAll">🔧 玩铁屑的</div>
+      <div class="mx-book-t" id="mxRsBookT"></div>
+      <div class="mx-book" id="mxRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="mxRetry()">🧲 再通一次电</button>
+    <button class="w-btn blue" onclick="mxLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-gear">
@@ -11118,6 +11370,7 @@ function updateHomeStats(){
   if(typeof tgNudge==='function')tgNudge();
   if(typeof lsNudge==='function')lsNudge();
   if(typeof grNudge==='function')grNudge();
+  if(typeof mxNudge==='function')mxNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -11141,6 +11394,7 @@ function enterMode(mode){
   if(mode==='tangle'){tgStart();return}
   if(mode==='laser'){lsStart();return}
   if(mode==='gear'){grStart();return}
+  if(mode==='magnet'){mxStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -56446,6 +56700,1811 @@ window.grvSet=function(k,v){if(k==='clock')gr.clock=v;else if(k==='qi')gr.qi=v;e
 window.grvTool=function(t){grPickTool(t)};
 window.grvTap=function(i){return grTap(i)};
 
+
+/* ================= v1.79 笔顺磁力场（牌面就是笔形 · 电磁笔管一横一竖 · 一通电全场同时动 · 同极斥异极吸） ================= */
+const MX_W=700,MX_H=470;
+const MX_CW=6,MX_CH=5,MX_CELL=76,MX_X0=18,MX_Y0=48,MX_N=MX_CW*MX_CH;
+const MX_BX=MX_X0-10,MX_BY=MX_Y0-10,MX_BW=MX_CW*MX_CELL+20,MX_BH=MX_CH*MX_CELL+20;
+const MX_PX=498,MX_PY=48,MX_PW=190,MX_PH=MX_CH*MX_CELL-20;
+const MX_TW=62,MX_TH=54,MX_RF=17;
+const MX_TIE=2,MX_HR=4,MX_HOLE=[1,4],MX_FROM=[1,2,3,4];
+const MX_HEARTS=3,MX_HEART_MAX=5,MX_MISS_MAX=40,MX_BOOK_MAX=300;
+const MX_POOL_MIN=4,MX_POOL_WANT=16,MX_STROKE_MAX=6;
+const MX_NAG_MS=12000,MX_GHOST_MS=2800,MX_NEXT_MS=1300,MX_PRINT_MS=520,MX_ZAP_MS=460,MX_TAG_MS=2400,MX_SLIDE_MS=260,MX_FLASH_MS=620;
+const MX_WRONG_PEN=8,MX_WRONG_MAX=3,MX_CLEAN_BONUS=22,MX_GEN_TRY=70,MX_PLAN_MAX=30,MX_HIST_MAX=8;
+const MX_DIRS=['横','竖','撇','捺'],MX_ARW=['➡️','⬇️','↙️','↘️'];
+const MX_PLATE=['#E57373','#4DB6AC','#64B5F6','#FFB74D'],MX_INK=['#FF8A80','#80CBC4','#82B1FF','#FFD180'];
+const MX_POL=['N','S'],MX_PN=['N 极（红）','S 极（蓝）'];
+const MX_NOTE=[523,587,659,698,784,880,988,1046];
+const MX_RANKS=[
+  {n:0,e:'🔧',t:'玩铁屑的'},{n:3,e:'🧲',t:'认得两极'},{n:8,e:'⚡',t:'会推会吸'},
+  {n:15,e:'✨',t:'一张不落'},{n:24,e:'🌀',t:'整盘都看'},{n:36,e:'🔗',t:'粘串理得开'},
+  {n:52,e:'🌟',t:'印字师傅'},{n:74,e:'💎',t:'一次没错'},{n:105,e:'👑',t:'磁力之王'}
+];
+const mx={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,tones:0,think:0,timers:[],
+  pool:[],miss:[],rec:null,n:0,qi:0,gly:[],S:null,tid:1,
+  powMax:0,pow:0,pulses:0,clock:1,clockSec:60,red:false,beep:0,
+  lv:1,score:0,hearts:MX_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,sticks:0,drops:0,wrongs:0,storms:0,deads:0,
+  previewN:2,flipN:2,undoN:3,respN:1,
+  previews:0,flips:0,rewinds:0,respins:0,nags:0,
+  ghostMs:0,ghost:null,stormTag:0,nextMs:0,zapMs:0,printMs:0,printRun:0,
+  cleanWord:true,wrongWord:0,hist:[],
+  tool:0,cur:-1,bound:false,ptrBound:false,hudTxt:{},sol:null,lastWhy:''
+};
+function mxInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function mxAdd(k,n){if(n)localStorage.setItem(k,String(mxInt(k)+n))}
+function mxSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function mxSay(t,c){const el=document.getElementById('mxMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function mxShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function mxOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function mxClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function mxDn(d){return d<0||d>3?0:d}
+function mxRank(n){let r=MX_RANKS[0];for(let i=0;i<MX_RANKS.length;i++)if(n>=MX_RANKS[i].n)r=MX_RANKS[i];return r}
+function mxTone(f,d,t,v){if(mx.tones<=0)return;mx.tones--;tone(f,d,t,v)}
+function mxT(fn,ms){const g=mx.gen;const id=setTimeout(function(){const k=mx.timers.indexOf(id);if(k>=0)mx.timers.splice(k,1);if(g!==mx.gen)return;fn()},ms);mx.timers.push(id);return id}
+function mxKillTimers(){mx.timers.forEach(function(t){clearTimeout(t)});mx.timers=[]}
+/* ---- 难度：几张废牌、几块铁栅、几格绝缘、有没有磁暴 ---- */
+function mxWrongOf(lv){return lv<3?0:Math.min(3,lv-2)}
+function mxWallOf(lv){return lv<3?0:Math.min(4,lv-2)}
+function mxInsOf(lv){return lv<5?0:Math.min(3,lv-4)}
+function mxStormOf(lv){return lv>=6}
+function mxSparePow(lv){return lv<=2?2:1}
+function mxClockOf(){return Math.max(30,30+mx.n*6-mx.lv*2)}
+function mxLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+/* ---- 格子几何 ---- */
+function mxCI(c,r){return r*MX_CW+c}
+function mxCol(i){return i%MX_CW}
+function mxRow(i){return Math.floor(i/MX_CW)}
+function mxCx(i){return MX_X0+mxCol(i)*MX_CELL+MX_CELL/2}
+function mxCy(i){return MX_Y0+mxRow(i)*MX_CELL+MX_CELL/2}
+/* 第 k 笔归哪个印字台：台子只有一格时也照着那一格算，别摸到 undefined */
+function mxHoleOf(S,k){const hl=(S&&S.holes&&S.holes.length)?S.holes:[mxCI(MX_HOLE[0],MX_HR)];return hl[k%hl.length]}
+function mxNameOf(i){
+  const c=mxCol(i),r=mxRow(i);
+  const vx=c<2?'左边':(c>3?'右边':'中间'),hy=r<2?'上':(r>2?'下':'中');
+  if(vx==='中间'&&hy==='中')return '板子正中';
+  if(vx==='中间')return hy+'边';
+  if(hy==='中')return vx;
+  return vx+hy+'角';
+}
+function mxIsHole(S,c){return S.holes.indexOf(c)>=0}
+function mxIsWall(S,c){return S.walls.indexOf(c)>=0}
+function mxIsIns(S,c){return S.ins.indexOf(c)>=0}
+function mxAt(S,cell){for(let i=0;i<S.tiles.length;i++)if(S.tiles[i].c===cell)return S.tiles[i];return null}
+function mxBusy(S){
+  const b=new Array(MX_N).fill(false);
+  for(let i=0;i<S.tiles.length;i++)b[S.tiles[i].c]=true;
+  for(let i=0;i<S.walls.length;i++)b[S.walls[i]]=true;
+  if(S.pen.c>=0)b[S.pen.c]=true;
+  return b;
+}
+/* ---- 磁场：电磁笔只管得住自己那一横一竖（十字场） ---- */
+function mxAxis(t,S){
+  if(S.pen.c<0)return null;
+  const tc=mxCol(t.c),tr=mxRow(t.c),pc=mxCol(S.pen.c),pr=mxRow(S.pen.c);
+  if(tc===pc&&tr===pr)return null;
+  if(tc===pc)return {ax:1,line:tc,arm:tr<pr?-1:1,dist:Math.abs(tr-pr),pos:tr};
+  if(tr===pr)return {ax:0,line:tr,arm:tc<pc?-1:1,dist:Math.abs(tc-pc),pos:tc};
+  return null;
+}
+function mxWant(t,S){
+  const a=mxAxis(t,S);
+  if(!a||a.dist<=0)return null;
+  const same=(t.q===S.pen.q);
+  return {ax:a.ax,line:a.line,arm:a.arm,dist:a.dist,pos:a.pos,d:same?a.arm:-a.arm,steps:a.dist<=MX_TIE?2:1};
+}
+/* ---- 一次通电：全场同时动（活的和模拟走同一份代码） ---- */
+function mxPhys(S){
+  const ev={prints:[],wrongs:0,early:0,moves:0,merge:0,shed:0,bounces:[]};
+  const busy=mxBusy(S);
+  for(let i=0;i<S.tiles.length;i++){const t=S.tiles[i];t.prev=t.c;t.wd=t.dead;t.wi=t.ins;t.mv=0;t.hit=0}
+  const mv=[];
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i];
+    if(t.h>=0||t.dead>0||t.ins>0)continue;
+    const w=mxWant(t,S);
+    if(!w)continue;
+    mv.push({t:t,w:w});
+  }
+  mv.sort(function(a,b){
+    if(a.w.line!==b.w.line)return a.w.line-b.w.line;
+    if(a.w.ax!==b.w.ax)return a.w.ax-b.w.ax;
+    if(a.w.d!==b.w.d)return a.w.d-b.w.d;
+    return (b.w.pos*b.w.d)-(a.w.pos*a.w.d);
+  });
+  for(let m=0;m<mv.length;m++){
+    const t=mv[m].t,w=mv[m].w;
+    let moved=false,hit=0;
+    for(let s=0;s<w.steps;s++){
+      const c=mxCol(t.c)+(w.ax?0:w.d),r=mxRow(t.c)+(w.ax?w.d:0);
+      if(c<0||c>=MX_CW||r<0||r>=MX_CH){hit=2;break}
+      const nc=mxCI(c,r);
+      if(mxIsWall(S,nc)){hit=2;break}
+      if(nc===S.pen.c){hit=1;break}
+      if(busy[nc]){hit=1;break}
+      const old=t.c;
+      if(t.tl>=0){
+        const tl=S.tiles[t.tl];
+        if(tl&&tl!==t){busy[tl.c]=false;tl.c=old;busy[old]=true}
+      }else busy[old]=false;
+      t.c=nc;busy[nc]=true;
+      t.mv++;moved=true;
+    }
+    t.hit=hit;
+    if(moved)ev.moves++;
+    if((hit===2||!moved)&&t.tl>=0){
+      const tl=S.tiles[t.tl];
+      if(tl&&tl!==t){tl.h=-1;tl.tl=-1;t.tl=-1;tl.dead=1;ev.shed++;ev.shedAt=tl.c}
+    }
+    if(t.mv&&mxIsIns(S,t.c))t.ins=1;
+  }
+  /* ---- 撞上就粘：谁离笔近谁当串头 ---- */
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i];
+    if(t.h>=0||t.tl>=0||t.dead>0||t.ins>0)continue;
+    const a=mxAxis(t,S);
+    if(!a)continue;
+    const c=mxCol(t.c)-a.arm*(a.ax?0:1),r=mxRow(t.c)-a.arm*(a.ax?1:0);
+    if(c<0||c>=MX_CW||r<0||r>=MX_CH)continue;
+    const nc=mxCI(c,r);
+    const u=mxAt(S,nc);
+    if(!u||u===t||u.h>=0||u.tl>=0||u.dead>0||u.ins>0||u.mv)continue;
+    if(u.q===t.q)continue;
+    u.tl=S.tiles.indexOf(t);t.h=S.tiles.indexOf(u);
+    ev.merge=1;ev.mergeAt=nc;
+  }
+  /* ---- 印字台只收该印的那一笔 ---- */
+  for(let pass=0;pass<S.tiles.length+2;pass++){
+    let did=false;
+    for(let hi=0;hi<S.holes.length;hi++){
+      const hc=S.holes[hi];
+      const t=mxAt(S,hc);
+      if(!t||t.h>=0)continue;
+      if(t.k===S.qi){
+        S.qi++;
+        ev.prints.push({k:t.k,c:hc,chain:t.tl>=0?1:0});
+        busy[hc]=false;
+        mxSplice(S,t);
+        did=true;
+      }
+    }
+    if(!did)break;
+  }
+  for(let hi=0;hi<S.holes.length;hi++){
+    const hc=S.holes[hi];
+    const t=mxAt(S,hc);
+    if(!t)continue;
+    if(t.fgn){
+      ev.wrongs++;
+      busy[hc]=false;
+      mxSplice(S,t);
+    }else{
+      ev.early++;
+      let to=t.prev;
+      if(to===hc||busy[to]||mxIsWall(S,to)||to===S.pen.c||mxIsHole(S,to))to=mxNearFree(S,busy,t.c);
+      if(to<0){t.dead=1;ev.wrongs++;busy[hc]=false;mxSplice(S,t)}
+      else{busy[hc]=false;t.c=to;busy[to]=true}
+      ev.bounces.push({c:to||hc,from:hc});
+    }
+  }
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i];
+    if(t.wd>0&&t.dead>0)t.dead=Math.max(0,t.dead-1);
+    if(t.wi>0&&t.ins>0)t.ins=Math.max(0,t.ins-1);
+  }
+  return ev;
+}
+function mxNearFree(S,busy,from){
+  const c0=mxCol(from),r0=mxRow(from);
+  let best=-1,bd=1e9;
+  for(let i=0;i<MX_N;i++){
+    if(busy[i]||mxIsWall(S,i)||mxIsHole(S,i)||i===S.pen.c)continue;
+    const d=Math.abs(mxCol(i)-c0)+Math.abs(mxRow(i)-r0);
+    if(d<bd){bd=d;best=i}
+  }
+  return best;
+}
+function mxSplice(S,t){
+  const map=[];let n=0;
+  for(let i=0;i<S.tiles.length;i++){if(S.tiles[i]===t){map.push(-1)}else{map.push(n);n++}}
+  if(t.tl>=0){const tl=S.tiles[t.tl];if(tl&&tl!==t){tl.h=-1;tl.tl=-1}}
+  const arr=S.tiles.filter(function(x){return x!==t});
+  for(let i=0;i<arr.length;i++){
+    const x=arr[i];
+    if(x.h>=0)x.h=map[x.h]>=0?map[x.h]:-1;
+    if(x.tl>=0)x.tl=map[x.tl]>=0?map[x.tl]:-1;
+  }
+  S.tiles=arr;
+}
+/* ---- 军师：下一步把笔放哪儿、朝哪极（生成器和提示共用） ----
+   这张牌那一横一竖上的空格全试一遍（两种极性都试）：先用「走完离印字台更近不近」筛掉没用的放法，
+   再在有用的里面挑带动最少的。 */
+function mxPlanStep(S){
+  let t=null;
+  for(let i=0;i<S.tiles.length;i++)if(S.tiles[i].k===S.qi&&S.tiles[i].h<0){t=S.tiles[i];break}
+  if(!t)return null;
+  if(S.qi>=S.n)return null;
+  /* 刚被甩下来 / 踩了绝缘格：这一阵它动不了，军师也带不动它 */
+  if(t.dead>0||t.ins>0)return {stun:1,c:-1,q:t.q};
+  const hc=mxHoleOf(S,S.qi),hcol=mxCol(hc),hrow=mxRow(hc);
+  const busy=mxBusy(S);
+  const cost=function(c){
+    /* 这一放会带着几张别的牌动：越少越干净 */
+    let n=0;
+    for(let i=0;i<S.tiles.length;i++){
+      const x=S.tiles[i];
+      if(x===t||x.h>=0||x.dead>0||x.ins>0)continue;
+      if(mxWant(x,{pen:{c:c,q:x.q},holes:S.holes,tiles:[],walls:S.walls,ins:S.ins}))n++;
+    }
+    return n;
+  };
+  const legal=function(c){return c>=0&&c<MX_N&&!mxIsHole(S,c)&&!mxIsWall(S,c)&&!busy[c]};
+  /* 笔搁在 c、朝 q：这一张会走到哪儿（别的牌只当路障，一步都动不了就是 -1） */
+  const lands=function(c,q){
+    const w=mxWant(t,{pen:{c:c,q:q}});
+    if(!w)return -1;
+    let cell=t.c,res=-1;
+    for(let s=0;s<w.steps;s++){
+      const cc=mxCol(cell)+(w.ax?0:w.d),rr=mxRow(cell)+(w.ax?w.d:0);
+      if(cc<0||cc>=MX_CW||rr<0||rr>=MX_CH)break;
+      const nc=mxCI(cc,rr);
+      if(nc===c||mxIsWall(S,nc)||busy[nc])break;
+      cell=nc;res=nc;
+    }
+    return res;
+  };
+  /* 离印字台还有几格（横竖两笔账一起算） */
+  const away=function(l){return Math.abs(mxCol(l)-hcol)+Math.abs(mxRow(l)-hrow)};
+  const cur=away(t.c),cst={};
+  let best=null,bk=1e9;
+  for(let i=0;i<MX_N;i++){
+    if(i===t.c||!legal(i))continue;
+    if(mxRow(i)!==mxRow(t.c)&&mxCol(i)!==mxCol(t.c))continue;
+    for(let z=0;z<2;z++){
+      const q=z?t.q:1-t.q;
+      const l=lands(i,q);
+      if(l<0)continue;
+      const s=away(l);
+      if(s>=cur)continue;
+      const cs=cst[i]===undefined?(cst[i]=cost(i)):cst[i];
+      if(s*100+cs<bk){bk=s*100+cs;best={c:i,q:q,l:l}}
+    }
+  }
+  if(!best)return {free:1,c:-1,q:t.q};
+  return {c:best.c,q:best.q,how:(best.q===t.q?'斥':'吸'),
+    need:Math.abs(mxCol(best.l)-mxCol(t.c))+Math.abs(mxRow(best.l)-mxRow(t.c)),
+    ax:(mxCol(best.l)!==mxCol(t.c)?'横':'竖')};
+}
+function mxClone(S){
+  return {
+    holes:S.holes.slice(),walls:S.walls.slice(),ins:S.ins.slice(),
+    pen:{c:S.pen.c,q:S.pen.q},qi:S.qi,n:S.n,
+    tiles:S.tiles.map(function(t){return {id:t.id,k:t.k,q:t.q,c:t.c,h:t.h,tl:t.tl,dead:t.dead,ins:t.ins,fgn:t.fgn}})
+  };
+}
+function mxSimPlan(S0){
+  const S=mxClone(S0);
+  const plan=[],from=S.qi;
+  for(let step=0;step<MX_PLAN_MAX;step++){
+    if(S.qi>=S.n)return {ok:true,plan:plan,pulses:plan.length};
+    const p=mxPlanStep(S);
+    if(!p)return {ok:false,why:'nosolve',plan:plan,pulses:plan.length};
+    if(p.free)return {ok:false,why:'free',plan:plan,pulses:plan.length};
+    if(p.stun)return {ok:false,why:'stun',plan:plan,pulses:plan.length};
+    let T=null;
+    for(let i=0;i<S.tiles.length;i++)if(S.tiles[i].k===S.qi&&S.tiles[i].h<0){T=S.tiles[i];break}
+    S.pen={c:p.c,q:p.q};
+    const ev=mxPhys(S);
+    if(ev.wrongs)return {ok:false,why:'wrong',plan:plan,pulses:plan.length};
+    /* 军师算的这一步真把该印那张牌推着走了才算数（被别的牌挡住就不算解） */
+    if(!T||!T.mv)return {ok:false,why:'stall',plan:plan,pulses:plan.length};
+    if(ev.merge){
+      /* 粘串是好事（有加分），可该印的那张要是被人当尾巴拖住，军师就没法带它走了 */
+      let tail=false;
+      for(let i=0;i<S.tiles.length;i++)if(S.tiles[i].k===S.qi&&S.tiles[i].h>=0)tail=true;
+      if(tail)return {ok:false,why:'tail',plan:plan,pulses:plan.length};
+    }
+    plan.push({c:p.c,q:p.q,how:p.how});
+  }
+  return {ok:false,why:'long',plan:plan,pulses:plan.length};
+}
+/* ---- 字库：每一笔方向都说得清（沿用 ±8° 边界否决） ---- */
+function mxSig(d){return String(d||'').replace(/\s+/g,'')}
+function mxDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function mxMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>MX_STROKE_MAX)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){
+    const d=fmDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    dirs.push(d);
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,raw:raw};
+}
+function mxCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<90;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(mxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(mxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(mxShuf(CHARS.slice()));
+  return out;
+}
+function mxTO(p,ms){return Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},ms)})])}
+async function mxRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=mxTO(loadCharData(ch),6000);
+  if(!raw||!raw.medians)return null;
+  return mxMake(ch,raw);
+}
+async function mxBuildPool(keep){
+  const g=mx.gen;
+  const stale=function(){return g!==mx.gen||!mx.run};
+  mx.miss=(localStorage.getItem('hz_magnet_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  mxShuf(mx.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  mxCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)mx.pool=[];
+  for(let k=0;k<want.length&&mx.pool.length<MX_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return mxRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])mx.pool.push(rs[i]);
+  }
+  return mx.pool.length>=MX_POOL_MIN;
+}
+function mxPickRec(){
+  const w=mx.lv>=4?[3,MX_STROKE_MAX]:[2,5];
+  const used={};
+  const take=function(){
+    for(let i=0;i<mx.miss.length;i++){
+      for(let k=0;k<mx.pool.length;k++){
+        const r=mx.pool[k];
+        if(r&&!used[r.ch]&&r.n>=2&&r.ch===mx.miss[i]){used[r.ch]=1;return r}
+      }
+    }
+    let cand=mx.pool.filter(function(r){return r&&!used[r.ch]&&r.n>=w[0]&&r.n<=w[1]});
+    if(!cand.length)cand=mx.pool.filter(function(r){return r&&!used[r.ch]&&r.n<=MX_STROKE_MAX});
+    if(!cand.length)return null;
+    for(let i=0;i<40;i++){const c=mxOne(cand);if(c){used[c.ch]=1;return c}}
+    const c=cand[0];used[c.ch]=1;return c;
+  };
+  return take();
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function mxMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_magnet_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_magnet_miss',a.slice(0,MX_MISS_MAX).join(','));
+}
+function mxMissDel(ch){
+  const a=(localStorage.getItem('hz_magnet_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_magnet_miss',a.join(','));
+}
+function mxBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_magnet_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_magnet_book',a.slice(0,MX_BOOK_MAX).join(','));
+}
+/* ---- 摆盘：先让军师把这一盘算得通，算得通才端给孩子 ---- */
+function mxTry(rec,cfg,from){
+  const n=rec.n;
+  const holes=[mxCI(MX_HOLE[0],MX_HR),mxCI(MX_HOLE[1],MX_HR)];
+  const tiles=[],used=new Array(MX_N).fill(0);
+  used[holes[0]]=1;used[holes[1]]=1;
+  /* 牌只摆在中间那几行的 MX_FROM 几列里：先摊到不同行（一行挤两张就推不动），
+     再从最靠下那行开始摆 —— 离印字台越近，孩子要按的次数越少 */
+  const zone=[];
+  for(let r=MX_HR-1;r>=1;r--)for(let a=0;a<MX_FROM.length;a++)zone.push(mxCI(MX_FROM[a],r));
+  mxShuf(zone);
+  zone.sort(function(x,y){return mxRow(y)-mxRow(x)});
+  const perRow=new Array(MX_CH).fill(0);
+  for(let k=from;k<n;k++){
+    let cell=-1;
+    for(let pass=0;pass<2&&cell<0;pass++){
+      for(let i=0;i<zone.length;i++){
+        const c=zone[i];
+        if(used[c])continue;
+        if(pass===0&&perRow[mxRow(c)]>0)continue;
+        cell=c;break;
+      }
+    }
+    if(cell<0){mx.lastWhy='nocell';return null}
+    used[cell]=1;perRow[mxRow(cell)]++;
+    tiles.push({id:mx.tid++,k:k,q:Math.random()<0.5?0:1,c:cell,h:-1,tl:-1,dead:0,ins:0,fgn:0});
+  }
+  const spare=[];
+  for(let i=0;i<MX_N;i++){
+    if(used[i])continue;
+    const c=mxCol(i);
+    if(c===MX_HOLE[0]||c===MX_HOLE[1])continue;
+    if(mxRow(i)===MX_HR)continue;
+    spare.push(i);
+  }
+  if(spare.length<cfg.wrong+cfg.walls+cfg.ins+4){mx.lastWhy='spare';return null}
+  mxShuf(spare);
+  const walls=[],ins=[];
+  for(let i=0;i<cfg.wrong;i++){
+    const c=spare.pop();
+    tiles.push({id:mx.tid++,k:-1,q:Math.random()<0.5?0:1,c:c,h:-1,tl:-1,dead:0,ins:0,fgn:1});
+  }
+  for(let i=0;i<cfg.walls;i++)walls.push(spare.pop());
+  for(let i=0;i<cfg.ins;i++)ins.push(spare.pop());
+  const S={holes:holes,tiles:tiles,walls:walls,ins:ins,pen:{c:-1,q:1},qi:from,n:n};
+  const sim=mxSimPlan(S);
+  if(!sim.ok){mx.lastWhy=sim.why;return null}
+  mx.lastWhy='';
+  return {holes:holes,tiles:tiles,walls:walls,ins:ins,plan:sim.plan,pulses:sim.pulses,cfg:cfg,why:'ok'};
+}
+function mxGen(rec,lv,from){
+  const lad=[
+    {wrong:mxWrongOf(lv),walls:mxWallOf(lv),ins:mxInsOf(lv)},
+    {wrong:mxWrongOf(lv),walls:mxWallOf(lv),ins:0},
+    {wrong:mxWrongOf(lv),walls:Math.max(0,mxWallOf(lv)-1),ins:0},
+    {wrong:Math.max(0,mxWrongOf(lv)-1),walls:0,ins:0},
+    {wrong:0,walls:0,ins:0}
+  ];
+  for(let L=0;L<lad.length;L++){
+    for(let t=0;t<MX_GEN_TRY;t++){
+      const r=mxTry(rec,lad[L],from||0);
+      if(r){r.cfg=lad[L];return r}
+    }
+  }
+  return null;
+}
+function mxNewBoard(fromQi){
+  const from=fromQi||0;
+  const s=mxGen(mx.rec,mx.lv,from);
+  if(!s)return false;
+  const S={holes:s.holes.slice(),walls:s.walls.slice(),ins:s.ins.slice(),pen:{c:-1,q:1},qi:from,n:mx.n,tiles:s.tiles};
+  mx.S=S;
+  mx.pulses=0;
+  mx.powMax=s.pulses+mxSparePow(mx.lv);
+  mx.pow=mx.powMax;
+  mx.clockSec=mxClockOf();
+  mx.clock=1;mx.red=false;mx.beep=0;
+  mx.cleanWord=mx.cleanWord===undefined?true:mx.cleanWord;
+  mx.wrongWord=0;mx.printRun=0;mx.think=0;
+  mx.ghostMs=0;mx.ghost=null;mx.hist=[];
+  mx.stormTag=0;
+  mx.sol={holes:s.holes.slice(),plan:s.plan.map(function(p){return {c:p.c,q:p.q}}),pulses:s.pulses,walls:s.walls.slice(),ins:s.ins.slice(),need:s.pulses};
+  mx.cur=-1;mx.tool=0;
+  mxRenderStatic();
+  mxRenderTiles(true);mxRenderPen();mxField();mxPaper();mxMini();mxBasket();mxHud();mxAskText();mxLine();
+  return true;
+}
+/* ---- 笔形：牌面就是这个字其中一笔的真形 ---- */
+function mxBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function mxGly(d,box,dir,size){
+  const b=box||{x:0,y:0,w:200,h:200};
+  return {d:d||'M0 0',box:b,dir:dir,s:(size||44)/Math.max(140,Math.max(b.w,b.h))};
+}
+function mxGlyHTML(g){
+  const b=g.box,s=g.s;
+  const tx=-s*(b.x+b.w/2),ty=s*(b.y+b.h/2);
+  return '<g transform="translate('+tx.toFixed(1)+','+ty.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path d="'+g.d+'" fill="'+MX_INK[mxDn(g.dir)]+'"/></g>';
+}
+function mxGlyOf(rec){
+  const ms=(rec&&rec.raw&&rec.raw.medians)||[],sp=(rec&&rec.raw&&rec.raw.strokes)||[],out=[];
+  for(let i=0;i<rec.n;i++){
+    const m=ms[i]||[[0,0],[100,100]];
+    out.push(mxGly(mxDOf(sp,i)||'M0 0 L60 60',mxBox(m)||{x:0,y:0,w:200,h:200},mxDn(rec.dirs[i]),44));
+  }
+  return out;
+}
+/* ---- 工具选择 ---- */
+function mxPickTool(t){
+  if(!mx.run||mx.over)return;
+  mx.tool=t|0;
+  const a=document.getElementById('mxTPen'),b=document.getElementById('mxTFlip');
+  if(a)a.classList.toggle('on',mx.tool===0);
+  if(b)b.classList.toggle('on',mx.tool===1);
+  mx.think=0;
+  mxSay(mx.tool===0?
+    '🧲 <b>移笔</b>：点一个 <b>空格子</b> 就把电磁笔挪过去（<b>再点笔本身</b> = <b>翻面</b>，整场力的方向跟着反）—— 笔只管得住 <b>自己那一横一竖</b>':
+    '🎯 <b>翻牌</b>：点 <b>哪张牌</b> 就把它 <b>N↔S 翻个面</b>（一次一场只有 <b>'+mx.flipN+' 次</b>）—— 两张 <b>粘成串</b> 的牌翻一张就 <b>同极弹开</b>','#B3E5FC');
+  mxLine();
+}
+/* ---- 动作：放笔 / 翻笔 / 翻牌 / 通电 ---- */
+function mxPlace(i){
+  const S=mx.S;
+  if(!S)return false;
+  if(i<0||i>=MX_N)return false;
+  if(mxIsHole(S,i)){mxSay('🈳 <b>印字台</b> 上放不住笔 —— 笔要搁在 <b>旁边的空格</b> 里，靠磁场隔着格子推牌','#FFCC80');return false}
+  if(mxIsWall(S,i)){mxSay('🧱 <b>铁栅</b> 是绝缘的：笔 <b>放不上去</b>，磁场也 <b>穿不过这张牌</b>','#FFCC80');return false}
+  if(mxAt(S,i)){mxSay('🧲 那一格 <b>站着牌</b>：电磁笔 <b>吸不住自己底下的牌</b> —— 挑个空格子放','#FFCC80');return false}
+  S.pen={c:i,q:S.pen.q};
+  mx.think=0;
+  mxRenderPen();mxField();mxPaintCls();mxCursor();
+  mxTone(S.pen.q?420:520,0.05,'triangle',0.05);
+  const n=mxDragCount();
+  mxSay('🧲 笔挪到 <b>'+mxNameOf(i)+'</b>（朝 <b>'+MX_PN[S.pen.q]+'</b>）：这一通电，它 <b>那一横一竖上 '+n+' 张牌</b> 会一起动 —— 别处的牌 <b>一动不动</b>','#C5E1A5');
+  mxLine();
+  return true;
+}
+function mxDragCount(){
+  const S=mx.S;if(!S)return 0;
+  let n=0;
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i];
+    if(t.h>=0||t.dead>0||t.ins>0)continue;
+    if(mxWant(t,S))n++;
+  }
+  return n;
+}
+function mxFlipPen(){
+  const S=mx.S;if(!S)return false;
+  if(S.pen.c<0){mxSay('🧲 笔 <b>还没放上板子</b>：先点一个空格子 —— <code>X</code> 翻面','#FFCC80');return false}
+  S.pen.q=1-S.pen.q;
+  mxRenderPen();mxField();mxPaintCls();
+  mxTone(S.pen.q?300:600,0.08,'triangle',0.06);
+  mxSay('🔄 电磁笔 <b>翻了个面</b>：现在朝 <b>'+MX_PN[S.pen.q]+'</b> —— 同一格放法，<b>整场的力全反</b>：刚才要吸过来的现在改往外推','#FFF176');
+  mxLine();
+  return true;
+}
+function mxFlipTile(idx){
+  const S=mx.S;if(!S)return false;
+  const t=S.tiles[idx];
+  if(!t){mxSay('🎯 那一格 <b>没有牌</b>：翻牌是翻 <b>磁牌</b>，不是翻空格','#FFCC80');return false}
+  if(t.fgn){mxSay('🚫 这张是 <b>别人家的笔</b>（不是这个字的）—— 翻它没用，<b>别把它推向印字台</b> 就行','#FFCC80');return false}
+  if(mx.flipN<=0){mxSay('🎯 <b>翻牌的机会用完了</b>：还有 <b>🧲 移笔</b> 和 <b>⚡ 通电</b> —— 换个位置放笔，方向也跟着变','#FFCC80');return false}
+  mx.flipN--;mx.flips++;mxAdd('hz_magnet_flips',1);
+  t.q=1-t.q;
+  if(t.h>=0||t.tl>=0){
+    const o=S.tiles[t.h>=0?t.h:t.tl];
+    if(o&&o!==t){o.tl=-1;o.h=-1;t.tl=-1;t.h=-1}
+    mx.sticks=Math.max(0,mx.sticks-1);
+    mxSay('🔓 翻面 <b>拆开了那一串</b>：现在两张 <b>同极相斥</b>，下次通电自己就 <b>弹开</b>（翻牌剩 '+mx.flipN+' 次）','#FFF176');
+  }else{
+    mxSay('🔄 <b>'+(t.k>=0?'第 '+(t.k+1)+' 笔':'这张牌')+'</b> 翻成 <b>'+MX_PN[t.q]+'</b>：笔朝 <b>'+MX_PN[S.pen.q]+'</b> 时它就该 <b>'+(t.q===S.pen.q?'往外斥':'往里吸')+'</b>（翻牌剩 '+mx.flipN+' 次）','#FFF176');
+  }
+  mx.think=0;
+  mxRenderTiles(true);mxField();mxToolBtns();mxLine();
+  return true;
+}
+function mxTap(i){
+  if(!mx.run||mx.over)return false;
+  if(!mx.S)return false;
+  if(mx.nextMs>0||mx.zapMs>0)return false;
+  if(i<0||i>=MX_N)return false;
+  const S=mx.S,t=mxAt(S,i);
+  if(mx.tool===1){
+    if(!t){mxSay('🎯 <b>翻牌</b> 要点在 <b>牌</b> 上：那一格空着 —— 按 <code>1</code> 切回 <b>🧲 移笔</b>','#FFCC80');return false}
+    return mxFlipTile(S.tiles.indexOf(t));
+  }
+  if(t){
+    if(t.fgn)mxSay('🚫 这张牌上的笔形 <b>不是「'+(mx.rec?mx.rec.ch:'')+'」</b> 的笔：它撞到印字台会被 <b>当场打下来</b>，但 <b>要扣分、断连击</b> —— 看笔形认牌','#FFCC80');
+    else if(t.h>=0||t.tl>=0)mxSay('🔗 第 '+(t.k+1)+' 笔这张 <b>粘在串上</b>：串 <b>由头那张带着走</b>，另一张 <b>跟在后头</b> —— 用 🎯 翻牌 <b>把它翻成同极</b> 就弹开了','#B3E5FC');
+    else if(t.k===mx.S.qi)mxSay('👍 就是这张：<b>第 '+(t.k+1)+' 笔「'+MX_DIRS[mxDn(mx.rec.dirs[t.k])]+' '+MX_ARW[mxDn(mx.rec.dirs[t.k])]+'」</b>，它朝 <b>'+MX_PN[t.q]+'</b> —— 笔朝 <b>另一极</b> 放就是 <b>吸</b>，朝 <b>同一极</b> 放就是 <b>推</b>','#FFF176');
+    else if(t.k>mx.S.qi)mxSay('⏳ 这张是 <b>第 '+(t.k+1)+' 笔</b>，得等 <b>前面几笔</b> 印完 —— 现在送去会 <b>弹回来</b>（不扣分），先顾第 '+(mx.S.qi+1)+' 笔','#B3E5FC');
+    else mxSay('🧲 这张 <b>已经印过了</b>：牌面上写着第 '+(t.k+1)+' 笔（这一张是漏下来的 <b>余牌</b>）','#B0BEC5');
+    mx.think=0;
+    return true;
+  }
+  return mxPlace(i);
+}
+function mxZap(){
+  if(!mx.run||mx.over)return false;
+  const S=mx.S;if(!S)return false;
+  if(mx.nextMs>0||mx.zapMs>0)return false;
+  if(S.pen.c<0){mxSay('🧲 笔 <b>还挂在手上</b>：先点一个 <b>空格子</b> 把它放下去（<code>方向键</code>+<code>Enter</code>），再按 <b>⚡ 通电</b>','#FFCC80');return false}
+  if(mx.pow<=0){mxSay('🪫 <b>电量用完了</b>：试试 <b>🔄 倒带</b> 退回到上一次通电前','#FFCC80');return false}
+  mx.hist.push(mxSnap());
+  if(mx.hist.length>MX_HIST_MAX)mx.hist.shift();
+  mx.pow--;mx.pulses++;
+  mxAdd('hz_magnet_pulses',1);
+  mx.think=0;
+  const ev=mxPhys(S);
+  mxSlide();
+  mxRenderPen();mxField();
+  mx.zapMs=MX_ZAP_MS;
+  mxTblCls('hot',MX_ZAP_MS);
+  mxTone(S.pen.q?150:190,0.12,'square',0.07);
+  mxTone(S.pen.q?96:120,0.16,'square',0.06);
+  mxFlash();
+  if(ev.prints.length){
+    mxAdd('hz_magnet_lits',ev.prints.length);
+    ev.prints.forEach(function(p,i){
+      mxRing(mxCx(p.c),mxCy(p.c),34,'#FFD740');
+      mxBits(mxCx(p.c),mxCy(p.c),'#FFF176',10);
+      mxSparks(p.c);
+      mxT(mxPrint.bind(null,p.k,!!p.chain),MX_PRINT_MS*(i+1));
+    });
+  }
+  if(ev.merge){mx.sticks++;mxAdd('hz_magnet_sticks',1);mxPop(mxCx(ev.mergeAt),mxCy(ev.mergeAt)-30,'🔗 粘成一串','#80D8FF');mxTone(700,0.08,'sine',0.06)}
+  if(ev.shed){mx.drops++;mxAdd('hz_magnet_drops',1);mxPop(mxCx(ev.shedAt),mxCy(ev.shedAt)-30,'💨 甩掉一张','#FFCC80');mxTone(220,0.1,'sawtooth',0.05)}
+  if(ev.wrongs)mxOnWrong(ev.wrongs);
+  else if(ev.early){
+    mxPop(mxCx(ev.bounces[0]?ev.bounces[0].from:S.holes[0]),MX_BY+12,'⏳ 还没轮到','#B0BEC5');
+    mxSay('⏳ <b>送早了</b>：那张牌上的笔 <b>还没轮到</b>，印字台把它 <b>弹回原位</b> 了（<b>不扣分</b>）—— 台子只收 <b>第 '+(mx.S.qi+1)+' 笔</b>','#B3E5FC');
+  }
+  if(!ev.prints.length&&!ev.wrongs&&!ev.early&&!ev.merge&&!ev.shed){
+    if(!ev.moves)mxSay('😴 这一通电 <b>一张牌都没动</b>：笔的 <b>那一横一竖</b> 上没有牌 —— 把笔挪到 <b>该印那张牌</b> 的行或列上','#FFCC80');
+    else mxSay('🌬 动了 '+ev.moves+' 张牌，可 <b>没送到印字台</b>：算一算它 <b>离台子还差几格</b>（两格以内一跳就是 <b>两格</b>）','#B3E5FC');
+  }
+  if(mxStormOf(mx.lv)&&mx.pulses%3===0)mxStorm();
+  mxPaintCls();mxHudLight();mxAskText();mxLine();mxToolBtns();
+  mxT(mxZapOut,MX_ZAP_MS+10);
+  return true;
+}
+function mxZapOut(){
+  mx.zapMs=0;
+  if(!mx.run||mx.over)return;
+  mxRenderTiles(true);
+  if(mx.S&&mx.S.qi>=mx.n){mx.nextMs=MX_PRINT_MS;mxT(mxWin,MX_PRINT_MS+140);return}
+  if(mx.pow<=0){mxPowerOut('pow');return}
+  mxLine();mxHudLight();
+}
+function mxPrint(k,chained){
+  if(!mx.rec)return;
+  mx.lits++;mx.combo++;mx.printRun++;
+  mx.maxCombo=Math.max(mx.maxCombo,mx.combo);
+  let gain=Math.round((14+k*2+mx.lv*3)*(1+mx.combo*0.05));
+  let bonus=0;
+  if(chained){bonus=6+mx.lv*2;gain+=bonus}
+  if(mx.clock>0.6)gain+=Math.round(mx.clock*6);
+  mx.score+=gain;
+  mx.printMs=MX_PRINT_MS;
+  const at=mxHoleOf(mx.S,k);
+  mxPop(mxCx(at),mxCy(at)-MX_TH/2-8,'+'+gain,'#B2FF59');
+  if(bonus)mxT(mxPop.bind(null,mxCx(at),mxCy(at)-MX_TH-30,'🔗 一串两张 +'+bonus,'#80D8FF'),170);
+  mxTone(MX_NOTE[Math.min(MX_NOTE.length-1,k+(chained?2:0))],0.15,'triangle',0.1);
+  mxPaper();mxMini();mxHudLight();mxAskText();mxBasketLight();mxLine();
+}
+function mxOnWrong(n){
+  mx.score=Math.max(0,mx.score-MX_WRONG_PEN*n);
+  mx.combo=0;mx.cleanWord=false;
+  mx.wrongs+=n;mx.wrongWord++;
+  mxAdd('hz_magnet_wrongs',n);
+  mxMissAdd(mx.rec&&mx.rec.ch);
+  mxShakeFx();mxFlash();mxTblCls('dead',620);
+  mxTone(120,0.3,'sawtooth',0.12);
+  mxSay('🚫 <b>送错牌了！</b>那张牌上的笔形 <b>根本不是这个字的笔</b>，印字台把它 <b>当场打下来</b>：扣 '+MX_WRONG_PEN*n+' 分、<b>连击断了</b>（本字已错 '+mx.wrongWord+'/'+MX_WRONG_MAX+' 次）—— <b>先认笔形再动手</b>','#FF8A80');
+  if(mx.wrongWord>=MX_WRONG_MAX){mx.wrongWord=0;mxLoseHeart('wrong')}
+}
+function mxLoseHeart(why,quiet){
+  mx.hearts--;
+  mx.combo=0;
+  mxTblCls('dead',520);
+  mxTone(180,0.22,'triangle',0.09);
+  mxHud();
+  if(!quiet){
+    if(why==='wrong')mxSay('💔 <b>连着送错三次</b>，掉一颗心 —— 认牌看的是 <b>笔形</b>：横平竖直、撇往左下、捺往右下','#FF8A80');
+    else if(why==='clock')mxSay('💔 <b>磁场断电</b>，掉一颗心 —— 钟 <b>最后 12 秒整块板子变红</b>，看见红色先把 <b>手上这一步走完</b>','#FF8A80');
+    else if(why==='pow')mxSay('💔 <b>电量见底</b>，掉一颗心 —— 一次通电就是一格电：<b>先把整盘看一遍再按</b>','#FF8A80');
+    else mxSay('💔 掉一颗心','#FF8A80');
+  }
+  if(mx.hearts<=0){mx.hearts=0;mxEnd('miss')}
+}
+function mxPowerOut(kind){
+  if(!mx.run||mx.over)return;
+  const word=kind==='clock'?'⏳ <b>磁场钟走光了</b>':'🪫 <b>电量用光了</b>';
+  mx.deads++;mxAdd('hz_magnet_deads',1);
+  mxShakeFx();
+  mxTblCls('dead',560);
+  mxSay(word+'：这一阵 <b>断电</b> 了 —— 剩下的牌 <b>重新摆一盘</b>（已经印出来的笔 <b>一笔不抹</b>）。💔 掉一颗心','#FFCC80');
+  mxLoseHeart(kind,1);
+  if(mx.over)return;
+  mxRedress();
+}
+function mxRedress(){
+  if(!mx.rec||!mx.S)return false;
+  const from=mx.S.qi;
+  if(!mxNewBoard(from)){
+    mxEnd('nodata');
+    return false;
+  }
+  mxSay('🧲 <b>重新磁化</b>：第 '+(from+1)+' 笔起的牌 <b>另摆一盘</b>，电量 <b>'+mx.powMax+' 格</b>、钟 <b>'+mx.clockSec+' 秒</b> 重新发 —— 已经印好的 <b>'+from+'/'+mx.n+'</b> 笔还在纸上','#B3E5FC');
+  return true;
+}
+function mxStorm(){
+  const S=mx.S;if(!S)return;
+  const cand=S.tiles.filter(function(t){return !t.fgn&&t.h<0&&t.tl<0&&!t.dead&&!t.ins});
+  if(!cand.length)return;
+  const t=mxOne(cand);
+  if(!t)return;
+  t.q=1-t.q;
+  mx.storms++;mx.stormTag=MX_TAG_MS;
+  mxAdd('hz_magnet_storms',1);
+  mxRenderTiles(true);mxField();mxPaintCls();
+  const el=document.getElementById('mxStormTag');
+  if(el)el.innerHTML='🌀 '+mxNameOf(t.c)+' 有张牌自己翻了个面';
+  mxTone(840,0.1,'sine',0.05);
+  mxPop(mxCx(t.c),mxCy(t.c)-MX_TH,'🌀 磁暴','#FF80AB');
+}
+/* ---- 计分 / 收字 ---- */
+function mxWin(){
+  if(mx.over||!mx.S||mx.S.qi<mx.n)return;
+  mx.words++;
+  mxAdd('hz_magnet_words',1);
+  let gain=26+mx.n*6+mx.lv*6+mx.pow*3;
+  if(mx.cleanWord){gain+=MX_CLEAN_BONUS;mxAdd('hz_magnet_perfect',1)}
+  mx.score+=gain;
+  mxAdd('hz_magnet_score',Math.round(gain));
+  mxPop(MX_BX+MX_BW/2,MX_BY+16,'🏁 +'+gain,'#FFF176');
+  mxTone(659,0.14,'triangle',0.1);
+  mxTone(784,0.16,'triangle',0.1);
+  mxT(mxTone.bind(null,1046,0.2,'triangle',0.1),150);
+  mxBookAdd(mx.rec.ch);
+  mxMissDel(mx.rec.ch);
+  const oldLv=mx.lv;
+  mx.lv=mxLvOf(mx.words);
+  if(mx.lv>oldLv){
+    mx.previewN++;mx.flipN++;mx.undoN++;mx.respN++;
+    mxSay('🚀 <b>升到第 '+mx.lv+' 段</b>！台上多了 <b>🚫 废牌 '+mxWrongOf(mx.lv)+' 张 · 🧱 铁栅 '+mxWallOf(mx.lv)+' 块</b>'+(mx.lv>=5?' · 🟪 绝缘格 '+mxInsOf(mx.lv)+' 格':'')+(mx.lv>=6?' · 🌀 <b>磁暴</b>（每 3 次通电有张牌自己翻面）':'')+' —— 四件工具各补 1 次','#FFF176');
+  }else if(mx.words%3===0&&mx.hearts<MX_HEART_MAX){
+    mx.hearts++;
+    mxSay('❤️ 又收好一个字，<b>补一颗心</b>（现在 '+mx.hearts+' 颗）','#F8BBD0');
+  }else{
+    mxSay('🏁 <b>'+mx.rec.ch+'</b> 的 '+mx.n+' 笔全印出来了！剩下 <b>'+mx.pow+' 格电</b> 换成 <b>+'+(mx.pow*3)+'</b> 分 —— 下一盘牌正在摆','#C5E1A5');
+  }
+  mx.hudTxt={};
+  mxHud();
+  mxT(mxNextWord,MX_NEXT_MS);
+}
+function mxNextWord(){
+  if(!mx.run||mx.over)return;
+  if(!mxNewWord()){mxEnd('nodata');return}
+}
+function mxNewWord(){
+  const rec=mxPickRec();
+  if(!rec)return false;
+  mx.rec=rec;
+  mx.n=rec.n;
+  mx.qi=0;
+  mx.gly=mxGlyOf(rec);
+  mx.printRun=0;mx.think=0;
+  mx.cleanWord=true;mx.wrongWord=0;
+  mx.ghostMs=0;mx.ghost=null;
+  mx.tool=0;
+  if(!mxNewBoard(0)){mx.rec=null;return false}
+  const a=document.getElementById('mxTPen'),b=document.getElementById('mxTFlip');
+  if(a)a.classList.add('on');
+  if(b)b.classList.remove('on');
+  mxSay('🧲 新盘子 <b>'+rec.ch+'</b>（'+rec.n+' 笔）：牌面就是其中一笔的 <b>真笔形</b>，角上写着 <b>N</b> 还是 <b>S</b>。先把 <b>🧲 笔</b> 放到 <b>该印那张牌</b> 的行或列上，<b>⚡ 通电</b> —— <b>同极斥、异极吸</b>，两格以内一跳 <b>就是两格</b>','#C5E1A5');
+  return true;
+}
+/* ---- 预览 / 倒带 / 重摆 ---- */
+function mxPreview(){
+  if(!mx.run||mx.over)return;
+  const S=mx.S;if(!S)return;
+  if(S.pen.c<0){mxSay('👀 想预览先把 <b>🧲 笔</b> 放上板子 —— 预览画的是 <b>这一通电牌会滑到哪儿</b>','#FFCC80');return}
+  if(mx.zapMs>0||mx.nextMs>0)return;
+  if(mx.previewN<=0){mxSay('💡 <b>预览用完了</b>：还有 <b>🔄 倒带</b> 可以退回上一次通电之前','#FFCC80');return}
+  mx.previewN--;mx.previews++;mxAdd('hz_magnet_previews',1);
+  const C=mxClone(S);
+  const ev=mxPhys(C);
+  mx.ghost={tiles:C.tiles.map(function(t){return {c:t.c,fgn:t.fgn,k:t.k,q:t.q,id:t.id}}),from:S.tiles.map(function(t){return {c:t.c,id:t.id}}),prints:ev.prints.length,wrongs:ev.wrongs,early:ev.early,merge:!!ev.merge,shed:!!ev.shed};
+  mx.ghostMs=MX_GHOST_MS;
+  mxRenderGhosts();
+  mxTone(620,0.08,'sine',0.05);
+  const p=mxPlanStep(S);
+  mxSay('👀 <b>预览</b>（还剩 '+mx.previewN+' 次）：虚影就是通电后 <b>每张牌的新位置</b> —— 这一阵会印上 <b>'+ev.prints.length+' 笔</b>'+
+    (ev.early?'、有牌 <b>送早了会弹回</b>':'')+(ev.wrongs?'、有废牌 <b>撞上印字台</b>':'')+
+    (ev.merge?'、有牌会 <b>粘成串</b>':'')+(ev.shed?'、有串会 <b>甩掉一张</b>':'')+
+    (p&&p.c>=0?'。<br>👉 更省电的放法：笔挪到 <b>'+mxNameOf(p.c)+'</b>、朝 <b>'+MX_PN[p.q]+'</b>（'+(p.how==='吸'?'异极<b>吸</b>':'同极<b>斥</b>')+'过来 <b>'+p.need+' 格</b>)':''),'#E1F5FE');
+  mxToolBtns();mxHudLight();
+}
+function mxSnap(){
+  const S=mx.S;
+  return {S:mxClone(S),pow:mx.pow,pulses:mx.pulses,score:mx.score,combo:mx.combo,lits:mx.lits,
+    printRun:mx.printRun,cleanWord:mx.cleanWord,wrongs:mx.wrongs,deads:mx.deads,sticks:mx.sticks,drops:mx.drops,
+    clock:mx.clock,red:mx.red};
+}
+function mxRestore(s){
+  mx.S=s.S;
+  mx.pow=s.pow;mx.pulses=s.pulses;mx.score=s.score;mx.combo=s.combo;mx.lits=s.lits;
+  mx.printRun=s.printRun;mx.cleanWord=s.cleanWord;mx.wrongs=s.wrongs;mx.deads=s.deads;
+  mx.sticks=s.sticks;mx.drops=s.drops;mx.clock=s.clock;mx.red=s.red;
+  mx.ghostMs=0;mx.ghost=null;
+  mxRenderTiles(true);mxRenderPen();mxField();mxPaper();mxMini();mxHudLight();mxAskText();mxLine();mxToolBtns();
+}
+function mxUndo(){
+  if(!mx.run||mx.over)return;
+  if(mx.zapMs>0||mx.nextMs>0)return;
+  if(!mx.hist.length){mxSay('🔄 <b>还没有通电</b>：倒带是退回 <b>上一次通电之前</b> 的板面','#FFCC80');return}
+  if(mx.undoN<=0){mxSay('🔄 <b>倒带用完了</b>：磁场一过就 <b>收不回来</b> 了 —— 下一步先看清整盘','#FFCC80');return}
+  mx.undoN--;mx.rewinds++;mxAdd('hz_magnet_rewinds',1);
+  mxTone(320,0.14,'sine',0.06);
+  mxRestore(mx.hist.pop());
+  mxSay('🔄 <b>倒带</b>：板面 <b>一模一样还原</b>（电量 '+mx.pow+' 格、印 '+mx.S.qi+'/'+mx.n+' 笔，倒带还剩 '+mx.undoN+' 次）—— 铁屑记住了刚才怎么走，你也记一下','#B3E5FC');
+}
+function mxRespin(){
+  if(!mx.run||mx.over)return;
+  if(mx.nextMs>0)return;
+  if(mx.respN<=0){mxSay('🔁 <b>重摆的机会用完了</b>：还有 <b>🧲 移笔</b> 和 <b>🎯 翻牌</b> 两条路','#FFCC80');return}
+  mx.respN--;mx.respins++;mxAdd('hz_magnet_resets',1);
+  if(mxRedress())mxSay('🔁 <b>另摆一盘</b>：剩下的牌 <b>重新磁化摆过</b>（重摆还剩 '+mx.respN+' 次）—— 这一盘军师 <b>算得通</b>，照 <b>提示线</b> 走','#B3E5FC');
+}
+/* ---- 渲染 ---- */
+function mxRenderStatic(){
+  const g=document.getElementById('mxStatic');
+  if(!g)return;
+  const S=mx.S;
+  let h='<rect class="mx-board" x="'+MX_BX+'" y="'+MX_BY+'" width="'+MX_BW+'" height="'+MX_BH+'" rx="22"/>';
+  for(let i=0;i<MX_N;i++){
+    const c=mxCol(i),r=mxRow(i);
+    let cls='mx-cell '+((c+r)%2?'lite':'dark');
+    if(S&&mxIsHole(S,i))cls+=' mx-holeC';
+    h+='<rect class="'+cls+'" id="mxC'+i+'" x="'+(MX_X0+c*MX_CELL+3)+'" y="'+(MX_Y0+r*MX_CELL+3)+'" width="'+(MX_CELL-6)+'" height="'+(MX_CELL-6)+'" rx="14"/>';
+  }
+  const bo=[[MX_BX+14,MX_BY+14],[MX_BX+MX_BW-14,MX_BY+14],[MX_BX+14,MX_BY+MX_BH-14],[MX_BX+MX_BW-14,MX_BY+MX_BH-14]];
+  for(let i=0;i<bo.length;i++)h+='<circle class="mx-bolt" cx="'+bo[i][0]+'" cy="'+bo[i][1]+'" r="4"/>';
+  if(S){
+    for(let i=0;i<S.holes.length;i++){
+      const hc=S.holes[i],x=MX_X0+mxCol(hc)*MX_CELL+3,y=MX_Y0+mxRow(hc)*MX_CELL+3;
+      h+='<rect class="mx-hole" x="'+x+'" y="'+y+'" width="'+(MX_CELL-6)+'" height="'+(MX_CELL-6)+'" rx="14"/>';
+    }
+    for(let i=0;i<S.walls.length;i++){
+      const w=S.walls[i];
+      h+='<text class="mx-wall" x="'+mxCx(w)+'" y="'+(mxCy(w)+10)+'">🧱</text>';
+    }
+    for(let i=0;i<S.ins.length;i++){
+      const q=S.ins[i],x=MX_X0+mxCol(q)*MX_CELL+3,y=MX_Y0+mxRow(q)*MX_CELL+3;
+      h+='<rect class="mx-cell ins" x="'+x+'" y="'+y+'" width="'+(MX_CELL-6)+'" height="'+(MX_CELL-6)+'" rx="14"/>';
+      h+='<text class="mx-wall" x="'+mxCx(q)+'" y="'+(mxCy(q)+9)+'" font-size="20">🟪</text>';
+    }
+    for(let i=0;i<S.holes.length;i++)h+='<text class="mx-holeTxt" x="'+mxCx(S.holes[i])+'" y="'+(i%2?MX_BY+MX_BH+22:MX_BY-14)+'">印字台</text>';
+  }
+  h+='<rect class="mx-paper" x="'+MX_PX+'" y="'+MX_PY+'" width="'+MX_PW+'" height="'+MX_PH+'" rx="16"/>';
+  h+='<text class="mx-phead" x="'+(MX_PX+MX_PW/2)+'" y="'+(MX_PY-10)+'">📜 印出来的笔</text>';
+  g.innerHTML=h;
+}
+function mxTileHTML(t){
+  const x=mxCx(t.c),y=mxCy(t.c);
+  let cls='mx-tile '+(t.dead>0?'dead':(t.q?'s':'n'));
+  if(t.fgn)cls+=' fgn';
+  if(mx.S&&mx.S.pen.c>=0&&t.k===mx.S.qi&&!t.fgn&&mxWant(t,mx.S))cls+=' now';
+  let h='<g class="'+cls+'" id="mxT'+t.id+'" data-i="'+t.id+'" data-c="'+t.c+'" style="transform:translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)">';
+  h+='<g class="mx-fc">';
+  h+='<rect class="mx-body" x="'+(-MX_TW/2)+'" y="'+(-MX_TH/2)+'" width="'+MX_TW+'" height="'+MX_TH+'" rx="13"/>';
+  h+='<text class="mx-pol" x="'+(-MX_TW/2+11)+'" y="'+(-MX_TH/2+14)+'">'+MX_POL[t.q]+'</text>';
+  if(t.h>=0||t.tl>=0)h+='<text class="mx-pol" x="'+(MX_TW/2-11)+'" y="'+(-MX_TH/2+14)+'" font-size="11">🔗</text>';
+  h+='<circle class="mx-face" cx="2" cy="1" r="'+MX_RF+'"/>';
+  if(t.fgn||!mx.gly[t.k])h+='<text class="mx-nm" x="2" y="6">?</text>';
+  else h+='<g transform="translate(2,1) scale(0.74)">'+mxGlyHTML(mx.gly[t.k])+'</g>';
+  h+='<text class="mx-nm" x="'+(-MX_TW/2+12)+'" y="'+(MX_TH/2-6)+'">'+(t.fgn?'?':(t.k+1))+'</text>';
+  if(t.dead>0)h+='<text class="mx-nm" x="'+(MX_TW/2-12)+'" y="'+(MX_TH/2-6)+'" font-size="11">🚫</text>';
+  else if(t.ins>0)h+='<text class="mx-nm" x="'+(MX_TW/2-12)+'" y="'+(MX_TH/2-6)+'" font-size="11">🟪</text>';
+  h+='</g></g>';
+  return h;
+}
+function mxRenderTiles(){
+  const g=document.getElementById('mxTileG'),S=mx.S;
+  if(!g)return;
+  if(!S){g.innerHTML='';return}
+  let h='';
+  for(let i=0;i<S.tiles.length;i++)h+=mxTileHTML(S.tiles[i]);
+  g.innerHTML=h;
+  mxPaintCls();
+}
+function mxSlide(){
+  const S=mx.S;if(!S)return;
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i],el=document.getElementById('mxT'+t.id);
+    if(!el)continue;
+    el.style.transform='translate('+mxCx(t.c).toFixed(1)+'px,'+mxCy(t.c).toFixed(1)+'px)';
+    el.setAttribute('data-c',String(t.c));
+  }
+  mxPaintCls();
+}
+function mxPaintCls(){
+  const S=mx.S;if(!S)return;
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i],el=document.getElementById('mxT'+t.id);
+    if(!el)continue;
+    el.classList.remove('n','s','dead','now','bad','glid');
+    el.classList.add(t.dead>0?'dead':(t.q?'s':'n'));
+    if(t.k===S.qi&&!t.fgn&&S.pen.c>=0&&mxWant(t,S))el.classList.add('now');
+    if(t.dead>0||t.ins>0)el.classList.add('dead');
+  }
+}
+function mxPenHTML(){
+  const S=mx.S,g=document.getElementById('mxPenG');
+  if(!g)return;
+  if(!S||S.pen.c<0){g.innerHTML='';return}
+  const x=mxCx(S.pen.c),y=mxCy(S.pen.c);
+  let h='<g class="mx-pen '+(S.pen.q?'s':'n')+'" id="mxPenEl" style="transform:translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)">';
+  h+='<circle class="mx-penGlow" r="'+(MX_TW/2+7)+'"/>';
+  h+='<rect class="mx-penbody" x="'+(-MX_TW/2)+'" y="-13" width="'+MX_TW+'" height="26" rx="13"/>';
+  h+='<rect class="mx-h1" x="'+(-MX_TW/2+3)+'" y="-11" width="18" height="22" rx="8"/>';
+  h+='<rect class="mx-h2" x="'+(MX_TW/2-21)+'" y="-11" width="18" height="22" rx="8"/>';
+  h+='<text class="mx-penTxt" x="'+(-MX_TW/2+12)+'" y="4">'+MX_POL[0]+'</text>';
+  h+='<text class="mx-penTxt" x="'+(MX_TW/2-12)+'" y="4">'+MX_POL[1]+'</text>';
+  h+='<text class="mx-pol" y="4" font-size="13">'+(S.pen.q?'S 极朝上':'N 极朝上')+'</text>';
+  h+='</g>';
+  g.innerHTML=h;
+}
+function mxRenderPen(){mxPenHTML()}
+function mxField(){
+  const g=document.getElementById('mxFieldG'),S=mx.S;
+  if(!g)return;
+  if(!S||S.pen.c<0){g.innerHTML='';return}
+  const pc=mxCol(S.pen.c),pr=mxRow(S.pen.c);
+  let h='<rect class="mx-fl '+(S.pen.q?'push':'pull')+'" x="'+MX_X0+'" y="'+(MX_Y0+pr*MX_CELL+6)+'" width="'+(MX_CW*MX_CELL)+'" height="'+(MX_CELL-12)+'" rx="12" opacity=".1"/>';
+  h+='<rect class="mx-fl '+(S.pen.q?'push':'pull')+'" x="'+(MX_X0+pc*MX_CELL+6)+'" y="'+MX_Y0+'" width="'+(MX_CELL-12)+'" height="'+(MX_CH*MX_CELL)+'" rx="12" opacity=".1"/>';
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i];
+    if(t.h>=0||t.dead>0||t.ins>0)continue;
+    const w=mxWant(t,S);
+    if(!w)continue;
+    const kind=t.q===S.pen.q?'push':'pull';
+    const x=mxCx(t.c),y=mxCy(t.c);
+    const dx=w.ax?0:w.d*26,dy=w.ax?w.d*26:0;
+    h+='<path class="mx-ar '+kind+'" d="M'+(x+dx*0.2).toFixed(1)+' '+(y+dy*0.2).toFixed(1)+'L'+(x+dx).toFixed(1)+' '+(y+dy).toFixed(1)+'"/>';
+    h+='<path class="mx-ah '+kind+'" d="M'+(x+dx+w.d*(w.ax?0:7)).toFixed(1)+' '+(y+dy+w.d*(w.ax?7:0)).toFixed(1)+'l'+(w.ax?(-7)+' -5,7 -5':(-5)+' -7,'+(-5)+' 7')+'z"/>';
+  }
+  g.innerHTML=h;
+}
+function mxRenderGhosts(){
+  const g=document.getElementById('mxTopG');
+  if(!g)return;
+  const old=document.getElementById('mxGhostG');
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  const G=mx.ghost;
+  if(!G||mx.ghostMs<=0)return;
+  let h='<g id="mxGhostG">';
+  for(let i=0;i<G.from.length;i++){
+    const f=G.from[i];
+    const to=null;
+    for(let k=0;k<G.tiles.length;k++)if(G.tiles[k].id===f.id){
+      if(G.tiles[k].c!==f.c){
+        const x1=mxCx(f.c),y1=mxCy(f.c),x2=mxCx(G.tiles[k].c),y2=mxCy(G.tiles[k].c);
+        h+='<path class="mx-mark2" d="M'+x1+' '+y1+'L'+x2+' '+y2+'"/>';
+      }
+      h+='<rect class="mx-glid" x="'+(mxCx(G.tiles[k].c)-MX_TW/2)+'" y="'+(mxCy(G.tiles[k].c)-MX_TH/2)+'" width="'+MX_TW+'" height="'+MX_TH+'" rx="13"/>';
+    }
+  }
+  h+='</g>';
+  g.insertAdjacentHTML('beforeend',h);
+}
+function mxPaper(){
+  const g=document.getElementById('mxPaperG');
+  if(!g)return;
+  if(!mx.rec){g.innerHTML='';return}
+  const n=mx.n,sh=Math.min(66,(MX_PH-16)/n);
+  const y0=MX_PY+((MX_PH)-n*sh)/2;
+  let h='';
+  for(let k=0;k<n;k++){
+    const y=y0+k*sh,w=MX_PW-34,x=MX_PX+17,side=Math.min(w-14,sh-14);
+    const inIt=k<mx.S.qi,now=k===mx.S.qi;
+    h+='<rect class="'+(now?'mx-pnow':'mx-pbox')+'" x="'+x+'" y="'+(y+4).toFixed(1)+'" width="'+w+'" height="'+(sh-8).toFixed(1)+'" rx="8"/>';
+    if(inIt&&mx.gly[k]){
+      h+='<g transform="translate('+(x+w/2).toFixed(1)+','+(y+sh/2).toFixed(1)+') scale('+((side/44)*0.9).toFixed(3)+')">'+mxGlyHTML(mx.gly[k])+'</g>';
+    }else h+='<text class="mx-ptxt" x="'+(x+w/2).toFixed(1)+'" y="'+(y+sh/2+4).toFixed(1)+'">'+(k+1)+'</text>';
+  }
+  g.innerHTML=h;
+}
+function mxMini(){
+  const svg=document.getElementById('mxMiniSvg');
+  if(!svg)return;
+  if(!mx.rec){svg.innerHTML='';return}
+  const sp=(mx.rec.raw&&mx.rec.raw.strokes)||[];
+  let h='<g transform="scale(1,-1)"><path d="M512 40V984M40 512H984" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="14 12"/>';
+  for(let i=0;i<mx.n;i++){
+    const got=mx.S&&i<mx.S.qi;
+    const col=got?MX_INK[mxDn(mx.rec.dirs[i])]:((mx.S&&i===mx.S.qi)?'rgba(255,245,157,.95)':'rgba(255,255,255,.22)');
+    h+='<path d="'+mxDOf(sp,i)+'" fill="'+col+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  mxSet('mxMiniCap',mx.rec.ch+' '+((mx.S&&mx.S.qi)||0)+'/'+mx.n+' 笔');
+}
+function mxBasketHTML(){
+  const S=mx.S;
+  if(!S||!mx.rec)return '';
+  let left=0,fgn=0,dead=0,link=0;
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i];
+    if(t.dead>0)dead++;
+    if(t.fgn)fgn++;
+    else if(t.h<0)left++;
+    if(t.tl>=0||t.h>=0)link++;
+  }
+  let h='<div class="mx-nd in">🧲 电磁笔</div>';
+  h+='<div class="mx-nd in">🧲 待印 ×'+left+'</div>';
+  if(fgn)h+='<div class="mx-nd dead">🚫 废牌 ×'+fgn+'</div>';
+  if(S.walls.length)h+='<div class="mx-nd">🧱 ×'+S.walls.length+'</div>';
+  if(S.ins.length)h+='<div class="mx-nd">🟪 ×'+S.ins.length+'</div>';
+  if(link)h+='<div class="mx-nd in">🔗 ×'+(link/1>1?Math.ceil(link/2):0)+'</div>';
+  if(dead)h+='<div class="mx-nd dead">💤 定住 ×'+dead+'</div>';
+  return h+'<span class="mx-more"></span>';
+}
+function mxBasket(){
+  const el=document.getElementById('mxBasket');
+  if(el){const h=mxBasketHTML();el.setAttribute('data-h',h);el.innerHTML=h}
+  mx.hudTxt.bask='';
+  mxBasketLight();
+}
+function mxBasketLight(){
+  const el=document.getElementById('mxBasket');
+  if(!el)return;
+  const chips=mxBasketHTML();
+  if((el.getAttribute('data-h')||'')!==chips){el.setAttribute('data-h',chips);el.innerHTML=chips}
+  const more=el.querySelector('.mx-more');
+  if(!more)return;
+  if(!mx.rec||!mx.S){if(mx.hudTxt.bask!==''){mx.hudTxt.bask='';more.innerHTML=''}return}
+  const k=Math.min(mx.S.qi,mx.n-1),nd=mx.rec.dirs[k];
+  const t=mx.S.qi>=mx.n?'🏁 这一盘已经印满':
+    '🎯 该印的是 <b>第 '+(mx.S.qi+1)+' 笔「'+MX_DIRS[mxDn(nd)]+' '+MX_ARW[mxDn(nd)]+'」</b> 那张牌 · ⚡ 电 <b>'+mx.pow+'/'+mx.powMax+'</b> · 通电 <b>'+mx.pulses+'</b> 次';
+  if(mx.hudTxt.bask!==t){mx.hudTxt.bask=t;more.innerHTML=t}
+}
+function mxMeter(){
+  const bar=document.getElementById('mxClockBar'),tt=document.getElementById('mxClockTxt'),bx=document.getElementById('mxClockBox');
+  const w=(mxClamp(mx.clock,0,1)*100).toFixed(1)+'%';
+  if(bx)bx.classList.toggle('low',mx.clock<=12/Math.max(1,mx.clockSec));
+  if(bar&&mx.hudTxt.bar!==w){mx.hudTxt.bar=w;bar.style.width=w}
+  const left=Math.max(0,Math.ceil(mx.clock*mx.clockSec));
+  const t='⏳ 还有 '+left+' 秒 · 印 '+((mx.S&&mx.S.qi)||0)+'/'+mx.n+' 笔';
+  if(tt&&mx.hudTxt.tt!==t){mx.hudTxt.tt=t;tt.textContent=t}
+  const p='⚡ '+mx.pow+'/'+mx.powMax;
+  const pt=document.getElementById('mxPowTxt');
+  if(pt&&mx.hudTxt.pt!==p){mx.hudTxt.pt=p;pt.textContent=p}
+  const st=document.getElementById('mxStormTag');
+  if(st)st.classList.toggle('on',mx.stormTag>0);
+  const bd=document.getElementById('mxBadge');
+  if(bd)bd.style.top=mx.stormTag>0?'34px':'8px';
+  if(bd&&mx.S){
+    const q=[];
+    let nf=0,ns=0,nw=0,ni=0;
+    for(let i=0;i<mx.S.tiles.length;i++){const t=mx.S.tiles[i];if(t.fgn)nf++;else if(t.h<0)ns++;if(t.dead>0||t.ins>0)ni++}
+    nw=mx.S.walls.length;
+    if(ns)q.push('🧲 待印 ×'+ns);
+    if(nf)q.push('🚫 废牌 ×'+nf);
+    if(nw)q.push('🧱 ×'+nw);
+    if(mx.S.ins.length)q.push('🟪 ×'+mx.S.ins.length);
+    const bg=q.join(' · ');
+    if(mx.hudTxt.badge!==bg){mx.hudTxt.badge=bg;bd.textContent=bg}
+    bd.classList.toggle('on',!!bg);
+  }
+  mxBasketLight();
+}
+function mxHudLight(){
+  const sc=document.getElementById('mxScoreTxt'),t='🎯 '+Math.round(mx.score)+' 分';
+  if(sc&&mx.hudTxt.sc!==t){mx.hudTxt.sc=t;sc.textContent=t}
+  const lv=document.getElementById('mxLvTxt'),v='第 '+mx.lv+' 段 · '+(mx.rec?mx.rec.ch:'—')+' '+mx.n+' 笔';
+  if(lv&&mx.hudTxt.lv!==v){mx.hudTxt.lv=v;lv.textContent=v}
+  const lt=document.getElementById('mxLitTxt'),l='✅ '+mx.lits+' 笔';
+  if(lt&&mx.hudTxt.lt!==l){mx.hudTxt.lt=l;lt.textContent=l}
+  const cb=document.getElementById('mxComboTxt'),c='🔥 连 '+mx.combo;
+  if(cb&&mx.hudTxt.cb!==c){mx.hudTxt.cb=c;cb.textContent=c}
+  const pu=document.getElementById('mxPulseTxt'),p='⚡ '+mx.pulses;
+  if(pu&&mx.hudTxt.pu!==p){mx.hudTxt.pu=p;pu.textContent=p}
+  const sk=document.getElementById('mxStickTxt'),s='🔗 '+mx.sticks;
+  if(sk&&mx.hudTxt.sk!==s){mx.hudTxt.sk=s;sk.textContent=s}
+  const dr=document.getElementById('mxDropTxt'),d='💨 '+mx.drops;
+  if(dr&&mx.hudTxt.dr!==d){mx.hudTxt.dr=d;dr.textContent=d}
+  const wr=document.getElementById('mxWrongTxt'),rr='🚫 '+mx.wrongs;
+  if(wr&&mx.hudTxt.wr!==rr){mx.hudTxt.wr=rr;wr.textContent=rr}
+  mxMeter();
+}
+function mxHud(){
+  const R=mxRank(mxInt('hz_magnet_words'));
+  mxSet('mxRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<MX_HEART_MAX;i++)hs+=(i<mx.hearts?'❤️':'🖤');
+  mxSet('mxHeartTxt',hs||'🖤');
+  mxSet('mxScoreTxt','🎯 '+Math.round(mx.score)+' 分');
+  mxSet('mxLvTxt','第 '+mx.lv+' 段 · '+(mx.rec?mx.rec.ch:'—')+' '+mx.n+' 笔');
+  mxSet('mxComboTxt','🔥 连 '+mx.combo);
+  mxSet('mxLitTxt','✅ '+mx.lits+' 笔');
+  mxSet('mxPulseTxt','⚡ '+mx.pulses);
+  mxSet('mxStickTxt','🔗 '+mx.sticks);
+  mxSet('mxDropTxt','💨 '+mx.drops);
+  mxSet('mxWrongTxt','🚫 '+mx.wrongs);
+  mxToolBtns();
+  mxMini();mxBasket();mxPaper();mxHudLight();
+}
+function mxToolBtns(){
+  const z=document.getElementById('mxZap');
+  if(z){
+    z.disabled=(mx.pow<=0||!mx.S||mx.S.pen.c<0||mx.zapMs>0||mx.nextMs>0);
+    z.innerHTML='⚡ 通电<b style="font-size:11px"> 空格 ×'+mx.pow+'</b>';
+  }
+  const p=document.getElementById('mxPrevBtn');
+  if(p){p.disabled=mx.previewN<=0;p.textContent='💡 预览 ×'+mx.previewN}
+  const u=document.getElementById('mxUndoBtn');
+  if(u){u.disabled=mx.undoN<=0||!mx.hist.length;u.textContent='🔄 倒带 ×'+mx.undoN}
+  const f=document.getElementById('mxTFlip');
+  if(f)f.innerHTML='🎯 翻牌<b style="font-size:11px"> 2 ×'+mx.flipN+'</b>';
+  const r=document.getElementById('mxReBtn');
+  if(r){r.disabled=mx.respN<=0;r.textContent='🔁 重摆 ×'+mx.respN}
+}
+function mxAskText(){
+  if(!mx.rec||!mx.S)return;
+  if(mx.S.qi>=mx.n){
+    mxSet('mxAsk','🏁 <b>'+mx.rec.ch+'</b> 的 '+mx.n+' 笔全印出来了 —— 下一盘正在摆牌<br><small>⚡ 电 <b>'+mx.pow+'/'+mx.powMax+'</b> · 通电 <b>'+mx.pulses+'</b> 次 · 🔗 粘成 <b>'+mx.sticks+'</b> 串 · ⏳ <b>'+Math.max(0,Math.ceil(mx.clock*mx.clockSec))+' 秒</b></small>');
+    return;
+  }
+  const k=Math.min(mx.S.qi,mx.n-1),nd=mxDn(mx.rec.dirs[k]);
+  mxSet('mxAsk','🧲 <b>'+mx.rec.ch+'</b> 的第 '+(mx.S.qi+1)+' 笔（共 '+mx.n+' 笔）—— 把写着 <b>'+MX_DIRS[nd]+' '+MX_ARW[nd]+'</b> 那张牌送进 <b>印字台</b><br><small>⚡ 电 <b>'+mx.pow+'/'+mx.powMax+'</b> · 通电 <b>'+mx.pulses+'</b> 次 · 🔗 粘成 <b>'+mx.sticks+'</b> 串 · ⏳ <b>'+Math.max(0,Math.ceil(mx.clock*mx.clockSec))+' 秒</b></small>');
+}
+function mxLine(){
+  const el=document.getElementById('mxHintLine');
+  if(!el)return;
+  if(!mx.run||mx.over||!mx.S){el.innerHTML='🧲 正在给磁场通电……';return}
+  if(mx.nextMs>0){el.innerHTML='🏁 <b>整个字印满了</b> —— 下一盘牌正在摆';return}
+  if(mx.zapMs>0){el.innerHTML='⚡ 通电中…… 全场牌 <b>一起动</b>';return}
+  if(mx.S.qi>=mx.n){el.innerHTML='🏁 印满了 —— 等这一盘收工';return}
+  const p=mxPlanStep(mx.S);
+  if(!p){el.innerHTML='🧲 场上找不出 <b>该印那张牌</b> —— 按 <b>🔁 重摆</b> 另摆一盘';return}
+  if(p.free){el.innerHTML='🧲 这一放的格子 <b>被占了</b>：按 <b>🎯 翻牌</b> 或 <b>🔁 重摆</b> 腾一腾';return}
+  if(p.stun){el.innerHTML='💤 第 '+(mx.S.qi+1)+' 笔那张牌 <b>定住了</b>（刚被甩下来 / 踩了 🟪 绝缘格）—— 先 <b>⚡ 通电</b> 空一阵让它醒过来';return}
+  if(mx.S.pen.c===p.c&&mx.S.pen.q===p.q){
+    el.innerHTML='✨ 位置正对：<b>⚡ 通电</b>（<code>空格</code>）—— '+p.ax+'着 <b>'+p.how+'</b> 过来 <b>'+p.need+' 格</b>';
+    return;
+  }
+  el.innerHTML='👉 把 🧲 笔放到 <b>'+mxNameOf(p.c)+'</b>（<code>方向键</code>+<code>Enter</code>）、朝 <b>'+MX_PN[p.q]+'</b> —— '+p.ax+'着 <b>'+p.how+'</b> 走 <b>'+p.need+' 格</b>，再 <b>⚡ 通电</b>';
+}
+/* ---- 特效 ---- */
+function mxFxHost(){return document.getElementById('mxFx')}
+function mxPut(host,el,ms){
+  host.appendChild(el);
+  mxT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function mxBits(x,y,col,n){
+  const host=mxFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='mx-bit';
+    b.style.left=(x/MX_W*100)+'%';b.style.top=(y/MX_H*100)+'%';
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=20+Math.random()*44;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r).toFixed(1)+'px');
+    mxPut(host,b,760);
+  }
+}
+function mxPop(x,y,txt,col){
+  const host=mxFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='mx-pop';
+  el.style.left=(x/MX_W*100)+'%';el.style.top=(y/MX_H*100)+'%';
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  mxPut(host,el,980);
+}
+function mxShakeFx(){
+  const el=document.querySelector('.mx-tbl');if(!el)return;
+  el.classList.remove('mx-shake');void el.offsetWidth;el.classList.add('mx-shake');
+}
+function mxTblCls(cls,ms){
+  const el=document.getElementById('mxTbl');
+  if(!el)return;
+  el.classList.add(cls);
+  mxT(function(){el.classList.remove(cls)},ms);
+}
+function mxRing(x,y,r,col){
+  const g=document.getElementById('mxTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+  c.setAttribute('r',String(Math.round(r)));c.setAttribute('fill','none');
+  c.setAttribute('stroke',col||'rgba(255,235,59,.9)');c.setAttribute('stroke-width','3');
+  c.setAttribute('class','mx-ring');
+  g.appendChild(c);
+  mxT(function(){if(c.parentNode)c.parentNode.removeChild(c)},920);
+}
+function mxMark(cells){
+  const g=document.getElementById('mxTopG');if(!g)return;
+  (cells||[]).forEach(function(i){
+    const c=document.createElementNS('http://www.w3.org/2000/svg','rect');
+    c.setAttribute('x',String(mxCx(i)-MX_TW/2-4));c.setAttribute('y',String(mxCy(i)-MX_TH/2-4));
+    c.setAttribute('width',String(MX_TW+8));c.setAttribute('height',String(MX_TH+8));
+    c.setAttribute('rx','16');c.setAttribute('fill','none');
+    c.setAttribute('stroke','#40C4FF');c.setAttribute('stroke-width','3.4');
+    c.setAttribute('class','mx-mark');
+    g.appendChild(c);
+    mxT(function(){if(c.parentNode)c.parentNode.removeChild(c)},MX_GHOST_MS);
+  });
+}
+function mxSparks(cell){
+  const g=document.getElementById('mxTopG');if(!g)return;
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x',String(mxCx(cell)));t.setAttribute('y',String(mxCy(cell)-MX_TH));
+  t.setAttribute('class','mx-spark');t.textContent='✨ ⚡ ✨';
+  g.appendChild(t);
+  mxT(function(){if(t.parentNode)t.parentNode.removeChild(t)},1200);
+}
+function mxFlash(){
+  const g=document.getElementById('mxTopG');if(!g)return;
+  const r=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  r.setAttribute('x',MX_BX);r.setAttribute('y',MX_BY);
+  r.setAttribute('width',MX_BW);r.setAttribute('height',MX_BH);
+  r.setAttribute('rx','22');r.setAttribute('class','mx-flash');
+  g.appendChild(r);
+  mxT(function(){if(r.parentNode)r.parentNode.removeChild(r)},MX_FLASH_MS+40);
+}
+function mxCursor(){
+  const g=document.getElementById('mxTopG');
+  if(!g)return;
+  const old=document.getElementById('mxCurBox');
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  if(mx.cur===undefined||mx.cur<0||mx.cur>=MX_N)return;
+  const c=mxCol(mx.cur),r=mxRow(mx.cur);
+  const el=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  el.setAttribute('id','mxCurBox');
+  el.setAttribute('x',MX_X0+c*MX_CELL+2);el.setAttribute('y',MX_Y0+r*MX_CELL+2);
+  el.setAttribute('width',MX_CELL-4);el.setAttribute('height',MX_CELL-4);
+  el.setAttribute('rx','15');el.setAttribute('class','mx-cur');
+  g.appendChild(el);
+}
+/* ---- 主循环 ---- */
+function mxStartLoop(){mxStopLoop();mx.last=0;mx.rafId=requestAnimationFrame(mxLoop)}
+function mxStopLoop(){if(mx.rafId){cancelAnimationFrame(mx.rafId);mx.rafId=0}mx.last=0}
+function mxLoop(ts){
+  if(!mx.run||mx.over){mx.rafId=0;return}
+  const dt=mx.last?Math.min(0.05,(ts-mx.last)/1000):0.016;
+  mx.last=ts;
+  mxTick(dt);
+  mx.rafId=requestAnimationFrame(mxLoop);
+}
+function mxTick(dt){
+  const ms=dt*1000;
+  mx.t+=dt;mx.playMs+=ms;
+  mx.tones=6;
+  if(mx.ghostMs>0){
+    mx.ghostMs=Math.max(0,mx.ghostMs-ms);
+    if(!mx.ghostMs){mx.ghost=null;const g=document.getElementById('mxGhostG');if(g&&g.parentNode)g.parentNode.removeChild(g)}
+  }
+  if(mx.stormTag>0)mx.stormTag=Math.max(0,mx.stormTag-ms);
+  if(mx.printMs>0)mx.printMs=Math.max(0,mx.printMs-ms);
+  if(mx.nextMs>0){mx.nextMs=Math.max(0,mx.nextMs-ms);mxMeter();return}
+  if(mx.zapMs>0){mx.zapMs=Math.max(0,mx.zapMs-ms);mxMeter();return}
+  if(!mx.rec||!mx.S||mx.over)return;
+  mx.think+=ms;
+  mx.clock-=dt/Math.max(1,mx.clockSec);
+  const left=Math.ceil(mx.clock*mx.clockSec);
+  if(mx.clock<=12/Math.max(1,mx.clockSec)&&mx.clock>0){
+    mx.beep+=ms;
+    if(mx.beep>=1000){mx.beep=0;mxTone(900,0.05,'sine',0.05)}
+    if(!mx.red){mx.red=true;mxSay('⚠️ <b>板子边缘发红了</b>：还剩 '+left+' 秒磁场就 <b>断电</b> —— 断电 <b>掉一颗心</b>、这一阵重摆（已印的笔不抹）。先把 <b>该印那张牌</b> 送进去','#FFCC80')}
+  }
+  if(mx.clock<=0){mx.clock=0;mxPowerOut('clock');return}
+  if(mx.think>=MX_NAG_MS){mx.think=0;mxNag()}
+  mxHudLight();
+}
+/* ---- 输入 ---- */
+function mxCursorSay(){
+  const S=mx.S;if(!S||!mx.rec)return;
+  const i=mx.cur,t=mxAt(S,i);
+  let s;
+  if(t&&t.fgn)s='👉 光标在一张 <b>🚫 废牌</b>（牌面不是这个字的笔）：撞到印字台要 <b>扣分</b> —— 别把它推过去';
+  else if(t&&t.h>=0)s='👉 光标在 <b>串的下半张</b>：它 <b>被头那张带着走</b>，自己不动 —— 🎯 翻牌 <b>拆串</b>';
+  else if(t)s='👉 光标在 <b>'+(t.k===S.qi?'就是该印的那张牌':'第 '+(t.k+1)+' 笔那张牌')+'</b>：它朝 <b>'+MX_PN[t.q]+'</b>'+(S.pen.c>=0?'，笔朝 <b>'+MX_PN[S.pen.q]+'</b> ⇒ 它 <b>'+(t.q===S.pen.q?'往外斥':'往里吸')+'</b>':'')+' —— 按 <code>Enter</code> 细看，切到 <code>2</code> 可以 <b>🎯 翻牌</b>';
+  else if(mxIsHole(S,i))s='👉 光标在 <b>🈳 印字台</b>（'+mxNameOf(i)+'）：只收 <b>第 '+(S.qi+1)+' 笔</b> 那张牌 —— 送早了弹回、送错牌扣分';
+  else if(mxIsWall(S,i))s='👉 光标在 <b>🧱 铁栅</b> 上：笔放不上、磁场也 <b>穿不过</b> —— 牌撞上去就停下还会甩牌';
+  else if(mxIsIns(S,i))s='👉 光标在 <b>🟪 绝缘格</b> 上：牌踩上去 <b>卡一步</b> 才走得动';
+  else if(i===S.pen.c)s='👉 光标就在 <b>🧲 电磁笔</b> 上：按 <code>Enter</code> 或 <code>X</code> <b>翻面</b>（整场力的方向跟着反），<code>空格</code> <b>⚡ 通电</b>';
+  else s='👉 光标在 <b>'+mxNameOf(i)+'</b>（第 '+(mxRow(i)+1)+' 行第 '+(mxCol(i)+1)+' 列）的空格上：按 <code>Enter</code> <b>把电磁笔放过来</b>';
+  mxSay(s,'#B3E5FC');
+}
+function mxBind(){
+  if(mx.bound)return;
+  mx.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='magnet'||!mx.run||mx.over)return;
+    const k=e.key,K=String(k||'').toLowerCase();
+    if(K==='arrowleft'||K==='arrowright'||K==='arrowup'||K==='arrowdown'){
+      if(e.repeat)return;
+      if(mx.cur===undefined||mx.cur<0)mx.cur=Math.floor(MX_N/2);
+      let c=mxCol(mx.cur),r=mxRow(mx.cur);
+      if(K==='arrowleft')c--;
+      else if(K==='arrowright')c++;
+      else if(K==='arrowup')r--;
+      else r++;
+      mx.cur=mxClamp(r,0,MX_CH-1)*MX_CW+mxClamp(c,0,MX_CW-1);
+      mx.think=0;
+      mxCursor();
+      mxCursorSay();
+      e.preventDefault();return;
+    }
+    if(K==='enter'){if(!e.repeat)mxTap(mx.cur<0?mxCI(2,2):mx.cur);e.preventDefault();return}
+    if(k===' '){if(!e.repeat)mxZap();e.preventDefault();return}
+    if(K==='1'){if(!e.repeat)mxPickTool(0);return}
+    if(K==='2'){if(!e.repeat)mxPickTool(1);return}
+    if(K==='x'){if(!e.repeat)mxFlipKey();return}
+    if(K==='w'){if(!e.repeat&&mx.S){const t=mxFindK(mx.S,mx.S.qi);if(t)mxFlipTile(mx.S.tiles.indexOf(t))}return}
+    if(K==='q'){if(!e.repeat)mxPreview();return}
+    if(K==='r'){if(!e.repeat)mxUndo();return}
+    if(K==='t'){if(!e.repeat)mxRespin();return}
+    if(k==='?'){mxHelp();return}
+  });
+}
+function mxFlipKey(){
+  if(mx.tool===1&&mx.cur>=0&&mx.S){
+    const t=mxAt(mx.S,mx.cur);
+    if(t){mxFlipTile(mx.S.tiles.indexOf(t));return}
+  }
+  mxFlipPen();
+}
+function mxFindK(S,k){
+  for(let i=0;i<S.tiles.length;i++)if(S.tiles[i].k===k&&S.tiles[i].h<0)return S.tiles[i];
+  return null;
+}
+function mxPointer(){
+  const svg=document.getElementById('mxSvg');
+  if(!svg||mx.ptrBound)return;
+  mx.ptrBound=true;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='magnet'||!mx.run||mx.over||!mx.S)return;
+    if(!ev.target.closest)return;
+    const pe=ev.target.closest('.mx-pen');
+    if(pe){mx.think=0;mxFlipPen();if(ev.preventDefault)ev.preventDefault();return}
+    const te=ev.target.closest('.mx-tile');
+    const ce=te?null:ev.target.closest('.mx-cell');
+    let i=-1;
+    if(te)i=parseInt(String(te.getAttribute('data-c')),10);
+    else if(ce)i=parseInt(String(ce.id||'').replace('mxC',''),10);
+    if(isNaN(i)||i<0)return;
+    mx.cur=i;
+    mxCursor();
+    mxTap(i);
+    if(ev.preventDefault)ev.preventDefault();
+  });
+}
+/* ---- 生命周期 ---- */
+function mxStopAll(){mxStopLoop();mxKillTimers();mx.gen++;mx.zapMs=0;mx.nextMs=0;mx.printMs=0}
+async function mxStart(){
+  mxStopAll();
+  const g=mx.gen;
+  const stale=function(){return g!==mx.gen||!mx.run||mx.over};
+  mx.run=true;mx.over=false;
+  mx.timers=[];
+  mx.lv=1;mx.score=0;mx.hearts=MX_HEARTS;mx.combo=0;mx.maxCombo=0;
+  mx.words=0;mx.lits=0;mx.pulses=0;mx.sticks=0;mx.drops=0;mx.wrongs=0;mx.storms=0;mx.deads=0;
+  mx.previewN=2;mx.flipN=2;mx.undoN=3;mx.respN=1;
+  mx.previews=0;mx.flips=0;mx.rewinds=0;mx.respins=0;mx.nags=0;
+  mx.ghostMs=0;mx.ghost=null;mx.stormTag=0;mx.think=0;mx.playMs=0;mx.t=0;mx.hudTxt={};
+  mx.pool=[];mx.miss=[];mx.rec=null;mx.n=0;mx.qi=0;mx.gly=[];mx.S=null;mx.tid=1;
+  mx.powMax=0;mx.pow=0;mx.clock=1;mx.clockSec=60;mx.red=false;mx.beep=0;
+  mx.printRun=0;mx.cleanWord=true;mx.wrongWord=0;mx.hist=[];
+  mx.tool=0;mx.cur=-1;mx.sol=null;
+  showScreen('magnet');
+  mxBind();mxPointer();
+  mxPickTool(0);
+  mxRenderStatic();mxRenderTiles();mxRenderPen();mxField();mxPaper();mxMini();mxHud();mxLine();
+  mxSet('mxAsk','🧲 正在给磁场通电……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  mxSay('板子上是一片 <b>🧲 磁场</b>：每张牌都带着 <b>N（红）</b> 或 <b>S（蓝）</b> 一极，牌面就是这个字其中一笔的 <b>真实笔形</b>。你手上有一只 <b>🧲 电磁笔</b> —— <b>放到哪格、朝哪极</b> 都由你定，按 <b>⚡ 通电</b> 的那一下，<b>它那一横一竖上的牌同时</b> 动起来：<b>异极吸过来、同极斥开</b>，<b>离得两格以内的一跳就是两格</b>');
+  let ok=await mxBuildPool();
+  if(stale())return;
+  if(!ok){
+    mxSay('🧲 磁场还没起来，再通一次……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await mxBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!mx.pool.length){
+    mx.run=false;
+    mxSet('mxAsk','😢 字库没加载好<br><small>稍后再来玩磁</small>');
+    mxSay('先去别的模式练两笔，回来字就齐了','#FFCC80');
+    return;
+  }
+  mxAdd('hz_magnet_games',1);
+  if(!mxNewWord()){mx.run=false;mxSet('mxAsk','😢 牌没摆好<br><small>稍后再来玩磁</small>');return}
+  if(!mx.run||mx.over||stale())return;
+  mxStartLoop();
+}
+function mxEnd(reason){
+  if(mx.over)return;
+  mx.over=true;mx.run=false;
+  mxStopAll();
+  const sc=Math.round(mx.score);
+  localStorage.setItem('hz_magnet_best',String(Math.max(mx.words,mxInt('hz_magnet_best'))));
+  localStorage.setItem('hz_magnet_streak',String(Math.max(mx.maxCombo,mxInt('hz_magnet_streak'))));
+  localStorage.setItem('hz_magnet_lv',String(Math.max(mx.lv,mxInt('hz_magnet_lv'))));
+  mxAdd('hz_magnet_ms',Math.round(mx.playMs/1000));
+  const stars=Math.floor(sc/130)+mx.words*3;
+  if(stars>0)addStars(stars);
+  showScreen('magnet-result');
+  const R=mxRank(mxInt('hz_magnet_words'));
+  const T={
+    miss:['🔩','心丢完了，磁场断了','<b>送错三次</b>、<b>钟走光</b>、<b>电量见底</b> 都会丢心：动手前 <b>先认笔形</b>，再算 <b>这张牌离台子几格</b>'],
+    quit:['🏁','今天收工了','下次先想 <b>这张牌要往哪儿走</b>，再定 <b>笔放哪儿、朝哪极</b> —— 一通电 <b>整横整竖一起动</b>'],
+    nodata:['😢','牌没摆好','先去别的模式练两笔，回来字就齐了']
+  };
+  const t=T[reason]||T.quit;
+  mxSet('mxRsEmoji',t[0]);
+  mxSet('mxRsTitle',reason==='nodata'?t[1]:(reason==='miss'?(mx.words?'心丢了 · 已收好 '+mx.words+' 个字':t[1]):t[1]));
+  mxSet('mxRsSub',t[2]);
+  mxSet('mxRsScore',String(sc));
+  mxSet('mxRsWords',String(mx.words));
+  mxSet('mxRsLit',String(mx.lits));
+  mxSet('mxRsLv',String(mx.lv));
+  mxSet('mxRsStreak',String(mx.maxCombo));
+  mxSet('mxRsMiss',mx.wrongs+' / '+mx.deads);
+  mxSet('mxRsStars','⭐ '+stars);
+  mxSet('mxRsBest',String(mxInt('hz_magnet_best')));
+  mxSet('mxRsAll2',String(mxInt('hz_magnet_words')));
+  mxSet('mxRsAll','🏅 '+R.e+' '+R.t+' · 累计收好 '+mxInt('hz_magnet_words')+' 个字\n'+
+    '⚡ 通电 '+mxInt('hz_magnet_pulses')+' 次 · 🔗 粘成 '+mxInt('hz_magnet_sticks')+' 串 · 💨 甩掉 '+mxInt('hz_magnet_drops')+' 张\n'+
+    '🚫 送错 '+mxInt('hz_magnet_wrongs')+' 次 · 💔 断电 '+mxInt('hz_magnet_deads')+' 回 · 🌀 磁暴 '+mxInt('hz_magnet_storms')+' 回 · 💎 一次没错 '+mxInt('hz_magnet_perfect')+' 盘\n'+
+    '💡 预览 '+mxInt('hz_magnet_previews')+' 次 · 🎯 翻牌 '+mxInt('hz_magnet_flips')+' 次 · 🔄 倒带 '+mxInt('hz_magnet_rewinds')+' 次 · 🔁 重摆 '+mxInt('hz_magnet_resets')+' 回\n'+
+    '👀 发呆提示 '+mxInt('hz_magnet_nags')+' 次 · 🚀 一局最多 '+mxInt('hz_magnet_best')+' 个字 · 最高玩到第 '+mxInt('hz_magnet_lv')+' 段');
+  const book=(localStorage.getItem('hz_magnet_book')||'').split(',').filter(function(c){return c.length===1});
+  mxSet('mxRsBookT',book.length?('📜 磁力档案 · 已印满 '+book.length+' 个字'):'');
+  const bh=document.getElementById('mxRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function mxRetry(){mxStart()}
+function mxLeave(){
+  mxStopAll();
+  if(mx.run&&!mx.over){mx.over=true;mx.run=false}
+  goHome();
+}
+function mxNudge(){
+  const dot=document.getElementById('mxCardDot'),tip=document.getElementById('mxCardTip');
+  const w=mxInt('hz_magnet_words'),p=mxInt('hz_magnet_perfect'),games=mxInt('hz_magnet_games');
+  const R=mxRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 收好 '+w+' 个字 · 印出 '+mxInt('hz_magnet_lits')+' 笔 · 一次没错 '+p+' 盘'):'牌面带着一极 N 红 S 蓝：把电磁笔放到哪一格、朝哪一极，一通电它那一横一竖的牌同时滑动 —— 异极吸、同极斥，把该印那一笔送进印字台';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function mxNag(){
+  if(!mx.rec||!mx.S||mx.S.qi>=mx.n)return;
+  const S=mx.S,k=S.qi,t=mxFindK(S,k);
+  mx.nags++;mxAdd('hz_magnet_nags',1);
+  mxTone(660,0.08,'sine',0.06);
+  if(!t){mxSay('🐰 场上 <b>找不到第 '+(k+1)+' 笔</b> 那张牌了（可能被 <b>🔗 粘进串里</b> 当尾巴）：按 <b>🎯 翻牌</b> 点串头 <b>拆成同极</b>，或 <b>🔁 重摆</b> 另摆一盘','#FFF176');return}
+  mxMark([t.c]);
+  const nd=mxDn(mx.rec.dirs[k]),hc=mxHoleOf(S,k),p=mxPlanStep(S);
+  mxSay('🐰 该印的是「<b>'+MX_DIRS[nd]+' '+MX_ARW[nd]+'</b>」这张牌，它在 <b>'+mxNameOf(t.c)+'</b>（第 '+(mxRow(t.c)+1)+' 行第 '+(mxCol(t.c)+1)+' 列）、带着 <b>'+MX_PN[t.q]+'</b>；印字台在 <b>'+mxNameOf(hc)+'</b>。'+
+    (p&&p.c>=0?'<br>👉 下一步：把笔放到 <b>'+mxNameOf(p.c)+'</b>、朝 <b>'+MX_PN[p.q]+'</b> —— <b>'+p.ax+'着'+p.how+'</b> 走 <b>'+p.need+' 格</b>，再按 <b>⚡ 通电</b>':
+      '<br>👉 一时算不出放笔的地方：按 <b>🔁 重摆</b> 另摆一盘（还剩 '+mx.respN+' 次）'),'#FFF176');
+}
+function mxHelp(){
+  const S=mx.S;
+  const nw=S?mxFindK(S,Math.min(S.qi,mx.n-1)):null;
+  mxSay('深蓝板子上是 <b>磁场台</b>（<b>'+MX_CW+'×'+MX_CH+'</b> 的格子）：散着几张 <b>磁牌</b>（牌面就是这个字其中一笔的 <b>真实笔形</b>：横红、竖青、撇蓝、捺橘，和左边米字格同一套颜色），每张牌顶上一极 <b>N 红</b> 或 <b>S 蓝</b>。底行 <b>第 '+(MX_HOLE[0]+1)+'、'+(MX_HOLE[1]+1)+' 列</b> 那两格是 <b>🈳 印字台</b><br>'+
+    '🧲 <b>同极相斥、异极相吸</b>：电磁笔 <b>翻个面</b>（点它 / 按 <code>X</code>）整场力的方向就 <b>全反</b> —— 想吸过来用 <b>异极</b>，想推开用 <b>同极</b><br>'+
+    '✚ <b>十字场</b>：笔只管得住 <b>自己那一横一竖</b> 上的牌，别处的牌 <b>纹丝不动</b>；离笔 <b>'+MX_TIE+' 格以内</b> 磁力强，一跳就是 <b>两格</b>，更远只挪 <b>一格</b><br>'+
+    '⚡ <b>一步全动</b>：通电一次，那一横一竖上 <b>每一张牌同时</b> 动 —— 所以 <b>推一张就会带着别的牌一起跑</b>，得先把整盘看一遍<br>'+
+    '🔗 <b>会粘、会甩</b>：两张 <b>异极</b> 牌迎面撞上就 <b>啪地粘成一串</b>（一串 <b>最多两张</b>、跟着串头走）；串 <b>撞上边框或 🧱 铁栅</b> 会 <b>甩掉尾巴那张</b>，甩下来的 <b>定住一步</b> 正好腾手。🎯 翻牌 <b>把串拆成同极</b> 就弹开<br>'+
+    '🚫 <b>送错要认</b>：印字台 <b>只收该印的那一笔</b> —— 送早了（还没轮到）<b>弹回来不罚</b>；牌面 <b>不是这个字的笔</b>（挂着 <b>?</b> 的废牌）撞上就 <b>当场打下来</b>：扣 '+MX_WRONG_PEN+' 分、断连击，<b>连着 '+MX_WRONG_MAX+' 次掉一颗心</b><br>'+
+    '🧱 <b>铁栅</b>（<b>第 3 段</b> 起'+(S?' 本盘 '+S.walls.length+' 块':'')+'）挡磁场也挡牌；🟪 <b>绝缘格</b>（<b>第 5 段</b> 起'+(S?' 本盘 '+S.ins.length+' 格':'')+'）牌踩上去 <b>卡一步</b>；🌀 <b>磁暴</b>（<b>第 6 段</b> 起）每 <b>3 次通电</b> 有张牌 <b>自己翻面</b>，左上角会报是哪一格<br>'+
+    '⏳ <b>磁场钟</b>：每阵发 <b>'+mxClockOf()+' 秒</b>（<code>30 + 笔数×6 − 段数×2</code>），走光 <b>断电</b>、掉一颗心、这一阵 <b>重摆</b>（<b>已印的笔不抹</b>）；⚡ <b>电量 '+mx.powMax+' 格</b>（解要 '+((mx.sol&&mx.sol.need)||'?')+' 次 + 余量），一次通电 1 格，<b>用完也掉一颗心</b><br>'+
+    '💡 <b>预览</b>（<code>Q</code>）画出 <b>每张牌的新位置</b>；🎯 <b>翻牌</b>（<code>2</code>）点 <b>哪张牌</b> 就 <b>翻面 / 拆串</b>；🔄 <b>倒带</b>（<code>R</code>）<b>退回上一次通电之前</b>，板面一模一样还原；🔁 <b>重摆</b>（<code>T</code>）剩下的牌另摆一盘 —— 预览 '+(mx.previewN)+' 次、翻牌 '+(mx.flipN)+' 次、倒带 '+(mx.undoN)+' 次、重摆 '+(mx.respN)+' 次，<b>升段各补 1 次</b><br>'+
+    '📈 <b>印一笔</b> 吃 <code>round((14 + 第几笔×2 + 段数×3) × (1 + 连击×0.05))</code>，<b>一串送进两张</b> 再多 <code>6 + 段数×2</code>；<b>印满整个字</b>：<code>26 + 笔数×6 + 段数×6 + 剩电×3</code>，<b>一次没错再多 '+MX_CLEAN_BONUS+'</b>；<b>每 2 个字升 1 段</b>（最多 9 段）、<b>每 3 个字补一颗心</b>（最多 5 颗）<br>'+
+    (nw?'🎯 现在该印 <b>第 '+(S.qi+1)+' 笔「'+MX_DIRS[mxDn(mx.rec.dirs[S.qi])]+'」</b>：它在 <b>'+mxNameOf(nw.c)+'</b>、朝 <b>'+MX_PN[nw.q]+'</b>，印字台在 <b>'+mxNameOf(mxHoleOf(S,S.qi))+'</b>':'🎯 这一盘已经印满')+
+    '<br>👀 发呆 '+(MX_NAG_MS/1000)+' 秒 🐰 报方位 · 战绩落盘 <code>hz_magnet_*</code>','#C5E1A5');
+}
+/* ---- 测试钩子 ---- */
+window.MX={CW:MX_CW,CH:MX_CH,N:MX_N,CELL:MX_CELL,X0:MX_X0,Y0:MX_Y0,TIE:MX_TIE,HOLES:MX_HOLE.slice(),FROM:MX_FROM.slice(),HR:MX_HR,PLAN_MAX:MX_PLAN_MAX,GN:MX_GEN_TRY,STMAX:MX_STROKE_MAX};
+window.mxvCI=function(c,r){return mxCI(c,r)};
+window.mxvInv=function(){
+  const S=mx.S;
+  if(!S)return {ok:0};
+  const cells=new Array(MX_N).fill(0),bad=[];
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i];
+    if(t.c<0||t.c>=MX_N){bad.push('range');continue}
+    if(cells[t.c])bad.push('stack@'+t.c);
+    cells[t.c]=1;
+    if(mxIsWall(S,t.c))bad.push('wall@'+t.c);
+    if(t.h>=0){const o=S.tiles[t.h];if(!o||o!==S.tiles[t.h])bad.push('head');if(o&&o.tl!==i)bad.push('pair')}
+    if(t.tl>=0){const o=S.tiles[t.tl];if(!o||o.h!==i)bad.push('pair2')}
+  }
+  let nq=0;
+  for(let k=0;k<S.n;k++){let f=false;for(let i=0;i<S.tiles.length;i++)if(S.tiles[i].k===k){f=true;nq++}if(!f&&k>=S.qi)bad.push('miss'+k)}
+  return {ok:bad.length?0:1,bad:bad,tiles:S.tiles.length,real:nq,qi:S.qi,n:S.n,walls:S.walls.length,ins:S.ins.length};
+};
+window.mxvTiles=function(){const S=mx.S;if(!S)return [];return S.tiles.map(function(t){return {id:t.id,k:t.k,q:t.q,c:t.c,h:t.h,tl:t.tl,dead:t.dead,ins:t.ins,fgn:t.fgn}})};
+window.mxvCur=function(){return {cur:mx.cur,tool:mx.tool,pen:mx.S?mx.S.pen.c:-2,pq:mx.S?mx.S.pen.q:-1}};
+window.mxvAsk=function(){const el=document.getElementById('mxAsk');return el?el.textContent:''};window.mxvLineT=function(){const el=document.getElementById('mxHintLine');return el?el.textContent:''};
+window.mxvBad=function(){
+  const S=mx.S;const bad=[];
+  if(!S)return {bad:bad,skip:1};
+  /* 盘面不变量 */
+  const seen=new Array(MX_N).fill(0);
+  let heads=0,tails=0;
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i];
+    if(t.c<0||t.c>=MX_N){bad.push('越界#'+i);continue}
+    if(seen[t.c])bad.push('叠牌@'+t.c);
+    seen[t.c]=1;
+    if(mxIsWall(S,t.c))bad.push('牌压铁栅@'+t.c);
+    if(t.h>=0){heads++;if(t.h<0||t.h>=S.tiles.length||S.tiles[t.h].tl!==i)bad.push('串头不成对@'+i)}
+    if(t.tl>=0){tails++;if(t.tl<0||t.tl>=S.tiles.length||S.tiles[t.tl].h!==i)bad.push('串尾不成对@'+i)}
+    if(t.h>=0&&t.tl>=0)bad.push('既是头又是尾@'+i);
+  }
+  if(S.qi<0||S.qi>S.n)bad.push('qi越界'+S.qi);
+  if(S.pen.c>=0){
+    if(mxIsHole(S,S.pen.c))bad.push('笔压在印字台');
+    if(mxIsWall(S,S.pen.c))bad.push('笔压在铁栅');
+    if(seen[S.pen.c])bad.push('笔压在牌上');
+  }
+  for(let k=S.qi;k<S.n;k++){
+    let f=false;
+    for(let i=0;i<S.tiles.length;i++){const t=S.tiles[i];if(t.k===k&&!t.fgn){f=true;break}}
+    if(!f)bad.push('第'+(k+1)+'笔的牌丢了');
+  }
+  for(let i=0;i<S.holes.length;i++)if(seen[S.holes[i]]&&mxAt(S,S.holes[i])&&mxAt(S,S.holes[i]).k!==S.qi&&mxAt(S,S.holes[i]).k<0&&!mxAt(S,S.holes[i]).fgn)bad.push('台上站着不该站的');
+  /* DOM 与状态一致 */
+  const els=document.querySelectorAll('#mxTileG .mx-tile');
+  if(els.length!==S.tiles.length)bad.push('牌元素数'+els.length+'≠'+S.tiles.length);
+  for(let i=0;i<S.tiles.length;i++){
+    const el=document.getElementById('mxT'+S.tiles[i].id);
+    if(!el){bad.push('牌'+S.tiles[i].id+'没画');continue}
+    if(el.getAttribute('data-c')!==String(S.tiles[i].c))bad.push('牌'+S.tiles[i].id+'牌位不符');
+  }
+  const pen=document.getElementById('mxPenEl');
+  if((S.pen.c>=0?1:0)!==(pen?1:0))bad.push('笔元素不符');
+  if(pen&&(pen.getAttribute('style')||'').indexOf(mxCx(S.pen.c).toFixed(1))<0)bad.push('笔位置不符');
+  if(document.querySelectorAll('#mxStatic .mx-cell').length!==MX_N+S.ins.length)bad.push('格子数不对');
+  if(document.querySelectorAll('#mxPaperG rect').length!==mx.n)bad.push('纸带格数≠笔数');
+  if(mx.rec&&mx.n!==mx.rec.n)bad.push('n≠rec.n');
+  if(S.qi>=mx.n&&!mx.nextMs&&!mx.over)bad.push('印满了却没收工');
+  if(mx.pow<0||mx.pow>mx.powMax)bad.push('电量越界'+mx.pow);
+  if(mx.clock<0||mx.clock>1.001)bad.push('钟越界'+mx.clock);
+  const bask=document.getElementById('mxBasket');
+  if(bask&&bask.getAttribute('data-h')!==mxBasketHTML())bad.push('篮子和状态不符');
+  return {bad:bad,dead:S.tiles.filter(function(t){return t.dead>0}).map(function(t){return t.c})};
+};
+window.mxvKeys=function(){
+  const keys=[];
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf('hz_magnet_')===0)keys.push(k)}
+  return keys.sort();
+};
+window.mxvS=function(o){
+  o=o||{};
+  return {holes:(o.holes||[mxCI(MX_HOLE[0],MX_HR),mxCI(MX_HOLE[1],MX_HR)]).slice(),
+    walls:(o.walls||[]).slice(),ins:(o.ins||[]).slice(),
+    pen:{c:o.pen===undefined?-1:o.pen,q:o.pq===undefined?1:o.pq},
+    qi:o.qi||0,n:o.n===undefined?4:o.n,
+    tiles:(o.tiles||[]).map(function(t){return {id:mx.tid++,k:t.k,q:t.q,c:t.c,h:t.h===undefined?-1:t.h,tl:t.tl===undefined?-1:t.tl,dead:t.dead||0,ins:t.ins||0,fgn:t.fgn||0}})};
+};
+window.mxvOut=function(S,ev){
+  return {tiles:S.tiles.map(function(t){return {k:t.k,c:t.c,q:t.q,dead:t.dead,ins:t.ins,h:t.h,tl:t.tl,fgn:t.fgn}}),
+    qi:S.qi,n:S.n,prints:ev.prints.length,printK:ev.prints.map(function(p){return p.k}).join(','),
+    fl:ev.prints.map(function(p){return p.chain?1:0}).join(','),
+    chain:ev.prints.filter(function(p){return p.chain}).length,
+    wrongs:ev.wrongs,early:ev.early,moves:ev.moves,merge:ev.merge?1:0,shed:ev.shed?1:0,bounces:ev.bounces.length};
+};
+window.mxvMove=function(o){
+  const S=window.mxvS(o);
+  const ev=mxPhys(S);
+  return window.mxvOut(S,ev);
+};
+window.mxvReplay=function(o){
+  const S=window.mxvS(o);
+  const plan=(o.plan||[]).slice();
+  const log=[];
+  let wrongs=0,early=0,merge=0,shed=0,prints=0,steps=0;
+  for(let i=0;i<plan.length;i++){
+    const p=plan[i];
+    if(S.qi>=S.n)break;
+    S.pen={c:p.c,q:p.q};
+    const ev=mxPhys(S);
+    steps++;
+    prints+=ev.prints.length;wrongs+=ev.wrongs;early+=ev.early;
+    if(ev.merge)merge++;
+    if(ev.shed)shed++;
+    log.push({qi:S.qi,left:S.tiles.length,mv:ev.moves});
+    if(!ev.prints.length&&!ev.moves&&!ev.early&&!ev.wrongs&&!ev.merge&&!ev.shed)return {ok:0,why:'空转',qi:S.qi,steps:steps,plan:i};
+  }
+  return {ok:S.qi>=S.n?1:0,why:S.qi>=S.n?'':'印不完',qi:S.qi,n:S.n,prints:prints,wrongs:wrongs,early:early,
+    merge:merge,shed:shed,steps:steps,planLen:plan.length,left:S.tiles.length,log:log};
+};
+window.mxvPhys=function(o){return window.mxvMove(o)};
+window.mxvTrace=function(g,n){
+  const S=window.mxvS({tiles:g.tiles,walls:g.walls,ins:g.ins,n:n,qi:0});
+  const out=[];
+  for(let i=0;i<g.plan.length;i++){
+    const p=g.plan[i],b=mxPlanStep(S);
+    S.pen={c:p.c,q:p.q};
+    const ev=mxPhys(S);
+    out.push(i+' 笔'+p.c+'/'+p.q+' 动'+ev.moves+' 印'+ev.prints.length+' 弹'+ev.early+' 错'+ev.wrongs+
+      ' 粘'+(ev.merge?1:0)+' 甩'+(ev.shed?1:0)+' qi'+S.qi+' 军师'+(b?(b.free?'困':b.c+'/'+b.q):'-')+
+      ' 牌'+S.tiles.map(function(t){return t.k+'@'+t.c+(t.h>=0?'h':(t.tl>=0?'t':''))+(t.dead?'D':'')+(t.ins?'I':'')}).join(','));
+  }
+  return out;
+};
+window.mxvPlan=function(o){
+  o=o||{};
+  const S={holes:(o.holes||[mxCI(MX_HOLE[0],MX_HR),mxCI(MX_HOLE[1],MX_HR)]).slice(),
+    walls:(o.walls||[]).slice(),ins:(o.ins||[]).slice(),
+    pen:{c:o.pen===undefined?-1:o.pen,q:o.pq===undefined?1:o.pq},
+    qi:o.qi||0,n:o.n===undefined?4:o.n,tiles:(o.tiles||[]).map(function(t){return {id:mx.tid++,k:t.k,q:t.q,c:t.c,h:t.h===undefined?-1:t.h,tl:-1,dead:t.dead||0,ins:t.ins||0,fgn:t.fgn||0}})};
+  const p=mxPlanStep(S);
+  return p?{c:p.c,q:p.q,how:p.how,need:p.need,ax:p.ax,free:p.free?1:0,stun:p.stun?1:0}:{none:1};
+};
+window.mxvSim=function(o){
+  o=o||{};
+  const S={holes:(o.holes||[mxCI(MX_HOLE[0],MX_HR),mxCI(MX_HOLE[1],MX_HR)]).slice(),
+    walls:(o.walls||[]).slice(),ins:(o.ins||[]).slice(),
+    pen:{c:-1,q:1},qi:o.qi||0,n:o.n===undefined?4:o.n,tiles:(o.tiles||[]).map(function(t){return {id:mx.tid++,k:t.k,q:t.q,c:t.c,h:-1,tl:-1,dead:t.dead||0,ins:t.ins||0,fgn:t.fgn||0}})};
+  const r=mxSimPlan(S);
+  return {ok:r.ok?1:0,why:r.why||'',pulses:r.pulses,plan:r.plan.map(function(p){return {c:p.c,q:p.q}})};
+};
+window.mxvGen=function(rec,lv,from){
+  const r=mxGen(rec,lv,from||0);
+  if(!r)return {ok:0,why:mx.lastWhy||'?'};
+  return {ok:1,pulses:r.pulses,plan:r.plan.map(function(p){return {c:p.c,q:p.q}}),
+    tiles:r.tiles.map(function(t){return {k:t.k,c:t.c,q:t.q,fgn:t.fgn}}),walls:r.walls.slice(),ins:r.ins.slice(),cfg:r.cfg};
+};
+window.mxvClock=function(lv,n){const o=mx.lv,b=mx.n;mx.lv=lv;mx.n=n;const s=mxClockOf();mx.lv=o;mx.n=b;return s};
+window.mxvDiff=function(lv){return {wrong:mxWrongOf(lv),walls:mxWallOf(lv),ins:mxInsOf(lv),storm:mxStormOf(lv)?1:0,spare:mxSparePow(lv),lv:mxLvOf(lv*2-1)}};
+window.mxvWin=function(){mxWin()};
+window.mxvStorm=function(){mxStorm()};
+window.mxvPowerOut=function(k){mxPowerOut(k||'clock')};
+window.mxvRedress=function(){return mxRedress()?1:0};
+window.mxvPreview=function(){const b=mx.previewN;mxPreview();return mx.previewN<b?1:0};
+window.mxvUndo=function(){const b=mx.undoN;mxUndo();return mx.undoN<b?1:0};
+window.mxvRespin=function(){const b=mx.respN;mxRespin();return mx.respN<b?1:0};
+window.mxvFlipPen=function(){return mxFlipPen()?1:0};
+window.mxvTick=function(dt){mxTick(dt||0.05)};
+window.mxvPump=function(n,dt){for(let i=0;i<(n||20);i++)mxTick(dt||0.05)};
+window.mxvZap=function(){return mxZap()?1:0};
+window.mxvPlace=function(i){return mxPlace(i)?1:0};
+window.mxvFlip=function(i){
+  if(i===undefined||i<0)return mxFlipPen()?1:0;
+  const S=mx.S;if(!S)return 0;
+  const t=mxAt(S,i);
+  return t?mxFlipTile(S.tiles.indexOf(t))?1:0:0;
+};
+window.mxvTap=function(i){return mxTap(i)?1:0};
+window.mxvTool=function(t){mxPickTool(t);return mx.tool};
+window.mxvPrint=function(k,ch){mxPrint(k||0,ch||0);return mx.score};
+window.mxvWrong=function(n){mxOnWrong(n||1);return mx.score};
+window.mxvTie=function(){return MX_TIE};
+window.mxvStruct=function(){return mx.S?{tiles:mx.S.tiles.length,qi:mx.S.qi,n:mx.S.n,pen:mx.S.pen.c,pq:mx.S.pen.q,walls:mx.S.walls.length,ins:mx.S.ins.length,holes:mx.S.holes.slice()}:null};
+window.mxvSnap=function(){
+  const S=mx.S;
+  return {
+    scr:(document.querySelector('.screen.active')||{}).id||'',mode:currentMode,
+    run:mx.run?1:0,over:mx.over?1:0,pool:mx.pool.length,gen:mx.gen,
+    ch:mx.rec?mx.rec.ch:'',n:mx.n,qi:S?S.qi:-1,dirs:mx.rec?mx.rec.dirs.join(''):'',
+    lv:mx.lv,score:Math.round(mx.score),hearts:mx.hearts,combo:mx.combo,maxCombo:mx.maxCombo,
+    words:mx.words,lits:mx.lits,pulses:mx.pulses,sticks:mx.sticks,drops:mx.drops,wrongs:mx.wrongs,
+    storms:mx.storms,deads:mx.deads,previews:mx.previewN,flips:mx.flipN,undos:mx.undoN,resps:mx.respN,
+    pow:mx.pow,powMax:mx.powMax,clock:mx.clock,clockSec:mx.clockSec,red:mx.red?1:0,
+    tiles:S?S.tiles.length:-1,walls:S?S.walls.length:-1,ins:S?S.ins.length:-1,
+    holes:S?S.holes.join(','):''
+  };
+};
+window.mxvDom=function(){
+  const S=mx.S;
+  return {
+    pen:S?S.pen.c:-2,pq:S?S.pen.q:-1,tool:mx.tool,sol:mx.sol?mx.sol.pulses:-1,need:mx.sol?mx.sol.need:-1,
+    zapMs:mx.zapMs,nextMs:mx.nextMs,think:Math.round(mx.think),ghostMs:Math.round(mx.ghostMs),
+    domCell:document.querySelectorAll('#mxStatic .mx-cell').length,
+    domHole:document.querySelectorAll('#mxStatic .mx-hole').length,
+    domWall:document.querySelectorAll('#mxStatic .mx-wall').length,
+    domTile:document.querySelectorAll('#mxTileG .mx-tile').length,
+    domPen:document.querySelectorAll('#mxPenG .mx-pen').length,
+    domAr:document.querySelectorAll('#mxFieldG .mx-ar').length,
+    domBand:document.querySelectorAll('#mxFieldG .mx-fl').length,
+    domPaper:document.querySelectorAll('#mxPaperG rect').length,
+    domGhost:document.querySelectorAll('.mx-glid').length,
+    domCur:document.querySelectorAll('#mxCurBox').length,
+    cap:(document.getElementById('mxMiniCap')||{}).textContent||'',
+    ask:(document.getElementById('mxAsk')||{}).textContent||'',
+    line:(document.getElementById('mxHintLine')||{}).textContent||'',
+    msg:(document.getElementById('mxMsg')||{}).innerHTML||'',
+    powTxt:(document.getElementById('mxPowTxt')||{}).textContent||'',
+    clkTxt:(document.getElementById('mxClockTxt')||{}).textContent||'',
+    badge:(document.getElementById('mxBadge')||{}).textContent||'',
+    scoreTxt:(document.getElementById('mxScoreTxt')||{}).textContent||'',
+    rankTxt:(document.getElementById('mxRankTxt')||{}).textContent||'',
+    heartTxt:(document.getElementById('mxHeartTxt')||{}).textContent||'',
+    lvTxt:(document.getElementById('mxLvTxt')||{}).textContent||'',
+    tip:(document.querySelector('.mx-tip')||{}).innerHTML||'',
+    tblCls:(document.getElementById('mxTbl')||{}).className||''
+  };
+};
+window.mxvBtn=function(){
+  const g=function(id){const e=document.getElementById(id);return e?e:0};
+  const zp=g('mxZap'),pv=g('mxPrevBtn'),un=g('mxUndoBtn'),rf=g('mxReBtn');
+  return {
+    tPenOn:document.getElementById('mxTPen')?document.getElementById('mxTPen').classList.contains('on'):false,
+    tFlipOn:document.getElementById('mxTFlip')?document.getElementById('mxTFlip').classList.contains('on'):false,
+    zapDis:zp.disabled?1:0,prevDis:pv.disabled?1:0,undoDis:un.disabled?1:0,reDis:rf.disabled?1:0,
+    zapTxt:(zp.textContent||'').trim(),prevTxt:(pv.textContent||'').trim(),undoTxt:(un.textContent||'').trim(),reTxt:(rf.textContent||'').trim(),
+    flipTxt:(document.getElementById('mxTFlip')||{}).textContent||'',
+    stormOn:document.getElementById('mxStormTag')?document.getElementById('mxStormTag').classList.contains('on'):false,
+    markN:document.querySelectorAll('.mx-mark').length,ringN:document.querySelectorAll('.mx-ring').length,
+    bitN:document.querySelectorAll('.mx-bit').length,popN:document.querySelectorAll('.mx-pop').length,
+    glidN:document.querySelectorAll('.mx-glid').length,arN:document.querySelectorAll('#mxFieldG .mx-ar').length,
+    dead:document.getElementById('mxTbl')?document.getElementById('mxTbl').classList.contains('dead'):false,
+    hot:document.getElementById('mxTbl')?document.getElementById('mxTbl').classList.contains('hot'):false,
+    low:document.getElementById('mxClockBox')?document.getElementById('mxClockBox').classList.contains('low'):false,
+    barW:(document.getElementById('mxClockBar')||{}).style?document.getElementById('mxClockBar').style.width:'',
+    basket:document.querySelectorAll('#mxBasket .mx-nd').length,
+    more:(document.querySelector('#mxBasket .mx-more')||{}).innerHTML||''
+  };
+};
+window.mxvSolve=function(){
+  if(!mx.sol||!mx.S)return -1;
+  const S=mx.S;
+  let put=0;
+  for(let k=0;k<mx.sol.plan.length;k++){
+    const p=mx.sol.plan[k];
+    S.pen={c:p.c,q:p.q};
+    if(mxPhys(S).prints.length)put++;
+    if(S.qi>=mx.n)break;
+  }
+  mxRenderTiles();mxRenderPen();mxField();mxPaper();mxMini();mxHud();mxAskText();mxLine();
+  return S.qi;
+};
+window.mxvStage=function(p){
+  p=p||{};
+  mxStopAll();mx.gen++;
+  mx.run=true;mx.over=false;
+  mx.timers=[];
+  mx.lv=p.lv||1;mx.score=p.score||0;mx.hearts=p.hearts===undefined?MX_HEARTS:p.hearts;
+  mx.combo=p.combo||0;mx.maxCombo=p.maxCombo||mx.combo;
+  mx.words=p.words||0;mx.lits=p.lits||0;
+  mx.pulses=p.pulses||0;mx.sticks=p.sticks||0;mx.drops=p.drops||0;mx.wrongs=p.wrongs||0;
+  mx.storms=0;mx.deads=0;mx.nags=0;mx.previews=0;mx.flips=0;mx.rewinds=0;mx.respins=0;
+  mx.previewN=p.previewN===undefined?2:p.previewN;
+  mx.flipN=p.flipN===undefined?2:p.flipN;
+  mx.undoN=p.undoN===undefined?3:p.undoN;
+  mx.respN=p.respN===undefined?1:p.respN;
+  mx.ghostMs=0;mx.ghost=null;mx.stormTag=0;
+  mx.think=0;mx.playMs=0;mx.t=0;mx.hudTxt={};
+  mx.printMs=0;mx.nextMs=0;mx.zapMs=0;mx.printRun=0;
+  mx.cleanWord=p.cleanWord===undefined?true:p.cleanWord;mx.wrongWord=p.wrongWord||0;
+  mx.hist=[];mx.tool=p.tool||0;mx.cur=p.cur===undefined?-1:p.cur;mx.tid=1;
+  const dirs=p.dirs||[0,1,2,3].slice(0,p.n||4);
+  const strokes=[],medians=[];
+  for(let i=0;i<dirs.length;i++){strokes.push('M100 400 L600 400 L600 460 L100 460 Z');medians.push([[100,430],[600,430]])}
+  mx.rec={ch:p.ch||'妈',n:dirs.length,dirs:dirs,raw:{strokes:strokes,medians:medians}};
+  mx.n=dirs.length;
+  mx.gly=mxGlyOf(mx.rec);
+  const holes=(p.holes||[mxCI(MX_HOLE[0],MX_HR),mxCI(MX_HOLE[1],MX_HR)]).slice();
+  mx.S={holes:holes,walls:(p.walls||[]).slice(),ins:(p.ins||[]).slice(),
+    pen:{c:p.pen===undefined?-1:p.pen,q:p.pq===undefined?1:p.pq},
+    qi:p.qi||0,n:mx.n,
+    tiles:(p.tiles||[]).map(function(t){return {id:mx.tid++,k:t.k===undefined?-1:t.k,q:t.q||0,c:t.c,h:t.h===undefined?-1:t.h,tl:t.tl===undefined?-1:t.tl,dead:t.dead||0,ins:t.ins||0,fgn:t.fgn||0}})};
+  mx.powMax=p.powMax===undefined?6:p.powMax;
+  mx.pow=p.pow===undefined?mx.powMax:p.pow;
+  mx.clockSec=p.clockSec||mxClockOf();
+  mx.clock=p.clock===undefined?1:p.clock;
+  mx.red=!!p.red;mx.beep=0;
+  mx.sol=p.sol===undefined?null:p.sol;
+  mxRenderStatic();mxRenderTiles();mxRenderPen();mxField();mxPaper();mxMini();mxBasket();mxHud();mxAskText();mxLine();
+  mxPickTool(mx.tool);
+  if(p.say)mxSay(p.say,'#C5E1A5');
+  return 1;
+};
+window.mxvSet=function(k,v){
+  if(!mx.S&&k!=='rec')return 0;
+  if(k==='clock')mx.clock=v;
+  else if(k==='pow')mx.pow=v;
+  else if(k==='think')mx.think=v;
+  else if(k==='qi')mx.S.qi=v;
+  else if(k==='pen')mx.S.pen.c=v;
+  else if(k==='pq')mx.S.pen.q=v;
+  else if(k==='stormTag')mx.stormTag=v;
+  else if(k==='ghostMs')mx.ghostMs=v;
+  else if(k==='hearts')mx.hearts=v;
+  else if(k==='wrongWord')mx.wrongWord=v;
+  else if(k==='flipN')mx.flipN=v;
+  else if(k==='previewN')mx.previewN=v;
+  else if(k==='undoN')mx.undoN=v;
+  else if(k==='respN')mx.respN=v;
+  else if(k==='rec')mx.rec=v;
+  else if(k==='nextMs')mx.nextMs=v;
+  else return 0;
+  return 1;
+};
 window.addEventListener('DOMContentLoaded',boot);
 </script>
 </body>
