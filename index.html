@@ -5952,6 +5952,57 @@ button:active{transform:scale(.95)}
   #screen-shade .stats{flex:1 1 100%;order:3;gap:6px}
   #screen-shade .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.85 笔顺淘沙场 ================= */
+.sa-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.sa-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.sa-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35}
+.sa-ask small{font-size:13px;font-weight:400;color:#B0BEC5}
+.sa-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.sa-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.sa-mini svg{width:100%;height:auto;background:rgba(255,255,255,.06);border-radius:12px}
+.sa-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+.sa-tbl{flex:1;min-width:0;position:relative;background:#3A2C1F;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 10px rgba(0,0,0,.45)}
+.sa-tbl.dead{filter:grayscale(.7) brightness(.7)}
+.sa-canvas{display:block;width:100%;height:auto;cursor:crosshair;touch-action:none}
+.sa-tabs{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+.sa-warn{box-shadow:inset 0 0 0 3px #FF5252,0 0 18px rgba(255,82,82,.5)}
+.sa-tag{position:absolute;left:50%;top:8px;transform:translateX(-50%);background:rgba(0,0,0,.78);color:#FFF3E0;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap;z-index:6}
+.sa-tag.on{opacity:1}
+.sa-fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:5}
+.sa-gr{position:absolute;width:4px;height:4px;border-radius:50%;opacity:.95;pointer-events:none}
+.sa-tab{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;min-width:44px;padding:5px 8px 4px;border-radius:9px;border:2px solid #6D4C41;background:linear-gradient(180deg,#D7A86E,#B4763F);color:#3E2723;font-size:15px;font-weight:800;line-height:1.1;box-shadow:0 3px 0 #6D4C41,0 6px 12px rgba(0,0,0,.4);cursor:pointer;text-align:center;transition:transform .12s,box-shadow .12s}
+.sa-tab b{display:block;font-size:19px}
+.sa-tab i{display:block;font-style:normal;font-size:10px;font-weight:700;color:#4E342E;opacity:.75}
+.sa-tab:hover{transform:translate(-50%,-58%)}
+.sa-tab.peek{opacity:.42;filter:blur(.4px);cursor:default}
+.sa-tab.gold{border-color:#FFD54F;box-shadow:0 0 14px rgba(255,213,79,.7),0 3px 0 #6D4C41}
+.sa-meter{display:flex;gap:8px;align-items:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.sa-tl{position:relative;flex:1;height:26px;background:rgba(255,255,255,.1);border-radius:13px;overflow:hidden}
+.sa-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#FFB74D,#FF7043);transition:width .2s linear}
+.sa-tl b{position:absolute;left:0;top:0;width:100%;height:26px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.sa-tl.low i{background:linear-gradient(90deg,#EF5350,#FF8A65)}
+.sa-pile{flex:0 0 auto;font-size:12px;color:#CFD8DC;background:rgba(255,255,255,.08);padding:3px 9px;border-radius:11px;white-space:nowrap}
+.sa-tools{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;width:100%;margin:4px 0 6px}
+.sa-tool{position:relative;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#fff;font-size:14px;font-weight:700;padding:8px 12px;cursor:pointer}
+.sa-tool span{display:block;font-size:9px;opacity:.6;font-weight:400}
+.sa-tool b{position:absolute;right:-4px;top:-6px;background:#FF6E40;color:#fff;font-size:10px;border-radius:9px;padding:1px 5px}
+.sa-tool:disabled{opacity:.4;cursor:default}
+.sa-tool.go{background:rgba(124,222,191,.22);border-color:#7CDDBF}
+.sa-hintline{width:100%;text-align:center;font-size:12px;color:#BCAAA4;margin:0 0 6px;line-height:1.4}
+.sa-hintline b{color:#FFCC80}
+.sa-msg{width:calc(100% - 28px);max-width:520px;margin:0 auto 12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.07);color:#D7CCC8;font-size:12px;line-height:1.6}
+.sa-msg b{color:#FFE0B2}
+.sa-msg code{background:rgba(0,0,0,.35);padding:1px 5px;border-radius:5px;color:#FFF176}
+@keyframes saShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.sa-tbl.shake{animation:saShake .34s}
+.sa-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px}
+.sa-cdot.on{display:block}
+
+.sa-pk{background:rgba(255,255,255,.08);padding:4px 10px;border-radius:12px;font-size:13px;color:#CFD8DC}
+/* 顶栏挤的时候「← 返回」不能折成两行 */
+#screen-sand .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：小字卡挪到沙台上头，沙台独占整幅宽 */
+@media(max-width:460px){.sa-stage{flex-direction:column}.sa-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.sa-mini svg{flex:0 0 74px;width:74px}.sa-cap{flex:0 1 auto;text-align:left}}
 </style>
 
 </head>
@@ -6008,8 +6059,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 83 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">83</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 84 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">84</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6020,12 +6071,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>83 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>29</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>84 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>30</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+    <div class="mode-card" id="saCard" onclick="enterMode('sand')">
+      <div class="icon">🏜️</div>
+      <div class="info"><h3>笔顺淘沙场</h3><p id="saCardTip">四块答案陶牌埋得深浅不一样：两三铲就露头的多半是坑你的，对的那块往往埋得最深 —— 挖开的坑不会自己回填，可答完一笔就来一阵沙暴</p></div>
+      <span class="sa-cdot" id="saCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="shdCard" onclick="enterMode('shade')">
       <div class="icon">🎭</div>
       <div class="info"><h3>笔顺影子戏</h3><p id="shdCardTip">七乘七的米字台就是这个字本来的模样：走到接笔台捡该唱那一笔，再走到它真正的落位按落。走一格吃一拍，而你上一折走过的水路下一折会变成墨影原路重演——手里端着墨撞上它就糊一手</p></div>
@@ -6621,6 +6677,77 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-sand">
+  <div class="top-bar">
+    <button class="back-btn" onclick="saLeave()">← 返回</button>
+    <div class="stats"><span id="saScoreTxt">🎯 0 分</span><span id="saLvTxt">第 1 层 · 已挖 0 字</span><span id="saQTxt">⏳ 本题 ——</span></div>
+    <button class="icon-btn" onclick="saHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="sa-hud">
+    <span id="saRankTxt" title="称号">🏜️ 刚卸下骆驼</span>
+    <span id="saHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="saComboTxt" title="连击">🔥 连 0</span>
+    <span id="saLitTxt" title="挖出几笔">✅ 0/0 笔</span>
+    <span id="saDigTxt" title="挖了几铲">⛏️ 0 铲</span>
+    <span id="saGoldTxt" title="金砂">✨ 0</span>
+    <span id="saThTxt" title="挖出的文物">🏺 0</span>
+    <span id="saStingTxt" title="被蝎子蛰">🦂 0</span>
+    <span id="saSandTxt" title="场上还有多少沙">🏜️ 0</span>
+  </div>
+  <div class="sa-ask" id="saAsk">🏜️ 正在起沙……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="sa-stage">
+    <div class="sa-mini">
+      <svg viewBox="0 0 1024 1024" id="saMiniSvg"></svg>
+      <div class="sa-cap" id="saMiniCap">这个字</div>
+    </div>
+    <div class="sa-tbl" id="saTbl">
+      <canvas class="sa-canvas" id="saCanvas" width="338" height="221"></canvas>
+      <div class="sa-tabs" id="saTabs"></div>
+      <div class="sa-fx" id="saFx"></div>
+      <div class="sa-tag" id="saTag">🏜️ 起风了</div>
+    </div>
+  </div>
+  <div class="sa-meter">
+    <div class="sa-tl" id="saClockBox"><i id="saClockBar"></i><b id="saClockTxt">🌪 还有 —— 秒</b></div>
+    <div class="sa-pile" id="saPowTxt">🎯 ——</div>
+  </div>
+  <div class="sa-tools">
+    <button class="sa-tool" id="saBlowBtn" onclick="saBlow()" disabled>💨 吹沙<span>Q</span><b>剩 1</b></button>
+    <button class="sa-tool" id="saScoopBtn" onclick="saScoop()" disabled>⛏️ 大铲<span>E</span><b>剩 2</b></button>
+    <button class="sa-tool go" id="saPeekBtn" onclick="saPeek()" disabled>🔎 探沙<span>F</span><b>剩 2</b></button>
+    <button class="sa-tool" id="saEndBtn" onclick="saEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="sa-hintline" id="saHintLine">🏜️ <b>沙面那一格才挖得着</b>：点沙地（或 <code>←↑→↓</code> 挪光标 + <code>空格</code> 下铲）一层层往下挖，<b>陶牌自己不动，沙暴把沙倒在它头上，它就埋得更深了</b></div>
+  <div class="sa-msg" id="saMsg">眼前是 <b>一片沙丘</b>，沙底下埋着这个字的 <b>四块答案陶牌</b>（<b>横 / 竖 / 撇 / 捺</b>）。<br>⛏️ <b>只有沙面那一格挖得着</b>：一铲下去，它上面的沙 <b>笔直往下落</b>，坑 <b>不会自己回填</b> —— 想够着埋得深的那块牌，就 <b>一铲一铲往下挖竖井</b>。<br>🏜️ <b>这一场最要紧的一条</b>：<b>先露出头的牌未必是答案</b>。四块牌 <b>埋得深浅不一样</b>，浅的那块 <b>两三铲就露头</b>，可它写的大多是 <b>错的方向</b>；<b>对的那块往往埋得最深</b>。挖到一半发现认错了字，<b>坑已经挖了、风还在吹</b> —— 是回头另挖一块，还是接着往下赌，全在你怎么认这一笔<br>🌪 <b>答完一笔就来一阵沙暴</b>：顶上 <b>哗哗倒沙</b>，刚挖开的竖井 <b>从井底开始一格格填回去</b>，倒在牌头上的沙让它 <b>埋得更深</b>。越往后越埋得深<br>🦂 沙里混着 <b>金砂 ✨</b>（挖到加分）、<b>文物 🏺</b>（挖进图鉴）、<b>毒蝎 🦂</b>（蛆一手：扣 5 分、断连击、<b>这一列当场灌回来</b>）—— 挖得太快就会碰上它们<br>⏳ <b>本题风钟</b> 走光不算答错，<b>只扣 3 分、白挖一轮</b>；<b>挖错牌掉一颗心</b>；<b>沙漏</b> 走光就结算</div>
+</div>
+<div class="screen" id="screen-sand-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="saLeave()">← 回首页</button>
+    <div class="stats"><span id="saRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="saRsEmoji">🏜️</div>
+    <div style="font-size:26px;font-weight:800" id="saRsTitle">沙停了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="saRsSub">第 1 层</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px" id="saRsPicks">
+      <span class="sa-pk" id="saRsScore">🎯 0 分</span>
+      <span class="sa-pk" id="saRsWords">📦 挖通 0 个字</span>
+      <span class="sa-pk" id="saRsLits">✅ 0 笔</span>
+      <span class="sa-pk" id="saRsDigs">⛏️ 0 铲</span>
+      <span class="sa-pk" id="saRsGold">✨ 0 粒金砂</span>
+      <span class="sa-pk" id="saRsTh">🏺 0 件文物</span>
+      <span class="sa-pk" id="saRsSting">🦂 被蛰 0 次</span>
+      <span class="sa-pk" id="saRsCombo">🔥 最长连 0</span>
+      <span class="sa-pk" id="saRsBest">🏆 最高 0 分</span>
+    </div>
+    <div style="font-size:13px;color:#FFCC80;margin:6px auto 14px;max-width:420px;line-height:1.6" id="saRsWhy"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin-bottom:14px" id="saRsBook">图鉴里还只有 <b>0</b> 个字</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="primary-btn" onclick="saAgain()">🏜️ 再挖一场</button>
+      <button class="secondary-btn" onclick="saLeave()">🏠 回首页</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-shade">
@@ -12651,6 +12778,7 @@ function updateHomeStats(){
   if(typeof hfNudge==='function')hfNudge();
   if(typeof swgNudge==='function')swgNudge();
   if(typeof shdNudge==='function')shdNudge();
+  if(typeof saNudge==='function')saNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -12680,6 +12808,7 @@ function enterMode(mode){
   if(mode==='heat'){hfStart();return}
   if(mode==='swing'){swgStart();return}
   if(mode==='shade'){shdStart();return}
+  if(mode==='sand'){saStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -70864,6 +70993,1101 @@ window.vKey=function(k){
 window.vPool=function(){return shd.pool.length};
 window.vGlyN=function(){return shd.gly.length};
 window.vGlyD=function(k){const g=shd.gly[k];return g?String(g.d).slice(0,24):''};
+
+/* ================= v1.85 笔顺淘沙场（四块答案陶牌埋得深浅不一 · 只有沙面挖得着 · 挖开的竖井不会自己回填 · 答完一笔沙暴把坑从底下填回去） ================= */
+const SA_COLS=26,SA_ROWS=17,SA_CELL=13,SA_CW=SA_COLS*SA_CELL,SA_CH=SA_ROWS*SA_CELL;
+const SA_E=0,SA_S=1,SA_R=2,SA_G=3,SA_T=4,SA_K=5,SA_P=6,SA_H=7;
+const SA_DIRS=['横','竖','撇','捺'],SA_ARW=['➡️','⬇️','↙️','↘️'];
+const SA_INK=['#FFD180','#80CBC4','#FF8A80','#B39DDB'];
+const SA_HEARTS=3,SA_HEART_MAX=5,SA_TH_MAX=8,SA_BOOK_MAX=300;
+const SA_POOL_MIN=4,SA_POOL_WANT=14,SA_STROKE_MIN=3,SA_STROKE_MAX=7;
+const SA_TICK_MS=52,SA_DIG_CD=150,SA_RUN_MS=118000,SA_RUN_MIN=72000;
+const SA_DEPTH_MIN=2,SA_DEPTH_MAX=7,SA_SURF=4,SA_BLOW0=1,SA_SCOOP0=2,SA_PEEK0=2;
+const SA_PEN_WRONG=6,SA_PEN_TIME=3,SA_PEN_STING=5,SA_GOLD_GAIN=3,SA_TH_GAIN=9,SA_WORD_BONUS=24;
+const SA_NAG_MS=11000,SA_TAG_MS=2300,SA_FLASH_MS=560,SA_NEXT_MS=1500,SA_PEEK_MS=3200,SA_FALL_MS=420;
+const SA_THINGS=['陶罐','玉佩','骨笛','铜铃','石斧','贝币','戈头','青铜斗'];
+const SA_NOTE=[330,392,440,494,523,587,659,784,880];
+const SA_RANKS=[
+  {n:0,e:'🏜️',t:'刚卸下骆驼'},{n:2,e:'⛏️',t:'认得沙面'},{n:5,e:'🕳️',t:'会挖竖井'},
+  {n:9,e:'🦂',t:'躲得过蝎子'},{n:14,e:'🏺',t:'淘出一件文物'},{n:21,e:'🌪',t:'扛得住沙暴'},
+  {n:30,e:'✨',t:'沙里认字'},{n:42,e:'💎',t:'深井取牌'},{n:58,e:'👑',t:'一片沙丘之王'}
+];
+const sa={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],tones:0,toneAt:0,
+  pool:[],miss:[],rec:null,n:0,
+  lv:1,score:0,hearts:SA_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,digs:0,golds:0,ths:0,stings:0,blows:0,scoops:0,peeks:0,nags:0,storms:0,
+  blowN:SA_BLOW0,scoopN:SA_SCOOP0,peekN:SA_PEEK0,
+  g:null,sand:0,tab:[],qi:0,busy:false,kind:'dir',want:0,opts:[],qms:0,qms0:0,
+  cur:Math.floor(SA_COLS/2),digMs:0,acc:0,pour:0,peekMs:0,helpMs:0,drag:false,ptrOn:false,keyOn:false,hudAcc:0,
+  since:0,tagMs:0,flashMs:0,nextMs:0,fx:[],fall:[],
+  clock:1,clockMs:SA_RUN_MS,warn:false,beep:0,
+  cleanWord:true,failWord:0,fastest:0,timerOn:false,first:true
+};
+/* ---- 小工具 ---- */
+function saInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function saAdd(k,n){if(n)localStorage.setItem(k,String(saInt(k)+n))}
+function saSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function saSay(t,c){const el=document.getElementById('saMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function saShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function saOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function saClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function saRank(n){let r=SA_RANKS[0];for(let i=0;i<SA_RANKS.length;i++)if(n>=SA_RANKS[i].n)r=SA_RANKS[i];return r}
+function saDn(d){return d<0||d>3?0:d}
+function saLbl(kind,d){return kind==='count'?String(d):SA_DIRS[d]}
+function saTone(f,d,t,v){
+  if(!sa.run||sa.over)return;
+  /* 一铲一音太密：24 毫秒内只响一声，其余当铲数的计数 */
+  const n=performance.now();
+  if(n-sa.toneAt<24)return;
+  sa.toneAt=n;
+  sa.tones++;
+  tone(f,d,t,v);
+}
+function saT(fn,ms){const g=sa.gen;const id=setTimeout(function(){const k=sa.timers.indexOf(id);if(k>=0)sa.timers.splice(k,1);if(g!==sa.gen)return;fn()},ms);sa.timers.push(id);return id}
+function saKillTimers(){sa.timers.forEach(function(t){clearTimeout(t)});sa.timers=[]}
+/* ---- 难度表 ---- */
+function saLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function saRunMs(lv){return Math.max(SA_RUN_MIN,SA_RUN_MS-(lv-1)*3000)}
+function saDepthOf(lv){return[SA_DEPTH_MIN,Math.min(SA_DEPTH_MAX,2+Math.round(lv*0.7))]}
+function saStormOf(lv){return 5+lv*2}
+function saGoldOf(lv){return 2+Math.floor(lv/2)}
+function saThOf(lv){return lv<2?1:Math.min(3,1+Math.floor(lv/3))}
+function saScorpOf(lv){return lv<3?0:Math.min(6,lv-2)}
+function saHardOf(lv){return lv<4?0:Math.min(8,(lv-3)*2)}
+function saQmsOf(lv){return Math.max(15000,34000-(lv-1)*2200)}
+function saPackOf(lv){return 2+Math.floor(lv/2)}
+function saBlowRow(lv){return lv<5?2:3}
+/* ---- 字池：每一笔都认得出方向（沿用边界否决），且不止一种方向 ---- */
+const SA_LETTERS='十人八小上下日水石田木禾白子不去个长门见对书本牛马飞入'
+  +'什么双王方气生叫主以尤区巨于记市民丝贝互仙勾丰父欠未击乎代计且斗示巧'
+  +'付兰专丈扎仅叉议歹矛冈仪辽曰瓦早旬旭买巡还远秀步每甲回困困圈图';
+function saCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<80;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(saShuf(charQueue.slice()));
+  if(typeof CHARS!=='undefined')push(saShuf(CHARS.slice()));
+  push(SA_LETTERS.split(''));
+  return out;
+}
+function saMake(ch,raw){
+  const r=fmMake(ch,raw);
+  if(!r)return null;
+  if(r.n<SA_STROKE_MIN||r.n>SA_STROKE_MAX)return null;
+  let kinds=0;for(let i=0;i<r.n;i++)kinds|=1<<r.dirs[i];
+  if(kinds<4)return null;
+  return r;
+}
+async function saBuildPool(keep){
+  const g=sa.gen,stale=function(){return g!==sa.gen||!sa.run||sa.over};
+  sa.miss=(localStorage.getItem('hz_sand_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  saShuf(sa.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  saCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)sa.pool=[];
+  for(let k=0;k<want.length&&sa.pool.length<SA_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i]){const m=saMake(want[k+i],rs[i]);if(m&&sa.pool.indexOf(m)<0)sa.pool.push(m)}
+  }
+  return sa.pool.length>=SA_POOL_MIN;
+}
+function saPickRec(){
+  const w=sa.lv<=2?[SA_STROKE_MIN,5]:[SA_STROKE_MIN,SA_STROKE_MAX];
+  const used={};
+  const pool=sa.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  const base=pool.length?pool:sa.pool;
+  if(!base.length)return null;
+  const missList=base.filter(function(r){return sa.miss.indexOf(r.ch)>=0});
+  if(missList.length&&sa.first){sa.first=false;return saOne(missList)}
+  sa.first=false;
+  return saOne(base);
+}
+/* ---- 生命周期 ---- */
+function saStopAll(){
+  saStopLoop();saKillTimers();sa.gen++;
+  sa.tagMs=0;sa.flashMs=0;sa.nextMs=0;sa.peekMs=0;sa.digMs=0;sa.acc=0;
+  sa.warn=false;sa.fx=[];sa.fall=[];
+}
+async function saStart(){
+  saStopAll();
+  const g=sa.gen,stale=function(){return g!==sa.gen||!sa.run||sa.over};
+  sa.run=true;sa.over=false;sa.timers=[];
+  sa.lv=1;sa.score=0;sa.hearts=SA_HEARTS;sa.combo=0;sa.maxCombo=0;
+  sa.words=0;sa.lits=0;sa.digs=0;sa.golds=0;sa.ths=0;sa.stings=0;
+  sa.blowN=SA_BLOW0;sa.scoopN=SA_SCOOP0;sa.peekN=SA_PEEK0;
+  sa.blows=0;sa.scoops=0;sa.peeks=0;sa.nags=0;sa.storms=0;
+  sa.pool=[];sa.miss=[];sa.rec=null;sa.n=0;sa.g=null;sa.tab=[];sa.qi=0;
+  sa.clockMs=saRunMs(1);sa.clock=1;sa.warn=false;sa.beep=0;
+  sa.since=0;sa.playMs=0;sa.t=0;sa.cleanWord=true;sa.failWord=0;sa.fastest=0;sa.first=true;
+  sa.cur=Math.floor(SA_COLS/2);
+  showScreen('sand');
+  saBind();saCanvasSize();
+  saHud();saMeter();saLine();
+  saSay('眼前是 <b>一片沙丘</b>，沙底下埋着这个字的 <b>四块答案陶牌</b>（<b>横 / 竖 / 撇 / 捺</b>）。只有 <b>沙面那一格挖得着</b>：一铲下去，坑 <b>不会自己回填</b>，想够着埋得深的那块牌就 <b>一铲一铲往下挖竖井</b>。<b>先露头的未必是答案</b> —— 浅的那块两三铲就出来，写的多半是 <b>错的方向</b>；对的那块 <b>往往埋得最深</b>');
+  saSet('saAsk','🏜️ 正在起沙……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  let ok=await saBuildPool();
+  if(stale())return;
+  if(!ok){
+    saSet('saAsk','🏜️ 沙还没起来，再等一记……<br><small>字库在路上</small>');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await saBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!sa.pool.length){
+    sa.run=false;
+    saSet('saAsk','😢 字库没加载好<br><small>稍后再来淘沙</small>');
+    saSay('先去别的模式练两笔，回来字就齐了','#FFCC80');
+    return;
+  }
+  saAdd('hz_sand_games',1);
+  saNewWord();
+  if(!sa.rec||!sa.g||!sa.run||sa.over||stale()){
+    sa.run=false;
+    saSet('saAsk','😢 沙丘没堆起来<br><small>稍后再来淘沙</small>');
+    return;
+  }
+  saStartLoop();
+}
+function saLeave(){
+  saStopAll();
+  if(sa.run&&!sa.over){sa.over=true;sa.run=false}
+  goHome();
+}
+function saAgain(){saStart()}
+
+
+/* ---- 沙场：格子类型 + 元胞落沙（只有沙面挖得着 · 挖开的坑不会自己回填） ---- */
+function saIdx(c,r){return r*SA_COLS+c}
+function saCell(c,r){return sa.g[r*SA_COLS+c]}
+function saPut(c,r,v){sa.g[r*SA_COLS+c]=v}
+function saInb(c,r){return c>=0&&c<SA_COLS&&r>=0&&r<SA_ROWS}
+function saMoveable(v){return v===SA_S||v===SA_G||v===SA_T||v===SA_K||v===SA_H}
+function saLoose(v){return v===SA_G||v===SA_T||v===SA_K}
+function saTopRow(c){
+  for(let r=0;r<SA_ROWS;r++){const v=saCell(c,r);if(v!==SA_E)return r}
+  return SA_ROWS;
+}
+function saDepth(c,r){
+  let n=0;
+  for(let k=0;k<r;k++){const v=saCell(c,k);if(v===SA_S||v===SA_G||v===SA_T||v===SA_K||v===SA_H)n++}
+  return n;
+}
+function saOpenAbove(c,r){
+  for(let k=0;k<r;k++)if(saCell(c,k)!==SA_E)return false;
+  return true;
+}
+function saSandCount(){
+  let n=0;
+  for(let i=0;i<sa.g.length;i++){const v=sa.g[i];if(v===SA_S||v===SA_G||v===SA_T||v===SA_K||v===SA_H)n++}
+  return n;
+}
+/* ---- 起一座沙丘：四块牌埋得深浅不一样 ---- */
+function saBuildField(){
+  const lv=sa.lv,D=saDepthOf(lv);
+  const g=new Uint8Array(SA_COLS*SA_ROWS);
+  sa.g=g;
+  for(let c=0;c<SA_COLS;c++)saPut(c,SA_ROWS-1,SA_R);
+  /* 底下再垫两道岩棱，越往高层越多：挖穿了就是死井 */
+  const ridges=Math.min(5,Math.floor(lv/2));
+  for(let k=0;k<ridges;k++){
+    const c=3+Math.floor(Math.random()*(SA_COLS-6));
+    saPut(c,SA_ROWS-2,SA_R);
+    if(Math.random()<0.5)saPut(c,SA_ROWS-3,SA_R);
+  }
+  const surf=SA_SURF;
+  for(let c=0;c<SA_COLS;c++)for(let r=surf;r<SA_ROWS-1;r++)if(saCell(c,r)===SA_E)saPut(c,r,SA_S);
+  /* 四块牌：列间隔开，深度深浅不一 */
+  const cols=[];
+  const step=Math.floor((SA_COLS-4)/4);
+  for(let k=0;k<4;k++)cols.push(2+k*step+Math.floor(Math.random()*Math.max(1,step-3)));
+  saShuf(cols);
+  const dep=[];
+  for(let k=0;k<4;k++)dep.push(D[0]+Math.floor(Math.random()*(D[1]-D[0]+1)));
+  sa.tab=[];
+  for(let k=0;k<4;k++){
+    const c=cols[k],want=saClamp(dep[k],D[0],D[1]);
+    const r=saBury(c,want);
+    if(r<0)return false;
+    sa.tab.push({c:c,r:r,want:want,dir:(sa.opts&&sa.opts[k]!==undefined)?sa.opts[k]:k,shown:false,el:null});
+  }
+  /* 金砂 / 文物 / 蝎子 / 硬壳：都塞进沙里 */
+  const sprinkle=function(type,n){
+    for(let k=0;k<n;k++){
+      const c=Math.floor(Math.random()*SA_COLS),r=surf+Math.floor(Math.random()*(SA_ROWS-1-surf));
+      if(saCell(c,r)===SA_S)saPut(c,r,type);
+    }
+  };
+  sprinkle(SA_G,saGoldOf(lv));
+  sprinkle(SA_T,saThOf(lv));
+  sprinkle(SA_K,saScorpOf(lv));
+  sprinkle(SA_H,saHardOf(lv));
+  sa.sand=saSandCount();
+  sa.cur=sa.tab[0].c;
+  return true;
+}
+/* ---- 一 tick：能动的往下掉，松的还会往两边溜 ---- */
+function saStep(){
+  const g=sa.g;let moved=0;
+  for(let r=SA_ROWS-2;r>=0;r--){
+    for(let c=0;c<SA_COLS;c++){
+      const v=saCell(c,r);
+      if(!saMoveable(v))continue;
+      if(saCell(c,r+1)===SA_E){saPut(c,r,SA_E);saPut(c,r+1,v);moved++;continue}
+      if(saLoose(v)){
+        const dl=Math.random()<0.5?-1:1;
+        for(let k=0;k<2;k++){
+          const d=k===0?dl:-dl,nc=c+d;
+          if(nc<0||nc>=SA_COLS)continue;
+          if(saCell(nc,r)===SA_E&&saCell(nc,r+1)===SA_E){saPut(c,r,SA_E);saPut(nc,r+1,v);moved++;break}
+        }
+      }
+    }
+  }
+  /* 蝎子在沙里乱窜：偶尔整只往旁边挪一格 */
+  if(Math.random()<0.05){
+    const c=Math.floor(Math.random()*SA_COLS),r=1+Math.floor(Math.random()*(SA_ROWS-2));
+    const d=Math.random()<0.5?-1:1,nc=c+d;
+    if(saInb(nc,r)&&saCell(c,r)===SA_K&&saCell(nc,r)===SA_S){saPut(c,r,SA_S);saPut(nc,r,SA_K);moved++}
+  }
+  return moved;
+}
+/* ---- 沙暴：顶上倒沙，落进你挖开的竖井，从井底往上填 ---- */
+function saPour(n,skip){
+  let added=0;
+  for(let k=0;k<n;k++){
+    const c=Math.floor(Math.random()*SA_COLS);
+    if(skip!==undefined&&c===skip)continue;
+    if(saCell(c,0)!==SA_E)continue;
+    saPut(c,0,SA_S);added++;
+  }
+  sa.pour+=added;
+  sa.sand=saSandCount();
+  return added;
+}
+/* 往某一列头上压几格沙（答完一笔专门埋掉刚挖开的井） */
+function saPack(c,n){
+  let added=0;
+  for(let k=0;k<n;k++){
+    let r=-1;
+    for(let q=0;q<SA_ROWS;q++){if(saCell(c,q)===SA_E){r=q;break}}
+    if(r<0)break;
+    saPut(c,r,SA_S);added++;
+  }
+  sa.pour+=added;
+  sa.sand=saSandCount();
+  return added;
+}
+
+
+/* ---- 画沙：canvas 铺沙丘，DOM 陶牌浮在沙面上 ---- */
+function saCanvasSize(){
+  const cv=document.getElementById('saCanvas');
+  if(cv&&(cv.width!==SA_CW||cv.height!==SA_CH)){cv.width=SA_CW;cv.height=SA_CH}
+}
+const SA_COL={};
+SA_COL[SA_S]=['#D9A441','#E0B158','#C99436'];
+SA_COL[SA_H]=['#A9854C','#B59257','#9C7A44'];
+SA_COL[SA_R]=['#6D5B4B','#75624F','#645243'];
+function saDraw(){
+  const cv=document.getElementById('saCanvas');
+  if(!cv||!sa.g)return;
+  const x=cv.getContext('2d');
+  if(!x)return;
+  const grd=x.createLinearGradient(0,0,0,SA_CH);
+  grd.addColorStop(0,'#243447');grd.addColorStop(.45,'#3E4A5E');grd.addColorStop(1,'#5A4630');
+  x.fillStyle=grd;x.fillRect(0,0,SA_CW,SA_CH);
+  /* 光标那一列：一整条竖井亮着 */
+  x.fillStyle='rgba(255,241,118,.10)';
+  x.fillRect(sa.cur*SA_CELL,0,SA_CELL,SA_CH);
+  for(let r=0;r<SA_ROWS;r++){
+    for(let c=0;c<SA_COLS;c++){
+      const v=saCell(c,r);
+      if(v===SA_E)continue;
+      const px=c*SA_CELL,py=r*SA_CELL;
+      if(v===SA_S||v===SA_H||v===SA_R){
+        const pal=SA_COL[v]||SA_COL[SA_S];
+        x.fillStyle=pal[(c*7+r*13)%3];
+        x.fillRect(px,py,SA_CELL,SA_CELL);
+        if(v===SA_H){x.strokeStyle='rgba(62,39,35,.5)';x.lineWidth=1;x.beginPath();x.moveTo(px+2,py+SA_CELL-3);x.lineTo(px+SA_CELL-3,py+3);x.stroke()}
+        if(v===SA_R){x.fillStyle='rgba(0,0,0,.18)';x.fillRect(px,py,SA_CELL,2)}
+      }else if(v===SA_G){
+        x.fillStyle=SA_COL[SA_S][(c*7+r*13)%3];x.fillRect(px,py,SA_CELL,SA_CELL);
+        x.fillStyle='#FFD54F';x.beginPath();x.arc(px+SA_CELL/2,py+SA_CELL/2,3.4,0,6.284);x.fill();
+      }else if(v===SA_T){
+        x.fillStyle=SA_COL[SA_S][(c*7+r*13)%3];x.fillRect(px,py,SA_CELL,SA_CELL);
+        x.fillStyle='#4DD0E1';x.fillRect(px+3,py+3,SA_CELL-6,SA_CELL-6);
+      }else if(v===SA_K){
+        x.fillStyle=SA_COL[SA_S][(c*7+r*13)%3];x.fillRect(px,py,SA_CELL,SA_CELL);
+        x.fillStyle='#7E57C2';x.beginPath();x.arc(px+SA_CELL/2,py+SA_CELL/2,4.2,0,6.284);x.fill();
+        x.fillStyle='#311B92';x.fillRect(px+SA_CELL/2-1,py+2,2,3);
+      }else if(v===SA_P){
+        if(!saOpenAbove(c,r)){
+          /* 还埋着的牌就长得跟旁边的沙一模一样：全靠一铲铲试出来 */
+          x.fillStyle=SA_COL[SA_S][(c*7+r*13)%3];x.fillRect(px,py,SA_CELL,SA_CELL);
+        }else{
+          x.fillStyle='#8D6E63';x.fillRect(px+1,py+2,SA_CELL-2,SA_CELL-2);
+          x.fillStyle='#5D4037';x.fillRect(px+1,py+2,SA_CELL-2,2);
+        }
+      }
+    }
+  }
+  /* 沙面上的铲子 */
+  const tr=saTopRow(sa.cur),tv=saInb(sa.cur,tr)?saCell(sa.cur,tr):SA_E;
+  if(tr<SA_ROWS&&tv!==SA_E){
+    x.fillStyle='#FFF176';
+    x.fillRect(sa.cur*SA_CELL,tr*SA_CELL,SA_CELL,2);
+    x.font='10px serif';x.textAlign='center';x.textBaseline='bottom';
+    x.fillText('⛏️',sa.cur*SA_CELL+SA_CELL/2,tr*SA_CELL+SA_CELL-1);
+  }
+}
+/* ---- 陶牌：露头了就能点，被埋回去就整块消失 ---- */
+function saTabsBuild(){
+  const box=document.getElementById('saTabs');
+  if(!box)return;
+  box.innerHTML='';
+  sa.tab.forEach(function(t,k){
+    const b=document.createElement('button');
+    b.className='sa-tab';
+    b.setAttribute('data-k',String(k));
+    b.style.visibility='hidden';
+    b.addEventListener('click',function(ev){ev.stopPropagation();saTap(k)});
+    box.appendChild(b);
+    t.el=b;
+  });
+  saPlace();
+}
+function saTabHtml(t){
+  const cnt=sa.kind==='count';
+  const pk=sa.peekMs>0&&t.shown;
+  const dv=pk?('<i>埋 '+(saDepth(t.c,t.r))+' 铲</i>'):(cnt?'<i>笔</i>':'<i>'+SA_ARW[saDn(t.dir)]+'</i>');
+  return '<b>'+saLbl(sa.kind,t.dir)+'</b>'+dv;
+}
+function saPlace(){
+  if(!sa.tab)return;
+  sa.tab.forEach(function(t){
+    if(!t.el)return;
+    const open=saOpenAbove(t.c,t.r);
+    if(open!==t.shown){t.shown=open}
+    if(t.shown){
+      t.el.style.visibility='visible';
+      t.el.style.left=(((t.c+0.5)/SA_COLS)*100).toFixed(2)+'%';
+      t.el.style.top=(((t.r+0.5)/SA_ROWS)*100).toFixed(2)+'%';
+      t.el.innerHTML=saTabHtml(t);
+      t.el.classList.toggle('gold',sa.kind==='dir'&&t.dir===sa.want&&sa.peekMs>0);
+      t.el.classList.toggle('peek',sa.peekMs>0&&!(sa.kind==='dir'&&t.dir===sa.want));
+    }else{
+      t.el.style.visibility='hidden';
+    }
+  });
+}
+function saTabsClear(){const box=document.getElementById('saTabs');if(box)box.innerHTML='';sa.tab.forEach(function(t){t.el=null;t.shown=false})}
+/* ---- 小字卡：左上角的字 + 已经挖出来几笔 ---- */
+function saMini(){
+  const sv=document.getElementById('saMiniSvg');
+  if(!sv||!sa.rec)return;
+  const R=sa.rec,qi=sa.qi;
+  let h='<rect x="32" y="32" width="960" height="960" rx="24" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.16)" stroke-width="4"/>'+
+    '<line x1="512" y1="32" x2="512" y2="992" stroke="rgba(255,255,255,.12)" stroke-width="3"/>'+
+    '<line x1="32" y1="512" x2="992" y2="512" stroke="rgba(255,255,255,.12)" stroke-width="3"/>'+
+    '<line x1="80" y1="80" x2="944" y2="944" stroke="rgba(255,255,255,.07)" stroke-width="3"/>'+
+    '<line x1="944" y1="80" x2="80" y2="944" stroke="rgba(255,255,255,.07)" stroke-width="3"/>';
+  for(let k=0;k<R.n;k++){
+    const d=R.paths&&R.paths[k]?R.paths[k]:'';
+    if(!d)continue;
+    const done=k<qi;
+    h+='<path d="'+d+'" fill="'+(done?SA_INK[saDn(R.dirs[k])]:'none')+'" opacity="'+(done?1:0)+
+      '" stroke="'+(done?'none':(k===qi?'#FFF176':'rgba(255,255,255,.28)'))+'" stroke-width="'+(k===qi?24:12)+'" stroke-dasharray="24 18" fill-rule="nonzero"/>';
+  }
+  sv.innerHTML='<g transform="translate(0,1024) scale(1,-1)">'+h+'</g>';
+  const cap=document.getElementById('saMiniCap');
+  if(cap)cap.innerHTML='「'+R.ch+'」· 挖出 '+qi+'/'+R.n+' 笔';
+}
+/* ---- 顶部 HUD ---- */
+function saHud(){
+  const R=saRank(saInt('hz_sand_words')+sa.words);
+  saSet('saRankTxt',R.e+' '+R.t);
+  saSet('saHeartTxt','❤️'.repeat(Math.max(0,sa.hearts))||'💔');
+  saSet('saComboTxt','🔥 连 '+sa.combo);
+  saSet('saLitTxt','✅ '+sa.qi+'/'+(sa.n||0)+' 笔');
+  saSet('saDigTxt','⛏️ '+sa.digs+' 铲');
+  saSet('saGoldTxt','✨ '+sa.golds);
+  saSet('saThTxt','🏺 '+sa.ths);
+  saSet('saStingTxt','🦂 '+sa.stings);
+  saSet('saSandTxt','🏜️ '+sa.sand+' 格沙');
+  saSet('saScoreTxt','🎯 '+sa.score+' 分');
+  saSet('saLvTxt','第 '+sa.lv+' 层 · 已挖 '+sa.words+' 字');
+  const b1=document.getElementById('saBlowBtn'),b2=document.getElementById('saScoopBtn'),b3=document.getElementById('saPeekBtn');
+  if(b1){b1.disabled=sa.blowN<=0||!sa.run;b1.querySelector('b').textContent='剩 '+sa.blowN}
+  if(b2){b2.disabled=sa.scoopN<=0||!sa.run;b2.querySelector('b').textContent='剩 '+sa.scoopN}
+  if(b3){b3.disabled=sa.peekN<=0||!sa.run;b3.querySelector('b').textContent='剩 '+sa.peekN}
+}
+function saMeter(){
+  const sec=Math.max(0,Math.ceil(sa.clockMs/1000));
+  sa.clock=saClockFrac();
+  const bar=document.getElementById('saClockBar');
+  if(bar)bar.style.width=(sa.clock*100).toFixed(1)+'%';
+  const box=document.getElementById('saClockBox');
+  if(box){box.classList.toggle('low',sa.clock<0.2);
+    const t=document.getElementById('saClockTxt');
+    if(t)t.textContent='🌪 还有 '+sec+' 秒'+(sa.storms?(' · 起过 '+sa.storms+' 阵沙暴'):'')}
+  const qs=Math.max(0,Math.ceil(sa.qms/1000));
+  saSet('saQTxt','⏳ 本题 '+qs+' 秒');
+  const pw=document.getElementById('saPowTxt');
+  if(pw)pw.textContent='🏜️ '+sa.sand+' 格沙 · 井底 '+(sa.tab&&sa.tab.length?saTabDepths():'—');
+  if(box)box.classList.toggle('sa-warn',sa.warn);
+}
+function saTabDepths(){
+  return sa.tab.map(function(t){return saDepth(t.c,t.r)}).join('/')
+}
+function saClockFrac(){
+  const tot=saRunMs(1);
+  return saClamp(sa.clockMs/tot,0,1);
+}
+function saLine(){
+  const L=['⛏️ <b>只有沙面那一格挖得着</b>：点沙地或 <code>←→</code> 挪列 + <code>空格</code> 下铲',
+    '🏜️ <b>先露头的未必是答案</b>：四块牌埋得深浅不一，浅的那块写的多半是错方向',
+    '🌪 <b>答完一笔就来沙暴</b>：沙子从顶上落进你挖的竖井，<b>井是从底下开始填回去的</b>',
+    '🦂 沙里混着 <b>金砂 ✨</b>、<b>文物 🏺</b>、<b>毒蝎 🦂</b> —— 挖得太快就碰上它们'];
+  saSet('saHintLine',L[(sa.words+sa.qi)%L.length]);
+}
+
+
+/* ---- 起题：四块牌写什么，看这一题问什么 ---- */
+function saNewWord(){
+  const rec=saPickRec();
+  if(!rec){saSay('😢 字库里挑不出 <b>每一笔都认得出方向</b> 的字：这一场先结算','#FFCC80');saT(function(){saEnd('pool')},500);return}
+  sa.rec=rec;sa.n=rec.n;sa.qi=0;sa.cleanWord=true;sa.failWord=0;
+  sa.kind='dir';sa.want=0;sa.opts=[0,1,2,3];
+  let built=false;
+  for(let tries=0;tries<8&&!built;tries++)built=saBuildField();
+  if(!built){saSay('😢 这座沙丘埋不下四块牌：这一场先结算','#FFCC80');saT(function(){saEnd('pool')},500);return}
+  saTabsBuild();
+  saSet('saAsk','🏜️ 「<b>'+rec.ch+'</b>」埋在这座沙丘底下<br><small>共 '+rec.n+' 笔 · 挖对一笔它才亮一笔</small>');
+  saMini();saHud();saLine();
+  saNewQ();
+}
+function saAskText(){
+  const el=document.getElementById('saAsk');
+  if(!el||!sa.rec)return;
+  const R=sa.rec;
+  if(sa.qi>=R.n){el.innerHTML='「<b>'+R.ch+'</b>」<b>整个挖出来了</b><br><small>正在起下一座沙丘</small>';return}
+  if(sa.kind==='count'){
+    el.innerHTML='「<b>'+R.ch+'</b>」<b>一共几笔</b>？<br><small>四块牌上写着数字 · 挖出对的那块点一下</small>';
+    return;
+  }
+  const d=saDn(R.dirs[sa.qi]);
+  el.innerHTML='「<b>'+R.ch+'</b>」第 <b>'+(sa.qi+1)+'</b> 笔往哪个方向？<br><small>'+SA_ARW[d]+' 是 <b>'+SA_DIRS[d]+'</b> —— 别只挑浅的那块挖</small>';
+}
+function saMakeOpts(){
+  const R=sa.rec;
+  if(sa.kind==='count'){
+    const n=R.n,pool=[];
+    for(let k=n-2;k<=n+2;k++)if(k!==n&&k>=1)pool.push(k);
+    const three=saShuf(pool).slice(0,3);
+    return {want:n,opts:saShuf([n].concat(three))};
+  }
+  const w=saDn(R.dirs[sa.qi]),others=[0,1,2,3].filter(function(d){return d!==w});
+  return {want:w,opts:saShuf([w].concat(others))};
+}
+function saNewQ(){
+  const R=sa.rec;
+  if(!R||sa.qi>=R.n)return;
+  sa.busy=false;
+  sa.kind=(sa.qi>0&&sa.qi%3===2&&Math.random()<0.5)?'count':'dir';
+  const o=saMakeOpts();
+  sa.want=o.want;sa.opts=o.opts;
+  /* 把新题的标签贴到已有的四块牌上：位置不动，写的字换掉 */
+  for(let k=0;k<4;k++){if(sa.tab[k])sa.tab[k].dir=o.opts[k]}
+  sa.qms=saQmsOf(sa.lv);sa.qms0=sa.qms;
+  /* 沙暴过后重新埋牌：四块的深浅每道题重掷一次，深浅给不了线索，只有认笔顺才管用 */
+  saReBury();
+  saTabsBuild();saAskText();saHud();saMeter();saLine();
+}
+/* ---- 挖：只有沙面那一格挖得着 ---- */
+function saTag(t){
+  const el=document.getElementById('saTag');
+  if(!el)return;
+  el.innerHTML=t;el.classList.add('on');
+  sa.tagMs=SA_TAG_MS;
+}
+function saDigCol(c,byTool){
+  if(!sa.run||sa.over||!sa.g)return '';
+  c=saClamp(c|0,0,SA_COLS-1);
+  if(sa.digMs>0&&!byTool)return 'cd';
+  const r=saTopRow(c);
+  if(r>=SA_ROWS){saTag('这一列挖到底了，换一列');return 'deep'}
+  const v=saCell(c,r);
+  if(v===SA_R){saTag('底下是 <b>岩层</b>，挖不动 —— 换一列');return 'rock'}
+  if(v===SA_P){saTag('陶牌硬邦邦 —— <b>露头了就点它答题</b>');return 'tab'}
+  if(!byTool)sa.digMs=SA_DIG_CD;
+  sa.cur=c;
+  if(v===SA_H){
+    saPut(c,r,SA_S);
+    sa.digs++;saTone(300,.07,'square',.1);
+    saTag('🪨 硬壳裂开一层，再铲一下才掉');
+    saDust(c,r,4,'#B59257');
+    saHud();return 'crack';
+  }
+  saPut(c,r,SA_E);
+  sa.digs++;
+  saDust(c,r,5,'#E0B158');
+  if(v===SA_G){
+    sa.golds++;sa.score+=SA_GOLD_GAIN;
+    saAdd('hz_sand_gold',1);
+    saTone(SA_NOTE[7],.1,'triangle',.16);
+    saTag('✨ 挖到一粒金砂 <b>+'+SA_GOLD_GAIN+'</b>');
+    saSpark(c,r,'#FFD54F',10);
+  }else if(v===SA_T){
+    sa.ths++;sa.score+=SA_TH_GAIN;
+    saAdd('hz_sand_things',1);
+    const th=saOneTh();
+    saTone(660,.1);saTone(990,.14);
+    saTag('🏺 挖出一件 <b>'+th+'</b> <b>+'+SA_TH_GAIN+'</b>');
+    saSpark(c,r,'#4DD0E1',14);
+    saSay('🏺 沙里翻出一件 <b>'+th+'</b>，收进 <b>文物架</b>（一场最多 '+SA_TH_MAX+' 件）。<br>⛏️ 挖到 <b>金砂 ✨</b> 也加分，<b>毒蝎 🦂</b> 会蛰手：扣 '+SA_PEN_STING+' 分、断连击、<b>这一列当场灌回来</b>');
+  }else if(v===SA_K){
+    saStung(c);return 'sting';
+  }else{
+    saTone(160+Math.random()*40,.06,'square',.09);
+  }
+  sa.sand=saSandCount();
+  saPlace();saHud();saMeter();
+  return 'dig';
+}
+function saOneTh(){
+  const got=(localStorage.getItem('hz_sand_shelf')||'').split(',').filter(Boolean);
+  const free=SA_THINGS.filter(function(t){return got.indexOf(t)<0});
+  const pick=free.length?saOne(free):saOne(SA_THINGS);
+  if(got.indexOf(pick)<0&&got.length<SA_TH_MAX){
+    got.push(pick);
+    localStorage.setItem('hz_sand_shelf',got.join(','));
+    saSet('saThTxt','🏺 '+sa.ths+'（架上有 '+got.length+' 件）');
+  }
+  return pick;
+}
+function saStung(c){
+  sa.stings++;sa.combo=0;
+  sa.score=Math.max(0,sa.score-SA_PEN_STING);
+  saAdd('hz_sand_stung',1);
+  saDust(c,saTopRow(c),10,'#7E57C2');
+  saTone(180,.28,'sawtooth',.16);
+  const back=saPack(c,2+Math.floor(Math.random()*3));
+  saTag('🦂 蝎子蛰手 <b>-'+SA_PEN_STING+'</b>，这一列灌回 '+back+' 格沙');
+  saSay('🦂 <b>沙里是有蝎子的</b>：它整只在沙里乱窜，你挖得越快越容易碰上 —— 挖到 <b>-'+SA_PEN_STING+' 分、连击清零、这一列灌回沙</b>。段位越高蝎子越多（第 3 层起才有），<b>看见紫点在沙面上就别急着下铲</b>','#FF8A80');
+  const tbl=document.getElementById('saTbl');
+  if(tbl){tbl.classList.remove('shake');void tbl.offsetWidth;tbl.classList.add('shake');saT(function(){tbl.classList.remove('shake')},380)}
+  sa.sand=saSandCount();
+  saPlace();saHud();saMeter();
+}
+/* ---- 答题：点一块露头的牌 ---- */
+function saTap(k){
+  if(!sa.run||sa.over||sa.busy)return;
+  const t=sa.tab&&sa.tab[k];
+  if(!t||!t.shown)return;
+  if(t.dir===sa.want)saRight(t);else saWrong(t);
+}
+function saRight(t){
+  const R=sa.rec;
+  sa.busy=true;
+  sa.combo++;sa.maxCombo=Math.max(sa.maxCombo,sa.combo);
+  sa.since=0;
+  const frac=sa.qms0>0?sa.qms/sa.qms0:0;
+  const gain=Math.round((8+sa.combo*0.9+sa.lv*1.6)*(1+frac*0.35));
+  sa.score+=gain;
+  sa.flashMs=SA_FLASH_MS;
+  sa.lits++;
+  saTone(SA_NOTE[Math.min(SA_NOTE.length-1,sa.combo-1)],.12,'triangle',.16);
+  saTone(SA_NOTE[Math.min(SA_NOTE.length-1,sa.combo+2)],.14,'triangle',.12);
+  saSpark(t.c,t.r,'#FFF176',16);
+  if(sa.kind==='count'){
+    saSay('✅ <b>挖对了</b>：「'+R.ch+'」一共 <b>'+sa.want+'</b> 笔，第 '+(sa.qi+1)+' 笔正好把它补齐 —— <b>+'+gain+' 分</b>');
+  }else{
+    saSay('✅ <b>挖对了</b>：「'+R.ch+'」第 '+(sa.qi+1)+' 笔是 <b>'+SA_DIRS[saDn(sa.want)]+' '+SA_ARW[saDn(sa.want)]+'</b> —— <b>+'+gain+' 分</b>');
+  }
+  sa.qi++;
+  saMini();saHud();
+  if(sa.qi>=R.n){saWordDone();return}
+  saStorm(t.c);
+  saT(saNewQ,SA_NEXT_MS);
+}
+function saWrong(t){
+  const R=sa.rec;
+  sa.hearts--;sa.combo=0;sa.cleanWord=false;sa.failWord++;
+  sa.score=Math.max(0,sa.score-SA_PEN_WRONG);
+  sa.lits=Math.max(sa.lits,0);
+  saAddMiss(R.ch);
+  saTone(220,.3,'square',.15);
+  saSpark(t.c,t.r,'#FF8A80',8);
+  if(sa.kind==='count'){
+    saSay('🚫 <b>牌挖错了</b>：「'+R.ch+'」是 <b>'+sa.want+'</b> 笔，你挖出来那块写着 <b>'+t.dir+'</b> —— 掉一颗心、扣 '+SA_PEN_WRONG+' 分','#FF8A80');
+  }else{
+    saSay('🚫 <b>牌挖错了</b>：「'+R.ch+'」第 '+(sa.qi+1)+' 笔要 <b>'+SA_DIRS[saDn(sa.want)]+' '+SA_ARW[saDn(sa.want)]+'</b>，你点的那块写着 <b>'+SA_DIRS[saDn(t.dir)]+'</b> —— 掉一颗心、扣 '+SA_PEN_WRONG+' 分','#FF8A80');
+  }
+  const tbl=document.getElementById('saTbl');
+  if(tbl){tbl.classList.remove('shake');void tbl.offsetWidth;tbl.classList.add('shake');saT(function(){tbl.classList.remove('shake')},380)}
+  saSet('saHeartTxt','❤️'.repeat(Math.max(0,sa.hearts))||'💔');
+  saStorm(t.c,1.6);
+  sa.qms=saQmsOf(sa.lv);sa.qms0=sa.qms;
+  saHud();saMeter();saAskText();
+  if(sa.hearts<=0){saT(function(){saEnd('dead')},700)}
+}
+function saTimeoutQ(){
+  if(sa.busy)return;
+  const R=sa.rec;
+  sa.busy=true;
+  sa.score=Math.max(0,sa.score-SA_PEN_TIME);
+  sa.combo=0;sa.cleanWord=false;sa.failWord++;
+  saSet('saQTxt','⏳ 本题 ——');
+  if(sa.kind==='count'){
+    saSay('🌬 <b>风钟走光了</b>：「'+R.ch+'」一共 <b>'+sa.want+'</b> 笔。白挖一轮、扣 '+SA_PEN_TIME+' 分，这一笔算挖开了','#FFCC80');
+  }else{
+    saSay('🌬 <b>风钟走光了</b>：「'+R.ch+'」第 '+(sa.qi+1)+' 笔是 <b>'+SA_DIRS[saDn(sa.want)]+'</b>。白挖一轮、扣 '+SA_PEN_TIME+' 分，这一笔算挖开了','#FFCC80');
+  }
+  saTone(260,.2,'sine',.12);
+  /* 把答案牌托出沙面：让孩子看清它埋在哪、写什么 */
+  const a=sa.tab.filter(function(t){return t.dir===sa.want})[0];
+  if(a)saLift(a);
+  sa.qi++;saMini();
+  saStorm(-1,1.2,a?a.c:undefined);
+  if(sa.qi>=R.n){saT(saWordDone,SA_NEXT_MS);return}
+  saT(saNewQ,SA_NEXT_MS);
+}
+/* ---- 埋牌：从沙面往下数 want 格，路上的空洞一律填回沙 ---- */
+function saBury(c,want){
+  const top=saTopRow(c);
+  if(top>=SA_ROWS-1)return -1;
+  if(saCell(c,top)===SA_R||saCell(c,top)===SA_P)return -1;
+  let r=saClamp(top+want,top,SA_ROWS-2);
+  while(r>top&&(saCell(c,r)===SA_R||saCell(c,r)===SA_P))r--;
+  const v=saCell(c,r);
+  if(v===SA_R||v===SA_P)return -1;
+  for(let k=top;k<r;k++)if(saCell(c,k)===SA_E)saPut(c,k,SA_S);
+  saPut(c,r,SA_P);
+  return r;
+}
+function saReBury(){
+  if(!sa.tab||!sa.tab.length)return;
+  const D=saDepthOf(sa.lv);
+  const holes=[];
+  sa.tab.forEach(function(t){if(saCell(t.c,t.r)===SA_P){saPut(t.c,t.r,SA_E);holes.push([t.c,t.r])}});
+  const taken=function(c,self){
+    for(let k=0;k<sa.tab.length;k++){const o=sa.tab[k];if(o!==self&&o.c===c)return true}
+    return false;
+  };
+  sa.tab.forEach(function(t){
+    const want=D[0]+Math.floor(Math.random()*(D[1]-D[0]+1));
+    let r=taken(t.c,t)?-1:saBury(t.c,want);
+    if(r<0){
+      /* 这一列埋不下去（顶着岩棱或已有别的牌）：往边上找一列空的 */
+      for(let d=1;d<SA_COLS&&r<0;d++){
+        for(let s=-1;s<=1;s+=2){
+          const nc=saClamp(t.c+d*s,0,SA_COLS-1);
+          if(taken(nc,t))continue;
+          r=saBury(nc,want);
+          if(r>=0){t.c=nc;break}
+        }
+      }
+    }
+    if(r<0){t.r=saClamp(t.r,SA_SURF,SA_ROWS-2);saPut(t.c,t.r,SA_P);r=t.r}
+    t.r=r;t.shown=false;
+  });
+  /* 牌挪窝在沙堆里留下的洞：让上面的沙一格格调下来填住（沙的总量不变，也不挂空） */
+  holes.forEach(function(h){
+    for(let r=h[1];r>0;r--){
+      if(saCell(h[0],r)!==SA_E)continue;
+      const up=saCell(h[0],r-1);
+      if(!saMoveable(up))break;
+      saPut(h[0],r,up);saPut(h[0],r-1,SA_E);
+    }
+  });
+  sa.sand=saSandCount();
+}
+function saLift(t){
+  for(let k=0;k<t.r;k++)if(saCell(t.c,k)!==SA_E&&saCell(t.c,k)!==SA_R)saPut(t.c,k,SA_E);
+  sa.sand=saSandCount();
+  saPlace();
+}
+function saStorm(c,mul,skip){
+  sa.storms++;
+  const m=mul||1;
+  if(c>=0)saPack(c|0,Math.round(saPackOf(sa.lv)*m));
+  saPour(Math.round(saStormOf(sa.lv)*m),skip);
+  saTag('🌪 起沙暴了：井从底下开始填回去');
+  const tbl=document.getElementById('saTbl');
+  if(tbl){tbl.classList.remove('shake');void tbl.offsetWidth;tbl.classList.add('shake');saT(function(){tbl.classList.remove('shake')},380)}
+  saPlace();saHud();saMeter();
+}
+function saAddMiss(ch){
+  if(!ch)return;
+  const a=(localStorage.getItem('hz_sand_miss')||'').split(',').filter(function(c){return c.length===1&&c!==ch});
+  a.unshift(ch);
+  localStorage.setItem('hz_sand_miss',a.slice(0,20).join(','));
+}
+function saAddBook(ch){
+  const a=(localStorage.getItem('hz_sand_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)<0)a.push(ch);
+  localStorage.setItem('hz_sand_book',a.slice(0,SA_BOOK_MAX).join(','));
+  return a.length;
+}
+/* ---- 整个字挖出来了 ---- */
+function saWordDone(){
+  const R=sa.rec;
+  const bonus=SA_WORD_BONUS+sa.lv*6+(sa.cleanWord?18:0);
+  sa.score+=bonus;
+  sa.words++;
+  saAdd('hz_sand_words',1);
+  saAdd('hz_sand_lits',R.n);
+  const book=saAddBook(R.ch);
+  saTone(523,.1);saTone(659,.1);saTone(784,.12);saTone(1047,.2);
+  saConfetti(18);
+  const oldLv=sa.lv;
+  sa.lv=saLvOf(sa.words);
+  if(sa.lv>oldLv){
+    sa.blowN=Math.min(3,sa.blowN+1);
+    sa.scoopN=Math.min(3,sa.scoopN+1);
+    sa.peekN=Math.min(3,sa.peekN+1);
+    saTag('🏜️ 升到第 '+sa.lv+' 层：道具各补 1 次');
+  }
+  if(sa.words%2===0&&sa.hearts<SA_HEART_MAX){sa.hearts++;saTag('❤️ 挖通 '+sa.words+' 个字，补一颗心')}
+  saSay('🎉 <b>「'+R.ch+'」整个从沙里挖出来了</b>：'+R.n+' 笔一笔不差 <b>+'+bonus+' 分</b>'+(sa.cleanWord?'（<b>一题没挖错、没超时，再多给 18</b>）':'')+'。图鉴里现在 <b>'+book+'</b> 个字'+(sa.lv>oldLv?'，<b>升到第 '+sa.lv+' 层</b>：沙埋得更深、蝎子更多、风钟更短':''),'#A5D6A7');
+  saHud();
+  saT(saNewWord,SA_NEXT_MS+300);
+}
+
+
+/* ---- 每一 tick：落沙 → 画沙 → 摆牌（算和画同一帧） ---- */
+function saStopLoop(){if(sa.rafId){cancelAnimationFrame(sa.rafId);sa.rafId=0}}
+function saStartLoop(){saStopLoop();sa.last=0;sa.rafId=requestAnimationFrame(saLoop)}
+function saLoop(ts){
+  if(!sa.run||sa.over)return;
+  const dt=sa.last?Math.min(120,ts-sa.last):16;
+  sa.last=ts;
+  saTick(dt);
+  if(sa.run&&!sa.over)sa.rafId=requestAnimationFrame(saLoop);
+}
+function saTick(dt){
+  if(!sa.run||sa.over||!sa.g)return;
+  if(sa.helpMs>0){
+    /* 看说明书时整场冻住：风钟沙漏都不走 */
+    sa.helpMs-=dt;
+    saDraw();saPlace();
+    if(sa.helpMs<=0)saAskText();
+    return;
+  }
+  sa.t+=dt;sa.playMs+=dt;sa.since+=dt;
+  if(sa.digMs>0)sa.digMs=Math.max(0,sa.digMs-dt);
+  if(sa.tagMs>0){sa.tagMs-=dt;if(sa.tagMs<=0){const el=document.getElementById('saTag');if(el)el.classList.remove('on')}}
+  if(sa.flashMs>0)sa.flashMs-=dt;
+  let peekOff=false;
+  if(sa.peekMs>0){sa.peekMs-=dt;if(sa.peekMs<=0)peekOff=true}
+  sa.acc+=dt;
+  let guard=0;
+  while(sa.acc>=SA_TICK_MS&&guard++<6){sa.acc-=SA_TICK_MS;saStep()}
+  sa.qms-=dt;
+  if(sa.qms<=0){saTimeoutQ();return}
+  sa.clockMs-=dt;
+  if(sa.clockMs<=0){sa.clockMs=0;saEnd('time');return}
+  sa.clock=saClockFrac();
+  const wasWarn=sa.warn;
+  sa.warn=sa.clock<0.12;
+  if(sa.warn){
+    if(!wasWarn){saSay('🌪 <b>沙漏快见底了</b>：剩下 '+Math.ceil(sa.clockMs/1000)+' 秒，抓紧把这一笔挖出来','#FF8A80')}
+    sa.beep+=dt;
+    if(sa.beep>1000){sa.beep=0;saTone(760,.08,'square',.1)}
+  }
+  if(sa.since>SA_NAG_MS){sa.since=0;saNag()}
+  saDraw();
+  saPlace();
+  if(peekOff)saTabsRefresh();
+  sa.hudAcc=(sa.hudAcc||0)+dt;
+  if(sa.hudAcc>=180){sa.hudAcc=0;saHud();saMeter();saAskQ()}
+  saFx(dt);
+}
+function saAskQ(){
+  const qs=Math.max(0,Math.ceil(sa.qms/1000));
+  saSet('saQTxt','⏳ 本题 '+qs+' 秒');
+}
+function saTabsRefresh(){sa.tab.forEach(function(t){if(t.el&&t.shown)t.innerHTML=saTabHtml(t)})}
+/* ---- 发呆提示 ---- */
+function saNag(){
+  if(!sa.run||sa.over||!sa.rec)return;
+  sa.nags++;
+  const a=sa.tab.filter(function(t){return t.dir===sa.want})[0];
+  const d=a?saDepth(a.c,a.r):-1;
+  const near=sa.tab.map(function(t){return saDepth(t.c,t.r)});
+  saSay('🐪 <b>歇一记</b>：这一题的答案牌 <b>埋在第 '+(a?a.c+1:'?')+' 列'+(d>=0?('、往下 <b>'+d+' 铲</b>'):'')+'</b>。'+
+    (sa.kind==='count'?('「'+sa.rec.ch+'」是 <b>'+sa.want+'</b> 笔'):('第 '+(sa.qi+1)+' 笔要 <b>'+SA_DIRS[saDn(sa.want)]+'</b>'))+
+    ' · 四块牌当前深浅 <b>'+near.join(' / ')+'</b> 铲'+
+    ' · 光标在第 <b>'+(sa.cur+1)+'</b> 列（<code>←→</code> 换列，<code>空格</code> 下铲）','#80DEEA');
+  saLine();
+}
+/* ---- 粒子：扬沙 / 火星 / 彩带 ---- */
+function saFxBox(){return document.getElementById('saFx')}
+function saCellPx(c,r){
+  const box=document.getElementById('saTbl');
+  const w=box?box.clientWidth:SA_CW,h=box?box.clientHeight:SA_CH;
+  return {x:((c+0.5)/SA_COLS)*w,y:((r+0.5)/SA_ROWS)*h};
+}
+function saGr(color,w,h){
+  const d=document.createElement('i');
+  d.className='sa-gr';
+  d.style.width=(w||4)+'px';d.style.height=(h||4)+'px';
+  d.style.background=color||'#E0B158';
+  d.style.left='0px';d.style.top='0px';
+  return d;
+}
+function saDust(c,r,n,color){
+  const box=saFxBox();if(!box)return;
+  const p=saCellPx(c,r);
+  for(let k=0;k<n;k++){
+    const d=saGr(color,4,4);
+    box.appendChild(d);
+    sa.fall.push({el:d,x:p.x,y:p.y,vx:(Math.random()-0.5)*90,vy:-30-Math.random()*60,g:300,life:0,ms:480+Math.random()*260,rot:0});
+  }
+}
+function saSpark(c,r,color,n){saDust(c,r,n||12,color)}
+function saConfetti(n){
+  const box=saFxBox();if(!box)return;
+  const cols=['#FFD54F','#FF8A80','#80DEEA','#A5D6A7','#B39DDB'];
+  const w=box.clientWidth||SA_CW;
+  for(let k=0;k<n;k++){
+    const d=saGr(cols[k%cols.length],6,10);
+    d.style.borderRadius='2px';
+    box.appendChild(d);
+    sa.fall.push({el:d,x:Math.random()*w,y:-12,vx:(Math.random()-0.5)*44,vy:60+Math.random()*70,g:90,life:0,ms:1500+Math.random()*700,rot:(Math.random()-0.5)*720});
+  }
+}
+function saFx(dt){
+  if(!sa.fall.length)return;
+  const s=dt/1000;
+  for(let i=sa.fall.length-1;i>=0;i--){
+    const p=sa.fall[i];
+    p.life+=dt;
+    if(p.life>=p.ms){if(p.el.parentNode)p.el.parentNode.removeChild(p.el);sa.fall.splice(i,1);continue}
+    p.vy+=p.g*s;p.x+=p.vx*s;p.y+=p.vy*s;
+    p.el.style.transform='translate('+p.x.toFixed(1)+'px,'+p.y.toFixed(1)+'px) rotate('+((p.rot||0)*p.life/p.ms).toFixed(0)+'deg)';
+    p.el.style.opacity=String(saClamp(1-p.life/p.ms,0,1));
+  }
+}
+/* ---- 道具 ---- */
+function saBlow(){
+  if(!sa.run||sa.over||sa.blowN<=0)return;
+  sa.blowN--;sa.blows++;
+  const rows=saBlowRow(sa.lv);
+  let n=0;
+  for(let c=0;c<SA_COLS;c++){
+    for(let k=0;k<rows;k++){
+      const r=saTopRow(c);
+      if(r>=SA_ROWS)break;
+      const v=saCell(c,r);
+      if(v===SA_S||v===SA_G||v===SA_T||v===SA_K||v===SA_H){saPut(c,r,SA_E);n++}else break;
+    }
+  }
+  sa.sand=saSandCount();
+  saTone(1200,.2,'sine',.1);
+  saTag('💨 一口气吹走 '+n+' 格表层沙');
+  saSay('💨 <b>吹沙</b>把每列最上面 <b>'+rows+'</b> 格沙掀掉了 '+n+' 格 —— 埋得浅的牌一下就露头，<b>可露头的不一定是答案</b>','#80DEEA');
+  saPlace();saHud();saMeter();saTabsRefresh();
+}
+function saScoop(){
+  if(!sa.run||sa.over||sa.scoopN<=0)return;
+  sa.scoopN--;sa.scoops++;
+  let n=0;
+  for(let k=0;k<3;k++){
+    const r=saTopRow(sa.cur);
+    if(r>=SA_ROWS)break;
+    const v=saCell(sa.cur,r);
+    if(v===SA_S||v===SA_H){saPut(sa.cur,r,SA_E);n++;if(v===SA_H)break}
+    else break;
+  }
+  sa.sand=saSandCount();
+  sa.digs+=n;
+  saTone(200,.12,'square',.14);
+  saDust(sa.cur,saTopRow(sa.cur),8,'#C99436');
+  saTag('⛏️ 大铲在第 '+(sa.cur+1)+' 列掘掉 '+n+' 格');
+  saPlace();saHud();saMeter();
+}
+function saPeek(){
+  if(!sa.run||sa.over||sa.peekN<=0)return;
+  sa.peekN--;sa.peeks++;
+  sa.peekMs=SA_PEEK_MS;
+  saTone(880,.1,'triangle',.12);
+  saTag('🔎 三秒里能看清每张牌埋几铲、哪张是答案');
+  saSay('🔎 <b>探沙</b>：三秒内 <b>答案牌发金光</b>，每张牌头上写着 <b>还要挖几铲</b>。一场只有 <b>'+SA_PEEK0+'</b> 次，升一层补 1 次','#FFE082');
+  saPlace();saHud();
+  saT(function(){saPlace();saTabsRefresh()},SA_PEEK_MS+40);
+}
+/* ---- 结算 ---- */
+function saEnd(why){
+  if(sa.over)return;
+  sa.over=true;
+  saStopLoop();saKillTimers();
+  sa.run=false;
+  const tbl=document.getElementById('saTbl');
+  if(tbl)tbl.classList.add('dead');
+  const best=saInt('hz_sand_best');
+  const isBest=sa.score>best;
+  if(isBest)localStorage.setItem('hz_sand_best',String(sa.score));
+  saAdd('hz_sand_digs',sa.digs);
+  const oldLv=saInt('hz_sand_lv');
+  if(sa.lv>oldLv)localStorage.setItem('hz_sand_lv',String(sa.lv));
+  /* 一场里挖通同样多的字，用时越短记为新纪录（存 万字×1000 + 用了几秒） */
+  if(sa.words>0){
+    const used=Math.round(sa.playMs/1000);
+    const f=saInt('hz_sand_fastest'),fw=f%1000,fs=Math.floor(f/1000);
+    if(!f||sa.words>fw||(sa.words===fw&&used<fs))localStorage.setItem('hz_sand_fastest',String(sa.words*1000+used));
+  }
+  const stars=Math.max(1,Math.round(sa.score/14)+sa.words*2);
+  if(why!=='boot')addStars(stars);
+  showScreen('sand-result');
+  const R={quit:'🏳️',time:'🌪',dead:'💔',pool:'😢'}[why]||'🏜️';
+  saSet('saRsEmoji',R);
+  saSet('saRsTitle',why==='dead'?'心挖没了':(why==='time'?'沙漏走光了':(why==='quit'?'这一场先收了':'字库没凑齐')));
+  saSet('saRsSub','第 '+sa.lv+' 层 · '+saRank(saInt('hz_sand_words')).e+' '+saRank(saInt('hz_sand_words')).t);
+  saSet('saRsScore','🎯 '+sa.score+' 分'+(isBest?' 🏅 新高':''));
+  saSet('saRsWords','📦 挖通 '+sa.words+' 个字');
+  saSet('saRsLits','✅ '+sa.lits+' 笔');
+  saSet('saRsDigs','⛏️ '+sa.digs+' 铲'+(sa.digs&&sa.lits?(' · 平均每笔 '+Math.round(sa.digs/Math.max(1,sa.lits))+' 铲'):''));
+  saSet('saRsGold','✨ '+sa.golds+' 粒金砂');
+  saSet('saRsTh','🏺 '+sa.ths+' 件文物');
+  saSet('saRsSting','🦂 被蛰 '+sa.stings+' 次');
+  saSet('saRsCombo','🔥 最长连 '+sa.maxCombo);
+  saSet('saRsBest','🏆 最高 '+Math.max(best,sa.score)+' 分');
+  saSet('saRsStars','⭐ '+stars);
+  const shelf=(localStorage.getItem('hz_sand_shelf')||'').split(',').filter(Boolean).length;
+  const book=(localStorage.getItem('hz_sand_book')||'').split(',').filter(function(c){return c.length===1}).length;
+  saSet('saRsBook','图鉴里现在有 <b>'+book+'</b> 个字 · 文物架上有 <b>'+shelf+'/'+SA_THINGS.length+'</b> 件 · 沙里前后挖出过 <b>'+saInt('hz_sand_things')+'</b> 件');
+  const per=sa.lits?Math.round(sa.digs/Math.max(1,sa.lits)):0;
+  saSet('saRsWhy',why==='dead'?'💔 <b>挖错牌是要掉心的</b>：认不清这一笔就往哪走时，先按 <b>🔎 探沙</b> 看清答案埋在第几列，再决定挖不挖它':
+    (why==='time'?'🌪 <b>沙漏走光了</b>：一场要挖开 '+sa.n+' 笔的字，别在浅牌上纠缠 —— <b>露头的牌先看写的什么，再决定挖不挖旁边的深井</b>':
+    (per>10?'⛏️ 平均每笔挖了 <b>'+per+'</b> 铲：看见金砂 ✨ 和文物 🏺 顺手挖，风钟才不会走光':'🏜️ 手感不错：下一场沙埋得更深，试着 <b>先认方向再下铲</b>，别挖开一半才换井')));
+  saSay('🏜️ 这一场挖通 <b>'+sa.words+'</b> 个字、<b>'+sa.lits+'</b> 笔，扬起 <b>'+sa.sand+'</b> 格沙。'+
+    '<br>战绩落盘 <code>hz_sand_*</code>：称号按累计挖通的字数走，第 '+saLvOf(9)+' 层起 <b>沙里才有蝎子</b>','#D7CCC8');
+}
+
+
+/* ---- 玩法说明 / 输入绑定 / 卡片角标 ---- */
+function saHelp(){
+  if(!sa.run)return;
+  sa.helpMs=6000;sa.since=0;
+  saSay('眼前是 <b>一片沙丘</b>：沙底下埋着「'+(sa.rec?sa.rec.ch:'这个字')+'」的 <b>四块答案陶牌</b>，每块写着一个候选'+(sa.kind==='count'?'笔数':'方向')+'。<br>'+
+    '⛏️ <b>只有沙面那一格挖得着</b> —— 点沙地（或 <code>←→</code> 换列、<code>空格</code> 下铲）一铲下去，<b>坑不会自己回填</b>，接着同一列再铲就是往深挖第二格：<b>竖井是一铲一铲挖出来的</b><br>'+
+    '🏜️ <b>先露头的未必是答案</b>：四块牌 <b>埋得深浅不一样</b>，浅的两三铲就出来，深的要挖七八铲。<b>牌自己不会动</b>，可 <b>沙暴会把沙倒在它头上</b> —— 每答完一笔，顶上哗哗落沙，<b>你挖开的竖井从井底开始一格格填回去</b><br>'+
+    '🦂 沙里混着 <b>金砂 ✨</b>（+'+SA_GOLD_GAIN+' 分）、<b>文物 🏺</b>（+'+SA_TH_GAIN+' 分、进文物架）、<b>硬壳沙 🪨</b>（要铲两下）、<b>毒蝎 🦂</b>（蛰一手：-'+SA_PEN_STING+' 分、断连击、<b>这一列当场灌回沙</b>）—— 第 3 层起才有蝎子，层数越高越多<br>'+
+    '⏳ <b>本题风钟 '+Math.round(saQmsOf(sa.lv)/1000)+' 秒</b>：走光不算答错，只扣 '+SA_PEN_TIME+' 分、白挖一轮，<b>并把答案牌托出沙面让你看清它埋在哪</b>；<b>挖错牌掉一颗心</b>；底下的 <b>🌪 沙漏</b>（'+Math.round(saRunMs(1)/1000)+' 秒）走光就结算<br>'+
+    '💨 <b>吹沙</b>（<code>Q</code>）掀掉每列最上面 '+(saBlowRow(sa.lv))+' 格、⛏️ <b>大铲</b>（<code>E</code>）在第 '+(sa.cur+1)+' 列一次掘 3 格、🔎 <b>探沙</b>（<code>F</code>）三秒里让答案牌发金光并写出每张牌还要挖几铲 —— 各 <b>'+SA_BLOW0+'</b>／<b>'+SA_SCOOP0+'</b>／<b>'+SA_PEEK0+'</b> 次，<b>升一层各补 1 次</b>（最多 3）<br>'+
+    '📈 <b>挖对一笔</b>吃 <code>round((8 + 连击×0.9 + 层数×1.6) × (1 + 风钟余量×0.35))</code>，<b>整个字挖齐</b>再多 <code>'+SA_WORD_BONUS+' + 层数×6</code>（一题没错没超时 <b>再多 18</b>）；<b>每 2 个字升 1 层</b>（最多 9 层）、<b>每 2 个字补一颗心</b>（最多 5 颗）<br>'+
+    '🏆 称号看累计挖通的字数（<code>hz_sand_words</code>），战绩落盘 <code>hz_sand_*</code>','#D7CCC8');
+  saSet('saAsk','🆘 <b>正在看说明书</b>（6 秒后自动继续挖）<br><small>沙漏和风钟都停着，不慌</small>');
+}
+function saBind(){
+  const cv=document.getElementById('saCanvas');
+  if(cv&&!sa.ptrOn){
+    sa.ptrOn=true;
+    const colOf=function(ev){
+      const rect=cv.getBoundingClientRect();
+      if(!rect.width)return sa.cur;
+      return saClamp(Math.floor((ev.clientX-rect.left)/rect.width*SA_COLS),0,SA_COLS-1);
+    };
+    cv.addEventListener('pointerdown',function(ev){
+      ev.preventDefault();
+      sa.drag=true;
+      const c=colOf(ev);
+      sa.cur=c;saDigCol(c);
+      try{cv.setPointerCapture(ev.pointerId)}catch(e){}
+    });
+    cv.addEventListener('pointermove',function(ev){
+      if(!sa.drag)return;
+      const c=colOf(ev);
+      if(c!==sa.cur){sa.cur=c;saDigCol(c)}
+    });
+    const up=function(){sa.drag=false};
+    cv.addEventListener('pointerup',up);
+    cv.addEventListener('pointercancel',up);
+  }
+  if(!sa.keyOn){
+    sa.keyOn=true;
+    document.addEventListener('keydown',function(ev){
+      if(currentMode!=='sand'||!sa.run||sa.over)return;
+      const k=ev.key;
+      if(k==='ArrowLeft'||k==='a'||k==='A'){sa.cur=saClamp(sa.cur-1,0,SA_COLS-1);saDraw();saHud();ev.preventDefault();sa.since=0;return}
+      if(k==='ArrowRight'||k==='d'||k==='D'){sa.cur=saClamp(sa.cur+1,0,SA_COLS-1);saDraw();saHud();ev.preventDefault();sa.since=0;return}
+      if(k==='ArrowUp'||k==='ArrowDown'){ev.preventDefault();sa.since=0;return}
+      if(k===' '||k==='Enter'){saDigCol(sa.cur);ev.preventDefault();sa.since=0;return}
+      if(k>='1'&&k<='4'){saTap(+k-1);sa.since=0;ev.preventDefault();return}
+      if(k==='q'||k==='Q'){saBlow();sa.since=0;return}
+      if(k==='e'||k==='E'){saScoop();sa.since=0;return}
+      if(k==='f'||k==='F'){saPeek();sa.since=0;return}
+      if(k==='h'||k==='H'||k==='?'){saHelp();return}
+    });
+  }
+}
+function saNudge(){
+  const dot=document.getElementById('saCardDot'),tip=document.getElementById('saCardTip');
+  const w=saInt('hz_sand_words'),games=saInt('hz_sand_games');
+  const R=saRank(w);
+  const shelf=(localStorage.getItem('hz_sand_shelf')||'').split(',').filter(Boolean).length;
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 挖通 '+w+' 个字 · 收了 '+shelf+' 件文物 · 被蛰过 '+saInt('hz_sand_stung')+' 次'):'四块答案陶牌埋得深浅不一样：两三铲就露头的多半是坑你的，对的那块往往埋得最深 —— 挖开的坑不会自己回填，可答完一笔就来一阵沙暴';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+/* ---- 无头测试用的挂钩（只读与小步驱动，不参与游戏逻辑） ---- */
+window.vSaTick=function(dt){saTick(dt||SA_TICK_MS)};
+window.vSaPump=function(ms,step){
+  let t=0;const s=step||SA_TICK_MS;
+  while(t<ms&&sa.run&&!sa.over){saTick(s);t+=s}
+  return t;
+};
+window.vSaCell=function(c,r){return sa&&sa.g?saCell(c,r):-9};
+window.vSaTop=function(c){return saTopRow(c)};
+window.vSaDepths=function(){return sa.tab?sa.tab.map(function(t){return saDepth(t.c,t.r)}):[]};
+window.vSaShown=function(){return sa.tab?sa.tab.filter(function(t){return t.shown}).length:-1};
+window.vSaTabsInDom=function(){const b=document.getElementById('saTabs');return b?b.children.length:-1};
+window.vSaTabVisible=function(){
+  const b=document.getElementById('saTabs');
+  if(!b)return 0;
+  let n=0;
+  for(let k=0;k<b.children.length;k++)if(b.children[k].style.visibility!=='hidden')n++;
+  return n;
+};
+window.vSaState=function(){
+  return {run:sa.run,over:sa.over,lv:sa.lv,qi:sa.qi,n:sa.n,kind:sa.kind,want:sa.want,opts:sa.opts,
+    sand:sa.sand,digs:sa.digs,score:sa.score,hearts:sa.hearts,combo:sa.combo,words:sa.words,
+    golds:sa.golds,ths:sa.ths,stings:sa.stings,storms:sa.storms,qms:sa.qms,clockMs:sa.clockMs,
+    tab:sa.tab?sa.tab.map(function(t){return {c:t.c,r:t.r,dir:t.dir,shown:t.shown,depth:saDepth(t.c,t.r)}}):[],
+    cur:sa.cur,blowN:sa.blowN,scoopN:sa.scoopN,peekN:sa.peekN};
+};
+window.vSaAnswerCol=function(){
+  const a=sa.tab.filter(function(t){return t.dir===sa.want})[0];
+  return a?a.c:-1;
+};
+/* 一铲铲挖到答案牌露头（soak 用；走的是产品自己的 saDigCol） */
+window.vSaDigToAnswer=function(cap){
+  cap=cap||40;
+  let n=0;
+  while(n<cap){
+    if(window.vSaAnswerShown())return {ok:true,digs:n};
+    const c=window.vSaAnswerCol();
+    if(c<0)return {ok:false,digs:n};
+    sa.digMs=0;
+    saDigCol(c);
+    window.vSaPump(SA_TICK_MS*3);
+    n++;
+  }
+  return {ok:false,digs:n};
+};
+window.vSaAnswerShown=function(){
+  const a=sa.tab.filter(function(t){return t.dir===sa.want})[0];
+  return !!(a&&a.shown);
+};
+window.vSaPour=function(n){return saPour(n)};
+window.vSaPack=function(c,n){return saPack(c,n)};
+
+
+
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
