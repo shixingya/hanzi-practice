@@ -5789,6 +5789,169 @@ button:active{transform:scale(.95)}
   #screen-swing .stats{flex:1 1 100%;order:3;gap:6px}
   #screen-swing .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.84 笔顺影子戏 ================= */
+.shd-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.shd-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.shd-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.shd-ask small{display:block;font-size:12px;font-weight:normal;opacity:.85;margin-top:4px;line-height:1.6}
+.shd-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.shd-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.shd-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.shd-mini .shd-cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:11px;color:#FFE082}
+.shd-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#121729 0%,#1C2440 44%,#2B1A22 100%);box-shadow:inset 0 0 34px rgba(0,0,0,.66);transition:box-shadow .2s}
+/* 钟只剩十来秒：话说到「台面边发红」，那就得真的红一圈（排在 .dead 前面，天黑的红盖过它） */
+.shd-tbl.warn{box-shadow:inset 0 0 34px rgba(0,0,0,.66),inset 0 0 0 3px rgba(255,82,82,.82),inset 0 0 26px rgba(255,82,82,.3)}
+.shd-tbl.dead{box-shadow:inset 0 0 34px rgba(0,0,0,.66),inset 0 0 30px rgba(255,82,82,.46)}
+.shd-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+#shdStaticG,#shdCellG,#shdInkG,#shdRiverG,#shdGhostG,#shdPlayerG,#shdRouteG,#shdTopG{pointer-events:none}
+#shdHitG{pointer-events:none}
+#shdHitG .shd-hcell,#shdHitG .shd-hcard{pointer-events:all;fill:transparent;cursor:pointer}
+#shdHitG .shd-hcell:hover,#shdHitG .shd-hcard:hover{fill:rgba(255,255,255,.1)}
+/* ---- 幕布 / 台面 / 米字格 ---- */
+.shd-curt{fill:rgba(108,44,68,.44);stroke:rgba(255,255,255,.12);stroke-width:1.6}
+.shd-plat{fill:rgba(255,252,240,.045);stroke:rgba(255,224,178,.34);stroke-width:2}
+.shd-mi{fill:rgba(255,248,225,.05);stroke:rgba(255,241,118,.2);stroke-width:1.4;stroke-dasharray:6 6}
+.shd-gl{stroke:rgba(255,255,255,.13);stroke-width:1}
+.shd-gl.edge{stroke:rgba(255,224,178,.4);stroke-width:1.8}
+.shd-miL{stroke:rgba(255,241,118,.15);stroke-width:1.2;stroke-dasharray:8 9}
+.shd-head{font-size:12px;font-weight:bold;fill:rgba(255,224,178,.66);text-anchor:middle;letter-spacing:5px}
+.shd-lgd{font-size:10.5px;fill:rgba(255,244,214,.7);text-anchor:middle}
+.shd-empty{font-size:14px;fill:rgba(255,255,255,.22);text-anchor:middle}
+/* ---- 接笔台（第 0 列）---- */
+.shd-ped{fill:rgba(255,196,0,.09);stroke:rgba(255,213,79,.34);stroke-width:1.6}
+.shd-shelf{stroke:rgba(255,213,79,.5);stroke-width:2.4;stroke-linecap:round}
+.shd-rowTxt,.shd-colTxt{font-size:12px;font-weight:bold;fill:#FFE082;text-anchor:middle}
+/* ---- 台口 ---- */
+.shd-mouth{fill:rgba(255,255,255,.035);stroke:rgba(255,255,255,.14);stroke-width:1.2;stroke-dasharray:5 5}
+.shd-mouthTxt{font-size:11px;fill:rgba(255,255,255,.34);text-anchor:middle;letter-spacing:4px}
+/* ---- 落位虚影 ---- */
+.shd-drop{fill:rgba(255,255,255,.05);stroke:rgba(255,255,255,.26);stroke-width:1.5;stroke-dasharray:6 5}
+.shd-drop.now{fill:rgba(255,241,118,.14);stroke:#FFF176;stroke-width:2.4;stroke-dasharray:none;animation:shdNow 1.1s ease-in-out infinite}
+@keyframes shdNow{0%,100%{opacity:.5}50%{opacity:1}}
+.shd-dropTxt{font-size:10.5px;font-weight:bold;fill:rgba(255,255,255,.42)}
+.shd-dropTxt.now{fill:#FFF176}
+/* ---- 戏箱 / 墨坑 / 彩头 ---- */
+.shd-box{fill:rgba(93,64,55,.86);stroke:rgba(255,224,178,.4);stroke-width:1.8}
+.shd-boxE{font-size:22px;text-anchor:middle}
+.shd-inkPit{fill:rgba(30,26,40,.9);stroke:#4E342E;stroke-width:2}
+.shd-inkE{font-size:19px;text-anchor:middle}
+.shd-bon{fill:rgba(255,213,79,.2);stroke:#FFD54F;stroke-width:2.2;animation:shdBon 1s ease-in-out infinite}
+@keyframes shdBon{0%,100%{filter:brightness(1)}50%{filter:brightness(1.55)}}
+.shd-bonE{font-size:21px;text-anchor:middle}
+/* ---- 笔河：架子上的牌 ---- */
+.shd-hang{stroke:rgba(255,213,79,.3);stroke-width:1.4}
+.shd-cardB{fill:rgba(20,26,44,.92);stroke:rgba(255,255,255,.24);stroke-width:1.8}
+.shd-card.next .shd-cardB{stroke:#FFF176;stroke-width:2.6;fill:rgba(48,38,10,.94);animation:shdNext .9s ease-in-out infinite}
+@keyframes shdNext{0%,100%{filter:brightness(1)}50%{filter:brightness(1.42)}}
+.shd-card.later .shd-cardB{opacity:.78}
+.shd-card.fgn .shd-cardB{fill:rgba(58,24,26,.92);stroke:rgba(255,138,128,.6);stroke-dasharray:5 4}
+.shd-card.carry .shd-cardB{stroke:#69F0AE;stroke-width:2.6}
+.shd-cardT{font-size:9.5px;fill:rgba(255,255,255,.78)}
+.shd-cardT.dir{fill:#FFE082;font-weight:bold}
+.shd-cardR{font-size:8.6px;fill:rgba(179,229,252,.86)}
+.shd-q{font-size:22px;fill:rgba(255,255,255,.5);text-anchor:middle}
+.shd-rowTag{font-size:9px;font-weight:bold;fill:#FFE082}
+/* ---- 人形（自己 / 墨影 / 串台名角）---- */
+.shd-shadow{fill:rgba(0,0,0,.42)}
+.shd-body{fill:#4FC3F7;stroke:rgba(255,255,255,.4);stroke-width:1.4}
+.shd-figHead{fill:#FFE082;stroke:rgba(0,0,0,.32);stroke-width:1.2}
+.shd-stick{stroke:rgba(255,255,255,.5);stroke-width:2;stroke-linecap:round}
+.shd-figTxt{font-size:9px;fill:rgba(255,255,255,.72);text-anchor:middle}
+.shd-fig.me .shd-body{fill:#FFF176;stroke:#F9A825}
+.shd-fig.me .shd-figHead{fill:#FFF59D}
+.shd-fig.gho .shd-body,.shd-fig.gho .shd-figHead{fill:#242430;stroke:rgba(255,255,255,.22)}
+.shd-fig.gho .shd-stick{stroke:rgba(255,255,255,.24)}
+.shd-fig.gho .shd-figTxt{fill:#B0BEC5}
+.shd-fig.pat .shd-body{fill:#7E57C2;stroke:rgba(255,255,255,.3)}
+.shd-fig.pat .shd-figHead{fill:#B39DDB}
+.shd-fig.fade{animation:shdFade .8s ease-in-out infinite}
+@keyframes shdFade{0%,100%{opacity:.34}50%{opacity:.86}}
+.shd-carry rect{fill:rgba(255,241,118,.92);stroke:#2B2B33;stroke-width:2}
+.shd-stuckTxt{font-size:10px;font-weight:bold;fill:#FFAB91;text-anchor:middle}
+/* ---- 军师水路 / 影子预告水路 ---- */
+.shd-rLine{fill:none;stroke:rgba(255,241,118,.8);stroke-width:3.2;stroke-dasharray:10 7;stroke-linecap:round;animation:shdCur .9s ease-in-out infinite}
+.shd-rLine.alt{stroke:rgba(105,240,174,.8);stroke-width:2.6;stroke-dasharray:7 6}
+.shd-rEnd{fill:none;stroke:#FFF176;stroke-width:2.6}
+.shd-rEnd.alt{stroke:#69F0AE}
+.shd-gLine{fill:none;stroke:rgba(179,229,252,.7);stroke-width:2.4;stroke-dasharray:5 6}
+.shd-gEnd{fill:rgba(179,229,252,.34);stroke:#B3E5FC;stroke-width:1.8}
+@keyframes shdCur{0%,100%{opacity:.45}50%{opacity:1}}
+/* ---- 拍子灰（落笔 / 糊墨 / 催场 / 军师）---- */
+.shd-mark{fill:none;stroke-width:3.2;stroke-dasharray:11 8;animation:shdCur .9s ease-in-out infinite}
+.shd-mark.stamp{stroke:#69F0AE}
+.shd-mark.hit{stroke:#FF8A80;stroke-width:4}
+.shd-mark.nag{stroke:#40C4FF}
+.shd-mark.plan{stroke:#FFF176}
+/* ---- 特效 ---- */
+.shd-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.shd-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:shdBit .76s ease-out forwards}
+@keyframes shdBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.shd-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF59D;text-shadow:0 1px 4px rgba(0,0,0,.72);animation:shdPop .9s ease-out forwards;white-space:nowrap}
+@keyframes shdPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.shd-dust{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:rgba(255,255,255,.26);animation:shdDust .62s ease-out forwards}
+.shd-dust.ink{background:rgba(78,52,46,.62)}
+@keyframes shdDust{0%{transform:scale(.4);opacity:.9}100%{transform:scale(2.1);opacity:0}}
+.shd-conf{position:absolute;top:-14px;width:9px;height:14px;border-radius:3px;animation:shdConf 1.9s linear forwards}
+@keyframes shdConf{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(430px) rotate(var(--rr,540deg));opacity:.2}}
+.shd-shake{animation:shdShake .34s}
+@keyframes shdShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px) rotate(-.5deg)}50%{transform:translateX(8px) rotate(.5deg)}80%{transform:translateX(-3px)}}
+/* ---- 板角横幅 ---- */
+.shd-tag{position:absolute;left:8px;top:8px;font-size:12px;color:#fff;background:rgba(123,31,162,.92);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap;pointer-events:none;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+.shd-tag.on{display:block}
+/* ---- 天黑钟 ---- */
+.shd-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.shd-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(0,0,0,.4);overflow:hidden}
+.shd-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#311B92,#5C6BC0 52%,#FFF176 96%);transition:width .1s linear}
+.shd-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.shd-clock{font-size:12px;color:#fff;background:rgba(0,0,0,.4);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap;max-width:44%;overflow:hidden;text-overflow:ellipsis}
+/* ---- 工具条 ---- */
+.shd-tools{display:flex;gap:7px;width:calc(100% - 28px);margin:8px auto 0;position:sticky;bottom:6px;z-index:6;box-sizing:border-box;padding:5px;border-radius:16px;background:rgba(0,0,0,.45)}
+.shd-tool{flex:1;padding:10px 3px;border:none;border-radius:13px;font-size:12.5px;color:#ECEFF1;background:rgba(255,255,255,.14);cursor:pointer;font-family:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shd-tool b{font-size:10.5px;opacity:.86;margin-left:3px}
+.shd-tool span{font-size:10px;opacity:.5;margin-left:2px}
+.shd-tool.go{background:#FFC400;color:#241A05;font-weight:bold}
+.shd-tool.go2{background:#69F0AE;color:#0B2818;font-weight:bold}
+.shd-tool:disabled{opacity:.4}
+/* ---- 托盘：这一折的笔 + 影子数 ---- */
+.shd-tray{display:flex;gap:6px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:36px;padding:6px;border-radius:14px;background:rgba(0,0,0,.36);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap}
+.shd-chip{font-size:11px;color:#CFD8DC;background:rgba(255,255,255,.1);border-radius:10px;padding:2px 8px;white-space:nowrap}
+.shd-chip b{color:#B9F6CA;margin-right:3px}
+.shd-chip i{font-style:normal;color:rgba(255,255,255,.4);margin-right:3px}
+.shd-chip.done{background:rgba(105,240,174,.2);color:#B9F6CA}
+.shd-chip.now{background:rgba(255,213,79,.24);color:#FFF59D;font-weight:bold}
+.shd-chip.carry{border:1px solid #FFF176;color:#FFF176}
+.shd-chip.gho{background:rgba(36,36,48,.86);color:#B3E5FC}
+.shd-chip.hit{background:rgba(255,138,128,.18);color:#FFCDD2}
+/* ---- 一行提示 / 判词 / 说明书 ---- */
+.shd-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#FFF8E1;background:rgba(0,0,0,.34);border-radius:14px;padding:9px 10px;line-height:1.5}
+.shd-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.shd-msg{width:calc(100% - 28px);margin:8px auto 0;padding:10px 13px;border-radius:14px;background:rgba(0,0,0,.4);color:#E1F5FE;font-size:13.5px;line-height:1.72;overflow-anchor:none}
+.shd-msg b{color:#FFF176}
+.shd-msg code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11.5px}
+.shd-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.shd-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+/* ---- 结算 ---- */
+.shd-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.shd-rs span{display:block;font-size:24px;font-weight:bold}
+.shd-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.shd-book-t{font-size:12px;color:#FFE082;margin-top:12px}
+.shd-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.shd-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.shd-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FFC400;color:#102A1E;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.shd-cdot.on{display:flex}
+@media (max-width:600px){
+  .shd-stage{flex-direction:column}
+  .shd-mini{flex:0 0 auto;max-width:150px;margin:0 auto}
+  .shd-hud span{font-size:12px;padding:3px 9px}
+  .shd-tool{font-size:10.5px;padding:9px 2px}
+  .shd-tool b,.shd-tool span{display:none}
+  .shd-ask{font-size:16px}
+  .shd-clock{font-size:11px;padding:0 8px}
+  /* 窄屏顶栏三件挤不下：把战绩那一串挪到第二行，返回与 ❓ 留在头一行 */
+  #screen-shade .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-shade .stats{flex:1 1 100%;order:3;gap:6px}
+  #screen-shade .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -5845,8 +6008,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 82 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">82</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 83 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">83</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -5857,12 +6020,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>82 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>28</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>83 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>29</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="shdCard" onclick="enterMode('shade')">
+      <div class="icon">🎭</div>
+      <div class="info"><h3>笔顺影子戏</h3><p id="shdCardTip">七乘七的米字台就是这个字本来的模样：走到接笔台捡该唱那一笔，再走到它真正的落位按落。走一格吃一拍，而你上一折走过的水路下一折会变成墨影原路重演——手里端着墨撞上它就糊一手</p></div>
+      <span class="shd-cdot" id="shdCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="swgCard" onclick="enterMode('swing')">
       <div class="icon">🎐</div>
       <div class="info"><h3>笔顺秋千坊</h3><p id="swgCardTip">横梁上六只秋千，绳越长几拍才荡一趟：牌上刻着真笔画，从左到右就是笔顺。掐准它顺劲儿的那一拍推一把，涨一档；档数够牌就荡进 🧺，四拍之内摘下来印纸，过点就甩飞</p></div>
@@ -6453,6 +6621,101 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-shade">
+  <div class="top-bar">
+    <button class="back-btn" onclick="shdLeave()">← 返回</button>
+    <div class="stats"><span id="shdScoreTxt">🎯 0 分</span><span id="shdLvTxt">第 1 折 · 已收 0 字</span><span id="shdBeatTxt">🥁 第 0 拍</span></div>
+    <button class="icon-btn" onclick="shdHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="shd-hud">
+    <span id="shdRankTxt" title="称号">🎭 刚掀开幕布</span>
+    <span id="shdHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="shdComboTxt" title="连击">🔥 连 0</span>
+    <span id="shdLitTxt" title="落了几笔">✅ 0/0 笔</span>
+    <span id="shdStepTxt" title="走了几步">👣 0 步</span>
+    <span id="shdGhostTxt" title="台上几个墨影">🕯 0 影</span>
+    <span id="shdHitTxt" title="糊了几回手墨">🖤 糊 0</span>
+    <span id="shdBonTxt" title="抢到几个彩头">🧧 0</span>
+    <span id="shdWrongTxt" title="脏笔 / 拿错票">👺 0</span>
+  </div>
+  <div class="shd-ask" id="shdAsk">🎭 正在摆台……<br><small>在字库里挑「每一笔落位都摆得开」的字</small></div>
+  <div class="shd-stage">
+    <div class="shd-mini">
+      <svg viewBox="0 0 1024 1024" id="shdMiniSvg"></svg>
+      <div class="shd-cap" id="shdMiniCap">这个字</div>
+    </div>
+    <div class="shd-tbl" id="shdTbl">
+      <svg class="shd-svg" id="shdSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <g id="shdStaticG"></g>
+        <g id="shdCellG"></g>
+        <g id="shdInkG"></g>
+        <g id="shdRiverG"></g>
+        <g id="shdRouteG"></g>
+        <g id="shdGhostG"></g>
+        <g id="shdPlayerG"></g>
+        <g id="shdTopG"></g>
+        <g id="shdHitG"></g>
+      </svg>
+      <div class="shd-fx" id="shdFx"></div>
+      <div class="shd-tag" id="shdTag">🕯 墨影退场了</div>
+    </div>
+  </div>
+  <div class="shd-meter">
+    <div class="shd-tl" id="shdClockBox"><i id="shdClockBar"></i><b id="shdClockTxt">🥁 还有 —— 秒</b></div>
+    <div class="shd-clock" id="shdPowTxt">🎯 ——</div>
+  </div>
+  <div class="shd-tools">
+    <button class="shd-tool go" id="shdTakeBtn" onclick="shdGoPick()">✋ 捡笔<span>W</span></button>
+    <button class="shd-tool go2" id="shdStampBtn" onclick="shdStamp()">🖌 落笔<span>空格</span></button>
+    <button class="shd-tool" id="shdRevealBtn" onclick="shdReveal()" disabled>🕯 影子预告<span>F</span><b>剩 1</b></button>
+    <button class="shd-tool" id="shdPrevBtn" onclick="shdPreview()" disabled>👀 预览<span>Q</span><b>剩 2</b></button>
+    <button class="shd-tool" id="shdUndoBtn" onclick="shdUndo()" disabled>🔄 倒带<span>R</span><b>剩 3</b></button>
+    <button class="shd-tool" id="shdReBtn" onclick="shdReshuffle()" disabled>🔁 重摆<span>T</span><b>剩 1</b></button>
+    <button class="shd-tool" id="shdEndBtn" onclick="shdEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="shd-tray" id="shdTray"></div>
+  <div class="shd-hintline" id="shdHintLine">🎭 <b>一折只带一笔</b>：左边 <b>笔河</b> 的架子上挂着这个字剩下的笔，走到 <b>🪜 接笔台</b> 那一排 <b>伸手捡</b>，再走到它 <b>真正的落位</b>（格子里那道 <b>虚笔影</b>）<b>按落笔</b> —— <b>走一格吃一拍</b></div>
+  <div class="shd-msg" id="shdMsg">台上是 <b>七乘七的米字戏台</b>，<b>整块台面就是这个字本来的模样</b>：还没落的笔在它真实的落位上留着一道 <b>虚笔影</b>，落下的笔就按真位置 <b>染上墨</b>。左边第 0 列是 <b>🪜 接笔台</b>（<b>①~⑦ 是排号</b>），再往左是 <b>笔河</b> 的架子，一张牌就是一笔（写着 <b>第几笔 · 什么方向 · 落在第几列第几排</b>）。<br>🕯 <b>这一场最要紧的一条</b>：你 <b>上一折走过的水路</b>，一落笔就变成一个 <b>墨影</b>，下一折 <b>从第一拍起原路重演</b> —— 手里端着墨 <b>踩进它当前那一格就 🖤 糊一手墨</b>（扣 8 分、断连击、笔掉回架上，<b>不掉心</b>）。空手撞上去不算，影子走完自己那一折再淡两拍就退场<br>🥁 <b>一拍 0.6 秒，走一格吃一拍</b>：点哪一格就自己走最短水路过去（也可以 <code>←↑→↓</code> 一步步走、<code>1~7</code> 直接捡那排的牌、<code>空格</code> 落笔）</div>
+  <div class="shd-tip">🎭 <b>影子戏台</b>：台面 <b>①~⒎ 列 × ①~⑦ 排</b>，<b>虚笔影</b> 在哪一格，这一笔就得落在哪一格 —— <b>认位置也是认字</b>。字是按笔顺写的，牌上的编号就是顺序：<b>该唱第几笔就去捡第几笔</b>，🎫 拿错戏票扣 5 分（牌还挂着），👺 <b>脏笔</b>（写着 <b>?</b>）扣 6 分、牌从架上掉下去，<b>连错 3 次掉一颗心</b><br>
+    🪑 <b>戏箱</b>（第 3 折起）压住台面走不进去，也堵水路；🖌 <b>墨坑</b>（第 6 折起）踩上去 <b>这一拍陷住</b> 不动；🧧 <b>彩头</b>（第 5 折起）谁先踩到归谁 —— <b>墨影也照自己的水路去捡</b>；🕴 <b>串台名角</b>（第 7 折起）不是你的影子，按固定一圈来回巡逻，撞上同样糊一手墨<br>
+    🕯 <b>台上同时留几个影子</b>：第 1~2 折 1 个、第 3~6 折 2 个、第 7 折起 3 个（最老的那个先散）。按 <b>🕯 影子预告</b>（<code>F</code>）可以把台上所有墨影的水路整条画出来；<b>手里空的时</b> 撞影子不糊，所以 <b>先空手走到落位附近、再回头捡笔</b> 是正经唱法（但绕远要扣分）<br>
+    ⏱ <b>天黑钟</b>：军师先把这一场 <b>从头按拍走一遍</b>（<b>撞影走回去重捡、原地等影子退场都算在他走的拍数里</b>），再照这个拍数加余量换算成秒头发给你（下限 42 秒），最后 12 秒 <b>台面边发红</b>、每秒一记鼓；走光 <b>天黑</b>：掉一颗心、<b>已经落下的笔一笔不抹</b>，剩下的笔重新上架、人退回台口<br>
+    👀 <b>预览</b>（<code>Q</code>）把军师的水路（先走到架上、捡了再走到落位）画成虚线；🔄 <b>倒带</b>（<code>R</code>）退回上一次 <b>走 / 捡 / 落</b> 之前，拍号格子一模一样还原；🔁 <b>重摆</b>（<code>T</code>）剩下的笔重新上架、箱子彩头换位置 —— 预览 <b>2</b> 次、倒带 <b>3</b> 次、重摆 <b>1</b> 次、影子预告 <b>1</b> 次，<b>升一折各补 1 次</b>；<code>W</code> 一键「去捡 / 去落」，<code>Esc</code> 擦掉画在水路上的线<br>
+    📈 <b>落一笔</b> 吃 <code>round((11 + 第几笔×2 + 折数×3) × (1 + 连击×0.06))</code>，<b>绕得少</b> 每省一步多 2 分，钟还剩一大半再多 <code>round(余量×6)</code>；<b>整个字唱齐</b>：<code>26 + 笔数×6 + 折数×6 + 彩头×2</code>，<b>一折都没糊没拿错再多 22</b>；<b>每 2 个字升 1 折</b>（最多 9 折）、<b>每 3 个字补一颗心</b>（最多 5 颗）<br>
+    👀 发呆 12 秒 🐰 报「<b>该唱那一笔挂在第几排</b>、<b>最近的墨影差几步</b>、军师下一步」· 战绩落盘 <code>hz_shade_*</code></div>
+</div>
+<div class="screen" id="screen-shade-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="shdLeave()">← 回首页</button>
+    <div class="stats"><span id="shdRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="shdRsEmoji">🎭</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="shdRsTitle">一台好戏</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="shdRsSub">下一次先看 <b>墨影走到哪一格</b>，等它退场再走</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="shd-rs">
+      <div><span style="color:#FFD700" id="shdRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="shdRsWords">0</span><small>唱齐这几个字</small></div>
+      <div><span style="color:#69F0AE" id="shdRsLit">0</span><small>落下来几笔</small></div>
+      <div><span style="color:#FFAB91" id="shdRsLv">1</span><small>第几折</small></div>
+      <div><span style="color:#FFF176" id="shdRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="shdRsMiss">0</span><small>🖤 糊手 / 👺 脏手 / 🌘 天黑</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多唱几个字 · 一共唱齐几个字</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFE082"><span id="shdRsBest">0</span> 个 · <span id="shdRsAll2">0</span> 🎭</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="shdRsAll">🎭 刚掀开幕布</div>
+      <div class="shd-book-t" id="shdRsBookT"></div>
+      <div class="shd-book" id="shdRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="shdRetry()">🎭 再唱一场</button>
+    <button class="w-btn blue" onclick="shdLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-swing">
@@ -12387,6 +12650,7 @@ function updateHomeStats(){
   if(typeof ctNudge==='function')ctNudge();
   if(typeof hfNudge==='function')hfNudge();
   if(typeof swgNudge==='function')swgNudge();
+  if(typeof shdNudge==='function')shdNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -12415,6 +12679,7 @@ function enterMode(mode){
   if(mode==='circuit'){ctStart();return}
   if(mode==='heat'){hfStart();return}
   if(mode==='swing'){swgStart();return}
+  if(mode==='shade'){shdStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -68531,6 +68796,2074 @@ window.swvBad=function(){
   if(!msg||!msg.innerHTML)bad.push('判词空的');
   return bad;
 };
+
+/* ================= v1.84 笔顺影子戏（一折只带一笔 · 走一格吃一拍 · 上一折走过的水路变成墨影重演 · 撞影糊一手墨） ================= */
+const SHD_W=700,SHD_H=470;
+const SHD_COLS=8,SHD_ROWS=7,SHD_CELL=62,SHD_X0=170,SHD_Y0=20;
+const SHD_GX=SHD_X0+SHD_CELL,SHD_GY=SHD_Y0,SHD_GS=SHD_CELL*SHD_ROWS/1024;
+const SHD_RVX=84,SHD_RVW=104,SHD_RVH=52;
+const SHD_BEAT_MS=600,SHD_FADE=2,SHD_STEP_MAX=1;
+const SHD_HEARTS=3,SHD_HEART_MAX=5,SHD_MISS_MAX=40,SHD_BOOK_MAX=300;
+const SHD_POOL_MIN=4,SHD_POOL_WANT=16,SHD_STROKE_MAX=5,SHD_BEAT_CAP=150,SHD_GEN_TRY=60,SHD_PLAN_STEP=900;
+const SHD_HIT_PEN=8,SHD_JUNK_PEN=6,SHD_ORDER_PEN=5,SHD_CLEAN_BONUS=22,SHD_WRONG_MAX=3,SHD_BON_GAIN=12;
+const SHD_SEC_MIN=42,SHD_SEC_PAD=14,SHD_HIST_MAX=8;
+const SHD_NAG_MS=12000,SHD_TAG_MS=2400,SHD_FLASH_MS=620,SHD_STAMP_MS=560,SHD_NEXT_MS=1400,SHD_REVEAL_MS=6400,SHD_GLOW_MS=4200;
+const SHD_DIRS=['横','竖','撇','捺','其他'],SHD_ARW=['➡️','⬇️','↙️','↘️','✳️'];
+const SHD_INK=['#FF8A80','#80CBC4','#82B1FF','#FFD180','#B0BEC5'];
+const SHD_O=['〇','①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑪','⑫','⑬','⑭','⑮'];
+const SHD_NUM=['①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑪','⑫','⑬','⑭','⑮','⑯','⑰','⑱','⑲','⑳'];
+const SHD_NOTE=[392,440,494,523,587,659,698,784];
+const SHD_RANKS=[
+  {n:0,e:'🎭',t:'刚掀开幕布'},{n:3,e:'👣',t:'认得水路'},{n:8,e:'🕯',t:'会让影子'},
+  {n:15,e:'🪞',t:'一影分身'},{n:24,e:'🎚',t:'绕影不撞'},{n:36,e:'🥁',t:'踩着鼓点走'},
+  {n:52,e:'🌟',t:'影子戏名角'},{n:74,e:'💎',t:'三折不糊'},{n:105,e:'👑',t:'一台好戏'}
+];
+const shd={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,tones:0,think:0,timers:[],
+  pool:[],miss:[],rec:null,n:0,gly:[],S:null,
+  lv:1,score:0,hearts:SHD_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,steps:0,picks:0,stamps:0,hits:0,wrongs:0,orders:0,deads:0,bons:0,stolen:0,
+  patrols:0,acts:0,parSteps:0,detour:0,reds:0,actSteps:0,wantPick:-1,wantStamp:0,
+  previewN:2,undoN:3,reN:1,revealN:1,
+  previews:0,rewinds:0,reshuf:0,reveals:0,nags:0,
+  clock:1,clockSec:45,clockSec0:45,warn:false,beep:0,beatMs:0,
+  since:0,tagMs:0,stampMs:0,nextMs:0,revealMs:0,routeMs:0,routePts:null,routeAlt:false,
+  cleanWord:true,failWord:0,
+  hist:[],cur:-1,arm:false,bound:false,ptrBound:false,hudTxt:{},sol:null,lastWhy:'',cellAtPoint:-1
+};
+/* ---- 小工具 ---- */
+function shdInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function shdAdd(k,n){if(n)localStorage.setItem(k,String(shdInt(k)+n))}
+function shdSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function shdSay(t,c){const el=document.getElementById('shdMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function shdShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function shdOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function shdClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function shdDn(d){return d<0||d>4?4:d}
+function shdRank(n){let r=SHD_RANKS[0];for(let i=0;i<SHD_RANKS.length;i++)if(n>=SHD_RANKS[i].n)r=SHD_RANKS[i];return r}
+function shdTone(f,d,t,v){if(shd.tones<=0)return;shd.tones--;tone(f,d,t,v)}
+function shdT(fn,ms){const g=shd.gen;const id=setTimeout(function(){const k=shd.timers.indexOf(id);if(k>=0)shd.timers.splice(k,1);if(g!==shd.gen)return;fn()},ms);shd.timers.push(id);return id}
+function shdKillTimers(){shd.timers.forEach(function(t){clearTimeout(t)});shd.timers=[]}
+/* ---- 难度表（全部是上限：摆不下就一级级往下减） ---- */
+function shdJunkOf(lv){return lv<=2?1:(lv<=5?2:3)}
+function shdBoxOf(lv){return lv<3?0:Math.min(5,lv-2)}
+function shdBonOf(lv){return lv<5?0:1}
+function shdInkOf(lv){return lv<6?0:Math.min(4,lv-5)}
+function shdPatrolOf(lv){return lv<7?0:Math.min(2,lv-6)}
+function shdKeepOf(lv){return lv<=2?1:(lv<=6?2:3)}
+function shdSpareOf(lv){return lv<=2?12:(lv<=5?15:(lv<=7?18:22))}
+function shdStrokeOf(lv){return lv<=3?[2,4]:[2,SHD_STROKE_MAX]}
+function shdLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function shdSec(beats,lv){return Math.max(SHD_SEC_MIN,Math.round((beats+shdSpareOf(lv))*SHD_BEAT_MS/1000)+SHD_SEC_PAD)}
+/* ---- 几何：一列接笔台 + 七乘七的米字戏台 ---- */
+function shdIdx(c,r){return r*SHD_COLS+c}
+function shdC(k){return k%SHD_COLS}
+function shdR(k){return Math.floor(k/SHD_COLS)}
+function shdOK(k){return k>=0&&k<SHD_COLS*SHD_ROWS}
+function shdCX(c){return SHD_X0+c*SHD_CELL+SHD_CELL/2}
+function shdCY(r){return SHD_Y0+r*SHD_CELL+SHD_CELL/2}
+function shdXY(k){return {x:shdCX(shdC(k)),y:shdCY(shdR(k))}}
+function shdPed(r){return shdIdx(0,r)}
+function shdKey(c,r){return c+','+r}
+function shdNameOf(k){
+  if(!shdOK(k))return '台外';
+  const c=shdC(k),r=shdR(k);
+  return c===0?('🪜 接笔台 '+SHD_O[r+1]+' 排'):('第 '+SHD_O[c]+' 列 · '+SHD_O[r+1]+' 排');
+}
+function shdCellOfGlyph(x,y){
+  return shdIdx(1+shdClamp(Math.floor(x/1024*SHD_ROWS),0,SHD_ROWS-1),shdClamp(Math.floor((1-y/1024)*SHD_ROWS),0,SHD_ROWS-1));
+}
+function shdAdj(k){
+  const c=shdC(k),r=shdR(k),out=[];
+  if(c>0)out.push(shdIdx(c-1,r));
+  if(c<SHD_COLS-1)out.push(shdIdx(c+1,r));
+  if(r>0)out.push(shdIdx(c,r-1));
+  if(r<SHD_ROWS-1)out.push(shdIdx(c,r+1));
+  return out;
+}
+/* ---- 笔形（牌面与台上画的就是这一笔的真形状） ---- */
+function shdBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function shdDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function shdGly(d,box,dir,size){
+  const b=box||{x:0,y:0,w:200,h:200};
+  return {d:d||'M0 0',box:b,dir:dir,s:(size||40)/Math.max(140,Math.max(b.w,b.h))};
+}
+function shdGlyHTML(g){
+  const b=g.box,s=g.s;
+  const tx=-s*(b.x+b.w/2),ty=s*(b.y+b.h/2);
+  return '<g transform="translate('+tx.toFixed(1)+','+ty.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path d="'+g.d+'" fill="'+SHD_INK[shdDn(g.dir)]+'"/></g>';
+}
+function shdGlyOf(rec){
+  const ms=(rec&&rec.raw&&rec.raw.medians)||[],sp=(rec&&rec.raw&&rec.raw.strokes)||[],out=[];
+  for(let i=0;i<rec.n;i++){
+    const m=ms[i]||[[0,0],[100,100]];
+    out.push(shdGly(shdDOf(sp,i)||'M0 0 L60 60',shdBox(m)||{x:0,y:0,w:200,h:200},shdDn(rec.dirs[i]),40));
+  }
+  return out;
+}
+/* ---- 字库：笔数 2~5、方向至少两种，落位摆得开（7×7 的台面上互不重叠） ---- */
+function shdMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>SHD_STROKE_MAX)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const dirs=[],pts=[];
+  for(let i=0;i<ms.length;i++){
+    const m=ms[i];
+    if(!m||!m.length||!m[0]||m[0].length<2)return null;
+    dirs.push(fmDirOf(m));
+    pts.push({x:m[0][0],y:m[0][1]});
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<(dirs[i]<0?4:dirs[i]);
+  if((kinds&(kinds-1))===0)return null;
+  const cell=[],used={};
+  for(let i=0;i<pts.length;i++){
+    const k=shdCellOfGlyph(pts[i].x,pts[i].y);
+    if(used[k])return null;
+    used[k]=1;cell.push(k);
+  }
+  return {ch:ch,n:ms.length,dirs:dirs,pts:pts,cell:cell,raw:raw};
+}
+/* 影子戏的字库：台面七乘七、每一笔按真实起笔落位，起笔挤在同一格的字（比如「三」）
+   直接过不了 shdMake —— 先过一遍这些常见独体字，再往字库里补 */
+const SHD_LETTERS='十人八大小上下日水石田木禾白子长门见对书本牛马飞入王方气生叫主以'
+  +'区巨于记市民丝贝互仙勾丰父欠未击乎代计且斗示巧付兰专丈扎仅叉矛冈仪曰瓦'
+  +'玉与老有者者非自至致到面革音页首香马骨高鬼魔'
+  +'四回因园困图圆圈在大地场坂址坡河江湖海水洗活洒洒'
+  +'明昕晓时旱星春秀青静静顶须项须饭馆马驰驱驴'
+  +'花芳芽苗草茶荒荷获菜万足跳跑酷路踪清温湿满'
+  +'他您思志忙快怕学字孔孙孩孰意感愿';
+function shdCand(){
+  const out=[],push=function(list,max){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<(max||90);i++){
+      const c=list[i];
+      if(c&&CHARS.indexOf(c)>=0&&out.indexOf(c)<0)out.push(c);
+    }
+  };
+  push(shdShuf(SHD_LETTERS.split('')),SHD_POOL_WANT*4);
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(shdShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(shdShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(shdShuf(CHARS.slice()));
+  return out;
+}
+function shdTO(p,ms){return Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},ms)})])}
+async function shdRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await shdTO(loadCharData(ch),6000);
+  if(!raw||!raw.medians)return null;
+  return shdMake(ch,raw);
+}
+async function shdBuildPool(keep){
+  const g=shd.gen;
+  const stale=function(){return g!==shd.gen||!shd.run};
+  shd.miss=(localStorage.getItem('hz_shade_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  shdShuf(shd.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  shdCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)shd.pool=[];
+  for(let k=0;k<want.length&&shd.pool.length<SHD_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return shdRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])shd.pool.push(rs[i]);
+  }
+  return shd.pool.length>=SHD_POOL_MIN;
+}
+function shdPickRec(){
+  const w=shdStrokeOf(shd.lv),used={};
+  for(let i=0;i<shd.miss.length;i++){
+    for(let k=0;k<shd.pool.length;k++){
+      const r=shd.pool[k];
+      if(r&&!used[r.ch]&&r.n>=2&&r.ch===shd.miss[i]){used[r.ch]=1;return r}
+    }
+  }
+  let cand=shd.pool.filter(function(r){return r&&!used[r.ch]&&r.n>=w[0]&&r.n<=w[1]});
+  if(!cand.length)cand=shd.pool.filter(function(r){return r&&!used[r.ch]&&r.n<=SHD_STROKE_MAX});
+  if(!cand.length)return null;
+  const c=shdOne(cand);if(c)used[c.ch]=1;
+  return c||shd.pool[0];
+}
+/* ---- 错字手册 / 影子戏档案 ---- */
+function shdMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_shade_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_shade_miss',a.slice(0,SHD_MISS_MAX).join(','));
+}
+function shdMissDel(ch){
+  const a=(localStorage.getItem('hz_shade_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_shade_miss',a.join(','));
+}
+function shdBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_shade_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_shade_book',a.slice(0,SHD_BOOK_MAX).join(','));
+}
+function shdBook(){
+  return (localStorage.getItem('hz_shade_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+}
+
+/* ---- 一折裸数据：军师和验证脚本共用的形状（没有 DOM、没有随机） ---- */
+function shdBlank(){
+  const riv=[];
+  for(let r=0;r<SHD_ROWS;r++)riv.push({on:0,k:-1,fgn:0,dir:4});
+  return {n:0,qi:0,beat:0,actBeat:0,keep:1,carry:-1,pc:shdPed(SHD_ROWS-1),queue:[],stuck:0,moved:0,
+    trail:[shdPed(SHD_ROWS-1)],cell:[],slotOf:[],riv:riv,box:[],ink:[],bon:{cell:-1,on:0},
+    gho:[],pat:[],hits:0,done:0};
+}
+function shdCloneSim(S){
+  return {n:S.n,qi:S.qi,beat:S.beat,actBeat:S.actBeat,keep:S.keep,carry:S.carry,pc:S.pc,
+    queue:S.queue.slice(),stuck:S.stuck,moved:S.moved,trail:S.trail.slice(),cell:S.cell.slice(),
+    slotOf:S.slotOf.slice(),riv:S.riv.map(function(v){return {on:v.on,k:v.k,fgn:v.fgn,dir:v.dir}}),
+    box:S.box.slice(),ink:S.ink.slice(),bon:{cell:S.bon.cell,on:S.bon.on},
+    gho:S.gho.map(function(g){return {path:g.path.slice(),start:g.start,gone:g.gone}}),
+    pat:S.pat.map(function(p){return {path:p.path.slice(),off:p.off}}),
+    hits:S.hits,done:S.done};
+}
+function shdHas(a,k){for(let i=0;i<a.length;i++)if(a[i]===k)return 1;return 0}
+function shdBlockAt(S,k){return !!S&&shdHas(S.box,k)===1}
+/* ---- 水路：四邻走格、戏箱挡道，BFS 出「从这儿到那儿」最少几步 ---- */
+function shdBfs(S,from,to){
+  if(!S||!shdOK(from)||!shdOK(to))return null;
+  if(from===to)return [];
+  if(shdBlockAt(S,to))return null;
+  const q=[from],seen={};seen[from]=1;
+  const prev={};
+  while(q.length){
+    const cur=q.shift();
+    const nb=shdAdj(cur);
+    for(let i=0;i<nb.length;i++){
+      const k=nb[i];
+      if(seen[k]||shdBlockAt(S,k))continue;
+      seen[k]=1;prev[k]=cur;
+      if(k===to){
+        const out=[];let x=k;
+        while(x!==from){out.push(x);x=prev[x]}
+        return out.reverse();
+      }
+      q.push(k);
+    }
+  }
+  return null;
+}
+function shdDist(S,a,b){const p=shdBfs(S,a,b);return p?p.length:1e6}
+/* ---- 影子在哪一格（按本折开场的拍号重演） ---- */
+function shdGhostAt(S,g){
+  if(!g||g.gone)return -1;
+  const i=S.beat-g.start;
+  if(i<0||i>=g.path.length)return -1;
+  return g.path[i];
+}
+function shdGhostFade(S,g){
+  if(!g||g.gone)return 0;
+  const i=S.beat-g.start;
+  if(i<g.path.length)return 0;
+  return i-g.path.length+1;
+}
+function shdPatAt(S,p){
+  if(!p||!p.path||!p.path.length)return -1;
+  const n=p.path.length,i=((S.beat-S.actBeat+p.off)%n+n)%n;
+  return p.path[i];
+}
+function shdShadowOn(S,k,exceptCarry){
+  for(let i=0;i<S.gho.length;i++){
+    if(exceptCarry&&S.carry<0)continue;
+    if(shdGhostAt(S,S.gho[i])===k)return 1;
+  }
+  for(let i=0;i<S.pat.length;i++)if(shdPatAt(S,S.pat[i])===k)return 1;
+  return 0;
+}
+/* ---- 往前走一拍：走一格、影子重演、串台名角巡逻、撞影与彩头，全在这一份纯模型里 ---- */
+function shdStepSim(S){
+  S.beat++;S.moved=0;
+  const ev={moved:0,cell:-1,ink:0,stuck:0,hit:0,kind:'',who:-1,k:-1,bon:0,gone:0};
+  if(S.stuck>0){S.stuck--;ev.stuck=1}
+  else if(S.queue.length){
+    S.pc=S.queue.shift();S.moved=1;ev.moved=1;ev.cell=S.pc;
+    if(shdHas(S.ink,S.pc)){S.stuck=1;ev.ink=1}
+  }
+  for(let i=0;i<S.gho.length;i++){
+    const g=S.gho[i];
+    if(!g.gone&&S.beat-g.start>=g.path.length+SHD_FADE){g.gone=1;ev.gone++}
+  }
+  if(S.carry>=0){
+    for(let i=0;i<S.gho.length;i++){
+      if(shdGhostAt(S,S.gho[i])===S.pc){ev.hit=1;ev.kind='gho';ev.who=i;ev.k=S.carry;break}
+    }
+    if(!ev.hit){
+      for(let i=0;i<S.pat.length;i++){
+        if(shdPatAt(S,S.pat[i])===S.pc){ev.hit=1;ev.kind='pat';ev.who=i;ev.k=S.carry;break}
+      }
+    }
+    if(ev.hit)S.hits++;
+  }
+  if(S.bon.on&&S.bon.cell>=0){
+    if(S.pc===S.bon.cell){S.bon.on=0;ev.bon=1}
+    else if(shdShadowOn(S,S.bon.cell)){S.bon.on=0;ev.bon=2}
+  }
+  S.trail.push(S.pc);
+  return ev;
+}
+/* ---- 捡笔 / 落笔（不花拍子） ---- */
+function shdPickSim(S,row){
+  const v=S.riv&&S.riv[row];
+  if(!v||!v.on)return 2;
+  if(S.pc!==shdPed(row))return 3;
+  if(S.carry>=0)return 4;
+  if(v.fgn){v.on=0;v.k=-1;return 5}
+  if(v.k!==S.qi)return 6;
+  S.carry=v.k;v.on=0;return 1;
+}
+/* 落笔的成码就是笔号（0 起），所以失败一律给负码：用 0/2/3 会和「第 1/3/4 笔」撞车 */
+function shdStampSim(S){
+  if(S.carry<0)return -1;
+  if(S.pc!==S.cell[S.carry])return -2;
+  if(shdShadowOn(S,S.pc))return -3;
+  const k=S.carry,path=S.trail.slice();
+  S.qi++;S.carry=-1;S.actBeat=S.beat;S.trail=[S.pc];
+  S.gho.push({path:path,start:S.beat,gone:0});
+  while(S.gho.length>S.keep)S.gho.shift();
+  for(let i=0;i<S.gho.length;i++)S.gho[i].start=S.beat;
+  if(S.qi>=S.n)S.done=1;
+  return k;
+}
+function shdReturnSim(S,k){
+  const row=S.slotOf&&S.slotOf[k];
+  if(row<0||!S.riv[row])return 0;
+  if(S.riv[row].on&&S.riv[row].k>=0)return 0;
+  S.riv[row].on=1;S.riv[row].k=k;S.riv[row].fgn=0;
+  S.carry=-1;
+  return 1;
+}
+/* ---- 军师：照着玩家唯一能走的路把这一场从头重演一遍，走得通才发牌 ----
+   撞影真的会把笔掉回架上、要走回去重捡；影子压住落位时真的要在原地等退场。
+   这样发出去的秒数 = 军师自己用完的拍数 + 余量，孩子不会死于「本来就打不完」 */
+function shdWalkSim(S,path){
+  for(let i=0;i<path.length;i++)S.queue.push(path[i]);
+  let guard=0;
+  while(S.queue.length){
+    if(++guard>SHD_PLAN_STEP)return 0;
+    const ev=shdStepSim(S);
+    if(ev.hit&&S.carry>=0)shdReturnSim(S,S.carry);
+  }
+  return 1;
+}
+function shdPlan(S0,maxBeats){
+  const S=shdCloneSim(S0),legs=[],b0=S.beat,par={};
+  const bad=function(why){return {ok:0,why:why,legs:legs,beats:S.beat-b0,hits:S.hits,S:S}};
+  let guard=0;
+  while(!S.done){
+    if(++guard>SHD_PLAN_STEP)return bad('走不完');
+    if(S.beat-b0>(maxBeats||SHD_BEAT_CAP))return bad('超拍');
+    const k=S.qi,row=S.slotOf[k];
+    if(row<0||!S.riv[row])return bad('牌没上架');
+    if(S.carry<0&&!S.riv[row].on)return bad('牌不在架');
+    if(S.carry<0){
+      const p=shdBfs(S,S.pc,shdPed(row));
+      if(!p)return bad('无路');
+      if(!shdWalkSim(S,p))return bad('走不完');
+      const pr=shdPickSim(S,row);
+      if(pr!==1)return bad('军师捡不到');
+      if(par[k]===undefined){par[k]={k:k,row:row,d1:p.length,d2:0};legs.push(par[k])}
+      continue;
+    }
+    const t=S.cell[S.carry];
+    if(S.pc!==t){
+      const p=shdBfs(S,S.pc,t);
+      if(!p)return bad('无路');
+      if(!shdWalkSim(S,p))return bad('走不完');
+      const q=par[S.carry];
+      if(q&&!q.d2)q.d2=p.length;
+      continue;
+    }
+    const st=shdStampSim(S);
+    if(st===-3){shdStepSim(S);continue}
+    if(st!==k)return bad('军师落不了笔');
+  }
+  return {ok:1,beats:S.beat-b0,legs:legs,hits:S.hits,S:S};
+}
+/* ---- 一折怎么摆：牌挂第几排、箱子坑彩头摆哪、谁在台上巡逻，全在这里定 ----
+   from = 这一场下来已经落了几笔（天黑之后重新开场：落过的笔不抹，剩下的笔重新上架） */
+function shdFreeCells(S,rec,from,ban){
+  const out=[];
+  for(let r=0;r<SHD_ROWS;r++){
+    for(let c=1;c<SHD_COLS;c++){
+      const k=shdIdx(c,r);
+      if(shdHas(rec.cell,k))continue;
+      if(k===S.pc)continue;
+      if(ban&&ban.indexOf(k)>=0)continue;
+      out.push(k);
+    }
+  }
+  return out;
+}
+function shdLoopPath(S,box,rec,from){
+  /* ping-pong 巡逻：同一排从左到右走一趟再退回来，格子两两相邻、绕不开落笔位 */
+  for(let t=0;t<24;t++){
+    const r=1+Math.floor(Math.random()*(SHD_ROWS-1));
+    const row=[];
+    for(let c=1;c<SHD_COLS;c++){
+      const k=shdIdx(c,r);
+      if(shdHas(rec.cell,k)||shdHas(box,k)||k===S.pc||k===shdIdx(0,r))row.length=0;
+      else row.push(k);
+      if(row.length>=3&&Math.random()<0.55)break;
+    }
+    if(row.length<3)continue;
+    const back=row.slice(1,row.length-1).reverse();
+    const path=row.concat(back);
+    if(path.length>=4)return path;
+  }
+  return null;
+}
+function shdBuild(rec,cfg,from){
+  const n=rec.n,S=shdBlank();
+  S.n=n;S.keep=cfg.keep;
+  S.cell=rec.cell.slice();
+  S.qi=shdClamp(from||0,0,n-1);
+  const left=n-S.qi;
+  const rows=[];for(let r=0;r<SHD_ROWS;r++)rows.push(r);
+  shdShuf(rows);
+  const need=Math.min(left,SHD_ROWS);
+  const realRows=rows.slice(0,need).sort(function(a,b){return a-b});
+  const ks=[];for(let k=S.qi;k<n;k++)ks.push(k);
+  /* 牌从左到右不成序，但「排号小的是第几笔」写在牌上：孩子按编号找 */
+  const rest=rows.slice(need);
+  const junk=Math.min(cfg.junk,rest.length);
+  for(let q=0;q<need;q++){
+    const row=realRows[q],k=ks[q];
+    S.riv[row].on=1;S.riv[row].k=k;S.riv[row].dir=shdDn(rec.dirs[k]);
+    S.slotOf[k]=row;
+  }
+  for(let k=0;k<S.qi;k++)S.slotOf[k]=-1;
+  for(let q=0;q<junk;q++){
+    const row=rest[q];
+    S.riv[row].on=1;S.riv[row].fgn=1;S.riv[row].k=-1;S.riv[row].dir=Math.floor(Math.random()*4);
+  }
+  /* 戏箱：只压台面，绝不压落笔位、不压接笔台、不压脚下 */
+  const box=[];
+  let free=shdFreeCells(S,rec,S.qi,[]);
+  for(let q=0;q<cfg.box&&free.length;q++){
+    const k=free[Math.floor(Math.random()*free.length)];
+    box.push(k);
+    free=shdFreeCells(S,rec,S.qi,box);
+  }
+  S.box=box;
+  const ink=[];
+  free=shdFreeCells(S,rec,S.qi,box);
+  for(let q=0;q<cfg.ink&&free.length;q++){
+    const k=free[Math.floor(Math.random()*free.length)];
+    ink.push(k);
+    free=shdFreeCells(S,rec,S.qi,box.concat(ink));
+  }
+  S.ink=ink;
+  if(cfg.bon>0){
+    free=shdFreeCells(S,rec,S.qi,box.concat(ink));
+    if(free.length)S.bon={cell:free[Math.floor(Math.random()*free.length)],on:1};
+  }
+  for(let q=0;q<cfg.patrol;q++){
+    const p=shdLoopPath(S,box,rec,S.qi);
+    if(p)S.pat.push({path:p,off:Math.floor(Math.random()*p.length)});
+  }
+  /* 台面上每一笔都得走得到：先验军师，走不通就整盘作废 */
+  const plan=shdPlan(S,SHD_BEAT_CAP);
+  if(!plan.ok)return null;
+  return {S:S,plan:plan.legs,beats:plan.beats,hits:plan.hits};
+}
+function shdTry(rec,cfg,from){
+  const b=shdBuild(rec,cfg,from);
+  if(!b)return null;
+  /* 军师这一遍把撞影走回去重捡、原地等影子退场全走进去了：秒数就照他用掉的拍数发 */
+  return {S:b.S,cfg:cfg,plan:b.plan,beats:b.beats,budget:b.beats,hits:b.hits,
+    sec:shdSec(b.beats,cfg.lv),from:from};
+}
+function shdGen(rec,lv,from){
+  const j0=shdJunkOf(lv),bx=shdBoxOf(lv),bn=shdBonOf(lv),ik=shdInkOf(lv),pt=shdPatrolOf(lv),kp=shdKeepOf(lv);
+  for(let t=0;t<SHD_GEN_TRY;t++){
+    /* 摆不通就顺着梯子往下减：先减巡逻、再减墨坑、再减彩头、再减戏箱、最后减干扰笔 */
+    const step=Math.floor(t/9);
+    if(step>5)break;
+    const cfg={lv:lv,junk:Math.max(0,j0-Math.max(0,step-4)),box:Math.max(0,bx-Math.max(0,step-1)),
+      bon:step>=2?0:bn,ink:Math.max(0,ik-Math.max(0,step-3)),patrol:step>=5?0:pt,keep:kp};
+    const r=shdTry(rec,cfg,from);
+    if(r){shd.lastWhy='';return r}
+  }
+  shd.lastWhy='摆不出 lv'+lv+'（j'+j0+' b'+bx+' n'+bn+' i'+ik+' p'+pt+' k'+kp+'）';
+  return null;
+}
+/* ---- 军师下一步（真游戏里的催场、预览、影子预告全读这个） ---- */
+function shdNextStep(){
+  const S=shd.S;
+  if(!S||S.done)return null;
+  if(S.carry>=0){
+    const k=S.carry,t=S.cell[k];
+    if(S.pc===t){
+      if(shdShadowOn(S,t))return {kind:'wait',k:k,cell:t};
+      return {kind:'stamp',k:k,cell:t};
+    }
+    const p=shdBfs(S,S.pc,t);
+    return {kind:'walk',k:k,cell:t,path:p,steps:p?p.length:-1,block:!p};
+  }
+  const row=S.slotOf[S.qi];
+  if(row<0)return null;
+  if(S.pc===shdPed(row))return {kind:'pick',k:S.qi,row:row};
+  const p=shdBfs(S,S.pc,shdPed(row));
+  return {kind:'walk',k:S.qi,cell:shdPed(row),row:row,path:p,steps:p?p.length:-1,block:!p};
+}
+function shdStepSay(st){
+  if(!st)return '';
+  const S=shd.S;
+  if(st.kind==='pick')return '🪜 站到 <b>'+shdNameOf(st.cell||shdPed(st.row))+'</b>，按 <b>✋ 捡笔</b> 把第 <b>'+(st.k+1)+'</b> 笔拿在手里';
+  if(st.kind==='stamp')return '🖌 脚下正是第 <b>'+(st.k+1)+'</b> 笔的落位，按 <b>落笔</b>（<code>空格</code>）把它印在台上';
+  if(st.kind==='wait')return '🕴 <b>墨影还站在这一格</b> —— 等它 <b>淡掉退场</b>（它走完自己那一折的水路就退），这一拍先别硬挤';
+  if(st.block)return '🪑 <b>水路被戏箱堵死了</b>：按 <b>🔁 重摆</b> 把箱子挪开';
+  return '👣 走 <b>'+st.steps+'</b> 步到 <b>'+shdNameOf(st.cell)+'</b>（点那一格就走过去，一格吃一拍）'+
+    (shdGhostsNear(S,st.cell)?'；⚠️ <b>这一段有墨影走过</b>，绕开它':'');
+}
+function shdGhostsNear(S,to){
+  const g=[];
+  for(let i=0;i<S.gho.length;i++){
+    const c=shdGhostAt(S,S.gho[i]);
+    if(c<0)continue;
+    if(shdDist(S,c,to)<=4)g.push(i);
+  }
+  return g;
+}
+
+/* ================= v1.84 笔顺影子戏 · C：玩家动作 / 撞影 / 计分 / 道具 ================= */
+/* ---- 历史（倒带）---- */
+function shdClone(){
+  return {S:shdCloneSim(shd.S),score:shd.score,combo:shd.combo,lits:shd.lits,steps:shd.steps,
+    picks:shd.picks,stamps:shd.stamps,hits:shd.hits,wrongs:shd.wrongs,orders:shd.orders,
+    bons:shd.bons,stolen:shd.stolen,acts:shd.acts,detour:shd.detour,cleanWord:shd.cleanWord,
+    failWord:shd.failWord,hearts:shd.hearts,clockSec:shd.clockSec,red:shd.warn,beep:shd.beep,
+    wantPick:shd.wantPick,wantStamp:shd.wantStamp,actSteps:shd.actSteps};
+}
+function shdHistPush(){
+  if(!shd.S)return;
+  shd.hist.push(shdClone());
+  if(shd.hist.length>SHD_HIST_MAX)shd.hist.shift();
+}
+function shdRestore(h){
+  if(!h)return;
+  shd.S=h.S;
+  shd.score=h.score;shd.combo=h.combo;shd.lits=h.lits;shd.steps=h.steps;shd.picks=h.picks;
+  shd.stamps=h.stamps;shd.hits=h.hits;shd.wrongs=h.wrongs;shd.orders=h.orders;
+  shd.bons=h.bons;shd.stolen=h.stolen;shd.acts=h.acts;shd.detour=h.detour;
+  shd.cleanWord=h.cleanWord;shd.failWord=h.failWord;shd.hearts=h.hearts;
+  shd.clockSec=h.clockSec;shd.warn=h.red;shd.beep=h.beep;
+  shd.wantPick=h.wantPick;shd.wantStamp=h.wantStamp;shd.actSteps=h.actSteps;
+  shd.clock=shd.clockSec>0?shdClamp(shd.clockSec/Math.max(1,shd.clockSec0||shd.clockSec),0,1):0;
+}
+/* ---- 话术 ---- */
+function shdCarrySay(){
+  const S=shd.S;
+  if(S.carry<0)return '手里 <b>空的</b>：先去 <b>🪜 接笔台</b> 捡第 '+(S.qi+1)+' 笔';
+  const d=shdDn(shd.rec?shd.rec.dirs[S.carry]:4);
+  return '手里端着 <b>第 '+(S.carry+1)+' 笔「'+SHD_DIRS[d]+' '+SHD_ARW[d]+'」</b>：它的落位在 <b>'+shdNameOf(S.cell[S.carry])+'</b>';
+}
+function shdGhostSay(){
+  const S=shd.S;let live=0;
+  for(let i=0;i<S.gho.length;i++)if(!S.gho[i].gone&&shdGhostAt(S,S.gho[i])>=0)live++;
+  return live+' 个墨影在台上 · 最长的一折走过 '+
+    (S.gho.length?Math.max.apply(null,S.gho.map(function(g){return g.path.length}))+' 格':'0')+' 格';
+}
+/* ---- 走：点一格就走过去（一格吃一拍），到位再按手里的动作 ---- */
+function shdWalkTo(k,say){
+  const S=shd.S;
+  if(!S||!shd.run||shd.over)return false;
+  if(!shdOK(k))return false;
+  if(shdBlockAt(S,k)){shdSay('🪑 <b>'+shdNameOf(k)+'</b> 压着一只 <b>戏箱</b>，走不进去 —— 绕一下，或者按 <b>🔁 重摆</b>','#FFCC80');return false}
+  if(S.pc===k){
+    if(say)shdSay('🎭 已经站在 <b>'+shdNameOf(k)+'</b> 了：'+shdCarrySay(),'#B3E5FC');
+    return false;
+  }
+  const p=shdBfs(S,S.pc,k);
+  if(!p){shdSay('🧱 到 <b>'+shdNameOf(k)+'</b> 的水路被 <b>戏箱</b> 堵死了：按 <b>🔁 重摆</b> 把箱子挪个位置','#FF8A80');return false}
+  shdHistPush();
+  S.queue=p.slice();
+  shd.since=0;
+  shdGlowRoute(p,k);
+  if(shdC(k)===0){shd.wantPick=shdR(k);shd.wantStamp=-1;
+    shdSay('👣 往 <b>'+shdNameOf(k)+'</b> 走：<b>'+p.length+'</b> 步（一格吃一拍）—— 走到就 <b>自己伸手捡那排的牌</b>','#B3E5FC');
+  }else if(S.carry>=0&&k===S.cell[S.carry]){
+    shd.wantStamp=1;shd.wantPick=-1;
+    shdSay('👣 往 <b>第 '+(S.carry+1)+' 笔的落位</b> 走：<b>'+p.length+'</b> 步 —— 走到就 <b>自己落笔</b>','#B3E5FC');
+  }else{
+    shd.wantPick=-1;shd.wantStamp=0;
+    shdSay('👣 往 <b>'+shdNameOf(k)+'</b> 走：<b>'+p.length+'</b> 步 · '+shdGhostSay(),'#B3E5FC');
+  }
+  shdBoard();shdHint();
+  return true;
+}
+function shdWalkDir(dc,dr){
+  const S=shd.S;
+  if(!S||!shd.run||shd.over)return false;
+  const c=shdC(S.pc)+dc,r=shdR(S.pc)+dr;
+  if(c<0||c>=SHD_COLS||r<0||r>=SHD_ROWS){shdSay('🎭 台面就这么大 —— 那是 <b>台外的幕布</b>','#B0BEC5');return false}
+  const k=shdIdx(c,r);
+  if(shdBlockAt(S,k)){shdSay('🪑 <b>'+shdNameOf(k)+'</b> 压着戏箱：绕一格走','#FFCC80');return false}
+  shdHistPush();
+  S.queue=[k];
+  shd.wantPick=-1;shd.wantStamp=0;
+  shd.since=0;
+  return true;
+}
+/* ---- 走到头自己接手上的动作 ---- */
+function shdArrive(){
+  const S=shd.S;
+  if(shd.wantPick>=0){
+    const row=shd.wantPick;shd.wantPick=-1;
+    if(S.pc===shdPed(row))shdPick(row);
+    return;
+  }
+  if(shd.wantStamp){
+    shd.wantStamp=0;
+    if(S.carry>=0&&S.pc===S.cell[S.carry])shdStamp();
+  }
+}
+/* ---- 捡笔 ---- */
+function shdPick(row){
+  const S=shd.S;
+  if(!S||!shd.run||shd.over)return false;
+  const v=S.riv&&S.riv[row];
+  if(!v||!v.on){shdSay('🪜 第 '+SHD_O[row+1]+' 排的架子上 <b>空了</b>（那一笔已经印在台上）','#B0BEC5');return false}
+  if(S.carry>=0){shdSay('🫴 <b>一折只带一笔</b>：手里已经端着第 '+(S.carry+1)+' 笔了 —— 先把它落到台上','#FFCC80');return false}
+  if(S.pc!==shdPed(row)){
+    const p=shdBfs(S,S.pc,shdPed(row));
+    if(!p){shdSay('🧱 水路被 <b>戏箱</b> 堵死：按 <b>🔁 重摆</b>','#FF8A80');return false}
+    shdHistPush();
+    S.queue=p.slice();shd.wantPick=row;shd.since=0;
+    shdGlowRoute(p,shdPed(row));
+    shdSay('👣 先走到 <b>'+shdNameOf(shdPed(row))+'</b>（<b>'+p.length+'</b> 步），走到了就伸手','#B3E5FC');
+    shdBoard();
+    return true;
+  }
+  shdHistPush();
+  const r=shdPickSim(S,row);
+  if(r===2){shdSay('🪜 这一排没牌','#B0BEC5');return false}
+  if(r===5){
+    shd.score=Math.max(0,shd.score-SHD_JUNK_PEN);
+    shd.combo=0;shd.cleanWord=false;
+    shdSay('👺 <b>脏笔</b>：这张刻的不是「'+(shd.rec?shd.rec.ch:'?')+'」的笔 —— 扣 '+SHD_JUNK_PEN+' 分、断连击，牌 <b>从架上掉下去了</b>（<b>连错 '+SHD_WRONG_MAX+' 次掉一颗心</b>）','#FF8A80');
+    shdInkSplat(shdPed(row),SHD_JUNK_PEN);
+    shdShakeFx();
+    shdOnWrong(1);
+    shdBoard();shdHud();shdMeter();
+    return true;
+  }
+  if(r===6){
+    const want=S.riv[row].k;
+    shd.score=Math.max(0,shd.score-SHD_ORDER_PEN);
+    shd.combo=0;shd.cleanWord=false;
+    shd.orders++;shdAdd('hz_shade_orders',1);
+    shdSay('🎫 <b>拿错戏票</b>：这张是第 <b>'+(want+1)+'</b> 笔，可台上现在该唱第 <b>'+(S.qi+1)+'</b> 笔 —— 扣 '+SHD_ORDER_PEN+' 分、断连击，牌 <b>还挂在架上</b>','#FFAB91');
+    shdTone(196,0.12,'square',0.13);
+    shdShakeFx();
+    shdOnWrong(1);
+    shdBoard();shdHud();shdMeter();
+    return true;
+  }
+  const k=S.carry,d=shdDn(shd.rec?shd.rec.dirs[k]:4);
+  shd.picks++;shd.since=0;
+  shdAdd('hz_shade_picks',1);
+  shdTone(SHD_NOTE[Math.min(7,k)],0.1,'triangle',0.18);
+  shdPopFx(shdPed(row),'✋ ' + SHD_DIRS[d],'#FFF176');
+  shdSay('✋ 捡到了：<b>第 '+(k+1)+' 笔「'+SHD_DIRS[d]+' '+SHD_ARW[d]+'」</b> —— 它的落位在 <b>'+shdNameOf(S.cell[k])+'</b>（<b>台上有虚影</b>，照着那块墨迹走）· 手里有墨时 <b>别撞上墨影</b>','#E1F5FE');
+  shdBoard();shdHud();shdMeter();shdMini();shdTray();shdAskText();shdHint();
+  return true;
+}
+/* ---- 落笔 ---- */
+function shdStamp(){
+  const S=shd.S;
+  if(!S||!shd.run||shd.over)return false;
+  if(S.carry<0){
+    const st=shdNextStep();
+    shdSay('🫴 手里 <b>没端笔</b>：先去 <b>接笔台</b> 把第 <b>'+(S.qi+1)+'</b> 笔捡起来'+(st?'（'+shdNameOf(st.cell)+'）':''),'#B3E5FC');
+    return false;
+  }
+  const k=S.carry;
+  if(S.pc!==S.cell[k]){
+    shdSay('🎯 <b>站偏了</b>：这一格不是第 <b>'+(k+1)+'</b> 笔的落位 —— 落位在 <b>'+shdNameOf(S.cell[k])+'</b>（那一格里有 <b>虚笔影</b>）','#B3E5FC');
+    return false;
+  }
+  shdHistPush();
+  const r=shdStampSim(S);
+  if(r===-2){shdSay('🎯 站偏了：第 <b>'+(k+1)+'</b> 笔要落在 <b>'+shdNameOf(S.cell[k])+'</b>','#B3E5FC');return false}
+  if(r===-3){
+    shdSay('🕴 <b>墨影正踩在这一格上</b> —— 等它走完自己那一折 <b>淡掉退场</b>，或者先绕开这一步','#FFF176');
+    shdTone(210,0.09,'sine',0.1);
+    return false;
+  }
+  /* 落成了：r 就是这一笔的号 */
+  const par=shdLegPar(k),allow=4+shdKeepOfAct()*2;
+  const over=Math.max(0,shd.actSteps-(par||shd.actSteps));
+  const tidy=Math.max(0,Math.min(allow,(par||allow)+allow-shd.actSteps))*2;
+  let gain=Math.round((11+k*2+shd.lv*3)*(1+shd.combo*0.06));
+  gain+=tidy;
+  if(shd.clock>0.6)gain+=Math.round(shd.clock*6);
+  shd.score+=gain;
+  shd.combo++;if(shd.combo>shd.maxCombo)shd.maxCombo=shd.combo;
+  shd.stamps++;shd.lits++;shd.acts++;shd.detour+=over;
+  shd.since=0;shd.actSteps=0;
+  shdAdd('hz_shade_stamps',1);shdAdd('hz_shade_lits',1);shdAdd('hz_shade_acts',1);
+  shdTone(SHD_NOTE[Math.min(7,k+2)],0.14,'triangle',0.2);
+  shdTone(SHD_NOTE[Math.min(7,k)]/2,0.16,'sine',0.12);
+  shdStampFx(S.cell[r],gain,tidy);
+  shdSay('🖌 <b>落下了</b>：第 <b>'+(r+1)+'</b> 笔印在 <b>'+shdNameOf(S.cell[r])+'</b> +'+gain+' 分'+
+    (tidy>0?'（<b>绕得不远</b>，多给 '+tidy+'）':'（这一折走了 <b>'+over+'</b> 步冤枉路）')+
+    ' · 🕯 你刚走过的水路 <b>变成墨影</b>，下一折它会原路重演','#69F0AE');
+  shdBoard();shdHud();shdMeter();shdMini();shdTray();shdAskText();shdHint();
+  if(S.done){
+    shd.nextMs=SHD_NEXT_MS;
+    shdT(shdWin,SHD_STAMP_MS+160);
+  }
+  return true;
+}
+function shdLegPar(k){
+  const sol=shd.sol;
+  if(!sol||!sol.plan)return 0;
+  for(let i=0;i<sol.plan.length;i++)if(sol.plan[i].k===k)return sol.plan[i].d1+sol.plan[i].d2;
+  return 0;
+}
+/* ---- 撞影 / 彩头 / 墨坑：一拍的后果 ---- */
+function shdApply(ev){
+  const S=shd.S;
+  if(ev.bon===1){
+    shd.bons++;shdAdd('hz_shade_bons',1);
+    const g=SHD_BON_GAIN+shd.lv*2;
+    shd.score+=g;
+    shdTone(880,0.1,'sine',0.16);
+    shdPopFx(ev.cell||S.pc,'🧧 +'+g,'#FFD54F');
+    shdSay('🧧 <b>抢在墨影前面踩住彩头</b> +'+g+' 分 —— 下一折的彩头会换个地方摆','#FFE082');
+  }else if(ev.bon===2){
+    shd.stolen++;shdAdd('hz_shade_stolen',1);
+    shdTone(230,0.1,'sine',0.1);
+    shdTag('🧧 彩头被 <b>墨影先捡走</b> 了');
+  }
+  if(ev.ink){shdTag('🖌 一脚 <b>踩进墨坑</b>：这一拍陷住了');shdTone(150,0.12,'square',0.1)}
+  if(ev.gone>0){
+    shdTag('🕴 一个墨影 <b>走完自己那一折、淡进幕布</b>');
+    shdTray();
+  }
+  if(ev.hit)shdHit(ev);
+}
+function shdHit(ev){
+  const S=shd.S,k=S.carry;
+  shd.hits++;shdAdd('hz_shade_hits',1);
+  shd.score=Math.max(0,shd.score-SHD_HIT_PEN);
+  shd.combo=0;shd.cleanWord=false;
+  const back=shdReturnSim(S,k);
+  shdInkSplat(S.pc,SHD_HIT_PEN);
+  shdShakeFx();
+  shdTone(112,0.24,'sawtooth',0.18);
+  shdSay('🖤 <b>糊了一手墨</b>：手里第 <b>'+(k+1)+'</b> 笔撞上了 <b>'+(ev.kind==='pat'?'串台的名角':'你自己那一折的墨影')+'</b> —— 扣 '+SHD_HIT_PEN+' 分、断连击，笔 <b>'+(back?'掉回 '+shdNameOf(shdPed(S.slotOf[k])):'掉在地上')+'</b>（不掉心，但白走一趟）','#FF8A80');
+  shdBoard();shdHud();shdMeter();shdMini();shdHint();
+}
+function shdOnWrong(n){
+  shd.wrongs+=n;shdAdd('hz_shade_wrongs',n);
+  shd.failWord+=n;
+  if(shd.failWord>=SHD_WRONG_MAX){
+    shd.failWord=0;
+    shdLoseHeart('连错 '+SHD_WRONG_MAX+' 次');
+  }
+}
+/* ---- 掉心 / 天黑 ---- */
+function shdLoseHeart(why,quiet){
+  if(shd.over)return;
+  shd.hearts--;shd.reds=(shd.reds||0)+1;
+  if(!quiet)shdTone(96,0.3,'square',0.2);
+  if(shd.hearts<=0){
+    shd.hearts=0;shdHud();
+    shdSay('💔 心用完了 —— 结算','#FF8A80');
+    shdT(function(){shdEnd('hearts')},620);
+    return;
+  }
+  if(!quiet)shdSay('💔 <b>掉一颗心</b>（'+why+'）：还剩 '+shd.hearts+' 颗','#FF8A80');
+  shdHud();
+}
+function shdDark(){
+  if(!shd.run||shd.over)return;
+  shd.deads++;shdAdd('hz_shade_deads',1);
+  shdMissAdd(shd.rec?shd.rec.ch:'');
+  shd.cleanWord=false;
+  shdSay('🌘 <b>天黑了</b>：鼓点走完，这一折还没唱完 —— 掉一颗心，<b>已经落在台上的笔一笔不抹</b>，剩下的笔重新上架、人退回台口','#FF8A80');
+  shdTblCls('dead',900);
+  shdTone(88,0.4,'sawtooth',0.18);
+  shdLoseHeart('天黑',true);
+  if(shd.hearts>0&&shd.run&&!shd.over)shdT(function(){shdRedress(shd.S?shd.S.qi:0)},1000);
+}
+/* ---- 重新开场：天黑 / 重摆都走这一条（落过的笔不抹） ---- */
+function shdRedress(from){
+  if(!shd.run||shd.over||!shd.rec)return;
+  const lv=shd.lv;
+  const r=shdGen(shd.rec,lv,from);
+  if(!r){
+    shdSay('😢 剩下的笔 <b>摆不开了</b>：这一局先结算','#FFCC80');
+    shdT(function(){shdEnd('gen')},600);
+    return;
+  }
+  shdInstall(r);
+  shdTag(from>0?'🌘 天亮重新开场':'🔁 重摆：剩下的笔重新上架、箱子换个位置');
+  shdBoard();shdHud();shdMeter();shdMini();shdTray();shdAskText();shdHint();
+}
+/* ---- 道具 ---- */
+function shdPreview(){
+  const S=shd.S;
+  if(!S||!shd.run||shd.over)return;
+  if(shd.previewN<=0){shdSay('👀 水路 <b>预览用完了</b>（升一段补 1 次）—— 自己按 <b>虚笔影</b> 找落位','#FFCC80');return}
+  const st=shdNextStep();
+  if(!st){shdSay('👀 军师也 <b>找不出下一步</b>：按 <b>🔁 重摆</b> 把台面挪一挪','#FFCC80');return}
+  shd.previewN--;shd.previews++;shdAdd('hz_shade_previews',1);
+  shd.since=0;
+  const rows=[];
+  rows.push('👀 <b>军师的水路</b>（第 <b>'+(st.k+1)+'</b> 笔）：');
+  if(st.kind==='walk'&&st.path){
+    rows.push('　👣 先走 <b>'+st.path.length+'</b> 步到 <b>'+shdNameOf(st.cell)+'</b>');
+    shdGlowRoute(st.path,st.cell,SHD_GLOW_MS);
+  }else rows.push('　'+shdStepSay(st));
+  if(S.carry<0){
+    const p2=shdBfs(S,shdPed(st.row!==undefined?st.row:S.slotOf[st.k]),S.cell[st.k]);
+    if(p2){rows.push('　✋ 捡了笔再走 <b>'+p2.length+'</b> 步到落位 <b>'+shdNameOf(S.cell[st.k])+'</b>');shdGlowRoute(p2,S.cell[st.k],SHD_GLOW_MS,true)}
+  }else if(st.cell!==S.cell[st.k]){
+    const p2=shdBfs(S,S.pc,S.cell[st.k]);
+    if(p2){rows.push('　🖌 手里这一笔再走 <b>'+p2.length+'</b> 步到 <b>'+shdNameOf(S.cell[st.k])+'</b>');shdGlowRoute(p2,S.cell[st.k],SHD_GLOW_MS,true)}
+  }
+  let warn=0;
+  for(let i=0;i<S.gho.length;i++){
+    const g=S.gho[i];if(g.gone)continue;
+    warn=Math.max(warn,g.path.length);
+  }
+  rows.push('　🕯 台上有 <b>'+shdLiveGhosts()+'</b> 个墨影 · 最长 <b>'+warn+' 拍</b> 走完退场 · 军师这一折 <b>'+
+    (st.kind==='walk'?st.steps+' 步':'到位了')+'</b>');
+  shdSay(rows.join('<br>'),'#C5E1A5');
+  shdToolBtns();
+}
+function shdReveal(){
+  const S=shd.S;
+  if(!S||!shd.run||shd.over)return;
+  if(shd.revealN<=0){shdSay('🕯 影子预告 <b>用完了</b>（升一段补 1 次）—— 记住自己上一折怎么走的','#FFCC80');return}
+  if(!S.gho.length){shdSay('🕯 台上 <b>还没有墨影</b>：这一折是你第一次走水路，走完就会留下影子','#B3E5FC');return}
+  shd.revealN--;shd.reveals++;shdAdd('hz_shade_reveals',1);
+  shd.revealMs=SHD_REVEAL_MS;
+  shd.since=0;
+  const a=[];
+  for(let i=0;i<S.gho.length;i++){
+    const g=S.gho[i];if(g.gone)continue;
+    a.push('　🕯 第 <b>'+(g.path.length)+'</b> 拍的水路：从 <b>'+shdNameOf(g.path[0])+'</b> 走到 <b>'+shdNameOf(g.path[g.path.length-1])+'</b>');
+  }
+  shdSay('🕯 <b>影子预告</b>：下面这几条水路 <b>正按拍子重演</b>（虚线画在台上一阵）<br>'+a.join('<br>')+
+    '<br>　⚠️ 手里有墨时 <b>一步都别踩进这些线</b>','#FFF176');
+  shdBoard();shdToolBtns();
+}
+function shdUndo(){
+  const S=shd.S;
+  if(!S||!shd.run||shd.over)return;
+  if(shd.undoN<=0){shdSay('🔄 <b>倒带用完了</b>（升一段补 1 次）','#FFCC80');return}
+  if(!shd.hist.length){shdSay('🔄 还没动过手：<b>倒带</b> 退回上一次走 / 捡 / 落之前','#B3E5FC');return}
+  const h=shd.hist.pop();
+  shdRestore(h);
+  shd.undoN--;shd.rewinds++;shdAdd('hz_shade_rewinds',1);
+  shd.since=0;
+  shdSay('🔄 <b>倒带</b>：退回上一步 —— 拍号 '+S.beat+'、脚下 <b>'+shdNameOf(S.pc)+'</b>、手里 <b>'+(S.carry<0?'空':'第 '+(S.carry+1)+' 笔')+'</b> 一模一样还原','#B3E5FC');
+  shdBoard();shdHud();shdMeter();shdMini();shdTray();shdToolBtns();
+}
+function shdReshuffle(){
+  const S=shd.S;
+  if(!S||!shd.run||shd.over)return;
+  if(shd.reN<=0){shdSay('🔁 <b>重摆用完了</b>（升一段补 1 次）','#FFCC80');return}
+  shd.reN--;shd.reshuf++;shdAdd('hz_shade_reshuffles',1);
+  shdRedress(S.qi);
+  shdToolBtns();
+}
+function shdLiveGhosts(){
+  const S=shd.S;
+  if(!S)return 0;
+  let n=0;
+  for(let i=0;i<S.gho.length;i++)if(!S.gho[i].gone)n++;
+  return n;
+}
+/* ---- 走一拍（真游戏）：影子重演、名角巡逻、撞影与彩头全走军师那一份纯模型 ---- */
+function shdBeat(){
+  const S=shd.S;
+  if(!S)return;
+  const before=S.pc;
+  const ev=shdStepSim(S);
+  if(ev.moved){
+    shd.steps++;shd.actSteps++;shdAdd('hz_shade_steps',1);
+    shd.since=0;
+    shdStepFx(before,S.pc,ev.ink);
+    if(shdHas(S.ink,S.pc))shdTone(160,0.1,'square',0.09);
+    else shdTone(SHD_NOTE[(S.beat%4)]*2,0.045,'sine',0.05);
+  }
+  ev.cell=S.pc;
+  shdApply(ev);
+  if(!S.queue.length)shdArrive();
+  shdHudLight();shdBoard();shdMeter();
+}
+function shdKeepOfAct(){return shd.S?shd.S.keep:1}
+
+/* ================= v1.84 笔顺影子戏 · D：画台 / 特效 / 拍钟 / 输入 ================= */
+function shdGFmt(x,y){return x.toFixed(1)+','+y.toFixed(1)}
+function shdGlyphWrap(inner){
+  return '<g transform="translate('+shdGFmt(SHD_GX,SHD_GY+1024*SHD_GS)+') scale('+SHD_GS.toFixed(5)+','+(-SHD_GS).toFixed(5)+')">'+inner+'</g>';
+}
+function shdStrokeAt(k,op){
+  const g=shd.gly&&shd.gly[k];
+  if(!g)return '';
+  return shdGlyphWrap('<path d="'+g.d+'" fill="'+SHD_INK[shdDn(g.dir)]+'" opacity="'+(op===undefined?1:op)+'"/>');
+}
+/* ---- 一次性画好的台面：米字戏台 + 接笔台 + 笔河 ---- */
+function shdRenderStatic(){
+  const g=document.getElementById('shdStaticG');
+  if(!g)return;
+  let h='';
+  h+='<rect class="shd-curt" x="8" y="10" width="150" height="452" rx="16"/>';
+  h+='<text class="shd-head" x="83" y="26">笔 河</text>';
+  h+='<rect class="shd-plat" x="'+SHD_X0+'" y="'+SHD_Y0+'" width="'+(SHD_CELL*SHD_COLS)+'" height="'+(SHD_CELL*SHD_ROWS)+'" rx="10"/>';
+  h+='<rect class="shd-mi" x="'+SHD_GX+'" y="'+SHD_GY+'" width="'+(SHD_CELL*SHD_ROWS)+'" height="'+(SHD_CELL*SHD_ROWS)+'" rx="6"/>';
+  for(let r=0;r<=SHD_ROWS;r++){
+    const y=SHD_Y0+r*SHD_CELL;
+    h+='<line class="shd-gl'+(r===0||r===SHD_ROWS?' edge':'')+'" x1="'+SHD_X0+'" y1="'+y+'" x2="'+(SHD_X0+SHD_CELL*SHD_COLS)+'" y2="'+y+'"/>';
+  }
+  for(let c=0;c<=SHD_COLS;c++){
+    const x=SHD_X0+c*SHD_CELL;
+    h+='<line class="shd-gl'+(c===0||c===SHD_COLS?' edge':'')+'" x1="'+x+'" y1="'+SHD_Y0+'" x2="'+x+'" y2="'+(SHD_Y0+SHD_CELL*SHD_ROWS)+'"/>';
+  }
+  /* 米字对角线只画在台面（写字的那 7×7） */
+  h+='<line class="shd-miL" x1="'+SHD_GX+'" y1="'+SHD_GY+'" x2="'+(SHD_GX+SHD_CELL*SHD_ROWS)+'" y2="'+(SHD_GY+SHD_CELL*SHD_ROWS)+'"/>';
+  h+='<line class="shd-miL" x1="'+(SHD_GX+SHD_CELL*SHD_ROWS)+'" y1="'+SHD_GY+'" x2="'+SHD_GX+'" y2="'+(SHD_GY+SHD_CELL*SHD_ROWS)+'"/>';
+  /* 接笔台：第 0 列 */
+  h+='<rect class="shd-ped" x="'+SHD_X0+'" y="'+SHD_Y0+'" width="'+SHD_CELL+'" height="'+(SHD_CELL*SHD_ROWS)+'"/>';
+  for(let r=0;r<SHD_ROWS;r++){
+    const y=shdCY(r);
+    h+='<text class="shd-rowTxt" x="'+shdCX(0)+'" y="'+(y+5)+'">'+SHD_O[r+1]+'</text>';
+    h+='<line class="shd-shelf" x1="'+(SHD_X0+2)+'" y1="'+(y+SHD_CELL/2-3)+'" x2="'+(SHD_X0+SHD_CELL-4)+'" y2="'+(y+SHD_CELL/2-3)+'"/>';
+  }
+  h+='<text class="shd-head" x="'+(SHD_X0+SHD_CELL/2)+'" y="'+(SHD_Y0-6)+'">🪜</text>';
+  /* 列号 */
+  for(let c=1;c<SHD_COLS;c++){
+    h+='<text class="shd-colTxt" x="'+shdCX(c)+'" y="'+(SHD_Y0+SHD_CELL*SHD_ROWS+14)+'">'+SHD_O[c]+'</text>';
+  }
+  h+='<text class="shd-lgd" x="'+(SHD_GX+SHD_CELL*SHD_ROWS/2)+'" y="'+(SHD_Y0+SHD_CELL*SHD_ROWS+28)+'">🥁 一拍 '+
+    (SHD_BEAT_MS/1000)+' 秒 · 走一格吃一拍</text>';
+  /* 台口 */
+  h+='<rect class="shd-mouth" x="'+(SHD_X0+SHD_CELL)+'" y="'+(SHD_Y0+SHD_CELL*(SHD_ROWS-1))+'" width="'+(SHD_CELL*(SHD_COLS-1))+'" height="'+SHD_CELL+'"/>';
+  h+='<text class="shd-mouthTxt" x="'+(SHD_X0+SHD_CELL+SHD_CELL*(SHD_COLS-1)/2)+'" y="'+(SHD_Y0+SHD_CELL*SHD_ROWS-8)+'">台 口</text>';
+  g.innerHTML=h;
+}
+/* ---- 格子上的东西：落位虚影 / 已落墨迹 / 戏箱 / 墨坑 / 彩头 ---- */
+function shdCells(){
+  const S=shd.S,g=document.getElementById('shdCellG');
+  if(!g)return '';
+  let h='';
+  for(let k=0;k<S.cell.length;k++){
+    if(k<S.qi)continue;
+    const kk=S.cell[k],c=shdC(kk),r=shdR(kk);
+    if(k===S.qi)h+='<rect class="shd-drop now" x="'+(SHD_X0+c*SHD_CELL+3)+'" y="'+(SHD_Y0+r*SHD_CELL+3)+'" width="'+(SHD_CELL-6)+'" height="'+(SHD_CELL-6)+'" rx="9"/>';
+    else h+='<rect class="shd-drop" x="'+(SHD_X0+c*SHD_CELL+3)+'" y="'+(SHD_Y0+r*SHD_CELL+3)+'" width="'+(SHD_CELL-6)+'" height="'+(SHD_CELL-6)+'" rx="9"/>';
+    h+='<text class="shd-dropTxt'+(k===S.qi?' now':'')+'" x="'+(shdCX(c)-SHD_CELL/2+15)+'" y="'+(shdCY(r)-SHD_CELL/2+15)+'">'+(k+1)+'</text>';
+    h+=shdStrokeAt(k,k===S.qi?0.3:0.16);
+  }
+  for(let i=0;i<S.box.length;i++){
+    const k=S.box[i],c=shdC(k),r=shdR(k);
+    h+='<rect class="shd-box" x="'+(SHD_X0+c*SHD_CELL+5)+'" y="'+(SHD_Y0+r*SHD_CELL+5)+'" width="'+(SHD_CELL-10)+'" height="'+(SHD_CELL-10)+'" rx="8"/>';
+    h+='<text class="shd-boxE" x="'+shdCX(c)+'" y="'+(shdCY(r)+7)+'">🪑</text>';
+  }
+  for(let i=0;i<S.ink.length;i++){
+    const k=S.ink[i],c=shdC(k),r=shdR(k);
+    h+='<circle class="shd-inkPit" cx="'+shdCX(c)+'" cy="'+shdCY(r)+'" r="'+(SHD_CELL/2-9)+'"/>';
+    h+='<text class="shd-inkE" x="'+shdCX(c)+'" y="'+(shdCY(r)+6)+'">🖌</text>';
+  }
+  if(S.bon.on&&S.bon.cell>=0){
+    const c=shdC(S.bon.cell),r=shdR(S.bon.cell);
+    h+='<circle class="shd-bon" cx="'+shdCX(c)+'" cy="'+shdCY(r)+'" r="'+(SHD_CELL/2-12)+'"/>';
+    h+='<text class="shd-bonE" x="'+shdCX(c)+'" y="'+(shdCY(r)+7)+'">🧧</text>';
+  }
+  return h;
+}
+function shdInkLayer(){
+  const S=shd.S,g=document.getElementById('shdInkG');
+  if(!g)return '';
+  let h='';
+  for(let k=0;k<S.qi;k++)h+=shdStrokeAt(k,1);
+  return h;
+}
+/* ---- 笔河：架子上的牌 ---- */
+function shdRiver(){
+  const S=shd.S,g=document.getElementById('shdRiverG');
+  if(!g)return '';
+  let h='';
+  for(let r=0;r<SHD_ROWS;r++){
+    const v=S.riv[r],y=SHD_Y0+r*SHD_CELL+SHD_CELL/2-3;
+    if(!v.on){
+      h+='<text class="shd-empty" x="'+SHD_RVX+'" y="'+(y+5)+'">·</text>';
+      continue;
+    }
+    const d=v.fgn?shdDn(v.dir):shdDn(shd.rec?shd.rec.dirs[v.k]:4);
+    const cls=v.fgn?'fgn':(v.k===S.qi?'next':'later');
+    h+='<g class="shd-card '+cls+(S.carry>=0&&S.carry===v.k?' carry':'')+'">';
+    h+='<rect class="shd-cardB" x="'+(SHD_RVX-SHD_RVW/2)+'" y="'+(y-SHD_RVH/2)+'" width="'+SHD_RVW+'" height="'+SHD_RVH+'" rx="10"/>';
+    if(v.fgn){
+      h+='<text class="shd-q" x="'+(SHD_RVX-26)+'" y="'+(y+11)+'">?</text>';
+      h+='<text class="shd-cardT" x="'+(SHD_RVX+22)+'" y="'+(y-6)+'">脏笔</text>';
+      h+='<text class="shd-cardT" x="'+(SHD_RVX+22)+'" y="'+(y+12)+'">'+SHD_DIRS[shdDn(d)]+'</text>';
+    }else{
+      h+='<g transform="translate('+(SHD_RVX-30)+','+y+')">'+shdGlyHTML(shd.gly[v.k])+'</g>';
+      h+='<text class="shd-cardT" x="'+(SHD_RVX+2)+'" y="'+(y-8)+'">第 '+(v.k+1)+' 笔</text>';
+      h+='<text class="shd-cardT dir" x="'+(SHD_RVX+2)+'" y="'+(y+9)+'">'+SHD_DIRS[d]+'</text>';
+      h+='<text class="shd-cardR" x="'+(SHD_RVX+2)+'" y="'+(y+22)+'">'+shdNameOf(S.cell[v.k])+'</text>';
+    }
+    h+='<text class="shd-rowTag" x="'+(SHD_RVX-SHD_RVW/2+11)+'" y="'+(y-14)+'">'+SHD_O[r+1]+'</text>';
+    h+='</g>';
+    h+='<line class="shd-hang" x1="'+SHD_RVX+'" y1="'+(y+SHD_RVH/2)+'" x2="'+(SHD_X0+4)+'" y2="'+shdCY(r)+'"/>';
+  }
+  return h;
+}
+/* ---- 墨影与串台名角 ---- */
+function shdFig(x,y,cls,op,txt){
+  return '<g class="shd-fig '+cls+'" transform="translate('+shdGFmt(x,y)+')" opacity="'+(op===undefined?1:op)+'">'+
+    '<ellipse class="shd-shadow" cx="0" cy="21" rx="15" ry="5"/>'+
+    '<path class="shd-body" d="M-10 16 L-7 -3 L7 -3 L10 16 Z"/>'+
+    '<circle class="shd-figHead" cx="0" cy="-11" r="8.5"/>'+
+    '<line class="shd-stick" x1="-12" y1="2" x2="-22" y2="14"/>'+
+    '<line class="shd-stick" x1="12" y1="2" x2="22" y2="14"/>'+
+    (txt?'<text class="shd-figTxt" x="0" y="-24">'+txt+'</text>':'')+
+    '</g>';
+}
+function shdGhosts(){
+  const S=shd.S,g=document.getElementById('shdGhostG');
+  if(!g)return '';
+  let h='';
+  for(let i=0;i<S.gho.length;i++){
+    const gr=S.gho[i];
+    if(gr.gone)continue;
+    const idx=S.beat-gr.start;
+    if(idx<0)continue;
+    if(idx>=gr.path.length){
+      const k=gr.path[gr.path.length-1],p=shdXY(k),f=idx-gr.path.length+1;
+      h+=shdFig(p.x,p.y,'gho fade',(SHD_FADE-f+1)/(SHD_FADE+1),'淡');
+      continue;
+    }
+    const k=gr.path[idx],p=shdXY(k);
+    h+=shdFig(p.x,p.y,'gho',0.62,(idx+1)+'/'+gr.path.length);
+  }
+  for(let i=0;i<S.pat.length;i++){
+    const k=shdPatAt(S,S.pat[i]);
+    if(k<0)continue;
+    const p=shdXY(k);
+    h+=shdFig(p.x,p.y,'pat',0.8,'🕴'+(i+1));
+  }
+  return h;
+}
+function shdPlayer(){
+  const S=shd.S,g=document.getElementById('shdPlayerG');
+  if(!g)return '';
+  const p=shdXY(S.pc);
+  let h=shdFig(p.x,p.y,'me',1,S.queue.length?('还走 '+S.queue.length+' 步'):'');
+  if(S.carry>=0){
+    h+='<g class="shd-carry" transform="translate('+shdGFmt(p.x,p.y-40)+')">'+
+      '<rect x="-19" y="-14" width="38" height="28" rx="7"/><g transform="scale(0.42,0.42)">'+shdGlyHTML(shd.gly[S.carry])+'</g></g>';
+  }
+  if(S.stuck>0)h+='<text class="shd-stuckTxt" x="'+p.x+'" y="'+(p.y+34)+'">陷在墨坑</text>';
+  return h;
+}
+/* ---- 预览与影子预告画在水路上 ---- */
+function shdRoutes(){
+  const g=document.getElementById('shdRouteG');
+  if(!g)return '';
+  let h='';
+  const S=shd.S;
+  if(S&&shd.revealMs>0){
+    for(let i=0;i<S.gho.length;i++){
+      const gr=S.gho[i];
+      if(gr.gone)continue;
+      let pts=[];
+      for(let q=0;q<gr.path.length;q++)pts.push(shdXY(gr.path[q]));
+      if(pts.length>1)h+='<polyline class="shd-gLine" points="'+pts.map(function(p){return p.x.toFixed(1)+','+p.y.toFixed(1)}).join(' ')+'"/>';
+      h+='<circle class="shd-gEnd" cx="'+pts[pts.length-1].x.toFixed(1)+'" cy="'+pts[pts.length-1].y.toFixed(1)+'" r="7"/>';
+    }
+  }
+  if(shd.routePts&&shd.routePts.length>1){
+    h+='<polyline class="shd-rLine'+(shd.routeAlt?' alt':'')+'" points="'+shd.routePts.map(function(p){return p.x.toFixed(1)+','+p.y.toFixed(1)}).join(' ')+'"/>';
+    const e=shd.routePts[shd.routePts.length-1];
+    h+='<circle class="shd-rEnd'+(shd.routeAlt?' alt':'')+'" cx="'+e.x.toFixed(1)+'" cy="'+e.y.toFixed(1)+'" r="9"/>';
+  }
+  return h;
+}
+function shdGlowRoute(path,to,ms,alt){
+  const S=shd.S;
+  const pts=[shdXY(S.pc)].concat(path.map(function(k){return shdXY(k)}));
+  shd.routePts=pts;shd.routeAlt=!!alt;
+  if(ms){shd.routeMs=ms;shdT(function(){if(shd.routePts===pts){shd.routePts=null;shdRoute()}},ms)}
+  else shd.routeMs=0;
+  shdRoute();
+}
+function shdRoute(){
+  const g=document.getElementById('shdRouteG');
+  if(g)g.innerHTML=shdRoutes();
+}
+/* ---- 点击层 ---- */
+function shdHitLayer(){
+  const S=shd.S,g=document.getElementById('shdHitG');
+  if(!g)return;
+  let h='';
+  for(let r=0;r<SHD_ROWS;r++){
+    for(let c=0;c<SHD_COLS;c++){
+      const k=shdIdx(c,r);
+      h+='<rect class="shd-hcell" data-cell="'+k+'" x="'+(SHD_X0+c*SHD_CELL+2)+'" y="'+(SHD_Y0+r*SHD_CELL+2)+'" width="'+(SHD_CELL-4)+'" height="'+(SHD_CELL-4)+'" rx="8"/>';
+    }
+  }
+  for(let r=0;r<SHD_ROWS;r++){
+    const v=S.riv[r];
+    if(!v.on)continue;
+    const y=SHD_Y0+r*SHD_CELL+SHD_CELL/2-3;
+    h+='<rect class="shd-hcard" data-row="'+r+'" x="'+(SHD_RVX-SHD_RVW/2)+'" y="'+(y-SHD_RVH/2)+'" width="'+SHD_RVW+'" height="'+SHD_RVH+'" rx="10"/>';
+  }
+  g.innerHTML=h;
+}
+function shdMarkCell(k,cls,ms){
+  const g=document.getElementById('shdTopG');
+  if(!g||!shdOK(k))return;
+  const c=shdC(k),r=shdR(k);
+  const el=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  el.setAttribute('class','shd-mark '+cls);
+  el.setAttribute('x',(SHD_X0+c*SHD_CELL+3));
+  el.setAttribute('y',(SHD_Y0+r*SHD_CELL+3));
+  el.setAttribute('width',SHD_CELL-6);
+  el.setAttribute('height',SHD_CELL-6);
+  el.setAttribute('rx',9);
+  g.appendChild(el);
+  setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms||900);
+}
+/* ---- 一次重画全场（一格一拍，重建 innerHTML 足够快） ---- */
+function shdBoard(){
+  const S=shd.S;
+  if(!S)return;
+  const c=document.getElementById('shdCellG');if(c)c.innerHTML=shdCells();
+  const ik=document.getElementById('shdInkG');if(ik)ik.innerHTML=shdInkLayer();
+  const rv=document.getElementById('shdRiverG');if(rv)rv.innerHTML=shdRiver();
+  const gh=document.getElementById('shdGhostG');if(gh)gh.innerHTML=shdGhosts();
+  const pl=document.getElementById('shdPlayerG');if(pl)pl.innerHTML=shdPlayer();
+  shdRoute();
+  shdHitLayer();
+}
+/* ---- 左上角：这个字的全貌 ---- */
+function shdMini(){
+  const S=shd.S,sv=document.getElementById('shdMiniSvg');
+  if(!sv||!shd.rec)return;
+  let h='<rect class="shd-miBox" x="32" y="32" width="960" height="960" rx="24"/>'+
+    '<line class="shd-miL" x1="512" y1="32" x2="512" y2="992"/><line class="shd-miL" x1="32" y1="512" x2="992" y2="512"/>'+
+    '<line class="shd-miL" x1="80" y1="80" x2="944" y2="944"/><line class="shd-miL" x1="944" y1="80" x2="80" y2="944"/>';
+  for(let k=0;k<shd.n;k++){
+    const g=shd.gly[k];
+    if(!g)continue;
+    const done=k<S.qi;
+    h+='<path d="'+g.d+'" fill="'+(done?SHD_INK[shdDn(g.dir)]:'none')+'" opacity="'+(done?1:0)+'" stroke="'+
+      (done?'none':(k===S.qi?'#FFF176':'rgba(255,255,255,.3)'))+'" stroke-width="'+(k===S.qi?26:14)+'" stroke-dasharray="26 20"/>';
+  }
+  if(S.carry>=0&&shd.gly[S.carry])h+='<path d="'+shd.gly[S.carry].d+'" fill="#FFF176" opacity=".9"/>';
+  sv.innerHTML='<g transform="translate(0,1024) scale(1,-1)">'+h+'</g>';
+  const cap=document.getElementById('shdMiniCap');
+  if(cap)cap.innerHTML='「'+shd.rec.ch+'」· 已落 '+S.qi+'/'+shd.n;
+}
+/* ---- 台下：已经印好的几笔 ---- */
+function shdTray(){
+  const S=shd.S,t=document.getElementById('shdTray');
+  if(!t)return;
+  let h='';
+  for(let k=0;k<S.n;k++){
+    const done=k<S.qi;
+    h+='<span class="shd-chip'+(done?' done':'')+(k===S.qi?' now':'')+(S.carry===k?' carry':'')+'">'+
+      (done?'<b>'+(k+1)+'</b>':'<i>'+(k+1)+'</i>')+
+      (done?SHD_DIRS[shdDn(shd.rec?shd.rec.dirs[k]:4)]:'&nbsp;')+'</span>';
+  }
+  h+='<span class="shd-chip gho">🕯 '+shdLiveGhosts()+'/'+(S.keep)+'</span>';
+  h+='<span class="shd-chip hit">🖤 糊 '+shd.hits+'</span>';
+  t.innerHTML=h;
+}
+/* ---- 顶部数字 ---- */
+function shdHudLight(){
+  const S=shd.S;
+  if(!S)return;
+  shd.hudTxt={score:Math.round(shd.score),lv:shd.lv,beat:S.beat,hearts:shd.hearts,
+    combo:shd.combo,act:S.qi+1,n:S.n,lits:S.qi,ghosts:shdLiveGhosts(),
+    sec:Math.max(0,Math.round(shd.clockSec)),steps:shd.steps,hits:shd.hits,carry:S.carry};
+}
+function shdSet2(id,v){const el=document.getElementById(id);if(el&&el.textContent!==v)el.textContent=v}
+function shdHud(){
+  const S=shd.S;
+  if(!S)return;
+  const R=shdRank(shdInt('hz_shade_words'));
+  shdSet2('shdRankTxt',R.e+' '+R.t);
+  let hh='';for(let i=0;i<Math.max(shd.hearts,1);i++)hh+=i<shd.hearts?'❤️':'🖤';
+  shdSet2('shdHeartTxt',hh);
+  shdSet2('shdComboTxt','🔥 连 '+shd.combo);
+  shdSet2('shdLitTxt','✅ '+S.qi+'/'+S.n+' 笔');
+  shdSet2('shdStepTxt','👣 '+shd.steps+' 步');
+  shdSet2('shdGhostTxt','🕯 '+shdLiveGhosts()+' 影');
+  shdSet2('shdHitTxt','🖤 糊 '+shd.hits);
+  shdSet2('shdBonTxt','🧧 '+shd.bons);
+  shdSet2('shdWrongTxt','👺 '+shd.wrongs);
+  shdSet2('shdScoreTxt','🎯 '+Math.round(shd.score)+' 分');
+  shdSet2('shdLvTxt','第 '+shd.lv+' 折 · 已收 '+shd.words+' 字');
+  shdSet2('shdBeatTxt','🥁 第 '+S.beat+' 拍');
+}
+function shdToolBtns(){
+  const s=function(id,n,on){
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.disabled=!on;
+    const b=el.querySelector('b');
+    if(b)b.textContent=n>0?('剩 '+n):'用完';
+  };
+  s('shdPrevBtn',shd.previewN,shd.previewN>0);
+  s('shdUndoBtn',shd.undoN,shd.undoN>0&&shd.hist.length>0);
+  s('shdReBtn',shd.reN,shd.reN>0);
+  s('shdRevealBtn',shd.revealN,shd.revealN>0);
+}
+function shdMeter(){
+  const S=shd.S,bar=document.getElementById('shdClockBar'),txt=document.getElementById('shdClockTxt'),
+    pow=document.getElementById('shdPowTxt');
+  if(!S||!bar)return;
+  const left=Math.max(0,shd.clockSec);
+  bar.style.width=(shdClamp(left/Math.max(1,shd.clockSec0),0,1)*100).toFixed(1)+'%';
+  if(txt)txt.textContent='🥁 还有 '+Math.round(left)+' 秒';
+  if(pow)pow.textContent=S.carry<0?('手里空的 · 该唱第 '+(S.qi+1)+' 笔'):('端着第 '+(S.carry+1)+' 笔 · 落位 '+shdNameOf(S.cell[S.carry]));
+  const tbl=document.getElementById('shdTbl');
+  if(tbl)tbl.classList.toggle('warn',left<=12&&left>0&&!tbl.classList.contains('dead'));
+}
+function shdAskText(){
+  const S=shd.S;
+  if(!S)return;
+  const el=document.getElementById('shdAsk');
+  if(!el)return;
+  if(S.carry>=0){
+    el.innerHTML='🖌 第 <b>'+(S.carry+1)+'</b> 笔要落在 <b>'+shdNameOf(S.cell[S.carry])+'</b><br><small>👣 点那一格就自己走过去 · 手里有墨时别踩进墨影的水路</small>';
+    return;
+  }
+  const row=S.slotOf[S.qi];
+  if(row==null||row<0){el.innerHTML='这一折 <b>唱完了</b><br><small>正在换下一个字</small>';return}
+  el.innerHTML='✋ 第 <b>'+(S.qi+1)+'</b> 笔挂在 <b>接笔台 '+SHD_O[row+1]+' 排</b><br><small>点左边那张牌就自己走过去捡 · 台上有 <b>'+shdLiveGhosts()+'</b> 个墨影正按拍子重演</small>';
+}
+function shdHint(){
+  const el=document.getElementById('shdHintLine');
+  if(!el||!shd.S)return;
+  const st=shdNextStep();
+  el.innerHTML='🎭 <b>一折只带一笔</b>：'+(st?shdStepSay(st):'这一折已经唱完');
+}
+function shdLine(){
+  const el=document.getElementById('shdTag');
+  if(el)el.innerHTML='';
+}
+function shdTag(t){
+  const el=document.getElementById('shdTag');
+  if(!el)return;
+  el.innerHTML=t;
+  el.classList.add('on');
+  shd.tagMs=SHD_TAG_MS;
+}
+function shdTblCls(cls,ms){
+  const el=document.getElementById('shdTbl');
+  if(!el)return;
+  el.classList.add(cls);
+  setTimeout(function(){el.classList.remove(cls)},ms||700);
+}
+/* ---- 特效 ---- */
+function shdFxHost(){return document.getElementById('shdFx')}
+function shdXYpc(x,y){return {l:(x/SHD_W*100).toFixed(2)+'%',t:(y/SHD_H*100).toFixed(2)+'%'}}
+function shdBits(x,y,col,n){
+  const host=shdFxHost();
+  if(!host)return;
+  const p=shdXYpc(x,y);
+  for(let i=0;i<(n||10);i++){
+    const b=document.createElement('i');
+    b.className='shd-bit';
+    b.style.left=p.l;b.style.top=p.t;b.style.background=col;
+    b.style.setProperty('--dx',((Math.random()*2-1)*54).toFixed(1)+'px');
+    b.style.setProperty('--dy',((Math.random()*2-1)*46-12).toFixed(1)+'px');
+    b.style.animationDelay=(Math.random()*0.09).toFixed(2)+'s';
+    host.appendChild(b);
+    setTimeout(function(){if(b.parentNode)b.parentNode.removeChild(b)},760);
+  }
+}
+function shdPopFx(x,y,txt,col){
+  const host=shdFxHost();
+  if(!host)return;
+  const p=shdXYpc(x,y);
+  const el=document.createElement('b');
+  el.className='shd-pop';
+  el.style.left=p.l;el.style.top=p.t;el.style.color=col||'#FFF176';
+  el.innerHTML=txt;
+  host.appendChild(el);
+  setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el)},900);
+}
+function shdCellFx(k,fn){
+  const p=shdXY(k);
+  fn(p.x,p.y);
+}
+function shdPop(k,txt,col){shdCellFx(k,function(x,y){shdPopFx(x,y-18,txt,col)})}
+function shdInkSplat(k,pen){
+  const p=shdXY(k);
+  shdBits(p.x,p.y,'#2B2B33',16);
+  shdBits(p.x,p.y,'#FF8A80',7);
+  shdPop(k,'🖤 −'+pen,'#FF8A80');
+  shdMarkCell(k,'hit',760);
+}
+function shdStampFx(k,gain,tidy){
+  const p=shdXY(k);
+  shdBits(p.x,p.y,'#FFF176',12);
+  shdPop(k,'+'+gain+(tidy>0?' ✨':''),'#69F0AE');
+  shdMarkCell(k,'stamp',820);
+}
+function shdStepFx(from,to,ink){
+  const a=shdXY(from),b=shdXY(to);
+  const host=shdFxHost();
+  if(!host)return;
+  const p=shdXYpc((a.x+b.x)/2,(a.y+b.y)/2);
+  const el=document.createElement('i');
+  el.className='shd-dust'+(ink?' ink':'');
+  el.style.left=p.l;el.style.top=p.t;
+  host.appendChild(el);
+  setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el)},620);
+}
+function shdShakeFx(){shdTblCls('shake',520)}
+function shdConfetti(){
+  const host=shdFxHost();
+  if(!host)return;
+  const cs=['#FFD54F','#69F0AE','#4FC3F7','#FF8A80','#E1BEE7'];
+  for(let i=0;i<26;i++){
+    const b=document.createElement('i');
+    b.className='shd-conf';
+    b.style.left=(4+Math.random()*92).toFixed(1)+'%';
+    b.style.background=cs[i%cs.length];
+    b.style.animationDelay=(Math.random()*0.5).toFixed(2)+'s';
+    b.style.setProperty('--rr',(Math.random()*720-360).toFixed(0)+'deg');
+    host.appendChild(b);
+    setTimeout(function(){if(b.parentNode)b.parentNode.removeChild(b)},1900);
+  }
+}
+/* ---- 拍钟与循环 ---- */
+function shdStartLoop(){shdStopLoop();shd.last=0;shd.rafId=requestAnimationFrame(shdLoop)}
+function shdStopLoop(){if(shd.rafId){cancelAnimationFrame(shd.rafId);shd.rafId=0}shd.last=0}
+function shdLoop(ts){
+  if(!shd.run||shd.over)return;
+  const dt=shd.last?Math.min(0.05,(ts-shd.last)/1000):0.016;
+  shd.last=ts;
+  shdTick(dt);
+  shd.rafId=requestAnimationFrame(shdLoop);
+}
+function shdTick(dt){
+  const S=shd.S;
+  shd.t+=dt;shd.playMs+=dt*1000;
+  if(!S||shd.over)return;
+  shd.beatMs+=dt*1000;
+  let guard=0;
+  while(shd.beatMs>=SHD_BEAT_MS&&guard<3){shd.beatMs-=SHD_BEAT_MS;guard++;shdBeat()}
+  /* 钟只在还走着的时候倒数：归零后天黑要等「天亮重新开场」的定时器，
+     这一秒里若继续按秒扣，每一拍都会再天黑一次，三颗心瞬间掉光 */
+  if(!S.done&&shd.clockSec>0){
+    const before=Math.ceil(shd.clockSec);
+    shd.clockSec-=dt;
+    shd.clock=shdClamp(shd.clockSec/Math.max(1,shd.clockSec0),0,1);
+    const now=Math.ceil(shd.clockSec);
+    if(now!==before&&now<=12&&now>0){shdTone(700,0.05,'square',0.07);shdMeter()}
+    if(shd.clockSec<=0){shd.clockSec=0;shd.clock=0;shdMeter();shdDark();return}
+  }
+  if(shd.tagMs>0){
+    shd.tagMs-=dt*1000;
+    if(shd.tagMs<=0){const el=document.getElementById('shdTag');if(el)el.classList.remove('on')}
+  }
+  if(shd.revealMs>0){shd.revealMs-=dt*1000;if(shd.revealMs<=0)shdRoute()}
+  if(shd.routeMs>0){shd.routeMs-=dt*1000;if(shd.routeMs<=0&&shd.routePts){shd.routePts=null;shdRoute()}}
+  if(shd.nextMs>0)shd.nextMs-=dt*1000;
+  if(shd.stampMs>0)shd.stampMs-=dt*1000;
+  shd.since+=dt*1000;
+  if(shd.since>=SHD_NAG_MS){shd.since=0;shdNag()}
+}
+/* ---- 一把同步：军师与验证脚本改完 S 之后调这个 ---- */
+function shdFlush(S){
+  if(!S)return;
+  shd.wantPick=S.carry<0?S.slotOf[S.qi]:-1;
+  shd.actSteps=0;
+  shd.since=0;
+  shdBoard();shdHud();shdHudLight();shdMeter();shdMini();shdTray();shdAskText();shdHint();shdToolBtns();
+}
+/* ---- 输入：键盘 ---- */
+function shdBind(){
+  if(shd.bound)return;
+  shd.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='shade'||!shd.run||shd.over)return;
+    const k=e.key,K=String(k||'').toLowerCase();
+    if(K==='escape'){shd.routePts=null;shdRoute();return}
+    if(K==='arrowleft'||K==='arrowright'||K==='arrowup'||K==='arrowdown'){
+      if(e.repeat)return;
+      shdWalkDir(K==='arrowleft'?-1:(K==='arrowright'?1:0),K==='arrowup'?-1:(K==='arrowdown'?1:0));
+      e.preventDefault();return;
+    }
+    if(K>='1'&&K<='7'){
+      if(e.repeat)return;
+      shdPick(parseInt(K,10)-1);
+      e.preventDefault();return;
+    }
+    if(K==='enter'||k===' '||K==='s'){if(!e.repeat)shdStamp();e.preventDefault();return}
+    if(K==='w'){if(!e.repeat)shdGoPick();return}
+    if(K==='q'){if(!e.repeat)shdPreview();return}
+    if(K==='r'){if(!e.repeat)shdUndo();return}
+    if(K==='t'){if(!e.repeat)shdReshuffle();return}
+    if(K==='f'){if(!e.repeat)shdReveal();return}
+    if(K==='?'||K==='h'){if(!e.repeat)shdHelp();return}
+  });
+}
+function shdGoPick(){
+  const S=shd.S;
+  if(!S||!shd.run||shd.over)return false;
+  if(S.carry>=0)return shdStamp();
+  const row=S.slotOf[S.qi];
+  if(row<0)return false;
+  return shdPick(row);
+}
+/* ---- 输入：鼠标 / 手指 ---- */
+function shdSvgPoint(ev){
+  const svg=document.getElementById('shdSvg');
+  if(!svg)return null;
+  const r=svg.getBoundingClientRect();
+  if(!r.width||!r.height)return null;
+  return {x:(ev.clientX-r.left)/r.width*SHD_W,y:(ev.clientY-r.top)/r.height*SHD_H};
+}
+function shdCellAtPoint(x,y){
+  const c=Math.floor((x-SHD_X0)/SHD_CELL),r=Math.floor((y-SHD_Y0)/SHD_CELL);
+  if(c<0||c>=SHD_COLS||r<0||r>=SHD_ROWS)return -1;
+  return shdIdx(c,r);
+}
+function shdRowAtPoint(x,y){
+  if(x>=SHD_X0)return -1;
+  const r=Math.floor((y-SHD_Y0)/SHD_CELL);
+  if(r<0||r>=SHD_ROWS)return -1;
+  return r;
+}
+function shdPointer(){
+  if(shd.ptrBound)return;
+  shd.ptrBound=1;
+  const g=document.getElementById('shdHitG');
+  if(!g)return;
+  g.addEventListener('click',function(ev){
+    if(!shd.run||shd.over)return;
+    const card=ev.target.closest?ev.target.closest('[data-row]'):null;
+    if(card){shdPick(+card.getAttribute('data-row'));return}
+    const cell=ev.target.closest?ev.target.closest('[data-cell]'):null;
+    if(cell){shdWalkTo(+cell.getAttribute('data-cell'),true);return}
+    const p=shdSvgPoint(ev);
+    if(!p)return;
+    const row=shdRowAtPoint(p.x,p.y);
+    if(row>=0){shdPick(row);return}
+    const k=shdCellAtPoint(p.x,p.y);
+    if(k>=0)shdWalkTo(k,true);
+  });
+}
+
+/* ================= v1.84 笔顺影子戏 · E：生命周期 / 催场 / 帮助 / 测试钩子 ================= */
+function shdStopAll(){
+  shdStopLoop();shdKillTimers();shd.gen++;
+  shd.tagMs=0;shd.revealMs=0;shd.nextMs=0;shd.stampMs=0;shd.routeMs=0;shd.routePts=null;
+  shd.beatMs=0;shd.warn=false;
+}
+function shdInstall(r){
+  shd.S=r.S;shd.sol=r;
+  shd.clockSec=r.sec;shd.clockSec0=r.sec;shd.clock=1;shd.warn=false;shd.beep=0;
+  shd.hist=[];shd.since=0;shd.actSteps=0;shd.wantPick=-1;shd.wantStamp=0;
+  shd.beatMs=0;shd.routePts=null;shd.revealMs=0;
+  shd.keepOf=r.S.keep;
+  shdFlush(r.S);
+  return r;
+}
+async function shdStart(){
+  shdStopAll();
+  const g=shd.gen;
+  const stale=function(){return g!==shd.gen||!shd.run||shd.over};
+  shd.run=true;shd.over=false;
+  shd.timers=[];
+  shd.lv=1;shd.score=0;shd.hearts=SHD_HEARTS;shd.combo=0;shd.maxCombo=0;
+  shd.words=0;shd.lits=0;shd.steps=0;shd.picks=0;shd.stamps=0;shd.hits=0;shd.wrongs=0;
+  shd.orders=0;shd.deads=0;shd.bons=0;shd.stolen=0;shd.reds=0;shd.acts=0;shd.detour=0;
+  shd.previewN=2;shd.undoN=3;shd.reN=1;shd.revealN=1;
+  shd.previews=0;shd.rewinds=0;shd.reshuf=0;shd.reveals=0;shd.nags=0;
+  shd.think=0;shd.playMs=0;shd.t=0;shd.hudTxt={};
+  shd.pool=[];shd.miss=[];shd.rec=null;shd.n=0;shd.gly=[];shd.S=null;
+  shd.clock=1;shd.clockSec=45;shd.clockSec0=45;shd.warn=false;shd.beep=0;
+  shd.cleanWord=true;shd.failWord=0;shd.hist=[];shd.cur=-1;shd.sol=null;shd.lastWhy='';
+  showScreen('shade');
+  shdBind();shdPointer();
+  shdRenderStatic();shdHud();shdMeter();shdLine();
+  shdSay('眼前是 <b>一间影子戏台</b>：左边 <b>笔河</b> 的架子上挂着这个字剩下的笔（<b>①~⑦ 是排号</b>），台上 <b>七乘七的米字格</b> 就是这个字本来的模样。<b>一折只带一笔</b>：走到 <b>🪜 接笔台</b> 捡起该唱那一笔，再走到它 <b>真正的落位</b>（格子里那道 <b>虚笔影</b>）按落笔。<b>一格吃一拍</b>，而 <b>你上一折走过的水路，下一折会变成墨影原路重演</b> —— 手里端着墨 <b>撞上它就糊一手</b>');
+  let ok=await shdBuildPool();
+  if(stale())return;
+  if(!ok){
+    shdSay('🎭 幕布还没拉开，再等一记……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await shdBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!shd.pool.length){
+    shd.run=false;
+    shdSet('shdAsk','😢 字库没加载好<br><small>稍后再来唱戏</small>');
+    shdSay('先去别的模式练两笔，回来字就齐了','#FFCC80');
+    return;
+  }
+  shdAdd('hz_shade_games',1);
+  shdNewWord();
+  if(!shd.S||!shd.run||shd.over||stale()){
+    shd.run=false;
+    shdSet('shdAsk','😢 台面没摆好<br><small>稍后再来唱戏</small>');
+    return;
+  }
+  shdStartLoop();
+}
+function shdNewWord(){
+  const rec=shdPickRec();
+  if(!rec){shdSay('😢 字库里挑不出 <b>落位摆得开</b> 的字：这一局先结算','#FFCC80');shdT(function(){shdEnd('pool')},500);return}
+  shd.rec=rec;shd.n=rec.n;shd.gly=shdGlyOf(rec);
+  const r=shdGen(rec,shd.lv,0);
+  if(!r){
+    shdSay('😢 「'+rec.ch+'」<b>台面摆不开</b>（'+(shd.lastWhy||'')+'）：换一个','#FFCC80');
+    shdAdd('hz_shade_badgen',1);
+    const alt=shd.pool.filter(function(x){return x&&x.ch!==rec.ch});
+    for(let i=0;i<alt.length;i++){
+      shd.rec=alt[i];shd.n=alt[i].n;shd.gly=shdGlyOf(alt[i]);
+      const r2=shdGen(alt[i],shd.lv,0);
+      if(r2){shdInstall(r2);shdStartLoop();return}
+    }
+    shdT(function(){shdEnd('gen')},500);
+    return;
+  }
+  shdInstall(r);
+  shd.cleanWord=true;shd.failWord=0;
+}
+/* ---- 整字唱完 ---- */
+function shdWin(){
+  const S=shd.S,n=S.n,clean=shd.cleanWord;
+  if(!S||!shd.rec)return;
+  const gain=26+n*6+shd.lv*6+shd.bons*2+(clean?SHD_CLEAN_BONUS:0);
+  shd.score+=gain;
+  shd.words++;shd.lits+=0;
+  shdAdd('hz_shade_words',1);shdAdd('hz_shade_wins',1);
+  shdBookAdd(shd.rec.ch);shdMissDel(shd.rec.ch);
+  const oldLv=shd.lv;
+  shd.lv=shdLvOf(shd.words);
+  let up='';
+  if(shd.lv>oldLv){
+    shd.previewN++;shd.undoN++;shd.reN++;shd.revealN++;
+    up=' 🎉 <b>升第 '+shd.lv+' 折</b>：预览 / 倒带 / 重摆 / 影子预告 各补 1 次';
+  }
+  if(shd.words%3===0&&shd.hearts<SHD_HEART_MAX){
+    shd.hearts++;
+    up+=' ❤️ 补一颗心（每 3 个字补 1 颗，最多 '+SHD_HEART_MAX+' 颗）';
+  }
+  shdTone(523,0.12,'triangle',0.2);shdTone(659,0.12,'triangle',0.18);shdTone(784,0.2,'sine',0.16);
+  shdConfetti();
+  shdTag('🎭 唱完「'+shd.rec.ch+'」');
+  shdSay('🎭 <b>「'+shd.rec.ch+'」整个字在台上亮起来了</b> +'+gain+' 分（<b>'+(clean?'一折都没糊、没拿错':'有折糊过手')+'</b>'+(clean?'，多给 '+SHD_CLEAN_BONUS+'':'')+'）'+up,
+    '#69F0AE');
+  shdHud();shdBoard();shdMini();shdTray();
+  shdT(function(){if(shd.run&&!shd.over)shdNewWord()},SHD_NEXT_MS);
+}
+/* ---- 结算 ---- */
+function shdEnd(reason){
+  if(shd.over)return;
+  shd.over=true;shd.run=false;
+  shdStopAll();
+  const sc=Math.round(shd.score);
+  localStorage.setItem('hz_shade_best',String(Math.max(shd.words,shdInt('hz_shade_best'))));
+  localStorage.setItem('hz_shade_score',String(Math.max(sc,shdInt('hz_shade_score'))));
+  localStorage.setItem('hz_shade_streak',String(Math.max(shd.maxCombo,shdInt('hz_shade_streak'))));
+  localStorage.setItem('hz_shade_lv',String(Math.max(shd.lv,shdInt('hz_shade_lv'))));
+  localStorage.setItem('hz_shade_detour',String(Math.max(shd.detour,shdInt('hz_shade_detour'))));
+  const stars=Math.floor(sc/120)+shd.words*3;
+  if(stars>0)addStars(stars);
+  showScreen('shade-result');
+  const R=shdRank(shdInt('hz_shade_words'));
+  const T={
+    hearts:['🎭','幕布落了，心也用完','<b>天黑</b> 和 <b>连错三次脏笔</b> 才掉心：动手前先看 <b>墨影走到哪一格</b>，等它退场再走'],
+    quit:['🏁','今天收工了','下次记着 <b>一折只带一笔</b>：把 <b>上一折的水路</b> 记在心里，绕开它就不糊'],
+    pool:['😢','字没挑好','影子戏要 <b>每一笔落位都摆得开</b> 的字，先去别的模式练两笔'],
+    gen:['😢','台面没摆好','这一折的箱子堵死了水路 —— 换个字再唱一次']
+  };
+  const t=T[reason]||T.quit;
+  shdSet('shdRsEmoji',t[0]);
+  shdSet('shdRsTitle',reason==='pool'||reason==='gen'?t[1]:(reason==='hearts'?(shd.words?'心丢了 · 已唱好 '+shd.words+' 个字':t[1]):t[1]));
+  shdSet('shdRsSub',t[2]);
+  shdSet('shdRsScore',String(sc));
+  shdSet('shdRsWords',String(shd.words));
+  shdSet('shdRsLit',String(shd.lits));
+  shdSet('shdRsLv',String(shd.lv));
+  shdSet('shdRsStreak',String(shd.maxCombo));
+  shdSet('shdRsMiss',shd.hits+' / '+shd.wrongs+' / '+shd.deads);
+  shdSet('shdRsStars','⭐ '+stars);
+  shdSet('shdRsBest',String(shdInt('hz_shade_best')));
+  shdSet('shdRsAll2',String(shdInt('hz_shade_words')));
+  shdSet('shdRsAll','🏅 '+R.e+' '+R.t+' · 累计唱齐 '+shdInt('hz_shade_words')+' 个字\n'+
+    '👣 走了 '+shdInt('hz_shade_steps')+' 步 · ✋ 捡笔 '+shdInt('hz_shade_picks')+' 张 · 🖌 落笔 '+shdInt('hz_shade_stamps')+' 笔 · 🎭 唱了 '+shdInt('hz_shade_acts')+' 折\n'+
+    '🖤 糊一手墨 '+shdInt('hz_shade_hits')+' 回 · 👺 脏手 '+shdInt('hz_shade_wrongs')+' 次 · 🎫 拿错戏票 '+shdInt('hz_shade_orders')+' 回 · 🌘 天黑 '+shdInt('hz_shade_deads')+' 阵\n'+
+    '🧧 抢到彩头 '+shdInt('hz_shade_bons')+' 个 · 被墨影抢走 '+shdInt('hz_shade_stolen')+' 个\n'+
+    '👀 预览 '+shdInt('hz_shade_previews')+' 次 · 🔄 倒带 '+shdInt('hz_shade_rewinds')+' 次 · 🔁 重摆 '+shdInt('hz_shade_reshuffles')+' 回 · 🕯 影子预告 '+shdInt('hz_shade_reveals')+' 回\n'+
+    '🐢 一局绕最多 '+shdInt('hz_shade_detour')+' 步冤枉路 · 🎭 换过 '+shdInt('hz_shade_badgen')+' 个字 · 最高玩到第 '+shdInt('hz_shade_lv')+' 折');
+  const book=shdBook();
+  shdSet('shdRsBookT',book.length?('📜 影子戏档案 · 已唱齐 '+book.length+' 个字'):'');
+  const bh=document.getElementById('shdRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+  shdMeter();
+}
+function shdRetry(){shdStart()}
+function shdLeave(){
+  shdStopAll();
+  if(shd.run&&!shd.over){shd.over=true;shd.run=false}
+  goHome();
+}
+function shdNudge(){
+  const dot=document.getElementById('shdCardDot'),tip=document.getElementById('shdCardTip');
+  const w=shdInt('hz_shade_words'),games=shdInt('hz_shade_games');
+  const R=shdRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 唱齐 '+w+' 个字 · 走过 '+shdInt('hz_shade_steps')+' 步 · 糊过 '+shdInt('hz_shade_hits')+' 回手墨'):'一间影子戏台：一折只带一笔，走到落位才落得下。你上一折走过的水路，下一折会变成墨影原路重演 —— 手里有墨撞上它就糊一手';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+/* ---- 发呆催场 ---- */
+function shdNag(){
+  if(!shd.rec||!shd.S||shd.S.done)return;
+  const S=shd.S;
+  shd.nags++;
+  shdTone(620,0.08,'sine',0.06);
+  const st=shdNextStep();
+  if(!st){shdSay('🐰 军师 <b>找不出下一步</b>：按 <b>🔁 重摆</b> 把台面挪一挪（还剩 '+shd.reN+' 次）','#FFF176');return}
+  const live=shdLiveGhosts();
+  let near=-1,nearD=1e9;
+  for(let i=0;i<S.gho.length;i++){
+    const c=shdGhostAt(S,S.gho[i]);
+    if(c<0)continue;
+    const d=shdDist(S,c,S.pc);
+    if(d<nearD){nearD=d;near=c}
+  }
+  shdMarkCell(S.pc,'nag',1100);
+  if(st.cell!==undefined&&st.cell>=0)shdMarkCell(st.cell,'plan',1100);
+  shdSay('🐰 该唱的是「<b>'+SHD_DIRS[shdDn(shd.rec.dirs[Math.min(S.qi,S.n-1)])]+' '+SHD_ARW[shdDn(shd.rec.dirs[Math.min(S.qi,S.n-1)])]+'</b>」第 '+(S.qi+1)+' 笔'+
+    (S.carry>=0?'：<b>手里正端着</b>，落位在 <b>'+shdNameOf(S.cell[S.carry])+'</b>':'：<b>还挂在接笔台 '+SHD_O[(S.slotOf[S.qi]||0)+1]+' 排</b>')+
+    '<br>👣 脚下 <b>'+shdNameOf(S.pc)+'</b> · '+(live?('🕯 台上 <b>'+live+'</b> 个墨影'+(near>=0?('，最近的一个在 <b>'+shdNameOf(near)+'</b>（差 '+nearD+' 步）'):'')):'🕯 台上 <b>没有墨影</b>（都退场了）')+
+    '<br>👉 军师下一步：<b>'+shdStepSay(st)+'</b>'+
+    (S.bon.on?' · 🧧 彩头在 <b>'+shdNameOf(S.bon.cell)+'</b>':'')+
+    ' · 🖤 已经糊过 <b>'+shd.hits+'</b> 回 · 🥁 现在第 <b>'+S.beat+'</b> 拍','#FFF176');
+}
+/* ---- 说明书 ---- */
+function shdHelp(){
+  const S=shd.S;
+  if(!S||!shd.rec){shdSay('🎭 正在摆台，稍等一下再问怎么玩','#B3E5FC');return}
+  let live=0,longest=0;
+  for(let i=0;i<S.gho.length;i++){
+    if(S.gho[i].gone)continue;
+    live++;longest=Math.max(longest,S.gho[i].path.length);
+  }
+  shdSay('🎭 台上是 <b>七乘七的米字戏台</b>（左边第 0 列是 <b>🪜 接笔台</b>，'+SHD_O[1]+'~'+SHD_O[SHD_ROWS]+' 是排号；台面按 <b>①~'+SHD_O[SHD_COLS-1]+' 列</b> 编号），<b>整块台面就是这个字本来的模样</b>：还没落的笔在它的真实落位上留着一道 <b>虚笔影</b>，落下的笔就 <b>按真位置染上墨</b><br>'+
+    '✋ <b>一折只带一笔</b>：点左边 <b>笔河</b> 的牌（或按 <code>1~'+SHD_ROWS+'</code>）就自己走到那一排的 <b>接笔台</b> 伸手捡；牌上写着 <b>第几笔 · 什么方向 · 落在第几列第几排</b>。手里已经端着笔时 <b>再捡就是白捡</b>；<b>拿错顺序</b> 扣 '+SHD_ORDER_PEN+' 分断连击（牌还在架上）；👺 <b>脏笔</b>（写着 <b>?</b>）扣 '+SHD_JUNK_PEN+' 分、牌掉下架，<b>连错 '+SHD_WRONG_MAX+' 次掉一颗心</b><br>'+
+    '🥁 <b>一拍 '+(SHD_BEAT_MS/1000)+' 秒，走一格吃一拍</b>：点哪一格就往哪走（<b>自动找最短水路</b>，<code>←↑→↓</code> 一步一格）；🪑 <b>戏箱</b> 走不进也压不住落位；🖌 <b>墨坑</b> 踩上去 <b>这一拍陷住</b> 不动<br>'+
+    '🕯 <b>墨影</b>：一落笔，你这一折走过的水路就 <b>变成一个墨影</b>，下一折 <b>从第一拍起原路重演</b>（第 <b>'+(S.beat-S.actBeat)+'</b> 拍 · 走完 <b>'+longest+' 拍</b> 的水路再淡 <b>'+SHD_FADE+' 拍</b> 退场）。台上同时留着 <b>'+shdKeepOf(shd.lv)+'</b> 个影子（第 3 折起 2 个、第 7 折起 3 个）—— <b>手里有墨时踩进它当前那一格就 🖤 糊一手墨</b>：扣 '+SHD_HIT_PEN+' 分、断连击、笔 <b>掉回架上</b>（<b>不掉心</b>，但白走一趟）；空手撞上去 <b>不算</b><br>'+
+    '🖌 <b>落笔</b>：走到 <b>这一笔的落位</b>（虚笔影那格）按 <code>空格</code>；<b>墨影正踩在这一格</b> 时落不下去，等它退场。<b>绕路的代价</b>：这一折走了 <b>'+shd.actSteps+'</b> 步，军师最短要 <b>'+shdLegPar(Math.max(0,S.qi))+'</b> 步 —— 绕得少 <b>每省一步多 2 分</b>（上限 '+(4+shdKeepOfAct()*2)+' 步）<br>'+
+    '🧧 <b>彩头</b>（第 5 折起）：台上某一格摆一个彩头，<b>谁先踩到归谁</b> —— 墨影也照自己的水路去捡，被它抢走就没了<br>'+
+    '🕴 <b>串台名角</b>(第 7 折起):不是你的影子，按 <b>固定一圈</b> 来回巡逻，撞上同样糊一手墨<br>'+
+    '⏱ <b>天黑钟</b>：军师先把这一场 <b>从头按拍走一遍</b>（他自己走完要 <b>'+((shd.sol&&shd.sol.beats)||0)+' 拍</b>，<b>撞影走回去重捡、原地等影子退场全算在里面</b>），再按这个拍数发你 <b>'+shd.clockSec0+' 秒</b>；最后 12 秒 <b>台面边发红</b>、每秒一记鼓；走光 <b>天黑</b>：掉一颗心、<b>已经落下的笔一笔不抹</b>，剩下的笔重新上架、人退回台口<br>'+
+    '👀 <b>预览</b>（<code>Q</code>，剩 '+shd.previewN+' 次）把军师的水路（先走到架上、再走到落位）画成虚线；🕯 <b>影子预告</b>（<code>F</code>，剩 '+shd.revealN+' 次）把台上所有墨影的水路整条画出来；🔄 <b>倒带</b>（<code>R</code>，剩 '+shd.undoN+' 次）退回上一次 <b>走 / 捡 / 落</b> 之前，拍号格子一模一样还原；🔁 <b>重摆</b>（<code>T</code>，剩 '+shd.reN+' 次）剩下的笔重新上架、箱子彩头换个位置 —— <b>升一折各补 1 次</b><br>'+
+    '📈 <b>落一笔</b> 吃 <code>round((11 + 第几笔×2 + 折数×3) × (1 + 连击×0.06))</code>，绕得少加 <code>省一步 2 分</code>，钟还剩一大半再多 <code>round(余量×6)</code>；<b>整个字唱齐</b>：<code>26 + 笔数×6 + 折数×6 + 彩头×2</code>，<b>一折都没糊没拿错再多 '+SHD_CLEAN_BONUS+'</b>；<b>每 2 个字升 1 折</b>（最多 9 折）、<b>每 3 个字补一颗心</b>（最多 '+SHD_HEART_MAX+' 颗）<br>'+
+    '👀 发呆 '+(SHD_NAG_MS/1000)+' 秒 🐰 报「<b>该唱那一笔挂在第几排</b>、<b>最近的墨影差几步</b>、军师下一步」· 战绩落盘 <code>hz_shade_*</code>','#C5E1A5');
+}
+
+/* ================= v1.84 笔顺影子戏 · F：测试钩子 ================= */
+window.SHD={COLS:SHD_COLS,ROWS:SHD_ROWS,CELL:SHD_CELL,X0:SHD_X0,Y0:SHD_Y0,GX:SHD_GX,GY:SHD_GY,GS:SHD_GS,
+  BT:SHD_BEAT_MS,FADE:SHD_FADE,W:SHD_W,H:SHD_H,GN:SHD_GEN_TRY,CAP:SHD_BEAT_CAP,HM:SHD_HIST_MAX,
+  HIT:SHD_HIT_PEN,JUNK:SHD_JUNK_PEN,ORDER:SHD_ORDER_PEN,CLEAN:SHD_CLEAN_BONUS,WMAX:SHD_WRONG_MAX,
+  BON:SHD_BON_GAIN,NAG:SHD_NAG_MS,TAG:SHD_TAG_MS,REV:SHD_REVEAL_MS,NMS:SHD_NEXT_MS,SMS:SHD_STAMP_MS,
+  SECMIN:SHD_SEC_MIN,PAD:SHD_SEC_PAD,HEART:SHD_HEARTS,HMAX:SHD_HEART_MAX,SMax:SHD_STROKE_MAX,
+  RIVX:SHD_RVX,RVW:SHD_RVW,RVH:SHD_RVH};
+window.swdSnap=function(){
+  const S=shd.S;
+  return {run:shd.run?1:0,over:shd.over?1:0,screen:(document.querySelector('.screen.active')||{}).id||'',
+    lv:shd.lv,score:Math.round(shd.score),hearts:shd.hearts,combo:shd.combo,maxCombo:shd.maxCombo,
+    words:shd.words,lits:shd.lits,steps:shd.steps,hits:shd.hits,wrongs:shd.wrongs,orders:shd.orders,
+    deads:shd.deads,bons:shd.bons,stolen:shd.stolen,acts:shd.acts,detour:shd.detour,
+    clean:shd.cleanWord?1:0,failWord:shd.failWord,nags:shd.nags,
+    ch:shd.rec?shd.rec.ch:'',n:shd.n,previewN:shd.previewN,undoN:shd.undoN,reN:shd.reN,revealN:shd.revealN,
+    hist:shd.hist.length,sec:+shd.clockSec.toFixed(3),sec0:shd.clockSec0,clock:+shd.clock.toFixed(4),
+    beatMs:Math.round(shd.beatMs),tagMs:Math.round(shd.tagMs),revealMs:Math.round(shd.revealMs),
+    nextMs:Math.round(shd.nextMs),route:shd.routePts?shd.routePts.length:0,
+    S:S?{beat:S.beat,qi:S.qi,carry:S.carry,pc:S.pc,keep:S.keep,done:S.done,queue:S.queue.slice(),
+      stuck:S.stuck,moved:S.moved,trail:S.trail.slice(),cell:S.cell.slice(),slotOf:S.slotOf.slice(),
+      box:S.box.slice(),ink:S.ink.slice(),bon:{cell:S.bon.cell,on:S.bon.on},
+      gho:S.gho.map(function(g){return {len:g.path.length,start:g.start,gone:g.gone,path:g.path.slice()}}),
+      pat:S.pat.map(function(p){return {path:p.path.slice(),off:p.off}}),
+      riv:S.riv.map(function(v){return {on:v.on,k:v.k,fgn:v.fgn}})}:null};
+};
+window.swdDom=function(){
+  const q=function(s){return document.querySelectorAll(s).length};
+  const t=function(id){const e=document.getElementById(id);return e?e.textContent:''};
+  const tbl=document.getElementById('shdTbl');
+  return {card:q('#shdRiverG .shd-card'),hcard:q('#shdHitG [data-row]'),drop:q('#shdCellG .shd-drop'),
+    now:q('#shdCellG .shd-drop.now'),box:q('#shdCellG .shd-box'),pit:q('#shdCellG .shd-inkPit'),
+    bon:q('#shdCellG .shd-bon'),fig:q('#shdGhostG .shd-fig'),gho:q('#shdGhostG .shd-fig.gho'),
+    pat:q('#shdGhostG .shd-fig.pat'),fade:q('#shdGhostG .shd-fig.fade'),me:q('#shdPlayerG .shd-fig.me'),
+    carry:q('#shdPlayerG .shd-carry'),hcell:q('#shdHitG [data-cell]'),
+    chipDone:q('#shdTray .shd-chip.done'),chipNow:q('#shdTray .shd-chip.now'),chipCarry:q('#shdTray .shd-chip.carry'),
+    ink:q('#shdInkG path'),rline:q('#shdRouteG .shd-rLine'),gline:q('#shdRouteG .shd-gLine'),
+    mark:q('#shdTopG .shd-mark'),markNag:q('#shdTopG .shd-mark.nag'),markPlan:q('#shdTopG .shd-mark.plan'),
+    bit:q('.shd-bit'),pop:q('.shd-pop'),conf:q('.shd-conf'),dust:q('.shd-dust'),
+    warn:tbl?tbl.classList.contains('warn'):false,
+    dead:tbl?tbl.classList.contains('dead'):false,
+    tagOn:!!(document.getElementById('shdTag')||{}).classList&&document.getElementById('shdTag').classList.contains('on'),
+    scoreTxt:t('shdScoreTxt'),lvTxt:t('shdLvTxt'),beatTxt:t('shdBeatTxt'),litTxt:t('shdLitTxt'),
+    heartTxt:t('shdHeartTxt'),ghostTxt:t('shdGhostTxt'),hitTxt:t('shdHitTxt'),stepTxt:t('shdStepTxt'),
+    comboTxt:t('shdComboTxt'),rankTxt:t('shdRankTxt'),bonTxt:t('shdBonTxt'),wrongTxt:t('shdWrongTxt'),
+    clockTxt:(document.getElementById('shdClockTxt')||{}).textContent||'',
+    powTxt:(document.getElementById('shdPowTxt')||{}).textContent||'',
+    ask:(document.getElementById('shdAsk')||{}).innerHTML||'',
+    hint:(document.getElementById('shdHintLine')||{}).innerHTML||'',
+    msg:(document.getElementById('shdMsg')||{}).innerHTML||'',
+    mini:(document.getElementById('shdMiniCap')||{}).innerHTML||'',
+    miniPaths:q('#shdMiniSvg path'),
+    active:(document.querySelector('.screen.active')||{}).id||''};
+};
+window.swdBtn=function(){
+  const b=function(id){const e=document.getElementById(id);return e?{dis:!!e.disabled,txt:e.textContent}:null};
+  return {prev:b('shdPrevBtn'),undo:b('shdUndoBtn'),re:b('shdReBtn'),reveal:b('shdRevealBtn'),
+    take:b('shdTakeBtn'),stamp:b('shdStampBtn'),end:b('shdEndBtn')};
+};
+function swdChain(path){
+  /* 原地等影子退场也算一拍：水路里连着两格相同是合法的，只不许跨格跳 */
+  for(let i=1;i<path.length;i++){
+    const a=path[i-1],b=path[i];
+    const d=Math.abs(shdC(a)-shdC(b))+Math.abs(shdR(a)-shdR(b));
+    if(d>1)return '第'+i+'步不挨着';
+  }
+  return '';
+}
+window.swdInv=function(){
+  const S=shd.S,bad=[];
+  if(!S)return {ok:0,bad:['还没有台面']};
+  const seen={};
+  for(let i=0;i<S.cell.length;i++){
+    const k=S.cell[i];
+    if(seen[k])bad.push('落位重格 '+k);
+    seen[k]=1;
+    if(shdC(k)<1)bad.push('落位压到接笔台 '+k);
+    if(shdHas(S.box,k))bad.push('戏箱压住落位 '+k);
+  }
+  if(S.cell.length!==S.n)bad.push('落位数 '+S.cell.length+' 不等于 '+S.n);
+  if(shdBlockAt(S,S.pc))bad.push('人站在戏箱里');
+  if(S.carry>=0&&S.carry!==S.qi)bad.push('手里 '+S.carry+' 不等于该唱 '+S.qi);
+  if(S.done!==(S.qi>=S.n?1:0))bad.push('done 与 qi 不符');
+  if(S.queue.length){
+    if(swdChain([S.pc].concat(S.queue)))bad.push('队列不相邻');
+    for(let i=0;i<S.queue.length;i++)if(shdBlockAt(S,S.queue[i]))bad.push('队列穿戏箱');
+  }
+  if(S.trail.length!==S.beat-S.actBeat+1)bad.push('水路记录 '+S.trail.length+' 不等于 '+(S.beat-S.actBeat+1));
+  for(let i=0;i<S.gho.length;i++){
+    const g=S.gho[i];
+    if(!g.path.length)bad.push('影子空水路');
+    if(swdChain(g.path))bad.push('影子水路不相邻');
+    for(let q=0;q<g.path.length;q++)if(shdBlockAt(S,g.path[q]))bad.push('影子穿戏箱');
+    if(g.start!==S.actBeat)bad.push('影子起拍 '+g.start+' 不等于本折 '+S.actBeat);
+  }
+  if(S.gho.length>S.keep)bad.push('影子 '+S.gho.length+' 超过保留 '+S.keep);
+  for(let i=0;i<S.pat.length;i++){
+    const p=S.pat[i];
+    if(p.path.length<4)bad.push('巡逻圈太短');
+    if(swdChain(p.path))bad.push('巡逻不相邻');
+    for(let q=0;q<p.path.length;q++){
+      if(shdBlockAt(S,p.path[q]))bad.push('巡逻穿戏箱');
+      if(shdHas(S.cell,p.path[q]))bad.push('巡逻压落位');
+      if(shdC(p.path[q])===0)bad.push('巡逻走上接笔台');
+    }
+  }
+  if(S.bon.on){
+    if(shdHas(S.box,S.bon.cell))bad.push('彩头压箱子');
+    if(shdHas(S.cell,S.bon.cell))bad.push('彩头压落位');
+    if(shdC(S.bon.cell)<1)bad.push('彩头在接笔台');
+  }
+  for(let k=S.qi;k<S.n;k++){
+    const row=S.slotOf[k];
+    if(row<0){bad.push('第'+(k+1)+'笔没上架');continue}
+    const on=S.riv[row].on;
+    if(!(on||(S.carry===k)))bad.push('第'+(k+1)+'笔既不在架上也没在手里');
+    if(on&&S.riv[row].k!==k)bad.push('架位串笔');
+  }
+  for(let k=0;k<S.qi;k++){
+    const row=S.slotOf[k];
+    if(row>=0&&S.riv[row].on&&S.riv[row].k>=0)bad.push('落过的笔还在架上');
+  }
+  if(shd.score<0)bad.push('分数变负');
+  if(shd.hearts<0||shd.hearts>SHD_HEART_MAX)bad.push('心数越界');
+  if(shd.clockSec>shd.clockSec0+0.001)bad.push('钟超过发的那点');
+  if(S.keep!==shdKeepOf(shd.lv))bad.push('保留折数 '+S.keep+' 不等于 '+shdKeepOf(shd.lv));
+  return {ok:bad.length?0:1,bad:bad};
+};
+window.swdBad=function(){
+  const S=shd.S,out=[];
+  if(!S)return [];
+  let on=0;
+  for(let r=0;r<SHD_ROWS;r++)if(S.riv[r].on)on++;
+  if(document.querySelectorAll('#shdRiverG .shd-card').length!==on)out.push('笔河牌画多了或少了');
+  if(document.querySelectorAll('#shdHitG [data-row]').length!==on)out.push('牌点不配套');
+  if(document.querySelectorAll('#shdCellG .shd-drop').length!==S.n-S.qi)out.push('落位虚格不齐');
+  if(document.querySelectorAll('#shdCellG .shd-box').length!==S.box.length)out.push('戏箱不齐');
+  if(document.querySelectorAll('#shdCellG .shd-inkPit').length!==S.ink.length)out.push('墨坑不齐');
+  if((document.querySelectorAll('#shdCellG .shd-bon').length?1:0)!==(S.bon.on?1:0))out.push('彩头不齐');
+  if(document.querySelectorAll('#shdTray .shd-chip.done').length!==S.qi)out.push('戏单不齐');
+  if(document.querySelectorAll('#shdInkG path').length!==S.qi)out.push('台上墨迹不齐');
+  let fig=0;
+  for(let i=0;i<S.gho.length;i++){
+    const g=S.gho[i];
+    if(g.gone)continue;
+    if(S.beat-g.start>=0)fig++;
+  }
+  fig+=S.pat.length;
+  if(document.querySelectorAll('#shdGhostG .shd-fig').length!==fig)out.push('墨影画得不一样');
+  if((document.querySelectorAll('#shdPlayerG .shd-carry').length?1:0)!==(S.carry>=0?1:0))out.push('手里的笔不配套');
+  if(document.querySelectorAll('#shdHitG [data-cell]').length!==SHD_COLS*SHD_ROWS)out.push('格子点不齐');
+  return out;
+};
+window.swdRec=function(ch){return shdRec(ch)};
+window.swdGly=function(k){const g=shd.gly[k];return g?{dir:g.dir,d:String(g.d).slice(0,20)}:null};
+window.swdBfs=function(a,b){const p=shdBfs(shd.S,a,b);return p?{n:p.length,path:p}:{n:-1,path:null}};
+window.swdCellOf=function(x,y){return shdCellOfGlyph(x,y)};
+window.swdName=function(k){return shdNameOf(k)};
+window.swdXY=function(k){return shdXY(k)};
+window.swdNext=function(){
+  const st=shdNextStep();
+  return st?{kind:st.kind,k:st.k,cell:st.cell,row:st.row,steps:st.steps,block:st.block?1:0}:null;
+};
+window.swdSay=function(){const st=shdNextStep();return st?shdStepSay(st):''};
+window.swdHelp=function(){shdHelp();return (document.getElementById('shdMsg')||{}).innerHTML||''};
+window.swdNag=function(){shdNag();return (document.getElementById('shdMsg')||{}).innerHTML||''};
+window.swdSet=function(k,v){localStorage.setItem(k,String(v));return 1};
+window.swdStore=function(){
+  const o={};
+  for(let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i);
+    if(k.indexOf('hz_shade_')===0)o[k.slice(9)]=localStorage.getItem(k);
+  }
+  return o;
+};
+window.swdPool=function(){return shd.pool.length};
+window.swdMake=function(ch,raw){return shdMake(ch,raw)};
+window.swdGen=function(o){
+  const rec=o.rec||shd.rec;
+  if(!rec)return {ok:0,why:'没字'};
+  const r=shdGen(rec,o.lv||1,o.from||0);
+  if(!r)return {ok:0,why:shd.lastWhy||'?'};
+  return {ok:1,beats:r.beats,budget:r.budget,hits:r.hits,sec:r.sec,cfg:r.cfg,keep:r.S.keep,
+    plan:r.plan.map(function(l){return {k:l.k,row:l.row,d1:l.d1,d2:l.d2}}),
+    box:r.S.box.length,ink:r.S.ink.length,pat:r.S.pat.length,bon:r.S.bon.on?1:0,
+    cell:r.S.cell.slice(),slotOf:r.S.slotOf.slice(),
+    riv:r.S.riv.map(function(v){return {on:v.on,k:v.k,fgn:v.fgn}})};
+};
+/* 摆一台给截图与用例用：指定字 / 折数 / 已经落了几笔 */
+window.swdStage=function(o){
+  const lv=o.lv||1;
+  shd.lv=lv;
+  let rec=null;
+  if(o.ch)rec=shd.pool.filter(function(x){return x.ch===o.ch})[0]||null;
+  if(!rec&&o.n)rec=shd.pool.filter(function(x){return x.n===o.n})[0]||null;
+  if(!rec)rec=shdPickRec();
+  if(!rec)return {ok:0,why:'池子里没字'};
+  const r=shdGen(rec,lv,o.from||0);
+  if(!r)return {ok:0,why:shd.lastWhy||'摆不开'};
+  shd.rec=rec;shd.n=rec.n;shd.gly=shdGlyOf(rec);
+  shdInstall(r);
+  shd.cleanWord=true;shd.failWord=0;
+  return {ok:1,ch:rec.ch,n:rec.n,beats:r.beats,sec:r.sec,keep:r.S.keep,box:r.S.box.length,
+    ink:r.S.ink.length,pat:r.S.pat.length,bon:r.S.bon.on?1:0,cell:r.S.cell.slice(),
+    dirs:rec.dirs.slice(),
+    riv:r.S.riv.map(function(v){return {on:v.on,k:v.k,fgn:v.fgn}}),
+    plan:r.plan.map(function(l){return {k:l.k,row:l.row,d1:l.d1,d2:l.d2}})};
+};
+/* 纯模型直改（不走 DOM）：给「撞影 / 影子重演」这些用例搭一台 */
+window.swdSim=function(o){
+  const S=shdCloneSim(shd.S);
+  if(o&&o.fn===undefined)return S;
+  return S;
+};
+/* ---- 页内驱动 ---- */
+window.vWalk=function(k){return shdWalkTo(k)};
+window.vPick=function(r){return shdPick(r)};
+window.vStamp=function(){return shdStamp()};
+window.vStep=function(n){for(let i=0;i<(n||1);i++)shdBeat();return shd.S?shd.S.beat:-1};
+window.vQueue=function(list){if(shd.S)shd.S.queue=(list||[]).slice();return shd.S?shd.S.queue.length:-1};
+window.vGo=function(k,wait){
+  const S=shd.S;
+  if(!S)return {ok:0,why:'没台面'};
+  const p=shdBfs(S,S.pc,k);
+  if(!p)return {ok:0,why:'无路'};
+  shd.wantPick=-1;shd.wantStamp=0;
+  shdHistPush();
+  S.queue=p.slice();
+  let g=0;
+  while(S.queue.length&&g++<300)shdBeat();
+  if(wait)for(let q=0;q<wait;q++)shdBeat();
+  return {ok:S.pc===k?1:0,pc:S.pc,beats:g,carry:S.carry,hits:shd.hits};
+};
+window.vForce=function(o){
+  const S=shd.S;
+  if(!S)return 0;
+  if(o.pc!==undefined)S.pc=o.pc;
+  if(o.carry!==undefined)S.carry=o.carry;
+  if(o.beat!==undefined)S.beat=o.beat;
+  if(o.actBeat!==undefined)S.actBeat=o.actBeat;
+  if(o.trail!==undefined)S.trail=o.trail.slice();
+  if(o.queue!==undefined)S.queue=o.queue.slice();
+  if(o.keep!==undefined)S.keep=o.keep;
+  if(o.bon!==undefined)S.bon={cell:o.bon,on:o.bon>=0?1:0};
+  if(o.sec!==undefined){shd.clockSec=o.sec;shd.clock=shdClamp(o.sec/Math.max(1,shd.clockSec0),0,1)}
+  if(o.hearts!==undefined)shd.hearts=o.hearts;
+  shd.wantPick=-1;shd.wantStamp=0;
+  shdFlush(S);
+  return 1;
+};
+window.vTry=function(o){return window.swdGen(o)};
+/* 只走拍不动手：看影子自己走完退场 */
+window.vLive=function(d){
+  return new Promise(function(res){
+    const t0=Date.now();
+    (function loop(){
+      shd.tones=6;shdTick(1/60);
+      if(Date.now()-t0>=d){
+        const S=shd.S;
+        res({ms:Date.now()-t0,beat:S?S.beat:-1,qi:S?S.qi:-9,live:shdLiveGhosts(),sec:+shd.clockSec.toFixed(2),
+          hits:shd.hits,pc:S?S.pc:-1,words:shd.words});
+        return;
+      }
+      setTimeout(loop,16);
+    })();
+  });
+};
+window.vPump=function(ms,step){
+  return new Promise(function(res){
+    const n=Math.ceil(ms/((step||1/30)*1000));
+    let q=0;
+    (function loop(){
+      shd.tones=6;shdTick(step||1/30);
+      if(++q>=n){
+        const S=shd.S;
+        res({q:q,beat:S?S.beat:-1,qi:S?S.qi:-9,pc:S?S.pc:-1,live:shdLiveGhosts(),carry:S?S.carry:-9,
+          hits:shd.hits,steps:shd.steps,sec:+shd.clockSec.toFixed(2),next:Math.round(shd.nextMs),
+          words:shd.words,hearts:shd.hearts,score:Math.round(shd.score),over:shd.over?1:0,
+          warn:shd.clockSec<=12?1:0});
+        return;
+      }
+      setTimeout(loop,0);
+    })();
+  });
+};
+/* 把这一场收到满：全程只走玩家能走的路（先等墨影退场，再按最短水路走） */
+window.vPlay=function(limit){
+  const guard=limit||900,out=[];
+  let stall=0,lastBeat=-2;
+  for(let q=0;q<guard;q++){
+    const S=shd.S;
+    if(!S||shd.over||!shd.run)break;
+    if(S.done)break;
+    if(shd.nextMs>0){out.push('换折');break}
+    let g=0;
+    while(shdLiveGhosts()>0&&g++<260)shdBeat();
+    if(!shd.run||shd.over)break;
+    const st=shdNextStep();
+    if(!st){out.push('无路');break}
+    if(st.kind==='pick'){if(!shdPick(st.row)){out.push('捡败');break}out.push('捡'+st.row);continue}
+    if(st.kind==='stamp'){if(!shdStamp()){out.push('落败');break}out.push('落'+st.k);continue}
+    if(st.kind==='wait'){shdBeat();out.push('等');continue}
+    if(!st.path||!st.path.length){out.push('空路');break}
+    shd.wantPick=-1;shd.wantStamp=0;
+    S.queue=st.path.slice();
+    let w=0;
+    while(S.queue.length&&w++<260)shdBeat();
+    out.push('走'+st.cell);
+    if(S.beat===lastBeat){stall++;if(stall>4){out.push('卡拍');break}}else stall=0;
+    lastBeat=S.beat;
+  }
+  const S=shd.S||{};
+  return {qi:S.qi===undefined?-9:S.qi,n:shd.n,beat:S.beat===undefined?-1:S.beat,out:out.join(' '),
+    score:Math.round(shd.score),lits:shd.lits,steps:shd.steps,picks:shd.picks,stamps:shd.stamps,
+    hits:shd.hits,wrongs:shd.wrongs,orders:shd.orders,bons:shd.bons,deads:shd.deads,
+    hearts:shd.hearts,combo:shd.combo,words:shd.words,live:shdLiveGhosts(),hist:shd.hist.length,
+    done:S.done?1:0,acts:shd.acts};
+};
+window.vClearFx=function(){
+  shdKillTimers();
+  const fx=document.getElementById('shdFx');if(fx)fx.innerHTML='';
+  const tg=document.getElementById('shdTopG');
+  if(tg)[].slice.call(tg.querySelectorAll('.shd-mark')).forEach(function(e){e.parentNode.removeChild(e)});
+  const rt=document.getElementById('shdRouteG');if(rt)rt.innerHTML='';
+  const el=document.getElementById('shdTag');if(el)el.classList.remove('on');
+  const tbl=document.getElementById('shdTbl');if(tbl)tbl.classList.remove('dead','warn','shake');
+  shd.tagMs=0;shd.revealMs=0;shd.routeMs=0;shd.routePts=null;shd.stampMs=0;
+  return {bit:document.querySelectorAll('.shd-bit').length,pop:document.querySelectorAll('.shd-pop').length,
+    mark:document.querySelectorAll('#shdTopG .shd-mark').length,
+    rline:document.querySelectorAll('#shdRouteG .shd-rLine').length,
+    gline:document.querySelectorAll('#shdRouteG .shd-gLine').length,
+    conf:document.querySelectorAll('.shd-conf').length,
+    warn:tbl?tbl.classList.contains('warn'):false};
+};
+window.vHitRect=function(k){
+  const el=document.querySelector('#shdHitG [data-cell="'+k+'"]');
+  if(!el)return null;
+  const r=el.getBoundingClientRect();
+  return {x:r.left+r.width/2,y:r.top+r.height/2,w:r.width,h:r.height};
+};
+window.vCardRect=function(row){
+  const el=document.querySelector('#shdHitG [data-row="'+row+'"]');
+  if(!el)return null;
+  const r=el.getBoundingClientRect();
+  return {x:r.left+r.width/2,y:r.top+r.height/2,w:r.width,h:r.height};
+};
+window.vWrap=function(){
+  const st=document.querySelector('.shd-stage'),svg=document.getElementById('shdSvg'),
+    mini=document.querySelector('.shd-mini'),tools=document.querySelector('.shd-tools'),
+    hud=document.querySelector('.shd-hud'),tbl=document.getElementById('shdTbl'),
+    ask=document.querySelector('.shd-ask'),meter=document.querySelector('.shd-meter'),
+    tray=document.querySelector('.shd-tray');
+  const r=svg.getBoundingClientRect(),tr=tbl.getBoundingClientRect();
+  return {dir:getComputedStyle(st).flexDirection,w:r.width,h:r.height,
+    scrollW:document.documentElement.scrollWidth,inner:window.innerWidth,
+    wrap:getComputedStyle(hud).flexWrap,
+    toolsW:Math.round(tools.getBoundingClientRect().width),
+    tblW:Math.round(tr.width),tblH:Math.round(tr.height),
+    askH:Math.round(ask.getBoundingClientRect().height),
+    miniW:Math.round(mini.getBoundingClientRect().width),
+    meterW:Math.round(meter.getBoundingClientRect().width),
+    trayH:Math.round(tray.getBoundingClientRect().height),
+    btns:[].slice.call(tools.querySelectorAll('button')).length,
+    toolsBottom:Math.round(tools.getBoundingClientRect().bottom),vh:window.innerHeight,
+    svgBottom:Math.round(r.bottom),
+    viewBox:svg.getAttribute('viewBox'),
+    cellW:(function(){const e=document.querySelector('#shdHitG [data-cell]');return e?Math.round(e.getBoundingClientRect().width):0})(),
+    cardW:(function(){const e=document.querySelector('#shdHitG [data-row]');return e?Math.round(e.getBoundingClientRect().width):0})(),
+    bodyBottom:Math.round(document.getElementById('screen-shade').getBoundingClientRect().bottom)};
+};
+window.vKey=function(k){
+  window.dispatchEvent(new KeyboardEvent('keydown',{key:k,bubbles:true}));
+  return 1;
+};
+window.vPool=function(){return shd.pool.length};
+window.vGlyN=function(){return shd.gly.length};
+window.vGlyD=function(k){const g=shd.gly[k];return g?String(g.d).slice(0,24):''};
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
