@@ -5634,6 +5634,161 @@ button:active{transform:scale(.95)}
   /* 笔记本只有 760 高：炉床让出底部一截，通电钟和工具条才能同屏，不用来回滚 */
   .hf-svg{max-height:calc(100vh - 320px)}
 }
+/* ================= v1.83 笔顺秋千坊 ================= */
+.swg-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.swg-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.swg-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.swg-ask small{display:block;font-size:12px;font-weight:normal;opacity:.85;margin-top:4px;line-height:1.6}
+.swg-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.swg-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.swg-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.swg-cap,.swg-mini>div{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:11px;color:#FFE082}
+.swg-mini .swg-now{animation:swgNow 1.1s ease-in-out infinite}
+@keyframes swgNow{0%,100%{opacity:.42}50%{opacity:1}}
+.swg-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#141A33 0%,#1E2A4A 46%,#26160F 100%);box-shadow:inset 0 0 34px rgba(0,0,0,.62);transition:box-shadow .2s}
+/* 钟只剩十来秒：话说到「板边发红」，那就得真的红一圈（排在 .dead 前面，天黑的红盖过它） */
+.swg-tbl.warn{box-shadow:inset 0 0 34px rgba(0,0,0,.62),inset 0 0 0 3px rgba(255,82,82,.82),inset 0 0 26px rgba(255,82,82,.3)}
+.swg-tbl.dead{box-shadow:inset 0 0 34px rgba(0,0,0,.62),inset 0 0 30px rgba(255,82,82,.46)}
+.swg-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+#swgStatic,#swgArcG,#swgMarkG,#swgPaperG,#swgGhostG,#swgTopG,#swgTagG{pointer-events:none}
+#swgHitG{pointer-events:none}
+#swgHitG .swg-hit{pointer-events:all;fill:transparent}
+#swgHitG .swg-hit.cur{fill:rgba(255,255,255,.09);stroke:rgba(255,255,255,.42);stroke-width:2;stroke-dasharray:7 6}
+#swgHitG .swg-htake{cursor:pointer}
+#swgHitG .swg-htake:hover{fill:rgba(255,255,255,.14)}
+#swgHitG .swg-hhook{fill:rgba(255,213,79,.28);stroke:#FFD54F;stroke-width:2;cursor:pointer}
+/* ---- 横梁 / 立柱 / 挂钩位 ---- */
+.swg-beam{fill:#6D4C41;stroke:#A1887F;stroke-width:2.4}
+.swg-post{fill:#5D4037;stroke:rgba(255,255,255,.14);stroke-width:1.6}
+.swg-ground{fill:rgba(0,0,0,.42)}
+.swg-head{font-size:12px;font-weight:bold;fill:rgba(255,224,178,.62);text-anchor:middle;letter-spacing:5px}
+.swg-piv{fill:#FFD54F;stroke:#5D4037;stroke-width:1.6}
+.swg-slotTxt{font-size:12px;font-weight:bold;fill:rgba(255,255,255,.62);text-anchor:middle}
+.swg-lgdH{font-size:11px;font-weight:bold;fill:#FFCC80;text-anchor:middle;letter-spacing:1px}
+.swg-lgd{font-size:10.5px;fill:rgba(255,244,214,.78);text-anchor:middle}
+.swg-lgd.swg-lgdK{fill:#FFF176;font-weight:bold}
+/* ---- 摆动弧线 / 🧺 ---- */
+.swg-arc{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1.6;stroke-dasharray:4 6}
+.swg-arc.inph{stroke:rgba(255,213,79,.52);stroke-width:2.2;stroke-dasharray:none}
+.swg-basket{font-size:17px;text-anchor:middle}
+.swg-basketR{font-size:9px;font-weight:bold;fill:#FFE082;text-anchor:middle}
+.swg-dot{fill:rgba(255,255,255,.2)}
+.swg-ropeTxt{font-size:10.5px;fill:rgba(255,255,255,.66);text-anchor:middle}
+.swg-ropeTxt .swg-pr{fill:#FFE082;font-weight:bold}
+/* ---- 绳 / 牌 ---- */
+.swg-rope{stroke:rgba(255,255,255,.38);stroke-width:2.2}
+.swg-rope.inph{stroke:#FFD54F;stroke-width:2.8}
+.swg-rope.done{stroke:rgba(140,195,155,.5);stroke-dasharray:3 5}
+.swg-rope.fly{stroke:rgba(255,138,101,.5);stroke-dasharray:3 5}
+.swg-hung{font-size:14px;text-anchor:middle}
+.swg-hungT{font-size:9.5px;fill:rgba(255,255,255,.5);text-anchor:middle}
+.swg-pq{fill:rgba(24,34,58,.94);stroke:rgba(255,255,255,.26);stroke-width:2}
+.swg-pl.inph .swg-pq{stroke:#FFD54F;stroke-width:2.8}
+.swg-pl.ripe .swg-pq{fill:rgba(62,42,14,.96);stroke:#FFE082;stroke-width:3;animation:swgRipe .8s ease-in-out infinite}
+@keyframes swgRipe{0%,100%{filter:brightness(1)}50%{filter:brightness(1.5)}}
+.swg-pl.fgn .swg-pq{fill:rgba(58,24,26,.94);stroke:rgba(255,138,128,.6);stroke-dasharray:5 4}
+.swg-pl.hv .swg-pq{stroke-width:3.6}
+.swg-q{font-size:26px;fill:rgba(255,255,255,.5);text-anchor:middle}
+.swg-tag1{font-size:9.5px;font-weight:bold;fill:rgba(255,255,255,.74)}
+.swg-tag2{font-size:9.5px;font-weight:bold;fill:#FFE082;text-anchor:end}
+.swg-amp{font-size:10px;fill:#B3E5FC}
+.swg-ampT{font-size:10px;font-weight:bold;fill:rgba(255,255,255,.8);text-anchor:end}
+.swg-left{font-size:11px;font-weight:bold;fill:#FFF176;text-anchor:middle;animation:swgLeft .7s ease-in-out infinite}
+@keyframes swgLeft{0%,100%{opacity:1}50%{opacity:.42}}
+/* ---- 纸带 ---- */
+.swg-paper{fill:rgba(255,253,245,.9);stroke:rgba(141,110,99,.5);stroke-width:1.6}
+.swg-paperH{font-size:10px;font-weight:bold;fill:rgba(255,224,178,.72)}
+.swg-pbox{fill:rgba(120,120,120,.14);stroke:rgba(93,64,55,.3);stroke-width:1.4;stroke-dasharray:4 4}
+.swg-pnow{fill:rgba(255,213,79,.26);stroke:#F9A825;stroke-width:2}
+.swg-ptxt{font-size:9.5px;fill:rgba(60,40,30,.6);text-anchor:middle}
+/* ---- 预览虚影 ---- */
+.swg-gbox{fill:rgba(10,18,34,.82);stroke:rgba(179,229,252,.42);stroke-width:1.6}
+.swg-gH{font-size:11px;font-weight:bold;fill:#B3E5FC;text-anchor:middle}
+.swg-gLine{font-size:10.5px;fill:rgba(236,251,255,.86)}
+/* ---- 军师画圈 / 特效 ---- */
+.swg-mark{fill:none;stroke:#40C4FF;stroke-width:3.4;stroke-dasharray:11 8;animation:swgCur .9s ease-in-out infinite}
+.swg-mark.plan{stroke:#FFF176}
+@keyframes swgCur{0%,100%{opacity:.4}50%{opacity:1}}
+.swg-flash{fill:rgba(255,235,59,.24);animation:swgFlash .66s ease-out forwards}
+@keyframes swgFlash{0%{opacity:1}100%{opacity:0}}
+.swg-ring{animation:swgRingOut .94s ease-out forwards}
+@keyframes swgRingOut{0%{opacity:.95;transform:scale(.35)}100%{opacity:0;transform:scale(1.5)}}
+.swg-ring{transform-box:fill-box;transform-origin:center}
+.swg-spark{font-size:16px;text-anchor:middle;animation:swgRise 1.2s ease-out forwards}
+.swg-slosh{font-size:13px;font-weight:bold;text-anchor:middle;fill:#80DEEA;animation:swgRise 1.5s ease-out forwards}
+.swg-slosh.up{fill:#FFD54F}
+.swg-slosh.down{fill:#90A4AE}
+.swg-gust{font-size:13px;font-weight:bold;fill:#B3E5FC;text-anchor:middle;animation:swgGust 1.6s linear forwards}
+.swg-gust.g2{font-size:20px;fill:rgba(179,229,252,.5)}
+@keyframes swgGust{0%{opacity:0;transform:translateX(-40px)}22%{opacity:1}100%{opacity:0;transform:translateX(60px)}}
+@keyframes swgRise{0%{opacity:0}18%{opacity:1}100%{opacity:0;transform:translateY(-26px)}}
+.swg-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.swg-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:swgBit .82s ease-out forwards}
+.swg-bit.big{width:11px;height:11px;border-radius:3px;animation-duration:1.18s}
+@keyframes swgBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.swg-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF59D;text-shadow:0 1px 4px rgba(0,0,0,.72);animation:swgPop .9s ease-out forwards;white-space:nowrap}
+@keyframes swgPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.swg-shake{animation:swgShake .34s}
+@keyframes swgShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px) rotate(-.5deg)}50%{transform:translateX(8px) rotate(.5deg)}80%{transform:translateX(-3px)}}
+/* ---- 板角牌子 / 横幅 ---- */
+.swg-badge{position:absolute;right:8px;top:8px;font-size:11px;color:#2B1608;background:rgba(255,236,210,.92);border-radius:11px;padding:3px 10px;white-space:nowrap;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+.swg-tagline{position:absolute;left:8px;top:8px;font-size:12px;color:#fff;background:rgba(198,60,40,.92);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap;pointer-events:none}
+.swg-tagline.on{display:block}
+/* ---- 天黑钟 ---- */
+.swg-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.swg-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(0,0,0,.4);overflow:hidden}
+.swg-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#37474F,#5C6BC0 52%,#FFF176 96%);transition:width .1s linear}
+.swg-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.swg-clock{font-size:12px;color:#fff;background:rgba(0,0,0,.4);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+/* ---- 工具条 ---- */
+.swg-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0;position:sticky;bottom:6px;z-index:6;box-sizing:border-box;padding:5px;border-radius:16px;background:rgba(0,0,0,.45)}
+.swg-tool{flex:1;padding:11px 4px;border:none;border-radius:13px;font-size:13px;color:#ECEFF1;background:rgba(255,255,255,.14);cursor:pointer;font-family:inherit}
+.swg-tool.go{background:#FFC400;color:#241A05;font-weight:bold}
+.swg-tool:disabled{opacity:.4}
+/* ---- 托盘：拍子灯带 + 六只秋千的样子 ---- */
+.swg-tray{display:flex;gap:6px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:36px;padding:6px;border-radius:14px;background:rgba(0,0,0,.36);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap}
+.swg-lamps{display:flex;gap:3px;align-items:center;margin-right:4px}
+.swg-lamps i{width:15px;height:15px;line-height:15px;border-radius:50%;text-align:center;font-size:8.5px;font-style:normal;color:rgba(255,255,255,.42);background:rgba(255,255,255,.1)}
+.swg-lamps i.now{background:#FFD54F;color:#241A05;font-weight:bold;box-shadow:0 0 0 2px rgba(255,213,79,.32)}
+.swg-lamps.go{animation:swgLampGo .5s ease-out}
+@keyframes swgLampGo{0%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+.swg-chips{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
+.swg-chip{font-size:11px;color:#CFD8DC;background:rgba(255,255,255,.1);border-radius:10px;padding:2px 8px;white-space:nowrap}
+.swg-chip b{color:#FFF176}
+.swg-chip.off{opacity:.42}
+.swg-chip.lit{background:rgba(105,240,174,.2);color:#B9F6CA}
+.swg-chip.fly{background:rgba(255,138,101,.22);color:#FFAB91}
+.swg-chip.inph{border:1px solid rgba(255,213,79,.6)}
+.swg-chip.ripe{background:rgba(255,213,79,.24);color:#FFF59D;font-weight:bold}
+.swg-chip.fgn{background:rgba(255,82,82,.18);color:#FFCDD2}
+/* ---- 一行提示 / 判词 / 说明书 ---- */
+.swg-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#FFF8E1;background:rgba(0,0,0,.34);border-radius:14px;padding:9px 10px;line-height:1.5}
+.swg-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.swg-msg{width:calc(100% - 28px);margin:8px auto 0;padding:10px 13px;border-radius:14px;background:rgba(0,0,0,.4);color:#E1F5FE;font-size:13.5px;line-height:1.72;overflow-anchor:none}
+.swg-msg b{color:#FFF176}
+.swg-msg code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11.5px}
+.swg-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.swg-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+/* ---- 结算 ---- */
+.swg-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.swg-rs span{display:block;font-size:24px;font-weight:bold}
+.swg-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.swg-book-t{font-size:12px;color:#FFE082;margin-top:12px}
+.swg-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.swg-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.swg-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FFC400;color:#102A1E;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.swg-cdot.on{display:flex}
+@media (max-width:600px){
+  .swg-stage{flex-direction:column}
+  .swg-mini{flex:0 0 auto;max-width:150px;margin:0 auto}
+  .swg-hud span{font-size:12px;padding:3px 9px}
+  .swg-tool{font-size:11.5px;padding:9px 2px}
+  .swg-ask{font-size:16px}
+  /* 窄屏顶栏三件挤不下：把战绩那一串挪到第二行，返回与 ❓ 留在头一行 */
+  #screen-swing .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-swing .stats{flex:1 1 100%;order:3;gap:6px}
+  #screen-swing .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -5690,8 +5845,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 81 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">81</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 82 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">82</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -5702,12 +5857,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>81 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>27</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>82 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>28</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="swgCard" onclick="enterMode('swing')">
+      <div class="icon">🎐</div>
+      <div class="info"><h3>笔顺秋千坊</h3><p id="swgCardTip">横梁上六只秋千，绳越长几拍才荡一趟：牌上刻着真笔画，从左到右就是笔顺。掐准它顺劲儿的那一拍推一把，涨一档；档数够牌就荡进 🧺，四拍之内摘下来印纸，过点就甩飞</p></div>
+      <span class="swg-cdot" id="swgCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="hfCard" onclick="enterMode('heat')">
       <div class="icon">🔥</div>
       <div class="info"><h3>笔顺火候坊</h3><p id="hfCardTip">一块六乘五的铁板：点一格把炭放下起火，热一拍往里走一格 —— 离炭几格的那张牌就第几拍出炉，四拍之内按笔顺摘下来印到纸上，过了就糊</p></div>
@@ -6293,6 +6453,104 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-swing">
+  <div class="top-bar">
+    <button class="back-btn" onclick="swgLeave()">← 返回</button>
+    <div class="stats"><span id="swgScoreTxt">🎯 0 分</span><span id="swgLvTxt">第 1 段 · 已收 0 字</span><span id="swgBeatTxt">🥁 第 0 拍</span></div>
+    <button class="icon-btn" onclick="swgHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="swg-hud">
+    <span id="swgRankTxt" title="称号">🪢 刚系上绳</span>
+    <span id="swgHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="swgComboTxt" title="连击">🔥 连 0</span>
+    <span id="swgLitTxt" title="印了几笔">✅ 0 笔</span>
+    <span id="swgPushTxt" title="推了几把">🫱 0</span>
+    <span id="swgDuoTxt" title="同一拍连摘">🫳 0</span>
+    <span id="swgFlyTxt" title="甩飞几张">💨 0</span>
+    <span id="swgCoupleTxt" title="连绳倒过去几档">🪢 0</span>
+    <span id="swgWrongTxt" title="摘错几次">🚫 0</span>
+  </div>
+  <div class="swg-ask" id="swgAsk">🎐 正在挂牌……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="swg-stage">
+    <div class="swg-mini">
+      <svg viewBox="0 -1024 1024 1024" id="swgMiniSvg"></svg>
+      <div class="swg-cap" id="swgMiniCap">这个字</div>
+    </div>
+    <div class="swg-tbl" id="swgTbl">
+      <svg class="swg-svg" id="swgSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <g id="swgStatic"></g>
+        <g id="swgArcG"></g>
+        <g id="swgMarkG"></g>
+        <g id="swgPaperG"></g>
+        <g id="swgRopeG"></g>
+        <g id="swgGhostG"></g>
+        <g id="swgTagG"></g>
+        <g id="swgHitG"></g>
+        <g id="swgTopG"></g>
+      </svg>
+      <div class="swg-fx" id="swgFx"></div>
+      <div class="swg-badge" id="swgBadge">🎐</div>
+      <div class="swg-tagline" id="swgTag">🪢 连绳把能量倒过去了</div>
+    </div>
+  </div>
+  <div class="swg-meter">
+    <div class="swg-tl" id="swgClockBox"><i id="swgClockBar"></i><b id="swgClockTxt">🥁 还有 —— 秒</b></div>
+    <div class="swg-clock" id="swgPowTxt">🎯 ——</div>
+  </div>
+  <div class="swg-tools">
+    <button class="swg-tool go" id="swgTakeBtn" onclick="swgTakeNext()">✋ 摘牌<b style="font-size:11px"> W</b></button>
+    <button class="swg-tool" id="swgHookBtn" onclick="swgTightenAll()">🔩 拧挂钩<b style="font-size:11px"> E</b></button>
+    <button class="swg-tool" id="swgBeatBtn" onclick="swgMetro()">🥁 定拍<b style="font-size:11px"> F</b></button>
+    <button class="swg-tool" id="swgPrevBtn" onclick="swgPreview()" disabled>👀 预览<b style="font-size:11px"> Q</b></button>
+    <button class="swg-tool" id="swgUndoBtn" onclick="swgUndo()" disabled>🔄 倒带<b style="font-size:11px"> R</b></button>
+    <button class="swg-tool" id="swgReBtn" onclick="swgRespin()">🔁 重摆<b style="font-size:11px"> T</b></button>
+    <button class="swg-tool" id="swgEndBtn" onclick="swgEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="swg-tray" id="swgTray"></div>
+  <div class="swg-hintline" id="swgHintLine">🎐 <b>绳越长，几拍才一趟</b>：点牌子下面是 <b>推它一把</b>（<b>顺拍 +1 档、逆拍 −1 档</b>，一拍只推得动一只），荡到 <b>🧺</b> 那一头就 <b>点牌子摘下来</b> 印进纸带 —— 必须 <b>按笔顺</b> 摘</div>
+  <div class="swg-msg" id="swgMsg">横梁上挂着 <b>六只秋千</b>（<b>①~⑥</b> 是号），每只绳上挂一张 <b>铁牌</b>：牌面刻的就是这个字其中一笔的 <b>真实笔形</b>（横红、竖青、撇蓝、捺橘），角上写着 <b>第几笔 · 几拍一趟 · 逢几</b>。<b>牌从左到右就是笔顺</b>。<br>🎚 <b>绳越长，几拍才摆一趟</b>（短绳 2 拍、中绳 3 拍、长绳 4 拍）：<b>拍号除以趟数、余几就逢几</b>，逢上的那一拍点牌子下面 <b>推一把 +1 档</b>，顶逆劲儿推 <b>−1 档</b>，而且 <b>一双手一拍只推得动一只</b><br>🧺 荡到 <b>🧺</b> 那一头（<b>4 档</b>）就算熟：<b>4 拍</b> 之内 <b>点牌子摘下来</b> 印进纸带，过了就 <b>💨 甩飞</b>：扣 10 分、掉一颗心、剩下的笔 <b>另挂一盘</b></div>
+  <div class="swg-tip">🎐 <b>拍子是这一盘的钟</b>:横梁下面那条 <b>灯带</b> 走到哪一盏就是第几拍（①~⑫ 循环）。牌角写 <b>3 拍 · 逢②</b> ⇒ 灯带走到 ②、⑤、⑧、⑪ 时推它才 <b>+1 档</b>，其余时候推 <b>−1 档</b>；<b>一拍只推得动一只</b>，所以先想清楚这一拍推谁<br>
+    🪨 <b>重锤牌</b>（第 7 段起）要 <b>5 档</b> 才够着 🧺；🔩 <b>松挂钩</b>（第 5 段起）熟牌只有 <b>1 拍</b>，点牌子头顶那颗 <b>拧一下</b>（或 <code>E</code> 一键全拧）就变回 <b>4 拍</b> —— <b>拧挂钩不花拍子</b><br>
+    🪢 <b>连绳</b>（第 4 段起）：两只 <b>一样长又挨着</b> 的秋千每 <b>3 拍</b> 会把能量 <b>从高往低漏 1 档</b>（差到 2 档才漏、那边接不住就不漏）—— 推前面那只，后面那只 <b>白捡一档</b>；但也别把还没轮到的笔 <b>喂过头</b>，它熟了你摘不了照样 <b>甩飞</b><br>
+    🌫 <b>雾牌</b>（第 6 段起）牌角被雾遮住、看不见 <b>几拍一趟 · 逢几</b> —— 按 <b>🥁 定拍</b>（<code>F</code>）把这一盘的拍子全标出来；🚫 <b>野牌</b>（挂着 <b>?</b>）刻的不是这个字的笔，点它 <b>一吓散架</b>（档数清 0）、扣 6 分、断连击，<b>连错 3 次掉一颗心</b><br>
+    🌬 <b>逆风</b>（第 8 段起）：每 <b>6 拍</b> 把所有 <b>还没熟</b> 的牌吹掉 <b>1 档</b> —— 垫到 3 档别晾着<br>
+    ⏱ <b>天黑钟</b>：军师先把这一盘 <b>从头到尾按拍子走一遍</b>，发你 <b>要用的拍数 + 一点余量</b> 换算的秒数（下限 45 秒），最后 12 秒 <b>板子边发红</b>；走光 <b>天黑</b>：掉一颗心、剩下的笔另挂一盘（已印的 <b>一笔不抹</b>）<br>
+    👀 <b>预览</b>（<code>Q</code>）把军师前 10 步列在左边（<b>第几拍推哪只、第几拍摘哪只</b>）；🔄 <b>倒带</b>（<code>R</code>）退回 <b>上一次推 / 摘 / 拧之前</b>，档数拍号一模一样还原；🔁 <b>重摆</b>（<code>T</code>）剩下的笔另挂一盘 —— 预览 <b>2</b> 次、倒带 <b>3</b> 次、重摆 <b>1</b> 次、定拍 <b>1</b> 次，<b>升段各补 1 次</b>；<code>←→</code> 在六只之间走、<code>空格</code> 推当前这只（熟了就直接摘）、<code>1~6</code> 点第几号<br>
+    📈 <b>摘一笔</b> 吃 <code>round((12 + 第几笔×2 + 段数×3) × (1 + 连击×0.06))</code>，<b>同一拍连摘第二笔</b> 再多 <code>8 + 段数×2</code>，<b>刚够着就摘</b> 按剩的窗口加 <b>火候正好</b>；<b>整个字荡齐</b>：<code>26 + 笔数×6 + 段数×6 + 同一拍连摘×4</code>，<b>一次没飞没摘错再多 22</b>；<b>每 2 个字升 1 段</b>（最多 9 段）、<b>每 3 个字补一颗心</b>（最多 5 颗）<br>
+    👀 发呆 12 秒 🐰 报「<b>该收那一笔挂在几号绳</b>、它 <b>几拍一趟、逢几</b>、这一拍 <b>推得动不</b>」· 战绩落盘 <code>hz_swing_*</code></div>
+</div>
+<div class="screen" id="screen-swing-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="swgLeave()">← 回首页</button>
+    <div class="stats"><span id="swgRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="swgRsEmoji">🎐</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="swgRsTitle">拍子稳得住</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="swgRsSub">下一次先看清 <b>这一只几拍一趟、逢几</b>，再决定这一拍推谁</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="swg-rs">
+      <div><span style="color:#FFD700" id="swgRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="swgRsWords">0</span><small>荡齐这几个字</small></div>
+      <div><span style="color:#69F0AE" id="swgRsLit">0</span><small>印下来几笔</small></div>
+      <div><span style="color:#FFAB91" id="swgRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="swgRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="swgRsMiss">0</span><small>💨 甩飞 / 🚫 摘错 / 🌘 天黑</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多荡几个字 · 一共荡齐几个字</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFE082"><span id="swgRsBest">0</span> 个 · <span id="swgRsAll2">0</span> 🎐</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="swgRsAll">🪢 刚系上绳</div>
+      <div class="swg-book-t" id="swgRsBookT"></div>
+      <div class="swg-book" id="swgRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="swgRetry()">🎐 再荡一场</button>
+    <button class="w-btn blue" onclick="swgLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-heat">
@@ -12128,6 +12386,7 @@ function updateHomeStats(){
   if(typeof wtNudge==='function')wtNudge();
   if(typeof ctNudge==='function')ctNudge();
   if(typeof hfNudge==='function')hfNudge();
+  if(typeof swgNudge==='function')swgNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -12155,6 +12414,7 @@ function enterMode(mode){
   if(mode==='sluice'){wtStart();return}
   if(mode==='circuit'){ctStart();return}
   if(mode==='heat'){hfStart();return}
+  if(mode==='swing'){swgStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -66128,6 +66388,2149 @@ window.hfvPool=function(){return hf.pool.map(function(r){return r.ch+r.n})};
 window.hfvT=function(ms){return hfT(function(){},ms||10)};
 window.hfvMiss=function(){return (localStorage.getItem('hz_heat_miss')||'').split(',').filter(function(c){return c}).join('')};
 window.hfvBook=function(){return (localStorage.getItem('hz_heat_book')||'').split(',').filter(function(c){return c}).join('')};
+
+/* ================= v1.83 笔顺秋千坊（横梁上六只秋千 · 摆长决定几拍一趟 · 顺拍推一把 · 连绳的两只漏能量 · 荡到 🧺 那一下按笔顺摘牌） ================= */
+const SWG_W=700,SWG_H=470;
+const SWG_N=6;
+const SWG_BY=64;
+const SWG_SX0=132,SWG_GAP=88;
+const SWG_ANG=6.4,SWG_MAXA=5,SWG_RIPE=4,SWG_HEAVY_A=5;
+const SWG_BEAT_MS=760,SWG_GRACE=4,SWG_LOOSE=1,SWG_COUPLE=3,SWG_WIND_BEATS=6,SWG_WIND_DROP=1,SWG_PUSH_MAX=1;
+const SWG_PRINT_MS=680,SWG_NEXT_MS=1300,SWG_TAG_MS=2400,SWG_NAG_MS=12000,SWG_FLASH_MS=620,SWG_GHOST_MS=3000;
+const SWG_HEARTS=3,SWG_HEART_MAX=5,SWG_MISS_MAX=40,SWG_BOOK_MAX=300;
+const SWG_POOL_MIN=4,SWG_POOL_WANT=16,SWG_STROKE_MAX=5,SWG_BEAT_CAP=96,SWG_GEN_TRY=70,SWG_PLAN_STEP=200;
+const SWG_FLY_PEN=10,SWG_JUNK_PEN=6,SWG_EARLY_PEN=6,SWG_CLEAN_BONUS=22,SWG_WRONG_MAX=3;
+const SWG_SEC_MIN=45,SWG_SEC_PAD=18,SWG_HIST_MAX=8;
+const SWG_DIRS=['横','竖','撇','捺'],SWG_ARW=['➡️','⬇️','↙️','↘️'];
+const SWG_O=['〇','①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑪','⑫'];
+const SWG_NUM=['①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑪','⑫','⑬','⑭','⑮','⑯','⑰','⑱','⑲','⑳'];
+const SWG_INK=['#FF8A80','#80CBC4','#82B1FF','#FFD180'];
+const SWG_NOTE=[392,440,494,523,587,659,698,784];
+const SWG_RANKS=[
+  {n:0,e:'🪢',t:'刚系上绳'},{n:3,e:'🌬',t:'推得顺劲儿'},{n:8,e:'🎐',t:'会等拍子'},
+  {n:15,e:'🧠',t:'一推养两摆'},{n:24,e:'🪝',t:'挂钩匠'},{n:36,e:'⚡',t:'节拍高手'},
+  {n:52,e:'🌟',t:'秋千大师'},{n:74,e:'💎',t:'一趟没乱'},{n:105,e:'👑',t:'场子里的王'}
+];
+const swg={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,tones:0,think:0,timers:[],
+  pool:[],miss:[],rec:null,n:0,gly:[],S:null,tid:1,
+  lv:1,score:0,hearts:SWG_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,pushes:0,taps:0,flys:0,wrongs:0,early:0,saved:0,reds:0,deads:0,
+  tightens:0,couples:0,duoWord:0,duoMax:0,lastTakeBeat:-1,
+  previewN:2,undoN:3,respN:1,beatN:1,
+  previews:0,rewinds:0,resets:0,reveals:0,nags:0,
+  clock:1,clockSec:45,clockSec0:45,red:false,beep:0,beat:0,beatMs:0,windMs:0,windTag:0,wind:0,couple:1,revealTag:0,deadLock:0,
+  printMs:0,nextMs:0,printRun:0,since:0,tagMs:0,
+  ghost:null,ghostMs:0,
+  cleanWord:true,failWord:0,redWord:false,
+  hist:[],cur:0,arm:false,bound:false,ptrBound:false,hudTxt:{},sol:null,lastWhy:''
+};
+/* ---- 小工具 ---- */
+function swgInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function swgAdd(k,n){if(n)localStorage.setItem(k,String(swgInt(k)+n))}
+function swgSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function swgSay(t,c){const el=document.getElementById('swgMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function swgShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function swgOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function swgClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function swgDn(d){return d<0||d>3?0:d}
+function swgRank(n){let r=SWG_RANKS[0];for(let i=0;i<SWG_RANKS.length;i++)if(n>=SWG_RANKS[i].n)r=SWG_RANKS[i];return r}
+function swgTone(f,d,t,v){if(swg.tones<=0)return;swg.tones--;tone(f,d,t,v)}
+function swgT(fn,ms){const g=swg.gen;const id=setTimeout(function(){const k=swg.timers.indexOf(id);if(k>=0)swg.timers.splice(k,1);if(g!==swg.gen)return;fn()},ms);swg.timers.push(id);return id}
+function swgKillTimers(){swg.timers.forEach(function(t){clearTimeout(t)});swg.timers=[]}
+/* ---- 难度表（全部是上限：摆不下就一级级往下减） ---- */
+function swgJunkOf(lv){return lv<3?0:Math.min(2,lv-2)}
+function swgPairOf(lv){return lv<4?0:Math.min(2,lv-3)}
+function swgLooseOf(lv){return lv<5?0:Math.min(2,lv-4)}
+function swgFogOf(lv){return lv<6?0:Math.min(2,lv-5)}
+function swgHeavyOf(lv){return lv<7?0:Math.min(1,lv-6)}
+function swgWindOf(lv){return lv>=8?1:0}
+function swgSpareOf(lv){return lv<=2?9:(lv<=5?7:5)}
+function swgPof(lv){return lv<=2?[2,3]:[2,3,4]}
+function swgStrokeOf(lv){return lv<=3?[2,4]:[3,SWG_STROKE_MAX]}
+function swgLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function swgSec(beats,lv){return Math.max(SWG_SEC_MIN,Math.round((beats+swgSpareOf(lv))*SWG_BEAT_MS/1000)+SWG_SEC_PAD)}
+function swgThreshOf(p){return p&&p.heavy?SWG_HEAVY_A:SWG_RIPE}
+function swgWinOf(p){return (p&&p.loose&&!p.tight)?SWG_LOOSE:SWG_GRACE}
+/* ---- 几何 ---- */
+function swgSX(i){return SWG_SX0+i*SWG_GAP}
+function swgRope(P){return 38+(P||3)*36}
+function swgName(i){return SWG_NUM[i]||('第'+(i+1)+'号')}
+function swgPeak(i,P,a){
+  const L=swgRope(P),th=SWG_ANG*swgClamp(a,0,SWG_MAXA)*Math.PI/180;
+  return {x:swgSX(i)+L*Math.sin(th),y:SWG_BY+L*Math.cos(th),L:L};
+}
+function swgBob(P,aF,tb,off){
+  const th=SWG_ANG*swgClamp(aF,0,SWG_MAXA)*Math.PI/180,L=swgRope(P);
+  const ang=th*Math.cos(2*Math.PI*((tb-(off||0))/(P||3)));
+  return {x:L*Math.sin(ang),y:L*Math.cos(ang),deg:ang*180/Math.PI};
+}
+/* ---- 摆的状态读写（全部走 S.p，别处不许自己存） ---- */
+function swgAt(S,i){return S&&S.p&&i>=0&&i<SWG_N?S.p[i]:null}
+function swgOfK(S,k){for(let i=0;i<SWG_N;i++){const p=S.p[i];if(!p.fgn&&p.k===k&&!p.done)return p}return null}
+function swgRipe(p){return !!p&&p.a>=swgThreshOf(p)&&!p.done}
+function swgInPhase(S,i){
+  const p=swgAt(S,i);if(!p)return false;
+  const P=p.P||3;return (((S.beat-(p.off||0))%P)+P)%P===0;
+}
+/* ---- 笔形（牌子刻的就是这一笔的真形状） ---- */
+function swgBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function swgDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function swgGly(d,box,dir,size){
+  const b=box||{x:0,y:0,w:200,h:200};
+  return {d:d||'M0 0',box:b,dir:dir,s:(size||40)/Math.max(140,Math.max(b.w,b.h))};
+}
+function swgGlyHTML(g){
+  const b=g.box,s=g.s;
+  const tx=-s*(b.x+b.w/2),ty=s*(b.y+b.h/2);
+  return '<g transform="translate('+tx.toFixed(1)+','+ty.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path d="'+g.d+'" fill="'+SWG_INK[swgDn(g.dir)]+'"/></g>';
+}
+function swgGlyOf(rec){
+  const ms=(rec&&rec.raw&&rec.raw.medians)||[],sp=(rec&&rec.raw&&rec.raw.strokes)||[],out=[];
+  for(let i=0;i<rec.n;i++){
+    const m=ms[i]||[[0,0],[100,100]];
+    out.push(swgGly(swgDOf(sp,i)||'M0 0 L60 60',swgBox(m)||{x:0,y:0,w:200,h:200},swgDn(rec.dirs[i]),40));
+  }
+  return out;
+}
+/* ---- 字库：每一笔方向都说得清，牌面才认得出刻的是哪一笔 ---- */
+function swgMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>SWG_STROKE_MAX)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){
+    const d=fmDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    dirs.push(d);
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,raw:raw};
+}
+/* 秋千坊的字库：全字库 1453 字挨个过了一遍 swgMake，能过的就这 78 个（笔数 ≤5、
+   每笔方向都在 横竖撇捺里、而且不止一种方向）。随机扫 90 个字只碰上三两个，
+   字池攒不满 SWG_POOL_MIN 就直接上不了板 —— 先从这里挑。 */
+const SWG_LETTERS='十人八小上下日水石田木禾白子不去个长门见对书本牛马飞入'
+  +'什么双王方气生叫主以尤区巨于记市民丝贝互仙勾丰父欠未击乎代计且斗示巧'
+  +'付兰专丈扎仅叉兰议歹矛冈矛仪辽曰瓦';
+function swgCand(){
+  const out=[],push=function(list,max){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<(max||90);i++){
+      const c=list[i];
+      if(c&&CHARS.indexOf(c)>=0&&out.indexOf(c)<0)out.push(c);
+    }
+  };
+  push(swgShuf(SWG_LETTERS.split('')),SWG_POOL_WANT*4);
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(swgShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(swgShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(swgShuf(CHARS.slice()));
+  return out;
+}
+function swgTO(p,ms){return Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},ms)})])}
+async function swgRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await swgTO(loadCharData(ch),6000);
+  if(!raw||!raw.medians)return null;
+  return swgMake(ch,raw);
+}
+async function swgBuildPool(keep){
+  const g=swg.gen;
+  const stale=function(){return g!==swg.gen||!swg.run};
+  swg.miss=(localStorage.getItem('hz_swing_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  swgShuf(swg.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  swgCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)swg.pool=[];
+  for(let k=0;k<want.length&&swg.pool.length<SWG_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return swgRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])swg.pool.push(rs[i]);
+  }
+  return swg.pool.length>=SWG_POOL_MIN;
+}
+function swgPickRec(){
+  const w=swgStrokeOf(swg.lv),used={};
+  for(let i=0;i<swg.miss.length;i++){
+    for(let k=0;k<swg.pool.length;k++){
+      const r=swg.pool[k];
+      if(r&&!used[r.ch]&&r.n>=2&&r.ch===swg.miss[i]){used[r.ch]=1;return r}
+    }
+  }
+  let cand=swg.pool.filter(function(r){return r&&!used[r.ch]&&r.n>=w[0]&&r.n<=w[1]});
+  if(!cand.length)cand=swg.pool.filter(function(r){return r&&!used[r.ch]&&r.n<=SWG_STROKE_MAX});
+  if(!cand.length)return null;
+  const c=swgOne(cand);if(c)used[c.ch]=1;
+  return c||swg.pool[0];
+}
+/* ---- 错字手册 / 秋千档案 ---- */
+function swgMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_swing_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_swing_miss',a.slice(0,SWG_MISS_MAX).join(','));
+}
+function swgMissDel(ch){
+  const a=(localStorage.getItem('hz_swing_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_swing_miss',a.join(','));
+}
+function swgBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_swing_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_swing_book',a.slice(0,SWG_BOOK_MAX).join(','));
+}
+function swgBook(){
+  return (localStorage.getItem('hz_swing_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+}
+
+/* ---- 一盘裸数据：军师和验证脚本共用的形状（没有 DOM、没有随机） ---- */
+function swgBlank(){
+  const p=[];
+  for(let i=0;i<SWG_N;i++)p.push({i:i,on:0,k:-1,P:3,off:0,a:0,fgn:0,heavy:0,loose:0,fog:0,tight:0,ripe:0,ripeBeat:-1,done:0,fly:0,scare:0});
+  return {n:0,qi:0,beat:0,pushed:0,fly:0,p:p,pair:[],wind:0};
+}
+function swgCloneSim(S){
+  return {n:S.n,qi:S.qi,beat:S.beat,pushed:S.pushed,fly:S.fly,wind:S.wind,
+    p:S.p.map(function(x){return {i:x.i,on:x.on,k:x.k,P:x.P,off:x.off,a:x.a,fgn:x.fgn,heavy:x.heavy,
+      loose:x.loose,fog:x.fog,tight:x.tight,ripe:x.ripe,ripeBeat:x.ripeBeat,done:x.done,fly:x.fly,scare:x.scare}}),
+    pair:S.pair.map(function(q){return [q[0],q[1]]})};
+}
+/* 拍一把（纯函数）：顺拍加档、逆拍减档，回来检查熟没熟 */
+function swgPushSim(S,i){
+  const p=swgAt(S,i);
+  if(!p||!p.on||p.done||S.pushed)return 0;
+  S.pushed=1;
+  const good=swgInPhase(S,i);
+  if(good)p.a=swgClamp(p.a+1,0,SWG_MAXA);
+  else p.a=swgClamp(p.a-1,0,SWG_MAXA);
+  swgRipeSim(S,p);
+  return good?1:2;
+}
+function swgRipeSim(S,p){
+  if(!p||p.done||!p.on)return;
+  if(p.a>=swgThreshOf(p)){if(!p.ripe){p.ripe=1;p.ripeBeat=S.beat}}
+  else{p.ripe=0;p.ripeBeat=-1}
+}
+function swgTakeSim(S,i){
+  const p=swgAt(S,i);
+  if(!p||!p.on||!p.ripe||p.done)return 0;
+  if(p.fgn){p.scare=1;p.a=0;p.ripe=0;swgRipeSim(S,p);return 2}
+  if(p.k!==S.qi)return 3;
+  p.done=1;p.ripe=0;S.qi++;
+  return 1;
+}
+/* 往前走一拍：拍号 +1，先清掉「这一拍推过没有」，再走连绳、逆风、熟牌过期 */
+function swgStepSim(S){
+  S.beat++;S.pushed=0;
+  if(S.beat%SWG_COUPLE===0)swgCoupleSim(S);
+  if(S.wind&&S.beat%SWG_WIND_BEATS===0)swgWindSim(S);
+  return swgExpireSim(S);
+}
+/* 连绳（耦合摆）：两只差到两档就往接得住的那边漏一格，漏不过去就留着 */
+function swgCoupleSim(S){
+  let moved=0;
+  for(let q=0;q<S.pair.length;q++){
+    const a=swgAt(S,S.pair[q][0]),b=swgAt(S,S.pair[q][1]);
+    if(!a||!b)continue;
+    if(a.done||b.done)continue;
+    if(a.a-b.a>=2&&a.a>0&&!a.ripe&&b.a+1<swgThreshOf(b)){a.a--;b.a++;moved++}
+    else if(b.a-a.a>=2&&b.a>0&&!b.ripe&&a.a+1<swgThreshOf(a)){b.a--;a.a++;moved++}
+    swgRipeSim(S,a);swgRipeSim(S,b);
+  }
+  return moved;
+}
+function swgWindSim(S){
+  let n=0;
+  for(let i=0;i<SWG_N;i++){
+    const p=swgAt(S,i);
+    if(!p||!p.on||p.done||p.ripe||p.a<=0)continue;
+    p.a=Math.max(0,p.a-SWG_WIND_DROP);n++;
+    swgRipeSim(S,p);
+  }
+  return n;
+}
+/* 熟牌过了窗口就甩飞：返回甩了几张（军师和真游戏共用这一条） */
+function swgExpireSim(S){
+  let n=0;
+  for(let i=0;i<SWG_N;i++){
+    const p=swgAt(S,i);
+    if(!p||!p.on||p.done||!p.ripe)continue;
+    if(S.beat-p.ripeBeat>=swgWinOf(p)){
+      p.fly=1;p.ripe=0;p.a=0;S.fly++;n++;
+    }
+  }
+  return n;
+}
+/* ---- 军师：严格按「先拧、再摘、才推」的贪心把整盘走一遍，走通了才发牌 ---- */
+function swgPlan(S0,maxBeats){
+  const S=swgCloneSim(S0),acts=[];
+  for(let g=0;g<SWG_PLAN_STEP;g++){
+    if(S.qi>=S.n)return {ok:1,beats:S.beat,acts:acts,S:S};
+    const w=swgOfK(S,S.qi);
+    if(w&&w.loose&&!w.tight){w.tight=1;acts.push({b:S.beat,kind:'tight',i:w.i})}
+    if(w&&w.ripe){
+      if(!swgTakeSim(S,w.i))return {ok:0,why:'take',beats:S.beat,acts:acts,S:S};
+      acts.push({b:S.beat,kind:'take',i:w.i});
+      continue;
+    }
+    if(!S.pushed){
+      let tgt=-1;
+      if(w&&!w.done&&w.a<swgThreshOf(w)&&swgInPhase(S,w.i))tgt=w.i;
+      if(tgt<0){
+        for(let k=S.qi+1;k<S.n;k++){
+          const p=swgOfK(S,k);
+          if(p&&!p.done&&p.a+1<swgThreshOf(p)&&swgInPhase(S,p.i)){tgt=p.i;break}
+        }
+      }
+      if(tgt>=0){swgPushSim(S,tgt);acts.push({b:S.beat,kind:'push',i:tgt})}
+    }
+    if(swgStepSim(S)>0)return {ok:0,why:'fly',beats:S.beat,acts:acts,S:S};
+    if(S.beat>(maxBeats||SWG_BEAT_CAP))return {ok:0,why:'over',beats:S.beat,acts:acts,S:S};
+  }
+  return {ok:0,why:'step',beats:S.beat,acts:acts,S:S};
+}
+/* ---- 一盘怎么摆：牌挂哪、几拍一趟、谁和谁连绳，全在这里定 ----
+   from = 这一盘上来就已经印了几笔（牌甩飞 / 天黑之后另挂一盘：印过的一笔不抹，
+   剩下的笔重新挂上梁，所以只挂 n−from 张牌） */
+function swgBuild(rec,cfg,from){
+  const n=rec.n,S=swgBlank();
+  S.n=n;
+  S.qi=Math.max(0,Math.min(n-1,from||0));
+  const left=n-S.qi;
+  const slotsAll=[];for(let i=0;i<SWG_N;i++)slotsAll.push(i);
+  const need=left+cfg.junk;
+  if(need>SWG_N)return null;
+  /* 牌在横梁上从左到右 = 笔顺（这一盘的地图），野牌插在空档里 */
+  const shuf=swgShuf(slotsAll.slice());
+  const pick=shuf.slice(0,left).sort(function(a,b){return a-b});
+  const rest=shuf.slice(left);
+  const junkSlots=rest.slice(0,cfg.junk).sort(function(a,b){return a-b});
+  const used={};for(let i=0;i<pick.length;i++)used[pick[i]]=1;
+  const Ps=swgPof(cfg.lv);
+  /* 连绳先占：找一对挨着的、都挂得上牌的格子，摆成一样长 */
+  const pair=[];
+  for(let q=0;q<cfg.pair;q++){
+    let done=0;
+    for(let c=0;c+1<SWG_N&&!done;c++){
+      const has=[used[c]?1:0,used[c+1]?1:0];
+      const junkHere=junkSlots.indexOf(c)>=0,junkNext=junkSlots.indexOf(c+1)>=0;
+      if((has[0]||junkHere)&&(has[1]||junkNext)&&pair.every(function(x){return x[0]!==c&&x[1]!==c&&x[0]!==c+1&&x[1]!==c+1})){
+        pair.push([c,c+1]);done=1;
+      }
+    }
+    if(!done)return null;
+  }
+  const inPair={},pairP={};
+  for(let q=0;q<pair.length;q++){inPair[pair[q][0]]=q;inPair[pair[q][1]]=q;pairP[q]=swgOne(Ps)||2}
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];
+    p.P=(inPair[i]>=0?pairP[inPair[i]]:swgOne(Ps))||3;
+    p.off=Math.floor(Math.random()*p.P);
+    p.a=1+Math.floor(Math.random()*3);
+  }
+  for(let k=S.qi;k<n;k++){
+    const p=S.p[pick[k-S.qi]];
+    p.on=1;p.k=k;
+  }
+  for(let q=0;q<junkSlots.length;q++){
+    const p=S.p[junkSlots[q]];
+    p.on=1;p.fgn=1;p.k=-1;
+  }
+  S.pair=pair;
+  /* 重锤牌：挑一只摆得靠前、周期短的（要推 5 档，摆长了太折磨人） */
+  if(cfg.heavy>0){
+    const cands=pick.slice();
+    cands.sort(function(a,b){return (S.p[a].P-S.p[b].P)||(a-b)});
+    for(let q=0;q<cands.length&&q<1;q++){S.p[cands[q]].heavy=1}
+  }
+  if(cfg.loose>0){
+    const list=[];for(let q=0;q<pick.length;q++)if(!S.p[pick[q]].heavy)list.push(pick[q]);
+    swgShuf(list);
+    for(let q=0;q<cfg.loose&&q<list.length;q++)S.p[list[q]].loose=1;
+  }
+  if(cfg.fog>0){
+    const list=[];for(let i=0;i<SWG_N;i++)if(S.p[i].on&&!S.p[i].loose)list.push(i);
+    swgShuf(list);
+    for(let q=0;q<cfg.fog&&q<list.length;q++)S.p[list[q]].fog=1;
+  }
+  S.wind=cfg.wind?1:0;
+  for(let i=0;i<SWG_N;i++)swgRipeSim(S,S.p[i]);
+  if(swgPlan(S,SWG_BEAT_CAP).ok===0)return null;
+  return {S:S,slots:pick,junk:junkSlots};
+}
+function swgTry(rec,cfg,from){
+  const b=swgBuild(rec,cfg,from);
+  if(!b)return null;
+  const S=b.S;
+  const plan=swgPlan(S,SWG_BEAT_CAP);
+  if(!plan.ok)return null;
+  const beats=plan.beats;
+  return {S:S,cfg:cfg,slots:b.slots,junk:b.junk,plan:plan.acts,beats:beats,sec:swgSec(beats,cfg.lv),from:from};
+}
+function swgGen(rec,lv,from){
+  const j0=swgJunkOf(lv),p0=swgPairOf(lv),l0=swgLooseOf(lv),f0=swgFogOf(lv),h0=swgHeavyOf(lv),w0=swgWindOf(lv);
+  for(let t=0;t<SWG_GEN_TRY;t++){
+    /* 摆不出来就顺着梯子往下减：先减雾、再减重锤、再减松钩、再减连绳、最后减野牌 */
+    const step=Math.floor(t/8);
+    if(step>6)break;
+    const cfg={lv:lv,junk:Math.max(0,j0-Math.max(0,step-4)),pair:Math.max(0,p0-Math.max(0,step-1)),
+      loose:Math.max(0,l0-Math.max(0,step-2)),fog:Math.max(0,f0-step),heavy:Math.max(0,h0-Math.max(0,step-3)),
+      wind:step>=6?0:w0};
+    const r=swgTry(rec,cfg,from);
+    if(r){swg.lastWhy='';return r}
+  }
+  swg.lastWhy='摆不出 lv'+lv+'（j'+j0+' p'+p0+' l'+l0+' f'+f0+' h'+h0+' w'+w0+'）';
+  return null;
+}
+/* ---- 军师下一步（真游戏里的催场、预览、vNext 全读这个） ---- */
+function swgNextStep(){
+  const S=swg.S;
+  if(!S)return null;
+  const w=swgOfK(S,S.qi);
+  if(!w)return null;
+  if(w.loose&&!w.tight)return {kind:'tight',i:w.i,k:w.k};
+  if(w.ripe)return {kind:'take',i:w.i,k:w.k};
+  if(w.a>=swgThreshOf(w))return null;
+  if(swgInPhase(S,w.i)&&!S.pushed)return {kind:'push',i:w.i,k:w.k};
+  let b=(((w.off||0)-S.beat)%(w.P||3)+(w.P||3))%(w.P||3);
+  return {kind:'wait',i:w.i,k:w.k,beats:b};
+}
+function swgStepSay(st){
+  if(!st)return '';
+  const S=swg.S,nm=swgName(st.i);
+  if(st.kind==='tight')return '🪝 先把 <b>'+nm+'</b> 那只的 <b>松挂钩拧一下</b>（<code>E</code> 一键全拧紧）—— 不拧它熟了一拍就飞';
+  if(st.kind==='take')return '🧺 <b>'+nm+'</b> 够着筐了（第 <b>'+(st.k+1)+'</b> 笔）—— <b>点它摘下来</b> 印到纸带上';
+  if(st.kind==='push')return '🫱 这一拍正是 <b>'+nm+'</b> 的顺拍（<b>'+S.p[st.i].P+'</b> 拍一趟 · 逢 <b>'+SWG_O[S.p[st.i].off]+'</b>）—— <b>推它</b>，现在 <b>'+S.p[st.i].a+'</b> 档，还差 <b>'+Math.max(0,swgThreshOf(S.p[st.i])-S.p[st.i].a)+'</b> 推';
+  return '⏳ <b>'+nm+'</b> 要 <b>'+S.p[st.i].P+'</b> 拍一趟、逢 <b>'+SWG_O[S.p[st.i].off]+'</b> 才顺 —— 还有 <b>'+st.beats+'</b> 拍。这几拍不如先把 <b>后面的笔</b> 垫高';
+}
+/* ---- 走一拍（真游戏）：连绳、逆风、熟牌过期，全走军师那一份纯函数 ---- */
+function swgBeat(){
+  const S=swg.S;
+  if(!S)return;
+  const before=S.p.map(function(p){return {a:p.a,ripe:p.ripe,done:p.done}});
+  swgStepSim(S);
+  let slosh=0,gain=0;
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i],o=before[i];
+    if(!p.on||p.done)continue;
+    if(p.a!==o.a){
+      slosh++;
+      if(p.a>o.a)gain++;
+      swgSloshFx(i,o.a,p.a);
+    }
+    if(p.ripe&&!o.ripe)swgRipenSay(p);
+    if(p.fly&&p.done!==2){p.done=2;swgFlyOut(p)}
+  }
+  if(slosh){
+    swg.couples+=gain;swgAdd('hz_swing_couples',gain);
+    if(gain)swgTag('🪢 连绳把能量倒过去了');
+  }
+  if(S.wind&&S.beat%SWG_WIND_BEATS===0)swgWindFx();
+  swgHudLight();swgBoard();
+}
+
+/* ================= v1.83 笔顺秋千坊 · 玩家动作 / 计分 / 道具 ================= */
+/* ---- 历史（倒带）---- */
+function swgClone(){
+  const S=swg.S;
+  return {n:S.n,qi:S.qi,beat:S.beat,pushed:S.pushed,fly:S.fly,wind:S.wind,
+    p:S.p.map(function(x){return {i:x.i,on:x.on,k:x.k,P:x.P,off:x.off,a:x.a,fgn:x.fgn,heavy:x.heavy,
+      loose:x.loose,fog:x.fog,tight:x.tight,ripe:x.ripe,ripeBeat:x.ripeBeat,done:x.done,fly:x.fly,scare:x.scare}}),
+    pair:S.pair.map(function(q){return [q[0],q[1]]}),
+    score:swg.score,combo:swg.combo,lits:swg.lits,pushes:swg.pushes,taps:swg.taps,flys:swg.flys,
+    wrongs:swg.wrongs,early:swg.early,saved:swg.saved,cleanWord:swg.cleanWord,failWord:swg.failWord,
+    printRun:swg.printRun,duoWord:swg.duoWord,since:swg.since,clockSec:swg.clockSec,red:swg.red,beep:swg.beep,
+    tightens:swg.tightens};
+}
+function swgHistPush(){
+  swg.hist.push(swgClone());
+  if(swg.hist.length>SWG_HIST_MAX)swg.hist.shift();
+}
+function swgRestore(s){
+  const S=swg.S;
+  S.n=s.n;S.qi=s.qi;S.beat=s.beat;S.pushed=s.pushed;S.fly=s.fly;S.wind=s.wind;S.fly=s.fly;
+  for(let i=0;i<SWG_N;i++){
+    const a=S.p[i],b=s.p[i];
+    a.on=b.on;a.k=b.k;a.P=b.P;a.off=b.off;a.a=b.a;a.fgn=b.fgn;a.heavy=b.heavy;a.loose=b.loose;
+    a.fog=b.fog;a.tight=b.tight;a.ripe=b.ripe;a.ripeBeat=b.ripeBeat;a.done=b.done;a.fly=b.fly;a.scare=b.scare;
+    a.aF=b.a;
+  }
+  S.pair=s.pair.map(function(q){return [q[0],q[1]]});
+  swg.score=s.score;swg.combo=s.combo;swg.lits=s.lits;swg.pushes=s.pushes;swg.taps=s.taps;
+  swg.flys=s.flys;swg.wrongs=s.wrongs;swg.early=s.early;swg.saved=s.saved;
+  swg.tightens=s.tightens;
+  swg.cleanWord=s.cleanWord;swg.failWord=s.failWord;swg.printRun=s.printRun;swg.duoWord=s.duoWord;
+  swg.since=s.since;swg.clockSec=s.clockSec;swg.red=s.red;swg.beep=s.beep;
+  swg.clock=swg.clockSec>0?swgClamp(swg.clockSec/Math.max(1,swg.clockSec0||swg.clockSec),0,1):0;
+}
+/* ---- 牌面上说人话的那句（每个动作都要落一句判词） ---- */
+function swgPSay(p){
+  if(!p||!p.on)return '这根绳上 <b>没挂牌</b>：推它白推这一拍';
+  const th=swgThreshOf(p);
+  return (p.fgn?'🚫 野牌':'第 <b>'+(p.k+1)+'</b> 笔')+' · <b>'+p.P+'</b> 拍一趟 · 逢 <b>'+SWG_O[p.off]+'</b>'+
+    (p.heavy?' · 🪨 要 <b>5</b> 档':'')+' · 现在 <b>'+p.a+'/'+th+'</b> 档';
+}
+function swgPhaseSay(p){
+  return '这一拍'+(swgInPhase(swg.S,p.i)?' <b>正顺着它的劲儿</b>':' <b>顶了逆劲儿</b>')+
+    '（<b>'+p.P+'</b> 拍一趟 · 逢 <b>'+SWG_O[p.off]+'</b> · 现在是第 <b>'+SWG_O[((swg.S.beat%12)+12)%12]+'</b> 灯）';
+}
+/* ---- 推一把 ---- */
+function swgPushOne(i){
+  const S=swg.S;
+  if(!S||!swg.run||swg.over)return false;
+  const p=swgAt(S,i);
+  if(!p||!p.on){swgSay('🪢 <b>'+swgName(i)+'</b> 这根绳上没挂牌，<b>这一拍推空了</b> —— 不如留着推该收那一笔','#B0BEC5');return false}
+  if(p.done&&p.done!==2){swgSay('第 <b>'+(p.k+1)+'</b> 笔已经印到纸上了，绳上空了','#B0BEC5');return false}
+  if(p.done===2){swgSay('💨 那张已经甩飞了，这一盘剩下的笔要重新挂','#FFAB91');return false}
+  if(S.pushed){swgSay('🫱 <b>一双手一拍只推得动一只</b> —— 这一拍已经推过了','#FFCC80');return false}
+  swgHistPush();
+  const good=swgInPhase(S,i);
+  S.pushed=1;
+  swg.pushes++;swgAdd('hz_swing_pushes',1);
+  swg.since=0;
+  const a0=p.a;
+  p.a=swgClamp(good?p.a+1:p.a-1,0,SWG_MAXA);
+  const wasRipe=p.ripe;
+  swgRipeSim(S,p);
+  swgBoard();swgHudLight();
+  if(good){
+    swgTone(SWG_NOTE[Math.min(7,p.a)],0.09,'sine',0.16);
+    swgSpark(i,p.a>=swgThreshOf(p)?'#FFD54F':'#B3E5FC','+1 档');
+    if(p.ripe&&!wasRipe)swgRipenSay(p);
+    else swgSay('🫱 顺！<b>'+swgName(i)+'</b> 涨到 <b>'+p.a+'</b> 档 —— '+swgPSay(p),'#E1F5FE');
+  }else{
+    swgTone(180,0.1,'square',0.12);
+    swgSpark(i,'#90A4AE',(a0>p.a?'−1 档':'0'));
+    swgSay('🙅 <b>'+swgName(i)+'</b> '+swgPhaseSay(p)+' —— 档数掉到 <b>'+p.a+'</b>，这一拍也白搭了','#FFCC80');
+  }
+  return true;
+}
+/* ---- 摘牌（点牌子）---- */
+function swgTapPlaque(i){
+  const S=swg.S;
+  if(!S||!swg.run||swg.over)return false;
+  const p=swgAt(S,i);
+  if(!p||!p.on){swgSay('🪢 这根绳上没挂牌 —— 点下面空档是 <b>推</b> 它','#B0BEC5');return false}
+  if(p.done===1){swgSay('第 <b>'+(p.k+1)+'</b> 笔已经印到纸带上了','#B0BEC5');return false}
+  if(p.done===2){swgSay('💨 那张已经甩飞了','#FFAB91');return false}
+  if(p.fgn){swgJunkHit(p);return true}
+  if(!p.ripe){
+    swgSay('⏳ 第 <b>'+(p.k+1)+'</b> 笔还没荡到 🧺：现在 <b>'+p.a+'/'+swgThreshOf(p)+'</b> 档 —— '+swgPhaseSay(p),'#B3E5FC');
+    return false;
+  }
+  if(p.k!==S.qi){
+    swgHistPush();
+    swg.early++;swgAdd('hz_swing_early',1);
+    swg.score=Math.max(0,swg.score-SWG_EARLY_PEN);
+    swg.combo=0;swg.cleanWord=false;swg.failWord++;
+    swgOnWrong(1);
+    swgSay('🙅 <b>插队了</b>：现在该摘的是第 <b>'+(S.qi+1)+'</b> 笔，你摘了第 <b>'+(p.k+1)+'</b> 笔 —— 扣 '+SWG_EARLY_PEN+' 分、断连击，牌 <b>还挂在绳上</b>','#FFAB91');
+    swgShakeFx();
+    swgBoard();swgHud();swgMeter();
+    return true;
+  }
+  swgTake(p);
+  return true;
+}
+/* ---- 摘下来印进米字格 ---- */
+function swgTake(p){
+  const S=swg.S,th=swgThreshOf(p);
+  swgHistPush();
+  p.done=1;p.ripe=0;S.qi++;
+  swg.taps++;swg.lits++;swg.since=0;
+  swgAdd('hz_swing_taps',1);swgAdd('hz_swing_lits',1);
+  const chained=swg.lastTakeBeat===S.beat&&swg.printRun>0;
+  if(chained){swg.duoWord++;if(swg.duoWord>swg.duoMax){swg.duoMax=swg.duoWord;localStorage.setItem('hz_swing_duo',String(swg.duoMax))}}
+  swg.printRun++;
+  swg.lastTakeBeat=S.beat;
+  const win=swgWinOf(p);
+  const fresh=swgClamp((win-(S.beat-p.ripeBeat))*SWG_BEAT_MS,0,win*SWG_BEAT_MS);
+  let gain=Math.round((12+p.k*2+swg.lv*3)*(1+swg.combo*0.06));
+  if(chained)gain+=8+swg.lv*2;
+  if(fresh>0)gain+=Math.round(fresh/(win*SWG_BEAT_MS)*(6+swg.lv));
+  if(swg.clock>0.6)gain+=Math.round(swg.clock*6);
+  swg.score+=gain;
+  swg.combo++;if(swg.combo>swg.maxCombo)swg.maxCombo=swg.combo;
+  swgTone(SWG_NOTE[Math.min(7,p.k)],0.12,'triangle',0.2);
+  if(chained)swgTone(SWG_NOTE[Math.min(7,p.k+2)],0.1,'sine',0.14);
+  swgPrint(p,gain,chained,fresh);
+  swgSay((chained?'🫳 <b>同一拍连摘第二笔</b> +':'✋ 摘下来印好了 +')+gain+
+    ' 分 · 第 <b>'+(p.k+1)+'</b> 笔进了米字格'+(fresh>0?'（<b>刚够着就摘</b>，火候正好）':''),'#69F0AE');
+  swgHud();swgMeter();swgPaper();swgMini();swgBoard();swgAskText();
+  if(S.qi>=S.n){
+    swg.nextMs=SWG_NEXT_MS;
+    swgT(swgWin,SWG_PRINT_MS+140);
+  }
+}
+/* 一把摘干净：只摘「熟了又轮到它」的那一笔（键盘 W / 空格走这条） */
+function swgTakeNext(){
+  const S=swg.S;
+  if(!S||!swg.run||swg.over)return false;
+  const w=swgOfK(S,S.qi);
+  if(!w){swgSay('🤔 场上找不出该摘的那一张了 —— 按 <b>🔁 重摆</b> 剩下的笔另挂一盘','#FFCC80');return false}
+  if(!w.ripe){
+    const st=swgNextStep();
+    swgSay('⏳ 第 <b>'+(S.qi+1)+'</b> 笔还没够着 🧺（<b>'+w.a+'/'+swgThreshOf(w)+'</b> 档）—— '+(st?swgStepSay(st):''),'#B3E5FC');
+    return false;
+  }
+  return swgTapPlaque(w.i);
+}
+/* ---- 野牌 / 提前摘：都算一次错 ---- */
+function swgJunkHit(p){
+  swgHistPush();
+  p.scare=1;p.a=0;p.ripe=0;p.ripeBeat=-1;p.on=0;p.k=-1;
+  swg.score=Math.max(0,swg.score-SWG_JUNK_PEN);
+  swg.combo=0;swg.cleanWord=false;swg.failWord++;
+  swgOnWrong(1);
+  swgTone(150,0.16,'square',0.16);
+  swgSpark(p.i,'#FF8A80','🚫');
+  swgSay('🚫 <b>野牌</b>：这张刻的根本不是「'+(swg.rec?swg.rec.ch:'?')+'」的笔 —— 扣 '+SWG_JUNK_PEN+' 分、断连击，一吓它自己就 <b>散架掉下绳</b>（<b>连错 '+SWG_WRONG_MAX+' 次掉一颗心</b>）','#FF8A80');
+  swgShakeFx();
+  swgBoard();swgHud();swgMeter();
+}
+function swgOnWrong(n){
+  swg.wrongs+=n;swgAdd('hz_swing_wrongs',n);
+  if(swg.failWord>=SWG_WRONG_MAX){
+    swg.failWord=0;
+    swgLoseHeart('连错 '+SWG_WRONG_MAX+' 次');
+  }
+}
+/* ---- 熟牌甩飞 / 掉心 / 天黑 ---- */
+function swgRipenSay(p){
+  const th=swgThreshOf(p);
+  if(p.fgn){swgTag('🚫 野牌也荡到 🧺 了 —— 别摘');return}
+  if(p.loose&&!p.tight){
+    swgSay('🪝 <b>'+swgName(p.i)+'</b> 够着 🧺了，可挂钩是 <b>松的</b> —— 只有 <b>1 拍</b>，先点挂钩拧一下（<code>E</code> 全拧紧）','#FFD54F');
+  }else if(p.k===swg.S.qi){
+    swgSay('🧺 <b>第 '+(p.k+1)+' 笔够着筐了</b>：<b>'+swgWinOf(p)+' 拍</b> 之内点它摘下来，过了就 <b>💨 甩飞</b>','#FFE082');
+  }else{
+    swgSay('⚠️ 第 <b>'+(p.k+1)+'</b> 笔提前熟了你 <b>不能摘</b>（该摘第 <b>'+(swg.S.qi+1)+'</b> 笔）—— 它 <b>'+swgWinOf(p)+' 拍</b> 之后会 <b>甩飞</b>：先把该收那一笔摘掉，或者 <b>再推它一把</b> 也没用','#FFCC80');
+  }
+  swgTone(SWG_NOTE[4],0.1,'sine',0.14);
+  swgFlash(p.i);
+}
+function swgFlyOut(p){
+  swg.flys++;swgAdd('hz_swing_flys',1);
+  swg.cleanWord=false;swg.failWord++;
+  swg.score=Math.max(0,swg.score-SWG_FLY_PEN);
+  swg.combo=0;swg.printRun=0;
+  swgMissAdd(swg.rec?swg.rec.ch:'');
+  swgTone(120,0.22,'sawtooth',0.18);
+  swgShakeFx();
+  swgLoseHeart('牌甩飞',true);
+  if(swg.hearts>0)swgSay('💨 <b>甩飞了</b>：第 <b>'+(p.k+1)+'</b> 笔在 🧺 上面挂了 <b>'+swgWinOf(p)+' 拍</b> 没人接 —— 扣 '+SWG_FLY_PEN+' 分、<b>掉一颗心</b>（还剩 '+swg.hearts+' 颗），剩下的笔 <b>另挂一盘</b>（已经印的 <b>一笔不抹</b>），这个字记进 <b>📕 错字手册</b>（下次挑字先荡它，荡齐才销账）','#FF8A80');
+  if(swg.run)swgT(function(){if(swg.run&&!swg.over)swgRedress()},SWG_FLASH_MS+220);
+}
+function swgLoseHeart(why,quiet){
+  if(swg.over)return;
+  swg.hearts--;
+  swg.reds++;
+  if(!quiet)swgTone(96,0.3,'square',0.2);
+  if(swg.hearts<=0){
+    swg.hearts=0;swgHud();
+    swgSay('💔 心用完了 —— 结算','#FF8A80');
+    swgT(function(){swgEnd('hearts')},620);
+    return;
+  }
+  if(!quiet)swgSay('💔 <b>掉一颗心</b>（'+why+'）：还剩 '+swg.hearts+' 颗','#FF8A80');
+  swgHud();
+}
+/* 飞了一张牌：这一盘剩下的笔全部重新挂（已印的不动） */
+function swgRedress(){
+  if(!swg.run||swg.over)return;
+  swgTag('🔄 剩下的笔另挂一盘');
+  swgNewBoard(swg.S?swg.S.qi:0);
+}
+function swgClockOut(){
+  if(swg.over||swg.deadLock)return;
+  swg.deadLock=1;
+  swg.deads++;swgAdd('hz_swing_deads',1);
+  swg.combo=0;swg.printRun=0;swg.cleanWord=false;
+  swg.red=false;swg.clock=0;
+  swgMissAdd(swg.rec?swg.rec.ch:'');
+  swgTblCls('dead',900);
+  swgSay('🌘 <b>天黑了</b>：钟走光 —— <b>掉一颗心</b>，剩下的笔 <b>另挂一盘</b>（已经印的 <b>一笔不抹</b>），这个字记进 <b>📕 错字手册</b>（下次挑字先荡它，荡齐才销账）','#FF8A80');
+  swgLoseHeart('天黑',true);
+  swgMeter();
+  if(swg.run&&!swg.over)swgT(swgRedress,1000);
+}
+/* ---- 拧挂钩（免费）---- */
+function swgTighten(i){
+  const S=swg.S;
+  if(!S||!swg.run||swg.over)return false;
+  const p=swgAt(S,i);
+  if(!p||!p.on||!p.loose){swgSay('🪝 <b>'+swgName(i)+'</b> 的挂钩不松，不用拧','#B0BEC5');return false}
+  if(p.tight){swgSay('🪝 <b>'+swgName(i)+'</b> 已经拧过了','#B0BEC5');return false}
+  swgHistPush();
+  p.tight=1;
+  swg.tightens++;swgAdd('hz_swing_tightens',1);
+  swg.since=0;
+  swgTone(660,0.07,'triangle',0.12);
+  swgSpark(i,'#B3E5FC','🔩 拧紧');
+  swgSay('🔩 <b>'+swgName(i)+'</b> 的挂钩拧紧了：熟牌窗口从 <b>1 拍</b> 变回 <b>'+SWG_GRACE+' 拍</b>（拧挂钩 <b>不花拍子</b>）','#B3E5FC');
+  swgBoard();swgHudLight();
+  return true;
+}
+function swgTightenAll(){
+  const S=swg.S;
+  if(!S||!swg.run||swg.over)return 0;
+  let n=0;
+  for(let i=0;i<SWG_N;i++){
+    const p=swgAt(S,i);
+    if(p&&p.on&&p.loose&&!p.tight&&p.done!==1){p.tight=1;n++;swg.tightens++;swgAdd('hz_swing_tightens',1)}
+  }
+  if(n){swgSay('🔩 一键 <b>拧好 '+n+' 只</b> 松挂钩（不花拍子）','#B3E5FC');swgTone(700,0.08,'triangle',0.14)}
+  else swgSay('🔩 这一盘的挂钩都不松','#B0BEC5');
+  swg.since=0;
+  swgBoard();swgHudLight();
+  return n;
+}
+/* ---- 定拍（把每只摆的顺拍灯标出来，1 次，升段补） ---- */
+function swgMetro(){
+  const S=swg.S;
+  if(!S||!swg.run||swg.over)return false;
+  if(swg.beatN<=0){swgSay('🥁 这一盘的 <b>定拍</b> 用完了（升一段补 1 次）','#FFCC80');return false}
+  swg.beatN--;swg.reveals++;swgAdd('hz_swing_reveals',1);
+  swg.revealTag=SWG_TAG_MS;
+  swgSay('🥁 <b>定拍</b>：每只牌子角上的 <b>逢①②…</b> 就是它顶到 🧺 那一拍（拍号 ÷ 几拍一趟 余几）—— 现在亮着金边的就是 <b>这一拍推得动</b> 的','#FFE082');
+  swgTone(SWG_NOTE[7],0.1,'sine',0.16);
+  swgHudLight();swgBoard();
+  return true;
+}
+/* ---- 计分 / 收字 / 下一盘 ---- */
+function swgPrint(p,gain,chained,fresh){
+  swg.printMs=SWG_PRINT_MS;
+  swgPut(document.getElementById('swgFx'),'<div class="swg-pop" style="left:'+(p.i*SWG_GAP+SWG_SX0)/SWG_W*100+'%;top:'+(SWG_BY+swgRope(p.P))/SWG_H*100+'%;color:'+(chained?'#FFE082':'#69F0AE')+'">+'+gain+(chained?' 连':'')+'</div>',900);
+  swgBits(swgSX(p.i),SWG_BY+swgRope(p.P),chained?'#FFD54F':SWG_INK[swgDn(swg.rec?swg.rec.dirs[p.k]:0)],chained?14:9);
+  swgRing(swgSX(p.i),SWG_BY+swgRope(p.P),30,chained?'#FFE082':'#69F0AE');
+}
+function swgWin(){
+  const S=swg.S;
+  if(!S||S.qi<S.n)return 0;
+  const clean=swg.failWord===0;
+  let gain=26+S.n*6+swg.lv*6+swg.duoWord*4+(clean?SWG_CLEAN_BONUS:0);
+  swg.score+=gain;
+  swg.words++;
+  swg.saved+=Math.max(0,swg.duoWord);
+  swgAdd('hz_swing_words',1);swgAdd('hz_swing_saved',Math.max(0,swg.duoWord));
+  swgBookAdd(swg.rec?swg.rec.ch:'');
+  swgMissDel(swg.rec?swg.rec.ch:'');
+  swg.combo=0;swg.printRun=0;swg.duoWord=0;
+  const lv0=swg.lv;
+  swg.lv=swgLvOf(swg.words);
+  if(swg.lv>lv0){
+    swg.previewN++;swg.undoN++;swg.respN++;swg.beatN++;
+    swgT(function(){
+      if(!swg.run||swg.over)return;
+      swgSay('⚡ <b>升到第 '+swg.lv+' 段</b>：拍子摆得更开（有的 <b>4 拍</b> 才一趟），预览 / 倒带 / 重摆 / 定拍 各补 1 次'+
+        (swg.lv>=3?'，<b>野牌</b> 挂上来了':'')+(swg.lv>=4?'，<b>连绳</b> 出现了':'')+(swg.lv>=8?'，<b>逆风</b> 也起了':''),'#FFE082');
+    },640);
+  }
+  if(swg.words%3===0&&swg.hearts<SWG_HEART_MAX){
+    swg.hearts++;
+    swgT(function(){if(swg.run)swgSay('❤️ 收了 '+swg.words+' 个字，<b>补一颗心</b>（最多 '+SWG_HEART_MAX+' 颗）','#FF8A80')},980);
+  }
+  if(swg.score>swgInt('hz_swing_score'))localStorage.setItem('hz_swing_score',String(Math.round(swg.score)));
+  swgTone(SWG_NOTE[5],0.14,'triangle',0.2);
+  swgTone(SWG_NOTE[7],0.2,'sine',0.16);
+  swgConfetti();
+  swgSay('🎉 <b>「'+(swg.rec?swg.rec.ch:'?')+'」整字荡齐</b>：'+S.n+' 笔全按笔顺摘下来了 +'+gain+' 分'+(clean?' · <b>一次没飞没摘错</b> +'+SWG_CLEAN_BONUS:''),'#FFE082');
+  swgHud();swgMeter();swgAskText();
+  swg.nextMs=SWG_NEXT_MS;
+  swgT(swgNextWord,SWG_NEXT_MS);
+  return Math.round(swg.score);
+}
+function swgNextWord(){
+  swg.nextMs=0;
+  if(!swg.run||swg.over)return;
+  swgNewWord();
+}
+function swgNewWord(){
+  const rec=swgPickRec();
+  if(!rec){swgEnd('pool');return}
+  swg.rec=rec;swg.n=rec.n;swg.gly=swgGlyOf(rec);
+  swg.cleanWord=true;swg.failWord=0;swg.duoWord=0;
+  swgNewBoard(0);
+  swgAskText();
+}
+function swgNewBoard(from){
+  if(!swg.rec){return 0}
+  const r=swgGen(swg.rec,swg.lv,from||0);
+  if(!r){swgEnd('gen');return 0}
+  swg.S=r.S;swg.sol=r;
+  for(let i=0;i<SWG_N;i++)swg.S.p[i].aF=swg.S.p[i].a;
+  swg.beat=0;swg.S.beat=0;
+  swg.printRun=0;swg.duoWord=0;swg.since=0;
+  swg.clockSec=r.sec;swg.clockSec0=r.sec;swg.clock=1;swg.red=false;swg.beep=0;swg.deadLock=0;
+  swg.wind=swgWindOf(swg.lv)?1:0;
+  swg.hist=[];swg.lastTakeBeat=-1;swg.moves++;
+  swgAdd('hz_swing_moves',1);
+  swgPreviewReset();
+  swgBoard();swgPaper();swgMini();swgHud();swgMeter();swgToolBtns();swgCursor();swgAskText();swgLine();
+  swgBeatFxOnce();
+  return 1;
+}
+function swgPreviewReset(){swg.ghost=null;swg.ghostMs=0}
+function swgAfter(){
+  const S=swg.S;
+  if(!S)return;
+  swgFlush(S);
+  swgBoard();swgHudLight();swgMeter();
+}
+/* ---- 三件道具：预览 / 倒带 / 重摆 ---- */
+function swgPreview(){
+  const S=swg.S;
+  if(!S||!swg.run||swg.over)return false;
+  if(swg.previewN<=0){swgSay('👀 <b>预览</b> 用完了（升一段补 1 次）','#FFCC80');return false}
+  const pl=swgPlan(S,SWG_BEAT_CAP);
+  swg.previewN--;swg.previews++;swgAdd('hz_swing_previews',1);
+  swg.since=0;
+  const next=swgNextStep();
+  swg.ghost={beats:pl.ok?pl.beats:-1,acts:pl.acts.slice(0,10),ok:pl.ok?1:0};
+  swg.ghostMs=SWG_GHOST_MS;
+  swgTone(SWG_NOTE[6],0.08,'sine',0.13);
+  if(pl.ok){
+    const need=pl.beats-S.beat;
+    swgSay('👀 <b>照军师的推法</b>：还有 <b>'+need+' 拍</b> 就能把这个字荡齐。'+
+      (next?swgStepSay(next):'')+'<br>下一步 <b>'+swgActSay(pl.acts[0])+'</b>','#B3E5FC');
+  }else{
+    swgSay('⚠️ 这一盘按军师的推法 <b>走不通</b>（'+(pl.why||'?')+'）—— 按 <b>🔁 重摆</b> 剩下的笔另挂一盘','#FFCC80');
+  }
+  swgToolBtns();swgRenderGhosts();
+  return true;
+}
+function swgActSay(a){
+  if(!a)return '这一盘已经荡齐了';
+  const nm=swgName(a.i);
+  if(a.kind==='push')return '第 <b>'+a.b+'</b> 拍 <b>推 '+nm+'</b>';
+  if(a.kind==='take')return '第 <b>'+a.b+'</b> 拍 <b>摘 '+nm+'</b>';
+  return '第 <b>'+a.b+'</b> 拍 <b>拧 '+nm+' 的挂钩</b>';
+}
+function swgUndo(){
+  if(!swg.S||!swg.run||swg.over)return false;
+  if(!swg.hist.length){swgSay('🔄 这一盘还没动过手，没得倒带','#B0BEC5');return false}
+  if(swg.undoN<=0){swgSay('🔄 <b>倒带</b> 用完了（升一段补 1 次）','#FFCC80');return false}
+  if(swg.printMs>0){swgSay('⏳ 等这一笔印完再倒带','#B0BEC5');return false}
+  const s=swg.hist.pop();
+  swg.undoN--;swg.rewinds++;swgAdd('hz_swing_rewinds',1);
+  swgRestore(s);
+  swg.since=0;
+  swgTone(320,0.1,'sine',0.15);
+  swgSay('🔄 <b>倒带</b>：退回上一次推 / 摘 / 拧之前，拍号 <b>'+swg.S.beat+'</b>、档数 <b>一模一样还原</b>','#CE93D8');
+  swgBoard();swgPaper();swgMini();swgHud();swgMeter();swgToolBtns();swgAskText();
+  return true;
+}
+function swgRespin(){
+  if(!swg.run||swg.over)return false;
+  if(swg.respN<=0){swgSay('🔁 <b>重摆</b> 用完了（升一段补 1 次）','#FFCC80');return false}
+  const S=swg.S,done=S?S.qi:0;
+  swg.respN--;swg.resets++;swgAdd('hz_swing_resets',1);
+  swgTone(240,0.14,'triangle',0.15);
+  swgSay('🔁 剩下的 <b>'+(swg.n-done)+'</b> 笔另挂一盘（已印的 <b>'+done+'</b> 笔一笔不抹）','#4FC3F7');
+  swgNewBoard(done);
+  return true;
+}
+
+/* ================= v1.83 笔顺秋千坊 · D：渲染 / 特效 / 主循环 / 输入 ================= */
+/* ---- 底：横梁、两只立柱、六个挂钩位、纸带槽（一次画好，之后只换摆和牌） ---- */
+function swgRenderStatic(){
+  const g=document.getElementById('swgStatic');if(!g)return;
+  let h='<rect class="swg-beam" x="52" y="'+(SWG_BY-16)+'" width="596" height="22" rx="9"/>';
+  h+='<path class="swg-post" d="M70 '+(SWG_BY+4)+' L34 432 L62 432 L86 '+(SWG_BY+4)+' Z"/>';
+  h+='<path class="swg-post" d="M630 '+(SWG_BY+4)+' L666 432 L638 432 L614 '+(SWG_BY+4)+' Z"/>';
+  h+='<rect class="swg-ground" x="18" y="430" width="664" height="14" rx="7"/>';
+  h+='<text class="swg-head" x="350" y="30">笔 顺 秋 千 坊</text>';
+  for(let i=0;i<SWG_N;i++){
+    const x=swgSX(i);
+    h+='<circle class="swg-piv" cx="'+x+'" cy="'+SWG_BY+'" r="4.6"/>';
+    h+='<text class="swg-slotTxt" x="'+x+'" y="'+(SWG_BY-24)+'">'+swgName(i)+'</text>';
+  }
+  /* 右下角：摆长 ↔ 周期对照（摆得越长，几拍才一趟） */
+  const lx=612;
+  h+='<text class="swg-lgdH" x="'+lx+'" y="132">🎐 绳长 = 周期</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="152">2 拍一趟 · 短</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="170">3 拍一趟 · 中</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="188">4 拍一趟 · 长</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="212">🫱 顺拍 +1 档</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="230">🙅 逆拍 −1 档</text>';
+  h+='<text class="swg-lgd swg-lgdK" x="'+lx+'" y="254">🧺 4 档算熟</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="272">🪨 要 5 档</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="290">⏳ 熟后 4 拍摘</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="308">💨 过了甩飞</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="332">🪢 连绳会漏档</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="350">🔩 松钩只有 1 拍</text>';
+  h+='<text class="swg-lgd" x="'+lx+'" y="368">🌫 雾牌看不见拍</text>';
+  g.innerHTML=h;
+}
+/* ---- 摆动弧线（虚线）：一眼看出这根绳摆多宽、🧺 在哪个尖上 ---- */
+function swgArcs(){
+  const g=document.getElementById('swgArcG'),S=swg.S;
+  if(!g)return;
+  if(!S){g.innerHTML='';return}
+  let h='';
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];
+    if(!p.on||p.done)continue;
+    const th=SWG_ANG*SWG_MAXA*Math.PI/180,L=swgRope(p.P),cx=swgSX(i);
+    let d='';
+    for(let q=0;q<=12;q++){
+      const a=-th+2*th*q/12;
+      const x=cx+L*Math.sin(a),y=SWG_BY+L*Math.cos(a);
+      d+=(q?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);
+    }
+    h+='<path class="swg-arc'+(swgInPhase(S,i)?' inph':'')+'" d="'+d+'"/>';
+  }
+  g.innerHTML=h;
+}
+/* ---- 🧺 筐标 + 牌角上的「几拍一趟 · 逢几」 ---- */
+/* 雾牌遮不遮：只有 🥁 定拍那阵子（revealTag）才把拍子念出来，过点重新遮上 */
+function swgFogHid(p){return !!(p&&p.fog&&!swg.revealTag)}
+function swgMark(){
+  const g=document.getElementById('swgMarkG'),S=swg.S;
+  if(!g)return;
+  if(!S){g.innerHTML='';return}
+  let h='';
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];
+    if(!p.on||p.done)continue;
+    const th=swgThreshOf(p),pk=swgPeak(i,p.P,th),cx=swgSX(i),L=swgRope(p.P);
+    h+='<text class="swg-basket" x="'+pk.x.toFixed(1)+'" y="'+(pk.y+7).toFixed(1)+'">🧺</text>';
+    h+='<text class="swg-basketR" x="'+pk.x.toFixed(1)+'" y="'+(pk.y-20).toFixed(1)+'">'+th+' 档</text>';
+    /* 左边静止位上也画一只淡淡的筐（摆到最左就是这一档的镜像） */
+    h+='<circle class="swg-dot" cx="'+(2*cx-pk.x).toFixed(1)+'" cy="'+pk.y.toFixed(1)+'" r="2.6"/>';
+    h+='<text class="swg-ropeTxt" x="'+cx+'" y="'+(SWG_BY+L+42).toFixed(1)+'">'+
+      (swgFogHid(p)?'🌫 看不见':'<tspan class="swg-pr">'+p.P+'</tspan> 拍 · 逢'+SWG_O[p.off])+'</text>';
+  }
+  g.innerHTML=h;
+}
+/* ---- 摆 + 牌（每次结构变化重画；帧间只改 rotate） ---- */
+function swgPlaqueHTML(S,i){
+  const p=S.p[i],cx=swgSX(i),L=swgRope(p.P),y=SWG_BY+L,th=swgThreshOf(p);
+  if(p.done===1)return '<line class="swg-rope done" x1="'+cx+'" y1="'+SWG_BY+'" x2="'+cx+'" y2="'+y+'"/>'+
+    '<text class="swg-hung" x="'+cx+'" y="'+(y+6)+'">✅</text><text class="swg-hungT" x="'+cx+'" y="'+(y+34)+'">已印</text>';
+  if(p.done===2)return '<line class="swg-rope fly" x1="'+cx+'" y1="'+SWG_BY+'" x2="'+cx+'" y2="'+y+'"/>'+
+    '<text class="swg-hung" x="'+cx+'" y="'+(y+6)+'">💨</text><text class="swg-hungT" x="'+cx+'" y="'+(y+34)+'">甩飞</text>';
+  const inph=swgInPhase(S,i),ripe=p.ripe,left=ripe?Math.max(0,swgWinOf(p)-(S.beat-p.ripeBeat)):-1;
+  const k=swgGlySize(p);
+  let h='<line class="swg-rope'+(inph?' inph':'')+'" x1="'+cx+'" y1="'+SWG_BY+'" x2="'+cx+'" y2="'+y+'"/>';
+  h+='<g class="swg-pl'+(ripe?' ripe':'')+(inph?' inph':'')+(p.fgn?' fgn':'')+(p.heavy?' hv':'')+'" transform="translate('+cx+','+y+')">';
+  h+='<rect class="swg-pq" x="-31" y="-26" width="62" height="52" rx="10"/>';
+  if(p.fgn||!swg.gly[p.k])h+='<text class="swg-q" x="0" y="8">?</text>';
+  else h+='<g transform="translate(0,1) scale('+k.toFixed(3)+')">'+swgGlyHTML(swg.gly[p.k])+'</g>';
+  h+='<text class="swg-tag1" x="-31" y="-31">'+(p.fgn?'🚫 野牌':'第 '+(p.k+1)+' 笔')+'</text>';
+  h+='<text class="swg-tag2" x="31" y="-31" text-anchor="end">'+(swgFogHid(p)?'🌫':(p.P+' 拍·逢'+SWG_O[p.off]))+'</text>';
+  h+='<text class="swg-amp" x="-31" y="36">'+swgAmpBar(p.a,th)+'</text>';
+  h+='<text class="swg-ampT" x="31" y="36" text-anchor="end">'+p.a+'/'+th+(p.heavy?' 🪨':'')+(p.loose&&!p.tight?' 🔩':'')+'</text>';
+  if(ripe)h+='<text class="swg-left" x="0" y="52">'+(left<=0?'这一拍!':'剩 '+left+' 拍')+'</text>';
+  h+='</g>';
+  return h;
+}
+function swgGlySize(p){return (p&&p.heavy)?0.78:0.72}
+function swgAmpBar(a,th){
+  let s='';
+  for(let q=1;q<=SWG_MAXA;q++)s+=(q<=a?(q===th?'●':'○'):'·');
+  return s;
+}
+function swgRopes(){
+  const g=document.getElementById('swgRopeG'),S=swg.S;
+  if(!g)return;
+  if(!S){g.innerHTML='';return}
+  let h='';
+  for(let i=0;i<SWG_N;i++){
+    if(!S.p[i].on)continue;
+    h+='<g class="swg-pend" data-pend="'+i+'" transform="'+swgPose(i)+'">'+swgPlaqueHTML(S,i)+'</g>';
+  }
+  g.innerHTML=h;
+}
+/* ---- 点击层：整根绳是「推」，牌心是「摘」，松挂钩头顶一小块是「拧」 ---- */
+function swgHit(){
+  const g=document.getElementById('swgHitG'),S=swg.S;
+  if(!g)return;
+  if(!S){g.innerHTML='';return}
+  let h='';
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i],cx=swgSX(i),L=swgRope(p.P);
+    h+='<rect class="swg-hit swg-hpush" data-slot="'+i+'" data-act="push" x="'+(cx-42)+'" y="'+(SWG_BY+8)+'" width="84" height="'+(L+70)+'" rx="12"/>';
+    if(p.on&&!p.done)h+='<g class="swg-pend" data-pend="'+i+'" data-shift="'+(SWG_BY+L)+'" transform="'+swgPose(i)+'">'+
+      '<rect class="swg-hit swg-htake" data-slot="'+i+'" data-act="take" x="'+(cx-31)+'" y="'+(SWG_BY+L-26)+'" width="62" height="52" rx="10"/>'+
+      (p.loose&&!p.tight?'<circle class="swg-hit swg-hhook" data-slot="'+i+'" data-act="hook" cx="'+(cx+26)+'" cy="'+(SWG_BY+L-30)+'" r="11"/>':'')+
+      '</g>';
+  }
+  g.innerHTML=h;
+}
+/* ---- 帧间只改这一个 transform ---- */
+function swgPose(i){
+  const S=swg.S;if(!S)return 'rotate(0,'+swgSX(i)+','+SWG_BY+')';
+  const p=S.p[i],tb=S.beat+swgClamp(swg.beatMs/SWG_BEAT_MS,0,1);
+  const b=swgBob(p.P,p.aF===undefined?p.a:p.aF,tb,p.off);
+  return 'rotate('+b.deg.toFixed(2)+','+swgSX(i)+','+SWG_BY+')';
+}
+function swgSetPose(){
+  const S=swg.S;if(!S)return;
+  const list=document.querySelectorAll('#swgSvg [data-pend]');
+  for(let q=0;q<list.length;q++){
+    const el=list[q];
+    el.setAttribute('transform',swgPose(+el.getAttribute('data-pend')));
+  }
+}
+/* ---- 这一整盘（结构变了才调） ---- */
+function swgBoard(){
+  const S=swg.S;
+  if(!S){swgArcs();swgMark();swgRopes();swgHit();return}
+  for(let i=0;i<SWG_N;i++)if(S.p[i].aF===undefined)S.p[i].aF=S.p[i].a;
+  swgArcs();swgMark();swgRopes();swgHit();swgSetPose();swgTray();swgCursor();swgRenderGhosts();
+}
+/* ---- 纸带：从左到右按笔顺一格一格印进米字格 ---- */
+const SWG_PX=64,SWG_PY=372,SWG_PW=452,SWG_PH=52;
+function swgPaper(){
+  const g=document.getElementById('swgPaperG'),S=swg.S;
+  if(!g)return;
+  if(!swg.rec||!S){g.innerHTML='';return}
+  const n=swg.n,qi=S.qi,bw=SWG_PW/Math.max(1,n);
+  let h='<rect class="swg-paper" x="'+(SWG_PX-6)+'" y="'+(SWG_PY-4)+'" width="'+(SWG_PW+12)+'" height="'+(SWG_PH+8)+'" rx="12"/>';
+  h+='<text class="swg-paperH" x="'+(SWG_PX-2)+'" y="'+(SWG_PY-10)+'">📜 按笔顺印出来的「'+swg.rec.ch+'」</text>';
+  for(let k=0;k<n;k++){
+    const x=SWG_PX+k*bw,inIt=k<qi,now=k===qi;
+    h+='<rect class="'+(now?'swg-pnow':'swg-pbox')+'" x="'+(x+3).toFixed(1)+'" y="'+(SWG_PY+1)+'" width="'+(bw-6).toFixed(1)+'" height="'+(SWG_PH-2)+'" rx="9"/>';
+    if(inIt&&swg.gly[k]){
+      const sc=(Math.min(bw-12,SWG_PH-8)/44*0.92).toFixed(3);
+      h+='<g transform="translate('+(x+bw/2).toFixed(1)+','+(SWG_PY+SWG_PH/2)+') scale('+sc+')">'+swgGlyHTML(swg.gly[k])+'</g>';
+    }else h+='<text class="swg-ptxt" x="'+(x+bw/2).toFixed(1)+'" y="'+(SWG_PY+SWG_PH/2+4)+'">'+(now?'该我':'第'+(k+1)+'笔')+'</text>';
+  }
+  g.innerHTML=h;
+}
+function swgMini(){
+  const svg=document.getElementById('swgMiniSvg');
+  if(!svg)return;
+  if(!swg.rec){svg.innerHTML='';return}
+  const sp=(swg.rec.raw&&swg.rec.raw.strokes)||[],S=swg.S,qi=(S&&S.qi)||0;
+  let h='<g transform="scale(1,-1)"><path d="M512 40V984M40 512H984" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="14 12"/>';
+  for(let i=0;i<swg.n;i++){
+    const got=i<qi,now=i===qi;
+    const col=got?SWG_INK[swgDn(swg.rec.dirs[i])]:((now)?'rgba(255,245,157,.95)':'rgba(255,255,255,.22)');
+    h+='<path d="'+swgDOf(sp,i)+'" fill="'+col+'"'+(now?' class="swg-now"':'')+'/>';
+  }
+  svg.innerHTML=h+'</g>';
+  swgSet('swgMiniCap',swg.rec.ch+' '+qi+'/'+swg.n+' 笔');
+}
+/* ---- 灯带每拍只挪一下 highlight，牌面 chips 跟着结构重画 ---- */
+function swgTrayLight(){
+  const S=swg.S,el=document.getElementById('swgTray');
+  if(!S||!el)return;
+  const lamps=el.querySelectorAll('.swg-lamps i');
+  if(lamps.length!==12){swgTray();return}
+  const now=((S.beat%12)+12)%12;
+  for(let q=0;q<12;q++){
+    const on=q===now;
+    if(lamps[q].classList.contains('now')!==on)lamps[q].classList.toggle('now',on);
+  }
+  const chips=el.querySelectorAll('.swg-chip');
+  if(chips.length!==SWG_N){swgTray();return}
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i],th=swgThreshOf(p),txt=swgChipTxt(p,th,S);
+    const c=chips[i];
+    if(c.getAttribute('data-t')!==txt){c.innerHTML=txt;c.setAttribute('data-t',txt)}
+    const cls='swg-chip'+(!p.on?' off':(p.done===1?' lit':(p.done===2?' fly':'')+(p.ripe?' ripe':'')+(swgInPhase(S,i)?' inph':'')+(p.fgn?' fgn':'')));
+    if(c.getAttribute('class')!==cls)c.setAttribute('class',cls);
+  }
+}
+function swgChipTxt(p,th,S){
+  if(!p.on)return swgName(p.i)+' 空绳';
+  if(p.done===1)return swgName(p.i)+' 已印';
+  if(p.done===2)return swgName(p.i)+' 💨';
+  return swgName(p.i)+' '+(p.fgn?'🚫':(swgFogHid(p)?'🌫 第'+(p.k+1)+'笔':('第'+(p.k+1)+'笔')))+' · '+
+    (swgFogHid(p)?'❓拍':(p.P+'拍逢'+SWG_O[p.off]))+' <b>'+p.a+'/'+th+'</b>'+
+    (p.ripe?(' · 剩 '+Math.max(0,swgWinOf(p)-(S.beat-p.ripeBeat))+' 拍'):'')+
+    (p.loose&&!p.tight?' 🔩':'');
+}
+function swgTray(){
+  const el=document.getElementById('swgTray'),S=swg.S;
+  if(!el||!S)return;
+  let h='<div class="swg-lamps">';
+  const now=((S.beat%12)+12)%12;
+  for(let q=0;q<12;q++)h+='<i class="'+(q===now?'now':'')+'">'+SWG_O[q+1]+'</i>';
+  h+='</div><div class="swg-chips">';
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i],th=swgThreshOf(p);
+    h+='<span class="swg-chip'+(!p.on?' off':(p.done===1?' lit':(p.done===2?' fly':'')+(p.ripe?' ripe':'')+(swgInPhase(S,i)?' inph':'')+(p.fgn?' fgn':'')))+
+      '" data-t="'+swgChipTxt(p,th,S).replace(/<[^>]*>/g,'')+'">'+swgChipTxt(p,th,S)+'</span>';
+  }
+  h+='</div>';
+  el.innerHTML=h;
+}
+/* ---- 板角那张牌：谁出炉了、谁还得推 ---- */
+function swgBadgeSay(S){
+  if(!S)return '';
+  let live=0,ripe=0,fgn=0,pending=0;
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];
+    if(!p.on||p.done)continue;
+    if(p.fgn){fgn++;continue}
+    live++;if(p.ripe)ripe++;
+    if(!p.ripe&&p.k>=S.qi)pending++;
+  }
+  return '🎐 挂 '+live+' 张 · 🧺 够着 '+ripe+' 张 · 待推 '+pending+(fgn?' · 🚫 '+fgn:'');
+}
+function swgBadge(){
+  const el=document.getElementById('swgBadge');
+  if(!el)return;
+  const t=swgBadgeSay(swg.S);
+  if(el.textContent!==t)el.textContent=t;
+}
+/* ---- HUD ---- */
+function swgHudLight(){
+  const S=swg.S;
+  swgBadge();swgTrayLight();
+  swgSet2('swgComboTxt','🔥 连 '+swg.combo);
+  swgSet2('swgLitTxt','✅ '+((S&&S.qi)||0)+' 笔');
+  swgSet2('swgPushTxt','🫱 '+swg.pushes);
+  swgSet2('swgDuoTxt','🫳 '+swg.duoWord);
+  swgSet2('swgFlyTxt','💨 '+swg.flys);
+  swgSet2('swgCoupleTxt','🪢 '+swg.couples);
+  swgSet2('swgWrongTxt','🚫 '+swg.wrongs);
+  swgSet2('swgBeatTxt','🥁 第 '+((S&&S.beat)||0)+' 拍'+(S&&S.pushed?'（这一拍推过了）':''));
+  const pw=document.getElementById('swgPowTxt');
+  if(pw){
+    const t=S?swgOfK(S,S.qi):null;
+    pw.textContent=t?('🎯 该收第 '+(S.qi+1)+' 笔 · '+t.a+'/'+swgThreshOf(t)+' 档 · '+(t.ripe?('剩 '+Math.max(0,swgWinOf(t)-(S.beat-t.ripeBeat))+' 拍'):(swgInPhase(S,t.i)?'这一拍推得动':'还差 '+Math.max(0,swgThreshOf(t)-t.a)+' 推'))):'🎯 ——';
+  }
+  /* 道具按钮的次数 / 可点状态跟着每次动作一起刷（不然用完最后一次还亮着） */
+  swgToolBtns();
+}
+function swgSet2(id,v){const el=document.getElementById(id);if(el&&el.textContent!==v)el.textContent=v}
+function swgHud(){
+  const S=swg.S;
+  swgSet2('swgScoreTxt','🎯 '+Math.round(swg.score)+' 分');
+  swgSet2('swgLvTxt','第 '+swg.lv+' 段 · 已收 '+swg.words+' 字');
+  const R=swgRank(swg.pushes);
+  swgSet2('swgRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<swg.hearts;i++)hs+='❤️';
+  swgSet2('swgHeartTxt',hs||'💔');
+  swgHudLight();
+}
+function swgToolBtns(){
+  const b=function(id,on,txt){
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.disabled=!on;
+    if(txt!==undefined&&el.dataset.txt!==txt){el.innerHTML=txt;el.dataset.txt=txt}
+  };
+  const S=swg.S;
+  let loose=0;
+  if(S)for(let i=0;i<SWG_N;i++){const p=S.p[i];if(p.on&&!p.done&&p.loose&&!p.tight)loose++}
+  b('swgTakeBtn',!!S&&swg.run&&!swg.over);
+  b('swgHookBtn',loose>0,'🔩 拧挂钩<b style="font-size:11px"> E'+(loose?' ×'+loose:'')+'</b>');
+  b('swgBeatBtn',swg.beatN>0,'🥁 定拍<b style="font-size:11px"> F ×'+swg.beatN+'</b>');
+  b('swgPrevBtn',swg.previewN>0,'👀 预览<b style="font-size:11px"> Q ×'+swg.previewN+'</b>');
+  b('swgUndoBtn',swg.undoN>0&&swg.hist.length>0,'🔄 倒带<b style="font-size:11px"> R ×'+swg.undoN+'</b>');
+  b('swgReBtn',swg.respN>0,'🔁 重摆<b style="font-size:11px"> T ×'+swg.respN+'</b>');
+}
+/* ---- 天黑钟 ---- */
+function swgMeter(){
+  const bar=document.getElementById('swgClockBar'),txt=document.getElementById('swgClockTxt'),
+    tbl=document.getElementById('swgTbl'),left=Math.max(0,Math.ceil(swg.clockSec));
+  const f=swg.clockSec0>0?swgClamp(swg.clockSec/swg.clockSec0,0,1):0;
+  if(bar)bar.style.width=(f*100).toFixed(1)+'%';
+  if(txt)txt.textContent=swg.over?'🌘 收工了':(left<=0?'🌘 天黑':'🥁 还有 '+left+' 秒 · 军师算过要 '+((swg.sol&&swg.sol.beats)||0)+' 拍');
+  const warn=!swg.over&&swg.clockSec>0&&swg.clockSec<=12;
+  if(tbl)tbl.classList.toggle('warn',warn);
+  if(tbl&&swg.over)tbl.classList.remove('warn');
+  swgSet2('swgBeatTxt','🥁 第 '+((swg.S&&swg.S.beat)||0)+' 拍'+(swg.S&&swg.S.pushed?'（这一拍推过了）':''));
+}
+/* ---- 题面 / 一行提示 ---- */
+function swgAskText(){
+  const el=document.getElementById('swgAsk'),S=swg.S;
+  if(!el)return;
+  if(!swg.rec||!S){el.innerHTML='🎐 正在挂牌……<br><small>在字库里挑「每一笔都认得出方向」的字</small>';return}
+  if(S.qi>=S.n){el.innerHTML='🎉 <b>「'+swg.rec.ch+'」荡齐了</b><br><small>换下一个字</small>';return}
+  const k=S.qi,d=swgDn(swg.rec.dirs[k]),t=swgOfK(S,k),th=t?swgThreshOf(t):SWG_RIPE;
+  el.innerHTML='「<b>'+swg.rec.ch+'</b>」共 <b>'+swg.n+'</b> 笔 · 该收第 <b>'+(k+1)+'</b> 笔 <b>'+SWG_DIRS[d]+' '+SWG_ARW[d]+'</b>'+
+    '<br><small>'+swgName(t?t.i:0)+' 那根绳'+(t&&t.ripe?' <b>已经够着 🧺</b>：点牌子摘下来':' 现在 <b>'+(t?t.a:0)+'/'+th+'</b> 档，'+
+    (t&&swgInPhase(S,t.i)?'<b>这一拍正顺</b>，推它一把':'要 <b>'+(t?t.P:3)+'</b> 拍一趟、逢 <b>'+SWG_O[t?t.off:0]+'</b> 才顺'))+
+    ' · 横梁上 <b>从左到右就是笔顺</b></small>';
+}
+function swgLine(){
+  const el=document.getElementById('swgHintLine');
+  if(!el)return;
+  el.innerHTML='🎐 <b>绳越长，几拍才一趟</b>：点牌子下面是 <b>推它一把</b>（<b>顺拍 +1 档、逆拍 −1 档</b>，一拍只推得动一只），荡到 <b>🧺</b> 那一头就 <b>点牌子摘下来</b> 印进纸带 —— 必须 <b>按笔顺</b> 摘';
+}
+/* ---- 光标 ---- */
+function swgCursor(){
+  const list=document.querySelectorAll('#swgHitG [data-act="push"]');
+  for(let q=0;q<list.length;q++){
+    const i=+list[q].getAttribute('data-slot');
+    list[q].classList.toggle('cur',i===swg.cur);
+  }
+}
+function swgCursorSay(){
+  const S=swg.S;if(!S||!swg.rec)return;
+  const i=swg.cur,p=S.p[i];
+  let s='👉 光标在 <b>'+swgName(i)+'</b>：'+(p.on?'':'这根绳上 <b>没挂牌</b>（推它白推这一拍）');
+  if(p.on){
+    if(p.done===1)s+='：第 <b>'+(p.k+1)+'</b> 笔 <b>已经印到纸带上</b>了，绳上只剩钩';
+    else if(p.done===2)s+='：那张 <b>💨 甩飞了</b>，剩下的笔另挂一盘';
+    else{
+      s+='<br>🎴 上面挂着 <b>'+(p.fgn?'🚫 野牌（刻的不是这个字的笔）':'第 '+(p.k+1)+' 笔')+'</b>：'+swgPSay(p)+
+        '<br>🎚 '+swgPhaseSay(p)+
+        (p.ripe?'<br>🧺 <b>够着筐了</b>：'+(p.k===S.qi?'<b>点牌子摘它</b>':'还没轮到 —— 摘了扣 '+SWG_EARLY_PEN+' 分')+'，过了 <b>'+swgWinOf(p)+' 拍</b> 就飞':'');
+    }
+  }
+  const st=swgNextStep();
+  s+='<br>🎯 该收第 <b>'+(S.qi+1)+'</b> 笔「'+SWG_DIRS[swgDn(swg.rec.dirs[Math.min(S.qi,swg.n-1)])]+' '+SWG_ARW[swgDn(swg.rec.dirs[Math.min(S.qi,swg.n-1)])]+'」'+
+    (st?'<br>👉 军师下一步：<b>'+swgStepSay(st)+'</b>':'');
+  swgSay(s,'#B3E5FC');
+}
+/* ---- 军师画圈：把该收那一笔那根绳标出来 ---- */
+function swgMarkSlot(i,cls){
+  const g=document.getElementById('swgTopG');if(!g||i<0)return;
+  const S=swg.S;if(!S)return;
+  const p=S.p[i],cx=swgSX(i),L=swgRope(p.P);
+  const r=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  r.setAttribute('cx',String(cx));r.setAttribute('cy',String(SWG_BY+L));
+  r.setAttribute('r','40');r.setAttribute('fill','none');
+  r.setAttribute('class','swg-mark '+(cls||''));
+  g.appendChild(r);
+  swgT(function(){if(r.parentNode)r.parentNode.removeChild(r)},1700);
+}
+/* ---- 预览虚影：把军师前 10 步画在左边 ---- */
+function swgRenderGhosts(){
+  const g=document.getElementById('swgGhostG');
+  if(!g)return;
+  if(!swg.ghost){g.innerHTML='';return}
+  const S=swg.S;if(!S){g.innerHTML='';return}
+  let h='<rect class="swg-gbox" x="12" y="'+(SWG_BY+18)+'" width="118" height="'+(20+swg.ghost.acts.length*17)+'" rx="9"/>';
+  h+='<text class="swg-gH" x="71" y="'+(SWG_BY+36)+'">'+(swg.ghost.ok>0?('👀 还要 '+Math.max(0,swg.ghost.beats-S.beat)+' 拍'):'👀 走不通')+'</text>';
+  for(let q=0;q<swg.ghost.acts.length;q++){
+    const a=swg.ghost.acts[q];
+    h+='<text class="swg-gLine" x="18" y="'+(SWG_BY+53+q*17)+'">'+(a.b-S.beat)+'拍 '+(a.kind==='push'?'推':(a.kind==='take'?'摘':'拧'))+' '+swgName(a.i)+'</text>';
+  }
+  g.innerHTML=h;
+}
+/* ---- 特效 ---- */
+function swgFxHost(){return document.getElementById('swgFx')}
+function swgPut(host,x,ms){
+  if(!host)return null;
+  if(typeof x==='string'){
+    host.insertAdjacentHTML('beforeend',x);
+    const el=host.lastElementChild;
+    if(el)swgT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+    return el;
+  }
+  host.appendChild(x);
+  swgT(function(){if(x.parentNode)x.parentNode.removeChild(x)},ms);
+  return x;
+}
+function swgXYpc(x,y){return {l:(x/SWG_W*100).toFixed(2)+'%',t:(y/SWG_H*100).toFixed(2)+'%'}}
+function swgBits(x,y,col,n){
+  const host=swgFxHost();if(!host)return;
+  for(let i=0;i<(n||8);i++){
+    const b=document.createElement('i');b.className='swg-bit';
+    const pc=swgXYpc(x,y);b.style.left=pc.l;b.style.top=pc.t;
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=16+Math.random()*42;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r+16).toFixed(1)+'px');
+    swgPut(host,b,820);
+  }
+}
+function swgPop(x,y,txt,col){
+  const host=swgFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='swg-pop';
+  const pc=swgXYpc(x,y);el.style.left=pc.l;el.style.top=pc.t;
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  swgPut(host,el,980);
+}
+function swgShakeFx(){
+  const el=document.querySelector('.swg-tbl');if(!el)return;
+  el.classList.remove('swg-shake');void el.offsetWidth;el.classList.add('swg-shake');
+}
+function swgTblCls(cls,ms){
+  const el=document.getElementById('swgTbl');
+  if(!el)return;
+  el.classList.add(cls);
+  swgT(function(){el.classList.remove(cls)},ms);
+}
+function swgRing(x,y,r,col){
+  const g=document.getElementById('swgTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+  c.setAttribute('r',String(Math.round(r)));c.setAttribute('fill','none');
+  c.setAttribute('stroke',col||'rgba(255,235,59,.9)');c.setAttribute('stroke-width','3');
+  c.setAttribute('class','swg-ring');
+  g.appendChild(c);
+  swgT(function(){if(c.parentNode)c.parentNode.removeChild(c)},940);
+}
+function swgSpark(i,col,txt){
+  const S=swg.S;if(!S)return;
+  const p=S.p[i],x=swgSX(i),y=SWG_BY+swgRope(p.P);
+  const g=document.getElementById('swgTopG');if(!g)return;
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x',String(x));t.setAttribute('y',String(y-38));
+  t.setAttribute('text-anchor','middle');
+  if(col)t.setAttribute('fill',col);
+  t.setAttribute('class','swg-spark');t.textContent=txt||'✨';
+  g.appendChild(t);
+  swgT(function(){if(t.parentNode)t.parentNode.removeChild(t)},1200);
+}
+function swgFlash(i){
+  const g=document.getElementById('swgTopG');if(!g)return;
+  const S=swg.S;if(!S)return;
+  const p=S.p[i],x=swgSX(p.i)-36,y=SWG_BY+swgRope(p.P)-32;
+  const r=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  r.setAttribute('x',String(x));r.setAttribute('y',String(y));
+  r.setAttribute('width','72');r.setAttribute('height','64');
+  r.setAttribute('rx','12');r.setAttribute('class','swg-flash');
+  g.appendChild(r);
+  swgT(function(){if(r.parentNode)r.parentNode.removeChild(r)},SWG_FLASH_MS+60);
+}
+/* 连绳漏能量：两只之间画一道来回的弧 */
+function swgSloshFx(i,from,to){
+  const S=swg.S;if(!S)return;
+  const p=S.p[i],g=document.getElementById('swgTopG');if(!g)return;
+  const x=swgSX(i),y=SWG_BY+swgRope(p.P)-30;
+  const up=to>from;
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x',String(x));t.setAttribute('y',String(y));
+  t.setAttribute('text-anchor','middle');
+  t.setAttribute('class','swg-slosh'+(up?' up':' down'));
+  t.textContent=up?'🪢 +1':'🪢 −1';
+  g.appendChild(t);
+  swgT(function(){if(t.parentNode)t.parentNode.removeChild(t)},1500);
+}
+function swgWindFx(){
+  const g=document.getElementById('swgTagG');if(!g)return;
+  swg.tagMs=1600;
+  g.innerHTML='<text class="swg-gust" x="120" y="86">🌬 逆风 · 没熟的牌都掉一档</text><text class="swg-gust g2" x="420" y="120">〰〰〰</text>';
+  swgTone(300,0.18,'sawtooth',0.07);
+}
+function swgTag(t){
+  const el=document.getElementById('swgTag');
+  if(!el)return;
+  el.innerHTML=t;
+  el.classList.add('on');
+  swg.tagMs=SWG_TAG_MS;
+}
+function swgConfetti(){
+  const host=swgFxHost();if(!host)return;
+  const cols=['#FF8A80','#80CBC4','#82B1FF','#FFD180','#FFF59D','#CE93D8'];
+  for(let i=0;i<26;i++){
+    const b=document.createElement('i');b.className='swg-bit big';
+    b.style.left=(8+Math.random()*84).toFixed(1)+'%';b.style.top=(16+Math.random()*46).toFixed(1)+'%';
+    b.style.background=cols[i%cols.length];
+    const a=Math.random()*Math.PI*2,r=26+Math.random()*54;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r+30).toFixed(1)+'px');
+    swgPut(host,b,1180);
+  }
+}
+/* 挂牌那一拍：灯带跳一下 + 报一句 */
+function swgBeatFxOnce(){
+  const el=document.querySelector('#swgTray .swg-lamps');
+  if(el){el.classList.remove('go');void el.offsetWidth;el.classList.add('go')}
+  swgBadge();
+}
+/* ---- 主循环 ---- */
+function swgStartLoop(){swgStopLoop();swg.last=0;swg.rafId=requestAnimationFrame(swgLoop)}
+function swgStopLoop(){if(swg.rafId){cancelAnimationFrame(swg.rafId);swg.rafId=0}swg.last=0}
+function swgLoop(ts){
+  if(!swg.run||swg.over||currentMode!=='swing'){swg.rafId=0;return}
+  const dt=swg.last?Math.min(0.05,(ts-swg.last)/1000):0.016;
+  swg.last=ts;
+  swgTick(dt);
+  swg.rafId=requestAnimationFrame(swgLoop);
+}
+function swgTick(dt){
+  const ms=dt*1000,S=swg.S;
+  swg.t+=dt;swg.playMs+=ms;swg.since+=ms;
+  swg.tones=6;
+  if(swg.ghostMs>0){
+    swg.ghostMs=Math.max(0,swg.ghostMs-ms);
+    if(!swg.ghostMs){swg.ghost=null;swgRenderGhosts()}
+  }
+  if(swg.revealTag>0){
+    swg.revealTag=Math.max(0,swg.revealTag-ms);
+    /* 定拍的拍子只念一阵子：到点把雾牌重新遮上 */
+    if(!swg.revealTag)swgBoard();
+  }
+  if(swg.tagMs>0){
+    swg.tagMs=Math.max(0,swg.tagMs-ms);
+    if(!swg.tagMs){
+      const el=document.getElementById('swgTag');if(el)el.classList.remove('on');
+      const g=document.getElementById('swgTagG');if(g)g.innerHTML='';
+    }
+  }
+  if(swg.printMs>0)swg.printMs=Math.max(0,swg.printMs-ms);
+  if(swg.nextMs>0){swg.nextMs=Math.max(0,swg.nextMs-ms);swgMeter();return}
+  if(!swg.rec||!S||swg.over)return;
+  swg.clockSec-=dt;
+  swg.clock=swg.clockSec0>0?swgClamp(swg.clockSec/swg.clockSec0,0,1):0;
+  const left=Math.max(0,Math.ceil(swg.clockSec));
+  if(swg.clockSec<=12&&swg.clockSec>0){
+    swg.beep+=ms;
+    if(swg.beep>=1000){swg.beep=0;swgTone(880,0.05,'sine',0.05)}
+    if(!swg.red){
+      swg.red=true;swgMeter();
+      swgSay('⚠️ <b>板子边上发红了</b>：还剩 '+left+' 秒就 <b>天黑</b> —— 天黑 <b>掉一颗心</b>、剩下的笔另挂一盘（已经印的 <b>一笔不抹</b>）。先把 <b>够着 🧺 那一笔</b> 摘掉','#FFCC80');
+    }
+  }
+  if(swg.clockSec<=0){swgClockOut();return}
+  swg.beatMs+=ms;
+  let guard=0;
+  while(swg.beatMs>=SWG_BEAT_MS&&guard++<3){
+    swg.beatMs-=SWG_BEAT_MS;
+    swgBeat();
+    if(!swg.run||swg.over||!swg.S)return;
+    if(swg.S.qi>=swg.S.n)return;
+  }
+  /* 摆的档数往目标值靠（看着像真在摆，不是跳格） */
+  for(let i=0;i<SWG_N;i++){
+    const p=swg.S.p[i];
+    if(p.aF===undefined)p.aF=p.a;
+    p.aF+=(p.a-p.aF)*Math.min(1,dt*4.2);
+    if(Math.abs(p.a-p.aF)<0.02)p.aF=p.a;
+  }
+  swgSetPose();
+  if(swg.since>=SWG_NAG_MS){swg.since=0;swgNag()}
+  swgMeter();
+  swgHudLight();
+}
+/* ---- 输入：键盘 ---- */
+function swgBind(){
+  if(swg.bound)return;
+  swg.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='swing'||!swg.run||swg.over)return;
+    const k=e.key,K=String(k||'').toLowerCase();
+    if(K==='escape'){
+      swg.ghost=null;swg.ghostMs=0;swgRenderGhosts();
+      return;
+    }
+    if(K==='arrowleft'||K==='arrowright'){
+      if(e.repeat)return;
+      swg.cur=swgClamp((swg.cur<0?0:swg.cur)+(K==='arrowleft'?-1:1),0,SWG_N-1);
+      swg.since=0;
+      swgCursor();swgCursorSay();
+      e.preventDefault();return;
+    }
+    if(K==='1'||K==='2'||K==='3'||K==='4'||K==='5'||K==='6'){
+      if(e.repeat)return;
+      swg.cur=swgClamp(parseInt(K,10)-1,0,SWG_N-1);
+      swg.since=0;
+      swgCursor();
+      const S=swg.S,p=S&&swgAt(S,swg.cur);
+      if(p&&p.on&&!p.done&&p.ripe&&p.k===S.qi)swgTapPlaque(swg.cur);
+      else if(p&&p.loose&&!p.tight&&p.on)swgTighten(swg.cur);
+      else swgPushOne(swg.cur);
+      e.preventDefault();return;
+    }
+    if(K==='enter'||k===' '){
+      if(!e.repeat){
+        if(swg.cur<0)swg.cur=0;
+        const S=swg.S,p=S&&swgAt(S,swg.cur);
+        swgCursor();
+        if(p&&p.on&&!p.done&&p.ripe)swgTapPlaque(swg.cur);
+        else swgPushOne(swg.cur);
+      }
+      e.preventDefault();return;
+    }
+    if(K==='w'){if(!e.repeat)swgTakeNext();return}
+    if(K==='e'){if(!e.repeat)swgTightenAll();return}
+    if(K==='f'){if(!e.repeat)swgMetro();return}
+    if(K==='q'){if(!e.repeat)swgPreview();return}
+    if(K==='r'){if(!e.repeat)swgUndo();return}
+    if(K==='t'){if(!e.repeat)swgRespin();return}
+    if(K==='?'||K==='h'){if(!e.repeat)swgHelp();return}
+  });
+}
+/* ---- 输入：鼠标 / 手指 ---- */
+function swgPointer(){
+  const svg=document.getElementById('swgSvg');
+  if(!svg||swg.ptrBound)return;
+  swg.ptrBound=true;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='swing'||!swg.run||swg.over||!swg.S)return;
+    if(!ev.target.closest)return;
+    const te=ev.target.closest('[data-slot]');
+    let i=te?parseInt(String(te.getAttribute('data-slot')),10):-1;
+    const act=te?String(te.getAttribute('data-act')||'push'):'push';
+    const pt=swgSvgPoint(ev);
+    if(isNaN(i)||i<0||i>=SWG_N){
+      i=pt?swgSlotAtPoint(pt.x):-1;
+      if(i<0)return;
+    }
+    /* 牌与牌挨得近、熟牌还可能被邻居压住：点到的牌没熟、旁边 40 像素内就有熟牌时认熟牌 */
+    if(act==='take'&&pt){
+      const p=swgAt(swg.S,i);
+      if(p&&!p.fgn&&!p.done&&!p.ripe){
+        const j=swgRipeNear(pt.x,pt.y);
+        if(j>=0&&j!==i)i=j;
+      }
+    }
+    swg.since=0;
+    swg.cur=i;swgCursor();
+    if(act==='hook')swgTighten(i);
+    else if(act==='take')swgTapPlaque(i);
+    else swgPushOne(i);
+    if(ev.preventDefault)ev.preventDefault();
+  });
+}
+/* 离最近的熟牌牌心有多近（摆一直在动，所以按这一瞬间的牌心算）
+   SVG 的 rotate 顺时针为正：牌在枢轴正下方，deg 为负时牌往右跑，所以 x = 绳点 − L·sin(deg) */
+function swgRipeNear(x,y){
+  const S=swg.S;if(!S)return -1;
+  const tb=S.beat+swgClamp(swg.beatMs/SWG_BEAT_MS,0,1);
+  let bi=-1,bd=1e9;
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];if(!p.on||p.done||!p.ripe||p.fgn)continue;
+    const L=swgRope(p.P),a=p.aF===undefined?p.a:p.aF;
+    const r=swgBob(p.P,a,tb,p.off).deg*Math.PI/180;
+    const cx=swgSX(i)-L*Math.sin(r),cy=SWG_BY+L*Math.cos(r);
+    const d=Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy));
+    if(d<bd){bd=d;bi=i}
+  }
+  return bd<=40?bi:-1;
+}
+function swgSlotAtPoint(x){
+  let best=-1,bd=1e9;
+  for(let i=0;i<SWG_N;i++){
+    const d=Math.abs(x-swgSX(i));
+    if(d<bd){bd=d;best=i}
+  }
+  return bd<=52?best:-1;
+}
+function swgSvgPoint(ev){
+  const svg=document.getElementById('swgSvg');
+  if(!svg||!svg.getBoundingClientRect)return null;
+  const r=svg.getBoundingClientRect();
+  if(!r.width||!r.height)return null;
+  return {x:(ev.clientX-r.left)/r.width*SWG_W,y:(ev.clientY-r.top)/r.height*SWG_H};
+}
+/* 同步一次摆的状态（军师/验证脚本改完裸数据之后调） */
+function swgFlush(S){
+  if(!S)return;
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];
+    swgRipeSim(S,p);
+    if(p.aF===undefined)p.aF=p.a;
+  }
+}
+
+/* ================= v1.83 笔顺秋千坊 · E：生命周期 / 军师催场 / 帮助 / 测试钩子 ================= */
+function swgStopAll(){
+  swgStopLoop();swgKillTimers();swg.gen++;
+  swg.tagMs=0;swg.windTag=0;swg.revealTag=0;swg.nextMs=0;swg.printMs=0;swg.ghostMs=0;swg.ghost=null;
+  swg.beatMs=0;swg.red=false;
+}
+function swgInstall(r){
+  swg.S=r.S;swg.sol=r;
+  for(let i=0;i<SWG_N;i++)swg.S.p[i].aF=swg.S.p[i].a;
+  swg.clockSec=r.sec;swg.clockSec0=r.sec;swg.clock=1;swg.red=false;swg.beep=0;swg.deadLock=0;
+  swg.wind=r.S.wind?1:0;
+  swg.hist=[];swg.lastTakeBeat=-1;swg.printRun=0;swg.duoWord=0;swg.since=0;swg.think=0;
+  swgPreviewReset();
+  swgFlush(r.S);
+  return r;
+}
+async function swgStart(){
+  swgStopAll();
+  const g=swg.gen;
+  const stale=function(){return g!==swg.gen||!swg.run||swg.over};
+  swg.run=true;swg.over=false;
+  swg.timers=[];
+  swg.lv=1;swg.score=0;swg.hearts=SWG_HEARTS;swg.combo=0;swg.maxCombo=0;
+  swg.words=0;swg.lits=0;swg.moves=0;swg.pushes=0;swg.taps=0;swg.flys=0;swg.wrongs=0;
+  swg.early=0;swg.saved=0;swg.deads=0;swg.reds=0;swg.couples=0;swg.tightens=0;
+  swg.duoWord=0;swg.duoMax=0;swg.lastTakeBeat=-1;
+  swg.previewN=2;swg.undoN=3;swg.respN=1;swg.beatN=1;
+  swg.previews=0;swg.rewinds=0;swg.resets=0;swg.reveals=0;swg.nags=0;
+  swg.think=0;swg.playMs=0;swg.t=0;swg.hudTxt={};
+  swg.pool=[];swg.miss=[];swg.rec=null;swg.n=0;swg.gly=[];swg.S=null;swg.tid=1;
+  swg.wind=0;swg.windTag=0;swg.revealTag=0;
+  swg.clock=1;swg.clockSec=45;swg.clockSec0=45;swg.red=false;swg.beep=0;swg.deadLock=0;
+  swg.printRun=0;swg.since=0;swg.cleanWord=true;swg.failWord=0;swg.redWord=false;
+  swg.hist=[];swg.arm=false;swg.cur=0;swg.sol=null;swg.lastWhy='';
+  showScreen('swing');
+  swgBind();swgPointer();
+  swgRenderStatic();swgBoard();swgPaper();swgMini();swgHud();swgMeter();swgAskText();swgLine();
+  swgSay('眼前是 <b>横梁上的六只秋千</b>：<b>绳越长，几拍才摆一趟</b>。每张牌挂在一根绳上、牌面刻着这个字其中一笔的 <b>真实笔形</b>（横红、竖青、撇蓝、捺橘）。<b>顺着它的劲儿推一把</b> 涨一档，顶逆劲儿推掉一档 —— <b>4 档</b> 就荡到 <b>🧺</b>，<b>4 拍</b> 之内点它摘下来印进纸带，过了就 <b>💨 甩飞</b>');
+  let ok=await swgBuildPool();
+  if(stale())return;
+  if(!ok){
+    swgSay('🎐 风还没把绳拉直，再挂一次……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await swgBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!swg.pool.length){
+    swg.run=false;
+    swgSet('swgAsk','😢 字库没加载好<br><small>稍后再来挂牌</small>');
+    swgSay('先去别的模式练两笔，回来字就齐了','#FFCC80');
+    return;
+  }
+  swgAdd('hz_swing_games',1);
+  swgNewWord();
+  if(!swg.S||!swg.run||swg.over||stale()){
+    swg.run=false;
+    swgSet('swgAsk','😢 牌没挂好<br><small>稍后再来挂牌</small>');
+    return;
+  }
+  swgStartLoop();
+}
+function swgEnd(reason){
+  if(swg.over)return;
+  swg.over=true;swg.run=false;
+  swgStopAll();
+  const sc=Math.round(swg.score);
+  localStorage.setItem('hz_swing_best',String(Math.max(swg.words,swgInt('hz_swing_best'))));
+  localStorage.setItem('hz_swing_score',String(Math.max(sc,swgInt('hz_swing_score'))));
+  localStorage.setItem('hz_swing_streak',String(Math.max(swg.maxCombo,swgInt('hz_swing_streak'))));
+  localStorage.setItem('hz_swing_lv',String(Math.max(swg.lv,swgInt('hz_swing_lv'))));
+  const stars=Math.floor(sc/120)+swg.words*3;
+  if(stars>0)addStars(stars);
+  showScreen('swing-result');
+  const R=swgRank(swgInt('hz_swing_words'));
+  const T={
+    hearts:['🎐','绳凉了，心也丢完了','<b>牌甩飞</b>、<b>连错三次</b>、<b>天黑</b> 都掉心：动手之前先看 <b>这一拍顺不顺</b>，够着 🧺 就 <b>摘</b>'],
+    quit:['🏁','今天收工了','下次记着 <b>绳越长几拍才一趟</b>：把 <b>该收那一笔</b> 的档数先垫到 3，再等它的顺拍'],
+    pool:['😢','字没挑好','先去别的模式练两笔，回来字就齐了'],
+    gen:['😢','牌没挂好','这一盘的绳长排不开 —— 换个字再荡一次']
+  };
+  const t=T[reason]||T.quit;
+  swgSet('swgRsEmoji',t[0]);
+  swgSet('swgRsTitle',reason==='pool'||reason==='gen'?t[1]:(reason==='hearts'?(swg.words?'心丢了 · 已收好 '+swg.words+' 个字':t[1]):t[1]));
+  swgSet('swgRsSub',t[2]);
+  swgSet('swgRsScore',String(sc));
+  swgSet('swgRsWords',String(swg.words));
+  swgSet('swgRsLit',String(swg.lits));
+  swgSet('swgRsLv',String(swg.lv));
+  swgSet('swgRsStreak',String(swg.maxCombo));
+  swgSet('swgRsMiss',swg.flys+' / '+swg.wrongs+' / '+swg.deads);
+  swgSet('swgRsStars','⭐ '+stars);
+  swgSet('swgRsBest',String(swgInt('hz_swing_best')));
+  swgSet('swgRsAll2',String(swgInt('hz_swing_words')));
+  swgSet('swgRsAll','🏅 '+R.e+' '+R.t+' · 累计荡齐 '+swgInt('hz_swing_words')+' 个字\n'+
+    '🫱 推了 '+swgInt('hz_swing_pushes')+' 把 · 🪝 拧挂钩 '+swgInt('hz_swing_tightens')+' 次 · 🪢 连绳倒过去 '+swgInt('hz_swing_couples')+' 档\n'+
+    '💨 甩飞 '+swgInt('hz_swing_flys')+' 张 · 🚫 摘错 '+swgInt('hz_swing_wrongs')+' 次 · ⏳ 插队 '+swgInt('hz_swing_early')+' 回 · 🌘 天黑 '+swgInt('hz_swing_deads')+' 阵\n'+
+    '👀 预览 '+swgInt('hz_swing_previews')+' 次 · 🔄 倒带 '+swgInt('hz_swing_rewinds')+' 次 · 🔁 重摆 '+swgInt('hz_swing_resets')+' 回 · 🥁 定拍 '+swgInt('hz_swing_reveals')+' 回\n'+
+    '🫳 同一拍连摘最多 '+swgInt('hz_swing_duo')+' 笔 · 🎐 换过 '+swgInt('hz_swing_moves')+' 盘 · 🚀 一局最多 '+swgInt('hz_swing_best')+' 个字 · 最高玩到第 '+swgInt('hz_swing_lv')+' 段');
+  const book=(localStorage.getItem('hz_swing_book')||'').split(',').filter(function(c){return c.length===1});
+  swgSet('swgRsBookT',book.length?('📜 秋千档案 · 已荡齐 '+book.length+' 个字'):'');
+  const bh=document.getElementById('swgRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+  swgMeter();
+}
+function swgRetry(){swgStart()}
+function swgLeave(){
+  swgStopAll();
+  if(swg.run&&!swg.over){swg.over=true;swg.run=false}
+  goHome();
+}
+function swgNudge(){
+  const dot=document.getElementById('swgCardDot'),tip=document.getElementById('swgCardTip');
+  const w=swgInt('hz_swing_words'),games=swgInt('hz_swing_games');
+  const R=swgRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 荡齐 '+w+' 个字 · 推了 '+swgInt('hz_swing_pushes')+' 把 · 甩飞 '+swgInt('hz_swing_flys')+' 张'):'横梁上六只秋千：绳越长几拍才一趟，顺着劲儿推一把涨一档 —— 荡到 🧺 那一下按笔顺点它摘下来，过了就甩飞';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function swgNag(){
+  if(!swg.rec||!swg.S||swg.S.qi>=swg.S.n)return;
+  const S=swg.S;
+  swg.nags++;
+  swgTone(620,0.08,'sine',0.06);
+  const t=swgOfK(S,S.qi);
+  const d=swgDn(swg.rec.dirs[S.qi]);
+  const st=swgNextStep();
+  if(!t){swgSay('🐰 架上 <b>找不出第 '+(S.qi+1)+' 笔</b> 那张牌了：按 <b>🔁 重摆</b> 剩下的笔另挂一盘','#FFF176');return}
+  swgMarkSlot(t.i,'nag');
+  if(st&&(st.kind==='push'||st.kind==='take'))swgMarkSlot(st.i,'plan');
+  swgSay('🐰 该收的是「<b>'+SWG_DIRS[d]+' '+SWG_ARW[d]+'</b>」第 '+(S.qi+1)+' 笔，挂在 <b>'+swgName(t.i)+'</b>：'+
+    (t.fog?'🌫 这张被 <b>雾</b> 遮着 —— 看不见它是 <b>几拍一趟、逢几</b>':'它是 <b>'+t.P+' 拍一趟、逢 '+SWG_O[t.off]+'</b>')+
+    '<br>🎚 现在 <b>'+t.a+'/'+swgThreshOf(t)+'</b> 档：'+(t.ripe?'<b>已经够着 🧺</b>，剩 '+Math.max(0,swgWinOf(t)-(S.beat-t.ripeBeat))+' 拍':
+      (swgInPhase(S,t.i)?'<b>这一拍正是它的顺拍</b>，推它 +1 档':'这一拍 <b>顶逆劲儿</b>，推它要掉档 —— 等 '+((((t.off||0)-S.beat)%(t.P||3))+(t.P||3))%(t.P||3)+' 拍'))+
+    ' · 🪢 连绳 <b>'+S.pair.length+'</b> 对 · 🔩 松钩 <b>'+(t.loose&&!t.tight?'这一只要拧':'没有')+'</b> · 🌬 逆风 <b>'+(S.wind?'开着':'没有')+'</b>'+
+    (st?'<br>👉 军师下一步：<b>'+swgStepSay(st)+'</b>':'<br>👉 军师摆的路子 <b>走不通</b>：按 <b>🔁 重摆</b> 另挂一盘（还剩 '+swg.respN+' 次）'),'#FFF176');
+}
+function swgHelp(){
+  const S=swg.S;
+  if(!S||!swg.rec){swgSay('🎐 正在挂牌，稍等一下再问怎么玩','#B3E5FC');return}
+  let live=0,ripe=0,fgn=0,fog=0,loose=0,heavy=0,pending=0;
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];
+    if(!p.on||p.done)continue;
+    if(p.fgn){fgn++;continue}
+    live++;if(p.ripe)ripe++;if(p.fog)fog++;if(p.loose&&!p.tight)loose++;if(p.heavy)heavy++;
+  }
+  const t=swgOfK(S,Math.min(S.qi,swg.n-1));
+  swgSay('🎐 横梁上挂着 <b>'+SWG_N+'</b> 只秋千（<b>'+swgName(0)+'~'+swgName(SWG_N-1)+'</b>），牌从左到右 <b>就是笔顺</b>，牌面上刻的是这一笔的 <b>真实笔形</b>（横红、竖青、撇蓝、捺橘）；绳的 <b>长短决定几拍一趟</b>：短绳 2 拍、中绳 3 拍、长绳 4 拍<br>'+
+    '🫱 <b>顺拍才推得动</b>：牌角写着 <b>P 拍 · 逢①②…</b> —— 拍号除以 P 余几就是「逢几」，<b>逢上的那一拍</b> 点它下面 <b>推一把 +1 档</b>；顶逆劲儿推 <b>−1 档</b>。一双手 <b>一拍只推得动一只</b>（板下灯带走到哪一盏，就是第几拍）<br>'+
+    '🧺 <b>荡到 🧺 那一头就算熟</b>（普通 <b>'+SWG_RIPE+'</b> 档，🪨 <b>重锤牌</b> 要 <b>'+SWG_HEAVY_A+'</b> 档，本盘 <b>'+heavy+'</b> 张）：熟了之后 <b>'+SWG_GRACE+' 拍</b> 之内 <b>点牌子摘下来</b> 印进纸带（或按 <code>W</code>）；过了就 <b>💨 甩飞</b>：扣 '+SWG_FLY_PEN+' 分、掉一颗心、剩下的笔 <b>另挂一盘</b>（已印的 <b>一笔不抹</b>），这个字进 <b>📕 错字手册</b> —— 下次挑字 <b>先荡它</b>，整字荡齐才 <b>销账</b>（荡齐的字进 <b>📜 秋千档案</b>）<br>'+
+    '🎯 <b>按笔顺摘</b>：还没轮到的牌 <b>够着 🧺 也不许摘</b>（扣 '+SWG_EARLY_PEN+' 分、断连击，牌 <b>还挂在绳上</b>）；🚫 <b>野牌</b>（本盘 <b>'+fgn+'</b> 张，挂着 <b>?</b>）刻的不是这个字的笔：点它 <b>一吓就散架</b>（<b>从绳上掉下去</b>、档数清 0），扣 '+SWG_JUNK_PEN+' 分、断连击，<b>连错 '+SWG_WRONG_MAX+' 次掉一颗心</b><br>'+
+    '🪢 <b>连绳</b>（本盘 <b>'+S.pair.length+'</b> 对 · 第 4 段起）：两只 <b>一样长又挨着</b> 的秋千，每 <b>'+SWG_COUPLE+'</b> 拍会把能量从档数高的往低的 <b>漏 1 档</b>（差得少、或那边接不住就不漏）—— 推前面那只，后面那只 <b>白捡一档</b><br>'+
+    '🔩 <b>松挂钩</b>（本盘 <b>'+loose+'</b> 只 · 第 5 段起）：挂钩没拧紧时熟牌只有 <b>'+SWG_LOOSE+' 拍</b> —— 点牌子头顶那颗 <b>拧一下</b>（或按 <code>E</code> 一键全拧），窗口就变回 <b>'+SWG_GRACE+' 拍</b>；<b>拧挂钩不花拍子</b><br>'+
+    '🌫 <b>雾牌</b>（本盘 <b>'+fog+'</b> 张 · 第 6 段起）：牌角被雾遮住，看不见它 <b>几拍一趟、逢几</b> —— 只能 <b>试推</b> 或者按 <b>🥁 定拍</b>（<code>F</code>，剩 '+swg.beatN+' 次）把这一盘的拍子全标出来<br>'+
+    '🌬 <b>逆风</b>'+(S.wind?'（本盘 <b>开着</b>）':'（第 8 段起）')+'：每 <b>'+SWG_WIND_BEATS+' 拍</b> 把所有 <b>还没熟</b> 的牌吹掉 <b>1 档</b> —— 垫到 3 档就别晾着<br>'+
+    '⏱ <b>天黑钟</b>：军师先把这一盘 <b>从头到尾按拍子走一遍</b>（本盘要 <b>'+((swg.sol&&swg.sol.beats)||0)+' 拍</b>），发你 <b>拍数 + '+swgSpareOf(swg.lv)+' 拍余量</b> 换算的 <b>'+swg.clockSec0+' 秒</b>；最后 12 秒 <b>板边发红</b>，走光 <b>天黑</b>：掉一颗心、剩下的笔另挂一盘<br>'+
+    '👀 <b>预览</b>（<code>Q</code>，剩 '+swg.previewN+' 次）把军师前 10 步列在左边（<b>第几拍推哪只、第几拍摘哪只</b>）；🔄 <b>倒带</b>（<code>R</code>，剩 '+swg.undoN+' 次）退回 <b>上一次推 / 摘 / 拧之前</b>；🔁 <b>重摆</b>（<code>T</code>，剩 '+swg.respN+' 次）剩下的笔另挂一盘 —— <b>升一段各补 1 次</b><br>'+
+    '📈 <b>摘一笔</b> 吃 <code>round((12 + 第几笔×2 + 段数×3) × (1 + 连击×0.06))</code>，<b>同一拍连摘第二笔</b> 再多 <code>8 + 段数×2</code>，<b>刚够着就摘</b> 按剩的窗口加 <b>火候正好</b>，钟还剩一大半再多 <code>round(余量×6)</code>；<b>整个字荡齐</b>：<code>26 + 笔数×6 + 段数×6 + 同一拍连摘×4</code>，<b>一次没飞没摘错再多 '+SWG_CLEAN_BONUS+'</b>；<b>每 2 个字升 1 段</b>（最多 9 段）、<b>每 3 个字补一颗心</b>（最多 '+SWG_HEART_MAX+' 颗）<br>'+
+    (t?'🎯 现在该收 <b>第 '+(S.qi+1)+' 笔「'+SWG_DIRS[swgDn(swg.rec.dirs[S.qi])]+' '+SWG_ARW[swgDn(swg.rec.dirs[S.qi])]+'」</b>：挂在 <b>'+swgName(t.i)+'</b>，'+
+      (t.fog?'🌫 <b>拍子看不见</b> · ':'<b>'+t.P+'</b> 拍一趟、逢 <b>'+SWG_O[t.off]+'</b> · ')+
+      '现在 <b>'+t.a+'/'+swgThreshOf(t)+'</b> 档'+(swgInPhase(S,t.i)?' · <b>这一拍推得动</b>':'')+
+      ' · 🧺 够着的 <b>'+ripe+'</b> 张':'🎯 这一盘已经荡齐')+
+    '<br>👀 发呆 '+(SWG_NAG_MS/1000)+' 秒 🐰 报拍子 · 战绩落盘 <code>hz_swing_*</code>','#C5E1A5');
+}
+/* ---- 测试钩子 ---- */
+window.SWG={N:SWG_N,MAXA:SWG_MAXA,RIPE:SWG_RIPE,HV:SWG_HEAVY_A,BT:SWG_BEAT_MS,CP:SWG_COUPLE,
+  WD:SWG_WIND_BEATS,WDRO:SWG_WIND_DROP,ANG:SWG_ANG,GAP:SWG_GAP,SX0:SWG_SX0,BY:SWG_BY,
+  GR:SWG_GRACE,LOOSE:SWG_LOOSE,GN:SWG_GEN_TRY,CAP:SWG_BEAT_CAP,HM:SWG_HIST_MAX,
+  PRT:SWG_PRINT_MS,NMS:SWG_NEXT_MS,GMS:SWG_GHOST_MS,NAG:SWG_NAG_MS,TM:SWG_TAG_MS,
+  FLY:SWG_FLY_PEN,JUNK:SWG_JUNK_PEN,EARLY:SWG_EARLY_PEN,CLEAN:SWG_CLEAN_BONUS,WMAX:SWG_WRONG_MAX,
+  SMIN:SWG_SEC_MIN,SPAD:SWG_SEC_PAD,HTS:SWG_HEARTS,HMAX:SWG_HEART_MAX,STK:SWG_STROKE_MAX,
+  PMIN:SWG_POOL_MIN,PW:SWG_POOL_WANT,MMAX:SWG_MISS_MAX,BMAX:SWG_BOOK_MAX,W:SWG_W,H:SWG_H};
+window.swvGeom=function(){
+  return {W:SWG_W,H:SWG_H,N:SWG_N,BY:SWG_BY,SX0:SWG_SX0,GAP:SWG_GAP,ANG:SWG_ANG,MAXA:SWG_MAXA,
+    RIPE:SWG_RIPE,HV:SWG_HEAVY_A,PX:SWG_PX,PY:SWG_PY,PW:SWG_PW,PH:SWG_PH,
+    rope2:swgRope(2),rope3:swgRope(3),rope4:swgRope(4),sx:[0,1,2,3,4,5].map(swgSX)};
+};
+window.swvLv=function(lv){
+  const Ps=swgPof(lv),w=swgStrokeOf(lv);
+  return {junk:swgJunkOf(lv),pair:swgPairOf(lv),loose:swgLooseOf(lv),fog:swgFogOf(lv),
+    heavy:swgHeavyOf(lv),wind:swgWindOf(lv),spare:swgSpareOf(lv),
+    P:Ps.join(','),strokes:w[0]+'-'+w[1],sec:swgSec(20,lv),lv:swgLvOf((lv-1)*2+1),
+    maxSlots:SWG_N,n:lv<=2?6:6};
+};
+window.swvRope=function(P){return swgRope(P)};
+window.swvPeak=function(i,P,a){const p=swgPeak(i,P,a);return {x:+p.x.toFixed(2),y:+p.y.toFixed(2),L:p.L}};
+window.swvPose=function(i,tb){
+  const S=swg.S;if(!S)return null;
+  const p=S.p[i],b=swgBob(p.P,p.aF===undefined?p.a:p.aF,tb===undefined?S.beat:tb,p.off);
+  return {deg:+b.deg.toFixed(3),x:+(swgSX(i)+b.x*0).toFixed(2),off:p.off,P:p.P,a:p.a,aF:+(p.aF||0).toFixed(3)};
+};
+window.swvInPhase=function(i){const S=swg.S;return S&&swgInPhase(S,i)?1:0};
+window.swvBoard=function(){
+  const S=swg.S;if(!S)return null;
+  return {n:S.n,qi:S.qi,beat:S.beat,pushed:S.pushed,fly:S.fly,wind:S.wind,pair:S.pair.map(function(q){return q.join('-')}),
+    lv:swg.lv,clockSec:+swg.clockSec.toFixed(2),clockSec0:swg.clockSec0,hearts:swg.hearts,
+    p:S.p.map(function(p){return {i:p.i,on:p.on,k:p.k,P:p.P,off:p.off,a:p.a,
+      fgn:p.fgn?1:0,heavy:p.heavy?1:0,loose:p.loose?1:0,fog:p.fog?1:0,tight:p.tight?1:0,
+      ripe:p.ripe?1:0,ripeBeat:p.ripeBeat,done:p.done,fly:p.fly?1:0,scare:p.scare?1:0,
+      inph:swgInPhase(S,p.i)?1:0,th:swgThreshOf(p),win:swgWinOf(p),left:p.ripe?Math.max(0,swgWinOf(p)-(S.beat-p.ripeBeat)):-1}})};
+};
+window.swvSlot=function(i){
+  const S=swg.S;if(!S||i<0||i>=SWG_N)return null;
+  const p=S.p[i],pk=swgPeak(i,p.P,swgThreshOf(p));
+  return {i:i,name:swgName(i),on:p.on,k:p.k,P:p.P,off:p.off,a:p.a,th:swgThreshOf(p),win:swgWinOf(p),
+    fgn:p.fgn?1:0,heavy:p.heavy?1:0,loose:p.loose?1:0,fog:p.fog?1:0,tight:p.tight?1:0,
+    ripe:p.ripe?1:0,ripeBeat:p.ripeBeat,left:p.ripe?Math.max(0,swgWinOf(p)-(S.beat-p.ripeBeat)):-1,
+    done:p.done,inph:swgInPhase(S,i)?1:0,wait:(((p.off||0)-S.beat)%(p.P||3)+(p.P||3))%(p.P||3),
+    L:swgRope(p.P),x:swgSX(i),y:SWG_BY+swgRope(p.P),
+    basketX:+pk.x.toFixed(2),basketY:+pk.y.toFixed(2)};
+};
+window.swvRec=function(ch){return swgRec(ch)};
+window.swvGen=function(o){
+  o=o||{};
+  let rec=o.rec;
+  if(!rec){
+    const dirs=o.dirs||[0,1,2,3,0],n=o.n||dirs.length;
+    const strokes=[],medians=[];
+    for(let i=0;i<n;i++){
+      strokes.push(i%4===0?'M100 400 L600 400 L600 460 L100 460 Z':
+        (i%4===1?'M400 100 L460 100 L460 700 L400 700 Z':
+        (i%4===2?'M600 140 L520 420 L560 450 L640 170 Z':'M300 200 L520 460 L560 430 L340 180 Z')));
+      medians.push(i%4===0?[[100,430],[600,430]]:(i%4===1?[[430,100],[430,700]]:(i%4===2?[[600,140],[520,420]]:[[300,200],[520,460]])));
+    }
+    rec={ch:o.ch||'本',n:n,dirs:dirs.slice(0,n),raw:{strokes:strokes,medians:medians}};
+  }
+  const lv=o.lv===undefined?swg.lv:o.lv,from=o.from||0;
+  const g=swg.lv;swg.lv=lv;
+  const r=swgGen(rec,lv,from);
+  swg.lv=g;
+  if(!r)return {ok:0,why:swg.lastWhy||'?'};
+  const S=r.S;
+  let live=0,ripe=0,fgn=0,loose=0,fog=0,heavy=0;
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];
+    if(!p.on)continue;
+    if(p.fgn){fgn++;continue}
+    live++;if(p.ripe)ripe++;if(p.loose)loose++;if(p.fog)fog++;if(p.heavy)heavy++;
+  }
+  return {ok:1,beats:r.beats,sec:r.sec,from:r.from,cfg:{junk:r.cfg.junk,pair:r.cfg.pair,loose:r.cfg.loose,
+      fog:r.cfg.fog,heavy:r.cfg.heavy,wind:r.cfg.wind},plan:r.plan.length,pairs:S.pair.length,
+    slots:r.slots.join(','),junk:r.junk.join(','),live:live,ripe:ripe,fgn:fgn,loose:loose,fog:fog,heavy:heavy,
+    wind:S.wind,ps:S.p.map(function(p){return p.on?(p.fgn?'J':(String(p.k)+p.P+SWG_O[p.off]+p.a)):'-'})};
+};
+window.swvStage=function(o){
+  o=o||{};
+  swgStopAll();
+  swg.run=true;swg.over=false;swg.timers=[];
+  if(o.lv!==undefined)swg.lv=o.lv;
+  let r=null,S=null;
+  if(o.raw){
+    const q=o.raw;
+    S=swgBlank();
+    S.dress=1;
+    S.n=q.n||0;S.qi=q.qi||0;S.beat=q.beat||0;S.pushed=q.pushed||0;S.wind=q.wind||0;S.fly=q.fly||0;
+    S.pair=(q.pair||[]).map(function(x){return [x[0],x[1]]});
+    for(let i=0;i<SWG_N;i++){
+      const x=(q.p&&q.p[i])||{},p=S.p[i];
+      p.on=x.on||0;p.k=(x.k===undefined?-1:x.k);p.P=x.P||3;p.off=x.off||0;p.a=x.a||0;
+      p.fgn=x.fgn||0;p.heavy=x.heavy||0;p.loose=x.loose||0;p.fog=x.fog||0;p.tight=x.tight||0;p.done=x.done||0;
+    }
+    r={S:S,cfg:{lv:swg.lv,junk:0,pair:0,loose:0,fog:0,heavy:0,wind:S.wind},slots:[],junk:[],
+      plan:[],beats:q.beats||0,sec:q.sec||0};
+  }else{
+    const rec=o.rec||swg.rec;
+    if(!rec)return {ok:0,why:'norec'};
+    r=swgGen(rec,o.lv===undefined?swg.lv:o.lv,o.from||0);
+    if(!r)return {ok:0,why:swg.lastWhy||'gen'};
+    S=r.S;
+    swg.rec=rec;swg.n=rec.n;swg.gly=swgGlyOf(rec);
+  }
+  if(o.rec){swg.rec=o.rec;swg.n=o.rec.n;swg.gly=swgGlyOf(o.rec)}
+  if(!swg.rec){swg.run=false;return {ok:0,why:'norec'}}
+  swgInstall(r);
+  if(o.pair)S.pair=o.pair.map(function(x){return [x[0],x[1]]});
+  if(o.p)for(let i=0;i<SWG_N;i++){
+    const x=o.p[i];if(!x)continue;
+    const p=S.p[i];
+    for(const k in x)p[k]=x[k];
+  }
+  if(o.beat!==undefined)S.beat=o.beat;
+  if(o.pushed!==undefined)S.pushed=o.pushed;
+  if(o.qi!==undefined)S.qi=o.qi;
+  if(o.wind!==undefined)S.wind=o.wind;
+  if(o.clockSec!==undefined){swg.clockSec=o.clockSec;swg.clockSec0=o.clockSec0||o.clockSec;swg.clock=swg.clockSec0>0?swgClamp(swg.clockSec/swg.clockSec0,0,1):0}
+  if(o.score!==undefined)swg.score=o.score;
+  if(o.combo!==undefined)swg.combo=o.combo;
+  if(o.hearts!==undefined)swg.hearts=o.hearts;
+  if(o.printRun!==undefined)swg.printRun=o.printRun;
+  if(o.duoWord!==undefined)swg.duoWord=o.duoWord;
+  if(o.lastTakeBeat!==undefined)swg.lastTakeBeat=o.lastTakeBeat;
+  if(o.words!==undefined)swg.words=o.words;
+  if(o.beatN!==undefined)swg.beatN=o.beatN;
+  if(o.previewN!==undefined)swg.previewN=o.previewN;
+  if(o.undoN!==undefined)swg.undoN=o.undoN;
+  if(o.respN!==undefined)swg.respN=o.respN;
+  swgFlush(S);
+  if(o.ripeBeat)for(let i=0;i<SWG_N;i++)if(o.ripeBeat[i]!==undefined&&S.p[i].ripe)S.p[i].ripeBeat=o.ripeBeat[i];
+  showScreen('swing');
+  swgBind();swgPointer();
+  swgRenderStatic();swgBoard();swgPaper();swgMini();swgHud();swgMeter();swgToolBtns();swgAskText();swgLine();
+  return {ok:1,beats:r.beats,sec:swg.clockSec,cfg:r.cfg,qi:S.qi,n:S.n,beat:S.beat,
+    pairs:S.pair.length,live:S.p.filter(function(p){return p.on&&!p.done&&!p.fgn}).length,
+    ps:S.p.map(function(p){
+      if(!p.on)return '-';
+      if(p.fgn)return 'J';
+      const sig=p.k+'/'+p.P+'/'+p.off+'/'+p.a;
+      return p.ripe?(sig+'#'+Math.max(0,swgWinOf(p)-(S.beat-p.ripeBeat))):sig;
+    })};
+};
+window.swvPlan=function(){
+  const S=swg.S;if(!S)return {ok:0,why:'noS'};
+  const pl=swgPlan(S,SWG_BEAT_CAP);
+  return {ok:pl.ok?1:0,why:pl.why||'',beats:pl.beats,qi:pl.S.qi,fly:pl.S.fly,
+    acts:pl.acts.map(function(a){return a.b+':'+a.kind[0]+swgName(a.i)})};
+};
+window.swvNext=function(){
+  const st=swgNextStep();
+  return st?{kind:st.kind,i:(st.i===undefined?-1:st.i),k:(st.k===undefined?-1:st.k),
+    beats:(st.beats===undefined?-1:st.beats),say:swgStepSay(st)}:{none:1};
+};
+window.swvStepSay=function(){const st=swgNextStep();return st?swgStepSay(st):''};
+window.swvStep=function(n){
+  const S=swg.S;if(!S)return null;
+  for(let q=0;q<(n===undefined?1:n);q++)swgBeat();
+  return {beat:S.beat,pushed:S.pushed,qi:S.qi,fly:S.fly,
+    ps:S.p.map(function(p){return p.on?(p.done||0)+''+p.a+(p.ripe?'r':''):'-'})};
+};
+window.swvSim=function(S0,n){
+  const S=S0||swg.S;if(!S)return null;
+  for(let q=0;q<(n===undefined?1:n);q++)swgStepSim(S);
+  return {beat:S.beat,fly:S.fly,qi:S.qi,ps:S.p.map(function(p){return p.on?(p.done||0)+''+p.a+(p.ripe?'r':''):'-'})};
+};
+window.swvPush=function(i){return swgPushOne(i)?1:0};
+window.swvTap=function(i){return swgTapPlaque(i)?1:0};
+window.swvTakeNext=function(){return swgTakeNext()?1:0};
+window.swvTighten=function(i){return swgTighten(i)?1:0};
+window.swvTightenAll=function(){return swgTightenAll()};
+window.swvMetro=function(){return swgMetro()?1:0};
+window.swvPreview=function(){const b=swg.previewN;swgPreview();return swg.previewN<b?1:0};
+window.swvUndo=function(){const b=swg.undoN;return swgUndo()?(swg.undoN<b?1:2):0};
+window.swvRespin=function(){const b=swg.respN;return swgRespin()?(swg.respN<b?1:2):0};
+window.swvNewBoard=function(from){return swgNewBoard(from||0)?1:0};
+window.swvNewWord=function(){const w=swg.words;swgNewWord();return swg.words===w?1:0};
+window.swvWin=function(){swgWin();return Math.round(swg.score)};
+window.swvFly=function(i){
+  const S=swg.S;if(!S)return 0;
+  const p=swgAt(S,i);
+  if(!p||!p.on||p.done)return 0;
+  p.ripe=0;p.a=0;p.fly=1;p.done=2;S.fly++;
+  swgFlyOut(p);
+  swgBoard();
+  return 1;
+};
+window.swvJunk=function(i){
+  const S=swg.S;if(!S)return 0;
+  const p=swgAt(S,i);
+  if(!p||!p.on||!p.fgn)return 0;
+  swgJunkHit(p);
+  return 1;
+};
+window.swvLoseHeart=function(w){swgLoseHeart(w||'test');return swg.hearts};
+window.swvClockOut=function(){swgClockOut();return swg.hearts};
+window.swvWrong=function(n){swgOnWrong(n||1);return Math.round(swg.score)};
+window.swvEnd=function(r){swgEnd(r||'quit');return Math.round(swg.score)};
+window.swvNag=function(){swgNag();return swg.nags};
+window.swvHelp=function(){swgHelp();return (document.getElementById('swgMsg')||{}).innerHTML||''};
+window.swvTick=function(dt){swgTick(dt||1/60);return {beat:swg.S?swg.S.beat:-1,sec:+swg.clockSec.toFixed(3)}};
+window.swvPump=function(n,dt){for(let i=0;i<(n||20);i++)swgTick(dt===undefined?SWG_BEAT_MS/1000:dt);return {beat:swg.S?swg.S.beat:-1,qi:swg.S?swg.S.qi:-9,sec:+swg.clockSec.toFixed(3)}};
+window.swvSay=function(){const el=document.getElementById('swgMsg');return el?el.innerHTML:''};
+window.swvAsk=function(){const el=document.getElementById('swgAsk');return el?el.textContent:''};
+window.swvLineT=function(){const el=document.getElementById('swgHintLine');return el?el.textContent:''};
+window.swvBadge=function(){return swgBadgeSay(swg.S)};
+window.swvTrayT=function(){const el=document.getElementById('swgTray');return el?el.textContent:''};
+window.swvMeter=function(){swgMeter();return {txt:(document.getElementById('swgClockTxt')||{}).textContent||'',
+  w:(document.getElementById('swgClockBar')||{}).style&&document.getElementById('swgClockBar').style.width,
+  warn:!!(document.getElementById('swgTbl')&&document.getElementById('swgTbl').classList.contains('warn')),
+  dead:!!(document.getElementById('swgTbl')&&document.getElementById('swgTbl').classList.contains('dead'))}};
+window.swvCursor=function(i){
+  if(i!==undefined&&i!==null)swg.cur=i;
+  swgCursor();swgCursorSay();
+  return (document.getElementById('swgMsg')||{}).innerHTML||'';
+};
+window.swvRank=function(n){const R=swgRank(n);return R.e+' '+R.t};
+window.swvPool=function(){return swg.pool.map(function(r){return r.ch+r.n})};
+window.swvMiss=function(){return (localStorage.getItem('hz_swing_miss')||'').split(',').filter(function(c){return c}).join('')};
+window.swvBook=function(){return (localStorage.getItem('hz_swing_book')||'').split(',').filter(function(c){return c}).join('')};
+window.swvT=function(ms){return swgT(function(){},ms||10)};
+window.swvSet=function(k,v){
+  if(k==='lv')swg.lv=v;
+  else if(k==='score')swg.score=v;
+  else if(k==='hearts')swg.hearts=v;
+  else if(k==='combo')swg.combo=v;
+  else if(k==='words')swg.words=v;
+  else if(k==='clockSec'){swg.clockSec=v;swg.clock=v/Math.max(1,swg.clockSec0)}
+  else if(k==='clockSec0'){swg.clockSec0=v;swg.clock=swgClamp(swg.clockSec/Math.max(1,v),0,1)}
+  else if(k==='beatMs')swg.beatMs=v;
+  else if(k==='printMs')swg.printMs=v;
+  else if(k==='nextMs')swg.nextMs=v;
+  else if(k==='previewN')swg.previewN=v;
+  else if(k==='undoN')swg.undoN=v;
+  else if(k==='respN')swg.respN=v;
+  else if(k==='beatN')swg.beatN=v;
+  else if(k==='lastTakeBeat')swg.lastTakeBeat=v;
+  else if(k==='printRun')swg.printRun=v;
+  else if(k==='duoWord')swg.duoWord=v;
+  else if(k==='failWord')swg.failWord=v;
+  else if(k==='since')swg.since=v;
+  else if(k==='think')swg.think=v;
+  else if(k==='cur')swg.cur=v;
+  else if(k==='over')swg.over=!!v;
+  else if(k==='run')swg.run=!!v;
+  else if(k==='pushes')swg.pushes=v;
+  else if(k==='flys')swg.flys=v;
+  else if(k==='wrongs')swg.wrongs=v;
+  else if(k==='nags')swg.nags=v;
+  else if(k==='maxCombo')swg.maxCombo=v;
+  else if(k==='lits')swg.lits=v;
+  else if(k==='taps')swg.taps=v;
+  else if(k==='couples')swg.couples=v;
+  else if(k==='tightens')swg.tightens=v;
+  return 1;
+};
+window.swvSnap=function(){
+  const S=swg.S;
+  return {run:swg.run?1:0,over:swg.over?1:0,lv:swg.lv,score:Math.round(swg.score),hearts:swg.hearts,
+    combo:swg.combo,maxCombo:swg.maxCombo,words:swg.words,lits:swg.lits,pushes:swg.pushes,taps:swg.taps,
+    flys:swg.flys,wrongs:swg.wrongs,early:swg.early,saved:swg.saved,deads:swg.deads,couples:swg.couples,
+    tightens:swg.tightens,reveals:swg.reveals,rewinds:swg.rewinds,resets:swg.resets,previews:swg.previews,
+    nags:swg.nags,duoWord:swg.duoWord,duoMax:swg.duoMax,moves:swg.moves,
+    clock:swg.clock,clockSec:swg.clockSec,clockSec0:swg.clockSec0,red:swg.red?1:0,
+    beatMs:Math.round(swg.beatMs),printMs:Math.round(swg.printMs),nextMs:Math.round(swg.nextMs),
+    tagMs:Math.round(swg.tagMs),ghostMs:Math.round(swg.ghostMs),ghost:swg.ghost?swg.ghost.beats:-1,
+    pool:swg.pool.length,cur:swg.cur,playMs:Math.round(swg.playMs),
+    qi:S?S.qi:-9,n:S?S.n:-9,beat:S?S.beat:-1,pushed:S?S.pushed:-1,pairs:S?S.pair.length:-1,
+    hist:swg.hist.length,rec:swg.rec?swg.rec.ch:'',raf:swg.rafId?1:0,wind:S?S.wind:-1};
+};
+window.swvDom=function(){
+  const q=function(s){return document.querySelectorAll(s).length};
+  const S=swg.S;
+  const nows=[];
+  document.querySelectorAll('#swgTray .swg-lamps i').forEach(function(el,i){if(el.classList.contains('now'))nows.push(i)});
+  const cur=q('#swgHitG [data-act="push"].cur');
+  return {pend:q('#swgRopeG [data-pend]'),pendHit:q('#swgHitG [data-pend]'),
+    push:q('#swgHitG [data-act="push"]'),take:q('#swgHitG [data-act="take"]'),hook:q('#swgHitG [data-act="hook"]'),
+    pl:q('.swg-pl'),ripe:q('.swg-pl.ripe'),inph:q('.swg-pl.inph'),fgn:q('.swg-pl.fgn'),hv:q('.swg-pl.hv'),
+    hung:q('.swg-hung'),arc:q('.swg-arc'),arcIn:q('.swg-arc.inph'),basket:q('.swg-basket'),
+    ropes:q('.swg-rope'),doneRope:q('.swg-rope.done'),
+    pbox:q('.swg-pbox'),pnow:q('.swg-pnow'),pgly:q('#swgPaperG path'),
+    lamps:q('#swgTray .swg-lamps i'),nows:nows.join(','),chips:q('#swgTray .swg-chip'),
+    chipRipe:q('#swgTray .swg-chip.ripe'),chipIn:q('#swgTray .swg-chip.inph'),
+    cur:cur,staticN:q('#swgStatic .swg-piv'),ghostLines:q('#swgGhostG .swg-gLine'),
+    spark:q('.swg-spark'),ring:q('.swg-ring'),flash:q('.swg-flash'),pop:q('.swg-pop'),bit:q('.swg-bit'),
+    slosh:q('.swg-slosh'),gust:q('.swg-gust'),mark:q('.swg-mark'),
+    miniPaths:q('#swgMiniSvg path'),miniNow:q('#swgMiniSvg .swg-now'),
+    badge:(document.getElementById('swgBadge')||{}).textContent||'',
+    tagOn:!!(document.getElementById('swgTag')&&document.getElementById('swgTag').classList.contains('on')),
+    warn:!!(document.getElementById('swgTbl')&&document.getElementById('swgTbl').classList.contains('warn')),
+    dead:!!(document.getElementById('swgTbl')&&document.getElementById('swgTbl').classList.contains('dead')),
+    shake:!!(document.querySelector('.swg-tbl')&&document.querySelector('.swg-tbl').classList.contains('swg-shake')),
+    qi:S?S.qi:-9,n:S?S.n:-9,beat:S?S.beat:-1};
+};
+window.swvBtn=function(){
+  const b=function(id){const el=document.getElementById(id);return el?{dis:el.disabled?1:0,txt:el.textContent}:null};
+  return {take:b('swgTakeBtn'),hook:b('swgHookBtn'),beat:b('swgBeatBtn'),prev:b('swgPrevBtn'),
+    undo:b('swgUndoBtn'),re:b('swgReBtn'),end:b('swgEndBtn'),
+    score:(document.getElementById('swgScoreTxt')||{}).textContent||'',
+    lv:(document.getElementById('swgLvTxt')||{}).textContent||'',
+    hearts:(document.getElementById('swgHeartTxt')||{}).textContent||'',
+    rank:(document.getElementById('swgRankTxt')||{}).textContent||'',
+    pow:(document.getElementById('swgPowTxt')||{}).textContent||''};
+};
+window.swvKeys=function(){
+  return ['arrowleft','arrowright','1','2','3','4','5','6','space','enter','w','e','f','q','r','t','?','h','escape'];
+};
+window.swvInv=function(){
+  const S=swg.S,bad=[];
+  if(!S)return {ok:0,bad:'noS'};
+  if(!(S.qi>=0&&S.qi<=S.n))bad.push('qi='+S.qi+'/n='+S.n);
+  if(!S.p||S.p.length!==SWG_N)bad.push('p.len='+(S.p?S.p.length:'-'));
+  const seen={};
+  let printed=0;
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];
+    if(p.i!==i)bad.push('p'+i+'.i='+p.i);
+    if(!p.on){if(p.k!==-1||p.ripe||p.done)bad.push('空绳挂着状态 k='+p.k+' ripe='+p.ripe+' done='+p.done);continue}
+    if(p.fgn){
+      if(p.k!==-1)bad.push('野牌 k='+p.k);
+      if(p.done===1)bad.push('野牌被印了');
+    }else{
+      if(p.k<0||p.k>=S.n)bad.push('k='+p.k+' 超出 n='+S.n);
+      else{if(seen[p.k])bad.push('第'+(p.k+1)+'笔出现两次');seen[p.k]=1}
+    }
+    if(p.a<0||p.a>SWG_MAXA)bad.push('a='+p.a+' 越界 @'+i);
+    if(p.P<2||p.P>4)bad.push('P='+p.P+' 越界 @'+i);
+    if(p.off<0||p.off>=p.P)bad.push('off='+p.off+'/P='+p.P+' @'+i);
+    const th=swgThreshOf(p);
+    const shouldRipe=(!p.done&&p.a>=th)?1:0;
+    if((p.ripe?1:0)!==shouldRipe)bad.push('ripe='+p.ripe+' 应='+shouldRipe+' @'+i+' a='+p.a+'/th='+th);
+    if(p.ripe&&p.ripeBeat<0)bad.push('ripeBeat='+p.ripeBeat+' @'+i);
+    if(p.ripe&&S.beat-p.ripeBeat>=swgWinOf(p))bad.push('熟牌过期没飞 @'+i+' 过了 '+(S.beat-p.ripeBeat)+'/'+swgWinOf(p));
+    if(p.done===1){printed++;if(p.k>=S.qi)bad.push('已印的第'+(p.k+1)+'笔 >= qi='+S.qi)}
+    if(!p.fgn&&p.done!==1&&p.k<S.qi)bad.push('第'+(p.k+1)+'笔早印过了还挂在绳上 @'+i);
+    if(p.done===1&&p.fgn)bad.push('已印的是野牌');
+    if(p.heavy&&p.fgn)bad.push('野牌成重锤');
+    if(p.loose&&p.fgn)bad.push('野牌带挂钩');
+    if(p.tight&&!p.loose)bad.push('没松却拧过 @'+i);
+    if(p.done===2&&!p.fly)bad.push('done=2 但没 fly @'+i);
+  }
+  /* 手工摆的盘只挂几笔做物理对拍，不许它管「剩下的笔不见了」；真生成的盘才查 */
+  for(let k=0;k<S.n;k++)if(!S.dress&&!seen[k]&&k>=S.qi)bad.push('第'+(k+1)+'笔不见了（qi='+S.qi+'）');
+  /* 另挂一盘的板上，已印的那几笔根本不再挂牌 —— 所以只许「印着的牌 ≤ qi」，多了才是重复 */
+  if(printed>S.qi)bad.push('已印的牌 '+printed+' 比 qi '+S.qi+' 还多');
+  if(S.pushed<0||S.pushed>1)bad.push('pushed='+S.pushed);
+  for(let q=0;q<S.pair.length;q++){
+    const a=S.pair[q];
+    if(!a||a.length!==2||a[1]-a[0]!==1)bad.push('连绳不挨着 '+JSON.stringify(a));
+    else{
+      const pa=S.p[a[0]],pb=S.p[a[1]];
+      if(!pa.on||!pb.on)bad.push('连绳挂在空绳上');
+      else if(pa.P!==pb.P)bad.push('连绳两头不一样长 '+pa.P+'/'+pb.P);
+    }
+  }
+  if(swg.hist.length>SWG_HIST_MAX)bad.push('hist='+swg.hist.length);
+  if(swg.hearts<0||swg.hearts>SWG_HEART_MAX)bad.push('hearts='+swg.hearts);
+  if(swg.lv!==swgLvOf(swg.words))bad.push('lv='+swg.lv+' ≠ lvOf('+swg.words+')='+swgLvOf(swg.words));
+  if(swg.score<0)bad.push('score='+swg.score);
+  if(swg.combo<0)bad.push('combo='+swg.combo);
+  if(swg.clockSec0<=0)bad.push('clockSec0='+swg.clockSec0);
+  if(swg.clockSec>swg.clockSec0+0.01)bad.push('clockSec='+swg.clockSec+' > '+swg.clockSec0);
+  if(swg.duoWord<0||swg.duoWord>Math.max(0,swg.printRun))bad.push('duoWord='+swg.duoWord+' printRun='+swg.printRun);
+  return {ok:bad.length?0:1,bad:bad.join(' | ')};
+};
+window.swvBad=function(){
+  const S=swg.S,bad=[];
+  if(!S)return ['noS'];
+  const pl=document.querySelectorAll('#swgRopeG .swg-pl');
+  const hung=document.querySelectorAll('#swgRopeG .swg-hung');
+  let expectPl=0,expectHung=0;
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];
+    if(p.on&&p.done!==0)expectHung++;
+    else if(p.on)expectPl++;
+  }
+  if(pl.length!==expectPl)bad.push('牌面 '+pl.length+' ≠ '+expectPl);
+  if(hung.length!==expectHung)bad.push('空绳钩 '+hung.length+' ≠ '+expectHung);
+  const push=document.querySelectorAll('#swgHitG [data-act="push"]').length;
+  if(push!==SWG_N)bad.push('推的点击层 '+push+' ≠ 梁上六只绳');
+  const take=document.querySelectorAll('#swgHitG [data-act="take"]').length;
+  if(take!==expectPl)bad.push('摘的点击层 '+take+' ≠ '+expectPl);
+  let hook=0;for(let i=0;i<SWG_N;i++){const p=S.p[i];if(p.on&&!p.done&&p.loose&&!p.tight)hook++}
+  const hk=document.querySelectorAll('#swgHitG [data-act="hook"]').length;
+  if(hk!==hook)bad.push('挂钩点击层 '+hk+' ≠ '+hook);
+  const bk=document.querySelectorAll('.swg-basket').length;
+  if(bk!==expectPl)bad.push('🧺 '+bk+' ≠ 活牌 '+expectPl);
+  const arc=document.querySelectorAll('.swg-arc').length;
+  if(arc!==expectPl)bad.push('弧线 '+arc+' ≠ '+expectPl);
+  for(let i=0;i<SWG_N;i++){
+    const p=S.p[i];
+    if(!p.on||p.done)continue;
+    const g=document.querySelector('#swgRopeG [data-pend="'+i+'"] .swg-pl');
+    if(!g)continue;
+    const rI=g.classList.contains('inph'),sI=swgInPhase(S,i)?1:0;
+    if((rI?1:0)!==sI)bad.push('inph 类不匹配 @'+i+' dom='+(rI?1:0)+' 算='+sI);
+    const rR=g.classList.contains('ripe'),sR=!!p.ripe;
+    if(rR!==sR)bad.push('ripe 类不匹配 @'+i);
+    const rF=g.classList.contains('fgn'),sF=!!p.fgn;
+    if(rF!==sF)bad.push('野牌类不匹配 @'+i);
+    if(swgFogHid(p)&&g.innerHTML.indexOf('🌫')<0)bad.push('雾牌没遮 @'+i);
+    if(!swgFogHid(p)&&g.innerHTML.indexOf(p.P+' 拍')<0)bad.push('牌角没写拍数 @'+i);
+  }
+  const lamps=document.querySelectorAll('#swgTray .swg-lamps i');
+  if(lamps.length!==12)bad.push('灯带 '+lamps.length+' 盏');
+  let nowIdx=-1,cnt=0;
+  lamps.forEach(function(el,i){if(el.classList.contains('now')){cnt++;nowIdx=i}});
+  if(cnt!==1)bad.push('灯带亮 '+cnt+' 盏');
+  else if(nowIdx!==((S.beat%12)+12)%12)bad.push('灯带亮在第 '+nowIdx+' 盏，拍号 '+S.beat);
+  if(document.querySelectorAll('#swgTray .swg-chip').length!==SWG_N)bad.push('chips 数不对');
+  /* 牌堆上的「❓拍」必须和实际遮着的雾牌一样多（定拍念出来之后要一起露出来） */
+  let chipQ=0,expQ=0;
+  document.querySelectorAll('#swgTray .swg-chip').forEach(function(e){if(String(e.textContent).indexOf('❓拍')>=0)chipQ++});
+  for(let i=0;i<SWG_N;i++){const p=S.p[i];if(p.on&&!p.done&&swgFogHid(p))expQ++}
+  if(chipQ!==expQ)bad.push('chips 露拍 '+chipQ+' ≠ 遮雾 '+expQ);
+  const cur=document.querySelectorAll('#swgHitG .cur').length;
+  if(cur!==(swg.cur>=0&&swg.cur<SWG_N?1:0))bad.push('光标高亮 '+cur);
+  const boxes=document.querySelectorAll('#swgPaperG .swg-pbox,#swgPaperG .swg-pnow').length;
+  if(boxes!==swg.n)bad.push('纸带格 '+boxes+' ≠ n '+swg.n);
+  if(document.querySelectorAll('#swgPaperG .swg-pnow').length>(S.qi<swg.n?1:0))bad.push('纸带「该我」不止一格');
+  if(document.querySelectorAll('#swgMiniSvg path').length!==swg.n+1)bad.push('米字格笔画 '+document.querySelectorAll('#swgMiniSvg path').length);
+  if(document.querySelectorAll('#swgStatic .swg-piv').length!==SWG_N)bad.push('静态挂钩位数');
+  const badge=document.getElementById('swgBadge');
+  if(!badge||badge.textContent!==swgBadgeSay(S))bad.push('板角牌子没跟上');
+  const tbl=document.getElementById('swgTbl');
+  const warn=!swg.over&&swg.clockSec>0&&swg.clockSec<=12;
+  if(tbl&&tbl.classList.contains('warn')!==warn)bad.push('warn 类='+(tbl&&tbl.classList.contains('warn')?1:0)+' 应='+warn);
+  const msg=document.getElementById('swgMsg');
+  if(!msg||!msg.innerHTML)bad.push('判词空的');
+  return bad;
+};
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
