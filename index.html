@@ -5217,6 +5217,7 @@ button:active{transform:scale(.95)}
 .wt-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#0E2230 0%,#143043 44%,#081521 100%);box-shadow:inset 0 0 34px rgba(0,0,0,.6);transition:box-shadow .2s}
 .wt-tbl.hot{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 26px rgba(79,195,247,.32)}
 .wt-tbl.dead{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 30px rgba(255,82,82,.4)}
+.wt-tbl.warn{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 0 3px rgba(255,82,82,.8),inset 0 0 26px rgba(255,82,82,.3)}
 .wt-svg{display:block;width:100%;height:auto;touch-action:manipulation}
 /* ---- 玻璃管 / 水 ---- */
 .wt-deck{fill:rgba(8,16,24,.5);stroke:rgba(120,210,255,.2);stroke-width:2.4}
@@ -5477,6 +5478,162 @@ button:active{transform:scale(.95)}
   /* 笔记本只有 760 高：板子让出底部一截，通电钟和工具条才能跟板子同屏，不用来回滚 */
   .ct-svg{max-height:calc(100vh - 320px)}
 }
+/* ================= v1.82 笔顺火候坊 ================= */
+.hf-hud{display:flex;flex-wrap:wrap;gap:6px 8px;justify-content:center;padding:0 12px 8px;color:#fff;font-size:13px}
+.hf-hud span{background:rgba(255,255,255,.12);border-radius:12px;padding:4px 11px;white-space:nowrap}
+.hf-ask{margin:0 14px 10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.12);color:#fff;text-align:center;font-size:19px;font-weight:bold;line-height:1.5}
+.hf-ask small{display:block;font-size:12px;font-weight:normal;opacity:.8;margin-top:4px;line-height:1.6}
+.hf-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);margin:0 auto}
+.hf-mini{flex:0 0 92px;position:relative;border-radius:16px;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.16);padding:6px 6px 18px}
+.hf-mini svg{display:block;width:100%;height:auto;overflow:visible}
+.hf-cap{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:11px;color:#FFE082}
+.hf-tbl{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#21120B 0%,#2E1A10 42%,#120A06 100%);box-shadow:inset 0 0 34px rgba(0,0,0,.6);transition:box-shadow .2s}
+.hf-tbl.hot{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 26px rgba(255,167,38,.36)}
+/* 钟只剩十来秒：话说到「板子边上发红」，那就得真的红一圈（排在 .dead 前面，熄火的红盖过它） */
+.hf-tbl.warn{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 0 3px rgba(255,82,82,.8),inset 0 0 26px rgba(255,82,82,.3)}
+.hf-tbl.dead{box-shadow:inset 0 0 34px rgba(0,0,0,.6),inset 0 0 30px rgba(255,82,82,.45)}
+.hf-svg{display:block;width:100%;height:auto;touch-action:manipulation}
+/* ---- 炉床 / 铁格 ---- */
+.hf-hearth{fill:rgba(46,20,10,.72);stroke:rgba(255,171,145,.24);stroke-width:2.4}
+.hf-head{font-size:12px;font-weight:bold;fill:rgba(255,204,160,.78);text-anchor:middle;letter-spacing:3px;pointer-events:none}
+.hf-cell{stroke:rgba(255,255,255,.1);stroke-width:1.6;transition:fill .2s}
+.hf-cell.t0{fill:#2B3A42}
+.hf-cell.t1{fill:#3B3F45}
+.hf-cell.t2{fill:#4E4145}
+.hf-cell.t3{fill:#61403A}
+.hf-cell.t4{fill:#7C3B2E}
+.hf-cell.t5{fill:#A3391F}
+.hf-cell.t6{fill:#C44A1C}
+.hf-cell.t7{fill:#E45C18}
+.hf-cell.t8{fill:#FF7A1B}
+.hf-cell.t9{fill:#FFA22B}
+.hf-cell.t10{fill:#FFD54F}
+.hf-cell.graze{stroke:#FFF176;stroke-width:2.6}
+.hf-temp{font-size:11px;font-weight:bold;fill:rgba(255,255,255,.72);pointer-events:none}
+.hf-cellTxt{font-size:9px;fill:rgba(255,255,255,.34);text-anchor:middle;pointer-events:none}
+/* ---- 左右两栏：炉具 / 「离炭几格 = 第几拍」对照表 ---- */
+.hf-furn{font-size:11.5px;font-weight:bold;fill:#FFE082;pointer-events:none}
+.hf-furnBig{font-size:22px;text-anchor:middle;pointer-events:none}
+.hf-lgd{font-size:10.5px;font-weight:bold;fill:rgba(255,224,130,.9);text-anchor:middle;pointer-events:none}
+.hf-lgdH{font-size:11px;font-weight:bold;fill:#FFAB91;text-anchor:middle;pointer-events:none;letter-spacing:2px}
+.hf-lgdNow{fill:#FFF176}
+.hf-cell.t6~.hf-tempT,.hf-temp.hi{fill:#3E2723}
+.hf-hole{fill:#0B0705;stroke:rgba(255,255,255,.14);stroke-width:2}
+.hf-holeTxt{font-size:15px;text-anchor:middle;pointer-events:none}
+.hf-holeCap{font-size:9.5px;font-weight:bold;fill:#B0BEC5;text-anchor:middle;pointer-events:none}
+/* ---- 炭 / 砖 / 冰 / 风 ---- */
+.hf-coal{fill:#3E2723;stroke:#FF7043;stroke-width:2.6;cursor:pointer}
+.hf-coalFire{font-size:24px;text-anchor:middle;pointer-events:none;animation:hfFire 1s ease-in-out infinite}
+@keyframes hfFire{0%,100%{opacity:.72}50%{opacity:1}}
+.hf-coalRing{fill:none;stroke:#FFAB40;stroke-width:2.4;opacity:.5;animation:hfRing 1.6s ease-out infinite}
+@keyframes hfRing{0%{r:22;opacity:.6}100%{r:40;opacity:0}}
+.hf-burnTong{font-size:11px;font-weight:bold;fill:#FFCC80;text-anchor:middle;pointer-events:none}
+.hf-brick{fill:#5D4037;stroke:#A1887F;stroke-width:2.2}
+.hf-brickTxt{font-size:19px;text-anchor:middle;pointer-events:none}
+.hf-red{fill:#4A2B20;stroke:rgba(255,138,101,.5);stroke-width:2;stroke-dasharray:5 5}
+.hf-redTxt{font-size:18px;text-anchor:middle;pointer-events:none}
+.hf-ice{fill:rgba(120,210,255,.42);stroke:#81D4FA;stroke-width:2.4}
+.hf-iceTxt{font-size:19px;text-anchor:middle;pointer-events:none}
+.hf-chill{fill:rgba(179,229,252,.3);stroke:#B3E5FC;stroke-width:2;stroke-dasharray:4 4}
+.hf-chillTxt{font-size:17px;text-anchor:middle;pointer-events:none;animation:hfWind 1.1s ease-in-out infinite}
+@keyframes hfWind{0%,100%{opacity:.5;transform:translateX(-3px)}50%{opacity:1;transform:translateX(3px)}}
+/* ---- 铁牌 ---- */
+.hf-tile{cursor:pointer}
+.hf-tileBox{fill:rgba(245,240,230,.9);stroke:#8D6E63;stroke-width:2.4;transition:fill .18s,stroke .18s}
+.hf-tile.hot .hf-tileBox{fill:#FFF3E0;stroke:#FF7043;stroke-width:3.2}
+.hf-tile.now .hf-tileBox{stroke:#43A047;stroke-width:3.4}
+.hf-tile.fgn .hf-tileBox{fill:rgba(200,200,200,.62);stroke:#90A4AE;stroke-dasharray:6 5}
+.hf-tile.hard .hf-tileBox{fill:#D7CCC8;stroke:#5D4037;stroke-width:3.4}
+.hf-tile.done .hf-tileBox{fill:rgba(200,230,201,.9);stroke:#66BB6A}
+.hf-tile.burnt .hf-tileBox{fill:#37474F;stroke:#263238}
+.hf-halo{fill:rgba(255,183,77,0);transition:fill .22s;pointer-events:none}
+.hf-tile.hot .hf-halo{fill:rgba(255,183,77,.22);animation:hfHalo 1.3s ease-in-out infinite}
+@keyframes hfHalo{0%,100%{opacity:.6}50%{opacity:1}}
+.hf-tag{font-size:17px;font-weight:bold;fill:#B71C1C;text-anchor:middle;pointer-events:none}
+.hf-num{font-size:11px;font-weight:bold;fill:#4E342E;text-anchor:middle;pointer-events:none}
+.hf-burnt .hf-num,.hf-tile.burnt .hf-num{fill:#B0BEC5}
+.hf-badge{font-size:11px;font-weight:bold;text-anchor:middle;pointer-events:none}
+.hf-grace{fill:none;stroke:#FF7043;stroke-width:4;stroke-linecap:round;pointer-events:none;transition:stroke .2s}
+.hf-grace.mid{stroke:#FFB300}
+.hf-grace.low{stroke:#FF3D00;animation:hfLow .6s ease-in-out infinite}
+@keyframes hfLow{0%,100%{opacity:.55}50%{opacity:1}}
+.hf-graceBg{fill:none;stroke:rgba(255,255,255,.14);stroke-width:4;pointer-events:none}
+/* ---- 点击层 / 光标 / 预览虚影 ---- */
+.hf-hit{fill:transparent;cursor:pointer}
+#hfHitG{pointer-events:none}
+#hfHitG .hf-hit{pointer-events:all}
+#hfPaperG,#hfTopG,#hfCellG,#hfDecoG,#hfStatic{pointer-events:none}
+.hf-cur{fill:rgba(255,241,118,.08);stroke:#FFF176;stroke-width:3;stroke-dasharray:9 7;animation:hfCur .9s ease-in-out infinite}
+@keyframes hfCur{0%,100%{opacity:.35}50%{opacity:1}}
+.hf-ghost{fill:none;stroke:#FFF176;stroke-width:3.4;stroke-dasharray:9 7;opacity:.85;animation:hfCur .8s ease-in-out infinite}
+.hf-ghostBox{fill:rgba(255,235,59,.12);stroke:#FFF176;stroke-width:2.6;stroke-dasharray:7 6;animation:hfCur .8s ease-in-out infinite}
+.hf-ghostTxt{font-size:12px;font-weight:bold;fill:#FFF59D;text-anchor:middle;pointer-events:none}
+.hf-mark{fill:none;stroke:#40C4FF;stroke-width:3.4;stroke-dasharray:11 8;animation:hfCur .9s ease-in-out infinite}
+/* ---- 纸带（印出来的笔） ---- */
+.hf-paper{fill:#FFF8E1;stroke:rgba(255,183,77,.5);stroke-width:2;pointer-events:none}
+.hf-pbox{fill:rgba(0,0,0,.16);stroke:rgba(255,255,255,.22);stroke-width:1.4;pointer-events:none}
+.hf-pnow{fill:rgba(255,241,118,.26);stroke:#F9A825;stroke-width:2.4;pointer-events:none}
+.hf-ptxt{font-size:10.5px;font-weight:bold;fill:#78909C;text-anchor:middle;pointer-events:none}
+.hf-phead{font-size:12px;font-weight:bold;fill:#FFE082;text-anchor:middle;pointer-events:none}
+/* ---- 特效 ---- */
+.hf-flash{fill:rgba(255,183,77,.24);animation:hfFlash .64s ease-out forwards}
+@keyframes hfFlash{0%{opacity:1}100%{opacity:0}}
+.hf-ring{animation:hfRingOut .92s ease-out forwards}
+@keyframes hfRingOut{0%{stroke-width:5;opacity:1}100%{stroke-width:1;opacity:0;transform:scale(1.5)}}
+.hf-spark{font-size:17px;text-anchor:middle;animation:hfRise 1.15s ease-out forwards}
+@keyframes hfRise{0%{opacity:0;transform:translateY(4px)}20%{opacity:1}100%{opacity:0;transform:translateY(-26px)}}
+.hf-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hf-bit{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.95;animation:hfBit .76s ease-out forwards}
+@keyframes hfBit{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,0),var(--dy,0)) scale(.2);opacity:0}}
+.hf-pop{position:absolute;transform:translate(-50%,-50%);font-size:17px;font-weight:bold;color:#FFF59D;text-shadow:0 1px 4px rgba(0,0,0,.7);animation:hfPop .96s ease-out forwards;white-space:nowrap}
+@keyframes hfPop{0%{opacity:0;margin-top:6px}18%{opacity:1}100%{opacity:0;margin-top:-42px}}
+.hf-shake{animation:hfShake .34s}
+@keyframes hfShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px) rotate(-.5deg)}50%{transform:translateX(8px) rotate(.5deg)}80%{transform:translateX(-3px)}}
+/* ---- 计量 / 按钮 / 文案 ---- */
+.hf-meter{display:flex;align-items:center;gap:8px;width:calc(100% - 28px);margin:9px auto 0}
+.hf-tl{position:relative;flex:1;height:26px;border-radius:13px;background:rgba(0,0,0,.4);overflow:hidden}
+.hf-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:13px;background:linear-gradient(90deg,#4E342E,#FB8C00 58%,#FFF176 96%);transition:width .1s linear}
+.hf-tl.low i{background:linear-gradient(90deg,#FF8A65,#FF5252)}
+.hf-tl b{position:relative;display:block;text-align:center;line-height:26px;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.hf-clock{font-size:12px;color:#fff;background:rgba(0,0,0,.4);border-radius:13px;padding:0 12px;line-height:26px;white-space:nowrap}
+.hf-hintline{width:calc(100% - 28px);margin:9px auto 0;text-align:center;font-size:15px;font-weight:bold;color:#FFF8E1;background:rgba(0,0,0,.34);border-radius:14px;padding:9px 10px;line-height:1.5}
+.hf-hintline code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:12px}
+.hf-tools{display:flex;gap:8px;width:calc(100% - 28px);margin:8px auto 0;position:sticky;bottom:6px;z-index:6;box-sizing:border-box;padding:5px;border-radius:16px;background:rgba(0,0,0,.45)}
+.hf-tool{flex:1;padding:11px 4px;border:none;border-radius:13px;font-size:13px;color:#ECEFF1;background:rgba(255,255,255,.14);cursor:pointer;font-family:inherit}
+.hf-tool.on{background:#81D4FA;color:#01223A;font-weight:bold}
+.hf-tool.go{background:#FFC400;color:#3E2723;font-weight:bold}
+.hf-tool:disabled{opacity:.4}
+.hf-msg{width:calc(100% - 28px);margin:9px auto 0;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.3);color:#FFF8E1;font-size:13px;line-height:1.65;min-height:44px;overflow-anchor:none}
+.hf-msg b{color:#fff}
+.hf-tip{width:calc(100% - 28px);margin:8px auto 0;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.8}
+.hf-tip code{background:rgba(255,255,255,.16);border-radius:5px;padding:1px 5px;color:#fff;font-size:11px}
+.hf-badge{position:absolute;right:8px;top:8px;font-size:11px;color:#2B1608;background:rgba(255,236,210,.92);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+.hf-badge.on{display:block}
+.hf-tagline{position:absolute;left:8px;top:8px;font-size:12px;color:#fff;background:rgba(230,74,25,.92);border-radius:11px;padding:3px 10px;display:none;white-space:nowrap}
+.hf-tagline.on{display:block}
+.hf-rs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center}
+.hf-rs span{display:block;font-size:24px;font-weight:bold}
+.hf-rs small{display:block;font-size:11px;color:#B0BEC5;margin-top:2px}
+.hf-book-t{font-size:12px;color:#FFE082;margin-top:12px}
+.hf-book{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:7px}
+.hf-book i{font-style:normal;width:26px;height:26px;line-height:26px;border-radius:7px;background:rgba(255,255,255,.14);color:#fff;font-size:15px}
+.hf-cdot{position:absolute;right:8px;top:8px;min-width:20px;height:20px;border-radius:10px;background:#FFC400;color:#102A1E;font-size:10.5px;font-weight:bold;display:none;align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 8px rgba(0,0,0,.28);z-index:3}
+.hf-cdot.on{display:flex}
+.hf-nd{font-style:normal;font-size:11px;color:#CFD8DC;background:rgba(255,255,255,.1);border-radius:10px;padding:3px 9px;white-space:nowrap}
+.hf-nd.in{color:#fff;background:rgba(255,193,66,.3)}
+.hf-nd.dead{color:#fff;background:rgba(255,82,82,.3)}
+.hf-more{flex:1 1 100%;text-align:center;font-size:11.5px;color:#B0BEC5;margin-top:3px;line-height:1.5}
+.hf-more b{color:#FFF176}
+@media (max-width:600px){
+  .hf-stage{flex-direction:column}
+  .hf-mini{flex:0 0 auto;width:88px;margin:0 auto}
+}
+@media (min-width:700px){
+  /* 炉床是 700 单位宽的：窄通道里 30 格铁板和牌面上的笔形会糊成一团，宽屏让出一条 */
+  #screen-heat{max-width:860px}
+  /* 笔记本只有 760 高：炉床让出底部一截，通电钟和工具条才能同屏，不用来回滚 */
+  .hf-svg{max-height:calc(100vh - 320px)}
+}
 </style>
 
 </head>
@@ -5533,8 +5690,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 80 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">80</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 81 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">81</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -5545,12 +5702,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>80 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>26</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>81 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>27</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="hfCard" onclick="enterMode('heat')">
+      <div class="icon">🔥</div>
+      <div class="info"><h3>笔顺火候坊</h3><p id="hfCardTip">一块六乘五的铁板：点一格把炭放下起火，热一拍往里走一格 —— 离炭几格的那张牌就第几拍出炉，四拍之内按笔顺摘下来印到纸上，过了就糊</p></div>
+      <span class="hf-cdot" id="hfCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="ctCard" onclick="enterMode('circuit')">
       <div class="icon">⚡</div>
       <div class="info"><h3>笔顺电路坊</h3><p id="ctCardTip">一块电路板、上下两条铜箔、六只灯泡：点两个焊盘拉一根跳线，把写着这一笔的灯泡接成回路 —— 串联分压、并联各走各的，＋ 直接搭 − 就烧保险丝</p></div>
@@ -6131,6 +6293,104 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-heat">
+  <div class="top-bar">
+    <button class="back-btn" onclick="hfLeave()">← 返回</button>
+    <div class="stats"><span id="hfScoreTxt">🎯 0 分</span><span id="hfLvTxt">第 1 段</span></div>
+    <button class="icon-btn" onclick="hfHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="hf-hud">
+    <span id="hfRankTxt" title="称号">🔥 玩火棒的</span>
+    <span id="hfHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="hfComboTxt" title="连击">🔥 连 0</span>
+    <span id="hfLitTxt" title="印了几笔">✅ 0 笔</span>
+    <span id="hfMoveTxt" title="放了几次炭">🔥 0</span>
+    <span id="hfSaveTxt" title="一块炭连摘几笔">🫳 0</span>
+    <span id="hfBurnTxt" title="糊了几张牌">💨 0</span>
+    <span id="hfFrostTxt" title="急冷救过几回">❄ 0</span>
+    <span id="hfWrongTxt" title="摘错几次">🚫 0</span>
+  </div>
+  <div class="hf-ask" id="hfAsk">🔥 正在升火……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="hf-stage">
+    <div class="hf-mini">
+      <svg viewBox="0 -1024 1024 1024" id="hfMiniSvg"></svg>
+      <div class="hf-cap" id="hfMiniCap">这个字</div>
+    </div>
+    <div class="hf-tbl" id="hfTbl">
+      <svg class="hf-svg" id="hfSvg" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid meet">
+        <g id="hfStatic"></g>
+        <g id="hfCellG"></g>
+        <g id="hfDecoG"></g>
+        <g id="hfTileG"></g>
+        <g id="hfPaperG"></g>
+        <g id="hfHitG"></g>
+        <g id="hfTopG"></g>
+      </svg>
+      <div class="hf-fx" id="hfFx"></div>
+      <div class="hf-badge" id="hfBadge">🔥</div>
+      <div class="hf-tagline" id="hfTag">🌬 穿堂风来了</div>
+    </div>
+  </div>
+  <div class="hf-meter">
+    <div class="hf-tl" id="hfClockBox"><i id="hfClockBar"></i><b id="hfClockTxt">🔥 炉子正旺</b></div>
+    <div class="hf-clock" id="hfPowTxt">🔥 ——</div>
+  </div>
+  <div class="hf-tools">
+    <button class="hf-tool go" id="hfTakeBtn" onclick="hfTakeNext()">✋ 摘牌<b style="font-size:11px"> 空格</b></button>
+    <button class="hf-tool" id="hfFrostBtn" onclick="hfFrostArm()">❄ 冰钳<b style="font-size:11px"> X</b></button>
+    <button class="hf-tool" id="hfRevealBtn" onclick="hfReveal()">🔍 照炉<b style="font-size:11px"> E</b></button>
+    <button class="hf-tool" id="hfPrevBtn" onclick="hfPreview()" disabled>👀 预览<b style="font-size:11px"> Q</b></button>
+    <button class="hf-tool" id="hfUndoBtn" onclick="hfUndo()" disabled>🔄 倒带<b style="font-size:11px"> R</b></button>
+    <button class="hf-tool" id="hfReBtn" onclick="hfRespin()">🔁 重摆<b style="font-size:11px"> T</b></button>
+    <button class="hf-tool" onclick="hfEnd('quit')">🏁 结算</button>
+  </div>
+  <div id="hfBasket" style="display:flex;gap:6px;justify-content:center;align-items:center;width:calc(100% - 24px);margin:9px auto 0;min-height:36px;padding:6px;border-radius:14px;background:rgba(0,0,0,.36);border:1px dashed rgba(255,255,255,.22);flex-wrap:wrap"></div>
+  <div class="hf-hintline" id="hfHintLine">👇 <b>点一格把 🔥 炭放下</b> 起火：热从炭那一格 <b>一拍往里走一格</b> —— 离炭 <b>几格</b> 的牌就 <b>第几拍</b> 出炉，出炉只有 <b>4 拍</b> 好摘</div>
+  <div class="hf-msg" id="hfMsg">眼前是一块 <b>六乘五的铁板</b>（<b>A~F</b> 是列、<b>1~5</b> 是行），板上摊着几张 <b>铁牌</b>：牌面刻的就是这个字其中一笔的 <b>真实笔形</b>（横红、竖青、撇蓝、捺橘），角上写着 <b>第几笔</b>。<b>点一格把 🔥 炭放下</b> —— 铁会传热：炭那一格 <b>10 度</b>，<b>离炭几格就第几拍热到「10 减几格」度</b>。牌 <b>热到 5 度就出炉</b>（🪨 硬脾牌要 <b>7 度</b>），出炉之后 <b>4 拍</b> 之内 <b>点它摘下来</b>，印到板底下的纸带上；过了就 <b>糊</b>。<br>🎯 汉字得 <b>按笔顺</b> 写：第 1 笔那张必须 <b>第一个出炉</b> —— 所以放炭之前先 <b>数格子</b>：越靠后的笔，离炭 <b>越远才对</b></div>
+  <div class="hf-tip">🔥 <b>炭是这一盘唯一的火源</b>：点一格 <b>放炭</b>、点摆着的炭 <b>收回筐</b>。铁格每 <code>1.2</code> 秒走一拍，热从炭那一格 <b>一拍往里走一格</b> —— 离炭 <b>d</b> 格 ⇒ <b>第 d 拍</b> 热到 <b>10−d</b> 度；右边一栏就写着这张对照表<br>
+    🧺 <b>挪炭是有代价的</b>：一放一收，热浪都得 <b>从炭那一格重新数起</b>（板子当场凉回去）；而且 <b>钳子烫</b> —— 每回放炭 / 收炭之后 <b>2 拍</b> 之内挪不动第二块。一块炭挨着摆两张牌、<b>一起出炉连着摘</b> 才给 <b>🫳 一块炭烤出两笔</b> 的奖励<br>
+    🌡 <b>出炉就是热到 5 度</b>（🪨 <b>硬脾牌</b> 要 <b>7 度</b>，只能 <b>挨着炭</b> 摆）：牌面发亮、外圈起火晕就是出炉了。这时候 <b>点它</b>（或按 <code>W</code>）印到纸带上；<b>4 拍</b> 没摘就 <b>💨 糊了</b>：扣 10 分、掉一颗心、剩下的笔 <b>另摆一盘</b>（已印的 <b>一笔不抹</b>）<br>
+    🎯 <b>按笔顺摘</b>：还没轮到的牌 <b>烫着也不许摘</b>（扣 6 分、断连击，牌 <b>还留在板上</b>）；🚫 <b>杂牌</b>（挂着 <b>?</b>）刻的根本不是这个字的笔，点它 <b>断芯</b>：扣 6 分、断连击，<b>连错 3 次掉一颗心</b> —— 它摆得离炭远，<b>一辈子烧不糊</b><br>
+    🧱 <b>隔火砖</b> 热过不去，热浪得 <b>绕着走</b>（绕路就晚几拍）；🕶 <b>暗砖</b>（第 6 段起）看着是空铁格、其实一样挡热 —— 按 <b>🔍 照炉</b>（<code>E</code>）举起火把，这一盘的暗砖就 <b>永久标出来</b><br>
+    ❄ <b>冰钳</b>（按 <code>X</code> 拿起来，点一格）：那一格 <b>一拍就凉</b>、还 <b>挡住热浪</b>，<b>6 拍</b> 之后化掉 —— 正烫着的牌被它一冰就 <b>回炉</b>（窗口重新算，<b>不算糊</b>），这是 <b>救牌</b> 的手；冰 <b>不花炭</b>，一盘发 <b>1~3 个</b><br>
+    🌬 <b>穿堂风</b>（第 7 段起）：每 <b>6 拍</b> 把 <b>最烫那一格</b> 吹凉两度（两拍之内）—— 牌出炉了别愣着，风专挑最热的地方钻<br>
+    ⏱ <b>炉前的钟</b>：军师先把这一盘 <b>从头到尾按拍子走一遍</b>，发你 <b>要用的拍数 + 一点余量</b> 换算的秒数（下限 40 秒），最后 12 秒 <b>板子边缘发红</b>；走光 <b>熄火</b>：掉一颗心、剩下的笔 <b>另摆一盘</b><br>
+    👀 <b>预览</b>（<code>Q</code>）替你把往后几拍先走一遍，画出 <b>每张牌第几拍出炉、第几拍糊</b>；🔄 <b>倒带</b>（<code>R</code>）退回 <b>上一次放炭 / 摘牌 / 急冷之前</b>；🔁 <b>重摆</b>（<code>T</code>）剩下的牌另摆一盘 —— 预览 <b>2</b> 次、倒带 <b>3</b> 次、重摆 <b>1</b> 次，<b>升段各补 1 次</b>；<code>方向键</code> 在 30 格里走、<code>空格</code> 点当前这格<br>
+    📈 <b>印一笔</b> 吃 <code>round((12 + 第几笔×2 + 段数×3) × (1 + 连击×0.06))</code>，<b>一块炭连着摘第二笔</b> 再多 <code>8 + 段数×2</code>，<b>刚出炉就摘</b> 再按剩的窗口加 <code>火候正好</code>；<b>整个字收满</b>：<code>26 + 笔数×6 + 段数×6 + 剩炭×3 + 剩冰×4</code>，<b>一次没糊没点错再多 22</b>；<b>每 2 个字升 1 段</b>（最多 9 段）、<b>每 3 个字补一颗心</b>（最多 5 颗）<br>
+    👀 发呆 12 秒 🐰 会报「<b>该收那一笔压在几号格</b>、它 <b>离炭几格、第几拍出炉</b>、下一步 <b>把炭挪哪儿</b>」· 战绩落盘 <code>hz_heat_*</code></div>
+</div>
+<div class="screen" id="screen-heat-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="hfLeave()">← 回首页</button>
+    <div class="stats"><span id="hfRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="hfRsEmoji">🔥</div>
+    <h2 style="font-size:26px;margin-bottom:6px" id="hfRsTitle">火候拿得住</h2>
+    <p style="font-size:14px;opacity:.85;line-height:1.5;min-height:42px" id="hfRsSub">下一次先数清 <b>这一笔离炭几格</b>，再决定炭摆哪儿</p>
+  </div>
+  <div style="width:100%;background:rgba(255,255,255,.1);border-radius:16px;padding:18px 14px;margin-bottom:12px">
+    <div class="hf-rs">
+      <div><span style="color:#FFD700" id="hfRsScore">0</span><small>本局得分</small></div>
+      <div><span style="color:#4FC3F7" id="hfRsWords">0</span><small>收好这几个字</small></div>
+      <div><span style="color:#69F0AE" id="hfRsLit">0</span><small>印下来几笔</small></div>
+      <div><span style="color:#FFAB91" id="hfRsLv">1</span><small>第几段</small></div>
+      <div><span style="color:#FFF176" id="hfRsStreak">0</span><small>最长连击</small></div>
+      <div><span style="color:#E1BEE7" id="hfRsMiss">0</span><small>💨 糊 / 🚫 错 / 💔 熄火</small></div>
+    </div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#fff">
+      <div style="font-size:13px;opacity:.7;margin-bottom:5px">🏅 一局最多收几个字 · 一共收过几个字</div>
+      <div style="font-size:24px;font-weight:bold;color:#FFE082"><span id="hfRsBest">0</span> 个 · <span id="hfRsAll2">0</span> 🔥</div>
+      <div style="font-size:12px;opacity:.78;margin-top:8px;white-space:pre-line;line-height:1.7" id="hfRsAll">🔥 玩火棒的</div>
+      <div class="hf-book-t" id="hfRsBookT"></div>
+      <div class="hf-book" id="hfRsBook"></div>
+    </div>
+  </div>
+  <div class="write-controls">
+    <button class="w-btn orange" onclick="hfRetry()">🔥 再生一炉</button>
+    <button class="w-btn blue" onclick="hfLeave()">🏠 回首页</button>
   </div>
 </div>
 <div class="screen" id="screen-circuit">
@@ -11867,6 +12127,7 @@ function updateHomeStats(){
   if(typeof mxNudge==='function')mxNudge();
   if(typeof wtNudge==='function')wtNudge();
   if(typeof ctNudge==='function')ctNudge();
+  if(typeof hfNudge==='function')hfNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -11893,6 +12154,7 @@ function enterMode(mode){
   if(mode==='magnet'){mxStart();return}
   if(mode==='sluice'){wtStart();return}
   if(mode==='circuit'){ctStart();return}
+  if(mode==='heat'){hfStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -60065,6 +60327,8 @@ function wtMeter(){
   const bar=document.getElementById('wtClockBar'),tt=document.getElementById('wtClockTxt'),bx=document.getElementById('wtClockBox');
   const w=(wtClamp(wt.clock,0,1)*100).toFixed(1)+'%';
   if(bx)bx.classList.toggle('low',wt.clock<=12/Math.max(1,wt.clockSec));
+  const tbl=document.getElementById('wtTbl');
+  if(tbl)tbl.classList.toggle('warn',!!(wt.red&&wt.clock>0));
   if(bar&&wt.hudTxt.bar!==w){wt.hudTxt.bar=w;bar.style.width=w}
   const left=Math.max(0,Math.ceil(wt.clock*wt.clockSec));
   const t='🌊 还有 '+left+' 秒 · 收 '+((wt.S&&wt.S.qi)||0)+'/'+wt.n+' 笔';
@@ -63347,6 +63611,2523 @@ window.ctvRank=function(n){const R=ctRank(n);return R.e+' '+R.t};
 window.ctvStepSay=function(){const st=ctNextStep();return st?ctStepSay(st):''};
 window.ctvCursor=function(c){ct.cur=c;ctCursor();ctCursorSay();return (document.getElementById('ctMsg')||{}).innerHTML||''};
 window.ctvT=function(ms){return ctT(function(){},ms||10)};
+
+/* ================= v1.82 笔顺火候坊（一块六乘五的铁板 · 炭放在哪儿、离炭几格就第几拍出炉 · 按笔顺摘牌） ================= */
+const HF_W=700,HF_H=470;
+const HF_CW=6,HF_CH=5,HF_N=30,HF_CELL=76;
+const HF_PX=122,HF_PY=20;
+const HF_HR=4,HF_HOLE=[1,4];
+/* 板子底下那条纸带（印出来的笔挨个排）、左边一栏炉具、右边一栏「离炭几格 = 第几拍」 */
+const HF_QX=122,HF_QY=408,HF_QW=456,HF_QH=32;
+const HF_LX=12,HF_LW=100,HF_RX=588,HF_RW=100;
+const HF_MAXT=10,HF_IGN=5,HF_HARD_IGN=7,HF_FAR=6;
+const HF_BEAT_MS=1200,HF_GRACE_MS=4800,HF_GRACE_BEATS=4,HF_ICE_BEATS=6,HF_TONG=2,HF_FAIL_MAX=3;
+const HF_WIND_BEATS=6,HF_REVEAL_MAX=1,HF_CHILL=2;
+const HF_PRINT_MS=760,HF_NEXT_MS=1300,HF_TAG_MS=2400,HF_NAG_MS=12000,HF_FLASH_MS=620,HF_GHOST_MS=3000;
+const HF_HEARTS=3,HF_HEART_MAX=5,HF_MISS_MAX=40,HF_BOOK_MAX=300;
+const HF_POOL_MIN=4,HF_POOL_WANT=16,HF_STROKE_MAX=5,HF_COAL_TRY=6,HF_BEAT_CAP=60;
+const HF_FAIL_PEN=10,HF_JUNK_PEN=6,HF_EARLY_PEN=6,HF_CLEAN_BONUS=22,HF_GEN_TRY=70,HF_HIST_MAX=8;
+const HF_DIRS=['横','竖','撇','捺'],HF_ARW=['➡️','⬇️','↙️','↘️'];
+const HF_O=['①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩','⑪','⑫','⑬','⑭','⑮','⑯','⑰','⑱','⑲','⑳','㉑','㉒','㉓','㉔','㉕','㉖','㉗','㉘','㉙','㉚'];
+const HF_INK=['#FF8A80','#80CBC4','#82B1FF','#FFD180'];
+const HF_NOTE=[392,440,494,523,587,659,698,784];
+const HF_RANKS=[
+  {n:0,e:'🔥',t:'玩火棒的'},{n:3,e:'🌡',t:'摸得出温度'},{n:8,e:'⛏',t:'会挪炭'},
+  {n:15,e:'🧊',t:'救得回牌'},{n:24,e:'🔨',t:'锻牌师傅'},{n:36,e:'🧠',t:'一炭出三笔'},
+  {n:52,e:'🌟',t:'火候大师'},{n:74,e:'💎',t:'一块没糊'},{n:105,e:'👑',t:'炉子里的王'}
+];
+const hf={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,tones:0,think:0,timers:[],
+  pool:[],miss:[],rec:null,n:0,gly:[],S:null,tid:1,
+  lv:1,score:0,hearts:HF_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,moves:0,taps:0,burns:0,wrongs:0,frosts:0,deads:0,early:0,saved:0,fakes:0,reds:0,
+  previewN:2,undoN:3,respN:1,frostN:2,revealN:1,
+  previews:0,rewinds:0,respins:0,nags:0,reveals:0,
+  coalMax:1,basket:1,frostMax:2,beat:0,beatMs:0,tong:0,windMs:0,wind:0,windTag:0,
+  clock:1,clockSec:60,red:false,beep:0,
+  printMs:0,nextMs:0,printRun:0,since:0,tagMs:0,
+  ghost:null,ghostMs:0,
+  cleanWord:true,failWord:0,redWord:false,
+  hist:[],cur:12,arm:false,bound:false,ptrBound:false,hudTxt:{},sol:null,lastWhy:''
+};
+function hfInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function hfAdd(k,n){if(n)localStorage.setItem(k,String(hfInt(k)+n))}
+function hfSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function hfSay(t,c){const el=document.getElementById('hfMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function hfShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function hfOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function hfClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function hfDn(d){return d<0||d>3?0:d}
+function hfRank(n){let r=HF_RANKS[0];for(let i=0;i<HF_RANKS.length;i++)if(n>=HF_RANKS[i].n)r=HF_RANKS[i];return r}
+function hfTone(f,d,t,v){if(hf.tones<=0)return;hf.tones--;tone(f,d,t,v)}
+function hfT(fn,ms){const g=hf.gen;const id=setTimeout(function(){const k=hf.timers.indexOf(id);if(k>=0)hf.timers.splice(k,1);if(g!==hf.gen)return;fn()},ms);hf.timers.push(id);return id}
+function hfKillTimers(){hf.timers.forEach(function(t){clearTimeout(t)});hf.timers=[]}
+/* ---- 难度：几块杂牌、几块隔火砖、几块硬脾、有没有暗砖、有没有穿堂风、几块炭、余量几拍 ---- */
+function hfJunkOf(lv){return lv<2?0:Math.min(3,lv-1)}
+function hfBrickOf(lv){return lv<3?0:Math.min(4,lv-2)}
+function hfHardOf(lv){return lv<5?0:Math.min(2,lv-4)}
+function hfRedOf(lv){return lv<6?0:Math.min(2,lv-5)}
+function hfWindOf(lv){return lv>=7?1:0}
+function hfCoalOf(lv){return lv<4?1:2}
+function hfFrostNOf(lv){return lv<2?1:(lv<=5?2:3)}
+function hfSpareOf(lv){return lv<=2?5:(lv<=5?4:3)}
+function hfLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function hfDistOf(lv){return lv<=2?[1,2,3,4,5]:(lv<=4?[1,3,5]:[1,2,3,4,5])}
+/* ---- 几何 ---- */
+function hfCol(i){return i%HF_CW}
+function hfRow(i){return Math.floor(i/HF_CW)}
+function hfIdx(c,r){return r*HF_CW+c}
+function hfXY(i){return {x:HF_PX+hfCol(i)*HF_CELL+HF_CELL/2,y:HF_PY+hfRow(i)*HF_CELL+HF_CELL/2}}
+function hfHole(i){return hfRow(i)===HF_HR&&HF_HOLE.indexOf(hfCol(i))>=0}
+function hfSlag(i){return hfRow(i)===HF_HR&&hfCol(i)===HF_HOLE[0]}
+/* 行列号叫什么：A~F 是列、1~5 是行，第 5 行那两个口单独特指 */
+function hfCellName(i){
+  if(hfHole(i))return hfSlag(i)?'🕳 渣口':'🖨 印字台';
+  return String.fromCharCode(65+hfCol(i))+'-'+(hfRow(i)+1);
+}
+const HF_NB=(function(){
+  const a=[];
+  for(let i=0;i<HF_N;i++){
+    const c=i%HF_CW,r=Math.floor(i/HF_CW),q=[];
+    if(c>0)q.push(i-1);
+    if(c<HF_CW-1)q.push(i+1);
+    if(r>0)q.push(i-HF_CW);
+    if(r<HF_CH-1)q.push(i+HF_CW);
+    a.push(q);
+  }
+  return a;
+})();
+/* ---- 板子裸数据 ---- */
+function hfBlank(){
+  const z=function(){return new Array(HF_N).fill(0)};
+  return {n:0,qi:0,temp:z(),coal:z(),brick:z(),red:z(),ice:z(),iceBeats:z(),chill:z(),tiles:[],tong:0,beat:0,age:0,reveal:0};
+}
+function hfBlocked(S,i){return S.brick[i]||S.red[i]||S.ice[i]?1:0}
+/* 一格上的牌（烧糊和收走的不算） */
+function hfTileAt(S,i){for(let q=0;q<S.tiles.length;q++){const t=S.tiles[q];if(t.cell===i&&!t.done&&!t.burnt)return t}return null}
+function hfTileOfK(S,k){for(let q=0;q<S.tiles.length;q++){const t=S.tiles[q];if(!t.fgn&&t.k===k&&!t.done&&!t.burnt)return t}return null}
+function hfIgnOf(t){return t&&t.hard?HF_HARD_IGN:HF_IGN}
+/* ---- 到最近那块炭要走几格：隔火的格子（🧱 砖 / 🕶 暗砖 / ❄ 还冻着的冰）绕不过去 ---- */
+function hfDist(S){
+  const d=new Array(HF_N).fill(99),q=[];
+  for(let i=0;i<HF_N;i++)if(S.coal[i]){d[i]=0;q.push(i)}
+  for(let h=0;h<q.length;h++){
+    const u=q[h],nb=HF_NB[u];
+    for(let k=0;k<nb.length;k++){
+      const v=nb[k];
+      if(hfBlocked(S,v))continue;
+      if(d[v]>d[u]+1){d[v]=d[u]+1;q.push(v)}
+    }
+  }
+  return d;
+}
+/* 隔这么多格 ⇒ 稳下来就是「10 减这么多」度，而且第几格就第几拍热到 */
+function hfTempSay(S,d,i){
+  if(S.ice[i])return 0;
+  if(S.brick[i]||S.red[i])return 0;
+  if(S.coal[i])return HF_MAXT;
+  return d[i]>=99?0:Math.max(0,HF_MAXT-d[i]);
+}
+/* 这一格离炭几格（没有炭的时候给 -1，文案好区分「板上一块炭都没有」） */
+function hfDistCell(S,i){
+  if(!hfCoalsOn(S))return -1;
+  if(hfBlocked(S,i))return -1;
+  const d=hfDist(S);
+  return d[i]>=99?-1:d[i];
+}
+/* 还要再等几拍热到（炭刚挪过就从头数） */
+function hfBeatsTo(S,i){
+  const ds=hfDistCell(S,i);
+  if(ds<0)return -1;
+  return Math.max(0,ds-S.age);
+}
+/* ---- 一拍：热浪往里走一格 —— 离炭几格，就第几拍热起来，一热就是「10 减几格」度 ---- */
+/* 按「眼下的炭位 + 已经走过的拍数」重刷整块板：谁刚出炉、谁凉回去了 */
+function hfFlush(S){
+  const d=hfDist(S),ev={up:[],down:[],rose:[],back:[]};
+  for(let i=0;i<HF_N;i++){
+    const old=S.temp[i];
+    let t=0;
+    if(S.coal[i])t=HF_MAXT;
+    else if(!hfBlocked(S,i)&&d[i]<99&&S.age>=d[i])t=Math.max(0,HF_MAXT-d[i]);
+    if(S.chill[i]&&t>0)t=Math.max(0,t-HF_CHILL);
+    S.temp[i]=t;
+    if(t>old)ev.up.push(i);
+    else if(t<old)ev.down.push(i);
+  }
+  for(let q=0;q<S.tiles.length;q++){
+    const t=S.tiles[q];
+    if(t.done||t.burnt)continue;
+    const ign=hfIgnOf(t),tp=S.temp[t.cell];
+    if(tp>=ign){if(!t.hot){t.hot=1;t.hotMs=HF_GRACE_MS;ev.rose.push(t)}}
+    else if(t.hot){t.hot=0;t.hotMs=HF_GRACE_MS;ev.back.push(t)}
+  }
+  return ev;
+}
+function hfStep(S){
+  S.age++;S.beat++;
+  /* 冰化完、风停吹，都得在刷温度之前结算：先刷再化就晚一拍才让路 */
+  for(let i=0;i<HF_N;i++){
+    if(S.ice[i]&&S.iceBeats[i]>0){
+      S.iceBeats[i]--;
+      if(!S.iceBeats[i])S.ice[i]=0;
+    }
+    if(S.chill[i]>0)S.chill[i]--;
+  }
+  if(S.tong>0)S.tong--;
+  const ev=hfFlush(S);
+  return ev;
+}
+/* 火候窗口在拍与拍之间用毫秒走，铁一直烫着就一点一点耗；凉下去（撤炭、急冷）等于白捡 */
+function hfAging(S,ms){
+  const out=[];
+  for(let q=0;q<S.tiles.length;q++){
+    const t=S.tiles[q];
+    if(!t.hot||t.done||t.burnt)continue;
+    t.hotMs-=ms;
+    if(t.hotMs<=0){t.hotMs=0;out.push(t)}
+  }
+  return out;
+}
+/* 板上一块炭都没有？（文案和守恒都要问这一句） */
+function hfCoalsOn(S){let n=0;for(let i=0;i<HF_N;i++)if(S.coal[i])n++;return n}
+function hfFreeCell(S,i){return !hfHole(i)&&!S.brick[i]&&!S.red[i]&&!S.ice[i]&&!hfTileAt(S,i)?1:0}
+/* 板上一块炭都没有 ⇒ 整块板是凉的；摘牌之前得先有炭 */
+function hfAnyCoal(S){return hfCoalsOn(S)>0}
+/* 温度 → 格子该穿哪一档色 */
+function hfTCls(v){return 't'+hfClamp(Math.round(v),0,HF_MAXT)}
+/* ---- 笔形：牌面就是这个字其中一笔的真实形状 ---- */
+function hfBox(m){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const p=m[i];if(!p||p.length<2)continue;
+    if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+    if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+  }
+  if(x1<x0)return null;
+  return {x:x0,y:y0,w:x1-x0,h:y1-y0};
+}
+function hfDOf(sp,i){const s=sp[i];return typeof s==='string'?s:String(s&&s.d||'')}
+function hfGly(d,box,dir,size){
+  const b=box||{x:0,y:0,w:200,h:200};
+  return {d:d||'M0 0',box:b,dir:dir,s:(size||44)/Math.max(140,Math.max(b.w,b.h))};
+}
+function hfGlyHTML(g){
+  const b=g.box,s=g.s;
+  const tx=-s*(b.x+b.w/2),ty=s*(b.y+b.h/2);
+  return '<g transform="translate('+tx.toFixed(1)+','+ty.toFixed(1)+') scale('+s.toFixed(5)+','+(-s).toFixed(5)+')">'+
+    '<path d="'+g.d+'" fill="'+HF_INK[hfDn(g.dir)]+'"/></g>';
+}
+function hfGlyOf(rec){
+  const ms=(rec&&rec.raw&&rec.raw.medians)||[],sp=(rec&&rec.raw&&rec.raw.strokes)||[],out=[];
+  for(let i=0;i<rec.n;i++){
+    const m=ms[i]||[[0,0],[100,100]];
+    out.push(hfGly(hfDOf(sp,i)||'M0 0 L60 60',hfBox(m)||{x:0,y:0,w:200,h:200},hfDn(rec.dirs[i]),44));
+  }
+  return out;
+}
+/* ---- 字库：每一笔方向都说得清，才认得出牌面上刻的是哪一笔 ---- */
+function hfMake(ch,raw){
+  const ms=raw&&raw.medians;
+  if(!ms||ms.length<2||ms.length>HF_STROKE_MAX)return null;
+  const sp=raw.strokes||[];
+  if(sp.length!==ms.length)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){
+    const d=fmDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    dirs.push(d);
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,raw:raw};
+}
+/* 火候坊的字库：全字库 1453 字挨个过了一遍 hfMake，能过的就这 78 个（笔数 ≤5、
+   每笔方向都在 横竖撇捺里、而且不止一种方向）。随机扫 90 个字只碰上三两个，
+   字池攒不满 HF_POOL_MIN 就直接上不了板 —— 先从这里挑。 */
+const HF_LETTERS='十人八小上下日水石田木禾白子不去个长门见对书本牛马飞入'
+  +'什么双王方气生叫主以尤区巨于记市民丝贝互仙勾丰父欠未击乎代计且斗示巧'
+  +'付兰专丈扎仅叉兰议歹矛冈矛仪辽曰瓦';
+function hfCand(){
+  const out=[],push=function(list,max){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<(max||90);i++){
+      const c=list[i];
+      if(c&&CHARS.indexOf(c)>=0&&out.indexOf(c)<0)out.push(c);
+    }
+  };
+  push(hfShuf(HF_LETTERS.split('')),HF_POOL_WANT*4);
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(hfShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(hfShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(hfShuf(CHARS.slice()));
+  return out;
+}
+function hfTO(p,ms){return Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},ms)})])}
+async function hfRec(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return null;
+  let raw=charDataCache[ch];
+  if(!raw||!raw.medians)raw=await hfTO(loadCharData(ch),6000);
+  if(!raw||!raw.medians)return null;
+  return hfMake(ch,raw);
+}
+async function hfBuildPool(keep){
+  const g=hf.gen;
+  const stale=function(){return g!==hf.gen||!hf.run};
+  hf.miss=(localStorage.getItem('hz_heat_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  hfShuf(hf.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  hfCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)hf.pool=[];
+  for(let k=0;k<want.length&&hf.pool.length<HF_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return hfRec(c)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i])hf.pool.push(rs[i]);
+  }
+  return hf.pool.length>=HF_POOL_MIN;
+}
+function hfPickRec(){
+  const w=hf.lv>=4?[3,HF_STROKE_MAX]:[2,4];
+  const used={};
+  for(let i=0;i<hf.miss.length;i++){
+    for(let k=0;k<hf.pool.length;k++){
+      const r=hf.pool[k];
+      if(r&&!used[r.ch]&&r.n>=2&&r.ch===hf.miss[i]){used[r.ch]=1;return r}
+    }
+  }
+  let cand=hf.pool.filter(function(r){return r&&!used[r.ch]&&r.n>=w[0]&&r.n<=w[1]});
+  if(!cand.length)cand=hf.pool.filter(function(r){return r&&!used[r.ch]&&r.n<=HF_STROKE_MAX});
+  if(!cand.length)return null;
+  for(let i=0;i<40;i++){const c=hfOne(cand);if(c){used[c.ch]=1;return c}}
+  const c=cand[0];used[c.ch]=1;return c;
+}
+/* ---- 错字手册 / 图鉴 ---- */
+function hfMissAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_heat_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.unshift(ch);
+  localStorage.setItem('hz_heat_miss',a.slice(0,HF_MISS_MAX).join(','));
+}
+function hfMissDel(ch){
+  const a=(localStorage.getItem('hz_heat_miss')||'').split(',').filter(function(c){return c&&c!==ch});
+  localStorage.setItem('hz_heat_miss',a.join(','));
+}
+function hfBookAdd(ch){
+  if(!ch||ch.length!==1||CHARS.indexOf(ch)<0)return;
+  const a=(localStorage.getItem('hz_heat_book')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(a.indexOf(ch)>=0)return;
+  a.push(ch);
+  localStorage.setItem('hz_heat_book',a.slice(0,HF_BOOK_MAX).join(','));
+}
+
+/* ================= v1.82 笔顺火候坊 · B：摆盘 / 军师 / 放炭 / 摘牌 / 收字 ================= */
+/* ---- 快照：倒带与预览都在副本上做，绝不动真板子 ---- */
+function hfClone(S){
+  return {
+    n:S.n,qi:S.qi,
+    temp:S.temp.slice(),coal:S.coal.slice(),brick:S.brick.slice(),red:S.red.slice(),
+    ice:S.ice.slice(),iceBeats:S.iceBeats.slice(),chill:S.chill.slice(),
+    tiles:S.tiles.map(function(t){return {id:t.id,cell:t.cell,k:t.k,fgn:t.fgn,hard:t.hard,
+      done:t.done,burnt:t.burnt,hot:t.hot,hotMs:t.hotMs}}),
+    tong:S.tong,beat:S.beat,age:S.age,reveal:S.reveal
+  };
+}
+function hfSnap(){
+  return {S:hfClone(hf.S),basket:hf.basket,moves:hf.moves,taps:hf.taps,burns:hf.burns,wrongs:hf.wrongs,
+    frosts:hf.frosts,score:hf.score,combo:hf.combo,lits:hf.lits,saved:hf.saved,early:hf.early,
+    reveals:hf.reveals,deads:hf.deads,printRun:hf.printRun,cleanWord:hf.cleanWord,since:hf.since,
+    failWord:hf.failWord,clock:hf.clock,red:hf.red,arm:false};
+}
+function hfPushHist(){
+  hf.hist.push(hfSnap());
+  if(hf.hist.length>HF_HIST_MAX)hf.hist.shift();
+}
+function hfRestore(s){
+  hf.S=s.S;
+  hf.basket=s.basket;hf.moves=s.moves;hf.taps=s.taps;hf.burns=s.burns;hf.wrongs=s.wrongs;
+  hf.frosts=s.frosts;hf.score=s.score;hf.combo=s.combo;hf.lits=s.lits;hf.saved=s.saved;
+  hf.early=s.early;hf.reveals=s.reveals;hf.deads=s.deads;hf.printRun=s.printRun;
+  hf.cleanWord=s.cleanWord;hf.since=s.since;hf.failWord=s.failWord;hf.clock=s.clock;hf.red=s.red;
+  hf.arm=false;
+  hfFlush(hf.S);
+  hfBoard();hfPaper();hfMini();hfHud();hfAskText();hfLine();
+}
+/* ---- 文案共用的算法：这一笔的牌压在哪儿、还差几拍 ---- */
+function hfTileSay(S,k){
+  const t=hfTileOfK(S,k);
+  if(!t)return '板上 <b>找不到第 '+(k+1)+' 笔</b> 那张牌了：按 <b>🔁 重摆</b> 换一种摆法';
+  if(t.done)return '已经印在纸上了（<b>'+hfCellName(t.cell)+'</b> 那一格现在是 <b>空铁格</b>，照样放得下炭）';
+  if(t.burnt)return '<b>'+hfCellName(t.cell)+'</b> 那张已经 <b>烧糊</b> 了';
+  if(!hfCoalsOn(S))return '压在 <b>'+hfCellName(t.cell)+'</b>：板上一块炭都没有 —— <b>点它旁边那一格把炭放下</b> 起火';
+  const dsc=hfDistCell(S,t.cell);
+  if(dsc<0)return '压在 <b>'+hfCellName(t.cell)+'</b>，可 <b>热浪绕不过去</b>（🧱 砖 / 🕶 暗砖 / ❄ 冰挡在路当中）—— 挪个炭位，或按 <b>🔁 重摆</b>';
+  const w=hfBeatsTo(S,t.cell);
+  return '压在 <b>'+hfCellName(t.cell)+'</b>：离炭 <b>'+dsc+'</b> 格 ⇒ 一热就是 <b>'+Math.max(0,HF_MAXT-dsc)+
+    '</b> 度（燃点 <b>'+hfIgnOf(t)+'</b>）· 第 <b>'+dsc+'</b> 拍出炉'+
+    (t.hot?' —— <b>正烫着</b>，还有 <b>'+Math.max(1,Math.ceil(t.hotMs/HF_BEAT_MS))+'</b> 拍就糊'
+      :(w>0?'（还要再等 <b>'+w+'</b> 拍）':'（<b>就这一拍</b>，摘！）'));
+}
+function hfIgnSay(t){return t&&t.hard?'🪨 硬脾牌，燃点 <b>'+HF_HARD_IGN+'</b> 度':'燃点 <b>'+HF_IGN+'</b> 度'}
+/* ---- 距离梯子：后面的笔不许比前面的笔先热 ⇒ 「离炭几格」必须一路不减 ---- */
+function hfLadder(rec,from,hardN,allowed){
+  const ds=[],hard=[];
+  const real=rec.n-from;
+  for(let i=0;i<real;i++){ds.push(0);hard.push(0)}
+  const far=HF_MAXT-HF_IGN;
+  /* 硬脾（燃点 7）只能挨着炭摆 ⇒ 优先派给靠前的笔：越靠后，梯子已经走高了，3 格以下站不下 */
+  const weighted=[];
+  const shuffled=hfShuf(function(){const a=[];for(let i=0;i<real;i++)a.push(i);return a}());
+  for(let i=0;i<shuffled.length;i++)for(let q=0;q<real-shuffled[i];q++)weighted.push(shuffled[i]);
+  const pick=[];
+  while(pick.length<hardN&&weighted.length){
+    const ix=hfOne(weighted);
+    if(pick.indexOf(ix)<0)pick.push(ix);
+  }
+  for(let i=0;i<pick.length;i++)hard[pick[i]]=1;
+  let last=0;
+  for(let i=0;i<real;i++){
+    const cap=hard[i]?Math.min(3,far):far;
+    const cands=allowed.filter(function(v){return v>=last&&v<=cap});
+    if(!cands.length)return null;
+    /* 一半的牌往上跳一格（越靠后的笔离炭越远，孩子才数得出「第几拍」），
+       一半贴着上一张（贴得住才有「一块炭烤出两笔」的连击） */
+    const up=cands.filter(function(x){return x>last});
+    const near=cands.filter(function(x){return x<=Math.min(cap,last+1)});
+    let v;
+    if(hard[i])v=cands[0];
+    else if(up.length&&Math.random()<0.5)v=hfOne(up);
+    else v=near.length?hfOne(near):cands[0];
+    ds[i]=v;last=v;
+  }
+  return {ds:ds,hard:hard};
+}
+/* ---- 军师的钟：把这一盘从头到尾按拍子走一遍，数清要几拍、中途会不会糊 ---- */
+function hfSimPlan(S0,steps){
+  const S=hfClone(S0);
+  const plan=[];
+  let beats=0,q=0,burnt=-1;
+  const pump=function(){
+    hfStep(S);
+    beats++;
+    const gone=hfAging(S,HF_BEAT_MS);
+    for(let i=0;i<gone.length;i++){
+      const t=gone[i];
+      if(t.fgn||t.done)continue;
+      if(t.k>=S.qi&&t.k<S.n){burnt=t.k;return false}
+    }
+    return true;
+  };
+  for(;;){
+    /* 一块炭常常一次烤好几张：挨着摘干，才和孩子真能做的动作一致 */
+    for(;;){
+      const w=hfTileOfK(S,S.qi);
+      if(!w||!w.hot)break;
+      w.done=1;w.hot=0;w.hotMs=0;S.qi++;
+      plan.push({tap:1,k:w.k,cell:w.cell,b:beats});
+    }
+    if(S.qi>=S.n)break;
+    if(beats>=HF_BEAT_CAP)return {ok:0,why:'cap',beats:beats,plan:plan,qi:S.qi,burnt:burnt};
+    let did=false;
+    while(q<steps.length){
+      const st=steps[q];
+      q++;
+      if(st.kind!=='coal')continue;
+      if(!S.coal[st.i]){
+        S.coal[st.i]=1;S.age=0;S.tong=0;
+        hfFlush(S);
+        plan.push({kind:'coal',i:st.i,b:beats});
+        did=true;
+      }
+      break;
+    }
+    if(did)continue;
+    if(!hfCoalsOn(S))return {ok:0,why:'nocoal',beats:beats,plan:plan,qi:S.qi,burnt:burnt};
+    /* 等着：热浪一拍往里走一格，直到该收那一拍出炉 */
+    let guard=0;
+    for(;;){
+      const w=hfTileOfK(S,S.qi);
+      if(w&&w.hot)break;
+      if(!pump())return {ok:0,why:burnt>=0?'burn':'cap',beats:beats,plan:plan,qi:S.qi,burnt:burnt};
+      if(++guard>HF_BEAT_CAP)return {ok:0,why:'cap',beats:beats,plan:plan,qi:S.qi,burnt:burnt};
+    }
+  }
+  return {ok:1,beats:beats,plan:plan,qi:S.qi,burnt:-1};
+}
+/* ---- 摆一盘：炭位 → 距离桶 → 按梯子插牌 → 杂牌拣烤不着的地方 → 砖头不许改动任何一张牌的距离 ---- */
+function hfTry(rec,cfg,from){
+  const n=rec.n;
+  if(n>HF_STROKE_MAX){hf.lastWhy='toostroke';return null}
+  if(from>=n){hf.lastWhy='done';return null}
+  const spots=[];
+  for(let i=0;i<HF_N;i++)if(!hfHole(i))spots.push(i);
+  const coal=hfOne(spots);
+  if(coal===null){hf.lastWhy='nospot';return null}
+  const probe=hfBlank();
+  probe.n=n;probe.qi=from;probe.coal[coal]=1;
+  const d=hfDist(probe);
+  const bucket={};
+  for(let i=0;i<HF_N;i++){
+    if(i===coal||hfHole(i)||d[i]>=99)continue;
+    (bucket[d[i]]=bucket[d[i]]||[]).push(i);
+  }
+  const lad=hfLadder(rec,from,cfg.hard,(cfg.dist&&cfg.dist.length?cfg.dist:hfDistOf(hf.lv)));
+  if(!lad){hf.lastWhy='noladder';return null}
+  const ds=lad.ds,hd=lad.hard;
+  const tiles=[],used={};
+  for(let k=from;k<n;k++){
+    const v=ds[k-from];
+    if(hd[k-from]&&v>3){hf.lastWhy='hardfar';return null}
+    const pool=(bucket[v]||[]).filter(function(c){return !used[c]});
+    if(!pool.length){hf.lastWhy='nobucket';return null}
+    const c=hfOne(pool);
+    used[c]=1;
+    tiles.push({id:hf.tid++,cell:c,k:k,fgn:0,hard:hd[k-from]?1:0,done:k<from?1:0,burnt:0,hot:0,hotMs:0});
+  }
+  /* 🚫 杂牌只摆在热浪一辈子走不到的地方：离炭 ≥ 6 格，稳下来才 4 度，够不着 5 度燃点 */
+  const cold=[];
+  for(let i=0;i<HF_N;i++){
+    if(i===coal||hfHole(i)||used[i])continue;
+    if(d[i]>=99||d[i]>=HF_FAR)cold.push(i);
+  }
+  if(cold.length<cfg.junk){hf.lastWhy='nocold';return null}
+  const jc={};
+  const jpick=hfShuf(cold.slice()).slice(0,cfg.junk);
+  for(let i=0;i<jpick.length;i++){
+    jc[jpick[i]]=1;
+    tiles.push({id:hf.tid++,cell:jpick[i],k:-1,fgn:1,hard:0,done:0,burnt:0,hot:0,hotMs:0});
+  }
+  probe.tiles=tiles;
+  /* 🧱 隔火砖 / 🕶 暗砖：摆上之后每一张真牌离炭还是那么多格才算数（挡出另一条等长的路可以，改路程不行） */
+  const chk=function(){
+    const q=hfDist(probe);
+    if(q[coal]!==0)return 0;
+    for(let i=0;i<tiles.length;i++){
+      const t=tiles[i];
+      if(t.fgn){if(q[t.cell]<HF_FAR&&q[t.cell]<99)return 0;continue}
+      if(q[t.cell]!==ds[t.k-from])return 0;
+    }
+    return 1;
+  };
+  if(!chk()){hf.lastWhy='broken';return null}
+  const cand=[];
+  for(let i=0;i<HF_N;i++){
+    if(i===coal||hfHole(i)||used[i]||jc[i])continue;
+    cand.push(i);
+  }
+  const place=function(kind,want){
+    let got=0;
+    const list=hfShuf(cand.slice());
+    for(let a=0;a<list.length&&got<want;a++){
+      const i=list[a];
+      if(probe.brick[i]||probe.red[i])continue;
+      probe[kind][i]=1;
+      if(chk()){const w=cand.indexOf(i);if(w>=0)cand.splice(w,1);got++;continue}
+      probe[kind][i]=0;
+    }
+    return got;
+  };
+  cfg.brick=place('brick',cfg.brick);
+  cfg.red=place('red',cfg.red);
+  if(!chk()){hf.lastWhy='broken';return null}
+  const steps=[{kind:'coal',i:coal}];
+  for(let k=from;k<n;k++)steps.push({kind:'take',k:k});
+  const S=hfBlank();
+  S.n=n;S.qi=from;S.tiles=tiles;S.brick=probe.brick;S.red=probe.red;
+  hfFlush(S);
+  const sim=hfSimPlan(S,steps);
+  if(!sim.ok){hf.lastWhy='nosolve:'+sim.why;return null}
+  /* 出厂前最后一道关：每一张真牌都得真的能热到燃点，否则这盘是死的 */
+  for(let i=0;i<tiles.length;i++){
+    const t=tiles[i];
+    if(t.fgn)continue;
+    if(d[t.cell]>HF_MAXT-hfIgnOf(t)){hf.lastWhy='neverhot';return null}
+  }
+  hf.lastWhy='';
+  const sec=Math.max(40,Math.round((sim.beats+hfSpareOf(hf.lv))*HF_BEAT_MS/1000)+30);
+  return {S:S,steps:steps,plan:sim.plan,beats:sim.beats,sec:sec,coal:coal,cfg:cfg,ds:ds,hard:hd};
+}
+function hfGen(rec,lv,from){
+  const j0=hfJunkOf(lv),b0=hfBrickOf(lv),h0=hfHardOf(lv),r0=hfRedOf(lv);
+  /* 难度表只是上限：牌要先占住格子，砖要挡不改牌的路，装不下就一级级往下减 */
+  const dec=[
+    {junk:j0,brick:b0,hard:h0,red:r0},
+    {junk:j0,brick:b0,hard:0,red:r0},
+    {junk:j0,brick:Math.max(0,b0-1),hard:0,red:Math.max(0,r0-1)},
+    {junk:j0,brick:0,hard:0,red:0},
+    {junk:0,brick:0,hard:0,red:0}
+  ];
+  /* 离炭格数的表先照本段用（第 3、4 段只准 1/3/5 格），实在摆不下一整盘
+     （牌抢不到那么远的格子、或炭摆太靠里就没了烤不着的角落）再退回全表 —— 
+     宁可少点摆位讲究，也不能让孩子看见「牌没摆好」 */
+  const D0=hfDistOf(lv),D1=[1,2,3,4,5],tabs=[D0];
+  if(D1.join()!==D0.join())tabs.push(D1);
+  const lad=[];
+  for(let t=0;t<tabs.length;t++)for(let k=0;k<dec.length;k++){
+    const c=dec[k];
+    lad.push({junk:c.junk,brick:c.brick,hard:c.hard,red:c.red,dist:tabs[t]});
+  }
+  const o=hf.lv;
+  hf.lv=lv;
+  for(let L=0;L<lad.length;L++){
+    for(let q=0;q<HF_GEN_TRY;q++){
+      const cfg={junk:lad[L].junk,brick:lad[L].brick,hard:lad[L].hard,red:lad[L].red,dist:lad[L].dist};
+      const r=hfTry(rec,cfg,from||0);
+      if(r){r.cfg=cfg;hf.lv=o;return r}
+    }
+  }
+  hf.lv=o;
+  return null;
+}
+/* ---- 预报：替孩子把往后几拍先走一遍，谁第几拍出炉、第几拍糊 ---- */
+function hfForecast(S0,useCoal){
+  const S=hfClone(S0);
+  if(useCoal>=0&&!S.coal[useCoal]){S.coal[useCoal]=1;S.age=0;S.tong=0}
+  hfFlush(S);
+  const out={},left={};
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i];
+    if(!t.done&&!t.burnt)left[t.id]=1;
+  }
+  const scan=function(b){
+    for(let i=0;i<S.tiles.length;i++){
+      const t=S.tiles[i];
+      if(!left[t.id])continue;
+      if(t.hot){out[t.id]={k:t.k,cell:t.cell,rose:b,expire:b+HF_GRACE_BEATS};delete left[t.id]}
+    }
+  };
+  let b=0;
+  scan(0);
+  while(b<HF_BEAT_CAP){
+    let any=0;
+    for(const kk in left)any=1;
+    if(!any)break;
+    hfStep(S);b++;
+    hfAging(S,HF_BEAT_MS);
+    scan(b);
+  }
+  return {rose:out,beats:b};
+}
+/* ---- 军师下一步 ---- */
+function hfNextStep(){
+  const S=hf.S,sol=hf.sol;
+  if(!S||!sol)return null;
+  for(let q=0;q<sol.steps.length;q++){
+    const st=sol.steps[q];
+    if(st.kind==='coal'){if(!S.coal[st.i])return st;continue}
+    const t=hfTileOfK(S,st.k);
+    if(!t||t.done)continue;
+    return st;
+  }
+  return null;
+}
+function hfStepSay(st){
+  const S=hf.S;
+  if(!st)return '';
+  if(st.kind==='coal')return '把 🔥 炭放到 <b>'+hfCellName(st.i)+'</b> 那一格';
+  const t=hfTileOfK(S,st.k);
+  if(!t)return '第 '+(st.k+1)+' 笔的牌不见了：按 <b>🔁 重摆</b>';
+  if(t.hot)return '快摘 <b>'+hfCellName(t.cell)+'</b> 那张牌（第 '+(st.k+1)+' 笔，火候正到）';
+  if(t.burnt)return '那张牌 <b>已经糊了</b>：按 <b>🔁 重摆</b>';
+  const w=hfBeatsTo(S,t.cell);
+  if(w<0)return '换个炭位：'+hfCellName(t.cell)+' 那一格热浪 <b>绕不过去</b>';
+  return '等 <b>'+w+'</b> 拍，<b>'+hfCellName(t.cell)+'</b> 那张牌（第 '+(st.k+1)+' 笔）就出炉';
+}
+/* ---- 一拍：热浪往里推进，火候窗口往下耗，糊了的当场处理 ---- */
+function hfBeat(){
+  const S=hf.S;
+  if(!S)return;
+  const ev=hfStep(S);
+  const gone=hfAging(S,HF_BEAT_MS);
+  hfBeatFx(ev);
+  for(let i=0;i<gone.length;i++){
+    const t=gone[i];
+    if(t.done||t.burnt)continue;
+    if(t.fgn){hfJunkBurn(t);continue}
+    if(t.k>=S.qi&&t.k<S.n){hfBurn(t);return}
+  }
+  if(ev.rose.length||ev.back.length)hfAfter();
+}
+/* ---- 穿堂风（段 7 起）：每 HF_WIND_BEATS 拍把最烫那一格吹凉两度 ---- */
+function hfWind(){
+  const S=hf.S;
+  if(!S||!hf.wind)return;
+  hf.windMs-=HF_BEAT_MS;
+  if(hf.windMs>0)return;
+  hf.windMs=HF_WIND_BEATS*HF_BEAT_MS;
+  let best=-1,bt=0;
+  for(let i=0;i<HF_N;i++){
+    if(S.coal[i]||hfBlocked(S,i))continue;
+    if(S.temp[i]>bt){bt=S.temp[i];best=i}
+  }
+  if(best<0)return;
+  S.chill[best]=2;
+  hf.windTag=HF_TAG_MS;
+  hfFlush(S);
+  const t=hfTileAt(S,best);
+  hfSay('🌬 <b>一阵穿堂风</b>：把最烫的 <b>'+hfCellName(best)+'</b> 吹凉了 <b>两度</b>（两拍之内有效）'+
+    (t&&!t.fgn&&!t.done?' —— 那张 <b>第 '+(t.k+1)+' 笔</b> 的牌正压在上面，赶紧 <b>摘</b> 或 <b>❄ 急冷</b>':'')+
+    (t&&t.fgn?' —— 那格上压着一张 🚫 杂牌':''),'#B3E5FC');
+  hfAfter();
+}
+/* ---- 点格子：有牌就摘牌，没牌就放炭 / 收炭 ---- */
+function hfTapCell(i){
+  const S=hf.S;
+  if(!S||S.qi>=S.n)return false;
+  if(hf.nextMs>0)return false;
+  if(i<0||i>=HF_N)return false;
+  if(hfHole(i)){
+    hf.think=0;
+    hfSay('🕳 <b>'+hfCellName(i)+'</b> 是板子边上挖出来的口：'+(hfSlag(i)?
+      '烧糊的牌一律 <b>塞进渣口</b>，它不占格子':'烤好的笔从 <b>印字台</b> 这一格 <b>印到米字格</b> 上')+
+      ' —— 炭 <b>不能摆在这里</b>','#B3E5FC');
+    return false;
+  }
+  if(hf.arm)return hfFrost(i);
+  const t=hfTileAt(S,i);
+  if(t)return hfTapTile(t,i);
+  return S.coal[i]?hfLiftCoal(i):hfPlaceCoal(i);
+}
+/* ---- 放炭 / 收炭：炭是这一盘唯一的火源，挪一次整块板就从头再热 ---- */
+function hfPlaceCoal(i){
+  const S=hf.S;
+  if(!S)return false;
+  if(!hfFreeCell(S,i)){
+    hf.think=0;
+    hfSay('🔥 这一格 <b>放不下炭</b>：'+(S.brick[i]?'那儿砌着 <b>🧱 隔火砖</b>':
+      (S.red[i]?(S.reveal?'那儿是 <b>🕶 暗砖</b>，本来就放不下东西':'那儿放不下东西'):
+      (S.ice[i]?'那儿刚 <b>❄ 冰住</b>，等它化完（还剩 '+S.iceBeats[i]+' 拍）':
+      (hfTileAt(S,i)?'那儿 <b>压着一张牌</b>：牌底下的格放不了炭':'那是 <b>口</b>，不摆东西')))) +
+      '<br>👉 炭要摆在 <b>空铁格</b> 上：'+hfTileSay(S,S.qi),'#FFCC80');
+    return false;
+  }
+  if(hf.basket<=0){
+    hf.think=0;
+    hfSay('🧺 <b>炭都摆出去了</b>：这一盘一共 <b>'+hf.coalMax+'</b> 块炭。想换个地方起火，先 <b>点一下摆着的炭</b> 把它收回筐（钳子凉一副要 <b>'+HF_TONG+'</b> 拍）','#FFCC80');
+    return false;
+  }
+  if(S.tong>0){
+    hf.think=0;
+    hfSay('🔨 <b>钳子还烫着</b>：再等 <b>'+S.tong+'</b> 拍才放得下、挪得动炭 —— 这 <b>几拍</b> 里热浪照旧往里走一格，先把 <b>烫着的牌</b> 摘掉','#FFCC80');
+    return false;
+  }
+  hfPushHist();
+  S.coal[i]=1;
+  hf.basket--;hf.moves++;hf.since++;
+  hfAdd('hz_heat_moves',1);
+  S.age=0;S.tong=HF_TONG;
+  hf.think=0;
+  hfFlush(S);
+  hfTone(200,0.12,'sawtooth',0.07);
+  hfTone(720,0.06,'triangle',0.04);
+  hfPop(hfXY(i).x,hfXY(i).y-30,'🔥 起火了','#FFAB40');
+  const st=hfNextStep();
+  hfSay('🔥 <b>炭放在 '+hfCellName(i)+'</b>：热浪 <b>一拍往里走一格</b> —— 离炭 <b>几格</b> 的牌就 <b>第几拍</b> 热到 <b>10 减几格</b> 度（'+HF_IGN+' 度出炉、🪨 硬脾要 '+HF_HARD_IGN+' 度）。<br>'+
+    '🎯 该收的是 <b>第 '+(S.qi+1)+' 笔</b>：'+hfTileSay(S,S.qi)+
+    (st?'<br>👉 军师：<b>'+hfStepSay(st)+'</b>':''),'#FFCC80');
+  hfAfter();
+  return true;
+}
+function hfLiftCoal(i){
+  const S=hf.S;
+  if(!S||!S.coal[i])return false;
+  if(S.tong>0){
+    hf.think=0;
+    hfSay('🔨 <b>钳子烫，这块炭还挪不动</b>：等 <b>'+S.tong+'</b> 拍。干等不如先把 <b>烫着的牌</b> 摘掉','#FFCC80');
+    return false;
+  }
+  hfPushHist();
+  S.coal[i]=0;
+  hf.basket++;hf.moves++;hf.since++;
+  hfAdd('hz_heat_moves',1);
+  S.age=0;S.tong=HF_TONG;
+  hf.think=0;
+  hfFlush(S);
+  hfTone(150,0.14,'square',0.05);
+  hfPop(hfXY(i).x,hfXY(i).y-30,'🧺 收进炭筐','#B0BEC5');
+  hfSay('🧺 <b>把 '+hfCellName(i)+' 那块炭收回筐里</b>：火源没了 ⇒ <b>整块板子当场凉回去</b>，正烫着的牌 <b>回炉</b>（火候窗口重新算，<b>不算糊</b>）。<br>👉 炭筐里 <b>'+hf.basket+'/'+hf.coalMax+'</b> 块 · 板上还烧着 <b>'+hfCoalsOn(S)+'</b> 块 —— '+hfTileSay(S,S.qi),'#B3E5FC');
+  hfAfter();
+  return true;
+}
+/* ---- 摘牌 ---- */
+function hfTapTile(t,i){
+  const S=hf.S;
+  if(!t)return false;
+  if(t.burnt){
+    hf.think=0;
+    hfSay('🕳 这张牌 <b>早就糊了</b>：黑炭一张，塞进 <b>🕳 渣口</b> 了事 —— 它那一笔只能 <b>🔁 重摆</b> 一盘再来','#B0BEC5');
+    return false;
+  }
+  if(t.done){
+    hf.think=0;
+    hfSay('✅ <b>'+hfCellName(i)+'</b> 那张（第 '+(t.k+1)+' 笔）<b>早摘过了</b>：牌已经印到纸带上，这一格 <b>空出来了</b> —— 想在这儿起火就 <b>点这一格放炭</b>','#B3E5FC');
+    return false;
+  }
+  if(t.fgn){
+    hfBurnJunk(t,i);
+    hfAfter();
+    return true;
+  }
+  if(!t.hot){
+    hf.think=0;
+    hfSay('🙈 <b>'+hfCellName(i)+'</b> 那张（第 '+(t.k+1)+' 笔）<b>还没出炉</b>：'+
+      (S.coal[i]?'这一格底下就是 <b>炭</b>，'+HF_MAXT+' 度已经烫穿牌面':hfTileSay(S,t.k))+
+      '<br>🎯 该收的是 <b>第 '+(S.qi+1)+' 笔</b>：'+hfTileSay(S,S.qi)+
+      ' · 🔥 炭筐 <b>'+hf.basket+'/'+hf.coalMax+'</b>','#B3E5FC');
+    hfMarkCell(i);
+    hfLine();
+    return false;
+  }
+  if(t.k>S.qi){
+    hf.early++;
+    hfAdd('hz_heat_early',1);
+    hf.score=Math.max(0,hf.score-HF_EARLY_PEN);
+    hf.combo=0;hf.cleanWord=false;
+    hfTone(240,0.1,'square',0.05);
+    hfShakeFx();
+    hfPop(hfXY(i).x,hfXY(i).y-30,'⏳ 提前摘 -'+HF_EARLY_PEN,'#FFB74D');
+    const w=hfTileOfK(S,S.qi);
+    hfSay('⏳ <b>烫着也不能提前摘！</b>这张是 <b>第 '+(t.k+1)+' 笔</b>，可现在该收 <b>第 '+(S.qi+1)+' 笔</b>：'+
+      '汉字得 <b>按笔顺</b> 写 —— 先写第三笔再回头补第一笔，这个字就散了。扣 '+HF_EARLY_PEN+' 分、<b>连击断了</b>，牌 <b>还烫在板上</b>（窗口照样在走）。<br>👉 该收的那张：'+
+      (w?hfTileSay(S,S.qi):'板上 <b>没有了</b>：按 <b>🔁 重摆</b>')+
+      '（烫着的牌实在救不回来就 <b>❄ 急冷</b> 它一下）','#FFCC80');
+    hfAfter();
+    return true;
+  }
+  return hfTake(t);
+}
+function hfTake(t){
+  const S=hf.S;
+  if(!t||!t.hot||t.fgn||t.done||t.burnt||t.k!==S.qi)return false;
+  const fresh=t.hotMs;
+  const chained=(hf.since===0&&hf.printRun>0);
+  hfPushHist();
+  t.done=1;t.hot=0;t.hotMs=0;
+  S.qi++;
+  hf.since=0;hf.think=0;hf.taps++;
+  hfAdd('hz_heat_taps',1);
+  if(chained){hf.saved++;hfAdd('hz_heat_saved',1)}
+  hfRing(hfXY(t.cell).x,hfXY(t.cell).y,34,'#FFD740');
+  hfBits(hfXY(t.cell).x,hfXY(t.cell).y,'#FFB74D',16);
+  hfFlash();
+  hfTone(560,0.09,'sine',0.06);
+  hfPrint(t.k,chained,fresh,t);
+  hfBoard();
+  if(S.qi>=S.n){
+    hf.nextMs=HF_NEXT_MS;
+    hfT(hfWin,HF_PRINT_MS+140);
+  }
+  hfAfter();
+  return true;
+}
+function hfTakeNext(){
+  const S=hf.S;
+  if(!S||S.qi>=S.n)return false;
+  const t=hfTileOfK(S,S.qi);
+  if(!t){hfSay('🫳 场上 <b>找不到第 '+(S.qi+1)+' 笔</b> 那张牌了 —— 按 <b>🔁 重摆</b> 换一种摆法','#FFCC80');return false}
+  if(t.hot)return hfTake(t);
+  hfTapTile(t,t.cell);
+  const st=hfNextStep();
+  hfSay('🫳 该摘的是 <b>第 '+(S.qi+1)+' 笔</b>：'+hfTileSay(S,S.qi)+
+    '<br>👉 '+(st?'<b>'+hfStepSay(st)+'</b>':'牌都摆完了它还出不来 —— 按 <b>🔁 重摆</b>（还剩 '+hf.respN+' 次）'),'#FFF176');
+  if(st&&st.kind==='coal')hfMarkCell(st.i);
+  return true;
+}
+/* ---- 急冷 / 照炉 ---- */
+function hfFrost(i){
+  const S=hf.S;
+  if(!S||S.qi>=S.n)return false;
+  if(hf.nextMs>0)return false;
+  if(hf.frostN<=0){
+    hfSay('❄ <b>冰囊用完了</b>：这一盘只发 <b>'+hf.frostMax+'</b> 个 —— 救牌不如 <b>早点摘</b>','#FFCC80');
+    return false;
+  }
+  if(hfHole(i)){hfSay('❄ <b>'+hfCellName(i)+'</b> 是个口，冰它没意义','#B3E5FC');return false}
+  if(S.coal[i]){hfSay('❄ <b>炭不能冰</b>：水火不容，那一格 <b>'+HF_MAXT+'</b> 度照旧烧','#FFCC80');return false}
+  if(S.brick[i]||S.red[i]){hfSay('❄ <b>'+hfCellName(i)+'</b> 上是 <b>砖</b>，热本来就过不去，冰它白冰','#B3E5FC');return false}
+  if(S.ice[i]){hfSay('❄ <b>'+hfCellName(i)+'</b> 已经冰住了：还剩 <b>'+S.iceBeats[i]+'</b> 拍就化','#B3E5FC');return false}
+  hfPushHist();
+  S.ice[i]=1;S.iceBeats[i]=HF_ICE_BEATS;
+  hf.frostN--;hf.frosts++;hf.since++;
+  hfAdd('hz_heat_frosts',1);
+  hf.think=0;
+  const before=hfTileAt(S,i);
+  hfFlush(S);
+  hfTone(880,0.1,'sine',0.05);
+  hfPop(hfXY(i).x,hfXY(i).y-30,'❄ 急冷','#80D8FF');
+  const st=hfNextStep();
+  hfSay('❄ <b>把 '+hfCellName(i)+' 冰住了</b>：这一格 <b>一拍就凉</b>，而且 <b>热浪绕着它走</b>（它后面的牌会晚一拍出炉）—— <b>'+HF_ICE_BEATS+'</b> 拍之后化掉。<br>'+
+    (before&&!before.fgn&&!before.done&&before.hot?'👍 那张 <b>第 '+(before.k+1)+' 笔</b> 的牌 <b>回炉了</b>：火候窗口重新算，<b>没糊</b>'
+      :(before&&before.fgn?'那张 🚫 杂牌本来就不该烤熟':'现在这一格是整块板最凉的地方'))+
+    '🎯 '+hfTileSay(S,S.qi)+
+    (st?'<br>👉 军师：<b>'+hfStepSay(st)+'</b>':''),'#80D8FF');
+  hfAfter();
+  return true;
+}
+function hfFrostArm(){
+  /* 冰钳：按 X 拿起来，点一格（或空格）就冰住那一格；再按 X 放回 */
+  hf.arm=!hf.arm;
+  hfToolBtns();
+  hfCursor();
+  hfSay(hf.arm?'❄ <b>冰钳拿起来了</b>：点一格（或按 <code>空格</code>）就把那一格冰住 —— 再按 <code>X</code> 放回钳子。冰 <b>不花炭</b>，这一盘只发 <b>'+hf.frostN+'</b> 个':'🔨 冰钳放回筐里了（改回放炭 / 摘牌）','#B3E5FC');
+  return true;
+}
+function hfReveal(){
+  const S=hf.S;
+  if(!S)return false;
+  const redN=S.red.filter(function(x){return x}).length;
+  if(!redN){hfSay('🔍 <b>这一盘一块暗砖都没有</b>：省下一次照炉','#B3E5FC');return false}
+  if(S.reveal){hfSay('🔍 <b>这一盘已经照过了</b>：'+redN+' 块 🕶 暗砖的位置就都标在板上了','#B3E5FC');return false}
+  if(hf.revealN<=0){hfSay('🔍 <b>照炉用完了</b>：暗砖只能靠 <b>温度</b> 猜 —— 哪一格迟迟不热、又把后面那排的牌一起挡住，那儿就藏着一块砖','#FFCC80');return false}
+  hf.revealN--;hf.reveals++;
+  hfAdd('hz_heat_reveals',1);
+  S.reveal=1;
+  hfTone(760,0.08,'triangle',0.05);
+  hfSay('🔍 <b>照炉</b>：火把举到板子上方一照 —— 藏着 <b>'+redN+' 块 🕶 暗砖</b>（热浪走到那儿就断，牌摆在它后面就 <b>迟迟不出炉</b>）。这一盘的暗砖 <b>永久标出来了</b>','#FFE082');
+  hfBoard();hfAfter();
+  return true;
+}
+/* ---- 糊牌 / 点错 / 掉心 ---- */
+function hfBurn(t){
+  const S=hf.S;
+  if(!S)return;
+  t.burnt=1;t.hot=0;t.hotMs=0;
+  hf.burns++;hf.failWord++;
+  hfAdd('hz_heat_burns',1);
+  hf.score=Math.max(0,hf.score-HF_FAIL_PEN);
+  hf.combo=0;hf.cleanWord=false;
+  hfShakeFx();hfFlash();hfTblCls('dead',700);
+  hfTone(90,0.3,'sawtooth',0.11);
+  hfPop(hfXY(t.cell).x,hfXY(t.cell).y-24,'💨 糊了！','#FF8A80');
+  hfBits(hfXY(t.cell).x,hfXY(t.cell).y,'#78909C',18);
+  hfSay('💨 <b>烧糊了！</b><b>'+hfCellName(t.cell)+'</b> 那张 <b>第 '+(t.k+1)+' 笔</b> 出炉之后 <b>没人摘</b>：'+
+    '火候窗口只有 <b>'+HF_GRACE_BEATS+' 拍</b>（'+(HF_GRACE_MS/1000)+' 秒），一过就 <b>糊</b> —— 扣 '+HF_FAIL_PEN+' 分、<b>这个字收不齐了</b>：💔 掉一颗心，剩下的笔 <b>另摆一盘</b>（已经印上去的一笔不抹）。<br>👉 下次出炉先 <b>点它</b>（或按 <code>W</code>），来不及就 <b>❄ 急冷</b> 把它救回炉','#FF8A80');
+  hfLoseHeart('burn');
+  if(hf.over)return;
+  hfRedress();
+}
+function hfJunkBurn(t){
+  t.burnt=1;t.hot=0;t.hotMs=0;
+  hfPop(hfXY(t.cell).x,hfXY(t.cell).y-24,'🚫 杂牌烧糊','#B0BEC5');
+  hfTone(140,0.14,'square',0.05);
+  hfSay('🚫 那张挂着 <b>?</b> 的 <b>杂牌</b> 自己烧糊了 —— <b>不扣分</b>：它本来就不是这个字的笔，糊了正好，省得点错它','#B0BEC5');
+  hfBoard();
+}
+function hfBurnJunk(t,i){
+  hfPushHist();
+  t.burnt=1;t.hot=0;t.hotMs=0;
+  hfOnWrong(1);
+  hfPop(hfXY(i).x,hfXY(i).y-24,'💥 断了芯','#FF8A80');
+}
+function hfOnWrong(n){
+  n=n||1;
+  hf.score=Math.max(0,hf.score-HF_JUNK_PEN*n);
+  hf.combo=0;hf.cleanWord=false;
+  hf.wrongs+=n;hf.failWord+=n;
+  hfAdd('hz_heat_wrongs',n);
+  hfMissAdd(hf.rec&&hf.rec.ch);
+  hfShakeFx();hfFlash();hfTblCls('dead',620);
+  hfTone(120,0.3,'sawtooth',0.12);
+  hfSay('🚫 <b>摘错牌了！</b>那张牌面上刻的 <b>根本不是这个字的笔</b>（挂着 <b>?</b> 的杂牌）：一摘就 <b>断芯</b>，扣 '+HF_JUNK_PEN*n+' 分、<b>连击断了</b>（本字已错 '+Math.min(hf.failWord,HF_FAIL_MAX)+'/'+HF_FAIL_MAX+' 次）—— <b>先看牌面上的笔形再下手</b>','#FF8A80');
+  if(hf.failWord>=HF_FAIL_MAX){hf.failWord=0;hfLoseHeart('wrong')}
+}
+function hfLoseHeart(why,quiet){
+  hf.hearts--;
+  hf.combo=0;
+  hfTblCls('dead',520);
+  hfTone(180,0.22,'triangle',0.09);
+  hfHud();
+  if(!quiet){
+    if(why==='wrong')hfSay('💔 <b>连着摘错三次</b>，掉一颗心 —— 认牌看的是 <b>笔形</b>：横红、竖青、撇蓝、捺橘，和左边米字格同一套颜色','#FF8A80');
+    else if(why==='burn')hfSay('💔 一张牌 <b>糊了</b>就掉一颗心 —— 出炉之后只有 <b>'+HF_GRACE_BEATS+' 拍</b> 窗口：宁可 <b>❄ 急冷</b> 把它救回炉，也别让它黑成一块炭','#FF8A80');
+    else if(why==='clock')hfSay('💔 <b>炉子熄了</b>，掉一颗心 —— 钟 <b>最后 12 秒板子边上会发红</b>，看见红边先把 <b>烫着的牌</b> 摘掉','#FF8A80');
+    else hfSay('💔 掉一颗心','#FF8A80');
+  }
+  if(hf.hearts<=0){hf.hearts=0;hfEnd('miss')}
+}
+function hfPowerOut(kind){
+  if(!hf.run||hf.over)return;
+  const word=kind==='clock'?'🌙 <b>炉前的钟走光了</b>':'🔥 <b>这一炉摆不下去了</b>';
+  hf.deads++;
+  hfAdd('hz_heat_deads',1);
+  hfShakeFx();hfTblCls('dead',560);
+  hfSay(word+'：这一阵 <b>熄火</b> 了 —— 剩下的笔 <b>重新摆一盘</b>（已经印出来的笔 <b>一笔不抹</b>）。💔 掉一颗心','#FFCC80');
+  hfLoseHeart(kind,1);
+  if(hf.over)return;
+  hfRedress();
+}
+function hfRedress(){
+  if(!hf.rec||!hf.S)return false;
+  const from=hf.S.qi;
+  if(!hfNewBoard(from)){hfEnd('nodata');return false}
+  hfSay('🔥 <b>重新升火</b>：第 '+(from+1)+' 笔起的牌 <b>另摆一盘</b> —— 炭 <b>'+hf.coalMax+' 块</b>、冰 <b>'+hf.frostN+' 个</b>、钟 <b>'+hf.clockSec+' 秒</b> 重新发。已经印好的 <b>'+from+'/'+hf.n+'</b> 笔还在纸上','#B3E5FC');
+  return true;
+}
+/* ---- 印字 / 收字 / 换字 ---- */
+function hfPrint(k,chained,fresh,t){
+  if(!hf.rec)return;
+  hf.lits++;hf.combo++;hf.printRun++;
+  hf.maxCombo=Math.max(hf.maxCombo,hf.combo);
+  let gain=Math.round((12+k*2+hf.lv*3)*(1+hf.combo*0.06));
+  let bonus=0;
+  if(chained){bonus=8+hf.lv*2;gain+=bonus}
+  const freshPts=(fresh>0&&t&&!t.fgn)?Math.round((fresh/HF_GRACE_MS)*(6+hf.lv)):0;
+  gain+=freshPts;
+  if(hf.clock>0.6)gain+=Math.round(hf.clock*6);
+  hf.score+=gain;
+  hf.printMs=HF_PRINT_MS;
+  const c=hfXY(t&&t.cell!==undefined&&t.cell>=0?t.cell:hf.cur);
+  hfPop(c.x,c.y-52,'+'+gain,'#B2FF59');
+  if(bonus)hfT(hfPop.bind(null,c.x,c.y-86,'🫳 一块炭烤出两笔 +'+bonus,'#80D8FF'),170);
+  if(freshPts>=5)hfT(hfPop.bind(null,c.x,c.y-116,'🌡 火候正好 +'+freshPts,'#FFD180'),320);
+  hfTone(HF_NOTE[Math.min(HF_NOTE.length-1,k+(chained?2:0))],0.15,'triangle',0.1);
+  if(chained)hfTblCls('hot',520);
+  hfAdd('hz_heat_lits',1);
+  hfPaper();hfMini();hfHudLight();hfAskText();hfLine();
+}
+function hfWin(){
+  if(hf.over||!hf.S||hf.S.qi<hf.n)return;
+  hf.words++;
+  hfAdd('hz_heat_words',1);
+  let gain=26+hf.n*6+hf.lv*6+hf.basket*3+hf.frostN*4;
+  if(hf.cleanWord){gain+=HF_CLEAN_BONUS;hfAdd('hz_heat_perfect',1)}
+  hf.score+=gain;
+  hfAdd('hz_heat_score',Math.round(gain));
+  hfPop(HF_W/2,HF_PY+40,'🏁 +'+gain,'#FFF176');
+  hfTone(659,0.14,'triangle',0.1);
+  hfTone(784,0.16,'triangle',0.1);
+  hfT(hfTone.bind(null,1046,0.2,'triangle',0.1),150);
+  hfBookAdd(hf.rec.ch);
+  hfMissDel(hf.rec.ch);
+  const oldLv=hf.lv;
+  hf.lv=hfLvOf(hf.words);
+  hfPreviewReset();
+  if(hf.lv>oldLv){
+    hf.previewN++;hf.undoN++;hf.respN++;
+    hfSay('🚀 <b>升到第 '+hf.lv+' 段</b>！这一炉多了 <b>🚫 杂牌上限 '+hfJunkOf(hf.lv)+' 张 · 🧱 隔火砖上限 '+hfBrickOf(hf.lv)+' 块</b>'+(hf.lv>=3?' · 🪨 硬脾牌（燃点 '+HF_HARD_IGN+' 度，只能挨着炭摆）':'')+(hf.lv>=5?' · 🕶 暗砖 '+hfRedOf(hf.lv)+' 块（🔍 照炉才看得见）':'')+(hf.lv>=6?' · 🌬 穿堂风（每 '+HF_WIND_BEATS+' 拍吹凉最烫那一格）':'')+' · 炭 <b>'+hfCoalOf(hf.lv)+' 块</b>、冰 <b>'+hfFrostNOf(hf.lv)+' 个</b> —— 预览 / 倒带 / 重摆各补 1 次','#FFF176');
+  }else if(hf.words%3===0&&hf.hearts<HF_HEART_MAX){
+    hf.hearts++;
+    hfSay('❤️ 又收好一个字，<b>补一颗心</b>（现在 '+hf.hearts+' 颗）','#F8BBD0');
+  }else{
+    hfSay('🏁 <b>'+hf.rec.ch+'</b> 的 '+hf.n+' 笔全摘下来印好了！炭筐 <b>剩 '+hf.basket+' 块</b> 换成 <b>+'+(hf.basket*3)+'</b> 分、冰囊 <b>剩 '+hf.frostN+' 个</b> 换成 <b>+'+(hf.frostN*4)+'</b> 分 —— 下一炉正在摆牌','#C5E1A5');
+  }
+  hf.hudTxt={};
+  hfHud();
+  hfT(hfNextWord,HF_NEXT_MS);
+}
+function hfNextWord(){
+  if(!hf.run||hf.over)return;
+  if(!hfNewWord()){hfEnd('nodata');return}
+}
+function hfNewWord(){
+  const rec=hfPickRec();
+  if(!rec)return false;
+  hf.rec=rec;
+  hf.n=rec.n;
+  hf.gly=hfGlyOf(rec);
+  hf.printRun=0;hf.think=0;hf.since=0;
+  hf.cleanWord=true;hf.failWord=0;
+  hf.ghost=null;hf.ghostMs=0;
+  if(!hfNewBoard(0)){hf.rec=null;return false}
+  hfSay('⚡ 新炉子 <b>'+rec.ch+'</b>（'+rec.n+' 笔）：这是一块 <b>'+HF_CW+'×'+HF_CH+'</b> 的 <b>铁板</b>，'+
+    '上面摊着 '+rec.n+' 张 <b>铁牌</b>，每张牌面就刻着这个字其中一笔的 <b>真笔形</b>（横红、竖青、撇蓝、捺橘），角上写着 <b>第几笔</b>。<br>'+
+    '🔥 <b>点一格把炭放下</b>起火：热从炭那格 <b>一拍往里走一格</b> —— <b>离炭几格，就第几拍出炉</b>，出炉后只有 <b>'+HF_GRACE_BEATS+' 拍</b> 好摘，过了就 <b>糊</b>。<br>'+
+    '🎯 <b>按笔顺摘</b>：第 1 笔那张得 <b>第一个出炉</b> —— 所以牌离炭的格数必须 <b>一路不减</b>，别把第三笔摆在贴着炭的地方','#C5E1A5');
+  return true;
+}
+function hfNewBoard(from){
+  const r=hfGen(hf.rec,hf.lv,from||0);
+  if(!r)return false;
+  hf.S=r.S;
+  hf.sol=r;
+  hf.coalMax=hfCoalOf(hf.lv);
+  hf.basket=hf.coalMax;
+  hf.frostMax=hfFrostNOf(hf.lv);
+  hf.frostN=hf.frostMax;
+  hf.wind=hfWindOf(hf.lv);
+  hf.windMs=HF_WIND_BEATS*HF_BEAT_MS;
+  hf.windTag=0;
+  hf.clockSec=r.sec;
+  hf.clock=1;hf.red=false;hf.beep=0;
+  hf.beat=0;hf.beatMs=0;
+  hf.cur=r.coal;
+  hf.ghost=null;hf.ghostMs=0;
+  hf.hist=[];
+  hf.arm=false;
+  /* 新摆的一盘必须当场画出来：军师摆完牌不重画，孩子看见的就是一块空铁板 */
+  hfPaper();hfMini();hfBoard();hfBasket();hfHud();hfMeter();hfToolBtns();hfAskText();hfLine();
+  return true;
+}
+function hfPreviewReset(){
+  hf.revealN=hf.lv>=5?HF_REVEAL_MAX:0;
+}
+/* ---- 任何动作之后：重算 + 轻绘 ---- */
+function hfAfter(){
+  const S=hf.S;if(!S)return;
+  hfFlush(S);
+  hfCells();hfTiles();hfMarkings();hfMeter();hfHudLight();hfToolBtns();
+  const w=hfTileOfK(S,S.qi);
+  if(w&&w.hot&&S.qi<S.n)hfTblCls('hot',520);
+  hfAskText();hfLine();hfBasket();
+}
+/* ---- 预览 / 倒带 / 重摆 ---- */
+function hfPreview(){
+  if(!hf.run||hf.over)return false;
+  const S=hf.S;if(!S||S.qi>=S.n)return false;
+  if(hf.nextMs>0)return false;
+  if(hf.previewN<=0){hfSay('💡 <b>预览用完了</b>：还有 <b>🔄 倒带</b> 退回上一次动炭之前','#FFCC80');return false}
+  const st=hfNextStep();
+  if(!st){hfSay('💡 军师列的 <b>动作已经全做完了</b>，可第 '+(S.qi+1)+' 笔还 <b>没出炉</b> —— 按 <b>🔁 重摆</b> 换一种摆法','#FFCC80');return false}
+  hf.previewN--;hf.previews++;
+  hfAdd('hz_heat_previews',1);
+  const use=st.kind==='coal'?st.i:-1;
+  const f=hfForecast(S,use);
+  const q=[];
+  for(let i=0;i<S.tiles.length;i++){
+    const t=S.tiles[i];
+    if(t.done||t.burnt)continue;
+    const r=f.rose[t.id];
+    q.push(hfCellName(t.cell)+'（'+(t.fgn?'🚫 杂牌':'第'+(t.k+1)+'笔')+'）'+
+      (r?'<b>第 '+r.rose+' 拍</b>出炉':'<b>一辈子不热</b>'));
+    if(q.length>=10)break;
+  }
+  const w=hfTileOfK(S,S.qi);
+  const wr=w?f.rose[w.id]:null;
+  hf.ghost={rose:f.rose,use:use};
+  hf.ghostMs=HF_GHOST_MS;
+  hfRenderGhosts();
+  hfTone(620,0.08,'sine',0.05);
+  const badN=S.tiles.filter(function(t){return !t.done&&!t.burnt&&!f.rose[t.id]}).length;
+  hfSay('👀 <b>预览</b>（还剩 '+hf.previewN+' 次）：'+
+    (st.kind==='coal'?'炭放 <b>'+hfCellName(st.i)+'</b> 之后':'炭不动，接着往后看')+' —— 往后 '+f.beats+' 拍：'+
+    q.join(' · ')+
+    (wr?'<br>🎯 该收的第 '+(S.qi+1)+' 笔：<b>'+hfCellName(w.cell)+'</b> 第 <b>'+wr.rose+'</b> 拍出炉，第 <b>'+wr.expire+'</b> 拍糊（窗口 '+HF_GRACE_BEATS+' 拍）'
+      :'<br>🎯 该收的第 '+(S.qi+1)+' 笔 <b>在这几拍里出不来</b> —— 炭位不对，挪炭或 <b>🔁 重摆</b>')+
+    (badN?'<br>⚠️ 还有 <b>'+badN+'</b> 张牌热不到（杂牌热不到是 <b>好事</b>，真牌热不到就得挪炭）':''),
+    wr?'#E1F5FE':'#FFCC80');
+  hfToolBtns();hfHudLight();
+  return true;
+}
+function hfUndo(){
+  if(!hf.run||hf.over)return false;
+  if(hf.nextMs>0)return false;
+  if(!hf.hist.length){hfSay('🔄 <b>还没动过手</b>：倒带是退回 <b>上一次放炭 / 摘牌 / 急冷之前</b> 的板子','#FFCC80');return false}
+  if(hf.undoN<=0){hfSay('🔄 <b>倒带用完了</b>：炭一挪开，前面烤到一半的就凉回去了 —— 挪之前先数清 <b>这一炉还差几拍</b>','#FFCC80');return false}
+  hf.undoN--;hf.rewinds++;
+  hfAdd('hz_heat_rewinds',1);
+  hfTone(320,0.14,'sine',0.06);
+  hfRestore(hf.hist.pop());
+  hfSay('🔄 <b>倒带</b>：炭位、冰、牌 <b>一模一样还原</b>（炭筐剩 '+hf.basket+'/'+hf.coalMax+'、印 '+hf.S.qi+'/'+hf.n+' 笔，倒带还剩 '+hf.undoN+' 次）—— 热浪走到第几格了，你记一下','#B3E5FC');
+  hfAfter();hfToolBtns();
+  return true;
+}
+function hfRespin(){
+  if(!hf.run||hf.over)return false;
+  if(hf.nextMs>0)return false;
+  if(hf.respN<=0){hfSay('🔁 <b>重摆的机会用完了</b>：还有 <b>挪炭</b> 和 <b>🔄 倒带</b> 两条路','#FFCC80');return false}
+  hf.respN--;hf.respins++;
+  hfAdd('hz_heat_resets',1);
+  if(hfRedress())hfSay('🔁 <b>另摆一盘</b>：剩下的牌 <b>另摆一盘</b>（重摆还剩 '+hf.respN+' 次）—— 这一盘军师 <b>烤得出来</b>，照 <b>提示</b> 走','#B3E5FC');
+  hfAfter();hfToolBtns();
+  return true;
+}
+
+/* ================= v1.82 笔顺火候坊 · C：渲染 / 特效 / 主循环 / 输入 ================= */
+/* ---- 底：炉膛、30 格铁板、两个口、左右两栏、点击层（一次画好，之后只换颜色和字） ---- */
+function hfRenderStatic(){
+  const g=document.getElementById('hfStatic');if(!g)return;
+  let h='<rect class="hf-hearth" x="112" y="10" width="472" height="396" rx="18"/>';
+  for(let i=0;i<HF_N;i++){
+    const x=HF_PX+hfCol(i)*HF_CELL,y=HF_PY+hfRow(i)*HF_CELL,p=hfXY(i);
+    if(hfHole(i)){
+      h+='<rect class="hf-hole" x="'+(x+4)+'" y="'+(y+4)+'" width="'+(HF_CELL-8)+'" height="'+(HF_CELL-8)+'" rx="13"/>';
+      h+='<text class="hf-holeTxt" x="'+p.x+'" y="'+(p.y+2)+'">'+(hfSlag(i)?'🕳':'🖨')+'</text>';
+      h+='<text class="hf-holeCap" x="'+p.x+'" y="'+(p.y+22)+'">'+(hfSlag(i)?'渣口':'印字台')+'</text>';
+      continue;
+    }
+    h+='<rect class="hf-cell t0" id="hfC'+i+'" x="'+(x+3)+'" y="'+(y+3)+'" width="'+(HF_CELL-6)+'" height="'+(HF_CELL-6)+'" rx="11"/>';
+    h+='<text class="hf-cellTxt" x="'+(x+13)+'" y="'+(y+17)+'" text-anchor="start">'+String.fromCharCode(65+hfCol(i))+(hfRow(i)+1)+'</text>';
+    h+='<text class="hf-temp" id="hfT'+i+'" x="'+(x+HF_CELL-9)+'" y="'+(y+17)+'" text-anchor="end"></text>';
+  }
+  /* 左栏：炉具 */
+  const lx=HF_LX+HF_LW/2;
+  h+='<text class="hf-lgdH" x="'+lx+'" y="34">🧺 炭筐</text>';
+  h+='<text class="hf-furnBig" id="hfFCoal" x="'+lx+'" y="62">—</text>';
+  h+='<text class="hf-furn" id="hfFCoalT" x="'+lx+'" y="82" text-anchor="middle">板上 0 块</text>';
+  h+='<text class="hf-lgdH" x="'+lx+'" y="114">🧊 冰囊</text>';
+  h+='<text class="hf-furnBig" id="hfFIce" x="'+lx+'" y="142">—</text>';
+  h+='<text class="hf-furn" id="hfFIceT" x="'+lx+'" y="162" text-anchor="middle">一盘发 2 个</text>';
+  h+='<text class="hf-lgdH" x="'+lx+'" y="196">🔨 钳子</text>';
+  h+='<text class="hf-furn" id="hfFTong" x="'+lx+'" y="218" text-anchor="middle">凉了 · 挪得动炭</text>';
+  h+='<text class="hf-lgdH" x="'+lx+'" y="252">⏳ 拍子</text>';
+  h+='<text class="hf-furn" id="hfFBeat" x="'+lx+'" y="274" text-anchor="middle">第 0 拍</text>';
+  /* 右栏：离炭几格 = 几度 = 第几拍 */
+  const rx=HF_RX+HF_RW/2;
+  h+='<text class="hf-lgdH" x="'+rx+'" y="34">🌡 离炭几格</text>';
+  h+='<text class="hf-lgd" x="'+rx+'" y="52">几度 · 第几拍出炉</text>';
+  for(let d=1;d<=5;d++)h+='<text class="hf-lgd" id="hfLg'+d+'" x="'+rx+'" y="'+(78+d*24)+'" text-anchor="middle">'+d+' 格 · '+(HF_MAXT-d)+' 度 · 第'+d+'拍</text>';
+  h+='<text class="hf-lgd" x="'+rx+'" y="'+(78+6*24)+'" text-anchor="middle">6 格 · 4 度 · 烧不糊</text>';
+  h+='<text class="hf-lgd" id="hfLgIgn" x="'+rx+'" y="'+(78+7*24+8)+'" text-anchor="middle">🔥 出炉 = 5 度</text>';
+  h+='<text class="hf-lgd" x="'+rx+'" y="'+(78+8*24+8)+'" text-anchor="middle">🪨 硬脾要 7 度</text>';
+  h+='<text class="hf-lgd" x="'+rx+'" y="'+(78+9*24+8)+'" text-anchor="middle">⏳ 出炉后 4 拍糊</text>';
+  h+='<text class="hf-head" x="'+(HF_PX+HF_QW/2)+'" y="'+(HF_QY+HF_QH+22)+'">📄 印字台 → 纸带</text>';
+  g.innerHTML=h;
+  let hh='';
+  const hg=document.getElementById('hfHitG');
+  if(hg){
+    for(let i=0;i<HF_N;i++){
+      const x=HF_PX+hfCol(i)*HF_CELL,y=HF_PY+hfRow(i)*HF_CELL;
+      hh+='<rect class="hf-hit" data-cell="'+i+'" x="'+x+'" y="'+y+'" width="'+HF_CELL+'" height="'+HF_CELL+'" rx="10"/>';
+    }
+    hg.innerHTML=hh;
+  }
+}
+/* ---- 一格铁：颜色跟着温度走，度数写在角上 ---- */
+function hfCells(){
+  const S=hf.S;if(!S)return;
+  for(let i=0;i<HF_N;i++){
+    if(hfHole(i))continue;
+    const el=document.getElementById('hfC'+i);if(!el)continue;
+    el.setAttribute('class','hf-cell '+hfTCls(S.temp[i]));
+    const tt=document.getElementById('hfT'+i);
+    if(tt)tt.textContent=hfBlocked(S,i)?'':(S.coal[i]?HF_MAXT+'°':(S.temp[i]>0?S.temp[i]+'°':''));
+  }
+}
+/* ---- 炉具栏（左）：炭筐、冰囊、钳子、拍子 ---- */
+function hfSetT(id,v){const el=document.getElementById(id);if(el&&el.textContent!==v)el.textContent=v}
+function hfFurnace(){
+  const S=hf.S;
+  if(!S){
+    hfSetT('hfFCoal','—');hfSetT('hfFCoalT','还没起火');
+    hfSetT('hfFIce','—');hfSetT('hfFIceT','—');
+    hfSetT('hfFTong','—');hfSetT('hfFBeat','—');
+    return;
+  }
+  let fl='';for(let q=0;q<hf.basket;q++)fl+='🔥';
+  hfSetT('hfFCoal',fl||'🫯');
+  hfSetT('hfFCoalT','板上烧着 '+hfCoalsOn(S)+' / '+hf.coalMax+' 块');
+  let ic='';for(let q=0;q<hf.frostN;q++)ic+='❄';
+  hfSetT('hfFIce',ic||'🫯');
+  hfSetT('hfFIceT','一盘发 '+hf.frostMax+' 个');
+  hfSetT('hfFTong',S.tong>0?'烫 · 还 '+S.tong+' 拍':'凉了 · 挪得动炭');
+  hfSetT('hfFBeat','第 '+S.beat+' 拍 · 炭走了 '+S.age+' 拍');
+  /* 眼下该收那一笔在几格 —— 对照表里那一行就亮起来 */
+  const t=hfTileOfK(S,S.qi);
+  const dd=t?hfDistCell(S,t.cell):-1;
+  for(let d=1;d<=5;d++){
+    const el=document.getElementById('hfLg'+d);
+    if(el)el.setAttribute('class','hf-lgd'+(t&&dd===d?' hf-lgdNow':''));
+  }
+}
+/* ---- 炭 / 砖 / 冰 / 风 ---- */
+function hfDeco(){
+  const S=hf.S,g=document.getElementById('hfDecoG');if(!g||!S)return;
+  let h='';
+  for(let i=0;i<HF_N;i++){
+    if(hfHole(i))continue;
+    const x=HF_PX+hfCol(i)*HF_CELL,y=HF_PY+hfRow(i)*HF_CELL,p=hfXY(i);
+    if(S.brick[i]){
+      h+='<rect class="hf-brick" x="'+(x+6)+'" y="'+(y+6)+'" width="'+(HF_CELL-12)+'" height="'+(HF_CELL-12)+'" rx="9"/>';
+      h+='<text class="hf-brickTxt" x="'+p.x+'" y="'+(p.y+7)+'">🧱</text>';
+      continue;
+    }
+    if(S.red[i]){
+      /* 🕶 暗砖：照炉之前看着就是一块空铁格 —— 它照样挡热，玩家只能从「迟迟不热」里猜 */
+      if(S.reveal){
+        h+='<rect class="hf-red" x="'+(x+6)+'" y="'+(y+6)+'" width="'+(HF_CELL-12)+'" height="'+(HF_CELL-12)+'" rx="9"/>';
+        h+='<text class="hf-redTxt" x="'+p.x+'" y="'+(p.y+7)+'">🕶</text>';
+      }
+      continue;
+    }
+    if(S.ice[i]){
+      h+='<rect class="hf-ice" x="'+(x+5)+'" y="'+(y+5)+'" width="'+(HF_CELL-10)+'" height="'+(HF_CELL-10)+'" rx="11"/>';
+      h+='<text class="hf-iceTxt" x="'+p.x+'" y="'+(p.y+4)+'">❄</text>';
+      h+='<text class="hf-holeCap" x="'+p.x+'" y="'+(p.y+22)+'">'+S.iceBeats[i]+' 拍化</text>';
+    }
+    if(S.chill[i]){
+      h+='<rect class="hf-chill" x="'+(x+7)+'" y="'+(y+7)+'" width="'+(HF_CELL-14)+'" height="'+(HF_CELL-14)+'" rx="10"/>';
+      h+='<text class="hf-chillTxt" x="'+p.x+'" y="'+(p.y+2)+'">🌬</text>';
+      h+='<text class="hf-holeCap" x="'+p.x+'" y="'+(p.y+22)+'">−2 度</text>';
+    }
+    if(S.coal[i]){
+      h+='<circle class="hf-coalRing" cx="'+p.x+'" cy="'+p.y+'" r="22"/>';
+      h+='<rect class="hf-coal" data-cell="'+i+'" x="'+(x+16)+'" y="'+(y+20)+'" width="'+(HF_CELL-32)+'" height="'+(HF_CELL-40)+'" rx="12"/>';
+      h+='<text class="hf-coalFire" x="'+p.x+'" y="'+(p.y+9)+'">🔥</text>';
+      if(S.tong>0)h+='<text class="hf-burnTong" x="'+p.x+'" y="'+(y+HF_CELL-6)+'">🔨 还 '+S.tong+' 拍</text>';
+    }
+  }
+  g.innerHTML=h;
+}
+/* ---- 铁牌：牌面就是这个字其中一笔的真笔形，圈上是火候窗口 ---- */
+function hfArcD(r,frac){
+  const f=hfClamp(frac,0,0.999),a0=-Math.PI/2,a1=a0+f*2*Math.PI;
+  return 'M0 '+(-r)+'A'+r+' '+r+' 0 '+(f>0.5?1:0)+' 1 '+(r*Math.cos(a1)).toFixed(1)+' '+(r*Math.sin(a1)).toFixed(1);
+}
+function hfGraceFrac(t){return hfClamp(t.hotMs/HF_GRACE_MS,0,1)}
+function hfTileHTML(t){
+  const p=hfXY(t.cell),hot=!!t.hot&&!t.done&&!t.burnt;
+  const cls='hf-tile'+(hot?' hot':'')+(t.fgn?' fgn':'')+(t.hard?' hard':'')+(t.done?' done':'')+(t.burnt?' burnt':'')+
+    (!t.fgn&&!t.done&&t.k===hf.S.qi?' now':'');
+  let h='<g class="'+cls+'" id="hfTl'+t.id+'" data-cell="'+t.cell+'" transform="translate('+p.x+','+p.y+')">';
+  h+='<rect class="hf-halo" x="-35" y="-35" width="70" height="70" rx="15"/>';
+  if(hot){
+    const f=hfGraceFrac(t);
+    h+='<circle class="hf-graceBg" r="33"/><path class="hf-grace'+(f<0.35?' low':(f<0.65?' mid':''))+'" id="hfGr'+t.id+'" d="'+hfArcD(33,f)+'"/>';
+  }
+  h+='<rect class="hf-tileBox" x="-28" y="-28" width="56" height="56" rx="12"/>';
+  h+='<g transform="translate(0,-3) scale(0.94)">'+(t.fgn||!hf.gly[t.k]?'<text class="hf-tag" x="0" y="6">?</text>':hfGlyHTML(hf.gly[t.k]))+'</g>';
+  h+='<text class="hf-num" x="0" y="24">'+(t.fgn?'🚫':(t.k+1))+'</text>';
+  if(t.hard&&!t.fgn&&!t.done&&!t.burnt)h+='<text class="hf-badge" x="0" y="-33">🪨 要 7 度</text>';
+  if(t.burnt)h+='<text class="hf-badge" x="0" y="-33">💨 糊了</text>';
+  if(t.done)h+='<text class="hf-badge" x="0" y="-33">✅ 已印</text>';
+  if(hot)h+='<text class="hf-badge" x="0" y="37">🔥 出炉</text>';
+  h+='</g>';
+  return h;
+}
+function hfTiles(){
+  const S=hf.S,g=document.getElementById('hfTileG');
+  hfDeco();
+  if(!g)return;
+  if(!S){g.innerHTML='';return}
+  let h='';
+  for(let q=0;q<S.tiles.length;q++)h+=hfTileHTML(S.tiles[q]);
+  g.innerHTML=h;
+}
+function hfBoard(){hfCells();hfTiles();hfFurnace();hfCursor();hfRenderGhosts()}
+/* ---- 火候窗口每帧都缩一点 ---- */
+function hfGraceFx(){
+  const S=hf.S;if(!S)return;
+  for(let q=0;q<S.tiles.length;q++){
+    const t=S.tiles[q];
+    if(!t.hot||t.done||t.burnt)continue;
+    const el=document.getElementById('hfGr'+t.id);if(!el)continue;
+    const f=hfGraceFrac(t);
+    el.setAttribute('d',hfArcD(33,f));
+    el.setAttribute('class','hf-grace'+(f<0.35?' low':(f<0.65?' mid':'')));
+  }
+}
+/* ---- 纸带 / 米字格 ---- */
+function hfPaper(){
+  const g=document.getElementById('hfPaperG');if(!g)return;
+  if(!hf.rec){g.innerHTML='';return}
+  const n=hf.n,qi=(hf.S&&hf.S.qi)||0,bw=HF_QW/Math.max(1,n);
+  let h='<rect class="hf-paper" x="'+(HF_QX-5)+'" y="'+(HF_QY-3)+'" width="'+(HF_QW+10)+'" height="'+(HF_QH+8)+'" rx="11"/>';
+  for(let k=0;k<n;k++){
+    const x=HF_QX+k*bw,inIt=k<qi,now=k===qi;
+    h+='<rect class="'+(now?'hf-pnow':'hf-pbox')+'" x="'+(x+3).toFixed(1)+'" y="'+(HF_QY+1)+'" width="'+(bw-6).toFixed(1)+'" height="'+(HF_QH-2)+'" rx="8"/>';
+    if(inIt&&hf.gly[k]){
+      const sc=((Math.min(bw-10,HF_QH-6))/44*0.9).toFixed(3);
+      h+='<g transform="translate('+(x+bw/2).toFixed(1)+','+(HF_QY+HF_QH/2)+') scale('+sc+')">'+hfGlyHTML(hf.gly[k])+'</g>';
+    }else h+='<text class="hf-ptxt" x="'+(x+bw/2).toFixed(1)+'" y="'+(HF_QY+HF_QH/2+4)+'">'+(now?'该我':'第'+(k+1)+'笔')+'</text>';
+  }
+  g.innerHTML=h;
+}
+function hfMini(){
+  const svg=document.getElementById('hfMiniSvg');
+  if(!svg)return;
+  if(!hf.rec){svg.innerHTML='';return}
+  const sp=(hf.rec.raw&&hf.rec.raw.strokes)||[];
+  let h='<g transform="scale(1,-1)"><path d="M512 40V984M40 512H984" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6" stroke-dasharray="14 12"/>';
+  for(let i=0;i<hf.n;i++){
+    const got=hf.S&&i<hf.S.qi;
+    const col=got?HF_INK[hfDn(hf.rec.dirs[i])]:((hf.S&&i===hf.S.qi)?'rgba(255,245,157,.95)':'rgba(255,255,255,.22)');
+    h+='<path d="'+hfDOf(sp,i)+'" fill="'+col+'"/>';
+  }
+  svg.innerHTML=h+'</g>';
+  hfSet('hfMiniCap',hf.rec.ch+' '+((hf.S&&hf.S.qi)||0)+'/'+hf.n+' 笔');
+}
+/* ---- 料牌 ---- */
+function hfBasketHTML(){
+  const S=hf.S;
+  if(!S||!hf.rec)return '';
+  let brick=0,red=0,ice=0,chill=0,fgn=0,hard=0,live=0,hot=0,burnt=0;
+  for(let i=0;i<HF_N;i++){
+    if(S.brick[i])brick++;
+    if(S.red[i])red++;
+    if(S.ice[i])ice++;
+    if(S.chill[i])chill++;
+  }
+  for(let q=0;q<S.tiles.length;q++){
+    const t=S.tiles[q];
+    if(t.burnt){burnt++;continue}
+    if(t.done)continue;
+    live++;
+    if(t.fgn)fgn++;
+    else if(t.hard)hard++;
+    if(t.hot)hot++;
+  }
+  let h='<div class="hf-nd in">🧺 炭 '+hf.basket+'/'+hf.coalMax+'</div>';
+  h+='<div class="hf-nd'+(hf.frostN?' in':'')+'">❄ 冰 '+hf.frostN+'</div>';
+  h+='<div class="hf-nd'+(hot?' in':'')+'">🔥 出炉 ×'+hot+'</div>';
+  h+='<div class="hf-nd">🎯 板上 ×'+live+'</div>';
+  if(S.tong>0)h+='<div class="hf-nd dead">🔨 钳子烫 '+S.tong+' 拍</div>';
+  if(brick)h+='<div class="hf-nd">🧱 ×'+brick+'</div>';
+  if(red)h+='<div class="hf-nd'+(S.reveal?' dead':'')+'">'+(S.reveal?'🕶 暗砖 ×'+red:'❓ 猜不透的格子')+'</div>';
+  if(ice)h+='<div class="hf-nd dead">🧊 冻住 ×'+ice+'</div>';
+  if(chill)h+='<div class="hf-nd dead">🌬 吹凉 ×'+chill+'</div>';
+  if(hard)h+='<div class="hf-nd">🪨 ×'+hard+'</div>';
+  if(fgn)h+='<div class="hf-nd dead">🚫 杂牌 ×'+fgn+'</div>';
+  if(burnt)h+='<div class="hf-nd dead">💨 糊了 ×'+burnt+'</div>';
+  return h+'<span class="hf-more"></span>';
+}
+function hfBasket(){
+  const el=document.getElementById('hfBasket');
+  if(el){const h=hfBasketHTML();el.setAttribute('data-h',h);el.innerHTML=h}
+  hf.hudTxt.bask='';
+  hfBasketLight();
+}
+function hfBasketLight(){
+  const el=document.getElementById('hfBasket');
+  if(!el)return;
+  const chips=hfBasketHTML();
+  if((el.getAttribute('data-h')||'')!==chips){el.setAttribute('data-h',chips);el.innerHTML=chips}
+  const more=el.querySelector('.hf-more');
+  if(!more)return;
+  if(!hf.rec||!hf.S){if(hf.hudTxt.bask!==''){hf.hudTxt.bask='';more.innerHTML=''}return}
+  const S=hf.S;
+  const t=S.qi>=S.n?'🏁 这一炉已经收满':
+    '🎯 该收 <b>第 '+(S.qi+1)+' 笔「'+HF_DIRS[hfDn(hf.rec.dirs[S.qi])]+' '+HF_ARW[hfDn(hf.rec.dirs[S.qi])]+'」</b> · 🔥 炭筐 <b>'+hf.basket+'/'+hf.coalMax+'</b> · ❄ 冰 <b>'+hf.frostN+'</b> · ⏳ <b>第 '+S.beat+' 拍</b>';
+  if(hf.hudTxt.bask!==t){hf.hudTxt.bask=t;more.innerHTML=t}
+}
+/* ---- 计量 ---- */
+function hfMeter(){
+  const bar=document.getElementById('hfClockBar'),tt=document.getElementById('hfClockTxt'),bx=document.getElementById('hfClockBox');
+  const w=(hfClamp(hf.clock,0,1)*100).toFixed(1)+'%';
+  if(bx)bx.classList.toggle('low',hf.clock<=12/Math.max(1,hf.clockSec));
+  const tbl=document.getElementById('hfTbl');
+  if(tbl)tbl.classList.toggle('warn',!!(hf.red&&hf.clock>0));
+  if(bar&&hf.hudTxt.bar!==w){hf.hudTxt.bar=w;bar.style.width=w}
+  const left=Math.max(0,Math.ceil(hf.clock*hf.clockSec));
+  const t='⏱ 还有 '+left+' 秒 · 印 '+((hf.S&&hf.S.qi)||0)+'/'+hf.n+' 笔';
+  if(tt&&hf.hudTxt.tt!==t){hf.hudTxt.tt=t;tt.textContent=t}
+  const p='🔥 炭 '+hf.basket+'/'+hf.coalMax+' ❄ '+hf.frostN;
+  const pt=document.getElementById('hfPowTxt');
+  if(pt&&hf.hudTxt.pt!==p){hf.hudTxt.pt=p;pt.textContent=p}
+  const bd=document.getElementById('hfBadge');
+  if(bd&&hf.S){
+    const bg=hfBadgeSay(hf.S);
+    if(hf.hudTxt.badge!==bg){hf.hudTxt.badge=bg;bd.textContent=bg}
+    bd.classList.toggle('on',!!bg);
+  }
+  const tg=document.getElementById('hfTag');
+  if(tg){
+    tg.classList.toggle('on',hf.windTag>0);
+    const tx=hf.windTag>0?'🌬 穿堂风 · 最烫那一格被吹凉':'🔥 一炭出三笔';
+    if(hf.windTag>0&&hf.hudTxt.tag!==tx){hf.hudTxt.tag=tx;tg.textContent=tx}
+  }
+  hfFurnace();
+  hfBasketLight();
+}
+function hfBadgeSay(S){
+  if(!hf.rec)return '';
+  const q=[];
+  let on=0;for(let i=0;i<HF_N;i++)if(S.coal[i])on++;
+  q.push('🔥 板上 '+on+'/'+hf.coalMax);
+  const t=hfTileOfK(S,S.qi);
+  if(t){
+    const d=hfDistCell(S,t.cell);
+    q.push('🎯'+hfCellName(t.cell)+(d<0?' 热不过去':' 离炭 '+d+' 格'));
+    if(t.hot)q.push('⚡ 摘它！');
+  }else q.push('🚫 牌没了 · 重摆');
+  return q.join(' · ');
+}
+function hfHudLight(){
+  const sc=document.getElementById('hfScoreTxt'),t='🎯 '+Math.round(hf.score)+' 分';
+  if(sc&&hf.hudTxt.sc!==t){hf.hudTxt.sc=t;sc.textContent=t}
+  const lv=document.getElementById('hfLvTxt'),v='第 '+hf.lv+' 段 · '+(hf.rec?hf.rec.ch:'—')+' '+hf.n+' 笔';
+  if(lv&&hf.hudTxt.lv!==v){hf.hudTxt.lv=v;lv.textContent=v}
+  const cb=document.getElementById('hfComboTxt'),c='🔥 连 '+hf.combo;
+  if(cb&&hf.hudTxt.cb!==c){hf.hudTxt.cb=c;cb.textContent=c}
+  const lt=document.getElementById('hfLitTxt'),l='✅ '+hf.lits+' 笔';
+  if(lt&&hf.hudTxt.lt!==l){hf.hudTxt.lt=l;lt.textContent=l}
+  const mv=document.getElementById('hfMoveTxt'),m='🔥 '+hf.moves;
+  if(mv&&hf.hudTxt.mv!==m){hf.hudTxt.mv=m;mv.textContent=m}
+  const sv=document.getElementById('hfSaveTxt'),s='🫳 '+hf.saved;
+  if(sv&&hf.hudTxt.sv!==s){hf.hudTxt.sv=s;sv.textContent=s}
+  const bn=document.getElementById('hfBurnTxt'),b='💨 '+hf.burns;
+  if(bn&&hf.hudTxt.bn!==b){hf.hudTxt.bn=b;bn.textContent=b}
+  const fr=document.getElementById('hfFrostTxt'),f='❄ '+hf.frosts;
+  if(fr&&hf.hudTxt.fr!==f){hf.hudTxt.fr=f;fr.textContent=f}
+  const wr=document.getElementById('hfWrongTxt'),w2='🚫 '+hf.wrongs;
+  if(wr&&hf.hudTxt.wr!==w2){hf.hudTxt.wr=w2;wr.textContent=w2}
+  hfMeter();
+}
+function hfHud(){
+  const R=hfRank(hfInt('hz_heat_words'));
+  hfSet('hfRankTxt',R.e+' '+R.t);
+  let hs='';for(let i=0;i<HF_HEART_MAX;i++)hs+=(i<hf.hearts?'❤️':'🖤');
+  hfSet('hfHeartTxt',hs||'🖤');
+  hfSet('hfScoreTxt','🎯 '+Math.round(hf.score)+' 分');
+  hfSet('hfLvTxt','第 '+hf.lv+' 段 · '+(hf.rec?hf.rec.ch:'—')+' '+hf.n+' 笔');
+  hfSet('hfComboTxt','🔥 连 '+hf.combo);
+  hfSet('hfLitTxt','✅ '+hf.lits+' 笔');
+  hfSet('hfMoveTxt','🔥 '+hf.moves);
+  hfSet('hfSaveTxt','🫳 '+hf.saved);
+  hfSet('hfBurnTxt','💨 '+hf.burns);
+  hfSet('hfFrostTxt','❄ '+hf.frosts);
+  hfSet('hfWrongTxt','🚫 '+hf.wrongs);
+  hfToolBtns();
+  hfMini();hfBasket();hfPaper();hfHudLight();
+}
+function hfToolBtns(){
+  const S=hf.S;
+  const tk=document.getElementById('hfTakeBtn');
+  if(tk){
+    tk.disabled=(!S||S.qi>=S.n||hf.nextMs>0);
+    tk.innerHTML='✋ 摘牌<b style="font-size:11px"> 空格</b>';
+  }
+  const fs=document.getElementById('hfFrostBtn');
+  if(fs){
+    fs.disabled=hf.frostN<=0;
+    fs.innerHTML='❄ 冰钳<b style="font-size:11px"> X ×'+hf.frostN+'</b>';
+    fs.classList.toggle('on',!!hf.arm);
+  }
+  const rv=document.getElementById('hfRevealBtn');
+  if(rv){
+    const redN=S?S.red.filter(function(x){return x}).length:0;
+    rv.style.display=redN&&!S.reveal?'':'none';
+    rv.disabled=hf.revealN<=0;
+    rv.innerHTML='🔍 照炉<b style="font-size:11px"> E ×'+hf.revealN+'</b>';
+  }
+  const pv=document.getElementById('hfPrevBtn');
+  if(pv){pv.disabled=hf.previewN<=0;pv.textContent='👀 预览 ×'+hf.previewN}
+  const un=document.getElementById('hfUndoBtn');
+  if(un){un.disabled=hf.undoN<=0||!hf.hist.length;un.textContent='🔄 倒带 ×'+hf.undoN}
+  const rb=document.getElementById('hfReBtn');
+  if(rb){rb.disabled=hf.respN<=0;rb.textContent='🔁 重摆 ×'+hf.respN}
+}
+function hfAskText(){
+  if(!hf.rec||!hf.S)return;
+  const S=hf.S;
+  const st='🌡 离炭几格就第几拍 · 🔥 出炉要 '+HF_IGN+' 度（🪨 '+HF_HARD_IGN+'）· ⏳ 窗口 '+HF_GRACE_BEATS+' 拍 · ⏱ <b>'+Math.max(0,Math.ceil(hf.clock*hf.clockSec))+' 秒</b>';
+  if(S.qi>=S.n){
+    hfSet('hfAsk','🏁 <b>'+hf.rec.ch+'</b> 的 '+S.n+' 笔全烤出来印好了 —— 下一炉正在摆牌<br><small>'+st+'</small>');
+    return;
+  }
+  const t=hfTileOfK(S,S.qi);
+  hfSet('hfAsk','🔥 <b>'+hf.rec.ch+'</b> 的第 '+(S.qi+1)+' 笔（共 '+S.n+' 笔）—— '+
+    (t?'它压在 <b>'+hfCellName(t.cell)+'</b>：'+(t.hot?'<b>已经出炉</b>，点它摘下来！':'离炭几格就第几拍热起来'):
+      '板上 <b>没有这张牌</b>：按 🔁 重摆')+'<br><small>'+st+'</small>');
+}
+function hfLine(){
+  const el=document.getElementById('hfHintLine');
+  if(!el)return;
+  if(!hf.run||hf.over||!hf.S){el.innerHTML='🔥 正在升火……';return}
+  if(hf.nextMs>0){el.innerHTML='🏁 <b>字收满了</b> —— 下一炉的牌正在摆';return}
+  const S=hf.S;
+  if(S.qi>=S.n){el.innerHTML='🏁 收满了 —— 等这一炉结帐';return}
+  if(hf.arm){el.innerHTML='🧊 <b>冰钳举着呢</b>：点一格就 <b>冰住它</b>（一拍就凉、热浪绕着走），再按 <code>X</code> 放回';return}
+  if(!hfAnyCoal(S)){
+    const st=hfNextStep();
+    el.innerHTML='👇 <b>点 '+((st&&st.kind==='coal')?hfCellName(st.i):'一格')+' 把 🔥 炭放下</b> 起火 —— 热一拍往里走一格，离炭 <b>几格</b> 就 <b>第几拍</b> 出炉';
+    return;
+  }
+  const st=hfNextStep();
+  const t=hfTileOfK(S,S.qi);
+  if(!t){el.innerHTML='🚫 场上 <b>没有第 '+(S.qi+1)+' 笔</b> 那张牌了 —— 按 <b>🔁 重摆</b> 另摆一盘';return}
+  if(t.hot){el.innerHTML='🔥 <b>第 '+(S.qi+1)+' 笔出炉了</b>：<b>点 '+hfCellName(t.cell)+' 那张牌</b>（或按 <code>W</code>）印到纸带上 —— 只有 <b>'+Math.max(1,Math.ceil(t.hotMs/HF_BEAT_MS))+' 拍</b> 就糊';return}
+  if(!st){el.innerHTML='🔥 军师的动作 <b>做完了</b>，可它还 <b>没出炉</b> —— 挪个炭位，或按 <b>🔁 重摆</b>';return}
+  el.innerHTML='👉 <b>'+hfStepSay(st)+'</b> · 挪炭要 <b>🔨 钳子凉了</b> 才动（还差 '+S.tong+' 拍）· 来不及就 <code>X</code> 冰钳救牌';
+}
+/* ---- 光标 / 军师画圈 / 预览虚影 ---- */function hfCursor(){
+  const g=document.getElementById('hfTopG');
+  if(!g)return;
+  const old=document.getElementById('hfCurBox');
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  if(hf.cur<0||hf.cur>=HF_N||hfHole(hf.cur))return;
+  const x=HF_PX+hfCol(hf.cur)*HF_CELL,y=HF_PY+hfRow(hf.cur)*HF_CELL;
+  const el=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  el.setAttribute('id','hfCurBox');
+  el.setAttribute('x',String(x+2));el.setAttribute('y',String(y+2));
+  el.setAttribute('width',String(HF_CELL-4));el.setAttribute('height',String(HF_CELL-4));
+  el.setAttribute('rx','12');el.setAttribute('class','hf-cur');
+  g.appendChild(el);
+}
+function hfMarkCell(i){
+  const g=document.getElementById('hfTopG');if(!g||i<0||i>=HF_N)return;
+  const x=HF_PX+hfCol(i)*HF_CELL,y=HF_PY+hfRow(i)*HF_CELL;
+  const el=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  el.setAttribute('x',String(x+1));el.setAttribute('y',String(y+1));
+  el.setAttribute('width',String(HF_CELL-2));el.setAttribute('height',String(HF_CELL-2));
+  el.setAttribute('rx','13');el.setAttribute('class','hf-mark');
+  g.appendChild(el);
+  hfT(function(){if(el.parentNode)el.parentNode.removeChild(el)},HF_GHOST_MS);
+}
+function hfMarkings(){hfCursor();hfRenderGhosts()}
+function hfRenderGhosts(){
+  const g=document.getElementById('hfTopG');
+  if(!g)return;
+  const old=document.getElementById('hfGhostG');
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  const G=hf.ghost,S=hf.S;
+  if(!G||!S||hf.ghostMs<=0)return;
+  let h='<g id="hfGhostG">';
+  if(G.use>=0)h+='<rect class="hf-ghostBox" x="'+(HF_PX+hfCol(G.use)*HF_CELL+3)+'" y="'+(HF_PY+hfRow(G.use)*HF_CELL+3)+'" width="'+(HF_CELL-6)+'" height="'+(HF_CELL-6)+'" rx="11"/><text class="hf-ghostTxt" x="'+hfXY(G.use).x+'" y="'+(HF_PY+hfRow(G.use)*HF_CELL-4)+'">炭放这儿</text>';
+  for(const kk in G.rose){
+    let t=null;
+    for(let q=0;q<S.tiles.length;q++)if(S.tiles[q].id===+kk)t=S.tiles[q];
+    if(!t||t.done||t.burnt)continue;
+    const r=G.rose[kk],p=hfXY(t.cell);
+    h+='<rect class="hf-ghostBox" x="'+(p.x-35)+'" y="'+(p.y-35)+'" width="70" height="70" rx="14"/>';
+    h+='<text class="hf-ghostTxt" x="'+p.x+'" y="'+(p.y-40)+'">第 '+r.rose+' 拍出 · 第 '+r.expire+' 拍糊</text>';
+  }
+  h+='</g>';
+  g.insertAdjacentHTML('beforeend',h);
+}
+/* ---- 特效 ---- */
+function hfFxHost(){return document.getElementById('hfFx')}
+function hfPut(host,el,ms){
+  host.appendChild(el);
+  hfT(function(){if(el.parentNode)el.parentNode.removeChild(el)},ms);
+}
+function hfXYpc(x,y){return {l:(x/HF_W*100).toFixed(2)+'%',t:(y/HF_H*100).toFixed(2)+'%'}}
+function hfBits(x,y,col,n){
+  const host=hfFxHost();if(!host)return;
+  for(let i=0;i<n;i++){
+    const b=document.createElement('i');b.className='hf-bit';
+    const pc=hfXYpc(x,y);b.style.left=pc.l;b.style.top=pc.t;
+    b.style.background=i%3?col:'#FFF59D';
+    const a=Math.random()*Math.PI*2,r=16+Math.random()*40;
+    b.style.setProperty('--dx',(Math.cos(a)*r).toFixed(1)+'px');
+    b.style.setProperty('--dy',(Math.sin(a)*r+14).toFixed(1)+'px');
+    hfPut(host,b,780);
+  }
+}
+function hfPop(x,y,txt,col){
+  const host=hfFxHost();if(!host)return;
+  const el=document.createElement('b');el.className='hf-pop';
+  const pc=hfXYpc(x,y);el.style.left=pc.l;el.style.top=pc.t;
+  if(col)el.style.color=col;
+  el.textContent=txt;
+  hfPut(host,el,980);
+}
+function hfShakeFx(){
+  const el=document.querySelector('.hf-tbl');if(!el)return;
+  el.classList.remove('hf-shake');void el.offsetWidth;el.classList.add('hf-shake');
+}
+function hfTblCls(cls,ms){
+  const el=document.getElementById('hfTbl');
+  if(!el)return;
+  el.classList.add(cls);
+  hfT(function(){el.classList.remove(cls)},ms);
+}
+function hfRing(x,y,r,col){
+  const g=document.getElementById('hfTopG');if(!g)return;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+  c.setAttribute('r',String(Math.round(r)));c.setAttribute('fill','none');
+  c.setAttribute('stroke',col||'rgba(255,235,59,.9)');c.setAttribute('stroke-width','3');
+  c.setAttribute('class','hf-ring');
+  g.appendChild(c);
+  hfT(function(){if(c.parentNode)c.parentNode.removeChild(c)},920);
+}
+function hfSparks(i,txt){
+  const g=document.getElementById('hfTopG');if(!g)return;
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x',String(hfXY(i).x));t.setAttribute('y',String(HF_PY+hfRow(i)*HF_CELL-3));
+  t.setAttribute('text-anchor','middle');
+  t.setAttribute('class','hf-spark');t.textContent=txt||'🔥 ✨';
+  g.appendChild(t);
+  hfT(function(){if(t.parentNode)t.parentNode.removeChild(t)},1200);
+}
+function hfFlash(){
+  const g=document.getElementById('hfTopG');if(!g)return;
+  const r=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  r.setAttribute('x','112');r.setAttribute('y','10');
+  r.setAttribute('width','472');r.setAttribute('height','396');
+  r.setAttribute('rx','18');r.setAttribute('class','hf-flash');
+  g.appendChild(r);
+  hfT(function(){if(r.parentNode)r.parentNode.removeChild(r)},HF_FLASH_MS+40);
+}
+/* 一拍之后：谁刚出炉（起火晕 + 报拍数）、谁凉回去了 */
+function hfBeatFx(ev){
+  if(!ev)return;
+  const S=hf.S;if(!S)return;
+  for(let q=0;q<ev.rose.length&&q<5;q++){
+    const t=ev.rose[q],p=hfXY(t.cell);
+    hfRing(p.x,p.y,30,t.fgn?'#90A4AE':'#FFB74D');
+    if(!t.fgn)hfSparks(t.cell,t.k===S.qi?'🔥 出炉！摘它':'🔥 出炉');
+  }
+  for(let q=0;q<ev.back.length&&q<4;q++){
+    const t=ev.back[q],p=hfXY(t.cell);
+    if(!t.fgn)hfPop(p.x,p.y-40,'🌬 凉回去了','#B3E5FC');
+  }
+}
+/* ---- 主循环 ---- */
+function hfStartLoop(){hfStopLoop();hf.last=0;hf.rafId=requestAnimationFrame(hfLoop)}
+function hfStopLoop(){if(hf.rafId){cancelAnimationFrame(hf.rafId);hf.rafId=0}hf.last=0}
+function hfLoop(ts){
+  if(!hf.run||hf.over){hf.rafId=0;return}
+  const dt=hf.last?Math.min(0.05,(ts-hf.last)/1000):0.016;
+  hf.last=ts;
+  hfTick(dt);
+  hf.rafId=requestAnimationFrame(hfLoop);
+}
+function hfTick(dt){
+  const ms=dt*1000;
+  hf.t+=dt;hf.playMs+=ms;
+  hf.tones=6;
+  if(hf.ghostMs>0){
+    hf.ghostMs=Math.max(0,hf.ghostMs-ms);
+    if(!hf.ghostMs){hf.ghost=null;const g=document.getElementById('hfGhostG');if(g&&g.parentNode)g.parentNode.removeChild(g)}
+  }
+  if(hf.windTag>0)hf.windTag=Math.max(0,hf.windTag-ms);
+  if(hf.tagMs>0)hf.tagMs=Math.max(0,hf.tagMs-ms);
+  if(hf.printMs>0)hf.printMs=Math.max(0,hf.printMs-ms);
+  if(hf.nextMs>0){hf.nextMs=Math.max(0,hf.nextMs-ms);hfMeter();return}
+  if(!hf.rec||!hf.S||hf.over)return;
+  hf.think+=ms;
+  hf.clock-=dt/Math.max(1,hf.clockSec);
+  const left=Math.ceil(hf.clock*hf.clockSec);
+  if(hf.clock<=12/Math.max(1,hf.clockSec)&&hf.clock>0){
+    hf.beep+=ms;
+    if(hf.beep>=1000){hf.beep=0;hfTone(900,0.05,'sine',0.05)}
+    if(!hf.red){
+      hf.red=true;hfMeter();
+      hfSay('⚠️ <b>板子边上发红了</b>：还剩 '+left+' 秒就 <b>熄火</b> —— 熄火 <b>掉一颗心</b>、剩下的笔另摆一盘（已印的 <b>一笔不抹</b>）。先把 <b>烫着的牌</b> 摘掉','#FFCC80');
+    }
+  }
+  if(hf.clock<=0){hf.clock=0;hfPowerOut('clock');return}
+  hf.beatMs+=ms;
+  let guard=0;
+  while(hf.beatMs>=HF_BEAT_MS&&guard++<3){
+    hf.beatMs-=HF_BEAT_MS;
+    hfBeat();
+    hfWind();
+    if(!hf.run||hf.over||!hf.S)return;
+    if(hf.S.qi>=hf.S.n)return;
+  }
+  hfGraceFx();
+  if(hf.think>=HF_NAG_MS){hf.think=0;hfNag()}
+  hfHudLight();
+}
+/* ---- 输入：键盘 ---- */
+function hfCursorSay(){
+  const S=hf.S;if(!S||!hf.rec)return;
+  const i=hf.cur;
+  if(i<0||i>=HF_N)return;
+  if(hfHole(i)){
+    hfSay('🕳 <b>'+hfCellName(i)+'</b> 是板子边上的口：'+(hfSlag(i)?'烧糊的牌塞进 <b>🕳 渣口</b>':'烤好的笔从 <b>🖨 印字台</b> 印到纸上')+
+      ' —— 炭 <b>摆不了在这儿</b>，按 <code>方向键</code> 挪一格','#B3E5FC');
+    return;
+  }
+  const t=hfTileAt(S,i),d=hfDistCell(S,i),w=hfBeatsTo(S,i);
+  let why;
+  if(S.coal[i])why='这一格 <b>就烧着炭</b>（'+HF_MAXT+' 度，板子最烫的地方）';
+  else if(S.brick[i])why='<b>🧱 隔火砖</b> 砌在当中，热走不通';
+  else if(S.red[i])why=S.reveal?'<b>🕶 暗砖</b> 堵着（照过炉了）—— 热走不通':'看着是空铁格，可热 <b>迟迟走不到这儿</b>（🔍 照炉 才看得见为什么）';
+  else if(S.ice[i])why='<b>🧊 冻着</b>（还剩 '+S.iceBeats[i]+' 拍）：热绕着它走';
+  else if(d<0)why=hfCoalsOn(S)?'板上有炭，可 <b>热浪绕不过去</b>':'板上一块炭 <b>都没有</b> —— 先放炭';
+  else why='离炭 <b>'+d+'</b> 格 ⇒ 稳下来 <b>'+(HF_MAXT-d)+' 度</b>'+(w>0?'，还要再等 <b>'+w+'</b> 拍才热到那儿':'，<b>这一拍正热到</b>');
+  let s='👉 光标在 <b>'+hfCellName(i)+'</b>：现在 <b>'+S.temp[i]+' 度</b> —— '+why;
+  if(t)s+='<br>🎴 上面压着 <b>'+(t.fgn?'🚫 杂牌':'第 '+(t.k+1)+' 笔')+'</b> 那张牌：'+
+    (t.hot?'<b>已经出炉</b>（'+hfIgnSay(t)+'）'+(t.k===S.qi?' —— <b>点空格摘它</b>':' —— 还没轮到它，摘了要扣分'):
+      '<b>还没出炉</b>（'+hfIgnSay(t)+'）');
+  else if(!S.brick[i]&&!S.red[i]&&!S.ice[i])s+='<br>🫳 空铁格：按 <code>空格</code> 就把炭 <b>放下来 / 收回去</b>';
+  s+='<br>🎯 '+hfTileSay(S,S.qi);
+  hfSay(s,'#B3E5FC');
+}
+function hfBind(){
+  if(hf.bound)return;
+  hf.bound=1;
+  window.addEventListener('keydown',function(e){
+    if(currentMode!=='heat'||!hf.run||hf.over)return;
+    const k=e.key,K=String(k||'').toLowerCase();
+    if(K==='escape'){
+      if(hf.arm)hfFrostArm();
+      else{hf.ghost=null;hf.ghostMs=0;hfRenderGhosts()}
+      return;
+    }
+    if(K==='arrowleft'||K==='arrowright'||K==='arrowup'||K==='arrowdown'){
+      if(e.repeat)return;
+      let c=hf.cur<0?hfIdx(0,0):hf.cur,col=hfCol(c),row=hfRow(c);
+      if(K==='arrowleft')col--;
+      else if(K==='arrowright')col++;
+      else if(K==='arrowup')row--;
+      else row++;
+      hf.cur=hfIdx(hfClamp(col,0,HF_CW-1),hfClamp(row,0,HF_CH-1));
+      hf.think=0;
+      hfCursor();hfCursorSay();
+      e.preventDefault();return;
+    }
+    if(K==='enter'||k===' '){
+      if(!e.repeat){
+        if(hf.cur<0)hf.cur=hfIdx(2,0);
+        hfCursor();
+        hfTapCell(hf.cur);
+      }
+      e.preventDefault();return;
+    }
+    if(K==='w'){if(!e.repeat)hfTakeNext();return}
+    if(K==='x'){if(!e.repeat)hfFrostArm();return}
+    if(K==='e'){if(!e.repeat)hfReveal();return}
+    if(K==='q'){if(!e.repeat)hfPreview();return}
+    if(K==='r'){if(!e.repeat)hfUndo();return}
+    if(K==='t'){if(!e.repeat)hfRespin();return}
+  });
+}
+function hfCellAtPoint(x,y){
+  const c=Math.floor((x-HF_PX)/HF_CELL),r=Math.floor((y-HF_PY)/HF_CELL);
+  if(c<0||c>=HF_CW||r<0||r>=HF_CH)return -1;
+  return hfIdx(c,r);
+}
+/* ---- 输入：鼠标 / 手指 ---- */
+function hfPointer(){
+  const svg=document.getElementById('hfSvg');
+  if(!svg||hf.ptrBound)return;
+  hf.ptrBound=true;
+  svg.addEventListener('pointerdown',function(ev){
+    if(currentMode!=='heat'||!hf.run||hf.over||!hf.S)return;
+    if(!ev.target.closest)return;
+    const te=ev.target.closest('[data-cell]');
+    let i=te?parseInt(String(te.getAttribute('data-cell')),10):-1;
+    if(isNaN(i)||i<0||i>=HF_N){
+      /* 板子边上、牌缝里点空的：按 SVG 坐标换算成格子，别让一次点击什么也不发生 */
+      const pt=hfSvgPoint(ev);
+      i=pt?hfCellAtPoint(pt.x,pt.y):-1;
+    }
+    if(i<0||i>=HF_N)return;
+    hf.think=0;
+    hf.cur=i;hfCursor();
+    hfTapCell(i);
+    if(ev.preventDefault)ev.preventDefault();
+  });
+}
+function hfSvgPoint(ev){
+  const svg=document.getElementById('hfSvg');
+  if(!svg||!svg.getBoundingClientRect)return null;
+  const r=svg.getBoundingClientRect();
+  if(!r.width||!r.height)return null;
+  return {x:(ev.clientX-r.left)/r.width*HF_W,y:(ev.clientY-r.top)/r.height*HF_H};
+}
+
+/* ================= v1.82 笔顺火候坊 · D：生命周期 / 军师提示 / 帮助 / 测试钩子 ================= */
+function hfStopAll(){hfStopLoop();hfKillTimers();hf.gen++;hf.tagMs=0;hf.windTag=0;hf.nextMs=0;hf.printMs=0;hf.ghostMs=0;hf.ghost=null;hf.beatMs=0}
+async function hfStart(){
+  hfStopAll();
+  const g=hf.gen;
+  const stale=function(){return g!==hf.gen||!hf.run||hf.over};
+  hf.run=true;hf.over=false;
+  hf.timers=[];
+  hf.lv=1;hf.score=0;hf.hearts=HF_HEARTS;hf.combo=0;hf.maxCombo=0;
+  hf.words=0;hf.lits=0;hf.moves=0;hf.taps=0;hf.burns=0;hf.wrongs=0;hf.frosts=0;
+  hf.deads=0;hf.early=0;hf.saved=0;hf.fakes=0;hf.reds=0;
+  hf.previewN=2;hf.undoN=3;hf.respN=1;hf.frostN=2;hf.revealN=0;
+  hf.previews=0;hf.rewinds=0;hf.respins=0;hf.nags=0;hf.reveals=0;
+  hf.think=0;hf.playMs=0;hf.t=0;hf.hudTxt={};
+  hf.pool=[];hf.miss=[];hf.rec=null;hf.n=0;hf.gly=[];hf.S=null;hf.tid=1;
+  hf.coalMax=1;hf.basket=1;hf.frostMax=2;hf.beat=0;hf.beatMs=0;hf.tong=0;
+  hf.wind=0;hf.windMs=0;hf.windTag=0;
+  hf.clock=1;hf.clockSec=60;hf.red=false;hf.beep=0;
+  hf.printRun=0;hf.since=0;hf.cleanWord=true;hf.failWord=0;hf.redWord=false;
+  hf.hist=[];hf.arm=false;hf.cur=12;hf.sol=null;hf.lastWhy='';
+  showScreen('heat');
+  hfBind();hfPointer();
+  hfRenderStatic();hfPaper();hfMini();hfBasket();hfHud();hfLine();
+  hfSet('hfAsk','🔥 正在升火……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  hfSay('眼前是一块 <b>六乘五的铁板</b>：炭放在哪儿，热就从哪儿 <b>一拍往里走一格</b> —— <b>离炭几格</b> 的牌就 <b>第几拍</b> 热到 <b>10 减几格</b> 度，<b>5 度出炉</b>、<b>4 拍</b> 之内按笔顺摘下来印到纸上，过了就糊');
+  let ok=await hfBuildPool();
+  if(stale())return;
+  if(!ok){
+    hfSay('🔥 炭还没着，再升一次火……','#B3E5FC');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await hfBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!hf.pool.length){
+    hf.run=false;
+    hfSet('hfAsk','😢 字库没加载好<br><small>稍后再来升火</small>');
+    hfSay('先去别的模式练两笔，回来字就齐了','#FFCC80');
+    return;
+  }
+  hfAdd('hz_heat_games',1);
+  hfPreviewReset();
+  if(!hfNewWord()){hf.run=false;hfSet('hfAsk','😢 牌没摆好<br><small>稍后再来升火</small>');return}
+  if(!hf.run||hf.over||stale())return;
+  hfStartLoop();
+}
+function hfEnd(reason){
+  if(hf.over)return;
+  hf.over=true;hf.run=false;
+  hfStopAll();
+  const sc=Math.round(hf.score);
+  localStorage.setItem('hz_heat_best',String(Math.max(hf.words,hfInt('hz_heat_best'))));
+  localStorage.setItem('hz_heat_streak',String(Math.max(hf.maxCombo,hfInt('hz_heat_streak'))));
+  localStorage.setItem('hz_heat_lv',String(Math.max(hf.lv,hfInt('hz_heat_lv'))));
+  hfAdd('hz_heat_ms',Math.round(hf.playMs/1000));
+  const stars=Math.floor(sc/120)+hf.words*3;
+  if(stars>0)addStars(stars);
+  showScreen('heat-result');
+  const R=hfRank(hfInt('hz_heat_words'));
+  const T={
+    miss:['🌡','炉子凉了，心也丢完了','<b>糊一张牌</b>、<b>连错三次</b>、<b>钟走光</b> 都掉心：动手之前先 <b>数清这一笔离炭几格</b>，出炉就 <b>摘</b>'],
+    quit:['🏁','今天收工了','下次先想 <b>越靠后的笔离炭越远</b>：一张炭挨着摆两三笔、<b>一起出炉连着摘</b> 才吃得到连击'],
+    nodata:['😢','牌没摆好','先去别的模式练两笔，回来字就齐了']
+  };
+  const t=T[reason]||T.quit;
+  hfSet('hfRsEmoji',t[0]);
+  hfSet('hfRsTitle',reason==='nodata'?t[1]:(reason==='miss'?(hf.words?'心丢了 · 已收好 '+hf.words+' 个字':t[1]):t[1]));
+  hfSet('hfRsSub',t[2]);
+  hfSet('hfRsScore',String(sc));
+  hfSet('hfRsWords',String(hf.words));
+  hfSet('hfRsLit',String(hf.lits));
+  hfSet('hfRsLv',String(hf.lv));
+  hfSet('hfRsStreak',String(hf.maxCombo));
+  hfSet('hfRsMiss',hf.burns+' / '+hf.wrongs+' / '+hf.deads);
+  hfSet('hfRsStars','⭐ '+stars);
+  hfSet('hfRsBest',String(hfInt('hz_heat_best')));
+  hfSet('hfRsAll2',String(hfInt('hz_heat_words')));
+  hfSet('hfRsAll','🏅 '+R.e+' '+R.t+' · 累计收好 '+hfInt('hz_heat_words')+' 个字\n'+
+    '🔥 放过 '+hfInt('hz_heat_moves')+' 次炭 · 🫳 一块炭连摘 '+hfInt('hz_heat_saved')+' 笔 · 🌡 急冷救牌 '+hfInt('hz_heat_frosts')+' 回\n'+
+    '💨 烧糊 '+hfInt('hz_heat_burns')+' 张 · 🚫 摘错 '+hfInt('hz_heat_wrongs')+' 次 · ⏳ 提前摘 '+hfInt('hz_heat_early')+' 回 · 💔 熄火 '+hfInt('hz_heat_deads')+' 阵\n'+
+    '👀 预览 '+hfInt('hz_heat_previews')+' 次 · 🔄 倒带 '+hfInt('hz_heat_rewinds')+' 次 · 🔁 重摆 '+hfInt('hz_heat_resets')+' 回 · 🔍 照炉 '+hfInt('hz_heat_reveals')+' 回\n'+
+    '🐰 发呆提示 '+hfInt('hz_heat_nags')+' 次 · 💎 一块没糊 '+hfInt('hz_heat_perfect')+' 个字 · 🚀 一局最多 '+hfInt('hz_heat_best')+' 个字 · 最高玩到第 '+hfInt('hz_heat_lv')+' 段');
+  const book=(localStorage.getItem('hz_heat_book')||'').split(',').filter(function(c){return c.length===1});
+  hfSet('hfRsBookT',book.length?('📜 火候档案 · 已收好 '+book.length+' 个字'):'');
+  const bh=document.getElementById('hfRsBook');
+  if(bh)bh.innerHTML=book.slice(0,30).map(function(c){return '<i>'+c+'</i>'}).join('');
+}
+function hfRetry(){hfStart()}
+function hfLeave(){
+  hfStopAll();
+  if(hf.run&&!hf.over){hf.over=true;hf.run=false}
+  goHome();
+}
+function hfNudge(){
+  const dot=document.getElementById('hfCardDot'),tip=document.getElementById('hfCardTip');
+  const w=hfInt('hz_heat_words'),p=hfInt('hz_heat_perfect'),games=hfInt('hz_heat_games');
+  const R=hfRank(w);
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 收好 '+w+' 个字 · 放过 '+hfInt('hz_heat_moves')+' 次炭 · 一块没糊 '+p+' 个字'):'一块六乘五的铁板：点一格把炭放下起火，热一拍往里走一格 —— 离炭几格的那张牌就第几拍出炉，四拍之内按笔顺摘下来印到纸上，过了就糊';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+function hfNag(){
+  if(!hf.rec||!hf.S||hf.S.qi>=hf.S.n)return;
+  const S=hf.S;
+  hf.nags++;hfAdd('hz_heat_nags',1);
+  hfTone(660,0.08,'sine',0.06);
+  const t=hfTileOfK(S,S.qi);
+  const nd=HF_DIRS[hfDn(hf.rec.dirs[S.qi])],ar=HF_ARW[hfDn(hf.rec.dirs[S.qi])];
+  const st=hfNextStep();
+  if(!t){hfSay('🐰 板上 <b>找不到第 '+(S.qi+1)+' 笔</b> 那张牌了：按 <b>🔁 重摆</b> 剩下的牌另摆一盘','#FFF176');return}
+  hfMarkCell(t.cell);
+  if(st&&st.kind==='coal')hfMarkCell(st.i);
+  hfSay('🐰 该收的是「<b>'+nd+' '+ar+'</b>」第 '+(S.qi+1)+' 笔，牌压在 <b>'+hfCellName(t.cell)+'</b>：'+hfTileSay(S,S.qi)+
+    '<br>🔥 炭 <b>'+hf.basket+'/'+hf.coalMax+'</b> 块在筐里、板上 <b>'+hfCoalsOn(S)+'</b> 块 · 🔨 钳子 '+(S.tong>0?'<b>还烫 '+S.tong+' 拍</b>':'<b>凉了，挪得动炭</b>')+' · ❄ 冰 <b>'+hf.frostN+'</b> 个'+
+    (st?'<br>👉 军师下一步：<b>'+hfStepSay(st)+'</b>':'<br>👉 军师摆的路子 <b>走完了</b>它还不出炉：按 <b>🔁 重摆</b> 另摆一盘（还剩 '+hf.respN+' 次）'),'#FFF176');
+}
+function hfHelp(){
+  const S=hf.S;
+  if(!S||!hf.rec){hfSay('🔥 正在升火，稍等一下再问怎么玩','#B3E5FC');return}
+  const t=hfTileOfK(S,Math.min(S.qi,S.n-1));
+  const d=t?hfDistCell(S,t.cell):-1;
+  const w=t?hfBeatsTo(S,t.cell):-1;
+  let brick=0,red=0,ice=0,fgn=0,hard=0,live=0,hot=0;
+  for(let i=0;i<HF_N;i++){if(S.brick[i])brick++;if(S.red[i])red++;if(S.ice[i])ice++}
+  for(let q=0;q<S.tiles.length;q++){
+    const x=S.tiles[q];
+    if(x.done||x.burnt)continue;
+    live++;if(x.fgn)fgn++;else if(x.hard)hard++;
+    if(x.hot)hot++;
+  }
+  hfSay('🔥 这是一块 <b>'+HF_CW+'×'+HF_CH+'</b> 的铁板（<b>A~F</b> 列 · <b>1~5</b> 行），底下那条是 <b>纸带</b>：板边挖了两个口 —— <b>🖨 印字台</b>（印出来的笔从这儿走）和 <b>🕳 渣口</b>（糊了的牌塞进去）<br>'+
+    '🌡 <b>热是从炭那一格往外走的</b>：每 <code>1.2</code> 秒一拍，热浪 <b>一拍往里走一格</b> ⇒ 离炭 <b>d</b> 格 <b>第 d 拍</b> 热到 <b>10−d</b> 度。右边一栏就写着这张对照表，<b>牌离炭几格、第几拍出炉</b> 数得出来<br>'+
+    '🎯 <b>按笔顺摘</b>：第 1 笔那张得 <b>第一个出炉</b> —— 所以牌离炭的格数必须 <b>一路不减</b>。把第三笔摆在贴着炭的地方，它就 <b>抢在头里</b> 出炉，等轮到第一笔它已经凉了、或者直接 <b>糊</b><br>'+
+    '🔥 <b>炭这一盘发 '+hf.coalMax+' 块</b>：点空铁格 <b>放炭</b>、点摆着的炭 <b>收回筐</b>。一放一收，热浪得 <b>从炭重新数起</b>（整块板当场凉回去）；而且 <b>🔨 钳子烫 '+HF_TONG+' 拍</b> —— 挪一次炭这两拍就挪不动第二块，<b>一块炭挨着摆两张牌、一起出炉连着摘</b> 才吃得到 <b>🫳 一块炭烤出两笔</b><br>'+
+    '⚡ <b>出炉</b>＝热到 <b>5 度</b>（🪨 <b>硬脾牌</b> 要 <b>7 度</b>，只能 <b>挨着炭</b> 摆，本盘 <b>'+hard+'</b> 张）：牌面发亮、圈上是 <b>火候窗口</b>，只有 <b>'+HF_GRACE_BEATS+' 拍</b>；<b>点它</b>（或 <code>W</code>）印到纸带上，过了就 <b>💨 糊</b>：扣 '+HF_FAIL_PEN+' 分、掉一颗心、剩下的笔 <b>另摆一盘</b>（已印的 <b>一笔不抹</b>）<br>'+
+    '🚫 <b>杂牌</b>（挂着 <b>?</b>，本盘 <b>'+fgn+'</b> 张）刻的不是这个字的笔，它 <b>摆在烤不着的地方</b>（离炭 ≥'+HF_FAR+' 格）永远凉着：点它 <b>断芯</b>：扣 '+HF_JUNK_PEN+' 分、断连击，<b>连错 '+HF_FAIL_MAX+' 次掉一颗心</b> —— 认牌看 <b>笔形</b>：横红、竖青、撇蓝、捺橘，和左边米字格同一套颜色<br>'+
+    '🧱 <b>隔火砖</b>（本盘 <b>'+brick+'</b> 块）热过不去、热浪得 <b>绕着走</b>；🕶 <b>暗砖</b>（本盘 <b>'+red+'</b> 块）看着就是块空铁格，照样挡热 —— 按 <b>🔍 照炉</b>（<code>E</code>，这一盘还剩 '+hf.revealN+' 次）举起火把，暗砖就 <b>永久标出来</b>；没砖的时候这一格不出现<br>'+
+    '❄ <b>冰钳</b>（按 <code>X</code> 拿起来，点一格，本盘 <b>'+hf.frostN+'</b> 个）：那一格 <b>一拍就凉</b> 还 <b>挡住热浪</b>（<b>'+HF_ICE_BEATS+'</b> 拍之后化）—— 正烫着快糊的牌被它一冰就 <b>回炉</b>（窗口重新算、<b>不算糊</b>），这是唯一 <b>救得回</b> 的手<br>'+
+    '🌬 <b>穿堂风</b>'+(hf.wind?'（本盘 <b>开着</b>）':'（第 7 段起）')+'：每 <b>'+HF_WIND_BEATS+' 拍</b> 把 <b>最烫那一格</b> 吹凉 <b>2 度</b>（两拍之内）—— 出炉了别愣着，风专挑最热的地方钻<br>'+
+    '⏱ <b>炉前的钟</b>：军师先把这一盘 <b>从头到尾按拍子走一遍</b>（本盘要 <b>'+((hf.sol&&hf.sol.beats)||0)+' 拍</b>），发你 <b>拍数 + '+hfSpareOf(hf.lv)+' 拍余量</b> 换算的 <b>'+hf.clockSec+' 秒</b>；最后 12 秒板边 <b>发红</b>，走光 <b>熄火</b>：掉一颗心、剩下的笔另摆一盘<br>'+
+    '👀 <b>预览</b>（<code>Q</code>，剩 '+hf.previewN+' 次）替你把往后几拍走一遍，画出 <b>每张牌第几拍出炉、第几拍糊</b>；🔄 <b>倒带</b>（<code>R</code>，剩 '+hf.undoN+' 次）退回 <b>上一次放炭 / 摘牌 / 急冷之前</b>；🔁 <b>重摆</b>（<code>T</code>，剩 '+hf.respN+' 次）剩下的牌另摆一盘；<code>方向键</code> 在 30 格里走 · <code>空格</code> 点当前格<br>'+
+    '📈 <b>印一笔</b> 吃 <code>round((12 + 第几笔×2 + 段数×3) × (1 + 连击×0.06))</code>，<b>一块炭连着摘</b> 再多 <code>8 + 段数×2</code>，<b>刚出炉就摘</b> 按剩的窗口加 <b>火候正好</b>；<b>收满一个字</b>：<code>26 + 笔数×6 + 段数×6 + 剩炭×3 + 剩冰×4</code>，<b>一次没糊没点错再多 '+HF_CLEAN_BONUS+'</b>；<b>每 2 个字升 1 段</b>（最多 9 段）、<b>每 3 个字补一颗心</b>（最多 '+HF_HEART_MAX+' 颗）<br>'+
+    (t?'🎯 现在该收 <b>第 '+(S.qi+1)+' 笔「'+nd+' '+ar+'」</b>：它在 <b>'+hfCellName(t.cell)+'</b>，'+
+      (d<0?'<b>热浪绕不过去</b> —— 挪炭或重摆':'离炭 <b>'+d+'</b> 格 ⇒ <b>'+(HF_MAXT-d)+' 度</b> · 第 <b>'+d+'</b> 拍出炉'+(w>0?'（还差 <b>'+w+'</b> 拍）':'（<b>就这一拍</b>）'))+
+      ' · 🔥 板上出炉 <b>'+hot+'</b> 张':'🎯 这一炉已经收满')+
+    '<br>👀 发呆 '+(HF_NAG_MS/1000)+' 秒 🐰 报方位 · 战绩落盘 <code>hz_heat_*</code>','#C5E1A5');
+}
+/* ---- 测试钩子 ---- */
+window.HF={N:HF_N,CW:HF_CW,CH:HF_CH,MAXT:HF_MAXT,IGN:HF_IGN,HARD:HF_HARD_IGN,FAR:HF_FAR,
+  BT:HF_BEAT_MS,GR:HF_GRACE_MS,GB:HF_GRACE_BEATS,ICE:HF_ICE_BEATS,TONG:HF_TONG,FMAX:HF_FAIL_MAX,
+  WIND:HF_WIND_BEATS,CHILL:HF_CHILL,GN:HF_GEN_TRY,CAP:HF_BEAT_CAP,HM:HF_HIST_MAX,
+  PRT:HF_PRINT_MS,NMS:HF_NEXT_MS,GMS:HF_GHOST_MS,NAG:HF_NAG_MS,
+  FP:HF_FAIL_PEN,JP:HF_JUNK_PEN,EP:HF_EARLY_PEN,CLEAN:HF_CLEAN_BONUS,
+  HTS:HF_HEARTS,HMAX:HF_HEART_MAX,SM:HF_STROKE_MAX,PM:HF_POOL_MIN};
+window.hfvGeom=function(){return {W:HF_W,H:HF_H,CW:HF_CW,CH:HF_CH,CELL:HF_CELL,PX:HF_PX,PY:HF_PY,
+  QX:HF_QX,QY:HF_QY,QW:HF_QW,QH:HF_QH,LX:HF_LX,RX:HF_RX,HR:HF_HR,HOLE:HF_HOLE.slice()}};
+window.hfvXY=function(i){const p=hfXY(i);return {x:p.x,y:p.y,name:hfCellName(i),col:hfCol(i),row:hfRow(i)}};
+/* 独立物理要吃的三样：炭位 / 挡路的格子 / 已经走过的拍数 */
+window.hfvBoard=function(){
+  const S=hf.S;if(!S)return null;
+  return {n:S.n,qi:S.qi,beat:S.beat,age:S.age,tong:S.tong,reveal:S.reveal,
+    temp:S.temp.slice(),coal:S.coal.slice(),brick:S.brick.slice(),red:S.red.slice(),
+    ice:S.ice.slice(),iceBeats:S.iceBeats.slice(),chill:S.chill.slice(),
+    dist:hfDist(S),
+    tiles:S.tiles.map(function(t){return {id:t.id,cell:t.cell,k:t.k,fgn:t.fgn?1:0,hard:t.hard?1:0,
+      done:t.done?1:0,burnt:t.burnt?1:0,hot:t.hot?1:0,hotMs:Math.round(t.hotMs),ign:hfIgnOf(t),
+      temp:S.temp[t.cell],dist:hfDistCell(S,t.cell),beats:hfBeatsTo(S,t.cell)}})};
+};
+window.hfvCell=function(i){
+  const S=hf.S;if(!S||i<0||i>=HF_N)return null;
+  const t=hfTileAt(S,i);
+  return {i:i,name:hfCellName(i),hole:hfHole(i)?1:0,slag:hfSlag(i)?1:0,temp:S.temp[i],cls:hfTCls(S.temp[i]),
+    coal:S.coal[i]?1:0,brick:S.brick[i]?1:0,red:S.red[i]?1:0,ice:S.ice[i]?1:0,chill:S.chill[i]?1:0,
+    dist:hfDistCell(S,i),beats:hfBeatsTo(S,i),
+    tile:t?{id:t.id,k:t.k,fgn:t.fgn?1:0,hard:t.hard?1:0,hot:t.hot?1:0,hotMs:Math.round(t.hotMs),ign:hfIgnOf(t)}:null};
+};
+window.hfvLv=function(lv){
+  return {junk:hfJunkOf(lv),brick:hfBrickOf(lv),hard:hfHardOf(lv),red:hfRedOf(lv),wind:hfWindOf(lv),
+    coal:hfCoalOf(lv),frost:hfFrostNOf(lv),spare:hfSpareOf(lv),dist:hfDistOf(lv).join(','),
+    words:Math.max(0,(lv-1)*2),lv:hfLvOf(lv*2-1),reveal:lv>=5?HF_REVEAL_MAX:0};
+};
+window.hfvRec=function(ch){return hfRec(ch)};
+window.hfvGen=function(o){
+  o=o||{};
+  let rec=o.rec;
+  if(!rec){
+    const dirs=o.dirs||[0,1,2,3,0],n=o.n||dirs.length;
+    const strokes=[],medians=[];
+    for(let i=0;i<n;i++){
+      strokes.push(i%4===0?'M100 400 L600 400 L600 460 L100 460 Z':
+        (i%4===1?'M400 100 L460 100 L460 700 L400 700 Z':
+        (i%4===2?'M600 140 L520 420 L560 450 L640 170 Z':'M300 200 L520 460 L560 430 L340 180 Z')));
+      medians.push(i%4===0?[[100,430],[600,430]]:(i%4===1?[[430,100],[430,700]]:(i%4===2?[[600,140],[520,420]]:[[300,200],[520,460]])));
+    }
+    rec={ch:o.ch||'本',n:n,dirs:dirs.slice(0,n),raw:{strokes:strokes,medians:medians}};
+  }
+  const lv=o.lv===undefined?hf.lv:o.lv;
+  const g=hf.lv;hf.lv=lv;
+  const r=hfGen(rec,lv,o.from||0);
+  hf.lv=g;
+  if(!r)return {ok:0,why:hf.lastWhy||'?'};
+  const S=r.S;
+  /* 板子出厂时炭还在筐里，距离要按「军师要放的那格」来数，不然钩子读到的全是 99 */
+  const P=hfClone(S);P.coal[r.coal]=1;const pd=hfDist(P);
+  return {ok:1,beats:r.beats,sec:r.sec,coal:r.coal,cfg:{junk:r.cfg.junk,brick:r.cfg.brick,hard:r.cfg.hard,red:r.cfg.red},
+    tab:(r.cfg.dist||hfDistOf(lv)).join(','),
+    ds:r.ds.join(','),plan:r.plan.length,steps:r.steps.length,
+    dist:pd,tiles:S.tiles.map(function(t){return {cell:t.cell,k:t.k,fgn:t.fgn?1:0,hard:t.hard?1:0,
+      d:pd[t.cell],ign:hfIgnOf(t)}}),qi:S.qi,n:S.n};
+};
+window.hfvSim=function(o){
+  const g=hf.lv;hf.lv=(o&&o.lv!==undefined)?o.lv:hf.lv;
+  const S=o&&o.S?o.S:hf.S;
+  const steps=(o&&o.steps)||[];
+  const r=hfSimPlan(S,steps);
+  hf.lv=g;
+  return {ok:r.ok?1:0,why:r.why||'',beats:r.beats,qi:r.qi,burnt:r.burnt,
+    plan:r.plan.map(function(p){return p.tap?('摘'+(p.k+1)+'@'+hfCellName(p.cell)):('炭'+hfCellName(p.i))})};
+};
+window.hfvForecast=function(useCoal){
+  const S=hf.S;if(!S)return null;
+  const f=hfForecast(S,useCoal===undefined?-1:useCoal);
+  const out={};
+  for(const kk in f.rose)out[kk]={k:f.rose[kk].k,cell:f.rose[kk].cell,rose:f.rose[kk].rose,expire:f.rose[kk].expire};
+  return {beats:f.beats,rose:out};
+};
+window.hfvStep=function(n){
+  const S=hf.S;if(!S)return null;
+  for(let q=0;q<(n===undefined?1:n);q++)hfStep(S);
+  return {beat:S.beat,age:S.age,temp:S.temp.slice()};
+};
+window.hfvKeys=function(){
+  const keys=[];
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf('hz_heat_')===0)keys.push(k)}
+  return keys.sort();
+};
+window.hfvInv=function(){
+  const S=hf.S;
+  if(!S)return {ok:0,bad:['没板子']};
+  const bad=[];
+  if(S.n<2||S.n>HF_STROKE_MAX)bad.push('笔数越界'+S.n);
+  if(S.qi<0||S.qi>S.n)bad.push('qi越界'+S.qi);
+  if(hf.n!==S.n)bad.push('hf.n≠S.n');
+  if(hf.gly.length!==S.n)bad.push('笔形数≠笔数');
+  if(hf.lv<1||hf.lv>9)bad.push('段数越界'+hf.lv);
+  if(hf.hearts<0||hf.hearts>HF_HEART_MAX)bad.push('心越界'+hf.hearts);
+  if(hf.clock<0||hf.clock>1.001)bad.push('钟越界'+hf.clock);
+  if(hf.basket<0||hf.basket>hf.coalMax)bad.push('炭筐越界'+hf.basket);
+  if(hf.frostN<0||hf.frostN>hf.frostMax)bad.push('冰囊越界'+hf.frostN);
+  if(hf.hist.length>HF_HIST_MAX)bad.push('倒带栈超'+HF_HIST_MAX);
+  /* 一张格不许摆两张牌；牌不许压在口上、砖上、暗砖上、冰上 */
+  const oc={},seen={};let realN=0,junkN=0;
+  for(let q=0;q<S.tiles.length;q++){
+    const t=S.tiles[q];
+    if(t.cell<0||t.cell>=HF_N)bad.push('牌压在板外@'+t.id);
+    else if(oc[t.cell])bad.push('一格两张牌@'+t.cell);
+    else{
+      oc[t.cell]=1;
+      if(hfHole(t.cell))bad.push('牌摆在口上@'+t.cell);
+      if(S.brick[t.cell]||S.red[t.cell])bad.push('牌摆在砖上@'+t.cell);
+      if(S.ice[t.cell]&&t.hot&&!t.done)bad.push('压着冰却还烫着@'+t.cell);
+    }
+    if(t.fgn){junkN++;if(t.k!==-1)bad.push('杂牌带笔号@'+t.id);continue}
+    if(t.k<0||t.k>=S.n)bad.push('笔号越界@'+t.id+'='+t.k);
+    if(seen[t.k])bad.push('一笔两张牌@'+t.k);
+    seen[t.k]=1;realN++;
+    if(t.done&&t.k>=S.qi)bad.push('没收完就标了已印@'+t.k);
+    if(!t.done&&t.k<S.qi)bad.push('印过了还挂着@'+t.k);
+    /* 出炉必须真的到燃点，没出炉必须没到 */
+    if(t.done||t.burnt)continue;
+    const ign=hfIgnOf(t),tp=S.temp[t.cell];
+    if(t.hot&&tp<ign)bad.push('没到燃点就标了出炉@'+t.cell);
+    if(!t.hot&&tp>=ign)bad.push('到燃点没标出炉@'+t.cell);
+  }
+  for(let k=S.qi;k<S.n;k++)if(!hfTileOfK(S,k))bad.push('第'+(k+1)+'笔的牌丢了');
+  /* 炭不许和砖 / 冰 / 牌 / 口撞在一格 */
+  for(let i=0;i<HF_N;i++){
+    if(!S.coal[i])continue;
+    if(hfHole(i))bad.push('炭摆在口上@'+i);
+    if(S.brick[i]||S.red[i])bad.push('炭摆在砖上@'+i);
+    if(S.ice[i])bad.push('炭摆在冰里@'+i);
+    if(hfTileAt(S,i))bad.push('炭压在牌下@'+i);
+  }
+  if(hfCoalsOn(S)+hf.basket>hf.coalMax)bad.push('炭守恒破了'+hfCoalsOn(S)+'+'+hf.basket);
+  /* 温度必须一字不差地等于 hfFlush 的算法：走完 d 拍才 = 10−d 度，没走到必须 0 度 */
+  const d=hfDist(S);
+  for(let i=0;i<HF_N;i++){
+    let want=S.coal[i]?HF_MAXT:0;
+    if(!S.coal[i]&&S.age>=d[i])want=Math.max(0,HF_MAXT-d[i]);
+    if(S.chill[i]&&want>0)want=Math.max(0,want-HF_CHILL);
+    if(S.temp[i]!==want)bad.push('温度不符@'+i+':'+S.temp[i]+'≠'+want);
+    if(!S.coal[i]&&hfBlocked(S,i)&&S.temp[i])bad.push('挡路的格子还有温度@'+i);
+    if(!S.coal[i]&&!hfBlocked(S,i)&&d[i]<99&&S.age<d[i]&&S.temp[i])bad.push('热浪没走到就有温度@'+i);
+  }
+  /* 真牌离炭的格数必须按笔顺一路不减（这才是这盘的题眼）
+     —— 但 ❄ 急冷本来就靠「改路让后面那笔晚一拍」来救牌：板上有冰就不比梯子 */
+  if(!S.ice.some(function(x){return x})){
+    let last=-1;
+    for(let k=S.qi;k<S.n;k++){
+      const t=hfTileOfK(S,k);
+      if(!t)continue;
+      const dd=hfDistCell(S,t.cell);
+      if(dd<0){last=-1;continue}
+      if(dd<last)bad.push('距离梯子倒挂@'+(k+1)+':'+dd+'<'+last);
+      last=dd;
+    }
+  }
+  /* 杂牌必须摆在热一辈子走不到的地方 */
+  for(let q=0;q<S.tiles.length;q++){
+    const t=S.tiles[q];
+    if(!t.fgn||t.burnt)continue;
+    const dd=hfDistCell(S,t.cell);
+    if(dd>=0&&dd<HF_FAR)bad.push('杂牌摆得烤得着@'+t.cell+':'+dd);
+  }
+  /* 硬脾（燃点 7）只能挨着炭：离炭超过 3 格就一辈子热不到
+     —— 有冰的时候距离是被玩家改过的，不比这条 */
+  if(!S.ice.some(function(x){return x})){
+    for(let q=0;q<S.tiles.length;q++){
+      const t=S.tiles[q];
+      if(t.fgn||t.hard!==1||t.done||t.burnt)continue;
+      const dd=hfDistCell(S,t.cell);
+      if(dd>3)bad.push('硬脾离炭太远@'+t.cell+':'+dd);
+    }
+  }
+  return {ok:bad.length?0:1,bad:bad,real:realN,junk:junkN,qi:S.qi,n:S.n,beat:S.beat,age:S.age,
+    coals:hfCoalsOn(S),basket:hf.basket,tong:S.tong};
+};
+window.hfvBad=function(){
+  const S=hf.S,bad=[];
+  if(!S)return {bad:bad,skip:1};
+  const r=window.hfvInv();
+  if(!r.ok)bad.push.apply(bad,r.bad);
+  /* 静态层：30 格里两个口、28 块铁 */
+  if(document.querySelectorAll('#hfStatic .hf-cell').length!==HF_N-2)bad.push('铁格数≠28');
+  if(document.querySelectorAll('#hfStatic .hf-hole').length!==2)bad.push('口的数量≠2');
+  if(document.querySelectorAll('#hfHitG .hf-hit').length!==HF_N)bad.push('点击层≠30 格');
+  if(!document.querySelector('#hfHitG [data-cell="0"]'))bad.push('第 0 格没点击层');
+  /* 温度类和状态一致 */
+  for(let i=0;i<HF_N;i++){
+    if(hfHole(i))continue;
+    const el=document.getElementById('hfC'+i);
+    if(!el){bad.push('铁格'+i+'没画');continue}
+    if(el.getAttribute('class')!=='hf-cell '+hfTCls(S.temp[i]))bad.push('铁格'+i+'温度类不符');
+  }
+  /* 牌 DOM 与状态一致 */
+  let live=0;
+  for(let q=0;q<S.tiles.length;q++)if(!S.tiles[q].done)live++;
+  const els=document.querySelectorAll('#hfTileG .hf-tile');
+  if(els.length!==S.tiles.length)bad.push('牌元素数'+els.length+'≠'+S.tiles.length);
+  for(let q=0;q<S.tiles.length;q++){
+    const t=S.tiles[q],el=document.getElementById('hfTl'+t.id);
+    if(!el){bad.push('牌'+t.id+'没画');continue}
+    if(el.getAttribute('data-cell')!==String(t.cell))bad.push('牌'+t.id+'所在格不符');
+    const cls=el.getAttribute('class')||'';
+    const hot=!!t.hot&&!t.done&&!t.burnt;
+    if(cls.indexOf(' hot')>=0!==hot)bad.push('牌'+t.id+'出炉类不符');
+    if(cls.indexOf(' fgn')>=0!==!!t.fgn)bad.push('牌'+t.id+'杂牌类不符');
+    if(cls.indexOf(' hard')>=0!==!!t.hard)bad.push('牌'+t.id+'硬脾类不符');
+    if(cls.indexOf(' done')>=0!==!!t.done)bad.push('牌'+t.id+'已印类不符');
+    if(cls.indexOf(' burnt')>=0!==!!t.burnt)bad.push('牌'+t.id+'糊类不符');
+    if(cls.indexOf(' now')>=0!==(!t.fgn&&!t.done&&t.k===S.qi))bad.push('牌'+t.id+'该收类不符');
+    if(hot&&!document.getElementById('hfGr'+t.id))bad.push('牌'+t.id+'火候圈没画');
+    if(!hot&&document.getElementById('hfGr'+t.id))bad.push('牌'+t.id+'火候圈没撤');
+    const num=el.querySelector('.hf-num');
+    if(num&&num.textContent!==String(t.fgn?'🚫':(t.k+1)))bad.push('牌'+t.id+'笔号不符');
+  }
+  /* 炭 / 砖 / 冰：炭画在摆着的格上，暗砖没照炉之前不画 */
+  if(document.querySelectorAll('#hfDecoG .hf-coal').length!==hfCoalsOn(S))bad.push('炭的块数不符');
+  if(document.querySelectorAll('#hfDecoG .hf-brick').length!==S.brick.filter(function(x){return x}).length)bad.push('砖的块数不符');
+  const redN=S.red.filter(function(x){return x}).length;
+  if(document.querySelectorAll('#hfDecoG .hf-red').length!==(S.reveal?redN:0))bad.push('暗砖画得不对');
+  if(document.querySelectorAll('#hfDecoG .hf-ice').length!==S.ice.filter(function(x){return x}).length)bad.push('冰块数不符');
+  if(document.querySelectorAll('#hfDecoG .hf-chill').length!==S.chill.filter(function(x){return x}).length)bad.push('吹凉格数不符');
+  /* 纸带 / 米字格 */
+  if(document.querySelectorAll('#hfPaperG rect').length!==hf.n+1)bad.push('纸带格数≠笔数+1');
+  if(document.querySelectorAll('#hfMiniSvg path').length!==hf.n+1)bad.push('米字格笔数不符');
+  if(((document.getElementById('hfMiniCap')||{}).textContent||'').indexOf(hf.rec.ch)!==0)bad.push('米字格题注不符');
+  /* 料牌 / 按钮 */
+  const bask=document.getElementById('hfBasket');
+  if(bask&&bask.getAttribute('data-h')!==hfBasketHTML())bad.push('料牌和状态不符');
+  const bar=document.getElementById('hfClockBar');
+  if(bar){const wd=parseFloat(bar.style.width)||0,wk=hfClamp(hf.clock,0,1)*100;
+    if(Math.abs(wd-wk)>2)bad.push('钟宽度不符 '+bar.style.width+'≠'+wk.toFixed(1)+'%')}
+  const pt=document.getElementById('hfPowTxt');
+  if(pt&&pt.textContent!=='🔥 炭 '+hf.basket+'/'+hf.coalMax+' ❄ '+hf.frostN)bad.push('炉具读数不符');
+  const tk=document.getElementById('hfTakeBtn');
+  if(tk&&tk.disabled!==(S.qi>=S.n||hf.nextMs>0))bad.push('摘牌按钮不符');
+  const fs=document.getElementById('hfFrostBtn');
+  if(fs){
+    if(fs.disabled!==hf.frostN<=0)bad.push('冰钳按钮不符');
+    if(fs.classList.contains('on')!==!!hf.arm)bad.push('冰钳拿起类不符');
+  }
+  const rv=document.getElementById('hfRevealBtn');
+  if(rv){
+    if(rv.style.display!==(redN&&!S.reveal?'':'none'))bad.push('照炉按钮藏得不对');
+    if(redN&&!S.reveal&&rv.disabled!==hf.revealN<=0)bad.push('照炉按钮不符');
+  }
+  const pv=document.getElementById('hfPrevBtn');
+  if(pv&&pv.disabled!==hf.previewN<=0)bad.push('预览按钮不符');
+  const un=document.getElementById('hfUndoBtn');
+  if(un&&un.disabled!==(hf.undoN<=0||!hf.hist.length))bad.push('倒带按钮不符');
+  const rb=document.getElementById('hfReBtn');
+  if(rb&&rb.disabled!==hf.respN<=0)bad.push('重摆按钮不符');
+  if(S.qi>=S.n&&!hf.nextMs&&!hf.over)bad.push('收满了却没结帐');
+  return {bad:bad,live:live,tiles:S.tiles.length,coals:hfCoalsOn(S),redN:redN,real:r.real};
+};
+/* ---- 现场快照 / DOM 读数 ---- */
+window.hfvSnap=function(){
+  const S=hf.S;
+  return {
+    scr:(document.querySelector('.screen.active')||{}).id||'',mode:currentMode,
+    run:hf.run?1:0,over:hf.over?1:0,pool:hf.pool.length,gen:hf.gen,
+    ch:hf.rec?hf.rec.ch:'',n:hf.n,qi:S?S.qi:-1,dirs:hf.rec?hf.rec.dirs.join(''):'',
+    lv:hf.lv,score:Math.round(hf.score),hearts:hf.hearts,combo:hf.combo,maxCombo:hf.maxCombo,
+    words:hf.words,lits:hf.lits,moves:hf.moves,taps:hf.taps,saved:hf.saved,burns:hf.burns,
+    wrongs:hf.wrongs,frosts:hf.frosts,early:hf.early,deads:hf.deads,reveals:hf.reveals,
+    nags:hf.nags,previews:hf.previews,rewinds:hf.rewinds,respins:hf.respins,
+    previewN:hf.previewN,undoN:hf.undoN,respN:hf.respN,frostN:hf.frostN,revealN:hf.revealN,
+    coalMax:hf.coalMax,basket:hf.basket,frostMax:hf.frostMax,
+    beat:S?S.beat:-1,age:S?S.age:-1,tong:S?S.tong:-1,reveal:S?S.reveal:0,
+    clock:+hf.clock.toFixed(4),clockSec:hf.clockSec,red:hf.red?1:0,wind:hf.wind?1:0,
+    since:hf.since,printRun:hf.printRun,think:Math.round(hf.think),
+    clean:hf.cleanWord?1:0,failWord:hf.failWord,
+    sol:hf.sol?hf.sol.steps.length:-1,solBeats:hf.sol?hf.sol.beats:-1,hist:hf.hist.length,
+    cur:hf.cur,arm:hf.arm?1:0,lastWhy:hf.lastWhy||'',
+    coals:S?hfCoalsOn(S):-1,tiles:S?S.tiles.length:-1,
+    hot:S?S.tiles.filter(function(t){return t.hot&&!t.done&&!t.burnt}).length:-1
+  };
+};
+window.hfvDom=function(){
+  const S=hf.S;
+  return {
+    cur:hf.cur,arm:hf.arm?1:0,
+    sol:hf.sol?hf.sol.steps.length:-1,beats:hf.sol?hf.sol.beats:-1,
+    windTag:Math.round(hf.windTag),nextMs:Math.round(hf.nextMs),think:Math.round(hf.think),
+    ghostMs:Math.round(hf.ghostMs),printMs:Math.round(hf.printMs),beatMs:Math.round(hf.beatMs),
+    domCell:document.querySelectorAll('#hfStatic .hf-cell').length,
+    domHole:document.querySelectorAll('#hfStatic .hf-hole').length,
+    domHit:document.querySelectorAll('#hfHitG .hf-hit').length,
+    domTile:document.querySelectorAll('#hfTileG .hf-tile').length,
+    domHot:document.querySelectorAll('#hfTileG .hf-tile.hot').length,
+    domNow:document.querySelectorAll('#hfTileG .hf-tile.now').length,
+    domFgn:document.querySelectorAll('#hfTileG .hf-tile.fgn').length,
+    domHard:document.querySelectorAll('#hfTileG .hf-tile.hard').length,
+    domDone:document.querySelectorAll('#hfTileG .hf-tile.done').length,
+    domBurnt:document.querySelectorAll('#hfTileG .hf-tile.burnt').length,
+    domGrace:document.querySelectorAll('#hfTileG .hf-grace').length,
+    domCoal:document.querySelectorAll('#hfDecoG .hf-coal').length,
+    domBrick:document.querySelectorAll('#hfDecoG .hf-brick').length,
+    domRed:document.querySelectorAll('#hfDecoG .hf-red').length,
+    domIce:document.querySelectorAll('#hfDecoG .hf-ice').length,
+    domChill:document.querySelectorAll('#hfDecoG .hf-chill').length,
+    domPaper:document.querySelectorAll('#hfPaperG rect').length,
+    domMini:document.querySelectorAll('#hfMiniSvg path').length,
+    domGhost:document.querySelectorAll('.hf-ghostBox').length,
+    domCur:document.querySelectorAll('#hfCurBox').length,
+    domMark:document.querySelectorAll('.hf-mark').length,
+    tempTxt:[].slice.call(document.querySelectorAll('.hf-temp')).map(function(e){return e.textContent}).join(','),
+    numTxt:[].slice.call(document.querySelectorAll('#hfTileG .hf-num')).map(function(e){return e.textContent}).join(','),
+    cap:(document.getElementById('hfMiniCap')||{}).textContent||'',
+    ask:(document.getElementById('hfAsk')||{}).textContent||'',
+    line:(document.getElementById('hfHintLine')||{}).textContent||'',
+    msg:(document.getElementById('hfMsg')||{}).innerHTML||'',
+    powTxt:(document.getElementById('hfPowTxt')||{}).textContent||'',
+    clkTxt:(document.getElementById('hfClockTxt')||{}).textContent||'',
+    badge:(document.getElementById('hfBadge')||{}).textContent||'',
+    tag:(document.getElementById('hfTag')||{}).textContent||'',
+    scoreTxt:(document.getElementById('hfScoreTxt')||{}).textContent||'',
+    rankTxt:(document.getElementById('hfRankTxt')||{}).textContent||'',
+    heartTxt:(document.getElementById('hfHeartTxt')||{}).textContent||'',
+    lvTxt:(document.getElementById('hfLvTxt')||{}).textContent||'',
+    litTxt:(document.getElementById('hfLitTxt')||{}).textContent||'',
+    comboTxt:(document.getElementById('hfComboTxt')||{}).textContent||'',
+    moveTxt:(document.getElementById('hfMoveTxt')||{}).textContent||'',
+    saveTxt:(document.getElementById('hfSaveTxt')||{}).textContent||'',
+    burnTxt:(document.getElementById('hfBurnTxt')||{}).textContent||'',
+    frostTxt:(document.getElementById('hfFrostTxt')||{}).textContent||'',
+    wrongTxt:(document.getElementById('hfWrongTxt')||{}).textContent||'',
+    furnace:(document.getElementById('hfFCoalT')||{}).textContent||'',
+    tongTxt:(document.getElementById('hfFTong')||{}).textContent||'',
+    lgNow:(function(){for(let d=1;d<=5;d++){const el=document.getElementById('hfLg'+d);if(el&&/hf-lgdNow/.test(el.getAttribute('class')||''))return d}return 0})(),
+    tip:(document.querySelector('.hf-tip')||{}).innerHTML||'',
+    baskTxt:(document.getElementById('hfBasket')||{}).textContent||'',
+    tblCls:(document.getElementById('hfTbl')||{}).className||''
+  };
+};
+window.hfvBtn=function(){
+  const g=function(id){const e=document.getElementById(id);return e?e:0};
+  const tk=g('hfTakeBtn'),fs=g('hfFrostBtn'),rv=g('hfRevealBtn'),pv=g('hfPrevBtn'),un=g('hfUndoBtn'),rb=g('hfReBtn');
+  const tbl=document.getElementById('hfTbl');
+  return {
+    takeDis:tk.disabled?1:0,frostDis:fs.disabled?1:0,revealDis:rv.disabled?1:0,
+    prevDis:pv.disabled?1:0,undoDis:un.disabled?1:0,reDis:rb.disabled?1:0,
+    revealShown:rv.style.display==='none'?0:1,
+    takeTxt:(tk.textContent||'').trim(),frostTxt:(fs.textContent||'').trim(),revealTxt:(rv.textContent||'').trim(),
+    prevTxt:(pv.textContent||'').trim(),undoTxt:(un.textContent||'').trim(),reTxt:(rb.textContent||'').trim(),
+    frostOn:fs.classList.contains('on'),
+    badgeOn:document.getElementById('hfBadge')?document.getElementById('hfBadge').classList.contains('on'):false,
+    tagOn:document.getElementById('hfTag')?document.getElementById('hfTag').classList.contains('on'):false,
+    markN:document.querySelectorAll('.hf-mark').length,ringN:document.querySelectorAll('.hf-ring').length,
+    bitN:document.querySelectorAll('.hf-bit').length,popN:document.querySelectorAll('.hf-pop').length,
+    sparkN:document.querySelectorAll('.hf-spark').length,ghostN:document.querySelectorAll('.hf-ghostBox').length,
+    flashN:document.querySelectorAll('.hf-flash').length,
+    tblDead:tbl?tbl.classList.contains('dead'):false,
+    tblHot:tbl?tbl.classList.contains('hot'):false,
+    tblWarn:tbl?tbl.classList.contains('warn'):false,
+    low:document.getElementById('hfClockBox')?document.getElementById('hfClockBox').classList.contains('low'):false,
+    barW:(document.getElementById('hfClockBar')||{}).style?document.getElementById('hfClockBar').style.width:'',
+    ndN:document.querySelectorAll('#hfBasket .hf-nd').length,
+    more:(document.querySelector('#hfBasket .hf-more')||{}).innerHTML||'',
+    cardDot:(document.getElementById('hfCardDot')||{}).textContent||'',
+    cardTip:(document.getElementById('hfCardTip')||{}).textContent||''
+  };
+};
+/* 照军师的步骤在真板子上走一遍：放炭 → 一拍一拍等 → 出炉就摘 */
+window.hfvSolve=function(){
+  const S0=hf.S,sol=hf.sol;
+  if(!S0||!sol)return hf.S?hf.S.qi:-1;
+  for(let q=0;q<sol.steps.length&&hf.S&&hf.S.qi<hf.S.n;q++){
+    const st=sol.steps[q];
+    if(st.kind==='coal'){
+      if(!hf.S.coal[st.i]&&hf.basket>0&&hf.S.tong<=0)hfPlaceCoal(st.i);
+      continue;
+    }
+    let t=hfTileOfK(hf.S,st.k),guard=0;
+    while(t&&!t.hot&&!t.burnt&&!t.done&&guard++<30){
+      hfBeat();
+      if(hf.over)return hf.S?hf.S.qi:-1;
+      if(hf.S!==S0){ /* 糊了另摆一盘：这一笔在新板子上重新找 */
+        t=hfTileOfK(hf.S,st.k);
+        if(!t)return hf.S.qi;
+      }
+    }
+    t=hfTileOfK(hf.S,st.k);
+    if(t&&t.hot&&t.k===hf.S.qi)hfTake(t);
+    if(hf.over)return hf.S?hf.S.qi:-1;
+    if(hf.S.qi>=hf.S.n)break;
+  }
+  hfCells();hfTiles();hfPaper();hfMini();hfHud();hfAskText();hfLine();
+  return hf.S?hf.S.qi:-1;
+};
+window.hfvStage=function(p){
+  p=p||{};
+  hfStopAll();hf.gen++;
+  hf.run=true;hf.over=false;
+  hf.timers=[];
+  hf.lv=p.lv===undefined?1:p.lv;
+  hf.score=p.score||0;hf.hearts=p.hearts===undefined?HF_HEARTS:p.hearts;
+  hf.combo=p.combo||0;hf.maxCombo=p.maxCombo||hf.combo;
+  hf.words=p.words||0;hf.lits=p.lits||0;hf.moves=p.moves||0;hf.taps=p.taps||0;
+  hf.burns=p.burns||0;hf.wrongs=p.wrongs||0;hf.frosts=p.frosts||0;hf.early=p.early||0;
+  hf.saved=p.saved||0;hf.deads=p.deads||0;hf.reveals=p.reveals||0;
+  hf.nags=0;hf.previews=p.previews||0;hf.rewinds=0;hf.respins=0;
+  hf.previewN=p.previewN===undefined?2:p.previewN;
+  hf.undoN=p.undoN===undefined?3:p.undoN;
+  hf.respN=p.respN===undefined?1:p.respN;
+  hf.revealN=p.revealN===undefined?(hf.lv>=5?HF_REVEAL_MAX:0):p.revealN;
+  hf.ghostMs=0;hf.ghost=null;hf.tagMs=0;hf.windTag=p.windTag||0;
+  hf.think=0;hf.playMs=0;hf.t=0;hf.hudTxt={};
+  hf.printMs=0;hf.nextMs=0;hf.printRun=p.printRun||0;hf.since=p.since===undefined?0:p.since;
+  hf.cleanWord=p.cleanWord===undefined?true:p.cleanWord;hf.failWord=p.failWord||0;
+  hf.hist=[];hf.arm=!!p.arm;hf.tid=1;
+  hf.beatMs=0;hf.beep=0;
+  /* 字：要么给一个真 rec（截图要的是玩家真能看见的那个字），要么现编一个 */
+  let rec=p.rec;
+  if(!rec){
+    const dirs=p.dirs||[0,1,2,3,0].slice(0,p.n===undefined?4:p.n);
+    const n=p.n===undefined?dirs.length:p.n;
+    const strokes=[],medians=[];
+    for(let i=0;i<n;i++){
+      strokes.push('M100 400 L600 400 L600 460 L100 460 Z');
+      medians.push([[100,430],[600,430]]);
+    }
+    rec={ch:p.ch||'本',n:n,dirs:dirs.slice(0,n),raw:{strokes:strokes,medians:medians}};
+  }
+  hf.rec=rec;hf.n=rec.n;hf.gly=hfGlyOf(rec);
+  hf.windMs=HF_WIND_BEATS*HF_BEAT_MS;
+  let S,r=null;
+  if(p.set){
+    S=hfBlank();
+    S.n=rec.n;S.qi=p.set.qi===undefined?0:p.set.qi;
+    (p.set.coal||[]).forEach(function(i){S.coal[i]=1});
+    (p.set.brick||[]).forEach(function(i){S.brick[i]=1});
+    (p.set.red||[]).forEach(function(i){S.red[i]=1});
+    (p.set.ice||[]).forEach(function(i){S.ice[i]=1;S.iceBeats[i]=p.set.iceBeats||HF_ICE_BEATS});
+    (p.set.chill||[]).forEach(function(i){S.chill[i]=2});
+    S.age=p.set.age||0;S.beat=p.set.beat||0;S.tong=p.set.tong||0;S.reveal=p.set.reveal||0;
+    (p.set.tiles||[]).forEach(function(x){
+      S.tiles.push({id:hf.tid++,cell:x.cell,k:x.fgn?-1:x.k,fgn:x.fgn||0,hard:x.hard||0,
+        done:x.done||0,burnt:x.burnt||0,hot:0,hotMs:0});
+    });
+    if(p.set.reveal)S.reveal=1;
+    hfFlush(S);
+    (p.set.hot||[]).forEach(function(k){
+      const t=hfTileOfK(S,k);
+      if(t){t.hot=1;t.hotMs=p.set.hotMs===undefined?HF_GRACE_MS:p.set.hotMs}
+    });
+    r={S:S,steps:p.set.steps||[],plan:p.set.steps||[],beats:p.set.beats||0,sec:p.clockSec||60,coal:(p.set.coal||[])[0]||0,
+      cfg:{junk:0,brick:0,hard:0,red:0},ds:[],hard:[]};
+  }else{
+    r=hfGen(rec,hf.lv,p.from||0);
+    if(!r)return 0;
+    S=r.S;
+  }
+  /* 炉具读数得在「这一盘真的摆出来了」之后才改：摆砸了就 return，别留半套状态 */
+  hf.coalMax=p.coalMax===undefined?hfCoalOf(hf.lv):p.coalMax;
+  hf.frostMax=p.frostMax===undefined?hfFrostNOf(hf.lv):p.frostMax;
+  hf.basket=p.basket===undefined?hf.coalMax:p.basket;
+  hf.frostN=p.frostN===undefined?hf.frostMax:p.frostN;
+  hf.wind=p.wind===undefined?hfWindOf(hf.lv):p.wind;
+  hf.S=S;hf.sol=r;
+  hf.clockSec=p.clockSec===undefined?r.sec:p.clockSec;
+  hf.clock=p.clock===undefined?1:p.clock;
+  hf.red=!!p.red;
+  hf.cur=p.cur===undefined?r.coal:p.cur;
+  hf.tid=Math.max(hf.tid,1000);
+  showScreen('heat');
+  hfBind();hfPointer();
+  hfRenderStatic();hfBoard();hfPaper();hfMini();hfBasket();hfHud();hfAskText();hfLine();
+  if(p.say)hfSay(p.say,'#C5E1A5');
+  return 1;
+};
+window.hfvSet=function(k,v){
+  if(!hf.S&&k!=='rec'&&k!=='run')return 0;
+  if(k==='clock')hf.clock=v;
+  else if(k==='clockSec')hf.clockSec=v;
+  else if(k==='think')hf.think=v;
+  else if(k==='beatMs')hf.beatMs=v;
+  else if(k==='windMs')hf.windMs=v;
+  else if(k==='basket')hf.basket=v;
+  else if(k==='coalMax')hf.coalMax=v;
+  else if(k==='frostN')hf.frostN=v;
+  else if(k==='frostMax')hf.frostMax=v;
+  else if(k==='revealN')hf.revealN=v;
+  else if(k==='previewN')hf.previewN=v;
+  else if(k==='undoN')hf.undoN=v;
+  else if(k==='respN')hf.respN=v;
+  else if(k==='hearts')hf.hearts=v;
+  else if(k==='combo')hf.combo=v;
+  else if(k==='score')hf.score=v;
+  else if(k==='words')hf.words=v;
+  else if(k==='lv')hf.lv=v;
+  else if(k==='wind')hf.wind=v?1:0;
+  else if(k==='red')hf.red=!!v;
+  else if(k==='arm')hf.arm=!!v;
+  else if(k==='since')hf.since=v;
+  else if(k==='printRun')hf.printRun=v;
+  else if(k==='failWord')hf.failWord=v;
+  else if(k==='cleanWord')hf.cleanWord=!!v;
+  else if(k==='tagMs')hf.tagMs=v;
+  else if(k==='windTag')hf.windTag=v;
+  else if(k==='ghostMs')hf.ghostMs=v;
+  else if(k==='nextMs')hf.nextMs=v;
+  else if(k==='cur')hf.cur=v;
+  else if(k==='qi'){hf.S.qi=v;hfFlush(hf.S)}
+  else if(k==='tong'){hf.S.tong=v}
+  else if(k==='age'){hf.S.age=v;hfFlush(hf.S)}
+  else if(k==='beat'){hf.S.beat=v}
+  else if(k==='reveal'){hf.S.reveal=v?1:0}
+  else if(k==='rec')hf.rec=v;
+  else if(k==='n')hf.n=v;
+  else return 0;
+  return 1;
+};
+window.hfvCellName=function(i){return hfCellName(i)};
+window.hfvIdx=function(c,r){return hfIdx(c,r)};
+window.hfvDist=function(i){return hf.S?hfDistCell(hf.S,i):-1};
+window.hfvBeats=function(i){return hf.S?hfBeatsTo(hf.S,i):-1};
+window.hfvTemp=function(i){return hf.S?hf.S.temp[i]:-1};
+window.hfvSayTile=function(k){return hf.S?hfTileSay(hf.S,k):''};
+window.hfvIgnSay=function(hard){return hard?'🪨 硬脾牌，燃点 <b>'+HF_HARD_IGN+'</b> 度':'燃点 <b>'+HF_IGN+'</b> 度'};
+window.hfvStepSay=function(){const st=hfNextStep();return st?{kind:st.kind,i:(st.i===undefined?-1:st.i),k:(st.k===undefined?-1:st.k),say:hfStepSay(st)}:{none:1}};
+window.hfvTick=function(dt){hfTick(dt||0.05)};
+window.hfvPump=function(n,dt){for(let i=0;i<(n||20);i++)hfTick(dt===undefined?HF_BEAT_MS/1000:dt)};
+window.hfvBeat=function(n){for(let q=0;q<(n===undefined?1:n);q++)hfBeat();return hf.S?{beat:hf.S.beat,qi:hf.S.qi}:null};
+window.hfvAging=function(ms){return hf.S?hfAging(hf.S,ms||HF_BEAT_MS).length:0};
+window.hfvWind=function(){hfWind();return hf.S?{beat:hf.S.beat,windMs:Math.round(hf.windMs)}:null};
+window.hfvTap=function(i){return hfTapCell(i)?1:0};
+window.hfvPlace=function(i){return hfPlaceCoal(i)?1:0};
+window.hfvLift=function(i){return hfLiftCoal(i)?1:0};
+window.hfvTapTile=function(id){
+  const S=hf.S;if(!S)return 0;
+  for(let q=0;q<S.tiles.length;q++)if(S.tiles[q].id===id)return hfTapTile(S.tiles[q],S.tiles[q].cell)?1:0;
+  return 0;
+};
+window.hfvTakeNext=function(){return hfTakeNext()?1:0};
+window.hfvFrost=function(i){return hfFrost(i)?1:0};
+window.hfvArm=function(){return hfFrostArm()?1:0};
+window.hfvReveal=function(){return hfReveal()?1:0};
+window.hfvPreview=function(){const b=hf.previewN;hfPreview();return hf.previewN<b?1:0};
+window.hfvUndo=function(){const b=hf.undoN;hfUndo();return hf.undoN<b?1:0};
+window.hfvRespin=function(){const b=hf.respN;hfRespin();return hf.respN<b?1:0};
+window.hfvRedress=function(){return hfRedress()?1:0};
+window.hfvNewBoard=function(from){return hfNewBoard(from||0)?1:0};
+window.hfvNewWord=function(){return hfNewWord()?1:0};
+window.hfvWin=function(){hfWin();return Math.round(hf.score)};
+window.hfvPrint=function(k,ch,fresh){hfPrint(k||0,ch||0,fresh===undefined?HF_GRACE_MS:fresh);return Math.round(hf.score)};
+window.hfvBurn=function(k){
+  const S=hf.S;if(!S)return 0;
+  const t=hfTileOfK(S,k===undefined?S.qi:k);
+  if(!t)return 0;
+  hfBurn(t);
+  return 1;
+};
+window.hfvJunkBurn=function(){
+  const S=hf.S;if(!S)return 0;
+  for(let q=0;q<S.tiles.length;q++)if(S.tiles[q].fgn&&!S.tiles[q].burnt&&!S.tiles[q].done){hfJunkBurn(S.tiles[q]);return 1}
+  return 0;
+};
+window.hfvWrong=function(n){hfOnWrong(n||1);return Math.round(hf.score)};
+window.hfvLoseHeart=function(w){hfLoseHeart(w||'wrong');return hf.hearts};
+window.hfvPowerOut=function(k){hfPowerOut(k||'clock');return hf.hearts};
+window.hfvNag=function(){hfNag();return hf.nags};
+window.hfvHelp=function(){hfHelp();return (document.getElementById('hfMsg')||{}).innerHTML||''};
+window.hfvCursor=function(c){hf.cur=c;hfCursor();hfCursorSay();return (document.getElementById('hfMsg')||{}).innerHTML||''};
+window.hfvAsk=function(){const el=document.getElementById('hfAsk');return el?el.textContent:''};
+window.hfvLineT=function(){const el=document.getElementById('hfHintLine');return el?el.textContent:''};
+window.hfvSay=function(){const el=document.getElementById('hfMsg');return el?el.innerHTML:''};
+window.hfvBadge=function(){return hf.S?hfBadgeSay(hf.S):''};
+window.hfvBasketT=function(){return hfBasketHTML()};
+window.hfvMeter=function(){hfMeter();return (document.getElementById('hfClockTxt')||{}).textContent||''};
+window.hfvAfter=function(){hfAfter();return 1};
+window.hfvBoard2=function(){hfBoard();return 1};
+window.hfvEnd=function(r){hfEnd(r||'quit');return Math.round(hf.score)};
+window.hfvRank=function(n){const R=hfRank(n);return R.e+' '+R.t};
+window.hfvPool=function(){return hf.pool.map(function(r){return r.ch+r.n})};
+window.hfvT=function(ms){return hfT(function(){},ms||10)};
+window.hfvMiss=function(){return (localStorage.getItem('hz_heat_miss')||'').split(',').filter(function(c){return c}).join('')};
+window.hfvBook=function(){return (localStorage.getItem('hz_heat_book')||'').split(',').filter(function(c){return c}).join('')};
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
