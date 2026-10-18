@@ -6114,6 +6114,55 @@ button:active{transform:scale(.95)}
 #screen-firefly .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
 /* 窄屏（手机）：小字卡挪到林子台上头，林子独占整幅宽 */
 @media(max-width:460px){.ffy-stage{flex-direction:column}.ffy-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.ffy-mini svg{flex:0 0 74px;width:74px}.ffy-cap{flex:0 1 auto;text-align:left}}
+/* ================= v1.88 笔顺蝠洞回声 ================= */
+.snr-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.snr-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.snr-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#E1F5FE;margin:2px 0 6px;line-height:1.35}
+.snr-ask small{font-size:13px;font-weight:400;color:#B0BEC5}
+.snr-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.snr-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.snr-mini svg{width:100%;height:auto;background:rgba(255,255,255,.06);border-radius:12px}
+.snr-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+.snr-tbl{flex:1;min-width:0;position:relative;background:#050A12;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 18px rgba(0,0,0,.75)}
+.snr-tbl.dead{filter:grayscale(.85) brightness(.6)}
+.snr-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.snr-tag{position:absolute;left:50%;top:8px;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#E0F7FA;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis;z-index:6}
+.snr-tag.on{opacity:1}
+.snr-judge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.82);color:#FFF59D;font-size:15px;font-weight:800;padding:7px 16px;border-radius:14px;pointer-events:none;white-space:nowrap;max-width:94%;overflow:hidden;text-overflow:ellipsis;z-index:7;box-shadow:0 0 22px rgba(0,0,0,.6)}
+.snr-fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:5}
+.snr-gr{position:absolute;width:4px;height:4px;border-radius:50%;opacity:.95;pointer-events:none;animation:snrGr .62s ease-out forwards}
+@keyframes snrGr{0%{transform:translate(0,0) scale(1);opacity:.95}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+.snr-warn{box-shadow:inset 0 0 0 3px #FF5252,0 0 18px rgba(255,82,82,.5)}
+.snr-meter{display:flex;gap:8px;align-items:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.snr-tl{position:relative;flex:1;height:26px;background:rgba(255,255,255,.1);border-radius:13px;overflow:hidden}
+.snr-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#4DD0E1,#26A69A);transition:width .2s linear}
+.snr-tl b{position:absolute;left:0;top:0;width:100%;height:26px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.snr-tl.low i{background:linear-gradient(90deg,#FF8A65,#FFD54F)}
+.snr-torch{position:relative;flex:1;height:20px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
+.snr-torch i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#FF7043,#FFB300 60%,#FFE082);transition:width .2s linear}
+.snr-torch b{position:absolute;left:0;top:0;width:100%;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.snr-pow{display:block;width:calc(100% - 28px);max-width:520px;margin:2px auto 0;white-space:normal;text-align:center;line-height:1.5;font-size:12px;color:#CFD8DC;background:rgba(255,255,255,.08);padding:3px 9px;border-radius:11px}
+.snr-pow b{color:#80DEEA}
+.snr-tools{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;width:100%;margin:4px 0 6px}
+.snr-tool{position:relative;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#fff;font-size:14px;font-weight:700;padding:8px 12px;cursor:pointer}
+.snr-tool span{display:block;font-size:9px;opacity:.6;font-weight:400}
+.snr-tool b{position:absolute;right:-4px;top:-6px;background:#FF6E40;color:#fff;font-size:10px;border-radius:9px;padding:1px 5px}
+.snr-tool:disabled{opacity:.4;cursor:default}
+.snr-tool.go{background:rgba(77,208,225,.22);border-color:#4DD0E1}
+.snr-hintline{width:100%;text-align:center;font-size:12px;color:#BCAAA4;margin:0 0 6px;line-height:1.4}
+.snr-hintline b{color:#FFF176}
+.snr-msg{width:calc(100% - 28px);max-width:520px;margin:0 auto 12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.6}
+.snr-msg b{color:#FFF176}
+.snr-msg code{background:rgba(0,0,0,.35);padding:1px 5px;border-radius:5px;color:#A5D6A7}
+@keyframes snrShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.snr-tbl.shake{animation:snrShake .34s}
+.snr-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px}
+.snr-cdot.on{display:block}
+.snr-pk{background:rgba(255,255,255,.08);padding:4px 10px;border-radius:12px;font-size:13px;color:#CFD8DC}
+/* 顶栏挤的时候「← 返回」不能折成两行 */
+#screen-sonar .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：小字卡挪到洞台上头，洞独占整幅宽 */
+@media(max-width:460px){.snr-stage{flex-direction:column}.snr-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.snr-mini svg{flex:0 0 74px;width:74px}.snr-cap{flex:0 1 auto;text-align:left}}
 </style>
 
 </head>
@@ -6170,8 +6219,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 86 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">86</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 87 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">87</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6182,13 +6231,18 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>86 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>32</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>87 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>33</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
-    <div class="mode-card" id="ffyCard" onclick="enterMode('firefly')">
+    <div class="mode-card" id="snrCard" onclick="enterMode('sonar')">
+      <div class="icon">🦇</div>
+      <div class="info"><h3>笔顺蝠洞回声</h3><p id="snrCardTip">洞里全黑，一块牌也看不见：喊一声，声波的圆环扫到哪块钟乳石牌、那块才亮一下 —— 先亮的在近处，石笋背后照不见，得贴着洞壁借一记回声</p></div>
+      <span class="snr-cdot" id="snrCardDot">🆕</span>
+    </div>
+<div class="mode-card" id="ffyCard" onclick="enterMode('firefly')">
       <div class="icon">🌙</div>
       <div class="info"><h3>笔顺萤夜林</h3><p id="ffyCardTip">一群萤火虫你一只都指挥不动：只有它们扑到灯笼上，才照得出那盏灯写的笔画方向 —— 看清了再点亮它，群会自己飞过来把这一笔收走，可夜蛾也跟着光来</p></div>
       <span class="ffy-cdot" id="ffyCardDot">🆕</span>
@@ -6798,6 +6852,82 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-sonar">
+  <div class="top-bar">
+    <button class="back-btn" onclick="snrLeave()">← 返回</button>
+    <div class="stats"><span id="snrScoreTxt">🎯 0 分</span><span id="snrLvTxt">第 1 层 · 已收 0 字</span><span id="snrQTxt">⏳ 这一笔 ——</span></div>
+    <button class="icon-btn" onclick="snrHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="snr-hud">
+    <span id="snrRankTxt" title="称号">🦇 一只蝙蝠</span>
+    <span id="snrHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="snrComboTxt" title="连击">🔥 连 0</span>
+    <span id="snrLitTxt" title="收了第几笔">✅ 0/0 笔</span>
+    <span id="snrAirTxt" title="还剩几口气">🌬 12 气</span>
+    <span id="snrPingTxt" title="喊过几声">🔊 喊 0</span>
+    <span id="snrSeenTxt" title="被照见过几次">👁 0 次照见</span>
+    <span id="snrShadowTxt" title="刚才几块牌在声影里">🕳 0 块声影</span>
+    <span id="snrEchoTxt" title="回声照见几次">🔁 0 次回声</span>
+    <span id="snrTouchTxt" title="摸黑撞到几块">🖐 摸到 0 块</span>
+    <span id="snrOwlTxt" title="被穴鸮叼走的牌">🦉 叼走 0 块</span>
+    <span id="snrGemTxt" title="收进洞罐的矿物">💎 0 块洞产</span>
+  </div>
+  <div class="snr-ask" id="snrAsk">🦇 正在点火把……<br><small>在字库里挑「每一笔都认得出方向」的字</small></div>
+  <div class="snr-stage">
+    <div class="snr-mini">
+      <svg viewBox="0 0 1024 1024" id="snrMiniSvg"></svg>
+      <div class="snr-cap" id="snrMiniCap">这个字</div>
+    </div>
+    <div class="snr-tbl" id="snrTbl">
+      <canvas class="snr-canvas" id="snrCanvas" width="360" height="255"></canvas>
+      <div class="snr-fx" id="snrFx"></div>
+      <div class="snr-judge" id="snrJudge"></div>
+      <div class="snr-tag" id="snrTag">🦇 洞里全黑</div>
+    </div>
+  </div>
+  <div class="snr-meter">
+    <div class="snr-tl" id="snrQBox"><i id="snrQBar"></i><b id="snrQTxt2">⏳ 这一笔 —— 秒</b></div>
+    <div class="snr-torch" id="snrTorchBox"><i id="snrTorchBar"></i><b id="snrTorchTxt">🕯 火把烧完还有 —— 秒</b></div>
+  </div>
+  <div class="snr-pow" id="snrPowTxt">🦇 洞第 <b>1</b> 层 · 牌 <b>4</b> 块（亮 0 · 轮廓 0 · 全黑 4）· 这一声能传 <b>240</b> 步 · 穴鸮 <b>1</b> 只</div>
+  <div class="snr-tools">
+    <button class="snr-tool" id="snrFeatherBtn" disabled>🪶 羽扇<span>Q</span><b>剩 1</b></button>
+    <button class="snr-tool" id="snrStoneBtn" disabled>💡 萤石<span>E</span><b>剩 2</b></button>
+    <button class="snr-tool go" id="snrMuffleBtn" disabled>🧣 绒套<span>F</span><b>剩 2</b></button>
+    <button class="snr-tool" id="snrEndBtn" onclick="snrEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="snr-hintline" id="snrHintLine">🦇 <b>洞里一块牌也看不见</b>：按 <code>空格</code> 喊一声，声波的圆环扫到哪儿、哪儿才亮一下</div>
+  <div class="snr-msg" id="snrMsg">眼前是 <b>一条黑洞</b>：洞壁上挂着 <b>几块钟乳石牌</b>，每块写着一个 <b>横 / 竖 / 撇 / 捺 / 点</b>，<b>黑漆漆的一块也看不见</b>。你是洞里这只蝙蝠 —— <b>喊一声「嘀」</b>（<code>空格</code>），一圈声波 <b>往外扩</b>，<b>圆环扫到哪块牌，那块牌才亮一下</b><br>🔊 <b>先亮的那块在近处</b>：同一声喊出去，亮的 <b>先后</b> 就是 <b>远近</b>；亮完就熄，只留下一个 <b>轮廓</b>（知道那儿有块牌，<b>忘了它写的什么</b>）<br>🪨 洞里的 <b>石笋会挡声</b>：躲在石笋后面的牌 <b>怎么喊都不亮</b>（那是 <b>声影</b>）—— 换个位置再喊，或者 <b>贴着洞壁喊</b>，撞壁的 <b>回声</b> 能拐进影子里（回声照出来的字 <b>又短又灰</b>）<br>🦉 洞里有 <b>穴鸮</b>：它 <b>听得见你每一声</b>，撞到你 <b>就叼走一块牌</b>（答案牌被叼走会立刻在别处再挂一块，不出无解）。<b>绒套 🧣</b> 能让喊声变轻（它听不见，可你也传不远）<br>🖐 <b>摸黑撞牌不算答错</b>：撞见看不见的牌只 <b>摸到它在哪儿</b>；<b>要读它写的什么，只能靠回声</b>。读得出的牌撞上去才算答题 —— 撞对收这一笔，撞错掉一颗心<br>💧 顶上会 <b>滴水</b>（自己照一小圈，也盖住你这一声）、💎 <b>洞产</b> 撞上有分还补气；🕯 <b>火把</b> 烧完就得出洞</div>
+</div>
+<div class="screen" id="screen-sonar-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="snrLeave()">← 回首页</button>
+    <div class="stats"><span id="snrRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="snrRsEmoji">🦇</div>
+    <div style="font-size:26px;font-weight:800" id="snrRsTitle">火把烧完了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="snrRsSub">第 1 层</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px" id="snrRsPicks">
+      <span class="snr-pk" id="snrRsScore">🎯 0 分</span>
+      <span class="snr-pk" id="snrRsWords">🦇 收 0 个字</span>
+      <span class="snr-pk" id="snrRsLits">✅ 0 笔</span>
+      <span class="snr-pk" id="snrRsPings">🔊 喊了 0 声</span>
+      <span class="snr-pk" id="snrRsSeen">👁 照见 0 次</span>
+      <span class="snr-pk" id="snrRsOwl">🦉 被叼走 0 块</span>
+      <span class="snr-pk" id="snrRsGem">💎 0 块洞产 · 滴水 0 回</span>
+      <span class="snr-pk" id="snrRsSharp">🎯 一声中的 0 笔</span>
+      <span class="snr-pk" id="snrRsCombo">🔥 最长连 0</span>
+      <span class="snr-pk" id="snrRsBest">🏆 最高 0 分</span>
+    </div>
+    <div style="font-size:13px;color:#FFF59D;margin:6px auto 14px;max-width:420px;line-height:1.6" id="snrRsWhy"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin-bottom:14px" id="snrRsBook">图鉴里还没有字</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="primary-btn" onclick="snrAgain()">🦇 再进一趟洞</button>
+      <button class="secondary-btn" onclick="snrLeave()">🏠 回首页</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-firefly">
@@ -13059,6 +13189,7 @@ function updateHomeStats(){
   if(typeof saNudge==='function')saNudge();
   if(typeof ifxNudge==='function')ifxNudge();
   if(typeof ffyNudge==='function')ffyNudge();
+  if(typeof snrNudge==='function')snrNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -13091,6 +13222,7 @@ function enterMode(mode){
   if(mode==='sand'){saStart();return}
   if(mode==='icefire'){ifxStart();return}
   if(mode==='firefly'){ffyStart();return}
+  if(mode==='sonar'){snrStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -75335,6 +75467,1602 @@ window.vFfyStopLoop=function(){ffyStopLoop()};
 window.vFfyStartLoop=function(){ffyStartLoop()};
 window.vFfyNewQ=function(){ffyNewQ()};
 window.vFfyResolve=function(i){const L=ffy.lp[i];if(L)ffyResolve(L)};
+
+/* ================= v1.88 笔顺蝠洞回声（洞里全黑 · 只有声波的圆环扫过钟乳石牌才读得出它写的方向 · 先亮的那块在近处 · 石笋背后照不见，得贴到洞壁上借一记回声） ================= */
+const SNR_W=360,SNR_H=255;
+const SNR_DIRS=['横','竖','撇','捺','点'],SNR_ARW=['→','↓','↙','↘','↗'];
+const SNR_INK=['#FFD54F','#4FC3F7','#81C784','#FFB74D','#BA68C8'];
+const SNR_HEARTS=3,SNR_HEART_MAX=5,SNR_BOOK_MAX=300;
+const SNR_POOL_MIN=4,SNR_POOL_WANT=14,SNR_STROKE_MIN=3,SNR_STROKE_MAX=7;
+const SNR_TICK_MS=52,SNR_ACT_CD=210,SNR_RUN_MS=126000,SNR_RUN_MIN=78000;
+const SNR_AIR0=12,SNR_AIR_CAP0=12,SNR_AIR_MAX=20,SNR_COST_PING=1;
+const SNR_AIR_RIGHT=3,SNR_AIR_WORD=3,SNR_AIR_TIME=2,SNR_AIR_GEM=2;
+const SNR_PEN_WRONG=6,SNR_PEN_TIME=3,SNR_GEM_GAIN=3,SNR_WORD_BONUS=26,SNR_SHARP_BONUS=12;
+const SNR_MEM0=4200,SNR_LIT0=900,SNR_LIT_MIN=620,SNR_LIT_STEP=35;
+const SNR_ECHO_DIM=.45,SNR_ECHO_GAIN=.86,SNR_ECHO_NEAR=26,SNR_MUFFLE_MS=5000,SNR_MUFFLE_RANGE=.75;
+const SNR_WAVE=330,SNR_DRIP_R=46,SNR_DRIP_MS=620,SNR_DRIP_MUFF=.7,SNR_DRIP0=7000,SNR_DRIP_STEP=1500;
+const SNR_GEM_MS=14000,SNR_GEM0=11000;
+const SNR_STUN_MS=2600,SNR_OWL_COOL=2600,SNR_HUNT_MS=1700,SNR_POUNCE=15,SNR_TOUCH=14,SNR_SND_PAD=1,SNR_SNATCH_FAR=40;
+const SNR_BAT_R=7,SNR_CARD_R=13,SNR_BAT_SPD=118;
+const SNR_NEXT_MS=1300,SNR_TAG_MS=2300,SNR_NAG_MS=11000,SNR_NAG_HOLD=5200;
+const SNR_FEATHER0=1,SNR_STONE0=2,SNR_MUFFLE0=2,SNR_STONE_MS=1100;
+const SNR_HELP_MS=14000;
+const SNR_JEWELS=['石花','洞穴珍珠','蝙蝠菊','钟乳屑','盲鱼','蟋蟀蜕','萤石','方解石'];
+const SNR_NOTE=[262,311,392,466,523,587,698,784,932,1046];
+const SNR_RANKS=[
+  {n:0,e:'🦇',t:'一只蝙蝠'},{n:2,e:'🔊',t:'听得见回声'},{n:5,e:'🕳',t:'摸得着黑'},{n:9,e:'🪨',t:'绕得过石笋'},
+  {n:14,e:'🦉',t:'甩得开穴鸮'},{n:21,e:'💡',t:'砸得亮萤石'},{n:30,e:'🧭',t:'认得半条洞'},
+  {n:42,e:'🕯',t:'举着火把的老手'},{n:58,e:'👑',t:'整条洞都装得下'}
+];
+const snr={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],tones:0,toneAt:0,
+  pool:[],miss:[],rec:null,n:0,
+  lv:1,score:0,hearts:SNR_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,pings:0,echoes:0,seen:0,shadow:0,touches:0,snatched:0,rehangs:0,
+  sharp:0,wrongs:0,drips:0,gems:0,feathers:0,stones:0,muffles:0,nags:0,nagMs:0,
+  featherN:SNR_FEATHER0,stoneN:SNR_STONE0,muffleN:SNR_MUFFLE0,
+  air:SNR_AIR0,airMs:0,
+  cards:[],rocks:[],owls:[],waves:[],gem:null,
+  bat:{x:SNR_W/2,y:SNR_H/2,vx:0,vy:0},goal:null,stunMs:0,muffleMs:0,stoneMs:0,
+  keys:null,wing:0,gemCd:SNR_GEM0,
+  dripMs:SNR_DRIP0,drip:null,dripWinMs:0,
+  qi:0,busy:false,kind:'dir',want:0,qms:0,qms0:0,pingsSinceQ:0,wrongThisQ:false,
+  ctx:null,decor:null,
+  bound:false,dragging:false,hudAcc:0,
+  since:0,tagMs:0,helpMs:0,actMs:0,
+  clockMs:SNR_RUN_MS,warn:false,beep:0,
+  cleanWord:true,failWord:0,first:true,owlSaid:false,echoSaid:false
+};
+/* ---- 小工具 ---- */
+function snrInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function snrAdd(k,n){if(n)localStorage.setItem(k,String(snrInt(k)+n))}
+function snrSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function snrSay(t,c){const el=document.getElementById('snrMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function snrShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function snrOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function snrClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function snrRank(n){let r=SNR_RANKS[0];for(let i=0;i<SNR_RANKS.length;i++)if(n>=SNR_RANKS[i].n)r=SNR_RANKS[i];return r}
+function snrRok(d){return d<0||d>4?0:d}
+function snrTxt(c){return c&&c.kind==='count'?String(c.num):SNR_DIRS[snrRok(c.dir)]}
+function snrD2(ax,ay,bx,by){const dx=ax-bx,dy=ay-by;return dx*dx+dy*dy}
+function snrLive(){let n=0;for(let i=0;i<snr.cards.length;i++)if(snr.cards[i].st!=='gone')n++;return n}
+function snrLit(){let n=0;for(let i=0;i<snr.cards.length;i++)if(snr.cards[i].st==='lit')n++;return n}
+function snrGhost(){let n=0;for(let i=0;i<snr.cards.length;i++)if(snr.cards[i].st==='ghost')n++;return n}
+function snrDark(){let n=0;for(let i=0;i<snr.cards.length;i++)if(snr.cards[i].st==='dark')n++;return n}
+function snrAirPer(lv){return Math.max(1100,1900-lv*80)}
+function snrAirCap(lv){return Math.min(SNR_AIR_MAX,SNR_AIR_CAP0+lv)}
+function snrTone(f,d,t,v){
+  if(!snr.run||snr.over)return;
+  const n=performance.now();
+  if(n-snr.toneAt<24)return;
+  snr.toneAt=n;
+  snr.tones++;
+  tone(f,d,t,v);
+}
+function snrT(fn,ms){const g=snr.gen;const id=setTimeout(function(){const k=snr.timers.indexOf(id);if(k>=0)snr.timers.splice(k,1);if(g!==snr.gen)return;fn()},ms);snr.timers.push(id);return id}
+function snrKillTimers(){snr.timers.forEach(function(t){clearTimeout(t)});snr.timers=[]}
+/* ---- 难度表：洞越深，牌越多、石笋越多、声越传不远、亮得越短 ---- */
+function snrLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function snrTorchMs(lv){return Math.max(SNR_RUN_MIN,SNR_RUN_MS-(lv-1)*3400)}
+function snrQmsOf(lv){return Math.max(15000,34000-(lv-1)*2400)}
+function snrCardsOf(lv){return Math.min(8,4+Math.floor((lv-1)/2))}
+function snrRocksOf(lv){return Math.min(4,1+Math.floor((lv-1)/2))}
+function snrOwlOf(lv){return lv>=6?2:1}
+function snrLitMs(lv){return Math.max(SNR_LIT_MIN,SNR_LIT0-(lv-1)*SNR_LIT_STEP)}
+function snrMemMs(lv){return Math.max(2600,SNR_MEM0-(lv-1)*200)}
+function snrRange(lv){return Math.max(150,240-(lv-1)*9)}
+function snrOwlSp(lv){return Math.min(96,52+lv*5)}
+function snrDripMs(){return SNR_DRIP0-snr.lv*SNR_DRIP_STEP+Math.floor(Math.random()*3000)}
+/* ---- 声学几何：线段到点的距离、挡不挡声、最近的壁、镜像声源 ---- */
+function snrSegDist(px,py,ax,ay,bx,by){
+  const dx=bx-ax,dy=by-ay,L=dx*dx+dy*dy;
+  let t=L?((px-ax)*dx+(py-ay)*dy)/L:0;
+  t=snrClamp(t,0,1);
+  const qx=ax+dx*t,qy=ay+dy*t;
+  return Math.sqrt(snrD2(px,py,qx,qy));
+}
+function snrBlock(ax,ay,bx,by){
+  for(let i=0;i<snr.rocks.length;i++){
+    const r=snr.rocks[i];
+    if(snrSegDist(r.x,r.y,ax,ay,bx,by)<r.r+SNR_SND_PAD)return i;
+  }
+  return -1;
+}
+function snrWallOf(x,y){
+  const d=[x,SNR_W-x,y,SNR_H-y];
+  let k=0;
+  for(let i=1;i<4;i++)if(d[i]<d[k])k=i;
+  return {side:k,dist:d[k]};
+}
+function snrMirror(x,y,side){
+  if(side===0)return {x:-x,y:y};
+  if(side===1)return {x:SNR_W*2-x,y:y};
+  if(side===2)return {x:x,y:-y};
+  return {x:x,y:SNR_H*2-y};
+}
+/* 一声喊出去能读到什么：直声照得见的、石笋背后只靠回声的、连回声也照不到的（声影） */
+function snrTrace(px,py,range,echoOK){
+  const direct=[],echo=[],shadow=[];
+  const wl=echoOK?snrWallOf(px,py):null;
+  const canEcho=!!(wl&&wl.dist<=SNR_ECHO_NEAR&&range>=0);
+  for(let i=0;i<snr.cards.length;i++){
+    const c=snr.cards[i];
+    if(c.st==='gone')continue;
+    const d=Math.sqrt(snrD2(px,py,c.x,c.y));
+    if(d<=range&&snrBlock(px,py,c.x,c.y)<0){direct.push({i:i,d:d});continue}
+    if(canEcho){
+      const m=snrMirror(px,py,wl.side);
+      const de=Math.sqrt(snrD2(m.x,m.y,c.x,c.y));
+      if(de<=range*SNR_ECHO_GAIN&&snrBlock(m.x,m.y,c.x,c.y)<0){echo.push({i:i,d:de});continue}
+    }
+    shadow.push(i);
+  }
+  return {direct:direct,echo:echo,shadow:shadow,echoOn:canEcho};
+}
+/* ---- 字池：每一笔都认得出方向，三到七笔 ---- */
+const SNR_LETTERS='十人八小上下日水石田木禾白子不去个长门见对书本牛马飞入'
+  +'什么双王方气生叫主以尤区巨于记市民丝贝互仙勾丰父欠未击乎代计且斗示巧'
+  +'付兰专丈扎仅叉议歹矛冈仪辽曰瓦早旬旭买巡还远秀步每甲回困圈图火永冰';
+function snrCand(){
+  const out=[],push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&out.length<120;i++){const c=list[i];if(c&&out.indexOf(c)<0)out.push(c)}
+  };
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(snrShuf(charQueue.slice()));
+  push(snrShuf(SNR_LETTERS.split('')));
+  if(typeof CHARS!=='undefined')push(snrShuf(CHARS.slice()));
+  return out;
+}
+function snrMake(ch,raw){
+  const r=fmMake(ch,raw);
+  if(!r)return null;
+  if(r.n<SNR_STROKE_MIN||r.n>SNR_STROKE_MAX)return null;
+  let kinds=0;for(let i=0;i<r.n;i++)kinds|=1<<r.dirs[i];
+  if(kinds<4)return null;
+  return r;
+}
+async function snrBuildPool(keep){
+  const g=snr.gen,stale=function(){return g!==snr.gen||!snr.run||snr.over};
+  snr.miss=(localStorage.getItem('hz_sonar_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  snrShuf(snr.miss.slice(0,6)).forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  snrCand().forEach(function(c){if(want.indexOf(c)<0)want.push(c)});
+  if(!keep)snr.pool=[];
+  for(let k=0;k<want.length&&snr.pool.length<SNR_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i]){const m=snrMake(want[k+i],rs[i]);if(m&&snr.pool.indexOf(m)<0)snr.pool.push(m)}
+  }
+  return snr.pool.length>=SNR_POOL_MIN;
+}
+function snrPickRec(){
+  const w=snr.lv<=2?[SNR_STROKE_MIN,5]:[SNR_STROKE_MIN,SNR_STROKE_MAX];
+  const pool=snr.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  const base=pool.length?pool:snr.pool;
+  if(!base.length)return null;
+  const missList=base.filter(function(r){return snr.miss.indexOf(r.ch)>=0});
+  /* 听错过的字：开局第一个先还一遍债，之后每收三个再抽一个回来 */
+  const due=snr.first||(snr.words>0&&snr.words%3===0);
+  snr.first=false;
+  if(missList.length&&due)return snrOne(missList);
+  return snrOne(base);
+}
+/* ---- 生命周期 ---- */
+function snrStopAll(){
+  snrStopLoop();snrKillTimers();snr.gen++;
+  snr.tagMs=0;snr.helpMs=0;snr.actMs=0;snr.stunMs=0;snr.muffleMs=0;snr.stoneMs=0;
+  snr.warn=false;snr.goal=null;
+  const fx=document.getElementById('snrFx');if(fx)fx.innerHTML='';
+}
+async function snrStart(){
+  snrStopAll();
+  const g=snr.gen,stale=function(){return g!==snr.gen||!snr.run||snr.over};
+  snr.run=true;snr.over=false;snr.timers=[];
+  snr.lv=1;snr.score=0;snr.hearts=SNR_HEARTS;snr.combo=0;snr.maxCombo=0;
+  snr.words=0;snr.lits=0;snr.pings=0;snr.echoes=0;snr.seen=0;snr.shadow=0;snr.touches=0;
+  snr.snatched=0;snr.rehangs=0;snr.sharp=0;snr.wrongThisQ=false;snr.wrongs=0;snr.drips=0;snr.nagMs=0;
+  snr.gems=0;snr.feathers=0;snr.stones=0;snr.muffles=0;snr.nags=0;
+  snr.featherN=SNR_FEATHER0;snr.stoneN=SNR_STONE0;snr.muffleN=SNR_MUFFLE0;
+  snr.air=SNR_AIR0;snr.airMs=0;
+  snr.pool=[];snr.miss=[];snr.rec=null;snr.n=0;snr.cards=[];snr.rocks=[];snr.owls=[];
+  snr.waves=[];snr.gem=null;snr.qi=0;snr.busy=false;snr.pingsSinceQ=0;
+  snr.bat={x:Math.round(SNR_W/2),y:Math.round(SNR_H/2),vx:0,vy:0};
+  snr.dripMs=SNR_DRIP0;snr.drip=null;snr.dripWinMs=0;
+  snr.keys={left:false,right:false,up:false,down:false};snr.wing=0;snr.gemCd=SNR_GEM0;
+  snr.clockMs=snrTorchMs(1);snr.warn=false;snr.beep=0;
+  snr.since=0;snr.playMs=0;snr.t=0;snr.cleanWord=true;snr.failWord=0;snr.first=true;
+  snr.owlSaid=false;snr.echoSaid=false;snr.actMs=0;
+  showScreen('sonar');
+  snrBind();snrCanvasSize();
+  const tbl=document.getElementById('snrTbl');
+  if(tbl)tbl.classList.remove('dead');
+  snrHud();snrMeter();snrLine();
+  snrSay('眼前是 <b>一条黑洞</b>：洞壁上挂着 <b>几块钟乳石牌</b>，每块写着一个 <b>横 / 竖 / 撇 / 捺 / 点</b>，<b>黑漆漆的一块也看不见</b>。你是洞里这只蝙蝠 —— <b>喊一声「嘀」</b>（<code>空格</code>），一圈声波 <b>往外扩</b>，<b>圆环扫到哪块牌，那块牌才亮一下</b><br>🔊 <b>先亮的那块在近处</b>：同一声喊出去，亮的 <b>先后</b> 就是 <b>远近</b>；亮完就熄，只留下一个 <b>轮廓</b>（知道那儿有块牌，<b>忘了它写的什么</b>）<br>🪨 洞里的 <b>石笋会挡声</b>：躲在石笋后面的牌 <b>怎么喊都不亮</b>（那是 <b>声影</b>）—— 换个位置再喊，或者 <b>贴着洞壁喊</b>，撞壁的 <b>回声</b> 能拐进影子里（回声照出来的字 <b>又短又灰</b>）<br>🦉 洞里有 <b>穴鸮</b>：它 <b>听得见你每一声</b>，叫得越多它越朝你扑过来，<b>撞上了就叼走一块牌</b>（答案牌被叼走会立刻在别处再挂一块，不出无解）。<b>绒套 🧣</b> 能让喊声变轻（它听不见，可你也传不远）<br>🖐 <b>摸黑撞牌不算答错</b>：撞见看不见的牌只 <b>摸到它在哪儿</b>；<b>要读它写的什么，只能靠回声</b><br>🕯 <b>手里的火把</b> 烧完就得出洞；<b>这一笔的钟</b> 走光不算答错，只扣分、把牌全重挂');
+  snrSet('snrAsk','🦇 正在点火把……<br><small>在字库里挑「每一笔都认得出方向」的字</small>');
+  let ok=await snrBuildPool();
+  if(stale())return;
+  if(!ok){
+    snrSet('snrAsk','🕯 火把还没点着，再等一记……<br><small>字库在路上</small>');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await snrBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!snr.pool.length){
+    snr.run=false;
+    snrSet('snrAsk','😢 字库没加载好<br><small>稍后再进洞</small>');
+    snrSay('先去别的模式练两笔，回来字就齐了','#FFF59D');
+    return;
+  }
+  snrAdd('hz_sonar_games',1);
+  snrNewWord();
+  if(!snr.rec||!snr.cards.length||!snr.run||snr.over||stale()){
+    snr.run=false;
+    snrSet('snrAsk','😢 这条洞点不起来<br><small>稍后再进洞</small>');
+    return;
+  }
+  snrStartLoop();
+}
+function snrLeave(){
+  snrStopAll();
+  if(snr.run&&!snr.over){snrBank();snr.over=true;snr.run=false}
+  goHome();
+}
+function snrAgain(){snrStart()}
+
+/* ================= 第二段：布洞（石笋 · 牌位 · 穴鸮 · 矿物）与出题、喊声、照见 ================= */
+function snrCanvasSize(){
+  const cv=document.getElementById('snrCanvas');
+  if(!cv)return;
+  cv.width=SNR_W;cv.height=SNR_H;
+  snr.ctx=cv.getContext('2d');
+}
+/* 洞里能落脚的地方：离蝙蝠、离牌、离石笋都留够缝 */
+function snrSpot(gapCard,gapRock,keepBat){
+  for(let g=0;g<160;g++){
+    const x=Math.round(16+Math.random()*(SNR_W-32)),y=Math.round(16+Math.random()*(SNR_H-32));
+    if(keepBat&&snrD2(x,y,snr.bat.x,snr.bat.y)<46*46)continue;
+    let ok=true;
+    for(let i=0;i<snr.cards.length;i++){
+      const c=snr.cards[i];
+      if(c.st==='gone')continue;
+      if(snrD2(x,y,c.x,c.y)<(gapCard*gapCard)){ok=false;break}
+    }
+    if(!ok)continue;
+    for(let i=0;i<snr.rocks.length;i++){
+      const r=snr.rocks[i];
+      if(snrD2(x,y,r.x,r.y)<((r.r+gapRock)*(r.r+gapRock))){ok=false;break}
+    }
+    if(!ok)continue;
+    if(snr.gem&&snr.gem.taken!==true&&snrD2(x,y,snr.gem.x,snr.gem.y)<26*26)continue;
+    return {x:x,y:y};
+  }
+  return null;
+}
+function snrBuildRocks(){
+  snr.rocks=[];
+  const want=snrRocksOf(snr.lv);
+  for(let k=0;k<want;k++){
+    for(let g=0;g<40;g++){
+      const x=Math.round(30+Math.random()*(SNR_W-60)),y=Math.round(28+Math.random()*(SNR_H-56));
+      if(snrD2(x,y,snr.bat.x,snr.bat.y)<64*64)continue;
+      let ok=true;
+      for(let i=0;i<snr.rocks.length;i++)if(snrD2(x,y,snr.rocks[i].x,snr.rocks[i].y)<58*58){ok=false;break}
+      if(!ok)continue;
+      const r=Math.round(11+Math.random()*6);
+      snr.rocks.push({x:x,y:y,r:r,t:Math.random()*6.28});
+      break;
+    }
+  }
+}
+function snrBuildOwls(){
+  snr.owls=[];
+  const want=snrOwlOf(snr.lv);
+  for(let k=0;k<want;k++){
+    let x=20,y=20;
+    for(let g=0;g<40;g++){
+      x=Math.round(16+Math.random()*(SNR_W-32));y=Math.round(16+Math.random()*(SNR_H-32));
+      if(snrD2(x,y,snr.bat.x,snr.bat.y)>120*120)break;
+    }
+    snr.owls.push({x:x,y:y,vx:0,vy:0,tx:x,ty:y,huntMs:0,cool:0,carry:'',ang:Math.random()*6.28,wanderMs:0});
+  }
+}
+/* ---- 牌：一块牌 = 一个方向（或一个数字）；ans 只按「写的什么」判，不按第几块判 ---- */
+function snrNewCard(s){
+  return {x:s.x,y:s.y,st:'dark',ms:0,mem:0,gray:0,kind:snr.kind,dir:0,num:0,ans:0,seen:0,pop:0,born:snr.t};
+}
+function snrAssignLabels(){
+  const C=snr.cards;
+  if(!C.length||!snr.rec)return;
+  /* 答案只派给还活着的牌：收走的那块当不了答案，不然这一笔就没得撞了 */
+  const live=[];
+  for(let i=0;i<C.length;i++)if(C[i].st!=='gone')live.push(i);
+  if(!live.length)return 0;
+  const ai=snrOne(live);
+  if(snr.kind==='count'){
+    const nums=[];
+    for(let k=2;k<=12;k++)if(k!==snr.want)nums.push(k);
+    snrShuf(nums);
+    for(let i=0;i<C.length;i++){
+      const c=C[i];
+      c.kind='count';c.num=i===ai?snr.want:nums[(i-1+nums.length)%nums.length];c.dir=0;
+      c.ans=i===ai?1:0;
+    }
+  }else{
+    const dirs=[];
+    for(let k=0;k<5;k++)if(k!==snr.want)dirs.push(k);
+    snrShuf(dirs);
+    for(let i=0;i<C.length;i++){
+      const c=C[i];
+      c.kind='dir';c.dir=i===ai?snr.want:dirs[(i-1+dirs.length)%dirs.length];c.num=0;
+      c.ans=i===ai?1:0;
+    }
+  }
+  /* 写着答案的牌必须只有一块：备选方向/数字本来就绕不开 want，这里数一遍交给验证器兜底 */
+  let hits=0;
+  for(let i=0;i<C.length;i++)if(snrMatch(C[i]))hits++;
+  return hits;
+}
+function snrMatch(c){
+  if(!c||c.st==='gone')return false;
+  return snr.kind==='count'?c.num===snr.want:c.dir===snr.want;
+}
+function snrPlaceCards(){
+  snr.cards=[];
+  const want=snrCardsOf(snr.lv);
+  /* 每一块牌都要离蝙蝠够远：牌要是正长在它身上，一睁眼第一拍就判了一次答题（还可能判错掉心），
+     这一下不是它自己撞的 —— 重挂也是同样的规矩 */
+  for(let k=0;k<want;k++){
+    const s=snrSpot(30,18,true);
+    if(!s)break;
+    snr.cards.push(snrNewCard(s));
+  }
+  /* 撒不开就退回宽松间距：不许出「牌数比计划少一半」的秃洞 */
+  if(snr.cards.length<want){
+    snr.cards=[];
+    for(let k=0;k<want;k++){
+      const s=snrSpot(24,12,true);
+      if(!s)break;
+      snr.cards.push(snrNewCard(s));
+    }
+  }
+  snrAssignLabels();
+}
+function snrRehangCard(idx){
+  const c=snr.cards[idx|0];
+  if(!c)return 0;
+  const s=snrSpot(26,16,true)||{x:c.x,y:c.y};
+  c.x=s.x;c.y=s.y;c.st='dark';c.ms=0;c.mem=0;c.gray=0;c.seen=0;c.pop=0;
+  snrAssignLabels();
+  snr.rehangs++;
+  return 1;
+}
+/* ---- 出题 ---- */
+function snrNewWord(){
+  const R=snrPickRec();
+  if(!R){snrEnd('pool');return}
+  snr.rec=R;snr.n=R.n;snr.qi=0;snr.busy=false;snr.cleanWord=true;
+  snrBuildRocks();
+  snrBuildOwls();
+  snrNewQ();
+  snrBuildGem(true);
+}
+function snrAskText(){
+  const R=snr.rec;
+  if(!R)return;
+  if(snr.kind==='count'){
+    snrSet('snrAsk','🦇 「'+R.ch+'」<b>一共几笔</b>？—— 撞向写着那个数字的牌<br><small>第 '+(snr.qi+1)+'/'+R.n+' 笔 · 喊一声，看哪块牌 <b>先亮</b></small>');
+  }else{
+    snrSet('snrAsk','🦇 「'+R.ch+'」第 <b>'+(snr.qi+1)+'/'+R.n+'</b> 笔要往哪走？<br><small>黑里读不出牌写的什么 —— <b>喊一记，波前扫到哪块、那块亮一下</b></small>');
+  }
+}
+function snrNewQ(){
+  const R=snr.rec;
+  if(!R||!snr.run||snr.over)return;
+  snr.kind=(snr.qi%3===2)?'count':'dir';
+  snr.want=(snr.kind==='count')?R.n:R.dirs[snr.qi];
+  snr.qms0=snrQmsOf(snr.lv);snr.qms=snr.qms0;
+  snr.busy=false;snr.pingsSinceQ=0;snr.wrongThisQ=false;snr.nagMs=0;
+  snr.waves=[];
+  snrPlaceCards();
+  snrMini();snrAskText();snrLine();snrHud();snrMeter();snrDraw();
+}
+/* ---- 喊一声：算出声影与回声，把两圈波前丢进步骤里 ---- */
+function snrPing(px,py){
+  if(!snr.run||snr.over||snr.busy)return 0;
+  if(snr.actMs>0)return 0;
+  if(snr.air<SNR_COST_PING){
+    snrSay('🔇 <b>没气了</b>：喊一声要 '+SNR_COST_PING+' 口风，现在 0 口。<b>火把边烧边给你补气</b>（每 '+
+      (snrAirPer(snr.lv)/1000).toFixed(1)+' 秒补 1 口），或者 <b>摸黑去撞牌</b> 先把位置摸清','#FFF59D');
+    snrTag('🔇 一口气也不剩了，只能摸黑');
+    return 0;
+  }
+  const x=px==null?snr.bat.x:snrClamp(px,2,SNR_W-2);
+  const y=py==null?snr.bat.y:snrClamp(py,2,SNR_H-2);
+  let range=snrRange(snr.lv);
+  if(snr.muffleMs>0)range*=SNR_MUFFLE_RANGE;
+  if(snr.dripWinMs>0)range*=SNR_DRIP_MUFF;
+  range=Math.round(range);
+  const tr=snrTrace(x,y,range,snr.muffleMs<=0);
+  snr.air-=SNR_COST_PING;
+  snr.pings++;snr.pingsSinceQ++;
+  snr.shadow=tr.shadow.length;
+  snr.actMs=SNR_ACT_CD;
+  snr.waves.push({x:x,y:y,r:0,max:range,echo:false,due:tr.direct.map(function(e){return {i:e.i,d:e.d,gray:0}}),hit:0});
+  if(tr.echo.length){
+    const w=snrWallOf(x,y),m=snrMirror(x,y,w.side);
+    snr.waves.push({x:m.x,y:m.y,r:0,max:Math.round(range*SNR_ECHO_GAIN),echo:true,
+      due:tr.echo.map(function(e){return {i:e.i,d:e.d,gray:1}}),hit:0});
+  }
+  /* 穴鸮听得见每一声：绒套捂着就没人听见 */
+  if(snr.muffleMs<=0){
+    for(let i=0;i<snr.owls.length;i++){
+      const o=snr.owls[i];
+      if(snr.stunMs>0||o.cool>0)continue;
+      if(snrD2(o.x,o.y,x,y)<=range*1.3*range*1.3){o.tx=x;o.ty=y;o.huntMs=SNR_HUNT_MS}
+    }
+  }
+  snr.toneAt=0;
+  snrTone(SNR_NOTE[6],.05,'sine',.08);
+  snrTone(SNR_NOTE[8],.05,'sine',.05);
+  snrDustAt(x,y,3,'#B3E5FC');
+  snrLine();snrHud();snrPow();
+  return 1;
+}
+/* ---- 波前扫到才照见：亮的时长看这一声是直声还是回声 ---- */
+function snrReveal(i,gray){
+  const c=snr.cards[i|0];
+  if(!c||c.st==='gone')return 0;
+  const ms=Math.round(snrLitMs(snr.lv)*(gray?SNR_ECHO_DIM:1));
+  if(c.st!=='lit'){c.st='lit';c.ms=ms}
+  else c.ms=Math.max(c.ms,ms);
+  c.gray=gray?1:0;
+  if(!c.seen){c.seen=1;snr.seen++}
+  if(gray)snr.echoes++;
+  if(!snr.echoSaid&&gray){
+    snr.echoSaid=true;
+    snrTag('🔁 这一张是 <b>回声</b> 拐进影子照出来的：字发灰、亮得短');
+  }
+  return 1;
+}
+/* ---- 萤石：一次照亮「有谁在哪儿」，但内容还是要靠听 ---- */
+function snrStone(){
+  if(!snr.run||snr.over||snr.busy)return 0;
+  if(snr.stoneN<SNR_STONE0){
+    snrTag('💡 这一层萤石用完了');
+    return 0;
+  }
+  snr.stoneN--;snr.stones++;
+  snr.stoneMs=SNR_STONE_MS;
+  let n=0;
+  for(let i=0;i<snr.cards.length;i++){
+    const c=snr.cards[i];
+    if(c.st==='gone')continue;
+    if(c.st==='dark'){c.st='ghost';c.mem=snrMemMs(snr.lv);n++}
+  }
+  snrTone(SNR_NOTE[3],.14,'triangle',.1);
+  snrSay('💡 <b>萤石亮了 '+ (SNR_STONE_MS/1000).toFixed(1)+' 秒</b>：照出的是 <b>哪几块牌挂在哪儿</b>（'+n+
+    ' 块新摸到位置），<b>字还是没照出来</b> —— 内容只能靠回声读；不过光也挡不住洞外的眼睛，穴鸮 <b>照样听得见你下一声</b>','#B3E5FC');
+  snrLine();snrHud();snrPow();snrDraw();
+  return 1;
+}
+/* ---- 矿物（撞上就收进洞罐） ---- */
+function snrBuildGem(reset){
+  if(reset)snr.gem=null;
+  if(snr.gem&&snr.gem.taken!==true)return 0;
+  /* 洞产不许长在蝙蝠身上：一睁眼就白捡一分一口气，那还飞什么 */
+  const s=snrSpot(24,20,true);
+  if(!s)return 0;
+  snr.gem={x:s.x,y:s.y,taken:false,kind:snrOne(SNR_JEWELS)||SNR_JEWELS[0],born:snr.t};
+  return 1;
+}
+
+/* ================= 第三段：推进（波前 · 蝙蝠 · 穴鸮 · 两只钟 · 气 · 滴水）与结算 ================= */
+function snrGain(){
+  const frac=snr.qms0?Math.max(0,snr.qms/snr.qms0):0;
+  return Math.round((9+snr.combo*0.9+snr.lv*1.7)*(1+frac*0.35));
+}
+function snrSharp(){return snr.pingsSinceQ<=1&&!snr.wrongThisQ}
+/* 蝙蝠：钥匙/鼠标只有一条规则 —— 你只能决定自己在哪儿喊 */
+function snrSolidGoal(x,y){
+  for(let i=0;i<snr.rocks.length;i++){
+    const r=snr.rocks[i],need=r.r+SNR_BAT_R;
+    if(snrD2(x,y,r.x,r.y)<need*need)return true;
+  }
+  return false;
+}
+/* 石笋挡在去路上就顺着石壁绕过去：顶在石头上不动，比绕远路糟得多 */
+function snrSteer(dx,dy){
+  const B=snr.bat;
+  let ux=dx,uy=dy;
+  for(let i=0;i<snr.rocks.length;i++){
+    const r=snr.rocks[i],need=r.r+SNR_BAT_R+2;
+    const rx=r.x-B.x,ry=r.y-B.y,t=rx*ux+ry*uy;
+    if(t<=0)continue;
+    if(rx*rx+ry*ry-t*t>=need*need)continue;
+    const s=(ux*ry-uy*rx)>=0?-1:1;
+    const nx=ux*0.34-uy*s,ny=uy*0.34+ux*s,nl=Math.sqrt(nx*nx+ny*ny)||1;
+    ux=nx/nl;uy=ny/nl;
+  }
+  return {x:ux,y:uy};
+}
+function snrStepBat(s){
+  const B=snr.bat;
+  let dx=0,dy=0;
+  if(snr.keys){
+    if(snr.keys.left)dx-=1;
+    if(snr.keys.right)dx+=1;
+    if(snr.keys.up)dy-=1;
+    if(snr.keys.down)dy+=1;
+  }
+  if(!dx&&!dy&&snr.goal){
+    const gx=snr.goal.x-B.x,gy=snr.goal.y-B.y,g=Math.sqrt(gx*gx+gy*gy);
+    if(g>3){
+      if(snrSolidGoal(snr.goal.x,snr.goal.y))snr.goal=null;
+      else{
+        const st=snrSteer(gx/g,gy/g);
+        dx=st.x;dy=st.y;
+      }
+    }else snr.goal=null;
+  }
+  if(dx||dy){
+    const L=Math.sqrt(dx*dx+dy*dy)||1;
+    B.x+=dx/L*SNR_BAT_SPD*s;
+    B.y+=dy/L*SNR_BAT_SPD*s;
+    snr.wing+=s*9;
+  }
+  B.x=snrClamp(B.x,SNR_BAT_R+1,SNR_W-SNR_BAT_R-1);
+  B.y=snrClamp(B.y,SNR_BAT_R+1,SNR_H-SNR_BAT_R-1);
+  /* 石笋是实的：撞上去就顶在外面，不许穿石 */
+  for(let i=0;i<snr.rocks.length;i++){
+    const r=snr.rocks[i],need=r.r+SNR_BAT_R;
+    const d=Math.sqrt(snrD2(B.x,B.y,r.x,r.y));
+    if(d<need&&d>0.001){
+      B.x=r.x+(B.x-r.x)/d*need;
+      B.y=r.y+(B.y-r.y)/d*need;
+    }else if(d<=0.001){B.x=r.x+need;B.y=r.y}
+  }
+  B.x=snrClamp(Math.round(B.x*10)/10,SNR_BAT_R+1,SNR_W-SNR_BAT_R-1);
+  B.y=snrClamp(Math.round(B.y*10)/10,SNR_BAT_R+1,SNR_H-SNR_BAT_R-1);
+}
+/* 波前一路扩，扩到哪儿就照到哪儿：先亮的在近处 */
+function snrStepWaves(s){
+  for(let k=snr.waves.length-1;k>=0;k--){
+    const w=snr.waves[k];
+    w.r+=SNR_WAVE*s;
+    for(let j=w.due.length-1;j>=0;j--){
+      if(w.r>=w.due[j].d){
+        if(snrReveal(w.due[j].i,w.due[j].gray))w.hit++;
+        w.due.splice(j,1);
+      }
+    }
+    if(w.r>=w.max)snr.waves.splice(k,1);
+  }
+}
+/* 牌：亮完只剩轮廓，轮廓过完又回到全黑 */
+function snrStepCards(dt){
+  for(let i=0;i<snr.cards.length;i++){
+    const c=snr.cards[i];
+    if(c.pop>0)c.pop=Math.max(0,c.pop-dt);
+    if(c.st==='lit'){
+      c.ms-=dt;
+      if(c.ms<=0){c.st='ghost';c.ms=0;c.mem=snrMemMs(snr.lv);c.gray=0}
+    }else if(c.st==='ghost'){
+      c.mem-=dt;
+      if(c.mem<=0){c.st='dark';c.mem=0}
+    }
+  }
+  if(snr.stoneMs>0){
+    snr.stoneMs-=dt;
+    if(snr.stoneMs<=0)snr.stoneMs=0;
+  }
+}
+function snrStepOwl(dt,s){
+  if(snr.stunMs>0){snr.stunMs-=dt;if(snr.stunMs<0)snr.stunMs=0}
+  for(let i=0;i<snr.owls.length;i++){
+    const o=snr.owls[i];
+    if(o.cool>0){o.cool-=dt;if(o.cool<0)o.cool=0}
+    if(snr.stunMs>0){o.vx=0;o.vy=0;continue}
+    let sp=snrOwlSp(snr.lv);
+    if(o.huntMs>0){
+      o.huntMs-=dt;
+      const gx=o.tx-o.x,gy=o.ty-o.y,g=Math.sqrt(gx*gx+gy*gy);
+      if(g>2){o.x+=gx/g*sp*s;o.y+=gy/g*sp*s;o.ang=Math.atan2(gy,gx)}
+    }else{
+      /* 没人喊的时候它自己在洞里飘着找食 */
+      o.wanderMs-=dt;
+      if(o.wanderMs<=0){o.wanderMs=1400+Math.random()*1600;o.ang=Math.random()*6.28}
+      o.x+=Math.cos(o.ang)*sp*0.42*s;
+      o.y+=Math.sin(o.ang)*sp*0.42*s;
+      if(o.x<14||o.x>SNR_W-14){o.ang=Math.PI-o.ang;o.x=snrClamp(o.x,14,SNR_W-14)}
+      if(o.y<14||o.y>SNR_H-14){o.ang=-o.ang;o.y=snrClamp(o.y,14,SNR_H-14)}
+    }
+    o.x=snrClamp(o.x,10,SNR_W-10);
+    o.y=snrClamp(o.y,10,SNR_H-10);
+    /* 撞上蝙蝠就叼走一块牌：它抢的是「你还没收的那一笔」，抢完立刻在别处再挂一块 */
+    if(o.cool<=0&&snrD2(o.x,o.y,snr.bat.x,snr.bat.y)<(SNR_POUNCE*SNR_POUNCE))snrSnatch(o);
+  }
+}
+function snrSnatch(o){
+  const live=[];
+  for(let i=0;i<snr.cards.length;i++)if(snr.cards[i].st!=='gone')live.push(i);
+  if(!live.length)return;
+  const ansList=live.filter(function(i){return snr.cards[i].ans===1});
+  let pick;
+  if(ansList.length&&Math.random()<0.55)pick=snrOne(ansList);
+  else pick=snrOne(live);
+  const c=snr.cards[pick];
+  o.carry=snrTxt(c);
+  o.cool=SNR_OWL_COOL;
+  o.huntMs=0;
+  /* 把它甩回原来那头，别连着叼第二块 */
+  let dx=o.x-snr.bat.x,dy=o.y-snr.bat.y,d=Math.sqrt(dx*dx+dy*dy);
+  if(d<1){dx=Math.cos(o.ang);dy=Math.sin(o.ang);d=Math.sqrt(dx*dx+dy*dy)||1}
+  o.x=snrClamp(o.x+dx/d*54,10,SNR_W-10);
+  o.y=snrClamp(o.y+dy/d*54,10,SNR_H-10);
+  /* 洞很小、蝙蝠又常贴到洞口边，一甩就甩到墙上弹回来，等于没甩 —— 干脆丢到离蝙蝠最远的那个角 */
+  if(snrD2(o.x,o.y,snr.bat.x,snr.bat.y)<SNR_SNATCH_FAR*SNR_SNATCH_FAR){
+    const XS=[10,SNR_W-10],YS=[10,SNR_H-10];
+    let fx=XS[0],fy=YS[0],fv=-1;
+    for(let a=0;a<2;a++)for(let b=0;b<2;b++){
+      const v=snrD2(XS[a],YS[b],snr.bat.x,snr.bat.y);
+      if(v>fv){fv=v;fx=XS[a];fy=YS[b]}
+    }
+    o.x=fx;o.y=fy;
+  }
+  snr.snatched++;
+  snr.combo=0;
+  snrRehangCard(pick);
+  snrAdd('hz_sonar_snatch',1);
+  snrShake();
+  snrTone(180,.16,'sawtooth',.08);
+  snrTag('🦉 穴鸮叼走了写着 <b>'+o.carry+'</b> 的那块牌 —— 别慌，<b>它立刻在别处再挂了一块</b>');
+  if(!snr.owlSaid){
+    snr.owlSaid=true;
+    snrSay('🦉 <b>穴鸮是听声过来的</b>：它撞到你就会叼走一块牌。<b>喊得越勤它越知道你在哪儿</b>；<b>🧣 绒套</b> 捂着喊它听不见（可声也传不远），<b>🪶 羽扇</b> 能把它扇回洞口定住 '+(SNR_STUN_MS/1000).toFixed(1)+' 秒','#FFCCBC');
+  }
+  snrLine();snrHud();snrPow();
+}
+function snrStepTimers(dt){
+  /* 补气 */
+  snr.airMs+=dt;
+  const per=snrAirPer(snr.lv);
+  while(snr.airMs>=per){
+    snr.airMs-=per;
+    if(snr.air<snrAirCap(snr.lv))snr.air++;
+  }
+  /* 滴水：它自己会照一小圈，也会盖住你这一声 */
+  snr.dripMs-=dt;
+  if(snr.dripMs<=0){
+    snr.dripMs=snrDripMs();
+    const s=snrSpot(20,14,false);
+    if(s){
+      snr.drip={x:s.x,y:s.y,ms:900};
+      snr.dripWinMs=SNR_DRIP_MS;
+      snr.drips++;
+      const tr=snrTrace(s.x,s.y,SNR_DRIP_R,false);
+      snr.waves.push({x:s.x,y:s.y,r:0,max:SNR_DRIP_R,echo:false,due:tr.direct.map(function(e){return {i:e.i,d:e.d,gray:0}}),hit:0});
+      snrTone(1560,.04,'sine',.05);
+      if(tr.direct.length)snrTag('💧 洞顶滴下一滴水，顺带照见了 '+tr.direct.length+' 块牌');
+    }
+  }
+  if(snr.dripWinMs>0)snr.dripWinMs=Math.max(0,snr.dripWinMs-dt);
+  if(snr.drip){snr.drip.ms-=dt;if(snr.drip.ms<=0)snr.drip=null}
+  /* 矿物 */
+  if(!snr.gem||snr.gem.taken===true){
+    snr.gemCd-=dt;
+    if(snr.gemCd<=0){snr.gemCd=SNR_GEM_MS;snrBuildGem()}
+  }
+  if(snr.gem&&snr.gem.taken===true&&snr.t-snr.gem.born>700)snr.gem=null;
+  if(snr.gem&&snrD2(snr.gem.x,snr.gem.y,snr.bat.x,snr.bat.y)<(SNR_TOUCH*SNR_TOUCH)&&snr.gem.taken!==true){
+    snr.gem.taken=true;snr.gem.born=snr.t;
+    snr.gems++;
+    snr.score+=SNR_GEM_GAIN;
+    snr.air=Math.min(snrAirCap(snr.lv),snr.air+SNR_AIR_GEM);
+    snrAdd('hz_sonar_jar',1);
+    snrDustAt(snr.gem.x,snr.gem.y,6,'#80DEEA');
+    snrTone(SNR_NOTE[7],.1,'triangle',.08);
+    snrTag('💎 捡到一块 <b>'+snr.gem.kind+'</b>：+'+SNR_GEM_GAIN+' 分、补 '+SNR_AIR_GEM+' 口风');
+    snrHud();snrPow();
+  }
+  /* 歇一记：十几秒没收到，就提醒一下这一笔该往哪走（还是得你自己去照哪块牌写的它） */
+  if(snr.since>=SNR_NAG_MS&&!snr.busy){
+    snr.since=0;
+    snrNag();
+  }
+  if(snr.nagMs>0)snr.nagMs=Math.max(0,snr.nagMs-dt);
+  if(snr.muffleMs>0)snr.muffleMs=Math.max(0,snr.muffleMs-dt);
+  if(snr.tagMs>0){snr.tagMs-=dt;if(snr.tagMs<=0){const el=document.getElementById('snrTag');if(el)el.classList.remove('on')}}
+}
+function snrNag(){
+  snr.nags++;
+  /* 提醒挂 5.2 秒：这一行马上会被按状态重画的那一遍盖掉，孩子还没读完就换了 */
+  snr.nagMs=SNR_NAG_HOLD;
+  const w=snr.kind==='count'?String(snr.want)+' 笔':SNR_DIRS[snrRok(snr.want)]+' '+SNR_ARW[snrRok(snr.want)];
+  snrSet('snrHintLine','🕯 <b>歇一记</b>：这一笔是 <b>'+w+'</b> —— 洞里有 <b>'+snr.cards.length+
+    '</b> 块牌，<b>喊一声看谁先亮</b>（先亮的在近处），或者 <b>贴到洞壁上喊</b>，借回声照进石笋背后');
+  snrTag('🕯 这一笔要写「'+w+'」');
+}
+/* 牌是硬的：撞上了先把自己顶开，免得同一块牌连着判两次 */
+function snrBounce(c){
+  const B=snr.bat;
+  let dx=B.x-c.x,dy=B.y-c.y,d=Math.sqrt(dx*dx+dy*dy);
+  if(d<0.01){dx=1;dy=0;d=1}
+  const need=SNR_TOUCH+3;
+  B.x=snrClamp(c.x+dx/d*need,SNR_BAT_R+1,SNR_W-SNR_BAT_R-1);
+  B.y=snrClamp(c.y+dy/d*need,SNR_BAT_R+1,SNR_H-SNR_BAT_R-1);
+}
+function snrStepTouch(){
+  if(snr.busy)return;
+  for(let i=0;i<snr.cards.length;i++){
+    const c=snr.cards[i];
+    if(c.st==='gone')continue;
+    if(snrD2(c.x,c.y,snr.bat.x,snr.bat.y)>(SNR_TOUCH*SNR_TOUCH))continue;
+    snrBounce(c);
+    if(c.pop>0)return;
+    c.pop=SNR_ACT_CD;
+    /* 摸黑撞上的不算答错：只让你知道「这块牌挂在这儿」 */
+    if(c.st==='dark'){
+      c.st='ghost';c.mem=snrMemMs(snr.lv);
+      snr.touches++;
+      snr.goal=null;
+      snrTone(300,.05,'sine',.05);
+      snrTag('🖐 摸到一块牌：<b>知道它在这儿，可读不出写的什么</b> —— 想读它只能喊一声');
+      snrPow();
+      return;
+    }
+    snrGo(c,i);
+    return;
+  }
+}
+/* ---- 撞牌就是答题 ---- */
+function snrGo(c,i){
+  snr.goal=null;
+  if(snrMatch(c))snrRight(c,i);
+  else snrWrong(c,i);
+}
+function snrRight(c,i){
+  const gain=snrGain();
+  const sharp=snrSharp()?SNR_SHARP_BONUS:0;
+  snr.score+=gain+sharp;
+  snr.combo++;
+  if(snr.combo>snr.maxCombo)snr.maxCombo=snr.combo;
+  snr.lits++;
+  snr.air=Math.min(snrAirCap(snr.lv),snr.air+SNR_AIR_RIGHT);
+  c.st='gone';
+  c.pop=0;
+  snr.toneAt=0;
+  snrTone(SNR_NOTE[Math.min(SNR_NOTE.length-1,4+snr.combo%3)],.11,'triangle',.11);
+  snrSparkAt(c.x,c.y,'#FFE082');
+  snrDustAt(c.x,c.y,7,'#FFF176');
+  const el=document.getElementById('snrTbl');
+  if(el&&typeof spawnStarFly==='function'){
+    try{
+      const r=el.getBoundingClientRect();
+      spawnStarFly(r.left+r.width*c.x/SNR_W,r.top+r.height*c.y/SNR_H);
+    }catch(e){}
+  }
+  if(sharp)snr.sharp++;
+  snrQReset();
+  snrLine();snrHud();snrPow();snrMini();snrMeter();
+  const R=snr.rec;
+  snr.busy=true;
+  snrSet('snrJudge','✅ 收了 <b>'+snrTxt(c)+'</b>'+(sharp?' <b>· 一声中的 +'+SNR_SHARP_BONUS+'</b>':''));
+  snrT(function(){
+    snr.busy=false;
+    snrSet('snrJudge','');
+    snr.qi++;
+    if(snr.qi>=snr.n)snrWordDone();
+    else{snrAskText();snrNewQ()}
+    snrDraw();
+  },SNR_NEXT_MS);
+  if(snr.combo>0&&snr.combo%6===0)try{spawnConfetti()}catch(e){}
+  return gain;
+}
+function snrWrong(c,i){
+  snr.wrongs++;
+  snr.combo=0;
+  snr.cleanWord=false;
+  snr.failWord++;
+  snr.hearts=Math.max(0,snr.hearts-1);
+  snr.score=Math.max(0,snr.score-SNR_PEN_WRONG);
+  snr.wrongThisQ=true;
+  snrQReset();
+  snrAddMiss(snr.rec?snr.rec.ch:'');
+  /* 错了就让你看一眼对的那块：它亮 1.4 秒 */
+  for(let k=0;k<snr.cards.length;k++){
+    const o=snr.cards[k];
+    if(o.st==='gone'||!snrMatch(o))continue;
+    o.st='lit';o.ms=Math.round(SNR_LIT0*1.4);o.gray=0;o.pop=SNR_ACT_CD;
+    break;
+  }
+  /* 这一撞洞外也听见了 */
+  for(let k=0;k<snr.owls.length;k++){
+    const o=snr.owls[k];
+    if(o.cool>0)continue;
+    o.tx=snr.bat.x;o.ty=snr.bat.y;o.huntMs=SNR_HUNT_MS*1.3;
+  }
+  snrShake();
+  snrTone(220,.2,'sawtooth',.1);
+  snrDustAt(c.x,c.y,5,'#FF8A80');
+  snrSet('snrJudge','❌ 这块写的是 <b>'+snrTxt(c)+'</b>，不是这一笔 —— 对的那块给你亮一下');
+  snr.busy=true;
+  snrT(function(){
+    snr.busy=false;
+    snrSet('snrJudge','');
+    if(snr.hearts<=0){snrEnd('hearts');return}
+    snrHud();snrDraw();
+  },760);
+  snrLine();snrHud();snrPow();snrMeter();
+  return 0;
+}
+function snrQReset(){snr.pingsSinceQ=0;snr.since=0}
+function snrTimeoutQ(){
+  snr.score=Math.max(0,snr.score-SNR_PEN_TIME);
+  snr.air=Math.min(snrAirCap(snr.lv),snr.air+SNR_AIR_TIME);
+  snr.cleanWord=false;
+  snr.combo=0;
+  snr.rehangs++;
+  snrPlaceCards();
+  snr.waves=[];
+  snr.shadow=snr.cards.length;
+  for(let k=0;k<snr.owls.length;k++){const o=snr.owls[k];o.tx=snr.bat.x;o.ty=snr.bat.y;o.huntMs=SNR_HUNT_MS}
+  snrTone(150,.24,'sawtooth',.08);
+  snrShake();
+  snrSay('⏳ <b>这一笔的钟走光了</b>：不算答错、不掉心，只扣 '+SNR_PEN_TIME+' 分、补气 '+SNR_AIR_TIME+
+    ' 口，<b>所有牌重挂到新位置</b>（连位置一起忘了，穴鸮倒是被惊动了）','#FFE082');
+  snrTag('⏳ 洞壁动了动，牌全挪了位置');
+  snrQReset();
+  snr.qms0=snrQmsOf(snr.lv);snr.qms=snr.qms0;
+  snrAskText();snrLine();snrHud();snrPow();snrMeter();snrDraw();
+}
+function snrWordDone(){
+  const R=snr.rec;
+  const bonus=SNR_WORD_BONUS+snr.lv*6;
+  snr.score+=bonus;
+  if(snr.cleanWord&&snr.failWord===0)snr.score+=18;
+  snr.words++;
+  snr.air=Math.min(snrAirCap(snr.lv),snr.air+SNR_AIR_WORD);
+  snrAdd('hz_sonar_words',1);
+  snrAddBook(R.ch);
+  if(snr.hearts<SNR_HEART_MAX&&snr.words%2===0)snr.hearts++;
+  const lv=snrLvOf(snr.words);
+  try{spawnConfetti()}catch(e){}
+  snrTone(660,.16,'triangle',.12);
+  snrTone(880,.2,'triangle',.1);
+  snrSet('snrJudge','🎉 「'+R.ch+'」写完 <b>+'+bonus+'</b>'+(snr.cleanWord&&snr.failWord===0?'+18':''));
+  snrT(function(){snrSet('snrJudge','')},1500);
+  if(lv>snr.lv){
+    snr.lv=lv;
+    localStorage.setItem('hz_sonar_lv',String(snr.lv));
+    snr.clockMs=Math.min(snr.clockMs,snrTorchMs(snr.lv));
+    snr.featherN=SNR_FEATHER0;snr.stoneN=SNR_STONE0;snr.muffleN=SNR_MUFFLE0;
+    snr.stunMs=0;
+    snrBuildRocks();
+    snrBuildOwls();
+    snrTag('🕯 走进 <b>第 '+snr.lv+' 层</b>：'+snrCardsOf(snr.lv)+' 块牌、'+snrRocksOf(snr.lv)+' 根石笋、'+
+      snrOwlOf(snr.lv)+' 只穴鸮，声音只能传 '+snrRange(snr.lv)+' 步');
+    snrSay('🕯 <b>第 '+snr.lv+' 层</b>：牌多到 '+snrCardsOf(snr.lv)+' 块、石笋 '+snrRocksOf(snr.lv)+
+      ' 根、穴鸮 '+snrOwlOf(snr.lv)+' 只，而<b>声音只传得到 '+snrRange(snr.lv)+' 步</b> —— 越往里越得 <b>省着喊、挪着喊</b>，火把也烧得更快','#B39DDB');
+  }
+  snr.busy=true;
+  snrT(function(){
+    snr.busy=false;
+    snrNewWord();
+  },1200);
+  snrHud();snrPow();snrMeter();
+}
+
+/* ================= 第四段：把「听见的东西」画出来（canvas + DOM 都是状态的函数） ================= */
+function snrDecor(){
+  const out=[];
+  for(let i=0;i<8;i++){
+    const x=10+i*44+((i*29)%13);
+    out.push({x:x,h:20+((i*47)%18),k:(i%3)});
+  }
+  const g=[];
+  for(let i=0;i<22;i++)g.push({x:5+((i*37)%(SNR_W-10)),h:5+((i*19)%10)});
+  return {top:out,floor:g};
+}
+function snrFxBox(){
+  let el=document.getElementById('snrFx');
+  if(!el){el=document.createElement('div');el.id='snrFx';el.className='snr-fx';
+    const t=document.getElementById('snrTbl');if(t)t.appendChild(el)}
+  return el;
+}
+function snrDustAt(x,y,n,color){
+  const box=snrFxBox();
+  if(!box)return;
+  for(let i=0;i<n;i++){
+    const s=document.createElement('i');
+    s.className='snr-gr';
+    s.style.left=(x/SNR_W*100)+'%';
+    s.style.top=(y/SNR_H*100)+'%';
+    s.style.background=color||'#B3E5FC';
+    const dx=(Math.random()*44-22),dy=(Math.random()*40-26);
+    s.style.setProperty('--dx',dx+'px');
+    s.style.setProperty('--dy',dy+'px');
+    box.appendChild(s);
+    setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s)},620);
+  }
+}
+function snrSparkAt(x,y,color){snrDustAt(x,y,9,color||'#FFE082')}
+function snrShake(){
+  const tbl=document.getElementById('snrTbl');
+  if(!tbl)return;
+  tbl.classList.remove('shake');
+  void tbl.offsetWidth;
+  tbl.classList.add('shake');
+}
+function snrTag(t){
+  snr.tagMs=SNR_TAG_MS;
+  const el=document.getElementById('snrTag');
+  if(el){el.innerHTML=t;el.classList.add('on')}
+}
+function snrDraw(){
+  const ctx=snr.ctx;
+  if(!ctx)return;
+  const W=SNR_W,H=SNR_H;
+  if(!snr.decor)snr.decor=snrDecor();
+  ctx.clearRect(0,0,W,H);
+  /* 洞：越往里越黑；萤石亮起来的那一秒整条洞泛一层青 */
+  const g=ctx.createLinearGradient(0,0,0,H);
+  if(snr.stoneMs>0){g.addColorStop(0,'#123040');g.addColorStop(1,'#0A1C28')}
+  else{g.addColorStop(0,'#0A1422');g.addColorStop(1,'#050A12')}
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='rgba(255,255,255,.05)';
+  for(let i=0;i<snr.decor.top.length;i++){
+    const d=snr.decor.top[i];
+    ctx.beginPath();ctx.moveTo(d.x-7,0);ctx.lineTo(d.x+7,0);ctx.lineTo(d.x,d.h);ctx.closePath();ctx.fill();
+  }
+  for(let i=0;i<snr.decor.floor.length;i++){
+    const f=snr.decor.floor[i];
+    ctx.fillRect(f.x,H-f.h,f.f||3,f.h);
+  }
+  /* 洞壁：贴着壁的时候那条边会亮 —— 一眼就知道「这儿喊得出回声」 */
+  const wl=snrWallOf(snr.bat.x,snr.bat.y);
+  if(wl.dist<=SNR_ECHO_NEAR+30){
+    const a=snrClamp(1-wl.dist/(SNR_ECHO_NEAR+30),0,1);
+    ctx.strokeStyle='rgba(126,232,200,'+(0.18+0.6*a).toFixed(3)+')';
+    ctx.lineWidth=3;
+    ctx.beginPath();
+    if(wl.side===0){ctx.moveTo(2,2);ctx.lineTo(2,H-2)}
+    else if(wl.side===1){ctx.moveTo(W-2,2);ctx.lineTo(W-2,H-2)}
+    else if(wl.side===2){ctx.moveTo(2,2);ctx.lineTo(W-2,2)}
+    else{ctx.moveTo(2,H-2);ctx.lineTo(W-2,H-2)}
+    ctx.stroke();
+  }
+  /* 石笋 */
+  for(let i=0;i<snr.rocks.length;i++){
+    const r=snr.rocks[i];
+    ctx.fillStyle='rgba(120,144,156,.5)';
+    ctx.beginPath();ctx.moveTo(r.x-r.r,H);ctx.lineTo(r.x,H-r.r*2.3);ctx.lineTo(r.x+r.r,H);ctx.closePath();ctx.fill();
+    ctx.fillStyle='rgba(176,190,197,.6)';
+    ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,6.2832);ctx.fill();
+    ctx.strokeStyle='rgba(38,50,56,.85)';ctx.lineWidth=1.5;ctx.stroke();
+  }
+  /* 波前：直声是青白圈，回声是灰蓝虚线圈（一眼分清两种来源） */
+  for(let k=0;k<snr.waves.length;k++){
+    const w=snr.waves[k];
+    const a=snrClamp(1-w.r/(w.max||1),0,1);
+    ctx.save();
+    if(w.echo){ctx.setLineDash([5,5]);ctx.strokeStyle='rgba(144,202,249,'+(0.15+0.42*a).toFixed(3)+')'}
+    else ctx.strokeStyle='rgba(178,235,242,'+(0.2+0.6*a).toFixed(3)+')';
+    ctx.lineWidth=w.echo?1.6:2.4;
+    ctx.beginPath();ctx.arc(w.x,w.y,w.r,0,6.2832);ctx.stroke();
+    ctx.restore();
+  }
+  /* 牌：全黑的一块也不画 —— 读得到才画得出来 */
+  for(let i=0;i<snr.cards.length;i++){
+    const c=snr.cards[i];
+    if(c.st==='gone')continue;
+    if(c.st==='ghost'){
+      ctx.save();
+      ctx.setLineDash([3,4]);
+      ctx.strokeStyle='rgba(255,255,255,.28)';
+      ctx.lineWidth=1.4;
+      ctx.beginPath();ctx.arc(c.x,c.y,SNR_CARD_R,0,6.2832);ctx.stroke();
+      ctx.restore();
+      continue;
+    }
+    if(c.st!=='lit')continue;
+    const R=snrRok(c.dir);
+    const ink=c.gray?'rgba(176,190,197,.86)':SNR_INK[R];
+    const pop=c.pop>0?1+c.pop/SNR_ACT_CD*0.25:1;
+    ctx.save();
+    ctx.translate(c.x,c.y);
+    ctx.scale(pop,pop);
+    ctx.fillStyle='rgba(13,26,38,.92)';
+    ctx.strokeStyle=ink;
+    ctx.lineWidth=2;
+    ctx.beginPath();ctx.arc(0,0,SNR_CARD_R,0,6.2832);ctx.fill();ctx.stroke();
+    ctx.fillStyle=ink;
+    ctx.font='800 13px system-ui,sans-serif';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(snrTxt(c),0,-0.5);
+    ctx.font='9px system-ui,sans-serif';
+    ctx.fillText(c.kind==='count'?'笔':SNR_ARW[R],0,8.5);
+    ctx.restore();
+  }
+  /* 矿物：自己发一点光，是黑洞里唯一不用听的东西 */
+  if(snr.gem&&snr.gem.taken!==true){
+    const gm=snr.gem;
+    ctx.save();
+    ctx.globalAlpha=.85;
+    ctx.fillStyle='#4DD0E1';
+    ctx.beginPath();ctx.moveTo(gm.x,gm.y-6);ctx.lineTo(gm.x+5,gm.y);ctx.lineTo(gm.x,gm.y+6);ctx.lineTo(gm.x-5,gm.y);ctx.closePath();ctx.fill();
+    ctx.restore();
+  }
+  /* 滴水 */
+  if(snr.drip){
+    ctx.fillStyle='rgba(79,195,247,.8)';
+    ctx.beginPath();ctx.arc(snr.drip.x,snr.drip.y,2.4,0,6.2832);ctx.fill();
+  }
+  /* 穴鸮 */
+  for(let i=0;i<snr.owls.length;i++){
+    const o=snr.owls[i];
+    ctx.save();
+    ctx.translate(o.x,o.y);
+    ctx.fillStyle=snr.stunMs>0?'rgba(255,213,79,.5)':'#5D4037';
+    ctx.beginPath();ctx.ellipse(0,0,10,7,0,0,6.2832);ctx.fill();
+    ctx.beginPath();ctx.moveTo(-9,-2);ctx.lineTo(-16,3);ctx.lineTo(-8,4);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#FFF176';
+    ctx.beginPath();ctx.arc(-3,-2,1.8,0,6.2832);ctx.fill();
+    ctx.beginPath();ctx.arc(3,-2,1.8,0,6.2832);ctx.fill();
+    ctx.restore();
+    if(o.huntMs>0){
+      ctx.strokeStyle='rgba(255,138,101,.5)';
+      ctx.lineWidth=1.2;
+      ctx.beginPath();ctx.moveTo(o.x,o.y);ctx.lineTo(o.tx,o.ty);ctx.stroke();
+    }
+  }
+  /* 蝙蝠：黑里你永远看得见自己，绒套捂着时身边一圈软边 */
+  const B=snr.bat;
+  if(snr.muffleMs>0){
+    ctx.strokeStyle='rgba(255,183,77,.5)';
+    ctx.setLineDash([2,3]);
+    ctx.beginPath();ctx.arc(B.x,B.y,SNR_BAT_R+5,0,6.2832);ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  ctx.save();
+  ctx.translate(B.x,B.y);
+  const wf=Math.sin((snr.wing||0))*3.2;
+  ctx.fillStyle='#ECEFF1';
+  ctx.beginPath();
+  ctx.moveTo(0,-2);
+  ctx.lineTo(-11,-4-wf);ctx.lineTo(-6,2);
+  ctx.lineTo(0,4);
+  ctx.lineTo(6,2);ctx.lineTo(11,-4-wf);
+  ctx.closePath();ctx.fill();
+  ctx.fillStyle='#263238';
+  ctx.beginPath();ctx.arc(0,-3,2.4,0,6.2832);ctx.fill();
+  ctx.restore();
+}
+/* ---- DOM：HUD / 两条钟 / 场况 / 小字卡 / 教练行 ---- */
+function snrHud(){
+  const R=snrRank(snr.words+snrInt('hz_sonar_words'));
+  snrSet('snrRankTxt',R.e+' '+R.t);
+  snrSet('snrHeartTxt',snr.hearts>0?'❤️'.repeat(snr.hearts):'💔');
+  snrSet('snrComboTxt','🔥 连 '+snr.combo);
+  snrSet('snrLitTxt','✅ '+snr.qi+'/'+(snr.n||0)+' 笔');
+  snrSet('snrAirTxt','🌬 '+snr.air+' 气');
+  snrSet('snrPingTxt','🔊 喊 '+snr.pings);
+  snrSet('snrSeenTxt','👁 '+snr.seen+' 次照见');
+  snrSet('snrShadowTxt','🕳 '+snr.shadow+' 块声影');
+  snrSet('snrEchoTxt','🔁 '+snr.echoes+' 次回声');
+  snrSet('snrTouchTxt','🖐 摸到 '+snr.touches+' 块');
+  snrSet('snrOwlTxt','🦉 叼走 '+snr.snatched+' 块');
+  snrSet('snrGemTxt','💎 '+snr.gems+' 块洞产');
+  snrSet('snrScoreTxt','🎯 '+snr.score+' 分');
+  snrSet('snrLvTxt','第 '+snr.lv+' 层 · 已收 '+snr.words+' 字');
+  snrSet('snrQTxt','⏳ 这一笔 '+Math.ceil(snr.qms/1000)+' 秒');
+  const fb=document.getElementById('snrFeatherBtn');
+  if(fb){fb.disabled=snr.featherN<=0;const b=fb.querySelector('b');if(b)b.innerHTML='剩 '+snr.featherN}
+  const sb=document.getElementById('snrStoneBtn');
+  if(sb){sb.disabled=snr.stoneN<=0;const b=sb.querySelector('b');if(b)b.innerHTML='剩 '+snr.stoneN}
+  const mb=document.getElementById('snrMuffleBtn');
+  if(mb){mb.disabled=snr.muffleN<=0;const b=mb.querySelector('b');if(b)b.innerHTML='剩 '+snr.muffleN}
+}
+function snrMeter(){
+  const f=snr.qms0?snrClamp(snr.qms/snr.qms0,0,1):1;
+  const bar=document.getElementById('snrQBar');
+  if(bar)bar.style.width=(f*100).toFixed(1)+'%';
+  const qt=document.getElementById('snrQTxt2');
+  if(qt)qt.innerHTML='⏳ 这一笔 '+Math.ceil(snr.qms/1000)+' 秒';
+  const tf=snrTorchMs(snr.lv)?snrClamp(snr.clockMs/snrTorchMs(snr.lv),0,1):0;
+  const box=document.getElementById('snrTorchBox');
+  const tb=document.getElementById('snrTorchBar');
+  if(tb)tb.style.width=(tf*100).toFixed(1)+'%';
+  const tt=document.getElementById('snrTorchTxt');
+  if(tt){
+    const sec=Math.ceil(snr.clockMs/1000);
+    tt.innerHTML='🕯 火把烧完还有 '+sec+' 秒';
+  }
+  if(box){
+    box.classList.toggle('low',tf<=0.25);
+    box.classList.toggle('snr-warn',tf<=0.08);
+  }
+  snr.warn=tf<=0.08;
+}
+function snrPow(){
+  const C=snr.cards;
+  let lit=0,gh=0,dk=0;
+  for(let i=0;i<C.length;i++){
+    if(C[i].st==='lit')lit++;
+    else if(C[i].st==='ghost')gh++;
+    else if(C[i].st==='dark')dk++;
+  }
+  const R=snr.rec;
+  const want=snr.kind==='count'?String(snr.want)+' 笔':SNR_DIRS[snrRok(snr.want)]+' '+SNR_ARW[snrRok(snr.want)];
+  const el=document.getElementById('snrPowTxt');
+  if(!el)return;
+  el.innerHTML='🦇 洞第 <b>'+snr.lv+'</b> 层 · 牌 <b>'+C.length+'</b> 块（亮 '+lit+' · 轮廓 '+gh+' · 全黑 '+dk+
+    '）· 这一声能传 <b>'+snrRange(snr.lv)+(snr.muffleMs>0?'×'+SNR_MUFFLE_RANGE:'')+'</b> 步 · 穴鸮 <b>'+snr.owls.length+
+    '</b> 只 · 要收的是 <b>'+want+'</b>'+(R?'（「'+R.ch+'」第 '+(snr.qi+1)+'/'+R.n+' 笔）':'');
+}
+function snrLine(){
+  const el=document.getElementById('snrHintLine');
+  if(!el)return;
+  if(snr.nagMs>0)return;
+  let t;
+  if(snr.air<=0)t='🔇 <b>一口气都没了</b>：每 '+(snrAirPer(snr.lv)/1000).toFixed(1)+' 秒补 1 口 —— 这段路只能 <b>摸黑撞牌</b> 摸位置';
+  else if(snr.shadow>0)t='🕳 刚才有 <b>'+snr.shadow+' 块牌在声影里</b>：挪个位置再喊，或者 <b>贴到洞壁上喊</b>（<code>空格</code>）借回声拐进影子';
+  else if(snrLit()+snrGhost()===0)t='🖐 <b>一块也读不出</b>：按 <code>空格</code> 喊一声，波前扫到哪儿、哪儿才亮';
+  else if(snrLit()>0)t='👁 现在亮着 <b>'+snrLit()+'</b> 块：读一读哪块是这一笔，<b>飞过去撞它</b>';
+  else t='🧠 只剩 <b>'+snrGhost()+'</b> 块牌的轮廓（位置记得、字忘了）：再喊一声把字照回来';
+  el.innerHTML=t;
+}
+function snrMini(){
+  const sv=document.getElementById('snrMiniSvg');
+  if(!sv||!snr.rec)return;
+  const R=snr.rec,qi=snr.qi;
+  let h='<rect x="32" y="32" width="960" height="960" rx="24" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.16)" stroke-width="4"/>'+
+    '<line x1="512" y1="32" x2="512" y2="992" stroke="rgba(255,255,255,.12)" stroke-width="3"/>'+
+    '<line x1="32" y1="512" x2="992" y2="512" stroke="rgba(255,255,255,.12)" stroke-width="3"/>'+
+    '<line x1="80" y1="80" x2="944" y2="944" stroke="rgba(255,255,255,.07)" stroke-width="3"/>'+
+    '<line x1="944" y1="80" x2="80" y2="944" stroke="rgba(255,255,255,.07)" stroke-width="3"/>';
+  for(let k=0;k<R.n;k++){
+    const d=R.paths&&R.paths[k]?R.paths[k]:'';
+    if(!d)continue;
+    const done=k<qi;
+    h+='<path d="'+d+'" fill="'+(done?SNR_INK[snrRok(R.dirs[k])]:'none')+'" stroke="'+
+      (done?'none':(k===qi?'#FFF176':'rgba(255,255,255,.34)'))+'" stroke-width="'+(k===qi?24:12)+
+      '" stroke-dasharray="'+(k===qi?'none':'24 18')+'" stroke-linecap="round" fill-rule="nonzero"/>';
+  }
+  sv.innerHTML='<g transform="translate(0,1024) scale(1,-1)">'+h+'</g>';
+  const cap=document.getElementById('snrMiniCap');
+  if(cap)cap.innerHTML='「'+R.ch+'」· 收 '+qi+'/'+R.n+' 笔';
+}
+function snrAddBook(x){
+  /* 图鉴只收单字：洞产走洞罐那本账，别把「萤石」记成收过的字 */
+  if(!x||x.length!==1)return;
+  const cur=localStorage.getItem('hz_sonar_book')||'';
+  const a=cur.split(',').filter(function(v){return v});
+  if(a.indexOf(x)<0){a.push(x);if(a.length>SNR_BOOK_MAX)a.shift();localStorage.setItem('hz_sonar_book',a.join(','))}
+}
+function snrAddMiss(ch){
+  if(!ch)return;
+  const cur=(localStorage.getItem('hz_sonar_miss')||'').split(',').filter(function(v){return v});
+  if(cur.indexOf(ch)<0){cur.push(ch);if(cur.length>12)cur.shift();localStorage.setItem('hz_sonar_miss',cur.join(','))}
+}
+
+/* ================= 第五段：主循环 · 道具 · 键位与鼠标 · 说明书 · 结算与落盘 ================= */
+function snrStartLoop(){snrStopLoop();snr.last=0;snr.rafId=requestAnimationFrame(snrLoop)}
+function snrStopLoop(){if(snr.rafId)cancelAnimationFrame(snr.rafId);snr.rafId=0}
+function snrLoop(ts){
+  if(!snr.run||snr.over)return;
+  const dt=snr.last?Math.min(120,ts-snr.last):16;
+  snr.last=ts;
+  snrTick(dt);
+  if(snr.run&&!snr.over)snr.rafId=requestAnimationFrame(snrLoop);
+}
+function snrTick(dt){
+  if(!snr.run||snr.over||!snr.rec)return;
+  if(snr.helpMs>0){
+    /* 看说明书的时候两只钟都不走：孩子可以慢慢读 */
+    snr.helpMs-=dt;
+    if(snr.helpMs<=0){snr.helpMs=0;snrAskText();snrLine()}
+    snrDraw();
+    return;
+  }
+  const s=Math.min(0.08,dt/1000);
+  snr.t+=dt;snr.playMs+=dt;snr.since+=dt;
+  if(snr.actMs>0)snr.actMs=Math.max(0,snr.actMs-dt);
+  snrStepBat(s);
+  snrStepWaves(s);
+  snrStepCards(dt);
+  snrStepOwl(dt,s);
+  snrStepTimers(dt);
+  if(!snr.busy){
+    snr.qms-=dt;
+    if(snr.qms<=0){snr.qms=0;snrTimeoutQ()}
+    /* 心掉光了却没等到判词定时器（切页、被打断）也自己收场，不留「零心还在跑」的僵局 */
+    if(snr.hearts<=0&&!snr.over){snrEnd('hearts');return}
+  }
+  snr.clockMs-=dt;
+  if(snr.clockMs<=0){snr.clockMs=0;snrEnd('torch');return}
+  if(snr.warn){
+    snr.beep+=dt;
+    if(snr.beep>=1000){snr.beep=0;snrTone(1180,.05,'square',.05)}
+  }
+  snrStepTouch();
+  snr.hudAcc=(snr.hudAcc||0)+dt;
+  if(snr.hudAcc>=180){
+    snr.hudAcc=0;
+    snrHud();snrMeter();snrPow();snrLine();
+  }
+  snrDraw();
+}
+/* ---- 三件道具 ---- */
+function snrFan(){
+  if(!snr.run||snr.over||snr.busy)return 0;
+  if(snr.featherN<SNR_FEATHER0){
+    snrTag('🪶 这一层的羽扇用完了');
+    return 0;
+  }
+  snr.featherN--;snr.feathers++;
+  snr.stunMs=SNR_STUN_MS;
+  for(let i=0;i<snr.owls.length;i++){
+    const o=snr.owls[i];
+    const dx=o.x-snr.bat.x,dy=o.y-snr.bat.y,d=Math.sqrt(dx*dx+dy*dy)||1;
+    o.x=snrClamp(o.x+dx/d*70,10,SNR_W-10);
+    o.y=snrClamp(o.y+dy/d*70,10,SNR_H-10);
+    o.huntMs=0;o.cool=Math.max(o.cool,SNR_OWL_COOL);
+  }
+  snrTone(880,.12,'sine',.08);
+  snrDustAt(snr.bat.x,snr.bat.y,8,'#FFF59D');
+  snrTag('🪶 一扇子把穴鸮扇回洞口：定住 '+(SNR_STUN_MS/1000).toFixed(1)+' 秒');
+  snrHud();snrPow();snrDraw();
+  return 1;
+}
+function snrMuffle(){
+  if(!snr.run||snr.over||snr.busy)return 0;
+  if(snr.muffleN<SNR_MUFFLE0){
+    snrTag('🧣 绒套用完了');
+    return 0;
+  }
+  snr.muffleN--;snr.muffles++;
+  snr.muffleMs=SNR_MUFFLE_MS;
+  snrTone(420,.12,'sine',.06);
+  snrSay('🧣 <b>绒套捂上了（'+(SNR_MUFFLE_MS/1000).toFixed(0)+' 秒）</b>：这几声喊 <b>穴鸮听不见</b>，可声也 <b>软了 —— 射程只到 ×'+
+    SNR_MUFFLE_RANGE+'</b>，回声也照不出来了。想摸黑又想让穴鸮睡着，就趁这会儿','#FFCCBC');
+  snrHud();snrPow();
+  return 1;
+}
+/* ---- 输入：钥匙只管你自己的身子，空格才是那张嘴 ---- */
+function snrKeyDir(e){
+  const k=e.key;
+  if(k==='ArrowLeft'||k==='a'||k==='A')return 'left';
+  if(k==='ArrowRight'||k==='d'||k==='D')return 'right';
+  if(k==='ArrowUp'||k==='w'||k==='W')return 'up';
+  if(k==='ArrowDown'||k==='s'||k==='S')return 'down';
+  return '';
+}
+function snrBind(){
+  if(snr.bound)return;
+  snr.bound=true;
+  if(!snr.keys)snr.keys={left:false,right:false,up:false,down:false};
+  window.addEventListener('keydown',function(e){
+    if(!snr.run||snr.over)return;
+    const d=snrKeyDir(e);
+    if(d){e.preventDefault();snr.keys[d]=true;snr.goal=null;return}
+    const k=e.key;
+    if(k===' '||k==='Enter'){e.preventDefault();snrPing();return}
+    if(k==='q'||k==='Q'){snrFan();return}
+    if(k==='e'||k==='E'){snrStone();return}
+    if(k==='f'||k==='F'){snrMuffle();return}
+    if(k==='h'||k==='H'||k==='?'){snrHelp();return}
+  });
+  window.addEventListener('keyup',function(e){
+    const d=snrKeyDir(e);
+    if(d&&snr.keys)snr.keys[d]=false;
+  });
+  const cv=document.getElementById('snrCanvas');
+  if(cv){
+    const setGoal=function(ev){
+      if(!snr.run||snr.over)return;
+      const r=cv.getBoundingClientRect();
+      if(!r.width||!r.height)return;
+      const x=snrClamp((ev.clientX-r.left)/r.width*SNR_W,2,SNR_W-2);
+      const y=snrClamp((ev.clientY-r.top)/r.height*SNR_H,2,SNR_H-2);
+      snr.goal={x:x,y:y};
+    };
+    cv.addEventListener('pointerdown',function(ev){ev.preventDefault();setGoal(ev)});
+    cv.addEventListener('pointermove',function(ev){if(snr.dragging)setGoal(ev)});
+    cv.addEventListener('pointerdown',function(){snr.dragging=true});
+    window.addEventListener('pointerup',function(){snr.dragging=false});
+  }
+  [['snrFeatherBtn',snrFan],['snrStoneBtn',snrStone],['snrMuffleBtn',snrMuffle]].forEach(function(x){
+    const b=document.getElementById(x[0]);
+    if(b&&!b.dataset.on){b.dataset.on='1';b.addEventListener('click',x[1])}
+  });
+}
+function snrHelp(){
+  if(!snr.run)return;
+  snr.helpMs=SNR_HELP_MS;
+  snrSet('snrAsk','🦇 <b>怎么在黑洞里写字</b><br><small>下面是这一洞的全部规则</small>');
+  snrSay('🔊 <b>喊一声（<code>空格</code>）</b>：一圈声波从你现在的位置 <b>往外扩</b>，圆环 <b>扫到哪块牌，那块牌才亮一下</b> —— <b>先亮的在近处</b>，亮完只剩个轮廓<br>🪨 <b>石笋挡声</b>：躲在石笋背后的牌 <b>怎么喊都不亮</b>（那是 <b>声影</b>）。<b>贴着洞壁喊</b>（身边那条壁会发亮），<b>撞壁的回声</b> 能拐进影子里，只是回声照出来的字 <b>又短又灰</b><br>🖐 <b>摸黑撞牌不算答错</b>：撞上一块看不见的牌，只 <b>摸到它在哪儿</b>；<b>要读它写什么，只能靠回声</b>。<b>读得出（亮着 / 有轮廓）的牌撞上去才算答题</b> —— 撞对了收这一笔，撞错了掉一颗心<br>🦉 <b>穴鸮听得见你每一声</b>：它朝你的喊点扑，撞上就 <b>叼走一块牌</b>（答案牌被叼走会立刻在别处再挂一块，<b>不出无解</b>）。<b>🪶 羽扇</b> 扇它一下定住 '+(SNR_STUN_MS/1000).toFixed(1)+' 秒，<b>🧣 绒套</b> 让喊声变轻（它听不见，可你 <b>射程 ×'+SNR_MUFFLE_RANGE+'、也没了回声</b>）<br>💡 <b>萤石</b>：不靠听，直接照出 <b>哪几块牌挂在哪儿</b>（'+(SNR_STONE_MS/1000).toFixed(1)+' 秒），<b>但照不出字</b><br>🌬 <b>一口气喊一声</b>：气自己会慢慢补（每 '+(snrAirPer(snr.lv)/1000).toFixed(1)+' 秒 1 口），答对补 '+SNR_AIR_RIGHT+' 口、💎 洞产补 '+SNR_AIR_GEM+' 口<br>⏳ <b>两只钟</b>：这一笔的钟走光 <b>不算答错</b>（只扣 '+SNR_PEN_TIME+' 分、把牌全重挂）；<b>🕯 火把</b> 烧完就结算<br>🕯 <b>每收 2 个字往下一层</b>：牌更多、石笋更多、穴鸮成双，而 <b>声音传得更近</b>','#B3E5FC');
+}
+/* ---- 结算与落盘 ---- */
+function snrBank(){
+  const best=snrInt('hz_sonar_best');
+  const isBest=snr.score>best;
+  if(isBest)localStorage.setItem('hz_sonar_best',String(snr.score));
+  if(snr.maxCombo>snrInt('hz_sonar_combo'))localStorage.setItem('hz_sonar_combo',String(snr.maxCombo));
+  if(snr.words>snrInt('hz_sonar_words'))localStorage.setItem('hz_sonar_words',String(snr.words));
+  if(snr.lv>snrInt('hz_sonar_lv'))localStorage.setItem('hz_sonar_lv',String(snr.lv));
+  if(snr.pings>snrInt('hz_sonar_pings'))localStorage.setItem('hz_sonar_pings',String(snr.pings));
+  const ms=Math.round(snr.playMs/1000);
+  if(snr.words&&(!snrInt('hz_sonar_fastest')||ms<snrInt('hz_sonar_fastest')))localStorage.setItem('hz_sonar_fastest',String(ms));
+  return {best:Math.max(best,snr.score),isBest:isBest};
+}
+function snrEnd(why){
+  if(snr.over)return;
+  snr.over=true;
+  snrStopLoop();snrKillTimers();
+  snr.run=false;
+  if(snr.rec)snrDraw();
+  const tbl=document.getElementById('snrTbl');
+  if(tbl)tbl.classList.add('dead');
+  const bk=snrBank(),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(snr.score/14)+snr.words*2);
+  if(why!=='pool')addStars(stars);
+  showScreen('sonar-result');
+  const R={quit:'🏳️',torch:'🕯',hearts:'💔',pool:'😢'}[why]||'🦇';
+  snrSet('snrRsEmoji',R);
+  snrSet('snrRsTitle',why==='hearts'?'洞太深了':(why==='torch'?'火把烧完了':(why==='quit'?'这一趟先出了洞':'字库没凑齐')));
+  const tot=snrInt('hz_sonar_words');
+  const rk=snrRank(tot);
+  snrSet('snrRsSub','第 '+snr.lv+' 层 · 累计收 '+tot+' 个字 · '+rk.e+' '+rk.t);
+  snrSet('snrRsScore','🎯 '+snr.score+' 分'+(isBest?' 🏅 新高':''));
+  snrSet('snrRsWords','🦇 收 '+snr.words+' 个字');
+  snrSet('snrRsLits','✅ '+snr.lits+' 笔');
+  snrSet('snrRsPings','🔊 喊了 '+snr.pings+' 声 · 回声照见 '+snr.echoes+' 次');
+  snrSet('snrRsSeen','👁 照见 '+snr.seen+' 块牌 · 摸黑撞见 '+snr.touches+' 块');
+  snrSet('snrRsOwl','🦉 被叼走 '+snr.snatched+' 块（重挂 '+snr.rehangs+' 块）');
+  snrSet('snrRsGem','💎 洞产 '+snr.gems+' 块 · 滴水 '+snr.drips+' 回');
+  snrSet('snrRsSharp','🎯 一声中的 '+snr.sharp+' 笔');
+  snrSet('snrRsCombo','🔥 最长连 '+snr.maxCombo);
+  snrSet('snrRsBest','🏆 最高 '+best+' 分');
+  snrSet('snrRsStars','⭐ '+stars);
+  const book=(localStorage.getItem('hz_sonar_book')||'').split(',').filter(function(c){return c.length===1}).length;
+  snrSet('snrRsBook','图鉴里现在有 <b>'+book+'</b> 个字 · 洞罐里 <b>'+snrInt('hz_sonar_jar')+'</b> 件洞产 · 累计喊了 <b>'+
+    snrInt('hz_sonar_pings')+'</b> 声');
+  const per=snr.lits?Math.round(snr.pings/Math.max(1,snr.lits)*10)/10:0;
+  snrSet('snrRsWhy',why==='hearts'?'💔 <b>撞错是要掉心的</b>：读不准就 <b>多喊一声把字照回来</b>，别凭轮廓赌':
+    (why==='torch'?'🕯 <b>火把烧完了</b>：平均每笔喊了 <b>'+per+'</b> 声 —— 试着 <b>一声照两块</b>，站在中间喊、少挪几步':
+    (per>3?'🔊 平均每笔喊了 <b>'+per+'</b> 声：先 <b>贴着壁喊一记</b> 让回声拐进影子，比连喊三声省气':
+    '🦇 手感不错：下一层牌更多、穴鸮成双，试着 <b>把喊点亮在石笋的另一头</b>，让声影挪到你身上')));
+  snrSay('🦇 这一趟收了 <b>'+snr.words+'</b> 个字、<b>'+snr.lits+'</b> 笔，喊了 <b>'+snr.pings+
+    '</b> 声（其中回声照见 <b>'+snr.echoes+'</b> 次）、摸黑撞到 <b>'+snr.touches+'</b> 块牌，被穴鸮叼走 <b>'+snr.snatched+'</b> 块。'+
+    '<br>战绩落盘 <code>hz_sonar_*</code>：称号按累计收下的字数走，第 6 层起 <b>两只穴鸮一起听</b>','#B2DFDB');
+  snrNudge();
+}
+function snrNudge(){
+  const dot=document.getElementById('snrCardDot'),tip=document.getElementById('snrCardTip');
+  const w=snrInt('hz_sonar_words'),games=snrInt('hz_sonar_games'),pings=snrInt('hz_sonar_pings');
+  const R=snrRank(w);
+  const jar=snrInt('hz_sonar_jar');
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 收了 '+w+' 个字 · 喊过 '+pings+' 声 · 洞罐 '+jar+' 件 · 被穴鸮叼走 '+snrInt('hz_sonar_snatch')+' 块牌'):'洞里全黑，一块牌也看不见：喊一声，声波那一圈扫到哪块牌、那块才亮一下 —— 先亮的在近处，石笋背后照不见，得贴着洞壁借一记回声';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+
+/* ---- 无头测试用的挂钩（只读与小步驱动，不参与游戏逻辑） ---- */
+window.vSnrTick=function(dt){snrTick(dt||SNR_TICK_MS)};
+window.vSnrPump=function(ms,step){
+  let t=0;const s=step||SNR_TICK_MS;
+  while(t<ms&&snr.run&&!snr.over){snrTick(s);t+=s}
+  return t;
+};
+window.vSnrNewWord=function(){snrNewWord();return snr.rec?snr.rec.ch:''};
+window.vSnrNewQ=function(){snrNewQ();return 1};
+window.vSnrState=function(){
+  return {run:snr.run?1:0,over:snr.over?1:0,lv:snr.lv,qi:snr.qi,n:snr.n,kind:snr.kind,want:snr.want,
+    score:snr.score,hearts:snr.hearts,combo:snr.combo,maxCombo:snr.maxCombo,words:snr.words,lits:snr.lits,
+    pings:snr.pings,echoes:snr.echoes,seen:snr.seen,shadow:snr.shadow,touches:snr.touches,
+    snatched:snr.snatched,rehangs:snr.rehangs,sharp:snr.sharp,wrongs:snr.wrongs,drips:snr.drips,
+    gems:snr.gems,feathers:snr.feathers,stones:snr.stones,muffles:snr.muffles,nags:snr.nags,
+    air:snr.air,airCap:snrAirCap(snr.lv),airMs:snr.airMs,
+    lit:snrLit(),ghost:snrGhost(),dark:snrDark(),live:snrLive(),
+    qms:snr.qms,qms0:snr.qms0,clockMs:snr.clockMs,helpMs:snr.helpMs,busy:snr.busy?1:0,
+    pingsSinceQ:snr.pingsSinceQ,wrongThisQ:snr.wrongThisQ?1:0,
+    stunMs:snr.stunMs,muffleMs:snr.muffleMs,stoneMs:snr.stoneMs,actMs:snr.actMs,
+    dripWinMs:snr.dripWinMs,cardN:snr.cards.length,rockN:snr.rocks.length,owlN:snr.owls.length,
+    waveN:snr.waves.length,playMs:snr.playMs,t:snr.t,
+    range:snrRange(snr.lv),litMs:snrLitMs(snr.lv),memMs:snrMemMs(snr.lv),
+    bat:{x:snr.bat.x,y:snr.bat.y},goal:snr.goal?{x:snr.goal.x,y:snr.goal.y}:null};
+};
+window.vSnrCards=function(){
+  return snr.cards.map(function(c,i){
+    return {i:i,x:c.x,y:c.y,st:c.st,ms:c.ms,mem:c.mem,gray:c.gray,pop:c.pop,seen:c.seen,
+      kind:c.kind,dir:c.dir,num:c.num,ans:c.ans,label:snrTxt(c),
+      isAns:(snr.kind==='count'?c.num===snr.want:c.dir===snr.want)?1:0};
+  });
+};
+window.vSnrRocks=function(){return snr.rocks.map(function(r){return {x:r.x,y:r.y,r:r.r}})};
+window.vSnrOwls=function(){return snr.owls.map(function(o){return {x:o.x,y:o.y,huntMs:o.huntMs,cool:o.cool,carry:o.carry}})};
+window.vSnrWaves=function(){
+  return snr.waves.map(function(w){
+    return {x:w.x,y:w.y,r:Math.round(w.r*10)/10,max:w.max,echo:w.echo?1:0,hit:w.hit,due:w.due.map(function(d){return {i:d.i,d:Math.round(d.d)}})};
+  });
+};
+window.vSnrGem=function(){return snr.gem?{x:snr.gem.x,y:snr.gem.y,taken:snr.gem.taken?1:0,kind:snr.gem.kind}:null};
+window.vSnrDrip=function(){return snr.drip?{x:snr.drip.x,y:snr.drip.y,ms:snr.drip.ms}:null};
+window.vSnrTrace=function(x,y,range,echoOK){
+  const px=x==null?snr.bat.x:x,py=y==null?snr.bat.y:y;
+  const tr=snrTrace(px,py,range==null?snrRange(snr.lv):range,echoOK===undefined?true:!!echoOK);
+  return {direct:tr.direct,echo:tr.echo,shadow:tr.shadow,echoOn:tr.echoOn?1:0};
+};
+window.vSnrWall=function(x,y){return snrWallOf(x==null?snr.bat.x:x,y==null?snr.bat.y:y)};
+window.vSnrBlock=function(ax,ay,bx,by){return snrBlock(ax,ay,bx,by)};
+/* 摆拍用：把蝙蝠钉到某一点（顺带清掉目标点，免得下一拍又飘走） */
+window.vSnrPutBat=function(x,y){
+  snr.goal=null;
+  snr.bat.x=snrClamp(x,SNR_BAT_R+1,SNR_W-SNR_BAT_R-1);
+  snr.bat.y=snrClamp(y,SNR_BAT_R+1,SNR_H-SNR_BAT_R-1);
+  snr.bat.vx=0;snr.bat.vy=0;
+  return {x:snr.bat.x,y:snr.bat.y};
+};
+window.vSnrPutOwl=function(i,x,y){
+  const o=snr.owls[i];
+  if(!o)return 0;
+  o.x=x;o.y=y;o.vx=0;o.vy=0;o.huntMs=0;o.cool=0;
+  return 1;
+};
+window.vSnrPutCard=function(i,x,y){
+  const c=snr.cards[i];
+  if(!c)return 0;
+  c.x=x;c.y=y;
+  return 1;
+};
+window.vSnrSetCard=function(i,st,ms){
+  const c=snr.cards[i];
+  if(!c)return 0;
+  c.st=st;c.ms=ms||0;c.mem=st==='ghost'?(ms||snrMemMs(snr.lv)):0;c.gray=0;c.pop=0;
+  return 1;
+};
+window.vSnrPing=function(x,y){return snrPing(x,y)};
+window.vSnrGoIt=function(i){
+  const c=snr.cards[i];
+  if(!c)return 0;
+  snrGo(c,i);
+  return 1;
+};
+window.vSnrFan=function(){return snrFan()};
+window.vSnrStone=function(){return snrStone()};
+window.vSnrMuffle=function(){return snrMuffle()};
+window.vSnrRehang=function(i){return snrRehangCard(i)};
+window.vSnrBad=function(){
+  const out=[];
+  const bad=function(v){return typeof v!=='number'||!isFinite(v)};
+  for(let i=0;i<snr.cards.length;i++){
+    const c=snr.cards[i];
+    if(bad(c.x)||bad(c.y)){out.push('NaN card '+i);continue}
+    if(c.x<0||c.x>SNR_W||c.y<0||c.y>SNR_H)out.push('card '+i+' out('+c.x+','+c.y+')');
+    if(c.st!=='dark'&&c.st!=='lit'&&c.st!=='ghost'&&c.st!=='gone')out.push('card '+i+' bad st '+c.st);
+  }
+  for(let i=0;i<snr.owls.length;i++){
+    const o=snr.owls[i];
+    if(bad(o.x)||bad(o.y)){out.push('NaN owl '+i);continue}
+    if(o.x<0||o.x>SNR_W||o.y<0||o.y>SNR_H)out.push('owl '+i+' out');
+  }
+  for(let i=0;i<snr.rocks.length;i++){
+    const r=snr.rocks[i];
+    if(bad(r.x)||bad(r.y)||bad(r.r))out.push('NaN rock '+i);
+  }
+  for(let i=0;i<snr.waves.length;i++){
+    const w=snr.waves[i];
+    if(bad(w.r))out.push('NaN wave '+i);
+    if(w.r>w.max+SNR_WAVE)out.push('wave '+i+' over');
+  }
+  if(bad(snr.bat.x)||bad(snr.bat.y))out.push('NaN bat');
+  if(snr.bat.x<SNR_BAT_R||snr.bat.x>SNR_W-SNR_BAT_R||snr.bat.y<SNR_BAT_R||snr.bat.y>SNR_H-SNR_BAT_R)out.push('bat out');
+  for(let i=0;i<snr.rocks.length;i++){
+    const r=snr.rocks[i];
+    if(snrD2(r.x,r.y,snr.bat.x,snr.bat.y)<(r.r+SNR_BAT_R-1.6)*(r.r+SNR_BAT_R-1.6))out.push('bat inside rock '+i);
+  }
+  if(bad(snr.score)||bad(snr.air)||bad(snr.qms)||bad(snr.clockMs))out.push('NaN score/air/clock');
+  if(snr.air<0)out.push('air<0');
+  return out;
+};
+/* 答案牌必须恰好一块，且没有答案牌被叼走后就再也没了 */
+window.vSnrAnsBad=function(){
+  let ans=0;
+  for(let i=0;i<snr.cards.length;i++){
+    const c=snr.cards[i];
+    if(c.st==='gone')continue;
+    if(snr.kind==='count'?c.num===snr.want:c.dir===snr.want)ans++;
+  }
+  return {ans:ans,live:snrLive(),n:snr.cards.length,want:snr.want,kind:snr.kind};
+};
+/* 牌位彼此不重叠、也不长在石笋里 */
+window.vSnrSpotBad=function(){
+  const out=[];
+  for(let i=0;i<snr.cards.length;i++){
+    for(let j=i+1;j<snr.cards.length;j++){
+      if(snrD2(snr.cards[i].x,snr.cards[i].y,snr.cards[j].x,snr.cards[j].y)<20*20)out.push('cards '+i+'/'+j+' too close');
+    }
+    for(let k=0;k<snr.rocks.length;k++){
+      const r=snr.rocks[k];
+      if(snrD2(snr.cards[i].x,snr.cards[i].y,r.x,r.y)<(r.r+12)*(r.r+12))out.push('card '+i+' in rock '+k);
+    }
+  }
+  return out;
+};
+/* 真鼠标要用：canvas 内部坐标 ↔ 页面客户端坐标 */
+window.vSnrPointClient=function(x,y){
+  const cv=document.getElementById('snrCanvas');
+  if(!cv)return null;
+  const r=cv.getBoundingClientRect();
+  if(!r.width)return null;
+  return {x:r.left+x/SNR_W*r.width,y:r.top+y/SNR_H*r.height};
+};
+window.vSnrCardClient=function(i){
+  const cv=document.getElementById('snrCanvas'),c=snr.cards[i];
+  if(!cv||!c)return null;
+  const r=cv.getBoundingClientRect();
+  if(!r.width)return null;
+  return {x:r.left+c.x/SNR_W*r.width,y:r.top+c.y/SNR_H*r.height,px:c.x,py:c.y,st:c.st,label:snrTxt(c)};
+};
+window.vSnrCanvasBox=function(){
+  const cv=document.getElementById('snrCanvas');
+  if(!cv)return null;
+  const r=cv.getBoundingClientRect();
+  return {left:r.left,top:r.top,w:r.width,h:r.height};
+};
+window.vSnrFxCount=function(){
+  const box=document.getElementById('snrFx');
+  return box?box.children.length:-1;
+};
+window.vSnrDom=function(){
+  const g=function(id){const el=document.getElementById(id);return el?el.innerHTML:''};
+  const cv=document.getElementById('snrCanvas'),tbl=document.getElementById('snrTbl');
+  const r=cv?cv.getBoundingClientRect():{width:0,height:0};
+  return {ask:g('snrAsk'),msg:g('snrMsg'),q:g('snrQTxt'),pow:g('snrPowTxt'),tag:g('snrTag'),
+    line:g('snrHintLine'),judge:g('snrJudge'),lv:g('snrLvTxt'),score:g('snrScoreTxt'),
+    air:g('snrAirTxt'),ping:g('snrPingTxt'),seen:g('snrSeenTxt'),shadow:g('snrShadowTxt'),
+    echo:g('snrEchoTxt'),touch:g('snrTouchTxt'),owl:g('snrOwlTxt'),gem:g('snrGemTxt'),
+    rank:g('snrRankTxt'),heart:g('snrHeartTxt'),combo:g('snrComboTxt'),lit:g('snrLitTxt'),
+    torch:g('snrTorchTxt'),q2:g('snrQTxt2'),mini:g('snrMiniCap'),
+    cvW:Math.round(r.width),cvH:Math.round(r.height),
+    dead:tbl&&tbl.classList.contains('dead')?1:0,shown:cv&&cv.offsetParent?1:0,
+    off:cv&&cv.offsetParent?0:1};
+};
+window.vSnrSet=function(k,v){
+  if(k==='air')snr.air=v;
+  else if(k==='hearts')snr.hearts=v;
+  else if(k==='score')snr.score=v;
+  else if(k==='lv')snr.lv=v;
+  else if(k==='qi')snr.qi=v;
+  else if(k==='combo')snr.combo=v;
+  else if(k==='qms')snr.qms=v;
+  else if(k==='clockMs')snr.clockMs=v;
+  else if(k==='helpMs')snr.helpMs=v;
+  else if(k==='actMs')snr.actMs=v;
+  else if(k==='busy')snr.busy=!!v;
+  else if(k==='featherN')snr.featherN=v;
+  else if(k==='stoneN')snr.stoneN=v;
+  else if(k==='muffleN')snr.muffleN=v;
+  else if(k==='muffleMs')snr.muffleMs=v;
+  else if(k==='stunMs')snr.stunMs=v;
+  else if(k==='dripWinMs')snr.dripWinMs=v;
+  else if(k==='dripMs')snr.dripMs=v;
+  else if(k==='gemCd')snr.gemCd=v;
+  else if(k==='since')snr.since=v;
+  else if(k==='words')snr.words=v;
+  else if(k==='lits')snr.lits=v;
+  else if(k==='pings')snr.pings=v;
+  else if(k==='shadow')snr.shadow=v;
+  else if(k==='owlCool'){for(let i=0;i<snr.owls.length;i++)snr.owls[i].cool=v}
+  else if(k==='owlHunt'){for(let i=0;i<snr.owls.length;i++){snr.owls[i].huntMs=v;snr.owls[i].tx=snr.bat.x;snr.owls[i].ty=snr.bat.y}}
+  else if(k==='gemTaken'&&snr.gem)snr.gem.taken=!!v;
+  else return 0;
+  return 1;
+};
+window.vSnrStopLoop=function(){snrStopLoop()};
+window.vSnrStartLoop=function(){snrStartLoop()};
+window.vSnrDraw=function(){snrDraw();return 1};
+window.vSnrHud=function(){snrHud();snrMeter();snrPow();snrLine();return 1};
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
