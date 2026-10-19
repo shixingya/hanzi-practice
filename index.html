@@ -6163,6 +6163,57 @@ button:active{transform:scale(.95)}
 #screen-sonar .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
 /* 窄屏（手机）：小字卡挪到洞台上头，洞独占整幅宽 */
 @media(max-width:460px){.snr-stage{flex-direction:column}.snr-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.snr-mini svg{flex:0 0 74px;width:74px}.snr-cap{flex:0 1 auto;text-align:left}}
+/* ================= v1.89 笔顺光影坊 ================= */
+.pj-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.pj-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.pj-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35}
+.pj-ask small{font-size:13px;font-weight:400;color:#B0BEC5}
+.pj-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.pj-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.pj-mini svg{width:100%;height:auto;background:rgba(255,255,255,.06);border-radius:12px}
+.pj-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+.pj-tbl{flex:1;min-width:0;position:relative;background:#0C0910;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 18px rgba(0,0,0,.75)}
+.pj-tbl.dead{filter:grayscale(.85) brightness(.6)}
+.pj-canvas{display:block;width:100%;height:auto;cursor:grab;touch-action:none}
+.pj-tag{position:absolute;left:50%;top:8px;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#FFE0B2;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis;z-index:6}
+.pj-tag.on{opacity:1}
+.pj-fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:5}
+.pj-gr{position:absolute;width:4px;height:4px;border-radius:50%;opacity:.95;pointer-events:none;animation:pjGr .62s ease-out forwards}
+@keyframes pjGr{0%{transform:translate(0,0) scale(1);opacity:.95}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+.pj-warn{box-shadow:inset 0 0 0 3px #FF5252,0 0 18px rgba(255,82,82,.5)}
+.pj-meter{display:flex;gap:7px;align-items:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.pj-fl,.pj-tl,.pj-torch{position:relative;flex:1;height:22px;background:rgba(255,255,255,.1);border-radius:11px;overflow:hidden}
+.pj-fl i{position:absolute;left:0;top:0;bottom:0;width:0%;background:linear-gradient(90deg,#B0BEC5,#FFF176);transition:width .1s linear}
+.pj-fl.ok i{background:linear-gradient(90deg,#FFD54F,#FF8F00)}
+.pj-tl{height:26px;border-radius:13px}
+.pj-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#4DD0E1,#26A69A);transition:width .2s linear}
+.pj-tl.low i{background:linear-gradient(90deg,#FF8A65,#FFD54F)}
+.pj-torch i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#FF7043,#FFB300 60%,#FFE082);transition:width .2s linear}
+.pj-torch.low i{background:linear-gradient(90deg,#FF5252,#FF8A65)}
+.pj-fl b,.pj-tl b,.pj-torch b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8);white-space:nowrap;overflow:hidden}
+.pj-tl b{font-size:12px}
+.pj-pow{display:block;width:calc(100% - 28px);max-width:520px;margin:2px auto 0;white-space:normal;text-align:center;line-height:1.5;font-size:12px;color:#CFD8DC;background:rgba(255,255,255,.08);padding:3px 9px;border-radius:11px}
+.pj-pow b{color:#FFCC80}
+.pj-tools{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;width:100%;margin:4px 0 6px}
+.pj-tool{position:relative;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#fff;font-size:14px;font-weight:700;padding:8px 12px;cursor:pointer}
+.pj-tool span{display:block;font-size:9px;opacity:.6;font-weight:400}
+.pj-tool b{position:absolute;right:-4px;top:-6px;background:#FF6E40;color:#fff;font-size:10px;border-radius:9px;padding:1px 5px}
+.pj-tool:disabled{opacity:.4;cursor:default}
+.pj-tool.go{background:rgba(255,179,71,.22);border-color:#FFB300}
+.pj-hintline{width:100%;text-align:center;font-size:12px;color:#BCAAA4;margin:0 0 6px;line-height:1.4}
+.pj-hintline b{color:#FFF176}
+.pj-msg{width:calc(100% - 28px);max-width:520px;margin:0 auto 12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.6}
+.pj-msg b{color:#FFF176}
+.pj-msg code{background:rgba(0,0,0,.35);padding:1px 5px;border-radius:5px;color:#A5D6A7}
+@keyframes pjShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.pj-tbl.shake{animation:pjShake .34s}
+.pj-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px}
+.pj-cdot.on{display:block}
+.pj-pk{background:rgba(255,255,255,.08);padding:4px 10px;border-radius:12px;font-size:13px;color:#CFD8DC}
+/* 顶栏挤的时候「← 返回」不能折成两行 */
+#screen-proj .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：字卡挪到幕台上头，幕独占整幅宽 */
+@media(max-width:460px){.pj-stage{flex-direction:column}.pj-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.pj-mini svg{flex:0 0 74px;width:74px}.pj-cap{flex:0 1 auto;text-align:left}.pj-meter{flex-wrap:wrap}.pj-fl,.pj-tl,.pj-torch{flex:1 1 30%}}
 </style>
 
 </head>
@@ -6219,8 +6270,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 87 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">87</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 88 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">88</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6231,13 +6282,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>87 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>33</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>88 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>34</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
-    <div class="mode-card" id="snrCard" onclick="enterMode('sonar')">
+    <div class="mode-card" id="pjCard" onclick="enterMode('proj')">
+      <div class="icon">🔮</div>
+      <div class="info"><h3>笔顺光影坊</h3><p id="pjCardTip">幕后一团歪七扭八的木条，每根就是这个字的一笔：把架子转到某一根正对幕布，它那一笔的影子才啪地还原成真形 —— 认出它是第几笔，才敢落</p></div>
+      <span class="pj-cdot" id="pjCardDot">🆕</span>
+    </div><div class="mode-card" id="snrCard" onclick="enterMode('sonar')">
       <div class="icon">🦇</div>
       <div class="info"><h3>笔顺蝠洞回声</h3><p id="snrCardTip">洞里全黑，一块牌也看不见：喊一声，声波的圆环扫到哪块钟乳石牌、那块才亮一下 —— 先亮的在近处，石笋背后照不见，得贴着洞壁借一记回声</p></div>
       <span class="snr-cdot" id="snrCardDot">🆕</span>
@@ -6852,6 +6907,83 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-proj">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pjLeave()">← 返回</button>
+    <div class="stats"><span id="pjScoreTxt">🎯 0 分</span><span id="pjLvTxt">第 1 坊 · 已收 0 字</span><span id="pjQTxt">⏳ 这一笔 ——</span></div>
+    <button class="icon-btn" onclick="pjHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="pj-hud">
+    <span id="pjRankTxt" title="称号">🔮 刚点灯</span>
+    <span id="pjHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="pjComboTxt" title="连击">🔥 连 0</span>
+    <span id="pjLitTxt" title="落了第几笔">🖋 0/0 笔</span>
+    <span id="pjDropTxt" title="按过几次落影">🎯 落 0</span>
+    <span id="pjFitTxt" title="现在最正的那一根吻合多少">🔆 吻合 0%</span>
+    <span id="pjLampTxt" title="灯距与刻痕">🔦 灯 150 · 刻痕 170</span>
+    <span id="pjShadeTxt" title="被本影啃掉的笔">🪨 本影挡 0 笔</span>
+    <span id="pjImpTxt" title="趴在架子上的影妖">👻 影妖 0 只</span>
+    <span id="pjTearTxt" title="被撕掉的笔">🩸 被撕 0 笔</span>
+    <span id="pjMoteTxt" title="压住的星屑">✨ 星屑 0 粒</span>
+  </div>
+  <div class="pj-ask" id="pjAsk">🔮 正在点灯……<br><small>在字库里挑「每一笔都认得出」的字</small></div>
+  <div class="pj-stage">
+    <div class="pj-mini">
+      <svg viewBox="0 0 1024 1024" id="pjMiniSvg"></svg>
+      <div class="pj-cap" id="pjMiniCap">这个字</div>
+    </div>
+    <div class="pj-tbl" id="pjTbl">
+      <canvas class="pj-canvas" id="pjCanvas" width="360" height="255"></canvas>
+      <div class="pj-fx" id="pjFx"></div>
+      <div class="pj-tag" id="pjTag">🔮 灯亮了</div>
+    </div>
+  </div>
+  <div class="pj-meter">
+    <div class="pj-fl" id="pjFitBox"><i id="pjFitBar"></i><b id="pjFitTxt2">🔆 吻合 0%</b></div>
+    <div class="pj-tl" id="pjQBox"><i id="pjQBar"></i><b id="pjQTxt2">⏳ 这一笔 —— 秒</b></div>
+    <div class="pj-torch" id="pjTorchBox"><i id="pjTorchBar"></i><b id="pjOilTxt">🕯 灯油 —— 秒</b></div>
+  </div>
+  <div class="pj-pow" id="pjPowTxt">🔮 第 <b>1</b> 坊</div>
+  <div class="pj-tools">
+    <button class="pj-tool" id="pjLockBtn" disabled>🧊 定盘<span>Q</span><b>剩 1</b></button>
+    <button class="pj-tool" id="pjPeekBtn" disabled>💡 显影<span>E</span><b>剩 2</b></button>
+    <button class="pj-tool go" id="pjChaseBtn" disabled>🪔 驱影<span>F</span><b>剩 2</b></button>
+    <button class="pj-tool" id="pjNearBtn">🔦 拉近<span>+</span></button>
+    <button class="pj-tool" id="pjFarBtn">🔦 推远<span>-</span></button>
+    <button class="pj-tool" id="pjEndBtn" onclick="pjEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="pj-hintline" id="pjHintLine">🔮 <b>影子全拧成一团</b>：拖幕布或 <code>←</code><code>→</code><code>↑</code><code>↓</code> 转字模，把该写那一笔 <b>转到正对幕布</b>，按 <code>空格</code> 落影</div>
+  <div class="pj-msg" id="pjMsg">架子 <b>幕布后面</b>：一盏灯把一团 <b>立体的字</b> 照在 <b>米字格的幕</b> 上 —— 每一根木条就是这个字的 <b>一笔</b>，可它们被 <b>焊得歪七扭八</b>，投在幕上的影子 <b>全都拧成了一团</b><br>🔄 <b>转盘子</b>：转到某一根 <b>正对幕布</b> 时，它那一笔的影子会 <b>啪地一下还原成真形</b>，稳稳落回米字格里该在的位置<br>👁 <b>认出它才是关卡</b>：幕上同时有好几根会转平 —— <b>只有该写的那一笔落下去才算数</b><br>🔦 <b>灯有那一格</b>：轨上的蓝刻痕才是它该压的距离，偏了影子就发糊、胀出幕外<br>🪨 石片的 <b>本影</b> 压在影子上就缺一块；👻 <b>影妖</b> 拖盘子、撕落好的笔</div>
+</div>
+<div class="screen" id="screen-proj-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pjLeave()">← 回首页</button>
+    <div class="stats"><span id="pjRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="pjRsEmoji">🔮</div>
+    <div style="font-size:26px;font-weight:800" id="pjRsTitle">灯油烧完了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="pjRsSub">第 1 坊</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px" id="pjRsPicks">
+      <span class="pj-pk" id="pjRsScore">🎯 0 分</span>
+      <span class="pj-pk" id="pjRsWords">🔮 收 0 个字</span>
+      <span class="pj-pk" id="pjRsLits">🖋 落了 0 笔</span>
+      <span class="pj-pk" id="pjRsDrops">🎯 按了 0 次落影</span>
+      <span class="pj-pk" id="pjRsSharp">🎯 一影中的 0 笔</span>
+      <span class="pj-pk" id="pjRsWrong">🌀 乱序 0 · 空挥 0</span>
+      <span class="pj-pk" id="pjRsTear">👻 被撕 0 笔</span>
+      <span class="pj-pk" id="pjRsTools">🧊 定盘 0 · 💡 显影 0</span>
+      <span class="pj-pk" id="pjRsCombo">🔥 最长连 0</span>
+      <span class="pj-pk" id="pjRsBest">🏆 最高 0 分</span>
+    </div>
+    <div style="font-size:13px;color:#FFF59D;margin:6px auto 14px;max-width:420px;line-height:1.6" id="pjRsWhy"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin-bottom:14px" id="pjRsBook">图鉴里还没有字</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="primary-btn" onclick="pjAgain()">🔮 再开一团架子</button>
+      <button class="secondary-btn" onclick="pjLeave()">🏠 回首页</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-sonar">
@@ -13190,6 +13322,7 @@ function updateHomeStats(){
   if(typeof ifxNudge==='function')ifxNudge();
   if(typeof ffyNudge==='function')ffyNudge();
   if(typeof snrNudge==='function')snrNudge();
+  if(typeof pjNudge==='function')pjNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -13223,6 +13356,7 @@ function enterMode(mode){
   if(mode==='icefire'){ifxStart();return}
   if(mode==='firefly'){ffyStart();return}
   if(mode==='sonar'){snrStart();return}
+  if(mode==='proj'){pjStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -77063,6 +77197,1449 @@ window.vSnrStopLoop=function(){snrStopLoop()};
 window.vSnrStartLoop=function(){snrStartLoop()};
 window.vSnrDraw=function(){snrDraw();return 1};
 window.vSnrHud=function(){snrHud();snrMeter();snrPow();snrLine();return 1};
+
+/* ================= v1.89 笔顺光影坊（架子上一团乱转的立体字模 · 只有把某一笔转到正对幕布，它的影子才还原成真正的那一笔 · 认出「这一影是第几笔」才敢落） ================= */
+const PJ_W=360,PJ_H=255,PJ_CX=180,PJ_CY=132;
+const PJ_HALF=62,PJ_UNIT=46,PJ_ZS=58;
+const PJ_LD_MIN=64,PJ_LD_MAX=250,PJ_LD_SPAN=62,PJ_LAMP_FLOOR=.5;
+const PJ_LDB0=150,PJ_LDB_SPAN=60,PJ_PRINT_M=1.32,PJ_SHARP=.93;
+const PJ_RAD=Math.PI/180;
+const PJ_YAW_MAX=84,PJ_PIT_MAX=52,PJ_MOTE_BACK=4200;
+const PJ_DIRS=['横','竖','撇','捺','点'],PJ_ARW=['→','↓','↙','↘','↗'];
+const PJ_INK=['#FFD54F','#4FC3F7','#81C784','#FFB74D','#BA68C8'];
+const PJ_HEARTS=3,PJ_HEART_MAX=5,PJ_BOOK_MAX=300;
+const PJ_POOL_MIN=4,PJ_POOL_WANT=14,PJ_STROKE_MIN=3,PJ_STROKE_MAX=7;
+const PJ_PTS=12;
+const PJ_TICK_MS=52,PJ_ACT_CD=200,PJ_OIL0=126000,PJ_OIL_MIN=78000;
+const PJ_QMS0=34000,PJ_QMS_MIN=15000,PJ_QMS_STEP=2400;
+const PJ_SPIN=52,PJ_DRAG=.55,PJ_SPIN_MAX=150;
+const PJ_PEN_WRONG=5,PJ_PEN_MISS=3,PJ_PEN_TIME=3,PJ_WORD_BONUS=26,PJ_SHARP_BONUS=12;
+const PJ_MOTE_GAIN=3,PJ_MOTE_OIL=3600,PJ_MOTE_R=13,PJ_MOTE0=3,PJ_MOTE_MAX=6;
+const PJ_LOCK_MS=2800,PJ_PEEK_MS=2600,PJ_CHASE_MS=5200;
+const PJ_LOCK0=1,PJ_PEEK0=2,PJ_CHASE0=2;
+const PJ_BITE0=9000,PJ_BITE_MIN=5200,PJ_BITE_STEP=700,PJ_IMP_DRAG=26,PJ_IMP_CD=2600;
+const PJ_WAND0=0,PJ_WAND_STEP=2.1,PJ_WAND_MS=2600;
+const PJ_NEXT_MS=1300,PJ_TAG_MS=2300,PJ_NAG_MS=12000,PJ_NAG_HOLD=5200,PJ_HELP_MS=14000;
+const PJ_NOTE=[196,233,262,294,330,392,440,523,587,659,784];
+const PJ_RELICS=['皮影','走马灯','影灯','窗花','手影','剪纸','铜镜','壁灯'];
+const PJ_SHELF_MAX=8;
+const PJ_RANKS=[
+  {n:0,e:'🔮',t:'刚点灯'},{n:2,e:'🕯',t:'看得懂影子'},{n:5,e:'📐',t:'转得平一根'},
+  {n:9,e:'🔦',t:'找得准那一格'},{n:14,e:'🪞',t:'绕得过石片'},{n:21,e:'🎭',t:'一手好皮影'},
+  {n:30,e:'🧿',t:'影子都在手上'},{n:42,e:'🏮',t:'一盏灯亮满堂'},{n:58,e:'👑',t:'光影坊的师傅'}
+];
+const pj={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],tones:0,toneAt:0,
+  pool:[],miss:[],rec:null,n:0,
+  lv:1,score:0,hearts:PJ_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,drops:0,sharps:0,wrongs:0,misses:0,tears:0,bites:0,locks:0,peeks:0,chases:0,nags:0,
+  lockN:PJ_LOCK0,peekN:PJ_PEEK0,chaseN:PJ_CHASE0,
+  lockMs:0,peekMs:0,chaseMs:0,nagMs:0,
+  sticks:[],imps:[],motes:[],shades:[],top:-1,bestCache:null,
+  yaw:0,pitch:0,velYaw:0,velPitch:0,dragYaw:0,dragPitch:0,
+  ld:150,ldBest:150,ldVel:0,
+  qi:0,busy:false,qms:0,qms0:0,wrongThisQ:false,cleanWord:true,first:true,
+  oilMs:PJ_OIL0,warn:false,beep:0,swayPh:0,swayPh2:0,
+  ctx:null,decor:null,fxBox:null,
+  bound:false,dragging:null,keys:null,actMs:0,tagMs:0,helpMs:0,hudAcc:0,since:0,
+  shelf:0
+};
+/* ---- 小工具 ---- */
+function pjInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function pjAdd(k,n){if(n)localStorage.setItem(k,String(pjInt(k)+n))}
+function pjSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function pjSay(t,c){const el=document.getElementById('pjMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function pjShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function pjOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function pjClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function pjRank(n){let r=PJ_RANKS[0];for(let i=0;i<PJ_RANKS.length;i++)if(n>=PJ_RANKS[i].n)r=PJ_RANKS[i];return r}
+function pjRok(d){return d<0||d>4?0:d}
+function pjD2(ax,ay,bx,by){const dx=ax-bx,dy=ay-by;return dx*dx+dy*dy}
+function pjTone(f,d,t,v){
+  if(!pj.run||pj.over)return;
+  const n=performance.now();
+  if(n-pj.toneAt<24)return;
+  pj.tones++;
+  tone(f,d,t,v);
+}
+function pjT(fn,ms){const g=pj.gen;const id=setTimeout(function(){const k=pj.timers.indexOf(id);if(k>=0)pj.timers.splice(k,1);if(g!==pj.gen)return;fn()},ms);pj.timers.push(id);return id}
+function pjKillTimers(){pj.timers.forEach(function(t){clearTimeout(t)});pj.timers=[]}
+function pjLive(){let n=0;for(let i=0;i<pj.sticks.length;i++)if(pj.sticks[i].st==='hang')n++;return n}
+function pjDone(){let n=0;for(let i=0;i<pj.sticks.length;i++)if(pj.sticks[i].st==='done')n++;return n}
+/* ---- 难度表：坊越深，容差越窄、灯格越挑、石片越多、架子越晃 ---- */
+function pjLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function pjOilMs(lv){return Math.max(PJ_OIL_MIN,PJ_OIL0-(lv-1)*3400)}
+function pjQmsOf(lv){return Math.max(PJ_QMS_MIN,PJ_QMS0-(lv-1)*PJ_QMS_STEP)}
+function pjFitK(lv){return Math.max(.072,.115-(lv-1)*.0055)}
+function pjGate(lv){return Math.min(.78,.70+(lv-1)*.009)}
+function pjWand(lv){return PJ_WAND0+(lv-1)*PJ_WAND_STEP}
+function pjImpsOf(lv){return lv>=7?2:(lv>=3?1:0)}
+function pjShadesOf(lv){return Math.min(3,lv>=5?2:(lv>=2?1:0))}
+function pjMotesOf(lv){return Math.min(PJ_MOTE_MAX,PJ_MOTE0+Math.floor((lv-1)/3))}
+function pjBiteMs(lv){return Math.max(PJ_BITE_MIN,PJ_BITE0-(lv-1)*PJ_BITE_STEP)}
+function pjSpanOf(lv){return Math.max(38,PJ_LD_SPAN-(lv-1)*3)}
+function pjStrokeMax(lv){return lv>=5?PJ_STROKE_MAX:6}
+/* ---- 三维：模型坐标 x 右、y 下、z 往里（背离灯）；字模在 z=0，幕在 z=PJ_ZS，灯在 z=-ld ---- */
+function pjRot(x,y,z,yaw,pitch){
+  const yr=yaw*PJ_RAD,pr=pitch*PJ_RAD;
+  const cy=Math.cos(yr),sy=Math.sin(yr),cp=Math.cos(pr),sp=Math.sin(pr);
+  const qx=x*cy+z*sy,qy=y,qz=-x*sy+z*cy;
+  return {x:qx,y:qy*cp-qz*sp,z:qy*sp+qz*cp};
+}
+/* 一根「焊死在架子上」的木条：玩家在 (A,B) 时它才正对幕布 ⇒ 模型点 = Ry(-A)·Rx(-B) 作用于真实点 */
+function pjWeld(x,y,z,A,B){
+  const yr=-A*PJ_RAD,pr=-B*PJ_RAD;
+  const cp=Math.cos(pr),sp=Math.sin(pr),cy=Math.cos(yr),sy=Math.sin(yr);
+  const ax=x,ay=y*cp-z*sp,az=y*sp+z*cp;
+  return {x:ax*cy+az*sy,y:ay,z:-ax*sy+az*cy};
+}
+function pjMag(ld){return (PJ_ZS+ld)/ld}
+function pjProj(x,y,z,ld){const t=(PJ_ZS+ld)/(z+ld);return {x:x*t,y:y*t,s:t}}
+/* 幕上坐标（画布像素） */
+function pjScr(sx,sy){return {x:PJ_CX+sx,y:PJ_CY+sy}}
+function pjOnCloth(sx,sy){return Math.abs(sx)<=PJ_CX-3&&Math.abs(sy)<=PJ_CY-3}
+/* 灯推到那一格没有：0.5 分 × 偏离格数的衰减，1 = 正好压在刻痕上 */
+function pjLampQ(){
+  const sp=pjSpanOf(pj.lv);
+  return pjClamp(1-Math.abs(pj.ld-pj.ldBest)/sp,0,1);
+}
+/* 每一笔的当前吻合度：把焊着的模型点按玩家姿态转回去，逐点跟真实点比 */
+function pjEff(){
+  const q=pjLampQ();
+  return PJ_LAMP_FLOOR+(1-PJ_LAMP_FLOOR)*q;
+}
+function pjFitOf(st){
+  const pts=st.pts,tr=st.true,lim=st.k*pjFitK(pj.lv),out=[];
+  let sum=0;
+  for(let j=0;j<pts.length;j++){
+    const w=pjRot(pts[j].x,pts[j].y,pts[j].z,pj.yaw,pj.pitch);
+    const p=pjProj(w.x,w.y,w.z,pj.ld);
+    const sk=pjShadeHit(p.x,p.y);
+    const lit=pjOnCloth(p.x,p.y)&&sk<0;
+    let d;
+    if(!lit)d=lim*1.5;
+    else d=Math.sqrt(pjD2(w.x,w.y,tr[j].x,tr[j].y));
+    out.push({x:w.x,y:w.y,z:w.z,sx:p.x,sy:p.y,d:d,lit:lit?1:0,tx:tr[j].x,ty:tr[j].y});
+    sum+=d;
+  }
+  const m=pjClamp(1-sum/pts.length/lim,0,1);
+  return {pts:out,raw:m,eff:m*pjEff()};
+}
+function pjBest(){
+  let bi=-1,b=null;
+  for(let i=0;i<pj.sticks.length;i++){
+    const st=pj.sticks[i];
+    if(st.st!=='hang')continue;
+    const f=pjFitOf(st);
+    st.fit=f.raw;st.eff=f.eff;st.fp=f.pts;
+    if(!b||f.eff>b.eff){b=f;bi=i}
+  }
+  pj.top=bi;
+  return bi<0?null:{i:bi,fit:b.raw,eff:b.eff};
+}
+
+/* ---- 字池：每一笔都还认得出方向，三到七笔 ---- */
+const PJ_LETTERS='十人八小上下日水石田木禾白子不去个长门见对书本牛马飞入'
+  +'什么双王方气生叫主以尤区巨于记市民丝贝互仙勾丰父欠未击乎代计且斗示巧'
+  +'付兰专丈扎仅叉议歹矛冈仪辽曰瓦早旬旭买巡还远秀步每甲回困圈图火永冰';
+/* 一根木条上的采样点：沿中线的弧长等分 PJ_PTS 份，归一到米字格像素（y 跟 SVG 同向） */
+function pjShape(ms,cx,cy,half){
+  const raw=[];
+  for(let i=0;i<ms.length;i++){const p=ms[i];if(p&&p.length>=2&&isFinite(p[0])&&isFinite(p[1]))raw.push([+p[0],+p[1]])}
+  if(raw.length<2)return null;
+  const seg=[];let total=0;
+  for(let i=1;i<raw.length;i++){
+    const dx=raw[i][0]-raw[i-1][0],dy=raw[i][1]-raw[i-1][1];
+    const L=Math.sqrt(dx*dx+dy*dy);
+    seg.push({x:raw[i-1][0],y:raw[i-1][1],dx:dx,dy:dy,L:L});total+=L;
+  }
+  if(total<24)return null;
+  const out=[];
+  for(let k=0;k<PJ_PTS;k++){
+    let want=total*k/(PJ_PTS-1),x=raw[0][0],y=raw[0][1];
+    for(let i=0;i<seg.length;i++){
+      const s=seg[i];
+      if(want<=s.L||i===seg.length-1){
+        const u=s.L?Math.min(1,want/s.L):0;
+        x=s.x+s.dx*u;y=s.y+s.dy*u;break;
+      }
+      want-=s.L;
+    }
+    out.push({x:(x-cx)/half*PJ_UNIT,y:(y-cy)/half*PJ_UNIT});
+  }
+  return out;
+}
+function pjMake(ch,raw,lmax){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  const hi=lmax||6;
+  if(ms.length<PJ_STROKE_MIN||ms.length>hi)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=fmDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<ms.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++){
+    for(let j=0;j<ms[i].length;j++){
+      const p=ms[i][j];
+      if(!p||p.length<2||!isFinite(p[0])||!isFinite(p[1]))continue;
+      if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+      if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+    }
+  }
+  const cx=(x0+x1)/2,cy=(y0+y1)/2,half=Math.max(80,(x1-x0)/2,(y1-y0)/2);
+  const pl=[];
+  for(let i=0;i<ms.length;i++){
+    const sh=pjShape(ms[i],cx,cy,half);
+    if(!sh)return null;
+    pl.push(sh);
+  }
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp,pl:pl,cx:cx,cy:cy,half:half};
+}
+async function pjBuildPool(keep){
+  const g=pj.gen,stale=function(){return g!==pj.gen||!pj.run||pj.over};
+  pj.miss=(localStorage.getItem('hz_proj_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){list=list||[];for(let i=0;i<list.length&&want.length<260;i++){const c=list[i];if(c&&want.indexOf(c)<0)want.push(c)}};
+  push(pjShuf(pj.miss.slice(0,6)));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(pjShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(pjShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(PJ_LETTERS.split(''));
+  if(typeof CHARS!=='undefined')push(pjShuf(CHARS.slice()));
+  if(!keep)pj.pool=[];
+  const hi=pjStrokeMax(pj.lv);
+  for(let k=0;k<want.length&&pj.pool.length<PJ_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i]){const m=pjMake(want[k+i],rs[i],hi);if(m&&pj.pool.indexOf(m)<0)pj.pool.push(m)}
+  }
+  return pj.pool.length>=PJ_POOL_MIN;
+}
+function pjPickRec(){
+  const hi=pjStrokeMax(pj.lv);
+  const w=pj.lv<=2?[PJ_STROKE_MIN,5]:[PJ_STROKE_MIN,hi];
+  const pool=pj.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  const base=pool.length?pool:pj.pool;
+  if(!base.length)return null;
+  /* 连着两坊撞同一个字，孩子会以为「这团我刚才不是转过吗」——能换就换个新的 */
+  const fresh=base.filter(function(r){return !pj.rec||r.ch!==pj.rec.ch});
+  const pick=fresh.length?fresh:base;
+  const missList=pick.filter(function(r){return pj.miss.indexOf(r.ch)>=0});
+  const due=pj.first||(pj.words>0&&pj.words%3===0);
+  pj.first=false;
+  if(missList.length&&due)return pjOne(missList);
+  return pjOne(pick);
+}
+/* ---- 焊接：给每一笔挑一个歪姿态，两两离得开，而且开场不许有一根本来就是平的 ---- */
+function pjFlat(i,A,B){return Math.abs(A)<13&&Math.abs(B)<9}
+/* 这一笔在「正当间」被这个焊角推开了几倍容差：推得不够远就是「本来就是平的」，转不转都一样 */
+function pjDevR(tr,k,A,B){
+  const lim=k*pjFitK(pj.lv);
+  let s=0;
+  for(let j=0;j<tr.length;j++){const w=pjWeld(tr[j].x,tr[j].y,0,A,B);s+=Math.sqrt(pjD2(w.x,w.y,tr[j].x,tr[j].y))}
+  return s/tr.length/lim;
+}
+function pjRk(tr){let s=0;for(let j=0;j<tr.length;j++)s+=Math.sqrt(tr[j].x*tr[j].x+tr[j].y*tr[j].y);return Math.max(16,s/tr.length)}
+function pjSpread(list){
+  const out=[];
+  for(let i=0;i<list.length;i++){
+    const tr=list[i].true,k=list[i].k;
+    let best=null,bs=-1;
+    for(let t=0;t<120;t++){
+      const A=Math.round(-78+Math.random()*156),B=Math.round(-46+Math.random()*92);
+      if(pjFlat(i,A,B))continue;
+      const r=pjDevR(tr,k,A,B);
+      if(r<.55)continue;
+      let d=1e9;
+      for(let j=0;j<out.length;j++){
+        const da=out[j].A-A,db=(out[j].B-B)/.6;
+        d=Math.min(d,Math.sqrt(da*da+db*db));
+      }
+      const s=Math.min(d,46)*4+r*6;
+      if(s>bs){bs=s;best={A:A,B:B}}
+      if(d>=46&&r>=1.2)break;
+    }
+    if(!best){
+      const cs=[[-70,10],[70,-10],[-30,42],[30,-42],[-56,-30],[56,30],[-78,26],[78,-26]];
+      let br=-1;
+      for(let c=0;c<cs.length;c++){
+        const r=pjDevR(tr,k,cs[c][0],cs[c][1]);
+        if(r>br){br=r;best={A:cs[c][0],B:cs[c][1]}}
+      }
+      if(!best)best={A:i%2?46:-52,B:i%2?28:-24};
+    }
+    out.push(best);
+  }
+  return out;
+}
+function pjBuildSticks(){
+  const rec=pj.rec;
+  pj.sticks=[];
+  const list=[];
+  for(let i=0;i<rec.n;i++)list.push({true:rec.pl[i],k:pjRk(rec.pl[i])});
+  const poses=pjSpread(list);
+  for(let i=0;i<rec.n;i++){
+    const tr=rec.pl[i],A=poses[i].A,B=poses[i].B,pts=[];
+    let sum=0;
+    for(let j=0;j<tr.length;j++){
+      const w=pjWeld(tr[j].x,tr[j].y,0,A,B);
+      pts.push(w);
+      sum+=Math.sqrt(tr[j].x*tr[j].x+tr[j].y*tr[j].y);
+    }
+    pj.sticks.push({
+      i:i,dir:rec.dirs[i],ink:PJ_INK[pjRok(rec.dirs[i])],A:A,B:B,
+      true:tr,pts:pts,k:Math.max(16,sum/tr.length),
+      st:'hang',fit:0,eff:0,fp:null
+    });
+  }
+  pj.top=-1;
+}
+/* ---- 石片（挡光）：它在幕上投出的本影会啃掉影子的一块 ---- */
+/* 本影：石片在灯与幕之间，把光截出一个圆盘 —— 灯距越近这个盘胀得越大 */
+function pjUmbra(s){
+  const den=s.z+pj.ld;
+  if(den<=2)return {x:0,y:0,r:-1};
+  const t=(PJ_ZS+pj.ld)/den;
+  return {x:s.x*t,y:s.y*t,r:s.r*t,t:t};
+}
+function pjShadeHit(sx,sy){
+  for(let k=0;k<pj.shades.length;k++){
+    const s=pj.shades[k];
+    if(!s||s.gone)continue;
+    const u=pjUmbra(s);
+    if(u.r<0)continue;
+    if(pjD2(sx,sy,u.x,u.y)<=u.r*u.r)return k;
+  }
+  return -1;
+}
+function pjShadeN(){
+  let n=0;
+  for(let i=0;i<pj.sticks.length;i++){
+    const st=pj.sticks[i];
+    if(st.st!=='hang'||!st.fp)continue;
+    let blocked=0;
+    for(let j=0;j<st.fp.length;j++)if(!st.fp[j].lit)blocked++;
+    if(blocked>=3)n++;
+  }
+  return n;
+}
+function pjBuildShades(){
+  pj.shades=[];
+  const want=pjShadesOf(pj.lv);
+  for(let k=0;k<want;k++)pj.shades.push(pjNewShade());
+}
+function pjNewShade(){
+  return {
+    x:Math.round(-64+Math.random()*128),y:Math.round(-46+Math.random()*92),
+    z:-Math.round(22+Math.random()*24),r:Math.round(18+Math.random()*14),
+    vx:(Math.random()<.5?-1:1)*(6+Math.random()*9),
+    vy:(Math.random()<.5?-1:1)*(4+Math.random()*7),
+    gone:0
+  }
+}
+/* ---- 星屑：飘在光锥里，落影时把它压在影子底下就是彩头 ---- */
+function pjBuildMotes(){
+  pj.motes=[];
+  const want=pjMotesOf(pj.lv);
+  for(let k=0;k<want;k++)pj.motes.push(pjNewMote());
+}
+function pjNewMote(){
+  return {
+    x:Math.round(-104+Math.random()*208),y:Math.round(-72+Math.random()*144),
+    z:Math.round(-6+Math.random()*38),
+    vx:(Math.random()<.5?-1:1)*(7+Math.random()*11),
+    vy:(Math.random()<.5?-1:1)*(5+Math.random()*8),
+    taken:0,born:pj.t
+  }
+}
+/* ---- 影妖：趴在架子上把整团字模往它想要的歪角度上拖，攒够了就扑到幕上撕一笔 ---- */
+function pjBuildImps(){
+  pj.imps=[];
+  const want=pjImpsOf(pj.lv);
+  for(let k=0;k<want;k++)pj.imps.push(pjNewImp());
+}
+function pjNewImp(){
+  return {
+    tA:Math.round(-78+Math.random()*156),tB:Math.round(-46+Math.random()*92),
+    biteMs:pjBiteMs(pj.lv),bite:pjBiteMs(pj.lv),cd:0,on:1,x:0,y:0,chaseMs:0
+  }
+}
+/* ---- 换字 / 出题 ---- */
+function pjNewWord(){
+  const rec=pjPickRec();
+  if(!rec){
+    pjSay('😢 字库里挑不出「每一笔都还认得」的字，先回别的模式练两笔','#FFF59D');
+    pj.run=false;
+    pjSet('pjAsk','😢 字没凑齐<br><small>稍后再开坊</small>');
+    pjT(function(){pjEnd('pool')},900);
+    return null;
+  }
+  pj.rec=rec;pj.n=rec.n;pj.qi=0;pj.wrongThisQ=false;pj.cleanWord=true;
+  pjBuildSticks();pjBuildShades();pjBuildMotes();pjBuildImps();
+  pj.ldBest=Math.round(PJ_LDB0+Math.random()*PJ_LDB_SPAN);
+  pj.yaw=0;pj.pitch=0;pj.velYaw=0;pj.velPitch=0;
+  pj.qms=pjQmsOf(pj.lv);pj.qms0=pj.qms;
+  pj.swayPh=Math.random()*6.28;pj.swayPh2=Math.random()*6.28;
+  pjMini();pjAsk();pj.bestCache=pjBest();pjHud();pjMeter();pjPow();pjLine();pjDraw();
+  return rec.ch;
+}
+function pjAsk(){
+  const rec=pj.rec;
+  if(!rec){pjSet('pjAsk','🔮 正在点灯……<br><small>在字库里挑「每一笔都认得出」的字</small>');return}
+  pjSet('pjAsk','🔮 该落 <b>第 '+(pj.qi+1)+' 笔</b>（共 '+rec.n+' 笔）<br><small>把架子上转平的那一根，认一认是不是它</small>');
+}
+/* ---- 生命周期 ---- */
+function pjStopAll(){
+  pjStopLoop();pjKillTimers();pj.gen++;
+  pj.tagMs=0;pj.helpMs=0;pj.actMs=0;pj.lockMs=0;pj.peekMs=0;pj.chaseMs=0;
+  pj.warn=false;pj.dragging=null;pj.top=-1;
+  if(pj.fxBox)pj.fxBox.innerHTML='';
+}
+async function pjStart(){
+  pjStopAll();
+  const g=pj.gen,stale=function(){return g!==pj.gen||!pj.run||pj.over};
+  pj.run=true;pj.over=false;pj.timers=[];
+  pj.lv=1;pj.score=0;pj.hearts=PJ_HEARTS;pj.combo=0;pj.maxCombo=0;
+  pj.words=0;pj.lits=0;pj.drops=0;pj.sharps=0;pj.wrongs=0;pj.misses=0;
+  pj.tears=0;pj.bites=0;pj.locks=0;pj.peeks=0;pj.chases=0;pj.nags=0;pj.nagMs=0;
+  pj.lockN=PJ_LOCK0;pj.peekN=PJ_PEEK0;pj.chaseN=PJ_CHASE0;
+  pj.pool=[];pj.miss=[];pj.rec=null;pj.n=0;pj.sticks=[];pj.shades=[];pj.motes=[];pj.imps=[];
+  pj.qi=0;pj.busy=false;pj.actMs=0;pj.since=0;pj.playMs=0;pj.t=0;pj.tones=0;
+  pj.yaw=0;pj.pitch=0;pj.velYaw=0;pj.velPitch=0;pj.ld=150;pj.ldBest=150;
+  pj.keys={left:false,right:false,up:false,down:false,near:false,far:false};
+  pj.oilMs=pjOilMs(1);pj.warn=false;pj.beep=0;pj.cleanWord=true;pj.first=true;
+  pj.top=-1;pj.shelf=pjInt('hz_proj_shelf');
+  showScreen('proj');
+  pjBind();pjCanvasSize();
+  const tbl=document.getElementById('pjTbl');
+  if(tbl)tbl.classList.remove('dead');
+  pjHud();pjMeter();pjPow();pjLine();
+  pjSay('架子 <b>幕布后面</b>：一盏灯把一团 <b>立体的字</b> 照在 <b>米字格的幕</b> 上 —— 每一根木条就是这个字的 <b>一笔</b>，可它们被 <b>焊得歪七扭八</b>，投在幕上的影子 <b>全都拧成了一团</b><br>🔄 <b>转盘子</b>（拖幕布 / <code>←</code><code>→</code> 转横、<code>↑</code><code>↓</code> 转竖）：转到某一根 <b>正对幕布</b> 时，它那一笔的影子会 <b>啪地一下还原成真形</b>，稳稳落回米字格里该在的位置<br>👁 <b>认出它才是关卡</b>：幕上同时有好几根会转平 —— <b>只有该写的那一笔落下去才算数</b>，落平了别的一笔是 <b>乱序</b><br>🔦 <b>灯有刻度</b>：幕上有 <b>一盏刻痕</b>（<code>-</code> 推远、<code>+</code> 拉近）。灯推到那一格，影子才 <b>又清楚、又刚好套进米字格</b>；推偏了影子就 <b>发糊、发虚、或者胀出幕外</b> —— 吻合度的封顶就跟着掉<br>🪨 幕前飘着 <b>石片</b>：它的 <b>本影</b> 落在哪，哪一片影子就 <b>缺了一块</b>（缺块按没对准算）—— <b>推拉灯</b> 会挪动本影，转盘子也能躲开<br>👻 架子上有 <b>影妖</b>：趴着把整团字模 <b>往歪里拖</b>，攒够了会 <b>扑到幕上撕掉你已经落好的一笔</b>（掉一颗心）—— <b>定盘</b> 把它甩下去、<b>驱影</b> 让它滚<br>💡 三件道具：<b>定盘 Q</b>（锁住姿态 '+((PJ_LOCK_MS)/1000).toFixed(1)+' 秒，影妖站不住）、<b>显影 E</b>（把该落的那一笔的真形淡淡描在幕上 '+(PJ_PEEK_MS/1000).toFixed(1)+' 秒）、<b>驱影 F</b>（'+(PJ_CHASE_MS/1000).toFixed(1)+' 秒内影妖不敢回来）<br>🕯 <b>灯油</b> 烧完就收摊；<b>这一笔的钟</b> 走光不算答错，只扣分、把整个架子重新焊一遍');
+  pjSet('pjAsk','🔮 正在点灯……<br><small>在字库里挑「每一笔都认得出」的字</small>');
+  let ok=await pjBuildPool();
+  if(stale())return;
+  if(!ok){
+    pjSet('pjAsk','🕯 灯还没稳住，再等一记……<br><small>字库在路上</small>');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await pjBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!pj.pool.length){
+    pj.run=false;
+    pjSet('pjAsk','😢 字库没加载好<br><small>稍后再开坊</small>');
+    pjSay('先去别的模式练两笔，回来字就齐了','#FFF59D');
+    return;
+  }
+  pjAdd('hz_proj_games',1);
+  pjNewWord();
+  if(!pj.rec||!pj.sticks.length||!pj.run||pj.over||stale()){
+    pj.run=false;
+    pjSet('pjAsk','😢 这一团架不起来<br><small>稍后再开坊</small>');
+    return;
+  }
+  pjStartLoop();
+}
+function pjLeave(){
+  pjStopAll();
+  if(pj.run&&!pj.over){pjBank();pj.over=true;pj.run=false}
+  goHome();
+}
+function pjAgain(){pjStart()}
+function pjCanvasSize(){
+  const cv=document.getElementById('pjCanvas');
+  if(!cv)return;
+  cv.width=PJ_W;cv.height=PJ_H;
+  pj.ctx=cv.getContext?cv.getContext('2d'):null;
+}
+
+/* ================= 走动与判定 ================= */
+function pjGain(frac){return Math.round((9+pj.combo*0.9+pj.lv*1.7)*(1+frac*0.35))}
+function pjAttached(){
+  let n=0;
+  for(let i=0;i<pj.imps.length;i++)if(pj.imps[i].on&&pj.chaseMs<=0)n++;
+  return n;
+}
+/* ---- 玩家的手：键盘的匀转 + 拖拽给的直接角度，都收进同一对姿态角 ---- */
+function pjStepSpin(dt){
+  const s=dt/1000;
+  if(pj.lockMs>0)return;
+  let va=0,vb=0;
+  const k=pj.keys||{};
+  if(k.left)va-=PJ_SPIN;
+  if(k.right)va+=PJ_SPIN;
+  if(k.up)vb-=PJ_SPIN;
+  if(k.down)vb+=PJ_SPIN;
+  if(k.near)pj.ld=pjClamp(pj.ld-92*s,PJ_LD_MIN,PJ_LD_MAX);
+  if(k.far)pj.ld=pjClamp(pj.ld+92*s,PJ_LD_MIN,PJ_LD_MAX);
+  if(k.near||k.far)pj.since=0;
+  if(va){
+    pj.yaw=pjClamp(pj.yaw+va*s,-PJ_YAW_MAX,PJ_YAW_MAX);
+    pj.since=0;
+  }
+  if(vb){
+    pj.pitch=pjClamp(pj.pitch+vb*s,-PJ_PIT_MAX,PJ_PIT_MAX);
+    pj.since=0;
+  }
+}
+/* ---- 架子自己会晃：越深的坊晃得越凶，转平的那一根会慢慢拧回去 ---- */
+function pjStepSway(dt){
+  const w=pjWand(pj.lv);
+  if(w<=0||pj.lockMs>0)return;
+  const s=dt/1000;
+  pj.swayPh+=s*(1.15+w*0.03);
+  pj.swayPh2+=s*(0.78+w*0.021);
+  pj.yaw=pjClamp(pj.yaw+Math.sin(pj.swayPh)*w*s*1.7,-PJ_YAW_MAX,PJ_YAW_MAX);
+  pj.pitch=pjClamp(pj.pitch+Math.cos(pj.swayPh2)*w*s*1.2,-PJ_PIT_MAX,PJ_PIT_MAX);
+}
+/* ---- 石片：在灯和架子之间慢慢飘，本影因此在幕上爬 ---- */
+function pjStepShades(dt){
+  const s=dt/1000;
+  for(let i=0;i<pj.shades.length;i++){
+    const sh=pj.shades[i];
+    if(!sh||sh.gone)continue;
+    sh.x+=sh.vx*s;sh.y+=sh.vy*s;
+    if(sh.x<-78||sh.x>78){sh.vx=-sh.vx;sh.x=pjClamp(sh.x,-78,78)}
+    if(sh.y<-58||sh.y>58){sh.vy=-sh.vy;sh.y=pjClamp(sh.y,-58,58)}
+  }
+}
+function pjStepMotes(dt){
+  const s=dt/1000;
+  for(let i=0;i<pj.motes.length;i++){
+    const m=pj.motes[i];
+    if(m.taken)continue;
+    m.x+=m.vx*s;m.y+=m.vy*s;
+    if(m.x<-118||m.x>118){m.vx=-m.vx;m.x=pjClamp(m.x,-118,118)}
+    if(m.y<-86||m.y>86){m.vy=-m.vy;m.y=pjClamp(m.y,-86,86)}
+  }
+  /* 落好的星屑补新的，光锥里总得有几粒 */
+  for(let i=0;i<pj.motes.length;i++)if(pj.motes[i].taken&&pj.t-pj.motes[i].born>PJ_MOTE_BACK)pj.motes[i]=pjNewMote();
+}
+/* ---- 影妖：拖盘子 + 攒够一口就扑幕 ---- */
+function pjStepImps(dt){
+  const s=dt/1000;
+  for(let i=0;i<pj.imps.length;i++){
+    const im=pj.imps[i];
+    if(im.cd>0)im.cd=Math.max(0,im.cd-dt);
+    if(!im.on)continue;
+    if(pj.chaseMs>0){im.on=0;im.cd=PJ_IMP_CD;pjT(function(){if(pj.run&&!pj.over)im.on=1},PJ_IMP_CD);continue}
+    if(pj.lockMs>0){im.x=0;im.y=0;continue}
+    const ea=im.tA-pj.yaw,eb=im.tB-pj.pitch;
+    const L=Math.sqrt(ea*ea+eb*eb)||1;
+    pj.yaw=pjClamp(pj.yaw+ea/L*PJ_IMP_DRAG*s,-PJ_YAW_MAX,PJ_YAW_MAX);
+    pj.pitch=pjClamp(pj.pitch+eb/L*PJ_IMP_DRAG*s,-PJ_PIT_MAX,PJ_PIT_MAX);
+    im.bite-=dt;
+    if(im.bite<=0){im.bite=pjBiteMs(pj.lv);pjTear()}
+  }
+}
+/* ---- 一口钟：灯油 + 这一笔的钟 ---- */
+function pjStepTimers(dt){
+  if(pj.actMs>0)pj.actMs=Math.max(0,pj.actMs-dt);
+  if(pj.tagMs>0)pj.tagMs=Math.max(0,pj.tagMs-dt);
+  if(pj.lockMs>0)pj.lockMs=Math.max(0,pj.lockMs-dt);
+  if(pj.peekMs>0)pj.peekMs=Math.max(0,pj.peekMs-dt);
+  if(pj.chaseMs>0)pj.chaseMs=Math.max(0,pj.chaseMs-dt);
+  if(pj.nagMs>0)pj.nagMs=Math.max(0,pj.nagMs-dt);
+  if(pj.helpMs>0){pj.helpMs=Math.max(0,pj.helpMs-dt);return}
+  const burn=1+pjAttached()*0.55;
+  pj.oilMs-=dt*burn;
+  pj.qms-=dt;
+  pj.playMs+=dt;
+  pj.since+=dt;
+  const of=PJ_OIL0;
+  pj.warn=pj.oilMs<=of*0.08;
+  if(pj.warn){
+    pj.beep+=dt;
+    if(pj.beep>1400){pj.beep=0;pjTone(PJ_NOTE[2],.1,'square',.05)}
+  }
+  if(pj.oilMs<=0){pj.oilMs=0;pjEnd('oil');return}
+  if(pj.qms<=0){pj.qms=0;pjTimeoutQ()}
+  if(pj.since>=PJ_NAG_MS&&pj.nagMs<=0)pjNag();
+}
+/* ---- 歇一记：只报方向，不报是第几笔 ---- */
+function pjNag(){
+  const st=pj.sticks[pj.qi];
+  if(!st||st.st!=='hang')return;
+  pj.nags++;pj.nagMs=PJ_NAG_HOLD;pj.since=0;
+  const da=st.A-pj.yaw,db=st.B-pj.pitch;
+  let msg;
+  if(pjLampQ()<.55)msg='💡 <b>灯先挪一挪</b>：影子现在发糊，幕边的 <b>刻痕</b> 才是它该压上的那一格';
+  else if(Math.abs(da)>Math.abs(db))msg='👻 <b>再转一点</b>：这一笔还差着 '+(Math.abs(da)<30?'一点':'一截')+' —— 往 <b>'+(da>0?'→':'←')+'</b> 拧';
+  else msg='👻 <b>换个俯仰</b>：往 <b>'+(db>0?'↓':'↑')+'</b> 抬一抬，这一笔才正对幕布';
+  pjSay(msg,'#FFF59D');
+  pjLine();
+}
+/* ================= 落影 ================= */
+function pjPress(){
+  if(!pj.run||pj.over||pj.busy)return 0;
+  if(pj.actMs>0)return 0;
+  pj.actMs=PJ_ACT_CD;pj.drops++;
+  const b=pjBest();
+  const gate=pjGate(pj.lv);
+  if(!b||b.eff<gate){pjSwing(b);return 0}
+  if(b.i!==pj.qi){pjOrder(b);return 0}
+  pjRight(b);
+  return 1;
+}
+function pjSwing(b){
+  pj.misses++;pj.combo=0;pj.cleanWord=false;
+  pj.score=Math.max(0,pj.score-PJ_PEN_MISS);
+  pj.oilMs=Math.max(0,pj.oilMs-1800);
+  pjTone(150,.1,'sawtooth',.05);
+  pjTag(b?('🫥 影子还没成形（吻合 '+Math.round(b.eff*100)+'%）—— 转平了才落'):'🫥 架子上没有转平的一笔');
+  pjShake();pjHud();pjMeter();
+}
+function pjOrder(b){
+  const st=pj.sticks[b.i];
+  pj.wrongs++;pj.combo=0;pj.wrongThisQ=true;pj.cleanWord=false;
+  pj.score=Math.max(0,pj.score-PJ_PEN_WRONG);
+  pj.qms=Math.max(0,pj.qms-2600);
+  pjTone(196,.14,'triangle',.06);
+  pjTag('🌀 转平的是 <b>第 '+(b.i+1)+' 笔</b>（'+PJ_DIRS[pjRok(st.dir)]+'），现在该落 <b>第 '+(pj.qi+1)+' 笔</b>');
+  pjShake();pjHud();pjMeter();pjLine();
+}
+function pjRight(b){
+  const st=pj.sticks[b.i];
+  st.st='done';st.m=pjMag(pj.ldBest);st.fp=null;
+  pj.lits++;pj.combo++;pjAdd('hz_proj_lits',1);
+  if(pj.combo>pj.maxCombo)pj.maxCombo=pj.combo;
+  pj.since=0;
+  const gain=pjGain(b.eff);
+  pj.score+=gain;
+  let sharp=0;
+  if(b.eff>=PJ_SHARP&&pjLampQ()>=.8){
+    sharp=1;pj.sharps++;pj.score+=PJ_SHARP_BONUS;
+    pjAdd('hz_proj_sharp',1);
+    if(pjInt('hz_proj_shelf')<PJ_SHELF_MAX&&Math.random()<.55){
+      pjAdd('hz_proj_shelf',1);pj.shelf++;
+      pjTag('🎭 一影中的：<b>'+pjOne(PJ_RELICS)+'</b> 收进光影架');
+    }
+  }
+  /* 压在影子底下的星屑 */
+  let got=0;
+  const pts=st.true;
+  for(let k=0;k<pj.motes.length;k++){
+    const m=pj.motes[k];
+    if(m.taken)continue;
+    const p=pjProj(m.x,m.y,m.z,pj.ld);
+    for(let j=0;j<pts.length;j++){
+      const sx=pts[j].x*st.m,sy=pts[j].y*st.m;
+      if(pjD2(p.x,p.y,sx,sy)<=PJ_MOTE_R*PJ_MOTE_R){m.taken=1;m.born=pj.t;got++;break}
+    }
+  }
+  if(got){pj.score+=PJ_MOTE_GAIN*got;pj.oilMs=Math.min(pjOilMs(pj.lv),pj.oilMs+PJ_MOTE_OIL*got)}
+  pj.qi++;
+  pj.qms=pjQmsOf(pj.lv);pj.qms0=pj.qms;
+  pj.wrongThisQ=false;
+  pjSpark(st);
+  pjTone(PJ_NOTE[Math.min(PJ_NOTE.length-1,pj.qi+Math.min(4,pj.combo))],.13,'triangle',.07);
+  pjTag('✅ 第 '+pj.qi+' 笔落好：<b>'+PJ_DIRS[pjRok(st.dir)]+'</b> +'+gain+(sharp?' 🎯 一影中的 +'+PJ_SHARP_BONUS:'')+(got?' ✨ 压住 '+got+' 粒星屑':''));
+  pj.bestCache=pjBest();pjMini();pjHud();pjMeter();pjPow();pjLine();pjAsk();pjDraw();
+  if(pj.qi>=pj.n)pjT(pjWordDone,PJ_NEXT_MS);
+}
+function pjTear(){
+  const done=[];
+  for(let i=0;i<pj.sticks.length;i++)if(pj.sticks[i].st==='done')done.push(pj.sticks[i]);
+  if(!done.length){
+    pj.bites++;
+    pj.oilMs=Math.max(0,pj.oilMs-5200);
+    pjTag('👻 影妖啃了一口灯油');
+    pjSay('👻 <b>影妖扒着架子往歪里拖</b>：它一攒够劲儿就 <b>扑到幕上撕你落好的那一笔</b>（掉一颗心）。趁它空转，按 <code>Q</code> <b>定盘</b> 把它甩下去，或者 <code>F</code> <b>驱影</b> 让它滚开 '+(PJ_CHASE_MS/1000).toFixed(1)+' 秒','#FFCCBC');
+    pjHud();pjMeter();
+    return 0;
+  }
+  const st=pjOne(done);
+  const A=Math.round(-70+Math.random()*140),B=Math.round(-40+Math.random()*80);
+  st.A=A;st.B=B;st.st='hang';st.fp=null;
+  for(let j=0;j<st.true.length;j++)st.pts[j]=pjWeld(st.true[j].x,st.true[j].y,0,A,B);
+  if(st.i<pj.qi)pj.qi=st.i;
+  pj.tears++;pj.hearts--;pj.combo=0;pj.cleanWord=false;pj.wrongThisQ=true;
+  pjAsk();pjHud();pjMeter();pjMini();
+  pjShake();
+  pjTone(120,.2,'sawtooth',.08);
+  pjTag('👻 影妖撕走了 <b>第 '+(st.i+1)+' 笔</b>：掉一颗心，那一笔得重新转对再落');
+  if(pj.hearts<=0){pj.hearts=0;pjEnd('hearts')}
+  return 1;
+}
+function pjTimeoutQ(){
+  pj.score=Math.max(0,pj.score-PJ_PEN_TIME);
+  pj.combo=0;pj.wrongThisQ=true;pj.cleanWord=false;
+  pjRehang();
+  pjTone(168,.16,'sawtooth',.06);
+  pjTag('⏳ 这一笔的钟走光：<b>整个架子重焊一遍</b>');
+  pj.bestCache=pjBest();pjHud();pjMeter();pjPow();pjLine();pjDraw();
+}
+/* 重焊：挂着的那些笔全换一批新歪姿态，幕上的石片也重摆 */
+function pjRehang(){
+  const hang=[];
+  for(let i=0;i<pj.sticks.length;i++)if(pj.sticks[i].st==='hang')hang.push(pj.sticks[i]);
+  if(!hang.length)return 0;
+  const poses=pjSpread(hang);
+  for(let k=0;k<hang.length;k++){
+    const st=hang[k],A=poses[k].A,B=poses[k].B;
+    st.A=A;st.B=B;
+    for(let j=0;j<st.true.length;j++)st.pts[j]=pjWeld(st.true[j].x,st.true[j].y,0,A,B);
+  }
+  pjBuildShades();
+  pj.ldBest=Math.round(PJ_LDB0+Math.random()*PJ_LDB_SPAN);
+  pj.qms=pjQmsOf(pj.lv);pj.qms0=pj.qms;pj.since=0;
+  return 1;
+}
+function pjWordDone(){
+  if(!pj.run||pj.over)return;
+  const rec=pj.rec;
+  pj.words++;
+  pjAdd('hz_proj_words',1);
+  const bonus=PJ_WORD_BONUS+pj.lv*6+(pj.cleanWord&&!pj.wrongThisQ?18:0);
+  pj.score+=bonus;
+  pjAddBook(rec.ch);
+  const lv=pjLvOf(pj.words);
+  if(lv>pj.lv){
+    pj.lv=lv;
+    localStorage.setItem('hz_proj_lv',String(lv));
+    pj.oilMs=pjOilMs(lv);
+    pj.hearts=Math.min(PJ_HEART_MAX,pj.hearts+1);
+    pj.lockN=Math.min(3,pj.lockN+1);pj.peekN=Math.min(3,pj.peekN+1);pj.chaseN=Math.min(3,pj.chaseN+1);
+    pjTag('🏮 走进 <b>第 '+lv+' 坊</b>：容差收窄、石片 '+(pjShadesOf(lv))+' 片、'+(pjImpsOf(lv)?'影妖 '+(pjImpsOf(lv))+' 只趴着':'还不见影妖')+'、灯那一格也挪了');
+  }
+  pjTone(784,.2,'triangle',.08);
+  pjSay('🏮 <b>'+rec.ch+'</b> 整字印成：<b>'+pj.n+'</b> 笔全按笔顺落回米字格，这一张收进图鉴（本字 +'+bonus+' 分'+(pj.cleanWord?' · 一路没乱序':'')+'）','#B3E5FC');
+  pjHud();pjMeter();pjPow();
+  pjT(function(){
+    if(!pj.run||pj.over)return;
+    const ch=pjNewWord();
+    if(!ch)pjEnd('pool');
+  },PJ_TAG_MS);
+  return 1;
+}
+
+/* ================= 画面：幕布是亮的，笔影是黑的；落好的影子拓成真墨留在幕上 ================= */
+function pjDecor(){
+  if(pj.decor)return pj.decor;
+  pj.decor={};
+  pj.decor.wall=[];
+  for(let i=0;i<16;i++)pj.decor.wall.push({x:Math.random()*PJ_W,y:Math.random()*PJ_H,r:1+Math.random()*1.6,a:.05+Math.random()*.12});
+  return pj.decor;
+}
+function pjGridBox(){
+  return {x0:PJ_CX-PJ_HALF,x1:PJ_CX+PJ_HALF,y0:PJ_CY-PJ_HALF,y1:PJ_CY+PJ_HALF};
+}
+function pjLampY(ld){return pjClamp(PJ_H-14-((ld-PJ_LD_MIN)/(PJ_LD_MAX-PJ_LD_MIN))*(PJ_H-28),14,PJ_H-14)}
+function pjYToLd(y){return pjClamp(PJ_LD_MIN+((PJ_H-14-y)/(PJ_H-28))*(PJ_LD_MAX-PJ_LD_MIN),PJ_LD_MIN,PJ_LD_MAX)}
+function pjDraw(){
+  const c=pj.ctx;
+  if(!c)return;
+  c.clearRect(0,0,PJ_W,PJ_H);
+  const g=c.createLinearGradient(0,0,0,PJ_H);
+  g.addColorStop(0,'#17121A');g.addColorStop(1,'#0C0910');
+  c.fillStyle=g;c.fillRect(0,0,PJ_W,PJ_H);
+  const dc=pjDecor();
+  c.fillStyle='#3E2723';
+  for(let i=0;i<dc.wall.length;i++){const d=dc.wall[i];c.globalAlpha=d.a;c.fillRect(d.x,d.y,d.r*2,d.r*2)}
+  c.globalAlpha=1;
+  /* 幕布：灯越近越亮 */
+  const lit=pjClamp(0.16+340/(pj.ld*pj.ld)*40,.14,.42);
+  const box=pjGridBox();
+  const rg=c.createRadialGradient(PJ_CX,PJ_CY,10,PJ_CX,PJ_CY,PJ_HALF*1.9);
+  rg.addColorStop(0,'rgba(255,214,150,'+lit.toFixed(3)+')');
+  rg.addColorStop(1,'rgba(120,80,40,'+(lit*.35).toFixed(3)+')');
+  c.fillStyle=rg;c.fillRect(4,4,PJ_W-8,PJ_H-8);
+  /* 米字格：印在幕上的参照框 */
+  c.strokeStyle='rgba(255,224,178,.30)';c.lineWidth=2;
+  c.strokeRect(box.x0,box.y0,PJ_HALF*2,PJ_HALF*2);
+  c.strokeStyle='rgba(255,224,178,.16)';c.lineWidth=1;
+  c.beginPath();
+  c.moveTo(box.x0,PJ_CY);c.lineTo(box.x1,PJ_CY);
+  c.moveTo(PJ_CX,box.y0);c.lineTo(PJ_CX,box.y1);
+  c.moveTo(box.x0,box.y0);c.lineTo(box.x1,box.y1);
+  c.moveTo(box.x1,box.y0);c.lineTo(box.x0,box.y1);
+  c.stroke();
+  /* 灯轨：右侧一条竖轨，刻痕就是「那一格」 */
+  const rx=PJ_W-13;
+  c.strokeStyle='rgba(255,238,200,.22)';c.lineWidth=3;
+  c.beginPath();c.moveTo(rx,14);c.lineTo(rx,PJ_H-14);c.stroke();
+  const ny=pjLampY(pj.ldBest);
+  c.strokeStyle='rgba(120,220,255,.85)';c.lineWidth=2;
+  c.beginPath();c.moveTo(rx-7,ny);c.lineTo(rx+7,ny);c.stroke();
+  const ly=pjLampY(pj.ld);
+  const glow=pjClamp(1-(pj.ld-PJ_LD_MIN)/(PJ_LD_MAX-PJ_LD_MIN),.15,1);
+  const lg=c.createRadialGradient(rx,ly,1,rx,ly,16);
+  lg.addColorStop(0,'rgba(255,246,200,'+(0.5+0.5*glow).toFixed(2)+')');
+  lg.addColorStop(1,'rgba(255,200,120,0)');
+  c.fillStyle=lg;c.fillRect(rx-16,ly-16,32,32);
+  c.fillStyle='#FFE082';c.beginPath();c.arc(rx,ly,4.6,0,6.2832);c.fill();
+  /* 已经拓在幕上的墨 */
+  for(let i=0;i<pj.sticks.length;i++){
+    const st=pj.sticks[i];
+    if(st.st!=='done')continue;
+    const m=st.m||PJ_PRINT_M;
+    c.strokeStyle=st.ink;c.lineWidth=Math.max(4,3.2*m);c.lineCap='round';c.lineJoin='round';
+    c.globalAlpha=.94;
+    c.beginPath();
+    for(let j=0;j<st.true.length;j++){
+      const x=PJ_CX+st.true[j].x*m,y=PJ_CY+st.true[j].y*m;
+      if(j)c.lineTo(x,y);else c.moveTo(x,y);
+    }
+    c.stroke();c.globalAlpha=1;
+  }
+  /* 挂在架子上的笔：现在的影子 */
+  const blur=pjClamp(900/pj.ld-2.4,.4,7.2);
+  for(let i=0;i<pj.sticks.length;i++){
+    const st=pj.sticks[i];
+    if(st.st!=='hang'||!st.fp)continue;
+    for(let pass=0;pass<2;pass++){
+      const a=(pass===0?(.16+.20*st.eff):(.26+.58*st.eff));
+      c.strokeStyle='#0B0A10';
+      c.globalAlpha=a;
+      c.lineWidth=Math.max(2.6,(pass===0?3.2+blur:3.0)*pjMag(pj.ld)/1.32);
+      c.lineCap='round';c.lineJoin='round';
+      c.beginPath();
+      let open=false;
+      for(let j=0;j<st.fp.length;j++){
+        const p=st.fp[j];
+        if(!p.lit){open=false;continue}
+        const x=PJ_CX+p.sx,y=PJ_CY+p.sy;
+        if(open)c.lineTo(x,y);else{c.moveTo(x,y);open=true}
+      }
+      c.stroke();
+    }
+  }
+  /* 本影与石片 */
+  for(let k=0;k<pj.shades.length;k++){
+    const sh=pj.shades[k];
+    if(!sh||sh.gone)continue;
+    const den=sh.z+pj.ld;
+    if(den<=2)continue;
+    const t=(PJ_ZS+pj.ld)/den;
+    const cxp=PJ_CX+sh.x*t,cyp=PJ_CY+sh.y*t,rp=sh.r*t;
+    const ug=c.createRadialGradient(cxp,cyp,rp*.4,cxp,cyp,rp*1.35);
+    ug.addColorStop(0,'rgba(0,0,0,.42)');ug.addColorStop(1,'rgba(0,0,0,0)');
+    c.fillStyle=ug;c.beginPath();c.arc(cxp,cyp,rp*1.35,0,6.2832);c.fill();
+    c.fillStyle='rgba(78,52,46,.92)';c.beginPath();c.arc(cxp,cyp,rp*.44,0,6.2832);c.fill();
+    c.strokeStyle='rgba(200,160,120,.45)';c.lineWidth=1;c.stroke();
+    sh.px=cxp;sh.py=cyp;sh.pr=rp;
+  }
+  /* 星屑 */
+  for(let i=0;i<pj.motes.length;i++){
+    const m=pj.motes[i];
+    const p=pjProj(m.x,m.y,m.z,pj.ld);
+    const x=PJ_CX+p.x,y=PJ_CY+p.y;
+    if(m.taken){c.globalAlpha=.18}
+    c.fillStyle='#FFF59D';
+    c.beginPath();c.arc(x,y,m.taken?1.4:2.4,0,6.2832);c.fill();
+    c.globalAlpha=.28;
+    c.beginPath();c.arc(x,y,m.taken?3:6,0,6.2832);c.fill();
+    c.globalAlpha=1;
+    m.px=x;m.py=y;
+  }
+  /* 显影：把该落那一笔的真形描出来 */
+  if(pj.peekMs>0&&pj.sticks[pj.qi]&&pj.sticks[pj.qi].st==='hang'){
+    const st=pj.sticks[pj.qi],m=pjMag(pj.ldBest);
+    c.setLineDash([4,4]);
+    c.strokeStyle='rgba(125,211,252,.9)';c.lineWidth=2;
+    c.beginPath();
+    for(let j=0;j<st.true.length;j++){
+      const x=PJ_CX+st.true[j].x*m,y=PJ_CY+st.true[j].y*m;
+      if(j)c.lineTo(x,y);else c.moveTo(x,y);
+    }
+    c.stroke();c.setLineDash([]);
+  }
+  /* 影妖 */
+  for(let i=0;i<pj.imps.length;i++){
+    const im=pj.imps[i];
+    if(!im.on)continue;
+    const bx=PJ_CX+((im.tA-pj.yaw)*0.9)+i*22-11;
+    const by=PJ_CY-46+Math.sin(pj.t/520+im.ph)*5+((im.tB-pj.pitch)*0.5);
+    im.px=pjClamp(bx,10,PJ_W-24);im.py=pjClamp(by,10,PJ_H-24);
+    c.fillStyle=pj.chaseMs>0?'rgba(93,64,55,.35)':'#4E342E';
+    c.beginPath();c.arc(im.px,im.py,7.4,0,6.2832);c.fill();
+    c.beginPath();c.moveTo(im.px-7,im.py-4);c.lineTo(im.px-11,im.py-11);c.lineTo(im.px-3,im.py-7);c.closePath();c.fill();
+    c.beginPath();c.moveTo(im.px+7,im.py-4);c.lineTo(im.px+11,im.py-11);c.lineTo(im.px+3,im.py-7);c.closePath();c.fill();
+    c.fillStyle=pj.lockMs>0?'#FFF176':'#FFCC80';
+    c.beginPath();c.arc(im.px-2.6,im.py-1,1.5,0,6.2832);c.arc(im.px+2.6,im.py-1,1.5,0,6.2832);c.fill();
+  }
+  /* 定盘 / 警告 */
+  if(pj.lockMs>0){
+    c.strokeStyle='rgba(100,181,246,.55)';c.lineWidth=2;
+    c.strokeRect(6,6,PJ_W-12,PJ_H-12);
+  }
+  if(pj.warn){
+    c.strokeStyle='rgba(255,82,82,.7)';c.lineWidth=3;
+    c.strokeRect(3,3,PJ_W-6,PJ_H-6);
+  }
+}
+function pjHud(){
+  const rk=pjRank(pj.words+pjInt('hz_proj_words'));
+  pjSet('pjRankTxt',rk.e+' '+rk.t);
+  let h='';for(let i=0;i<pj.hearts;i++)h+='❤️';
+  pjSet('pjHeartTxt',h||'💔');
+  pjSet('pjComboTxt','🔥 连 '+pj.combo);
+  pjSet('pjLitTxt','🖋 '+pj.lits+'/'+pj.n+' 笔');
+  pjSet('pjDropTxt','🎯 落 '+pj.drops);
+  const b=pj.bestCache||{eff:0};
+  pjSet('pjFitTxt','🔆 吻合 '+Math.round((b.eff||0)*100)+'%');
+  pjSet('pjLampTxt','🔦 灯 '+Math.round(pj.ld)+' · 刻痕 '+Math.round(pj.ldBest));
+  pjSet('pjShadeTxt','🪨 本影挡 '+pjShadeN()+' 笔');
+  pjSet('pjImpTxt','👻 影妖 '+pjAttached()+' 只');
+  pjSet('pjTearTxt','🩸 被撕 '+pj.tears+' 笔');
+  pjSet('pjMoteTxt','✨ 星屑 '+pj.motes.filter(function(m){return m.taken}).length+' 粒');
+  const lb=document.getElementById('pjLockBtn');
+  if(lb){lb.disabled=pj.lockN<=0;const b=lb.querySelector('b');if(b)b.innerHTML='剩 '+pj.lockN}
+  const pb=document.getElementById('pjPeekBtn');
+  if(pb){pb.disabled=pj.peekN<=0;const b=pb.querySelector('b');if(b)b.innerHTML='剩 '+pj.peekN}
+  const cb=document.getElementById('pjChaseBtn');
+  if(cb){cb.disabled=pj.chaseN<=0;const b=cb.querySelector('b');if(b)b.innerHTML='剩 '+pj.chaseN}
+}
+function pjMeter(){
+  const qf=pj.qms0?Math.max(0,pj.qms/pj.qms0):0;
+  const qb=document.getElementById('pjQBox');
+  const qi=document.getElementById('pjQBar');
+  if(qi)qi.style.width=(qf*100).toFixed(1)+'%';
+  if(qb)qb.classList.toggle('low',qf<.3);
+  pjSet('pjQTxt','⏳ 这一笔 '+Math.ceil(pj.qms/1000)+' 秒');
+  pjSet('pjQTxt2','⏳ 这一笔 '+Math.ceil(pj.qms/1000)+' 秒');
+  pjSet('pjFitTxt2','🔆 吻合 '+Math.round(((pj.bestCache||{}).eff||0)*100)+'% · 门槛 '+Math.round(pjGate(pj.lv)*100)+'%');
+  const of=pjOilMs(pj.lv),ff=of?Math.max(0,pj.oilMs/of):0;
+  const tb=document.getElementById('pjTorchBox');
+  const ti=document.getElementById('pjTorchBar');
+  if(ti)ti.style.width=(ff*100).toFixed(1)+'%';
+  if(tb)tb.classList.toggle('low',pj.warn);
+  pjSet('pjOilTxt','🕯 灯油还剩 '+Math.ceil(pj.oilMs/1000)+' 秒');
+  pjSet('pjScoreTxt','🎯 '+pj.score+' 分');
+  pjSet('pjLvTxt','第 '+pj.lv+' 坊 · 已收 '+pj.words+' 字');
+  const mb=document.getElementById('pjFitBox');
+  const mi=document.getElementById('pjFitBar');
+  const b=pj.bestCache||{eff:0};
+  if(mi)mi.style.width=((b.eff||0)*100).toFixed(1)+'%';
+  if(mb)mb.classList.toggle('ok',(b.eff||0)>=pjGate(pj.lv));
+}
+function pjPowStr(){
+  let hang=0,done=0;
+  for(let i=0;i<pj.sticks.length;i++){if(pj.sticks[i].st==='hang')hang++;else if(pj.sticks[i].st==='done')done++}
+  const b=pj.bestCache||{i:-1,eff:0};
+  return '🔮 第 <b>'+pj.lv+'</b> 坊 · 木条 <b>'+pj.n+'</b> 根（挂 '+hang+' · 印 '+done+'）· 最正的一根吻合 <b>'+
+    Math.round((b.eff||0)*100)+'%</b>（门槛 <b>'+Math.round(pjGate(pj.lv)*100)+'%</b>）· 容差 <b>±'+
+    Math.round(pjFitK(pj.lv)*1000)+'‰</b> · 灯 <b>'+Math.round(pj.ld)+'</b>（刻痕 <b>'+Math.round(pj.ldBest)+'</b> · 清晰度 <b>'+
+    Math.round(pjLampQ()*100)+'%</b>）· 石片 <b>'+pj.shades.filter(function(s){return !s.gone}).length+'</b> 片 · 影妖 <b>'+
+    pjImpsOf(pj.lv)+'</b> 只 · 架子晃度 <b>'+pjWand(pj.lv).toFixed(1)+'</b>';
+}
+function pjPow(){pjSet('pjPowTxt',pjPowStr())}
+function pjLine(){
+  const el=document.getElementById('pjHintLine');
+  if(!el)return;
+  let t;
+  if(pj.nagMs>0)t='👻 <b>歇一记提示</b>：见下面这行字，它只报「往哪儿转」，不报是第几笔';
+  else if(pj.lockMs>0)t='🧊 <b>定盘中</b>：姿态锁死 '+(pj.lockMs/1000).toFixed(1)+' 秒，影妖站不住';
+  else if(pj.peekMs>0)t='💡 <b>显影中</b>：该落那一笔的真形已经描在幕上（虚线）';
+  else if(pj.chaseMs>0)t='🪔 <b>驱影中</b>：影妖不敢回来 '+(pj.chaseMs/1000).toFixed(1)+' 秒';
+  else if(pj.warn)t='🕯 <b>灯油快见了底</b>：这一团收完就得交账';
+  else t='🔮 <b>拖幕布</b>或 <code>←</code><code>→</code><code>↑</code><code>↓</code> 转字模，<code>+</code><code>-</code> 推灯，转平了按 <code>空格</code> 落影';
+  el.innerHTML=t;
+}
+function pjMini(){
+  const svg=document.getElementById('pjMiniSvg');
+  if(!svg)return;
+  const rec=pj.rec;
+  if(!rec){svg.innerHTML='';return}
+  let s='<rect x="0" y="0" width="1024" height="1024" fill="none"/>';
+  s+='<line x1="0" y1="512" x2="1024" y2="512" stroke="rgba(255,255,255,.14)" stroke-width="6"/>';
+  s+='<line x1="512" y1="0" x2="512" y2="1024" stroke="rgba(255,255,255,.14)" stroke-width="6"/>';
+  s+='<line x1="0" y1="0" x2="1024" y2="1024" stroke="rgba(255,255,255,.08)" stroke-width="4"/>';
+  s+='<line x1="1024" y1="0" x2="0" y2="1024" stroke="rgba(255,255,255,.08)" stroke-width="4"/>';
+  for(let i=0;i<rec.n;i++){
+    const st=pj.sticks[i];
+    const done=st&&st.st==='done';
+    s+='<path d="'+rec.paths[i]+'" fill="'+(done?PJ_INK[pjRok(rec.dirs[i])]:'rgba(255,255,255,.16)')+'"/>';
+  }
+  svg.innerHTML=s;
+  pjSet('pjMiniCap',rec.ch+' · 共 '+rec.n+' 笔');
+}
+function pjTag(t){
+  pjSet('pjTag',t);
+  const el=document.getElementById('pjTag');
+  if(el)el.classList.add('on');
+  pj.tagMs=PJ_TAG_MS;
+}
+function pjFxBox(){
+  if(pj.fxBox)return pj.fxBox;
+  const el=document.getElementById('pjFx');
+  pj.fxBox=el||null;
+  return pj.fxBox;
+}
+function pjDustAt(x,y,n,color){
+  const box=pjFxBox();
+  if(!box)return;
+  for(let i=0;i<n;i++){
+    const d=document.createElement('i');
+    d.className='pj-gr';
+    d.style.left=(x*(box.clientWidth/PJ_W||1))+'px';
+    d.style.top=(y*(box.clientHeight/PJ_H||1))+'px';
+    d.style.background=color||'rgba(255,213,79,.85)';
+    d.style.setProperty('--dx',((Math.random()*68-34)|0)+'px');
+    d.style.setProperty('--dy',((Math.random()*-46-8)|0)+'px');
+    box.appendChild(d);
+    pjT(function(){if(d.parentNode)d.parentNode.removeChild(d)},720);
+  }
+}
+function pjSpark(st){
+  const m=st.m||PJ_PRINT_M;
+  const p=st.true[Math.floor(st.true.length/2)];
+  pjDustAt(PJ_CX+p.x*m,PJ_CY+p.y*m,10,st.ink);
+}
+function pjShake(){
+  const el=document.getElementById('pjTbl');
+  if(!el)return;
+  el.classList.remove('shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+  pjT(function(){el.classList.remove('shake')},360);
+}
+function pjAddBook(ch){
+  const cur=localStorage.getItem('hz_proj_book')||'';
+  const a=cur?cur.split(','):[];
+  if(a.indexOf(ch)<0){a.push(ch);if(a.length>PJ_BOOK_MAX)a.shift();localStorage.setItem('hz_proj_book',a.join(','))}
+}
+function pjAddMiss(ch){
+  const cur=(localStorage.getItem('hz_proj_miss')||'').split(',').filter(function(v){return v});
+  if(cur.indexOf(ch)<0){cur.push(ch);if(cur.length>12)cur.shift();localStorage.setItem('hz_proj_miss',cur.join(','))}
+}
+
+/* ================= 主循环 ================= */
+function pjStartLoop(){
+  if(pj.rafId)return;
+  pj.last=performance.now();
+  function step(now){
+    if(!pj.run||pj.over){pj.rafId=0;return}
+    const dt=Math.min(120,Math.max(8,now-pj.last));
+    pj.last=now;
+    pjTick(dt);
+    pj.rafId=requestAnimationFrame(step);
+  }
+  pj.rafId=requestAnimationFrame(step);
+}
+function pjStopLoop(){
+  if(pj.rafId){cancelAnimationFrame(pj.rafId);pj.rafId=0}
+}
+function pjTick(dt){
+  if(!pj.run||pj.over)return;
+  dt=Math.min(dt||PJ_TICK_MS,120);
+  pj.t+=dt;
+  pjStepSpin(dt);
+  pjStepSway(dt);
+  pjStepImps(dt);
+  pjStepShades(dt);
+  pjStepMotes(dt);
+  pj.bestCache=pjBest();
+  pjStepTimers(dt);
+  if(!pj.run||pj.over)return;
+  pjDraw();
+  pjMeter();
+  pj.hudAcc+=dt;
+  if(pj.hudAcc>=110){pj.hudAcc=0;pjHud();pjPow();pjLine()}
+}
+/* ================= 三件道具 ================= */
+function pjLock(){
+  if(!pj.run||pj.over||pj.busy)return 0;
+  if(pj.lockN<1){pjTag('🧊 定盘用完了');return 0}
+  pj.lockN--;pj.locks++;
+  pj.lockMs=PJ_LOCK_MS;
+  for(let i=0;i<pj.imps.length;i++){pj.imps[i].bite=Math.min(pj.imps[i].bite+pjBiteMs(pj.lv)*.5,pjBiteMs(pj.lv))}
+  pj.since=0;
+  pjTone(523,.14,'sine',.06);
+  pjTag('🧊 <b>定盘</b>：姿态锁 '+(PJ_LOCK_MS/1000).toFixed(1)+' 秒，影妖站不住、架子也不晃了');
+  pjHud();pjPow();pjLine();pjDraw();
+  return 1;
+}
+function pjPeek(){
+  if(!pj.run||pj.over||pj.busy)return 0;
+  if(pj.peekN<1){pjTag('💡 显影用完了');return 0}
+  pj.peekN--;pj.peeks++;
+  pj.peekMs=PJ_PEEK_MS;
+  pj.since=0;
+  pjTone(880,.1,'sine',.05);
+  pjTag('💡 <b>显影</b>：该落那一笔的真形描在幕上了（虚线，'+(PJ_PEEK_MS/1000).toFixed(1)+' 秒）—— 只描形，不告诉你它是第几笔以外的东西');
+  pjHud();pjPow();pjLine();pjDraw();
+  return 1;
+}
+function pjChase(){
+  if(!pj.run||pj.over||pj.busy)return 0;
+  if(pj.chaseN<1){pjTag('🪔 桃木钉用完了');return 0}
+  pj.chaseN--;pj.chases++;
+  pj.chaseMs=PJ_CHASE_MS;
+  for(let i=0;i<pj.imps.length;i++){pj.imps[i].on=0;pj.imps[i].cd=PJ_CHASE_MS}
+  pjT(function(){if(!pj.run||pj.over)return;for(let i=0;i<pj.imps.length;i++)pj.imps[i].on=1},PJ_CHASE_MS);
+  pj.since=0;
+  pjTone(392,.16,'square',.05);
+  pjTag('🪔 <b>驱影</b>：影妖躲开 '+(PJ_CHASE_MS/1000).toFixed(1)+' 秒，这段架子没人拖');
+  pjHud();pjPow();pjLine();pjDraw();
+  return 1;
+}
+function pjLampTo(v){
+  if(!pj.run||pj.over)return 0;
+  pj.ld=pjClamp(v,PJ_LD_MIN,PJ_LD_MAX);
+  pj.since=0;
+  pjHud();pjMeter();pjPow();pjDraw();
+  return 1;
+}
+/* ================= 输入 ================= */
+function pjKeyDir(e){
+  const k=e.key;
+  if(k==='ArrowLeft'||k==='a'||k==='A')return 'left';
+  if(k==='ArrowRight'||k==='d'||k==='D')return 'right';
+  if(k==='ArrowUp'||k==='w'||k==='W')return 'up';
+  if(k==='ArrowDown'||k==='s'||k==='S')return 'down';
+  return '';
+}
+function pjBind(){
+  if(pj.bound)return;
+  pj.bound=true;
+  if(!pj.keys)pj.keys={left:false,right:false,up:false,down:false,near:false,far:false};
+  window.addEventListener('keydown',function(e){
+    if(!pj.run||pj.over)return;
+    const d=pjKeyDir(e);
+    if(d){e.preventDefault();pj.keys[d]=true;return}
+    const k=e.key;
+    if(k===' '||k==='Enter'){e.preventDefault();pjPress();return}
+    if(k==='+'||k==='='){pj.keys.near=true;pj.keys.far=false;return}
+    if(k==='-'||k==='_'){pj.keys.far=true;pj.keys.near=false;return}
+    if(k==='q'||k==='Q'){pjLock();return}
+    if(k==='e'||k==='E'){pjPeek();return}
+    if(k==='f'||k==='F'){pjChase();return}
+    if(k==='h'||k==='H'||k==='?'){pjHelp();return}
+  });
+  window.addEventListener('keyup',function(e){
+    const k=e.key;
+    const d=pjKeyDir(e);
+    if(d&&pj.keys)pj.keys[d]=false;
+    if(k==='+'||k==='=')pj.keys.near=false;
+    if(k==='-'||k==='_')pj.keys.far=false;
+  });
+  const cv=document.getElementById('pjCanvas');
+  if(cv){
+    const at=function(ev){
+      const r=cv.getBoundingClientRect();
+      if(!r.width||!r.height)return null;
+      return {x:(ev.clientX-r.left)/r.width*PJ_W,y:(ev.clientY-r.top)/r.height*PJ_H,r:r,w:r.width/PJ_W};
+    };
+    cv.addEventListener('pointerdown',function(ev){
+      if(!pj.run||pj.over)return;
+      ev.preventDefault();
+      const p=at(ev);
+      if(!p)return;
+      if(p.x>PJ_W-26){pj.dragging={mode:'lamp'};pj.ld=pjYToLd(p.y);pj.since=0;pjHud();pjMeter();pjDraw();return}
+      pj.dragging={mode:'spin',x:p.x,y:p.y};
+    });
+    cv.addEventListener('pointermove',function(ev){
+      if(!pj.run||pj.over||!pj.dragging)return;
+      const p=at(ev);
+      if(!p)return;
+      if(pj.dragging.mode==='lamp'){
+        pj.ld=pjYToLd(p.y);
+        pj.since=0;pjHud();pjMeter();pjDraw();
+        return;
+      }
+      const dx=p.x-pj.dragging.x,dy=p.y-pj.dragging.y;
+      pj.dragging.x=p.x;pj.dragging.y=p.y;
+      if(pj.lockMs>0)return;
+      pj.yaw=pjClamp(pj.yaw+dx*PJ_DRAG,-PJ_YAW_MAX,PJ_YAW_MAX);
+      pj.pitch=pjClamp(pj.pitch+dy*PJ_DRAG,-PJ_PIT_MAX,PJ_PIT_MAX);
+      pj.since=0;
+    });
+    window.addEventListener('pointerup',function(){pj.dragging=null});
+  }
+  [['pjLockBtn',pjLock],['pjPeekBtn',pjPeek],['pjChaseBtn',pjChase]].forEach(function(x){
+    const b=document.getElementById(x[0]);
+    if(b&&!b.dataset.on){b.dataset.on='1';b.addEventListener('click',x[1])}
+  });
+  [['pjNearBtn',function(){pjLampTo(pj.ld-18)}],['pjFarBtn',function(){pjLampTo(pj.ld+18)}]].forEach(function(x){
+    const b=document.getElementById(x[0]);
+    if(b&&!b.dataset.on){b.dataset.on='1';b.addEventListener('click',x[1])}
+  });
+}
+function pjHelp(){
+  if(!pj.run)return;
+  pj.helpMs=PJ_HELP_MS;
+  pjSet('pjAsk','🔮 <b>怎么在乱架子上取笔</b><br><small>这一坊的全部规则，灯油与钟都先冻住</small>');
+  pjSay('🔄 <b>转字模</b>：幕后那一团木条，每根就是这个字的 <b>一笔</b>，被焊得各有各的歪。拖幕布 / <code>←</code><code>→</code> 转横、<code>↑</code><code>↓</code> 转竖 —— 某一根 <b>正对幕布</b> 的那一瞬，它的影子 <b>啪地还原成真形</b>，稳稳落回米字格里它该在的位置<br>👁 <b>认笔顺才敢落</b>：幕上往往 <b>好几根都会转平</b>，转平 <b>不等于能落</b>。<b>只有该写的那一笔落下去才算数</b>；把别的一笔转平了按下去是 <b>乱序</b>（扣 '+PJ_PEN_WRONG+' 分、连击清零）<br>🔦 <b>灯有那一格</b>：<code>+</code> 拉近、<code>-</code> 推远（也能拖右侧那条轨）。轨上的 <b>蓝刻痕</b> 是这一团字该照的距离 —— 压在刻痕上影子 <b>最清楚</b>；偏得越远 <b>越发糊、越发胀出幕外</b>，吻合度直接封顶。每换一团字，刻痕就挪一次<br>🪨 <b>石片的本影</b>：幕前飘的石片会在幕上留一块 <b>本影</b>，压在影子上就 <b>缺一块</b>（缺块按没对准算）。<b>推拉灯</b> 本影就跟着挪，转字模也能把它躲开<br>👻 <b>影妖</b>：趴在架子上把整团字模往它想要的歪角度 <b>拖</b>；攒够一口就 <b>扑到幕上撕掉你落好的一笔</b>（掉一颗心，那一笔得重转重落）。<code>Q</code> 定盘锁住姿态它就站不住，<code>F</code> 驱影让它滚 '+(PJ_CHASE_MS/1000).toFixed(1)+' 秒<br>💡 <b>显影 E</b>：把该落那一笔的 <b>真形</b> 描成虚线 '+(PJ_PEEK_MS/1000).toFixed(1)+' 秒 —— 它只给形状，位置还得你自己转对<br>✨ <b>星屑</b>：飘在光锥里，落影时把它 <b>压在影子底下</b> 就 +'+PJ_MOTE_GAIN+' 分、补一口灯油<br>⏳ <b>两只钟</b>：这一笔的钟走光 <b>不算答错</b>（扣 '+PJ_PEN_TIME+' 分，整团架子 <b>重焊一遍</b>、姿态全换）；<b>灯油</b> 烧完就交账。按 <code>H</code> 看说明时两只钟都不走<br>🏮 <b>每收 2 个字进一坊</b>：容差收窄、门槛抬高、石片与影妖加人，架子也晃得更凶','#B3E5FC');
+  pjLine();pjHud();pjMeter();pjPow();pjDraw();
+}
+/* ================= 结算与落盘 ================= */
+function pjBank(){
+  const best=pjInt('hz_proj_best');
+  const isBest=pj.score>best;
+  if(isBest)localStorage.setItem('hz_proj_best',String(pj.score));
+  if(pj.maxCombo>pjInt('hz_proj_combo'))localStorage.setItem('hz_proj_combo',String(pj.maxCombo));
+  if(pj.words>pjInt('hz_proj_words'))localStorage.setItem('hz_proj_words',String(pj.words));
+  if(pj.lv>pjInt('hz_proj_lv'))localStorage.setItem('hz_proj_lv',String(pj.lv));
+  if(pj.drops>pjInt('hz_proj_drops'))localStorage.setItem('hz_proj_drops',String(pj.drops));
+  if(pj.tears)pjAdd('hz_proj_tear',pj.tears);
+  const ms=Math.round(pj.playMs/1000);
+  if(pj.words&&(!pjInt('hz_proj_fastest')||ms<pjInt('hz_proj_fastest')))localStorage.setItem('hz_proj_fastest',String(ms));
+  return {best:Math.max(best,pj.score),isBest:isBest};
+}
+function pjEnd(why){
+  if(pj.over)return;
+  pj.over=true;
+  pjStopLoop();pjKillTimers();
+  pj.run=false;
+  if(pj.rec)pjDraw();
+  const tbl=document.getElementById('pjTbl');
+  if(tbl)tbl.classList.add('dead');
+  const bk=pjBank(),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(pj.score/14)+pj.words*2);
+  if(why!=='pool')addStars(stars);
+  showScreen('proj-result');
+  const R={quit:'🏳️',oil:'🕯',hearts:'💔',pool:'😢'}[why]||'🔮';
+  pjSet('pjRsEmoji',R);
+  pjSet('pjRsTitle',why==='hearts'?'幕被撕穿了':(why==='oil'?'灯油烧完了':(why==='quit'?'这一坊先收了摊':'字库没凑齐')));
+  const tot=pjInt('hz_proj_words');
+  const rk=pjRank(tot);
+  pjSet('pjRsSub','第 '+pj.lv+' 坊 · 累计收 '+tot+' 个字 · '+rk.e+' '+rk.t);
+  pjSet('pjRsScore','🎯 '+pj.score+' 分'+(isBest?' 🏅 新高':''));
+  pjSet('pjRsWords','🔮 收 '+pj.words+' 个字');
+  pjSet('pjRsLits','🖋 落了 '+pj.lits+' 笔');
+  pjSet('pjRsDrops','🎯 按了 '+pj.drops+' 次落影');
+  pjSet('pjRsSharp','🎯 一影中的 '+pj.sharps+' 笔');
+  pjSet('pjRsWrong','🌀 乱序 '+pj.wrongs+' 次 · 空挥 '+pj.misses+' 次');
+  pjSet('pjRsTear','👻 被撕 '+pj.tears+' 笔 · 啃油 '+pj.bites+' 口');
+  pjSet('pjRsTools','🧊 定盘 '+pj.locks+' · 💡 显影 '+pj.peeks+' · 🪔 驱影 '+pj.chases+' · 歇一记 '+pj.nags);
+  pjSet('pjRsCombo','🔥 最长连 '+pj.maxCombo);
+  pjSet('pjRsBest','🏆 最高 '+best+' 分');
+  pjSet('pjRsStars','⭐ '+stars);
+  const book=(localStorage.getItem('hz_proj_book')||'').split(',').filter(function(c){return c.length===1}).length;
+  pjSet('pjRsBook','图鉴里现在有 <b>'+book+'</b> 个字 · 光影架里 <b>'+pjInt('hz_proj_shelf')+'</b> 件影子 · 累计落了 <b>'+
+    pjInt('hz_proj_drops')+'</b> 次影');
+  const per=pj.lits?Math.round(pj.drops/Math.max(1,pj.lits)*10)/10:0;
+  pjSet('pjRsWhy',why==='hearts'?'💔 <b>影妖是会撕的</b>：它一趴在架子上就 <b>先把盘子拖歪</b> —— 听见 <code>👻</code> 那行字就按 <code>Q</code> 定盘，别让它攒够一口':
+    (why==='oil'?'🕯 <b>灯油烧完了</b>：平均每笔按了 <b>'+per+'</b> 次落影 —— 先把 <b>灯压在刻痕上</b>，看清了再按，比连按三下省灯':
+    (per>1.6?'🔮 平均每笔按了 <b>'+per+'</b> 次：转平的一瞬间 <b>先认出方向</b>（横竖撇捺点）再决定落不落，能少掉一半空挥':
+    '🏮 手感不错：平均每笔按了 <b>'+per+'</b> 次落影 —— 下一坊容差更窄、影妖成双，试着 <b>一边转一边把灯跟着刻痕挪</b>，两只手一起才吃得住')));
+  pjSay('🔮 这一场印了 <b>'+pj.words+'</b> 个字、<b>'+pj.lits+'</b> 笔，按了 <b>'+pj.drops+'</b> 次落影（其中 <b>'+pj.sharps+
+    '</b> 笔一影中的），乱序 <b>'+pj.wrongs+'</b> 次、空挥 <b>'+pj.misses+'</b> 次，被影妖撕掉 <b>'+pj.tears+'</b> 笔。'+
+    '<br>战绩落盘 <code>hz_proj_*</code>：称号按累计收下的字数走，第 3 坊起 <b>影妖上架子</b>，第 7 坊起 <b>两只一起拖</b>','#B2DFDB');
+  pjNudge();
+}
+function pjNudge(){
+  const dot=document.getElementById('pjCardDot'),tip=document.getElementById('pjCardTip');
+  const w=pjInt('hz_proj_words'),games=pjInt('hz_proj_games'),drops=pjInt('hz_proj_drops');
+  const R=pjRank(w);
+  const shelf=pjInt('hz_proj_shelf');
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 收了 '+w+' 个字 · 落过 '+drops+' 次影 · 光影架 '+shelf+' 件 · 被撕 '+pjInt('hz_proj_tear')+' 笔'):'幕后一团歪木条，影子全拧成一团：把该写的那一笔转到正对幕布、认出它，再落';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+
+/* ---- 无头测试用的挂钩（只读与小步驱动，不参与游戏逻辑） ---- */
+window.vPjTick=function(dt){pjTick(dt||PJ_TICK_MS)};
+window.vPjPump=function(ms,step){
+  let t=0;const s=step||PJ_TICK_MS;
+  while(t<ms&&pj.run&&!pj.over){pjTick(s);t+=s}
+  return t;
+};
+window.vPjNewWord=function(){pjNewWord();return pj.rec?pj.rec.ch:''};
+window.vPjSetPose=function(a,b){pj.yaw=pjClamp(a,-PJ_YAW_MAX,PJ_YAW_MAX);pj.pitch=pjClamp(b,-PJ_PIT_MAX,PJ_PIT_MAX);pj.bestCache=pjBest();pjDraw();return {yaw:pj.yaw,pitch:pj.pitch}};
+window.vPjSetLamp=function(v){pj.ld=pjClamp(v,PJ_LD_MIN,PJ_LD_MAX);pj.bestCache=pjBest();return pj.ld};
+window.vPjNeed=function(){
+  if(pj.sticks[pj.qi]&&pj.sticks[pj.qi].st==='hang')return pj.sticks[pj.qi].i;
+  pjStopAll();pjKillTimers();
+  if(!window.vPjNewWord())return -1;
+  pj.oilMs=pjOilMs(pj.lv);pj.qms=pjQmsOf(pj.lv);pj.qms0=pj.qms;
+  return (pj.sticks[pj.qi]&&pj.sticks[pj.qi].st==='hang')?pj.qi:-1;
+};
+window.vPjBest=function(){pj.bestCache=pjBest();const b=pj.bestCache;return b?{i:b.i,fit:b.fit,eff:b.eff}:{i:-1,fit:0,eff:0}};
+window.vPjSticks=function(){
+  const out=[];
+  for(let i=0;i<pj.sticks.length;i++){
+    const st=pj.sticks[i];
+    let blocked=0;
+    if(st.fp)for(let j=0;j<st.fp.length;j++)if(!st.fp[j].lit)blocked++;
+    out.push({i:i,st:st.st,dir:st.dir,A:st.A,B:st.B,fit:Math.round((st.fit||0)*1000)/1000,
+      eff:Math.round((st.eff||0)*1000)/1000,blocked:blocked,n:st.true.length,k:Math.round(st.k*10)/10,m:st.m||0});
+  }
+  return out;
+};
+/* 把姿态摆成「第 i 根转平」：返回摆好之后的吻合度 */
+window.vPjAlign=function(i){
+  const st=pj.sticks[i];
+  if(!st)return null;
+  pj.yaw=st.A;pj.pitch=st.B;
+  pj.bestCache=pjBest();
+  pjDraw();
+  return {i:i,A:st.A,B:st.B,fit:st.fit,eff:st.eff,top:pj.top};
+};
+window.vPjClothPt=function(x,y){
+  const cv=document.getElementById('pjCanvas');
+  if(!cv)return null;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return null;
+  return {x:r.left+x/PJ_W*r.width,y:r.top+y/PJ_H*r.height};
+};
+window.vPjLampPt=function(){
+  const cv=document.getElementById('pjCanvas');
+  if(!cv)return null;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return null;
+  return {x:r.left+(PJ_W-13)/PJ_W*r.width,y:r.top+pjLampY(pj.ld)/PJ_H*r.height,w:r.width/PJ_W,ld:pj.ld,best:pj.ldBest};
+};
+window.vPjPress=function(){return pjPress()};
+window.vPjLock=function(){return pjLock()};
+window.vPjPeek=function(){return pjPeek()};
+window.vPjChase=function(){return pjChase()};
+window.vPjTear=function(){return pjTear()};
+window.vPjRehang=function(){return pjRehang()};
+window.vPjTimeout=function(){pjTimeoutQ();return pj.qms};
+window.vPjState=function(){
+  const b=pj.bestCache||{i:-1,eff:0,fit:0};
+  let hang=0,done=0;
+  for(let i=0;i<pj.sticks.length;i++){if(pj.sticks[i].st==='hang')hang++;else if(pj.sticks[i].st==='done')done++}
+  return {run:pj.run?1:0,over:pj.over?1:0,lv:pj.lv,qi:pj.qi,n:pj.n,ch:pj.rec?pj.rec.ch:'',
+    score:pj.score,hearts:pj.hearts,combo:pj.combo,maxCombo:pj.maxCombo,words:pj.words,lits:pj.lits,
+    drops:pj.drops,sharps:pj.sharps,wrongs:pj.wrongs,misses:pj.misses,tears:pj.tears,bites:pj.bites,
+    locks:pj.locks,peeks:pj.peeks,chases:pj.chases,nags:pj.nags,shelf:pjInt('hz_proj_shelf'),
+    lockN:pj.lockN,peekN:pj.peekN,chaseN:pj.chaseN,
+    yaw:Math.round(pj.yaw*100)/100,pitch:Math.round(pj.pitch*100)/100,
+    ld:Math.round(pj.ld),ldBest:Math.round(pj.ldBest),lampQ:Math.round(pjLampQ()*1000)/1000,cap:Math.round(pjEff()*1000)/1000,
+    gate:pjGate(pj.lv),fitK:pjFitK(pj.lv),wand:pjWand(pj.lv),
+    best:b.i,fit:Math.round((b.fit||0)*1000)/1000,bestEff:Math.round((b.eff||0)*1000)/1000,
+    hang:hang,done:done,shades:pj.shades.filter(function(s){return !s.gone}).length,
+    imps:pjAttached(),impsAll:pj.imps.length,motes:pj.motes.length,motesTaken:pj.motes.filter(function(m){return m.taken}).length,
+    shadeBlocked:pjShadeN(),
+    qms:Math.round(pj.qms),qms0:Math.round(pj.qms0),oilMs:Math.round(pj.oilMs),oilOf:pjOilMs(pj.lv),
+    helpMs:Math.round(pj.helpMs),lockMs:Math.round(pj.lockMs),peekMs:Math.round(pj.peekMs),chaseMs:Math.round(pj.chaseMs),
+    nagMs:Math.round(pj.nagMs),since:Math.round(pj.since),busy:pj.busy?1:0,actMs:Math.round(pj.actMs),
+    warn:pj.warn?1:0,cleanWord:pj.cleanWord?1:0,wrongThisQ:pj.wrongThisQ?1:0,playMs:Math.round(pj.playMs),
+    tones:pj.tones,timers:pj.timers.length,tagMs:Math.round(pj.tagMs)};
+};
+window.vPjInv=function(){
+  const out=[];
+  for(let i=0;i<pj.sticks.length;i++){
+    const st=pj.sticks[i];
+    if(!st.fp)continue;
+    for(let j=0;j<st.fp.length;j++){
+      const p=st.fp[j];
+      if(!isFinite(p.x)||!isFinite(p.y)||!isFinite(p.sx)||!isFinite(p.sy))out.push('NaN stick '+i+' pt '+j);
+      if(p.lit&&(Math.abs(p.sx)>PJ_CX+80||Math.abs(p.sy)>PJ_CY+80))out.push('offcloth '+i+'/'+j+' '+Math.round(p.sx)+','+Math.round(p.sy));
+    }
+  }
+  for(let k=0;k<pj.shades.length;k++){
+    const s=pj.shades[k];
+    if(s.gone)continue;
+    if(s.z+pj.ld<=2)out.push('shade behind lamp '+k);
+  }
+  if(pj.qi>pj.n)out.push('qi over '+pj.qi+'/'+pj.n);
+  if(pj.hearts<0)out.push('hearts<0');
+  if(pj.score<0)out.push('score<0');
+  if(pj.ld<PJ_LD_MIN-.01||pj.ld>PJ_LD_MAX+.01)out.push('ld range '+pj.ld);
+  if(Math.abs(pj.yaw)>PJ_YAW_MAX+.01)out.push('yaw range '+pj.yaw);
+  if(Math.abs(pj.pitch)>PJ_PIT_MAX+.01)out.push('pitch range '+pj.pitch);
+  return out;
+};
+window.vPjFlatCount=function(){
+  /* 开场不该有一根本来就是平的 */
+  let n=0;
+  for(let i=0;i<pj.sticks.length;i++){const st=pj.sticks[i];if(Math.abs(st.A)<13&&Math.abs(st.B)<9)n++}
+  return n;
+};
+window.vPjPose=function(i){const st=pj.sticks[i];return st?{A:st.A,B:st.B}:null};
+window.vPjFit0=function(){return {q:pjLampQ(),cap:pjEff(),gate:pjGate(pj.lv),mag:pjMag(pj.ld)}};
+window.vPjMsg=function(){const e=document.getElementById('pjMsg');return e?e.innerHTML:''};
+window.vPjAsk=function(){const e=document.getElementById('pjAsk');return e?e.textContent:''};
+window.vPjHint=function(){const e=document.getElementById('pjHintLine');return e?e.textContent:''};
+window.vPjTagTxt=function(){const e=document.getElementById('pjTag');return e?e.textContent:''};
+window.vPjPowTxt=function(){const e=document.getElementById('pjPowTxt');return e?e.textContent:''};
+window.vPjDom=function(id){const e=document.getElementById(id);return e?e.textContent:''};
+window.vPjScreen=function(){const s=document.querySelector('.screen.active');return s?s.id:''};
+window.vPjLeave=function(){pjLeave();return 1};
+/* 第 i 根的全部几何：焊死的模型点、真形点、当前姿态下的投影点 */
+window.vPjRig=function(i){
+  const st=pj.sticks[i];
+  if(!st)return null;
+  pjFitOf(st);
+  return {i:i,st:st.st,dir:st.dir,A:st.A,B:st.B,k:st.k,m:st.m||0,
+    yaw:pj.yaw,pitch:pj.pitch,ld:pj.ld,
+    pts:st.pts.map(function(p){return {x:Math.round(p.x*1000)/1000,y:Math.round(p.y*1000)/1000,z:Math.round(p.z*1000)/1000}}),
+    tr:st.true.map(function(p){return {x:Math.round(p.x*1000)/1000,y:Math.round(p.y*1000)/1000}}),
+    fp:(st.fp||[]).map(function(p){return {x:p.x,y:p.y,z:p.z,sx:p.sx,sy:p.sy,d:p.d,lit:p.lit}})};
+};
+window.vPjShades=function(){
+  return pj.shades.filter(function(s){return !s.gone}).map(function(s){
+    return {x:s.x,y:s.y,z:s.z,r:s.r,vx:s.vx,vy:s.vy,umb:pjUmbra(s).r}});
+};
+window.vPjMotes=function(){
+  return pj.motes.map(function(m){
+    const p=pjProj(m.x,m.y,m.z,pj.ld);
+    return {x:m.x,y:m.y,z:m.z,vx:m.vx,vy:m.vy,taken:m.taken?1:0,
+      since:Math.round(pj.t-(m.born||0)),px:Math.round(p.x),py:Math.round(p.y),
+      inside:pjOnCloth(p.x,p.y)?1:0}});
+};
+window.vPjImps=function(){
+  return pj.imps.map(function(o){return {i:o.i,on:o.on?1:0,attached:pjAttached(),
+    tA:o.tA,tB:o.tB,bite:Math.round(o.bite),bite0:Math.round(o.biteMs),cd:Math.round(o.cd)}});
+};
+window.vPjKillTimers=function(){pjStopAll();return 1};
+window.vPjClient=function(x,y){return window.vPjClothPt(x,y)};
+window.vPjRail=function(){
+  const cv=document.getElementById('pjCanvas');
+  if(!cv)return null;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return null;
+  const at=function(sx,sy){return {x:r.left+sx/PJ_W*r.width,y:r.top+sy/PJ_H*r.height}};
+  return {best:at(PJ_W-13,pjLampY(pj.ldBest)),now:at(PJ_W-13,pjLampY(pj.ld)),
+    ld:pj.ld,best0:pj.ldBest,span:pjSpanOf(pj.lv),q:pjLampQ(),
+    top:at(PJ_W-13,16),bot:at(PJ_W-13,PJ_H-16)};
+};
+/* DOM 与状态必须说同一句话 */
+window.vPjDomBad=function(){
+  const out=[];
+  const g=function(id){return document.getElementById(id)};
+  const txt=function(id){const e=g(id);return e?e.textContent:''};
+  if(txt('pjScoreTxt')!=='🎯 '+pj.score+' 分')out.push('分数条 '+txt('pjScoreTxt')+' 分='+pj.score);
+  if(txt('pjLvTxt')!=='第 '+pj.lv+' 坊 · 已收 '+pj.words+' 字')out.push('坊数条 '+txt('pjLvTxt'));
+  const h=txt('pjHeartTxt');
+  if(pj.hearts>0&&h!=='❤️'.repeat(pj.hearts))out.push('心形 '+h+' 心='+pj.hearts);
+  if(txt('pjComboTxt')!=='🔥 连 '+pj.combo)out.push('连击条 '+txt('pjComboTxt'));
+  if(txt('pjLitTxt')!=='🖋 '+pj.lits+'/'+pj.n+' 笔')out.push('笔数条 '+txt('pjLitTxt')+' n='+pj.n);
+  if(txt('pjDropTxt')!=='🎯 落 '+pj.drops)out.push('落影条 '+txt('pjDropTxt'));
+  const lampWant='🔦 灯 '+Math.round(pj.ld)+' · 刻痕 '+Math.round(pj.ldBest);
+  if(txt('pjLampTxt')!==lampWant)out.push('灯条 DOM['+txt('pjLampTxt')+'] 状态['+lampWant+']');
+  const powWant=pjPowStr(),powGot=g('pjPowTxt')?g('pjPowTxt').innerHTML:'';
+  if(powGot!==powWant)out.push('坊况条 DOM['+powGot+'] 状态['+powWant+']');
+  const b=pj.bestCache||{eff:0};
+  const fitWant='🔆 吻合 '+Math.round((b.eff||0)*100)+'%';
+  if(txt('pjFitTxt')!==fitWant)out.push('吻合条 DOM['+txt('pjFitTxt')+'] 状态['+fitWant+'] eff='+(b.eff||0));
+  if(txt('pjShadeTxt')!=='🪨 本影挡 '+pjShadeN()+' 笔')out.push('本影条 '+txt('pjShadeTxt'));
+  if(txt('pjImpTxt')!=='👻 影妖 '+pjAttached()+' 只')out.push('影妖条 '+txt('pjImpTxt'));
+  if(txt('pjTearTxt')!=='🩸 被撕 '+pj.tears+' 笔')out.push('撕笔条 '+txt('pjTearTxt'));
+  const need=['pjLockBtn','pjPeekBtn','pjChaseBtn','pjNearBtn','pjFarBtn','pjEndBtn','pjCanvas','pjFx','pjTag',
+    'pjTbl','pjMiniSvg','pjMiniCap','pjAsk','pjHintLine','pjMsg','pjPowTxt','pjQTxt','pjQTxt2','pjOilTxt',
+    'pjFitTxt2','pjFitBox','pjFitBar','pjQBox','pjQBar','pjTorchBox','pjTorchBar'];
+  for(let i=0;i<need.length;i++)if(!g(need[i])){out.push('缺 '+need[i]);break}
+  [[pjLockBtnC(),pj.lockN],[pjPeekBtnC(),pj.peekN],[pjChaseBtnC(),pj.chaseN]].forEach(function(x){
+    const el=document.getElementById(x[0]);
+    if(!el){out.push('没有 '+x[0]);return}
+    if(el.disabled!==(x[1]<=0))out.push(x[0]+' 该 '+(x[1]<=0?'禁用':'可用'));
+    const t=el.innerHTML.match(/剩 (\d+)/);
+    if(!t||+t[1]!==x[1])out.push(x[0]+' 剩 '+(t?t[1]:'?')+' 该是 '+x[1]);
+  });
+  function pjLockBtnC(){return 'pjLockBtn'}
+  function pjPeekBtnC(){return 'pjPeekBtn'}
+  function pjChaseBtnC(){return 'pjChaseBtn'}
+  const cv=g('pjCanvas');
+  if(cv){
+    if(cv.width!==PJ_W||cv.height!==PJ_H)out.push('画布 '+cv.width+'x'+cv.height);
+    if(!cv.offsetParent)out.push('画布看得见却没在坊里');
+    else{const r=cv.getBoundingClientRect();if(r.width<120)out.push('画布被挤成 '+Math.round(r.width))}
+  }
+  const mi=g('pjMiniSvg');
+  if(mi){
+    const paths=mi.querySelectorAll('path').length,hang=pj.sticks.filter(function(s){return s.st==='hang'}).length;
+    if(paths!==pj.n)out.push('小字卡 '+paths+' 条 path 该 '+pj.n);
+    if(hang===0&&mi.innerHTML.indexOf('rgba(255,255,255,.16)')>=0)out.push('字收完了小字卡还灰着');
+  }
+  const mc=g('pjMiniCap');
+  if(mc&&mc.textContent.indexOf(pj.rec.ch)<0)out.push('小字卡题头 '+mc.textContent+' 字='+pj.rec.ch);
+  return out;
+};
+
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
