@@ -6214,6 +6214,64 @@ button:active{transform:scale(.95)}
 #screen-proj .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
 /* 窄屏（手机）：字卡挪到幕台上头，幕独占整幅宽 */
 @media(max-width:460px){.pj-stage{flex-direction:column}.pj-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.pj-mini svg{flex:0 0 74px;width:74px}.pj-cap{flex:0 1 auto;text-align:left}.pj-meter{flex-wrap:wrap}.pj-fl,.pj-tl,.pj-torch{flex:1 1 30%}}
+/* ================= v1.90 笔顺溜冰场 ================= */
+.ice-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.ice-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.ice-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#E1F5FE;margin:2px 0 6px;line-height:1.35}
+.ice-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.ice-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.ice-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.ice-mini svg{width:100%;height:auto;background:rgba(255,255,255,.06);border-radius:12px}
+.ice-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+.ice-rink{flex:1;min-width:0;position:relative;background:#071019;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 18px rgba(0,0,0,.75)}
+.ice-rink.dead{filter:grayscale(.85) brightness(.6)}
+.ice-canvas{display:block;width:100%;height:auto;cursor:crosshair;touch-action:none}
+.ice-tag{position:absolute;left:50%;top:8px;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#B3E5FC;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.ice-tag.on{opacity:1}
+.ice-fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:5}
+.ice-chip{position:absolute;width:4px;height:4px;border-radius:50%;opacity:.95;pointer-events:none;animation:iceChip .62s ease-out forwards}
+.ice-mist{position:absolute;width:7px;height:7px;border-radius:50%;background:rgba(225,245,254,.8);pointer-events:none;animation:iceMist .7s ease-out forwards}
+@keyframes iceChip{0%{transform:translate(0,0) scale(1);opacity:.95}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+@keyframes iceMist{0%{transform:translate(0,0) scale(.6);opacity:.85}100%{transform:translate(var(--dx),var(--dy)) scale(2.4);opacity:0}}
+.ice-meter{display:flex;gap:7px;align-items:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.ice-fl,.ice-tl,.ice-stove{position:relative;flex:1;height:22px;background:rgba(255,255,255,.1);border-radius:11px;overflow:hidden}
+.ice-fl i{position:absolute;left:0;top:0;bottom:0;width:0%;background:linear-gradient(90deg,#4DD0E1,#B2EBF2);transition:width .1s linear}
+.ice-fl.ok i{background:linear-gradient(90deg,#26C6DA,#7C4DFF)}
+.ice-fl u{position:absolute;top:0;bottom:0;width:2px;background:#FFF176;left:0%;z-index:2}
+.ice-tl{height:26px;border-radius:13px}
+.ice-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#4DD0E1,#26A69A);transition:width .2s linear}
+.ice-tl.low i{background:linear-gradient(90deg,#FF8A65,#FFD54F)}
+.ice-stove i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#FF7043,#FFB300 60%,#FFE082);transition:width .2s linear}
+.ice-stove.low i{background:linear-gradient(90deg,#FF5252,#FF8A65)}
+.ice-fl b,.ice-tl b,.ice-stove b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8);white-space:nowrap;overflow:hidden;z-index:3}
+.ice-tl b{font-size:12px}
+.ice-pad{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,40px);gap:5px;justify-content:center;margin:4px auto 2px}
+.ice-pad button{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:11px;color:#fff;font-size:17px;font-weight:800;cursor:pointer;padding:0;line-height:1}
+.ice-pad button.on{background:rgba(77,208,225,.42);border-color:#4DD0E1}
+.ice-pad button.mid{font-size:11px;font-weight:700;background:rgba(255,110,64,.2);border-color:#FF7043}
+.ice-pad button:disabled{opacity:.4;cursor:default}
+.ice-pow{display:block;width:calc(100% - 28px);max-width:520px;margin:2px auto 0;white-space:normal;text-align:center;line-height:1.5;font-size:12px;color:#CFD8DC;background:rgba(255,255,255,.08);padding:3px 9px;border-radius:11px}
+.ice-pow b{color:#80DEEA}
+.ice-tools{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;width:100%;margin:4px 0 6px}
+.ice-tool{position:relative;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#fff;font-size:14px;font-weight:700;padding:8px 12px;cursor:pointer}
+.ice-tool span{display:block;font-size:9px;opacity:.6;font-weight:400}
+.ice-tool b{position:absolute;right:-4px;top:-6px;background:#FF6E40;color:#fff;font-size:10px;border-radius:9px;padding:1px 5px}
+.ice-tool:disabled{opacity:.4;cursor:default}
+.ice-tool.go{background:rgba(77,208,225,.22);border-color:#4DD0E1}
+.ice-hintline{width:100%;text-align:center;font-size:12px;color:#90A4AE;margin:0 0 6px;line-height:1.4}
+.ice-hintline b{color:#FFF176}
+.ice-msg{width:calc(100% - 28px);max-width:520px;margin:0 auto 12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.6}
+.ice-msg b{color:#FFF176}
+.ice-msg code{background:rgba(0,0,0,.35);padding:1px 5px;border-radius:5px;color:#A5D6A7}
+@keyframes iceShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.ice-rink.shake{animation:iceShake .34s}
+.ice-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px}
+.ice-cdot.on{display:block}
+.ice-pk{background:rgba(255,255,255,.08);padding:4px 10px;border-radius:12px;font-size:13px;color:#CFD8DC}
+/* 顶栏挤的时候「← 返回」不能折成两行 */
+#screen-skate .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：字卡挪到冰台上头，冰面独占整幅宽 */
+@media(max-width:460px){.ice-stage{flex-direction:column}.ice-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.ice-mini svg{flex:0 0 74px;width:74px}.ice-cap{flex:0 1 auto;text-align:left}.ice-meter{flex-wrap:wrap}.ice-fl,.ice-tl,.ice-stove{flex:1 1 30%}}
 </style>
 
 </head>
@@ -6270,8 +6328,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 88 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">88</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 89 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">89</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6282,8 +6340,8 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>88 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>34</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>25</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>89 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>34</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>26</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
@@ -6516,6 +6574,11 @@ button:active{transform:scale(.95)}
     <div class="lab-group" id="labG3">
       <h4 class="lab-gtitle">⚡ 手速与反应 <small>眼疾手快抢答</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="iceCard" onclick="enterMode('skate')">
+      <div class="icon">⛸</div>
+      <div class="info"><h3>笔顺溜冰场</h3><p id="iceCardTip">格子冰面上，冰球一推就停不下来：挑八个方向之一滑过去，滑到的格子就落墨 —— 一笔一气滑满、一寸墨没蹭脏，才是漂亮的一滑</p></div>
+      <span class="ice-cdot" id="iceCardDot">🆕</span>
+    </div>
     <div class="mode-card" onclick="enterMode('flywheel')">
       <div class="icon">🎡</div>
       <div class="info"><h3>笔顺飞轮</h3><p id="fwCardTip">一笔一格贴在转盘上，下一笔转到顶上那一刻出手</p></div>
@@ -6907,6 +6970,86 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-skate">
+  <div class="top-bar">
+    <button class="back-btn" onclick="iceLeave()">← 返回</button>
+    <div class="stats"><span id="iceScoreTxt">🎯 0 分</span><span id="iceLvTxt">第 1 场 · 已收 0 字</span><span id="iceQTxt">⏳ 这一笔 ——</span></div>
+    <button class="icon-btn" onclick="iceHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="ice-hud">
+    <span id="iceRankTxt" title="称号">⛸ 刚上冰</span>
+    <span id="iceHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="iceComboTxt" title="连击">🔥 连 0</span>
+    <span id="iceLitTxt" title="滑到第几笔">🖋 0/0 笔</span>
+    <span id="iceCovTxt" title="这一笔滑满几成">🧊 吻合 0%</span>
+    <span id="iceDirtTxt" title="蹭脏的冰面">🪟 脏冰 0 格</span>
+    <span id="iceBrkTxt" title="剩下的冰刷">🧹 冰刷 4</span>
+    <span id="iceFallTxt" title="撞桩摔倒">🤕 摔 0 次</span>
+    <span id="iceSnowTxt" title="场上滚的雪疙瘩">☃ 雪疙瘩 0 个</span>
+    <span id="iceTraceTxt" title="这一笔滑过的格">🛹 滑过 0 格</span>
+  </div>
+  <div class="ice-ask" id="iceAsk">⛸ 正在浇冰……<br><small>在字库里挑「每一笔都滑得出来」的字</small></div>
+  <div class="ice-stage">
+    <div class="ice-mini">
+      <svg viewBox="0 0 1024 1024" id="iceMiniSvg"></svg>
+      <div class="ice-cap" id="iceMiniCap">这个字</div>
+    </div>
+    <div class="ice-rink" id="iceRink">
+      <canvas class="ice-canvas" id="iceCanvas" width="360" height="288"></canvas>
+      <div class="ice-fx" id="iceFx"></div>
+      <div class="ice-tag" id="iceTag">⛸ 冰面浇好了</div>
+    </div>
+  </div>
+  <div class="ice-pad" id="icePad">
+    <button data-d="6" title="左上">↖</button><button data-d="0" title="上">↑</button><button data-d="2" title="右上">↗</button>
+    <button data-d="5" title="左">←</button><button class="mid" id="iceBrakeBtn" title="急停（空格）">🧹<br>急停</button><button data-d="7" title="右">→</button>
+    <button data-d="4" title="左下">↙</button><button data-d="1" title="下">↓</button><button data-d="3" title="右下">↘</button>
+  </div>
+  <div class="ice-meter">
+    <div class="ice-fl" id="iceCovBox"><i id="iceCovBar"></i><u id="iceGateTick"></u><b id="iceCovTxt2">🧊 吻合 0%</b></div>
+    <div class="ice-tl" id="iceQBox"><i id="iceQBar"></i><b id="iceQTxt2">⏳ 这一笔 —— 秒</b></div>
+    <div class="ice-stove" id="iceStoveBox"><i id="iceStoveBar"></i><b id="iceStoveTxt">🔥 暖炉 —— 秒</b></div>
+  </div>
+  <div class="ice-pow" id="icePowTxt">⛸ 第 <b>1</b> 场</div>
+  <div class="ice-tools">
+    <button class="ice-tool go" id="iceSubmitBtn">🏁 收笔<span>Enter</span></button>
+    <button class="ice-tool" id="icePeekBtn" disabled>✨ 描线<span>Q</span><b>剩 2</b></button>
+    <button class="ice-tool" id="iceSlowBtn" disabled>🐢 慢冰<span>E</span><b>剩 2</b></button>
+    <button class="ice-tool" id="iceClearBtn" disabled>🧲 清桩<span>F</span><b>剩 2</b></button>
+    <button class="ice-tool" id="iceEndBtn" onclick="iceEnd('quit')">🏃 结算</button>
+  </div>
+  <div class="ice-hintline" id="iceHintLine">⛸ <b>球不会自己停</b>：按 <code>↑↓←→</code>（或 <code>WASD</code>）挑一个方向滑，滑到的格子就落墨；随时能换方向，<b>只有撞上挡板或冰桩才停</b>；按 <code>空格</code> 用一次冰刷急停</div>
+  <div class="ice-msg" id="iceMsg">⛸ <b>冰场上是一张 15×12 的格子冰面</b>：这一笔该经过的格子已经淡淡发着光 —— 冰球 <b>一滑就停不下来</b>，滑过的格子落下墨痕<br>🧊 <b>吻合</b>：这一笔的格子滑到门槛以上，按 <code>Enter</code> <b>收笔</b> 才结这一笔；<b>一气滑满 100%</b> 直接啪地结掉、还给彩头<br>🪟 <b>脏冰</b>：滑到不该滑的格子就是脏冰，脏得越多这一笔的 <b>干净度</b> 越低，整字的彩头也没了<br>🤕 场上立着 <b>冰桩</b>：撞上就 <b>摔一跤</b>（连击清零、扣 4 分，摔满 3 次掉一颗心）；挡板是软的，撞到只是停下<br>☃ 深场里还有 <b>滚雪疙瘩</b>：撞上不摔倒，只把球 <b>顶歪一个方向</b><br>🧹 <b>冰刷</b> 每场发给几只，用完了就只能靠换方向或撞挡板停球</div>
+</div>
+<div class="screen" id="screen-skate-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="iceLeave()">← 回首页</button>
+    <div class="stats"><span id="iceRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="iceRsEmoji">⛸</div>
+    <div style="font-size:26px;font-weight:800" id="iceRsTitle">暖炉凉了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="iceRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px" id="iceRsPicks">
+      <span class="ice-pk" id="iceRsScore">🎯 0 分</span>
+      <span class="ice-pk" id="iceRsWords">⛸ 收 0 个字</span>
+      <span class="ice-pk" id="iceRsLits">🖋 滑成 0 笔</span>
+      <span class="ice-pk" id="iceRsSub2">🏁 收了 0 次笔</span>
+      <span class="ice-pk" id="iceRsFull">🎯 一气滑满 0 笔</span>
+      <span class="ice-pk" id="iceRsClean">🪟 无痕 0 笔 · 脏冰 0 格</span>
+      <span class="ice-pk" id="iceRsFall">🤕 摔倒 0 次 · 冰刷 0 次</span>
+      <span class="ice-pk" id="iceRsTools">✨ 描线 0 · 🐢 慢冰 0 · 🧲 清桩 0</span>
+      <span class="ice-pk" id="iceRsCombo">🔥 最长连 0</span>
+      <span class="ice-pk" id="iceRsBest">🏆 最高 0 分</span>
+    </div>
+    <div style="font-size:13px;color:#FFF59D;margin:6px auto 14px;max-width:420px;line-height:1.6" id="iceRsWhy"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin-bottom:14px" id="iceRsBook">图鉴里还没有字</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="primary-btn" onclick="iceAgain()">⛸ 再上一场</button>
+      <button class="secondary-btn" onclick="iceLeave()">🏠 回首页</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-proj">
@@ -13323,6 +13466,7 @@ function updateHomeStats(){
   if(typeof ffyNudge==='function')ffyNudge();
   if(typeof snrNudge==='function')snrNudge();
   if(typeof pjNudge==='function')pjNudge();
+  if(typeof iceNudge==='function')iceNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -13357,6 +13501,7 @@ function enterMode(mode){
   if(mode==='firefly'){ffyStart();return}
   if(mode==='sonar'){snrStart();return}
   if(mode==='proj'){pjStart();return}
+  if(mode==='skate'){iceStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -78640,6 +78785,1415 @@ window.vPjDomBad=function(){
   return out;
 };
 
+
+/* ================= v1.90 笔顺溜冰场（格子冰面上冰球一滑就停不下来 · 挑八个方向把这一笔的格子一块块墨下来 · 滑路即笔迹，蹭脏一寸少一分） ================= */
+const ICE_C=15,ICE_R=12,ICE_CS=24,ICE_W=360,ICE_H=288;
+const ICE_X0=1,ICE_X1=ICE_C-2,ICE_Y0=1,ICE_Y1=ICE_R-2;
+const ICE_UX=(ICE_C-4)/2,ICE_UY=(ICE_R-4)/2,ICE_OX=(ICE_C-1)/2,ICE_OY=(ICE_R-1)/2;
+/* 0上 1下 2右上 3右下 4左下 5左 6左上 7右（屏幕坐标 y 向下） */
+const ICE_DIRS=[[0,-1],[0,1],[1,-1],[1,1],[-1,1],[-1,0],[-1,-1],[1,0]];
+const ICE_ARW=['↑','↓','↗','↘','↙','←','↖','→'];
+const ICE_NAME=['上','下','右上','右下','左下','左','左上','右'];
+const ICE_DIRS4=['横','竖','撇','捺','点'],ICE_INK=['#4FC3F7','#81C784','#FFD54F','#FFB74D','#BA68C8'];
+const ICE_STEP0=196,ICE_STEP_MIN=104,ICE_STEP_STEP=11;
+const ICE_GATE0=.62,ICE_GATE_STEP=.022,ICE_GATE_MAX=.84;
+const ICE_Q0=30000,ICE_Q_MIN=15000,ICE_Q_STEP=2000;
+const ICE_FIRE0=120000,ICE_FIRE_MIN=76000,ICE_FIRE_STEP=3200;
+const ICE_BRK0=4,ICE_BRK_MIN=2;
+const ICE_FLO0=6200,ICE_FLO_MIN=1800,ICE_FLO_STEP=800;
+const ICE_BUMP_MAX=6,ICE_SNOW_MAX=2,ICE_SNOW_SPD=1.8;
+const ICE_PEEK_MS=3400,ICE_SLOW_MS=3400,ICE_CLEAR_MS=5200;
+const ICE_PEEK0=2,ICE_SLOW0=2,ICE_CLEAR0=2;
+const ICE_CELL_PTS=2,ICE_FULL_BONUS=14,ICE_CLEAN_BONUS=10,ICE_WORD_BONUS=26;
+const ICE_PEN_FAIL=6,ICE_PEN_TIME=3,ICE_PEN_FALL=4,ICE_FALL_HEART=3;
+const ICE_SLOW_FAC=1.85,ICE_DEFLECT_DUR=520;
+const ICE_HEARTS=3,ICE_HEART_MAX=5,ICE_BOOK_MAX=300,ICE_TROPHY_MAX=8;
+const ICE_POOL_MIN=4,ICE_POOL_WANT=14;
+const ICE_STROKE_MIN=3,ICE_STROKE_MAX=8,ICE_RUN_MAX=6,ICE_CELL_MIN=3;
+const ICE_SAMPLE=.32,ICE_CROWD=.55;
+const ICE_TICK_MS=48,ICE_ACT_CD=170;
+const ICE_NEXT_MS=1200,ICE_TAG_MS=2300,ICE_NAG_MS=11000,ICE_NAG_HOLD=5000,ICE_HELP_MS=14000;
+const ICE_NOTE=[262,294,330,392,440,523,587,659,784,880,1047];
+const ICE_TRS=['冰灯','雪花','冰鞋','冰车','雪球','冰凌','雪人','冰花'];
+const ICE_RANKS=[
+  {n:0,e:'⛸',t:'刚上冰'},{n:2,e:'🧊',t:'站得住'},{n:5,e:'🛹',t:'滑得直'},
+  {n:9,e:'🪟',t:'一寸没蹭'},{n:14,e:'⛄',t:'绕得过冰桩'},{n:21,e:'🎿',t:'一气滑到底'},
+  {n:30,e:'🏒',t:'杆上有活'},{n:42,e:'🥇',t:'全场最亮'},{n:58,e:'👑',t:'冰场的教练'}
+];
+const ice={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],toneAt:0,tones:0,
+  pool:[],miss:[],rec:null,n:0,
+  lv:1,score:0,hearts:ICE_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,subs:0,falls:0,brakes:0,peeks:0,slows:0,clears:0,nags:0,dirts:0,news:0,
+  fulls:0,cleans:0,fails:0,deflects:0,wallStops:0,
+  brN:ICE_BRK0,peekN:ICE_PEEK0,slowN:ICE_SLOW0,clearN:ICE_CLEAR0,
+  peekMs:0,slowMs:0,clearMs:0,nagMs:0,helpMs:0,tagMs:0,actMs:0,
+  qi:0,busy:false,qms:0,qms0:0,first:true,cleanWord:true,fullWord:true,
+  fireMs:ICE_FIRE0,warn:false,beep:0,hudAcc:0,since:0,
+  c:0,r:0,dir:-1,lastDir:-1,stepMs:0,walkMs:0,
+  cov:0,covered:null,dirtSet:null,trail:null,trace:0,strokeRuns:0,
+  done:null,doneCells:[],allSet:null,tgtSet:null,seenMs:0,
+  bumps:[],snows:[],trophy:0,
+  ctx:null,fxBox:null,bound:false,keys:null,padOn:null,
+  defDir:-1,defMs:0
+};
+/* ---- 小工具 ---- */
+function icInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function icAdd(k,n){if(n)localStorage.setItem(k,String(icInt(k)+n))}
+function icSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function icSay(t,c){const el=document.getElementById('iceMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function icShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function icOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function icClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function icKey(c,r){return r*ICE_C+c}
+function icRank(n){let r=ICE_RANKS[0];for(let i=0;i<ICE_RANKS.length;i++)if(n>=ICE_RANKS[i].n)r=ICE_RANKS[i];return r}
+function icRok(d){return d<0||d>4?0:d}
+function icIn(c,r){return c>=ICE_X0&&c<=ICE_X1&&r>=ICE_Y0&&r<=ICE_Y1}
+function icPx(c,r){return {x:(c+.5)*ICE_CS,y:(r+.5)*ICE_CS}}
+function icRank2(){return icRank(icInt('hz_skate_words'))}
+function icTone(f,d,t,v){
+  if(!ice.run||ice.over)return;
+  const n=performance.now();
+  if(n-ice.toneAt<22)return;
+  ice.tones++;
+  tone(f,d,t,v);
+}
+function icT(fn,ms){const g=ice.gen;const id=setTimeout(function(){const k=ice.timers.indexOf(id);if(k>=0)ice.timers.splice(k,1);if(g!==ice.gen)return;fn()},ms);ice.timers.push(id);return id}
+function icKillTimers(){ice.timers.forEach(function(t){clearTimeout(t)});ice.timers=[]}
+/* ---- 难度表：场越深，球越快、门槛越高、桩越多、雪疙瘩会滚、淡墨也淡得越快 ---- */
+function iceLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function iceFireMs(lv){return Math.max(ICE_FIRE_MIN,ICE_FIRE0-(lv-1)*ICE_FIRE_STEP)}
+function iceQms(lv){return Math.max(ICE_Q_MIN,ICE_Q0-(lv-1)*ICE_Q_STEP)}
+function iceStep(lv){return Math.max(ICE_STEP_MIN,ICE_STEP0-(lv-1)*ICE_STEP_STEP)}
+function iceGate(lv){return Math.min(ICE_GATE_MAX,ICE_GATE0+(lv-1)*ICE_GATE_STEP)}
+function iceBrk(lv){return Math.max(ICE_BRK_MIN,ICE_BRK0-Math.floor((lv-1)/3))}
+function iceFlo(lv){return lv<3?0:Math.max(ICE_FLO_MIN,ICE_FLO0-(lv-3)*ICE_FLO_STEP)}
+function iceBumps(lv){return Math.min(ICE_BUMP_MAX,1+lv)}
+function iceSnows(lv){return lv>=4?(lv>=8?ICE_SNOW_MAX:1):0}
+function iceStrokeMax(lv){return lv>=5?ICE_STROKE_MAX:7}
+function iceCurStep(){return ice.slowMs>0?ice.stepMs*ICE_SLOW_FAC:ice.stepMs}
+function iceGain(cov,clean){return Math.round((9+ice.combo*1.0+ice.lv*1.7)*(0.6+cov*0.5+clean*0.35))}
+function iceCleanOf(){
+  const sz=ice.tgtSet?ice.tgtSet.size:1;
+  return icClamp(1-ice.dirtSet.size/Math.max(6,sz),0,1);
+}
+/* ---- 方向：给一个位移挑最接近的八向之一 ---- */
+function iceDirOf(dx,dy){
+  if(!dx&&!dy)return -1;
+  let bi=-1,bs=-1e9;
+  const L=Math.sqrt(dx*dx+dy*dy)||1;
+  for(let i=0;i<8;i++){
+    const d=ICE_DIRS[i],dl=Math.sqrt(d[0]*d[0]+d[1]*d[1]);
+    const s=(dx*d[0]+dy*d[1])/(L*dl);
+    if(s>bs){bs=s;bi=i}
+  }
+  return bi;
+}
+
+/* ---- 字池：每一笔都滑得出来的字（八连通栅格路径 · 转折不多 · 不太挤） ---- */
+const ICE_LETTERS='十人八小上下日水石田木禾白子不去个长门见对书本牛马飞入'
+  +'什么双王方气生叫主以尤区巨于记市民丝贝互仙勾丰父欠未击乎代计且斗示巧'
+  +'付兰专扎仅叉议歹矛冈曰瓦早旬旭买巡还远秀每甲回困圈图火永冰川开王生牛';
+/* 栅格化：沿中线的折线按 ICE_SAMPLE 格步长重采样取整 —— 相邻格必然只差一个八向步，
+   所以这条路径天生就是「一串直线滑行」能拼出来的，孩子一定能零脏冰滑满 */
+function iceRaster(m,cx,cy,half){
+  const cells=[];
+  let prev=null,bad=0;
+  const gx=function(v){return (v[0]-cx)/half*ICE_UX+ICE_OX},
+        gy=function(v){return (cy-v[1])/half*ICE_UY+ICE_OY};
+  for(let i=0;i<m.length-1;i++){
+    if(!m[i]||!m[i+1]||!isFinite(m[i][0])||!isFinite(m[i][1])||!isFinite(m[i+1][0])||!isFinite(m[i+1][1]))continue;
+    const ax=gx(m[i]),ay=gy(m[i]),bx=gx(m[i+1]),by=gy(m[i+1]);
+    const L=Math.sqrt((bx-ax)*(bx-ax)+(by-ay)*(by-ay));
+    const n=Math.max(1,Math.ceil(L/ICE_SAMPLE));
+    for(let t=0;t<=n;t++){
+      const px=ax+(bx-ax)*t/n,py=ay+(by-ay)*t/n;
+      const cc=Math.round(px),rr=Math.round(py);
+      if(prev&&cc===prev[0]&&rr===prev[1])continue;
+      if(prev&&(Math.abs(cc-prev[0])>1||Math.abs(rr-prev[1])>1))return null;
+      cells.push([cc,rr]);prev=[cc,rr];
+      if(!icIn(cc,rr))bad++;
+    }
+  }
+  if(cells.length<2||bad)return null;
+  let runs=1;
+  for(let i=2;i<cells.length;i++){
+    const a=cells[i-2],b=cells[i-1],c=cells[i];
+    if(c[0]-b[0]!==b[0]-a[0]||c[1]-b[1]!==b[1]-a[1])runs++;
+  }
+  return {cells:cells,runs:runs};
+}
+function iceMake(ch,raw,lmax){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  const hi=lmax||7;
+  if(ms.length<ICE_STROKE_MIN||ms.length>hi)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=fmDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<ms.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++){
+    for(let j=0;j<ms[i].length;j++){
+      const p=ms[i][j];
+      if(!p||p.length<2||!isFinite(p[0])||!isFinite(p[1]))continue;
+      if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];
+      if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+    }
+  }
+  if(!isFinite(x0)||x1<=0)return null;
+  const cx=(x0+x1)/2,cy=(y0+y1)/2,half=Math.max(80,(x1-x0)/2,(y1-y0)/2);
+  const cells=[],sets=[],starts=[],all=new Set();
+  for(let i=0;i<ms.length;i++){
+    const rr=iceRaster(ms[i],cx,cy,half);
+    if(!rr||rr.cells.length<ICE_CELL_MIN||rr.runs>ICE_RUN_MAX)return null;
+    const st=new Set();
+    for(let j=0;j<rr.cells.length;j++){
+      const k=icKey(rr.cells[j][0],rr.cells[j][1]);
+      st.add(k);all.add(k);
+    }
+    cells.push(rr.cells);sets.push(st);starts.push(rr.cells[0]);
+  }
+  const room=(ICE_X1-ICE_X0+1)*(ICE_Y1-ICE_Y0+1);
+  if(all.size>room*ICE_CROWD)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp,cells:cells,sets:sets,starts:starts,all:all,
+    nCells:cells.map(function(c){return c.length})};
+}
+async function iceBuildPool(keep){
+  const g=ice.gen,stale=function(){return g!==ice.gen||!ice.run||ice.over};
+  ice.miss=(localStorage.getItem('hz_skate_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){list=list||[];for(let i=0;i<list.length&&want.length<280;i++){const c=list[i];if(c&&want.indexOf(c)<0)want.push(c)}};
+  push(icShuf(ice.miss.slice(0,6)));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(icShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(icShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(ICE_LETTERS.split(''));
+  if(typeof CHARS!=='undefined')push(icShuf(CHARS.slice()));
+  if(!keep)ice.pool=[];
+  const hi=iceStrokeMax(ice.lv);
+  for(let k=0;k<want.length&&ice.pool.length<ICE_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i]){const m=iceMake(want[k+i],rs[i],hi);if(m&&ice.pool.indexOf(m)<0)ice.pool.push(m)}
+  }
+  return ice.pool.length>=ICE_POOL_MIN;
+}
+function icePickRec(){
+  const hi=iceStrokeMax(ice.lv);
+  const w=ice.lv<=2?[ICE_STROKE_MIN,5]:[ICE_STROKE_MIN,hi];
+  const pool=ice.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  const base=pool.length?pool:ice.pool;
+  if(!base.length)return null;
+  /* 连着两场撞同一个字，孩子会以为「刚滑过」——能换就换个新的 */
+  const fresh=base.filter(function(r){return !ice.rec||r.ch!==ice.rec.ch});
+  const pick=fresh.length?fresh:base;
+  const missList=pick.filter(function(r){return ice.miss.indexOf(r.ch)>=0});
+  const due=ice.first||(ice.words>0&&ice.words%3===0);
+  ice.first=false;
+  if(missList.length&&due)return icOne(missList);
+  return icOne(pick);
+}
+/* ---- 摆场：冰桩只立在用不上的格子上，而且离这一字的墨至少一格 —— 撞桩只能是滑过了头 ---- */
+function iceFree(c,r){
+  if(!icIn(c,r))return false;
+  const k=icKey(c,r);
+  if(ice.rec.all.has(k))return false;
+  for(let i=0;i<ice.rec.n;i++)if(ice.rec.starts[i][0]===c&&ice.rec.starts[i][1]===r)return false;
+  for(let i=0;i<ice.bumps.length;i++)if(ice.bumps[i].c===c&&ice.bumps[i].r===r)return false;
+  return true;
+}
+function iceNearTgt(c,r){
+  /* 3×3 里沾着任何一块该落墨的格子：桩不许站在这种位置 */
+  for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++)if(ice.rec.all.has(icKey(c+dc,r+dr)))return true;
+  return false;
+}
+function iceFar(c,r,list){
+  /* 桩和桩也不能贴边 */
+  for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++){
+    if(iceNearTgt(c,r))return false;
+    if(!icIn(c+dc,r+dr))continue;
+    for(let i=0;i<list.length;i++)if(list[i].c===c+dc&&list[i].r===r+dr)return false;
+  }
+  return true;
+}
+function iceBuildRink(){
+  ice.bumps=[];ice.snows=[];
+  const want=iceBumps(ice.lv);
+  for(let a=0;a<260&&ice.bumps.length<want;a++){
+    const c=ICE_X0+Math.floor(Math.random()*(ICE_X1-ICE_X0+1));
+    const r=ICE_Y0+Math.floor(Math.random()*(ICE_Y1-ICE_Y0+1));
+    if(!iceFree(c,r)||!iceFar(c,r,ice.bumps))continue;
+    ice.bumps.push({c:c,r:r,hitMs:0});
+  }
+  const sn=iceSnows(ice.lv);
+  for(let a=0;a<260&&ice.snows.length<sn;a++){
+    const c=ICE_X0+Math.floor(Math.random()*(ICE_X1-ICE_X0+1));
+    const r=ICE_Y0+Math.floor(Math.random()*(ICE_Y1-ICE_Y0+1));
+    if(!iceFree(c,r))continue;
+    let okp=true;
+    for(let i=0;i<ice.bumps.length;i++){const b=ice.bumps[i];if(Math.abs(b.c-c)<=1&&Math.abs(b.r-r)<=1)okp=false}
+    if(!okp)continue;
+    ice.snows.push({x:c+.5,y:r+.5,vx:(Math.random()<.5?-1:1)*ICE_SNOW_SPD,vy:(Math.random()<.5?-1:1)*ICE_SNOW_SPD*0.78});
+  }
+}
+function iceBumpAt(c,r){
+  if(ice.clearMs>0)return null;
+  for(let i=0;i<ice.bumps.length;i++)if(ice.bumps[i].c===c&&ice.bumps[i].r===r)return ice.bumps[i];
+  return null;
+}
+/* ---- 换字 / 出题 / 摆球 ---- */
+function iceResetStroke(){
+  const rec=ice.rec,st=ice.qi;
+  ice.c=rec.starts[st][0];ice.r=rec.starts[st][1];
+  ice.dir=-1;ice.walkMs=0;
+  ice.covered=new Set();ice.dirtSet=new Set();ice.trail=[];
+  ice.tgtSet=rec.sets[st];ice.trace=0;ice.news=0;
+  ice.seenMs=0;
+  ice.trail.push([ice.c,ice.r]);
+  iceInk(ice.c,ice.r,true);
+  ice.qms=iceQms(ice.lv);ice.qms0=ice.qms;ice.since=0;
+}
+function iceAsk(){
+  const rec=ice.rec;
+  if(!rec){icSet('iceAsk','⛸ 正在浇冰……<br><small>在字库里挑「每一笔都滑得出来」的字</small>');return}
+  if(ice.qi>=rec.n){
+    icSet('iceAsk','🏒 <b>整字滑成</b>（共 '+rec.n+' 笔）<br><small>小企鹅正在把这一张收进图鉴</small>');
+    return;
+  }
+  const d=ICE_DIRS4[icRok(rec.dirs[ice.qi])];
+  icSet('iceAsk','⛸ 滑 <b>第 '+(ice.qi+1)+' 笔</b>（共 '+rec.n+' 笔 · '+d+'）<br><small>'+
+    rec.nCells[ice.qi]+' 个格子，滑到 '+Math.round(iceGate(ice.lv)*100)+'% 才收得住笔</small>');
+}
+function iceNewWord(){
+  const rec=icePickRec();
+  if(!rec){
+    icSay('😢 字库里挑不出「每一笔都滑得出来」的字，先回别的模式练两笔','#FFF59D');
+    ice.run=false;
+    icSet('iceAsk','😢 字没凑齐<br><small>稍后再上场</small>');
+    icT(function(){iceEnd('pool')},900);
+    return null;
+  }
+  ice.rec=rec;ice.n=rec.n;ice.qi=0;ice.busy=false;ice.done=new Set();ice.doneCells=[];
+  ice.cleanWord=true;ice.fullWord=true;
+  ice.brN=iceBrk(ice.lv);
+  iceBuildRink();
+  ice.stepMs=iceStep(ice.lv);
+  iceResetStroke();
+  iceMini();iceAsk();iceHud();iceMeter();icePow();iceLine();iceDraw();
+  return rec.ch;
+}
+/* ---- 生命周期 ---- */
+function iceStopAll(){
+  iceStopLoop();icKillTimers();ice.gen++;
+  ice.tagMs=0;ice.helpMs=0;ice.actMs=0;ice.peekMs=0;ice.slowMs=0;ice.clearMs=0;ice.nagMs=0;
+  ice.warn=false;ice.dir=-1;ice.defMs=0;
+  if(ice.fxBox)ice.fxBox.innerHTML='';
+}
+async function iceStart(){
+  iceStopAll();
+  const g=ice.gen,stale=function(){return g!==ice.gen||!ice.run||ice.over};
+  ice.run=true;ice.over=false;ice.timers=[];
+  ice.lv=1;ice.score=0;ice.hearts=ICE_HEARTS;ice.combo=0;ice.maxCombo=0;
+  ice.words=0;ice.lits=0;ice.subs=0;ice.falls=0;ice.brakes=0;ice.peeks=0;ice.slows=0;
+  ice.clears=0;ice.nags=0;ice.dirts=0;ice.fulls=0;ice.cleans=0;ice.fails=0;ice.deflects=0;ice.wallStops=0;
+  ice.brN=ICE_BRK0;ice.peekN=ICE_PEEK0;ice.slowN=ICE_SLOW0;ice.clearN=ICE_CLEAR0;
+  ice.pool=[];ice.miss=[];ice.rec=null;ice.n=0;ice.bumps=[];ice.snows=[];
+  ice.done=new Set();ice.covered=new Set();ice.dirtSet=new Set();ice.trail=[];
+  ice.tgtSet=null;ice.qi=0;ice.busy=false;ice.since=0;ice.playMs=0;ice.t=0;ice.tones=0;
+  ice.c=0;ice.r=0;ice.dir=-1;ice.stepMs=iceStep(1);ice.walkMs=0;
+  ice.fireMs=iceFireMs(1);ice.warn=false;ice.beep=0;ice.first=true;ice.trace=0;ice.news=0;
+  ice.keys={u:false,d:false,l:false,rr:false};ice.padOn=null;
+  ice.trophy=icInt('hz_skate_trophy');
+  showScreen('skate');
+  iceBind();iceCanvasSize();
+  const rk=document.getElementById('iceRink');
+  if(rk)rk.classList.remove('dead');
+  iceHud();iceMeter();icePow();iceLine();
+  icSay('⛸ <b>冰场是一张 15×12 的格子冰面</b>：这个字的一笔拆成一串格子，淡发着光等你去墨下来。冰球 <b>一推就滑出去，自己不会停</b><br>🧭 <b>八个方向</b>：方向键 <code>↑</code><code>↓</code><code>←</code><code>→</code>（或 <code>WASD</code>）、下面那块 <b>九宫方向盘</b>、或者 <b>直接在冰面上点一下球要去的方向</b> —— 球就一路滑过去，滑到的格子挨个落墨<br>🔄 <b>随时换向</b>：换方向不花钱，拐弯才是这一场的功夫；<b>撞上挡板</b> 只是停下（软墙），<b>撞上冰桩</b> 是 <b>摔一跤</b>（连击清零、扣 '+ICE_PEN_FALL+' 分，摔满 '+ICE_FALL_HEART+' 次掉一颗心）<br>🧹 <b>急停</b>：<code>空格</code>（或点方向盘中间）用一次 <b>冰刷</b>，每场发 '+ICE_BRK0+' 只，用完了只能靠拐弯和挡板停球<br>🧊 <b>吻合</b>：这一笔滑到的格子占该落格子的比例 —— 到门槛按 <code>Enter</code> <b>收笔</b> 才算结这一笔；<b>一气滑满 100%</b> 自己啪地结掉、还加 '+ICE_FULL_BONUS+' 分<br>🪟 <b>脏冰</b>：滑到不该滑的格子就蹭脏一寸，脏得越多 <b>干净度</b> 越低；整字一寸没脏 = <b>无痕</b>，另加 '+ICE_CLEAN_BONUS+' 分<br>🌫 <b>第 3 场起淡墨会淡掉</b>：格子只亮 '+Math.round(iceFlo(3)/1000)+' 秒，剩下的靠脑子记；按 <code>Q</code> <b>描线</b> 让它再显一次<br>☃ 深场里滚着 <b>雪疙瘩</b>：撞上不摔倒，只把球 <b>顶歪一格方向</b>；<code>E</code> <b>慢冰</b>、<code>F</code> <b>清桩</b><br>🔥 <b>暖炉</b> 凉了收摊；<b>这一笔的钟</b> 走光不算答错（扣 '+ICE_PEN_TIME+' 分，这一笔的墨 <b>擦掉重滑</b>）');
+  icSet('iceAsk','⛸ 正在浇冰……<br><small>在字库里挑「每一笔都滑得出来」的字</small>');
+  let ok=await iceBuildPool();
+  if(stale())return;
+  if(!ok){
+    icSet('iceAsk','🧊 冰还没浇实，再等一记……<br><small>字库在路上</small>');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await iceBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!ice.pool.length){
+    ice.run=false;
+    icSet('iceAsk','😢 字库没加载好<br><small>稍后再上场</small>');
+    icSay('先去别的模式练两笔，回来字就齐了','#FFF59D');
+    return;
+  }
+  icAdd('hz_skate_games',1);
+  iceNewWord();
+  if(!ice.rec||!ice.rec.n||!ice.run||ice.over||stale()){
+    ice.run=false;
+    icSet('iceAsk','😢 这一场没铺开<br><small>稍后再上场</small>');
+    return;
+  }
+  iceStartLoop();
+}
+function iceLeave(){
+  iceStopAll();
+  if(ice.run&&!ice.over){iceBank();ice.over=true;ice.run=false}
+  goHome();
+}
+function iceAgain(){iceStart()}
+function iceCanvasSize(){
+  const cv=document.getElementById('iceCanvas');
+  if(!cv)return;
+  cv.width=ICE_W;cv.height=ICE_H;
+  ice.ctx=cv.getContext?cv.getContext('2d'):null;
+}
+
+/* ================= 走动与判定 ================= */
+function iceCov(){return ice.tgtSet?ice.covered.size/ice.tgtSet.size:0}
+function iceCovCells(){return ice.tgtSet?ice.tgtSet.size:0}
+/* 落墨：这一格该不该落，落没落过 —— 滑过的格子一块块结结实实地黑下去 */
+function iceInk(c,r,launch){
+  const k=icKey(c,r);
+  if(ice.tgtSet&&ice.tgtSet.has(k)){
+    if(ice.covered.has(k))return 'again';
+    ice.covered.add(k);ice.news++;
+    icAdd('hz_skate_cover',1);
+    const gain=ICE_CELL_PTS+(ice.combo>=4?1:0);
+    ice.score+=gain;
+    ice.since=0;ice.nagMs=0;
+    if(!launch){
+      iceDust(c,r,3,ice.rec?ICE_INK[icRok(ice.rec.dirs[ice.qi])]:'#B3E5FC');
+      icTone(ICE_NOTE[Math.min(ICE_NOTE.length-1,ice.covered.size%ICE_NOTE.length)],.06,'triangle',.035);
+    }
+    if(ice.covered.size>=ice.tgtSet.size){iceFinishStroke(true);return 'full'}
+    return 'new';
+  }
+  if(!ice.dirtSet.has(k)){
+    ice.dirtSet.add(k);ice.dirts++;icAdd('hz_skate_dirt',1);
+    ice.cleanWord=false;ice.fullWord=false;
+    let whose=-1;
+    for(let i=0;i<ice.rec.n;i++){if(i===ice.qi)continue;if(ice.rec.sets[i].has(k)){whose=i;break}}
+    icTone(120,.07,'sawtooth',.03);
+    if(whose>=0)iceTag(whose<ice.qi?'🪟 蹭脏了：<b>第 '+(whose+1)+' 笔</b> 已经结好冰了':'🪟 蹭脏了：那是 <b>第 '+(whose+1)+' 笔</b> 的格子，还没轮到');
+    else iceTag('🪟 蹭脏一寸冰面（干净度掉了）');
+    iceDust(c,r,2,'rgba(176,190,197,.7)');
+  }
+  return 'dirt';
+}
+/* 球走一格：先看挡板，再看冰桩，格子落墨 */
+function iceAdvance(){
+  if(ice.dir<0||ice.busy)return false;
+  const d=ICE_DIRS[ice.dir],nc=ice.c+d[0],nr=ice.r+d[1];
+  if(!icIn(nc,nr)){
+    ice.dir=-1;ice.walkMs=0;ice.wallStops++;
+    iceDust(ice.c,ice.r,5,'rgba(179,229,252,.85)');
+    icTone(240,.09,'square',.04);
+    iceTag('🧱 撞上挡板停住了');
+    iceHudNow();
+    return false;
+  }
+  const b=iceBumpAt(nc,nr);
+  if(b){ice.dir=-1;ice.walkMs=0;iceFall(b);return false}
+  ice.c=nc;ice.r=nr;
+  ice.trace++;
+  ice.trail.push([nc,nr]);
+  if(ice.trail.length>240)ice.trail.shift();
+  const w=iceInk(nc,nr,false);
+  if(w==='full'||w==='dirt')iceHudNow();
+  return ice.dir>=0&&!ice.busy;
+}
+function iceSteer(d){
+  if(!ice.run||ice.over||ice.busy)return 0;
+  if(d<0||d>7)return 0;
+  if(d===ice.dir)return 1;
+  ice.dir=d;ice.lastDir=d;ice.walkMs=0;ice.since=0;
+  icTone(660,.05,'sine',.03);
+  iceDust(ice.c,ice.r,2,'rgba(129,212,250,.8)');
+  icePadMark(d);
+  iceHudNow();iceLine();
+  return 1;
+}
+function iceBrake(){
+  if(!ice.run||ice.over||ice.busy)return 0;
+  if(ice.dir<0){iceTag('🧹 球本来就停着');return 0}
+  if(ice.brN<1){iceTag('🧹 冰刷用完了：只能拐弯或撞挡板停球');icTone(150,.1,'sawtooth',.04);return 0}
+  ice.brN--;ice.brakes++;icAdd('hz_skate_brk',1);
+  ice.dir=-1;ice.walkMs=0;
+  iceMist(ice.c,ice.r,9);
+  icTone(320,.16,'sine',.05);
+  iceTag('🧹 急停：甩出一片冰雾（还剩 '+ice.brN+' 只冰刷）');
+  iceHudNow();iceMeter();iceLine();
+  return 1;
+}
+function iceFall(b){
+  ice.falls++;b.hitMs=620;
+  ice.combo=0;ice.cleanWord=false;ice.fullWord=false;
+  ice.score=Math.max(0,ice.score-ICE_PEN_FALL);
+  iceShake();icTone(96,.24,'sawtooth',.08);
+  iceDust(b.c,b.r,10,'rgba(255,138,101,.9)');
+  let msg='🤕 撞上 <b>冰桩</b> 摔一跤（扣 '+ICE_PEN_FALL+' 分、连击清零）：摔满 '+ICE_FALL_HEART+' 次掉一颗心';
+  if(ice.falls%ICE_FALL_HEART===0){
+    ice.hearts--;
+    msg='🤕 这一跤 <b>摔穿了</b>：掉一颗心（累计摔 '+ice.falls+' 次）';
+    if(ice.hearts<=0){ice.hearts=0;iceHud();iceMeter();iceEnd('hearts');return 1}
+  }
+  iceTag(msg);
+  icAdd('hz_skate_fall',1);
+  iceHudNow();
+  return 1;
+}
+function iceDeflect(){
+  if(ice.dir<0||ice.busy||ice.defMs>0)return 0;
+  ice.deflects++;ice.defMs=ICE_DEFLECT_DUR;
+  const turn=Math.random()<.5?1:-1;
+  ice.dir=(ice.dir+turn+8)%8;
+  ice.walkMs=0;
+  icTone(520,.1,'square',.045);
+  iceDust(ice.c,ice.r,6,'rgba(225,245,254,.9)');
+  iceTag('☃ 雪疙瘩把球 <b>顶歪</b> 了：现在往 '+ICE_ARW[ice.dir]+' 滑');
+  iceHudNow();
+  return 1;
+}
+/* ---- 收笔 / 结笔 ---- */
+function iceFinishStroke(full){
+  const cov=iceCov(),clean=iceCleanOf();
+  ice.lits++;ice.subs++;
+  icAdd('hz_skate_lits',1);
+  ice.combo++;
+  if(ice.combo>ice.maxCombo)ice.maxCombo=ice.combo;
+  let gain=iceGain(cov,clean),notes=[];
+  if(full){ice.fulls++;gain+=ICE_FULL_BONUS;notes.push('🎯 一气滑满 +'+ICE_FULL_BONUS)}
+  const noDirt=ice.dirtSet.size===0;
+  if(noDirt){
+    ice.cleans++;gain+=ICE_CLEAN_BONUS;notes.push('🪟 无痕 +'+ICE_CLEAN_BONUS);
+    if(icInt('hz_skate_trophy')<ICE_TROPHY_MAX&&Math.random()<.5){
+      icAdd('hz_skate_trophy',1);ice.trophy++;
+      notes.push('❄ 收一朵 <b>'+icOne(ICE_TRS)+'</b> 进冰架');
+    }
+  }
+  ice.score+=gain;
+  ice.doneCells[ice.qi]=new Set(ice.covered);
+  ice.done.add(ice.qi);
+  icTone(ICE_NOTE[Math.min(ICE_NOTE.length-1,ice.lits+2)],.18,'triangle',.07);
+  iceTag('✅ 第 '+(ice.qi+1)+' 笔结好：吻合 '+Math.round(cov*100)+'% +'+gain+(notes.length?' '+notes.join(' · '):''));
+  iceDust(ice.c,ice.r,10,ICE_INK[icRok(ice.rec.dirs[ice.qi])]);
+  ice.busy=true;ice.dir=-1;
+  ice.qi++;
+  iceMini();iceHud();iceMeter();icePow();iceLine();iceAsk();iceDraw();
+  if(ice.qi>=ice.n){icT(iceWordDone,ICE_NEXT_MS);return 1}
+  icT(function(){
+    if(!ice.run||ice.over)return;
+    ice.busy=false;
+    iceResetStroke();
+    iceAsk();iceHud();iceMeter();iceLine();iceDraw();
+  },620);
+  return 1;
+}
+function iceStrokeFail(){
+  if(!ice.run||ice.over||ice.busy)return 0;
+  ice.fails++;ice.subs++;
+  ice.score=Math.max(0,ice.score-ICE_PEN_FAIL);
+  ice.combo=0;ice.cleanWord=false;ice.fullWord=false;
+  icTone(140,.2,'sawtooth',.06);
+  iceShake();
+  iceTag('🫥 只滑到 '+Math.round(iceCov()*100)+'%（门槛 '+Math.round(iceGate(ice.lv)*100)+'%）：这一笔的墨 <b>擦掉重滑</b>');
+  icAdd('hz_skate_fail',1);
+  ice.busy=true;ice.dir=-1;
+  icT(function(){
+    if(!ice.run||ice.over)return;
+    ice.busy=false;
+    iceResetStroke();
+    iceAsk();iceHud();iceMeter();icePow();iceLine();iceDraw();
+  },640);
+  iceHudNow();
+  return 1;
+}
+function iceSubmit(){
+  if(!ice.run||ice.over||ice.busy)return 0;
+  if(ice.actMs>0)return 0;
+  ice.actMs=ICE_ACT_CD;
+  if(iceCov()>=iceGate(ice.lv)){iceFinishStroke(false);return 1}
+  iceStrokeFail();
+  return 2;
+}
+function iceTimeout(){
+  ice.score=Math.max(0,ice.score-ICE_PEN_TIME);
+  ice.combo=0;ice.cleanWord=false;
+  icTone(168,.16,'sawtooth',.06);
+  iceTag('⏳ 这一笔的钟走光：墨 <b>擦掉重滑</b>');
+  icAdd('hz_skate_time',1);
+  ice.dir=-1;
+  iceResetStroke();
+  iceHud();iceMeter();icePow();iceLine();iceAsk();iceDraw();
+}
+function iceWordDone(){
+  if(!ice.run||ice.over)return;
+  const rec=ice.rec;
+  ice.words++;
+  icAdd('hz_skate_words',1);
+  const bonus=ICE_WORD_BONUS+ice.lv*6+(ice.cleanWord?18:0)+(ice.fullWord?12:0);
+  ice.score+=bonus;
+  iceAddBook(rec.ch);
+  const lv=iceLvOf(ice.words);
+  if(lv>ice.lv){
+    ice.lv=lv;
+    localStorage.setItem('hz_skate_lv',String(lv));
+    ice.fireMs=iceFireMs(lv);
+    ice.hearts=Math.min(ICE_HEART_MAX,ice.hearts+1);
+    ice.peekN=Math.min(3,ice.peekN+1);ice.slowN=Math.min(3,ice.slowN+1);ice.clearN=Math.min(3,ice.clearN+1);
+    iceTag('🏒 走进 <b>第 '+lv+' 场</b>：球更快（'+iceStep(lv)+' 毫秒一格）、门槛 '+Math.round(iceGate(lv)*100)+'%、冰桩 '+iceBumps(lv)+' 根'+(iceSnows(lv)?'、雪疙瘩 '+iceSnows(lv)+' 个':'')+(iceFlo(lv)?'、淡墨只亮 '+Math.round(iceFlo(lv)/1000)+' 秒':''));
+  }
+  icTone(880,.2,'triangle',.08);
+  icSay('🏒 <b>'+rec.ch+'</b> 整字滑成：<b>'+ice.n+'</b> 笔按笔顺一块块墨下来（本字 +'+bonus+' 分'+(ice.cleanWord?' · 一寸没蹭脏':'')+(ice.fullWord?' · 笔笔滑满':'')+'）','#B3E5FC');
+  iceHud();iceMeter();icePow();
+  icT(function(){
+    if(!ice.run||ice.over)return;
+    const ch=iceNewWord();
+    if(!ch)iceEnd('pool');
+  },ICE_TAG_MS);
+  return 1;
+}
+/* ---- 歇一记：只报往哪个方向滑，不报是第几笔 ---- */
+function iceNag(){
+  if(!ice.rec||ice.busy)return;
+  const st=ice.rec.sets[ice.qi];
+  let best=null,bs=1e9;
+  st.forEach(function(k){
+    if(ice.covered.has(k))return;
+    const c=k%ICE_C,r=Math.floor(k/ICE_C);
+    const d=(c-ice.c)*(c-ice.c)+(r-ice.r)*(r-ice.r);
+    if(d<bs){bs=d;best=[c,r]}
+  });
+  ice.nags++;ice.nagMs=ICE_NAG_HOLD;ice.since=0;
+  let msg;
+  if(ice.dir<0&&best){
+    const d=iceDirOf(best[0]-ice.c,best[1]-ice.r);
+    msg='⛸ <b>先起滑</b>：往 <b>'+ICE_NAME[d]+'</b>（'+ICE_ARW[d]+'）推一把，球才动';
+  }else if(best){
+    const d=iceDirOf(best[0]-ice.c,best[1]-ice.r);
+    msg='🧊 <b>还没滑满</b>：这一笔 '+st.size+' 个格子还剩 '+(st.size-ice.covered.size)+' 个 —— 往 <b>'+ICE_NAME[d]+'</b>（'+ICE_ARW[d]+'）拐';
+  }else msg='🏁 <b>该收笔了</b>：按 <code>Enter</code> 把这一笔结掉';
+  icSay(msg,'#FFF59D');
+  iceLine();
+}
+/* ---- 一只会滚的雪疙瘩：只撞方向，不占格子 ---- */
+function iceStepSnows(dt){
+  const s=dt/1000;
+  for(let i=0;i<ice.snows.length;i++){
+    const sn=ice.snows[i];
+    let nx=sn.x+sn.vx*s,ny=sn.y+sn.vy*s;
+    if(nx<ICE_X0+.5||nx>ICE_X1+.5){sn.vx=-sn.vx;nx=sn.x}
+    if(ny<ICE_Y0+.5||ny>ICE_Y1+.5){sn.vy=-sn.vy;ny=sn.y}
+    const bc=Math.floor(nx),br=Math.floor(ny);
+    if(iceBumpAt(bc,br)){sn.vx=-sn.vx;sn.vy=-sn.vy;continue}
+    sn.x=nx;sn.y=ny;
+    const d=Math.sqrt((sn.x-(ice.c+.5))*(sn.x-(ice.c+.5))+(sn.y-(ice.r+.5))*(sn.y-(ice.r+.5)));
+    sn.near=d<1.15?1:0;
+    if(d<.72){
+      sn.vx=-sn.vx;sn.vy=-sn.vy;
+      iceDeflect();
+    }
+  }
+}
+
+/* ================= 画面：冰面、淡墨的格子、滑出来的墨痕、桩与雪疙瘩 ================= */
+function iceDecor(){
+  if(ice.decor)return ice.decor;
+  ice.decor=[];
+  for(let i=0;i<40;i++)ice.decor.push({x:Math.random()*ICE_W,y:Math.random()*ICE_H,r:1+Math.random()*2.2,a:.04+Math.random()*.1});
+  return ice.decor;
+}
+function iceShowTgt(){
+  const f=iceFlo(ice.lv);
+  return ice.peekMs>0||f<=0||ice.seenMs<f;
+}
+function iceCellXy(c,r){return {x:c*ICE_CS,y:r*ICE_CS}}
+function iceRoundRect(x,y,w,h,rad){
+  const c=ice.ctx;
+  c.beginPath();
+  c.moveTo(x+rad,y);c.lineTo(x+w-rad,y);c.quadraticCurveTo(x+w,y,x+w,y+rad);
+  c.lineTo(x+w,y+h-rad);c.quadraticCurveTo(x+w,y+h,x+w-rad,y+h);
+  c.lineTo(x+rad,y+h);c.quadraticCurveTo(x,y+h,x,y+h-rad);
+  c.lineTo(x,y+rad);c.quadraticCurveTo(x,y,x+rad,y);
+  c.closePath();
+}
+function iceDraw(){
+  const c=ice.ctx;
+  if(!c)return;
+  c.clearRect(0,0,ICE_W,ICE_H);
+  const g=c.createLinearGradient(0,0,0,ICE_H);
+  g.addColorStop(0,'#0E2233');g.addColorStop(1,'#071019');
+  c.fillStyle=g;c.fillRect(0,0,ICE_W,ICE_H);
+  /* 冰面的碎光 */
+  const dc=iceDecor();
+  c.fillStyle='#7FB3D5';
+  for(let i=0;i<dc.length;i++){const d=dc[i];c.globalAlpha=d.a;c.beginPath();c.arc(d.x,d.y,d.r,0,6.2832);c.fill()}
+  c.globalAlpha=1;
+  /* 格子 */
+  c.strokeStyle='rgba(179,229,252,.09)';c.lineWidth=1;
+  c.beginPath();
+  for(let i=ICE_X0;i<=ICE_X1+1;i++){c.moveTo(i*ICE_CS,ICE_Y0*ICE_CS);c.lineTo(i*ICE_CS,ICE_Y1*ICE_CS+ICE_CS)}
+  for(let j=ICE_Y0;j<=ICE_Y1+1;j++){c.moveTo(ICE_X0*ICE_CS,j*ICE_CS);c.lineTo(ICE_X1*ICE_CS+ICE_CS,j*ICE_CS)}
+  c.stroke();
+  /* 挡板（软墙）：撞上去只是停下 */
+  c.strokeStyle='rgba(120,180,210,.55)';c.lineWidth=5;
+  iceRoundRect(ICE_X0*ICE_CS-2.5,ICE_Y0*ICE_CS-2.5,(ICE_X1-ICE_X0+1)*ICE_CS+5,(ICE_Y1-ICE_Y0+1)*ICE_CS+5,10);
+  c.stroke();
+  if(!ice.rec){return}
+  const ink=ICE_INK[icRok(ice.rec.dirs[ice.qi])];
+  /* 已经结好冰的笔 */
+  for(let i=0;i<ice.rec.n;i++){
+    if(!ice.done||!ice.done.has(i))continue;
+    const col=ICE_INK[icRok(ice.rec.dirs[i])];
+    const set=ice.doneCells[i];
+    if(!set)continue;
+    c.globalAlpha=.88;
+    c.fillStyle=col;
+    set.forEach(function(k){
+      const cc=k%ICE_C,rr=Math.floor(k/ICE_C),xy=iceCellXy(cc,rr);
+      c.fillRect(xy.x+3,xy.y+3,ICE_CS-6,ICE_CS-6);
+    });
+    c.globalAlpha=1;
+  }
+  /* 脏冰：蹭过的格子划两道灰痕 */
+  if(ice.dirtSet){
+    ice.dirtSet.forEach(function(k){
+      const cc=k%ICE_C,rr=Math.floor(k/ICE_C),xy=iceCellXy(cc,rr);
+      c.strokeStyle='rgba(176,190,197,.30)';c.lineWidth=1.4;
+      c.beginPath();
+      c.moveTo(xy.x+4,xy.y+ICE_CS-5);c.lineTo(xy.x+ICE_CS-5,xy.y+4);
+      c.moveTo(xy.x+8,xy.y+ICE_CS-4);c.lineTo(xy.x+ICE_CS-3,xy.y+9);
+      c.stroke();
+    });
+  }
+  /* 这一笔该落的格子：淡淡的发光方 */
+  if(iceShowTgt()&&ice.tgtSet){
+    const pulse=.5+.5*Math.sin(ice.t/420);
+    ice.tgtSet.forEach(function(k){
+      const cc=k%ICE_C,rr=Math.floor(k/ICE_C);
+      if(ice.covered.has(k))return;
+      const xy=iceCellXy(cc,rr);
+      c.globalAlpha=.16+.12*pulse;
+      c.fillStyle=ink;c.fillRect(xy.x+2,xy.y+2,ICE_CS-4,ICE_CS-4);
+      c.globalAlpha=.5+.2*pulse;
+      c.strokeStyle=ink;c.lineWidth=1.2;
+      c.strokeRect(xy.x+2.5,xy.y+2.5,ICE_CS-5,ICE_CS-5);
+      c.globalAlpha=1;
+    });
+  }
+  /* 滑痕（这一笔走过的路） */
+  if(ice.trail&&ice.trail.length>1){
+    c.strokeStyle='rgba(225,245,254,.30)';c.lineWidth=2;c.lineCap='round';c.lineJoin='round';
+    c.beginPath();
+    for(let j=0;j<ice.trail.length;j++){
+      const p=icPx(ice.trail[j][0],ice.trail[j][1]);
+      if(j)c.lineTo(p.x,p.y);else c.moveTo(p.x,p.y);
+    }
+    c.stroke();
+  }
+  /* 落下来的墨 */
+  if(ice.covered){
+    c.fillStyle=ink;
+    ice.covered.forEach(function(k){
+      const cc=k%ICE_C,rr=Math.floor(k/ICE_C),xy=iceCellXy(cc,rr);
+      c.globalAlpha=.94;
+      c.fillRect(xy.x+3,xy.y+3,ICE_CS-6,ICE_CS-6);
+    });
+    c.globalAlpha=1;
+  }
+  /* 冰桩 */
+  for(let i=0;i<ice.bumps.length;i++){
+    const b=ice.bumps[i];
+    const p=icPx(b.c,b.r);
+    if(ice.clearMs>0){c.globalAlpha=.22}
+    c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(p.x,p.y+7,8,3.4,0,0,6.2832);c.fill();
+    const hit=b.hitMs>0;
+    c.fillStyle=hit?'#FF8A65':'#37474F';
+    c.beginPath();c.moveTo(p.x-6.5,p.y+7);c.lineTo(p.x+6.5,p.y+7);c.lineTo(p.x,p.y-9);c.closePath();c.fill();
+    c.fillStyle=hit?'#FFCCBC':'#B0BEC5';
+    c.beginPath();c.arc(p.x,p.y-8.5,3.2,0,6.2832);c.fill();
+    c.strokeStyle='rgba(255,255,255,.35)';c.lineWidth=1;
+    c.beginPath();c.moveTo(p.x-3.5,p.y+3);c.lineTo(p.x-1,p.y-5);c.stroke();
+    c.globalAlpha=1;
+  }
+  /* 雪疙瘩 */
+  for(let i=0;i<ice.snows.length;i++){
+    const sn=ice.snows[i];
+    const x=sn.x*ICE_CS,y=sn.y*ICE_CS;
+    c.fillStyle='rgba(0,0,0,.3)';c.beginPath();c.ellipse(x,y+6,7,3,0,0,6.2832);c.fill();
+    const rg=c.createRadialGradient(x-2.5,y-3,1,x,y,9);
+    rg.addColorStop(0,'#FFFFFF');rg.addColorStop(1,sn.near?'#FFCC80':'#CFD8DC');
+    c.fillStyle=rg;c.beginPath();c.arc(x,y,8,0,6.2832);c.fill();
+    c.fillStyle='rgba(38,50,56,.5)';
+    c.beginPath();c.arc(x-2.6,y-1.4,1.1,0,6.2832);c.arc(x+2.6,y-1.4,1.1,0,6.2832);c.fill();
+  }
+  /* 球：停着的时候画一圈八向罗盘，滑着的时候画箭头 */
+  const pp=icPx(ice.c,ice.r);
+  if(ice.dir<0&&!ice.busy&&!ice.over){
+    c.strokeStyle='rgba(179,229,252,.4)';c.lineWidth=1.4;
+    c.beginPath();c.arc(pp.x,pp.y,ICE_CS*1.15,0,6.2832);c.stroke();
+    for(let i=0;i<8;i++){
+      const d=ICE_DIRS[i],ex=pp.x+d[0]*ICE_CS*1.15,ey=pp.y+d[1]*ICE_CS*1.15;
+      const sx=pp.x+d[0]*ICE_CS*.72,sy=pp.y+d[1]*ICE_CS*.72;
+      c.strokeStyle=i===ice.lastDir?'rgba(255,241,118,.95)':'rgba(179,229,252,.62)';
+      c.lineWidth=2.2;
+      c.beginPath();c.moveTo(sx,sy);c.lineTo(ex,ey);c.stroke();
+      c.fillStyle=c.strokeStyle;
+      c.beginPath();c.arc(ex,ey,2.4,0,6.2832);c.fill();
+    }
+  }else if(ice.dir>=0){
+    const d=ICE_DIRS[ice.dir];
+    c.strokeStyle='rgba(225,245,254,.55)';c.lineWidth=2.4;
+    c.beginPath();c.moveTo(pp.x,pp.y);c.lineTo(pp.x+d[0]*ICE_CS*1.25,pp.y+d[1]*ICE_CS*1.25);c.stroke();
+    c.fillStyle='rgba(225,245,254,.75)';
+    c.beginPath();
+    c.arc(pp.x+d[0]*ICE_CS*1.35,pp.y+d[1]*ICE_CS*1.35,3.2,0,6.2832);c.fill();
+  }
+  c.fillStyle='rgba(0,0,0,.4)';c.beginPath();c.ellipse(pp.x,pp.y+6,8,3.2,0,0,6.2832);c.fill();
+  const pg=c.createRadialGradient(pp.x-2.5,pp.y-3,1,pp.x,pp.y,10);
+  pg.addColorStop(0,'#FFFFFF');pg.addColorStop(.55,'#4DD0E1');pg.addColorStop(1,'#01579B');
+  c.fillStyle=pg;c.beginPath();c.arc(pp.x,pp.y,9,0,6.2832);c.fill();
+  c.strokeStyle=ice.slowMs>0?'rgba(179,157,219,.95)':'rgba(225,245,254,.8)';c.lineWidth=1.6;
+  c.beginPath();c.arc(pp.x,pp.y,9.6,0,6.2832);c.stroke();
+  /* 状态色 */
+  if(ice.slowMs>0){c.fillStyle='rgba(126,87,194,.10)';c.fillRect(0,0,ICE_W,ICE_H)}
+  if(ice.clearMs>0){c.strokeStyle='rgba(126,87,194,.6)';c.lineWidth=3;iceRoundRect(ICE_X0*ICE_CS-2.5,ICE_Y0*ICE_CS-2.5,(ICE_X1-ICE_X0+1)*ICE_CS+5,(ICE_Y1-ICE_Y0+1)*ICE_CS+5,10);c.stroke()}
+  if(ice.warn){c.strokeStyle='rgba(255,82,82,.7)';c.lineWidth=3;c.strokeRect(3,3,ICE_W-6,ICE_H-6)}
+  if(ice.over){c.fillStyle='rgba(7,16,25,.55)';c.fillRect(0,0,ICE_W,ICE_H)}
+}
+/* ================= 台面上的话 ================= */
+function iceHud(){
+  const rk=icRank2();
+  icSet('iceRankTxt',rk.e+' '+rk.t);
+  let h='';for(let i=0;i<ice.hearts;i++)h+='❤️';
+  icSet('iceHeartTxt',h||'💔');
+  icSet('iceComboTxt','🔥 连 '+ice.combo);
+  icSet('iceLitTxt','🖋 '+(ice.rec?Math.min(ice.qi+1,ice.n):0)+'/'+ice.n+' 笔');
+  icSet('iceCovTxt','🧊 吻合 '+Math.round(iceCov()*100)+'%');
+  icSet('iceDirtTxt','🪟 脏冰 '+ice.dirts+' 格');
+  icSet('iceBrkTxt','🧹 冰刷 '+ice.brN);
+  icSet('iceFallTxt','🤕 摔 '+ice.falls+' 次');
+  icSet('iceSnowTxt','☃ 雪疙瘩 '+ice.snows.length+' 个');
+  icSet('iceTraceTxt','🛹 滑过 '+ice.trace+' 格');
+  icePadMark(ice.dir);
+  const pb=document.getElementById('icePeekBtn');
+  if(pb){pb.disabled=ice.peekN<=0;const b=pb.querySelector('b');if(b)b.innerHTML='剩 '+ice.peekN}
+  const sb=document.getElementById('iceSlowBtn');
+  if(sb){sb.disabled=ice.slowN<=0;const b=sb.querySelector('b');if(b)b.innerHTML='剩 '+ice.slowN}
+  const cb=document.getElementById('iceClearBtn');
+  if(cb){cb.disabled=ice.clearN<=0;const b=cb.querySelector('b');if(b)b.innerHTML='剩 '+ice.clearN}
+}
+function iceHudNow(){iceHud();icePow()}
+function icePadNow(){icePadMark(ice.dir)}
+function iceMeter(){
+  const cov=iceCov(),gate=iceGate(ice.lv);
+  const cb=document.getElementById('iceCovBox'),ci=document.getElementById('iceCovBar'),tk=document.getElementById('iceGateTick');
+  if(ci)ci.style.width=(cov*100).toFixed(1)+'%';
+  if(cb)cb.classList.toggle('ok',cov>=gate);
+  if(tk)tk.style.left=(gate*100).toFixed(1)+'%';
+  icSet('iceCovTxt2','🧊 吻合 '+Math.round(cov*100)+'% · 门槛 '+Math.round(gate*100)+'%');
+  const qf=ice.qms0?Math.max(0,ice.qms/ice.qms0):0;
+  const qb=document.getElementById('iceQBox'),qi=document.getElementById('iceQBar');
+  if(qi)qi.style.width=(qf*100).toFixed(1)+'%';
+  if(qb)qb.classList.toggle('low',qf<.3);
+  icSet('iceQTxt','⏳ 这一笔 '+Math.ceil(ice.qms/1000)+' 秒');
+  icSet('iceQTxt2','⏳ 这一笔 '+Math.ceil(ice.qms/1000)+' 秒');
+  const ff=iceFireMs(ice.lv)?Math.max(0,ice.fireMs/iceFireMs(ice.lv)):0;
+  const fb=document.getElementById('iceStoveBox'),fi=document.getElementById('iceStoveBar');
+  if(fi)fi.style.width=(ff*100).toFixed(1)+'%';
+  if(fb)fb.classList.toggle('low',ice.warn);
+  icSet('iceStoveTxt','🔥 暖炉还剩 '+Math.ceil(ice.fireMs/1000)+' 秒');
+  icSet('iceScoreTxt','🎯 '+ice.score+' 分');
+  icSet('iceLvTxt','第 '+ice.lv+' 场 · 已收 '+ice.words+' 字');
+}
+function icePowStr(){
+  let done=0;
+  if(ice.done)for(let i=0;i<ice.n;i++)if(ice.done.has(i))done++;
+  return '⛸ 第 <b>'+ice.lv+'</b> 场 · '+ice.n+' 笔（滑成 <b>'+done+'</b>）· 这一笔 <b>'+
+    (ice.rec&&ice.rec.nCells?ice.rec.nCells[Math.min(ice.qi,ice.n-1)]:0)+'</b> 格，吻合 <b>'+Math.round(iceCov()*100)+
+    '%</b>（门槛 <b>'+Math.round(iceGate(ice.lv)*100)+'%</b>）· 脏冰 <b>'+ice.dirtSet.size+'</b> 格 · 干净度 <b>'+
+    Math.round(iceCleanOf()*100)+'%</b> · 一格 <b>'+iceCurStep().toFixed(0)+'</b> 毫秒 · 冰桩 <b>'+ice.bumps.length+
+    '</b> 根 · 雪疙瘩 <b>'+ice.snows.length+'</b> 个 · 冰刷 <b>'+ice.brN+'</b> 只'+(iceFlo(ice.lv)?' · 淡墨亮 <b>'+
+    Math.max(0,Math.ceil((iceFlo(ice.lv)-ice.seenMs)/1000))+'</b> 秒':'');
+}
+function icePow(){icSet('icePowTxt',icePowStr())}
+function iceLine(){
+  const el=document.getElementById('iceHintLine');
+  if(!el)return;
+  let t;
+  if(ice.nagMs>0)t='🧊 <b>歇一记提示</b>：下面那行只报「往哪个方向滑」，不报是第几笔';
+  else if(ice.peekMs>0)t='✨ <b>描线中</b>：这一笔的格子又全亮起来了（'+(ice.peekMs/1000).toFixed(1)+' 秒）';
+  else if(ice.slowMs>0)t='🐢 <b>慢冰中</b>：球一格要走 '+(iceCurStep()/1000).toFixed(2)+' 秒，趁这段把弯拐准';
+  else if(ice.clearMs>0)t='🧲 <b>清桩中</b>：冰桩缩进冰里 '+(ice.clearMs/1000).toFixed(1)+' 秒，放心滑';
+  else if(ice.busy&&ice.rec&&ice.qi>=ice.n)t='🏒 <b>整字滑成</b>，小企鹅正在把这一张收进图鉴……';
+  else if(ice.busy)t='🧊 这一笔结好了，小企鹅正在把球叼到下一笔的起点……';
+  else if(ice.warn)t='🔥 <b>暖炉快凉了</b>：这一场收完就得交账';
+  else if(ice.dir<0)t='⛸ <b>球停着</b>：按 <code>↑↓←→</code>／点方向盘／在冰面上点一下球要去的方向，球就一路滑过去';
+  else t='🛹 正往 <b>'+ICE_NAME[ice.dir]+'</b>（'+ICE_ARW[ice.dir]+'）滑：换方向随时按，<code>空格</code> 急停，滑够了按 <code>Enter</code> 收笔';
+  el.innerHTML=t;
+}
+function iceMini(){
+  const svg=document.getElementById('iceMiniSvg');
+  if(!svg)return;
+  const rec=ice.rec;
+  if(!rec){svg.innerHTML='';return}
+  let s='<rect x="0" y="0" width="1024" height="1024" fill="none"/>';
+  s+='<line x1="0" y1="512" x2="1024" y2="512" stroke="rgba(255,255,255,.14)" stroke-width="6"/>';
+  s+='<line x1="512" y1="0" x2="512" y2="1024" stroke="rgba(255,255,255,.14)" stroke-width="6"/>';
+  s+='<line x1="0" y1="0" x2="1024" y2="1024" stroke="rgba(255,255,255,.08)" stroke-width="4"/>';
+  s+='<line x1="1024" y1="0" x2="0" y2="1024" stroke="rgba(255,255,255,.08)" stroke-width="4"/>';
+  for(let i=0;i<rec.n;i++){
+    const dn=ice.done&&ice.done.has(i);
+    const cur=!dn&&i===ice.qi;
+    s+='<path d="'+rec.paths[i]+'" fill="'+(dn?ICE_INK[icRok(rec.dirs[i])]:(cur?'rgba(255,255,255,.4)':'rgba(255,255,255,.14)'))+'"/>';
+  }
+  svg.innerHTML=s;
+  icSet('iceMiniCap',rec.ch+' · 共 '+rec.n+' 笔');
+}
+function iceTag(t){
+  icSet('iceTag',t);
+  const el=document.getElementById('iceTag');
+  if(el)el.classList.add('on');
+  ice.tagMs=ICE_TAG_MS;
+}
+function iceFxBox(){
+  if(ice.fxBox)return ice.fxBox;
+  const el=document.getElementById('iceFx');
+  ice.fxBox=el||null;
+  return ice.fxBox;
+}
+function iceDust(c,r,n,color){
+  const box=iceFxBox();
+  if(!box)return;
+  const p=icPx(c,r);
+  for(let i=0;i<n;i++){
+    const d=document.createElement('i');
+    d.className='ice-chip';
+    d.style.left=(p.x*(box.clientWidth/ICE_W||1))+'px';
+    d.style.top=(p.y*(box.clientHeight/ICE_H||1))+'px';
+    d.style.background=color||'rgba(179,229,252,.85)';
+    d.style.setProperty('--dx',((Math.random()*54-27)|0)+'px');
+    d.style.setProperty('--dy',((Math.random()*-38-6)|0)+'px');
+    box.appendChild(d);
+    icT(function(){if(d.parentNode)d.parentNode.removeChild(d)},700);
+  }
+}
+function iceMist(c,r,n){
+  const box=iceFxBox();
+  if(!box)return;
+  const p=icPx(c,r);
+  for(let i=0;i<n;i++){
+    const d=document.createElement('i');
+    d.className='ice-mist';
+    d.style.left=(p.x*(box.clientWidth/ICE_W||1))+'px';
+    d.style.top=(p.y*(box.clientHeight/ICE_H||1))+'px';
+    d.style.setProperty('--dx',((Math.random()*70-35)|0)+'px');
+    d.style.setProperty('--dy',((Math.random()*40-26)|0)+'px');
+    box.appendChild(d);
+    icT(function(){if(d.parentNode)d.parentNode.removeChild(d)},760);
+  }
+}
+function iceShake(){
+  const el=document.getElementById('iceRink');
+  if(!el)return;
+  el.classList.remove('shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+  icT(function(){el.classList.remove('shake')},360);
+}
+function iceAddBook(ch){
+  const cur=localStorage.getItem('hz_skate_book')||'';
+  const a=cur?cur.split(','):[];
+  if(a.indexOf(ch)<0){a.push(ch);if(a.length>ICE_BOOK_MAX)a.shift();localStorage.setItem('hz_skate_book',a.join(','))}
+}
+function iceAddMiss(ch){
+  const cur=(localStorage.getItem('hz_skate_miss')||'').split(',').filter(function(v){return v});
+  if(cur.indexOf(ch)<0){cur.push(ch);if(cur.length>12)cur.shift();localStorage.setItem('hz_skate_miss',cur.join(','))}
+}
+
+/* ================= 主循环 ================= */
+function iceStartLoop(){
+  if(ice.rafId)return;
+  ice.last=performance.now();
+  function step(now){
+    if(!ice.run||ice.over){ice.rafId=0;return}
+    const dt=Math.min(120,Math.max(8,now-ice.last));
+    ice.last=now;
+    iceTick(dt);
+    ice.rafId=requestAnimationFrame(step);
+  }
+  ice.rafId=requestAnimationFrame(step);
+}
+function iceStopLoop(){
+  if(ice.rafId){cancelAnimationFrame(ice.rafId);ice.rafId=0}
+}
+function iceTick(dt){
+  if(!ice.run||ice.over)return;
+  dt=Math.min(dt||ICE_TICK_MS,120);
+  ice.t+=dt;
+  iceStepWalk(dt);
+  iceStepSnows(dt);
+  iceStepTimers(dt);
+  if(!ice.run||ice.over)return;
+  iceDraw();
+  iceMeter();
+  ice.hudAcc+=dt;
+  if(ice.hudAcc>=110){ice.hudAcc=0;iceHud();icePow();iceLine()}
+}
+function iceStepWalk(dt){
+  if(ice.dir<0||ice.busy)return;
+  ice.walkMs+=dt;
+  let guard=0;
+  while(ice.walkMs>=iceCurStep()&&guard<8){
+    ice.walkMs-=iceCurStep();guard++;
+    if(!iceAdvance())break;
+  }
+}
+function iceStepTimers(dt){
+  if(ice.actMs>0)ice.actMs=Math.max(0,ice.actMs-dt);
+  if(ice.tagMs>0)ice.tagMs=Math.max(0,ice.tagMs-dt);
+  if(ice.peekMs>0)ice.peekMs=Math.max(0,ice.peekMs-dt);
+  if(ice.slowMs>0)ice.slowMs=Math.max(0,ice.slowMs-dt);
+  if(ice.clearMs>0)ice.clearMs=Math.max(0,ice.clearMs-dt);
+  if(ice.nagMs>0)ice.nagMs=Math.max(0,ice.nagMs-dt);
+  if(ice.defMs>0)ice.defMs=Math.max(0,ice.defMs-dt);
+  for(let i=0;i<ice.bumps.length;i++)if(ice.bumps[i].hitMs>0)ice.bumps[i].hitMs=Math.max(0,ice.bumps[i].hitMs-dt);
+  if(ice.helpMs>0){ice.helpMs=Math.max(0,ice.helpMs-dt);return}
+  ice.seenMs+=dt;
+  ice.fireMs-=dt;
+  ice.qms-=dt;
+  ice.playMs+=dt;
+  ice.since+=dt;
+  const of=iceFireMs(ice.lv);
+  ice.warn=ice.fireMs<=of*0.08;
+  if(ice.warn){
+    ice.beep+=dt;
+    if(ice.beep>1500){ice.beep=0;icTone(294,.1,'square',.05)}
+  }
+  if(ice.fireMs<=0){ice.fireMs=0;iceEnd('fire');return}
+  if(ice.qms<=0&&!ice.busy){ice.qms=0;iceTimeout()}
+  if(ice.since>=ICE_NAG_MS&&ice.nagMs<=0)iceNag();
+}
+/* ================= 三件道具 ================= */
+function icePeek(){
+  if(!ice.run||ice.over||ice.busy)return 0;
+  if(ice.peekN<1){iceTag('✨ 描线用完了');return 0}
+  ice.peekN--;ice.peeks++;
+  ice.peekMs=ICE_PEEK_MS;ice.seenMs=0;ice.since=0;
+  icTone(880,.1,'sine',.05);
+  iceTag('✨ <b>描线</b>：这一笔该滑的格子又全亮起来了（'+(ICE_PEEK_MS/1000).toFixed(1)+' 秒）');
+  iceHud();icePow();iceLine();iceDraw();
+  return 1;
+}
+function iceSlow(){
+  if(!ice.run||ice.over||ice.busy)return 0;
+  if(ice.slowN<1){iceTag('🐢 慢冰用完了');return 0}
+  ice.slowN--;ice.slows++;
+  ice.slowMs=ICE_SLOW_MS;ice.since=0;
+  icTone(392,.16,'sine',.05);
+  iceTag('🐢 <b>慢冰</b>：球一格走 '+(iceStep(ice.lv)*ICE_SLOW_FAC/1000).toFixed(2)+' 秒，'+(ICE_SLOW_MS/1000).toFixed(1)+' 秒');
+  iceHud();icePow();iceLine();iceMeter();iceDraw();
+  return 1;
+}
+function iceClear(){
+  if(!ice.run||ice.over||ice.busy)return 0;
+  if(ice.clearN<1){iceTag('🧲 清桩用完了');return 0}
+  ice.clearN--;ice.clears++;
+  ice.clearMs=ICE_CLEAR_MS;ice.since=0;
+  for(let i=0;i<ice.bumps.length;i++)ice.bumps[i].hitMs=0;
+  icTone(523,.14,'square',.05);
+  iceTag('🧲 <b>清桩</b>：'+ice.bumps.length+' 根冰桩缩进冰里 '+(ICE_CLEAR_MS/1000).toFixed(1)+' 秒');
+  iceHud();icePow();iceLine();iceDraw();
+  return 1;
+}
+/* ================= 输入 ================= */
+function iceKeyDir(k){
+  if(k==='ArrowLeft'||k==='a'||k==='A')return 'l';
+  if(k==='ArrowRight'||k==='d'||k==='D')return 'rr';
+  if(k==='ArrowUp'||k==='w'||k==='W')return 'u';
+  if(k==='ArrowDown'||k==='s'||k==='S')return 'd';
+  return '';
+}
+function iceHeld(){
+  const k=ice.keys||{};
+  const dx=(k.rr?1:0)-(k.l?1:0),dy=(k.d?1:0)-(k.u?1:0);
+  return iceDirOf(dx,dy);
+}
+function icePadMark(d){
+  const ps=document.querySelectorAll('#icePad button[data-d]');
+  for(let i=0;i<ps.length;i++)ps[i].classList.toggle('on',+ps[i].dataset.d===d&&ice.dir>=0);
+}
+function iceSteerAt(cx,cy){
+  if(!ice.rec||ice.busy||ice.over)return 0;
+  const dx=cx-(ice.c+.5),dy=cy-(ice.r+.5);
+  const L=Math.sqrt(dx*dx+dy*dy);
+  if(L<.62){iceBrake();return 2}
+  const d=iceDirOf(dx,dy);
+  if(d<0)return 0;
+  iceSteer(d);
+  return 1;
+}
+function iceBind(){
+  if(ice.bound)return;
+  ice.bound=true;
+  if(!ice.keys)ice.keys={u:false,d:false,l:false,rr:false};
+  window.addEventListener('keydown',function(e){
+    if(!ice.run||ice.over)return;
+    const dn=iceKeyDir(e.key);
+    if(dn){
+      e.preventDefault();
+      ice.keys[dn]=true;
+      const d=iceHeld();
+      if(d>=0)iceSteer(d);
+      return;
+    }
+    const k=e.key;
+    if(k===' '||k==='Spacebar'){e.preventDefault();iceBrake();return}
+    if(k==='Enter'){e.preventDefault();iceSubmit();return}
+    if(k==='q'||k==='Q'){icePeek();return}
+    if(k==='e'||k==='E'){iceSlow();return}
+    if(k==='f'||k==='F'){iceClear();return}
+    if(k==='h'||k==='H'||k==='?'){iceHelp();return}
+  });
+  window.addEventListener('keyup',function(e){
+    const dn=iceKeyDir(e.key);
+    if(dn&&ice.keys)ice.keys[dn]=false;
+  });
+  const cv=document.getElementById('iceCanvas');
+  if(cv){
+    const at=function(ev){
+      const r=cv.getBoundingClientRect();
+      if(!r.width||!r.height)return null;
+      return {x:(ev.clientX-r.left)/r.width*ICE_W,y:(ev.clientY-r.top)/r.height*ICE_H};
+    };
+    cv.addEventListener('pointerdown',function(ev){
+      if(!ice.run||ice.over)return;
+      ev.preventDefault();
+      const p=at(ev);
+      if(!p)return;
+      ice.dragging=true;
+      iceSteerAt(p.x/ICE_CS,p.y/ICE_CS);
+    });
+    cv.addEventListener('pointermove',function(ev){
+      if(!ice.run||ice.over||!ice.dragging)return;
+      const p=at(ev);
+      if(!p)return;
+      iceSteerAt(p.x/ICE_CS,p.y/ICE_CS);
+    });
+    window.addEventListener('pointerup',function(){ice.dragging=false});
+  }
+  const ps=document.querySelectorAll('#icePad button[data-d]');
+  for(let i=0;i<ps.length;i++){
+    if(ps[i].dataset.on)continue;
+    ps[i].dataset.on='1';
+    ps[i].addEventListener('click',function(){iceSteer(+this.dataset.d)});
+  }
+  const bb=document.getElementById('iceBrakeBtn');
+  if(bb&&!bb.dataset.on){bb.dataset.on='1';bb.addEventListener('click',function(){iceBrake()})}
+  [['iceSubmitBtn',iceSubmit],['icePeekBtn',icePeek],['iceSlowBtn',iceSlow],['iceClearBtn',iceClear]].forEach(function(x){
+    const b=document.getElementById(x[0]);
+    if(b&&!b.dataset.on){b.dataset.on='1';b.addEventListener('click',x[1])}
+  });
+}
+function iceHelp(){
+  if(!ice.run)return;
+  ice.helpMs=ICE_HELP_MS;
+  ice.dir=-1;
+  icSet('iceAsk','⛸ <b>怎么在冰上写字</b><br><small>这一场的全部规则，两只钟都先冻住</small>');
+  icSay('⛸ <b>冰面是 15×12 的格子</b>：这个字的一笔拆成一串格子淡淡发着光。冰球 <b>一推就滑出去、自己不会停</b>，滑过的格子一块块落墨<br>🧭 <b>八个方向</b>：方向键 <code>↑</code><code>↓</code><code>←</code><code>→</code>（或 <code>WASD</code>，两个键一起按就是斜的）、九宫 <b>方向盘</b>、或 <b>在冰面上点一下球要去的方向</b>。球停着的时候场上会画出八个箭头<br>🔄 <b>拐弯不要钱</b>：随时按另一个方向就是另一个直线滑；难的是 <b>在弯上正好拐过去</b> —— 早一格晚一格都会蹭脏冰<br>🧱 <b>挡板是软的</b>：撞上去只是停下；🤕 <b>冰桩是硬的</b>：撞上 <b>摔一跤</b>（扣 '+ICE_PEN_FALL+' 分、连击清零，摔满 '+ICE_FALL_HEART+' 次掉一颗心）。桩 <b>永远不立在要落墨的格子上</b>，撞桩一定是因为滑过了头<br>🧹 <b>急停</b>：<code>空格</code> 或点方向盘中间，用掉一只 <b>冰刷</b>（每场发 '+iceBrk(ice.lv)+' 只）<br>🧊 <b>吻合</b>：这一笔滑到的格子占该落格子的比例。到门槛（第 '+ice.lv+' 场要 <b>'+Math.round(iceGate(ice.lv)*100)+'%</b>）按 <code>Enter</code> <b>收笔</b> 才结；没到门槛就收 = <b>擦掉重滑</b>（扣 '+ICE_PEN_FAIL+' 分）。<b>一气滑满 100%</b> 自己结掉、加 '+ICE_FULL_BONUS+' 分<br>🪟 <b>脏冰</b>：滑到不该滑的格子就蹭脏一寸；整字一寸没脏 = <b>无痕</b>，多 '+ICE_CLEAN_BONUS+' 分、还可能收一朵冰花进冰架<br>🌫 <b>第 3 场起淡墨会淡掉</b>（只亮 '+Math.round(iceFlo(ice.lv)?iceFlo(ice.lv)/1000:0)+' 秒），形状得记在脑子里；按 <code>Q</code> <b>描线</b> 让它再显一次<br>🐢 <b>慢冰 E</b>：球速降下来 '+(ICE_SLOW_MS/1000).toFixed(1)+' 秒，弯多的字用得上；🧲 <b>清桩 F</b>：冰桩缩进冰里 '+(ICE_CLEAR_MS/1000).toFixed(1)+' 秒<br>☃ <b>雪疙瘩</b>：撞上不摔倒，只把球 <b>顶歪一个方向</b> —— 立刻按回来就是<br>⏳ <b>两只钟</b>：这一笔的钟走光 <b>不算答错</b>（扣 '+ICE_PEN_TIME+' 分、这一笔的墨擦掉重滑）；<b>暖炉</b> 凉了收摊。按 <code>H</code> 看说明时两只钟都不走<br>🏒 <b>每收 2 个字进一场</b>：球更快、门槛更高、桩更多、雪疙瘩上场、淡墨淡得更快','#B3E5FC');
+  iceLine();iceHud();iceMeter();icePow();iceDraw();
+}
+
+/* ================= 结算与落盘 ================= */
+function iceBank(){
+  const best=icInt('hz_skate_best');
+  const isBest=ice.score>best;
+  if(isBest)localStorage.setItem('hz_skate_best',String(ice.score));
+  if(ice.maxCombo>icInt('hz_skate_combo'))localStorage.setItem('hz_skate_combo',String(ice.maxCombo));
+  if(ice.words>icInt('hz_skate_words'))localStorage.setItem('hz_skate_words',String(ice.words));
+  if(ice.lv>icInt('hz_skate_lv'))localStorage.setItem('hz_skate_lv',String(ice.lv));
+  if(ice.fulls>icInt('hz_skate_full'))localStorage.setItem('hz_skate_full',String(ice.fulls));
+  if(ice.cleans>icInt('hz_skate_clean'))localStorage.setItem('hz_skate_clean',String(ice.cleans));
+  if(ice.words){
+    const per=Math.round(ice.playMs/ice.words);
+    if(!icInt('hz_skate_fastest')||per<icInt('hz_skate_fastest'))localStorage.setItem('hz_skate_fastest',String(per));
+  }
+  return {best:Math.max(best,ice.score),isBest:isBest};
+}
+function iceEnd(why){
+  if(ice.over)return;
+  ice.over=true;
+  iceStopLoop();icKillTimers();
+  ice.run=false;
+  ice.dir=-1;
+  if(ice.rec)iceDraw();
+  const rk=document.getElementById('iceRink');
+  if(rk)rk.classList.add('dead');
+  if(why==='hearts'&&ice.rec&&ice.qi<ice.n)iceAddMiss(ice.rec.ch);
+  const bk=iceBank(),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(ice.score/14)+ice.words*2);
+  if(why!=='pool')addStars(stars);
+  showScreen('skate-result');
+  const R={quit:'🏳️',fire:'🔥',hearts:'💔',pool:'😢'}[why]||'⛸';
+  icSet('iceRsEmoji',R);
+  icSet('iceRsTitle',why==='hearts'?'摔穿心了':(why==='fire'?'暖炉凉了':(why==='quit'?'这一场先收了':'字库没凑齐')));
+  const tot=icInt('hz_skate_words');
+  const rr=icRank(tot);
+  icSet('iceRsSub','第 '+ice.lv+' 场 · 累计收 '+tot+' 个字 · '+rr.e+' '+rr.t);
+  icSet('iceRsScore','🎯 '+ice.score+' 分'+(isBest?' 🏅 新高':''));
+  icSet('iceRsWords','⛸ 收 '+ice.words+' 个字');
+  icSet('iceRsLits','🖋 滑成 '+ice.lits+' 笔');
+  icSet('iceRsSub2','🏁 收了 '+ice.subs+' 次笔');
+  icSet('iceRsFull','🎯 一气滑满 '+ice.fulls+' 笔');
+  icSet('iceRsClean','🪟 无痕 '+ice.cleans+' 笔 · 脏冰 '+ice.dirts+' 格');
+  icSet('iceRsFall','🤕 摔倒 '+ice.falls+' 次 · 冰刷 '+ice.brakes+' 次');
+  icSet('iceRsTools','✨ 描线 '+ice.peeks+' · 🐢 慢冰 '+ice.slows+' · 🧲 清桩 '+ice.clears+' · 歇一记 '+ice.nags);
+  icSet('iceRsCombo','🔥 最长连 '+ice.maxCombo);
+  icSet('iceRsBest','🏆 最高 '+best+' 分');
+  icSet('iceRsStars','⭐ '+stars);
+  const book=(localStorage.getItem('hz_skate_book')||'').split(',').filter(function(c){return c.length===1}).length;
+  icSet('iceRsBook','图鉴里现在有 <b>'+book+'</b> 个字 · 冰架里 <b>'+icInt('hz_skate_trophy')+'</b> 件 · 累计滑成 <b>'+
+    icInt('hz_skate_lits')+'</b> 笔（脏冰 <b>'+icInt('hz_skate_dirt')+'</b> 格）');
+  const sub=Math.max(1,ice.subs);
+  const per=Math.round(ice.fulls/Math.max(1,ice.lits)*100);
+  icSet('iceRsWhy',why==='hearts'?'🤕 <b>桩是硬的</b>：摔 '+ice.falls+' 次 —— 收笔前先看一眼 <b>弯口外一格</b> 立没立桩，宁可早一格拐弯，也别一路滑过头':
+    (why==='fire'?'🔥 <b>暖炉凉了</b>：平均每笔滑了 <b>'+(ice.lits?Math.round(ice.trace/Math.max(1,ice.lits))+' 格':'—')+'</b> 格 —— 球停着的时候场上画出八个箭头，先想好这条直线 <b>从哪儿拐</b> 再推':
+    (ice.fails>2?'🧊 收了 '+ice.fails+' 次 <b>没滑满</b>的笔：吻合条上那根 <b>黄线</b> 就是门槛，越过它再按 <code>Enter</code>':
+    '🏒 手感不错：'+ice.lits+' 笔里有 <b>'+per+'%</b> 是一气滑满的 —— 下一场球更快、淡墨只亮几秒，试着 <b>把整笔的形状记在脑子里</b> 再起滑')));
+  icSay('⛸ 这一场滑了 <b>'+ice.words+'</b> 个字、<b>'+ice.lits+'</b> 笔，收笔 <b>'+ice.subs+'</b> 次（其中 <b>'+ice.fails+
+    '</b> 次没滑满），一气滑满 <b>'+ice.fulls+'</b> 笔、无痕 <b>'+ice.cleans+'</b> 笔，蹭脏 <b>'+ice.dirts+'</b> 格冰面，摔倒 <b>'+ice.falls+
+    '</b> 次、用了 <b>'+ice.brakes+'</b> 只冰刷。'+
+    '<br>战绩落盘 <code>hz_skate_*</code>：称号按累计收下的字数走，第 3 场起 <b>淡墨会淡掉</b>，第 4 场起 <b>雪疙瘩上场</b>，第 8 场起 <b>两个一起滚</b>','#B2DFDB');
+  iceNudge();
+}
+function iceNudge(){
+  const dot=document.getElementById('iceCardDot'),tip=document.getElementById('iceCardTip');
+  const w=icInt('hz_skate_words'),games=icInt('hz_skate_games'),lits=icInt('hz_skate_lits');
+  const R=icRank(w);
+  const trophy=icInt('hz_skate_trophy');
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 收了 '+w+' 个字 · 滑成 '+lits+' 笔 · 一气滑满 '+icInt('hz_skate_full')+' 笔 · 冰架 '+trophy+' 件'):'格子冰面上冰球一推就停不下来：挑八个方向之一滑过去，滑到的格子就落墨 —— 一笔一气滑满、一寸没蹭脏才漂亮';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+/* ---- 无头测试用的挂钩（只读与小步驱动，不参与游戏逻辑） ---- */
+window.vIcTick=function(dt){iceTick(dt||ICE_TICK_MS)};
+window.vIcPump=function(ms,step){
+  let t=0;const s=step||ICE_TICK_MS;
+  while(t<ms&&ice.run&&!ice.over){iceTick(s);t+=s}
+  return t;
+};
+window.vIcNewWord=function(){iceNewWord();return ice.rec?ice.rec.ch:''};
+window.vIcNeed=function(){
+  if(ice.rec&&ice.tgtSet&&ice.qi<ice.n&&!ice.busy)return ice.qi;
+  if(!window.vIcNewWord())return -1;
+  ice.fireMs=iceFireMs(ice.lv);ice.qms=iceQms(ice.lv);ice.qms0=ice.qms;
+  return ice.rec?ice.qi:-1;
+};
+/* 瞄准最近的一个没墨格子把这一笔推完（测试与摆拍用的「会滑的孩子」） */
+window.vIcWalk=function(qi,frac,maxMs){
+  const want=frac===undefined?1:frac;
+  let ms=0,g=ice.gen;
+  while(ms<(maxMs||36000)&&ice.run&&!ice.over&&g===ice.gen&&ice.qi===qi&&iceCov()<want){
+    if(ice.busy){iceTick(ICE_TICK_MS);ms+=ICE_TICK_MS;continue}
+    let best=null,bs=1e9;
+    if(ice.tgtSet)ice.tgtSet.forEach(function(k){
+      if(ice.covered.has(k))return;
+      const c=k%ICE_C,r=Math.floor(k/ICE_C);
+      const d=(c-ice.c)*(c-ice.c)+(r-ice.r)*(r-ice.r);
+      if(d<bs){bs=d;best=[c,r]}
+    });
+    if(best){const dd=iceDirOf(best[0]-ice.c,best[1]-ice.r);if(dd>=0)iceSteer(dd)}
+    iceTick(ICE_TICK_MS);ms+=ICE_TICK_MS;
+  }
+  return {cov:Math.round(iceCov()*1000)/1000,qi:ice.qi,ms:ms,dir:ice.dir};
+};
+window.vIcSteer=function(d){return iceSteer(d)};
+window.vIcBrake=function(){return iceBrake()};
+window.vIcSubmit=function(){return iceSubmit()};
+window.vIcPeek=function(){return icePeek()};
+window.vIcSlow=function(){return iceSlow()};
+window.vIcClear=function(){return iceClear()};
+window.vIcFail=function(){return iceStrokeFail()};
+window.vIcTimeout=function(){iceTimeout();return ice.qms};
+window.vIcSetLv=function(lv){
+  ice.lv=icClamp(lv,1,9);
+  ice.stepMs=iceStep(ice.lv);
+  ice.fireMs=iceFireMs(ice.lv);
+  ice.brN=iceBrk(ice.lv);
+  if(ice.rec)iceBuildRink();
+  iceResetStroke();
+  iceHud();iceMeter();icePow();iceLine();iceDraw();
+  return {lv:ice.lv,step:iceStep(ice.lv),gate:iceGate(ice.lv),bumps:ice.bumps.length,snows:ice.snows.length,flo:iceFlo(ice.lv)};
+};
+window.vIcCells=function(qi){
+  const i=qi===undefined?ice.qi:qi;
+  if(!ice.rec||i>=ice.rec.n)return [];
+  return ice.rec.cells[i].map(function(c){return {c:c[0],r:c[1],cov:ice.covered.has(icKey(c[0],c[1]))?1:0}});
+};
+window.vIcRunCount=function(){
+  if(!ice.rec)return [];
+  const out=[];
+  for(let i=0;i<ice.rec.n;i++){
+    const cl=ice.rec.cells[i];let runs=1;
+    for(let j=2;j<cl.length;j++){
+      const a=cl[j-2],b=cl[j-1],c=cl[j];
+      if(c[0]-b[0]!==b[0]-a[0]||c[1]-b[1]!==b[1]-a[1])runs++;
+    }
+    out.push(runs);
+  }
+  return out;
+};
+window.vIcBumps=function(){return ice.bumps.map(function(b){return {c:b.c,r:b.r,hit:b.hitMs>0?1:0,nearTgt:iceNearTgt(b.c,b.r)}})};
+window.vIcSnows=function(){return ice.snows.map(function(s){return {x:Math.round(s.x*100)/100,y:Math.round(s.y*100)/100,vx:s.vx,vy:s.vy,near:s.near?1:0}})};
+window.vIcPuck=function(){return {c:ice.c,r:ice.r,dir:ice.dir,stepMs:Math.round(iceCurStep()),walkMs:Math.round(ice.walkMs)}};
+window.vIcState=function(){
+  const done=ice.done?ice.done.size:0;
+  return {run:ice.run?1:0,over:ice.over?1:0,lv:ice.lv,qi:ice.qi,n:ice.n,ch:ice.rec?ice.rec.ch:'',
+    score:ice.score,hearts:ice.hearts,combo:ice.combo,maxCombo:ice.maxCombo,words:ice.words,
+    lits:ice.lits,subs:ice.subs,falls:ice.falls,brakes:ice.brakes,peeks:ice.peeks,slows:ice.slows,
+    clears:ice.clears,nags:ice.nags,dirts:ice.dirts,news:ice.news,fulls:ice.fulls,cleans:ice.cleans,
+    fails:ice.fails,deflects:ice.deflects,wallStops:ice.wallStops,trace:ice.trace,
+    brN:ice.brN,peekN:ice.peekN,slowN:ice.slowN,clearN:ice.clearN,
+    c:ice.c,r:ice.r,dir:ice.dir,cov:Math.round(iceCov()*1000)/1000,covCells:iceCovCells(),
+    covN:ice.covered?ice.covered.size:0,dirtN:ice.dirtSet?ice.dirtSet.size:0,
+    clean:Math.round(iceCleanOf()*1000)/1000,gate:iceGate(ice.lv),step:iceStep(ice.lv),curStep:Math.round(iceCurStep()),
+    flo:iceFlo(ice.lv),seenMs:Math.round(ice.seenMs),showTgt:iceShowTgt()?1:0,done:done,
+    bumps:ice.bumps.length,snows:ice.snows.length,
+    qms:Math.round(ice.qms),qms0:Math.round(ice.qms0),fireMs:Math.round(ice.fireMs),fireOf:iceFireMs(ice.lv),
+    helpMs:Math.round(ice.helpMs),peekMs:Math.round(ice.peekMs),slowMs:Math.round(ice.slowMs),
+    clearMs:Math.round(ice.clearMs),nagMs:Math.round(ice.nagMs),defMs:Math.round(ice.defMs),
+    since:Math.round(ice.since),busy:ice.busy?1:0,actMs:Math.round(ice.actMs),
+    warn:ice.warn?1:0,cleanWord:ice.cleanWord?1:0,fullWord:ice.fullWord?1:0,playMs:Math.round(ice.playMs),
+    tones:ice.tones,timers:ice.timers.length,tagMs:Math.round(ice.tagMs),trophy:icInt('hz_skate_trophy')};
+};
+window.vIcInv=function(){
+  const out=[];
+  if(!ice.rec)return out;
+  /* 可解性的三条命门：格子八连通、桩不压墨、笔笔转折不超 */
+  for(let i=0;i<ice.rec.n;i++){
+    const cl=ice.rec.cells[i];
+    for(let j=1;j<cl.length;j++){
+      if(Math.abs(cl[j][0]-cl[j-1][0])>1||Math.abs(cl[j][1]-cl[j-1][1])>1){out.push('jump '+i+' '+j);break}
+    }
+    if(!icIn(cl[0][0],cl[0][1]))out.push('start oob '+i);
+  }
+  for(let i=0;i<ice.bumps.length;i++){
+    const b=ice.bumps[i];
+    if(!icIn(b.c,b.r))out.push('bump oob '+i);
+    if(ice.rec.all.has(icKey(b.c,b.r)))out.push('bump on ink '+i);
+    if(iceNearTgt(b.c,b.r))out.push('bump near ink '+i);
+  }
+  for(let i=0;i<ice.snows.length;i++){
+    const s=ice.snows[i];
+    if(!isFinite(s.x)||!isFinite(s.y))out.push('snow NaN '+i);
+    if(s.x<ICE_X0-.6||s.x>ICE_X1+1.6||s.y<ICE_Y0-.6||s.y>ICE_Y1+1.6)out.push('snow oob '+i+' '+s.x.toFixed(1)+','+s.y.toFixed(1));
+  }
+  if(ice.qi>ice.n)out.push('qi over '+ice.qi+'/'+ice.n);
+  if(ice.hearts<0)out.push('hearts<0');
+  if(ice.score<0)out.push('score<0');
+  if(ice.dir>=8||ice.dir<-1)out.push('dir '+ice.dir);
+  if(!icIn(ice.c,ice.r))out.push('puck oob '+ice.c+','+ice.r);
+  if(ice.brN<0||ice.peekN<0||ice.slowN<0||ice.clearN<0)out.push('props<0');
+  return out;
+};
+window.vIcMsg=function(){const e=document.getElementById('iceMsg');return e?e.innerHTML:''};
+window.vIcAsk=function(){const e=document.getElementById('iceAsk');return e?e.textContent:''};
+window.vIcHint=function(){const e=document.getElementById('iceHintLine');return e?e.textContent:''};
+window.vIcTagTxt=function(){const e=document.getElementById('iceTag');return e?e.textContent:''};
+window.vIcPowTxt=function(){const e=document.getElementById('icePowTxt');return e?e.textContent:''};
+window.vIcDom=function(id){const e=document.getElementById(id);return e?e.textContent:''};
+window.vIcScreen=function(){const s=document.querySelector('.screen.active');return s?s.id:''};
+window.vIcLeave=function(){iceLeave();return 1};
+window.vIcKillTimers=function(){iceStopAll();return 1};
+window.vIcClient=function(c,r){
+  const cv=document.getElementById('iceCanvas');
+  if(!cv)return null;
+  const b=cv.getBoundingClientRect();
+  if(!b.width||!b.height)return null;
+  return {x:b.left+(c+.5)/ICE_C*b.width,y:b.top+(r+.5)/ICE_R*b.height};
+};
+window.vIcPuckPt=function(){return window.vIcClient(ice.c,ice.r)};
+window.vIcPadPt=function(d){
+  const b=document.querySelector('#icePad button[data-d="'+d+'"]');
+  if(!b)return null;
+  const r=b.getBoundingClientRect();
+  return {x:r.left+r.width/2,y:r.top+r.height/2};
+};
+window.vIcBumpTarget=function(){
+  /* 摆拍/断言用：把球摆到某根桩正前方两格（中间空着），朝桩推过去 */
+  for(let i=0;i<ice.bumps.length;i++){
+    const b=ice.bumps[i];
+    const cand=[[b.c,b.r-2,1],[b.c,b.r+2,0],[b.c-2,b.r,7],[b.c+2,b.r,5]];
+    for(let j=0;j<cand.length;j++){
+      const c=cand[j][0],r=cand[j][1],dd=cand[j][2],d=ICE_DIRS[dd];
+      if(!icIn(c,r)||!icIn(c+d[0],r+d[1]))continue;
+      if(iceBumpAt(c,r)||iceBumpAt(c+d[0],r+d[1]))continue;
+      ice.c=c;ice.r=r;ice.dir=dd;ice.walkMs=0;ice.busy=false;
+      return {bump:b,c:c,r:r,dir:dd};
+    }
+  }
+  return null;
+};
+/* DOM 与状态必须说同一句话 */
+window.vIcDomBad=function(){
+  const out=[];
+  const g=function(id){return document.getElementById(id)};
+  const txt=function(id){const e=g(id);return e?e.textContent:''};
+  if(txt('iceScoreTxt')!=='🎯 '+ice.score+' 分')out.push('分数条 '+txt('iceScoreTxt')+' 分='+ice.score);
+  if(txt('iceLvTxt')!=='第 '+ice.lv+' 场 · 已收 '+ice.words+' 字')out.push('场数条 '+txt('iceLvTxt'));
+  const h=txt('iceHeartTxt');
+  if(ice.hearts>0&&h!=='❤️'.repeat(ice.hearts))out.push('心形 '+h+' 心='+ice.hearts);
+  if(txt('iceComboTxt')!=='🔥 连 '+ice.combo)out.push('连击条 '+txt('iceComboTxt'));
+  if(txt('iceLitTxt')!=='🖋 '+Math.min(ice.qi+1,ice.n)+'/'+ice.n+' 笔')out.push('笔数条 '+txt('iceLitTxt')+' qi='+ice.qi+' n='+ice.n);
+  if(txt('iceCovTxt')!=='🧊 吻合 '+Math.round(iceCov()*100)+'%')out.push('吻合条 '+txt('iceCovTxt'));
+  if(txt('iceDirtTxt')!=='🪟 脏冰 '+ice.dirts+' 格')out.push('脏冰条 '+txt('iceDirtTxt'));
+  if(txt('iceBrkTxt')!=='🧹 冰刷 '+ice.brN)out.push('冰刷条 '+txt('iceBrkTxt'));
+  if(txt('iceFallTxt')!=='🤕 摔 '+ice.falls+' 次')out.push('摔倒条 '+txt('iceFallTxt'));
+  if(txt('iceSnowTxt')!=='☃ 雪疙瘩 '+ice.snows.length+' 个')out.push('雪疙瘩条 '+txt('iceSnowTxt'));
+  if(txt('iceTraceTxt')!=='🛹 滑过 '+ice.trace+' 格')out.push('滑过条 '+txt('iceTraceTxt'));
+  const powWant=icePowStr(),powGot=g('icePowTxt')?g('icePowTxt').innerHTML:'';
+  if(powGot!==powWant)out.push('场况条 DOM['+powGot+'] 状态['+powWant+']');
+  const covWant='🧊 吻合 '+Math.round(iceCov()*100)+'% · 门槛 '+Math.round(iceGate(ice.lv)*100)+'%';
+  if(txt('iceCovTxt2')!==covWant)out.push('吻合计量 DOM['+txt('iceCovTxt2')+'] 状态['+covWant+']');
+  const cb=g('iceCovBox');
+  if(cb&&cb.classList.contains('ok')!==(iceCov()>=iceGate(ice.lv)))out.push('吻合条 ok 标记不对');
+  const tk=g('iceGateTick');
+  if(tk&&Math.abs(parseFloat(tk.style.left)-iceGate(ice.lv)*100)>0.35)out.push('门槛刻度 '+tk.style.left);
+  const need=['icePeekBtn','iceSlowBtn','iceClearBtn','iceSubmitBtn','iceEndBtn','iceBrakeBtn','iceCanvas','iceFx','iceTag',
+    'iceRink','icePad','iceMiniSvg','iceMiniCap','iceAsk','iceHintLine','iceMsg','icePowTxt','iceQTxt','iceQTxt2',
+    'iceStoveTxt','iceCovBox','iceCovBar','iceQBox','iceQBar','iceStoveBox','iceStoveBar'];
+  for(let i=0;i<need.length;i++)if(!g(need[i])){out.push('缺 '+need[i]);break}
+  [['icePeekBtn',ice.peekN],['iceSlowBtn',ice.slowN],['iceClearBtn',ice.clearN]].forEach(function(x){
+    const el=document.getElementById(x[0]);
+    if(!el){out.push('没有 '+x[0]);return}
+    if(el.disabled!==(x[1]<=0))out.push(x[0]+' 该 '+(x[1]<=0?'禁用':'可用'));
+    const t=el.innerHTML.match(/剩 (\d+)/);
+    if(!t||+t[1]!==x[1])out.push(x[0]+' 剩 '+(t?t[1]:'?')+' 该是 '+x[1]);
+  });
+  const cv=g('iceCanvas');
+  if(cv){
+    if(cv.width!==ICE_W||cv.height!==ICE_H)out.push('画布 '+cv.width+'x'+cv.height);
+    if(!cv.offsetParent)out.push('画布看得见却没在场上');
+    else{const r=cv.getBoundingClientRect();if(r.width<120)out.push('画布被挤成 '+Math.round(r.width))}
+  }
+  const mi=g('iceMiniSvg');
+  if(mi){
+    const paths=mi.querySelectorAll('path').length;
+    if(ice.rec&&paths!==ice.rec.n)out.push('小字卡 '+paths+' 条 path 该 '+ice.rec.n);
+    if(ice.done&&ice.done.size===ice.n){
+      let grey=0;const ps=mi.querySelectorAll('path');
+      for(let i=0;i<ps.length;i++)if(ps[i].getAttribute('fill')==='rgba(255,255,255,.14)')grey++;
+      if(grey)out.push('字滑完了小字卡还有 '+grey+' 条没上色');
+    }
+  }
+  const mc=g('iceMiniCap');
+  if(mc&&ice.rec&&mc.textContent.indexOf(ice.rec.ch)<0)out.push('小字卡题头 '+mc.textContent+' 字='+ice.rec.ch);
+  const pad=document.querySelectorAll('#icePad button[data-d]');
+  if(pad.length!==8)out.push('方向盘 '+pad.length+' 个方向键');
+  let onN=0;for(let i=0;i<pad.length;i++)if(pad[i].classList.contains('on'))onN++;
+  if(ice.dir>=0&&onN!==1)out.push('方向盘亮灯 '+onN+' 个 dir='+ice.dir);
+  if(ice.dir<0&&onN!==0)out.push('球停了方向盘还亮着 '+onN);
+  return out;
+};
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
