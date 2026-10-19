@@ -106,6 +106,7 @@ button:active{transform:scale(.95)}
 @keyframes textPop{0%{transform:scale(0);opacity:0}60%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:1}}
 .confetti{position:absolute;width:10px;height:10px;border-radius:2px;animation:confettiFall 3s ease-in forwards}
 @keyframes confettiFall{0%{transform:translateY(-10vh) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.reward-overlay{pointer-events:none}
 .reward-bg{position:absolute;width:100%;height:100%;overflow:hidden}
 .progress-bar-wrap{width:100%;height:8px;background:rgba(255,255,255,.2);border-radius:4px;margin:6px 0;overflow:hidden}
 .progress-bar-inner{height:100%;background:linear-gradient(90deg,#FFD700,#FFA000);border-radius:4px;transition:width .5s ease}
@@ -6272,6 +6273,65 @@ button:active{transform:scale(.95)}
 #screen-skate .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
 /* 窄屏（手机）：字卡挪到冰台上头，冰面独占整幅宽 */
 @media(max-width:460px){.ice-stage{flex-direction:column}.ice-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.ice-mini svg{flex:0 0 74px;width:74px}.ice-cap{flex:0 1 auto;text-align:left}.ice-meter{flex-wrap:wrap}.ice-fl,.ice-tl,.ice-stove{flex:1 1 30%}}
+/* ================= v1.91 笔顺风谷 ================= */
+.wnd-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.wnd-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.wnd-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#E8F5E9;margin:2px 0 6px;line-height:1.35}
+.wnd-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.wnd-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.wnd-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.wnd-mini svg{width:100%;height:auto;background:rgba(255,255,255,.06);border-radius:12px}
+.wnd-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+.wnd-valley{flex:1;min-width:0;position:relative;background:#0A1A14;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 18px rgba(0,0,0,.75)}
+.wnd-valley.dead{filter:grayscale(.85) brightness(.6)}
+.wnd-canvas{display:block;width:100%;height:auto;cursor:crosshair;touch-action:none}
+.wnd-tag{position:absolute;left:50%;top:8px;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#C8E6C9;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.wnd-tag.on{opacity:1}
+.wnd-fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:5}
+.wnd-chip{position:absolute;width:4px;height:4px;border-radius:50%;opacity:.95;pointer-events:none;animation:wndChip .62s ease-out forwards}
+.wnd-puff{position:absolute;width:7px;height:7px;border-radius:50%;background:rgba(220,240,220,.75);pointer-events:none;animation:wndPuff .74s ease-out forwards}
+@keyframes wndChip{0%{transform:translate(0,0) scale(1);opacity:.95}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+@keyframes wndPuff{0%{transform:translate(0,0) scale(.6);opacity:.8}100%{transform:translate(var(--dx),var(--dy)) scale(2.5);opacity:0}}
+.wnd-meter{display:flex;gap:7px;align-items:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.wnd-air,.wnd-tl,.wnd-gale{position:relative;flex:1;height:22px;background:rgba(255,255,255,.1);border-radius:11px;overflow:hidden}
+.wnd-air{height:26px;border-radius:13px}
+.wnd-air i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#66BB6A,#AED581);transition:width .1s linear}
+.wnd-air.dry i{background:linear-gradient(90deg,#FF8A65,#FFD54F)}
+.wnd-tl{height:26px;border-radius:13px}
+.wnd-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#4DB6AC,#A5D6A7);transition:width .2s linear}
+.wnd-tl.low i{background:linear-gradient(90deg,#FF8A65,#FFD54F)}
+.wnd-gale i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#8BC34A,#DCEDC8);transition:width .2s linear}
+.wnd-gale.low i{background:linear-gradient(90deg,#FF5252,#FF8A65)}
+.wnd-air b,.wnd-tl b,.wnd-gale b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8);white-space:nowrap;overflow:hidden;z-index:3}
+.wnd-air b{font-size:12px}
+.wnd-pad{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,40px);gap:5px;justify-content:center;margin:4px auto 2px}
+.wnd-pad button{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:11px;color:#fff;font-size:17px;font-weight:800;cursor:pointer;padding:0;line-height:1}
+.wnd-pad button.on{background:rgba(102,187,106,.44);border-color:#81C784}
+.wnd-pad button.mid{font-size:11px;font-weight:700;background:rgba(139,195,74,.24);border-color:#AED581}
+.wnd-pad button.mid.hard{background:rgba(255,110,64,.3);border-color:#FF7043}
+.wnd-pad button:disabled{opacity:.4;cursor:default}
+.wnd-pow{display:block;width:calc(100% - 28px);max-width:520px;margin:2px auto 0;white-space:normal;text-align:center;line-height:1.5;font-size:12px;color:#CFD8DC;background:rgba(255,255,255,.08);padding:3px 9px;border-radius:11px}
+.wnd-pow b{color:#A5D6A7}
+.wnd-tools{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;width:100%;margin:4px 0 6px}
+.wnd-tool{position:relative;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#fff;font-size:14px;font-weight:700;padding:8px 12px;cursor:pointer}
+.wnd-tool span{display:block;font-size:9px;opacity:.6;font-weight:400}
+.wnd-tool b{position:absolute;right:-4px;top:-6px;background:#FF6E40;color:#fff;font-size:10px;border-radius:9px;padding:1px 5px}
+.wnd-tool:disabled{opacity:.4;cursor:default}
+.wnd-tool.go{background:rgba(102,187,106,.24);border-color:#66BB6A}
+.wnd-hintline{width:100%;text-align:center;font-size:12px;color:#90A4AE;margin:0 0 6px;line-height:1.4}
+.wnd-hintline b{color:#FFF176}
+.wnd-msg{width:calc(100% - 28px);max-width:520px;margin:0 auto 12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.6}
+.wnd-msg b{color:#FFF176}
+.wnd-msg code{background:rgba(0,0,0,.35);padding:1px 5px;border-radius:5px;color:#A5D6A7}
+@keyframes wndShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.wnd-valley.shake{animation:wndShake .34s}
+.wnd-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px}
+.wnd-cdot.on{display:block}
+.wnd-pk{background:rgba(255,255,255,.08);padding:4px 10px;border-radius:12px;font-size:13px;color:#CFD8DC}
+/* 顶栏挤的时候「← 返回」不能折成两行 */
+#screen-wind .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：字卡挪到风谷上头，风谷独占整幅宽 */
+@media(max-width:460px){.wnd-stage{flex-direction:column}.wnd-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.wnd-mini svg{flex:0 0 74px;width:74px}.wnd-cap{flex:0 1 auto;text-align:left}.wnd-meter{flex-wrap:wrap}.wnd-air,.wnd-tl,.wnd-gale{flex:1 1 30%}}
 </style>
 
 </head>
@@ -6328,8 +6388,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 89 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">89</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 90 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">90</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6340,8 +6400,8 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>89 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>34</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>26</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>90 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>34</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>27</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
@@ -6574,6 +6634,11 @@ button:active{transform:scale(.95)}
     <div class="lab-group" id="labG3">
       <h4 class="lab-gtitle">⚡ 手速与反应 <small>眼疾手快抢答</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="wndCard" onclick="enterMode('wind')">
+      <div class="icon">🌬</div>
+      <div class="info"><h3>笔顺风谷</h3><p id="wndCardTip">你碰不到那颗墨籽，只能转动谷口的风箱吹它：风会自己散开、绕涡、被横风削偏 —— 把发光的墨籽吹进写着这一笔笔形的挂篮里</p></div>
+      <span class="wnd-cdot" id="wndCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="iceCard" onclick="enterMode('skate')">
       <div class="icon">⛸</div>
       <div class="info"><h3>笔顺溜冰场</h3><p id="iceCardTip">格子冰面上，冰球一推就停不下来：挑八个方向之一滑过去，滑到的格子就落墨 —— 一笔一气滑满、一寸墨没蹭脏，才是漂亮的一滑</p></div>
@@ -6970,6 +7035,87 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-wind">
+  <div class="top-bar">
+    <button class="back-btn" onclick="wndLeave()">← 返回</button>
+    <div class="stats"><span id="wndScoreTxt">🎯 0 分</span><span id="wndLvTxt">第 1 场 · 已收 0 字</span><span id="wndQTxt">⏳ 这一笔 ——</span></div>
+    <button class="icon-btn" onclick="wndHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="wnd-hud">
+    <span id="wndRankTxt" title="称号">🌱 刚识风</span>
+    <span id="wndHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="wndComboTxt" title="连击">🔥 连 0</span>
+    <span id="wndLitTxt" title="落到第几笔">🖋 0/0 笔</span>
+    <span id="wndBellTxt" title="这一笔挂到的风铃">🎐 挂铃 0/0</span>
+    <span id="wndAirTxt2" title="风箱里的气">🌬 气 100</span>
+    <span id="wndShellTxt" title="场上的空壳籽">🍥 空壳 0</span>
+    <span id="wndHazTxt" title="场上的风煞">😈 风煞 0</span>
+    <span id="wndSpdTxt" title="这颗籽现在的速度">💨 籽速 0.0</span>
+    <span id="wndAnchTxt" title="剩下的收籽次数">🪀 收籽 2</span>
+  </div>
+  <div class="wnd-ask" id="wndAsk">🌬 正在起风……<br><small>在字库里挑「笔笔都认得出笔形」的字</small></div>
+  <div class="wnd-stage">
+    <div class="wnd-mini">
+      <svg viewBox="0 0 1024 1024" id="wndMiniSvg"></svg>
+      <div class="wnd-cap" id="wndMiniCap">这个字</div>
+    </div>
+    <div class="wnd-valley" id="wndValley">
+      <canvas class="wnd-canvas" id="wndCanvas" width="360" height="280"></canvas>
+      <div class="wnd-fx" id="wndFx"></div>
+      <div class="wnd-tag" id="wndTag">🌬 风谷开张了</div>
+    </div>
+  </div>
+  <div class="wnd-pad" id="wndPad">
+    <button data-d="6" title="左上">↖</button><button data-d="0" title="上">↑</button><button data-d="2" title="右上">↗</button>
+    <button data-d="5" title="左">←</button><button class="mid" id="wndBlowBtn" title="吹一记（空格，按住更久）">🌬<br>吹</button><button data-d="7" title="右">→</button>
+    <button data-d="4" title="左下">↙</button><button data-d="1" title="下">↓</button><button data-d="3" title="右下">↘</button>
+  </div>
+  <div class="wnd-meter">
+    <div class="wnd-air" id="wndAirBox"><i id="wndAirBar"></i><b id="wndAirTxt">🌬 风箱 100</b></div>
+    <div class="wnd-tl" id="wndQBox"><i id="wndQBar"></i><b id="wndQTxt2">⏳ 这一笔 —— 秒</b></div>
+    <div class="wnd-gale" id="wndGaleBox"><i id="wndGaleBar"></i><b id="wndGaleTxt">🍃 长风 —— 秒</b></div>
+  </div>
+  <div class="wnd-pow" id="wndPowTxt">🌬 第 <b>1</b> 场</div>
+  <div class="wnd-tools">
+    <button class="wnd-tool" id="wndAnchorBtn" disabled>🪀 收籽<span>Enter</span><b>剩 2</b></button>
+    <button class="wnd-tool" id="wndPeekBtn" disabled>✨ 照签<span>Q</span><b>剩 2</b></button>
+    <button class="wnd-tool" id="wndSlowBtn" disabled>🐢 缓风<span>E</span><b>剩 2</b></button>
+    <button class="wnd-tool" id="wndShooBtn" disabled>🍃 驱煞<span>F</span><b>剩 2</b></button>
+    <button class="wnd-tool go" id="wndBlowTool">🌬 吹住不放<span>空格</span></button>
+    <button class="wnd-tool" id="wndEndBtn" onclick="wndEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="wnd-hintline" id="wndHintLine">🌬 <b>你不能直接碰籽</b>：只能转动风箱的 <code>↑↓←→</code>（或 <code>WASD</code>）朝向，再按 <code>空格</code> <b>吹</b> —— 风会自己活着、慢慢散掉</div>
+  <div class="wnd-msg" id="wndMsg">🌬 <b>风谷里是一张会自己流动的风场</b>：你只有一台站在谷口的 <b>风箱</b>，转好朝向、按住 <code>空格</code> 吹 —— 吹出来的风 <b>不会立刻停</b>，它会散开、会衰减、会绕着涡打转<br>🌱 每一笔发给你的是一颗 <b>发光的墨籽</b>：风把它推到哪只 <b>挂篮</b>，这一笔就算落好；挂篮上写着笔形（横竖撇捺点），<b>只有写着这一笔笔形的那只才对</b><br>🧺 <b>挂篮也会被风吹</b>：它们拴在锚点上，风大就漂、风停了慢慢回位；<b>空壳籽</b>飘进篮口会 <b>堵住篮子</b>，得靠一股猛风把它掏出来<br>🎐 路上飘着 <b>风铃</b>：墨籽穿过一个 +3 分、音阶往上走一记，这一笔的铃 <b>全挂满</b> 另加 12 分<br>😈 深场里游着 <b>风煞</b>（一团乱流）：它跟着风走，撞上墨籽就把墨 <b>撕散</b> —— 掉一颗心；它也是被风吹的，你可以先把它引开<br>🌀 <b>横风带</b> 和 <b>涡</b> 一直在吹：往右上送的籽会先被横风削偏，<b>提前量</b> 是这里的功夫<br>🌬 <b>气</b>：风箱吹一记耗一口气，气吹空了就得等它回满（越深回得越慢）—— <b>短促几记</b> 比按住不放省气<br>✨ <b>照签 Q</b> 把挂篮的笔形重新点亮（第 3 场起 <b>字签会淡掉</b>，颜色一直在）、🐢 <b>缓风 E</b> 让全场慢下来、🍃 <b>驱煞 F</b> 把风煞赶到谷边、🪀 <b>收籽 Enter</b> 把墨籽收回谷口重撒<br>⏳ <b>两只钟</b>：这一笔的钟走光 <b>不算答错</b>（扣 3 分、重撒一颗籽）；<b>长风</b> 凉了就收摊。按 <code>H</code> 看说明时两只钟都不走</div>
+</div>
+<div class="screen" id="screen-wind-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="wndLeave()">← 回首页</button>
+    <div class="stats"><span id="wndRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="wndRsEmoji">🌬</div>
+    <div style="font-size:26px;font-weight:800" id="wndRsTitle">长风凉了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="wndRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px" id="wndRsPicks">
+      <span class="wnd-pk" id="wndRsScore">🎯 0 分</span>
+      <span class="wnd-pk" id="wndRsWords">🌬 收 0 个字</span>
+      <span class="wnd-pk" id="wndRsLits">🖋 落好 0 笔</span>
+      <span class="wnd-pk" id="wndRsSub2">🧺 进篮 0 次</span>
+      <span class="wnd-pk" id="wndRsSwift">💨 顺风一掷 0 笔</span>
+      <span class="wnd-pk" id="wndRsBell">🎐 挂铃 0 串 · 全挂满 0 笔</span>
+      <span class="wnd-pk" id="wndRsTear">😈 撕散 0 次 · 堵篮 0 次</span>
+      <span class="wnd-pk" id="wndRsTools">✨ 照签 0 · 🐢 缓风 0 · 🍃 驱煞 0</span>
+      <span class="wnd-pk" id="wndRsCombo">🔥 最长连 0</span>
+      <span class="wnd-pk" id="wndRsBest">🏆 最高 0 分</span>
+    </div>
+    <div style="font-size:13px;color:#FFF59D;margin:6px auto 14px;max-width:420px;line-height:1.6" id="wndRsWhy"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin-bottom:14px" id="wndRsBook">图鉴里还没有字</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="primary-btn" onclick="wndAgain()">🌬 再进一次风谷</button>
+      <button class="secondary-btn" onclick="wndLeave()">🏠 回首页</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-skate">
@@ -13467,6 +13613,7 @@ function updateHomeStats(){
   if(typeof snrNudge==='function')snrNudge();
   if(typeof pjNudge==='function')pjNudge();
   if(typeof iceNudge==='function')iceNudge();
+  if(typeof wndNudge==='function')wndNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -13502,6 +13649,7 @@ function enterMode(mode){
   if(mode==='sonar'){snrStart();return}
   if(mode==='proj'){pjStart();return}
   if(mode==='skate'){iceStart();return}
+  if(mode==='wind'){wndStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -80192,6 +80340,2323 @@ window.vIcDomBad=function(){
   let onN=0;for(let i=0;i<pad.length;i++)if(pad[i].classList.contains('on'))onN++;
   if(ice.dir>=0&&onN!==1)out.push('方向盘亮灯 '+onN+' 个 dir='+ice.dir);
   if(ice.dir<0&&onN!==0)out.push('球停了方向盘还亮着 '+onN);
+  return out;
+};
+
+/* ================= v1.91 笔顺风谷（谷口一台会转朝的风箱 · 往一张有惯量的风场里喷气 · 风自己会散会绕涡，墨籽被风送到写着这一笔笔形的挂篮） ================= */
+const WND_C=18,WND_R=14,WND_CS=20,WND_W=360,WND_H=280;
+const WND_X0=.4,WND_X1=17.6,WND_Y0=.4,WND_Y1=13.6;
+const WND_BX=9,WND_BY=12.7;
+/* 0上 1下 2右上 3右下 4左下 5左 6左上 7右（屏幕坐标 y 向下） */
+const WND_DIRS=[[0,-1],[0,1],[1,-1],[1,1],[-1,1],[-1,0],[-1,-1],[1,0]];
+const WND_ARW=['↑','↓','↗','↘','↙','←','↖','→'];
+const WND_NAME=['上','下','右上','右下','左下','左','左上','右'];
+const WND_TAG5=['横','竖','撇','捺','点'],WND_INK5=['#4FC3F7','#81C784','#FFD54F','#FFB74D','#BA68C8'];
+const WND_JET_LEN=14.65,WND_JET_W0=2.9,WND_JET_SP=.2,WND_JET_ACC=11,WND_JET_K=.8,WND_JET_TAPER=1.12;
+const WND_SX=WND_BX,WND_SY=11.4;
+const WND_DIFF=.18,WND_DECAY0=.94,WND_DECAY_MIN=.905,WND_DECAY_STEP=.003,WND_VMAX=2.7;
+const WND_DRAG=7,WND_SMAX=2.9,WND_SEED_R=.42,WND_REP=2.9,WND_WALL_E=.62,WND_RET=4.6,WND_RET_FROM=.37;
+const WND_CATCH=1.6,WND_CATCH_WRONG=.62,WND_BK_W=.6,WND_BK_RESP=2.6,WND_BK_SPRING=5.2,WND_BK_MAX=.55;
+/* 预判里「这一路蹭到隔壁错篮口」的余量：错篮真正兜得住籽的只有 WND_CATCH_WRONG=.62 那一圈。
+   原先这条留 1.15（口子的 1.85 倍），结果实测把控制器吓瘫了 —— 72 场里凡是航道净空 <1.15 的
+   20 场，中位 20880 毫秒、5 场卡到 30 秒顶（籽停在离答案 1.85 格外就是不肯过去）；
+   0.62 之外本来掉不进错篮，余量只该补跟踪误差。
+   改成 .85、并按籽速分档罚（猛冲路过错篮只轻罚，见 WND_FLYBY_V）之后重测 72 场：
+   净空 >2 的 54 场中位 2080 毫秒、最慢 3480；净空 <1.15 的 15 场笔笔送得进，中位 3640、最慢 24840。 */
+const WND_BRUSH_KEEP=.85;
+/* 掠口的籽错篮接不住：籽速 ≥ 这个值时从隔壁错篮口飞过去，不算答错。
+   籽的速度几乎立刻贴上当地风速（阻力 WND_DRAG=7/秒，时间常数约 .14 秒），所以这条实际意思是
+   「顶着风冲过去的放过，慢慢蹭进错篮的才算错」。它不是宽容，是几何逼出来的：摆场那道闸实测
+   在「两两 ≥1.9 格 且 航道净空 ≥1.15 格」下最多塞得下 4 只篮（精确最大独立集， lv1 与 lv9 同解），
+   而表上第 6 场起要 5 只 —— 第 5 只必然压在答案的航道投影上。没有这一条，那只篮子就是把
+   一笔笔好字堵死的路障。 */
+const WND_FLYBY_V=1.2;
+const WND_BLOCK_MS=2600,WND_UNBLOCK=1.9,WND_BLOCK_FREE=2600;
+const WND_BELL_R=.62,WND_BELL_PTS=3,WND_ALLBELL=12;
+const WND_HAZ_R=.92,WND_HAZ_DRAG=2.4;
+const WND_BAND_ADD=.9,WND_VORT_ADD=1.5,WND_VORT_R=3.4;
+/* 测风系数：表上的 wndBandSpd 是「每拍往场上加多少风」的添加率，不是籽身上真正感到的风速。
+   横风在场上要过扩散和阻尼才落成稳态，实测（清掉喷流和涡、只留 bands、跑满 900 拍）
+   lv2..9 的稳定横向风只有 0.35~0.48 格/秒，而添加率是 0.99~1.6 —— 差 3~4 倍。
+   摆篮子的闸要是拿添加率当风速，就把可达区缩成一条贴在喷流轴线上的窄脊，
+   第 5 只篮子无论怎么找都塞不下（实测最小间距 1.9 格也只有 4 只）。所以闸里乘这个系数。 */
+const WND_BAND_GUST=.45;
+const WND_AIR_MAX=100,WND_AIR_USE=26;
+const WND_SWIFT_V=2.45,WND_SWIFT_BONUS=10;
+const WND_PEN_FAIL=6,WND_PEN_TIME=3,WND_PEN_TEAR=5,WND_WORD_BONUS=28;
+const WND_SLOW_FAC=.42,WND_PEEK_MS=3400,WND_SLOW_MS=3400,WND_SHOO_MS=5200;
+const WND_PEEK0=2,WND_SLOW0=2,WND_SHOO0=2,WND_ANCH0=2;
+const WND_HEARTS=3,WND_HEART_MAX=5,WND_BOOK_MAX=300,WND_TROPHY_MAX=8;
+const WND_POOL_MIN=4,WND_POOL_WANT=14,WND_BASK0=3;
+const WND_STROKE_MIN=3,WND_STROKE_MAX=8;
+const WND_GALE0=132000,WND_GALE_MIN=88000,WND_GALE_STEP=3400;
+const WND_Q0=32000,WND_Q_MIN=16000,WND_Q_STEP=2000;
+const WND_REFILL0=30,WND_REFILL_MIN=26,WND_REFILL_STEP=1.4;
+const WND_TAG0=6400,WND_TAG_MIN=2200,WND_TAG_STEP=700;
+const WND_BAND0=26000,WND_BAND_MIN=15000,WND_BAND_STEP=1400;
+const WND_VORT_SPD0=1.5,WND_VORT_SPD_STEP=.16,WND_VORT_SPD_MAX=2.9;
+const WND_TICK_MS=40,WND_ACT_CD=170;
+const WND_NEXT_MS=1200,WND_TAG_MS=2300,WND_NAG_MS=11000,WND_NAG_HOLD=5000,WND_HELP_MS=14000;
+const WND_NOTE=[262,294,330,392,440,523,587,659,784,880,1047];
+const WND_TRS=['风铃','纸鸢','蒲公英','风车','竹哨','柳条','风车草','草帽'];
+const WND_RANKS=[
+  {n:0,e:'🌱',t:'刚识风'},{n:2,e:'🍃',t:'吹得动籽'},{n:5,e:'🌾',t:'会起风'},
+  {n:9,e:'🎐',t:'挂得住铃'},{n:14,e:'🪁',t:'放得线'},{n:21,e:'🌬',t:'一口准'},
+  {n:30,e:'🌀',t:'绕得过涡'},{n:42,e:'🏆',t:'风谷的老手'},{n:58,e:'👑',t:'风谷的主人'}
+];
+const wnd={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],toneAt:0,tones:0,
+  pool:[],miss:[],rec:null,n:0,
+  lv:1,score:0,hearts:WND_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,cats:0,tears:0,blocks:0,swifts:0,bellHits:0,allBells:0,fails:0,timeouts:0,
+  peeks:0,slows:0,shoos:0,anchors:0,nags:0,moved:0,jets:0,
+  peekN:WND_PEEK0,slowN:WND_SLOW0,shooN:WND_SHOO0,anchN:WND_ANCH0,
+  peekMs:0,slowMs:0,shooMs:0,nagMs:0,helpMs:0,tagMs:0,tagPri:0,actMs:0,litMs:0,
+  qi:0,busy:false,qms:0,qms0:0,first:true,cleanWord:true,bellWord:true,
+  galeMs:WND_GALE0,warn:false,beep:0,hudAcc:0,since:0,air:WND_AIR_MAX,airWarn:0,
+  aim:0,lastAim:-1,blowing:false,blowMs:0,holdMs:0,
+  vx:null,vy:null,vx2:null,vy2:null,
+  seed:null,shells:[],basks:[],bells:[],hazes:[],bands:[],vorts:[],
+  done:null,doneCells:[],decor:null,seenMs:0,
+  ctx:null,fxBox:null,bound:false,keys:null,padOn:null,dragging:false,
+  trophy:0,windE:0,windMax:0
+};
+/* ---- 小工具 ---- */
+function wnInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function wnAdd(k,n){if(n)localStorage.setItem(k,String(wnInt(k)+n))}
+function wnSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function wnSay(t,c){const el=document.getElementById('wndMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function wnShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function wnOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function wnClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function wnRank(n){let r=WND_RANKS[0];for(let i=0;i<WND_RANKS.length;i++)if(n>=WND_RANKS[i].n)r=WND_RANKS[i];return r}
+function wnRok(d){return d<0||d>4?0:d}
+function wnIn(x,y){return x>=WND_X0&&x<=WND_X1&&y>=WND_Y0&&y<=WND_Y1}
+function wnCellOf(x,y){return {c:wnClamp(Math.floor(x),0,WND_C-1),r:wnClamp(Math.floor(y),0,WND_R-1)}}
+function wnKey(c,r){return r*WND_C+c}
+function wnBits(m){let c=0;while(m){c+=m&1;m>>=1}return c}
+function wndPx(x,y){return {x:x*WND_CS,y:y*WND_CS}}
+function wnDist(ax,ay,bx,by){const dx=ax-bx,dy=ay-by;return Math.sqrt(dx*dx+dy*dy)}
+function wndRank2(){return wnRank(wnInt('hz_wind_words'))}
+function wnTone(f,d,t,v){
+  if(!wnd.run||wnd.over)return;
+  const n=performance.now();
+  if(n-wnd.toneAt<22)return;
+  wnd.tones++;
+  tone(f,d,t,v);
+}
+function wnT(fn,ms){const g=wnd.gen;const id=setTimeout(function(){const k=wnd.timers.indexOf(id);if(k>=0)wnd.timers.splice(k,1);if(g!==wnd.gen)return;fn()},ms);wnd.timers.push(id);return id}
+function wnKillTimers(){wnd.timers.forEach(function(t){clearTimeout(t)});wnd.timers=[]}
+/* ---- 难度表：场越深，风散得越快、气回得越慢、横风带与涡与风煞越多、字签淡得越快 ---- */
+function wndLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function wndGale(lv){return Math.max(WND_GALE_MIN,WND_GALE0-(lv-1)*WND_GALE_STEP)}
+function wndQms(lv){return Math.max(WND_Q_MIN,WND_Q0-(lv-1)*WND_Q_STEP)}
+function wndRefill(lv){return Math.max(WND_REFILL_MIN,WND_REFILL0-(lv-1)*WND_REFILL_STEP)}
+function wndDecay(lv){return Math.max(WND_DECAY_MIN,WND_DECAY0-(lv-1)*WND_DECAY_STEP)}
+function wndTagLit(lv){return lv<3?0:Math.max(WND_TAG_MIN,WND_TAG0-(lv-3)*WND_TAG_STEP)}
+function wndBands(lv){return lv<2?0:Math.min(4,1+Math.floor((lv-2)/2))}
+function wndBandTurn(lv){return Math.max(WND_BAND_MIN,WND_BAND0-(lv-1)*WND_BAND_STEP)}
+function wndVorts(lv){return lv<3?0:(lv>=7?2:1)}
+function wndVortSpd(lv){return Math.min(WND_VORT_SPD_MAX,WND_VORT_SPD0+(lv-1)*WND_VORT_SPD_STEP)}
+function wndHaz(lv){return lv<3?0:(lv>=6?2:1)}
+function wndShells(lv){return Math.min(6,1+lv)}
+function wndBells(lv){return lv<4?3:(lv<7?4:5)}
+function wndBasks(lv){return lv<=2?3:(lv<=5?4:5)}
+function wndStrokeMax(lv){return lv>=5?WND_STROKE_MAX:7}
+function wndPhys(dt){return wnd.slowMs>0?dt*WND_SLOW_FAC:dt}
+function wndGain(bellFrac,swift){
+  return Math.round((10+wnd.combo*1.1+wnd.lv*1.8)*(1+bellFrac*0.4)*(swift?1.28:1));
+}
+/* ---- 风口：给一个位移挑最接近的八向之一 ---- */
+function wndDirOf(dx,dy){
+  if(!dx&&!dy)return -1;
+  let bi=-1,bs=-1e9;
+  const L=Math.sqrt(dx*dx+dy*dy)||1;
+  for(let i=0;i<8;i++){
+    const d=WND_DIRS[i],dl=Math.sqrt(d[0]*d[0]+d[1]*d[1]);
+    const s=(dx*d[0]+dy*d[1])/(L*dl);
+    if(s>bs){bs=s;bi=i}
+  }
+  return bi;
+}
+/* ---- 锥形喷流：格子（或籽）落不落在这道风里，产品与验证器共用同一个式子 ---- */
+function wndConeOk(aim,x,y){
+  if(aim<0||aim>7)return false;
+  const d=WND_DIRS[aim],L=Math.sqrt(d[0]*d[0]+d[1]*d[1]);
+  const ux=d[0]/L,uy=d[1]/L;
+  const dx=x-WND_BX,dy=y-WND_BY;
+  const proj=dx*ux+dy*uy;
+  if(proj<=0||proj>WND_JET_LEN)return false;
+  const perp=Math.abs(dx*(-uy)+dy*ux);
+  return perp<=WND_JET_W0+proj*WND_JET_SP;
+}
+
+/* ---- 字池：每一笔都认得出笔形、且笔形种类不超过挂篮数 ---- */
+const WND_LETTERS='十人八小上下日水石田木禾白子不去个长门见对书本牛马飞入'
+  +'什么双王方气生叫主以尤区巨于记市民丝贝互仙勾丰父欠未击乎代计且斗示巧'
+  +'付兰专扎仅叉议歹矛冈曰瓦早旬旭买巡还远秀每甲回困圈图火永冰川开王生牛';
+function wndMake(ch,raw,lmax){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  const hi=lmax||7;
+  if(ms.length<WND_STROKE_MIN||ms.length>hi)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=fmDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<ms.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp,kinds:wnBits(kinds)};
+}
+async function wndBuildPool(keep){
+  const g=wnd.gen,stale=function(){return g!==wnd.gen||!wnd.run||wnd.over};
+  wnd.miss=(localStorage.getItem('hz_wind_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){list=list||[];for(let i=0;i<list.length&&want.length<280;i++){const c=list[i];if(c&&want.indexOf(c)<0)want.push(c)}};
+  push(wnShuf(wnd.miss.slice(0,6)));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(wnShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(wnShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(WND_LETTERS.split(''));
+  if(typeof CHARS!=='undefined')push(wnShuf(CHARS.slice()));
+  if(!keep)wnd.pool=[];
+  const hi=wndStrokeMax(wnd.lv);
+  for(let k=0;k<want.length&&wnd.pool.length<WND_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++)if(rs[i]){const m=wndMake(want[k+i],rs[i],hi);if(m&&wnd.pool.indexOf(m)<0)wnd.pool.push(m)}
+  }
+  return wnd.pool.length>=WND_POOL_MIN;
+}
+function wndPickRec(){
+  const hi=wndStrokeMax(wnd.lv),want=wndBasks(wnd.lv);
+  const w=wnd.lv<=2?[WND_STROKE_MIN,5]:[WND_STROKE_MIN,hi];
+  let pool=wnd.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]&&r.kinds<=want});
+  let bk=want;
+  if(!pool.length){
+    pool=wnd.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+    bk=Math.min(5,Math.max(want,pool.length?Math.max.apply(null,pool.map(function(r){return r.kinds})):want));
+  }
+  if(!pool.length){pool=wnd.pool;bk=Math.min(5,Math.max.apply(null,pool.map(function(r){return r.kinds}))||want)}
+  if(!pool.length)return null;
+  /* 连着两场撞同一个字，孩子会以为「刚吹过」——能换就换个新的 */
+  const fresh=pool.filter(function(r){return !wnd.rec||r.ch!==wnd.rec.ch});
+  const pick=fresh.length?fresh:pool;
+  const missList=pick.filter(function(r){return wnd.miss.indexOf(r.ch)>=0});
+  const due=wnd.first||(wnd.words>0&&wnd.words%3===0);
+  wnd.first=false;
+  wnd.baskWant=bk;
+  if(missList.length&&due)return wnOne(missList);
+  return wnOne(pick);
+}
+/* ---- 摆场：挂篮只立在风箱够得着的地方，且都不落在籽出生的那口上 ---- */
+/* 够得着不是「锥形照得到」，是「真能把籽送进去」：
+   从出生点起按住一个风口模拟到底（定常喷流 + 回谷风 + 撞壁反弹），籽飘进篮口才算。
+   只按锥形够得着会摆出顶不过回谷风的篮 —— 孩子吹破风箱也送不到，那一笔就永远结不了。
+   篮还会随风飘出 WND_BK_MAX=.55，所以判定半径取篮口的 .6 倍，飘到边上也必须还接得住。
+   最后一关是「停得住」不是「路过过一次」：贴边那一圈篮，喷流一弱、回谷风一比高下，
+   籽只是被顶过去蹭一下就被弹回来 —— 按「擦过」算可达，摆出来的仍是赢不了的篮。
+   所以必须连续半秒待在口里，才叫这一篮真能落。
+   还有一笔最容易被忘的预算：气。按住 3.8 秒风箱就空，空了只能松手等回气，
+   等的时候回谷风把籽往回拖 —— 一口气推过去的篮不算能落，一吹一停来回两轮还能停在口里的才是。
+   最后压两道：
+   一道是时间。实测那些要吹到第七八秒才肯停住的篮全贴在谷的左右死边 —— 籽是被墙夹在那儿的，
+   不是被风送进去的：孩子一撒手墙就把它弹回涡里，真跑起来一笔能磨到钟响。能落的篮该在四五秒里
+   就稳稳吸住口，那才叫「顺风」。
+   一道是这一档的横风：按难度表里的强度每两秒翻一次向再吹一遍，翻着风还停得住才算够得着。
+   「横风是难度不是可达性」这话只对一半 —— 不许读当下那一阵风（读了篮就变成这阵够得着、
+   下阵够不着，Invariant 当场撑不住），可这一档刮多大风是写在表里的，摆篮就得按它摆：
+   第 9 档那 1.6 格/秒的横风能把 9 格外的篮从「顺风」吹成「磨到钟响」，实测一笔要磨十几二十秒。
+   最后一道是涡：涡也在表里（第 3 场起就有一个，第 7 场起两个），可它一度只在摆完篮之后才上场 ——
+   摆篮时场上涡数是 0，闸自然当它不存在。实测第 8 档有一只篮被涡卷走航道：籽一路飘到 9.4 格外，
+   三次锚点全烧光、三十秒也停不进篮口。所以现在摆篮之前先把涡钉好，闸里逐拍重放每一只涡的切向风。
+   用的数不是 WND_VORT_ADD（那是每拍往场上「加」多少的添加率），是清场跑满 1200 拍量到的定常风：
+   距涡心几格就取 WN_VORT_P 里那一档，乘 spd —— 峰值在半径的四成处，约 .24×spd，第 9 档约 .67 格/秒。 */
+const WN_ADVX=[1,0,-1,0],WN_ADVsY=[0,1,0,-1];
+const WN_VORT_P=[.13,.20,.22,.24,.23,.20,.17,.13,.09,.06];
+const WN_VG={x:0,y:0};
+/* 风自己长起来要时间：把风场抹平、按住一记风，离风箱 4/7/10 格处实测到稳态的 63% 分别要
+   280/440/640 毫秒（量法：_ramp.cjs 掐掉循环、每 40 毫秒步进真物理、取 wndSpeedAt）。
+   三点落在一条直线上：τ(秒) = WN_RAMP0 + WN_RAMP1×离风箱几格。
+   闸以前用的是定常风 —— 等于一按下就有满风，于是每次都早到半秒：真场里籽赶到篮口时气已经见底，
+   松手等回气的三秒里回谷风把它拖出口，实测 lv7 就是这样在离口 1.98 格、气 1 分的地方把 12 秒花在重走上半场。 */
+const WN_RAMP0=.04,WN_RAMP1=.06;
+/* 气空了以后回到几分就重新出手：等回到九成才算「一口气」，可篮口前那三秒半不推，
+   回谷风早把籽拖出口了（实测 lv7 一场就是离口 1.98 格、气 1 分处开始往下滑，此后 12 秒全在重走上半场）。
+   页面上那句提示写的就是这条：「短促几记比按住省气」—— 回气到三成再推一记，籽守着位置不走。
+   这一条是闸与求解器共用的：wndDeliverable 演的政策必须就是 vWndSolve 按下的政策（WN_AIR_RESUME 两头同一个数） */
+const WN_AIR_RESUME=.3;
+function wndVortGust(px,py){
+  WN_VG.x=0;WN_VG.y=0;
+  for(let q=0;q<wnd.vorts.length;q++){
+    const v=wnd.vorts[q],dx=px-v.x,dy=py-v.y,dd=Math.sqrt(dx*dx+dy*dy);
+    if(dd>=v.r||dd<.05)continue;
+    const fr=dd/v.r,i=Math.min(9,fr*10|0),j=Math.min(9,i+1),t=fr*10-i;
+    const f=v.spd*(WN_VORT_P[i]+(WN_VORT_P[j]-WN_VORT_P[i])*t);
+    WN_VG.x+=-(dy/dd)*f*v.sign;WN_VG.y+=(dx/dd)*f*v.sign;
+  }
+  return WN_VG;
+}
+/* air0：手里还剩几口气。摆场闸不传（按满一气演），求解器传当下这一口 ——
+   一笔接一笔时风箱根本没有满的（实测整字连吹：一笔收口气剩 19、下一笔起手只有 55 分，
+   而闸那条线要 88 分才出手），于是孩子每一笔都从第二笔起就看不见那条验证过的路。 */
+function wndDeliverable(x,y,a,ad,air0){
+  const kk=wndJetK(),rr=WND_CATCH*.6,rf=wndRefill(wnd.lv);
+  const dv=WND_DIRS[a],dl=Math.sqrt(dv[0]*dv[0]+dv[1]*dv[1])||1,jux=dv[0]/dl,juy=dv[1]/dl;
+  let px=WND_SX,py=WND_SY,ux=0,uy=0;const ss=.05;
+  let hold=0,air=air0===undefined?WND_AIR_MAX:air0,on=1,lg=0;
+  for(let i=0;i<110;i++){
+    const k=(i/40|0)&3;
+    let wx=WN_ADVX[k]*ad,wy=WN_ADVsY[k]*ad;
+    const gv=wndVortGust(px,py);wx+=gv.x;wy+=gv.y;
+    if(on){air-=WND_AIR_USE*ss;if(air<=0){air=0;on=0}}
+    else{air+=rf*ss;if(air>=WND_AIR_MAX*WN_AIR_RESUME)on=1}
+    /* 这一格的喷流只涨到 lg 这么多：按下不等于满风，离风箱越远风长得越慢（WN_RAMP* 那两点） */
+    lg+=((on?1:0)-lg)*ss/(WN_RAMP0+WN_RAMP1*Math.max(0,(px-WND_BX)*jux+(py-WND_BY)*juy));
+    if(on){const j=wndJetAt(px,py,a,kk);if(j){wx+=j.x*lg;wy+=j.y*lg}}
+    const fm=Math.sqrt(wx*wx+wy*wy);
+    if(fm>WND_VMAX){wx=wx/fm*WND_VMAX;wy=wy/fm*WND_VMAX}
+    ux+=(wx-ux)*WND_DRAG*ss;uy+=(wy-uy)*WND_DRAG*ss;
+    const rx=WND_BX-px,ry=WND_BY-py,rl=Math.sqrt(rx*rx+ry*ry)||1e-6;
+    const deep=rl-WND_JET_LEN*WND_RET_FROM;
+    const ret=deep>0?WND_RET*Math.min(1,deep/(WND_JET_LEN*(1-WND_RET_FROM))):0;
+    ux+=rx/rl*ret*ss;uy+=ry/rl*ret*ss;
+    const sp=Math.sqrt(ux*ux+uy*uy);
+    if(sp>WND_SMAX){ux=ux/sp*WND_SMAX;uy=uy/sp*WND_SMAX}
+    px+=ux*ss;py+=uy*ss;
+    const R=WND_SEED_R;
+    if(px<WND_X0+R){px=WND_X0+R;ux=Math.abs(ux)*WND_WALL_E}
+    if(px>WND_X1-R){px=WND_X1-R;ux=-Math.abs(ux)*WND_WALL_E}
+    if(py<WND_Y0+R){py=WND_Y0+R;uy=Math.abs(uy)*WND_WALL_E}
+    if(py>WND_Y1-R){py=WND_Y1-R;uy=-Math.abs(uy)*WND_WALL_E}
+    if(wnDist(px,py,x,y)<rr){hold++;if(hold>=10)return 1}else hold=0;
+  }
+  return 0;
+}
+function wndReach(x,y){
+  /* 静风里送得到只是第一关：这一档的横风翻着向吹还送得到，才敢把篮立在那儿 */
+  const ad=wndBandGust(wnd.lv);
+  for(let d=0;d<8;d++){
+    if(!wndConeOk(d,x,y))continue;
+    if(!wndDeliverable(x,y,d,0))continue;
+    if(wndDeliverable(x,y,d,ad))return 1;
+  }
+  return 0;
+}
+function wndFarSpots(list,x,y,min){
+  for(let i=0;i<list.length;i++)if(wnDist(list[i].x,list[i].y,x,y)<min)return false;
+  return true;
+}
+/* ---- 航道净空：错篮不许横在风箱到某只篮的那条直线上 ---- */
+/* 口是 1.6、错口只有 WND_CATCH_WRONG=.62：籽慢慢蹭过一只错篮的中心 .62 以内就算送错一笔。
+   所以两只篮只要有一条「风箱→篮心」的直线从第三只篮的口里穿过去，孩子吹得再准也要先吃一记错的 ——
+   摆场闸原先只管两两间距（1.9 也收），间距够不等于航道净空够：实测横在航道上的场
+   一笔能连吃四次送错、三十秒还结不了这一字。第 9 档加了涡以后这种场更多（涡把篮挤成一串）。
+   净空的底线取错口半径 .62：贴在线上 .62 以内 = 一定接得住 = 不许摆；
+   .62..0.85（0.85=WND_BRUSH_KEEP 那档掠口速度）之间还留着 —— 那种场靠「冲过去、口上不停」走得通，
+   是设计里给熟练孩子的活路，P21 钉的就是它。挑点时在过闸的候选里取航道最敞亮的那个。 */
+function wndShadow(ax,ay,bx,by){
+  /* a 有没有横在「风箱→b」这条航道上：有就回垂距，没有回 99 */
+  const vx=bx-WND_BX,vy=by-WND_BY,L=Math.sqrt(vx*vx+vy*vy)||1e-6;
+  const dx=ax-WND_BX,dy=ay-WND_BY,pj=(dx*vx+dy*vy)/L;
+  if(pj<=.2||pj>=L-.2)return 99;
+  return Math.abs(dx*(-vy/L)+dy*(vx/L));
+}
+function wndLaneClear(x,y){
+  let mn=99;
+  for(let q=0;q<wnd.basks.length;q++){
+    const b=wnd.basks[q];
+    const s1=wndShadow(x,y,b.x0,b.y0),s2=wndShadow(b.x0,b.y0,x,y);
+    if(s1<mn)mn=s1;if(s2<mn)mn=s2;
+  }
+  return mn;
+}
+const WN_LANE_MIN=WND_CATCH_WRONG;
+/* 在 300 个随机点里挑一个「每道闸都过、航道又最敞亮」的篮位：gap=这一轮要求的最近篮间距，
+   lm=航道净空的底线（0 = 这一条让掉）。挑不中回 null，由摆场那一层往下降档。 */
+function wndPickBasket(gap,lm){
+  let bx=0,by=0,bs=-1;
+  for(let a=0;a<300;a++){
+    const x=2.4+Math.random()*(15.6-2.4),y=3.2+Math.random()*(9.2-3.2);
+    if(wnDist(x,y,WND_BX,WND_BY)<3.2)continue;
+    if(wnDist(x,y,WND_SX,WND_SY)<3.2)continue;
+    if(!wndFarSpots(wnd.vorts,x,y,2.4))continue;
+    if(gap>0&&!wndFarSpots(wnd.basks,x,y,gap))continue;
+    const lc=wndLaneClear(x,y);
+    if(lc<lm)continue;
+    if(!wndReach(x,y))continue;
+    if(lc>bs){bs=lc;bx=x;by=y}
+  }
+  return bs<0?null:[bx,by];
+}
+function wndBuildValley(){
+  const rec=wnd.rec,lv=wnd.lv;
+  wnd.vx.fill(0);wnd.vy.fill(0);
+  wnd.bands=[];wnd.vorts=[];wnd.hazes=[];wnd.bells=[];wnd.shells=[];wnd.basks=[];
+  /* 涡：先钉涡，再摆篮 —— 摆篮的闸要逐拍重放涡风，涡晚上场等于闸看不见它。
+     不压在挂篮口上（篮那边同一条 2.4 的线），涡与涡之间至少隔 3.2。 */
+  const vn=wndVorts(lv),vs=wndVortSpd(lv);
+  for(let i=0;i<vn;i++){
+    for(let a=0;a<300;a++){
+      const x=2.4+Math.random()*(15.6-2.4),y=2.6+Math.random()*(10.8-2.6);
+      if(wnDist(x,y,WND_SX,WND_SY)<2.6)continue;
+      if(!wndFarSpots(wnd.vorts,x,y,3.2))continue;
+      wnd.vorts.push({x:x,y:y,sign:Math.random()<.5?-1:1,spd:vs,r:WND_VORT_R});
+      break;
+    }
+  }
+  /* 挂篮：这个字出现过的笔形一定都在，再补几个干扰笔形 */
+  const tags=[];
+  for(let i=0;i<rec.n;i++)if(tags.indexOf(rec.dirs[i])<0)tags.push(rec.dirs[i]);
+  const want=Math.min(5,Math.max(wnd.baskWant||wndBasks(lv),tags.length));
+  const rest=[0,1,2,3,4].filter(function(t){return tags.indexOf(t)<0});
+  wnShuf(rest);
+  while(tags.length<want&&rest.length)tags.push(rest.shift());
+  wnShuf(tags);
+  const gaps=[3.6,3.0,2.6,2.2,1.9];
+  const tight=[1.6,1.3];
+  /* 摆不满不是 bug，是闸退回来的：一场一清，只数这一场被退的幌子 */
+  wnd.baskSkip=0;wnd.baskTry=0;
+  for(let i=0;i<tags.length;i++){
+    /* 这一只是不是答案（这个字真有这种笔形）：幌子挤不进去就不摆，答案不许缺席 */
+    const need=rec.dirs.indexOf(tags[i])>=0;
+    let bk=null;
+    const nb=wnd.basks.length;
+    wnd.baskTry++;
+    /* 间距从松到紧一轮一轮试，每轮在过闸的候选里挑航道最敞亮的那一点 */
+    for(let g=0;g<gaps.length&&!bk;g++)bk=wndPickBasket(gaps[g],WN_LANE_MIN);
+    /* 连 1.9 的间隔都挤不进：再降两档试 —— 口是 1.6、错口 .62，
+       两只篮挨进 1.3 里就等于一进去先撞错的那只，孩子根本没得讲理 */
+    for(let g=0;g<tight.length&&!bk;g++)bk=wndPickBasket(tight[g],WN_LANE_MIN);
+    if(bk)wnd.basks.push({x0:bk[0],y0:bk[1],x:bk[0],y:bk[1],vx:0,vy:0,tag:tags[i],blockMs:0,glowMs:0});
+    /* 答案挤不进任何一档间距：宁可挨得近，也不许航道让出去 */
+    if(need&&!bk){
+      bk=wndPickBasket(0,WN_LANE_MIN);
+      if(bk)wnd.basks.push({x0:bk[0],y0:bk[1],x:bk[0],y:bk[1],vx:0,vy:0,tag:tags[i],blockMs:0,glowMs:0});
+    }
+    /* 连航道都让无可让：在可达域里挑一个「离其它篮最远」的点挂上，宁可挨得近，不许答案缺席 */
+    if(need&&!bk){
+      let bx=0,by=0,bs=-1;
+      for(let a=0;a<300;a++){
+        const x=2.4+Math.random()*(15.6-2.4),y=3.2+Math.random()*(9.2-3.2);
+        if(wnDist(x,y,WND_BX,WND_BY)<3.2)continue;
+        if(wnDist(x,y,WND_SX,WND_SY)<3.2)continue;
+        if(!wndFarSpots(wnd.vorts,x,y,2.4))continue;
+        if(!wndReach(x,y))continue;
+        let md=1e9;
+        for(let q=0;q<wnd.basks.length;q++){const dd=wnDist(x,y,wnd.basks[q].x0,wnd.basks[q].y0);if(dd<md)md=dd}
+        if(md>bs){bs=md;bx=x;by=y}
+      }
+      if(bs>=0)wnd.basks.push({x0:bx,y0:by,x:bx,y:by,vx:0,vy:0,tag:tags[i],blockMs:0,glowMs:0});
+    }
+    /* 摆不满不是 bug，是闸退回来的：这一笔要能证明「少的那几只是被闸退回的幌子」，
+       不是忘了摆 —— 计数交给验证那头去对表（K7a：场上 + 被退的 = 表上的数） */
+    if(wnd.basks.length===nb&&!need)wnd.baskSkip++;
+  }
+  /* 横风带：整条同向，逐场换向 */
+  const bn=wndBands(lv);
+  for(let i=0;i<bn;i++){
+    const r0=2+i*3+Math.floor(Math.random()*2);
+    if(r0+1>11)continue;
+    wnd.bands.push({r0:r0,r1:r0+1,vx:(Math.random()<.5?-1:1)*wndBandSpd(lv),turnMs:wndBandTurn(lv),turn:wndBandTurn(lv)});
+  }
+  /* 风煞：不守着挂篮，也不长在籽出生口 */
+  const hn=wndHaz(lv);
+  for(let i=0;i<hn;i++){
+    for(let a=0;a<300;a++){
+      const x=2.0+Math.random()*14,y=4.2+Math.random()*4.8;
+      if(wnDist(x,y,WND_SX,WND_SY)<3.4)continue;
+      if(!wndFarSpots(wnd.basks,x,y,1.8))continue;
+      if(!wndFarSpots(wnd.hazes,x,y,2.6))continue;
+      wnd.hazes.push({x:x,y:y,vx:0,vy:0,spin:Math.random()*6.28,ph:0});
+      break;
+    }
+  }
+}
+/* 横风带再猛也不该盖过风箱：孩子吹得动，才是「借风」而不是「听天由命」 */
+function wndBandSpd(lv){return Math.min(1.6,.9+.09*(lv-1))}
+/* 摆场闸要的是「籽身上真正的横风」，不是每拍的添加率：扩散+阻尼把 0.99~1.6 的添加率
+   落成场上 0.35~0.48 格/秒的稳态（实测）。乘 WND_BAND_GUST 后仍高于实测（lv2 .45>.35，
+   lv9 .72>.48），闸比真风更凶 —— 篮子只承诺打赢比你实际遇到的更大的风。 */
+function wndBandGust(lv){return wndBandSpd(lv)*WND_BAND_GUST}
+/* ---- 换字 / 出题 / 撒籽 ---- */
+/* 铃会上下摇 ±.3：要给籽出生的那口让路，就得整条摇轨迹都让开 —— 只按锚点让，摇到最低那一摆正压在籽头上 */
+function wndSpawnClear(x,y){
+  const vOff=Math.max(0,Math.abs(y-WND_SY)-.3);
+  return Math.sqrt((x-WND_SX)*(x-WND_SX)+vOff*vOff)>=2.2;
+}
+function wndPlaceBells(){
+  const rec=wnd.rec,n=wndBells(wnd.lv);
+  wnd.bells=[];
+  for(let i=0;i<n;i++){
+    for(let a=0;a<300;a++){
+      const x=1.8+Math.random()*14.4,y=7.8+Math.random()*3.4;
+      if(!wndSpawnClear(x,y))continue;
+      if(!wndFarSpots(wnd.bells,x,y,2.0))continue;
+      if(!wndFarSpots(wnd.basks,x,y,1.5))continue;
+      if(!wndFarSpots(wnd.hazes,x,y,1.4))continue;
+      wnd.bells.push({x:x,y:y,y0:y,ph:Math.random()*6.28,taken:0});
+      break;
+    }
+  }
+  const sn=wndShells(wnd.lv);
+  for(let i=0;i<sn;i++){
+    for(let a=0;a<300;a++){
+      const x=1.4+Math.random()*15.2,y=2.0+Math.random()*9.6;
+      if(wnDist(x,y,WND_SX,WND_SY)<2.2)continue;
+      if(!wndFarSpots(wnd.shells,x,y,1.5))continue;
+      if(!wndFarSpots(wnd.basks,x,y,1.3))continue;
+      wnd.shells.push({x:x,y:y,vx:0,vy:0,freeMs:0});
+      break;
+    }
+  }
+}
+function wndResetStroke(){
+  const rec=wnd.rec;
+  wnd.seed={x:WND_SX,y:WND_SY,px:WND_SX,py:WND_SY,vx:0,vy:0,trail:[]};
+  wnd.moved=0;wnd.bellGot=0;wnd.bellTotal=0;wnd.allBell=1;
+  wndPlaceBells();
+  wnd.bellTotal=wnd.bells.length;
+  for(let i=0;i<wnd.basks.length;i++){const b=wnd.basks[i];if(b.sh){b.sh.pin=0;b.sh.bask=null;b.sh=null}b.blockMs=0;b.x=b.x0;b.y=b.y0;b.vx=0;b.vy=0}
+  wnd.litMs=wndTagLit(wnd.lv);
+  wnd.qms=wndQms(wnd.lv);wnd.qms0=wnd.qms;
+  wnd.since=0;wnd.seenMs=0;
+  wnd.air=Math.max(wnd.air,WND_AIR_MAX*.6);
+}
+function wndAsk(){
+  const rec=wnd.rec;
+  if(!rec){wnSet('wndAsk','🌬 正在起风……<br><small>在字库里挑「笔笔都认得出笔形」的字</small>');return}
+  if(wnd.qi>=rec.n){
+    wnSet('wndAsk','🍃 <b>整字落好</b>（共 '+rec.n+' 笔）<br><small>这一张正在收进图鉴</small>');
+    return;
+  }
+  const t=wndShowTag()?WND_TAG5[wnRok(rec.dirs[wnd.qi])]:'?';
+  wnSet('wndAsk','🌬 吹 <b>第 '+(wnd.qi+1)+' 笔</b>（共 '+rec.n+' 笔 · 笔形 <b>'+t+'</b>）<br><small>把发光的墨籽吹进写着这个笔形的挂篮 · 场上 '+wnd.basks.length+' 只篮</small>');
+}
+function wndShowTag(){
+  const f=wndTagLit(wnd.lv);
+  return wnd.peekMs>0||f<=0||wnd.litMs>0;
+}
+function wndCorrect(){
+  if(!wnd.rec||wnd.qi>=wnd.rec.n)return -1;
+  return wnRok(wnd.rec.dirs[wnd.qi]);
+}
+function wndBaskOf(tag){
+  for(let i=0;i<wnd.basks.length;i++)if(wnd.basks[i].tag===tag)return wnd.basks[i];
+  return null;
+}
+function wndNewWord(){
+  const rec=wndPickRec();
+  if(!rec){
+    wnSay('😢 字库里挑不出「笔笔都认得出笔形」的字，先去别的模式练两笔','#FFF59D');
+    wnd.run=false;
+    wnSet('wndAsk','😢 字没凑齐<br><small>稍后再进谷</small>');
+    wnT(function(){wndEnd('pool')},900);
+    return null;
+  }
+  wnd.rec=rec;wnd.n=rec.n;wnd.qi=0;wnd.busy=false;wnd.done=new Set();
+  wnd.cleanWord=true;wnd.bellWord=true;
+  wndBuildValley();
+  wndResetStroke();
+  wndMini();wndAsk();wndHud();wndMeter();wndPow();wndLine();wndDraw();
+  return rec.ch;
+}
+/* ---- 生命周期 ---- */
+function wndStopAll(){
+  wndStopLoop();wnKillTimers();wnd.gen++;
+  wnd.tagMs=0;wnd.tagPri=0;wnd.helpMs=0;wnd.actMs=0;wnd.peekMs=0;wnd.slowMs=0;wnd.shooMs=0;wnd.nagMs=0;
+  wnd.blowing=false;wnd.blowMs=0;wnd.holdMs=0;
+  if(wnd.fxBox)wnd.fxBox.innerHTML='';
+  /* 浮条的淡出是循环里刷的：循环一停，淡了的字还挂在 .on 上 */
+  const tg=document.getElementById('wndTag');
+  if(tg)tg.classList.remove('on');
+}
+async function wndStart(){
+  wndStopAll();
+  const g=wnd.gen,stale=function(){return g!==wnd.gen||!wnd.run||wnd.over};
+  wnd.run=true;wnd.over=false;wnd.timers=[];
+  wnd.lv=1;wnd.score=0;wnd.hearts=WND_HEARTS;wnd.combo=0;wnd.maxCombo=0;
+  wnd.words=0;wnd.lits=0;wnd.cats=0;wnd.tears=0;wnd.blocks=0;wnd.swifts=0;wnd.bellHits=0;
+  wnd.allBells=0;wnd.fails=0;wnd.timeouts=0;wnd.peeks=0;wnd.slows=0;wnd.shoos=0;wnd.anchors=0;
+  wnd.nags=0;wnd.moved=0;wnd.jets=0;wnd.baskWant=WND_BASK0;
+  wnd.peekN=WND_PEEK0;wnd.slowN=WND_SLOW0;wnd.shooN=WND_SHOO0;wnd.anchN=WND_ANCH0;
+  wnd.pool=[];wnd.miss=[];wnd.rec=null;wnd.n=0;
+  wnd.basks=[];wnd.bells=[];wnd.hazes=[];wnd.shells=[];wnd.bands=[];wnd.vorts=[];
+  wnd.seed=null;wnd.done=new Set();
+  wnd.qi=0;wnd.busy=false;wnd.since=0;wnd.playMs=0;wnd.t=0;wnd.tones=0;
+  wnd.air=WND_AIR_MAX;wnd.airWarn=0;wnd.aim=0;wnd.lastAim=-1;
+  wnd.galeMs=wndGale(1);wnd.warn=false;wnd.beep=0;wnd.first=true;
+  wnd.keys={u:false,d:false,l:false,rr:false};wnd.padOn=null;wnd.dragging=false;
+  wnd.trophy=wnInt('hz_wind_trophy');
+  if(!wnd.vx){wnd.vx=new Float32Array(WND_C*WND_R);wnd.vy=new Float32Array(WND_C*WND_R);wnd.vx2=new Float32Array(WND_C*WND_R);wnd.vy2=new Float32Array(WND_C*WND_R)}
+  showScreen('wind');
+  wndBind();wndCanvasSize();
+  const vl=document.getElementById('wndValley');
+  if(vl)vl.classList.remove('dead');
+  wndHud();wndMeter();wndPow();wndLine();
+  wnSay('🌬 <b>风谷里是一张会流动的风场</b>：你只有谷口一台 <b>风箱</b>。转好朝向、按住 <code>空格</code> 吹 —— <b>你碰不到那颗墨籽</b>，只能让它搭你的风<br>🌱 <b>每一笔发一颗发光墨籽</b>：把它送到写对这 <b>笔形</b> 的 <b>挂篮</b>（横/竖/撇/捺/点），这一笔就落好；送错篮子 = 墨 <b>擦掉重撒</b>（扣 '+WND_PEN_FAIL+' 分、连击清零）<br>💨 <b>风有惯量</b>：吹出去的风不会立刻停 —— 它会散开、绕涡、被横风带削偏；籽也 <b>追风要一会儿</b>，所以 <b>提前量</b> 是这儿的功夫<br>🌬 <b>气</b>：吹一记耗气，气空了得等回满（越深回得越慢），<b>短促几记</b> 比按住不放省气；<code>空格</code> 或点方向盘中间、或 <b>手指按在场上</b>（风箱就朝手指吹）<br>🧺 <b>挂篮也会被吹</b>：它们拴在锚点上，风大就漂、风停了自己回位；<b>空壳籽</b>飘进篮口会 <b>堵住篮子</b>，等它自己掉、或一股猛风把空壳掏出来（+2 分）<br>🎐 路上飘着 <b>风铃</b>：穿过一个 +'+WND_BELL_PTS+' 分、音阶往上走一记；这一笔的铃 <b>全挂满</b> 另加 '+WND_ALLBELL+' 分<br>💨 <b>顺风一掷</b>：进篮那一刻籽速够快（≥ '+WND_SWIFT_V.toFixed(1)+' 格/秒）另加 '+WND_SWIFT_BONUS+' 分，还可能收一件风物进风架<br>😈 深场里游着 <b>风煞</b>：它跟着风走，撞上墨籽就把墨 <b>撕散</b>（扣 '+WND_PEN_TEAR+' 分、掉一颗心）—— 它也是被风吹的，可以先引开<br>🍃 <b>字签会淡</b>：第 3 场起挂篮上的笔形只亮几秒（颜色一直在），按 <code>Q</code> <b>照签</b> 重新点亮；<code>E</code> <b>缓风</b> 全场慢下来、<code>F</code> <b>驱煞</b> 把风煞赶到谷边、<code>Enter</code> <b>收籽</b> 把墨籽收回谷口重撒<br>⏳ <b>两只钟</b>：这一笔的钟走光 <b>不算答错</b>（扣 '+WND_PEN_TIME+' 分、重撒一颗籽）；<b>长风</b> 凉了收摊。按 <code>H</code> 看说明时两只钟都不走<br>🍃 <b>每收 2 个字进一场</b>：风散得更快、气回得更慢、横风带/涡/风煞一批批上场');
+  wnSet('wndAsk','🌬 正在起风……<br><small>在字库里挑「笔笔都认得出笔形」的字</small>');
+  let ok=await wndBuildPool();
+  if(stale())return;
+  if(!ok){
+    wnSet('wndAsk','🍃 风还没顺，再等一记……<br><small>字库在路上</small>');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await wndBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!wnd.pool.length){
+    wnd.run=false;
+    wnSet('wndAsk','😢 字库没加载好<br><small>稍后再进谷</small>');
+    wnSay('先去别的模式练两笔，回来字就齐了','#FFF59D');
+    return;
+  }
+  wnAdd('hz_wind_games',1);
+  wndNewWord();
+  if(!wnd.rec||!wnd.rec.n||!wnd.run||wnd.over||stale()){
+    wnd.run=false;
+    wnSet('wndAsk','😢 这一场没铺开<br><small>稍后再进谷</small>');
+    return;
+  }
+  wndStartLoop();
+}
+function wndLeave(){
+  wndStopAll();
+  if(wnd.run&&!wnd.over){wndBank();wnd.over=true;wnd.run=false}
+  goHome();
+}
+function wndAgain(){wndStart()}
+function wndCanvasSize(){
+  const cv=document.getElementById('wndCanvas');
+  if(!cv)return;
+  cv.width=WND_W;cv.height=WND_H;
+  wnd.ctx=cv.getContext?cv.getContext('2d'):null;
+}
+
+/* ================= 风场与判定 ================= */
+function wndWindAt(x,y){
+  const fx=x-.5,fy=y-.5;
+  const i=wnClamp(Math.floor(fx),0,WND_C-1),j=wnClamp(Math.floor(fy),0,WND_R-1);
+  const i2=Math.min(WND_C-1,i+1),j2=Math.min(WND_R-1,j+1);
+  const tx=wnClamp(fx-i,0,1),ty=wnClamp(fy-j,0,1);
+  const a=wnKey(i,j),b=wnKey(i2,j),c=wnKey(i,j2),d=wnKey(i2,j2);
+  return {
+    x:(wnd.vx[a]*(1-tx)+wnd.vx[b]*tx)*(1-ty)+(wnd.vx[c]*(1-tx)+wnd.vx[d]*tx)*ty,
+    y:(wnd.vy[a]*(1-tx)+wnd.vy[b]*tx)*(1-ty)+(wnd.vy[c]*(1-tx)+wnd.vy[d]*tx)*ty
+  };
+}
+function wndSpeedAt(x,y){const w=wndWindAt(x,y);return Math.sqrt(w.x*w.x+w.y*w.y)}
+function wndSeedSpeed(p){return Math.sqrt(p.vx*p.vx+p.vy*p.vy)}
+/* ---- 风：喷气、横风带、涡，再扩散与衰减 ---- */
+function wndStepWind(dt){
+  const s=dt/1000,N=WND_C*WND_R;
+  if(wnd.blowing&&wnd.air>0){
+    const d=WND_DIRS[wnd.aim],L=Math.sqrt(d[0]*d[0]+d[1]*d[1]);
+    const ux=d[0]/L,uy=d[1]/L;
+    for(let k=0;k<N;k++){
+      const c=k%WND_C,r=(k-c)/WND_C,x=c+.5,y=r+.5;
+      if(!wndConeOk(wnd.aim,x,y))continue;
+      const proj=(x-WND_BX)*ux+(y-WND_BY)*uy;
+      const gain=WND_JET_ACC*(1-proj/WND_JET_LEN)*s;
+      wnd.vx[k]+=ux*gain;wnd.vy[k]+=uy*gain;
+    }
+  }
+  for(let i=0;i<wnd.bands.length;i++){
+    const bd=wnd.bands[i];
+    for(let r=bd.r0;r<=bd.r1;r++){
+      if(r<0||r>=WND_R)continue;
+      for(let c=0;c<WND_C;c++)wnd.vx[wnKey(c,r)]+=bd.vx*WND_BAND_ADD*s;
+    }
+  }
+  for(let i=0;i<wnd.vorts.length;i++){
+    const v=wnd.vorts[i];
+    const r0=Math.ceil(v.r);
+    for(let dr=-r0;dr<=r0;dr++)for(let dc=-r0;dc<=r0;dc++){
+      const c=Math.floor(v.x)+dc,rr=Math.floor(v.y)+dr;
+      if(c<0||rr<0||c>=WND_C||rr>=WND_R)continue;
+      const x=c+.5,y=rr+.5,dd=wnDist(x,y,v.x,v.y);
+      if(dd>v.r||dd<.001)continue;
+      const f=(1-dd/v.r)*v.spd;
+      wnd.vx[wnKey(c,rr)]+=(-((y-v.y)/dd))*f*WND_VORT_ADD*s*v.sign;
+      wnd.vy[wnKey(c,rr)]+=(((x-v.x)/dd))*f*WND_VORT_ADD*s*v.sign;
+    }
+  }
+  const D=wndDecay(wnd.lv),dk=Math.pow(D,dt/40);
+  let mx=0,en=0;
+  for(let k=0;k<N;k++){
+    const c=k%WND_C,r=(k-c)/WND_C;
+    const l=c>0?wnd.vx[k-1]:wnd.vx[k],rt=c<WND_C-1?wnd.vx[k+1]:wnd.vx[k];
+    const up=r>0?wnd.vx[k-WND_C]:wnd.vx[k],dn=r<WND_R-1?wnd.vx[k+WND_C]:wnd.vx[k];
+    wnd.vx2[k]=wnd.vx[k]*(1-WND_DIFF)+(l+rt+up+dn)*.25*WND_DIFF;
+    const l2=c>0?wnd.vy[k-1]:wnd.vy[k],r2=c<WND_C-1?wnd.vy[k+1]:wnd.vy[k];
+    const u2=r>0?wnd.vy[k-WND_C]:wnd.vy[k],d2=r<WND_R-1?wnd.vy[k+WND_C]:wnd.vy[k];
+    wnd.vy2[k]=wnd.vy[k]*(1-WND_DIFF)+(l2+r2+u2+d2)*.25*WND_DIFF;
+  }
+  for(let k=0;k<N;k++){
+    let x=wnd.vx2[k]*dk,y=wnd.vy2[k]*dk;
+    const m=Math.sqrt(x*x+y*y);
+    if(m>WND_VMAX){x=x/m*WND_VMAX;y=y/m*WND_VMAX}
+    if(!isFinite(x))x=0;if(!isFinite(y))y=0;
+    wnd.vx[k]=x;wnd.vy[k]=y;
+    const sp=Math.sqrt(x*x+y*y);
+    if(sp>mx)mx=sp;
+    en+=sp;
+  }
+  wnd.windMax=mx;wnd.windE=en;
+}
+/* ---- 籽：追风要一会儿，彼此会挤，撞谷壁反弹 ---- */
+function wndBodies(){
+  const a=[wnd.seed];
+  for(let i=0;i<wnd.shells.length;i++)a.push(wnd.shells[i]);
+  return a;
+}
+function wndStepBody(p,s){
+  if(p.pin)return;
+  const w=wndWindAt(p.x,p.y);
+  p.vx+=(w.x-p.vx)*WND_DRAG*s;
+  p.vy+=(w.y-p.vy)*WND_DRAG*s;
+  /* 回谷风：冲到谷头的风绕回谷口 —— 墨籽唯一的刹车，但只在谷心里那段之外才起，不然最后一格半永远进不去 */
+  const rx=WND_BX-p.x,ry=WND_BY-p.y,rl=Math.sqrt(rx*rx+ry*ry)||1e-6;
+  const deep=rl-WND_JET_LEN*WND_RET_FROM;
+  const ret=deep>0?WND_RET*Math.min(1,deep/(WND_JET_LEN*(1-WND_RET_FROM))):0;
+  p.vx+=rx/rl*ret*s;p.vy+=ry/rl*ret*s;
+  let dx=p.x-p.px,dy=p.y-p.py;
+  p.px=p.x;p.py=p.y;
+  p.x+=p.vx*s;p.y+=p.vy*s;
+  const R=WND_SEED_R;
+  if(p.x<WND_X0+R){p.x=WND_X0+R;p.vx=Math.abs(p.vx)*WND_WALL_E}
+  if(p.x>WND_X1-R){p.x=WND_X1-R;p.vx=-Math.abs(p.vx)*WND_WALL_E}
+  if(p.y<WND_Y0+R){p.y=WND_Y0+R;p.vy=Math.abs(p.vy)*WND_WALL_E}
+  if(p.y>WND_Y1-R){p.y=WND_Y1-R;p.vy=-Math.abs(p.vy)*WND_WALL_E}
+  const sp=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
+  if(sp>WND_SMAX){p.vx=p.vx/sp*WND_SMAX;p.vy=p.vy/sp*WND_SMAX}
+  if(p===wnd.seed){
+    wnd.moved+=Math.sqrt(dx*dx+dy*dy);
+    p.trail.push([p.x,p.y]);
+    if(p.trail.length>44)p.trail.shift();
+  }
+}
+function wndStepSeeds(dt){
+  const s=dt/1000;
+  const list=wndBodies();
+  for(let i=0;i<list.length;i++)wndStepBody(list[i],s);
+  for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){
+    const a=list[i],b=list[j];
+    if(a.pin&&b.pin)continue;
+    let dx=b.x-a.x,dy=b.y-a.y;
+    const d=Math.sqrt(dx*dx+dy*dy);
+    if(d<=.0001||d>=WND_SEED_R*2.1)continue;
+    dx/=d;dy/=d;
+    const f=(WND_SEED_R*2.1-d)*WND_REP*s;
+    if(!a.pin){a.vx-=dx*f;a.vy-=dy*f}
+    if(!b.pin){b.vx+=dx*f;b.vy+=dy*f}
+    /* 软推力会被风阻尼抵消，位置必须真分开，不然两颗籽看着长在一起 */
+    const gap=WND_SEED_R*2.1-d,share=gap/(2-(a.pin?1:0)-(b.pin?1:0));
+    if(!a.pin){a.x-=dx*share;a.y-=dy*share}
+    if(!b.pin){b.x+=dx*share;b.y+=dy*share}
+  }
+  /* 风铃只认发光的那颗墨籽 */
+  for(let i=0;i<wnd.bells.length;i++){
+    const bl=wnd.bells[i];
+    if(bl.taken)continue;
+    if(wnDist(bl.x,bl.y,wnd.seed.x,wnd.seed.y)<WND_BELL_R){
+      bl.taken=1;wnd.bellGot++;wnd.bellHits++;
+      wndAddBell(1);
+      wnd.score+=WND_BELL_PTS;
+      wnTone(WND_NOTE[Math.min(WND_NOTE.length-1,wnd.bellGot%WND_NOTE.length)],.09,'triangle',.05);
+      wndChip(bl.x,bl.y,6,'#FFF176');
+      wndTag('🎐 挂上一串风铃（'+wnd.bellGot+'/'+wnd.bellTotal+'，+'+WND_BELL_PTS+' 分）');
+      wndHudNow();
+    }
+  }
+  /* 空壳会堵篮，一次只堵一只 */
+  let blocked=false;
+  for(let i=0;i<wnd.basks.length;i++)if(wnd.basks[i].blockMs>0)blocked=true;
+  for(let i=0;i<wnd.shells.length;i++){
+    const sh=wnd.shells[i];
+    if(sh.freeMs>0){sh.freeMs=Math.max(0,sh.freeMs-dt);continue}
+    if(sh.pin)continue;
+    for(let j=0;j<wnd.basks.length;j++){
+      const b=wnd.basks[j];
+      if(b.blockMs>0||blocked)continue;
+      if(wnDist(b.x,b.y,sh.x,sh.y)<WND_CATCH_WRONG){
+        b.blockMs=WND_BLOCK_MS;sh.pin=1;sh.bask=b;b.sh=sh;
+        sh.x=b.x;sh.y=b.y;sh.vx=0;sh.vy=0;
+        blocked=true;wnd.blocks++;wnAdd('hz_wind_block',1);
+        wnTone(220,.12,'square',.045);
+        if(wnd.tagPri<1)wndTag('🧺 一只 <b>空壳</b> 卡进了篮口：这颗篮子暂时进不去');
+        wndHudNow();
+        break;
+      }
+    }
+  }
+}
+/* ---- 挂篮：被风吹着漂，拴在锚点上会自己回位 ---- */
+/* 空壳出篮：顺着风口把它甩出去，并让它缓一阵子不许马上再卡回同一个篮口 */
+function wndFreeShell(b,sh,w){
+  b.blockMs=0;b.sh=null;sh.pin=0;sh.bask=null;sh.freeMs=WND_BLOCK_FREE;
+  let ex=w.x,ey=w.y,el=Math.sqrt(ex*ex+ey*ey);
+  if(el<.2){ex=b.x-WND_BX;ey=b.y-WND_BY;el=Math.sqrt(ex*ex+ey*ey)||1e-6}
+  sh.x=b.x+ex/el*1.35;sh.y=b.y+ey/el*1.35;
+  sh.vx=ex/el*3;sh.vy=ey/el*3;
+}
+function wndStepBasks(dt){
+  const s=dt/1000;
+  for(let i=0;i<wnd.basks.length;i++){
+    const b=wnd.basks[i];
+    const w=wndWindAt(b.x,b.y);
+    if(b.blockMs>0){
+      b.blockMs=Math.max(0,b.blockMs-dt);
+      const wm=Math.sqrt(w.x*w.x+w.y*w.y);
+      /* 越远的篮子本来就只吹得到全力的几成，门槛按距离折：这样离谷口几格都一样要「对着吹满」 */
+      const need=WND_UNBLOCK*Math.max(.18,1-wnDist(b.x,b.y,WND_BX,WND_BY)/WND_JET_LEN);
+      if(wm>need&&b.sh){
+        const sh=b.sh;
+        wndFreeShell(b,sh,w);
+        wnd.score+=2;
+        wnTone(680,.1,'sine',.05);
+        wndTag('🌬 一股猛风把 <b>空壳掏出来</b> 了（+2 分）');
+        wndChip(b.x,b.y,7,'#B0BEC5');
+      }
+      if(b.blockMs===0&&b.sh)wndFreeShell(b,b.sh,w);
+    }
+    b.vx+=(w.x*WND_BK_W-b.vx)*WND_BK_RESP*s;
+    b.vy+=(w.y*WND_BK_W-b.vy)*WND_BK_RESP*s;
+    b.vx-=(b.x-b.x0)*WND_BK_SPRING*s;
+    b.vy-=(b.y-b.y0)*WND_BK_SPRING*s;
+    b.x+=b.vx*s;b.y+=b.vy*s;
+    const ox=b.x-b.x0,oy=b.y-b.y0,od=Math.sqrt(ox*ox+oy*oy);
+    if(od>WND_BK_MAX){
+      b.x=b.x0+ox/od*WND_BK_MAX;b.y=b.y0+oy/od*WND_BK_MAX;
+      b.vx*=.4;b.vy*=.4;
+    }
+    if(b.sh&&b.sh.pin){b.sh.x=b.x;b.sh.y=b.y}
+    if(b.glowMs>0)b.glowMs=Math.max(0,b.glowMs-dt);
+  }
+  /* 风铃轻轻飘 */
+  for(let i=0;i<wnd.bells.length;i++){
+    const bl=wnd.bells[i];
+    bl.y=bl.y0+Math.sin(wnd.t/700+bl.ph)*.3;
+  }
+}
+/* ---- 风煞：一团跟着风走的乱流 ---- */
+function wndStepHaz(dt){
+  const s=dt/1000;
+  for(let i=0;i<wnd.hazes.length;i++){
+    const h=wnd.hazes[i];
+    const w=wndWindAt(h.x,h.y);
+    h.vx+=(w.x-h.vx)*WND_HAZ_DRAG*s;
+    h.vy+=(w.y-h.vy)*WND_HAZ_DRAG*s;
+    if(wnd.shooMs>0){
+      const toRight=h.x>=WND_BX;
+      h.vx+=(toRight?1:-1)*3.4*s;
+      h.vy+=(-0.6)*1.4*s;
+    }
+    h.x+=h.vx*s;h.y+=h.vy*s;
+    if(h.x<WND_X0+.7){h.x=WND_X0+.7;h.vx=Math.abs(h.vx)*.7}
+    if(h.x>WND_X1-.7){h.x=WND_X1-.7;h.vx=-Math.abs(h.vx)*.7}
+    if(h.y<WND_Y0+.7){h.y=WND_Y0+.7;h.vy=Math.abs(h.vy)*.7}
+    if(h.y>WND_Y1-.7){h.y=WND_Y1-.7;h.vy=-Math.abs(h.vy)*.7}
+    h.spin+=(h.vx*.6+.32)*s*3;
+    h.ph=wnDist(h.x,h.y,wnd.seed.x,wnd.seed.y)<1.5?1:0;
+    if(wnd.shooMs<=0&&h.ph&&wnDist(h.x,h.y,wnd.seed.x,wnd.seed.y)<WND_HAZ_R)wndTear();
+  }
+}
+/* ---- 进篮：只有写对这笔形的那只算落好 ---- */
+function wndStepCatch(){
+  if(!wnd.seed||wnd.busy)return;
+  const good=wndCorrect();
+  /* 篮口挨着的时候先认对的那只：蹭到隔壁篮不该算答错 */
+  for(let pass=0;pass<2;pass++)for(let i=0;i<wnd.basks.length;i++){
+    const b=wnd.basks[i];
+    if(pass===0?b.tag!==good:b.tag===good)continue;
+    /* 写对这笔形的篮口大（孩子该容易一点），写错的只蹭得到边 */
+    const rr=b.tag===good?WND_CATCH:WND_CATCH_WRONG;
+    const d=wnDist(b.x,b.y,wnd.seed.x,wnd.seed.y);
+    if(d>=rr)continue;
+    if(b.blockMs>0){
+      const nx=(wnd.seed.x-b.x)/(d||1),ny=(wnd.seed.y-b.y)/(d||1);
+      wnd.seed.x=b.x+nx*rr*1.15;wnd.seed.y=b.y+ny*rr*1.15;
+      wnd.seed.vx=nx*Math.abs(wnd.seed.vx)*.5;wnd.seed.vy=ny*Math.abs(wnd.seed.vy)*.5;
+      if(wnd.tagMs<=0){
+        wnTone(180,.12,'sawtooth',.04);
+        wndTag('🧺 <b>篮口被空壳堵着</b>：换一只篮，或来一股猛风把空壳掏出来');
+      }
+      return;
+    }
+    const spd=wndSeedSpeed(wnd.seed);
+    if(b.tag===wndCorrect())wndFinishStroke(b,spd>=WND_SWIFT_V);
+    else if(spd>=WND_FLYBY_V){
+      /* 冲得太猛的籽，错篮兜不住：从口上飞过去就过去了，下一拍各走各的路 */
+      if(wnd.tagMs<=0){
+        wnTone(520,.07,'triangle',.03);
+        wndTag('🌬 <b>好快！错篮没接住</b>：冲得猛的籽路过篮子也带得走 —— 慢慢蹭进去的才算送错');
+      }
+      continue;
+    }
+    else wndStrokeFail(b);
+    return;
+  }
+}
+function wndAddBell(n){wnAdd('hz_wind_bell',n)}
+/* ---- 落好 / 送错 / 钟走光 / 撕散 ---- */
+function wndFinishStroke(b,swift){
+  const bellFrac=wnd.bellTotal?wnd.bellGot/wnd.bellTotal:0;
+  const allBell=wnd.bellTotal>0&&wnd.bellGot>=wnd.bellTotal;
+  wnd.lits++;wnd.cats++;
+  wnAdd('hz_wind_lits',1);wnAdd('hz_wind_cat',1);
+  wnd.combo++;
+  if(wnd.combo>wnd.maxCombo)wnd.maxCombo=wnd.combo;
+  let gain=wndGain(bellFrac,swift),notes=[];
+  if(allBell){wnd.allBells++;gain+=WND_ALLBELL;notes.push('🎐 铃响齐了 +'+WND_ALLBELL)}
+  else wnd.bellWord=false;
+  if(swift){
+    wnd.swifts++;gain+=WND_SWIFT_BONUS;notes.push('💨 顺风一掷 +'+WND_SWIFT_BONUS);
+    wnAdd('hz_wind_swift',1);
+    if(wnInt('hz_wind_trophy')<WND_TROPHY_MAX&&Math.random()<.55){
+      wnAdd('hz_wind_trophy',1);wnd.trophy++;
+      notes.push('🪁 收一件 <b>'+wnOne(WND_TRS)+'</b> 进风架');
+    }
+  }
+  wnd.score+=gain;
+  wnd.done.add(wnd.qi);
+  b.glowMs=900;
+  wnTone(WND_NOTE[Math.min(WND_NOTE.length-1,wnd.lits+2)],.18,'triangle',.07);
+  wndTag('✅ 第 '+(wnd.qi+1)+' 笔落好：+ '+gain+(notes.length?' '+notes.join(' · '):''),1);
+  wndChip(b.x,b.y,10,WND_INK5[wnRok(b.tag)]);
+  wnd.busy=true;
+  wnd.qi++;
+  wndMini();wndHud();wndMeter();wndPow();wndLine();wndAsk();wndDraw();
+  if(wnd.qi>=wnd.n){wnT(wndWordDone,WND_NEXT_MS);return 1}
+  wnT(function(){
+    if(!wnd.run||wnd.over)return;
+    wnd.busy=false;
+    wndResetStroke();
+    wndAsk();wndHud();wndMeter();wndLine();wndDraw();
+  },620);
+  return 1;
+}
+function wndStrokeFail(b){
+  if(!wnd.run||wnd.over||wnd.busy)return 0;
+  wnd.fails++;wnd.cats++;
+  wnd.score=Math.max(0,wnd.score-WND_PEN_FAIL);
+  wnd.combo=0;wnd.cleanWord=false;wnd.bellWord=false;
+  wnTone(140,.2,'sawtooth',.06);
+  wndShake();
+  wndTag('🧺 <b>送错了篮子</b>：这一笔的墨擦掉，重新撒一颗籽（扣 '+WND_PEN_FAIL+' 分）');
+  wnAdd('hz_wind_fail',1);
+  wndChip(b.x,b.y,8,'rgba(176,190,197,.75)');
+  wnd.busy=true;
+  wnT(function(){
+    if(!wnd.run||wnd.over)return;
+    wnd.busy=false;
+    wndResetStroke();
+    wndAsk();wndHud();wndMeter();wndPow();wndLine();wndDraw();
+  },640);
+  wndHudNow();
+  return 1;
+}
+function wndTimeout(){
+  wnd.timeouts++;
+  wnd.score=Math.max(0,wnd.score-WND_PEN_TIME);
+  wnd.combo=0;wnd.cleanWord=false;wnd.bellWord=false;
+  wnTone(168,.16,'sawtooth',.06);
+  wndTag('⏳ 这一笔的钟走光：重撒一颗籽（扣 '+WND_PEN_TIME+' 分，不算答错）');
+  wnAdd('hz_wind_time',1);
+  wndResetStroke();
+  wndHud();wndMeter();wndPow();wndLine();wndAsk();wndDraw();
+}
+function wndTear(){
+  if(!wnd.run||wnd.over||wnd.busy)return 0;
+  wnd.tears++;
+  wnd.hearts--;
+  wnd.score=Math.max(0,wnd.score-WND_PEN_TEAR);
+  wnd.combo=0;wnd.cleanWord=false;wnd.bellWord=false;
+  wnAdd('hz_wind_tear',1);
+  wndShake();wnTone(96,.24,'sawtooth',.08);
+  wndChip(wnd.seed.x,wnd.seed.y,12,'rgba(255,138,101,.9)');
+  wnd.busy=true;
+  wndHud();wndMeter();
+  if(wnd.hearts<=0){
+    wnd.hearts=0;wndHud();
+    wndTag('😈 <b>风煞把墨撕散了</b>：心用完了');
+    wnT(function(){wndEnd('hearts')},520);
+    return 1;
+  }
+  wndTag('😈 <b>风煞撕散</b>了墨籽：掉一颗心（还剩 '+wnd.hearts+' 颗，扣 '+WND_PEN_TEAR+' 分）');
+  wnT(function(){
+    if(!wnd.run||wnd.over)return;
+    wnd.busy=false;
+    wndResetStroke();
+    wndAsk();wndHud();wndMeter();wndPow();wndLine();wndDraw();
+  },700);
+  return 1;
+}
+function wndAnchor(){
+  if(!wnd.run||wnd.over||wnd.busy)return 0;
+  if(wnd.actMs>0)return 0;
+  wnd.actMs=WND_ACT_CD;
+  if(wnd.anchN<1){wndTag('🪀 收籽用完了：这一场只能靠风把它救回来');wnTone(150,.1,'sawtooth',.04);return 0}
+  wnd.anchN--;wnd.anchors++;wnAdd('hz_wind_anchor',1);
+  wnd.seed.x=WND_SX;wnd.seed.y=WND_SY;wnd.seed.vx=0;wnd.seed.vy=0;wnd.seed.trail=[];
+  wnd.seed.px=WND_SX;wnd.seed.py=WND_SY;
+  wnd.moved=0;wnd.since=0;wnd.nagMs=0;
+  wnTone(520,.12,'sine',.05);
+  wndTag('🪀 把墨籽 <b>收回谷口</b> 重撒（还剩 '+wnd.anchN+' 次；这一笔的钟照旧在走）');
+  wndHud();wndMeter();wndPow();wndLine();wndDraw();
+  return 1;
+}
+function wndWordDone(){
+  if(!wnd.run||wnd.over)return;
+  const rec=wnd.rec;
+  wnd.words++;
+  wnAdd('hz_wind_words',1);
+  const bonus=WND_WORD_BONUS+wnd.lv*6+(wnd.cleanWord?18:0)+(wnd.bellWord?12:0);
+  wnd.score+=bonus;
+  wndAddBook(rec.ch);
+  const lv=wndLvOf(wnd.words);
+  if(lv>wnd.lv){
+    wnd.lv=lv;
+    localStorage.setItem('hz_wind_lv',String(lv));
+    wnd.galeMs=Math.min(wndGale(lv),wnd.galeMs+22000);
+    wnd.hearts=Math.min(WND_HEART_MAX,wnd.hearts+1);
+    wnd.peekN=Math.min(3,wnd.peekN+1);wnd.slowN=Math.min(3,wnd.slowN+1);
+    wnd.shooN=Math.min(3,wnd.shooN+1);wnd.anchN=Math.min(3,wnd.anchN+1);
+    wndTag('🍃 走进 <b>第 '+lv+' 场</b>：风散得更快、气回得 '+wndRefill(lv).toFixed(0)+' 格/秒、横风带 '+wnd.bands.length+' 条、涡 '+wnd.vorts.length+' 个'+(wnd.hazes.length?'、风煞 '+wnd.hazes.length+' 团':'')+(wndTagLit(lv)?'、字签只亮 '+(wndTagLit(lv)/1000).toFixed(1)+' 秒':''),1);
+  }
+  wnTone(880,.2,'triangle',.08);
+  wnSay('🍃 <b>'+rec.ch+'</b> 整字落好：<b>'+wnd.n+'</b> 笔一笔一笔送进了对的挂篮（本字 +'+bonus+' 分'+(wnd.cleanWord?' · 一次没送错':'')+(wnd.bellWord?' · 笔笔铃响齐了':'')+'）','#C8E6C9');
+  wndHud();wndMeter();wndPow();
+  wnT(function(){
+    if(!wnd.run||wnd.over)return;
+    const ch=wndNewWord();
+    if(!ch)wndEnd('pool');
+  },WND_TAG_MS);
+  return 1;
+}
+/* ---- 歇一记：只报「籽在风箱的哪一方」，不报哪个笔形才对 ---- */
+function wndNag(){
+  if(!wnd.rec||wnd.busy||!wnd.seed)return;
+  wnd.nags++;wnd.nagMs=WND_NAG_HOLD;wnd.since=0;
+  let msg;
+  if(wnd.air<18)msg='🌬 <b>气不够了</b>：风箱每秒回 '+wndRefill(wnd.lv).toFixed(0)+' 分，先等一口气（短促几记比按住省气）';
+  else if(wnd.moved<.6)msg='🌱 <b>籽还停在谷口</b>：把风口转好，按住 <code>空格</code> 吹一记';
+  else if(wnDist(wnd.seed.x,wnd.seed.y,WND_BX,WND_BY)>8.6&&wnd.air<45)msg='🏠 <b>籽飘到谷的尽头了</b>：那里的风已经推不动它 —— <b>松手</b>，回谷风自己把它带回风箱口，近了再重新出手';
+  else{
+    const d=wndDirOf(wnd.seed.x-WND_BX,wnd.seed.y-WND_BY);
+    msg=d<0?'🌱 <b>籽就在风口底下</b>：往 <b>上</b>（↑）吹一记':
+      '💨 <b>先照到籽</b>：它现在在谷口的 <b>'+WND_NAME[d]+'</b>（'+WND_ARW[d]+'）方 —— 把风口转到那边再吹';
+  }
+  wnSay(msg,'#FFF59D');
+  wndLine();
+}
+
+/* ================= 画面：风场、挂篮、风铃、空壳、风煞与那台风箱 ================= */
+function wndDecor(){
+  if(wnd.decor)return wnd.decor;
+  wnd.decor=[];
+  for(let i=0;i<44;i++)wnd.decor.push({x:Math.random()*WND_W,y:Math.random()*WND_H,r:1+Math.random()*2.2,a:.04+Math.random()*.1});
+  return wnd.decor;
+}
+function wndRoundRect(x,y,w,h,rad){
+  const c=wnd.ctx;
+  c.beginPath();
+  c.moveTo(x+rad,y);c.lineTo(x+w-rad,y);c.quadraticCurveTo(x+w,y,x+w,y+rad);
+  c.lineTo(x+w,y+h-rad);c.quadraticCurveTo(x+w,y+h,x+w-rad,y+h);
+  c.lineTo(x+rad,y+h);c.quadraticCurveTo(x,y+h,x,y+h-rad);
+  c.lineTo(x,y+rad);c.quadraticCurveTo(x,y,x+rad,y);
+  c.closePath();
+}
+function wndDraw(){
+  const c=wnd.ctx;
+  if(!c)return;
+  c.clearRect(0,0,WND_W,WND_H);
+  const g=c.createLinearGradient(0,0,0,WND_H);
+  g.addColorStop(0,'#0F241B');g.addColorStop(1,'#07130E');
+  c.fillStyle=g;c.fillRect(0,0,WND_W,WND_H);
+  const dc=wndDecor();
+  c.fillStyle='#A5D6A7';
+  for(let i=0;i<dc.length;i++){const d=dc[i];c.globalAlpha=d.a;c.beginPath();c.arc(d.x,d.y,d.r,0,6.2832);c.fill()}
+  c.globalAlpha=1;
+  /* 谷壁 */
+  c.strokeStyle='rgba(165,214,167,.34)';c.lineWidth=4;
+  wndRoundRect(WND_X0*WND_CS-2,WND_Y0*WND_CS-2,(WND_X1-WND_X0)*WND_CS+4,(WND_Y1-WND_Y0)*WND_CS+4,12);
+  c.stroke();
+  /* 横风带 */
+  for(let i=0;i<wnd.bands.length;i++){
+    const bd=wnd.bands[i];
+    const y0=bd.r0*WND_CS,y1=(bd.r1+1)*WND_CS;
+    c.fillStyle='rgba(128,222,234,.09)';
+    c.fillRect(WND_X0*WND_CS,y0,(WND_X1-WND_X0)*WND_CS,y1-y0);
+    c.strokeStyle='rgba(128,222,234,.34)';c.lineWidth=1.4;
+    const step=26,off=(wnd.t*.02*(bd.vx>0?1:-1))%step;
+    for(let x=WND_X0*WND_CS+off;x<WND_X1*WND_CS;x+=step){
+      const my=(y0+y1)/2;
+      c.beginPath();c.moveTo(x,my);c.lineTo(x+9*(bd.vx>0?1:-1),my);c.stroke();
+      c.beginPath();c.moveTo(x+6*(bd.vx>0?1:-1),my-3);c.lineTo(x+9*(bd.vx>0?1:-1),my);c.lineTo(x+6*(bd.vx>0?1:-1),my+3);c.stroke();
+    }
+  }
+  /* 涡 */
+  for(let i=0;i<wnd.vorts.length;i++){
+    const v=wnd.vorts[i];
+    c.strokeStyle='rgba(179,157,219,.4)';c.lineWidth=1.6;
+    for(let ring=1;ring<=3;ring++){
+      c.beginPath();
+      c.arc(v.x*WND_CS,v.y*WND_CS,ring*v.r*WND_CS/3.4,v.sign*(wnd.t/900+ring),(v.sign<0?1:-1)*6.28,v.sign<0);
+      c.stroke();
+    }
+  }
+  /* 风：一格一根小须 */
+  c.lineCap='round';
+  for(let r=0;r<WND_R;r++)for(let cc=0;cc<WND_C;cc++){
+    const k=wnKey(cc,r),vx=wnd.vx[k],vy=wnd.vy[k];
+    const sp=Math.sqrt(vx*vx+vy*vy);
+    if(sp<.32)continue;
+    const x=(cc+.5)*WND_CS,y=(r+.5)*WND_CS,len=Math.min(WND_CS*.46,sp*3.2);
+    c.globalAlpha=Math.min(.62,.16+sp*.12);
+    c.strokeStyle='#B2DFDB';c.lineWidth=1.4;
+    c.beginPath();c.moveTo(x-vx/sp*len*.5,y-vy/sp*len*.5);c.lineTo(x+vx/sp*len*.5,y+vy/sp*len*.5);c.stroke();
+  }
+  c.globalAlpha=1;
+  /* 喷流的锥形轮廓：吹的时候才画得见 */
+  if(wnd.blowing&&wnd.air>0){
+    const d=WND_DIRS[wnd.aim],L=Math.sqrt(d[0]*d[0]+d[1]*d[1]);
+    const ux=d[0]/L,uy=d[1]/L,px=-uy,py=ux;
+    const bx=WND_BX*WND_CS,by=WND_BY*WND_CS;
+    const ex=(WND_BX+ux*WND_JET_LEN)*WND_CS,ey=(WND_BY+uy*WND_JET_LEN)*WND_CS;
+    const w1=(WND_JET_W0+WND_JET_LEN*WND_JET_SP)*WND_CS;
+    c.fillStyle='rgba(200,230,201,.09)';
+    c.beginPath();c.moveTo(bx,by);
+    c.lineTo(ex+px*w1,ey+py*w1);c.lineTo(ex-px*w1,ey-py*w1);c.closePath();c.fill();
+    c.strokeStyle='rgba(200,230,201,.34)';c.lineWidth=1.2;c.stroke();
+  }
+  /* 风铃 */
+  for(let i=0;i<wnd.bells.length;i++){
+    const bl=wnd.bells[i];
+    const x=bl.x*WND_CS,y=bl.y*WND_CS;
+    c.strokeStyle=bl.taken?'rgba(255,241,118,.25)':'rgba(255,241,118,.6)';c.lineWidth=1;
+    c.beginPath();c.moveTo(x,y-9);c.lineTo(x,y-3);c.stroke();
+    c.fillStyle=bl.taken?'rgba(255,241,118,.2)':'#FFF176';
+    c.beginPath();c.arc(x,y+1,3.6,0,6.2832);c.fill();
+    if(!bl.taken){c.strokeStyle='rgba(255,255,255,.5)';c.beginPath();c.arc(x,y+1,5.6,0,6.2832);c.stroke()}
+  }
+  /* 挂篮 */
+  for(let i=0;i<wnd.basks.length;i++){
+    const b=wnd.basks[i];
+    const x=b.x*WND_CS,y=b.y*WND_CS,ax=b.x0*WND_CS,ay=b.y0*WND_CS;
+    c.strokeStyle='rgba(176,190,197,.4)';c.lineWidth=1;
+    c.beginPath();c.moveTo(ax,ay-14);c.lineTo(x,y-12);c.stroke();
+    c.fillStyle='rgba(120,144,156,.55)';
+    c.beginPath();c.arc(ax,ay-14,2,0,6.2832);c.fill();
+    const ink=WND_INK5[wnRok(b.tag)];
+    if(b.glowMs>0){
+      c.globalAlpha=.28*b.glowMs/900;c.fillStyle=ink;
+      c.beginPath();c.arc(x,y,16,0,6.2832);c.fill();c.globalAlpha=1;
+    }
+    c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(x,y+9,9,3,0,0,6.2832);c.fill();
+    c.strokeStyle=ink;c.lineWidth=2.4;
+    c.beginPath();c.moveTo(x-10,y-6);c.lineTo(x+10,y-6);c.stroke();
+    c.beginPath();c.moveTo(x-10,y-6);c.lineTo(x-6,y+8);c.lineTo(x+6,y+8);c.lineTo(x+10,y-6);c.closePath();
+    c.fillStyle='rgba(255,255,255,.1)';c.fill();c.stroke();
+    c.font='bold 11px sans-serif';c.textAlign='center';c.textBaseline='middle';
+    if(wndShowTag()){c.fillStyle=ink;c.fillText(WND_TAG5[wnRok(b.tag)],x,y+2)}
+    else{c.fillStyle='rgba(176,190,197,.45)';c.fillText('?',x,y+2)}
+    if(b.blockMs>0){
+      c.fillStyle='rgba(176,190,197,.85)';
+      c.beginPath();c.arc(x,y-7,4.2,0,6.2832);c.fill();
+      c.strokeStyle='rgba(255,138,101,.85)';c.lineWidth=1.4;
+      c.beginPath();c.arc(x,y-7,6.4,0,6.2832);c.stroke();
+    }
+  }
+  /* 空壳籽 */
+  for(let i=0;i<wnd.shells.length;i++){
+    const sh=wnd.shells[i];
+    const x=sh.x*WND_CS,y=sh.y*WND_CS;
+    c.fillStyle='rgba(200,230,201,.2)';
+    c.beginPath();c.arc(x,y,5.4,0,6.2832);c.fill();
+    c.fillStyle=sh.pin?'#B0BEC5':'rgba(220,237,200,.6)';
+    c.beginPath();c.arc(x,y,2.6,0,6.2832);c.fill();
+    c.strokeStyle='rgba(255,255,255,.25)';c.lineWidth=.8;
+    for(let k=0;k<5;k++){
+      const a=k*1.256+wnd.t/1400;
+      c.beginPath();c.moveTo(x,y);c.lineTo(x+Math.cos(a)*5.2,y+Math.sin(a)*5.2);c.stroke();
+    }
+  }
+  /* 风煞 */
+  for(let i=0;i<wnd.hazes.length;i++){
+    const h=wnd.hazes[i];
+    const x=h.x*WND_CS,y=h.y*WND_CS;
+    c.globalAlpha=wnd.shooMs>0?.24:(h.ph?.95:.72);
+    const rg=c.createRadialGradient(x,y,1,x,y,12);
+    rg.addColorStop(0,'#FF8A65');rg.addColorStop(1,'rgba(69,39,32,.2)');
+    c.fillStyle=rg;c.beginPath();c.arc(x,y,11,0,6.2832);c.fill();
+    c.strokeStyle='rgba(255,183,77,.85)';c.lineWidth=1.6;
+    for(let k=0;k<3;k++){
+      const a=h.spin+k*2.09;
+      c.beginPath();c.arc(x,y,7,a,a+1.5);c.stroke();
+    }
+    c.fillStyle='rgba(33,33,33,.85)';
+    c.beginPath();c.arc(x-3,y-2,1.3,0,6.2832);c.arc(x+3,y-2,1.3,0,6.2832);c.fill();
+    c.globalAlpha=1;
+  }
+  /* 墨籽：一路墨迹 + 发光的一颗 */
+  if(wnd.seed){
+    const sd=wnd.seed;
+    if(sd.trail.length>1){
+      c.strokeStyle='rgba(255,241,118,.32)';c.lineWidth=2;c.lineCap='round';c.lineJoin='round';
+      c.beginPath();
+      for(let j=0;j<sd.trail.length;j++){
+        const p=sd.trail[j];
+        if(j)c.lineTo(p[0]*WND_CS,p[1]*WND_CS);else c.moveTo(p[0]*WND_CS,p[1]*WND_CS);
+      }
+      c.stroke();
+    }
+    const x=sd.x*WND_CS,y=sd.y*WND_CS;
+    c.strokeStyle='rgba(255,241,118,.5)';c.lineWidth=1.2;
+    for(let k=0;k<7;k++){
+      const a=k*.897+wnd.t/900;
+      c.beginPath();c.moveTo(x+Math.cos(a)*6,y+Math.sin(a)*6);c.lineTo(x+Math.cos(a)*10,y+Math.sin(a)*10);c.stroke();
+    }
+    c.fillStyle='rgba(0,0,0,.4)';c.beginPath();c.ellipse(x,y+5,5,2,0,0,6.2832);c.fill();
+    const pg=c.createRadialGradient(x-2,y-2,1,x,y,7);
+    pg.addColorStop(0,'#FFFFFF');pg.addColorStop(.6,'#FFF176');pg.addColorStop(1,'#F57F17');
+    c.fillStyle=pg;c.beginPath();c.arc(x,y,5.6,0,6.2832);c.fill();
+    c.fillStyle='rgba(38,50,56,.9)';c.beginPath();c.arc(x,y+1.6,2.2,0,6.2832);c.fill();
+  }
+  /* 风箱 */
+  const bx=WND_BX*WND_CS,by=WND_BY*WND_CS;
+  c.fillStyle='rgba(0,0,0,.4)';c.beginPath();c.ellipse(bx,by+9,15,4,0,0,6.2832);c.fill();
+  c.fillStyle='#5D4037';wndRoundRect(bx-13,by-6,26,16,4);c.fill();
+  c.strokeStyle='#A1887F';c.lineWidth=1.6;wndRoundRect(bx-13,by-6,26,16,4);c.stroke();
+  c.fillStyle='#8D6E63';c.fillRect(bx-13,by-2,26,3);
+  const d=WND_DIRS[wnd.aim],L=Math.sqrt(d[0]*d[0]+d[1]*d[1]);
+  c.save();c.translate(bx,by);c.rotate(Math.atan2(d[1],d[0]));
+  c.fillStyle=wnd.blowing&&wnd.air>0?'#DCEDC8':'#AED581';
+  c.beginPath();c.moveTo(6,-4.6);c.lineTo(16,-2.6);c.lineTo(16,2.6);c.lineTo(6,4.6);c.closePath();c.fill();
+  c.restore();
+  c.fillStyle='rgba(255,255,255,.7)';c.font='bold 8px sans-serif';c.textAlign='center';c.textBaseline='middle';
+  c.fillText(WND_ARW[wnd.aim],bx,by+2);
+  /* 状态色 */
+  if(wnd.slowMs>0){c.fillStyle='rgba(126,87,194,.10)';c.fillRect(0,0,WND_W,WND_H)}
+  if(wnd.shooMs>0){c.strokeStyle='rgba(126,87,194,.6)';c.lineWidth=3;wndRoundRect(WND_X0*WND_CS-2,WND_Y0*WND_CS-2,(WND_X1-WND_X0)*WND_CS+4,(WND_Y1-WND_Y0)*WND_CS+4,12);c.stroke()}
+  if(wnd.warn){c.strokeStyle='rgba(255,82,82,.7)';c.lineWidth=3;c.strokeRect(3,3,WND_W-6,WND_H-6)}
+  if(wnd.over){c.fillStyle='rgba(7,19,14,.55)';c.fillRect(0,0,WND_W,WND_H)}
+}
+/* ================= 台面上的话 ================= */
+function wndHud(){
+  const rk=wndRank2();
+  wnSet('wndRankTxt',rk.e+' '+rk.t);
+  let h='';for(let i=0;i<wnd.hearts;i++)h+='❤️';
+  wnSet('wndHeartTxt',h||'💔');
+  wnSet('wndComboTxt','🔥 连 '+wnd.combo);
+  wnSet('wndLitTxt','🖋 '+(wnd.rec?Math.min(wnd.qi+1,wnd.n):0)+'/'+wnd.n+' 笔');
+  wnSet('wndBellTxt','🎐 挂铃 '+wnd.bellGot+'/'+wnd.bellTotal);
+  wnSet('wndAirTxt2','🌬 气 '+Math.round(wnd.air));
+  wnSet('wndShellTxt','🍥 空壳 '+wnd.shells.length);
+  wnSet('wndHazTxt','😈 风煞 '+wnd.hazes.length+' 团');
+  wnSet('wndSpdTxt','💨 籽速 '+wndSeedSpeed(wnd.seed||{vx:0,vy:0}).toFixed(1));
+  wnSet('wndAnchTxt','🪀 收籽 '+wnd.anchN);
+  wndPadMark(wnd.aim);
+  const ab=document.getElementById('wndAnchorBtn');
+  if(ab){ab.disabled=wnd.anchN<=0;const b=ab.querySelector('b');if(b)b.innerHTML='剩 '+wnd.anchN}
+  const pk=document.getElementById('wndPeekBtn');
+  if(pk){pk.disabled=wnd.peekN<=0;const b=pk.querySelector('b');if(b)b.innerHTML='剩 '+wnd.peekN}
+  const sb=document.getElementById('wndSlowBtn');
+  if(sb){sb.disabled=wnd.slowN<=0;const b=sb.querySelector('b');if(b)b.innerHTML='剩 '+wnd.slowN}
+  const hb=document.getElementById('wndShooBtn');
+  if(hb){hb.disabled=wnd.shooN<=0;const b=hb.querySelector('b');if(b)b.innerHTML='剩 '+wnd.shooN}
+}
+function wndHudNow(){wndHud();wndPow()}
+function wndPadMark(a){
+  const ps=document.querySelectorAll('#wndPad button[data-d]');
+  for(let i=0;i<ps.length;i++)ps[i].classList.toggle('on',+ps[i].dataset.d===a&&wnd.aim>=0);
+  const mb=document.getElementById('wndBlowBtn');
+  if(mb)mb.classList.toggle('hard',wnd.air<=0);
+}
+function wndMeter(){
+  const af=wnd.air/WND_AIR_MAX;
+  const ab=document.getElementById('wndAirBox'),ai=document.getElementById('wndAirBar');
+  if(ai)ai.style.width=(af*100).toFixed(1)+'%';
+  if(ab)ab.classList.toggle('dry',af<.25);
+  wnSet('wndAirTxt','🌬 风箱 '+Math.round(wnd.air));
+  const qf=wnd.qms0?Math.max(0,wnd.qms/wnd.qms0):0;
+  const qb=document.getElementById('wndQBox'),qi=document.getElementById('wndQBar');
+  if(qi)qi.style.width=(qf*100).toFixed(1)+'%';
+  if(qb)qb.classList.toggle('low',qf<.3);
+  wnSet('wndQTxt','⏳ 这一笔 '+Math.ceil(wnd.qms/1000)+' 秒');
+  wnSet('wndQTxt2','⏳ 这一笔 '+Math.ceil(wnd.qms/1000)+' 秒');
+  const gf=wndGale(wnd.lv)?Math.max(0,wnd.galeMs/wndGale(wnd.lv)):0;
+  const gb=document.getElementById('wndGaleBox'),gi=document.getElementById('wndGaleBar');
+  if(gi)gi.style.width=(gf*100).toFixed(1)+'%';
+  if(gb)gb.classList.toggle('low',wnd.warn);
+  wnSet('wndGaleTxt','🍃 长风还剩 '+Math.ceil(wnd.galeMs/1000)+' 秒');
+  wnSet('wndScoreTxt','🎯 '+wnd.score+' 分');
+  wnSet('wndLvTxt','第 '+wnd.lv+' 场 · 已收 '+wnd.words+' 字');
+}
+function wndBaskDrift(){
+  let m=0;
+  for(let i=0;i<wnd.basks.length;i++){
+    const b=wnd.basks[i],d=wnDist(b.x,b.y,b.x0,b.y0);
+    if(d>m)m=d;
+  }
+  return m;
+}
+function wndPowStr(){
+  let done=0;
+  if(wnd.done)for(let i=0;i<wnd.n;i++)if(wnd.done.has(i))done++;
+  const blk=(function(){for(let i=0;i<wnd.basks.length;i++)if(wnd.basks[i].blockMs>0)return 1;return 0})();
+  return '🌬 第 <b>'+wnd.lv+'</b> 场 · '+wnd.n+' 笔（落好 <b>'+done+'</b>）· 这一笔是第 <b>'+
+    Math.min(wnd.qi+1,wnd.n)+'</b> 笔 · 场上 <b>'+wnd.basks.length+'</b> 只篮'+(wndShowTag()?'（笔形亮着）':'（笔形淡了）')+
+    ' · 籽速 <b>'+wndSeedSpeed(wnd.seed||{vx:0,vy:0}).toFixed(1)+'</b> 格/秒 · 气 <b>'+Math.round(wnd.air)+
+    '</b>（回 '+wndRefill(wnd.lv).toFixed(0)+'/秒）· 风最强 <b>'+wnd.windMax.toFixed(1)+
+    '</b> · 横风带 <b>'+wnd.bands.length+'</b> 条 · 涡 <b>'+wnd.vorts.length+
+    '</b> 个 · 风煞 <b>'+wnd.hazes.length+'</b> 团 · 空壳 <b>'+wnd.shells.length+'</b> 颗 · 铃 <b>'+wnd.bellGot+'/'+wnd.bellTotal+
+    '</b>'+(blk?' · <b>篮口被堵</b>':'')+' · 漂得最远的篮子离锚 <b>'+wndBaskDrift().toFixed(1)+'</b> 格'+
+    (wndTagLit(wnd.lv)?' · 字签剩 <b>'+Math.max(0,Math.ceil(wnd.litMs/1000))+'</b> 秒':'');
+}
+function wndPow(){wnSet('wndPowTxt',wndPowStr())}
+function wndLine(){
+  const el=document.getElementById('wndHintLine');
+  if(!el)return;
+  let t;
+  if(wnd.nagMs>0)t='🌬 <b>歇一记提示</b>：下面那行只报「籽在风箱的哪一方」，不报哪个笔形才对';
+  else if(wnd.peekMs>0)t='✨ <b>照签中</b>：挂篮上的笔形又亮起来了（'+(wnd.peekMs/1000).toFixed(1)+' 秒）';
+  else if(wnd.slowMs>0)t='🐢 <b>缓风中</b>：全场走 '+(WND_SLOW_FAC*100).toFixed(0)+'% 的速度，趁这段把提前量算准';
+  else if(wnd.shooMs>0)t='🍃 <b>驱煞中</b>：风煞被赶到谷边 '+(wnd.shooMs/1000).toFixed(1)+' 秒，放心吹';
+  else if(wnd.busy&&wnd.rec&&wnd.qi>=wnd.n)t='🍃 <b>整字落好</b>，这一张正在收进图鉴……';
+  else if(wnd.busy)t='🌱 这一笔结好了，风箱正在等下一颗籽落地……';
+  else if(wnd.warn)t='🍃 <b>长风快凉了</b>：这一场收完就得交账';
+  else if(wnd.air<=0)t='🌬 <b>风箱没气了</b>：松开 <code>空格</code> 等回气（每秒 +'+wndRefill(wnd.lv).toFixed(0)+'），<b>短促几记</b> 最省气';
+  else if(!wnd.moved||wnd.moved<.6)t='🌱 <b>籽还停在谷口</b>：<code>↑↓←→</code> 转风口、按住 <code>空格</code> <b>吹</b>（或手指按在场上，风箱就朝手指吹）';
+  else t='💨 风口朝 <b>'+WND_NAME[wnd.aim]+'</b>（'+WND_ARW[wnd.aim]+'）吹着：籽 <b>追风要一会儿</b>，横风会削偏 —— 早一记晚一记都进不了篮';
+  el.innerHTML=t;
+}
+function wndMini(){
+  const svg=document.getElementById('wndMiniSvg');
+  if(!svg)return;
+  const rec=wnd.rec;
+  if(!rec){svg.innerHTML='';return}
+  let s='<rect x="0" y="0" width="1024" height="1024" fill="none"/>';
+  s+='<line x1="0" y1="512" x2="1024" y2="512" stroke="rgba(255,255,255,.14)" stroke-width="6"/>';
+  s+='<line x1="512" y1="0" x2="512" y2="1024" stroke="rgba(255,255,255,.14)" stroke-width="6"/>';
+  s+='<line x1="0" y1="0" x2="1024" y2="1024" stroke="rgba(255,255,255,.08)" stroke-width="4"/>';
+  s+='<line x1="1024" y1="0" x2="0" y2="1024" stroke="rgba(255,255,255,.08)" stroke-width="4"/>';
+  for(let i=0;i<rec.n;i++){
+    const dn=wnd.done&&wnd.done.has(i);
+    const cur=!dn&&i===wnd.qi;
+    s+='<path d="'+rec.paths[i]+'" fill="'+(dn?WND_INK5[wnRok(rec.dirs[i])]:(cur?'rgba(255,255,255,.4)':'rgba(255,255,255,.14)'))+'"/>';
+  }
+  svg.innerHTML=s;
+  wnSet('wndMiniCap',rec.ch+' · 共 '+rec.n+' 笔');
+}
+function wndTag(t,pri){
+  wnSet('wndTag',t);
+  const el=document.getElementById('wndTag');
+  if(el)el.classList.add('on');
+  wnd.tagMs=WND_TAG_MS;
+  /* 场上只有一条浮条：大事（落好一笔、走进下一场）正讲着的时候，零碎提示不许把它顶掉 */
+  wnd.tagPri=pri?1:0;
+}
+function wndFxBox(){
+  if(wnd.fxBox)return wnd.fxBox;
+  const el=document.getElementById('wndFx');
+  wnd.fxBox=el||null;
+  return wnd.fxBox;
+}
+function wndChip(x,y,n,color){
+  const box=wndFxBox();
+  if(!box)return;
+  const p=wndPx(x,y);
+  for(let i=0;i<n;i++){
+    const d=document.createElement('i');
+    d.className='wnd-chip';
+    d.style.left=(p.x*(box.clientWidth/WND_W||1))+'px';
+    d.style.top=(p.y*(box.clientHeight/WND_H||1))+'px';
+    d.style.background=color||'rgba(200,230,201,.85)';
+    d.style.setProperty('--dx',((Math.random()*54-27)|0)+'px');
+    d.style.setProperty('--dy',((Math.random()*-38-6)|0)+'px');
+    box.appendChild(d);
+    wnT(function(){if(d.parentNode)d.parentNode.removeChild(d)},700);
+  }
+}
+function wndPuff(x,y,n){
+  const box=wndFxBox();
+  if(!box)return;
+  const p=wndPx(x,y);
+  for(let i=0;i<n;i++){
+    const d=document.createElement('i');
+    d.className='wnd-puff';
+    d.style.left=(p.x*(box.clientWidth/WND_W||1))+'px';
+    d.style.top=(p.y*(box.clientHeight/WND_H||1))+'px';
+    d.style.setProperty('--dx',((Math.random()*70-35)|0)+'px');
+    d.style.setProperty('--dy',((Math.random()*40-26)|0)+'px');
+    box.appendChild(d);
+    wnT(function(){if(d.parentNode)d.parentNode.removeChild(d)},760);
+  }
+}
+function wndShake(){
+  const el=document.getElementById('wndValley');
+  if(!el)return;
+  el.classList.remove('shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+  wnT(function(){el.classList.remove('shake')},360);
+}
+function wndAddBook(ch){
+  const cur=localStorage.getItem('hz_wind_book')||'';
+  const a=cur?cur.split(','):[];
+  if(a.indexOf(ch)<0){a.push(ch);if(a.length>WND_BOOK_MAX)a.shift();localStorage.setItem('hz_wind_book',a.join(','))}
+}
+function wndAddMiss(ch){
+  const cur=(localStorage.getItem('hz_wind_miss')||'').split(',').filter(function(v){return v});
+  if(cur.indexOf(ch)<0){cur.push(ch);if(cur.length>12)cur.shift();localStorage.setItem('hz_wind_miss',cur.join(','))}
+}
+
+/* ================= 主循环 ================= */
+function wndStartLoop(){
+  if(wnd.rafId)return;
+  wnd.last=performance.now();
+  function step(now){
+    if(!wnd.run||wnd.over){wnd.rafId=0;return}
+    const dt=Math.min(120,Math.max(8,now-wnd.last));
+    wnd.last=now;
+    wndTick(dt);
+    wnd.rafId=requestAnimationFrame(step);
+  }
+  wnd.rafId=requestAnimationFrame(step);
+}
+function wndStopLoop(){
+  if(wnd.rafId){cancelAnimationFrame(wnd.rafId);wnd.rafId=0}
+}
+function wndTick(dt){
+  if(!wnd.run||wnd.over)return;
+  dt=Math.min(dt||WND_TICK_MS,120);
+  wnd.t+=dt;
+  const wp=wndPhys(dt);
+  wndStepWind(wp);
+  wndStepSeeds(wp);
+  wndStepBasks(wp);
+  wndStepHaz(wp);
+  if(!wnd.run||wnd.over)return;
+  wndStepCatch();
+  if(!wnd.run||wnd.over)return;
+  wndStepAir(dt);
+  wndStepTimers(dt);
+  if(!wnd.run||wnd.over)return;
+  wndDraw();
+  wndMeter();
+  wnd.hudAcc+=dt;
+  if(wnd.hudAcc>=110){wnd.hudAcc=0;wndHud();wndPow();wndLine()}
+}
+/* ---- 气：吹着就往下掉，松手才回。越深回得越慢，所以短促几记比按住省气 ---- */
+function wndStepAir(dt){
+  const s=dt/1000;
+  if(wnd.blowing&&wnd.air>0){
+    wnd.air=Math.max(0,wnd.air-WND_AIR_USE*s);
+    if(wnd.air<=0){
+      wnd.blowing=false;
+      if(!wnd.airWarn){
+        wnd.airWarn=1;
+        wnTone(150,.12,'sawtooth',.04);
+        /* 落笔那一瞬的庆祝正占着浮条：同一拍里别把「笔落好」顶掉，气条自己会说话 */
+        if(!wnd.busy&&wnd.tagMs<=0)wndTag('🌬 <b>风箱空了</b>：松一松手等回气（每秒 +'+wndRefill(wnd.lv).toFixed(0)+'），<b>短促几记</b> 最省气');
+        wndLine();wndPadMark(wnd.aim);
+      }
+    }
+    return;
+  }
+  if(wnd.air<WND_AIR_MAX){
+    wnd.air=Math.min(WND_AIR_MAX,wnd.air+wndRefill(wnd.lv)*s);
+    if(wnd.air>40)wnd.airWarn=0;
+  }
+}
+function wndStepTimers(dt){
+  if(wnd.actMs>0)wnd.actMs=Math.max(0,wnd.actMs-dt);
+  if(wnd.tagMs>0){
+    wnd.tagMs=Math.max(0,wnd.tagMs-dt);
+    if(wnd.tagMs===0){wnd.tagPri=0;const el=document.getElementById('wndTag');if(el)el.classList.remove('on')}
+  }
+  if(wnd.peekMs>0)wnd.peekMs=Math.max(0,wnd.peekMs-dt);
+  if(wnd.slowMs>0)wnd.slowMs=Math.max(0,wnd.slowMs-dt);
+  if(wnd.shooMs>0)wnd.shooMs=Math.max(0,wnd.shooMs-dt);
+  if(wnd.nagMs>0)wnd.nagMs=Math.max(0,wnd.nagMs-dt);
+  /* 横风带逐场换向：风向变了，提前量就得重算 */
+  for(let i=0;i<wnd.bands.length;i++){
+    const bd=wnd.bands[i];
+    bd.turn-=dt;
+    if(bd.turn<=0){bd.vx=-bd.vx;bd.turn=wndBandTurn(wnd.lv)}
+  }
+  if(wnd.helpMs>0){
+    wnd.helpMs=Math.max(0,wnd.helpMs-dt);
+    if(wnd.helpMs===0){wnd.seenMs=0;wnd.litMs=Math.max(wnd.litMs,wndTagLit(wnd.lv));wndAsk();wndLine();wndHud();wndPow()}
+    return;
+  }
+  if(wnd.litMs>0)wnd.litMs=Math.max(0,wnd.litMs-dt);
+  wnd.galeMs-=dt;
+  wnd.qms-=dt;
+  wnd.playMs+=dt;
+  wnd.since+=dt;
+  const of=wndGale(wnd.lv);
+  wnd.warn=of>0&&wnd.galeMs<=of*0.08;
+  if(wnd.warn){
+    wnd.beep+=dt;
+    if(wnd.beep>1500){wnd.beep=0;wnTone(294,.1,'square',.05)}
+  }
+  if(wnd.galeMs<=0){wnd.galeMs=0;wndEnd('gale');return}
+  if(wnd.qms<=0&&!wnd.busy){wnd.qms=0;wndTimeout()}
+  if(wnd.since>=WND_NAG_MS&&wnd.nagMs<=0)wndNag();
+}
+/* ================= 风口与吹 ================= */
+function wndAim(d){
+  if(!wnd.run||wnd.over)return 0;
+  if(d<0||d>7)return 0;
+  if(d===wnd.aim)return 1;
+  wnd.aim=d;wnd.lastAim=d;
+  wnTone(660,.04,'sine',.028);
+  wndPadMark(d);wndHudNow();wndLine();wndDraw();
+  return 1;
+}
+function wndBlow(on){
+  if(!wnd.run||wnd.over)return 0;
+  if(on){
+    if(wnd.air<=0){
+      if(!wnd.airWarn){wnd.airWarn=1;wnTone(150,.1,'sawtooth',.04);wndTag('🌬 <b>还没气</b>：等风箱回气（每秒 +'+wndRefill(wnd.lv).toFixed(0)+'）')}
+      return 0;
+    }
+    if(wnd.blowing)return 1;
+    wnd.blowing=true;wnd.jets++;wnd.airWarn=0;
+    wnTone(587,.05,'sine',.03);
+    wndPadMark(wnd.aim);wndLine();wndPow();wndDraw();
+    return 1;
+  }
+  if(!wnd.blowing)return 0;
+  wnd.blowing=false;
+  wndPadMark(wnd.aim);wndLine();wndPow();wndDraw();
+  return 0;
+}
+/* ================= 三件道具 ================= */
+function wndPeek(){
+  if(!wnd.run||wnd.over)return 0;
+  if(wnd.peekN<1){wndTag('✨ 照签用完了：笔形颜色一直在，认得了就靠它');return 0}
+  if(wndShowTag()){wndTag('✨ 字签正亮着');return 0}
+  wnd.peekN--;wnd.peeks++;
+  wnd.peekMs=WND_PEEK_MS;
+  wnd.litMs=Math.max(wnd.litMs,wndTagLit(wnd.lv));
+  wnd.since=0;
+  wnTone(880,.1,'sine',.05);
+  wndTag('✨ <b>照签</b>：挂篮上的笔形又写清楚了（'+(WND_PEEK_MS/1000).toFixed(1)+' 秒）');
+  wndAsk();wndHud();wndPow();wndLine();wndDraw();
+  return 1;
+}
+function wndSlow(){
+  if(!wnd.run||wnd.over)return 0;
+  if(wnd.slowN<1){wndTag('🐢 缓风用完了');return 0}
+  if(wnd.slowMs>0){wndTag('🐢 已经在缓风里了');return 0}
+  wnd.slowN--;wnd.slows++;
+  wnd.slowMs=WND_SLOW_MS;wnd.since=0;
+  wnTone(392,.16,'sine',.05);
+  wndTag('🐢 <b>缓风</b>：全场走 '+(WND_SLOW_FAC*100).toFixed(0)+'% 的速度，'+(WND_SLOW_MS/1000).toFixed(1)+' 秒');
+  wndHud();wndPow();wndLine();wndDraw();
+  return 1;
+}
+function wndShoo(){
+  if(!wnd.run||wnd.over)return 0;
+  if(wnd.shooN<1){wndTag('🍃 驱煞用完了');return 0}
+  if(!wnd.hazes.length){wndTag('🍃 这一场没有风煞，省下一次');return 0}
+  if(wnd.shooMs>0){wndTag('🍃 风煞已经被赶在谷边了');return 0}
+  wnd.shooN--;wnd.shoos++;
+  wnd.shooMs=WND_SHOO_MS;wnd.since=0;
+  wnTone(523,.14,'square',.05);
+  wndTag('🍃 <b>驱煞</b>：'+wnd.hazes.length+' 团风煞被赶到谷边 '+(WND_SHOO_MS/1000).toFixed(1)+' 秒');
+  wndHud();wndPow();wndLine();wndDraw();
+  return 1;
+}
+/* ================= 输入 ================= */
+function wndKeyDir(k){
+  if(k==='ArrowLeft'||k==='a'||k==='A')return 'l';
+  if(k==='ArrowRight'||k==='d'||k==='D')return 'rr';
+  if(k==='ArrowUp'||k==='w'||k==='W')return 'u';
+  if(k==='ArrowDown'||k==='s'||k==='S')return 'd';
+  return '';
+}
+function wndHeld(){
+  const k=wnd.keys||{};
+  const dx=(k.rr?1:0)-(k.l?1:0),dy=(k.d?1:0)-(k.u?1:0);
+  return wndDirOf(dx,dy);
+}
+function wndAimAt(gx,gy){
+  const dx=gx-WND_BX,dy=gy-WND_BY;
+  if(Math.sqrt(dx*dx+dy*dy)<.5)return 0;
+  return wndAim(wndDirOf(dx,dy));
+}
+function wndBind(){
+  if(wnd.bound)return;
+  wnd.bound=true;
+  if(!wnd.keys)wnd.keys={u:false,d:false,l:false,rr:false};
+  window.addEventListener('keydown',function(e){
+    if(!wnd.run||wnd.over)return;
+    const dn=wndKeyDir(e.key);
+    if(dn){
+      e.preventDefault();
+      wnd.keys[dn]=true;
+      const d=wndHeld();
+      if(d>=0)wndAim(d);
+      return;
+    }
+    const k=e.key;
+    if(k===' '||k==='Spacebar'){e.preventDefault();if(!e.repeat)wndBlow(true);return}
+    if(k==='Enter'){e.preventDefault();wndAnchor();return}
+    if(k==='q'||k==='Q'){wndPeek();return}
+    if(k==='e'||k==='E'){wndSlow();return}
+    if(k==='f'||k==='F'){wndShoo();return}
+    if(k==='h'||k==='H'||k==='?'){wndHelp();return}
+  });
+  window.addEventListener('keyup',function(e){
+    const dn=wndKeyDir(e.key);
+    if(dn&&wnd.keys)wnd.keys[dn]=false;
+    if(e.key===' '||e.key==='Spacebar')wndBlow(false);
+  });
+  const cv=document.getElementById('wndCanvas');
+  if(cv){
+    const at=function(ev){
+      const r=cv.getBoundingClientRect();
+      if(!r.width||!r.height)return null;
+      return {x:(ev.clientX-r.left)/r.width*WND_W/WND_CS,y:(ev.clientY-r.top)/r.height*WND_H/WND_CS};
+    };
+    cv.addEventListener('pointerdown',function(ev){
+      if(!wnd.run||wnd.over)return;
+      ev.preventDefault();
+      const p=at(ev);
+      if(!p)return;
+      wnd.dragging=true;
+      wndAimAt(p.x,p.y);
+      wndBlow(true);
+    });
+    cv.addEventListener('pointermove',function(ev){
+      if(!wnd.run||wnd.over||!wnd.dragging)return;
+      const p=at(ev);
+      if(!p)return;
+      wndAimAt(p.x,p.y);
+    });
+    window.addEventListener('pointerup',function(){
+      if(!wnd.dragging)return;
+      wnd.dragging=false;
+      wndBlow(false);
+    });
+  }
+  const ps=document.querySelectorAll('#wndPad button[data-d]');
+  for(let i=0;i<ps.length;i++){
+    if(ps[i].dataset.on)continue;
+    ps[i].dataset.on='1';
+    ps[i].addEventListener('click',function(){wndAim(+this.dataset.d)});
+  }
+  const bb=document.getElementById('wndBlowBtn');
+  if(bb&&!bb.dataset.on){
+    bb.dataset.on='1';
+    bb.addEventListener('pointerdown',function(ev){ev.preventDefault();wndBlow(true)});
+    bb.addEventListener('pointerup',function(){wndBlow(false)});
+    bb.addEventListener('pointerleave',function(){wndBlow(false)});
+  }
+  const bt=document.getElementById('wndBlowTool');
+  if(bt&&!bt.dataset.on){
+    bt.dataset.on='1';
+    bt.addEventListener('pointerdown',function(ev){ev.preventDefault();wndBlow(true)});
+    bt.addEventListener('pointerup',function(){wndBlow(false)});
+    bt.addEventListener('pointerleave',function(){wndBlow(false)});
+  }
+  [['wndAnchorBtn',wndAnchor],['wndPeekBtn',wndPeek],['wndSlowBtn',wndSlow],['wndShooBtn',wndShoo]].forEach(function(x){
+    const b=document.getElementById(x[0]);
+    if(b&&!b.dataset.on){b.dataset.on='1';b.addEventListener('click',x[1])}
+  });
+}
+function wndHelp(){
+  if(!wnd.run)return;
+  wnd.helpMs=WND_HELP_MS;
+  wndBlow(false);
+  wnSet('wndAsk','🌬 <b>怎么在风谷里写字</b><br><small>两只钟都先冻住</small>');
+  wnSay('🌬 <b>场上是一张风场</b>：你只有谷口那台 <b>风箱</b> —— 转朝（<code>↑↓←→</code>／<code>WASD</code>，两个键一起按就是斜的；九宫 <b>方向盘</b>；或 <b>手指直接按在场上</b>，风箱就朝手指吹），按住 <code>空格</code> <b>吹</b>。<b>你碰不到墨籽</b>，只能让它搭你的风<br>🌱 每一笔发一颗 <b>发光墨籽</b>：把它送进写着 <b>这一笔笔形</b>（横/竖/撇/捺/点）的 <b>挂篮</b> 就算落好；送错篮子 = 墨 <b>擦掉重撒</b>（扣 '+WND_PEN_FAIL+' 分、连击清零）<br>💨 <b>风有惯量</b>：吹出去的风 <b>不会立刻停</b>，它会散开、绕涡、被横风带削偏；籽 <b>追风也要一会儿</b> —— 所以 <b>提前量</b> 是这儿的功夫，一记长吹常常 <b>过头</b><br>🌀 <b>回谷风</b>：冲到谷头的风要绕回谷口 —— 越过谷深 '+(WND_RET_FROM*100).toFixed(0)+'% 这段才起、越深越猛（最深每秒 '+(WND_RET/WND_DRAG).toFixed(2)+' 格）。<b>松手不吹，墨籽就自己往回漂</b> —— 这是它唯一的刹车，吹过头了别硬顶，<b>退一步再送一记</b><br>🌬 <b>气</b>：吹一记耗气（每秒 '+WND_AIR_USE+' 分），气空了要等回气（第 '+wnd.lv+' 场每秒回 '+wndRefill(wnd.lv).toFixed(0)+' 分）—— <b>短促几记</b> 比按住不放省气<br>🧺 <b>挂篮会被吹漂</b>：它们拴在锚点上（<b>最多漂 '+WND_BK_MAX.toFixed(2)+' 格</b>），风停了自己回位；认色不认字 —— <b>笔形的颜色一直在</b><br>🍥 <b>空壳籽</b> 飘进篮口会 <b>堵住篮子</b>（一次只堵一只）：等它自己掉，或 <b>对着那只篮子把风吹满</b>（篮口风速要到全力的 '+(WND_UNBLOCK/WND_VMAX*100).toFixed(0)+'%，越远越要吹得准）把空壳掏出来 +2 分<br>🎐 路上飘着 <b>风铃</b>：穿过一个 +'+WND_BELL_PTS+' 分、音阶上行；这一笔的铃 <b>全挂满</b> 另加 '+WND_ALLBELL+' 分<br>💨 <b>顺风一掷</b>：进篮那一刻籽速 ≥ '+WND_SWIFT_V.toFixed(1)+' 格/秒 另加 '+WND_SWIFT_BONUS+' 分，还可能收一件风物进风架<br>😈 <b>风煞</b>：跟着风走的乱流，撞上墨籽就把墨 <b>撕散</b>（扣 '+WND_PEN_TEAR+' 分、掉一颗心，'+WND_HEARTS+' 颗用完收摊）—— 它也是被风吹的，<b>可以先引开</b><br>🌀 <b>横风带</b> 每 '+(wndBandTurn(wnd.lv)/1000).toFixed(0)+' 秒换向、<b>涡</b> 一直绕：直线上送不过去时，<b>绕着走</b> 常常更近<br>🍃 <b>字签会淡</b>：第 3 场起笔形只亮 '+(wndTagLit(wnd.lv)?(wndTagLit(wnd.lv)/1000).toFixed(1):0)+' 秒，按 <code>Q</code> <b>照签</b> 重新点亮<br>🐢 <b>缓风 E</b>：全场走 '+(WND_SLOW_FAC*100).toFixed(0)+'% 的速度；🍃 <b>驱煞 F</b>：把风煞赶到谷边；🪀 <b>收籽 Enter</b>：把墨籽收回谷口重撒（<b>这一笔的钟照旧在走</b>）<br>⏳ <b>两只钟</b>：这一笔的钟走光 <b>不算答错</b>（扣 '+WND_PEN_TIME+' 分、重撒一颗籽）；<b>长风</b> 凉了收摊。按 <code>H</code> 看说明时两只钟都不走<br>🍃 <b>每收 2 个字进一场</b>：风散得更快、气回得更慢、横风带/涡/风煞一批批上场','#C8E6C9');
+  wndLine();wndHud();wndMeter();wndPow();wndDraw();
+}
+
+/* ================= 结算与落盘 ================= */
+function wndBank(){
+  const best=wnInt('hz_wind_best');
+  const isBest=wnd.score>best;
+  if(isBest)localStorage.setItem('hz_wind_best',String(wnd.score));
+  if(wnd.maxCombo>wnInt('hz_wind_combo'))localStorage.setItem('hz_wind_combo',String(wnd.maxCombo));
+  if(wnd.words>wnInt('hz_wind_words'))localStorage.setItem('hz_wind_words',String(wnd.words));
+  if(wnd.lv>wnInt('hz_wind_lv'))localStorage.setItem('hz_wind_lv',String(wnd.lv));
+  if(wnd.swifts>wnInt('hz_wind_swiftmax'))localStorage.setItem('hz_wind_swiftmax',String(wnd.swifts));
+  if(wnd.allBells>wnInt('hz_wind_bellmax'))localStorage.setItem('hz_wind_bellmax',String(wnd.allBells));
+  if(wnd.lits){
+    const per=Math.round(wnd.playMs/wnd.lits);
+    if(!wnInt('hz_wind_fastest')||per<wnInt('hz_wind_fastest'))localStorage.setItem('hz_wind_fastest',String(per));
+  }
+  return {best:Math.max(best,wnd.score),isBest:isBest};
+}
+function wndEnd(why){
+  if(wnd.over)return;
+  wnd.over=true;
+  wndStopLoop();wnKillTimers();
+  wnd.run=false;wnd.blowing=false;
+  if(wnd.seed)wnd.seed.trail=[];
+  const vl=document.getElementById('wndValley');
+  if(vl)vl.classList.add('dead');
+  if((why==='gale'||why==='hearts')&&wnd.rec&&wnd.qi<wnd.n)wndAddMiss(wnd.rec.ch);
+  const bk=wndBank(),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(wnd.score/13)+wnd.words*2);
+  if(why!=='pool')addStars(stars);
+  showScreen('wind-result');
+  const R={quit:'🏳️',gale:'🍃',hearts:'😈',pool:'😢'}[why]||'🌬';
+  wnSet('wndRsEmoji',R);
+  wnSet('wndRsTitle',why==='hearts'?'心被撕完了':(why==='gale'?'长风凉了':(why==='quit'?'这一场先收了':'字库没凑齐')));
+  const tot=wnInt('hz_wind_words');
+  const rr=wnRank(tot);
+  wnSet('wndRsSub','第 '+wnd.lv+' 场 · 累计收 '+tot+' 个字 · '+rr.e+' '+rr.t);
+  wnSet('wndRsScore','🎯 '+wnd.score+' 分'+(isBest?' 🏅 新高':''));
+  wnSet('wndRsWords','🌬 收 '+wnd.words+' 个字');
+  wnSet('wndRsLits','🖋 落好 '+wnd.lits+' 笔');
+  wnSet('wndRsSub2','🧺 进篮 '+wnd.cats+' 次（送错 '+wnd.fails+'）');
+  wnSet('wndRsSwift','💨 顺风一掷 '+wnd.swifts+' 笔');
+  wnSet('wndRsBell','🎐 挂铃 '+wnd.bellHits+' 串 · 铃响齐了 '+wnd.allBells+' 笔');
+  wnSet('wndRsTear','😈 撕散 '+wnd.tears+' 次 · 堵篮 '+wnd.blocks+' 次');
+  wnSet('wndRsTools','✨ 照签 '+wnd.peeks+' · 🐢 缓风 '+wnd.slows+' · 🍃 驱煞 '+wnd.shoos+' · 🪀 收籽 '+wnd.anchors+' · 歇一记 '+wnd.nags);
+  wnSet('wndRsCombo','🔥 最长连 '+wnd.maxCombo);
+  wnSet('wndRsBest','🏆 最高 '+best+' 分');
+  wnSet('wndRsStars','⭐ '+stars);
+  const book=(localStorage.getItem('hz_wind_book')||'').split(',').filter(function(c){return c.length===1}).length;
+  wnSet('wndRsBook','图鉴里现在有 <b>'+book+'</b> 个字 · 风架里 <b>'+wnInt('hz_wind_trophy')+'</b> 件 · 累计落好 <b>'+
+    wnInt('hz_wind_lits')+'</b> 笔（吹过 <b>'+wnInt('hz_wind_games')+'</b> 场）');
+  const per=wnd.cats?Math.round(wnd.lits/wnd.cats*100):0;
+  wnSet('wndRsWhy',why==='hearts'?'😈 <b>风煞是跟着风走的</b>：撕散 '+wnd.tears+' 次 —— 撞籽之前 <b>它一定顺着你刚吹的那道风</b>，别一路照着它吹；按 <code>F</code> 驱煞，或先把风口转到别处，<b>把它引开</b>':
+    (why==='gale'?'🍃 <b>长风凉了</b>：'+(wnd.lits?'平均每笔吹了 <b>'+Math.round(wnd.playMs/wnd.lits/1000*10)/10+' 秒</b>':'这一场 <b>一笔也没落好</b>')+' —— 起吹前先看一眼 <b>籽到篮子之间</b> 有没有横风带，把 <b>提前量</b> 想好、这一记 <b>从哪儿偏</b> 再吹':
+    (wnd.fails>2?'🧺 有 '+wnd.fails+' 次 <b>送错了篮子</b>：笔形 <b>颜色一直在</b>（横蓝竖绿撇黄捺橙点紫），字签淡了就靠颜色认，实在不认得按 <code>Q</code> <b>照签</b>':
+    '🌬 手感不错：进篮 '+wnd.cats+' 次里 <b>'+per+'%</b> 落对了笔形，顺风一掷 '+wnd.swifts+' 笔 —— 下一场风散得更快、气回得更慢，试着 <b>用短促几记</b> 而不是一直按住')));
+  wnSay('🌬 这一场吹了 <b>'+wnd.words+'</b> 个字、<b>'+wnd.lits+'</b> 笔落好，进篮 <b>'+wnd.cats+'</b> 次（其中 <b>'+wnd.fails+
+    '</b> 次送错篮子），顺风一掷 <b>'+wnd.swifts+'</b> 笔、铃响齐了 <b>'+wnd.allBells+'</b> 笔，挂上 <b>'+wnd.bellHits+
+    '</b> 串风铃，被风煞撕散 <b>'+wnd.tears+'</b> 次、空壳堵篮 <b>'+wnd.blocks+'</b> 次，起吹 <b>'+wnd.jets+'</b> 记、收籽 <b>'+wnd.anchors+'</b> 回。'+
+    '<br>战绩落盘 <code>hz_wind_*</code>：称号按累计收下的字数走，第 3 场起 <b>字签会淡掉</b>，第 3 场起 <b>涡上场</b>，第 6 场起 <b>风煞上场</b>，第 7 场起 <b>两个涡一起绕</b>','#C8E6C9');
+  wndNudge();
+}
+function wndNudge(){
+  const dot=document.getElementById('wndCardDot'),tip=document.getElementById('wndCardTip');
+  const w=wnInt('hz_wind_words'),games=wnInt('hz_wind_games'),lits=wnInt('hz_wind_lits');
+  const R=wnRank(w);
+  const trophy=wnInt('hz_wind_trophy');
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 收了 '+w+' 个字 · 落好 '+lits+' 笔 · 顺风一掷 '+wnInt('hz_wind_swift')+' 笔 · 风架 '+trophy+' 件'):'谷口只有一台风箱：转朝、按住吹，风自己会散会绕涡 —— 你碰不到墨籽，只能把它吹进写着这一笔笔形的挂篮';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+/* ---- 无头测试用的挂钩（只读与小步驱动，不参与游戏逻辑） ---- */
+window.vWndTick=function(dt){wndTick(dt||WND_TICK_MS)};
+window.vWndPump=function(ms,step){
+  let t=0;const s=step||WND_TICK_MS;
+  while(t<ms&&wnd.run&&!wnd.over){wndTick(s);t+=s}
+  return t;
+};
+window.vWndNewWord=function(){wndNewWord();return wnd.rec?wnd.rec.ch:''};
+window.vWndNeed=function(){
+  if(wnd.rec&&wnd.qi<wnd.n&&!wnd.busy)return wnd.qi;
+  if(!window.vWndNewWord())return -1;
+  wnd.galeMs=wndGale(wnd.lv);
+  return wnd.rec?wnd.qi:-1;
+};
+/* ---- 预判用的一记风：把喷流当成定常风叠在实测风场上（系数按实测的定常峰值标定） ----
+   系数 .8 不是拍的：把场上按住吹到定常（摘掉横风带与涡），沿轴线逐格量一遍风速，
+   第 1 场 9 格外实测 2.51、第 9 场 12 格外实测 0.98 —— 旧系数 .58 只给到 1.64 / 0.55，
+   远的一截被砍掉一半：摆场把送得到的篮判成送不到，预判把能追上的点算成追不上。 */
+function wndJetK(){
+  return WND_JET_K*WND_JET_ACC*(WND_TICK_MS/1000)/(1-Math.pow(wndDecay(wnd.lv),WND_TICK_MS/40));
+}
+/* 喷流的收尾比锥形本身长一截：实测沿轴线一路到 12 格都还有 1 格/秒以上的余劲，
+   按 WND_JET_LEN 直接线性收到 0 会把这一段砍没 —— 收速乘 1.12 是照实测那几格拟合出来的 */
+function wndJetAt(x,y,a,kk){
+  if(a<0||a>7)return null;
+  const d=WND_DIRS[a],L=Math.sqrt(d[0]*d[0]+d[1]*d[1]),ux=d[0]/L,uy=d[1]/L;
+  const dx=x-WND_BX,dy=y-WND_BY,proj=dx*ux+dy*uy;
+  if(proj<=0||proj>WND_JET_LEN)return null;
+  if(Math.abs(dx*(-uy)+dy*ux)>WND_JET_W0+proj*WND_JET_SP)return null;
+  /* 场上的风顶到 WND_VMAX 就不再涨了，模型也得有这道顶 —— 不然谷口那几格被吹成 5.8 格/秒的假神话 */
+  const f=Math.min(WND_VMAX,kk*(1-proj/(WND_JET_LEN*WND_JET_TAPER)));
+  return {x:ux*f,y:uy*f};
+}
+/* 半秒后会落在哪儿、离口多近：横风带和涡都在实测风场里，预判等于顺风借力 */
+function wndMpcEval(sx,sy,vx,vy,a,blow,kk,tx,ty,steps){
+  let px=sx,py=sy,ux=vx,uy=vy,wp=1e9,ws=0;const ss=.05;
+  for(let i=0;i<(steps||16);i++){
+    const w=wndWindAt(px,py);
+    let wx=w.x,wy=w.y;
+    if(wnd.blowing){const j0=wndJetAt(px,py,wnd.aim,kk);if(j0){wx-=j0.x;wy-=j0.y}}
+    if(blow){const j=wndJetAt(px,py,a,kk);if(j){wx+=j.x;wy+=j.y}}
+    const fm=Math.sqrt(wx*wx+wy*wy);
+    if(fm>WND_VMAX){wx=wx/fm*WND_VMAX;wy=wy/fm*WND_VMAX}
+    ux+=(wx-ux)*WND_DRAG*ss;uy+=(wy-uy)*WND_DRAG*ss;
+    const rx=WND_BX-px,ry=WND_BY-py,rl=Math.sqrt(rx*rx+ry*ry)||1e-6;
+    const deep=rl-WND_JET_LEN*WND_RET_FROM;
+    const ret=deep>0?WND_RET*Math.min(1,deep/(WND_JET_LEN*(1-WND_RET_FROM))):0;
+    ux+=rx/rl*ret*ss;uy+=ry/rl*ret*ss;
+    const sp=Math.sqrt(ux*ux+uy*uy);
+    if(sp>WND_SMAX){ux=ux/sp*WND_SMAX;uy=uy/sp*WND_SMAX}
+    px+=ux*ss;py+=uy*ss;
+    /* 这一路的蹭篮风险：错篮的口只有 WND_CATCH_WRONG 那么窄，但一旦蹭上这一笔就废了 */
+    for(let q=0;q<wnd.basks.length;q++){
+      const bb=wnd.basks[q];
+      if(bb.tag===wndCorrect())continue;
+      const dd=Math.sqrt((px-bb.x)*(px-bb.x)+(py-bb.y)*(py-bb.y));
+      if(dd<wp){wp=dd;ws=sp}
+    }
+  }
+  let hit=0;
+  if(px<WND_X0+WND_SEED_R){px=WND_X0+WND_SEED_R;hit=1}
+  if(px>WND_X1-WND_SEED_R){px=WND_X1-WND_SEED_R;hit=1}
+  if(py<WND_Y0+WND_SEED_R){py=WND_Y0+WND_SEED_R;hit=1}
+  if(py>WND_Y1-WND_SEED_R){py=WND_Y1-WND_SEED_R;hit=1}
+  let c=Math.sqrt((px-tx)*(px-tx)+(py-ty)*(py-ty))+hit*.7;
+  /* 一路上蹭到隔壁错篮的口：慢慢蹭过去这一笔当场废掉，绕远也比它贵；
+     顶着风冲过去的（场上 WND_FLYBY_V 那条接不住）只留一点余罚 —— 敢冲才走得通被隔壁篮子压住的航道 */
+  if(wp<WND_BRUSH_KEEP)c+=(WND_BRUSH_KEEP-wp)*(ws<WND_FLYBY_V?7:1.5);
+  /* 终点正好停在隔壁错篮的口上：这一笔不是「有点险」，是彻底废掉 —— 冲过头比慢半拍贵得多 */
+  let we=1e9;
+  for(let q=0;q<wnd.basks.length;q++){
+    const bb=wnd.basks[q];
+    if(bb.tag===wndCorrect())continue;
+    const dd=Math.sqrt((px-bb.x)*(px-bb.x)+(py-bb.y)*(py-bb.y));
+    if(dd<we)we=dd;
+  }
+  if(we<WND_CATCH_WRONG+.2)c+=6;
+  if(blow)c+=Math.max(0,20-wnd.air)/20*.35;
+  return c;
+}
+/* 会吹的孩子：只许用玩家能做的动作（转朝、吹、道具），靠锥形覆盖挑方向。
+   必须异步：一句同步死循环里 wnT 挂的真 setTimeout 永远不触发，笔间那 620 毫秒就跨不过去。 */
+window.vWndSolve=async function(qi,maxMs){
+  /* 求解期间把主循环掐掉：rAF 也在按真实时间往风场里泵风，两边一起走的话同一片谷
+     两次能跑出 14 秒和 28 秒（实测：同定种子、同产品，两轮 72 笔 bad 从 0 跳到 1、p90 从 5.1 秒跳到 17.2 秒）。
+     这里只按 WND_TICK_MS 离散步进，时间才是可比的；出了这门再把循环接回去。 */
+  wndStopLoop();
+  const want=qi===undefined?wnd.qi:qi;
+  let ms=0,g=wnd.gen,jets=0,on=false,last=false,fi=-1,pre=wnd.score,touch=0,lap=0,rec=0,recMs=0,recN=0,plan=null;
+  /* 卡住时要知道它卡在哪一步：每一支路各数一拍，回来摊在桌上看 */
+  const tr={blow:0,coast:0,busy:0,noBask:0,nan:0,blockWait:0,blockBlow:0,anch:0,stall:0,recov:0,plan:0,aims:[0,0,0,0,0,0,0,0],hist:[]};
+  while(ms<(maxMs||30000)&&wnd.run&&!wnd.over&&g===wnd.gen&&wnd.qi===want&&!(wnd.done&&wnd.done.has(want))){
+    /* 每一拍都记下进拍前的分：落笔那一拍的净进账要单独量出来（路上挨的罚不该算进这一笔头上） */
+    pre=wnd.score;
+    if(wnd.busy){tr.busy++;await new Promise(r=>setTimeout(r,25));wndTick(WND_TICK_MS);ms+=WND_TICK_MS;continue}
+    const b=wndBaskOf(wndCorrect()),sd=wnd.seed;
+    if(!b||!sd){tr.noBask++;wndBlow(false);await new Promise(r=>setTimeout(r,0));wndTick(WND_TICK_MS);ms+=WND_TICK_MS;continue}
+    if(!isFinite(sd.x)||!isFinite(sd.y)){tr.nan++;await new Promise(r=>setTimeout(r,0));wndTick(WND_TICK_MS);ms+=WND_TICK_MS;continue}
+    const dx=b.x-sd.x,dy=b.y-sd.y,d=Math.sqrt(dx*dx+dy*dy)||1e-6;
+    if(wnd.shooN>0&&wnd.shooMs<=0){
+      for(let i=0;i<wnd.hazes.length;i++)if(wnDist(wnd.hazes[i].x,wnd.hazes[i].y,sd.x,sd.y)<1.9){wndShoo();break}
+    }
+    /* 谷口这一记先问摆场闸要方向。闸保证过的正是这一句：从出生点按住一个方向
+       （定常喷流 + 回谷风 + 撞壁反弹 + 这一档的横风与涡 + 气预算），籽能在口里连停半秒。
+       可逐拍预判读的是「冻结的场」—— 它看不见自己这一吹正把场顶起来，于是八条路看着差不多，
+       一吹一偏、边走边改，被隔壁篮子压住航道的那几场就是这样三记锚全烧光还磨到钟响。
+       所以籽一回到谷口（开局、收籽、超时下的一次重撒）就照闸的解法按住走完这一路，别在半路改主意。
+       这一段走在所有台阶前面：按着闸的方向时不该数「磨了几秒」，否则六秒的长风路会被收港打断。 */
+    if(b.blockMs>0&&plan)plan=null;   /* 篮口被空壳堵住：这一记作废，交回等壳掉的分支 */
+    if(!plan&&wnDist(sd.x,sd.y,WND_SX,WND_SY)<1.5){
+      if(wnd.air>0){
+        const ad=wndBandGust(wnd.lv);
+        /* 闸在摆场时验的是篮子的锚点，可这一记要按住四五秒：喷流一路推篮子、弹簧一路往回拽，
+           籽赶到的那一刻口正在锚点与当前位置之间晃（最多漂 0.55 格，而闸只要求连停 0.96 那一圈）。
+           所以两个位置都得送得到才按这一记 —— 交出来的方向是对「口会在哪儿」也稳的那个方向。
+           问闸要方向时报的是手里这一口气（wnd.air），不是「假设满气」：
+           整字连吹从第二笔起手就只有 55 分，非要等满 88 才出手，孩子在场里等到的就是这条空窗。 */
+        let fb=-1;
+        for(let a=0;a<8;a++){
+          if(!wndConeOk(a,b.x,b.y)&&!wndConeOk(a,b.x0,b.y0))continue;
+          if(!wndDeliverable(b.x,b.y,a,ad,wnd.air))continue;
+          if(wndDeliverable(b.x0,b.y0,a,ad,wnd.air)){plan={a:a,ms:0,on:1};wndAim(a);tr.plan++;break}
+          if(fb<0)fb=a;
+        }
+        if(!plan&&fb>=0){plan={a:fb,ms:0,on:1};wndAim(fb);tr.plan++}
+        else if(!plan&&wnd.air<WND_AIR_MAX*.88){
+          /* 手里这口气连闸都问不出一条路：先松手等回气，别拿半口气去走这一路 */
+          if(on){wndBlow(false);on=false;last=false}
+          wndTick(WND_TICK_MS);ms+=WND_TICK_MS;
+          if((ms/WND_TICK_MS)%10===0)await new Promise(r=>setTimeout(r,0));
+          continue;
+        }
+      }
+    }
+    if(plan){
+      plan.ms+=WND_TICK_MS;
+      if(wnd.air<=0)plan.on=0;else if(wnd.air>=WND_AIR_MAX*WN_AIR_RESUME)plan.on=1;
+      on=!!(plan.on&&wnd.air>0);
+      wndAim(plan.a);
+      if(on&&!last)jets++;
+      last=on;
+      wndBlow(on);
+      wndTick(WND_TICK_MS);ms+=WND_TICK_MS;
+      if((ms/WND_TICK_MS)%10===0)await new Promise(r=>setTimeout(r,0));
+      /* 闸那一段演的是 110 拍（5.5 秒）；真场里这一股风要自己长起来，头几拍推得比闸里软，多给一秒。
+         走完还没送进去就交回逐拍预判：该收港收港、该砸锚砸锚 —— 砸完锚籽又回谷口，这一记照样重来。 */
+      if(plan.ms>6600){
+        plan=null;
+        /* 这一记走完没送进去：别再回头磨那 4+6 秒的收港台阶 —— 这一笔的钟在深场只剩 16~20 秒，
+           磨完就没有第二次出手了（实测 lv8/lv9 各有一场就是这样耗到钟响）。籽此刻正停在半路打转，
+           直接请回谷口，照闸再按一记。 */
+        if(wnd.anchN>0&&wnDist(sd.x,sd.y,WND_SX,WND_SY)>=1.5){
+          wndAnchor();tr.anch++;touch=0;lap=0;recN=2;
+          if(on){wndBlow(false);on=false}
+          last=false;
+        }
+      }
+      continue;
+    }
+    /* 「这一笔有没有推进」只认一件硬事：籽挨着过篮口没有。
+       比距离、算进步会被打转的涡骗过去 —— 涡里的籽忽远忽近，刻度每几拍就「前进」一次，
+       收港与砸锚那两级台阶一步也踩不上，孩子被钉在涡心里磨到钟响，屏幕上却一切正常。 */
+    const hD=wnDist(sd.x,sd.y,WND_BX,WND_BY);
+    /* 篮口被空壳堵着的这段时间不算「吹不动」：钟在走、可这一笔本来就没法递进去，
+       拿它去踩收港与砸锚的台阶，只会把两颗锚白白砸在一只堵着的篮子上（实测最慢那一场就是这么烧掉的） */
+    if(d<WND_CATCH+.25||b.blockMs>0){touch=0;lap=0}
+    else{touch+=WND_TICK_MS;if(touch>=lap+4000){lap=touch;tr.stall++}}
+    /* 顶在远角越吹越贴墙：喷流在那里已经弱得推不动，回谷风又被这一记吹反 —— 收手，让风自己把籽带回风箱口，
+       近了就重新出手。孩子管这个叫「收港」，也是这一场最值钱的一课：吹不动的时候，松手才是动作。 */
+    if(!rec&&touch>4000&&recN<1&&hD>5.4){rec=1;recMs=6000;recN++;tr.recov++}
+    if(rec){
+      if(hD<3.4){rec=0;touch=0;lap=0}
+      else if(recMs<=0){
+        /* 收了港却没回着家：回谷风九秒都带不动它，再收一次也还是带不动 —— 这一场只剩砸锚这一记硬挪。
+           等第二回收港自己踩上台阶要再磨八秒，实测那几场就是这么磨到钟响的。 */
+        rec=0;touch=0;lap=0;
+        if(wnd.anchN>0&&d>1.2){wndAnchor();tr.anch++;plan=null}
+      }
+      else{
+        recMs-=WND_TICK_MS;
+        if(on){wndBlow(false);on=false;last=false}
+        wndTick(WND_TICK_MS);ms+=WND_TICK_MS;
+        if((ms/WND_TICK_MS)%10===0)await new Promise(r=>setTimeout(r,0));
+        continue;
+      }
+    }
+    /* 篮口被空壳堵着：这一笔递不进去，硬吹只会把籽顶到隔壁错篮的口上 —— 退开、松手，等壳自己掉 */
+    if(b.blockMs>0&&d<3.6){
+      tr.blockWait++;
+      if(on){wndBlow(false);on=false;last=false}
+      wndTick(WND_TICK_MS);ms+=WND_TICK_MS;
+      if((ms/WND_TICK_MS)%10===0)await new Promise(r=>setTimeout(r,0));
+      continue;
+    }
+    if(b.blockMs>0){
+      tr.blockBlow++;
+      const jx=b.x-WND_BX,jy=b.y-WND_BY,jl=Math.sqrt(jx*jx+jy*jy)||1e-6;
+      const ab=wndCtrlDir(b.x,b.y,jx/jl,jy/jl);
+      if(ab>=0)wndAim(ab);
+      on=ab>=0&&wnd.air>14;
+      if(on&&!last)jets++;
+      last=on;
+      wndBlow(on);
+      wndTick(WND_TICK_MS);ms+=WND_TICK_MS;
+      if((ms/WND_TICK_MS)%10===0)await new Promise(r=>setTimeout(r,0));
+      continue;
+    }
+    /* 进篮面：八个入口点各按直线走一遍，挑一路上离别家篮口最远、又朝着谷口的那一面 —— 绕对比躲重要 */
+    let tx=b.x,ty=b.y;
+    if(d>1.9){
+      const jx=b.x-WND_BX,jy=b.y-WND_BY,jl=Math.sqrt(jx*jx+jy*jy)||1e-6;
+      let bs=-1e9,bi=-1,fs=-1e9,bs0=-1e9,bi0=-1;
+      for(let k=0;k<8;k++){
+        const an=k*Math.PI/4,cx=b.x+Math.cos(an)*1.15,cy=b.y+Math.sin(an)*1.15;
+        if(cx<WND_X0+.9||cx>WND_X1-.9||cy<WND_Y0+.9||cy>WND_Y1-.9)continue;
+        const vx=cx-sd.x,vy=cy-sd.y,vl=Math.sqrt(vx*vx+vy*vy)||1e-6;
+        let clr=9;
+        for(let i=0;i<wnd.basks.length;i++){
+          const bb=wnd.basks[i];
+          if(bb.tag===wndCorrect())continue;
+          let t=((bb.x-sd.x)*vx+(bb.y-sd.y)*vy)/vl;
+          t=Math.max(0,Math.min(vl,t));
+          clr=Math.min(clr,wnDist(bb.x,bb.y,sd.x+vx/vl*t,sd.y+vy/vl*t),wnDist(bb.x,bb.y,cx,cy));
+        }
+        const sc=clr-((cx-b.x)*jx+(cy-b.y)*jy)/jl*.7;
+        if(k===fi)fs=sc;
+        if(sc>bs0){bs0=sc;bi0=k}
+        if(clr<1.2)continue;
+        if(sc>bs){bs=sc;bi=k}
+      }
+      /* 八个面全被隔壁篮堵着：也别一头扎进篮心（那一路必蹭过隔壁的口）—— 挑最不堵的那一面绕过去 */
+      if(bi<0&&bi0>=0){bi=bi0;bs=bs0}
+      /* 入口面定了就别一会儿就换：目标在篮子对面一跳一跳，籽就跟着打摆 */
+      if(bi>=0&&(fi<0||fs<bs-.4))fi=bi;
+      if(fi>=0){const an=fi*Math.PI/4;tx=b.x+Math.cos(an)*1.15;ty=b.y+Math.sin(an)*1.15}
+    }else fi=-1;
+    /* 九个选择摆在眼前：八个风口各吹一记，或者松手让风自己带 —— 挨个往前看一段，挑落点最好的 */
+    /* 磨了三秒还差最后四格以内：目标从「入口面」换成篮子正中心，往前看的那一段从 0.8 秒拉到 1.3 秒。
+       面在篮子背风那一侧时，0.8 秒的预判里八条路都只看到「先被回谷风顶回来」这一段，谁也便宜不了，
+       于是籽就在离口 2.3~2.9 格外排成一圈打转（实测 lv4 一场照这样磨到钟响 30 秒）。 */
+    const lunge=touch>3000&&d<4.2,st=lunge?26:16;
+    if(lunge){tx=b.x;ty=b.y}
+    const kk=wndJetK(),dry=wnd.air<=0;
+    let bj=-1,bc=1e9;
+    for(let a=0;a<8;a++){
+      const c=wndMpcEval(sd.x,sd.y,sd.vx,sd.vy,a,!dry,kk,tx,ty,st);
+      if(c<bc){bc=c;bj=a}
+    }
+    /* 松手只比最好那一手差一线以内就松手 —— 气要留给最后那半格 */
+    const cc=wndMpcEval(sd.x,sd.y,sd.vx,sd.vy,-1,false,kk,tx,ty,st);
+    on=cc>bc+.03&&!dry&&bj>=0;
+    /* 风场里有稳定点：一吹就偏一点、一松手又飘回来，预判里两者打平 —— 打平就一直停在这个涡心。
+       孩子卡在原地是不会松手的：连着四轮没进步就把这一拍改成吹。但只许顶着高气吹 —— 
+       一直吹会把气耗光，籽反而钉在风箱口动不了，所以吹到六成以下就非松手等回气不可。*/
+    if(!on&&touch>4000&&!dry&&bj>=0&&wnd.air>=60)on=true;
+    else if(on&&touch>4000&&wnd.air<60)on=false;
+    /* 锚是「回谷口重摆一次」：摆场那道闸保证过的正是「从谷口送得到」，所以卡死的正解就是回去重撒。
+       两条路都要通到它：收过一次港、脱港后又磨了四秒还没挨着口（涡牵着籽走，嘴上那阵风不服它），
+       或者籽落在回谷风够不着的那一圈里（hD<=5.4，收手也漂不回来）—— 磨够八秒就直接砸。
+       台阶要短：实测「八秒才收港、收港磨九秒、再八秒才砸锚」这套走下来就是 26~30 秒，
+       七十二笔里最慢的几笔全卡在这条阶梯的路上，而不是卡在风送不到。
+       砸过锚以后仍要等满四秒才能再砸：试过两秒 —— lv4 那场三记锚之间各等两秒，籽回谷口还没飘到
+       上一记锚的位置就被又撒了回去（trace 里 d 从 11.3 一路涨到 11.9），三十六笔里那一笔直接磨到 30 秒不落；
+       四秒则 24.84 秒收口。锚是把籽搬回谷口重撒，两秒连一趟重撒都飞不完。 */
+    if(((recN>=1&&touch>4000)||(touch>8000&&hD<=5.4))&&wnd.anchN>0&&d>1.2){wndAnchor();tr.anch++;touch=0;lap=0;recN=2;plan=null}
+    if(on)tr.blow++;else tr.coast++;
+    if(bj>=0)tr.aims[bj]++;
+    if(tr.hist.length<120&&tr.hist.length*400<=ms)tr.hist.push([ms,Math.round(d*100)/100,Math.round(sd.x*100)/100,Math.round(sd.y*100)/100,on?1:0,bj,Math.round(bc*100)/100,Math.round(cc*100)/100,Math.round(wnd.air),recN,rec,hD>5.4?1:0,Math.round(wnd.anchN)]);
+    if(bj>=0)wndAim(bj);
+    if(on&&!last)jets++;
+    last=on;
+    wndBlow(on);
+    wndTick(WND_TICK_MS);ms+=WND_TICK_MS;
+    if((ms/WND_TICK_MS)%10===0)await new Promise(r=>setTimeout(r,0));
+  }
+  const tg=document.getElementById('wndTag');
+  wndStartLoop();
+  const bb=wndBaskOf(wndCorrect()),sdf=wnd.seed;
+  return {qi:wnd.qi,done:wnd.done&&wnd.done.has(want)?1:0,ms:ms,d:Math.round(wndBaskDist()*100)/100,air:Math.round(wnd.air),jets:jets,
+    combo:wnd.combo,gain:wnd.score-pre,tag:tg?tg.textContent:'',
+    tr:{blow:tr.blow,coast:tr.coast,busy:tr.busy,noBask:tr.noBask,nan:tr.nan,blockWait:tr.blockWait,blockBlow:tr.blockBlow,anch:tr.anch,stall:tr.stall,recov:tr.recov,plan:tr.plan,aims:tr.aims},
+    geo:sdf&&bb?{seed:[Math.round(sdf.x*100)/100,Math.round(sdf.y*100)/100],bask:[Math.round(bb.x*100)/100,Math.round(bb.y*100)/100],
+      bD:Math.round(wnDist(bb.x,bb.y,WND_BX,WND_BY)*100)/100,sD:Math.round(wnDist(sdf.x,sdf.y,WND_BX,WND_BY)*100)/100,
+      cone:(function(){const r=[];for(let a=0;a<8;a++)if(wndConeOk(a,sdf.x,sdf.y))r.push(a);return r})(),
+      oth:wnd.basks.filter(function(x){return x.tag!==wndCorrect()}).map(function(x){return [Math.round(x.x*100)/100,Math.round(x.y*100)/100,Math.round(wnDist(x.x,x.y,sdf.x,sdf.y)*100)/100]})}:null,
+    hist:tr.hist};
+};
+function wndBaskDist(){
+  const b=wndBaskOf(wndCorrect());
+  if(!b||!wnd.seed)return 1e9;
+  return wnDist(b.x,b.y,wnd.seed.x,wnd.seed.y);
+}
+/* 在八个风口里挑「照得到籽、且最贴（或最逆）着想去方向」的那一个 */
+function wndCtrlDir(sx,sy,ux,uy){
+  let go=-1,gs=-1e9,no=-1,ns=1e9;
+  for(let a=0;a<8;a++){
+    if(!wndConeOk(a,sx,sy))continue;
+    const dd=WND_DIRS[a],L=Math.sqrt(dd[0]*dd[0]+dd[1]*dd[1]);
+    const s=(dd[0]/L)*ux+(dd[1]/L)*uy;
+    if(s>gs){gs=s;go=a}
+    if(s<ns){ns=s;no=a}
+  }
+  if(go>=0&&gs>-.72)return go;
+  if(go>=0)return gs>ns?go:no;
+  /* 籽落在所有锥之外（贴着风箱底）：挑一个 Perp 差最少的，风会自己漫过去 */
+  let bi=-1,bs=1e9;
+  for(let a=0;a<8;a++){
+    const dd=WND_DIRS[a],L=Math.sqrt(dd[0]*dd[0]+dd[1]*dd[1]);
+    const ux2=dd[0]/L,uy2=dd[1]/L;
+    const dx=sx-WND_BX,dy=sy-WND_BY;
+    const proj=dx*ux2+dy*uy2;
+    if(proj<=0)continue;
+    const perp=Math.abs(dx*(-uy2)+dy*ux2);
+    const need=perp-(WND_JET_W0+proj*WND_JET_SP);
+    const s=(dd[0]/L)*ux+(dd[1]/L)*uy;
+    const sc=need*2-Math.max(0,s);
+    if(sc<bs){bs=sc;bi=a}
+  }
+  return bi;
+}
+window.vWndAim=function(a){return wndAim(a)};
+window.vWndBlow=function(on){return wndBlow(on)};
+window.vWndAnchor=function(){return wndAnchor()};
+window.vWndPeek=function(){return wndPeek()};
+window.vWndSlow=function(){return wndSlow()};
+window.vWndShoo=function(){return wndShoo()};
+window.vWndFail=function(){
+  /* 摆拍「送错篮子」：把籽按到一只写错了的篮口上 */
+  if(!wnd.rec||wnd.busy||wnd.over)return 0;
+  const ok=wndCorrect();
+  for(let i=0;i<wnd.basks.length;i++){
+    const b=wnd.basks[i];
+    if(b.tag===ok)continue;
+    wnd.seed.x=b.x;wnd.seed.y=b.y;wnd.seed.vx=0;wnd.seed.vy=0;
+    wndStepCatch();
+    return 1;
+  }
+  return 0;
+};
+window.vWndBlock=function(){
+  /* 摆拍「空壳堵篮」：把最近的一只空壳按到正确篮子口上 */
+  if(!wnd.rec||wnd.over)return 0;
+  const b=wndBaskOf(wndCorrect())||wnd.basks[0];
+  if(!b)return 0;
+  for(let i=0;i<wnd.shells.length;i++){
+    const sh=wnd.shells[i];
+    if(sh.pin)continue;
+    sh.x=b.x;sh.y=b.y;sh.vx=0;sh.vy=0;
+    wndStepSeeds(WND_TICK_MS);
+    return b.blockMs>0?1:0;
+  }
+  return 0;
+};
+window.vWndTear=function(){
+  if(!wnd.rec||wnd.busy||wnd.over||!wnd.hazes.length)return 0;
+  const h=wnd.hazes[0];
+  h.x=wnd.seed.x;h.y=wnd.seed.y;h.ph=1;
+  wndStepHaz(WND_TICK_MS);
+  return wnd.tears?1:0;
+};
+window.vWndTimeout=function(){wndTimeout();return wnd.qms};
+window.vWndSetLv=function(lv){
+  wnd.lv=wnClamp(lv,1,9);
+  wnd.baskWant=wndBasks(wnd.lv);
+  wnd.galeMs=wndGale(wnd.lv);
+  if(wnd.rec)wndBuildValley();
+  wndResetStroke();
+  wndHud();wndMeter();wndPow();wndLine();wndDraw();
+  return {lv:wnd.lv,gale:wndGale(wnd.lv),refill:Math.round(wndRefill(wnd.lv)*10)/10,decay:wndDecay(wnd.lv),
+    bands:wnd.bands.length,vorts:wnd.vorts.length,hazes:wnd.hazes.length,shells:wnd.shells.length,
+    bells:wnd.bells.length,tagLit:wndTagLit(wnd.lv),basks:wnd.basks.length,qms:wndQms(wnd.lv)};
+};
+window.vWndField=function(list){
+  const out=[],a=list||[[9,6],[4,10],[13,3],[9,12],[1,13]];
+  for(let i=0;i<a.length;i++){
+    const c=a[i][0],r=a[i][1],k=wnKey(c,r);
+    out.push({c:c,r:r,x:Math.round(wnd.vx[k]*100)/100,y:Math.round(wnd.vy[k]*100)/100,
+      sp:Math.round(Math.sqrt(wnd.vx[k]*wnd.vx[k]+wnd.vy[k]*wnd.vy[k])*100)/100});
+  }
+  return out;
+};
+window.vWndBasks=function(){
+  return wnd.basks.map(function(b){
+    return {tag:b.tag,x:Math.round(b.x*100)/100,y:Math.round(b.y*100)/100,
+      x0:Math.round(b.x0*100)/100,y0:Math.round(b.y0*100)/100,
+      drift:Math.round(wnDist(b.x,b.y,b.x0,b.y0)*100)/100,block:b.blockMs>0?1:0,
+      reach:wndReach(b.x0,b.y0)?1:0,correct:b.tag===wndCorrect()?1:0};
+  });
+};
+window.vWndShells=function(){
+  return wnd.shells.map(function(sh){return {x:Math.round(sh.x*100)/100,y:Math.round(sh.y*100)/100,pin:sh.pin?1:0}});
+};
+window.vWndBells=function(){return wnd.bells.map(function(b){return {x:Math.round(b.x*100)/100,y:Math.round(b.y*100)/100,taken:b.taken?1:0}})};
+window.vWndHaz=function(){return wnd.hazes.map(function(h){return {x:Math.round(h.x*100)/100,y:Math.round(h.y*100)/100,ph:h.ph?1:0}})};
+window.vWndBands=function(){return wnd.bands.map(function(b){return {r0:b.r0,r1:b.r1,vx:Math.round(b.vx*100)/100,turn:Math.round(b.turn)}})};
+window.vWndVorts=function(){return wnd.vorts.map(function(v){return {x:Math.round(v.x*100)/100,y:Math.round(v.y*100)/100,sign:v.sign,spd:v.spd}})};
+window.vWndSeed=function(){
+  if(!wnd.seed)return null;
+  return {x:Math.round(wnd.seed.x*100)/100,y:Math.round(wnd.seed.y*100)/100,
+    vx:Math.round(wnd.seed.vx*100)/100,vy:Math.round(wnd.seed.vy*100)/100,
+    sp:Math.round(wndSeedSpeed(wnd.seed)*100)/100,trail:wnd.seed.trail.length};
+};
+window.vWndState=function(){
+  const done=wnd.done?wnd.done.size:0;
+  let blk=0;for(let i=0;i<wnd.basks.length;i++)if(wnd.basks[i].blockMs>0)blk++;
+  return {run:wnd.run?1:0,over:wnd.over?1:0,lv:wnd.lv,qi:wnd.qi,n:wnd.n,ch:wnd.rec?wnd.rec.ch:'',
+    correct:wndCorrect(),showTag:wndShowTag()?1:0,litMs:Math.round(wnd.litMs),tagLitOf:wndTagLit(wnd.lv),
+    score:wnd.score,hearts:wnd.hearts,combo:wnd.combo,maxCombo:wnd.maxCombo,
+    words:wnd.words,lits:wnd.lits,cats:wnd.cats,fails:wnd.fails,timeouts:wnd.timeouts,tears:wnd.tears,
+    blocks:wnd.blocks,swifts:wnd.swifts,bellHits:wnd.bellHits,bellGot:wnd.bellGot,bellTotal:wnd.bellTotal,
+    allBells:wnd.allBells,peeks:wnd.peeks,slows:wnd.slows,shoos:wnd.shoos,anchors:wnd.anchors,nags:wnd.nags,
+    jets:wnd.jets,moved:Math.round(wnd.moved*100)/100,
+    peekN:wnd.peekN,slowN:wnd.slowN,shooN:wnd.shooN,anchN:wnd.anchN,
+    air:Math.round(wnd.air*10)/10,airWarn:wnd.airWarn?1:0,blowing:wnd.blowing?1:0,aim:wnd.aim,
+    windMax:Math.round(wnd.windMax*100)/100,windE:Math.round(wnd.windE),
+    basks:wnd.basks.length,baskSkip:wnd.baskSkip|0,baskTry:wnd.baskTry|0,bells:wnd.bells.length,shells:wnd.shells.length,hazes:wnd.hazes.length,
+    bands:wnd.bands.length,vorts:wnd.vorts.length,blockedNow:blk,
+    done:done,cleanWord:wnd.cleanWord?1:0,bellWord:wnd.bellWord?1:0,
+    qms:Math.round(wnd.qms),qms0:Math.round(wnd.qms0),galeMs:Math.round(wnd.galeMs),galeOf:wndGale(wnd.lv),
+    warn:wnd.warn?1:0,helpMs:Math.round(wnd.helpMs),peekMs:Math.round(wnd.peekMs),slowMs:Math.round(wnd.slowMs),
+    shooMs:Math.round(wnd.shooMs),nagMs:Math.round(wnd.nagMs),since:Math.round(wnd.since),
+    busy:wnd.busy?1:0,actMs:Math.round(wnd.actMs),playMs:Math.round(wnd.playMs),seenMs:Math.round(wnd.seenMs),
+    tagMs:Math.round(wnd.tagMs),tones:wnd.tones,timers:wnd.timers.length,
+    trophy:wnInt('hz_wind_trophy'),refill:Math.round(wndRefill(wnd.lv)*10)/10,decay:wndDecay(wnd.lv),
+    baskWant:wnd.baskWant,pool:wnd.pool.length};
+};
+window.vWndInv=function(){
+  const out=[],N=WND_C*WND_R;
+  for(let k=0;k<N;k++){
+    const x=wnd.vx[k],y=wnd.vy[k];
+    if(!isFinite(x)||!isFinite(y)){out.push('wind NaN '+k);break}
+    if(x*x+y*y>(WND_VMAX+.6)*(WND_VMAX+.6)){out.push('wind over '+k+' '+Math.sqrt(x*x+y*y).toFixed(2));break}
+  }
+  const p=wnd.seed;
+  if(p){
+    if(!isFinite(p.x)||!isFinite(p.y))out.push('seed NaN');
+    if(p.x<WND_X0-.05||p.x>WND_X1+.05||p.y<WND_Y0-.05||p.y>WND_Y1+.05)out.push('seed oob '+p.x.toFixed(2)+','+p.y.toFixed(2));
+    if(!isFinite(p.vx)||!isFinite(p.vy))out.push('seed v NaN');
+    if(wndSeedSpeed(p)>WND_SMAX+.05)out.push('seed too fast '+wndSeedSpeed(p).toFixed(2));
+  }
+  for(let i=0;i<wnd.shells.length;i++){
+    const sh=wnd.shells[i];
+    if(!isFinite(sh.x)||!isFinite(sh.y)){out.push('shell NaN '+i);break}
+    if(sh.x<WND_X0-.05||sh.x>WND_X1+.05||sh.y<WND_Y0-.05||sh.y>WND_Y1+.05)out.push('shell oob '+i);
+    if(sh.pin&&!sh.bask)out.push('shell pinned 无篮 '+i);
+    if(!sh.pin&&sh.bask)out.push('shell 未堵却挂着篮 '+i);
+  }
+  let blk=0;
+  for(let i=0;i<wnd.basks.length;i++){
+    const b=wnd.basks[i];
+    if(!isFinite(b.x)||!isFinite(b.y)){out.push('bask NaN '+i);break}
+    if(!wnIn(b.x,b.y))out.push('bask oob '+i+' '+b.x.toFixed(2)+','+b.y.toFixed(2));
+    if(wnDist(b.x,b.y,b.x0,b.y0)>WND_BK_MAX+.03)out.push('bask 漂过头 '+i+' '+wnDist(b.x,b.y,b.x0,b.y0).toFixed(2));
+    if(!wndReach(b.x0,b.y0))out.push('bask 够不着 '+i);
+    if(b.blockMs>0){blk++;if(!b.sh||!b.sh.pin)out.push('堵篮却没夹住壳 '+i)}
+    if(b.blockMs===0&&b.sh)out.push('通了却还挂着壳 '+i);
+  }
+  if(blk>1)out.push('同时堵了 '+blk+' 只篮');
+  for(let i=0;i<wnd.bells.length;i++){
+    const bl=wnd.bells[i];
+    if(!wnIn(bl.x,bl.y)&&!wnIn(bl.x,bl.y0))out.push('bell oob '+i);
+  }
+  for(let i=0;i<wnd.hazes.length;i++){
+    const h=wnd.hazes[i];
+    if(!isFinite(h.x)||!isFinite(h.y)){out.push('haz NaN '+i);break}
+    if(h.x<WND_X0||h.x>WND_X1||h.y<WND_Y0||h.y>WND_Y1)out.push('haz oob '+i);
+  }
+  for(let i=0;i<wnd.bands.length;i++){
+    const b=wnd.bands[i];
+    if(b.r0<0||b.r1>=WND_R)out.push('band row oob '+i);
+    if(Math.abs(b.vx)>3.2)out.push('band vx '+b.vx);
+  }
+  for(let i=0;i<wnd.vorts.length;i++){
+    const v=wnd.vorts[i];
+    if(!wnIn(v.x,v.y))out.push('vort oob '+i);
+  }
+  if(wnd.air<-.01||wnd.air>WND_AIR_MAX+.01)out.push('air '+wnd.air);
+  if(wnd.hearts<0)out.push('hearts<0');
+  if(wnd.score<0)out.push('score<0');
+  if(wnd.qi>wnd.n)out.push('qi over '+wnd.qi+'/'+wnd.n);
+  if(wnd.aim<0||wnd.aim>7)out.push('aim '+wnd.aim);
+  if(wnd.peekN<0||wnd.slowN<0||wnd.shooN<0||wnd.anchN<0)out.push('props<0');
+  if(wnd.bellGot>wnd.bellTotal)out.push('bellGot>total');
+  if(!isFinite(wnd.galeMs)||wnd.galeMs<0)out.push('galeMs '+wnd.galeMs);
+  if(!isFinite(wnd.qms))out.push('qms NaN');
+  if(wnd.done&&wnd.done.size>wnd.n)out.push('done over');
+  return out;
+};
+window.vWndMsg=function(){const e=document.getElementById('wndMsg');return e?e.innerHTML:''};
+window.vWndAsk=function(){const e=document.getElementById('wndAsk');return e?e.textContent:''};
+window.vWndAskHtml=function(){const e=document.getElementById('wndAsk');return e?e.innerHTML:''};
+window.vWndHint=function(){const e=document.getElementById('wndHintLine');return e?e.textContent:''};
+window.vWndHintHtml=function(){const e=document.getElementById('wndHintLine');return e?e.innerHTML:''};
+window.vWndTagTxt=function(){const e=document.getElementById('wndTag');return e?e.textContent:''};
+window.vWndTagOn=function(){const e=document.getElementById('wndTag');return e&&e.classList.contains('on')?1:0};
+window.vWndPowTxt=function(){const e=document.getElementById('wndPowTxt');return e?e.textContent:''};
+window.vWndDom=function(id){const e=document.getElementById(id);return e?e.textContent:''};
+window.vWndScreen=function(){const s=document.querySelector('.screen.active');return s?s.id:''};
+window.vWndLeave=function(){wndLeave();return 1};
+window.vWndKillTimers=function(){wndStopAll();return 1};
+window.vWndClient=function(x,y){
+  const cv=document.getElementById('wndCanvas');
+  if(!cv)return null;
+  const b=cv.getBoundingClientRect();
+  if(!b.width||!b.height)return null;
+  return {x:b.left+x/WND_C*b.width,y:b.top+y/WND_R*b.height};
+};
+window.vWndSeedPt=function(){return wnd.seed?window.vWndClient(wnd.seed.x,wnd.seed.y):null};
+window.vWndBaskPt=function(tag){
+  const b=wndBaskOf(tag===undefined?wndCorrect():tag);
+  return b?window.vWndClient(b.x,b.y):null;
+};
+window.vWndPadPt=function(a){
+  const b=document.querySelector('#wndPad button[data-d="'+a+'"]');
+  if(!b)return null;
+  const r=b.getBoundingClientRect();
+  return {x:r.left+r.width/2,y:r.top+r.height/2};
+};
+window.vWndBlowPt=function(){
+  const b=document.getElementById('wndBlowBtn');
+  if(!b)return null;
+  const r=b.getBoundingClientRect();
+  return {x:r.left+r.width/2,y:r.top+r.height/2};
+};
+/* 摆拍：把籽摆在正确篮子下方一点，正对着篮子照过去（截图用） */
+window.vWndStage=function(frac){
+  if(!wnd.rec||wnd.over)return null;
+  const b=wndBaskOf(wndCorrect());
+  if(!b)return null;
+  const f=frac===undefined?1:frac;
+  wnd.seed.x=b.x;wnd.seed.y=Math.min(WND_Y1-.6,b.y+1.7);
+  wnd.seed.px=wnd.seed.x;wnd.seed.py=wnd.seed.y;
+  const a=wndCtrlDir(wnd.seed.x,wnd.seed.y,(b.x-wnd.seed.x)/1.7,(b.y-wnd.seed.y)/1.7);
+  if(a>=0)wndAim(a);
+  if(f>0)wndBlow(true);else wndBlow(false);
+  wnd.moved=Math.max(wnd.moved,3);
+  wndHud();wndMeter();wndPow();wndLine();wndDraw();
+  return {x:Math.round(b.x*100)/100,y:Math.round(b.y*100)/100,aim:wnd.aim};
+};
+/* DOM 与状态必须说同一句话 */
+window.vWndDomBad=function(){
+  const out=[];
+  const g=function(id){return document.getElementById(id)};
+  const txt=function(id){const e=g(id);return e?e.textContent:''};
+  const cls=function(id){const e=g(id);return e?e.className:''};
+  if(txt('wndScoreTxt')!=='🎯 '+wnd.score+' 分')out.push('分数条 '+txt('wndScoreTxt')+' 分='+wnd.score);
+  if(txt('wndLvTxt')!=='第 '+wnd.lv+' 场 · 已收 '+wnd.words+' 字')out.push('场数条 '+txt('wndLvTxt'));
+  const h=txt('wndHeartTxt');
+  if(wnd.hearts>0&&h!=='❤️'.repeat(wnd.hearts))out.push('心形 '+h+' 心='+wnd.hearts);
+  if(txt('wndComboTxt')!=='🔥 连 '+wnd.combo)out.push('连击条 '+txt('wndComboTxt'));
+  if(txt('wndLitTxt')!=='🖋 '+Math.min(wnd.qi+1,wnd.n)+'/'+wnd.n+' 笔')out.push('笔数条 '+txt('wndLitTxt')+' qi='+wnd.qi+' n='+wnd.n);
+  if(txt('wndBellTxt')!=='🎐 挂铃 '+wnd.bellGot+'/'+wnd.bellTotal)out.push('挂铃条 '+txt('wndBellTxt'));
+  if(txt('wndAirTxt2')!=='🌬 气 '+Math.round(wnd.air))out.push('气条 '+txt('wndAirTxt2'));
+  if(txt('wndAirTxt')!=='🌬 风箱 '+Math.round(wnd.air))out.push('风箱条 '+txt('wndAirTxt'));
+  if(txt('wndShellTxt')!=='🍥 空壳 '+wnd.shells.length)out.push('空壳条 '+txt('wndShellTxt'));
+  if(txt('wndHazTxt')!=='😈 风煞 '+wnd.hazes.length+' 团')out.push('风煞条 '+txt('wndHazTxt'));
+  if(txt('wndAnchTxt')!=='🪀 收籽 '+wnd.anchN)out.push('收籽条 '+txt('wndAnchTxt'));
+  const spd='💨 籽速 '+wndSeedSpeed(wnd.seed||{vx:0,vy:0}).toFixed(1);
+  if(txt('wndSpdTxt')!==spd)out.push('籽速条 '+txt('wndSpdTxt')+' 该 '+spd);
+  if(txt('wndQTxt')!=='⏳ 这一笔 '+Math.ceil(wnd.qms/1000)+' 秒')out.push('笔钟 '+txt('wndQTxt'));
+  if(txt('wndGaleTxt')!=='🍃 长风还剩 '+Math.ceil(wnd.galeMs/1000)+' 秒')out.push('长风条 '+txt('wndGaleTxt'));
+  const powWant=wndPowStr(),powGot=g('wndPowTxt')?g('wndPowTxt').innerHTML:'';
+  if(powGot!==powWant)out.push('场况条 DOM['+powGot+'] 状态['+powWant+']');
+  const ab=g('wndAirBox');
+  if(ab&&ab.classList.contains('dry')!==(wnd.air/WND_AIR_MAX<.25))out.push('气条 dry 标记不对');
+  const gb=g('wndGaleBox');
+  if(gb&&gb.classList.contains('low')!==!!wnd.warn)out.push('长风条 low 不对');
+  const qb=g('wndQBox');
+  if(qb&&qb.classList.contains('low')!==(wnd.qms0&&wnd.qms/wnd.qms0<.3))out.push('笔钟 low 不对');
+  const need=['wndPeekBtn','wndSlowBtn','wndShooBtn','wndAnchorBtn','wndEndBtn','wndCanvas','wndFx','wndTag',
+    'wndValley','wndPad','wndMiniSvg','wndMiniCap','wndAsk','wndHintLine','wndMsg','wndPowTxt','wndQTxt','wndQTxt2',
+    'wndGaleTxt','wndAirTxt','wndAirBox','wndAirBar','wndQBox','wndQBar','wndGaleBox','wndGaleBar','wndBlowBtn','wndBlowTool'];
+  for(let i=0;i<need.length;i++)if(!g(need[i])){out.push('缺 '+need[i]);break}
+  [['wndPeekBtn',wnd.peekN],['wndSlowBtn',wnd.slowN],['wndShooBtn',wnd.shooN],['wndAnchorBtn',wnd.anchN]].forEach(function(x){
+    const el=document.getElementById(x[0]);
+    if(!el){out.push('没有 '+x[0]);return}
+    if(el.disabled!==(x[1]<=0))out.push(x[0]+' 该 '+(x[1]<=0?'禁用':'可用'));
+    const t=el.innerHTML.match(/剩 (\d+)/);
+    if(!t||+t[1]!==x[1])out.push(x[0]+' 剩 '+(t?t[1]:'?')+' 该是 '+x[1]);
+  });
+  const cv=g('wndCanvas');
+  if(cv){
+    if(cv.width!==WND_W||cv.height!==WND_H)out.push('画布 '+cv.width+'x'+cv.height);
+    if(!cv.offsetParent)out.push('画布看得见却没在场上');
+    else{const r=cv.getBoundingClientRect();if(r.width<120)out.push('画布被挤成 '+Math.round(r.width))}
+  }
+  const bl=g('wndBlowBtn');
+  if(bl&&bl.classList.contains('hard')!==(wnd.air<=0))out.push('吹键 hard 标记不对');
+  const mi=g('wndMiniSvg');
+  if(mi){
+    const paths=mi.querySelectorAll('path').length;
+    if(wnd.rec&&paths!==wnd.rec.n)out.push('小字卡 '+paths+' 条 path 该 '+wnd.rec.n);
+    if(wnd.done&&wnd.done.size===wnd.n&&wnd.n){
+      let grey=0;const ps=mi.querySelectorAll('path');
+      for(let i=0;i<ps.length;i++)if(ps[i].getAttribute('fill')==='rgba(255,255,255,.14)')grey++;
+      if(grey)out.push('字落好了小字卡还有 '+grey+' 条没上色');
+    }
+  }
+  const mc=g('wndMiniCap');
+  if(mc&&wnd.rec&&mc.textContent.indexOf(wnd.rec.ch)<0)out.push('小字卡题头 '+mc.textContent+' 字='+wnd.rec.ch);
+  const pad=document.querySelectorAll('#wndPad button[data-d]');
+  if(pad.length!==8)out.push('方向盘 '+pad.length+' 个风口键');
+  let onN=0;for(let i=0;i<pad.length;i++)if(pad[i].classList.contains('on'))onN++;
+  if(wnd.aim>=0&&onN!==1)out.push('方向盘亮灯 '+onN+' 个 aim='+wnd.aim);
+  if(wnd.aim<0&&onN!==0)out.push('风口没朝任何向却亮着 '+onN);
+  const ask=txt('wndAsk');
+  if(wnd.rec&&ask.indexOf('第 '+Math.min(wnd.qi+1,wnd.n)+' 笔')<0&&ask.indexOf('整字落好')<0)out.push('题头 '+ask);
+  const tg=g('wndTag');
+  if(tg){
+    if(wnd.tagMs>0&&!tg.classList.contains('on'))out.push('浮条该亮着');
+    if(wnd.tagMs<=0&&tg.classList.contains('on'))out.push('浮条淡了还亮着');
+  }
+  const vl=g('wndValley');
+  if(wnd.over&&vl&&vl.classList.contains('dead')===false)out.push('收摊了谷子没暗');
   return out;
 };
 
