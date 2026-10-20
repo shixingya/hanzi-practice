@@ -6332,6 +6332,76 @@ button:active{transform:scale(.95)}
 #screen-wind .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
 /* 窄屏（手机）：字卡挪到风谷上头，风谷独占整幅宽 */
 @media(max-width:460px){.wnd-stage{flex-direction:column}.wnd-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.wnd-mini svg{flex:0 0 74px;width:74px}.wnd-cap{flex:0 1 auto;text-align:left}.wnd-meter{flex-wrap:wrap}.wnd-air,.wnd-tl,.wnd-gale{flex:1 1 30%}}
+/* ================= v1.92 笔顺撬木场 ================= */
+.lvr-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.lvr-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.lvr-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#E8F5E9;margin:2px 0 6px;line-height:1.35}
+.lvr-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.lvr-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.lvr-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.lvr-mini svg{width:100%;height:auto;background:rgba(255,255,255,.06);border-radius:12px}
+.lvr-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+.lvr-yard{flex:1;min-width:0;position:relative;background:#171208;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 18px rgba(0,0,0,.75)}
+.lvr-yard.dead{filter:grayscale(.85) brightness(.6)}
+.lvr-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.lvr-tag{position:absolute;left:50%;top:8px;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#FFE0B2;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.lvr-tag.on{opacity:1}
+.lvr-fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:5}
+.lvr-chip{position:absolute;width:4px;height:4px;border-radius:50%;opacity:.95;pointer-events:none;animation:lvrChip .62s ease-out forwards}
+.lvr-puff{position:absolute;width:7px;height:7px;border-radius:50%;background:rgba(255,236,200,.7);pointer-events:none;animation:lvrPuff .74s ease-out forwards}
+@keyframes lvrChip{0%{transform:translate(0,0) scale(1);opacity:.95}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+@keyframes lvrPuff{0%{transform:translate(0,0) scale(.6);opacity:.8}100%{transform:translate(var(--dx),var(--dy)) scale(2.5);opacity:0}}
+.lvr-pop{position:absolute;transform:translate(-50%,0);font-size:12px;font-weight:800;color:#FFE0B2;text-shadow:0 1px 4px rgba(0,0,0,.85);pointer-events:none;animation:lvrPop .82s ease-out forwards;white-space:nowrap;z-index:7}
+@keyframes lvrPop{0%{transform:translate(-50%,0);opacity:1}100%{transform:translate(-50%,-28px);opacity:0}}
+.lvr-meter{display:flex;gap:7px;align-items:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.lvr-force,.lvr-tl,.lvr-day{position:relative;flex:1;height:22px;background:rgba(255,255,255,.1);border-radius:11px;overflow:hidden}
+.lvr-force{height:26px;border-radius:13px}
+.lvr-force i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#FFB74D,#FFD54F);transition:width .1s linear}
+.lvr-force.dry i{background:linear-gradient(90deg,#8D6E63,#A1887F)}
+.lvr-tl{height:26px;border-radius:13px}
+.lvr-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#4DB6AC,#A5D6A7);transition:width .2s linear}
+.lvr-tl.low i{background:linear-gradient(90deg,#FF8A65,#FFD54F)}
+.lvr-day i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#A1887F,#D7CCC8);transition:width .2s linear}
+.lvr-day.low i{background:linear-gradient(90deg,#FF5252,#FF8A65)}
+.lvr-force b,.lvr-tl b,.lvr-day b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8);white-space:nowrap;overflow:hidden;z-index:3}
+.lvr-force b{font-size:12px}
+.lvr-tray{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:3px auto 2px}
+.lvr-w{position:relative;flex:0 0 auto;min-width:44px;padding:5px 7px 3px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:10px;text-align:center;cursor:pointer;color:#FFF3E0;line-height:1.1}
+.lvr-w i{display:block;font-style:normal;font-size:17px;font-weight:800}
+.lvr-w u{display:block;text-decoration:none;font-size:9px;color:#BCAAA4}
+.lvr-w.on{background:rgba(255,183,77,.34);border-color:#FFB74D;transform:translateY(-2px)}
+.lvr-w.pad{background:rgba(255,255,255,.05);color:#78593C;border-color:rgba(255,255,255,.12);cursor:default}
+.lvr-tilt{display:flex;gap:6px;align-items:center;justify-content:center;width:100%;margin:2px 0}
+.lvr-tilt .lvr-fxbtn{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);border-radius:10px;color:#fff;font-size:16px;font-weight:800;padding:5px 12px;cursor:pointer}
+.lvr-tilt .lvr-fxbtn.hard{background:rgba(255,213,79,.4);border-color:#FFD54F;color:#2A1F10;box-shadow:0 0 10px rgba(255,213,79,.5)}
+.lvr-tilt .lvr-fxbtn:disabled{opacity:.35;cursor:default}
+.lvr-tilt span{font-size:12px;color:#CFD8DC;background:rgba(255,255,255,.08);padding:4px 10px;border-radius:10px;white-space:nowrap}
+.lvr-pow{display:block;width:calc(100% - 28px);max-width:520px;margin:2px auto 0;white-space:normal;text-align:center;line-height:1.5;font-size:12px;color:#CFD8DC;background:rgba(255,255,255,.08);padding:3px 9px;border-radius:11px}
+.lvr-pow b{color:#FFCC80}
+.lvr-tools{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;width:100%;margin:4px 0 6px}
+.lvr-tool{position:relative;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#fff;font-size:14px;font-weight:700;padding:8px 12px;cursor:pointer}
+.lvr-tool span{display:block;font-size:9px;opacity:.6;font-weight:400}
+.lvr-tool b{position:absolute;right:-4px;top:-6px;background:#FF6E40;color:#fff;font-size:10px;border-radius:9px;padding:1px 5px}
+.lvr-tool:disabled{opacity:.4;cursor:default}
+.lvr-tool.go{background:rgba(255,183,77,.26);border-color:#FFB74D}
+.lvr-hintline{width:100%;text-align:center;font-size:12px;color:#90A4AE;margin:0 0 6px;line-height:1.4}
+.lvr-hintline b{color:#FFF176}
+.lvr-msg{width:calc(100% - 28px);max-width:520px;margin:0 auto 12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.07);color:#CFD8DC;font-size:12px;line-height:1.6}
+.lvr-msg b{color:#FFE0B2}
+.lvr-msg code{background:rgba(0,0,0,.35);padding:1px 5px;border-radius:5px;color:#FFCC80}
+@keyframes lvrShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.lvr-yard.shake{animation:lvrShake .34s}
+.lvr-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px}
+.lvr-cdot.on{display:block}
+.lvr-pk{background:rgba(255,255,255,.08);padding:4px 10px;border-radius:12px;font-size:13px;color:#CFD8DC}
+/* 双人同屏：两只手各占一条键位，屏上得写清谁管哪一件事 */
+.lvr-duo{display:flex;gap:6px;justify-content:center;width:100%;margin:0 0 4px}
+.lvr-duo span{font-size:11px;color:#D7CCC8;background:rgba(255,183,77,.14);border:1px solid rgba(255,183,77,.3);padding:3px 9px;border-radius:10px;white-space:nowrap}
+.lvr-duo span.off{opacity:.45}
+/* 顶栏挤的时候「← 返回」不能折成两行 */
+#screen-lever .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：字卡挪到场上头，场独占整幅宽 */
+@media(max-width:460px){.lvr-stage{flex-direction:column}.lvr-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.lvr-mini svg{flex:0 0 74px;width:74px}.lvr-cap{flex:0 1 auto;text-align:left}.lvr-meter{flex-wrap:wrap}.lvr-force,.lvr-tl,.lvr-day{flex:1 1 30%}}
 </style>
 
 </head>
@@ -6388,8 +6458,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 90 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">90</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 91 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">91</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6400,12 +6470,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>90 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>34</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>27</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>91 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>35</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>27</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="lvrCard" onclick="enterMode('lever')">
+      <div class="icon">🪵</div>
+      <div class="info"><h3>笔顺撬木场</h3><p id="lvrCardTip">一根撬板一块会挪的支石：重量×格数＝力矩，把净力矩凑成牌上刻的那一个数、等板晃稳了，才抬得到写着这一笔笔形的那块牌 —— 砝码还会往低那头溜</p></div>
+      <span class="lvr-cdot" id="lvrCardDot">🆕</span>
+    </div>
     <div class="mode-card" id="pjCard" onclick="enterMode('proj')">
       <div class="icon">🔮</div>
       <div class="info"><h3>笔顺光影坊</h3><p id="pjCardTip">幕后一团歪七扭八的木条，每根就是这个字的一笔：把架子转到某一根正对幕布，它那一笔的影子才啪地还原成真形 —— 认出它是第几笔，才敢落</p></div>
@@ -7035,6 +7110,96 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-lever">
+  <div class="top-bar">
+    <button class="back-btn" onclick="lvrLeave()">← 返回</button>
+    <div class="stats"><span id="lvrScoreTxt">🎯 0 分</span><span id="lvrLvTxt">第 1 场 · 已收 0 字</span><span id="lvrQTxt">⏳ 这一笔 ——</span></div>
+    <button class="icon-btn" onclick="lvrHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="lvr-hud">
+    <span id="lvrRankTxt" title="称号">🌱 刚上手</span>
+    <span id="lvrHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="lvrComboTxt" title="连击">🔥 连 0</span>
+    <span id="lvrLitTxt" title="落到第几笔">🖋 0/0 笔</span>
+    <span id="lvrTauTxt" title="板上的净力矩">⚖️ 力矩 0</span>
+    <span id="lvrDegTxt" title="板现在斜几度">📐 0.0°</span>
+    <span id="lvrStabTxt" title="板稳不稳">🫱 稳</span>
+    <span id="lvrMoteTxt" title="这一笔采到的墨露">💧 采露 0/0</span>
+    <span id="lvrPebTxt" title="场上的滑石">🪨 滑石 0</span>
+    <span id="lvrBoreTxt" title="场上的蛀虫">🐛 蛀虫 0</span>
+    <span id="lvrFlatTxt" title="还能归平几次">🪝 归平 1</span>
+  </div>
+  <div class="lvr-ask" id="lvrAsk">🪵 正在架板……<br><small>在字库里挑「笔笔都认得出笔形」的字</small></div>
+  <div class="lvr-duo" id="lvrDuoBar">
+    <span id="lvrDuoP1" class="off">👩 P1：点砝码盘、点板格、按 <b>X</b> 摘</span>
+    <span id="lvrDuoP2" class="off">🧔 P2：<b>←→</b> 推支石、按住 <b>S</b> 压撬、按 <b>空格</b> 起</span>
+  </div>
+  <div class="lvr-stage">
+    <div class="lvr-mini">
+      <svg viewBox="0 0 1024 1024" id="lvrMiniSvg"></svg>
+      <div class="lvr-cap" id="lvrMiniCap">这个字</div>
+    </div>
+    <div class="lvr-yard" id="lvrYard">
+      <canvas class="lvr-canvas" id="lvrCanvas" width="360" height="280"></canvas>
+      <div class="lvr-fx" id="lvrFx"></div>
+      <div class="lvr-tag" id="lvrTag">🪵 撬木场开张了</div>
+    </div>
+  </div>
+  <div class="lvr-tray" id="lvrTray"></div>
+  <div class="lvr-tilt">
+    <button class="lvr-fxbtn" id="lvrFxL" title="支石往左（← / A）">◀</button>
+    <span id="lvrFxTxt">🪨 支石第 9 格</span>
+    <button class="lvr-fxbtn" id="lvrFxR" title="支石往右（→ / D）">▶</button>
+    <button class="lvr-fxbtn" id="lvrPluckBtn" title="摘牌（空格）">🫱 摘</button>
+    <button class="lvr-fxbtn" id="lvrDuoBtn" title="亲子双人同屏">👥 双人</button>
+  </div>
+  <div class="lvr-meter">
+    <div class="lvr-force" id="lvrForceBox"><i id="lvrForceBar"></i><b id="lvrForceTxt">🪵 力气 100</b></div>
+    <div class="lvr-tl" id="lvrQBox"><i id="lvrQBar"></i><b id="lvrQTxt2">⏳ 这一笔 —— 秒</b></div>
+    <div class="lvr-day" id="lvrDayBox"><i id="lvrDayBar"></i><b id="lvrDayTxt">🌇 日头 —— 秒</b></div>
+  </div>
+  <div class="lvr-pow" id="lvrPowTxt">🪵 第 <b>1</b> 场</div>
+  <div class="lvr-tools">
+    <button class="lvr-tool" id="lvrLightBtn" disabled>✨ 亮签<span>Q</span><b>剩 2</b></button>
+    <button class="lvr-tool" id="lvrCalmBtn" disabled>🫱 镇手<span>E</span><b>剩 2</b></button>
+    <button class="lvr-tool" id="lvrWedgeBtn" disabled>🪡 垫榫<span>F</span><b>剩 2</b></button>
+    <button class="lvr-tool" id="lvrFlatBtn" disabled>🪝 归平<span>Enter</span><b>剩 1</b></button>
+    <button class="lvr-tool go" id="lvrPressTool">🪵 压住不放<span>X</span></button>
+    <button class="lvr-tool" id="lvrEndBtn" onclick="lvrEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="lvr-hintline" id="lvrHintLine">🪵 <b>摘哪块牌＝凑多大力矩</b>：牌上刻着一个数，把 <code>⚖️ 力矩</code> 凑成一模一样的数、板 <b>稳住</b>，再按 <code>空格</code> 摘 · <code>←→</code> 挪支石、按住 <code>X</code> 借一记力</div>
+  <div class="lvr-msg" id="lvrMsg">🪵 <b>撬木场里只有一条规矩</b>：重量 × 离支石的格数 = 力矩，两边的力矩一差，板就朝沉的那头斜下去<br>🪨 <b>支石可以挪</b>：同一块砝码，挪远一格就多半倍力气；把支石推向一头，另一头的力臂全变短 —— 这是「以小博大」的开关<br>🏷 <b>牌上刻着两样东西</b>：这一笔的笔形（横竖撇捺点）和摘它要的力矩数。<b>只有写着这一笔笔形的那块才对</b>，可你得先把力矩凑成它刻的那个数，板头才抬得到它<br>🫱 <b>板有惯性</b>：放下一块砝码，板会一沉一弹地晃几下才停 —— 晃着的时候摘不住（HUD 写着「沉」）<br>⚠️ <b>砝码会滑</b>：板斜过 20° 还没垫榫，板上没卡的砝码会一格一格往低那头溜，越溜压得越狠；顶到限位石就 <b>砸板</b>，全场一起溜<br>🪨 <b>滑石</b>是块活的砝码：它自己往低端滚，一滚你的力矩就变了 —— 要么趁它停的那几拍摘，要么垫榫把它卡住；🐛 <b>蛀虫</b>会啃砝码，啃一口轻一分<br>🪵 <b>力气</b>：差一点点够不着时按住 <code>X</code> 压住低的那头（一记顶 6 个力矩），松手就自己涨回来 —— 整字都没借过手叫「干净」，另加 18 分<br>💧 <b>墨露</b>飘在板头扫过的弧上：把板一沉一抬扫过去就采到，一颗 +3 分，这一笔 <b>全采满</b> 另加 12 分 —— 可摆幅一大，砝码也更容易滑<br>✨ <b>亮签 Q</b> 把淡掉的笔形重新点亮（第 3 场起 <b>牌上的笔形会淡</b>，数字一直在）、🫱 <b>镇手 E</b> 让板立刻停住、🪡 <b>垫榫 F</b> 卡住砝码不许滑并赶走虫、🪝 <b>归平 Enter</b> 把板上砝码全收回盘、板归平<br>👥 <b>亲子双人</b>：P1 只管摆砝码、按 <code>X</code> 喊「摘」；P2 管 <code>←→</code> 推支石、按住 <code>S</code> 压撬、按 <code>空格</code> 喊「起」—— <b>两下相隔不到 0.42 秒才算合抱</b>，一块牌要两个人一起摘<br>⏳ <b>两只钟</b>：这一笔的钟走光 <b>不算答错</b>（扣 3 分、砝码收回盘重来）；<b>日头</b>落了就收摊。按 <code>H</code> 看说明时两只钟都不走</div>
+</div>
+<div class="screen" id="screen-lever-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="lvrLeave()">← 回首页</button>
+    <div class="stats"><span id="lvrRsStars">⭐ 0</span></div>
+  </div>
+  <div style="text-align:center;padding:22px 20px 10px;color:#fff">
+    <div style="font-size:62px;margin-bottom:8px" id="lvrRsEmoji">🪵</div>
+    <div style="font-size:26px;font-weight:800" id="lvrRsTitle">日头落了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="lvrRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px" id="lvrRsPicks">
+      <span class="lvr-pk" id="lvrRsScore">🎯 0 分</span>
+      <span class="lvr-pk" id="lvrRsWords">🪵 收 0 个字</span>
+      <span class="lvr-pk" id="lvrRsLits">🖋 落好 0 笔</span>
+      <span class="lvr-pk" id="lvrRsSub2">🏷 摘牌 0 次 · 摘错 0</span>
+      <span class="lvr-pk" id="lvrRsSteady">🫱 稳摘 0 笔 · 没借手 0 字</span>
+      <span class="lvr-pk" id="lvrRsMote">💧 采露 0 颗 · 采满 0 笔</span>
+      <span class="lvr-pk" id="lvrRsSlip">🪨 溜手 0 次 · 砸板 0 次 · 掉砝 0 块</span>
+      <span class="lvr-pk" id="lvrRsTools">✨ 亮签 0 · 🫱 镇手 0 · 🪡 垫榫 0</span>
+      <span class="lvr-pk" id="lvrRsDuo">👥 合抱 0 次</span>
+      <span class="lvr-pk" id="lvrRsCombo">🔥 最长连 0</span>
+      <span class="lvr-pk" id="lvrRsBest">🏆 最高 0 分</span>
+    </div>
+    <div style="font-size:13px;color:#FFF59D;margin:6px auto 14px;max-width:420px;line-height:1.6" id="lvrRsWhy"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin-bottom:14px" id="lvrRsBook">图鉴里还没有字</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="primary-btn" onclick="lvrAgain()">🪵 再撬一场</button>
+      <button class="secondary-btn" onclick="lvrLeave()">🏠 回首页</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-wind">
@@ -13614,6 +13779,7 @@ function updateHomeStats(){
   if(typeof pjNudge==='function')pjNudge();
   if(typeof iceNudge==='function')iceNudge();
   if(typeof wndNudge==='function')wndNudge();
+  if(typeof lvrNudge==='function')lvrNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -13650,6 +13816,7 @@ function enterMode(mode){
   if(mode==='proj'){pjStart();return}
   if(mode==='skate'){iceStart();return}
   if(mode==='wind'){wndStart();return}
+  if(mode==='lever'){lvrStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -82657,6 +82824,2503 @@ window.vWndDomBad=function(){
   }
   const vl=g('wndValley');
   if(wnd.over&&vl&&vl.classList.contains('dead')===false)out.push('收摊了谷子没暗');
+  return out;
+};
+
+/* ================= v1.92 笔顺撬木场（一根撬板一块支石 · 重量×距离＝力矩 · 板头抬到牌上刻的那一个数才摘得下 · 砝码会滑、滑石会滚、蛀虫会啃 · 两个人也能一起撬） ================= */
+const LVR_C=18,LVR_R=14,LVR_CS=20,LVR_W=360,LVR_H=280;
+/* 板架在石轨上：支点列 fx∈[LVR_FX0,LVR_FX1]，板面可放格 c∈[LVR_S0,LVR_S1]（绝对列，格心 = c）*/
+const LVR_PY=9.2,LVR_PX0=2.4,LVR_PX1=15.6,LVR_S0=3,LVR_S1=15,LVR_FX0=6,LVR_FX1=12,LVR_RY=2.15;
+const LVR_TAG5=['横','竖','撇','捺','点'],LVR_INK5=['#4FC3F7','#81C784','#FFD54F','#FFB74D','#BA68C8'];
+/* 力矩 → 倾角：θ_eq = clamp(τ/LVR_TAU_FULL,-1,1)*LVR_TMAX。牌按「净力矩恰好等于牌上刻的数」来摘，
+   所以 τ 全程是整数：砝码重量是笔画数（整数）、力臂是格数（整数）、滑石按格跳、撬棍一记顶 LVR_PUSH。 */
+const LVR_TMAX=22,LVR_TMAX_HARD=26,LVR_TAU_FULL=14,LVR_TAU_MIN=3,LVR_TAU_MAX=12,LVR_TAU_GAP=3;
+const LVR_SPR=30,LVR_DAMP=6.0,LVR_STEADY=7,LVR_STEADY_HARD=2.4,LVR_STEADY_PTS=8;
+const LVR_SLIP_DEG=20.5,LVR_SLIP_MS0=1100,LVR_SLIP_MIN=680,LVR_SLIP_STEP=60;
+const LVR_BANG_TAU=17,LVR_BANG_KICK=34;
+const LVR_PUSH=6,LVR_FORCE_MAX=100,LVR_FORCE_USE=34,LVR_REGEN0=22,LVR_REGEN_MIN=15,LVR_REGEN_STEP=1.0;
+const LVR_ROLL_MS0=2600,LVR_ROLL_MIN=1500,LVR_ROLL_STEP=150,LVR_PEB_W=2;
+const LVR_BORE_MS0=7000,LVR_BORE_MIN=4200,LVR_BORE_STEP=400;
+const LVR_MOTE_R=.66,LVR_MOTE_DK=3.0,LVR_MOTE_PTS=3,LVR_MOTE_ALL=12,LVR_MOTE0=3,LVR_MOTE_MAX=6,LVR_NEEDLE=2.9;
+const LVR_PEN_WRONG=6,LVR_PEN_MISS=3,LVR_PEN_TIME=3,LVR_PEN_DROP=4,LVR_PEN_BANG=5,LVR_WORD_BONUS=28,LVR_CLEAN_BONUS=18;
+const LVR_WEDGE_MS=6000,LVR_CALM_MS=2600,LVR_LIGHT_MS=3400,LVR_FLAT0=1;
+const LVR_TRAY0=5,LVR_TRAY_MIN=3,LVR_TRAY_MAX=6;
+const LVR_P0=2,LVR_PCAP=3,LVR_HEARTS=3,LVR_HEART_MAX=5,LVR_BOOK_MAX=300,LVR_SHELF_MAX=8;
+const LVR_POOL_MIN=4,LVR_POOL_WANT=14,LVR_STROKE_MIN=3,LVR_STROKE_MAX=8;
+const LVR_DAY0=132000,LVR_DAY_MIN=88000,LVR_DAY_STEP=3400;
+const LVR_Q0=32000,LVR_Q_MIN=16000,LVR_Q_STEP=2000;
+const LVR_TAG0=6400,LVR_TAG_MIN=2200,LVR_TAG_STEP=700;
+const LVR_TICK_MS=40,LVR_ACT_CD=170,LVR_NEXT_MS=1200,LVR_TAG_MS=2300;
+const LVR_NAG_MS=11000,LVR_NAG_HOLD=5200,LVR_HELP_MS=14000,LVR_COUP_GAP=420;
+const LVR_NOTE=[262,294,330,392,440,523,587,659,784,880,1047];
+const LVR_TRS=['木楔','铜环','麻绳','石枕','铁钩','杆秤','鲁班尺','墨斗'];
+const LVR_RANKS=[
+  {n:0,e:'🌱',t:'刚上手'},{n:2,e:'🪵',t:'压得住板'},{n:5,e:'⚖️',t:'算得清砝码'},
+  {n:9,e:'🪨',t:'挪得动石'},{n:14,e:'🐛',t:'赶得走虫'},{n:21,e:'🪡',t:'摘得稳'},
+  {n:30,e:'🧲',t:'以小博大'},{n:42,e:'🏆',t:'木场的老把式'},{n:58,e:'👑',t:'撬木场的师傅'}
+];
+const lvr={
+  run:false,over:false,gen:0,rafId:0,last:0,acc:0,t:0,playMs:0,timers:[],toneAt:0,tones:0,
+  pool:[],wbag:{},miss:[],rec:null,n:0,
+  lv:1,score:0,hearts:LVR_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,plucks:0,wrongs:0,misses:0,timeouts:0,slips:0,drops:0,bangs:0,moteN:0,allMotes:0,
+  steadies:0,pressMs:0,presses:0,leans:0,tools:0,nags:0,moved:0,taps:0,duoPlucks:0,coups:0,coupMiss:0,
+  lightN:LVR_P0,calmN:LVR_P0,wedgeN:LVR_P0,flatN:LVR_FLAT0,
+  lightUse:0,calmUse:0,wedgeUse:0,flatUse:0,
+  lightMs:0,calmMs:0,wedgeMs:0,nagMs:0,helpMs:0,tagMs:0,tagPri:0,actMs:0,litMs:0,
+  qi:0,busy:false,qms:0,qms0:0,first:true,cleanWord:true,moteGot:0,moteNeed:0,
+  dayMs:LVR_DAY0,warn:false,beep:0,hudAcc:0,since:0,
+  fx:9,th:0,om:0,tau:0,force:LVR_FORCE_MAX,press:false,pressSide:0,
+  tiles:[],plates:[],pebs:[],borers:[],motes:[],held:-1,
+  done:null,slipAcc:0,bangMs:0,bangWord:false,
+  cset:null,csetKey:'',answer:0,tickN:0,
+  ctx:null,fxBox:null,bound:false,keys:null,dragging:false,
+  duo:false,p1At:-1e9,p2At:-1e9,lastGap:-1,
+  trophy:0,steadyRun:0,steadyMax:0,cleanWords:0
+};
+/* ---- 小工具 ---- */
+function lvxInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function lvxAdd(k,n){if(n)localStorage.setItem(k,String(lvxInt(k)+n))}
+function lvxSet(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function lvxSay(t,c){const el=document.getElementById('lvrMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function lvxShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function lvxOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function lvxClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function lvxRank(n){let r=LVR_RANKS[0];for(let i=0;i<LVR_RANKS.length;i++)if(n>=LVR_RANKS[i].n)r=LVR_RANKS[i];return r}
+function lvxRok(d){return d<0||d>4?0:d}
+function lvxDeg(tau){return lvxClamp(tau/LVR_TAU_FULL,-1,1)*LVR_TMAX}
+function lvrArm(c){return c-lvr.fx}
+function lvrIn(c){return c>=LVR_S0&&c<=LVR_S1}
+function lvxPlankX(x){return (x-LVR_PX0)/(LVR_PX1-LVR_PX0)}
+function lvrPt(c,off){/* 板上绝对列 c（可含半格）、离板面 off 格：跟着倾角走 */
+  const a=lvr.th*Math.PI/180,r=c-lvr.fx;
+  return {x:lvr.fx+r*Math.cos(a),y:LVR_PY+r*Math.sin(a)-off};
+}
+function lvrPtR(r,thDeg,off){const a=(thDeg===undefined?lvr.th:thDeg)*Math.PI/180;
+  return {x:lvr.fx+r*Math.cos(a),y:LVR_PY+r*Math.sin(a)-(off||0)};}
+function lvxDist(ax,ay,bx,by){const dx=ax-bx,dy=ay-by;return Math.sqrt(dx*dx+dy*dy)}
+/* 板鼻（钉在板面正上方、跟着板一起转的那根针）：θ>0 = 右端沉，针就往右倒 */
+function lvrUp(R,thDeg){const a=(thDeg===undefined?lvr.th:thDeg)*Math.PI/180;
+  return {x:lvr.fx+R*Math.sin(a),y:LVR_PY-R*Math.cos(a)};}
+/* 称号按「累计收下的字数」走，所以读的是累计键而不是「最好一场」那个 max 键 */
+function lvrRank2(){return lvxRank(lvxInt('hz_lever_total'))}
+function lvxTone(f,d,t,v){
+  if(!lvr.run||lvr.over)return;
+  const n=performance.now();
+  if(n-lvr.toneAt<22)return;
+  lvr.tones++;tone(f,d,t,v);
+}
+function lvxT(fn,ms){const g=lvr.gen;const id=setTimeout(function(){const k=lvr.timers.indexOf(id);if(k>=0)lvr.timers.splice(k,1);if(g!==lvr.gen)return;fn()},ms);lvr.timers.push(id);return id}
+function lvxKillTimers(){lvr.timers.forEach(function(t){clearTimeout(t)});lvr.timers=[]}
+/* ---- 难度表：场越深，牌越多、砝码越省、滑石滚得越急、蛀虫啃得越勤、字签淡得越快 ---- */
+function lvrLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function lvrDay(lv){return Math.max(LVR_DAY_MIN,LVR_DAY0-(lv-1)*LVR_DAY_STEP)}
+function lvrQms(lv){return Math.max(LVR_Q_MIN,LVR_Q0-(lv-1)*LVR_Q_STEP)}
+function lvrRegen(lv){return Math.max(LVR_REGEN_MIN,LVR_REGEN0-(lv-1)*LVR_REGEN_STEP)}
+function lvrSlipMs(lv){return Math.max(LVR_SLIP_MIN,LVR_SLIP_MS0-(lv-1)*LVR_SLIP_STEP)}
+function lvrRollMs(lv){return Math.max(LVR_ROLL_MIN,LVR_ROLL_MS0-(lv-1)*LVR_ROLL_STEP)}
+function lvrBoreMs(lv){return Math.max(LVR_BORE_MIN,LVR_BORE_MS0-(lv-1)*LVR_BORE_STEP)}
+function lvrTagLit(lv){return lv<3?0:Math.max(LVR_TAG_MIN,LVR_TAG0-(lv-3)*LVR_TAG_STEP)}
+function lvrPlates(lv){return lv<=2?3:(lv<=5?4:5)}
+function lvrPeb(lv){return lv<3?0:(lv>=6?2:1)}
+function lvrBorer(lv){return lv<4?0:(lv>=7?2:1)}
+function lvrTray(lv){return Math.max(LVR_TRAY_MIN,Math.min(LVR_TRAY_MAX,LVR_TRAY0-Math.floor((lv-1)/3)))}
+function lvrStrokeMax(lv){return lv>=5?LVR_STROKE_MAX:7}
+function lvrMotes(lv){return Math.min(LVR_MOTE_MAX,LVR_MOTE0+Math.floor((lv-1)/2))}
+function lvrGain(tiles,pressed,steady){
+  const lean=lvxClamp((4-tiles)/4,0,1);
+  return Math.round((10+lvr.combo*1.1+lvr.lv*1.8)*(1+lean*0.34)*(pressed?1:1.18)*(steady?1.1:1));
+}
+/* ---- 净力矩：板上一切会压板的东西都算进来（撬棍按住时往低的那端加一记） ---- */
+function lvrTau(){
+  let t=0;
+  for(let i=0;i<lvr.tiles.length;i++){const x=lvr.tiles[i];if(x.c>=0&&!x.gone)t+=x.w*(x.c-lvr.fx)}
+  for(let i=0;i<lvr.pebs.length;i++){const p=lvr.pebs[i];if(!p.gone)t+=p.w*(p.c-lvr.fx)}
+  if(lvr.press&&Math.abs(lvr.th)>=0.2)t+=(lvr.th>0?1:-1)*LVR_PUSH;
+  return Math.round(t);
+}
+/* ---- 可达性：手里这一叠砝码（每块要么不上板、要么摆到某一格）凑得出的净力矩集合。
+   中间态允许超过目标（一块压得狠、另一块扯回来），所以窗口开得比 ±LVR_TAU_FULL 宽得多。
+   摆牌的闸必须问这一个函数：牌挂在凑不出来的力矩上，孩子怎么挪石都是白挪。 ---- */
+function lvrReach(tiles,fx,lim){
+  const hi=lim||48;
+  let set={};set[0]=1;
+  for(let i=0;i<tiles.length;i++){
+    const w=tiles[i].w,next={};
+    for(const s in set){
+      next[s]=1;
+      for(let c=LVR_S0;c<=LVR_S1;c++){
+        const t=(+s)+w*(c-fx);
+        if(t>=-hi&&t<=hi)next[t]=1;
+      }
+    }
+    set=next;
+  }
+  const out=[];for(const s in set){const v=+s;if(v>=-LVR_TAU_FULL&&v<=LVR_TAU_FULL)out.push(v)}
+  return out;
+}
+function lvrReachMap(tiles,fx,lim){const a=lvrReach(tiles,fx,lim),o={};for(let i=0;i<a.length;i++)o[a[i]]=1;return o}
+/* 只从头 k 块砝码里凑得出某个力矩吗：摆牌用它筛掉「把整盘倒空才凑得出」的怪路 */
+function lvrFew(tiles,fx,tau,k){
+  const hi=48;
+  let set={};set[0]=1;
+  for(let i=0;i<tiles.length&&i<k;i++){
+    const w=tiles[i].w,next={};
+    for(const s in set){
+      next[s]=1;
+      for(let c=LVR_S0;c<=LVR_S1;c++){
+        const t=(+s)+w*(c-fx);
+        if(t>=-hi&&t<=hi)next[t]=1;
+      }
+    }
+    set=next;
+  }
+  return !!set[tau];
+}
+
+/* ---- 字池：每一笔都认得出笔形，且笔形种类不少于两块牌（否则答案白给） ---- */
+const LVR_LETTERS='十人八小上下日水石田木禾白子不去个长门见对书本牛马飞入'
+  +'什么双王方气生叫主以尤区巨于记市民丝贝互仙勾丰父欠未击乎代计且斗示巧'
+  +'付兰专扎仅叉议歹矛冈曰瓦早旬旭买巡还远秀每甲回困圈图火永冰川开雨走北';
+function lvrMake(ch,raw,lmax){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  const hi=lmax||7;
+  if(ms.length<LVR_STROKE_MIN||ms.length>hi)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=fmDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<ms.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp,kinds:lvxBits(kinds)};
+}
+function lvxBits(m){let c=0;while(m){c+=m&1;m>>=1}return c}
+async function lvrBuildPool(keep){
+  const g=lvr.gen,stale=function(){return g!==lvr.gen||!lvr.run||lvr.over};
+  lvr.miss=(localStorage.getItem('hz_lever_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){list=list||[];for(let i=0;i<list.length&&want.length<280;i++){const c=list[i];if(c&&want.indexOf(c)<0)want.push(c)}};
+  push(lvxShuf(lvr.miss.slice(0,6)));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(lvxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(lvxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(LVR_LETTERS.split(''));
+  if(typeof CHARS!=='undefined')push(lvxShuf(CHARS.slice()));
+  if(!keep){lvr.pool=[];lvr.wbag={}}
+  const hi=lvrStrokeMax(lvr.lv);
+  for(let k=0;k<want.length&&lvr.pool.length<LVR_POOL_WANT;k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      /* 砝码的重量必须是真笔画数：把每一位加载成功的人都记进「按笔画数分好的袋子」，
+         哪怕这个字本身不合本玩法（牌面要挑笔形齐全的，砝码只要笔画数是真的） */
+      const n=rs[i].medians.length;
+      if(n>=1&&n<=9){if(!lvr.wbag[n])lvr.wbag[n]=[];if(lvr.wbag[n].indexOf(want[k+i])<0)lvr.wbag[n].push(want[k+i])}
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=lvrMake(want[k+i],rs[i],hi);
+        if(m&&lvr.pool.indexOf(m)<0)lvr.pool.push(m);
+      }
+    }
+  }
+  return lvr.pool.length>=LVR_POOL_MIN;
+}
+function lvrPickRec(){
+  const hi=lvrStrokeMax(lvr.lv),want=lvrPlates(lvr.lv);
+  const w=lvr.lv<=2?[LVR_STROKE_MIN,5]:[LVR_STROKE_MIN,hi];
+  let pool=lvr.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]&&r.kinds<=want});
+  if(!pool.length)pool=lvr.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  if(!pool.length)pool=lvr.pool.slice();
+  if(!pool.length)return null;
+  /* 连着两个字撞同一个，孩子会以为「刚撬过」——能换就换个新的 */
+  const fresh=pool.filter(function(r){return !lvr.rec||r.ch!==lvr.rec.ch});
+  const pick=fresh.length?fresh:pool;
+  const missList=pick.filter(function(r){return lvr.miss.indexOf(r.ch)>=0});
+  const due=lvr.first||(lvr.words>0&&lvr.words%3===0);
+  lvr.first=false;
+  if(missList.length&&due)return lvxOne(missList);
+  return lvxOne(pick);
+}
+/* ---- 砝码：重量＝这个字的真笔画数，牌面上就把这个字刻上去 ---- */
+function lvrCharOfW(w){
+  const bag=(lvr.wbag&&lvr.wbag[w])||[];
+  if(bag.length)return {ch:lvxOne(bag),w:w};
+  /* 这一档没存到字就退到隔壁档，但重量必须跟着那个字的真笔画数走 ——
+     刻着 5 画的字却按 4 画压板，孩子算得再对也摘不下来 */
+  for(let d=1;d<=4;d++){
+    const a=(lvr.wbag&&lvr.wbag[w+d])||[],b=(lvr.wbag&&lvr.wbag[w-d])||[];
+    if(a.length)return {ch:lvxOne(a),w:w+d};
+    if(b.length)return {ch:lvxOne(b),w:w-d};
+  }
+  return null;
+}
+function lvrTile(w){const c=lvrCharOfW(w);if(!c)return null;return {ch:c.ch,w:c.w,c:-1,gone:false}}
+function lvrNewTray(lv){
+  const k=lvrTray(lv),out=[],used={},want=lv<=2?3:(lv<=5?4:5);
+  /* 先给一块轻的：孩子拿它试「以小博大」最容易，也保证小力矩凑得出来 */
+  let t=lvrTile(want);
+  if(t){out.push(t);used[t.w]=1}
+  let guard=0;
+  while(out.length<k&&guard++<40){
+    const tile=lvrTile(2+Math.floor(Math.random()*6));
+    if(!tile)continue;
+    if((used[tile.w]||0)>=2)continue;
+    used[tile.w]=(used[tile.w]||0)+1;
+    out.push(tile);
+  }
+  return out;
+}
+/* ---- 力矩集合：这一盘砝码 + 滑石现在压出来的偏置 + 借一记撬棍，凑得出的所有整数力矩。
+       牌只能挂在凑得出来的数上：挂在凑不出来的数上，孩子把支石挪穿也没用。 ---- */
+function lvrAlive(){
+  const o=[];
+  for(let i=0;i<lvr.tiles.length;i++)if(!lvr.tiles[i].gone)o.push(lvr.tiles[i]);
+  return o;
+}
+function lvrPebTau(){
+  let t=0;
+  for(let i=0;i<lvr.pebs.length;i++){const p=lvr.pebs[i];if(!p.gone)t+=p.w*(p.c-lvr.fx)}
+  return t;
+}
+/* 撬棍只能往「已经沉的那头」补一记，所以借力的走法只许把力矩推离 0，不许把它拉回 0 */
+function lvrSetOf(tiles,fx,off){
+  const raw=lvrReach(tiles,fx,48),o={};
+  for(let i=0;i<raw.length;i++){
+    const t=raw[i]+off;
+    if(Math.abs(t)<=LVR_TAU_FULL)o[t]=1;
+    if(t>0&&t+LVR_PUSH<=LVR_TAU_FULL)o[t+LVR_PUSH]=1;
+    if(t<0&&t-LVR_PUSH>=-LVR_TAU_FULL)o[t-LVR_PUSH]=1;
+  }
+  return o;
+}
+function lvrSetKey(){
+  const a=lvrAlive().map(function(x){return x.w});
+  a.sort(function(p,q){return p-q});
+  return a.join(',')+'|'+lvr.fx+'|'+lvrPebTau();
+}
+function lvrSet(){
+  const k=lvrSetKey();
+  if(k!==lvr.csetKey||!lvr.cset){lvr.csetKey=k;lvr.cset=lvrSetOf(lvrAlive(),lvr.fx,lvrPebTau())}
+  return lvr.cset;
+}
+function lvrSolvable(tau){return !!lvrSet()[tau]}
+function lvrUsed(c){
+  for(let i=0;i<lvr.tiles.length;i++)if(!lvr.tiles[i].gone&&lvr.tiles[i].c===c)return 1;
+  for(let i=0;i<lvr.pebs.length;i++)if(!lvr.pebs[i].gone&&lvr.pebs[i].c===c)return 1;
+  return 0;
+}
+/* ---- 场上的活东西：滑石（会自己往低端滚的砝码）、蛀虫（啃重量）、墨露（挂在板鼻扫过的弧上） ---- */
+function lvrBuildYard(){
+  lvr.pebs=[];lvr.borers=[];lvr.motes=[];
+  const pk=lvrPeb(lvr.lv);
+  /* 滑石的格子也是「先列清单再抽签」：随机试 26 次试不出就少挂一颗的话，难度表答应的 2 颗就靠运气 */
+  const free=[];
+  for(let q=LVR_S0;q<=LVR_S1;q++)if(Math.abs(q-lvr.fx)>=2)free.push(q);   /* 压在支石正上方那一格等于没压 */
+  lvxShuf(free);
+  for(let i=0;i<pk&&i<free.length;i++)lvr.pebs.push({c:free[i],w:LVR_PEB_W,gone:false,acc:0});
+  for(let i=0;i<lvrBorer(lvr.lv);i++)lvr.borers.push({t:-1,acc:0,gone:false});
+  /* 墨露的角度避开「一放平就采到」：离水平至少 LVR_MOTE_DK+1 度，摆过头才扫得着。
+     摆法是「先梳齿、再抖一点」：这一场答应几颗就一定挂得出几颗 ——
+     原来那种随机试 24 次、试不满就悄悄少挂一颗的写法，第 8、9 场答应的 6 颗永远挂不满（差的就是这一口）。
+     彼此至少隔 2×门槛+1 度：板角同一拍才只扫得着一颗，采一颗就是一颗。 */
+  const mk=lvrMotes(lvr.lv),sep=LVR_MOTE_DK*2+1,lo=LVR_MOTE_DK+1,hi=LVR_TMAX-4;
+  const nl=Math.ceil(mk/2),nr=mk-nl,comb=[];
+  for(let i=0;i<nl;i++)comb.push(-(nl>1?hi-i*(hi-lo)/(nl-1):(lo+hi)/2));
+  for(let i=0;i<nr;i++)comb.push(nr>1?hi-i*(hi-lo)/(nr-1):(lo+hi)/2);
+  const angs=comb.map(function(v){return Math.round(v)});
+  const jit=angs.map(function(v){const j=v+Math.floor(Math.random()*5)-2;return Math.abs(j)>=lo&&Math.abs(j)<=hi?j:v});
+  const spread=function(list){
+    for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++)if(Math.abs(list[i]-list[j])<sep)return false;
+    return true
+  };
+  const use=spread(jit)?jit:angs;
+  for(let i=0;i<use.length;i++)lvr.motes.push({a:use[i],got:false,flash:0});
+  lvr.moteNeed=lvr.motes.length;lvr.moteGot=0;
+}
+/* ---- 摆牌：对的那块挂在第几号是随机的（不然孩子只点第一块也能全对） ---- */
+function lvrHangPlates(taus,tags,correct){
+  const pairs=[];
+  for(let i=0;i<taus.length;i++)pairs.push({tau:taus[i],tag:tags[i]});
+  lvxShuf(pairs);
+  const n=pairs.length,x0=LVR_PX0+1.1,x1=LVR_PX1-1.1;
+  lvr.plates=[];
+  for(let i=0;i<n;i++){
+    lvr.plates.push({tau:pairs[i].tau,tag:pairs[i].tag,
+      x:n===1?(x0+x1)/2:x0+(x1-x0)*i/(n-1),y:LVR_RY,taken:false,flash:0});
+  }
+  lvr.answer=-1;
+  for(let i=0;i<lvr.plates.length;i++)if(lvr.plates[i].tag===tags[correct])lvr.answer=i;
+}
+function lvrPickTaus(need,set){
+  const cand=[];
+  for(let t=LVR_TAU_MIN;t<=LVR_TAU_MAX;t++){if(set[t])cand.push(t);if(set[-t])cand.push(-t)}
+  if(cand.length<Math.min(need,3))return null;
+  lvxShuf(cand);
+  const out=[];
+  for(let i=0;i<cand.length&&out.length<need;i++){
+    const v=cand[i];
+    let good=1;
+    for(let j=0;j<out.length;j++){
+      if(out[j]===v)good=0;
+      /* 同侧至少隔 LVR_TAU_GAP（不然两块牌要凑的数差一根手指）；异侧不许互为相反数（板往哪边沉就说不清了） */
+      else if(out[j]*v>0&&Math.abs(Math.abs(out[j])-Math.abs(v))<LVR_TAU_GAP)good=0;
+      else if(out[j]*v<0&&out[j]+v===0)good=0;
+    }
+    if(good)out.push(v);
+  }
+  return out.length>=Math.min(need,3)?out:null;
+}
+function lvrTagSet(dir){
+  const others=[0,1,2,3,4].filter(function(d){return d!==dir});
+  lvxShuf(others);
+  return others;
+}
+/* 这一笔的盘：先甩砝码、再落地滑石，然后在「这一盘凑得出的数」里挑几块牌挂上 */
+function lvrDealStroke(){
+  const rec=lvr.rec,dir=lvxRok(rec.dirs[lvr.qi]),need=lvrPlates(lvr.lv);
+  for(let tryN=0;tryN<24;tryN++){
+    lvr.tiles=[];lvr.pebs=[];lvr.borers=[];lvr.motes=[];lvr.cset=null;lvr.csetKey='';
+    const tiles=lvrNewTray(lvr.lv);
+    if(tiles.length<2)continue;
+    lvr.tiles=tiles.map(function(x,i){x.id=i;x.gone=false;return x});
+    lvrBuildYard();
+    const taus=lvrPickTaus(need,lvrSetOf(lvrAlive(),lvr.fx,lvrPebTau()));
+    if(!taus)continue;
+    /* 这一场要几块牌就得挂几块：挂少了孩子眼前的选择就跟着少（第 8 场要 5 块、盘里只有 3 块砝码时最容易栽在这个坑上）。
+       最后一盘放过这条 —— 少挂两块牌也比这一笔开不出来、整场卡死强。 */
+    if(taus.length<need&&tryN<23)continue;
+    const others=lvrTagSet(dir),tags=[];
+    for(let i=0;i<taus.length;i++)tags.push(i===0?dir:others[(i-1)%others.length]);
+    if(new Set(tags).size!==tags.length)continue;
+    lvrHangPlates(taus,tags,0);
+    lvr.cset=null;lvr.csetKey='';
+    return 1;
+  }
+  lvr.pebs=[];lvr.borers=[];lvr.motes=[];
+  return 0;
+}
+/* 滑石滚出一格、砝码掉下板、支石挪了位 —— 凑得出的数就换了一茬。
+   答案牌挂在一个凑不出来的数上时必须重挂，不然这一笔就成了死题。 */
+function lvrRehang(){
+  const rec=lvr.rec;
+  if(!rec||lvr.qi>=rec.n)return 0;
+  const dir=lvxRok(rec.dirs[lvr.qi]),need=lvrPlates(lvr.lv);
+  for(let tryN=0;tryN<16;tryN++){
+    const taus=lvrPickTaus(need,lvrSet());
+    if(!taus)return 0;
+    const others=lvrTagSet(dir),tags=[];
+    for(let i=0;i<taus.length;i++)tags.push(i===0?dir:others[(i-1)%others.length]);
+    if(new Set(tags).size!==tags.length)continue;
+    lvrHangPlates(taus,tags,0);
+    return 1;
+  }
+  return 0;
+}
+function lvrCheckSolve(){
+  /* 不只盯答案牌：场上每一块没摘的牌都不许挂在一个凑不出来的数上（B 段那条设计线说的就是全部牌）。
+     蛀虫啃轻一口、滑石滚走一格、砝码掉下板、支石挪一位 —— 凑得出的数就换了一茬，
+     只查答案牌的话，幌子牌会挂在孩子怎么挪都够不着的数上。 */
+  let bad=0;
+  for(let i=0;i<lvr.plates.length;i++){
+    const p=lvr.plates[i];
+    if(!p.taken&&!lvrSolvable(p.tau))bad++;
+  }
+  if(!bad)return 0;
+  if(lvrRehang())return 1;
+  return lvrResetStroke()?2:0;   /* 重挂也救不回来：整盘换一批砝码 */
+}
+function lvrResetStroke(){
+  if(!lvrDealStroke())return 0;
+  lvr.held=-1;lvr.th=0;lvr.om=0;lvr.press=false;lvr.pressSide=0;
+  lvr.slipAcc=0;lvr.bangMs=0;lvr.actMs=0;
+  /* 力气按当下余量留着，但不许带着空箱子开新一笔（否则第二笔起手就借不了力） */
+  lvr.force=Math.max(lvr.force,LVR_FORCE_MAX*.6);
+  lvr.litMs=lvrTagLit(lvr.lv);
+  lvr.qms=lvrQms(lvr.lv);lvr.qms0=lvr.qms;
+  lvr.since=0;lvr.tau=lvrTau();
+  lvrMini();   /* 重开一笔：迷你字卡上「当前这一笔」的高亮得跟着挪，不然字卡永远停在第 1 笔 */
+  return 1;
+}
+function lvrAsk(){
+  const rec=lvr.rec;
+  if(!rec){lvxSet('lvrAsk','🪵 正在架板……<br><small>在字库里挑「笔笔都认得出笔形」的字</small>');return}
+  if(lvr.qi>=rec.n){
+    lvxSet('lvrAsk','🪵 <b>整字撬成</b>（共 '+rec.n+' 笔）<br><small>这一张正在收进图鉴</small>');
+    return;
+  }
+  const t=lvrShowTag()?LVR_TAG5[lvrCorrect()]:'?';
+  lvxSet('lvrAsk','🪵 撬 <b>第 '+(lvr.qi+1)+' 笔</b>（共 '+rec.n+' 笔 · 笔形 <b>'+t+'</b>）<br><small>摘写着「'+t+'」的那块牌 · 它刻的数就是要凑的力矩 · 场上 '+lvr.plates.length+' 块牌</small>');
+}
+function lvrShowTag(){
+  const f=lvrTagLit(lvr.lv);
+  return lvr.lightMs>0||f<=0||lvr.litMs>0;
+}
+function lvrCorrect(){
+  if(!lvr.rec||lvr.qi>=lvr.rec.n)return -1;
+  return lvxRok(lvr.rec.dirs[lvr.qi]);
+}
+function lvrPlateOf(tag){
+  for(let i=0;i<lvr.plates.length;i++)if(!lvr.plates[i].taken&&lvr.plates[i].tag===tag)return lvr.plates[i];
+  return null;
+}
+function lvrPlateAt(tau){
+  for(let i=0;i<lvr.plates.length;i++)if(!lvr.plates[i].taken&&lvr.plates[i].tau===tau)return lvr.plates[i];
+  return null;
+}
+/* 板稳不稳：晃着的时候摘不住（镇手期间这个口子放宽一倍） */
+function lvrSteady(){return Math.abs(lvr.om)<=LVR_STEADY*(lvr.calmMs>0?2:1)}
+function lvrSteadyHard(){return Math.abs(lvr.om)<=LVR_STEADY_HARD*(lvr.calmMs>0?2:1)}
+/* ---- 新字：换字、重开一笔 ---- */
+function lvrNewWord(){
+  const rec=lvrPickRec();
+  if(!rec){
+    lvxSay('😢 字库里挑不出「笔笔都认得出笔形」的字，先去别的模式练两笔','#FFF59D');
+    lvr.run=false;
+    lvxSet('lvrAsk','😢 字没凑齐<br><small>稍后再来撬</small>');
+    lvxT(function(){lvrEnd('pool')},900);
+    return null;
+  }
+  lvr.rec=rec;lvr.n=rec.n;lvr.qi=0;lvr.busy=false;lvr.done=new Set();
+  lvr.cleanWord=true;lvr.bangWord=false;
+  if(!lvrResetStroke()){
+    lvr.run=false;
+    lvxSet('lvrAsk','😢 板架不起来<br><small>这一盘砝码凑不出牌</small>');
+    lvxT(function(){lvrEnd('pool')},900);
+    return null;
+  }
+  lvrMini();lvrAsk();lvrHud();lvrMeter();lvrPow();lvrLine();lvrTrayHtml();lvrDraw();
+  return rec.ch;
+}
+/* ---- 生命周期 ---- */
+function lvrStopAll(){
+  lvrStopLoop();lvxKillTimers();lvr.gen++;
+  lvr.tagMs=0;lvr.tagPri=0;lvr.helpMs=0;lvr.actMs=0;
+  lvr.lightMs=0;lvr.calmMs=0;lvr.wedgeMs=0;lvr.nagMs=0;
+  lvr.press=false;lvr.pressSide=0;lvr.dragging=false;
+  if(lvr.fxBox)lvr.fxBox.innerHTML='';
+  const tg=document.getElementById('lvrTag');
+  if(tg)tg.classList.remove('on');
+}
+async function lvrStart(){
+  lvrStopAll();
+  const g=lvr.gen,stale=function(){return g!==lvr.gen||!lvr.run||lvr.over};
+  lvr.run=true;lvr.over=false;lvr.timers=[];
+  lvr.lv=1;lvr.score=0;lvr.hearts=LVR_HEARTS;lvr.combo=0;lvr.maxCombo=0;
+  lvr.words=0;lvr.lits=0;lvr.plucks=0;lvr.wrongs=0;lvr.misses=0;lvr.timeouts=0;lvr.slips=0;lvr.drops=0;
+  lvr.bangs=0;lvr.moteN=0;lvr.allMotes=0;lvr.steadies=0;lvr.leans=0;lvr.tools=0;lvr.nags=0;
+  lvr.moved=0;lvr.taps=0;lvr.presses=0;lvr.pressMs=0;lvr.coups=0;lvr.coupMiss=0;lvr.duoPlucks=0;
+  lvr.cleanWords=0;lvr.steadyRun=0;lvr.steadyMax=0;
+  lvr.lightN=LVR_P0;lvr.calmN=LVR_P0;lvr.wedgeN=LVR_P0;lvr.flatN=LVR_FLAT0;
+  lvr.lightUse=0;lvr.calmUse=0;lvr.wedgeUse=0;lvr.flatUse=0;
+  lvr.pool=[];lvr.wbag={};lvr.miss=[];lvr.gotCh=[];lvr.rec=null;lvr.n=0;
+  lvr.tiles=[];lvr.plates=[];lvr.pebs=[];lvr.borers=[];lvr.motes=[];
+  lvr.held=-1;lvr.done=new Set();lvr.cset=null;lvr.csetKey='';lvr.answer=0;
+  lvr.qi=0;lvr.busy=false;lvr.since=0;lvr.playMs=0;lvr.t=0;lvr.tones=0;
+  lvr.fx=9;lvr.th=0;lvr.om=0;lvr.tau=0;lvr.force=LVR_FORCE_MAX;lvr.slipAcc=0;lvr.bangMs=0;lvr.tickN=0;
+  lvr.dayMs=lvrDay(1);lvr.warn=false;lvr.beep=0;lvr.first=true;
+  lvr.keys={l:false,r:false,press:false,p2:false};lvr.dragging=false;
+  lvr.trophy=lvxInt('hz_lever_trophy');
+  showScreen('lever');
+  lvrBind();lvrCanvasSize();
+  const yl=document.getElementById('lvrYard');
+  if(yl)yl.classList.remove('dead');
+  lvrHud();lvrMeter();lvrPow();lvrLine();lvrDuoHtml();
+  lvxSay('🪵 <b>撬木场只讲一条理</b>：<b>重量 × 离支石的格数 = 力矩</b>。两边力矩一差，板就朝沉的那头斜下去<br>🏷 <b>牌上刻着两样东西</b>：这一笔的 <b>笔形</b>（横/竖/撇/捺/点）和摘它要的 <b>力矩数</b>。<b>只有写着这一笔笔形的那块才对</b> —— 你得先把 <code>⚖️ 力矩</code> 凑成它刻的那个数，板头才抬得到它<br>🪨 <b>支石可以挪</b>（<code>←→</code>）：同一块砝码挪远一格就多半倍力气；把支石推向一头，另一头的力臂全变短 —— 这是 <b>以小博大</b> 的开关<br>🫱 <b>板有惯性</b>：放下一块砝码，板一沉一弹要晃几下才停；<b>晃着的时候摘不住</b>（HUD 的 🫱 写着「沉」）—— 等它稳下来再按 <code>空格</code><br>⚠️ <b>砝码会滑</b>：板斜过 '+LVR_SLIP_DEG+'° 又没垫榫，板上没卡的砝码会一格一格往低那头溜，越溜压得越狠；顶到 <b>限位石</b> 就 <b>砸板</b>（扣 '+LVR_PEN_BANG+' 分、那块砝码掉下板）<br>🪵 <b>力气</b>：差一点点够不着时按住 <code>X</code> 压住低的那头，一记顶 '+LVR_PUSH+' 个力矩，松手自己涨回来（越深涨得越慢）—— <b>整字没借手</b> 另加 '+LVR_CLEAN_BONUS+' 分<br>💧 <b>墨露</b>挂在板鼻扫过的弧上：把板一沉一抬扫过去就采到，一颗 +'+LVR_MOTE_PTS+' 分，这一笔 <b>采满</b> 另加 '+LVR_MOTE_ALL+' 分 —— 可摆幅一大，砝码也更容易滑<br>🪨 <b>滑石</b>是块活的砝码：它自己往低端滚，一滚你的力矩就变；🐛 <b>蛀虫</b>啃砝码，一口轻一分<br>✨ <b>亮签 Q</b> 把淡掉的笔形重新点亮（第 3 场起 <b>牌上的笔形会淡</b>，数字一直在）、🫱 <b>镇手 E</b> 一把按住板让它立刻稳、🪡 <b>垫榫 F</b> 卡住砝码不许滑并逼走虫、🪝 <b>归平 Enter</b> 把板上砝码全收回盘<br>👥 <b>亲子双人</b>：点 <b>双人</b> 开关 —— P1 只管摆砝码、按 <code>X</code> 喊「摘」；P2 管 <code>←→</code> 推支石、按住 <code>S</code> 压撬、按 <code>空格</code> 喊「起」，<b>两下相隔不到 '+(LVR_COUP_GAP/1000).toFixed(2)+' 秒才算合抱</b><br>⏳ <b>两只钟</b>：这一笔的钟走光 <b>不算答错</b>（扣 '+LVR_PEN_TIME+' 分、砝码收回盘重来）；<b>日头</b> 落了就收摊。按 <code>H</code> 看说明时两只钟都不走<br>🌇 <b>每收 2 个字进一场</b>：牌更多、砝码更省、滑石更勤、蛀虫更早、笔形淡得更快');
+  lvxSet('lvrAsk','🪵 正在架板……<br><small>在字库里挑「笔笔都认得出笔形」的字</small>');
+  let ok=await lvrBuildPool();
+  if(stale())return;
+  if(!ok){
+    lvxSet('lvrAsk','🪵 木头还没干，再等一记……<br><small>字库在路上</small>');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await lvrBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!lvr.pool.length){
+    lvr.run=false;
+    lvxSet('lvrAsk','😢 字库没加载好<br><small>稍后再来撬</small>');
+    lvxSay('先去别的模式练两笔，回来字就齐了','#FFF59D');
+    return;
+  }
+  lvxAdd('hz_lever_games',1);
+  lvrNewWord();
+  if(!lvr.rec||!lvr.rec.n||!lvr.run||lvr.over||stale()){
+    lvr.run=false;
+    lvxSet('lvrAsk','😢 这一场没铺开<br><small>稍后再来撬</small>');
+    return;
+  }
+  lvrStartLoop();
+}
+function lvrLeave(){
+  lvrStopAll();
+  if(lvr.run&&!lvr.over){lvrBank();lvr.over=true;lvr.run=false}
+  goHome();
+}
+function lvrAgain(){lvrStart()}
+function lvrCanvasSize(){
+  const cv=document.getElementById('lvrCanvas');
+  if(!cv)return;
+  cv.width=LVR_W;cv.height=LVR_H;
+  lvr.ctx=cv.getContext?cv.getContext('2d'):null;
+}
+
+/* ================= 段 C：板的物理 · 溜板 · 砸板 · 滑石 · 蛀虫 · 采露 · 摘牌判定 ================= */
+/* 板是一条弹簧阻尼摆：θ 追它的力矩平衡角，一沉一弹才停住。
+   角用「度」、角速度用「度/秒」，所以 LVR_SPR 开根号就是它的固有频率（≈5.5 弧度/秒，约 0.9 赫兹）。 */
+function lvrStepPhysics(dtms){
+  const dt=dtms/1000;
+  lvr.tickN++;
+  lvr.tau=lvrTau();
+  const eq=lvxDeg(lvr.tau);
+  lvr.om+=(LVR_SPR*(eq-lvr.th)-LVR_DAMP*lvr.om)*dt;
+  /* 镇手：一把按住板，角速度立刻吃掉大半，口子也放宽 */
+  if(lvr.calmMs>0)lvr.om*=0.55;
+  lvr.th+=lvr.om*dt;
+  if(lvr.th>LVR_TMAX_HARD){lvr.th=LVR_TMAX_HARD;if(lvr.om>0)lvr.om=0}
+  if(lvr.th<-LVR_TMAX_HARD){lvr.th=-LVR_TMAX_HARD;if(lvr.om<0)lvr.om=0}
+  lvr.pressSide=(lvr.press&&lvr.force>0)?(lvr.th>0?1:(lvr.th<0?-1:0)):0;
+  /* 力气：按着掉、松了涨（越深涨得越慢） */
+  if(lvr.pressSide){
+    lvr.force=Math.max(0,lvr.force-LVR_FORCE_USE*dt);
+    lvr.pressMs+=dtms;
+    lvr.cleanWord=false;
+    if(lvr.force<=0){lvr.press=false;lvr.pressSide=0;lvxSay('🪵 力气用完了，松手等它涨回来','#FFCC80')}
+  }else{
+    lvr.force=Math.min(LVR_FORCE_MAX,lvr.force+lvrRegen(lvr.lv)*dt);
+  }
+  lvrStepSlip(dtms);
+  lvrStepPeb(dtms);
+  lvrStepBore(dtms);
+  lvrStepMote();
+  if(lvr.bangMs>0)lvr.bangMs-=dtms;
+}
+/* ---- 溜板：斜过 LVR_SLIP_DEG 还没垫榫，砝码一格一格往低那头挪 ---- */
+function lvrSlipDir(){return lvr.th>0?1:(lvr.th<0?-1:0)}
+function lvrPlaced(){
+  const o=[];
+  for(let i=0;i<lvr.tiles.length;i++){const x=lvr.tiles[i];if(!x.gone&&x.c>=0)o.push(x)}
+  return o;
+}
+function lvrStepSlip(dtms){
+  if(Math.abs(lvr.th)<LVR_SLIP_DEG||lvr.wedgeMs>0){lvr.slipAcc=0;return}
+  lvr.slipAcc+=dtms;
+  const need=lvrSlipMs(lvr.lv);
+  if(lvr.slipAcc<need)return;
+  lvr.slipAcc-=need;
+  const dir=lvrSlipDir(),list=lvrPlaced();
+  if(!list.length)return;
+  /* 挑最靠低端的那块（它先溜） */
+  let pick=null;
+  for(let i=0;i<list.length;i++){
+    if(dir>0&&(!pick||list[i].c>pick.c))pick=list[i];
+    if(dir<0&&(!pick||list[i].c<pick.c))pick=list[i];
+  }
+  if(!pick)return;
+  const to=pick.c+dir;
+  if(to<LVR_S0||to>LVR_S1||lvrUsed(to)){
+    /* 顶到限位石：这一记就是砸板的引信 */
+    lvr.bangMs=0;
+    lvrTryBang(dir);
+    return;
+  }
+  pick.c=to;
+  lvr.slips++;
+  /* 溜完这一格力矩就变了：读数必须当场追平，不然 HUD 与摘牌判定都拿着上一个数办事（vLvrInv 认这是「读数过期」） */
+  lvr.tau=lvrTau();
+  lvrTag('⚠️ 砝码往低那头溜了一格',1);
+  lvxSay('⚠️ <b>溜板了</b>：「'+pick.ch+'」被板斜到了第 '+to+' 格，力矩变了 —— 要么 <code>F</code> <b>垫榫</b> 卡住它，要么把板放平','#FFCC80');
+  lvrCheckSolve();
+}
+/* ---- 砸板：力矩顶穿了、板头磕在石头上。全场一起溜，最外那块掉下板 ---- */
+function lvrTryBang(dir){
+  if(Math.abs(lvr.tau)<LVR_BANG_TAU||lvr.bangMs>0)return 0;
+  const d=dir||(lvr.tau>0?1:-1);
+  lvr.bangs++;lvr.bangMs=1200;
+  lvr.score=Math.max(0,lvr.score-LVR_PEN_BANG);
+  lvr.combo=0;lvr.bangWord=true;
+  const list=lvrPlaced();
+  /* 板磕下去是全场一起往低那头挪一格：得从最靠板头那块数起。
+     先挪外头的，里头那块才挪得进它腾出来的那一格；按数组原序倒着来的话，
+     两块摞在板头会一起掉下板，而说明和浮条写的都是「最外那块掉下板」。 */
+  list.sort(function(p,q){return (q.c-p.c)*d});
+  for(let i=0;i<list.length;i++){
+    const x=list[i],to=x.c+d;
+    if(to<LVR_S0||to>LVR_S1||lvrUsed(to)){
+      x.gone=true;x.c=-1;lvr.drops++;
+      lvr.score=Math.max(0,lvr.score-LVR_PEN_DROP);
+      lvxAdd('hz_lever_drop',1);
+    }else x.c=to;
+  }
+  /* 板磕在石头上要反弹一下：往抬起来的那头给一记角速度 */
+  lvr.om=-d*LVR_BANG_KICK;
+  lvrShake();
+  lvxTone(LVR_NOTE[0]/2,LVR_TAG_MS/1000,'square',.2);
+  lvrTag('💥 砸板！',2);
+  lvxSay('💥 <b>砸板</b>：力矩顶到 '+lvr.tau+' 了（'+LVR_BANG_TAU+' 以上板头就磕石头）—— 扣 '+LVR_PEN_BANG+' 分、连击清零，最外那块掉下板。<b>把砝码收回盘</b>（点板上的砝码）或按 <code>Enter</code> <b>归平</b>','#FF8A80');
+  /* 那句提醒要说的是顶穿时的数，说完了才把读数追平到砸完之后真正还剩的那几块 */
+  lvr.tau=lvrTau();
+  lvrCheckSolve();
+  return 1;
+}
+/* ---- 滑石：块活的砝码，自己往低端跳一格 ---- */
+function lvrStepPeb(dtms){
+  /* 榫底下什么都不许走：说明写的「垫榫：砝码不许溜」里，滑石也是块压在板上的砝码。
+     只卡住砝码、让滑石照滚的话，这块榫反而会把板越压越斜 —— 榫就成了帮倒忙的东西。 */
+  if(lvr.wedgeMs>0){for(let i=0;i<lvr.pebs.length;i++)lvr.pebs[i].acc=0;return}
+  const need=lvrRollMs(lvr.lv);
+  for(let i=0;i<lvr.pebs.length;i++){
+    const p=lvr.pebs[i];
+    if(p.gone)continue;
+    p.acc+=dtms;
+    if(p.acc<need)continue;
+    p.acc-=need;
+    const dir=lvrSlipDir()||(lvr.tau>0?1:-1);
+    const to=p.c+dir;
+    if(to<LVR_S0||to>LVR_S1||lvrUsed(to)){p.acc=0;continue}   /* 卡在最外一格：它不会掉，只是停住 */
+    p.c=to;
+    lvr.tau=lvrTau();
+    lvrTag('🪨 滑石滚了一格',1);
+    lvrCheckSolve();
+  }
+}
+/* ---- 蛀虫：咬一口轻一分；啃到 1 画就自己走；垫榫期间它寸步难进 ---- */
+function lvrTileById(id){
+  for(let i=0;i<lvr.tiles.length;i++)if(lvr.tiles[i].id===id&&!lvr.tiles[i].gone)return lvr.tiles[i];
+  return null;
+}
+function lvrStepBore(dtms){
+  const need=lvrBoreMs(lvr.lv);
+  for(let i=0;i<lvr.borers.length;i++){
+    const b=lvr.borers[i];
+    if(b.gone)continue;
+    let x=lvrTileById(b.t);
+    if(!x||x.c<0||x.w<=1){
+      const cand=lvrPlaced().filter(function(y){return y.w>1});
+      x=cand.length?lvxOne(cand):null;
+      b.t=x?x.id:-1;
+      if(!x)continue;
+    }
+    b.acc+=lvr.wedgeMs>0?-dtms*1.6:dtms;
+    if(b.acc<0)b.acc=0;
+    if(b.acc<need)continue;
+    b.acc-=need;
+    x.w--;
+    lvr.tau=lvrTau();
+    lvrTag('🐛 「'+x.ch+'」被啃了一口',1);
+    lvxSay('🐛 <b>蛀虫</b>把「'+x.ch+'」啃成了 '+x.w+' 画 —— 它压板的力气也少了 '+x.w+'：<b>按 <code>F</code> 垫榫</b> 能把它逼走','#FFCC80');
+    lvxTone(LVR_NOTE[2]/2,dtms*3,'sawtooth',.06);
+    if(x.w<=1){b.gone=true;b.t=-1}
+    lvrCheckSolve();
+  }
+}
+/* ---- 采露：板鼻扫过哪一颗就采到哪一颗（想要它就得把板摆大，摆大了砝码容易溜） ---- */
+function lvrStepMote(){
+  for(let i=0;i<lvr.motes.length;i++){
+    const m=lvr.motes[i];
+    if(m.got)continue;
+    if(Math.abs(lvr.th-m.a)>LVR_MOTE_DK)continue;
+    m.got=true;m.flash=1;
+    lvr.moteGot++;lvr.moteN++;
+    lvr.score+=LVR_MOTE_PTS;
+    lvxAdd('hz_lever_mote',1);
+    lvxFx('💧 +'+LVR_MOTE_PTS);
+    lvxTone(LVR_NOTE[Math.min(LVR_NOTE.length-1,lvr.moteGot)],.12,'sine',.11);
+    if(lvr.moteNeed>0&&lvr.moteGot>=lvr.moteNeed){
+      lvr.allMotes++;lvr.score+=LVR_MOTE_ALL;
+      lvrTag('💧 这一笔采满了 +'+LVR_MOTE_ALL,2);
+      lvxAdd('hz_lever_motemax',1);
+    }
+  }
+}
+/* ---- 摆砝码 / 收砝码 / 挪支石 ---- */
+function lvrPlaceAt(idx,c,ignoreSelf){
+  const x=lvr.tiles[idx];
+  if(!x||x.gone||!lvrIn(c))return 0;
+  if(lvrUsed2(c,ignoreSelf?x:null))return 0;
+  x.c=c;
+  lvr.taps++;lvr.moved++;lvr.actMs=LVR_ACT_CD;
+  lvr.since=0;
+  lvxAdd('hz_lever_place',1);
+  lvr.tau=lvrTau();
+  lvrTrayHtml();lvrHud();lvrLine();lvrDraw();
+  return 1;
+}
+function lvrBack(idx){
+  const x=lvr.tiles[idx];
+  if(!x||x.gone||x.c<0)return 0;
+  x.c=-1;
+  lvr.taps++;lvr.actMs=LVR_ACT_CD;lvr.since=0;
+  lvr.tau=lvrTau();
+  lvrTrayHtml();lvrHud();lvrLine();lvrDraw();
+  return 1;
+}
+function lvrUsed2(c,self){
+  for(let i=0;i<lvr.tiles.length;i++){
+    const x=lvr.tiles[i];
+    if(x===self||x.gone)continue;
+    if(x.c===c)return 1;
+  }
+  for(let i=0;i<lvr.pebs.length;i++)if(!lvr.pebs[i].gone&&lvr.pebs[i].c===c)return 1;
+  return 0;
+}
+function lvrSetFx(v){
+  const n=lvxClamp(Math.round(v),LVR_FX0,LVR_FX1);
+  if(n===lvr.fx)return 0;
+  lvr.fx=n;lvr.leans++;lvr.actMs=LVR_ACT_CD;lvr.since=0;
+  lvr.slipAcc=0;
+  /* 支石挪进某块砝码底下：那块砝码被顶起来，等于回到盘里 */
+  for(let i=0;i<lvr.tiles.length;i++){const x=lvr.tiles[i];if(!x.gone&&x.c===lvr.fx)x.c=-1}
+  for(let i=0;i<lvr.pebs.length;i++){const p=lvr.pebs[i];if(!p.gone&&p.c===lvr.fx)p.gone=true}
+  /* 支石一改全改：下面两行刚把砝码顶回盘、滑石清掉，HUD 紧接着就要按新力矩画，读数必须当场追平 */
+  lvr.tau=lvrTau();
+  lvxAdd('hz_lever_lean',1);
+  lvrTag('🪨 支石挪到第 '+lvr.fx+' 格',1);
+  lvrCheckSolve();
+  lvrTrayHtml();lvrHud();lvrMeter();lvrLine();lvrDraw();
+  return 1;
+}
+/* ---- 摘牌：力的答案（凑得数 + 板稳 + 笔形对，三样齐了才算落好这一笔） ---- */
+function lvrPluck(who){
+  if(!lvr.run||lvr.over||lvr.busy)return 0;
+  if(!lvr.duo)return lvrDoPluck();
+  const now=lvr.t;
+  if(who===2)lvr.p2At=now;else lvr.p1At=now;
+  const gap=Math.abs(lvr.p1At-lvr.p2At);
+  lvr.lastGap=gap;
+  if(gap>LVR_COUP_GAP){
+    /* 一个人喊的不算：给一句「等同伴」，但不罚分（配合是要练的） */
+    lvr.coupMiss++;
+    lvrTag(who===2?'🗣 P1 还没喊「摘」':'🗣 P2 还没喊「起」',1);
+    return 0;
+  }
+  lvr.p1At=-1e9;lvr.p2At=-1e9;
+  lvr.coups++;
+  lvxAdd('hz_lever_coup',1);
+  return lvrDoPluck(1);
+}
+function lvrDoPluck(duo){
+  if(!lvr.rec||lvr.qi>=lvr.rec.n)return 0;
+  const p=lvrPlateAt(lvr.tau);
+  if(!p){
+    lvr.misses++;
+    lvr.score=Math.max(0,lvr.score-LVR_PEN_MISS);
+    lvrTag('🫱 摘空了',1);
+    lvxSay('🫱 <b>摘空</b>：现在力矩 '+lvr.tau+'，场上没有哪块牌刻着这个数（扣 '+LVR_PEN_MISS+' 分）。看一眼 <code>⚖️ 力矩</code>，再对着 <b>笔形对的那块牌</b> 上的数摆砝码','#FFCC80');
+    lvxTone(120,.14,'square',.09);
+    lvr.actMs=LVR_ACT_CD;
+    return 0;
+  }
+  if(!lvrSteady()){
+    lvrTag('🫱 板还在晃',1);
+    lvxSay('🫱 <b>板还在晃</b>（'+lvr.om.toFixed(0)+' 度/秒）：这块牌刻的数对了，可手不稳摘不下来 —— 等 HUD 的 🫱 变成「稳」再摘','#B3E5FC');
+    return 0;
+  }
+  const dir=lvrCorrect();
+  if(p.tag!==dir){
+    lvr.wrongs++;lvr.combo=0;
+    lvr.score=Math.max(0,lvr.score-LVR_PEN_WRONG);
+    lvr.steadyRun=0;
+    lvxAdd('hz_lever_wrong',1);
+    lvrAddMiss(lvr.rec.ch);
+    lvrLoseHeart('这块牌写的是「'+LVR_TAG5[p.tag]+'」，不是「'+LVR_TAG5[dir]+'」');
+    return 0;
+  }
+  /* 摘对了 */
+  p.taken=true;p.flash=1;
+  lvr.plucks++;lvr.qi++;lvr.lits++;
+  lvr.done.add(lvr.qi-1);
+  lvrMini();   /* 落一笔就在字卡上染一笔：孩子要看见这个字正在出来，不是只看见一个分数 */
+  const hard=lvrSteadyHard();
+  if(hard){lvr.steadies++;lvr.steadyRun++;lvr.steadyMax=Math.max(lvr.steadyMax,lvr.steadyRun)}
+  lvr.combo++;lvr.maxCombo=Math.max(lvr.maxCombo,lvr.combo);
+  const gain=lvrGain(lvrPlaced().length,lvr.cleanWord?0:1,hard)+(hard?LVR_STEADY_PTS:0);
+  lvr.score+=gain;
+  lvxAdd('hz_lever_pluck',1);
+  if(duo){lvr.duoPlucks++;lvxAdd('hz_lever_duo',1)}
+  lvxFx('🏷 +'+gain);
+  lvrChipAt(p.x,p.y,8,LVR_INK5[lvxRok(p.tag)]);
+  lvxTone(LVR_NOTE[Math.min(LVR_NOTE.length-1,lvr.qi)],.18,'triangle',.14);
+  lvrTag('✅ 摘到「'+LVR_TAG5[dir]+'」那块牌（力矩 '+p.tau+'）',2);
+  lvxSay(hard?'🫱 <b>稳摘</b>：板一停就摘，'+gain+' 分':'✅ <b>摘到了</b>：'+gain+' 分 —— 板还在晃就摘的话分少一点',hard?'#FFF59D':'#A5D6A7');
+  lvr.actMs=LVR_ACT_CD;
+  if(lvr.qi>=lvr.rec.n)lvrWordDone();
+  else{
+    lvr.busy=true;
+    lvxT(function(){
+      lvr.busy=false;
+      if(!lvr.run||lvr.over)return;
+      if(!lvrResetStroke())lvrStrokeTimeout(1);
+      lvrAsk();lvrHud();lvrMeter();lvrLine();lvrTrayHtml();lvrDraw();
+    },LVR_NEXT_MS);
+  }
+  lvrHud();lvrMeter();lvrPow();lvrLine();lvrTrayHtml();lvrDraw();
+  return 1;
+}
+function lvrWordDone(){
+  const rec=lvr.rec;
+  lvr.words++;
+  lvr.score+=LVR_WORD_BONUS;
+  if(lvr.cleanWord){
+    lvr.score+=LVR_CLEAN_BONUS;
+    lvr.cleanWords++;
+    lvxAdd('hz_lever_clean',1);
+  }
+  lvr.cleanWord=true;
+  lvxAdd('hz_lever_lits',rec.n);
+  /* 图鉴 + 错字本销账 */
+  const fresh=lvrAddBook(rec.ch);
+  /* 这一场收了哪几个字要留着：结算页念得出名字，才谈得上「收进图鉴」这件事 */
+  lvr.gotCh.push({ch:rec.ch,fresh:fresh});
+  lvr.miss=(lvr.miss||[]).filter(function(c){return c!==rec.ch});
+  localStorage.setItem('hz_lever_miss',lvr.miss.join(','));
+  /* 稳摘到一定连击就掉一件老物件进木架 */
+  if(lvr.steadyRun>=2&&Math.random()<.55){
+    const shelf=(localStorage.getItem('hz_lever_shelf')||'').split(',').filter(function(s){return s});
+    if(shelf.length<LVR_SHELF_MAX){
+      const rest=LVR_TRS.filter(function(t){return shelf.indexOf(t)<0});
+      const got=lvxOne(rest);
+      if(got){shelf.push(got);localStorage.setItem('hz_lever_shelf',shelf.join(','));lvr.trophy++;lvxAdd('hz_lever_trophy',1);lvrTag('🪝 撬出「'+got+'」',2)}
+    }
+  }
+  const was=lvr.lv;
+  lvr.lv=lvrLvOf(lvr.words);
+  if(lvr.lv>was){
+    lvr.hearts=Math.min(LVR_HEART_MAX,lvr.hearts+1);
+    lvr.flatN=LVR_FLAT0;
+    lvr.lightN=Math.min(LVR_PCAP,lvr.lightN+1);
+    lvr.calmN=Math.min(LVR_PCAP,lvr.calmN+1);
+    lvr.wedgeN=Math.min(LVR_PCAP,lvr.wedgeN+1);
+    lvrTag('🌇 第 '+lvr.lv+' 场',2);
+    lvxSay('🌇 <b>进场：第 '+lvr.lv+' 场</b> 牌 '+lvrPlates(lvr.lv)+' 块、滑石 '+lvrPeb(lvr.lv)+' 颗、蛀虫 '+lvrBorer(lvr.lv)+' 条、墨露 '+lvrMotes(lvr.lv)+' 颗；补一颗心、道具各补一次','#FFF59D');
+    lvxAdd('hz_lever_lvups',1);
+    lvxTone(LVR_NOTE[8],.3,'triangle',.16);
+  }
+  lvrTag('🪵 整字撬成：'+rec.ch+'（'+rec.n+' 笔）',2);
+  /* 题面也得跟着换成「整字撬成」那一行：这一笔是最后一笔，lvrAsk 走的就是收字那条话 ——
+     不在这儿点一次的话，孩子摘完最后一笔看到的还是「撬 第 N 笔」，收字这句话永远说不出口 */
+  lvrAsk();lvrHud();lvrMeter();
+  lvr.busy=true;
+  lvxT(function(){
+    lvr.busy=false;
+    if(!lvr.run||lvr.over)return;
+    lvr.dayMs=Math.max(lvr.dayMs,0);
+    lvrNewWord();
+  },LVR_NEXT_MS+260);
+}
+function lvrLoseHeart(why){
+  lvr.hearts--;
+  lvrShake();
+  lvrTag('❤️ −1：'+why,2);
+  /* 心当场就得从三颗变两颗：这一拍不刷 HUD 的话，循环下一拍才补上，孩子摔了心还看见三颗 */
+  lvrHud();lvrMeter();
+  if(lvr.hearts<=0){
+    const vl=document.getElementById('lvrYard');
+    if(vl)vl.classList.add('dead');
+    lvxT(function(){lvrEnd('broke')},900);
+    return;
+  }
+  /* 掉心之后这一笔重开：砝码收回盘、牌重挂，别让孩子拿着同一个坑再摔一次 */
+  lvr.busy=true;
+  lvxT(function(){
+    lvr.busy=false;
+    if(!lvr.run||lvr.over)return;
+    if(!lvrResetStroke())lvrStrokeTimeout(1);
+    lvrAsk();lvrHud();lvrMeter();lvrLine();lvrTrayHtml();lvrDraw();
+  },LVR_NEXT_MS);
+}
+/* 这一笔的钟走光：不算答错（扣 3 分、这一盘重开） */
+function lvrStrokeTimeout(silent){
+  lvr.timeouts=(lvr.timeouts||0)+1;
+  lvr.misses++;
+  lvr.score=Math.max(0,lvr.score-LVR_PEN_TIME);
+  lvxAdd('hz_lever_time',1);
+  if(!silent){
+    lvrTag('⏳ 这一笔的钟走光了',1);
+    lvxSay('⏳ <b>钟走光不算答错</b>（扣 '+LVR_PEN_TIME+' 分）：砝码收回盘、牌重新挂 —— 看准 <b>笔形对的那块牌</b> 刻的数，再动手','#FFCC80');
+  }
+  lvrResetStroke();
+}
+/* ---- 道具 ---- */
+function lvrLight(){
+  if(lvr.busy||lvr.lightN<=0)return 0;
+  lvr.lightN--;lvr.tools++;lvr.lightUse++;
+  lvr.lightMs=LVR_LIGHT_MS;lvr.litMs=LVR_LIGHT_MS;
+  lvxAdd('hz_lever_light',1);
+  lvrTag('✨ 笔形重新点亮',1);
+  lvxTone(LVR_NOTE[6],.14,'sine',.1);
+  lvrAsk();lvrHud();lvrLine();lvrDraw();
+  return 1;
+}
+function lvrCalm(){
+  if(lvr.busy||lvr.calmN<=0)return 0;
+  lvr.calmN--;lvr.tools++;lvr.calmUse++;
+  lvr.calmMs=LVR_CALM_MS;
+  lvr.om=0;
+  lvxAdd('hz_lever_calm',1);
+  lvrTag('🫱 镇手：板按住了',1);
+  lvxTone(LVR_NOTE[1],.2,'sine',.12);
+  lvrHud();lvrLine();lvrDraw();
+  return 1;
+}
+function lvrWedge(){
+  if(lvr.busy||lvr.wedgeN<=0)return 0;
+  lvr.wedgeN--;lvr.tools++;lvr.wedgeUse++;
+  lvr.wedgeMs=LVR_WEDGE_MS;
+  lvr.slipAcc=0;
+  for(let i=0;i<lvr.borers.length;i++){lvr.borers[i].acc=0}
+  lvxAdd('hz_lever_wedge',1);
+  lvrTag('🪡 垫榫：卡住了',1);
+  lvxTone(LVR_NOTE[3],.18,'triangle',.11);
+  lvrHud();lvrLine();lvrDraw();
+  return 1;
+}
+/* 归平：板上砝码全收回盘、板自己回平（每一笔一次机会） */
+function lvrFlat(){
+  if(lvr.busy||lvr.flatN<=0)return 0;
+  lvr.flatN--;lvr.tools++;lvr.flatUse++;
+  for(let i=0;i<lvr.tiles.length;i++)if(!lvr.tiles[i].gone)lvr.tiles[i].c=-1;
+  lvr.om=0;
+  lvr.tau=lvrTau();
+  lvxAdd('hz_lever_flat',1);
+  lvrTag('🪝 归平',1);
+  lvxSay('🪝 <b>归平</b>：砝码都收回盘了，板自己慢慢抬平 —— 重新想想要摆哪几块','#B3E5FC');
+  lvrTrayHtml();lvrHud();lvrMeter();lvrLine();lvrDraw();
+  return 1;
+}
+/* ---- 歇了一记的提醒：谁最要命先提醒谁 ---- */
+function lvrNag(){
+  if(lvr.busy||lvr.nagMs>0)return;
+  const placed=lvrPlaced().length;
+  if(!placed){
+    lvr.nagMs=LVR_NAG_HOLD;lvr.nags++;
+    lvxSay('🪵 <b>点一下砝码盘</b>挑一块，再点板上的格子放上去 —— 砝码越靠边、压得越狠；<code>←→</code> 挪支石能一改全改','#FFF59D');
+    return;
+  }
+  if(Math.abs(lvr.om)>LVR_STEADY*2.4){
+    lvr.nagMs=LVR_NAG_HOLD;lvr.nags++;
+    lvxSay('🫱 <b>板晃得厉害</b>：晃着摘不住。等 HUD 变成「稳」，或按 <code>E</code> 镇手一把','#B3E5FC');
+    return;
+  }
+  if(Math.abs(lvr.th)>=LVR_SLIP_DEG){
+    lvr.nagMs=LVR_NAG_HOLD;lvr.nags++;
+    lvxSay('⚠️ <b>板太斜了</b>，砝码正在溜：把靠外那几块收回盘，或按 <code>F</code> 垫榫','#FFCC80');
+    return;
+  }
+  const ap=lvrPlateOf(lvrCorrect());
+  if(ap&&lvrSolvable(ap.tau)&&Math.abs(lvr.tau-ap.tau)<=LVR_PUSH&&lvr.force>LVR_FORCE_USE*.4){
+    lvr.nagMs=LVR_NAG_HOLD;lvr.nags++;
+    lvxSay('🪵 <b>就差 '+Math.abs(lvr.tau-ap.tau)+' 个力矩</b>：按住 <code>X</code> 借一记（一记顶 '+LVR_PUSH+'），数对上、板稳住再按 <code>空格</code>','#FFF59D');
+    return;
+  }
+  lvr.nagMs=LVR_NAG_HOLD;lvr.nags++;
+  lvxSay('🏷 摘 <b>写着「'+(lvrShowTag()?LVR_TAG5[lvrCorrect()]:'这一笔')+'」</b>的那块牌：它刻的数就是你要凑的力矩 —— 数对上了才摘得住','#FFF59D');
+}
+
+/* ================= 段 D：画布 · HUD · 条 · 题面 · 砝码盘 · 浮条 ================= */
+function lvrPx(x,y){return {x:x*LVR_CS,y:y*LVR_CS}}
+function lvrFxBox(){
+  if(lvr.fxBox)return lvr.fxBox;
+  const el=document.getElementById('lvrFx');
+  lvr.fxBox=el||null;
+  return lvr.fxBox;
+}
+/* 世界格坐标 → 浮层像素（浮层宽可能不等于画布宽，按比例折） */
+function lvrPopAt(t,x,y,cls){
+  const box=lvrFxBox();
+  if(!box)return;
+  const p=lvrPx(x,y),d=document.createElement('i');
+  d.className=cls||'lvr-pop';
+  d.textContent=t;
+  d.style.left=(p.x*(box.clientWidth/LVR_W||1))+'px';
+  d.style.top=(p.y*(box.clientHeight/LVR_H||1))+'px';
+  box.appendChild(d);
+  lvxT(function(){if(d.parentNode)d.parentNode.removeChild(d)},860);
+}
+function lvxFx(t){
+  const tip=lvrUp(LVR_NEEDLE);
+  lvrPopAt(t,tip.x,tip.y-0.5);
+}
+function lvrChipAt(x,y,n,color){
+  const box=lvrFxBox();
+  if(!box)return;
+  const p=lvrPx(x,y);
+  for(let i=0;i<n;i++){
+    const d=document.createElement('i');
+    d.className='lvr-chip';
+    d.style.left=(p.x*(box.clientWidth/LVR_W||1))+'px';
+    d.style.top=(p.y*(box.clientHeight/LVR_H||1))+'px';
+    d.style.background=color||'rgba(255,224,178,.9)';
+    d.style.setProperty('--dx',((Math.random()*54-27)|0)+'px');
+    d.style.setProperty('--dy',((Math.random()*-38-6)|0)+'px');
+    box.appendChild(d);
+    lvxT(function(){if(d.parentNode)d.parentNode.removeChild(d)},700);
+  }
+}
+function lvrPuffAt(x,y,n){
+  const box=lvrFxBox();
+  if(!box)return;
+  const p=lvrPx(x,y);
+  for(let i=0;i<n;i++){
+    const d=document.createElement('i');
+    d.className='lvr-puff';
+    d.style.left=(p.x*(box.clientWidth/LVR_W||1))+'px';
+    d.style.top=(p.y*(box.clientHeight/LVR_H||1))+'px';
+    d.style.setProperty('--dx',((Math.random()*40-20)|0)+'px');
+    d.style.setProperty('--dy',((Math.random()*-30-4)|0)+'px');
+    box.appendChild(d);
+    lvxT(function(){if(d.parentNode)d.parentNode.removeChild(d)},780);
+  }
+}
+function lvrTag(t,pri){
+  lvxSet('lvrTag',t);
+  const el=document.getElementById('lvrTag');
+  if(el)el.classList.add('on');
+  lvr.tagMs=LVR_TAG_MS;
+  /* 场上只有一条浮条：大事（摘到一块牌、进场）正讲着的时候，零碎提示不许把它顶掉 */
+  lvr.tagPri=pri?1:0;
+}
+function lvrShake(){
+  const el=document.getElementById('lvrYard');
+  if(!el)return;
+  el.classList.remove('shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+  lvxT(function(){el.classList.remove('shake')},360);
+}
+function lvrAddBook(ch){
+  const cur=localStorage.getItem('hz_lever_book')||'';
+  const a=cur?cur.split(',').filter(function(v){return v}):[];
+  if(a.indexOf(ch)<0){a.push(ch);if(a.length>LVR_BOOK_MAX)a.shift();localStorage.setItem('hz_lever_book',a.join(','));return 1}
+  return 0;
+}
+function lvrAddMiss(ch){
+  const a=(localStorage.getItem('hz_lever_miss')||'').split(',').filter(function(v){return v&&v!==ch});
+  a.push(ch);
+  if(a.length>40)a.shift();
+  localStorage.setItem('hz_lever_miss',a.join(','));
+  lvr.miss=a;
+}
+/* ---- 画布 ---- */
+function lvrDraw(){
+  const c=lvr.ctx;
+  if(!c)return;
+  c.clearRect(0,0,LVR_W,LVR_H);
+  const g=c.createLinearGradient(0,0,0,LVR_H);
+  g.addColorStop(0,'#2A1F10');g.addColorStop(1,'#0C0A05');
+  c.fillStyle=g;c.fillRect(0,0,LVR_W,LVR_H);
+  lvrDrawRack(c);
+  lvrDrawGround(c);
+  lvrDrawPlank(c);
+  lvrDrawNeedle(c);
+  lvrDrawTiles(c);
+  lvrDrawLive(c);
+}
+/* 上头的木梁 + 挂着的牌：牌上写数字（一直在）和笔形（第 3 场起会淡） */
+function lvrDrawRack(c){
+  c.fillStyle='#3E2C15';c.fillRect(0,0,LVR_W,LVR_CS*.72);
+  c.fillStyle='rgba(255,255,255,.07)';c.fillRect(0,LVR_CS*.72-2,LVR_W,2);
+  for(let i=0;i<lvr.plates.length;i++){
+    const p=lvr.plates[i];
+    if(p.taken)continue;
+    const q=lvrPx(p.x,p.y);
+    c.strokeStyle='rgba(255,255,255,.22)';c.lineWidth=1;
+    c.beginPath();c.moveTo(q.x,LVR_CS*.7);c.lineTo(q.x,q.y-16);c.stroke();
+    const match=!lvr.busy&&p.tau===lvr.tau&&lvrSteady();
+    const ink=LVR_INK5[lvxRok(p.tag)];
+    c.fillStyle=match?'rgba(255,249,196,.22)':'rgba(255,255,255,.1)';
+    c.strokeStyle=match?ink:(lvrShowTag()?ink:'rgba(255,255,255,.28)');
+    c.lineWidth=match?3:1.6;
+    lvrRound(c,q.x-19,q.y-17,38,40,7);c.fill();c.stroke();
+    c.fillStyle='#FFF3E0';c.font='800 15px system-ui';c.textAlign='center';
+    c.fillText(String(p.tau),q.x,q.y+1);
+    if(lvrShowTag()){
+      c.fillStyle=ink;c.font='700 11px system-ui';
+      c.fillText(LVR_TAG5[lvxRok(p.tag)],q.x,q.y+16);
+    }else{
+      c.fillStyle='rgba(255,255,255,.16)';c.font='700 11px system-ui';
+      c.fillText('?',q.x,q.y+16);
+    }
+  }
+}
+/* 石轨：支点只能在这些格上站住，格号写出来孩子才数得清力臂 */
+function lvrDrawGround(c){
+  const y=(LVR_PY+1.25)*LVR_CS;
+  c.fillStyle='#241B0E';c.fillRect(0,y,LVR_W,LVR_H-y);
+  c.fillStyle='rgba(255,255,255,.05)';c.fillRect(0,y,LVR_W,2);
+  for(let col=Math.ceil(LVR_PX0);col<=Math.floor(LVR_PX1);col++){
+    const q=lvrPx(col,LVR_PY+1.05);
+    const on=(col===lvr.fx);
+    c.fillStyle=on?'rgba(255,213,79,.5)':'rgba(255,255,255,.14)';
+    c.fillRect(q.x-6,q.y-1.5,12,3);
+    if(!on){
+      c.fillStyle='rgba(255,255,255,.2)';c.font='600 8px system-ui';c.textAlign='center';
+      c.fillText(String(col),q.x,q.y+11);
+    }
+  }
+  /* 限位石：板两头各一块，砝码顶到这儿就该砸板了 */
+  for(let e=0;e<2;e++){
+    const col=e?LVR_S1:LVR_S0;
+    const q=lvrPx(col,LVR_PY+0.45);
+    c.fillStyle='#4E3B1E';
+    c.fillRect(q.x-4,q.y-6,8,14);
+    c.fillStyle='rgba(255,138,101,.5)';
+    c.fillRect(q.x-4,q.y-6,8,3);
+  }
+}
+function lvrRound(c,x,y,w,h,r){
+  c.beginPath();
+  c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);
+  c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);
+  c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);
+  c.closePath();
+}
+function lvrDrawPlank(c){
+  /* 支石：一块三角石顶着板 */
+  const f=lvrPx(lvr.fx,LVR_PY);
+  c.fillStyle='#6D5A38';
+  c.beginPath();
+  c.moveTo(f.x,f.y-2);c.lineTo(f.x-15,f.y+22);c.lineTo(f.x+15,f.y+22);c.closePath();c.fill();
+  c.fillStyle='rgba(255,255,255,.16)';
+  c.beginPath();c.moveTo(f.x,f.y-2);c.lineTo(f.x-6,f.y+22);c.lineTo(f.x+6,f.y+22);c.closePath();c.fill();
+  /* 板：跟着倾角转的一根厚木 */
+  const a=lvrPtR(LVR_PX0-lvr.fx,undefined,-.18),b=lvrPtR(LVR_PX1-lvr.fx,undefined,-.18);
+  const pa=lvrPx(a.x,a.y),pb=lvrPx(b.x,b.y);
+  c.strokeStyle='#8D6E63';c.lineWidth=9;c.lineCap='round';
+  c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke();
+  c.strokeStyle='rgba(255,240,200,.22)';c.lineWidth=2.4;
+  c.beginPath();c.moveTo(pa.x,pa.y-3);c.lineTo(pb.x,pb.y-3);c.stroke();
+  c.lineCap='butt';
+  /* 板面格标：砝码要摆在正中间一格才数得清臂 */
+  for(let col=LVR_S0;col<=LVR_S1;col++){
+    const t=lvrPt(col,-.18),q=lvrPx(t.x,t.y);
+    c.fillStyle=col===lvr.fx?'rgba(255,213,79,.75)':'rgba(255,255,255,.26)';
+    c.fillRect(q.x-1.5,q.y-1.5,3,3);
+  }
+  /* 借的那一记：撬棍压在低端 */
+  if(lvr.pressSide){
+    const t=lvrPt(lvr.pressSide>0?LVR_S1:LVR_S0,.85),q=lvrPx(t.x,t.y);
+    c.strokeStyle='#FFD54F';c.lineWidth=3;
+    c.beginPath();c.moveTo(q.x,q.y-16);c.lineTo(q.x,q.y+2);c.stroke();
+    c.fillStyle='#FFD54F';
+    c.beginPath();c.moveTo(q.x-6,q.y-20);c.lineTo(q.x+6,q.y-20);c.lineTo(q.x,q.y-6);c.closePath();c.fill();
+  }
+  /* 力矩读数就写在支石底下：孩子抬眼就能对上牌上的数 */
+  c.fillStyle=Math.abs(lvr.tau)>=LVR_BANG_TAU?'#FF8A80':(lvr.tau===0?'#B0BEC5':'#FFE0B2');
+  c.font='800 12px system-ui';c.textAlign='center';
+  c.fillText('⚖️ '+lvr.tau,lvr.fx*LVR_CS,(LVR_PY+2.7)*LVR_CS);
+}
+function lvrDrawNeedle(c){
+  const f=lvrPx(lvr.fx,LVR_PY),R=LVR_NEEDLE*LVR_CS;
+  /* 刻度弧：每 5° 一记，摘得准不准全看这根针 */
+  c.strokeStyle='rgba(255,255,255,.16)';c.lineWidth=1;
+  c.beginPath();c.arc(f.x,f.y,R,-Math.PI/2-lvrRad(LVR_TMAX),-Math.PI/2+lvrRad(LVR_TMAX));c.stroke();
+  for(let d=-LVR_TMAX;d<=LVR_TMAX;d+=5){
+    const p=lvrUp(LVR_NEEDLE+.3,d),q=lvrPx(p.x,p.y),o=lvrUp(LVR_NEEDLE-.24,d),w=lvrPx(o.x,o.y);
+    c.strokeStyle=Math.abs(lvr.th-d)<2.6?'rgba(255,245,157,.8)':'rgba(255,255,255,.2)';
+    c.lineWidth=Math.abs(lvr.th-d)<2.6?2:1;
+    c.beginPath();c.moveTo(w.x,w.y);c.lineTo(q.x,q.y);c.stroke();
+  }
+  /* 板鼻 */
+  const t=lvrUp(LVR_NEEDLE),q=lvrPx(t.x,t.y);
+  c.strokeStyle=lvrSteady()?'#A5D6A7':'#FFB74D';c.lineWidth=3;
+  c.beginPath();c.moveTo(f.x,f.y);c.lineTo(q.x,q.y);c.stroke();
+  c.fillStyle=lvrSteady()?'#CCFF90':'#FFE082';
+  c.beginPath();c.arc(q.x,q.y,4,0,Math.PI*2);c.fill();
+  /* 对上数的那块牌：从针尖拉一条虚线过去 */
+  const p=lvrPlateAt(lvr.tau);
+  if(p&&!p.taken){
+    const r=lvrPx(p.x,p.y+10);
+    c.strokeStyle=p.tag===lvrCorrect()?'rgba(255,245,157,.72)':'rgba(255,138,101,.6)';
+    c.lineWidth=1.6;c.setLineDash([5,5]);
+    c.beginPath();c.moveTo(q.x,q.y);c.lineTo(r.x,r.y);c.stroke();
+    c.setLineDash([]);
+  }
+}
+function lvrRad(d){return d*Math.PI/180}
+function lvrDrawTiles(c){
+  for(let i=0;i<lvr.tiles.length;i++){
+    const x=lvr.tiles[i];
+    if(x.gone||x.c<0)continue;
+    const t=lvrPt(x.c,.62),q=lvrPx(t.x,t.y);
+    const w=x.w,h=9+w*1.7;
+    c.fillStyle='rgba(0,0,0,.35)';
+    lvrRound(c,q.x-w*2.2-2,q.y-h-2,w*4.4+4,h+4,5);c.fill();
+    c.fillStyle=lvrWood(w);
+    lvrRound(c,q.x-w*2.2,q.y-h,w*4.4,h,4);c.fill();
+    c.strokeStyle='rgba(255,255,255,.24)';c.lineWidth=1;
+    lvrRound(c,q.x-w*2.2,q.y-h,w*4.4,h,4);c.stroke();
+    c.fillStyle='#241B0E';c.font='800 12px system-ui';c.textAlign='center';
+    c.fillText(x.ch,q.x,q.y-h/2+1);
+    c.font='700 9px system-ui';
+    c.fillText(String(w),q.x,q.y-3);
+  }
+}
+function lvrWood(w){
+  const k=lvxClamp(w-2,0,6);
+  return [' #C8A16A','#BE9457','#B4884A','#A97C3E','#9E7033','#93642A'][Math.min(5,Math.floor(k))].trim();
+}
+function lvrDrawLive(c){
+  /* 滑石：会自己滚的砝码 */
+  for(let i=0;i<lvr.pebs.length;i++){
+    const p=lvr.pebs[i];
+    if(p.gone)continue;
+    const t=lvrPt(p.c,.4),q=lvrPx(t.x,t.y);
+    c.fillStyle='#90A4AE';
+    c.beginPath();c.arc(q.x,q.y-6,7,0,Math.PI*2);c.fill();
+    c.fillStyle='rgba(255,255,255,.28)';
+    c.beginPath();c.arc(q.x-2,q.y-8,2.6,0,Math.PI*2);c.fill();
+    c.fillStyle='#263238';c.font='800 9px system-ui';c.textAlign='center';
+    c.fillText(String(p.w),q.x,q.y-3.5);
+  }
+  /* 蛀虫：趴在它啃的那块砝码上 */
+  for(let i=0;i<lvr.borers.length;i++){
+    const b=lvr.borers[i];
+    if(b.gone)continue;
+    const x=lvrTileById(b.t);
+    if(!x||x.c<0)continue;
+    const t=lvrPt(x.c,1.55+x.w*.06),q=lvrPx(t.x,t.y);
+    c.fillStyle=lvr.wedgeMs>0?'rgba(165,214,167,.6)':'#C0CA33';
+    for(let s=0;s<3;s++){
+      c.beginPath();c.arc(q.x-6+s*6,q.y+(s%2?1:-1),3.4,0,Math.PI*2);c.fill();
+    }
+    c.fillStyle='#33691E';c.font='9px system-ui';c.textAlign='center';
+    c.fillText('🐛',q.x,q.y-7);
+  }
+  /* 墨露：挂在板鼻扫过的那道弧上 */
+  const f=lvrPx(lvr.fx,LVR_PY);
+  for(let i=0;i<lvr.motes.length;i++){
+    const m=lvr.motes[i];
+    const p=lvrUp(LVR_NEEDLE-.55,m.a),q=lvrPx(p.x,p.y);
+    if(m.got){
+      c.strokeStyle='rgba(129,212,250,.28)';c.lineWidth=1;
+      c.beginPath();c.arc(q.x,q.y,4,0,Math.PI*2);c.stroke();
+      continue;
+    }
+    c.fillStyle='rgba(79,195,247,.9)';
+    c.beginPath();c.arc(q.x,q.y,LVR_MOTE_R*LVR_CS/2,0,Math.PI*2);c.fill();
+    c.fillStyle='rgba(255,255,255,.7)';
+    c.beginPath();c.arc(q.x-1.6,q.y-1.6,1.5,0,Math.PI*2);c.fill();
+  }
+  c.strokeStyle='rgba(129,212,250,.16)';c.lineWidth=1;
+  c.beginPath();c.arc(f.x,f.y,(LVR_NEEDLE-.55)*LVR_CS,-Math.PI/2-lvrRad(LVR_TMAX),-Math.PI/2+lvrRad(LVR_TMAX));c.stroke();
+}
+/* ---- HUD ---- */
+function lvrHud(){
+  const rk=lvrRank2();
+  lvxSet('lvrRankTxt',rk.e+' '+rk.t);
+  let h='';for(let i=0;i<lvr.hearts;i++)h+='❤️';
+  lvxSet('lvrHeartTxt',h||'💔');
+  lvxSet('lvrComboTxt','🔥 连 '+lvr.combo);
+  lvxSet('lvrLitTxt','🖋 '+(lvr.rec?Math.min(lvr.qi+1,lvr.n):0)+'/'+lvr.n+' 笔');
+  lvxSet('lvrTauTxt','⚖️ 力矩 '+lvr.tau);
+  lvxSet('lvrDegTxt','📐 '+lvr.th.toFixed(1)+'°');
+  lvxSet('lvrStabTxt',lvr.calmMs>0?'🫱 按住':(lvrSteady()?'🫱 稳':'🫱 沉'));
+  lvxSet('lvrMoteTxt','💧 采露 '+lvr.moteGot+'/'+lvr.moteNeed);
+  lvxSet('lvrPebTxt','🪨 滑石 '+lvr.pebs.filter(function(p){return !p.gone}).length);
+  lvxSet('lvrBoreTxt','🐛 蛀虫 '+lvr.borers.filter(function(b){return !b.gone}).length);
+  lvxSet('lvrFlatTxt','🪝 归平 '+lvr.flatN);
+  lvxSet('lvrFxTxt','🪨 支石第 '+lvr.fx+' 格');
+  const pb=document.getElementById('lvrPluckBtn');
+  if(pb)pb.classList.toggle('hard',lvrSteady()&&!!lvrPlateAt(lvr.tau));
+  const lb=document.getElementById('lvrLightBtn');
+  if(lb){lb.disabled=lvr.lightN<=0;const b=lb.querySelector('b');if(b)b.innerHTML='剩 '+lvr.lightN}
+  const cb=document.getElementById('lvrCalmBtn');
+  if(cb){cb.disabled=lvr.calmN<=0;const b=cb.querySelector('b');if(b)b.innerHTML='剩 '+lvr.calmN}
+  const wb=document.getElementById('lvrWedgeBtn');
+  if(wb){wb.disabled=lvr.wedgeN<=0;const b=wb.querySelector('b');if(b)b.innerHTML='剩 '+lvr.wedgeN}
+  const fb=document.getElementById('lvrFlatBtn');
+  if(fb){fb.disabled=lvr.flatN<=0;const b=fb.querySelector('b');if(b)b.innerHTML='剩 '+lvr.flatN}
+  const fl=document.getElementById('lvrFxL');
+  if(fl)fl.disabled=lvr.fx<=LVR_FX0;
+  const fr=document.getElementById('lvrFxR');
+  if(fr)fr.disabled=lvr.fx>=LVR_FX1;
+}
+function lvrMeter(){
+  const ff=lvr.force/LVR_FORCE_MAX;
+  const fb=document.getElementById('lvrForceBox'),fi=document.getElementById('lvrForceBar');
+  if(fi)fi.style.width=(ff*100).toFixed(1)+'%';
+  if(fb)fb.classList.toggle('dry',ff<.25);
+  lvxSet('lvrForceTxt','🪵 力气 '+Math.round(lvr.force));
+  const qf=lvr.qms0?Math.max(0,lvr.qms/lvr.qms0):0;
+  const qb=document.getElementById('lvrQBox'),qi=document.getElementById('lvrQBar');
+  if(qi)qi.style.width=(qf*100).toFixed(1)+'%';
+  if(qb)qb.classList.toggle('low',qf<.3);
+  lvxSet('lvrQTxt','⏳ 这一笔 '+Math.ceil(lvr.qms/1000)+' 秒');
+  lvxSet('lvrQTxt2','⏳ 这一笔 '+Math.ceil(lvr.qms/1000)+' 秒');
+  const dn=lvrDay(lvr.lv),df=dn?Math.max(0,lvr.dayMs/dn):0;
+  const db=document.getElementById('lvrDayBox'),di=document.getElementById('lvrDayBar');
+  if(di)di.style.width=(df*100).toFixed(1)+'%';
+  if(db)db.classList.toggle('low',lvr.warn);
+  lvxSet('lvrDayTxt','🌇 日头还剩 '+Math.ceil(lvr.dayMs/1000)+' 秒');
+  lvxSet('lvrScoreTxt','🎯 '+lvr.score+' 分');
+  lvxSet('lvrLvTxt','第 '+lvr.lv+' 场 · 已收 '+lvr.words+' 字');
+}
+function lvrPowStr(){
+  let done=0;
+  if(lvr.done)for(let i=0;i<lvr.n;i++)if(lvr.done.has(i))done++;
+  const placed=lvrPlaced().length;
+  return '🪵 第 <b>'+lvr.lv+'</b> 场 · '+lvr.n+' 笔（落好 <b>'+done+'</b>）· 这一笔是第 <b>'+
+    Math.min(lvr.qi+1,lvr.n)+'</b> 笔 · 场上 <b>'+lvr.plates.filter(function(p){return !p.taken}).length+'</b> 块牌'+
+    (lvrShowTag()?'（笔形亮着）':'（笔形淡了）')+
+    ' · 板上一共 <b>'+placed+'</b> 块砝码 · 力矩 <b>'+lvr.tau+'</b> · 斜 <b>'+lvr.th.toFixed(1)+'</b>° · 晃 <b>'+
+    lvr.om.toFixed(0)+'</b>°/秒 · 支石第 <b>'+lvr.fx+'</b> 格（左 '+lvr.fx+' 格 / 右 '+(LVR_S1-lvr.fx)+' 格）· 力气 <b>'+
+    Math.round(lvr.force)+'</b>（回 '+lvrRegen(lvr.lv).toFixed(0)+'/秒）· 滑石 <b>'+lvr.pebs.filter(function(p){return !p.gone}).length+
+    '</b> 颗 · 蛀虫 <b>'+lvr.borers.filter(function(b){return !b.gone}).length+'</b> 条 · 露 <b>'+lvr.moteGot+'/'+lvr.moteNeed+
+    '</b>'+(lvr.wedgeMs>0?' · <b>垫着榫</b>':'')+(lvr.calmMs>0?' · <b>镇着手</b>':'')+
+    ' · 凑得数的牌 <b>'+lvrTausNear().length+'</b> 块'+
+    (lvrTagLit(lvr.lv)?' · 笔形剩 <b>'+Math.max(0,Math.ceil(lvr.litMs/1000))+'</b> 秒':'');
+}
+function lvrPow(){lvxSet('lvrPowTxt',lvrPowStr())}
+/* 现在这个力矩对上了哪几块牌（0 块就是摘空） */
+function lvrTausNear(){
+  const o=[];
+  for(let i=0;i<lvr.plates.length;i++){const p=lvr.plates[i];if(!p.taken&&p.tau===lvr.tau)o.push(p)}
+  return o;
+}
+function lvrLine(){
+  const el=document.getElementById('lvrHintLine');
+  if(!el)return;
+  let t;
+  if(lvr.nagMs>0)t='🪵 <b>歇一记提示</b>：下面那行只报「板现在斜朝哪头」，不报哪块牌才对';
+  else if(lvr.wedgeMs>0)t='🪡 <b>垫榫中</b>：砝码卡住了不许溜，蛀虫也啃不动（剩 '+(lvr.wedgeMs/1000).toFixed(1)+' 秒）';
+  else if(lvr.calmMs>0)t='🫱 <b>镇手中</b>：板被按住了，稳的口子放宽一倍，趁这几秒摘';
+  else if(lvr.lightMs>0)t='✨ <b>亮签中</b>：牌上的笔形又点亮了（剩 '+(lvr.lightMs/1000).toFixed(1)+' 秒）';
+  else if(lvr.busy&&lvr.rec&&lvr.qi>=lvr.n)t='🪵 <b>整字撬成</b>，这一张正在收进图鉴……';
+  else if(lvr.busy)t='🏷 摘到了，下一笔的牌正在挂上来……';
+  else if(lvr.warn)t='🌇 <b>日头快落了</b>：这一场收完就得交账';
+  else if(lvr.force<=0)t='🪵 <b>力气空了</b>：松开 <code>X</code> 等它涨回来（每秒 +'+lvrRegen(lvr.lv).toFixed(0)+'）';
+  else if(Math.abs(lvr.th)>=LVR_SLIP_DEG)t='⚠️ <b>板斜过 '+LVR_SLIP_DEG+'°</b>：砝码正一格一格往低那头溜，越溜压得越狠 —— 收回几块或按 <code>F</code> 垫榫';
+  else if(!lvrPlaced().length)t='🪵 <b>板是平的</b>：点下面砝码盘挑一块、再点板上的格子放上去；<code>←→</code> 挪支石能一改全改';
+  else if(!lvrSteady())t='🫱 <b>板还在晃</b>（'+lvr.om.toFixed(0)+'°/秒）：数对上了也摘不住 —— 等它停，或按 <code>E</code> 镇手';
+  else if(lvr.duo)t='👥 <b>双人</b>：P1 按 <code>X</code> 喊「摘」、P2 按 <code>空格</code> 喊「起」，两下隔不到 '+(LVR_COUP_GAP/1000).toFixed(2)+' 秒才算合抱';
+  else t='⚖️ 力矩 <b>'+lvr.tau+'</b>（'+(lvr.tau>0?'右':(lvr.tau<0?'左':'平'))+'头沉）：凑成牌上刻的那个数，按 <code>空格</code> 摘';
+  el.innerHTML=t;
+}
+function lvrMini(){
+  const svg=document.getElementById('lvrMiniSvg');
+  if(!svg)return;
+  const rec=lvr.rec;
+  if(!rec){svg.innerHTML='';return}
+  let s='<rect x="0" y="0" width="1024" height="1024" fill="none"/>';
+  s+='<line x1="0" y1="512" x2="1024" y2="512" stroke="rgba(255,255,255,.14)" stroke-width="6"/>';
+  s+='<line x1="512" y1="0" x2="512" y2="1024" stroke="rgba(255,255,255,.14)" stroke-width="6"/>';
+  s+='<line x1="0" y1="0" x2="1024" y2="1024" stroke="rgba(255,255,255,.08)" stroke-width="4"/>';
+  s+='<line x1="1024" y1="0" x2="0" y2="1024" stroke="rgba(255,255,255,.08)" stroke-width="4"/>';
+  for(let i=0;i<rec.n;i++){
+    const dn=lvr.done&&lvr.done.has(i);
+    const cur=!dn&&i===lvr.qi;
+    s+='<path d="'+rec.paths[i]+'" fill="'+(dn?LVR_INK5[lvxRok(rec.dirs[i])]:(cur?'rgba(255,255,255,.4)':'rgba(255,255,255,.14)'))+'"/>';
+  }
+  svg.innerHTML=s;
+  lvxSet('lvrMiniCap',rec.ch+' · 共 '+rec.n+' 笔');
+}
+/* ---- 砝码盘：重量就是这个字的笔画数，刻在牌面上 ---- */
+function lvrTrayHtml(){
+  const el=document.getElementById('lvrTray');
+  if(!el)return;
+  let s='';
+  for(let i=0;i<lvr.tiles.length;i++){
+    const x=lvr.tiles[i];
+    if(x.gone)continue;
+    const on=(i===lvr.held);
+    const cls=x.c>=0?'lvr-w pad':(on?'lvr-w on':'lvr-w');
+    s+='<button class="'+cls+'" data-i="'+i+'" title="'+(x.c>=0?'这块已经在上头板面第 '+x.c+' 格（点它收回）':'点一下选中，再点板上的格子放上去')+'">'+
+      '<i>'+x.ch+'</i><u>'+x.w+' 画</u></button>';
+  }
+  if(!s)s='<span class="lvr-w pad">盘空了</span>';
+  el.innerHTML=s;
+}
+function lvrDuoHtml(){
+  const p1=document.getElementById('lvrDuoP1'),p2=document.getElementById('lvrDuoP2');
+  if(p1)p1.classList.toggle('off',!lvr.duo);
+  if(p2)p2.classList.toggle('off',!lvr.duo);
+  const btn=document.getElementById('lvrDuoBtn');
+  if(btn){btn.textContent=lvr.duo?'👥 双人 ✔':'👥 双人';btn.classList.toggle('on',lvr.duo)}
+  const bar=document.getElementById('lvrDuoBar');
+  if(bar)bar.style.display=lvr.duo?'flex':'flex';
+}
+
+/* ================= 段 E：主循环 · 两只钟 · 键位与点击 · 双人开关 · 说明 ================= */
+function lvrStartLoop(){
+  if(lvr.rafId)return;
+  lvr.last=performance.now();
+  function step(now){
+    if(!lvr.run||lvr.over){lvr.rafId=0;return}
+    const dt=Math.min(120,Math.max(8,now-lvr.last));
+    lvr.last=now;
+    lvrTick(dt);
+    lvr.rafId=requestAnimationFrame(step);
+  }
+  lvr.rafId=requestAnimationFrame(step);
+}
+function lvrStopLoop(){
+  if(lvr.rafId){cancelAnimationFrame(lvr.rafId);lvr.rafId=0}
+}
+/* 板是一条弹簧：每一步的 dt 必须一样，浏览器卡顿一下也不能让它攒出能量来 */
+function lvrTick(dt){
+  if(!lvr.run||lvr.over)return;
+  dt=Math.min(dt||LVR_TICK_MS,120);
+  lvr.t+=dt;
+  lvr.acc=(lvr.acc||0)+dt;
+  let n=0;
+  while(lvr.acc>=LVR_TICK_MS&&n<3){
+    lvr.acc-=LVR_TICK_MS;
+    lvrStepPhysics(LVR_TICK_MS);
+    n++;
+  }
+  if(n>=3)lvr.acc=0;
+  if(!lvr.run||lvr.over)return;
+  lvrStepTimers(dt);
+  if(!lvr.run||lvr.over)return;
+  lvrDraw();
+  lvrMeter();
+  lvr.hudAcc+=dt;
+  if(lvr.hudAcc>=110){lvr.hudAcc=0;lvrHud();lvrPow();lvrLine()}
+}
+function lvrStepTimers(dt){
+  if(lvr.actMs>0)lvr.actMs=Math.max(0,lvr.actMs-dt);
+  if(lvr.tagMs>0){
+    lvr.tagMs=Math.max(0,lvr.tagMs-dt);
+    if(lvr.tagMs===0){lvr.tagPri=0;const el=document.getElementById('lvrTag');if(el)el.classList.remove('on')}
+  }
+  if(lvr.lightMs>0){
+    lvr.lightMs=Math.max(0,lvr.lightMs-dt);
+    if(lvr.lightMs===0){lvrAsk();lvrLine()}
+  }
+  if(lvr.calmMs>0)lvr.calmMs=Math.max(0,lvr.calmMs-dt);
+  if(lvr.wedgeMs>0){
+    lvr.wedgeMs=Math.max(0,lvr.wedgeMs-dt);
+    if(lvr.wedgeMs===0)lvrLine();
+  }
+  if(lvr.nagMs>0)lvr.nagMs=Math.max(0,lvr.nagMs-dt);
+  if(lvr.helpMs>0){
+    lvr.helpMs=Math.max(0,lvr.helpMs-dt);
+    if(lvr.helpMs===0){
+      lvr.litMs=Math.max(lvr.litMs,lvrTagLit(lvr.lv));
+      lvrAsk();lvrLine();lvrHud();lvrPow();
+    }
+    return;   /* 看说明的时候两只钟都不走 */
+  }
+  if(lvr.litMs>0)lvr.litMs=Math.max(0,lvr.litMs-dt);
+  lvr.dayMs-=dt;
+  lvr.qms-=dt;
+  lvr.playMs+=dt;
+  lvr.since+=dt;
+  const dn=lvrDay(lvr.lv);
+  lvr.warn=dn>0&&lvr.dayMs<=dn*0.08;
+  if(lvr.warn){
+    lvr.beep+=dt;
+    if(lvr.beep>1500){lvr.beep=0;lvxTone(294,.1,'square',.05)}
+  }
+  if(lvr.dayMs<=0){lvr.dayMs=0;lvrEnd('day');return}
+  if(lvr.qms<=0&&!lvr.busy){lvr.qms=0;lvrStrokeTimeout();lvrAsk();lvrTrayHtml()}
+  if(lvr.since>=LVR_NAG_MS&&lvr.nagMs<=0&&!lvr.busy)lvrNag();
+}
+/* ---- 压撬（借一记力） ---- */
+function lvrPress(on){
+  if(!lvr.run||lvr.over)return 0;
+  if(on){
+    if(lvr.force<=0){
+      lvrTag('🪵 <b>还没力气</b>：松一松手等它涨回来（每秒 +'+lvrRegen(lvr.lv).toFixed(0)+'）');
+      return 0;
+    }
+    if(lvr.press)return 1;
+    lvr.press=true;lvr.presses++;
+    lvxAdd('hz_lever_press',1);
+    lvxTone(392,.05,'square',.03);
+    lvr.tau=lvrTau();
+    lvrLine();lvrPow();lvrDraw();
+    return 1;
+  }
+  if(!lvr.press)return 0;
+  lvr.press=false;lvr.pressSide=0;
+  lvr.tau=lvrTau();
+  lvrLine();lvrPow();lvrDraw();
+  return 1;
+}
+/* ---- 挪支石 ---- */
+function lvrLean(d){
+  if(!lvr.run||lvr.over)return 0;
+  return lvrSetFx(lvr.fx+d);
+}
+/* ---- 场上点哪一格 ---- */
+function lvrTileAt(c){
+  for(let i=0;i<lvr.tiles.length;i++){const x=lvr.tiles[i];if(!x.gone&&x.c===c)return x}
+  return null;
+}
+function lvrIdxOf(x){
+  for(let i=0;i<lvr.tiles.length;i++)if(lvr.tiles[i]===x)return i;
+  return -1;
+}
+/* 整列都能点：孩子不必瞄准那根斜着的板 */
+function lvrCellAt(gx){
+  const c=Math.round(gx);
+  if(c<LVR_S0||c>LVR_S1)return -1;
+  return c;
+}
+function lvrTapCell(gx){
+  /* 一格一改之间要隔 LVR_ACT_CD：拖着手走的时候这条节流顺手挡住了「刚放下又被下一次 move 捡回来」的闪 */
+  if(lvr.actMs>0)return 0;
+  const c=lvrCellAt(gx);
+  if(c<0)return 0;
+  const here=lvrTileAt(c);
+  if(lvr.held>=0){
+    const x=lvr.tiles[lvr.held];
+    if(here){
+      lvrTag('🪨 这一格站住了',1);
+      lvr.held=-1;lvrTrayHtml();
+      return 0;
+    }
+    if(!lvrPlaceAt(lvr.held,c,1))return 0;
+    lvr.held=-1;
+    lvxTone(LVR_NOTE[0]*2,.06,'square',.05);
+    lvrPuffAt(c,LVR_PY-0.4,3);
+    lvrAsk();lvrHud();lvrMeter();lvrPow();lvrLine();
+    return 1;
+  }
+  if(here){
+    lvr.held=lvrIdxOf(here);
+    lvrBack(lvr.held);
+    lvxTone(523,.05,'sine',.04);
+    lvrTrayHtml();lvrHud();lvrMeter();lvrPow();lvrLine();
+    return 1;
+  }
+  lvrTag('🪵 这一格是空的',1);
+  return 0;
+}
+function lvrHoldTile(i){
+  const x=lvr.tiles[i];
+  if(!x||x.gone)return 0;
+  if(x.c>=0){
+    lvr.held=-1;
+    lvrBack(i);
+    lvrTrayHtml();lvrHud();lvrMeter();lvrPow();lvrLine();
+    return 1;
+  }
+  lvr.held=(lvr.held===i?-1:i);
+  lvxTone(659,.04,'sine',.03);
+  lvrTrayHtml();lvrLine();
+  return 1;
+}
+/* ---- 双人开关 ---- */
+function lvrDuo(on){
+  lvr.duo=(on===undefined?!lvr.duo:!!on);
+  lvr.p1At=-1e9;lvr.p2At=-1e9;lvr.lastGap=-1;
+  if(!lvr.duo)lvr.press=false;
+  lvxAdd('hz_lever_duon',lvr.duo?1:0);
+  lvrTag(lvr.duo?'👥 双人：P1 摆砝码喊「摘」，P2 推石压撬喊「起」':'👤 单人',2);
+  lvxSay(lvr.duo?
+    '👥 <b>双人同屏</b>：<b>P1</b> 只管点砝码、点格子，看准了按 <code>X</code> 喊「摘」；<b>P2</b> 管 <code>←→</code> 推支石、按住 <code>S</code> 压撬、按 <code>空格</code> 喊「起」。<b>两块牌之间隔不到 '+(LVR_COUP_GAP/1000).toFixed(2)+' 秒的两下才算合抱</b> —— 一个人喊只会提示「等同伴」，不罚分':
+    '👤 <b>单人</b>：<code>←→</code> 推支石、按住 <code>X</code> 压撬、按 <code>空格</code> 摘牌','#B3E5FC');
+  lvrDuoHtml();lvrLine();lvrHud();
+  return lvr.duo?1:0;
+}
+function lvrKeyDir(k){
+  if(k==='ArrowLeft'||k==='a'||k==='A')return 'l';
+  if(k==='ArrowRight'||k==='d'||k==='D')return 'rr';
+  return '';
+}
+function lvrBind(){
+  if(lvr.bound)return;
+  lvr.bound=true;
+  if(!lvr.keys)lvr.keys={l:false,r:false,press:false,p2:false};
+  window.addEventListener('keydown',function(e){
+    if(!lvr.run||lvr.over)return;
+    const k=e.key;
+    const dn=lvrKeyDir(k);
+    if(dn){
+      /* 双人模式里 ←→ 归 P2 推支石；单人也是同一只手 */
+      e.preventDefault();
+      if(lvr.keys[dn])return;
+      lvr.keys[dn]=true;
+      lvrLean(dn==='l'?-1:1);
+      return;
+    }
+    if(k===' '||k==='Spacebar'){
+      e.preventDefault();
+      if(e.repeat)return;
+      lvrPluck(lvr.duo?2:0);
+      return;
+    }
+    if(k==='x'||k==='X'){
+      e.preventDefault();
+      if(lvr.duo){if(!e.repeat)lvrPluck(1);return}
+      if(!e.repeat)lvrPress(true);
+      return;
+    }
+    if(k==='s'||k==='S'){
+      if(!lvr.duo)return;      /* 单人时 S 就是「右」的隔壁键，不抢 */
+      e.preventDefault();
+      lvrPress(true);
+      return;
+    }
+    if(k==='Enter'){e.preventDefault();lvrFlat();return}
+    if(k==='q'||k==='Q'){lvrLight();return}
+    if(k==='e'||k==='E'){lvrCalm();return}
+    if(k==='f'||k==='F'){lvrWedge();return}
+    if(k==='h'||k==='H'||k==='?'){lvrHelp();return}
+  });
+  window.addEventListener('keyup',function(e){
+    const k=e.key,dn=lvrKeyDir(k);
+    if(dn&&lvr.keys)lvr.keys[dn]=false;
+    if(k==='x'||k==='X'){if(!lvr.duo)lvrPress(false);return}
+    if((k==='s'||k==='S')&&lvr.duo)lvrPress(false);
+  });
+  const cv=document.getElementById('lvrCanvas');
+  if(cv){
+    const at=function(ev){
+      const r=cv.getBoundingClientRect();
+      if(!r.width||!r.height)return null;
+      return {x:(ev.clientX-r.left)/r.width*LVR_W/LVR_CS,y:(ev.clientY-r.top)/r.height*LVR_H/LVR_CS};
+    };
+    cv.addEventListener('pointerdown',function(ev){
+      if(!lvr.run||lvr.over)return;
+      ev.preventDefault();
+      const p=at(ev);
+      if(!p)return;
+      lvr.dragging=true;
+      lvrTapCell(p.x);
+    });
+    cv.addEventListener('pointermove',function(ev){
+      if(!lvr.run||lvr.over||!lvr.dragging||lvr.held<0)return;
+      const p=at(ev);
+      if(p)lvrTapCell(p.x);
+    });
+    window.addEventListener('pointerup',function(){lvr.dragging=false});
+  }
+  const tray=document.getElementById('lvrTray');
+  if(tray&&!tray.dataset.on){
+    tray.dataset.on='1';
+    tray.addEventListener('click',function(ev){
+      let t=ev.target;
+      while(t&&t!==tray&&!(t.dataset&&t.dataset.i!==undefined))t=t.parentNode;
+      if(!t||t===tray)return;
+      lvrHoldTile(+t.dataset.i);
+    });
+  }
+  const mk=[['lvrFxL',function(){lvrLean(-1)}],['lvrFxR',function(){lvrLean(1)}],
+    ['lvrPluckBtn',function(){lvrPluck(lvr.duo?2:0)}],['lvrDuoBtn',function(){lvrDuo()}],
+    ['lvrLightBtn',lvrLight],['lvrCalmBtn',lvrCalm],['lvrWedgeBtn',lvrWedge],['lvrFlatBtn',lvrFlat]];
+  for(let i=0;i<mk.length;i++){
+    const b=document.getElementById(mk[i][0]);
+    if(b&&!b.dataset.on){b.dataset.on='1';b.addEventListener('click',mk[i][1])}
+  }
+  const pt=document.getElementById('lvrPressTool');
+  if(pt&&!pt.dataset.on){
+    pt.dataset.on='1';
+    pt.addEventListener('pointerdown',function(ev){ev.preventDefault();lvrPress(lvr.duo?false:true)});
+    pt.addEventListener('pointerup',function(){if(!lvr.duo)lvrPress(false)});
+    pt.addEventListener('pointerleave',function(){if(!lvr.duo)lvrPress(false)});
+  }
+}
+function lvrHelp(){
+  if(!lvr.run)return;
+  lvr.helpMs=LVR_HELP_MS;
+  lvrPress(false);
+  lvxSet('lvrAsk','🪵 <b>怎么在撬木场里写字</b><br><small>两只钟都先冻住</small>');
+  lvxSay('🪵 <b>一条板、一块支石</b>：<b>重量 × 离支石的格数 = 力矩</b>。砝码的重量就是这个字的 <b>笔画数</b>，所以每一块压多狠是算得出来的<br>🏷 <b>牌上刻着两样东西</b>：这一笔的 <b>笔形</b>（横/竖/撇/捺/点）和摘它要的 <b>力矩数</b>。<b>只有写着这一笔笔形的那块才对</b>：数凑对、板稳住、笔形对，三样齐了才落好这一笔<br>🪨 <b>支石能挪</b>（<code>←→</code> 或点 <code>◀▶</code>）：支石往左，右边的力臂全变长、左边的全变短 —— <b>同一块砝码换个支石就是另一倍力气</b>，这是「以小博大」的开关；支石挪到谁底下，谁就被顶回盘里<br>🫱 <b>板有惯性</b>：放下砝码板会一沉一弹晃几下（固有频率 '+(Math.sqrt(LVR_SPR)/6.28).toFixed(1)+' 赫兹），<b>晃着摘不住</b>：得等 HUD 的 🫱 写「稳」（±'+LVR_STEADY+'°/秒以内）。稳得够死（±'+LVR_STEADY_HARD+'°/秒）另加 '+LVR_STEADY_PTS+' 分<br>⚠️ <b>砝码会溜</b>：板斜过 '+LVR_SLIP_DEG+'° 就每隔 '+(lvrSlipMs(lvr.lv)/1000).toFixed(1)+' 秒往低那头滑一格，越溜压得越狠；力矩顶到 '+LVR_BANG_TAU+' 就 <b>砸板</b>（扣 '+LVR_PEN_BANG+' 分、最外那块掉下板、连击清零）<br>🪵 <b>力气</b>：按住 <code>X</code>（或点 <b>压住不放</b>）往低端补一记，一记顶 '+LVR_PUSH+' 个力矩、每秒耗 '+LVR_FORCE_USE+' 分力气，松手每秒回 '+lvrRegen(lvr.lv).toFixed(0)+' 分。<b>整字一次没借手</b> 另加 '+LVR_CLEAN_BONUS+' 分<br>💧 <b>墨露</b>挂在板鼻扫过的弧上（'+lvrMotes(lvr.lv)+' 颗）：把板摆到那颗的角度就采到，一颗 +'+LVR_MOTE_PTS+' 分、这一笔 <b>采满</b> 另加 '+LVR_MOTE_ALL+' 分 —— 可摆幅一大，砝码就更容易溜<br>🪨 <b>滑石</b>是块活的砝码（'+lvrPeb(lvr.lv)+' 颗）：每 '+(lvrRollMs(lvr.lv)/1000).toFixed(1)+' 秒自己往低端滚一格，一滚力矩就变；🐛 <b>蛀虫</b>（'+lvrBorer(lvr.lv)+' 条）每 '+(lvrBoreMs(lvr.lv)/1000).toFixed(1)+' 秒啃掉一口重量，啃到 1 画就走<br>✨ <b>亮签 Q</b>：牌上的笔形点亮 '+(LVR_LIGHT_MS/1000).toFixed(1)+' 秒（第 3 场起笔形只亮 '+(lvrTagLit(lvr.lv)?(lvrTagLit(lvr.lv)/1000).toFixed(1):'一直')+' 秒，<b>数字一直在</b>）；🫱 <b>镇手 E</b>：一把按住板，稳的口子放宽一倍；🪡 <b>垫榫 F</b>：' + (LVR_WEDGE_MS/1000).toFixed(1) + ' 秒内砝码不许溜、蛀虫啃不动；🪝 <b>归平 Enter</b>：板上砝码全收回盘<br>👥 <b>双人同屏</b>（点 <b>双人</b>）：P1 摆砝码、按 <code>X</code> 喊「摘」；P2 推支石 <code>←→</code>、压撬 <code>S</code>、按 <code>空格</code> 喊「起」—— <b>两下隔不到 '+(LVR_COUP_GAP/1000).toFixed(2)+' 秒才算合抱</b>，一个人喊只说「等同伴」不罚分<br>⏳ <b>两只钟</b>：这一笔的钟（第 '+lvr.lv+' 场 '+(lvrQms(lvr.lv)/1000).toFixed(0)+' 秒）走光 <b>不算答错</b>（扣 '+LVR_PEN_TIME+' 分、这一盘重开）；<b>日头</b> 落了收摊。按 <code>H</code> 看说明时两只钟都不走<br>🌇 <b>每收 2 个字进一场</b>：牌从 '+lvrPlates(1)+' 块加到 '+lvrPlates(9)+' 块、砝码更省、滑石蛀虫一路加，'+LVR_HEARTS+' 颗心摘错一块掉一颗（进场补一颗，最多 '+LVR_HEART_MAX+' 颗）','#FFE0B2');
+  lvrLine();lvrHud();lvrMeter();lvrPow();lvrDraw();
+}
+
+/* ================= 段 F：结算与落盘 · 无头测试挂钩（会撬的孩子：带见证的 DP 凑力矩） ================= */
+/* hz_lever_* 的分工：一堆累计计数键（摆砝/挪石/借撬/摘牌/摘错/摘空/超时/溜手/砸板/掉砝/采露/采满/稳摘/
+   亮签/镇手/垫榫/归平/道具/合抱/双人开关/进场/落笔/收字）+ 几个 max 键（最好一场分数/连击/收字/最深一场/
+   最长稳摘连/最多合抱）+ 一个 fastest 键（一屏最快落一笔的毫秒数）。
+   称号读 hz_lever_total（累计收字），不是「最好一场」那个 hz_lever_words。 */
+function lvrBank(){
+  const best=lvxInt('hz_lever_best'),isBest=lvr.score>best;
+  if(isBest)localStorage.setItem('hz_lever_best',String(lvr.score));
+  if(lvr.maxCombo>lvxInt('hz_lever_combo'))localStorage.setItem('hz_lever_combo',String(lvr.maxCombo));
+  if(lvr.words>lvxInt('hz_lever_words'))localStorage.setItem('hz_lever_words',String(lvr.words));
+  if(lvr.lv>lvxInt('hz_lever_lv'))localStorage.setItem('hz_lever_lv',String(lvr.lv));
+  if(lvr.steadyMax>lvxInt('hz_lever_steadymax'))localStorage.setItem('hz_lever_steadymax',String(lvr.steadyMax));
+  if(lvr.coups>lvxInt('hz_lever_coupmax'))localStorage.setItem('hz_lever_coupmax',String(lvr.coups));
+  if(lvr.lits){
+    const per=Math.round(lvr.playMs/lvr.lits);
+    if(!lvxInt('hz_lever_fastest')||per<lvxInt('hz_lever_fastest'))localStorage.setItem('hz_lever_fastest',String(per));
+  }
+  lvxAdd('hz_lever_total',lvr.words);
+  lvxAdd('hz_lever_slip',lvr.slips);
+  lvxAdd('hz_lever_bang',lvr.bangs);
+  lvxAdd('hz_lever_steady',lvr.steadies);
+  lvxAdd('hz_lever_tools',lvr.tools);
+  return {best:Math.max(best,lvr.score),isBest:isBest};
+}
+function lvrEnd(why){
+  if(lvr.over)return;
+  lvr.over=true;
+  lvrStopLoop();lvxKillTimers();
+  lvr.run=false;lvr.press=false;lvr.pressSide=0;lvr.held=-1;lvr.dragging=false;lvr.busy=false;
+  if(lvr.fxBox)lvr.fxBox.innerHTML='';
+  const tg=document.getElementById('lvrTag');if(tg)tg.classList.remove('on');
+  const yl=document.getElementById('lvrYard');if(yl)yl.classList.add('dead');
+  /* 心掉完才算「这个字没吃下」；日头落了只是收摊，不往错字本里塞 */
+  if(why==='broke'&&lvr.rec&&lvr.qi<lvr.n)lvrAddMiss(lvr.rec.ch);
+  const bk=lvrBank(),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(lvr.score/14)+lvr.words*2);
+  if(why!=='pool')addStars(stars);
+  showScreen('lever-result');
+  lvxSet('lvrRsEmoji',{quit:'🏳️',day:'🌇',broke:'💔',pool:'😢'}[why]||'🪵');
+  lvxSet('lvrRsTitle',why==='broke'?'心掉完了':(why==='day'?'日头落了':(why==='quit'?'这一场先收了':'木头没凑齐')));
+  const tot=lvxInt('hz_lever_total'),rr=lvrRank2();
+  lvxSet('lvrRsSub','第 '+lvr.lv+' 场 · 累计收 '+tot+' 个字 · '+rr.e+' '+rr.t);
+  lvxSet('lvrRsScore','🎯 '+lvr.score+' 分'+(isBest?' 🏅 新高':''));
+  lvxSet('lvrRsWords','🪵 收 '+lvr.words+' 个字');
+  lvxSet('lvrRsLits','🖋 落好 '+lvr.lits+' 笔');
+  lvxSet('lvrRsSub2','🏷 摘牌 '+lvr.plucks+' 次 · 摘错 '+lvr.wrongs+' · 摘空 '+lvr.misses+' · 钟走光 '+lvr.timeouts);
+  lvxSet('lvrRsSteady','🫱 稳摘 '+lvr.steadies+' 笔（最长连 '+lvr.steadyMax+'）· 没借手 '+lvr.cleanWords+' 个字');
+  lvxSet('lvrRsMote','💧 采露 '+lvr.moteN+' 颗 · 采满 '+lvr.allMotes+' 笔');
+  lvxSet('lvrRsSlip','🪨 溜手 '+lvr.slips+' 次 · 砸板 '+lvr.bangs+' 次 · 掉砝 '+lvr.drops+' 块 · 挪石 '+lvr.leans+
+    ' 回 · 摆砝 '+lvr.moved+' 次 · 借撬 '+lvr.presses+' 记');
+  lvxSet('lvrRsTools','✨ 亮签 '+lvr.lightUse+' · 🫱 镇手 '+lvr.calmUse+' · 🪡 垫榫 '+lvr.wedgeUse+' · 🪝 归平 '+lvr.flatUse);
+  lvxSet('lvrRsDuo',lvr.duo?'👥 合抱 '+lvr.coups+' 次（落单喊 '+lvr.coupMiss+' 次）· 两人一起摘 '+lvr.duoPlucks+' 块牌':
+    '👤 单人撬：压了 '+(lvr.pressMs/1000).toFixed(1)+' 秒撬棍 · 想试试两个人一起摘，点 <b>双人</b>');
+  lvxSet('lvrRsCombo','🔥 最长连 '+lvr.maxCombo);
+  lvxSet('lvrRsBest','🏆 最高 '+best+' 分');
+  lvxSet('lvrRsStars','⭐ '+stars);
+  const bkArr=(localStorage.getItem('hz_lever_book')||'').split(',').filter(function(c){return c.length===1});
+  /* 结算这一行不能只报一个数：孩子这一场撬下来的字得一个个念给他听（新收的才标「新」，重收的不吹第二遍） */
+  const mine=(lvr.gotCh||[]).map(function(g){return '<b>「'+g.ch+'」</b>'+(g.fresh?'<b>新</b>':'')});
+  lvxSet('lvrRsBook','图鉴里现在有 <b>'+bkArr.length+'</b> 个字'+
+    (bkArr.length?'<small>（架上：'+bkArr.slice(-12).join(' ')+'）</small>':'')+
+    (mine.length?'，这一场收进 '+mine.join('、'):'')+' · 木架里 <b>'+lvxInt('hz_lever_trophy')+'</b> 件老物件（'+
+    (localStorage.getItem('hz_lever_shelf')||'—')+'）· 累计落好 <b>'+lvxInt('hz_lever_lits')+'</b> 笔、撬下 <b>'+
+    lvxInt('hz_lever_pluck')+'</b> 块牌（开过 <b>'+lvxInt('hz_lever_games')+'</b> 场）<br>🐾 这 '+stars+
+    ' 颗星已经喂给<b>书桌小兽</b>，撬过的字也一并进了它的记忆池');
+  const acc=lvr.plucks+lvr.wrongs+lvr.misses;
+  const hit=acc?Math.round(lvr.plucks/acc*100):0;
+  lvxSet('lvrRsWhy',why==='broke'?'💔 <b>摘错 '+lvr.wrongs+' 次</b>：牌上的数凑对了不等于摘对 —— 同一盘里有好几块牌都凑得出来，<b>只有写着这一笔笔形的那块才对</b>。出手前先对那一个字（横/竖/撇/捺/点），淡了就按 <code>Q</code> <b>亮签</b>':
+    (why==='day'?'🌇 <b>日头落了</b>：'+(lvr.lits?'平均每笔撬了 <b>'+Math.round(lvr.playMs/lvr.lits/100)/10+' 秒</b>':'这一场 <b>一笔也没落好</b>')+' —— 别一块块试，先 <b>看牌上的数</b>：右边 '+(
+      LVR_S1-lvr.fx)+' 格长、左边 '+(lvr.fx-LVR_S0)+' 格短，<b>重量 × 格数</b> 心算一遍再摆砝码；<code>←→</code> 挪支石能一改全改':
+    (lvr.bangs?'🪨 <b>砸板 '+lvr.bangs+' 次</b>：力矩顶过 '+LVR_BANG_TAU+' 板头就磕石头（牌最多刻 '+LVR_TAU_MAX+'，'+
+      (LVR_BANG_TAU-LVR_TAU_MAX)+' 的余量是留给手滑的）。差最后一两格时别整块压上去，<b>按住 <code>X</code> 借一记撬棍</b>（一记顶 '+LVR_PUSH+'）比多放一块砝码稳':
+    (lvr.slips||lvr.drops)?'⚠️ <b>溜手 '+lvr.slips+' 次、掉砝 '+lvr.drops+' 块</b>：板斜过 '+LVR_SLIP_DEG+'° 砝码就自己往低处游走 —— 摆成 <b>两头都有分量</b>（一正一负）的样子，净力矩小、板也稳；或者按 <code>F</code> 垫榫':
+    '🪵 手感不错：'+acc+' 次出手里 <b>'+hit+'%</b> 摘到了该摘的牌，稳摘 '+lvr.steadies+' 笔、整字没借手 '+lvr.cleanWords+
+      ' 个字 —— 下一场牌更多、滑石更勤，试试 <b>把支石挪出第 9 格</b> 来以小博大')));
+  lvxSay('🪵 这一场撬了 <b>'+lvr.words+'</b> 个字、<b>'+lvr.lits+'</b> 笔落好，摘牌 <b>'+lvr.plucks+'</b> 次（摘错 <b>'+lvr.wrongs+
+    '</b>、摘空 <b>'+lvr.misses+'</b>、钟走光 <b>'+lvr.timeouts+'</b>），稳摘 <b>'+lvr.steadies+'</b> 笔、整字没借手 <b>'+lvr.cleanWords+
+    '</b> 个字，采露 <b>'+lvr.moteN+'</b> 颗（采满 <b>'+lvr.allMotes+'</b> 笔），溜手 <b>'+lvr.slips+'</b> 次、砸板 <b>'+lvr.bangs+
+    '</b> 次、掉砝 <b>'+lvr.drops+'</b> 块，挪支石 <b>'+lvr.leans+'</b> 回、借撬 <b>'+lvr.presses+'</b> 记，道具用了 <b>'+lvr.tools+
+    '</b> 次'+(lvr.duo?'，合抱 <b>'+lvr.coups+'</b> 次':'')+'。<br>战绩落盘 <code>hz_lever_*</code>：称号按<b>累计收下的字数</b>走，牌上刻的数永远 <b>这一盘砝码凑得出来</b>（凑不出来就重挂），第 3 场起 <b>牌上的笔形会淡</b>、<b>滑石上场</b>，第 4 场起 <b>蛀虫开啃</b>','#C8E6C9');
+  lvrNudge();
+}
+function lvrNudge(){
+  const dot=document.getElementById('lvrCardDot'),tip=document.getElementById('lvrCardTip');
+  const tot=lvxInt('hz_lever_total'),games=lvxInt('hz_lever_games'),lits=lvxInt('hz_lever_lits');
+  const R=lvrRank2(),trophy=lvxInt('hz_lever_trophy');
+  if(tip)tip.textContent=games?(R.e+' '+R.t+' · 收了 '+tot+' 个字 · 落好 '+lits+' 笔 · 撬下 '+lvxInt('hz_lever_pluck')+
+    ' 块牌 · 砸板 '+lvxInt('hz_lever_bang')+' 次 · 木架 '+trophy+' 件'):
+    '一根撬板一块支石：重量 × 离支石的格数 = 力矩。摘写着这一笔笔形的那块牌，可你得先把力矩凑成它刻的那个数';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(!games?'🆕':'')}
+}
+/* ---- 带见证的 DP：lvrReach 只答「凑不凑得出」，压力台要的是「照哪几块摆第几格」，所以把路径一并记下来 ---- */
+function lvrPlan(target,blk){
+  const hi=48,OFF=hi+4,SZ=(hi+4)*2+1;
+  if(!isFinite(target)||Math.abs(target)>hi)return null;
+  const tiles=lvrAlive();
+  let cur=new Array(SZ);
+  cur[OFF]={p:null,id:-1,c:-1};
+  for(let i=0;i<tiles.length;i++){
+    const w=tiles[i].w,nx=cur.slice();
+    for(let c=LVR_S0;c<=LVR_S1;c++){
+      if(c===lvr.fx)continue;
+      if(blk&&blk[c])continue;
+      const add=w*(c-lvr.fx);
+      for(let t=-hi;t<=hi;t++){
+        const v=cur[t+OFF];
+        if(!v)continue;
+        let p=v,dup=0;
+        while(p&&p.id>=0){if(p.c===c){dup=1;break}p=p.p}
+        if(dup)continue;
+        const nt=t+add;
+        if(nt<-hi||nt>hi)continue;
+        if(!nx[nt+OFF])nx[nt+OFF]={p:v,id:tiles[i].id,c:c};
+      }
+    }
+    cur=nx;
+    if(cur[target+OFF])break;
+  }
+  const e=cur[target+OFF];
+  if(!e)return null;
+  const out=[];let p=e;
+  while(p&&p.id>=0){out.push({id:p.id,c:p.c});p=p.p}
+  return out;
+}
+function lvrIdxOfId(id){
+  for(let i=0;i<lvr.tiles.length;i++)if(lvr.tiles[i].id===id)return i;
+  return -1;
+}
+function lvrBlocked(){
+  const b={};
+  for(let i=0;i<lvr.pebs.length;i++)if(!lvr.pebs[i].gone)b[lvr.pebs[i].c]=1;
+  return b;
+}
+/* 这一笔要凑的数：答案牌刻的数。滑石的偏置实时算，所以 base 每一拍都可能变。 */
+function lvrWant(){
+  const ap=lvr.plates[lvr.answer];
+  if(!ap||ap.taken)return null;
+  return {tau:ap.tau,base:ap.tau-lvrPebTau(),tag:ap.tag};
+}
+/* 先试「不借手」；凑不出来才借一记撬棍 —— 撬棍只能往沉的那头压，
+   所以只有 base 的符号对得上才走这一路（否则按下去会把力矩拉回 0，白耗力气）。 */
+function lvrSeekPlan(base,blk){
+  const p=lvrPlan(base,blk);
+  if(p)return {plan:p,press:0};
+  if(base>LVR_PUSH){const q=lvrPlan(base-LVR_PUSH,blk);if(q)return {plan:q,press:1}}
+  if(base<-LVR_PUSH){const q=lvrPlan(base+LVR_PUSH,blk);if(q)return {plan:q,press:-1}}
+  return null;
+}
+window.vLvrPlan=function(tau){return lvrPlan(tau,lvrBlocked())};
+window.vLvrReach=function(){const a=lvrReach(lvrAlive(),lvr.fx,48);a.sort(function(x,y){return x-y});return a};
+/* ---- 会撬的孩子：逐拍摆盘 → 等板稳 → 摘该摘的那块牌 ---- */
+window.vLvrSolve=async function(maxMs,wantWords){
+  /* 求解期间掐掉 rAF：产品自己也在按真实时间走弹簧，两边一起走的话同一个盘能晃出两种结果 */
+  lvrStopLoop();
+  if(lvr.duo)lvrDuo(false);
+  const g=lvr.gen,limit=maxMs||40000,want=wantWords||1;
+  const t0=lvr.words,tl0=lvr.lits,tp0=lvr.plucks;
+  const out={ms:0,words:0,lits:0,plucks:0,wrongs:0,misses:0,timeouts:0,slips:0,bangs:0,drops:0,
+    steadies:0,motes:0,planFail:0,presses:0,leans:0,replans:0,trace:[],
+    tr:{busy:0,noPlate:0,waitSettle:0,place:0,back:0,pluck:0,press:0,stuck:0}};
+  let plan=null,planPress=0,planKey='',strokeMs=0,strokeQi=lvr.qi;
+  while(out.ms<limit&&lvr.run&&!lvr.over&&g===lvr.gen&&lvr.words<t0+want){
+    if(lvr.busy){
+      out.tr.busy++;
+      plan=null;planKey='';strokeMs=0;
+      if(lvr.press)lvrPress(false);
+      lvrTick(LVR_TICK_MS);out.ms+=LVR_TICK_MS;
+      /* busy 的闸门挂在墙钟上（lvxT 就是 setTimeout）：模拟时间推不动它，
+         这一支每一拍都必须真的让出一次事件循环，否则整场都卡在「摘到了，下一笔的牌正在挂上来」 */
+      await new Promise(function(r){setTimeout(r,16)});
+      continue;
+    }
+    const w=lvrWant();
+    if(!w){
+      out.tr.noPlate++;
+      lvrTick(LVR_TICK_MS);out.ms+=LVR_TICK_MS;
+      if((out.ms/LVR_TICK_MS)%10===0)await new Promise(function(r){setTimeout(r,0)});
+      continue;
+    }
+    const key=lvrSetKey();
+    if(key!==planKey||!plan){
+      const got=lvrSeekPlan(w.base,lvrBlocked());
+      plan=got?got.plan:null;
+      planPress=got?got.press:0;
+      planKey=key;
+      out.replans++;
+      if(!got)out.planFail++;
+    }
+    let step='';
+    if(!plan){
+      /* 这一盘凑不出这一笔（滑石刚滚走、或者蛀虫啃掉了关键一口）：收回一块，等它自己变回来 */
+      const placed=lvrPlaced();
+      if(placed.length){lvrBack(lvrIdxOf(placed[0]));out.tr.back++}
+      step='wait';
+    }else{
+      /* 一次只动一块：一口气倒五块下去板会甩过头，而且 lvr.actMs 本来就限着一格一改 */
+      for(let i=0;i<plan.length&&!step;i++){
+        const idx=lvrIdxOfId(plan[i].id),x=idx<0?null:lvr.tiles[idx];
+        if(!x||x.gone){plan=null;planKey='';step='broken';break}
+        if(x.c>=0&&x.c!==plan[i].c){lvrBack(idx);out.tr.back++;step='back'}
+      }
+      if(!step){
+        for(let i=0;i<lvr.tiles.length&&!step;i++){
+          const x=lvr.tiles[i];
+          if(x.gone||x.c<0)continue;
+          let want2=-1;
+          for(let j=0;j<plan.length;j++)if(plan[j].id===x.id)want2=plan[j].c;
+          if(want2<0){lvrBack(i);out.tr.back++;step='back'}
+        }
+      }
+      if(!step){
+        for(let i=0;i<plan.length&&!step;i++){
+          const idx=lvrIdxOfId(plan[i].id),x=lvr.tiles[idx];
+          if(x&&x.c<0){lvrPlaceAt(idx,plan[i].c,1);out.tr.place++;step='place'}
+        }
+      }
+      if(!step){
+        /* 盘子摆好了：借不借手看这一步，稳不稳看角速度，数对不对看 lvr.tau */
+        if(planPress){
+          if(!lvr.press&&lvr.force>LVR_FORCE_USE*0.6){if(lvrPress(true))out.tr.press++}
+        }else if(lvr.press)lvrPress(false);
+        if(lvr.tau===w.tau&&lvrSteady()){
+          const before=lvr.qi;
+          if(lvr.press)lvrPress(false);
+          lvrPluck(0);
+          if(lvr.qi>before){
+            out.tr.pluck++;
+            out.trace.push({ch:lvr.rec?lvr.rec.ch:'',qi:before,ms:strokeMs,tau:w.tau,press:planPress,tiles:plan.length});
+            strokeMs=0;plan=null;planKey='';
+          }else if(strokeMs>12000){out.tr.stuck++;strokeMs=0;planKey=''}
+        }else{
+          out.tr.waitSettle++;
+          if(strokeMs>16000){out.tr.stuck++;strokeMs=0;plan=null;planKey=''}
+        }
+      }
+    }
+    lvrTick(LVR_TICK_MS);out.ms+=LVR_TICK_MS;strokeMs+=LVR_TICK_MS;
+    if((out.ms/LVR_TICK_MS)%10===0)await new Promise(function(r){setTimeout(r,0)});
+  }
+  out.words=lvr.words-t0;out.lits=lvr.lits-tl0;out.plucks=lvr.plucks-tp0;
+  out.wrongs=lvr.wrongs;out.misses=lvr.misses;out.timeouts=lvr.timeouts;
+  out.slips=lvr.slips;out.bangs=lvr.bangs;out.drops=lvr.drops;
+  out.steadies=lvr.steadies;out.motes=lvr.moteN;out.leans=lvr.leans;out.presses=lvr.presses;
+  out.score=lvr.score;out.lv=lvr.lv;out.hearts=lvr.hearts;out.qi=lvr.qi;
+  lvrStartLoop();
+  return out;
+};
+/* ---- 只读快照 ---- */
+window.vLvrTiles=function(){
+  return lvr.tiles.map(function(x){
+    return {id:x.id,ch:x.ch,w:x.w,c:x.c,gone:x.gone?1:0,arm:x.c>=0?x.c-lvr.fx:null,
+      tau:x.c>=0?x.w*(x.c-lvr.fx):0,on:x.c>=0?1:0}});
+};
+window.vLvrPlates=function(){
+  const dir=lvrCorrect();
+  return lvr.plates.map(function(p,i){
+    return {i:i,tau:p.tau,tag:p.tag,tagName:LVR_TAG5[lvxRok(p.tag)],x:Math.round(p.x*100)/100,y:p.y,
+      taken:p.taken?1:0,correct:p.tag===dir?1:0,match:p.tau===lvr.tau?1:0,solvable:lvrSolvable(p.tau)?1:0}});
+};
+window.vLvrPebs=function(){
+  return lvr.pebs.map(function(p){return {c:p.c,w:p.w,gone:p.gone?1:0,arm:p.c-lvr.fx,acc:Math.round(p.acc)}});
+};
+window.vLvrBorers=function(){
+  return lvr.borers.map(function(b){
+    const x=lvrTileById(b.t);
+    return {t:b.t,gone:b.gone?1:0,acc:Math.round(b.acc),on:x?x.ch:'',w:x?x.w:0,placed:x&&x.c>=0?1:0}});
+};
+window.vLvrMotes=function(){
+  return lvr.motes.map(function(m){
+    return {a:m.a,got:m.got?1:0,eqNow:Math.abs(lvxDeg(lvr.tau)-m.a)<=LVR_MOTE_DK?1:0}});
+};
+window.vLvrSet=function(){
+  const s=lvrSet(),a=[];
+  for(const k in s)a.push(+k);
+  a.sort(function(x,y){return x-y});
+  return {taus:a,off:lvrPebTau(),fx:lvr.fx,key:lvrSetKey(),answer:lvr.answer};
+};
+window.vLvrTau=function(){return {tau:lvr.tau,re:lvrTau(),eq:Math.round(lvxDeg(lvr.tau)*100)/100,th:Math.round(lvr.th*100)/100}};
+window.vLvrState=function(){
+  const done=lvr.done?lvr.done.size:0;
+  return {run:lvr.run?1:0,over:lvr.over?1:0,lv:lvr.lv,qi:lvr.qi,n:lvr.n,ch:lvr.rec?lvr.rec.ch:'',
+    dirs:lvr.rec?lvr.rec.dirs.join(''):'',correct:lvrCorrect(),showTag:lvrShowTag()?1:0,
+    litMs:Math.round(lvr.litMs),tagLitOf:lvrTagLit(lvr.lv),
+    score:lvr.score,hearts:lvr.hearts,combo:lvr.combo,maxCombo:lvr.maxCombo,
+    words:lvr.words,lits:lvr.lits,plucks:lvr.plucks,wrongs:lvr.wrongs,misses:lvr.misses,timeouts:lvr.timeouts,
+    slips:lvr.slips,bangs:lvr.bangs,drops:lvr.drops,motes:lvr.moteN,allMotes:lvr.allMotes,
+    steadies:lvr.steadies,steadyRun:lvr.steadyRun,steadyMax:lvr.steadyMax,cleanWords:lvr.cleanWords,
+    cleanWord:lvr.cleanWord?1:0,presses:lvr.presses,pressMs:Math.round(lvr.pressMs),leans:lvr.leans,
+    tools:lvr.tools,lightUse:lvr.lightUse,calmUse:lvr.calmUse,wedgeUse:lvr.wedgeUse,flatUse:lvr.flatUse,
+    nags:lvr.nags,moved:lvr.moved,taps:lvr.taps,coups:lvr.coups,coupMiss:lvr.coupMiss,duoPlucks:lvr.duoPlucks,
+    lightN:lvr.lightN,calmN:lvr.calmN,wedgeN:lvr.wedgeN,flatN:lvr.flatN,
+    fx:lvr.fx,th:Math.round(lvr.th*100)/100,om:Math.round(lvr.om*100)/100,tau:lvr.tau,
+    force:Math.round(lvr.force*10)/10,press:lvr.press?1:0,pressSide:lvr.pressSide,
+    steady:lvrSteady()?1:0,steadyHard:lvrSteadyHard()?1:0,
+    tiles:lvr.tiles.length,placed:lvrPlaced().length,alive:lvrAlive().length,
+    plates:lvr.plates.length,held:lvr.held,pebs:lvr.pebs.filter(function(p){return !p.gone}).length,
+    borers:lvr.borers.filter(function(b){return !b.gone}).length,
+    answer:lvr.answer,done:done,
+    qms:Math.round(lvr.qms),qms0:Math.round(lvr.qms0),dayMs:Math.round(lvr.dayMs),
+    dayOf:lvrDay(lvr.lv),warn:lvr.warn?1:0,helpMs:Math.round(lvr.helpMs),
+    lightMs:Math.round(lvr.lightMs),calmMs:Math.round(lvr.calmMs),wedgeMs:Math.round(lvr.wedgeMs),
+    nagMs:Math.round(lvr.nagMs),tagMs:Math.round(lvr.tagMs),actMs:Math.round(lvr.actMs),
+    since:Math.round(lvr.since),playMs:Math.round(lvr.playMs),busy:lvr.busy?1:0,
+    duo:lvr.duo?1:0,p1Ms:Math.round(lvr.t-lvr.p1At),p2Ms:Math.round(lvr.t-lvr.p2At),
+    gap:Math.round(lvr.lastGap),
+    tickN:lvr.tickN,timers:lvr.timers.length,tones:lvr.tones,keys:lvr.keys,
+    trophy:lvxInt('hz_lever_trophy'),pool:lvr.pool.length,bag:lvr.wbag?Object.keys(lvr.wbag).length:0,
+    gain:lvrGain(lvrPlaced().length,lvr.cleanWord?0:1,lvrSteadyHard()),
+    regen:lvrRegen(lvr.lv),slipMs:lvrSlipMs(lvr.lv),rollMs:lvrRollMs(lvr.lv),boreMs:lvrBoreMs(lvr.lv)};
+};
+window.vLvrInv=function(){
+  const out=[];
+  if(!isFinite(lvr.th)||!isFinite(lvr.om))out.push('板 NaN');
+  if(lvr.th>LVR_TMAX_HARD+.01||lvr.th<-LVR_TMAX_HARD-.01)out.push('板超出硬限位 '+lvr.th.toFixed(2));
+  if(!Number.isInteger(lvr.tau))out.push('力矩不是整数 '+lvr.tau);
+  if(lvr.tau!==lvrTau())out.push('力矩读数过期 '+lvr.tau+'!='+lvrTau());
+  if(lvr.force<-0.01||lvr.force>LVR_FORCE_MAX+0.01)out.push('力气 '+lvr.force);
+  if(lvr.hearts<0)out.push('心<0');
+  if(!Number.isInteger(lvr.moteN))out.push('采露计数被数组同名盖掉了 '+typeof lvr.moteN);
+  if(lvr.score<0)out.push('分数<0');
+  if(lvr.qi>lvr.n)out.push('笔序越界 '+lvr.qi+'/'+lvr.n);
+  if(lvr.fx<LVR_FX0||lvr.fx>LVR_FX1)out.push('支石出轨 '+lvr.fx);
+  if(lvr.done&&lvr.done.size>lvr.n)out.push('落笔集越界');
+  if(!lvr.run&&lvr.over!==true)out.push('既不跑也没收');
+  const cellOf={};
+  for(let i=0;i<lvr.tiles.length;i++){
+    const x=lvr.tiles[i];
+    if(!Number.isInteger(x.w)||x.w<1)out.push('砝码重量 '+x.w+' '+x.ch);
+    if(x.gone){if(x.c>=0)out.push('掉下板却还占着格 '+i);continue}
+    if(x.c>=0&&!lvrIn(x.c))out.push('砝码出板 '+i+' c='+x.c);
+    if(x.c<0&&x.c!==-1)out.push('砝码格号不是 -1 '+i+' c='+x.c);
+    if(x.c>=0){
+      if(cellOf[x.c])out.push('两块砝码挤在第 '+x.c+' 格');
+      cellOf[x.c]=1;
+      for(let j=0;j<lvr.pebs.length;j++)if(!lvr.pebs[j].gone&&lvr.pebs[j].c===x.c)out.push('砝码和滑石同格 '+x.c);
+    }
+  }
+  for(let i=0;i<lvr.pebs.length;i++){
+    const p=lvr.pebs[i];
+    if(p.gone)continue;
+    if(!lvrIn(p.c))out.push('滑石出板 '+i+' c='+p.c);
+    if(p.w!==LVR_PEB_W)out.push('滑石重量 '+p.w);
+  }
+  const seen={},tagSeen={};
+  for(let i=0;i<lvr.plates.length;i++){
+    const p=lvr.plates[i];
+    if(seen[p.tau])out.push('两块牌刻同一个数 '+p.tau);
+    seen[p.tau]=1;
+    if(tagSeen[p.tag])out.push('两块牌写着同一个笔形 '+LVR_TAG5[lvxRok(p.tag)]);
+    tagSeen[p.tag]=1;
+    if(!Number.isInteger(p.tau))out.push('牌上的数不是整数 '+p.tau);
+    if(p.x<LVR_PX0-.01||p.x>LVR_PX1+.01)out.push('牌出梁 '+p.x.toFixed(2));
+    if(!p.taken&&!lvrSolvable(p.tau))out.push('牌挂在凑不出的数上 '+p.tau);
+  }
+  for(let i=0;i<lvr.motes.length;i++){
+    const m=lvr.motes[i];
+    if(Math.abs(m.a)>LVR_TMAX)out.push('墨露角度 '+m.a);
+    if(Math.abs(m.a)<LVR_MOTE_DK)out.push('墨露离水平太近 '+m.a);
+  }
+  for(let i=0;i<lvr.borers.length;i++){
+    const b=lvr.borers[i];
+    if(b.gone)continue;
+    if(b.t>=0&&!lvrTileById(b.t))out.push('蛀虫咬着掉下板的砝码 '+b.t);
+  }
+  if(!lvr.busy&&lvr.rec&&lvr.qi<lvr.rec.n){
+    let right=0;
+    for(let i=0;i<lvr.plates.length;i++)if(!lvr.plates[i].taken&&lvr.plates[i].tag===lvrCorrect())right++;
+    if(right!==1)out.push('写对笔形的牌有 '+right+' 块');
+    const ap=lvr.plates[lvr.answer];
+    if(!ap||ap.taken)out.push('答案牌没了 '+lvr.answer);
+    else if(ap.tag!==lvrCorrect())out.push('答案牌笔形不对');
+    else if(!lvrSolvable(ap.tau))out.push('答案牌这一盘凑不出 '+ap.tau);
+  }
+  if(lvrSetKey()!==lvr.csetKey)out.push('力矩集缓存过期');
+  if(lvr.held>=0&&(!lvr.tiles[lvr.held]||lvr.tiles[lvr.held].gone))out.push('手里拿着没有的砝码 '+lvr.held);
+  if(lvr.held>=0&&lvr.tiles[lvr.held].c>=0)out.push('盘里的标记说它在板上');
+  if(lvr.pressSide&&!(lvr.press&&lvr.force>0))out.push('pressSide 与 press 不符');
+  if(!isFinite(lvr.qms)||lvr.qms<-1)out.push('笔钟 '+lvr.qms);
+  if(!isFinite(lvr.dayMs)||lvr.dayMs<-1)out.push('日头 '+lvr.dayMs);
+  if(lvr.lightN<0||lvr.calmN<0||lvr.wedgeN<0||lvr.flatN<0)out.push('道具次数为负');
+  return out;
+};
+/* ---- 一手操作 ---- */
+window.vLvrTick=function(dt){lvrTick(dt||LVR_TICK_MS)};
+window.vLvrPump=function(ms,step){
+  let t=0;const s=step||LVR_TICK_MS;
+  while(t<ms&&lvr.run&&!lvr.over){lvrTick(s);t+=s}
+  return t;
+};
+window.vLvrStep=function(ms){lvrStepPhysics(ms||LVR_TICK_MS);lvrDraw();return {th:Math.round(lvr.th*100)/100,om:Math.round(lvr.om*100)/100,tau:lvr.tau}};
+window.vLvrNewWord=function(){return lvrNewWord()?lvr.rec.ch:''};
+window.vLvrNeed=function(){
+  if(lvr.rec&&lvr.qi<lvr.n&&!lvr.busy&&!lvr.over)return lvr.qi;
+  if(!lvr.run||lvr.over)return -1;
+  if(!lvrNewWord())return -1;
+  return lvr.qi;
+};
+window.vLvrPlace=function(idx,c){return lvrPlaceAt(idx,c,1)};
+window.vLvrBack=function(idx){return lvrBack(idx)};
+window.vLvrClearBoard=function(){lvrClear2();lvrTrayHtml();lvrHud();lvrPow();lvrLine();lvrDraw();return lvrPlaced().length};
+window.vLvrHold=function(i){return lvrHoldTile(i)};
+window.vLvrTap=function(gx){return lvrTapCell(gx)};
+window.vLvrLean=function(d){return lvrLean(d)};
+window.vLvrSetFx=function(v){return lvrSetFx(v)};
+window.vLvrPress=function(on){return lvrPress(!!on)};
+window.vLvrPluck=function(who){return lvrPluck(who||0)};
+window.vLvrLight=function(){return lvrLight()};
+window.vLvrCalm=function(){return lvrCalm()};
+window.vLvrWedge=function(){return lvrWedge()};
+window.vLvrFlat=function(){return lvrFlat()};
+window.vLvrDuo=function(on){return lvrDuo(on)};
+window.vLvrHelp=function(){lvrHelp();return Math.round(lvr.helpMs)};
+window.vLvrTimeout=function(){lvrStrokeTimeout();return {timeouts:lvr.timeouts,misses:lvr.misses,qms:Math.round(lvr.qms)}};
+window.vLvrRehang=function(){return lvrRehang()?lvr.plates.map(function(p){return p.tau}):null};
+window.vLvrResetStroke=function(){return lvrResetStroke()?{taus:lvr.plates.map(function(p){return p.tau}),answer:lvr.answer,tiles:lvr.tiles.length}:null};
+window.vLvrSetLv=function(lv){
+  lvr.lv=lvxClamp(lv|0,1,9);
+  lvr.dayMs=lvrDay(lvr.lv);lvr.warn=false;
+  if(!lvrResetStroke())return null;
+  lvrAsk();lvrHud();lvrMeter();lvrPow();lvrLine();lvrTrayHtml();lvrDraw();
+  return {lv:lvr.lv,plates:lvrPlates(lvr.lv),pebs:lvr.pebs.length,borers:lvr.borers.length,motes:lvr.motes.length,
+    tiles:lvr.tiles.length,taus:lvr.plates.map(function(p){return p.tau}),answer:lvr.answer,
+    day:lvrDay(lvr.lv),qms:lvrQms(lvr.lv),slipMs:lvrSlipMs(lvr.lv),rollMs:lvrRollMs(lvr.lv),
+    boreMs:lvrBoreMs(lvr.lv),tagLit:lvrTagLit(lvr.lv),regen:lvrRegen(lvr.lv),strokeMax:lvrStrokeMax(lvr.lv)};
+};
+/* 摆出一盘「只有压着撬棍才对得上数」的砝码：真段里验「数对上了、板还在晃」那道闸用。
+   松手时力矩是 bare（牌上一块也对不上），按住 X 才 +PUSH 顶到那块牌刻的数 ——
+   于是「按住 → 板被这一记压得晃起来 → 空格摘」就是孩子自然会撞上的那一瞬，不许靠拨 om。
+   只挑 |数| 在 7~11 的牌：压下去的平衡角离溜板线（20.5°）还留着过冲的余量。 */
+window.vLvrMatchPress=function(){
+  const cand=lvr.plates.filter(function(p){return !p.taken&&Math.abs(p.tau)>LVR_PUSH+1&&Math.abs(p.tau)<=11})
+    .sort(function(a,b){return Math.abs(a.tau)-Math.abs(b.tau)});
+  const hitOf=function(v){return lvr.plates.filter(function(q){return !q.taken&&q.tau===v}).length};
+  let back=null;
+  for(let i=0;i<cand.length;i++){
+    const p=cand[i],s=p.tau>0?1:-1,tgt=p.tau-lvrPebTau()-s*LVR_PUSH;
+    if(Math.abs(tgt)>48)continue;
+    const plan=lvrPlan(tgt,lvrBlocked());
+    if(!plan)continue;
+    lvrClear2();
+    for(let j=0;j<plan.length;j++){const idx=lvrIdxOfId(plan[j].id);if(idx>=0)lvrPlaceAt(idx,plan[j].c,1)}
+    lvr.th=lvxDeg(lvrTau());lvr.om=0;
+    for(let k=0;k<40;k++)lvrStepPhysics(LVR_TICK_MS);
+    lvr.om=0;lvr.tau=lvrTau();
+    const pressed=lvr.tau+(lvr.th>0?1:-1)*LVR_PUSH;
+    const out={plate:{i:p.i,tau:p.tau,tag:LVR_TAG5[lvxRok(p.tag)]},bare:lvr.tau,pressed:pressed,
+      th:Math.round(lvr.th*100)/100,dir:lvr.th>0?1:-1,answer:lvr.answer,
+      need:LVR_TAG5[lvxRok(lvrCorrect())],placed:lvrPlaced().length,
+      hit:hitOf(pressed),bareHit:hitOf(lvr.tau),tried:i+1};
+    if(!back)back=out;
+    /* 松手那个数不许碰上任何一块牌：碰上就说明这一台子没有「非压不可」，
+       换下一块牌再摆一次 —— 这一盘的账要摆得干净才叫验闸二。 */
+    if(out.hit===1&&out.bareHit===0&&Math.abs(out.th)>=0.2&&Math.abs(out.th)<=18){
+      lvrTrayHtml();lvrHud();lvrMeter();lvrPow();lvrLine();lvrDraw();
+      return out;
+    }
+  }
+  if(back){lvrTrayHtml();lvrHud();lvrMeter();lvrPow();lvrLine();lvrDraw();return back}
+  return null;
+};
+/* 摆拍：把这一笔摆成截图要的那一瞬 */
+window.vLvrStage=function(what){
+  if(!lvr.rec||lvr.over)return null;
+  const w=lvrWant();
+  const info={what:what,tau:lvr.tau,th:Math.round(lvr.th*100)/100,placed:lvrPlaced().length,note:''};
+  const put=function(id,c){const idx=lvrIdxOfId(id);if(idx<0)return 0;return lvrPlaceAt(idx,c,1)};
+  /* 摆拍专用：想要的那一格被滑石占了就往两边让一格 —— 石头是随机撒的，认死一格的话这一张就成了掷骰子 */
+  const putNear=function(id,c0){
+    for(let d=0;d<=LVR_S1-LVR_S0;d++){
+      const a=c0+d,b=c0-d;
+      if(a<=LVR_S1&&put(id,a))return a;
+      if(b>=LVR_S0&&put(id,b))return b;
+    }
+    return -1
+  };
+  const settle=function(n){
+    lvr.th=lvxDeg(lvrTau());lvr.om=0;
+    for(let i=0;i<(n||30);i++)lvrStepPhysics(LVR_TICK_MS);
+    lvr.om=0;
+  };
+  if(what==='help'){lvrHelp();info.note='说明冻住两只钟';return info}
+  if(what==='duo'){
+    lvrDuo(true);lvr.p1At=lvr.t-260;lvr.p2At=-1e9;
+    lvrPluck(2);
+    info.note='P2 独自喊了一声「起」';
+    return info;
+  }
+  if(what==='tools'){lvrWedge();lvrCalm();info.note='垫榫+镇手';lvrLine();lvrHud();lvrPow();lvrDraw();return info}
+  if(what==='deep'){const s=window.vLvrSetLv(8);info.note=s?('第 8 场 '+s.plates+' 块牌'):'板没架起来';return info}
+  if(what==='word'){
+    for(let i=0;i<lvr.n;i++)lvr.done.add(i);
+    lvr.qi=lvr.n;lvr.busy=true;
+    lvrMini();lvrAsk();lvrHud();lvrPow();lvrLine();lvrDraw();
+    info.note='整字落好';return info;
+  }
+  if(what==='mote'){
+    const m=lvr.motes.filter(function(v){return !v.got})[0];
+    if(!m){info.note='这一笔没有露可采';return info}
+    const got=lvr.moteGot;
+    lvr.th=m.a;lvr.om=0;
+    for(let i=0;i<12;i++)lvrStepPhysics(LVR_TICK_MS);
+    info.note='扫过 '+m.a+'° 采到 '+(lvr.moteGot-got)+' 颗';
+    lvrDraw();lvrHud();lvrMeter();lvrPow();
+    return info;
+  }
+  if(what==='bang'){
+    lvrClear2();
+    const list=lvr.tiles.filter(function(x){return !x.gone}).sort(function(p,q){return q.w-p.w});
+    if(list[0])put(list[0].id,LVR_S1);
+    if(list[1])put(list[1].id,LVR_S1-1);
+    lvr.tau=lvrTau();lvr.th=lvxDeg(lvr.tau);lvr.om=0;
+    info.placed=lvrPlaced().length;info.tau=lvr.tau;
+    const before=lvr.bangs;
+    lvrTryBang(1);
+    info.note='砸板 '+(lvr.bangs-before)+' 次、掉砝 '+lvr.drops+' 块';
+    lvrTrayHtml();lvrHud();lvrMeter();lvrPow();lvrLine();lvrDraw();
+    return info;
+  }
+  if(what==='slip'){
+    lvrClear2();
+    const a=lvr.tiles.filter(function(x){return !x.gone})[0];
+    if(a)put(a.id,LVR_S1);
+    lvr.tau=lvrTau();lvr.th=LVR_SLIP_DEG+1.6;lvr.om=0;lvr.slipAcc=lvrSlipMs(lvr.lv);
+    const before=lvr.slips;
+    lvrStepSlip(LVR_TICK_MS);
+    info.placed=lvrPlaced().length;info.note='溜了 '+(lvr.slips-before)+' 格';
+    lvrTrayHtml();lvrHud();lvrMeter();lvrPow();lvrLine();lvrDraw();
+    return info;
+  }
+  if(what==='bore'){
+    if(!lvr.borers.length)window.vLvrSetLv(4);
+    const x=lvr.tiles.filter(function(v){return !v.gone&&v.w>=4})[0];
+    if(!x){info.note='没有能啃的砝码';return info}
+    if(x.c<0)putNear(x.id,lvr.fx+2);
+    const b=lvr.borers[0];
+    if(b){b.t=x.id;b.acc=lvrBoreMs(lvr.lv);lvrStepBore(LVR_TICK_MS)}
+    lvr.tau=lvrTau();
+    /* 摆完砝码板得斜在力矩说的那个角上：只改读数不改角度，拍出来就是「力矩 -4、板却平着」的假片子 */
+    lvr.th=Math.max(-LVR_TMAX,Math.min(LVR_TMAX,lvxDeg(lvr.tau)));lvr.om=0;
+    info.note='「'+x.ch+'」被啃成 '+x.w+' 画';
+    info.placed=lvrPlaced().length;
+    lvrTrayHtml();lvrHud();lvrLine();lvrPow();lvrDraw();
+    return info;
+  }
+  if(what==='peb'){
+    if(!lvr.pebs.length)window.vLvrSetLv(3);
+    info.note='滑石 '+lvr.pebs.length+' 颗';
+    info.placed=lvrPlaced().length;
+    lvrHud();lvrPow();lvrDraw();
+    return info;
+  }
+  /* flat / tilt / match / wrong：靠「摆出一盘砝码」来拍 */
+  lvrClear2();
+  const list=lvr.tiles.filter(function(x){return !x.gone}).sort(function(p,q){return q.w-p.w});
+  if(what==='flat'){
+    if(list[0])putNear(list[0].id,lvr.fx+2);
+    info.placed=lvrPlaced().length;
+  }else if(what==='tilt'){
+    if(list[0])putNear(list[0].id,LVR_S1);
+    if(list[1])putNear(list[1].id,LVR_S0);
+    settle(40);
+    info.placed=lvrPlaced().length;
+  }else if((what==='match'||what==='wrong')&&w){
+    let target=w.tau;
+    if(what==='wrong'){
+      const bad=lvr.plates.filter(function(p){return !p.taken&&p.tag!==lvrCorrect()})[0];
+      if(!bad){info.note='场上没有写错笔形的牌';return info}
+      target=bad.tau;
+    }
+    const p=lvrPlan(target-lvrPebTau(),lvrBlocked());
+    if(!p){info.note='这一盘凑不出 '+target;return info}
+    for(let i=0;i<p.length;i++)put(p[i].id,p[i].c);
+    settle(40);
+    info.placed=p.length;
+  }
+  info.tau=lvr.tau;info.th=Math.round(lvr.th*100)/100;
+  info.steady=lvrSteady()?1:0;info.matched=lvrTausNear().length;
+  info.answer=lvr.answer;
+  lvrTrayHtml();lvrHud();lvrMeter();lvrPow();lvrLine();lvrDraw();
+  return info;
+};
+/* 摆拍用的收砝码：不动 DOM、不记次数，连收多块才拍得干净 */
+function lvrClear2(){
+  for(let i=0;i<lvr.tiles.length;i++)if(!lvr.tiles[i].gone&&lvr.tiles[i].c>=0)lvr.tiles[i].c=-1;
+  lvr.held=-1;lvr.om=0;lvr.tau=lvrTau();
+  return 1;
+}
+/* ---- 文本与 DOM ---- */
+window.vLvrMsg=function(){const e=document.getElementById('lvrMsg');return e?e.innerHTML:''};
+window.vLvrAsk=function(){const e=document.getElementById('lvrAsk');return e?e.textContent:''};
+window.vLvrAskHtml=function(){const e=document.getElementById('lvrAsk');return e?e.innerHTML:''};
+window.vLvrHint=function(){const e=document.getElementById('lvrHintLine');return e?e.textContent:''};
+window.vLvrHintHtml=function(){const e=document.getElementById('lvrHintLine');return e?e.innerHTML:''};
+window.vLvrTagTxt=function(){const e=document.getElementById('lvrTag');return e?e.textContent:''};
+window.vLvrTagOn=function(){const e=document.getElementById('lvrTag');return e&&e.classList.contains('on')?1:0};
+window.vLvrPowTxt=function(){const e=document.getElementById('lvrPowTxt');return e?e.innerHTML:''};
+window.vLvrDom=function(id){const e=document.getElementById(id);return e?e.textContent:''};
+window.vLvrScreen=function(){const s=document.querySelector('.screen.active');return s?s.id:''};
+window.vLvrLeave=function(){lvrLeave();return 1};
+window.vLvrEnd=function(why){lvrEnd(why||'quit');return 1};
+window.vLvrKillTimers=function(){lvrStopAll();return 1};
+window.vLvrClearFx=function(){const b=lvrFxBox();if(b)b.innerHTML='';return 1};
+window.vLvrFxCount=function(){const b=lvrFxBox();return b?b.children.length:0};
+window.vLvrKeys=function(){return lvr.keys?JSON.parse(JSON.stringify(lvr.keys)):null};
+window.vLvrResult=function(id){
+  const RICH={Why:1,Book:1,Duo:1,Sub2:1,Steady:1,Slip:1,Tools:1,Mote:1};
+  const pick=k=>{const e=document.getElementById('lvrRs'+k);if(!e)return null;
+    return RICH[k]?e.innerHTML:e.textContent};
+  if(!id||id==='all'){
+    const o={};
+    ['Emoji','Title','Sub','Score','Words','Lits','Sub2','Steady','Mote','Slip','Tools','Duo','Combo','Best','Stars','Why','Book']
+      .forEach(function(k){o[k]=pick(k)});
+    o.screen=(function(){const s=document.querySelector('.screen.active');return s?s.id:''})();
+    return o;
+  }
+  return pick(id);
+};
+window.vLvrBank=function(){
+  return {best:lvxInt('hz_lever_best'),combo:lvxInt('hz_lever_combo'),words:lvxInt('hz_lever_words'),
+    total:lvxInt('hz_lever_total'),lv:lvxInt('hz_lever_lv'),lits:lvxInt('hz_lever_lits'),games:lvxInt('hz_lever_games'),
+    steadymax:lvxInt('hz_lever_steadymax'),fastest:lvxInt('hz_lever_fastest'),coupmax:lvxInt('hz_lever_coupmax'),
+    trophy:lvxInt('hz_lever_trophy'),shelf:(localStorage.getItem('hz_lever_shelf')||'').split(',').filter(function(s){return s}).length,
+    book:(localStorage.getItem('hz_lever_book')||'').split(',').filter(function(s){return s.length===1}).length,
+    miss:(localStorage.getItem('hz_lever_miss')||'').split(',').filter(function(s){return s.length===1}).length,
+    slip:lvxInt('hz_lever_slip'),bang:lvxInt('hz_lever_bang'),steady:lvxInt('hz_lever_steady'),
+    pluck:lvxInt('hz_lever_pluck'),wrong:lvxInt('hz_lever_wrong'),mote:lvxInt('hz_lever_mote'),
+    motemax:lvxInt('hz_lever_motemax'),drop:lvxInt('hz_lever_drop'),lean:lvxInt('hz_lever_lean'),
+    place:lvxInt('hz_lever_place'),press:lvxInt('hz_lever_press'),coup:lvxInt('hz_lever_coup'),
+    duon:lvxInt('hz_lever_duon'),duo:lvxInt('hz_lever_duo'),clean:lvxInt('hz_lever_clean'),
+    time:lvxInt('hz_lever_time'),light:lvxInt('hz_lever_light'),calm:lvxInt('hz_lever_calm'),
+    wedge:lvxInt('hz_lever_wedge'),flat:lvxInt('hz_lever_flat'),tools:lvxInt('hz_lever_tools'),
+    lvups:lvxInt('hz_lever_lvups'),stars:lvxInt('hz_stars'),
+    petXp:(window.pet&&isFinite(pet.xp))?Math.round(pet.xp):0,petStage:(window.pet?pet.stage:0)};
+};
+/* ---- 坐标：世界格 → 屏幕像素（真鼠标只认屏幕） ---- */
+window.vLvrClient=function(x,y){
+  const cv=document.getElementById('lvrCanvas');
+  if(!cv)return null;
+  const b=cv.getBoundingClientRect();
+  if(!b.width||!b.height)return null;
+  return {x:b.left+x/LVR_C*b.width,y:b.top+y/LVR_R*b.height};
+};
+window.vLvrCellPt=function(c){return lvrIn(c)?window.vLvrClient(c,LVR_PY-1.6):null};
+window.vLvrTilePt=function(c){
+  if(!lvrIn(c))return null;
+  const t=lvrPt(c,-.18);
+  return window.vLvrClient(t.x,t.y);
+};
+window.vLvrTrayPt=function(i){
+  const b=document.querySelector('#lvrTray button[data-i="'+i+'"]');
+  if(!b)return null;
+  const r=b.getBoundingClientRect();
+  return {x:r.left+r.width/2,y:r.top+r.height/2};
+};
+window.vLvrBtnPt=function(id){
+  const b=document.getElementById(id);
+  if(!b)return null;
+  const r=b.getBoundingClientRect();
+  return {x:r.left+r.width/2,y:r.top+r.height/2};
+};
+window.vLvrPlatePt=function(i){const p=lvr.plates[i];return p?window.vLvrClient(p.x,p.y):null};
+window.vLvrNeedlePt=function(){const t=lvrUp(LVR_NEEDLE);return window.vLvrClient(t.x,t.y)};
+window.vLvrDip=function(deg,ms){
+  if(!lvr.run||lvr.over)return null;
+  lvr.th=deg;lvr.om=0;
+  const before=lvr.moteGot;
+  const n=Math.max(1,Math.round((ms||300)/LVR_TICK_MS));
+  for(let i=0;i<n;i++)lvrStepPhysics(LVR_TICK_MS);
+  lvrDraw();lvrHud();lvrMeter();
+  return {got:lvr.moteGot-before,need:lvr.moteNeed,th:Math.round(lvr.th*100)/100,tau:lvr.tau};
+};
+/* DOM 与状态必须说同一句话 */
+window.vLvrDomBad=function(){
+  const out=[];
+  const g=function(id){return document.getElementById(id)};
+  const txt=function(id){const e=g(id);return e?e.textContent:''};
+  if(txt('lvrScoreTxt')!=='🎯 '+lvr.score+' 分')out.push('分数条 '+txt('lvrScoreTxt')+' 分='+lvr.score);
+  if(txt('lvrLvTxt')!=='第 '+lvr.lv+' 场 · 已收 '+lvr.words+' 字')out.push('场数条 '+txt('lvrLvTxt'));
+  const h=txt('lvrHeartTxt');
+  if(lvr.hearts>0&&h!=='❤️'.repeat(lvr.hearts))out.push('心形 '+h+' 心='+lvr.hearts);
+  if(txt('lvrComboTxt')!=='🔥 连 '+lvr.combo)out.push('连击条 '+txt('lvrComboTxt'));
+  if(txt('lvrLitTxt')!=='🖋 '+Math.min(lvr.qi+1,lvr.n)+'/'+lvr.n+' 笔')out.push('笔数条 '+txt('lvrLitTxt')+' qi='+lvr.qi+' n='+lvr.n);
+  if(txt('lvrTauTxt')!=='⚖️ 力矩 '+lvr.tau)out.push('力矩条 '+txt('lvrTauTxt')+' 该 '+lvr.tau);
+  if(txt('lvrDegTxt')!=='📐 '+lvr.th.toFixed(1)+'°')out.push('倾角条 '+txt('lvrDegTxt')+' 该 '+lvr.th.toFixed(1)+'°');
+  const want=lvr.calmMs>0?'🫱 按住':(lvrSteady()?'🫱 稳':'🫱 沉');
+  if(txt('lvrStabTxt')!==want)out.push('稳不稳条 '+txt('lvrStabTxt')+' 该 '+want);
+  if(txt('lvrMoteTxt')!=='💧 采露 '+lvr.moteGot+'/'+lvr.moteNeed)out.push('采露条 '+txt('lvrMoteTxt'));
+  if(txt('lvrPebTxt')!=='🪨 滑石 '+lvr.pebs.filter(function(p){return !p.gone}).length)out.push('滑石条 '+txt('lvrPebTxt'));
+  if(txt('lvrBoreTxt')!=='🐛 蛀虫 '+lvr.borers.filter(function(b){return !b.gone}).length)out.push('蛀虫条 '+txt('lvrBoreTxt'));
+  if(txt('lvrFlatTxt')!=='🪝 归平 '+lvr.flatN)out.push('归平条 '+txt('lvrFlatTxt'));
+  if(txt('lvrFxTxt')!=='🪨 支石第 '+lvr.fx+' 格')out.push('支石条 '+txt('lvrFxTxt'));
+  const rr=lvrRank2();
+  if(txt('lvrRankTxt')!==rr.e+' '+rr.t)out.push('称号条 '+txt('lvrRankTxt'));
+  if(txt('lvrQTxt')!=='⏳ 这一笔 '+Math.ceil(lvr.qms/1000)+' 秒')out.push('笔钟 '+txt('lvrQTxt'));
+  if(txt('lvrQTxt2')!=='⏳ 这一笔 '+Math.ceil(lvr.qms/1000)+' 秒')out.push('笔钟条 '+txt('lvrQTxt2'));
+  if(txt('lvrForceTxt')!=='🪵 力气 '+Math.round(lvr.force))out.push('力气条 '+txt('lvrForceTxt'));
+  if(txt('lvrDayTxt')!=='🌇 日头还剩 '+Math.ceil(lvr.dayMs/1000)+' 秒')out.push('日头条 '+txt('lvrDayTxt'));
+  const powWant=lvrPowStr(),powGot=g('lvrPowTxt')?g('lvrPowTxt').innerHTML:'';
+  if(powGot!==powWant)out.push('场况条 DOM['+powGot+'] 状态['+powWant+']');
+  const fb=g('lvrForceBox');
+  if(fb&&fb.classList.contains('dry')!==(lvr.force/LVR_FORCE_MAX<.25))out.push('力气条 dry 标记不对');
+  const qb=g('lvrQBox');
+  if(qb&&qb.classList.contains('low')!==(!!lvr.qms0&&lvr.qms/lvr.qms0<.3))out.push('笔钟 low 不对');
+  const db=g('lvrDayBox');
+  if(db&&db.classList.contains('low')!==!!lvr.warn)out.push('日头条 low 不对');
+  const need=['lvrRankTxt','lvrHeartTxt','lvrComboTxt','lvrLitTxt','lvrTauTxt','lvrDegTxt','lvrStabTxt','lvrMoteTxt',
+    'lvrPebTxt','lvrBoreTxt','lvrFlatTxt','lvrAsk','lvrDuoBar','lvrDuoP1','lvrDuoP2','lvrMiniSvg','lvrMiniCap',
+    'lvrYard','lvrCanvas','lvrFx','lvrTag','lvrTray','lvrFxL','lvrFxTxt','lvrFxR','lvrPluckBtn','lvrDuoBtn',
+    'lvrForceBox','lvrForceBar','lvrForceTxt','lvrQBox','lvrQBar','lvrQTxt2','lvrDayBox','lvrDayBar','lvrDayTxt',
+    'lvrPowTxt','lvrLightBtn','lvrCalmBtn','lvrWedgeBtn','lvrFlatBtn','lvrPressTool','lvrEndBtn','lvrHintLine','lvrMsg','lvrQTxt'];
+  for(let i=0;i<need.length;i++)if(!g(need[i])){out.push('缺 '+need[i]);break}
+  [['lvrLightBtn',lvr.lightN],['lvrCalmBtn',lvr.calmN],['lvrWedgeBtn',lvr.wedgeN],['lvrFlatBtn',lvr.flatN]].forEach(function(x){
+    const el=document.getElementById(x[0]);
+    if(!el){out.push('没有 '+x[0]);return}
+    if(el.disabled!==(x[1]<=0))out.push(x[0]+' 该 '+(x[1]<=0?'禁用':'可用'));
+    const t=el.innerHTML.match(/剩 (\d+)/);
+    if(!t||+t[1]!==x[1])out.push(x[0]+' 剩 '+(t?t[1]:'?')+' 该是 '+x[1]);
+  });
+  const fl=g('lvrFxL');
+  if(fl&&fl.disabled!==(lvr.fx<=LVR_FX0))out.push('左推键 disabled='+fl.disabled+' fx='+lvr.fx);
+  const fr=g('lvrFxR');
+  if(fr&&fr.disabled!==(lvr.fx>=LVR_FX1))out.push('右推键 disabled='+fr.disabled+' fx='+lvr.fx);
+  const cv=g('lvrCanvas');
+  if(cv){
+    if(cv.width!==LVR_W||cv.height!==LVR_H)out.push('画布 '+cv.width+'x'+cv.height);
+    /* 收摊之后木场整屏换成绩页，画布自然没地方站：那时候不该报「看不见」 */
+    const act=document.querySelector('.screen.active');
+    if(act&&act.id==='screen-lever'&&!cv.offsetParent)out.push('画布看得见却没在场上');
+    else if(cv.offsetParent){const r=cv.getBoundingClientRect();if(r.width<120)out.push('画布被挤成 '+Math.round(r.width))}
+  }
+  const pb=g('lvrPluckBtn');
+  if(pb&&pb.classList.contains('hard')!==!!(lvrSteady()&&lvrPlateAt(lvr.tau)))out.push('摘键 hard 标记不对');
+  const mi=g('lvrMiniSvg');
+  if(mi){
+    const paths=mi.querySelectorAll('path').length;
+    if(lvr.rec&&paths!==lvr.rec.n)out.push('小字卡 '+paths+' 条 path 该 '+lvr.rec.n);
+    if(lvr.rec&&lvr.done&&lvr.n&&lvr.done.size===lvr.rec.n){
+      let grey=0;const ps=mi.querySelectorAll('path');
+      for(let i=0;i<ps.length;i++)if(ps[i].getAttribute('fill')==='rgba(255,255,255,.14)')grey++;
+      if(grey)out.push('字落好了小字卡还有 '+grey+' 条没上色');
+    }
+  }
+  const mc=g('lvrMiniCap');
+  if(mc&&lvr.rec&&mc.textContent.indexOf(lvr.rec.ch)<0)out.push('小字卡题头 '+mc.textContent+' 字='+lvr.rec.ch);
+  const tray=document.querySelectorAll('#lvrTray button[data-i]');
+  let alive=0;for(let i=0;i<lvr.tiles.length;i++)if(!lvr.tiles[i].gone)alive++;
+  if(tray.length!==alive)out.push('砝码盘 '+tray.length+' 块 没掉的砝码 '+alive+' 块');
+  let onN=0,padN=0;
+  for(let i=0;i<tray.length;i++){
+    if(tray[i].classList.contains('on'))onN++;
+    if(tray[i].classList.contains('pad'))padN++;
+    const idx=+tray[i].dataset.i,x=lvr.tiles[idx];
+    if(!x||x.gone)out.push('砝码盘上挂着没有的砝码 '+i);
+    else{
+      const wt=tray[i].innerHTML.match(/(\d+) 画/);
+      if(!wt||+wt[1]!==x.w)out.push('「'+x.ch+'」盘上写 '+(wt?wt[1]:'?')+' 画 实际压 '+x.w);
+    }
+  }
+  if(padN!==lvrPlaced().length)out.push('盘上标「在板上」的 '+padN+' 块 板上 '+lvrPlaced().length+' 块');
+  if(onN!==(lvr.held>=0?1:0))out.push('盘上亮着 '+onN+' 块 held='+lvr.held);
+  const ask=txt('lvrAsk');
+  if(lvr.helpMs<=0){
+    /* 按 H 看说明的时候题头是说明页自己占的（lvrHelp 写的「怎么在撬木场里写字」），这时不该拿笔序去要求它 */
+    const okAsk=['第 '+Math.min(lvr.qi+1,lvr.n)+' 笔','整字撬成','架板','没铺开','没凑齐','架不起','没加载好'];
+    let askOk=0;
+    for(let i=0;i<okAsk.length;i++)if(ask.indexOf(okAsk[i])>=0)askOk=1;
+    if(!askOk)out.push('题头 '+ask);
+    if(lvr.rec&&lvr.qi<lvr.n){
+      const t=lvrShowTag()?LVR_TAG5[lvrCorrect()]:'?';
+      if(ask.indexOf(t)<0)out.push('题头没写这一笔的笔形（该有「'+t+'」）：'+ask);
+    }
+  }
+  const hint=txt('lvrHintLine');
+  if(!hint)out.push('提示行是空的');
+  /* 提示行一次只说一件事，而且按 lvrLine 的优先级排：歇一记 > 垫榫 > 镇手 > 亮签 > 挂闸 > 日头 > 力气 > 斜过 > 空板 > 还晃 > 双人 > 力矩。
+     要按「谁当家」查：垫榫和镇手同时开着时行上写垫榫才是对的 —— 一条 else-if 链会在前一条恰好合格时
+     继续往下比，那等于自己跟自己打（镇手那条会指着正确的垫榫行喊「没换」） */
+  let wantHint=null;
+  if(lvr.nagMs>0)wantHint='歇一记';
+  else if(lvr.wedgeMs>0)wantHint='垫榫';
+  else if(lvr.calmMs>0)wantHint='镇手';
+  else if(lvr.lightMs>0)wantHint='亮签';
+  if(wantHint&&hint.indexOf(wantHint)<0)out.push('提示行该说「'+wantHint+'」却写着 '+hint);
+  const quiet=!lvr.nagMs&&!lvr.wedgeMs&&!lvr.calmMs&&!lvr.lightMs&&!lvr.busy&&!lvr.warn&&
+    lvr.force>0&&Math.abs(lvr.th)<LVR_SLIP_DEG&&lvrPlaced().length>0&&lvrSteady();
+  if(lvr.duo&&quiet&&hint.indexOf('双人')<0)out.push('双人开着提示行却没提 '+hint);
+  if(!lvr.duo&&quiet&&hint.indexOf('力矩')<0&&hint.indexOf('板')<0)out.push('提示行没在说板上的事 '+hint);
+  const tg=g('lvrTag');
+  if(tg){
+    if(lvr.tagMs>0&&!tg.classList.contains('on'))out.push('浮条该亮着');
+    if(lvr.tagMs<=0&&tg.classList.contains('on'))out.push('浮条淡了还亮着');
+  }
+  const p1=g('lvrDuoP1'),p2=g('lvrDuoP2');
+  if(p1&&p1.classList.contains('off')!==!lvr.duo)out.push('P1 键位条的 off 标记不对');
+  if(p2&&p2.classList.contains('off')!==!lvr.duo)out.push('P2 键位条的 off 标记不对');
+  const dbtn=g('lvrDuoBtn');
+  if(dbtn&&dbtn.textContent.indexOf(lvr.duo?'✔':'双人')<0)out.push('双人键文案 '+dbtn.textContent);
+  const yl=g('lvrYard');
+  if(lvr.over&&yl&&!yl.classList.contains('dead'))out.push('收摊了木场没暗');
+  if(lvr.run&&yl&&yl.classList.contains('dead'))out.push('还在跑木场却是暗的');
   return out;
 };
 
