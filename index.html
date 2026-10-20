@@ -6402,6 +6402,73 @@ button:active{transform:scale(.95)}
 #screen-lever .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
 /* 窄屏（手机）：字卡挪到场上头，场独占整幅宽 */
 @media(max-width:460px){.lvr-stage{flex-direction:column}.lvr-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.lvr-mini svg{flex:0 0 74px;width:74px}.lvr-cap{flex:0 1 auto;text-align:left}.lvr-meter{flex-wrap:wrap}.lvr-force,.lvr-tl,.lvr-day{flex:1 1 30%}}
+/* ================= v1.93 笔顺锁链坊 ================= */
+.chn-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.chn-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.chn-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#E8F5E9;margin:2px 0 6px;line-height:1.35}
+.chn-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.chn-duo{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:0 auto 4px}
+.chn-duo span{flex:1 1 190px;font-size:12px;color:#B3E5FC;background:rgba(79,195,247,.12);border:1px solid rgba(79,195,247,.3);border-radius:10px;padding:3px 8px;text-align:center;line-height:1.35}
+.chn-duo span.off{opacity:.34;filter:grayscale(1)}
+.chn-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.chn-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.chn-mini svg{width:100%;height:auto;background:rgba(255,255,255,.06);border-radius:12px}
+.chn-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+.chn-yard{flex:1;min-width:0;position:relative;background:#14191E;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 18px rgba(0,0,0,.78)}
+.chn-yard.dead{filter:grayscale(.85) brightness(.6)}
+.chn-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.chn-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#FFE0B2;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.chn-tag.on{opacity:1}
+.chn-tag.warn{background:rgba(96,38,12,.92);color:#FFCCBC}
+.chn-tag.gold{background:rgba(74,56,10,.94);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+/* 链子台账：一条链一行小字，孩子数得清、也验得了 */
+.chn-belt{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.chn-cl{font-size:12px;font-weight:700;padding:3px 9px;border-radius:9px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);color:#CFD8DC;white-space:nowrap;font-variant-numeric:tabular-nums}
+.chn-cl.sat{color:#78909C;border-color:rgba(120,144,156,.4);text-decoration:line-through;opacity:.6}
+.chn-cl.rusty{color:#FFAB91;border-color:#C2703D;background:rgba(194,112,61,.2);animation:chnRust 1.1s ease-in-out infinite}
+.chn-cl.brk{color:#8D6E63;border-style:dashed;border-color:rgba(141,110,99,.55);opacity:.55}
+.chn-cl.pad{color:#90A4AE;font-weight:400;border-style:dotted}
+@keyframes chnRust{0%,100%{box-shadow:0 0 0 rgba(255,171,145,0)}50%{box-shadow:0 0 10px rgba(255,171,145,.55)}}
+.chn-meter{display:flex;gap:7px;align-items:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.chn-tl{position:relative;flex:1;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.chn-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#4DB6AC,#A5D6A7);transition:width .15s linear}
+.chn-tl.rust i{background:linear-gradient(90deg,#6D4C41,#C2703D)}
+.chn-tl.low i{background:linear-gradient(90deg,#FF8A65,#FFD54F)}
+.chn-tl.hold i{background:linear-gradient(90deg,#26A69A,#4DD0E1)}
+.chn-tl.day i{background:linear-gradient(90deg,#A1887F,#D7CCC8)}
+.chn-tl.day.low i{background:linear-gradient(90deg,#FF5252,#FF8A65)}
+.chn-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.chn-pow{width:calc(100% - 28px);max-width:520px;margin:2px auto;font-size:11px;color:#90A4AE;text-align:center;line-height:1.45}
+.chn-pow b{color:#FFE082}
+.chn-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.chn-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.chn-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.chn-tool b{display:block;font-size:10px;color:#FFE082;font-weight:700}
+.chn-tool:disabled{opacity:.4;cursor:default}
+.chn-tool.duo{background:rgba(79,195,247,.2);border-color:#4FC3F7}
+.chn-tool.duo.on{background:rgba(79,195,247,.42)}
+.chn-tool.go{background:rgba(255,183,77,.24);border-color:#FFB74D}
+.chn-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.chn-hintline b{color:#FFE082}
+.chn-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.chn-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.chn-msg b{color:#CFD8DC}
+.chn-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.chn-msg small{font-size:11px;color:#78909C}
+.chn-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.chn-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.chn-rs-book b{color:#FFE082}
+.chn-rs-book small{color:#78909C}
+.chn-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px;z-index:4}
+.chn-cdot.on{display:block}
+#screen-chain .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：小字卡挪到台面上头，台面独占整幅宽；三只钟折成一行一只 */
+@media(max-width:460px){.chn-stage{flex-direction:column}.chn-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.chn-mini svg{flex:0 0 74px;width:74px}.chn-cap{flex:0 1 auto;text-align:left}.chn-meter{flex-wrap:wrap}.chn-tl{flex:1 1 30%}
+  /* 窄屏顶栏三件挤不下：把战绩那一串挪到第二行，返回与 ❓ 留在头一行 */
+  #screen-chain .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-chain .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-chain .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -6458,8 +6525,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 91 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">91</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 92 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">92</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6470,12 +6537,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>91 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>35</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>27</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>92 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>36</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>27</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="chnCard" onclick="enterMode('chain')">
+      <div class="icon">🔗</div>
+      <div class="info"><h3>笔顺锁链坊</h3><p id="chnCardTip">一笔一张铜牌、牌间锁着铁链：链子只讲看得出来的那几种先后（上到下、左到右、先横后竖、笔尖相接），剩下的全靠你自己背 —— 锈还会一根一根把链子吃掉</p></div>
+      <span class="chn-cdot" id="chnCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="lvrCard" onclick="enterMode('lever')">
       <div class="icon">🪵</div>
       <div class="info"><h3>笔顺撬木场</h3><p id="lvrCardTip">一根撬板一块会挪的支石：重量×格数＝力矩，把净力矩凑成牌上刻的那一个数、等板晃稳了，才抬得到写着这一笔笔形的那块牌 —— 砝码还会往低那头溜</p></div>
@@ -7110,6 +7182,85 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-chain">
+  <div class="top-bar">
+    <button class="back-btn" onclick="chnLeave()">← 返回</button>
+    <div class="stats"><span id="chnScoreTxt">🎯 0 分</span><span id="chnLvTxt">第 1 场 · 已收 0 字</span><span id="chnQTxt">⏳ 这一张 ——</span></div>
+    <button class="icon-btn" onclick="chnHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="chn-hud">
+    <span id="chnRankTxt" title="称号">🌱 刚接链</span>
+    <span id="chnHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="chnComboTxt" title="连击">🔥 连 0</span>
+    <span id="chnLitTxt" title="串到第几笔">🖋 0/0 笔</span>
+    <span id="chnReadyTxt" title="解得开的牌">🔓 亮着 0 张</span>
+    <span id="chnChainTxt" title="活链/总链">⛓ 活链 0/0</span>
+    <span id="chnRustTxt" title="被锈吃掉的链">🟤 锈断 0 根</span>
+    <span id="chnNakedTxt" title="裸摘">✋ 裸摘 0</span>
+    <span id="chnWildTxt" title="野牌">🪝 这一场没野牌</span>
+  </div>
+  <div class="chn-ask" id="chnAsk">🔗 正在挑铁料……<br><small>在字库里找「链子推得出来」的字</small></div>
+  <div class="chn-duo" id="chnDuoBar">
+    <span id="chnDuoP1" class="off">👩 P1：<b>1</b>~<b>9</b> 只摘左半场的牌</span>
+    <span id="chnDuoP2" class="off">🧔 P2：<b>←↑↓→</b> 指牌、<b>空格</b> 只摘右半场</span>
+  </div>
+  <div class="chn-stage">
+    <div class="chn-mini">
+      <svg viewBox="0 0 1024 1024" id="chnMiniSvg"></svg>
+      <div class="chn-cap" id="chnMiniCap">这个字</div>
+    </div>
+    <div class="chn-yard" id="chnYard">
+      <canvas class="chn-canvas" id="chnCanvas" width="400" height="320"></canvas>
+      <div class="chn-tag" id="chnTag">🔗 锁链坊开张了</div>
+    </div>
+  </div>
+  <div class="chn-belt" id="chnChains"></div>
+  <div class="chn-meter">
+    <div class="chn-tl" id="chnQBox"><i id="chnQBar"></i><b id="chnQTxt2">⏳ 这一张 —— 秒</b></div>
+    <div class="chn-tl rust" id="chnRustBox"><i id="chnRustBar"></i><b id="chnRustClockTxt">🟤 下一根链 —— 秒后</b></div>
+    <div class="chn-tl day" id="chnDayBox"><i id="chnDayBar"></i><b id="chnDayTxt">🌇 日头 —— 秒</b></div>
+  </div>
+  <div class="chn-pow" id="chnPowTxt">⛓ 台面还没铺开</div>
+  <div class="chn-tools">
+    <button class="chn-tool" id="chnLightBtn" disabled>🔦 照链<span>Q</span><b>剩 2</b></button>
+    <button class="chn-tool" id="chnStallBtn" disabled>🧿 定锈<span>E</span><b>剩 2</b></button>
+    <button class="chn-tool" id="chnWeldBtn" disabled>🔨 敲锈<span>F</span><b>剩 2</b></button>
+    <button class="chn-tool" id="chnSwapBtn" disabled>🔁 换字<span>Enter</span><b>剩 1</b></button>
+    <button class="chn-tool duo" id="chnDuoBtn">👥 双人</button>
+    <button class="chn-tool" id="chnEndBtn">🏁 结算</button>
+  </div>
+  <div class="chn-hintline" id="chnHintLine">🔗 <b>链子说「A 那笔先落」</b>：亮着的牌上游都摘完了，可 <b>亮着不等于该摘</b> —— 第 1 笔是哪一张，得你自己认</div>
+  <div class="chn-msg" id="chnMsg">🔗 <b>一笔一张铜牌</b>，牌与牌之间锁着铁链：链子只讲 <b>看得出来</b> 的那几种先后（从上到下、从左到右、先横后竖、笔尖相接）<br>⏳ 三只钟：<b>这一张的钟</b>走光会 <b>糊掉一张牌面</b>、<b>锈</b>会一根一根吃掉链子、<b>日头</b>落了这一字就锁回架子<br>✨ <code>Q</code> 照链 · <code>E</code> 定锈 · <code>F</code> 敲锈 · <code>Enter</code> 换字</div>
+</div>
+<div class="screen" id="screen-chain-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="chnLeave()">← 返回</button>
+    <div class="stats"><span id="chnRsStars">⭐ 0</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="chnRsEmoji">🔗</div>
+    <div style="font-size:26px;font-weight:800" id="chnRsTitle">串完了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="chnRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="chn-pk" id="chnRsScore">🎯 0 分</span>
+      <span class="chn-pk" id="chnRsWords">🔗 串完 0 个字</span>
+      <span class="chn-pk" id="chnRsPicks">🖋 摘对 0 张</span>
+      <span class="chn-pk" id="chnRsSub2">🪝 摘错 0 · 撞锁 0</span>
+      <span class="chn-pk" id="chnRsNaked">✋ 裸摘 0 张</span>
+      <span class="chn-pk" id="chnRsRust">🟤 锈断 0 根</span>
+      <span class="chn-pk" id="chnRsTools">✨ 道具 0 次</span>
+      <span class="chn-pk" id="chnRsDuo">👤 单人打</span>
+      <span class="chn-pk" id="chnRsCombo">🔥 最长连 0</span>
+      <span class="chn-pk" id="chnRsBest">🏆 最高 0 分</span>
+    </div>
+    <div style="font-size:13px;color:#FFF59D;margin:6px auto 12px;max-width:440px;line-height:1.65" id="chnRsWhy"></div>
+    <div class="chn-rs-book" id="chnRsBook">架上还没有字</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="primary-btn" id="chnAgainBtn">🔗 再串一场</button>
+      <button class="secondary-btn" id="chnHomeBtn">🏠 回首页</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-lever">
@@ -13780,6 +13931,7 @@ function updateHomeStats(){
   if(typeof iceNudge==='function')iceNudge();
   if(typeof wndNudge==='function')wndNudge();
   if(typeof lvrNudge==='function')lvrNudge();
+  if(typeof chnNudge==='function')chnNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -13817,6 +13969,7 @@ function enterMode(mode){
   if(mode==='skate'){iceStart();return}
   if(mode==='wind'){wndStart();return}
   if(mode==='lever'){lvrStart();return}
+  if(mode==='chain'){chnStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -85323,6 +85476,2027 @@ window.vLvrDomBad=function(){
   if(lvr.run&&yl&&yl.classList.contains('dead'))out.push('还在跑木场却是暗的');
   return out;
 };
+
+/* ================= v1.93 笔顺锁链坊（一笔一张铜牌 · 牌与牌之间锁着铁链 · 链子只讲结构看得出来的那几条先后，剩下的全靠孩子自己知道） ================= */
+const CHN_W=400,CHN_H=320,CHN_COLS=5,CHN_ROWS=4,CHN_CW=76,CHN_CH=76,CHN_CARD=64;
+const CHN_TAG5=['横','竖','撇','捺','点'],CHN_INK5=['#4FC3F7','#81C784','#FFD54F','#FFB74D','#BA68C8'];
+/* 笔画数：3~8 笔（少于 3 笔不成链，多于 8 张牌台面摆不下） */
+const CHN_STROKE_MIN=3,CHN_STROKE_MAX=8;
+const CHN_POOL_MIN=4,CHN_POOL_WANT=14;
+/* 两只钟：这一张牌的钟 + 日头（三步砍到第九场正好落地，之后不许再紧） */
+const CHN_Q0=26000,CHN_Q_MIN=12000,CHN_Q_STEP=1750;
+const CHN_DAY0=140000,CHN_DAY_MIN=92000,CHN_DAY_STEP=6000;
+/* 锈：一条一条地断链（时间吃掉的是结构线索，不是分数） */
+const CHN_RUST_MS0=11000,CHN_RUST_MIN=6000,CHN_RUST_STEP=625;
+/* 开局就先锈断一批：不留断链就没有干扰牌，等于白送 */
+const CHN_CUT0=.25,CHN_CUT_STEP=.07,CHN_CUT_MAX=.72;
+const CHN_EDGE_MIN=2;                 /* 至少推出两条链，否则这一坊没有「链」可看 */
+const CHN_P0=2,CHN_PCAP=3,CHN_HEARTS=3,CHN_HEART_MAX=5,CHN_BOOK_MAX=300,CHN_SHELF_MAX=8;
+/* 几何门槛（数据坐标是 1024 见方、y 朝上） */
+const CHN_GAP=26,CHN_TOUCH=46,CHN_HIT=40;
+/* 罚分与奖励 */
+const CHN_PEN_WRONG=6,CHN_PEN_LOCK=3,CHN_PEN_TIME=3,CHN_PEN_SWAP=8;
+const CHN_WORD_BONUS=28,CHN_CLEAN_BONUS=18,CHN_DRY_BONUS=12,CHN_NAKED=1.28;
+/* 道具时长 */
+const CHN_LIGHT_MS=3400,CHN_STALL_MS=8000,CHN_WELD_MS=6000;
+const CHN_NAG_MS=11000,CHN_NAG_HOLD=5200,CHN_HELP_MS=16000;
+const CHN_TICK_MS=40,CHN_ACT_CD=170,CHN_NEXT_MS=900,CHN_TAG_MS=2300;
+const CHN_NOTE=[262,294,330,392,440,523,587,659,784,880,1047];
+const CHN_TRS=['铜扣','铁环','锁芯','钥匙','铁钳','铆钉','链条','磨石'];
+const CHN_RANKS=[
+  {n:0,e:'🌱',t:'刚接链'},{n:2,e:'🔗',t:'看得出头绪'},{n:5,e:'🔧',t:'理得清锁'},
+  {n:9,e:'🗝️',t:'找得准扣'},{n:14,e:'🔨',t:'敲得开锈'},{n:21,e:'🧲',t:'一串到底'},
+  {n:30,e:'🪚',t:'锁链高手'},{n:42,e:'🏆',t:'链坊的老匠'},{n:58,e:'👑',t:'锁链坊的师傅'}
+];
+const chn={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],toneAt:0,tones:0,
+  pool:[],wbag:{},miss:[],rec:null,n:0,
+  lv:1,score:0,hearts:CHN_HEARTS,combo:0,maxCombo:0,
+  words:0,lits:0,picks:0,wrongs:0,locks:0,timeouts:0,rusts:0,broke:0,wilds:0,tools:0,nags:0,
+  lightN:CHN_P0,stallN:CHN_P0,weldN:CHN_P0,swapN:1,
+  lightUse:0,stallUse:0,weldUse:0,swapUse:0,
+  lightMs:0,stallMs:0,weldMs:0,nagMs:0,nagHold:0,helpMs:0,actMs:0,tagTimer:0,
+  qi:0,done:null,busy:false,qms:0,qms0:0,rms:0,first:true,cleanWord:true,dryWord:true,newBest:false,
+  dayMs:CHN_DAY0,warn:false,beep:0,hudAcc:0,
+  cards:[],edges:[],slots:[],held:-1,fx:[],duo:false,duoPlucks:0,duoCuts:0,
+  doneCh:[],gotCh:[],got0:0,
+  ctx:null,bound:false,tagOn:0,
+  naked:0,nakedRun:0,nakedMax:0
+};
+/* ---- 小工具 ---- */
+function chxInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function chxAdd(k,n){if(n)localStorage.setItem(k,String(chxInt(k)+n))}
+function chxPut(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function chxSay(t,c){const el=document.getElementById('chnMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function chxShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function chxOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function chxClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function chxRank(x){let r=CHN_RANKS[0];for(let i=0;i<CHN_RANKS.length;i++)if(x>=CHN_RANKS[i].n)r=CHN_RANKS[i];return r}
+function chxRok(d){return d>=0&&d<5?d:0}
+function chxTone(f,d,t,v){
+  if(!chn.run||chn.over)return;
+  const n=performance.now();
+  if(n-chn.toneAt<22)return;
+  chn.tones++;tone(f,d,t,v);
+}
+function chxT(fn,ms){const g=chn.gen;const id=setTimeout(function(){const k=chn.timers.indexOf(id);if(k>=0)chn.timers.splice(k,1);if(g!==chn.gen)return;fn()},ms);chn.timers.push(id);return id}
+function chxKillTimers(){chn.timers.forEach(function(t){clearTimeout(t)});chn.timers=[]}
+/* ---- 难度表：场越深，开局锈得越多、锈得越快、野牌越多、字越难、钟越紧 ---- */
+function chnLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function chnDay(lv){return Math.max(CHN_DAY_MIN,CHN_DAY0-(lv-1)*CHN_DAY_STEP)}
+function chnQms(lv){return Math.max(CHN_Q_MIN,CHN_Q0-(lv-1)*CHN_Q_STEP)}
+function chnRustMs(lv){return Math.max(CHN_RUST_MIN,CHN_RUST_MS0-(lv-1)*CHN_RUST_STEP)}
+function chnCut(lv){return Math.min(CHN_CUT_MAX,CHN_CUT0+(lv-1)*CHN_CUT_STEP)}
+function chnWild(lv){return lv<3?0:(lv>=6?2:1)}
+function chnStrokeMax(lv){return lv>=5?CHN_STROKE_MAX:7}
+function chnWant(lv){return lv<=2?[CHN_STROKE_MIN,5]:[CHN_STROKE_MIN,chnStrokeMax(lv)]}
+/* 第 4 场起链线画得淡（结构线索得记在心里） */
+function chnFaint(lv){return lv>=4}
+/* 摘对一张的得分：牌越少借的力越大不算分，这里反过来 —— 身上没一条活链还摘对，是「裸摘」 */
+function chnGain(naked,steady){
+  return Math.round((10+chn.combo*1.1+chn.lv*1.8)*(naked?CHN_NAKED:1)*(steady?1.1:1));
+}
+
+/* ---- 几何：中线上取包围盒 / 判两段折线相交 / 判端点贴不贴 ---- */
+function chnBox(m){
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const x=m[i][0],y=m[i][1];
+    if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+  }
+  return {x0:x0,x1:x1,y0:y0,y1:y1,w:x1-x0,h:y1-y0};
+}
+function chnSegHit(p,q,r,s){
+  const d1x=q[0]-p[0],d1y=q[1]-p[1],d2x=s[0]-r[0],d2y=s[1]-r[1];
+  const den=d1x*d2y-d1y*d2x;
+  if(Math.abs(den)<1e-9)return false;
+  const t=((r[0]-p[0])*d2y-(r[1]-p[1])*d2x)/den;
+  const u=((r[0]-p[0])*d1y-(r[1]-p[1])*d1x)/den;
+  return t>=0&&t<=1&&u>=0&&u<=1;
+}
+function chnHit(a,b){
+  for(let i=1;i<a.length;i++)for(let j=1;j<b.length;j++){
+    if(chnSegHit(a[i-1],a[i],b[j-1],b[j]))return true;
+  }
+  return false;
+}
+function chnD2(ax,ay,bx,by){const dx=ax-bx,dy=ay-by;return dx*dx+dy*dy}
+/* 点到折线的最近距离平方 */
+function chnPtSegD2(px,py,a,b){
+  const vx=b[0]-a[0],vy=b[1]-a[1];
+  const L=vx*vx+vy*vy;
+  let t=L>0?((px-a[0])*vx+(py-a[1])*vy)/L:0;
+  t=chnxClamp01(t);
+  return chnD2(px,py,a[0]+vx*t,a[1]+vy*t);
+}
+function chnxClamp01(t){return t<0?0:(t>1?1:t)}
+function chnPtPolyD2(p,m){
+  let best=1e18;
+  for(let i=1;i<m.length;i++){const d=chnPtSegD2(p[0],p[1],m[i-1],m[i]);if(d<best)best=d}
+  return best===1e18?chnD2(p[0],p[1],m[0][0],m[0][1]):best;
+}
+/* 一笔的两个端点贴到另一笔身上（相接） */
+function chnTouch(a,b){
+  const r=CHN_TOUCH*CHN_TOUCH;
+  const e=[a[0],a[a.length-1]];
+  for(let k=0;k<2;k++)if(chnPtPolyD2(e[k],b)<=r)return true;
+  return false;
+}
+/* ---- 推链：只留「结构看得出来、且和真笔顺不矛盾」的那几条 ----
+   四条来源：从上到下 / 从左到右 / 先横后竖（交叉）/ 端点相接。
+   最后统一按 i<j 筛一遍 —— 这一步是整个玩法不许出错题的总闸：
+   凡是推出来却和真笔顺反着的结构线索，一律丢掉，宁可少一条链也不给孩子一条错链。 */
+function chnEdges(meds,dirs){
+  const n=meds.length,B=[],out=[];
+  for(let i=0;i<n;i++)B.push(chnBox(meds[i]));
+  for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){
+    let hit=false;
+    if(B[i].y0>B[j].y1+CHN_GAP)hit=true;                       /* 从上到下 */
+    else if(B[i].x1<B[j].x0-CHN_GAP)hit=true;                  /* 从左到右 */
+    else if(dirs[i]===0&&dirs[j]===1&&chnHit(meds[i],meds[j]))hit=true; /* 先横后竖 */
+    else if(chnTouch(meds[i],meds[j])||chnTouch(meds[j],meds[i]))hit=true; /* 相接者先落笔 */
+    if(hit)out.push([i,j]);
+  }
+  return out;
+}
+/* ---- 传递约简：笨但绝对正确 —— 逐条试删，删了仍能从 a 走到 b 的就是多余的链 ----
+   （i→j 若能绕过，说明这条链说的话已经被别的链说完了，留着只会糊一台面） */
+function chnReach(es,n,from){
+  const seen={};seen[from]=1;
+  let go=true;
+  while(go){
+    go=false;
+    for(let k=0;k<es.length;k++){
+      const a=es[k][0],b=es[k][1];
+      if(seen[a]&&!seen[b]){seen[b]=1;go=true}
+    }
+  }
+  return seen;
+}
+function chnTransReduce(es,n){
+  const cur=es.slice();
+  for(let k=cur.length-1;k>=0;k--){
+    const rest=cur.slice(0,k).concat(cur.slice(k+1));
+    if(chnReach(rest,n,cur[k][0])[cur[k][1]])cur.splice(k,1);
+  }
+  return cur;
+}
+/* ---- 牌面：一张牌 = 一笔的裸墨迹 ---- */
+function chnMake(ch,raw,lmax){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  const hi=lmax||7;
+  if(ms.length<CHN_STROKE_MIN||ms.length>hi)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=fmDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<ms.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  const es=chnEdges(ms,dirs);
+  if(es.length<CHN_EDGE_MIN)return null;
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp,meds:ms,edges:es};
+}
+/* ---- 字池：推得出至少两条链，且链子和真笔顺不打架（chnEdges 已经只留 i<j） ----
+   keep=true 是「接着炼」：进一场要更难的字时只往池子里补，不许把已有的抹掉。
+   lo/hi 是这一场要的笔画区间：池子里够 3 块这个区间的铁料才算够，不然补到 34 块为止
+   ——「第 5 场起放 8 笔的字」这句话得真做得到，不能只是写在说明里。 */
+async function chnBuildPool(keep,lo,hi){
+  const g=chn.gen,stale=function(){return g!==chn.gen||!chn.run||chn.over};
+  const mk=chnStrokeMax(chn.lv);
+  const enough=function(){
+    if(!isFinite(lo))return chn.pool.length>=CHN_POOL_WANT;
+    let c=0;for(let i=0;i<chn.pool.length;i++)if(chn.pool[i].n>=lo&&chn.pool[i].n<=hi)c++;
+    return c>=3||chn.pool.length>=34;
+  };
+  chn.miss=(localStorage.getItem('hz_chain_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){list=list||[];for(let i=0;i<list.length&&want.length<280;i++){const c=list[i];if(c&&want.indexOf(c)<0)want.push(c)}};
+  push(chxShuf(chn.miss.slice(0,6)));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(chxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(chxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(chnLetters());
+  if(typeof CHARS!=='undefined')push(chxShuf(CHARS.slice()));
+  if(!keep){chn.pool=[];chn.wbag={}}
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(n>=1&&n<=9){if(!chn.wbag[n])chn.wbag[n]=[];if(chn.wbag[n].indexOf(want[k+i])<0)chn.wbag[n].push(want[k+i])}
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=chnMake(want[k+i],rs[i],mk);
+        if(m&&!chn.pool.some(function(p){return p.ch===m.ch}))chn.pool.push(m);
+      }
+    }
+  }
+  return chn.pool.length>=CHN_POOL_MIN;
+}
+function chnLetters(){
+  return '三十六七八九十人大小天上下日月水火山石田木禾白子不去个门口见对书本马飞入'
+    +'什么双王方气生主以区巨于记丝贝互仙丰父欠未击代计且斗示巧付兰专扎仅叉议冈曰'
+    +'早旬买远秀每甲回困圈火永冰川开雨走北本东西中里男鱼鸟虫好她他你们从今他'
+    +'公六兰光全次先吉同后味和国园图在地堂声处夏外多夜大天太女奶好字学小少山岗'
+    +'工年并庆开式快念姓始学它定实宝对寺导小少尖尚就尼尽尾局层居岀岗岛州巧已幕'.split('');
+}
+function chnPickRec(){
+  const w=chnWant(chn.lv);
+  let pool=chn.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  if(!pool.length)pool=chn.pool.filter(function(r){return r.n>=CHN_STROKE_MIN&&r.n<=CHN_STROKE_MAX});
+  if(!pool.length)pool=chn.pool.slice();
+  if(!pool.length)return null;
+  const fresh=pool.filter(function(r){return !chn.rec||r.ch!==chn.rec.ch});
+  const pick=fresh.length?fresh:pool;
+  const missList=pick.filter(function(r){return chn.miss.indexOf(r.ch)>=0});
+  const due=chn.first||(chn.words>0&&chn.words%3===0);
+  chn.first=false;
+  if(missList.length&&due)return chxOne(missList);
+  return chxOne(pick);
+}
+/* ---- 摆场：槽位随机撒牌 → 推链 → 约简 → 按场次锈断一批（保证开局至少有 CHN_READY 张能摘） ---- */
+function chnReadyCount(es,n){
+  const inDeg=[];for(let i=0;i<n;i++)inDeg.push(0);
+  for(let k=0;k<es.length;k++)inDeg[es[k][1]]++;
+  let c=0;for(let i=0;i<n;i++)if(!inDeg[i])c++;
+  return c;
+}
+function chnReadyWant(lv){return Math.min(4,2+Math.floor(lv/3))}
+function chnCutTo(es,n,want,keepMin){
+  const live=es.slice(),pool=chxShuf(es.slice());
+  const min=Math.min(keepMin,live.length);
+  for(let k=0;k<pool.length;k++){
+    if(chnReadyCount(live,n)>=want)break;
+    if(live.length<=min)break;
+    const i=live.indexOf(pool[k]);
+    if(i>=0)live.splice(i,1);
+  }
+  return live;
+}
+function chnSlots(n){
+  const all=[];
+  for(let r=0;r<CHN_ROWS;r++)for(let c=0;c<CHN_COLS;c++){
+    all.push({x:10+c*CHN_CW+CHN_CW/2,y:8+r*CHN_CH+CHN_CH/2});
+  }
+  const picked=[],used={};
+  const order=chxShuf(all.map(function(p,i){return i}));
+  for(let k=0;k<order.length&&picked.length<n;k++){
+    const p=all[order[k]];
+    let ok=true;
+    for(let j=0;j<picked.length;j++){
+      if(Math.abs(picked[j].x-p.x)<CHN_CW&&Math.abs(picked[j].y-p.y)<CHN_CH){ok=false;break}
+    }
+    if(ok){picked.push(p);used[order[k]]=1}
+  }
+  while(picked.length<n){
+    for(let k=0;k<order.length&&picked.length<n;k++)if(!used[order[k]]){picked.push(all[order[k]]);used[order[k]]=1}
+  }
+  return chxShuf(picked);
+}
+function chnDeal(){
+  const rec=chn.rec,n=rec.n;
+  const full=chnTransReduce(rec.edges,n);
+  const keepMin=Math.ceil((full.length||1)*(1-chnCut(chn.lv)));
+  const live=chnCutTo(full.length?full:rec.edges.slice(),n,chnReadyWant(chn.lv),keepMin);
+  const slots=chnSlots(n+chnWild(chn.lv));
+  const cards=[];
+  for(let i=0;i<n;i++){
+    cards.push({si:i,wild:false,dir:rec.dirs[i],med:rec.meds[i],x:slots[i].x,y:slots[i].y,
+      done:false,flash:0,shake:0,dim:0,box:chnBox(rec.meds[i])});
+  }
+  const edges=[];
+  for(let k=0;k<live.length;k++)edges.push({a:live[k][0],b:live[k][1],alive:true,broke:false,rust:0,fx:0});
+  /* 野牌：别的字的一笔，长得一模一样、也挂着一根真链 —— 摘它就是答错 */
+  const w=chnWild(chn.lv);
+  for(let k=0;k<w;k++){
+    const src=chnWildSrc();
+    if(!src)break;
+    const id=cards.length;
+    cards.push({si:-1,wild:true,dir:src.dir,med:src.med,x:slots[n+k].x,y:slots[n+k].y,
+      done:false,flash:0,shake:0,dim:0,box:src.box});
+    const from=Math.floor(Math.random()*Math.max(1,Math.min(n,3)));
+    edges.push({a:from,b:id,alive:true,broke:false,rust:0,fx:0});
+  }
+  chn.cards=cards;chn.edges=edges;chn.slots=slots;
+  chn.qi=0;chn.done=[];
+  return cards.length;
+}
+function chnWildSrc(){
+  const bag=[];
+  for(const k in chn.wbag){const n=+k;if(n>=CHN_STROKE_MIN&&n<=CHN_STROKE_MAX)bag.push(chn.wbag[k])}
+  const flat=[].concat.apply([],bag);
+  const ch2=chxOne(flat.filter(function(c){return c&&c!==chn.rec.ch}));
+  if(!ch2)return null;
+  const raw=charDataCache[ch2];
+  if(!raw||!raw.medians||!raw.medians.length)return null;
+  let tries=0,i=-1,d=-1;
+  while(tries++<6){
+    const j=Math.floor(Math.random()*raw.medians.length);
+    const dd=fmDirOf(raw.medians[j]);
+    if(dd>=0){i=j;d=dd;break}
+  }
+  if(i<0)return null;
+  return {med:raw.medians[i],dir:d,box:chnBox(raw.medians[i])};
+}
+/* ---- 就绪集：所有活链的上游都摘完了，这张牌才解得开 ---- */
+function chnIsReady(ci){
+  const c=chn.cards[ci];
+  if(!c||c.done)return false;
+  for(let k=0;k<chn.edges.length;k++){
+    const e=chn.edges[k];
+    if(!e.alive||e.b!==ci)continue;
+    if(!chn.cards[e.a].done)return false;
+  }
+  return true;
+}
+function chnReadyList(){
+  const out=[];
+  for(let i=0;i<chn.cards.length;i++)if(chnIsReady(i))out.push(i);
+  return out;
+}
+/* 这张牌身上还有没有一条活链？没有就是「裸摘」——纯靠笔顺知识摘开的 */
+function chnLiveLinks(ci){
+  let n=0;
+  for(let k=0;k<chn.edges.length;k++){const e=chn.edges[k];if(e.alive&&(e.a===ci||e.b===ci))n++}
+  return n;
+}
+
+/* ================= 段 C：锈 · 三只钟 · 摘牌与解锁 · 进场次 · 链具 ================= */
+function chnSnapChain(){
+  const bi=chnRustPickIdx();
+  if(bi<0)return false;
+  const e=chn.edges[bi];
+  e.alive=false;e.broke=true;e.rust=0;e.fx=CHN_WELD_MS;
+  chn.rusts++;
+  chnRustMark();
+  chxTone(174,.22,'sawtooth',.045);
+  return true;
+}
+/* ---- 糊面：钟一响先糊「眼前这一张」；牌面全糊了，钟才改吃链子 ---- */
+function chnDimOne(){
+  for(let i=0;i<chn.cards.length;i++){
+    const c=chn.cards[i];
+    if(c.done||c.dim)continue;
+    c.dim=1;c.shake=520;
+    return true;
+  }
+  return false;
+}
+function chnUndimAll(){
+  let k=0;
+  for(let i=0;i<chn.cards.length;i++)if(chn.cards[i].dim&&!chn.cards[i].done){chn.cards[i].dim=0;k++}
+  return k;
+}
+function chnWeldBack(){
+  let k=0;
+  for(let j=0;j<chn.edges.length&&k<2;j++){
+    const e=chn.edges[j];
+    if(!e.broke)continue;
+    if(chn.cards[e.a].done&&chn.cards[e.b].done)continue;
+    e.broke=false;e.alive=true;e.fx=CHN_WELD_MS;k++;
+  }
+  chnRustMark();
+  return k;
+}
+/* ---- 催：站太久就给一句口诀（一轮一轮换，说完自己收） ---- */
+const CHN_NAGS=['先横后竖、先竖后撇 —— 链子只讲看得出来的一半',
+  '上面的先落笔，左边的先落笔：从上到下、从左到右',
+  '笔尖挨着哪一笔，哪一笔就是上一家',
+  '亮着的牌不止一张时，链子可没告诉你答案',
+  '野牌长得跟真牌一样，它不是这个字里的一笔',
+  '身上没有活链还摘对了，那叫裸摘，分给得高'];
+function chnNag(){
+  chxSay('🔔 '+CHN_NAGS[chn.nags%CHN_NAGS.length],'#FFD54F');
+  chn.nagHold=CHN_NAG_HOLD;
+}
+/* ---- 三只钟：日头（一场）、卡钟（一张）、锈（一根链） ---- */
+function chnTick(dt){
+  if(chn.over||chn.busy)return;
+  dt=Math.min(dt||CHN_TICK_MS,120);
+  if(chn.helpMs>0){
+    chn.helpMs-=dt;
+    if(chn.helpMs<=0){chn.helpMs=0;chnAsk();chnLine();chnHud()}
+    return;                       /* 看说明时三只钟全冻住 */
+  }
+  chn.t+=dt;chn.playMs+=dt;
+  if(chn.stallMs>0)chn.stallMs=Math.max(0,chn.stallMs-dt);
+  if(chn.lightMs>0)chn.lightMs=Math.max(0,chn.lightMs-dt);
+  if(chn.weldMs>0)chn.weldMs=Math.max(0,chn.weldMs-dt);
+  if(chn.nagHold>0){
+    chn.nagHold=Math.max(0,chn.nagHold-dt);
+    if(chn.nagHold===0)chnAsk();
+  }
+  for(let i=0;i<chn.cards.length;i++){
+    const c=chn.cards[i];
+    if(c.flash>0)c.flash=Math.max(0,c.flash-dt);
+    if(c.shake>0)c.shake=Math.max(0,c.shake-dt);
+    if(c.pull>0)c.pull=Math.max(0,c.pull-dt);
+  }
+  for(let j=0;j<chn.edges.length;j++){
+    const e=chn.edges[j];
+    if(e.fx>0)e.fx=Math.max(0,e.fx-dt);
+  }
+  if(chn.fx.length&&chn.t-chn.fx[0].t0>chn.fx[0].life+120)chn.fx.shift();
+  /* 日头 */
+  chn.dayMs-=dt;
+  if(chn.dayMs<=0){chnDayOut();return}
+  if(!chn.warn&&chn.dayMs<30000){chn.warn=true;chnTag('🌇 日头要落了','warn')}
+  if(chn.dayMs<9000){
+    chn.beep+=dt;
+    if(chn.beep>1100){chn.beep=0;chxTone(138,.18,'square',.05)}
+  }
+  if(chn.stallMs<=0){
+    /* 卡钟：响一次糊一张牌面 */
+    chn.qms-=dt;
+    if(chn.qms<=0){
+      chn.qms=chn.qms0;chn.timeouts++;
+      chn.combo=0;chn.score=Math.max(0,chn.score-CHN_PEN_TIME);
+      if(chnDimOne())chnTag('🟤 这一张看糊了 −'+CHN_PEN_TIME,'warn');
+      else if(chnSnapChain())chnTag('🟤 牌面全糊了，钟改吃链子 −'+CHN_PEN_TIME,'warn');
+      else chnTag('⏳ 钟响了，可没东西可吃 −'+CHN_PEN_TIME,'warn');
+      chxTone(150,.2,'square',.05);
+    }
+    /* 锈：每隔一阵断一根链 */
+    chn.rms-=dt;
+    if(chn.rms<=0){
+      chn.rms=chnRustMs(chn.lv);
+      if(chnSnapChain())chnTag('一根链锈断了','warn');
+    }
+  }
+  chn.nagMs+=dt;
+  if(chn.nagMs>=CHN_NAG_MS){chn.nagMs=0;chn.nags++;chnNag()}
+}
+/* ---- 摘牌：链子全解开的牌才摘得动；摘得对不对，看的是真笔顺 ---- */
+function chnLabel(ci){
+  const c=chn.cards[ci];
+  if(!c)return '?';
+  return (ci+1)+' 号'+(c.wild?'（野）':'');
+}
+function chnHeld(){
+  const c=chn.cards[chn.held];
+  return c&&!c.done?chn.held:-1;
+}
+function chnMove(dx,dy){
+  const from=chnHeld();
+  const ox=from>=0?chn.cards[from].x:CHN_W/2,oy=from>=0?chn.cards[from].y:CHN_H/2;
+  let bi=-1,bd=1e18;
+  for(let i=0;i<chn.cards.length;i++){
+    const c=chn.cards[i];
+    if(c.done)continue;
+    if(chn.duo&&chnP1own(i))continue;   /* 方向键这支手归 P2，只在右半场走 */
+    const vx=c.x-ox,vy=c.y-oy;
+    if(dx&&Math.sign(vx)!==dx)continue;
+    if(dy&&Math.sign(vy)!==dy)continue;
+    const d=(vx+dx*40)*(vx+dx*40)+(vy+dy*40)*(vy+dy*40)-Math.abs(vx+vy)*6;
+    if(d<bd){bd=d;bi=i}
+  }
+  if(bi>=0){chn.held=bi;chn.nagMs=0;chxTone(520,.05,'sine',.03);chnDraw()}
+  return bi;
+}
+function chnTry(ci,who){
+  if(!chn.run||chn.over||chn.busy)return false;
+  const c=chn.cards[ci];
+  if(!c||c.done)return false;
+  const now=performance.now();
+  if(now-chn.actMs<CHN_ACT_CD)return false;
+  chn.actMs=now;chn.nagMs=0;
+  who=who||0;
+  /* 双人：这张牌不归你手 —— 不罚，只拦 */
+  if(chn.duo&&who){
+    const mine=(who===1)===chnP1own(ci);
+    if(!mine){
+      chn.duoCuts++;c.shake=420;
+      chxSay('🤝 <b>'+chnLabel(ci)+'</b> 归'+(chnP1own(ci)?'<b>P1</b>（数字键）':'<b>P2</b>（方向键 + 空格）')+'—— 开口告诉同伴，别替他按','#B3E5FC');
+      chnTag('🤝 这张归同伴','warn');
+      chxTone(330,.08,'sine',.04);
+      return false;
+    }
+    chn.duoPlucks++;
+  }
+  /* 还锁着：链子明摆着拦你，罚得轻 */
+  if(!chnIsReady(ci)){
+    let up=-1;
+    for(let k=0;k<chn.edges.length;k++){
+      const e=chn.edges[k];
+      if(e.alive&&e.b===ci&&!chn.cards[e.a].done){up=e.a;break}
+    }
+    chn.locks++;chn.score=Math.max(0,chn.score-CHN_PEN_LOCK);
+    chn.combo=0;chn.cleanWord=false;c.shake=600;
+    if(up>=0){chn.cards[up].flash=CHN_LIGHT_MS;chn.cards[up].pull=900}
+    chxSay('🔒 这一张还锁着 —— 它上游那张'+(up>=0?'（<b>'+(up+1)+'</b> 号）':'')+'还没摘','#FFB74D');
+    chxTone(118,.16,'square',.05);
+    chnHud();chnLine();
+    return false;
+  }
+  /* 亮着却不是下一笔：链子没意见，笔顺有意见 —— 这才是要命的错 */
+  if(c.wild||c.si!==chn.qi){
+    chn.wrongs++;if(c.wild)chn.wilds++;
+    chn.hearts--;chn.score=Math.max(0,chn.score-CHN_PEN_WRONG);
+    chn.combo=0;chn.nakedRun=0;chn.cleanWord=false;c.shake=900;
+    chnPop(ci,'bad');
+    chxSay(c.wild?'🪝 野牌！这一笔不是 <b>'+chn.rec.ch+'</b> 里的':
+      '🔗 <b>'+chnLabel(ci)+'</b> 是第 '+(c.si+1)+' 笔，现在该落第 '+(chn.qi+1)+' 笔','#FF8A80');
+    chxTone(96,.3,'sawtooth',.07);
+    chnHud();chnLine();
+    if(chn.hearts<=0)chnEnd('broke');
+    return false;
+  }
+  /* 摘对 */
+  const naked=chnLiveLinks(ci)===0&&chn.qi>0;
+  const steady=chn.qms>chn.qms0*.5;
+  const g=chnGain(naked,steady);
+  chn.score+=g;chn.picks++;if(steady)chn.lits++;
+  chn.combo++;if(chn.combo>chn.maxCombo)chn.maxCombo=chn.combo;
+  if(naked){chn.naked++;chn.nakedRun++;if(chn.nakedRun>chn.nakedMax)chn.nakedMax=chn.nakedRun}
+  else chn.nakedRun=0;
+  c.done=true;c.flash=CHN_TAG_MS;chn.done.push(ci);chn.qi++;
+  if(chn.held===ci)chn.held=-1;   /* 手里那张已经摘走：光标不许停在一张没了的牌上 */
+  chnPop(ci,'good');
+  chxTone(CHN_NOTE[Math.min(CHN_NOTE.length-1,chn.qi-1)],.13,'triangle',.07);
+  chnTag('+'+g+(naked?' 裸摘':'')+(steady?' 快':''),'gold');
+  chnMini();
+  chnRustMark();
+  if(chn.qi>=chn.n){chnWordDone();return true}
+  chnHud();chnLine();chnAsk();
+  return true;
+}
+/* ---- 收完一个字：整串链子哗啦一声响 ---- */
+function chnWordDone(){
+  chn.busy=true;
+  let g=CHN_WORD_BONUS;
+  if(chn.cleanWord)g+=CHN_CLEAN_BONUS;
+  if(chn.dryWord)g+=CHN_DRY_BONUS;
+  if(chn.duo&&chn.duoPlucks>=chn.n)g+=CHN_WORD_BONUS;
+  chn.score+=g;
+  chn.words++;
+  chn.doneCh.push(chn.rec.ch);
+  chxAdd('hz_chain_words',1);
+  if(chn.cleanWord)chxAdd('hz_chain_clean',1);
+  if(chn.duo)chxAdd('hz_chain_duo',chn.duoPlucks);
+  chnBookAdd(chn.rec.ch);
+  const mi=chn.miss.indexOf(chn.rec.ch);
+  if(mi>=0&&chn.cleanWord){chn.miss.splice(mi,1);chxSaveMiss();chxSay('✅ <b>'+chn.rec.ch+'</b> 还掉了 —— 错字本里少一个字','#81C784')}
+  const stars=2+Math.floor(chn.n/3)+(chn.cleanWord?2:0);
+  addStars(stars);
+  for(let k=0;k<chn.edges.length;k++){const e=chn.edges[k];if(e.alive)e.fx=CHN_TAG_MS}
+  chnTag(chn.rec.ch+' 串完了 +'+g,'gold');
+  chnAsk();chnLine();
+  chxTone(1047,.18,'triangle',.06);
+  const n=chn.n;
+  for(let i=0;i<n;i++)chxT(function(ii){return function(){chxTone(CHN_NOTE[Math.min(CHN_NOTE.length-1,ii)],.12,'triangle',.05)}}(i),140+i*130);
+  chnBankLite();
+  /* 场次要等这一字的动画走完才升：一边是第 1 场的钟、一边写着第 2 场，HUD 与钟就成两套账了 */
+  const nl=chnLvOf(chn.words);
+  chxT(function(){
+    if(!chn.run||chn.over)return;
+    if(nl!==chn.lv){chn.lv=nl;chnLvUp()}
+    else chnNewWord();
+  },CHN_NEXT_MS+n*130);
+}
+/* ---- 进一场：链具各补一件（有上限）、补一颗心，顺手把字池往更难那头续 ---- */
+function chnLvUp(){
+  chn.lightN=Math.min(CHN_PCAP,chn.lightN+1);
+  chn.stallN=Math.min(CHN_PCAP,chn.stallN+1);
+  chn.weldN=Math.min(CHN_PCAP,chn.weldN+1);
+  chn.swapN=Math.min(2,chn.swapN+1);
+  chn.hearts=Math.min(CHN_HEART_MAX,chn.hearts+1);
+  chn.poolWantMore=true;
+  chnTag('第 '+chn.lv+' 场 · 链具各补一件','gold');
+  chxSay('⚒️ <b>第 '+chn.lv+' 场</b>：'+chnWant(chn.lv)[0]+'~'+chnWant(chn.lv)[1]+' 笔的字、开局锈断 '+
+    Math.round(chnCut(chn.lv)*100)+'%、'+(chnWild(chn.lv)?'混进 '+chnWild(chn.lv)+' 张野牌':'还没有野牌')+
+    '、链线'+(chnFaint(chn.lv)?'只留个影子':'还清楚')+'、这一张的钟 '+(chnQms(chn.lv)/1000).toFixed(0)+' 秒','#FFD54F');
+  chnHud();
+  /* 这句话得让孩子看得见：立刻 chnNewWord 会被下一块铁料的题头盖掉，所以先挂住 0.9 秒（busy 时三只钟本来就冻住） */
+  chn.busy=true;
+  chxT(function(){chn.busy=false;chnNewWord()},CHN_NEXT_MS);
+}
+/* ---- 日头落山：这一字锁回架上（进错字本），扣一颗心 ---- */
+function chnDayOut(){
+  chn.dayMs=0;
+  chn.broke++;chn.hearts--;
+  chn.combo=0;chn.nakedRun=0;
+  chnMissAdd(chn.rec.ch);
+  chxSay('🌇 日头落山，<b>'+chn.rec.ch+'</b> 锁回架上了（记进错字本），扣一颗心','#FF8A80');
+  chxTone(92,.4,'sawtooth',.07);
+  chnHud();
+  if(chn.hearts<=0){chnEnd('day');return}
+  /* 同上：日头那句话要说满 0.9 秒再换铁料，否则孩子只看到「锁回架上」的下一块牌子 */
+  chn.busy=true;
+  chxT(function(){chn.busy=false;chnNewWord()},CHN_NEXT_MS);
+}
+/* ---- 四件链具 ---- */
+function chnGate(){return chn.run&&!chn.over&&!chn.busy}
+function chnLight(){
+  if(!chnGate()||chn.lightN<=0)return false;
+  chn.lightN--;chn.lightUse++;chn.tools++;chn.dryWord=false;
+  chn.lightMs=CHN_LIGHT_MS;
+  chnTag('🔦 照链','gold');
+  const rl=chnReadyList();
+  chxSay('🔦 <b>'+rl.length+'</b> 张都解开了（牌面是 '+
+    rl.map(function(i){return CHN_TAG5[chxRok(chn.cards[i].dir)]}).join('、')+
+    '）—— 第 '+(chn.qi+1)+' 笔是哪一张，<b>链子可没说</b>','#4FC3F7');
+  chxTone(880,.12,'sine',.05);
+  chnHud();chnLine();
+  return true;
+}
+function chnStall(){
+  if(!chnGate()||chn.stallN<=0)return false;
+  chn.stallN--;chn.stallUse++;chn.tools++;chn.dryWord=false;
+  chn.stallMs=CHN_STALL_MS;
+  chnRustMark();
+  chnTag('🧿 定锈','gold');
+  chxSay('🧿 这一阵锈不长了：不糊牌、不断链（'+(CHN_STALL_MS/1000).toFixed(1)+' 秒）','#81C784');
+  chxTone(660,.16,'sine',.05);
+  chnHud();chnLine();
+  return true;
+}
+function chnWeld(){
+  if(!chnGate()||chn.weldN<=0)return false;
+  chn.weldN--;chn.weldUse++;chn.tools++;chn.dryWord=false;
+  chn.weldMs=CHN_WELD_MS;
+  const u=chnUndimAll(),w=chnWeldBack();
+  chnTag('🔨 敲锈','gold');
+  chxSay('🔨 擦亮 <b>'+u+'</b> 张牌面、焊回 <b>'+w+'</b> 根断链','#FFD54F');
+  chxTone(523,.1,'square',.06);
+  chnHud();chnLine();chnMeter();
+  return true;
+}
+function chnSwap(){
+  if(!chnGate()||chn.swapN<=0)return false;
+  chn.swapN--;chn.swapUse++;chn.tools++;chn.dryWord=false;
+  chn.score=Math.max(0,chn.score-CHN_PEN_SWAP);
+  chn.combo=0;chn.nakedRun=0;chn.cleanWord=false;
+  chnMissAdd(chn.rec.ch);
+  chxSay('🔁 换了一块铁料（−'+CHN_PEN_SWAP+'）：<b>'+chn.rec.ch+'</b> 记进错字本','#FFB74D');
+  chxTone(220,.2,'triangle',.05);
+  chnHud();
+  chn.busy=true;
+  chxT(function(){chn.busy=false;chnNewWord()},CHN_NEXT_MS);
+  return true;
+}
+
+/* ================= 段 D：画台面（铜牌 + 铁链 + 锈 + 锁 + 火星）· 小字卡 · HUD ================= */
+function chnFit(m){
+  const b=chnBox(m);
+  return {cx:(b.x0+b.x1)/2,cy:(b.y0+b.y1)/2,s:Math.max(b.w,b.h)||1};
+}
+/* 把一笔的中线画进牌面：数据是 1024 见方、y 朝上，翻转过来正好是屏幕上朝下 */
+function chnDrawStroke(c,med,x,y,color,wid,alpha){
+  const f=chnFit(med);
+  const k=(CHN_CARD*.34)/Math.max(f.s,42);
+  c.save();
+  c.globalAlpha=alpha;
+  c.translate(x,y);
+  c.scale(k,-k);
+  c.strokeStyle=color;
+  c.lineWidth=wid/Math.max(k,.0001);
+  c.lineCap='round';c.lineJoin='round';
+  c.beginPath();
+  for(let i=0;i<med.length;i++){
+    const px=med[i][0]-f.cx,py=med[i][1]-f.cy;
+    if(i)c.lineTo(px,py);else c.moveTo(px,py);
+  }
+  c.stroke();
+  c.restore();
+}
+function chnCardPath(c,x,y,r,w,h){
+  const x0=x-w/2,y0=y-h/2;
+  c.beginPath();
+  c.moveTo(x0+r,y0);
+  c.lineTo(x0+w-r,y0);c.quadraticCurveTo(x0+w,y0,x0+w,y0+r);
+  c.lineTo(x0+w,y0+h-r);c.quadraticCurveTo(x0+w,y0+h,x0+w-r,y0+h);
+  c.lineTo(x0+r,y0+h);c.quadraticCurveTo(x0,y0+h,x0,y0+h-r);
+  c.lineTo(x0,y0+r);c.quadraticCurveTo(x0,y0,x0+r,y0);
+  c.closePath();
+}
+function chnEdgePts(e){
+  const a=chn.cards[e.a],b=chn.cards[e.b];
+  const dx=b.x-a.x,dy=b.y-a.y,L=Math.hypot(dx,dy)||1;
+  const ux=dx/L,uy=dy/L;
+  const off=(CHN_CARD/2)*Math.max(Math.abs(ux),Math.abs(uy));
+  return {x1:a.x+ux*off,y1:a.y+uy*off,x2:b.x-ux*off,y2:b.y-uy*off,nx:-uy,ny:ux,L:L};
+}
+function chnChain(c,e){
+  const p=chnEdgePts(e);
+  const mx=(p.x1+p.x2)/2+p.nx*Math.min(26,p.L*.16),my=(p.y1+p.y2)/2+p.ny*Math.min(26,p.L*.16);
+  const arc=function(){c.beginPath();c.moveTo(p.x1,p.y1);c.quadraticCurveTo(mx,my,p.x2,p.y2);c.stroke()};
+  c.save();
+  if(e.broke){
+    c.globalAlpha=.34;
+    c.strokeStyle='#B7643A';c.lineWidth=2.4;c.setLineDash([5,7]);
+    c.beginPath();c.moveTo(p.x1,p.y1);c.quadraticCurveTo(mx,my,(p.x1+p.x2)/2,(p.y1+p.y2)/2);c.stroke();
+    c.beginPath();c.moveTo(p.x2,p.y2);c.quadraticCurveTo(mx,my,(p.x1+p.x2)/2*1.02,(p.y1+p.y2)/2*1.02);c.stroke();
+    c.setLineDash([]);
+    c.globalAlpha=.95;c.fillStyle='#D98A4E';
+    c.font='12px system-ui';c.textAlign='center';c.textBaseline='middle';
+    c.fillText('✂',(p.x1+p.x2)/2,(p.y1+p.y2)/2);
+    if(e.fx>0){
+      c.globalAlpha=Math.min(1,e.fx/1400);c.strokeStyle='#FFD54F';c.lineWidth=3.4;
+      c.beginPath();c.moveTo(p.x1,p.y1);c.quadraticCurveTo(mx,my,p.x2,p.y2);c.stroke();
+    }
+    c.restore();return;
+  }
+  const sat=chn.cards[e.a].done;
+  c.globalAlpha=sat?.8:(chnFaint(chn.lv)?.4:.74)+(e.rust?.16:0);
+  c.strokeStyle=e.rust?'#C2703D':(sat?'#8FA0AE':'#7F8C98');
+  c.lineWidth=e.rust?3.8:3.2;
+  arc();
+  c.strokeStyle='rgba(255,255,255,.26)';c.lineWidth=1.1;
+  arc();
+  /* 链环：一格一环，数得出来 */
+  const rings=Math.max(2,Math.round(p.L/17));
+  for(let i=1;i<rings;i++){
+    const t=i/rings,mt=1-t;
+    const qx=mt*mt*p.x1+2*mt*t*mx+t*t*p.x2,qy=mt*mt*p.y1+2*mt*t*my+t*t*p.y2;
+    c.beginPath();c.arc(qx,qy,2.6,0,6.2832);
+    c.fillStyle=e.rust?'#C2703D':'#5F6B76';c.fill();
+  }
+  /* 箭头：链子说的是「这头先落笔」 */
+  c.translate(p.x2,p.y2);c.rotate(Math.atan2(p.y2-my,p.x2-mx));
+  c.beginPath();c.moveTo(1,0);c.lineTo(-8,-4.4);c.lineTo(-8,4.4);c.closePath();
+  c.fillStyle=e.rust?'#D98A4E':(sat?'#8FA0AE':'#A8B4BE');c.fill();
+  c.restore();
+}
+function chnDimN(){
+  let k=0;
+  for(let i=0;i<chn.cards.length;i++)if(!chn.cards[i].done&&chn.cards[i].dim)k++;
+  return k;
+}
+function chnCard(c,card,i){
+  const ready=card.done?false:chnIsReady(i);
+  const lit=chn.lightMs>0&&ready;
+  const w=CHN_CARD,h=CHN_CARD;
+  let x=card.x,y=card.y;
+  if(card.shake>0)x+=Math.sin(card.shake/38)*Math.min(5,card.shake/90);
+  c.save();
+  if(card.done){
+    c.globalAlpha=.3;
+    chnCardPath(c,x,y,10,w,h);c.fillStyle='#2E4034';c.fill();
+    c.strokeStyle='rgba(129,199,132,.55)';c.lineWidth=1.8;c.stroke();
+    c.globalAlpha=.95;c.fillStyle='#A5D6A7';
+    c.font='bold 22px system-ui';c.textAlign='center';c.textBaseline='middle';
+    c.fillText('✓',x,y);
+    c.restore();return;
+  }
+  chnCardPath(c,x,y,10,w,h);
+  const gr=c.createLinearGradient(x,y-h/2,x,y+h/2);
+  if(ready){gr.addColorStop(0,'#5C4A2B');gr.addColorStop(1,'#3A3021')}
+  else{gr.addColorStop(0,'#2C3540');gr.addColorStop(1,'#222A33')}
+  c.fillStyle=gr;c.fill();
+  if(card.flash>0){
+    c.globalAlpha=Math.min(.5,card.flash/1800);
+    c.fillStyle='#FFD54F';
+    chnCardPath(c,x,y,10,w,h);c.fill();
+    c.globalAlpha=1;
+  }
+  c.lineWidth=ready?2.8:1.6;
+  c.strokeStyle=ready?(lit?'#FFE082':'#FFC107'):'rgba(160,175,190,.5)';
+  if(lit){c.shadowColor='#FFC107';c.shadowBlur=13}
+  chnCardPath(c,x,y,10,w,h);c.stroke();
+  c.shadowBlur=0;
+  const dir=chxRok(card.dir);
+  if(card.dim){
+    c.save();
+    /* 糊面就是「这笔墨看不见了」：淡要真淡到画布上，光挂个 flag 不算糊 */
+    chnDrawStroke(c,card.med,x,y,'#D7E3EE',13,.15);
+    c.globalAlpha=.9;c.fillStyle='#C2703D';
+    c.font='11px system-ui';c.textAlign='center';c.textBaseline='middle';
+    c.fillText('锈',x,y);
+    c.restore();
+  }else{
+    chnDrawStroke(c,card.med,x,y,ready?CHN_INK5[dir]:'#8FA0AE',13,ready?1:.72);
+  }
+  c.fillStyle=ready?'#FFE082':'#9FB0BF';
+  c.font='bold 12px system-ui';c.textAlign='left';c.textBaseline='top';
+  c.fillText(String(i+1),x-w/2+5,y-h/2+4);
+  if(!ready){
+    c.font='12px system-ui';c.textAlign='right';c.textBaseline='top';
+    c.fillText('🔒',x+w/2-3,y-h/2+3);
+  }
+  if(card.wild){
+    c.globalAlpha=.62;c.fillStyle='#8FA0AE';
+    c.font='10px system-ui';c.textAlign='center';c.textBaseline='bottom';
+    c.fillText('野',x,y+h/2-2);c.globalAlpha=1;
+  }
+  if(card.pull>0){
+    c.strokeStyle='rgba(255,138,128,'+(card.pull/900).toFixed(2)+')';c.lineWidth=3;
+    chnCardPath(c,x,y,10,w+9,h+9);c.stroke();
+  }
+  if(i===chn.held){
+    c.strokeStyle='#B3E5FC';c.lineWidth=2;c.setLineDash([4,4]);
+    chnCardPath(c,x,y,10,w+6,h+6);c.stroke();c.setLineDash([]);
+  }
+  if(chn.duo){
+    c.fillStyle=chnP1own(i)?'rgba(79,195,247,.9)':'rgba(255,183,77,.9)';
+    c.font='bold 10px system-ui';c.textAlign='center';c.textBaseline='bottom';
+    c.fillText(chnP1own(i)?'P1':'P2',x,y-h/2-1);
+  }
+  c.restore();
+}
+function chnDrawFx(c){
+  for(let i=0;i<chn.fx.length;i++){
+    const p=chn.fx[i];
+    const age=(chn.t-p.t0)/p.life;
+    if(age<0||age>1)continue;
+    const x=p.x+p.vx*age*58,y=p.y+p.vy*age*58+age*age*30;
+    c.save();
+    c.globalAlpha=1-age;
+    c.fillStyle=p.col;
+    c.font='bold '+p.s+'px system-ui';
+    c.textAlign='center';c.textBaseline='middle';
+    c.fillText(p.ch,x,y);
+    c.restore();
+  }
+}
+function chnDraw(){
+  const c=chn.ctx;
+  if(!c)return;
+  c.clearRect(0,0,CHN_W,CHN_H);
+  c.save();
+  const g=c.createLinearGradient(0,0,0,CHN_H);
+  g.addColorStop(0,'#20272E');g.addColorStop(1,'#161C22');
+  c.fillStyle=g;c.fillRect(0,0,CHN_W,CHN_H);
+  c.strokeStyle='rgba(255,255,255,.05)';c.lineWidth=1;
+  for(let i=1;i<CHN_COLS;i++){c.beginPath();c.moveTo(10+i*CHN_CW,4);c.lineTo(10+i*CHN_CW,CHN_H-4);c.stroke()}
+  for(let j=1;j<CHN_ROWS;j++){c.beginPath();c.moveTo(6,8+j*CHN_CH);c.lineTo(CHN_W-6,8+j*CHN_CH);c.stroke()}
+  c.restore();
+  for(let k=0;k<chn.edges.length;k++)chnChain(c,chn.edges[k]);
+  for(let i=0;i<chn.cards.length;i++)chnCard(c,chn.cards[i],i);
+  chnDrawFx(c);
+}
+function chnPop(ci,kind){
+  const c=chn.cards[ci];
+  if(!c)return;
+  const good=kind==='good';
+  for(let i=0;i<(good?12:9);i++){
+    const a=Math.random()*6.2832,sp=.6+Math.random()*1.5;
+    chn.fx.push({x:c.x,y:c.y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-.6,
+      t0:chn.t,life:520+Math.random()*420,
+      col:good?(i%3?CHN_INK5[chxRok(c.dir)]:'#FFE082'):'#FF8A80',
+      ch:good?(i%4?'●':'✦'):'✖',s:good?(i%4?11:15):14});
+  }
+  if(chn.fx.length>120)chn.fx.splice(0,chn.fx.length-120);
+}
+function chnTag(t,cls){
+  const el=document.getElementById('chnTag');
+  if(!el)return;
+  el.innerHTML=t;
+  el.className='chn-tag on '+String(cls||'').replace(/^#/,'');
+  chn.tagOn=1;
+  if(chn.tagTimer)clearTimeout(chn.tagTimer);
+  chn.tagTimer=setTimeout(function(){chn.tagOn=0;el.className='chn-tag'},CHN_TAG_MS);
+}
+/* ---- 小字卡：只把落好的那几笔填上色，下一笔长什么样得孩子自己认 ---- */
+function chnMini(){
+  const svg=document.getElementById('chnMiniSvg');
+  if(!svg)return;
+  const rec=chn.rec;
+  if(!rec){svg.innerHTML='';return}
+  let s='<rect x="0" y="0" width="1024" height="1024" fill="none"/>';
+  s+='<line x1="0" y1="512" x2="1024" y2="512" stroke="rgba(255,255,255,.14)" stroke-width="6"/>';
+  s+='<line x1="512" y1="0" x2="512" y2="1024" stroke="rgba(255,255,255,.14)" stroke-width="6"/>';
+  s+='<line x1="0" y1="0" x2="1024" y2="1024" stroke="rgba(255,255,255,.08)" stroke-width="4"/>';
+  s+='<line x1="1024" y1="0" x2="0" y2="1024" stroke="rgba(255,255,255,.08)" stroke-width="4"/>';
+  for(let i=0;i<rec.n;i++){
+    s+='<path d="'+rec.paths[i]+'" fill="'+
+      (i<chn.qi?CHN_INK5[chxRok(rec.dirs[i])]:'rgba(255,255,255,.12)')+'"/>';
+  }
+  svg.innerHTML=s;
+  chxPut('chnMiniCap',rec.ch+' · 共 '+rec.n+' 笔 · 已串 '+chn.qi+' 笔');
+}
+/* ---- 链子台账：台面上的链一句一句写出来（数得清，也验得了） ---- */
+function chnChainsHtml(){
+  const el=document.getElementById('chnChains');
+  if(!el)return;
+  let s='';
+  for(let k=0;k<chn.edges.length;k++){
+    const e=chn.edges[k];
+    if(e.broke){s+='<span class="chn-cl brk">'+(e.a+1)+' ✂ '+(e.b+1)+'</span>';continue}
+    s+='<span class="chn-cl'+(chn.cards[e.a].done?' sat':'')+(e.rust?' rusty':'')+'">'+
+      (e.a+1)+' ─▶ '+(e.b+1)+'</span>';
+  }
+  if(!s)s='<span class="chn-cl pad">台上一条链都没有 —— 全靠你背</span>';
+  el.innerHTML=s;
+}
+function chnAsk(){
+  const el=document.getElementById('chnAsk');
+  if(!el)return;
+  if(!chn.rec){el.innerHTML='🔗 正在挑铁料……<br><small>在字库里找「链子推得出来」的字</small>';return}
+  if(chn.nagHold>0){
+    el.innerHTML='🔔 <b>口诀</b><br><small>'+CHN_NAGS[(chn.nags-1+CHN_NAGS.length)%CHN_NAGS.length]+'</small>';return;
+  }
+  if(chn.helpMs>0)return;
+  if(chn.busy&&chn.qi>=chn.n){
+    el.innerHTML='🔗 <b>串完了</b>：'+chn.rec.ch+' 一笔没错<br><small>下一块铁料正在上炉</small>';return;
+  }
+  el.innerHTML='🔗 这个字的 <b>第 '+(chn.qi+1)+' 笔</b>是哪一张？<br><small>亮着的 '+chnReadyList().length+
+    ' 张都解开了，可第 '+(chn.qi+1)+' 笔只有一个 —— 链子没说，得你认</small>';
+}
+function chnPowStr(){
+  const rl=chnReadyList();
+  const live=chn.edges.filter(function(e){return e.alive}).length;
+  const brk=chn.edges.filter(function(e){return e.broke}).length;
+  const und=chn.cards.filter(function(c){return !c.done}).length;
+  return '⛓ 第 <b>'+chn.lv+'</b> 场 · '+chn.n+' 笔（串好 <b>'+chn.qi+'</b>）· 该落第 <b>'+
+    (chn.qi+1)+'</b> 笔 · 台面 <b>'+und+'</b> 张牌、解得开 <b>'+rl.length+'</b> 张（'+
+    (rl.length?rl.map(function(i){return (i+1)+' 号'}).join('、'):'一张也没有')+
+    '）· 活链 <b>'+live+'</b> 根（断 '+brk+'）· 糊面 <b>'+chnDimN()+'</b> 张 · 裸摘连 <b>'+chn.nakedRun+
+    '</b> · 这一张 <b>'+(chn.qms/1000).toFixed(1)+'</b> 秒 · 下一根链 <b>'+(chn.rms/1000).toFixed(1)+
+    '</b> 秒 · 日头 <b>'+Math.ceil(chn.dayMs/1000)+'</b> 秒'+
+    (chn.stallMs>0?' · <b>定锈</b>':'')+(chn.lightMs>0?' · <b>照链</b>':'')+(chn.weldMs>0?' · <b>刚敲锈</b>':'')+
+    (chn.duo?' · <b>双人分边（拦 '+chn.duoCuts+' 次）</b>':'');
+}
+function chnPow(){chxPut('chnPowTxt',chnPowStr())}
+function chnHud(){
+  const rk=chxRank(chxInt('hz_chain_words'));
+  chxPut('chnRankTxt',rk.e+' '+rk.t);
+  let hh='';for(let i=0;i<chn.hearts;i++)hh+='❤️';
+  chxPut('chnHeartTxt',hh||'💔');
+  chxPut('chnScoreTxt','🎯 '+chn.score+' 分');
+  chxPut('chnLvTxt','第 '+chn.lv+' 场 · 已收 '+chn.words+' 字');
+  chxPut('chnComboTxt','🔥 连 '+chn.combo);
+  chxPut('chnLitTxt','🖋 '+(chn.rec?Math.min(chn.qi+1,chn.n):0)+'/'+(chn.n||0)+' 笔');
+  chxPut('chnReadyTxt','🔓 亮着 '+chnReadyList().length+' 张');
+  chxPut('chnRustTxt','🟤 锈断 '+chn.rusts+' 根');
+  chxPut('chnNakedTxt','✋ 裸摘 '+chn.naked+'（连 '+chn.nakedRun+'）');
+  chxPut('chnWildTxt',chnWild(chn.lv)?'🪝 野牌 '+chnWild(chn.lv)+' 张':'🪝 这一场没野牌');
+  chxPut('chnChainTxt','⛓ 活链 '+chn.edges.filter(function(e){return e.alive}).length+'/'+chn.edges.length);
+  chnChainsHtml();
+  const mk=[['chnLightBtn','lightN'],['chnStallBtn','stallN'],['chnWeldBtn','weldN'],['chnSwapBtn','swapN']];
+  for(let i=0;i<mk.length;i++){
+    const b=document.getElementById(mk[i][0]);
+    if(!b)continue;
+    b.disabled=chn[mk[i][1]]<=0;
+    const e2=b.querySelector('b');
+    if(e2)e2.innerHTML='剩 '+chn[mk[i][1]];
+  }
+  chnPow();
+}
+function chnMeter(){
+  const qf=chn.qms0?Math.max(0,chn.qms/chn.qms0):0;
+  const qb=document.getElementById('chnQBox'),qi=document.getElementById('chnQBar');
+  if(qi)qi.style.width=(qf*100).toFixed(1)+'%';
+  if(qb)qb.classList.toggle('low',qf<.3);
+  chxPut('chnQTxt','⏳ 这一张 '+Math.ceil(chn.qms/1000)+' 秒');
+  chxPut('chnQTxt2','⏳ 这一张 '+Math.ceil(chn.qms/1000)+' 秒');
+  const dn=chnDay(chn.lv),df=dn?Math.max(0,chn.dayMs/dn):0;
+  const db=document.getElementById('chnDayBox'),di=document.getElementById('chnDayBar');
+  if(di)di.style.width=(df*100).toFixed(1)+'%';
+  if(db)db.classList.toggle('low',chn.warn);
+  chxPut('chnDayTxt','🌇 日头还剩 '+Math.ceil(chn.dayMs/1000)+' 秒');
+  const rn=chnRustMs(chn.lv),rf=rn?Math.max(0,chn.rms/rn):0;
+  const rb=document.getElementById('chnRustBox'),ri=document.getElementById('chnRustBar');
+  if(ri)ri.style.width=((1-rf)*100).toFixed(1)+'%';
+  if(rb)rb.classList.toggle('hold',chn.stallMs>0);
+  chxPut('chnRustClockTxt',chn.stallMs>0?('🧿 定锈 '+(chn.stallMs/1000).toFixed(1)+' 秒'):
+    ('🟤 下一根链 '+(chn.rms/1000).toFixed(1)+' 秒后锈断'));
+}
+function chnLine(){
+  const el=document.getElementById('chnHintLine');
+  if(!el)return;
+  let t;
+  const rl=chnReadyList(),dn=chnDimN();
+  if(chn.helpMs>0)t='🔗 <b>歇一记看说明</b>：三只钟全冻住了，看完接着打';
+  else if(chn.busy&&chn.rec&&chn.qi>=chn.n)t='🔗 <b>一串到底</b>：'+chn.rec.ch+' 正在一笔一笔自己写';
+  else if(chn.busy)t='⚒️ 正在换字……';
+  else if(chn.over)t='🏁 这一场交了账，按 <b>再来一场</b> 接着打';
+  else if(chn.warn)t='🌇 <b>日头快落了</b>：这一字打完就得交账';
+  else if(chn.lightMs>0)t='🔦 <b>照链中</b>：亮着 '+rl.length+' 张 —— 可 <b>亮着不等于该摘</b>';
+  else if(chn.stallMs>0)t='🧿 <b>定锈中</b>：这一阵不糊牌、不断链（剩 '+(chn.stallMs/1000).toFixed(1)+' 秒）';
+  else if(chn.weldMs>0)t='🔨 <b>刚敲过锈</b>：牌面擦亮了，断链也焊回去了';
+  else if(!rl.length)t='😳 <b>一张也没解开</b>：这一局摆歪了，按 <code>Enter</code> 换块铁料';
+  else if(chn.duo){
+    const p1=rl.filter(function(i){return chnP1own(i)}).length;
+    t='👥 <b>双人同屏</b>：亮着的 '+rl.length+' 张里 <b>P1</b>（数字键）这半边 '+p1+' 张、<b>P2</b>（方向键+空格）那边 '+
+      (rl.length-p1)+' 张 —— 各摘各那半边，下一笔在同伴那边就开口';
+  }
+  else if(rl.length===1&&chn.cards[rl[0]].si===chn.qi)t='🔓 只有 '+(rl[0]+1)+' 号解得开 —— 就摘它';
+  else if(rl.length>1)t='🔓 <b>'+rl.length+' 张一起亮着</b>：链子只说了个大概，第 '+(chn.qi+1)+
+    ' 笔是哪一张 —— 想想「从上到下、从左到右、先横后竖」';
+  else t='🔗 点一张亮着的铜牌（或按它角上的编号 <code>1</code>~<code>9</code>），上锁的点不开';
+  if(dn&&chn.stallMs<=0)t='🟤 <b>'+dn+' 张牌面糊了</b>（按 <code>F</code> 敲锈擦得回来）<br>'+t;
+  el.innerHTML=t;
+}
+
+/* ================= 段 E：主循环 · 键位与点击 · 双人分边 · 说明 · 生命周期 ================= */
+function chnStartLoop(){
+  if(chn.rafId)return;
+  chn.last=performance.now();
+  function step(now){
+    if(!chn.run||chn.over){chn.rafId=0;return}
+    const dt=Math.min(120,Math.max(8,now-chn.last));
+    chn.last=now;
+    chnTick(dt);
+    if(!chn.run||chn.over)return;
+    chnDraw();
+    chnMeter();
+    chn.hudAcc+=dt;
+    if(chn.hudAcc>=120){chn.hudAcc=0;chnHud();chnLine();chnAsk()}
+    chn.rafId=requestAnimationFrame(step);
+  }
+  chn.rafId=requestAnimationFrame(step);
+}
+function chnStopLoop(){
+  if(chn.rafId){cancelAnimationFrame(chn.rafId);chn.rafId=0}
+}
+/* ---- 下一根该锈的链：挑「最不着急」的那一条，并把它的颜色提前亮出来 ---- */
+function chnRustPickIdx(){
+  let far=-99,bi=-1;
+  for(let k=0;k<chn.edges.length;k++){
+    const e=chn.edges[k];
+    if(!e.alive)continue;
+    if(chn.cards[e.a].done||chn.cards[e.b].done)continue;
+    const ahead=chn.cards[e.b].si-chn.qi;
+    if(ahead>far){far=ahead;bi=k}
+  }
+  return bi;
+}
+function chnRustMark(){
+  const t=chn.stallMs>0?-1:chnRustPickIdx();
+  for(let k=0;k<chn.edges.length;k++)chn.edges[k].rust=(k===t?1:0);
+}
+/* ---- 双人分边：左半场归 P1（数字键），右半场归 P2（光标 + 空格） ---- */
+function chnP1own(i){
+  const c=chn.cards[i];
+  return !!c&&c.x<CHN_W/2;
+}
+function chnDuoPanels(){
+  const p1=document.getElementById('chnDuoP1'),p2=document.getElementById('chnDuoP2');
+  if(p1)p1.classList.toggle('off',!chn.duo);
+  if(p2)p2.classList.toggle('off',!chn.duo);
+}
+function chnDuo(on){
+  chn.duo=(on===undefined?!chn.duo:!!on);
+  chn.held=-1;
+  for(let i=0;i<chn.cards.length;i++)if(!chn.cards[i].done){chn.held=i;break}
+  if(chn.duo)chnMove(0,0);
+  chxAdd('hz_chain_duon',chn.duo?1:0);
+  chnTag(chn.duo?'👥 双人：左半场归 P1、右半场归 P2':'👤 单人','gold');
+  chxSay(chn.duo?
+    '👥 <b>亲子同屏</b>：牌按左右分成两半 —— <b>P1</b> 只用数字键 <code>1</code>~<code>9</code> 摘<b>左边</b>的牌，<b>P2</b> 只用 <code>←↑↓→</code> 指牌、<code>空格</code> 摘<b>右边</b>的牌。<b>下一笔在同伴那半边时，你只能开口告诉他</b>：越急着替对方按，越只会听到一句「这张归同伴」':
+    '👤 <b>单人</b>：点牌、按编号 <code>1</code>~<code>9</code>、或用 <code>←↑↓→</code>+<code>空格</code> 都行','#B3E5FC');
+  const b=document.getElementById('chnDuoBtn');
+  if(b){b.textContent=chn.duo?'👥 双人 ✔':'👥 双人';b.classList.toggle('on',chn.duo)}
+  chnDuoPanels();
+  chnLine();chnHud();chnDraw();
+  return chn.duo?1:0;
+}
+/* ---- 绑定 ---- */
+function chnBind(){
+  if(chn.bound)return;
+  chn.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!chn.run||chn.over)return;
+    const k=e.key;
+    if(k==='Escape'){chnLeave();return}
+    if(k==='h'||k==='H'||k==='?'){e.preventDefault();chnHelp();return}
+    if(chn.helpMs>0){chn.helpMs=0;chnAsk();chnLine();chnHud()}
+    if(k>='1'&&k<='9'){
+      e.preventDefault();
+      if(e.repeat)return;
+      chnTry(+k-1,chn.duo?1:0);
+      return;
+    }
+    if(k==='ArrowLeft'||k==='a'||k==='A'){e.preventDefault();chnMove(-1,0);return}
+    if(k==='ArrowRight'||k==='d'||k==='D'){e.preventDefault();chnMove(1,0);return}
+    if(k==='ArrowUp'||k==='w'||k==='W'){e.preventDefault();chnMove(0,-1);return}
+    if(k==='ArrowDown'||k==='s'||k==='S'){e.preventDefault();chnMove(0,1);return}
+    if(k===' '||k==='Spacebar'){
+      e.preventDefault();
+      if(e.repeat)return;
+      const h=chnHeld();
+      if(h<0){chxSay('😳 还没指着牌：先用 <code>←↑↓→</code> 指一张','#FFD54F');return}
+      chnTry(h,chn.duo?2:0);
+      return;
+    }
+    if(k==='Enter'){e.preventDefault();chnSwap();return}
+    if(k==='q'||k==='Q'){chnLight();return}
+    if(k==='e'||k==='E'){chnStall();return}
+    if(k==='f'||k==='F'){chnWeld();return}
+  });
+  const cv=document.getElementById('chnCanvas');
+  if(cv){
+    const at=function(ev){
+      const r=cv.getBoundingClientRect();
+      if(!r.width||!r.height)return null;
+      return {x:(ev.clientX-r.left)/r.width*CHN_W,y:(ev.clientY-r.top)/r.height*CHN_H};
+    };
+    cv.addEventListener('pointerdown',function(ev){
+      if(!chn.run||chn.over)return;
+      ev.preventDefault();
+      const p=at(ev);
+      if(!p)return;
+      let bi=-1,bd=CHN_HIT*CHN_HIT;
+      for(let i=0;i<chn.cards.length;i++){
+        const c=chn.cards[i];
+        if(c.done)continue;
+        const d=(c.x-p.x)*(c.x-p.x)+(c.y-p.y)*(c.y-p.y);
+        if(d<bd){bd=d;bi=i}
+      }
+      if(bi<0){chnTag('这张台面上没有牌','warn');return}
+      chn.held=bi;
+      chnTry(bi,chn.duo?(chnP1own(bi)?1:2):0);
+    });
+    cv.addEventListener('pointermove',function(ev){
+      if(!chn.run||chn.over)return;
+      const p=at(ev);
+      if(!p)return;
+      let bi=-1,bd=CHN_HIT*CHN_HIT;
+      for(let i=0;i<chn.cards.length;i++){
+        const c=chn.cards[i];
+        if(c.done)continue;
+        const d=(c.x-p.x)*(c.x-p.x)+(c.y-p.y)*(c.y-p.y);
+        if(d<bd){bd=d;bi=i}
+      }
+      if(bi>=0&&bi!==chn.held){chn.held=bi;chnDraw()}
+    });
+  }
+  const mk=[['chnLightBtn',chnLight],['chnStallBtn',chnStall],['chnWeldBtn',chnWeld],
+    ['chnSwapBtn',chnSwap],['chnDuoBtn',function(){chnDuo()}],['chnEndBtn',function(){chnEnd('quit')}],
+    ['chnAgainBtn',function(){chnStart()}],['chnHomeBtn',function(){goHome()}]];
+  for(let i=0;i<mk.length;i++){
+    const b=document.getElementById(mk[i][0]);
+    if(b&&!b.dataset.on){b.dataset.on='1';b.addEventListener('click',mk[i][1])}
+  }
+}
+function chnHelp(){
+  if(!chn.run)return;
+  chn.helpMs=CHN_HELP_MS;
+  chxPut('chnAsk','🔗 <b>怎么在锁链坊里写字</b><br><small>三只钟都先冻住</small>');
+  chxSay('🔗 <b>一笔一张铜牌</b>：牌上只画 <b>这一笔的样子</b>（横/竖/撇/捺/点各有各的颜色），角上印着编号<br>⛓ <b>铁链讲的是先后</b>：链子从 A 拉到 B，意思是 <b>A 那笔得先落</b>。它只来自四种看得出来的结构：<b>上面那笔先写</b>、<b>左边那笔先写</b>、<b>横竖相交先横后竖</b>、<b>笔尖挨着谁就先落谁</b>；看不出来的一律不挂 —— <b>凡是挂出来的链，都和真笔顺不打架</b><br>🔓 <b>亮着 = 上游摘完了</b>，可 <b>亮着常常不止一张</b>：开局就锈断一批链，剩下的线索不够定死答案，第 '+(chn.qi+1)+' 笔到底是哪一张，<b>得你自己认</b><br>🪝 <b>野牌</b>（第 3 场起）：混进来一张别的字的一笔，长得一模一样、也挂着真链 —— 摘它就掉一颗心<br>🔒 <b>上锁的点不开</b>：它上游那张还没摘（只扣 '+CHN_PEN_LOCK+' 分）；<b>亮着却摘错</b>才是真错，扣 '+CHN_PEN_WRONG+' 分、掉一颗心<br>🟤 <b>锈</b>：每 '+(chnRustMs(chn.lv)/1000).toFixed(1)+' 秒锈断一根链（要断的那根会先发红）—— 时间吃掉的是 <b>线索</b>，不是分数<br>⏳ <b>三只钟</b>：这一张的钟（'+(chnQms(chn.lv)/1000).toFixed(0)+' 秒）走光 <b>糊一张牌面</b>（扣 '+CHN_PEN_TIME+' 分）；🌇 <b>日头</b>（'+(chnDay(chn.lv)/1000).toFixed(0)+' 秒）落了这一字锁回架上进错字本、扣一颗心；<code>H</code> 看说明时三只钟全停<br>✋ <b>裸摘</b>：这张牌身上一条活链都没有还摘对了，这一笔的分 <b>×'+CHN_NAKED.toFixed(2)+'</b>；链子全锈光了还一串到底，才是真本事<br>✨ <b>照链 Q</b>：'+(CHN_LIGHT_MS/1000).toFixed(1)+' 秒里把「解得开的牌」全部描金（只告诉你哪些能摘，<b>不告诉你哪张该摘</b>）；🧿 <b>定锈 E</b>：'+(CHN_STALL_MS/1000).toFixed(1)+' 秒不糊牌不断链；🔨 <b>敲锈 F</b>：擦亮全部牌面、焊回两根断链；🔁 <b>换字 Enter</b>：这块铁料不要了（扣 '+CHN_PEN_SWAP+' 分、记进错字本）<br>👥 <b>双人同屏</b>：左半场归 P1（只用数字键）、右半场归 P2（只用 <code>←↑↓→</code>+<code>空格</code>）—— <b>下一笔在同伴那边时你只能开口</b>，替对方按只会听到「这张归同伴」<br>🌇 <b>每收 2 个字进一场</b>（共 9 场）：牌更多、野牌更多、链线更淡、钟更紧；进一场各补一件链具、多一颗心（最多 '+CHN_HEART_MAX+' 颗）','#FFE0B2');
+  chnLine();chnHud();chnMeter();chnDraw();
+}
+/* ---- 开一场：先挑铁料（要推得出链子的字），再摆牌 ---- */
+async function chnNewWord(){
+  if(!chn.run||chn.over)return null;
+  const g=chn.gen,stale=function(){return g!==chn.gen||!chn.run||chn.over};
+  chn.busy=true;
+  const w=chnWant(chn.lv);
+  let have=chn.pool.some(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  if(!have||chn.poolWantMore){
+    chn.poolWantMore=false;
+    chxPut('chnAsk','⚒️ 正在挑铁料……<br><small>第 '+chn.lv+' 场要 '+w[0]+'~'+w[1]+' 笔的字</small>');
+    await chnBuildPool(true,w[0],w[1]);
+    if(stale())return null;
+  }
+  const rec=chnPickRec();
+  if(!rec){
+    chn.run=false;
+    chxPut('chnAsk','😢 挑不出推得出链子的字<br><small>先去别的模式练两笔</small>');
+    chxT(function(){chnEnd('pool')},900);
+    return null;
+  }
+  chn.rec=rec;chn.n=rec.n;
+  const cnt=chnDeal();
+  if(!cnt||!chn.cards.length){
+    chn.run=false;
+    chxPut('chnAsk','😢 这一台牌摆不起来<br><small>换个字再来</small>');
+    chxT(function(){chnEnd('pool')},900);
+    return null;
+  }
+  chn.qms0=chnQms(chn.lv);chn.qms=chn.qms0;
+  chn.rms=chnRustMs(chn.lv);
+  chn.dayMs=chnDay(chn.lv);chn.warn=false;chn.beep=0;
+  chn.cleanWord=true;chn.dryWord=true;
+  chn.nagMs=0;chn.nagHold=0;chn.helpMs=0;
+  chn.held=-1;
+  chnRustMark();
+  chn.busy=false;
+  chxSay('🔗 <b>'+rec.ch+'</b> 一共 '+rec.n+' 笔：先看链子，再看 <b>第 1 笔是哪一张</b>。'+
+    (chnReadyList().length>1?'亮着 <b>'+chnReadyList().length+'</b> 张，链子没把答案说死':'')+'','#B3E5FC');
+  chnMini();chnAsk();chnHud();chnMeter();chnLine();chnDraw();
+  return rec.ch;
+}
+function chnStopAll(){
+  chnStopLoop();chxKillTimers();chn.gen++;
+  if(chn.tagTimer){clearTimeout(chn.tagTimer);chn.tagTimer=0}
+  chn.tagOn=0;
+  /* 孩子在「串完了」那一瞬的忙相里按了返回：忙相得跟着收摊，不然下一局开局还挂着 busy，
+     牌全解得开却摘不动 —— 收摊就是把一切都还回去，busy 也不例外 */
+  chn.busy=false;
+  chn.helpMs=0;chn.actMs=0;chn.lightMs=0;chn.stallMs=0;chn.weldMs=0;chn.nagMs=0;chn.nagHold=0;
+  chn.held=-1;chn.fx=[];
+  const tg=document.getElementById('chnTag');
+  if(tg)tg.className='chn-tag';
+}
+async function chnStart(){
+  chnStopAll();
+  const g=chn.gen,stale=function(){return g!==chn.gen||!chn.run||chn.over};
+  chn.run=true;chn.over=false;chn.timers=[];
+  chn.lv=1;chn.score=0;chn.hearts=CHN_HEARTS;chn.combo=0;chn.maxCombo=0;
+  chn.words=0;chn.lits=0;chn.picks=0;chn.wrongs=0;chn.locks=0;chn.timeouts=0;
+  chn.rusts=0;chn.broke=0;chn.wilds=0;chn.tools=0;chn.nags=0;
+  chn.lightN=CHN_P0;chn.stallN=CHN_P0;chn.weldN=CHN_P0;chn.swapN=1;
+  chn.lightUse=0;chn.stallUse=0;chn.weldUse=0;chn.swapUse=0;
+  chn.pool=[];chn.wbag={};chn.miss=[];chn.gotCh=[];chn.doneCh=[];chn.rec=null;chn.n=0;
+  chn.cards=[];chn.edges=[];chn.slots=[];chn.qi=0;chn.done=[];chn.busy=false;
+  chn.t=0;chn.playMs=0;chn.tones=0;chn.hudAcc=0;chn.first=true;chn.newBest=false;
+  chn.dayMs=CHN_DAY0;chn.qms0=chnQms(1);chn.qms=chn.qms0;chn.rms=chnRustMs(1);
+  chn.warn=false;chn.beep=0;
+  chn.naked=0;chn.nakedRun=0;chn.nakedMax=0;
+  chn.duo=false;chn.duoPlucks=0;chn.duoCuts=0;chxKillTimers();
+  chn.miss=(localStorage.getItem('hz_chain_miss')||'').split(',').filter(function(c){return c.length===1});
+  chn.gotCh=(localStorage.getItem('hz_chain_book')||'').split(',').filter(function(c){return c.length===1});
+  chn.got0=chn.gotCh.length;   /* 开局时架上有几个字：结算那句「这一场新收几个」得从这儿减 */
+  showScreen('chain');
+  chnBind();chnCanvasSize();
+  chnDuoPanels();
+  const yd=document.getElementById('chnYard');
+  if(yd)yd.classList.remove('dead');
+  chnHud();chnMeter();chnLine();
+  chxSay('🔗 <b>一笔一张铜牌</b>，牌与牌之间锁着铁链：链子说 <b>A 那笔得先落</b><br>⛓ 链子只挂 <b>看得出来</b> 的那几种：<b>上面的先写、左边的先写、横竖相交先横后竖、笔尖挨着谁先落谁</b>。凡是挂出来的链，<b>都和真笔顺不打架</b><br>🔓 亮着的牌 = 它上游全摘完了。<b>可亮着的常常不止一张</b> —— 开局就锈断一批链，剩下的线索不够定死答案，第 1 笔是哪一张得你自己认<br>🟤 <b>锈</b>每 '+(chnRustMs(1)/1000).toFixed(1)+' 秒吃掉一根链（发红的那根就是下一个），时间吃的是 <b>线索</b> 不是分数；⏳ 这一张的钟走光 <b>糊牌面</b>；🌇 <b>日头</b> 落了这一字进错字本<br>🪝 第 3 场起混进 <b>野牌</b>：别的字的一笔，长得一样也挂着真链，摘它就是答错<br>✨ <code>Q</code> 照链（只描金能摘的，不说是哪张）· <code>E</code> 定锈 · <code>F</code> 敲锈（擦亮＋焊回两根）· <code>Enter</code> 换字<br>👥 点 <b>双人</b>：左半场归 P1 的数字键，右半场归 P2 的方向键 + 空格，<b>下一笔在对面就只能开口</b>','#C8E6C9');
+  chxPut('chnAsk','🔗 正在挑铁料……<br><small>在字库里找「链子推得出来」的字</small>');
+  let ok=await chnBuildPool();
+  if(stale())return;
+  if(!ok){
+    chxPut('chnAsk','🔗 铁料还在路上……<br><small>多等一记</small>');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await chnBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!chn.pool.length){
+    chn.run=false;
+    chxPut('chnAsk','😢 字库没加载好<br><small>稍后再来打链</small>');
+    chxSay('先去别的模式练两笔，回来字就齐了','#FFF59D');
+    return;
+  }
+  chxAdd('hz_chain_games',1);
+  await chnNewWord();
+  if(!chn.rec||!chn.rec.n||!chn.run||chn.over||stale()){
+    chn.run=false;
+    chxPut('chnAsk','😢 这一场没铺开<br><small>稍后再来打链</small>');
+    return;
+  }
+  chnStartLoop();
+}
+function chnLeave(){
+  chnStopAll();
+  if(chn.run&&!chn.over){chnBank();chn.over=true;chn.run=false}
+  goHome();
+}
+function chnAgain(){chnStart()}
+function chnCanvasSize(){
+  const cv=document.getElementById('chnCanvas');
+  if(!cv)return;
+  cv.width=CHN_W;cv.height=CHN_H;
+  chn.ctx=cv.getContext?cv.getContext('2d'):null;
+}
+
+/* ================= 段 F：结算与落盘 · 链具架（与别处的徽章、图鉴、小兽互通） ================= */
+/* hz_chain_* 的分工：一堆累计计数键（收字/落笔/裸摘/零错/锈断/摘错/上锁/糊面/换字/道具/双人）
+   + 几个 max 键（最好一场分数/最长连击/最深一场/最长裸串/最多分边摘）
+   + 一张 avg 键（平均每张牌想了多少毫秒，越小越利索）
+   + 三个名单键（图鉴 hz_chain_book · 错字本 hz_chain_miss · 链具架 hz_chain_shelf）。
+   称号读累计收字数 hz_chain_words，不是「最好一场」那个。 */
+function chxSaveMiss(){
+  localStorage.setItem('hz_chain_miss',chn.miss.slice(0,CHN_BOOK_MAX).join(','));
+}
+function chnMissAdd(ch){
+  if(!ch)return;
+  if(chn.miss.indexOf(ch)<0){chn.miss.push(ch);chxSaveMiss()}
+}
+function chnBookAdd(ch){
+  if(!ch||chn.gotCh.indexOf(ch)>=0)return;
+  chn.gotCh.push(ch);
+  localStorage.setItem('hz_chain_book',chn.gotCh.slice(0,400).join(','));
+}
+/* ---- 链具架：八件家什，每一件都要真做到过才上架（第三件认别处打来的章节徽章） ---- */
+const CHN_SHELF=[
+  {k:'铜扣',d:'串完第一个字',ok:function(){return chxInt('hz_chain_words')>=1}},
+  {k:'铁环',d:'连击到 6',ok:function(){return chxInt('hz_chain_combo')>=6}},
+  {k:'锁芯',d:'裸摘累计 5 张',ok:function(){return chxInt('hz_chain_naked')>=5}},
+  {k:'钥匙',d:'打到第 3 场',ok:function(){return chxInt('hz_chain_lv')>=3}},
+  {k:'铁钳',d:'被锈吃掉 20 根链',ok:function(){return chxInt('hz_chain_snap')>=20}},
+  {k:'铆钉',d:'零错串完 3 个字',ok:function(){return chxInt('hz_chain_clean')>=3}},
+  {k:'链条',d:'图鉴收到 12 个字',ok:function(){return (localStorage.getItem('hz_chain_book')||'').split(',').filter(function(c){return c.length===1}).length>=12}},
+  {k:'磨石',d:'别处的章节徽章攒到 3 枚',ok:function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}}}
+];
+function chnShelfCheck(){
+  const have=(localStorage.getItem('hz_chain_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  for(let i=0;i<CHN_SHELF.length;i++){
+    const s=CHN_SHELF[i];
+    if(have.indexOf(s.k)<0&&s.ok()){have.push(s.k);got.push(s.k)}
+  }
+  localStorage.setItem('hz_chain_shelf',have.join(','));
+  localStorage.setItem('hz_chain_trophy',String(have.length));
+  if(got.length){
+    localStorage.setItem('hz_chain_trophy_n',String(chxInt('hz_chain_trophy_n')+got.length));
+    chxSay('🗄️ 链具架上多了 <b>'+got.join('、')+'</b>（一共 '+have.length+'/'+CHN_SHELF.length+' 件）','#FFE0B2');
+  }
+  return {have:have,got:got};
+}
+function chnBankLite(){
+  /* 串完一个字当场就把纪录存进去了。这一场最后若是「平着自己破的纪录」，
+     结算那行还得给孩子挂上「新高」——所以破过就得留个记号，不能让孩子看不见自己刚破的纪录 */
+  if(chn.score>chxInt('hz_chain_best')){localStorage.setItem('hz_chain_best',String(chn.score));chn.newBest=true}
+  if(chn.maxCombo>chxInt('hz_chain_combo'))localStorage.setItem('hz_chain_combo',String(chn.maxCombo));
+  if(chn.lv>chxInt('hz_chain_lv'))localStorage.setItem('hz_chain_lv',String(chn.lv));
+  if(chn.nakedMax>chxInt('hz_chain_nakedmax'))localStorage.setItem('hz_chain_nakedmax',String(chn.nakedMax));
+  chnShelfCheck();
+}
+function chnBank(){
+  /* newBest 是「这一场中途已经把纪录写进去了」的记号：分数只涨到那儿、结算时正好持平，
+     那也是孩子破的纪录，得照样挂「新高」。但这一场后来又掉了分，就不算破，也绝不许把纪录往下改 */
+  const best=chxInt('hz_chain_best'),isBest=chn.score>best||(chn.newBest===true&&chn.score===best);
+  if(isBest)localStorage.setItem('hz_chain_best',String(chn.score));
+  if(chn.maxCombo>chxInt('hz_chain_combo'))localStorage.setItem('hz_chain_combo',String(chn.maxCombo));
+  if(chn.lv>chxInt('hz_chain_lv'))localStorage.setItem('hz_chain_lv',String(chn.lv));
+  if(chn.nakedMax>chxInt('hz_chain_nakedmax'))localStorage.setItem('hz_chain_nakedmax',String(chn.nakedMax));
+  if(chn.duoPlucks>chxInt('hz_chain_duomax'))localStorage.setItem('hz_chain_duomax',String(chn.duoPlucks));
+  if(chn.picks){
+    const per=Math.round(chn.playMs/chn.picks);
+    if(!chxInt('hz_chain_fastest')||per<chxInt('hz_chain_fastest'))localStorage.setItem('hz_chain_fastest',String(per));
+  }
+  chxAdd('hz_chain_lits',chn.lits);
+  chxAdd('hz_chain_picks',chn.picks);
+  chxAdd('hz_chain_naked',chn.naked);
+  chxAdd('hz_chain_snap',chn.rusts);
+  chxAdd('hz_chain_wrong',chn.wrongs);
+  chxAdd('hz_chain_lock',chn.locks);
+  chxAdd('hz_chain_dim',chn.timeouts);
+  chxAdd('hz_chain_swap',chn.swapUse);
+  chxAdd('hz_chain_weld',chn.weldUse);
+  chxAdd('hz_chain_tools',chn.tools);
+  chxAdd('hz_chain_dayo',chn.broke);
+  const sf=chnShelfCheck();
+  return {best:Math.max(best,chn.score),isBest:isBest,shelf:Math.min(CHN_SHELF.length,(localStorage.getItem('hz_chain_shelf')||'').split(',').filter(function(s){return s}).length),got:sf.got};
+}
+function chnEnd(why){
+  if(chn.over)return;
+  chn.over=true;
+  chnStopLoop();chxKillTimers();
+  chn.run=false;chn.busy=false;chn.held=-1;chn.fx=[];
+  const tg=document.getElementById('chnTag');if(tg)tg.className='chn-tag';
+  if(chn.tagTimer){clearTimeout(chn.tagTimer);chn.tagTimer=0}
+  chn.tagOn=0;
+  const yd=document.getElementById('chnYard');if(yd)yd.classList.add('dead');
+  /* 心掉完才算「这一字没吃下」；日头落已经在 chnDayOut 里进过错字本了 */
+  if(why==='broke'&&chn.rec&&chn.qi<chn.n)chnMissAdd(chn.rec.ch);
+  const bk=chnBank(),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(chn.score/14)+chn.words*2);
+  if(why!=='pool')addStars(stars);
+  showScreen('chain-result');
+  chxPut('chnRsEmoji',{quit:'🏳️',day:'🌇',broke:'💔',pool:'😢'}[why]||'🔗');
+  chxPut('chnRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  chxPut('chnRsTitle',why==='broke'?'心掉完了':(why==='day'?'日头落了':(why==='quit'?'这一场先收了':'铁料没凑齐')));
+  const tot=chxInt('hz_chain_words'),rk=chxRank(tot);
+  chxPut('chnRsSub','第 '+chn.lv+' 场 · 累计串完 '+tot+' 个字 · '+rk.e+' '+rk.t);
+  chxPut('chnRsScore','🎯 '+chn.score+' 分'+(isBest?' 🏅 新高':''));
+  chxPut('chnRsWords','🔗 串完 '+chn.words+' 个字');
+  chxPut('chnRsPicks','🖋 摘对 '+chn.picks+' 张 · 快答 '+chn.lits+' 张');
+  chxPut('chnRsSub2','🪝 摘错 '+chn.wrongs+'（野牌 '+chn.wilds+'）· 撞锁 '+chn.locks+' · 钟响 '+chn.timeouts+' 回');
+  chxPut('chnRsNaked','✋ 裸摘 '+chn.naked+' 张（最长一串 '+chn.nakedMax+'）· 零错 '+chxInt('hz_chain_clean')+' 个字');
+  chxPut('chnRsRust','🟤 锈断 '+chn.rusts+' 根 · 焊回 '+chn.weldUse+' 根 · 日头落 '+chn.broke+' 回');
+  chxPut('chnRsTools','✨ 照链 '+chn.lightUse+' · 🧿 定锈 '+chn.stallUse+' · 🔨 敲锈 '+chn.weldUse+' · 🔁 换字 '+chn.swapUse);
+  chxPut('chnRsDuo',chn.duo?'👥 分边摘 '+chn.duoPlucks+' 张 · 越界被拦 '+chn.duoCuts+' 次（各半串完的字另加 '+CHN_WORD_BONUS+'）':
+    '👤 单人打：平均每张牌想了 '+(chn.picks?Math.round(chn.playMs/chn.picks/100)/10:0)+' 秒 —— 想试试一人一半，点 <b>双人</b>');
+  chxPut('chnRsCombo','🔥 最长连 '+chn.maxCombo);
+  chxPut('chnRsBest','🏆 最高 '+best+' 分 · ⚡ 最利索 '+(chxInt('hz_chain_fastest')||'—')+' 毫秒/张');
+  const book=(localStorage.getItem('hz_chain_book')||'').split(',').filter(function(c){return c.length===1});
+  const miss=chn.miss.slice();
+  /* gotCh 开局就装着架上原有的字：「这一场新收几个」得从那一刻减起，不然架上 12 个字时孩子会看到「新收 12 个」 */
+  const newGot=chn.gotCh.length-chn.got0;
+  chxPut('chnRsBook','架上 <b>'+book.length+'</b> 个字'+(book.length?'<small>（'+book.slice(-14).join(' ')+'）</small>':'')+
+    (newGot>0?'，这一场新收 '+newGot+' 个':'')+
+    ' · 链具架 <b>'+bk.shelf+'/'+CHN_SHELF.length+'</b> 件（'+(localStorage.getItem('hz_chain_shelf')||'—')+'）'+
+    (bk.got.length?'<b>，新上架：'+bk.got.join('、')+'</b>':'')+
+    ' · 错字本 <b>'+miss.length+'</b> 个'+(miss.length?'（'+miss.slice(-12).join(' ')+'，过几轮还回来）':'')+
+    '<br>⭐ 这 '+stars+' 颗星已经喂给<b>书桌小兽</b>；串完的字也进了它的记忆池'+
+    (JSON.parse((function(){try{return localStorage.getItem('hz_badges')||'[]'}catch(e){return '[]'}})()).length?
+      ' · 你在<b>大冒险</b>里攒的章节徽章也被这间坊认了（链具架上的磨石就是这么来的）':''));
+  const acc=chn.picks+chn.wrongs;
+  const hit=acc?Math.round(chn.picks/acc*100):0;
+  chxPut('chnRsWhy',why==='broke'?'💔 <b>摘错 '+chn.wrongs+' 次</b>：链子只保证「看得出先后」的那些，<b>亮着的牌里只有一张是下一笔</b>。出手前先在心里把这个字写一遍，再对编号'+
+    (chn.wilds?'；另外还有 <b>'+chn.wilds+' 次栽在野牌上</b> —— 那个字的笔数对不上，就不是它家的一笔':'')+
+    (why==='broke'&&chn.locks?'；撞锁 '+chn.locks+' 次说明链子看懂了，笔顺还没背熟':''):
+    (why==='day'?'🌇 <b>日头落了</b>：'+(chn.rusts?'这一场锈断了 <b>'+chn.rusts+'</b> 根链，到后面全靠背 —— ':'')+
+      '别一张张试，先念口诀：<b>从上到下、从左到右、先横后竖、笔尖挨着谁先落谁</b>；剩下没链的，才是真正要背的那几笔':
+    (why==='pool'?'😢 <b>字没凑齐</b>：这一坊要的是「每一笔都认得出笔形、又推得出链子」的字，网络一断就挑不出来，回头再来':
+    (chn.rusts>=4?'🟤 <b>锈吃了 '+chn.rusts+' 根链</b>：链子被吃掉不等于出错 —— 你还有 <b>'+chn.naked+'</b> 次裸摘（×'+CHN_NAKED.toFixed(2)+'）。'+
+      '想少赔就按 <code>E</code> 定锈，想捞回来就按 <code>F</code> 敲锈':
+    '🔗 手感不错：'+acc+' 次出手里 <b>'+hit+'%</b> 摘的是该摘的那一张，最长连 '+chn.maxCombo+'、裸摘 '+chn.naked+
+      ' 张 —— 下一场链线只留个影子、野牌也会混进来，试试一道具不用串完一个字'))));
+  chxSay('🔗 这一场串了 <b>'+chn.words+'</b> 个字、摘对 <b>'+chn.picks+'</b> 张（快答 <b>'+chn.lits+
+    '</b>、裸摘 <b>'+chn.naked+'</b>），摘错 <b>'+chn.wrongs+'</b>（野牌 <b>'+chn.wilds+'</b>）、撞锁 <b>'+chn.locks+
+    '</b>、钟响 <b>'+chn.timeouts+'</b> 回、锈断 <b>'+chn.rusts+'</b> 根、换字 <b>'+chn.swapUse+'</b> 回、日头落 <b>'+
+    chn.broke+'</b> 回，道具 <b>'+chn.tools+'</b> 次'+(chn.duo?'，分边摘 <b>'+chn.duoPlucks+'</b> 张、被拦 <b>'+chn.duoCuts+'</b> 次':'')+
+    '。<br>战绩落盘 <code>hz_chain_*</code>：称号按<b>累计串完的字数</b>走，链具架 <b>'+bk.shelf+'/'+CHN_SHELF.length+
+    '</b> 件（<b>磨石</b>认的是你在<b>大冒险</b>里打到的章节徽章），错字本里的字 <b>过几轮优先还回来</b>','#C8E6C9');
+  chnNudge();
+}
+function chnNudge(){
+  const dot=document.getElementById('chnCardDot'),tip=document.getElementById('chnCardTip');
+  const tot=chxInt('hz_chain_words'),games=chxInt('hz_chain_games'),picks=chxInt('hz_chain_picks');
+  const rk=chxRank(tot),shelf=chxInt('hz_chain_trophy');
+  if(tip)tip.textContent=games?(rk.e+' '+rk.t+' · 串完 '+tot+' 个字 · 摘对 '+picks+' 张 · 锈断 '+chxInt('hz_chain_snap')+
+    ' 根 · 链具架 '+shelf+' 件'):'一笔一张铜牌，牌间锁着铁链：链子只讲看得出来的先后，剩下的全靠你自己背';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(games?'':'🆕')}
+}
+
+/* ================= 段 G：无头测试挂钩（锁链坊：链子必须永远不骗人，所以每一条都验得起） ================= */
+/* ---- 纯函数：给一个字，把「推得出的链 / 约简后的链 / 真笔顺能不能一路走到底」全算出来 ---- */
+window.vChnProof=function(ch){
+  const raw=charDataCache[ch];
+  if(!raw||!raw.medians||!raw.strokes||raw.medians.length!==raw.strokes.length)return null;
+  const n=raw.medians.length,dirs=[];
+  for(let i=0;i<n;i++)dirs.push(fmDirOf(raw.medians[i]));
+  const es=chnEdges(raw.medians,dirs);
+  const red=chnTransReduce(es,n);
+  /* 真笔顺这一条路走不走得通：按 0,1,…,n-1 落笔，每一笔都得是「解得开的」 */
+  const done=[];for(let i=0;i<n;i++)done.push(false);
+  let blockAt=-1,readyAt=[];
+  for(let i=0;i<n;i++){
+    let ok=true;
+    for(let k=0;k<red.length;k++)if(red[k][1]===i&&!done[red[k][0]])ok=false;
+    if(ok)readyAt.push(1);else{readyAt.push(0);if(blockAt<0)blockAt=i}
+    done[i]=true;
+  }
+  let asc=0;for(let k=0;k<es.length;k++)if(es[k][0]<es[k][1])asc++;
+  return {ch:ch,n:n,dirs:dirs,edges:es,asc:asc,red:red,readyAt:readyAt,blockAt:blockAt,
+    made:chnMake(ch,raw,8)?1:0,kinds:(function(){let m=0;for(let i=0;i<n;i++)if(dirs[i]>=0)m|=1<<dirs[i];return m})()};
+};
+/* 从 from 出发顺着这批链能走到谁 */
+function chxReachOf(es,n,from){
+  const seen=[];for(let i=0;i<n;i++)seen.push(false);
+  seen[from]=true;
+  let go=true;
+  while(go){
+    go=false;
+    for(let k=0;k<es.length;k++){
+      const a=es[k][0],b=es[k][1];
+      if(seen[a]&&!seen[b]){seen[b]=true;go=true}
+    }
+  }
+  return seen;
+}
+/* 只喂真实数据：把一批字逐个验一遍，返回所有不合格的那几条 */
+window.vChnAudit=function(list){
+  const out=[];
+  for(let t=0;t<list.length;t++){
+    const p=window.vChnProof(list[t]);
+    if(!p){out.push(p+' 数据没加载 '+list[t]);continue}
+    for(let k=0;k<p.edges.length;k++){
+      const e=p.edges[k];
+      if(!(e[0]<e[1]))out.push('链子和真笔顺打架 '+p.ch+' '+e.join('→'));
+      if(e[0]<0||e[1]>=p.n)out.push('链子越界 '+p.ch);
+    }
+    if(p.blockAt>=0)out.push('真笔顺被链子堵住在第 '+p.blockAt+' 笔 '+p.ch);
+    /* 约简后的集合必须还说出原来每一句话，而且自己一句都不能少 */
+    for(let k=0;k<p.edges.length;k++){
+      if(!chxReachOf(p.red,p.n,p.edges[k][0])[p.edges[k][1]])out.push('约简把话说过头 '+p.ch+' 丢了 '+p.edges[k].join('→'));
+    }
+    for(let k=0;k<p.red.length;k++){
+      const rest=p.red.slice(0,k).concat(p.red.slice(k+1));
+      if(chxReachOf(rest,p.n,p.red[k][0])[p.red[k][1]])out.push('约简没减干净 '+p.ch+' 冗余链 '+p.red[k].join('→'));
+    }
+  }
+  return out;
+};
+/* ---- 摆场审计：这一台牌到底合不合格 ---- */
+window.vChnDealAudit=function(){
+  const out=[],n=chn.n,cards=chn.cards,es=chn.edges;
+  if(!n)return ['没字'];
+  if(cards.length<n)out.push('牌比笔少');
+  for(let i=0;i<n;i++){
+    const c=cards[i];
+    if(!c||c.si!==i||c.wild)out.push('第 '+i+' 号牌不对位');
+  }
+  for(let i=n;i<cards.length;i++)if(!cards[i].wild)out.push('第 '+i+' 号牌该是野牌');
+  for(let k=0;k<es.length;k++){
+    const e=es[k];
+    if(!cards[e.a]||!cards[e.b])out.push('链子挂着不存在的牌');
+    else if(cards[e.a].wild)out.push('野牌当了上游');
+    if(!(e.a<e.b))out.push('链子方向不对 '+e.a+'→'+e.b);
+    if(e.b>=n&&!cards[e.b].wild)out.push('链子挂到野牌却不是野牌');
+    if(e.a!==e.b&&(e.a<0||e.b<0))out.push('链子端点为负');
+  }
+  const seen={};
+  for(let i=0;i<cards.length;i++){
+    const k=cards[i].x+','+cards[i].y;
+    if(seen[k])out.push('两张牌叠在同一格');
+    seen[k]=1;
+    if(cards[i].x<CHN_CARD/2||cards[i].x>CHN_W-CHN_CARD/2)out.push('牌出界 x='+cards[i].x);
+    if(cards[i].y<CHN_CARD/2||cards[i].y>CHN_H-CHN_CARD/2)out.push('牌出界 y='+cards[i].y);
+  }
+  return out;
+};
+/* ---- 全量不变量 ---- */
+window.vChnInv=function(){
+  const out=[];
+  if(!Number.isInteger(chn.qi)||chn.qi<0||chn.qi>chn.n)out.push('笔序越界 '+chn.qi+'/'+chn.n);
+  if(chn.done.length!==chn.qi)out.push('落笔账本 '+chn.done.length+' 与 qi '+chn.qi+' 不符');
+  for(let i=0;i<chn.done.length;i++)if(chn.done[i]!==i)out.push('落笔顺序不是笔顺 '+chn.done.join(','));
+  for(let i=0;i<chn.cards.length;i++){
+    const c=chn.cards[i];
+    if(c.done&&c.wild)out.push('野牌被摘掉了 '+i);
+    if(!c.wild&&c.done&&c.si>=chn.qi)out.push('第 '+(c.si+1)+' 笔的牌摘了却没进位');
+    if(!c.wild&&!c.done&&c.si<chn.qi)out.push('第 '+(c.si+1)+' 笔该摘了却没摘');
+  }
+  for(let k=0;k<chn.edges.length;k++){
+    const e=chn.edges[k];
+    if(e.alive===e.broke)out.push('链子的 alive/broke 打架');
+    if(chn.cards[e.a]&&chn.cards[e.a].wild)out.push('野牌当了上游');
+    if(!(e.a<e.b))out.push('链子方向反了');
+  }
+  /* 只要还没串完，第 qi 笔那张牌必须摘得开 —— 这一条就是「不许出错题」的总闸 */
+  if(chn.rec&&!chn.busy&&!chn.over&&chn.qi<chn.n&&!chnIsReady(chn.qi))out.push('这一笔的牌被锁住了 '+chn.qi);
+  if(chn.rec&&!chn.busy&&!chn.over&&chn.qi<chn.n&&!chnReadyList().length)out.push('一张也解不开');
+  if(chn.score<0)out.push('分数<0');
+  if(chn.hearts<0)out.push('心<0');
+  if(chn.combo<0||chn.maxCombo<chn.combo)out.push('连击 '+chn.combo+'/'+chn.maxCombo);
+  if(chn.nakedRun>chn.naked||chn.nakedMax<chn.nakedRun)out.push('裸摘账 '+chn.naked+'/'+chn.nakedRun+'/'+chn.nakedMax);
+  if(chn.lv<1||chn.lv>9)out.push('场次 '+chn.lv);
+  if(chn.words<0||chn.words>chn.picks)out.push('字数>摘牌数');
+  if(chn.lightN<0||chn.stallN<0||chn.weldN<0||chn.swapN<0)out.push('链具数为负');
+  if(chn.tools!==chn.lightUse+chn.stallUse+chn.weldUse+chn.swapUse)out.push('道具账 '+chn.tools+'/'+chn.lightUse+chn.stallUse+chn.weldUse+chn.swapUse);
+  if(!isFinite(chn.qms)||chn.qms<-CHN_TICK_MS)out.push('卡钟 '+chn.qms);
+  if(!isFinite(chn.rms)||chn.rms<-CHN_TICK_MS)out.push('锈钟 '+chn.rms);
+  if(!isFinite(chn.dayMs)||chn.dayMs<-CHN_TICK_MS)out.push('日头 '+chn.dayMs);
+  if(chn.qms0!==chnQms(chn.lv)&&chn.rec)out.push('卡钟基准 '+chn.qms0+' 该 '+chnQms(chn.lv));
+  if(chn.dayMs>chnDay(chn.lv)+1&&chn.rec)out.push('日头超出 '+chn.dayMs);
+  let brk=0;for(let k=0;k<chn.edges.length;k++)if(chn.edges[k].broke)brk++;
+  /* 锈断计数是「这一场」攒下来的，台面上的链是「这一块铁料」的 —— 两个不是一把尺；
+     比得起的是：当下断链 ≤ 这一台的总链，且 ≤ 累计锈断（焊回来只会让下面这个数变小） */
+  if(brk>chn.edges.length)out.push('断链 '+brk+' 根比这一台的总链数 '+chn.edges.length+' 还多');
+  if(brk>chn.rusts)out.push('断链 '+brk+' 根比锈断计数 '+chn.rusts+' 多');
+  if(isNaN(chn.score)||isNaN(chn.picks)||isNaN(chn.rusts))out.push('计数 NaN');
+  if(!isFinite(chn.playMs)||chn.playMs<0)out.push('进行时间 '+chn.playMs);
+  if(chn.held>=0&&(!chn.cards[chn.held]||chn.cards[chn.held].done))out.push('指着没有的牌 '+chn.held);
+  if(chn.duo&&chn.held>=0&&chnP1own(chn.held))out.push('双人光标跑到 P1 那半边 '+chn.held);
+  return out;
+};
+/* ---- 只读快照 ---- */
+window.vChnCards=function(){
+  const rl={};for(let i=0;i<chn.cards.length;i++)rl[i]=chnIsReady(i)?1:0;
+  return chn.cards.map(function(c,i){
+    return {i:i,si:c.si,wild:c.wild?1:0,dir:c.dir,ready:rl[i],done:c.done?1:0,dim:c.dim?1:0,
+      x:Math.round(c.x),y:Math.round(c.y),links:chnLiveLinks(i),
+      p1:chnP1own(i)?1:0,flash:Math.round(c.flash),shake:Math.round(c.shake),pull:Math.round(c.pull)};
+  });
+};
+window.vChnEdges=function(){
+  return chn.edges.map(function(e,k){
+    return {k:k,a:e.a,b:e.b,alive:e.alive?1:0,broke:e.broke?1:0,rust:e.rust?1:0,
+      sat:chn.cards[e.a].done?1:0,fx:Math.round(e.fx),
+      aw:chn.cards[e.a].wild?1:0,bw:chn.cards[e.b].wild?1:0};
+  });
+};
+window.vChnReady=function(){return chnReadyList()};
+window.vChnState=function(){
+  return {run:chn.run?1:0,over:chn.over?1:0,busy:chn.busy?1:0,lv:chn.lv,qi:chn.qi,n:chn.n,
+    ch:chn.rec?chn.rec.ch:'',dirs:chn.rec?chn.rec.dirs.join(''):'',
+    cards:chn.cards.length,edges:chn.edges.length,live:chn.edges.filter(function(e){return e.alive}).length,
+    ready:chnReadyList().length,dim:chnDimN(),wild:chnWild(chn.lv),faint:chnFaint(chn.lv)?1:0,
+    cut:chnCut(chn.lv),want:chnReadyWant(chn.lv),
+    score:chn.score,hearts:chn.hearts,combo:chn.combo,maxCombo:chn.maxCombo,
+    words:chn.words,picks:chn.picks,lits:chn.lits,wrongs:chn.wrongs,locks:chn.locks,
+    timeouts:chn.timeouts,rusts:chn.rusts,broke:chn.broke,wilds:chn.wilds,tools:chn.tools,nags:chn.nags,
+    naked:chn.naked,nakedRun:chn.nakedRun,nakedMax:chn.nakedMax,
+    cleanWord:chn.cleanWord?1:0,dryWord:chn.dryWord?1:0,
+    lightN:chn.lightN,stallN:chn.stallN,weldN:chn.weldN,swapN:chn.swapN,
+    lightUse:chn.lightUse,stallUse:chn.stallUse,weldUse:chn.weldUse,swapUse:chn.swapUse,
+    lightMs:Math.round(chn.lightMs),stallMs:Math.round(chn.stallMs),weldMs:Math.round(chn.weldMs),
+    qms:Math.round(chn.qms),qms0:Math.round(chn.qms0),rms:Math.round(chn.rms),
+    rustOf:chnRustMs(chn.lv),dayMs:Math.round(chn.dayMs),dayOf:chnDay(chn.lv),
+    warn:chn.warn?1:0,helpMs:Math.round(chn.helpMs),nagHold:Math.round(chn.nagHold),actMs:Math.round(chn.actMs),
+    t:Math.round(chn.t),playMs:Math.round(chn.playMs),held:chn.held,tagOn:chn.tagOn?1:0,
+    duo:chn.duo?1:0,duoPlucks:chn.duoPlucks,duoCuts:chn.duoCuts,
+    fx:chn.fx.length,timers:chn.timers.length,tones:chn.tones,pool:chn.pool.length,
+    bag:chn.wbag?Object.keys(chn.wbag).length:0,miss:chn.miss.length,got:chn.gotCh.length,
+    newGot:chn.gotCh.length-chn.got0,got0:chn.got0,
+    gain:chnGain(true,true),gainPlain:chnGain(false,true),
+    rustIdx:chnRustPickIdx(),bound:chn.bound?1:0,raf:chn.rafId?1:0,
+    trophy:chxInt('hz_chain_trophy'),book:(localStorage.getItem('hz_chain_book')||'').split(',').filter(function(c){return c.length===1}).length};
+};
+/* 每张牌身上还压着几条活链（上游没摘完的）：锁住的牌必须 >0 */
+window.vChnLock=function(ci){
+  let up=0,down=0;
+  for(let k=0;k<chn.edges.length;k++){
+    const e=chn.edges[k];
+    if(!e.alive)continue;
+    if(e.b===ci&&!chn.cards[e.a].done)up++;
+    if(e.a===ci&&!chn.cards[e.b].done)down++;
+  }
+  return {up:up,down:down,ready:chnIsReady(ci)?1:0,wild:chn.cards[ci].wild?1:0,si:chn.cards[ci].si};
+};
+/* ---- 一手操作 ---- */
+window.vChnTick=function(dt){chnTick(dt||CHN_TICK_MS);return Math.round(chn.t)};
+window.vChnPump=function(ms,step){
+  let t=0;const s=step||CHN_TICK_MS;
+  while(t<ms&&chn.run&&!chn.over&&!chn.busy){chnTick(s);t+=s}
+  return t;
+};
+window.vChnTry=function(ci,who){chn.actMs=0;return chnTry(ci,who||0)};
+window.vChnCool=function(){return {actMs:Math.round(chn.actMs),left:Math.max(0,CHN_ACT_CD-(performance.now()-chn.actMs))}};
+window.vChnMove=function(dx,dy){return chnMove(dx,dy)};
+window.vChnSnap=function(){return chnSnapChain()?{rusts:chn.rusts,brk:chn.edges.filter(function(e){return e.broke}).length}:null};
+window.vChnDim=function(){return chnDimOne()?chnDimN():-1};
+window.vChnUndim=function(){chnUndimAll();return chnDimN()};
+window.vChnWeldBack=function(){return chnWeldBack()};
+window.vChnLight=function(){return chnLight()?chn.lightMs:null};
+window.vChnStall=function(){return chnStall()?chn.stallMs:null};
+window.vChnWeld=function(){return chnWeld()?chn.weldMs:null};
+window.vChnSwap=function(){return chnSwap()?1:0};
+window.vChnDuo=function(on){return chnDuo(on)};
+window.vChnHelp=function(){chnHelp();return Math.round(chn.helpMs)};
+window.vChnNag=function(){chnNag();return {nags:chn.nags,hold:Math.round(chn.nagHold)}};
+window.vChnNewWord=function(){return chnNewWord()};
+window.vChnRustIdx=function(){return chnRustPickIdx()};
+window.vChnSetLv=async function(lv){
+  chn.lv=chxClamp(lv|0,1,9);
+  const before=chn.words,first=chn.first;
+  chn.words=(chn.lv-1)*2;
+  if(!chn.rec)return null;
+  /* 换场要换到「这一场该难的区间」里去：字池里不够就先炼一批，再挑一块合适的铁料 */
+  const w=chnWant(chn.lv);
+  if(!(chn.n>=w[0]&&chn.n<=w[1])||!chn.pool.some(function(r){return r.n>=w[0]&&r.n<=w[1]})){
+    chn.first=true;
+    await chnBuildPool(true,w[0],w[1]);
+    const alt=chnPickRec();
+    if(alt)chn.rec=alt
+  }
+  chn.first=first;
+  const cnt=chnDeal();
+  if(!cnt)return null;
+  chn.qms0=chnQms(chn.lv);chn.qms=chn.qms0;chn.rms=chnRustMs(chn.lv);
+  chn.dayMs=chnDay(chn.lv);chn.warn=false;chn.cleanWord=true;chn.dryWord=true;
+  chn.nagMs=0;chn.nagHold=0;chn.held=-1;
+  chnRustMark();chnMini();chnAsk();chnHud();chnMeter();chnLine();chnDraw();
+  const r={lv:chn.lv,cards:chn.cards.length,edges:chn.edges.length,ready:chnReadyList().length,
+    wild:chnWild(chn.lv),faint:chnFaint(chn.lv)?1:0,cut:chnCut(chn.lv),want:chnReadyWant(chn.lv),
+    day:chnDay(chn.lv),qms:chnQms(chn.lv),rust:chnRustMs(chn.lv),strokes:chn.n};
+  chn.words=before;
+  return r;
+};
+/* ---- 求解：按真笔顺一张一张摘 —— 每一步都必须摘得开，摘不开就是出题出错 ---- */
+window.vChnSolve=async function(maxMs,wantWords,mode){
+  chnStopLoop();
+  if(chn.duo)chnDuo(false);
+  const g=chn.gen,limit=maxMs||40000,want=wantWords||1;
+  const t0=chn.words,tp0=chn.picks;
+  const out={ms:0,words:0,picks:0,gained:0,blocked:0,noReady:0,rusts:0,timeouts:0,dim:0,
+    wrongs:0,locks:0,tries:0,skipped:0,maxReady:1,minReady:99,trace:[],score:0,lv:chn.lv,hearts:chn.hearts};
+  const start=chn.score;
+  while(out.ms<limit&&chn.run&&!chn.over&&g===chn.gen&&chn.words<t0+want){
+    if(chn.busy){
+      await new Promise(function(r){setTimeout(r,16)});
+      out.ms+=16;continue;
+    }
+    const rl=chnReadyList();
+    if(rl.length>out.maxReady)out.maxReady=rl.length;
+    if(rl.length<out.minReady)out.minReady=rl.length;
+    if(!rl.length){out.noReady++;chnTick(CHN_TICK_MS);out.ms+=CHN_TICK_MS;continue}
+    if(mode==='sloppy'&&rl.length>1&&Math.random()<.4){
+      /* 故意从亮着的牌里乱挑：验「摘错就掉心、错字进本」这条闸 */
+      chn.actMs=0;const c=chxOne(rl);chnTry(c,0);out.tries++;
+      chnTick(CHN_TICK_MS);out.ms+=CHN_TICK_MS;continue;
+    }
+    if(chn.qi<chn.n&&!chnIsReady(chn.qi)){out.blocked++;break}
+    if(mode==='naked'&&chn.edges.some(function(e){return e.alive}))chnSnapChain();
+    const ci=chn.qi;
+    const q0=chn.qi,s0=chn.score;
+    chn.actMs=0;
+    const ok=chnTry(ci,0);
+    out.tries++;
+    if(!ok){
+      out.fails=(out.fails||0)+1;
+    }else{
+      out.gained+=chn.score-s0;
+      out.trace.push({ch:chn.rec.ch,qi:q0,ready:rl.length,ms:out.ms,links:chnLiveLinks(ci)});
+    }
+    out.rusts=chn.rusts;out.timeouts=chn.timeouts;out.dim=chnDimN();
+    chnTick(CHN_TICK_MS);out.ms+=CHN_TICK_MS;
+    if((out.ms/CHN_TICK_MS)%8===0)await new Promise(function(r){setTimeout(r,0)});
+  }
+  out.words=chn.words-t0;out.picks=chn.picks-tp0;out.score=chn.score-start;
+  out.locks=chn.locks;out.wrongs=chn.wrongs;out.lv=chn.lv;out.hearts=chn.hearts;
+  out.naked=chn.naked;out.maxCombo=chn.maxCombo;out.tools=chn.tools;
+  if(!chn.run||chn.over)out.stopped=1;
+  chnStartLoop();
+  return out;
+};
+/* ---- 摆拍：把这一台牌摆成截图要的那一瞬 ---- */
+window.vChnStage=async function(what){
+  if(!chn.rec||chn.over)return null;
+  const info={what:what,qi:chn.qi,ready:chnReadyList().length,note:''};
+  if(what==='help'){chnHelp();info.note='说明冻住三只钟';return info}
+  if(what==='nag'){chnNag();chnAsk();chnLine();info.note='口诀挂在题头';return info}
+  if(what==='duo'){
+    if(!chn.duo)chnDuo(true);
+    info.note='分边：左 '+(chn.cards.filter(function(c){return c.x<CHN_W/2}).length)+
+      ' 张 / 右 '+(chn.cards.filter(function(c){return c.x>=CHN_W/2}).length)+' 张';
+    return info;
+  }
+  if(what==='deep'||what==='faint'||what==='wild'){
+    const s=await window.vChnSetLv(what==='deep'?8:(what==='faint'?5:3));
+    info.note=s?('第 '+s.lv+' 场 '+s.cards+' 张牌、'+s.edges+' 根链、野牌 '+s.wild+' 张'):'牌没铺开';
+    if(what==='wild'&&chn.cards.filter(function(c){return c.wild}).length)info.note='野牌 '+
+      chn.cards.filter(function(c){return c.wild}).length+' 张混在 '+chn.n+' 张真牌里';
+    return info;
+  }
+  if(what==='word'){
+    for(let i=0;i<chn.n;i++){chn.cards[i].done=true;chn.done.push(i)}
+    chn.qi=chn.n;chn.busy=true;
+    chnMini();chnAsk();chnHud();chnLine();chnDraw();
+    info.note='整字串完';return info;
+  }
+  if(what==='lock'){
+    let t=-1;
+    for(let i=0;i<chn.cards.length;i++)if(!chnIsReady(i)&&!chn.cards[i].wild&&i>chn.qi){t=i;break}
+    if(t<0){for(let k=0;k<chn.edges.length;k++){const e=chn.edges[k];if(e.alive&&!chn.cards[e.b].done){t=e.b;break}}}
+    if(t<0){info.note='这台牌全解开了';return info}
+    chn.actMs=0;chnTry(t,0);
+    info.note='撞锁在 '+(t+1)+' 号（上游还压着）';
+    chnHud();chnLine();chnAsk();chnDraw();
+    return info;
+  }
+  if(what==='dim'){
+    while(chnDimN()<2){if(!chnDimOne())break}
+    info.note='糊面 '+chnDimN()+' 张';chnDraw();chnHud();chnPow();
+    return info;
+  }
+  if(what==='rust'){
+    chnRustMark();
+    const k=chnRustPickIdx();
+    info.note=k>=0?('发红的是 '+(chn.edges[k].a+1)+'─▶'+(chn.edges[k].b+1)):'这台牌没链可锈了';
+    chnChainsHtml();chnHud();chnMeter();chnPow();chnDraw();
+    return info;
+  }
+  if(what==='broke'||what==='naked'){
+    const k=chn.rusts;
+    for(let i=0;i<(what==='naked'?40:2);i++)if(!chnSnapChain())break;
+    info.note='锈断 '+(chn.rusts-k)+' 根、还剩 '+chn.edges.filter(function(e){return e.alive}).length+' 根活链';
+    chnRustMark();chnHud();chnChainsHtml();chnPow();chnDraw();
+    return info;
+  }
+  if(what==='light'){chnLight();info.note='照链：描金 '+chnReadyList().length+' 张';chnHud();chnLine();chnDraw();return info}
+  if(what==='stall'){chnStall();info.note='定锈中';chnHud();chnMeter();chnLine();chnPow();return info}
+  if(what==='weld'){
+    for(let i=0;i<2;i++)chnDimOne();
+    chnSnapChain();chnSnapChain();
+    chnWeld();
+    info.note='擦亮牌面、焊回断链';chnHud();chnLine();chnPow();chnDraw();
+    return info;
+  }
+  if(what==='warn'){
+    chn.dayMs=21000;chnMeter();chnHud();
+    info.note='日头剩 21 秒';
+    return info;
+  }
+  if(what==='day'){
+    chn.dayMs=1200;
+    for(let i=0;i<40&&chn.run&&!chn.over;i++)chnTick(60);
+    info.note='日头落了这一字（心 '+chn.hearts+'）';
+    return info;
+  }
+  /* 剩下的都靠「摘对几张」来拍 */
+  const k=chn.qi;
+  for(let i=0;i<k;i++)if(!chn.cards[i].done){chn.actMs=0;chnTry(i,0)}
+  info.note='串到第 '+(chn.qi+1)+' 笔';
+  chnHud();chnMeter();chnLine();chnAsk();chnPow();chnDraw();
+  return info;
+};
+/* ---- 文本与 DOM ---- */
+window.vChnMsg=function(){const e=document.getElementById('chnMsg');return e?e.innerHTML:''};
+window.vChnAsk=function(){const e=document.getElementById('chnAsk');return e?e.textContent:''};
+window.vChnAskHtml=function(){const e=document.getElementById('chnAsk');return e?e.innerHTML:''};
+window.vChnHint=function(){const e=document.getElementById('chnHintLine');return e?e.textContent:''};
+window.vChnHintHtml=function(){const e=document.getElementById('chnHintLine');return e?e.innerHTML:''};
+window.vChnTagTxt=function(){const e=document.getElementById('chnTag');return e?e.textContent:''};
+window.vChnTagOn=function(){const e=document.getElementById('chnTag');return e&&e.classList.contains('on')?1:0};
+window.vChnPowTxt=function(){const e=document.getElementById('chnPowTxt');return e?e.innerHTML:''};
+window.vChnDom=function(id){const e=document.getElementById(id);return e?e.textContent:''};
+window.vChnScreen=function(){const s=document.querySelector('.screen.active');return s?s.id:''};
+window.vChnLeave=function(){chnLeave();return 1};
+window.vChnEnd=function(why){chnEnd(why||'quit');return 1};
+window.vChnKillTimers=function(){chnStopAll();return 1};
+window.vChnBelt=function(){
+  return Array.prototype.map.call(document.querySelectorAll('#chnChains .chn-cl'),function(s){
+    return {txt:s.textContent,sat:s.classList.contains('sat')?1:0,brk:s.classList.contains('brk')?1:0,
+      rusty:s.classList.contains('rusty')?1:0,pad:s.classList.contains('pad')?1:0};
+  });
+};
+window.vChnResult=function(id){
+  const RICH={Why:1,Book:1,Duo:1,Sub2:1,Naked:1,Rust:1,Tools:1};
+  const pick=function(k){const e=document.getElementById('chnRs'+k);if(!e)return null;
+    return RICH[k]?e.innerHTML:e.textContent};
+  if(!id||id==='all'){
+    const o={};
+    ['Emoji','Title','Sub','Score','Words','Picks','Sub2','Naked','Rust','Tools','Duo','Combo','Best','Stars','Why','Book']
+      .forEach(function(k){o[k]=pick(k)});
+    o.screen=(function(){const s=document.querySelector('.screen.active');return s?s.id:''})();
+    return o;
+  }
+  return pick(id);
+};
+window.vChnBank=function(){
+  return {best:chxInt('hz_chain_best'),combo:chxInt('hz_chain_combo'),lv:chxInt('hz_chain_lv'),
+    words:chxInt('hz_chain_words'),games:chxInt('hz_chain_games'),picks:chxInt('hz_chain_picks'),
+    lits:chxInt('hz_chain_lits'),naked:chxInt('hz_chain_naked'),nakedmax:chxInt('hz_chain_nakedmax'),
+    snap:chxInt('hz_chain_snap'),wrong:chxInt('hz_chain_wrong'),lock:chxInt('hz_chain_lock'),
+    dim:chxInt('hz_chain_dim'),swap:chxInt('hz_chain_swap'),weld:chxInt('hz_chain_weld'),
+    tools:chxInt('hz_chain_tools'),dayo:chxInt('hz_chain_dayo'),clean:chxInt('hz_chain_clean'),
+    fastest:chxInt('hz_chain_fastest'),duo:chxInt('hz_chain_duo'),duomax:chxInt('hz_chain_duomax'),
+    duon:chxInt('hz_chain_duon'),trophy:chxInt('hz_chain_trophy'),
+    trophyN:chxInt('hz_chain_trophy_n'),
+    shelf:(localStorage.getItem('hz_chain_shelf')||'').split(',').filter(function(s){return s}).length,
+    book:(localStorage.getItem('hz_chain_book')||'').split(',').filter(function(c){return c.length===1}).length,
+    miss:(localStorage.getItem('hz_chain_miss')||'').split(',').filter(function(c){return c.length===1}).length,
+    badges:(function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length}catch(e){return 0}})(),
+    stars:chxInt('hz_stars'),
+    petXp:(window.pet&&isFinite(window.pet.xp))?Math.round(window.pet.xp):0,
+    petStage:(window.pet?window.pet.stage:0)};
+};
+window.vChnShelf=function(){
+  return {items:CHN_SHELF.map(function(s){
+      const have=(localStorage.getItem('hz_chain_shelf')||'').split(',').indexOf(s.k)>=0;
+      return {k:s.k,d:s.d,ok:s.ok()?1:0,on:have?1:0};
+    }),
+    keys:['hz_chain_words','hz_chain_combo','hz_chain_naked','hz_chain_lv','hz_chain_snap','hz_chain_clean',
+      'hz_chain_book','hz_badges'].map(function(k){return {k:k,v:localStorage.getItem(k)||''}})};
+};
+/* ---- 坐标：台面 → 屏幕像素（真鼠标只认屏幕） ---- */
+window.vChnClient=function(x,y){
+  const cv=document.getElementById('chnCanvas');
+  if(!cv)return null;
+  const b=cv.getBoundingClientRect();
+  if(!b.width||!b.height)return null;
+  return {x:b.left+x/CHN_W*b.width,y:b.top+y/CHN_H*b.height};
+};
+window.vChnCardPt=function(i){const c=chn.cards[i];return c?window.vChnClient(c.x,c.y):null};
+window.vChnEmptyPt=function(){
+  for(let r=0;r<40;r++){
+    const x=CHN_W-30,y=30+Math.random()*(CHN_H-60);
+    let ok=true;
+    for(let i=0;i<chn.cards.length;i++)if(!chn.cards[i].done&&Math.hypot(chn.cards[i].x-x,chn.cards[i].y-y)<CHN_CARD){ok=false;break}
+    if(ok)return window.vChnClient(x,y);
+  }
+  return null;
+};
+window.vChnBtnPt=function(id){
+  const b=document.getElementById(id);
+  if(!b)return null;
+  const r=b.getBoundingClientRect();
+  return {x:r.left+r.width/2,y:r.top+r.height/2};
+};
+window.vChnMiniPaths=function(){
+  const svg=document.getElementById('chnMiniSvg');
+  if(!svg)return null;
+  const ps=svg.querySelectorAll('path');
+  let ink=0;
+  for(let i=0;i<ps.length;i++)if(ps[i].getAttribute('fill')!=='rgba(255,255,255,.12)')ink++;
+  return {paths:ps.length,ink:ink};
+};
+/* DOM 与状态必须说同一句话（先把该刷新的刷新一遍：产品里 HUD 每 120 毫秒才刷一次，
+   这里要验的是「刷出来的话对不对」，不是「有没有到点」——到点那一另有断言守着） */
+window.vChnFlush=function(){if(chn.run||chn.over){chnHud();chnMeter();chnLine();chnAsk()}return 1};
+window.vChnDomBad=function(){
+  const out=[];
+  window.vChnFlush();
+  const g=function(id){return document.getElementById(id)};
+  const txt=function(id){const e=g(id);return e?e.textContent:''};
+  const need=['chnRankTxt','chnHeartTxt','chnScoreTxt','chnLvTxt','chnComboTxt','chnLitTxt','chnReadyTxt',
+    'chnChainTxt','chnRustTxt','chnNakedTxt','chnWildTxt','chnAsk','chnDuoBar','chnDuoP1','chnDuoP2',
+    'chnMiniSvg','chnMiniCap','chnYard','chnCanvas','chnTag','chnChains','chnQBox','chnQBar','chnQTxt',
+    'chnQTxt2','chnRustBox','chnRustBar','chnRustClockTxt','chnDayBox','chnDayBar','chnDayTxt','chnPowTxt',
+    'chnLightBtn','chnStallBtn','chnWeldBtn','chnSwapBtn','chnDuoBtn','chnEndBtn','chnHintLine','chnMsg'];
+  for(let i=0;i<need.length;i++)if(!g(need[i])){out.push('缺 '+need[i]);break}
+  if(txt('chnScoreTxt')!=='🎯 '+chn.score+' 分')out.push('分数条 '+txt('chnScoreTxt')+' 分='+chn.score);
+  if(txt('chnLvTxt')!=='第 '+chn.lv+' 场 · 已收 '+chn.words+' 字')out.push('场数条 '+txt('chnLvTxt'));
+  const h=txt('chnHeartTxt');
+  if(chn.hearts>0&&h!=='❤️'.repeat(chn.hearts))out.push('心形 '+h+' 心='+chn.hearts);
+  if(chn.hearts<=0&&h!=='💔')out.push('没心却还写着 '+h);
+  if(txt('chnComboTxt')!=='🔥 连 '+chn.combo)out.push('连击条 '+txt('chnComboTxt'));
+  if(txt('chnLitTxt')!=='🖋 '+(chn.rec?Math.min(chn.qi+1,chn.n):0)+'/'+(chn.n||0)+' 笔')out.push('笔数条 '+txt('chnLitTxt')+' qi='+chn.qi+' n='+chn.n);
+  if(txt('chnReadyTxt')!=='🔓 亮着 '+chnReadyList().length+' 张')out.push('解得开条 '+txt('chnReadyTxt'));
+  const lv2=chn.edges.filter(function(e){return e.alive}).length;
+  if(txt('chnChainTxt')!=='⛓ 活链 '+lv2+'/'+chn.edges.length)out.push('链数条 '+txt('chnChainTxt'));
+  if(txt('chnRustTxt')!=='🟤 锈断 '+chn.rusts+' 根')out.push('锈断条 '+txt('chnRustTxt'));
+  if(txt('chnNakedTxt')!=='✋ 裸摘 '+chn.naked+'（连 '+chn.nakedRun+'）')out.push('裸摘条 '+txt('chnNakedTxt'));
+  if(txt('chnWildTxt')!==(chnWild(chn.lv)?'🪝 野牌 '+chnWild(chn.lv)+' 张':'🪝 这一场没野牌'))out.push('野牌条 '+txt('chnWildTxt'));
+  const rk=chxRank(chxInt('hz_chain_words'));
+  if(txt('chnRankTxt')!==rk.e+' '+rk.t)out.push('称号条 '+txt('chnRankTxt')+' 该 '+rk.e+' '+rk.t);
+  const qs='⏳ 这一张 '+Math.ceil(chn.qms/1000)+' 秒';
+  if(txt('chnQTxt')!==qs)out.push('卡钟 '+txt('chnQTxt')+' 该 '+qs);
+  if(txt('chnQTxt2')!==qs)out.push('卡钟条 '+txt('chnQTxt2')+' 该 '+qs);
+  if(txt('chnDayTxt')!=='🌇 日头还剩 '+Math.ceil(chn.dayMs/1000)+' 秒')out.push('日头条 '+txt('chnDayTxt'));
+  const rw=chn.stallMs>0?('🧿 定锈 '+(chn.stallMs/1000).toFixed(1)+' 秒'):('🟤 下一根链 '+(chn.rms/1000).toFixed(1)+' 秒后锈断');
+  if(txt('chnRustClockTxt')!==rw)out.push('锈钟条 '+txt('chnRustClockTxt')+' 该 '+rw);
+  const pw=chnPowStr(),pg=g('chnPowTxt')?g('chnPowTxt').innerHTML:'';
+  if(pg!==pw)out.push('场况条 DOM['+pg+'] 状态['+pw+']');
+  const qb=g('chnQBox');
+  if(qb&&qb.classList.contains('low')!==!!(chn.qms0&&chn.qms/chn.qms0<.3))out.push('卡钟 low 不对');
+  const db=g('chnDayBox');
+  if(db&&db.classList.contains('low')!==!!chn.warn)out.push('日头条 low 不对');
+  const rb=g('chnRustBox');
+  if(rb&&rb.classList.contains('hold')!==(chn.stallMs>0))out.push('锈条 hold 不对');
+  const barW=function(box,id,want){
+    if(!box)return;
+    const bi=g(id);
+    if(!bi){out.push('缺 '+id);return}
+    const w=bi.style.width;
+    if(!w||w.indexOf('%')<0){out.push(id+' 宽度不是百分数 '+w);return}
+    /* 浏览器把 14.0% 存成 14%，所以按数值比，容差就是这一位小数的半个格 */
+    if(Math.abs(parseFloat(w)-parseFloat(want))>0.06)out.push(id+' 宽度 '+w+' 该 '+want);
+  };
+  barW(qb,'chnQBar',(Math.max(0,chn.qms0?chn.qms/chn.qms0:0)*100).toFixed(1)+'%');
+  barW(db,'chnDayBar',(Math.max(0,chnDay(chn.lv)?chn.dayMs/chnDay(chn.lv):0)*100).toFixed(1)+'%');
+  barW(rb,'chnRustBar',((1-Math.max(0,chnRustMs(chn.lv)?chn.rms/chnRustMs(chn.lv):0))*100).toFixed(1)+'%');
+  [['chnLightBtn','lightN'],['chnStallBtn','stallN'],['chnWeldBtn','weldN'],['chnSwapBtn','swapN']].forEach(function(x){
+    const el=g(x[0]);
+    if(!el){out.push('没有 '+x[0]);return}
+    if(el.disabled!==(chn[x[1]]<=0))out.push(x[0]+' 该 '+(chn[x[1]]<=0?'禁用':'可用'));
+    const t=el.innerHTML.match(/剩 (\d+)/);
+    if(!t||+t[1]!==chn[x[1]])out.push(x[0]+' 剩 '+(t?t[1]:'?')+' 该是 '+chn[x[1]]);
+  });
+  const cv=g('chnCanvas');
+  if(cv){
+    if(cv.width!==CHN_W||cv.height!==CHN_H)out.push('画布 '+cv.width+'x'+cv.height);
+    const act=document.querySelector('.screen.active');
+    if(act&&act.id==='screen-chain'&&!cv.offsetParent)out.push('画布该在场面上却看不见');
+    else if(cv.offsetParent){const r=cv.getBoundingClientRect();if(r.width<120)out.push('画布被挤成 '+Math.round(r.width))}
+  }
+  const tg=g('chnTag');
+  if(tg){
+    if(chn.tagOn&&!tg.classList.contains('on'))out.push('浮条该亮着');
+    if(!chn.tagOn&&tg.classList.contains('on'))out.push('浮条淡了还亮着');
+  }
+  const yd=g('chnYard');
+  if(chn.over&&yd&&!yd.classList.contains('dead'))out.push('收摊了台面没暗');
+  if(chn.run&&!chn.over&&yd&&yd.classList.contains('dead'))out.push('还在跑台面却是暗的');
+  const p1=g('chnDuoP1'),p2=g('chnDuoP2');
+  if(p1&&p1.classList.contains('off')!==!chn.duo)out.push('P1 键位条 off 不对');
+  if(p2&&p2.classList.contains('off')!==!chn.duo)out.push('P2 键位条 off 不对');
+  const dbn=g('chnDuoBtn');
+  if(dbn&&dbn.textContent.indexOf(chn.duo?'✔':'双人')<0)out.push('双人键文案 '+dbn.textContent);
+  /* 链子台账：一条链一个牌牌，断的画 ✂、上游摘完的划掉、要锈的发红 */
+  const belt=window.vChnBelt();
+  if(chn.edges.length){
+    if(belt.length!==chn.edges.length)out.push('台账 '+belt.length+' 条 链子 '+chn.edges.length+' 根');
+    let brk=0,rust=0,sat=0;
+    for(let k=0;k<chn.edges.length;k++){
+      const e=chn.edges[k];
+      if(e.broke)brk++;
+      if(e.rust&&e.alive)rust++;
+      if(!e.broke&&chn.cards[e.a].done)sat++;
+    }
+    const bBrk=belt.filter(function(b){return b.brk}).length;
+    if(bBrk!==brk)out.push('台账断链 '+bBrk+' 实际 '+brk);
+    const bRust=belt.filter(function(b){return b.rusty}).length;
+    if(bRust!==rust)out.push('台账发红 '+bRust+' 实际 '+rust);
+    const bSat=belt.filter(function(b){return b.sat}).length;
+    if(bSat!==sat)out.push('台账划掉 '+bSat+' 实际 '+sat);
+    for(let i=0;i<belt.length;i++){
+      const e=chn.edges[i];
+      if(!e)continue;
+      if(belt[i].txt.replace(/\s+/g,'').indexOf(String(e.a+1))!==0)out.push('台账第 '+i+' 条没写上游编号 '+belt[i].txt);
+    }
+  }else if(!(belt.length===1&&belt[0].pad))out.push('没链却台账不空');
+  const mp=window.vChnMiniPaths();
+  if(mp&&chn.rec){
+    if(mp.paths!==chn.rec.n)out.push('小字卡 '+mp.paths+' 条 path 该 '+chn.rec.n);
+    if(mp.ink!==chn.qi)out.push('小字卡上色 '+mp.ink+' 条 该 '+chn.qi+' 笔');
+  }
+  const mc=g('chnMiniCap');
+  if(mc&&chn.rec&&mc.textContent.indexOf(chn.rec.ch)<0)out.push('小字卡题头 '+mc.textContent);
+  if(mc&&chn.rec&&mc.textContent.indexOf('已串 '+chn.qi+' 笔')<0)out.push('小字卡题头没跟上进度 '+mc.textContent);
+  /* 题头：不看说明时必须说「第几笔」或口诀或串完，不能停在中转话术 */
+  const ask=txt('chnAsk');
+  if(chn.helpMs<=0&&chn.nagHold<=0){
+    const okAsk=['第 ','串完了','挑铁料','没铺开','挑不出','摆不起来','字库没加载'];
+    let a=0;for(let i=0;i<okAsk.length;i++)if(ask.indexOf(okAsk[i])>=0)a=1;
+    if(!a)out.push('题头 '+ask);
+    if(chn.rec&&!chn.busy&&chn.qi<chn.n&&ask.indexOf('第 '+(chn.qi+1)+' 笔')<0)out.push('题头笔序不对：'+ask);
+    if(chn.rec&&!chn.busy&&chn.qi<chn.n&&ask.indexOf('亮着的 ')<0)out.push('题头没报几张解得开：'+ask);
+  }
+  /* 歇到点的那 5 秒：口诀必须顶在题头上（这正是它存在的唯一时刻） */
+  if(chn.nagHold>0&&ask.indexOf('口诀')<0)out.push('该顶口诀时题头却写着：'+ask);
+  const hint=txt('chnHintLine');
+  if(!hint)out.push('提示行是空的');
+  const rl=chnReadyList();
+  let wantHint=null;
+  /* 提示行只有一行：谁最要紧谁占。这个顺序必须与 chnLine 一模一样，不然就是探针在编故事 */
+  if(chn.helpMs>0)wantHint='歇一记';
+  else if(chn.busy&&chn.rec&&chn.qi>=chn.n)wantHint='一串到底';
+  else if(chn.busy)wantHint='换字';
+  else if(chn.over)wantHint='交了账';
+  else if(chn.warn)wantHint='日头快落';
+  else if(chn.lightMs>0)wantHint='照链';
+  else if(chn.stallMs>0)wantHint='定锈';
+  else if(chn.weldMs>0)wantHint='敲过锈';
+  else if(!rl.length)wantHint='没解开';
+  else if(chn.duo)wantHint='双人';
+  if(wantHint&&hint.indexOf(wantHint)<0)out.push('提示行该说「'+wantHint+'」却写着 '+hint);
+  if(chnDimN()&&chn.stallMs<=0&&chn.helpMs<=0&&chn.nagHold<=0&&hint.indexOf('糊了')<0)out.push('有糊面提示行却没提 '+hint);
+  if(!rl.length&&!chn.busy&&chn.rec&&chn.qi<chn.n&&chn.helpMs<=0&&chn.nagHold<=0&&chn.weldMs<=0&&
+    !chn.stallMs&&!chn.lightMs&&hint.indexOf('没解开')<0&&hint.indexOf('糊了')<0)out.push('全锁着却没报警 '+hint);
+  if(rl.length>1&&chn.helpMs<=0&&chn.nagHold<=0&&!chn.lightMs&&!chn.stallMs&&!chn.weldMs&&chn.qi<chn.n&&
+    !chn.busy&&!chn.warn&&!chn.duo&&hint.indexOf('一起亮着')<0&&hint.indexOf('糊了')<0)out.push('多张解得开提示行没点破 '+hint);
+  const msg=txt('chnMsg');
+  if(!msg)out.push('消息区是空的');
+  return out;
+};
+
 
 window.addEventListener('DOMContentLoaded',boot);
 </script>
