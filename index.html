@@ -6665,6 +6665,82 @@ button:active{transform:scale(.95)}
   #screen-orbit .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-orbit .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.97 💠 笔顺叠浪坊 ================= */
+.rlp-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.rlp-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+/* 题头占死三行（一行 1.35em，三行就是它最高那一副版面）：它换字不许换行数 ——
+   水盘就在它下面，多一行少一行都把整盘水往下/往上顶五十像素，孩子手指还停在原处 */
+.rlp-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#E8F5E9;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*3)}
+.rlp-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.rlp-duo{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:0 auto 4px}
+.rlp-duo span{flex:1 1 190px;font-size:12px;color:#B3E5FC;background:rgba(79,195,247,.12);border:1px solid rgba(79,195,247,.3);border-radius:10px;padding:3px 8px;text-align:center;line-height:1.35}
+.rlp-duo span.off{opacity:.34;filter:grayscale(1)}
+.rlp-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.rlp-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.rlp-mini svg{width:100%;height:auto;background:rgba(232,245,253,.06);border-radius:12px}
+.rlp-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+.rlp-yard{flex:1;min-width:0;position:relative;background:#020E14;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.86)}
+.rlp-yard.dead{filter:grayscale(.85) brightness(.6)}
+.rlp-canvas{display:block;width:100%;height:auto;cursor:crosshair;touch-action:none}
+.rlp-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#B2EBF2;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.rlp-tag.on{opacity:1}
+.rlp-tag.warn{background:rgba(96,38,12,.92);color:#FFCCBC}
+.rlp-tag.gold{background:rgba(10,58,74,.94);color:#B2EBF2;box-shadow:0 0 14px rgba(77,208,225,.45)}
+.rlp-meter{display:flex;gap:7px;align-items:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.rlp-tl{position:relative;flex:1;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.rlp-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#4FC3F7,#90CAF9);transition:width .15s linear}
+.rlp-tl.fuel i{background:linear-gradient(90deg,#26C6DA,#80DEEA)}
+.rlp-tl.beat i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.rlp-tl.beat.on i{background:linear-gradient(90deg,#FFD54F,#FFF176);box-shadow:0 0 12px rgba(255,213,79,.6)}
+.rlp-tl.low i{background:linear-gradient(90deg,#FF8A65,#FFD54F)}
+.rlp-tl.fuel.low i{background:linear-gradient(90deg,#FF5252,#FF8A65)}
+.rlp-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.rlp-pow{width:calc(100% - 28px);max-width:520px;margin:2px auto;font-size:11px;color:#90A4AE;text-align:center;line-height:1.45}
+.rlp-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.rlp-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.rlp-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.rlp-tool b{display:block;font-size:10px;color:#B2EBF2;font-weight:700}
+.rlp-tool:disabled{opacity:.4;cursor:default}
+.rlp-tool.duo{background:rgba(79,195,247,.2);border-color:#4FC3F7}
+.rlp-tool.duo.on{background:rgba(79,195,247,.42)}
+/* 两根旋钮：转杆、调波长 —— 各一对按住才走的按钮，谁也不许点一下就跑一半 */
+.rlp-knob{display:flex;gap:6px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.rlp-knob button{flex:1 1 0;max-width:126px;padding:7px 4px 5px;border-radius:11px;font-size:13px;font-weight:800;line-height:1.15;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#0D1B22;background:rgba(255,255,255,.16)}
+.rlp-knob button small{display:block;font-size:10px;font-weight:400;color:rgba(13,27,34,.7)}
+.rlp-knob button.cw{background:linear-gradient(180deg,#80DEEA,#26A0AE)}
+.rlp-knob button.ccw{background:linear-gradient(180deg,#90CAF9,#1976D2)}
+.rlp-knob button.fine{background:linear-gradient(180deg,#B0BEC5,#78909C)}
+.rlp-knob button.coarse{background:linear-gradient(180deg,#FFD54F,#F57C00)}
+.rlp-knob button:active{transform:translateY(1px)}
+/* 收浪是这一坊唯一的下手：一个大按钮占满（双人一开就锁住，只认键盘） */
+.rlp-ans{display:flex;gap:10px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.rlp-ans button{flex:1 1 0;max-width:300px;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#0D1B22}
+.rlp-ans button.grab{background:linear-gradient(180deg,#4DD0E1,#00838F);box-shadow:0 0 16px rgba(77,208,225,.34)}
+.rlp-ans button small{display:block;font-size:11px;font-weight:400;color:rgba(13,27,34,.72)}
+.rlp-ans button:disabled{opacity:.34;cursor:default;filter:grayscale(.6)}
+.rlp-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.rlp-hintline b{color:#B2EBF2}
+.rlp-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.rlp-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.rlp-msg b{color:#CFD8DC}
+.rlp-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.rlp-msg small{font-size:11px;color:#78909C}
+.rlp-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.rlp-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.rlp-rs-book b{color:#B2EBF2}
+.rlp-rs-book small{color:#78909C}
+.rlp-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px;z-index:4}
+.rlp-cdot.on{display:block}
+#screen-ripple .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：样图折到水盘上头，水盘独占整幅宽；三只钟折成一行一只；四枚旋钮折两行 */
+@media(max-width:460px){.rlp-stage{flex-direction:column}.rlp-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.rlp-mini svg{flex:0 0 74px;width:74px}.rlp-cap{flex:0 1 auto;text-align:left}.rlp-meter{flex-wrap:wrap}.rlp-tl{flex:1 1 30%}
+  /* 窄屏上题面最宽的一副是四行：那一块就占死四行，水盘照样不许在手指底下挪 */
+  .rlp-ask{min-height:calc(1.35em*4)}
+  .rlp-knob{flex-wrap:wrap}.rlp-knob button{flex:1 1 44%}
+  #screen-ripple .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-ripple .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-ripple .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -6721,8 +6797,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 95 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">95</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 96 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">96</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6733,12 +6809,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>95 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>39</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>27</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>96 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>40</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>27</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="rlpCard" onclick="enterMode('ripple')">
+      <div class="icon">💠</div>
+      <div class="info"><h3>笔顺叠浪坊</h3><p id="rlpCardTip">盘心一根能转的杆，两头各扎进水里：一头压下去另一头就抬起来（反相），两列浪在盘上叠成条纹，一笔一张浮牌：谁荡到浪尖谁被收走 —— 你只能挑杆朝哪儿、浪多长、哪一刻下手三样；第 3 场起水面混进影牌（圆面里干干净净，没压着这个字的印子）</p></div>
+      <span class="rlp-cdot" id="rlpCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="obCard" onclick="enterMode('orbit')">
       <div class="icon">🪐</div>
       <div class="info"><h3>笔顺甩星坊</h3><p id="obCardTip">一根能长能短的绳拴着一颗小星，天上飘着几颗环、每颗环里写着这个字的一笔：松手那一瞬星就沿切线直着飞出去 —— 你只能挑绳长和时机两样；天上有几颗环在飘（离太阳忽近忽远），那是影环</p></div>
@@ -7393,6 +7474,93 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-ripple">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rlpLeave()">← 返回</button>
+    <div class="stats"><span id="rlpScoreTxt">🎯 0 分</span><span id="rlpLvTxt">第 1 场 · 已收 0 字</span><span id="rlpQTxt">⏳ 这一笔 22 秒</span></div>
+    <button class="icon-btn" onclick="rlpHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="rlp-hud">
+    <span id="rlpRankTxt" title="称号">🌱 刚下水</span>
+    <span id="rlpHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="rlpComboTxt" title="连击">🔥 连 0</span>
+    <span id="rlpGoalTxt" title="该收第几笔">🎯 该收第 1 笔</span>
+    <span id="rlpShotTxt" title="出手几次">🤏 出手 0 · 收着 0</span>
+    <span id="rlpFakeTxt" title="影牌">🌑 这一场没影牌</span>
+    <span id="rlpPingTxt" title="浮萍">🍃 萍 0 片</span>
+    <span id="rlpTideTxt" title="长浪">🌊 长浪 0 道 · 赶上 0</span>
+    <span id="rlpChainTxt" title="连收">✨ 连收 0（最长 0）</span>
+  </div>
+  <div class="rlp-ask" id="rlpAsk">💠 正在给这盘水算账……<br><small>在字库里找「牌摆得开、每一笔都出得了头」的字</small></div>
+  <div class="rlp-duo" id="rlpDuoBar">
+    <span id="rlpDuoP1" class="off">👩 P1：<b>W</b>/<b>S</b> 转杆 · <b>A</b>/<b>D</b> 调波长 —— 只管<b>水面</b></span>
+    <span id="rlpDuoP2" class="off">🧔 P2：<b>空格</b> 收浪 —— 只管<b>时机</b></span>
+  </div>
+  <div class="rlp-stage">
+    <div class="rlp-mini">
+      <svg viewBox="0 0 1024 1024" id="rlpMiniSvg"></svg>
+      <div class="rlp-cap" id="rlpMiniCap">这个字沉在水底，一笔一张牌</div>
+    </div>
+    <div class="rlp-yard" id="rlpYard">
+      <canvas class="rlp-canvas" id="rlpCanvas" width="420" height="340"></canvas>
+      <div class="rlp-tag" id="rlpTag">💠 叠浪坊开张了</div>
+    </div>
+  </div>
+  <div class="rlp-meter">
+    <div class="rlp-tl q" id="rlpQBox"><i id="rlpQBar"></i><b id="rlpQTxt2">⏳ 这一笔 —— 22 秒</b></div>
+    <div class="rlp-tl fuel" id="rlpFuelBox"><i id="rlpFuelBar"></i><b id="rlpFuelTxt">💧 这盘水 —— 秒</b></div>
+    <div class="rlp-tl beat" id="rlpBeatBox"><i id="rlpBeatBar"></i><b id="rlpBeatTxt2">🌊 下一道长浪 —— 秒后</b></div>
+  </div>
+  <div class="rlp-pow" id="rlpPowTxt">💠 这盘水还没起浪</div>
+  <div class="rlp-tools">
+    <button class="rlp-tool" id="rlpViewBtn" disabled>✨ 看纹<span>Q</span><b>剩 2</b></button>
+    <button class="rlp-tool" id="rlpHoldBtn" disabled>🧊 定浪<span>E</span><b>剩 2</b></button>
+    <button class="rlp-tool" id="rlpScopeBtn" disabled>🍃 撇萍<span>F</span><b>剩 2</b></button>
+    <button class="rlp-tool" id="rlpSwapBtn" disabled>🔁 换字<span>Enter</span><b>剩 1</b></button>
+    <button class="rlp-tool duo" id="rlpDuoBtn">👥 双人</button>
+    <button class="rlp-tool" id="rlpEndBtn">🏁 结算</button>
+  </div>
+  <div class="rlp-knob">
+    <button class="ccw" id="rlpCcwBtn">⟲ 杆往左<small>S / ↓ 按住</small></button>
+    <button class="cw" id="rlpCwBtn">⟳ 杆往右<small>W / ↑ 按住</small></button>
+    <button class="fine" id="rlpFineBtn">〰 纹调细<small>A / ← 按住</small></button>
+    <button class="coarse" id="rlpCoarseBtn">～ 纹调宽<small>D / → 按住</small></button>
+  </div>
+  <div class="rlp-ans">
+    <button class="grab" id="rlpGrabBtn">💠 收浪<small>空格 · 这一刻谁荡得最高就收谁（双人时归 P2）</small></button>
+  </div>
+  <div class="rlp-hintline" id="rlpHintLine">💠 <b>一根杆两头点水，两列浪在盘上叠起来</b>：你只能挑「杆朝哪儿」「浪多长」「哪一刻下手」<b>三样</b></div>
+  <div class="rlp-msg" id="rlpMsg">💠 <b>牌浮多高是水自己定的</b>：离两针的路程差够半波长，那张才荡得开<br>✨ <code>Q</code> 看纹 · 🧊 <code>E</code> 定浪 · 🍃 <code>F</code> 撇萍 · 🔁 <code>Enter</code> 换字 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-ripple-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rlpLeave()">← 返回</button>
+    <div class="stats"><span id="rlpRsStars">⭐ 0</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="rlpRsEmoji">💠</div>
+    <div style="font-size:26px;font-weight:800" id="rlpRsTitle">收完了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="rlpRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="rlp-pk" id="rlpRsScore">🎯 0 分</span>
+      <span class="rlp-pk" id="rlpRsWords">💠 收完 0 个字 · 出手 0 次</span>
+      <span class="rlp-pk" id="rlpRsShots">🎯 收对 0 张 · 收错 0 次</span>
+      <span class="rlp-pk" id="rlpRsSub2">⌛ 钟响 0 · 白收 0</span>
+      <span class="rlp-pk" id="rlpRsChain">✨ 连收 0（最长一串 0）</span>
+      <span class="rlp-pk" id="rlpRsBeat">🌊 长浪 0 · 擦纹 0</span>
+      <span class="rlp-pk" id="rlpRsTools">🛠 浪具 0 次</span>
+      <span class="rlp-pk" id="rlpRsDuo">👤 单人收</span>
+      <span class="rlp-pk" id="rlpRsCombo">🔥 最长连 0</span>
+      <span class="rlp-pk" id="rlpRsBest">🏆 最高 0 分</span>
+    </div>
+    <div class="rlp-rs-book" id="rlpRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="rlpRsWhy"></div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="rlpAgainBtn">💠 再叠一场</button>
+      <button class="tool-btn" id="rlpHomeBtn">🏠 回书桌</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-orbit">
@@ -14391,6 +14559,7 @@ function updateHomeStats(){
   if(typeof jlyNudge==='function')jlyNudge();
   if(typeof wvNudge==='function')wvNudge();
   if(typeof obNudge==='function')obNudge();
+  if(typeof rlpNudge==='function')rlpNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -14432,6 +14601,7 @@ function enterMode(mode){
   if(mode==='jelly'){jlyStart();return}
   if(mode==='weave'){wvStart();return}
   if(mode==='orbit'){obStart();return}
+  if(mode==='ripple'){rlpStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -94882,6 +95052,1864 @@ function obSnap(light){
     s.plPos=ob.pl.map(function(p){const q=obPlanetPos(p,ob.t);return Math.round(q.x)+'/'+Math.round(q.y)});
     s.fogL=ob.fogL.slice();
     s.spread=ob.rings.map(function(R){return Math.round(obAuditSpread(R).spread*100)/100});
+  }
+  return s;
+}
+
+
+/* ================= v1.97 笔顺叠浪坊（一根能转的滴漏杆在两处点水 · 你只有两块旋钮：杆朝哪儿、浪多长 —— 谁荡到浪尖谁被收走） ================= */
+/* 水盘：420×340 的一盘静水，盘心钉着一根能转的杆，杆两头各一枚振子一上一下点水（反相）*/
+const RLP_W=420,RLP_H=340,RLP_CX=210,RLP_CY=178,RLP_BAR=78;
+/* 振子是「反相」的：一头压下去另一头就抬起来。两列浪在盘上叠起来，
+   离两针路程差 = 半波长奇数倍的地方荡得最高，路程差 = 整波长的地方水面是死的（盘心中线那条哑线谁也别想霸顶）*/
+/* 两块旋钮：杆的转角 θ（0~180°，转到 180° 就回到原样 —— 路程差是偶函数）与波长 λ */
+const RLP_DTH=.0004539;            /* 26 度/秒：转满半圈 6.9 秒，一档好窗口（≥8°）就是三分之一年 */
+const RLP_L_MIN=22,RLP_L_MAX=70,RLP_DL=.009;   /* 9 像素/秒：扫完 22→70 要 5.3 秒 */
+/* 牌：一笔一张，钉在这一笔自己中段那一格上；两块牌至少隔 54 像素（两张牌面刚好挨住），
+   摆不开时最多挪 26 像素 —— 26 < 27（牌面半径），所以真牌的圆面里一定压着自己那一笔的底纹，这是拿尺子量得出来的破绽 */
+const RLP_BOX={x0:56,x1:366,y0:84,y1:316};
+const RLP_CARD=27,RLP_SEP=54,RLP_DISP=26,RLP_CLEAR=44;
+/* 起浪：一块牌浮起多高 = 振幅（由 θ、λ 定死）×「此刻它自己在不在浪尖上」（由走路花的时间定死）
+   ψ = sin(2π(t/T − r̄/λ)) —— 远处的牌晚一点起浪，这半拍是波走路要花的，不是随机 */
+const RLP_T=1300,RLP_LO=.58,RLP_HI=.42,RLP_GRAB=.52,RLP_LIFT=7;
+/* 发牌口径：一张牌要能出头，得存在一片 (θ,λ) 格子让它 振幅≥RING、比第二名高出 MARGIN，
+   且这片格子里 θ 连着 ≥8°、λ 连着 ≥3 像素（孩子按得住的宽度），整拍里还有 ≥12% 的时间它是全场最高且在浪尖上 */
+const RLP_RING=.74,RLP_MARGIN=.035,RLP_RUN_T=8,RLP_RUN_L=3,RLP_FRAC=.12;
+/* 算这些格子的粗档：θ 三度一档、λ 一像素一档、一拍切 24 刀（24 刀 = 54 毫秒一刀，窗口再窄也量得出来）*/
+const RLP_GT=3,RLP_GL=1,RLP_PH=24,RLP_TRY=10;
+const RLP_GRAZE_LO=.70;            /* 擦纹：别的牌振幅差一线就过 RING 线（0.70~0.74）—— 你抢的是浪尖，也是它*/
+/* 两只钟：这一笔的钟（收错、走光都要重来）、水面（整场一条，走完收摊）*/
+const RLP_Q0=22000,RLP_Q_MIN=11000,RLP_Q_STEP=1600;
+const RLP_FUEL0=150000,RLP_FUEL_MIN=95000,RLP_FUEL_STEP=6500;
+/* 浮萍：一片落下来糊住一张牌的缩略图（笔形看不清了），最多三片 */
+const RLP_PING0=15000,RLP_PING_MIN=9000,RLP_PING_STEP=600,RLP_PING_MAX=3;
+/* 🌊 长浪：每隔一阵从盘边涌进来一道横band，band 扫到你要收的那张牌时下手 ×1.5 —— 机会，不是威胁 */
+const RLP_TIDE0=9000,RLP_TIDE_MIN=6200,RLP_TIDE_STEP=350,RLP_TIDE_ON=2400,RLP_TIDE_R=46,RLP_TIDE_SPAN=262;
+const RLP_TIGHT_MS=900;            /* 上一张牌刚收走 0.9 秒内又下手 —— 顺手收 */
+const RLP_HUG_MS=420;              /* 双人局：P1 刚挪过旋钮 0.42 秒内 P2 下手才算合抱 */
+const RLP_STROKE_MIN=3,RLP_STROKE_MAX=7;
+const RLP_POOL_MIN=4,RLP_POOL_WANT=14;
+const RLP_P0=2,RLP_PCAP=3,RLP_HEARTS=3,RLP_HEART_MAX=5,RLP_BOOK_MAX=300;
+/* 罚分与奖励：只有收错真牌（下一笔不是它）才掉心；影牌也掉心（它压根不是这个字的笔）；空手只扣分断连击 */
+const RLP_PEN_EMPTY=3,RLP_PEN_WRONG=6,RLP_PEN_TIME=3,RLP_PEN_FAKE=3,RLP_PEN_SWAP=8;
+const RLP_WORD_BONUS=28,RLP_CLEAN_BONUS=18,RLP_DRY_BONUS=12,RLP_DUO_BONUS=28,RLP_CHAIN_BONUS=6;
+const RLP_TIGHT_MULT=1.28,RLP_TIDE_MULT=1.5,RLP_GRAZE_MULT=1.18,RLP_PING_MULT=.7;
+const RLP_VIEW_MS=3400,RLP_HOLD_MS=8000,RLP_SCOPE_MS=6000;
+const RLP_NAG_MS=11000,RLP_NAG_HOLD=5200,RLP_HELP_MS=16000;
+const RLP_TAG_MS=2300,RLP_MARK_MS=3400;
+const RLP_NOTE=[262,294,330,392,440,523,587,659,784,880,1047];
+const RLP_INK4=['#4FC3F7','#81C784','#FFD54F','#FFB74D'];
+const RLP_TAG4=['横','竖','撇','捺'];
+const RLP_RANKS=[
+  {n:0,e:'🌱',t:'刚下水'},{n:2,e:'🌊',t:'会推一波'},{n:5,e:'👂',t:'听得出纹'},
+  {n:9,e:'🪶',t:'抢得到尖'},{n:14,e:'💠',t:'叠得出浪'},{n:21,e:'🧭',t:'量得准纹'},
+  {n:30,e:'🐚',t:'浪里摘牌'},{n:42,e:'🏆',t:'叠浪坊的名家'},{n:58,e:'👑',t:'叠浪坊的师傅'}
+];
+const rlp={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],toneAt:0,tones:0,
+  pool:[],miss:[],rec:null,n:0,pi:0,poolWantMore:false,thinLv:0,
+  lv:1,score:0,hearts:RLP_HEARTS,combo:0,maxCombo:0,
+  words:0,shots:0,hits:0,wrongs:0,fakes:0,grazes:0,empties:0,pings:0,timeouts:0,
+  views:0,holds:0,tights:0,tides:0,scopes:0,swaps:0,chains:0,chain:0,chainMax:0,
+  tools:0,nags:0,cleanWord:true,dryWord:true,nagTip:'',
+  viewN:RLP_P0,holdN:RLP_P0,scopeN:RLP_P0,swapN:1,
+  viewUse:0,holdUse:0,scopeUse:0,swapUse:0,
+  viewMs:0,holdMs:0,scopeMs:0,nagMs:0,nagHold:0,helpMs:0,actMs:0,tagTimer:0,
+  /* 两块旋钮：th=杆的转角（0~π，π 就是 0）、lam=波长（像素）*/
+  th:0,lam:46,
+  cards:[],live:[],parts:[],pingL:[],
+  /* 这个字的第 i 笔上岸了没：底纹上墨与样图都读这一张表（换字时清空）*/
+  gotIdx:[],
+  qms:0,qms0:0,fuel:RLP_FUEL0,pingMs:0,tideMs:0,tideOn:0,tideN:0,tideD:0,warn:false,
+  hudAcc:0,newBest:false,markMs:0,markI:-1,markForce:0,
+  doneCh:[],gotCh:[],got0:0,
+  duo:false,duoCut:0,duoHalf:true,duoP1:0,duoP2:0,knobMs:RLP_HUG_MS+1,grabMs:RLP_TIGHT_MS+1,hug:0,hugW:0,hugTell:'',
+  /* 上一张牌收走那一刻攒下的加成（收牌瞬间结算，先存这儿）*/
+  lastTight:0,lastTide:0,lastGraze:0,lastPing:0,
+  holdT:0,broke:0,swept:0,
+  ctx:null,bound:false,tagOn:0,
+  keys:{cw:0,ccw:0,fine:0,coarse:0},
+  /* 挑字（等字数据回来那两秒）：两只钟停走 */
+  load:false
+};
+/* ---- 小工具 ---- */
+function rlpxInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function rlpxAdd(k,n){if(n)localStorage.setItem(k,String(rlpxInt(k)+n))}
+function rlpxPut(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function rlpxSay(t,c){const el=document.getElementById('rlpMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function rlpxShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function rlpxOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function rlpxClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function rlpxRok(d){return d>=0&&d<4?d:0}
+function rlpxRank(x){let r=RLP_RANKS[0];for(let i=0;i<RLP_RANKS.length;i++)if(x>=RLP_RANKS[i].n)r=RLP_RANKS[i];return r}
+/* 转角 wrap：杆是一根「线」不是箭头 —— 转到 180° 和没转是同一张水面 */
+function rlpxWrapTh(a){a=a%Math.PI;if(a<0)a+=Math.PI;return a}
+function rlpxTurn(a){a=a%(Math.PI*2);if(a<0)a+=Math.PI*2;return a}
+function rlpxDiff(a,b){let d=Math.abs(rlpxTurn(a)-rlpxTurn(b));if(d>Math.PI)d=Math.PI*2-d;return d}
+function rlpxTone(f,d,t,v){
+  if(!rlp.run||rlp.over)return;
+  const n=performance.now();
+  if(n-rlp.toneAt<22)return;
+  rlp.tones++;tone(f,d,t,v);
+}
+function rlpxT(fn,ms){const g=rlp.gen;const id=setTimeout(function(){const k=rlp.timers.indexOf(id);if(k>=0)rlp.timers.splice(k,1);if(g!==rlp.gen)return;fn()},ms);rlp.timers.push(id);return id}
+function rlpxKillTimers(){rlp.timers.forEach(function(t){clearTimeout(t)});rlp.timers=[]}
+/* ---- 难度表：场越深，钟越紧、水面越省、萍起得越快、影牌越多、浪越急、字越难 ---- */
+function rlpLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function rlpFuel(lv){return Math.max(RLP_FUEL_MIN,RLP_FUEL0-(lv-1)*RLP_FUEL_STEP)}
+function rlpQms(lv){return Math.max(RLP_Q_MIN,RLP_Q0-(lv-1)*RLP_Q_STEP)}
+function rlpPingMs(lv){return Math.max(RLP_PING_MIN,RLP_PING0-(lv-1)*RLP_PING_STEP)}
+function rlpTideMs(lv){return Math.max(RLP_TIDE_MIN,RLP_TIDE0-(lv-1)*RLP_TIDE_STEP)}
+function rlpFake(lv){return lv<3?0:(lv>=6?2:1)}
+function rlpStrokeMax(lv){return lv>=5?RLP_STROKE_MAX:6}
+function rlpWant(lv){return lv<=2?[RLP_STROKE_MIN,5]:[RLP_STROKE_MIN,rlpStrokeMax(lv)]}
+/* 第 4 场起样图与牌里的缩略图淡下去（这个字长什么样得记在心里，认笔只认得起那一笔的模样）*/
+function rlpFaint(lv){return lv>=4}
+/* 收对一张：顺手收（上一张刚走）×1.28、赶上涨潮 ×1.5、擦纹 ×1.18、糊在萍下只拿七成 */
+function rlpGain(tight,tide,graze,ping){
+  return Math.round((8+rlp.combo*1.1+rlp.lv*1.7)*(tight?RLP_TIGHT_MULT:1)*(tide?RLP_TIDE_MULT:1)*
+    (graze?RLP_GRAZE_MULT:1)*(ping?RLP_PING_MULT:1));
+}
+
+/* ================= 段 B：水面几何 · 牌钉在哪 · 字池 · 发牌（带一张「算得出的死账」审计）================= */
+/* 两针坐标：杆是刚性的，中心钉在盘心，两头各一根针 —— 反相点水 */
+function rlpSrc(th){
+  const h=RLP_BAR/2,c=Math.cos(th),s=Math.sin(th);
+  return {ax:RLP_CX-h*c,ay:RLP_CY-h*s,bx:RLP_CX+h*c,by:RLP_CY+h*s};
+}
+/* 路程差与平均路程：Δ=|rA−rB| 决定振幅，r̄=(rA+rB)/2 决定晚半拍到。
+   两样都是位置的纯函数 —— 画面上、发牌审计里、无头侧重算里必须用同一个式子 */
+function rlpGeo(x,y,th){
+  const ax=Math.cos(th),ay=Math.sin(th);
+  const s=(x-RLP_CX)*ax+(y-RLP_CY)*ay;
+  const r=Math.hypot(x-RLP_CX,y-RLP_CY);
+  const perp=Math.sqrt(Math.max(0,r*r-s*s));
+  const h=RLP_BAR/2;
+  const ra=Math.hypot(s-h,perp),rb=Math.hypot(s+h,perp);
+  return {d:Math.abs(ra-rb),mean:(ra+rb)/2};
+}
+function rlpAmpOf(d,lam){return Math.abs(Math.sin(Math.PI*d/lam))}
+function rlpLiftOf(amp,mean,lam,t){return amp*(RLP_LO+RLP_HI*Math.sin(Math.PI*2*(t/RLP_T-mean/lam)))}
+/* 整盘的时刻：🧊 定浪挂着时用冻结那一刻 —— 牌、水面点子、审计必须一起停，不然画面冻了浪还在走 */
+function rlpClock(){return rlp.holdMs>0?rlp.holdT:rlp.t}
+/* ---- 点到一条折线的最短距离：影牌摆位要离所有底纹都够远，「牌里干干净净」这道破绽才量得出来 */
+function rlpDistSeg(px,py,ax,ay,bx,by){
+  const dx=bx-ax,dy=by-ay,L2=dx*dx+dy*dy;
+  let t=L2>0?((px-ax)*dx+(py-ay)*dy)/L2:0;
+  t=rlpxClamp(t,0,1);
+  return Math.hypot(px-(ax+dx*t),py-(ay+dy*t));
+}
+function rlpDistPath(px,py,path){
+  let m=1e9;
+  for(let i=1;i<path.length;i++){
+    const d=rlpDistSeg(px,py,path[i-1][0],path[i-1][1],path[i][0],path[i][1]);
+    if(d<m)m=d;
+  }
+  return m;
+}
+/* ---- 字：3~7 笔、至少两种笔形、每笔够长、整字别太扁 —— 牌里的缩略图要认得出 ---- */
+function rlpBox(m){
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<m.length;i++){
+    const x=m[i][0],y=m[i][1];
+    if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+  }
+  return {x0:x0,x1:x1,y0:y0,y1:y1,w:x1-x0,h:y1-y0};
+}
+function rlpUnion(meds){
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<meds.length;i++){
+    const b=rlpBox(meds[i]);
+    if(b.x0<x0)x0=b.x0;if(b.x1>x1)x1=b.x1;if(b.y0<y0)y0=b.y0;if(b.y1>y1)y1=b.y1;
+  }
+  return {x0:x0,x1:x1,y0:y0,y1:y1};
+}
+function rlpLen1024(m){
+  let L=0;
+  for(let i=1;i<m.length;i++)L+=Math.hypot(m[i][0]-m[i-1][0],m[i][1]-m[i-1][1]);
+  return L;
+}
+/* 牌里那颗缩略图的取景：整个字按包围盒塞进一个 BOX 见方的框（数据 y 朝上，翻过来才是这个字的模样）*/
+const RLP_MBOX=34;
+function rlpMiniLook(rec){
+  const u=rec.union||rlpUnion(rec.meds);
+  const gw=Math.max(u.x1-u.x0,1),gh=Math.max(u.y1-u.y0,1);
+  const k=(RLP_MBOX-6)/Math.max(gw,gh);
+  return {k:k,ox:-((gw*k)/2),oy:-((gh*k)/2),u:u,gw:gw,gh:gh};
+}
+function rlpMake(ch,raw,lmax){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  const hi=lmax||6;
+  if(ms.length<RLP_STROKE_MIN||ms.length>hi)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=jtDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  const u=rlpUnion(ms);
+  const gw=u.x1-u.x0,gh=u.y1-u.y0;
+  if(gw<180||gh<180)return null;                 /* 太扁的字塞进 34 像素的牌里就糊成一团，不进池 */
+  const ln=[];
+  for(let i=0;i<ms.length;i++){
+    const L=rlpLen1024(ms[i]);
+    if(L<70)return null;
+    ln.push(L);
+  }
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp,meds:ms,len:ln,union:u,mini:rlpMiniLook({union:u,meds:ms}),pts:null,sols:null};
+}
+/* ---- 牌钉在哪：第 i 张牌钉在这个字第 i 笔的中段上 ----
+   先把整个字按包围盒塞进水盘的那块 BOX，再按「两张牌不许叠住、牌不许压在盘心（杆要转）」「每张牌离自己原位的挪量封顶」
+   迭代推开。26 像素封顶是这一坊的死账：牌面半径 27，所以真牌的圆面里一定压着自己那一笔的底纹 ——
+   影牌底下一页干净，这道破绽孩子拿眼睛就能量出来。推不开的（比如三横挤成一叠的「三」）就不进池 */
+function rlpAnchors(rec){
+  const u=rec.union;
+  const gw=Math.max(u.x1-u.x0,1),gh=Math.max(u.y1-u.y0,1);
+  const k=Math.min((RLP_BOX.x1-RLP_BOX.x0)/gw,(RLP_BOX.y1-RLP_BOX.y0)/gh);
+  const ox=(RLP_BOX.x0+RLP_BOX.x1)/2,oy=(RLP_BOX.y0+RLP_BOX.y1)/2;
+  const cx=(u.x0+u.x1)/2,cy=(u.y0+u.y1)/2;
+  const pts=[],paths=[];
+  for(let i=0;i<rec.meds.length;i++){
+    const m=rec.meds[i],q=m[Math.floor(m.length/2)];
+    const px=ox+(q[0]-cx)*k,py=oy-(q[1]-cy)*k;
+    pts.push({x:px,y:py,ox:px,oy:py});
+    const pa=[];
+    for(let j=0;j<m.length;j++)pa.push([ox+(m[j][0]-cx)*k,oy-(m[j][1]-cy)*k]);
+    paths.push(pa);
+  }
+  for(let pass=0;pass<34;pass++){
+    let moved=0;
+    for(let i=0;i<pts.length;i++){
+      const d=Math.hypot(pts[i].x-RLP_CX,pts[i].y-RLP_CY);
+      if(d<RLP_CLEAR){
+        const ux=d>.01?(pts[i].x-RLP_CX)/d:1,uy=d>.01?(pts[i].y-RLP_CY)/d:0;
+        pts[i].x=RLP_CX+ux*RLP_CLEAR;pts[i].y=RLP_CY+uy*RLP_CLEAR;moved++;
+      }
+    }
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const dx=pts[j].x-pts[i].x,dy=pts[j].y-pts[i].y,d=Math.hypot(dx,dy);
+      if(d>=RLP_SEP)continue;
+      const push=(RLP_SEP-d)/2+.5,ux=d?dx/d:1,uy=d?dy/d:0;
+      pts[i].x-=ux*push;pts[i].y-=uy*push;
+      pts[j].x+=ux*push;pts[j].y+=uy*push;moved++;
+    }
+    for(let i=0;i<pts.length;i++){
+      const p=pts[i];
+      p.x=rlpxClamp(p.x,RLP_BOX.x0,RLP_BOX.x1);
+      p.y=rlpxClamp(p.y,RLP_BOX.y0,RLP_BOX.y1);
+      if(Math.hypot(p.x-p.ox,p.y-p.oy)>RLP_DISP)return null;
+    }
+    if(!moved)break;
+  }
+  for(let i=0;i<pts.length;i++){
+    if(Math.hypot(pts[i].x-RLP_CX,pts[i].y-RLP_CY)<RLP_CLEAR-1)return null;
+    pts[i].path=paths[i];pts[i].dir=rec.dirs[i];pts[i].i=i;
+  }
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++)
+    if(Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y)<RLP_SEP-1)return null;
+  /* 推开之后还得回头看一眼：牌心离自己那一笔的折线必须 ≤CARD−11=16 像素。
+     牌面半径 27，只压着边上的话圆面里就只剩一道毛边，孩子看不出「这一笔的印子在这儿」——
+     压不着这么深的字就不进池（宁可少一个字，不许发一张看不出墨的牌） */
+  for(let i=0;i<pts.length;i++)if(rlpDistPath(pts[i].x,pts[i].y,paths[i])>RLP_CARD-11)return null;
+  return pts;
+}
+/* ---- 死账一：某一张牌能不能出头 ----
+   在粗档格子（θ 三度、λ 一像素）上全数一遍：振幅过 RING、比第二名高 MARGIN 才算「压得住全场」，
+   再在这一格里切 24 刀量时机 —— 整拍里它当第一刀、且自己浮在浪尖上的时间得 ≥12%（≈156 毫秒，够孩子看清再下手）。
+   合格的格子还得在 θ 上连着 ≥8°、在 λ 上连着 ≥3 像素，否则旋钮一抖就跑出窗口，等于没给机会。
+   找到的最好那一格留成「证人」（rec.sols[k]）：加影牌时不许重扫全图，只在这个证人格上重验一遍 —— 验不过就换摆法 */
+function rlpFrac(G,lam,k,v){
+  let hit=0;
+  for(let s=0;s<RLP_PH;s++){
+    const t=s/RLP_PH*RLP_T;
+    let bi=-1,bv=-1e9;
+    for(let i=0;i<v.length;i++){
+      const L=rlpLiftOf(v[i],G[i].mean,lam,t);
+      if(L>bv){bv=L;bi=i}
+    }
+    if(bi===k&&bv>=RLP_GRAB)hit++;
+  }
+  return hit/RLP_PH;
+}
+function rlpCellOK(G,lam,k){
+  const v=[];
+  for(let i=0;i<G.length;i++)v.push(rlpAmpOf(G[i].d,lam));
+  let bi=0;
+  for(let i=1;i<v.length;i++)if(v[i]>v[bi])bi=i;
+  if(bi!==k||v[k]<RLP_RING)return null;
+  let m2=0;
+  for(let i=0;i<v.length;i++)if(i!==k&&v[i]>m2)m2=v[i];
+  return v[k]-m2>=RLP_MARGIN?v:null;
+}
+function rlpSolve(cards,k){
+  const ts=[],ls=[];
+  for(let t=0;t<180;t+=RLP_GT)ts.push(t*Math.PI/180);
+  for(let l=RLP_L_MIN;l<=RLP_L_MAX+1e-9;l+=RLP_GL)ls.push(l);
+  const good=ts.map(function(){return ls.map(function(){return 0})});
+  let cells=0,best=null;
+  for(let a=0;a<ts.length;a++){
+    const G=[];
+    for(let i=0;i<cards.length;i++)G.push(rlpGeo(cards[i].x,cards[i].y,ts[a]));
+    for(let b=0;b<ls.length;b++){
+      const v=rlpCellOK(G,ls[b],k);
+      if(!v)continue;
+      const fr=rlpFrac(G,ls[b],k,v);
+      if(fr<RLP_FRAC)continue;
+      good[a][b]=fr;cells++;
+      if(!best||fr>best.fr)best={a:a,b:b,fr:fr,th:ts[a],lam:ls[b],amp:v[k]};
+    }
+  }
+  if(!cells)return {cells:0,deg:0,px:0,fr:0};
+  let score=0,runT=0;
+  for(let b=0;b<ls.length;b++){
+    let run=0,r=0;
+    for(let a=0;a<ts.length;a++){if(good[a][b]){run++;if(run>r)r=run}else run=0}
+    if(r>score){score=r;runT=b}
+  }
+  const deg=score*RLP_GT;
+  score=0;
+  for(let a=0;a<ts.length;a++){
+    let run=0,r=0;
+    for(let b=0;b<ls.length;b++){if(good[a][b]){run++;if(run>r)r=run}else run=0}
+    if(r>score)score=r;
+  }
+  return {cells:cells,deg:Math.round(deg*10)/10,px:Math.round(score*RLP_GL*100)/100,
+    fr:Math.round(best.fr*100)/100,th:best.th,lam:best.lam,amp:best.amp,runB:runT};
+}
+/* 一个字的裸牌阵（还没影牌）：每一笔都要有出头的份儿 —— 从第 k 张起算，因为收掉的牌不再下水 */
+function rlpAudit(rec){
+  if(!rec.pts)rec.pts=rlpAnchors(rec);
+  if(!rec.pts)return null;
+  const sols=[];
+  for(let i=0;i<rec.pts.length;i++){
+    const s=rlpSolve(rec.pts.slice(i),0);
+    if(!s.cells||s.deg<RLP_RUN_T||s.px<RLP_RUN_L)return null;
+    sols.push(s);
+  }
+  /* 进门这笔账要留着：池里每个字的证人格就这么算出来的，发牌时直接复用（不再重扫全图），
+     无头侧也就能拿「证人个数 == 笔数」当进池的凭据 */
+  rec.sols=sols;
+  return sols;
+}
+/* 死账二：把证人格拿出来，加上这一场的影牌再验一遍（振幅、余量、时机三条一起）*/
+function rlpVerify(pts,fakes,i,sol){
+  const cards=pts.slice(i);
+  for(let f=0;f<fakes.length;f++)cards.push(fakes[f]);
+  const G=[];
+  for(let c=0;c<cards.length;c++)G.push(rlpGeo(cards[c].x,cards[c].y,sol.th));
+  const v=rlpCellOK(G,sol.lam,0);
+  if(!v)return 0;
+  return rlpFrac(G,sol.lam,0,v)>=RLP_FRAC?1:0;
+}
+/* ---- 字池：进池之前先把这个字的全场账算完（rlpAudit），算不过的字根本不给孩子见到 ---- */
+async function rlpBuildPool(keep,lo,hi){
+  const g=rlp.gen,stale=function(){return g!==rlp.gen||!rlp.run||rlp.over};
+  const mk=RLP_STROKE_MAX;
+  const enough=function(){
+    if(!isFinite(lo))return rlp.pool.length>=RLP_POOL_WANT;
+    let c=0;for(let i=0;i<rlp.pool.length;i++)if(rlp.pool[i].n>=lo&&rlp.pool[i].n<=hi)c++;
+    /* 一档里攒够六个字就上机：一次多等一批（12 个字并行取），换来的是整局的花样 */
+    return c>=6||rlp.pool.length>=40;
+  };
+  rlp.miss=(localStorage.getItem('hz_ripple_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){list=list||[];for(let i=0;i<list.length&&want.length<240;i++){const c=list[i];if(c&&want.indexOf(c)<0)want.push(c)}};
+  push(rlpxShuf(rlp.miss.slice(0,6)));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(rlpxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(rlpxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(rlpLetters());
+  if(typeof CHARS!=='undefined')push(rlpxShuf(CHARS.slice()));
+  if(!keep)rlp.pool=[];
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=rlpMake(want[k+i],rs[i],mk);
+        /* 进池之前把这个字的全场账算死：牌摆不开、或某一笔压根出不了头的字，不许端给孩子 */
+        if(m&&rlpAudit(m)&&!rlp.pool.some(function(p){return p.ch===m.ch}))rlp.pool.push(m);
+      }
+    }
+  }
+  return rlp.pool.length>=RLP_POOL_MIN;
+}
+function rlpLetters(){
+  return '二十八三十人大干千于工土士王共其基执束雨两个甫寸对寺寻导得安宋宗宜定宝'
+    +'常开式形张彼往征待得近返还进远适选邻都配采释金针钉钓钝钮铃铁银雨雪需青非面'
+    +'音页顶项顺须题风飞食饭馆马驶验骨高鬼鱼鸟麦麻黄米良走起始迁迎接运道目且自白'
+    +'百吉同后告吾围固南先光当学字存它守居层岛巧已巷布帐帘带年并座异弯强形彩表'
+    +'衫见观规视讲话谢象贝货资赏街衡'.split('');
+}
+function rlpPickRec(){
+  const w=rlpWant(rlp.lv);
+  let pool=rlp.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]});
+  if(!pool.length)pool=rlp.pool.filter(function(r){return r.n>=RLP_STROKE_MIN&&r.n<=RLP_STROKE_MAX});
+  if(!pool.length)return null;
+  /* 刚手上这一张不许立刻又发回孩子手里：按 🔁 换字、收完一个字换新字，走的都是这条路 */
+  const cur=rlp.rec?rlp.rec.ch:'';
+  const rest=pool.filter(function(r){return r.ch!==cur});
+  if(rest.length)pool=rest;
+  const mis=pool.filter(function(r){return rlp.miss.indexOf(r.ch)>=0});
+  if(mis.length)return rlpxOne(mis);
+  const fresh=pool.filter(function(r){return rlp.doneCh.indexOf(r.ch)<0});
+  if(fresh.length)return rlpxOne(fresh);
+  return rlpxOne(pool);
+}
+/* ---- 发牌：真牌钉死在这一笔该在的那一格，影牌（别个字的一笔）在水面空处找地方 ----
+   影牌的唯一破绽是「底下没压着这个字的底纹」，所以它得摆在 BOX 里、离真牌 RLP_SEP 以外、离盘心 RLP_CLEAR 以外；
+   摆完每一版都在裸账留下的证人格上重验一遍（rlpVerify），验不过就换摆法 —— 试满 RLP_TRY 版就减一块影牌，
+   绝不发一把「该收的那张压根出不了头」的牌 */
+function rlpFakeSpot(pts,extra){
+  /* 两趟：第一趟要求牌面里一根墨线都爬不进来（离每段底纹 ≥31 > 牌面半径 27）；
+     摆不出来才退到第二趟——只躲开真牌和盘心。退让不会伤到死账：真牌永远压着自己那一笔 */
+  for(let pass=0;pass<2;pass++){
+    for(let g=0;g<240;g++){
+      const q={x:RLP_BOX.x0+Math.random()*(RLP_BOX.x1-RLP_BOX.x0),y:RLP_BOX.y0+Math.random()*(RLP_BOX.y1-RLP_BOX.y0)};
+      if(Math.hypot(q.x-RLP_CX,q.y-RLP_CY)<RLP_CLEAR)continue;
+      let ok=true;
+      for(let i=0;i<pts.length;i++)if(Math.hypot(pts[i].x-q.x,pts[i].y-q.y)<RLP_SEP){ok=false;break}
+      if(ok)for(let i=0;i<extra.length;i++)if(Math.hypot(extra[i].x-q.x,extra[i].y-q.y)<RLP_SEP){ok=false;break}
+      if(ok&&pass===0)for(let i=0;i<pts.length;i++)
+        if(rlpDistPath(q.x,q.y,pts[i].path)<RLP_CARD+4){ok=false;break}
+      if(ok)return q;
+    }
+  }
+  return null;
+}
+function rlpDealTry(rec,fn){
+  const pts=rec.pts,sols=rec.sols;
+  const extra=[];
+  for(let f=0;f<fn;f++){
+    const q=rlpFakeSpot(pts,extra);
+    if(!q)return null;
+    /* 影牌不带 dir：它的牌面里不许有墨（破绽就在这儿），编号也给 -1 —— 它压根不是这个字的笔 */
+    extra.push({i:-1,dir:-1,x:q.x,y:q.y,ox:q.x,oy:q.y,fake:true,got:false});
+  }
+  for(let i=0;i<pts.length;i++)if(!rlpVerify(pts,extra,i,sols[i]))return null;
+  return pts.map(function(p){return {i:p.i,dir:p.dir,x:p.x,y:p.y,ox:p.ox,oy:p.oy,path:p.path,fake:false,got:false}})
+    .concat(extra.map(function(p){return {i:-1,dir:-1,x:p.x,y:p.y,ox:p.ox,oy:p.oy,fake:true,got:false}}));
+}
+function rlpDeal(rec,lv){
+  if(!rec)return null;
+  if(!rec.pts||!rec.sols){rec.sols=rlpAudit(rec);if(!rec.sols)return null}
+  const L=lv||rlp.lv;
+  let fn=rlpFake(L);
+  for(let step=0;step<=fn;step++){
+    for(let att=0;att<RLP_TRY;att++){
+      const out=rlpDealTry(rec,fn-step);
+      if(out)return out;
+    }
+  }
+  return null;
+}
+
+/* ================= 段 C：两块旋钮 · 抢浪尖收牌 · 两只钟 · 长浪 · 浮萍 · 四件浪具 ================= */
+/* ---- 此刻每张牌荡到哪：数值直接写回牌上，画面、判定、无头侧读的必须是这同一份数 ---- */
+function rlpNow(){
+  const th=rlp.th,lam=rlp.lam,t=rlpClock();
+  const live=[];
+  for(let i=0;i<rlp.cards.length;i++){
+    const c=rlp.cards[i];
+    if(c.got){c.amp=0;c.lift=0;continue}
+    const g=rlpGeo(c.x,c.y,th);
+    c.d=g.d;c.mean=g.mean;c.amp=rlpAmpOf(g.d,lam);
+    c.lift=rlpLiftOf(c.amp,g.mean,lam,t);
+    live.push(i);
+  }
+  rlp.live=live;
+  return live;
+}
+function rlpArgmax(live){
+  let k=-1,v=-1e9;
+  for(let i=0;i<live.length;i++){
+    const c=rlp.cards[live[i]];
+    if(c.lift>v){v=c.lift;k=live[i]}
+  }
+  return {i:k,lift:v};
+}
+/* 该收的那张牌（还没上岸的第 pi 笔）*/
+function rlpTargetCard(){
+  if(!rlp.rec)return null;
+  for(let i=0;i<rlp.cards.length;i++)if(!rlp.cards[i].got&&rlp.cards[i].i===rlp.pi)return rlp.cards[i];
+  return null;
+}
+function rlpPingCard(c){return !!c&&rlp.pingL.indexOf(rlp.cards.indexOf(c))>=0}
+function rlpLiveN(){let k=0;for(let i=0;i<rlp.cards.length;i++)if(!rlp.cards[i].fake&&!rlp.cards[i].got)k++;return k}
+function rlpFakeN(){let k=0;for(let i=0;i<rlp.cards.length;i++)if(rlp.cards[i].fake&&!rlp.cards[i].got)k++;return k}
+/* ---- 🌊 长浪：一道横 band 从盘这头扫到那头，band 正盖着你要收的那张牌时下手 ×1.5 ---- */
+function rlpTideS(){
+  if(rlp.tideOn<=0)return 1e9;
+  const k=1-rlp.tideOn/RLP_TIDE_ON;
+  return -RLP_TIDE_SPAN+2*RLP_TIDE_SPAN*k;
+}
+function rlpTideCover(card){
+  if(rlp.tideOn<=0||!card)return false;
+  const proj=(card.x-RLP_CX)*Math.cos(rlp.tideD)+(card.y-RLP_CY)*Math.sin(rlp.tideD);
+  return Math.abs(proj-rlpTideS())<=RLP_TIDE_R;
+}
+/* ---- 擦纹：收这一张的时候另有张真牌振幅已经顶到 RING 线脚底下（0.70~0.74）—— 差一线就它也荡开了 ---- */
+function rlpGraze(ki){
+  for(let j=0;j<rlp.live.length;j++){
+    const i=rlp.live[j];
+    if(i===ki)continue;
+    const c=rlp.cards[i];
+    if(c.fake)continue;
+    if(c.amp>=RLP_GRAZE_LO&&c.amp<RLP_RING)return true;
+  }
+  return false;
+}
+/* ---- 收浪（这一坊唯一的下手）：谁在这刻浮得最高就收谁，够不着浪尖就是空手 ---- */
+function rlpGrab(who){
+  if(!rlp.run||rlp.over)return 0;
+  if(rlp.helpMs>0){rlp.helpMs=0;rlpLine();return 0}
+  if(rlp.load||!rlp.rec)return 0;
+  if(rlpLiveN()<=0)return 0;
+  rlpNow();
+  const mx=rlpArgmax(rlp.live);
+  rlp.shots++;
+  rlpNagOff();
+  if(rlp.duo&&who===2)rlp.duoP2++;
+  const gi=mx.i;
+  if(gi<0||mx.lift<RLP_GRAB){
+    /* 全场都还在水底：这时候下手等于把手伸进静水里 */
+    rlp.score=Math.max(0,rlp.score-RLP_PEN_EMPTY);
+    rlp.empties++;rlp.combo=0;rlp.chain=0;rlp.cleanWord=false;
+    rlpTag('💧 空手：这一刻没有一张牌荡到浪尖（浮得最高才 '+mx.lift.toFixed(2)+'，'+
+      RLP_GRAB.toFixed(2)+' 以下都算摸空气）—— 转杆、调浪，等它起','warn');
+    rlpFx(4,'bad');rlpxTone(RLP_NOTE[0],.16,'sawtooth',.05);
+    rlpHud();rlpLine();rlpAsk();
+    return 0;
+  }
+  const card=rlp.cards[gi];
+  /* 🧊 定浪那 8 秒里下手不算顺手：浪被工具冻在尖上，连按就能一路吃 ×1.28 —— 那是借的时间，不是手感 */
+  const tight=rlp.grabMs<=RLP_TIGHT_MS&&rlp.holdMs<=0,tide=rlpTideCover(card),graze=rlpGraze(gi),ping=rlpPingCard(card);
+  rlp.lastTight=tight?1:0;rlp.lastTide=tide?1:0;rlp.lastGraze=graze?1:0;rlp.lastPing=ping?1:0;
+  if(tight)rlp.tights++;
+  if(tide)rlp.tides++;
+  if(graze)rlp.grazes++;
+  if(rlp.holdMs>0)rlp.holds++;
+  if(rlp.viewMs>0)rlp.views++;
+  /* 双人局里这一记没抱着（旋钮早就没人碰了）：算一次「一个人把两样都干了」 */
+  if(rlp.duo&&rlp.knobMs>RLP_HUG_MS)rlp.duoCut++;
+  rlp.grabMs=0;
+  if(card.fake){rlpBlunderFake(card);return 0}
+  if(card.i!==rlp.pi){rlpBlunder(card);return 0}
+  rlpDeliver(card,{tight:tight,tide:tide,graze:graze,ping:ping});
+  return 1;
+}
+/* ---- 收对：这一笔上岸（牌不再下水，底纹上墨）---- */
+function rlpDeliver(card,m){
+  const rec=rlp.rec;
+  card.got=true;
+  /* 这一笔上岸了：盘底那道印子要当场换成它的笔形色，样图也得跟着亮一块
+     （底纹与样图都按「第几笔」读 gotIdx，所以记在编号上，不记在牌的位置上） */
+  rlp.gotIdx[card.i]=true;
+  const g=rlpGain(m.tight,m.tide,m.graze,m.ping);
+  rlp.score+=g;rlp.hits++;rlp.combo++;
+  if(rlp.combo>rlp.maxCombo)rlp.maxCombo=rlp.combo;
+  rlp.chain++;
+  if(rlp.chain>=2){rlp.score+=RLP_CHAIN_BONUS;rlp.chains++;if(rlp.chain>rlp.chainMax)rlp.chainMax=rlp.chain}
+  if(m.ping)rlp.swept++;
+  if(rlp.dryWord&&(rlp.viewUse||rlp.holdUse||rlp.scopeUse))rlp.dryWord=false;
+  if(card.dir!==rec.dirs[rlp.pi])rlp.cleanWord=false;
+  if(rlp.duo&&rlp.knobMs<=RLP_HUG_MS)rlpHugTag();
+  rlp.pi++;
+  rlp.qms=rlp.qms0=rlpQms(rlp.lv);
+  rlpFx(9,'ring');rlpxTone(RLP_NOTE[Math.min(10,3+rlp.combo)],.12,'sine',.06);
+  rlpTag('🎯 第 '+rlp.pi+' 笔（'+RLP_TAG4[rlpxRok(card.dir)]+'）上岸 + '+g+' 分'+
+    (m.tight?' · 顺手收 ×'+RLP_TIGHT_MULT:'')+(m.tide?' · 赶上涨潮 ×'+RLP_TIDE_MULT:'')+
+    (m.graze?' · 擦纹 ×'+RLP_GRAZE_MULT:'')+(m.ping?' · 萍下只拿七成':'')+rlp.hugTell,'gold');
+  rlp.hugTell='';
+  if(rlp.pi>=rec.n){rlpWordDone();return}
+  rlpMarkTarget();
+  rlpHud();rlpLine();rlpAsk();
+}
+function rlpHugTag(){
+  if(rlp.hugW>0)return;
+  rlp.hug++;rlp.hugW++;
+  /* 这一句挂在同一拍的「上岸」浮条后面一起说：单独 rlpTag 一记，下一行就被上岸那句抹掉了，孩子根本看不到合抱 */
+  rlp.hugTell=' · 🤝 合抱：旋钮刚停手就有人下手 +'+RLP_DUO_BONUS+'（这个字收完结账）';
+}
+function rlpBlunder(card){
+  rlp.score=Math.max(0,rlp.score-RLP_PEN_WRONG);
+  rlp.wrongs++;rlp.combo=0;rlp.chain=0;rlp.cleanWord=false;
+  rlp.hearts--;
+  rlp.qms=rlp.qms0=rlpQms(rlp.lv);
+  rlpTag('💔 收错了：这张牌上墨的是第 '+(card.i+1)+' 笔，现在该收第 '+(rlp.pi+1)+' 笔 —— 已经把它描亮了，'+
+    '它不在这刻的浪尖上就别下手','warn');
+  rlpFx(6,'bad');rlpxTone(RLP_NOTE[0],.26,'sawtooth',.06);
+  if(rlp.hearts<=0){rlpEnd('broke');return}
+  rlpRemind();
+  rlpHud();rlpLine();
+}
+function rlpBlunderFake(card){
+  card.got=true;
+  rlp.score=Math.max(0,rlp.score-RLP_PEN_FAKE);
+  rlp.fakes++;rlp.combo=0;rlp.chain=0;rlp.cleanWord=false;
+  rlp.hearts--;
+  rlpTag('🍃 影牌：这张牌底下没压着这个字的底纹 —— 白收一记，掉一颗心','warn');
+  rlpFx(5,'bad');rlpxTone(RLP_NOTE[1],.18,'square',.05);
+  if(rlp.hearts<=0){rlpEnd('broke');return}
+  rlpHud();rlpLine();
+}
+/* ---- 描亮该收的那张：前两场一直描着，往深了只描 3.4 秒（认笔形不是认编号）---- */
+function rlpMarkTarget(){
+  rlp.markI=-1;
+  const c=rlpTargetCard();
+  if(!c)return;
+  if(rlp.lv<=2||rlp.markForce){rlp.markMs=0;rlp.markI=rlp.cards.indexOf(c);return}
+  rlp.markMs=RLP_MARK_MS;rlp.markI=rlp.cards.indexOf(c);
+}
+/* 收错、钟走光之后多描 8 秒：孩子刚在水边判错一次，这一记得让他看仔细 */
+function rlpRemind(){
+  rlpMarkTarget();
+  if(rlp.markI>=0&&rlp.lv>2&&!rlp.markForce)rlp.markMs=Math.max(rlp.markMs,8000);
+}
+function rlpMarkOff(){rlp.markMs=0}
+function rlpMarkLive(){
+  if(rlp.markI<0)return false;
+  if(rlp.lv<=2||rlp.markForce)return true;
+  return rlp.markMs>0;
+}
+/* ---- 浮萍：一片盖住一张牌的缩略图 ---- */
+function rlpPingAdd(){
+  if(rlp.scopeMs>0)return 0;
+  const free=[];
+  for(let i=0;i<rlp.cards.length;i++)if(!rlp.cards[i].got&&rlp.pingL.indexOf(i)<0)free.push(i);
+  if(!free.length||rlp.pingL.length>=RLP_PING_MAX)return 0;
+  rlp.pingL.push(rlpxOne(free));
+  rlp.pings++;
+  rlpTag('🍃 一片浮萍盖上一张牌：那笔看不清了（🍃 F 撇萍）');
+  return 1;
+}
+function rlpPingCount(){return rlp.pingL.length}
+/* ---- 一个字收完 → 换个字 ---- */
+function rlpWordDone(){
+  rlp.words++;
+  rlp.score+=RLP_WORD_BONUS;
+  let bonus=RLP_WORD_BONUS;
+  if(rlp.cleanWord){rlp.score+=RLP_CLEAN_BONUS;bonus+=RLP_CLEAN_BONUS;rlpxAdd('hz_ripple_cleanw',1)}
+  if(rlp.dryWord){rlp.score+=RLP_DRY_BONUS;bonus+=RLP_DRY_BONUS}
+  if(rlp.duo&&rlp.hugW>0&&rlp.duoP1){rlp.score+=RLP_DUO_BONUS;bonus+=RLP_DUO_BONUS;rlp.duoHalf=true}
+  rlpBookAdd(rlp.rec.ch);
+  rlpTag('💠 这个字整版亮起来了：'+rlp.rec.ch+' 一笔不差收齐了 + '+bonus+' 分','gold');
+  rlpFx(14,'win');rlpxTone(RLP_NOTE[10],.2,'sine',.07);
+  rlpBankLite();
+  const nl=rlpLvOf(rlp.words);
+  if(nl>rlp.lv)rlpLvUp(nl);
+  rlpNudge();
+  rlpNewWord();
+}
+function rlpLvUp(nl){
+  rlp.lv=nl;
+  rlp.qms0=rlpQms(nl);rlp.fuel=rlpFuel(nl);
+  rlp.viewN=Math.min(RLP_PCAP,rlp.viewN+1);
+  rlp.holdN=Math.min(RLP_PCAP,rlp.holdN+1);
+  rlp.scopeN=Math.min(RLP_PCAP,rlp.scopeN+1);
+  rlp.hearts=Math.min(RLP_HEART_MAX,rlp.hearts+1);
+  rlpTag('💠 第 '+nl+' 场：'+(rlpFake(nl)?'这一场最多混 '+rlpFake(nl)+' 张影牌（水盘挤不下就少塞一张，HUD 上写着这一盘实际几颗）':'这一场没影牌')+
+    '、钟缩到 '+(rlpQms(nl)/1000).toFixed(1)+' 秒、水面也省着用','gold');
+  rlpFx(10,'up');
+}
+/* ---- 两只钟 ---- */
+function rlpTimeOut(){
+  rlp.score=Math.max(0,rlp.score-RLP_PEN_TIME);
+  rlp.timeouts++;rlp.combo=0;rlp.chain=0;rlp.cleanWord=false;
+  rlp.qms=rlp.qms0=rlpQms(rlp.lv);
+  rlpTag('⌛ 这一笔的钟走光了：−'+RLP_PEN_TIME+' 分、连击清零（在水边想太久就是这个下场）','warn');
+  rlpFx(5,'bad');rlpxTone(RLP_NOTE[0],.2,'sawtooth',.05);
+  rlpRemind();
+}
+function rlpFuelOut(){
+  rlp.broke=(rlp.broke||0)+1;
+  rlpMissAdd(rlp.rec?rlp.rec.ch:'');
+  rlp.hearts--;
+  rlpTag('💧 这盘水见底了：这个字进了错字本（过几轮优先还回来）','warn');
+  rlpFx(6,'bad');
+  if(rlp.hearts<=0){rlpEnd('fuel');return}
+  rlp.fuel=rlpFuel(rlp.lv);
+  rlpNewWord();
+}
+/* ---- 主循环的一拍 ---- */
+function rlpGate(){return rlp.run&&!rlp.over&&!rlp.load}
+/* 旋钮被人碰了一下：就在碰的那一拍记账，不等下一拍 —— 真按下键到产品下一拍之间有十几毫秒，
+   孩子在这中间下手，凭什么叫「一个人慢吞吞把两样都干了」。
+   first 说这是不是一次新动作：键盘按住连发的重复键、指针一路挪的每一步，都还算同一次出手 */
+function rlpKnobTouch(first){
+  rlp.knobMs=0;rlp.actMs=3000;rlp.nagMs=0;
+  if(rlp.duo&&first)rlp.duoP1++;
+}
+function rlpTick(dt){
+  rlp.t+=dt;rlp.playMs+=dt;
+  /* 两块旋钮：按住才动（谁碰的、什么时候碰的，在输入那一头就记好了）*/
+  let dth=0,dl=0;
+  if(rlp.keys.cw)dth+=1;
+  if(rlp.keys.ccw)dth-=1;
+  if(rlp.keys.coarse)dl+=1;
+  if(rlp.keys.fine)dl-=1;
+  if(dth||dl){
+    if(dth)rlp.th=rlpxWrapTh(rlp.th+dth*RLP_DTH*dt);
+    if(dl)rlp.lam=rlpxClamp(rlp.lam+dl*RLP_DL*dt,RLP_L_MIN,RLP_L_MAX);
+    rlp.knobMs=0;rlp.nagMs=0;
+  }else rlp.knobMs+=dt;
+  rlp.grabMs+=dt;
+  if(rlp.helpMs>0)rlp.helpMs=Math.max(0,rlp.helpMs-dt);
+  if(!rlp.over&&!rlp.load&&rlp.helpMs<=0){
+    rlp.qms-=dt;
+    if(rlp.qms<=0){rlpTimeOut();if(rlp.over)return}
+    rlp.warn=rlp.qms<=rlpQWarn();
+    rlp.fuel-=dt;
+    if(rlp.fuel<=0){rlpFuelOut();if(rlp.over)return}
+    rlp.pingMs-=dt;
+    if(rlp.pingMs<=0){rlp.pingMs=rlpPingMs(rlp.lv);rlpPingAdd()}
+    rlp.tideMs-=dt;
+    if(rlp.tideMs<=0){
+      rlp.tideMs=rlpTideMs(rlp.lv);rlp.tideOn=RLP_TIDE_ON;rlp.tideN++;
+      /* 长浪从随便哪个方向涌进来：这 2.4 秒正好扫满整盘，扫到你那张牌上下手才吃得到 ×1.5 */
+      rlp.tideD=rlpxTurn(Math.random()*Math.PI*2);
+    }
+    if(rlp.tideOn>0)rlp.tideOn=Math.max(0,rlp.tideOn-dt);
+    if(rlp.scopeMs>0)rlp.scopeMs=Math.max(0,rlp.scopeMs-dt);
+    if(rlp.viewMs>0)rlp.viewMs=Math.max(0,rlp.viewMs-dt);
+    if(rlp.holdMs>0)rlp.holdMs=Math.max(0,rlp.holdMs-dt);
+    if(rlp.markMs>0)rlp.markMs=Math.max(0,rlp.markMs-dt);
+    rlp.nagMs+=dt;
+    if(rlp.nagMs>=RLP_NAG_MS&&!rlp.actMs&&rlp.nagHold<=0){rlp.nagMs=0;rlpNag()}
+    if(rlp.nagHold>0)rlp.nagHold=Math.max(0,rlp.nagHold-dt);
+    if(rlp.actMs>0)rlp.actMs=Math.max(0,rlp.actMs-dt);
+    rlpFxStep(dt);
+  }
+}
+function rlpQWarn(){return Math.min(8000,rlpQms(rlp.lv)*.35)}
+/* ---- 粒子 ---- */
+function rlpFx(n,kind){
+  const src=rlpTargetCard()||{x:RLP_CX,y:RLP_CY};
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,sp=.02+Math.random()*.06;
+    rlp.parts.push({x:src.x,y:src.y-RLP_LIFT,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,m:0,
+      life:kind==='win'?1200:(kind==='bad'?520:640),
+      c:kind==='bad'?'#FF8A65':(kind==='ring'?'#80DEEA':(kind==='up'?'#BA68C8':'#FFD54F'))});
+    if(rlp.parts.length>180)rlp.parts.shift();
+  }
+}
+function rlpFxStep(dt){
+  for(let i=rlp.parts.length-1;i>=0;i--){
+    const p=rlp.parts[i];
+    p.m+=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;
+    if(p.m>p.life)rlp.parts.splice(i,1);
+  }
+}
+/* ---- 四件浪具 ---- */
+function rlpView(){
+  if(!rlp.run||rlp.over)return 0;
+  if(rlp.viewN<=0){rlpTag('✨ 看纹用完了');return 0}
+  rlp.viewN--;rlp.viewUse++;rlp.tools++;rlp.actMs=3000;rlp.nagMs=0;
+  rlp.viewMs=RLP_VIEW_MS;
+  rlpTag('✨ 看纹三秒半：把此刻「荡得最凶的那几道纹」点亮（水面哪儿在起浪、哪儿是死的）');
+  rlpHud();return 1;
+}
+function rlpHold(){
+  if(!rlp.run||rlp.over)return 0;
+  if(rlp.holdN<=0){rlpTag('🧊 定浪用完了');return 0}
+  rlp.holdN--;rlp.holdUse++;rlp.tools++;rlp.actMs=3000;rlp.nagMs=0;
+  rlp.holdT=rlp.t;rlp.holdMs=RLP_HOLD_MS;
+  rlpTag('🧊 八秒：浪停在此刻（杆照样能转、波长照样能调）—— 这一段先挑对地方，解冻了再掐时机');
+  rlpHud();return 1;
+}
+function rlpScope(){
+  if(!rlp.run||rlp.over)return 0;
+  if(rlp.scopeN<=0){rlpTag('🍃 撇萍用完了');return 0}
+  rlp.scopeN--;rlp.scopeUse++;rlp.tools++;rlp.actMs=3000;rlp.nagMs=0;
+  rlp.scopes++;
+  rlp.pingL=[];rlp.scopeMs=RLP_SCOPE_MS;
+  rlpTag('🍃 六秒：萍撇干净，也不再落新萍');
+  rlpHud();return 1;
+}
+function rlpSwap(){
+  if(!rlpGate())return 0;
+  if(rlp.swapN<=0){rlpTag('🔁 换字只有一回');return 0}
+  rlp.swapN--;rlp.swapUse++;rlp.swaps++;rlp.score=Math.max(0,rlp.score-RLP_PEN_SWAP);
+  rlpMissAdd(rlp.rec?rlp.rec.ch:'');
+  rlpTag('🔁 换了一个字：−'+RLP_PEN_SWAP+' 分，这一个进了错字本','warn');
+  rlpNewWord();
+  return 1;
+}
+function rlpNagOff(){rlp.nagHold=RLP_NAG_HOLD;rlp.nagMs=0}
+function rlpNag(){
+  rlp.nags++;rlp.nagHold=RLP_NAG_HOLD;
+  const c=rlpTargetCard();
+  /* 口诀交给说明行那一处唯一的出口去写（rlpLine）：在这里直接改 innerHTML，同一拍里就被 rlpLine 盖掉了，
+     孩子读到的是「口诀挂上来了」这句空话，偏偏最该看清的「该收第几笔」丢了 */
+  rlp.nagTip=c?('👀 该收的是第 '+(rlp.pi+1)+' 笔（'+RLP_TAG4[rlpxRok(c.dir)]+'）—— 底纹压在她圆面里的那张就是它'):
+    '👀 先看清哪张圆面里压着这个字的印子';
+  rlpxTone(RLP_NOTE[2],.14,'triangle',.04);
+}
+
+/* ================= 段 D：画这盘水（干涉点阵 · 两列浪 · 滴漏杆 · 哑线 · 底纹 · 浮牌 · 长浪 band）· 样图 · HUD ================= */
+/* 水面点子阵用固定种子生成一次：盘面得是同一盘水，孩子第二场回来还认得这几颗泡 */
+const rlpDots=(function(){
+  let s=20261023;
+  const rnd=function(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff};
+  const a=[];
+  for(let y=14;y<RLP_H-8;y+=17)for(let x=14;x<RLP_W-8;x+=17){
+    a.push({x:x+rnd()*5-2.5,y:y+rnd()*5-2.5,tw:rnd()*6.283});
+  }
+  return a;
+})();
+function rlpTray(c){
+  const g=c.createLinearGradient(0,0,0,RLP_H);
+  g.addColorStop(0,'#07242C');g.addColorStop(.55,'#04171E');g.addColorStop(1,'#020E14');
+  c.fillStyle=g;c.fillRect(0,0,RLP_W,RLP_H);
+  /* 盘沿：这是木框盘的里沿，浪到这儿就 reflection 回来了（画面只画一次，别孩子数不清）*/
+  c.strokeStyle='rgba(134,179,192,.32)';c.lineWidth=2;
+  c.strokeRect(4,4,RLP_W-8,RLP_H-8);
+}
+/* 干涉点阵：每颗泡按「这一刻这儿的水面浮起多高」亮起来 —— 条纹是算出来的，不是贴图 */
+function rlpField(c){
+  const th=rlp.th,lam=rlp.lam,t=rlpClock(),hot=rlp.viewMs>0;
+  for(let i=0;i<rlpDots.length;i++){
+    const p=rlpDots[i],g=rlpGeo(p.x,p.y,th);
+    const a=rlpAmpOf(g.d,lam),L=rlpLiftOf(a,g.mean,lam,t);
+    const rr=.7+L*2.5;
+    c.globalAlpha=.05+L*.42;
+    c.fillStyle=a>=RLP_RING?'#4DD0E1':(a>=RLP_GRAZE_LO?'#26A0AE':'#1D5F72');
+    c.beginPath();c.arc(p.x,p.y,rr,0,6.283);c.fill();
+    /* ✨ 看纹：把振幅顶到满格（≥0.94）的那几颗泡描成白点 —— 那是全盘荡得最凶的几条纹 */
+    if(hot&&a>=.94){
+      c.globalAlpha=.95;c.strokeStyle='#FFFFFF';c.lineWidth=1.1;
+      c.beginPath();c.arc(p.x,p.y,3.4,0,6.283);c.stroke();
+    }
+  }
+  c.globalAlpha=1;
+}
+/* 两列浪：A 出实线圈、B 出虚线圈（两针反相，所以 B 的浪尖正落在 A 的浪谷上）*/
+function rlpWaves(c){
+  const s=rlpSrc(rlp.th),lam=rlp.lam,k=(rlpClock()/RLP_T)%1;
+  for(let side=0;side<2;side++){
+    const ox=side?s.bx:s.ax,oy=side?s.by:s.ay;
+    c.save();
+    if(side)c.setLineDash([5,6]);
+    for(let j=0;j<9;j++){
+      const r=(k+j)*lam;
+      if(r<6||r>600)continue;
+      c.globalAlpha=.20*(1-r/600)*(side?.85:1);
+      c.strokeStyle=side?'#FFB74D':'#4FC3F7';
+      c.lineWidth=1.5;
+      c.beginPath();c.arc(ox,oy,r,0,6.283);c.stroke();
+    }
+    c.restore();
+  }
+  c.globalAlpha=1;
+}
+/* 滴漏杆：一根刚性杆钉在盘心，两头各一枚针。杆的中垂线那条水面是死的 —— Δ=0，谁也荡不开 */
+function rlpBar(c){
+  const s=rlpSrc(rlp.th),lam=rlp.lam;
+  c.save();
+  /* 哑线（中垂线）：整条线上的牌振幅恒为 0，画出来孩子才知道哪儿不能等 */
+  const nx=-Math.sin(rlp.th),ny=Math.cos(rlp.th);
+  c.strokeStyle='rgba(120,140,150,.30)';c.lineWidth=1;c.setLineDash([2,7]);
+  c.beginPath();c.moveTo(RLP_CX-nx*300,RLP_CY-ny*300);c.lineTo(RLP_CX+nx*300,RLP_CY+ny*300);c.stroke();
+  c.setLineDash([]);
+  /* 杆身 */
+  const g=c.createLinearGradient(s.ax,s.ay,s.bx,s.by);
+  g.addColorStop(0,'#8D6E63');g.addColorStop(.5,'#C8A283');g.addColorStop(1,'#8D6E63');
+  c.strokeStyle=g;c.lineWidth=5;c.lineCap='round';
+  c.beginPath();c.moveTo(s.ax,s.ay);c.lineTo(s.bx,s.by);c.stroke();
+  /* 中心钉 */
+  c.fillStyle='#FFD54F';c.beginPath();c.arc(RLP_CX,RLP_CY,4.4,0,6.283);c.fill();
+  c.strokeStyle='rgba(0,0,0,.5)';c.lineWidth=1;c.beginPath();c.arc(RLP_CX,RLP_CY,4.4,0,6.283);c.stroke();
+  /* 两枚针：一头压下去另一头就抬起来（反相），画面上一头在下、一头在上 */
+  const ph=Math.sin(Math.PI*2*(rlpClock()/RLP_T));
+  for(let side=0;side<2;side++){
+    const ox=side?s.bx:s.ax,oy=side?s.by:s.ay;
+    const dip=(side?-1:1)*ph*3.4;
+    c.strokeStyle=side?'#FFB74D':'#4FC3F7';c.lineWidth=2.2;
+    c.beginPath();c.moveTo(ox,oy-7+dip);c.lineTo(ox,oy+3+dip);c.stroke();
+    c.fillStyle=side?'#FFB74D':'#4FC3F7';
+    c.beginPath();c.arc(ox,oy-8+dip,2.6,0,6.283);c.fill();
+    /* 针脚下的一圈涟漪：刚点下去的那一下 */
+    c.globalAlpha=.4;c.lineWidth=1;
+    c.beginPath();c.arc(ox,oy+4+dip,3+((rlpClock()/RLP_T)%1)*lam*.5,0,6.283);c.stroke();
+    c.globalAlpha=1;
+  }
+  c.restore();
+}
+/* 底纹：这个字一笔一笔压在水底。收齐的那几笔上墨，剩下的淡着（第 4 场起更淡）
+   影牌的圆面底下先挖洞再画（clip evenodd）—— 「影牌里干干净净」这一条破绽是结构给的，不靠摆位碰运气 */
+function rlpBed(c){
+  const rec=rlp.rec;
+  if(!rec||!rec.pts)return;
+  const faint=rlpFaint(rlp.lv);
+  c.save();c.lineCap='round';c.lineJoin='round';
+  c.beginPath();
+  c.rect(0,0,RLP_W,RLP_H);
+  for(let i=0;i<rlp.cards.length;i++){
+    const f=rlp.cards[i];
+    if(!f.fake||f.got)continue;
+    c.moveTo(f.x+RLP_CARD+2,f.y);
+    c.arc(f.x,f.y,RLP_CARD+2,0,6.283);
+  }
+  c.clip('evenodd');
+  for(let i=0;i<rec.pts.length;i++){
+    const p=rec.pts[i],got=rlp.gotIdx[i];
+    c.strokeStyle=got?RLP_INK4[rlpxRok(p.dir)]:(faint?'rgba(96,125,139,.20)':'rgba(120,150,175,.34)');
+    c.lineWidth=got?4.2:1.6;
+    c.globalAlpha=got?.95:.6;
+    c.beginPath();
+    for(let k=0;k<p.path.length;k++){if(k)c.lineTo(p.path[k][0],p.path[k][1]);else c.moveTo(p.path[k][0],p.path[k][1])}
+    c.stroke();
+  }
+  c.restore();
+}
+function rlpTideBand(c){
+  if(rlp.tideOn<=0)return;
+  const k=rlp.tideOn/RLP_TIDE_ON,s=rlpTideS();
+  const nx=Math.cos(rlp.tideD),ny=Math.sin(rlp.tideD);
+  const cx=RLP_CX+nx*s,cy=RLP_CY+ny*s;
+  c.save();
+  c.globalAlpha=.16+.3*k;
+  c.strokeStyle='#FFD54F';c.lineWidth=RLP_TIDE_R*2;
+  c.beginPath();c.moveTo(cx+ny*600,cy-nx*600);c.lineTo(cx-ny*600,cy+nx*600);c.stroke();
+  c.globalAlpha=.55+.4*k;c.lineWidth=3;
+  c.beginPath();c.moveTo(cx+ny*600,cy-nx*600);c.lineTo(cx-ny*600,cy+nx*600);c.stroke();
+  c.restore();
+}
+/* 浮牌：一块圆玻璃浮在水上，牌里压着的那一笔上墨 —— 影牌里什么都没有，这就是破绽 */
+function rlpPlaque(c,card,idx){
+  const lift=card.got?0:(card.lift||0);
+  const x=card.x,y=card.y-lift*RLP_LIFT;
+  c.save();
+  /* 水里的影子：牌浮起来，影子留在原地 */
+  c.globalAlpha=.3;c.fillStyle='#000';
+  c.beginPath();c.arc(card.x,card.y+2,RLP_CARD*.86,0,6.283);c.fill();
+  c.globalAlpha=1;
+  if(card.got){
+    c.globalAlpha=card.fake?.22:.4;c.strokeStyle='#78909C';c.lineWidth=1.4;
+    c.beginPath();c.arc(card.x,card.y,RLP_CARD,0,6.283);c.stroke();
+    if(!card.fake){
+      c.globalAlpha=.92;c.strokeStyle='#B0BEC5';c.lineWidth=2.2;
+      c.beginPath();c.moveTo(card.x-7,card.y-4);c.lineTo(card.x-2,card.y+2);c.lineTo(card.x+8,card.y-10);c.stroke();
+    }
+    c.restore();return;
+  }
+  c.fillStyle='rgba(9,26,34,.78)';
+  c.beginPath();c.arc(x,y,RLP_CARD,0,6.283);c.fill();
+  /* 牌里那段笔：把整片底纹按牌面裁一遍，只有这一笔上墨 —— 压不着底纹的影牌里就是空的 */
+  c.save();
+  c.beginPath();c.arc(x,y,RLP_CARD-1.6,0,6.283);c.clip();
+  if(!card.fake){
+    const rec=rlp.rec;
+    c.lineCap='round';c.lineJoin='round';
+    for(let i=0;i<rec.pts.length;i++){
+      if(i===card.i||!rec.pts[i].path)continue;
+      const p=rec.pts[i].path;
+      c.strokeStyle='rgba(120,150,175,.30)';c.lineWidth=1.5;
+      c.beginPath();
+      for(let k=0;k<p.length;k++){if(k)c.lineTo(p[k][0],p[k][1]);else c.moveTo(p[k][0],p[k][1])}
+      c.stroke();
+    }
+    const me=card.path;
+    c.strokeStyle=RLP_INK4[rlpxRok(card.dir)];c.lineWidth=2.8;
+    c.beginPath();
+    for(let k=0;k<me.length;k++){if(k)c.lineTo(me[k][0],me[k][1]-lift*RLP_LIFT);else c.moveTo(me[k][0],me[k][1]-lift*RLP_LIFT)}
+    c.stroke();
+  }
+  c.restore();
+  const marked=(rlp.markI===idx)&&rlpMarkLive();
+  c.strokeStyle=card.fake?'rgba(176,190,197,.85)':(marked?'#FFF176':'rgba(236,239,241,.9)');
+  c.lineWidth=marked?3:2;
+  c.beginPath();c.arc(x,y,RLP_CARD,0,6.283);c.stroke();
+  if(marked){
+    c.strokeStyle='rgba(255,241,118,'+(0.26+0.3*Math.abs(Math.sin(rlp.t/260)))+')';
+    c.lineWidth=5;c.beginPath();c.arc(x,y,RLP_CARD+4,0,6.283);c.stroke();
+  }
+  /* 荡得越高，牌面外圈越亮 —— 浪尖是看得见的 */
+  if(lift>=RLP_GRAB){
+    c.strokeStyle='rgba(77,208,225,'+Math.min(.9,(lift-RLP_GRAB)*2.2)+')';
+    c.lineWidth=2;c.beginPath();c.arc(x,y,RLP_CARD+8,0,6.283);c.stroke();
+  }
+  if(rlpPingCard(card))rlpLeaf(c,x,y);
+  c.restore();
+}
+function rlpLeaf(c,x,y){
+  c.save();
+  c.globalAlpha=.92;
+  c.fillStyle='#2E7D32';
+  c.beginPath();c.ellipse(x+1,y-1,RLP_CARD*.82,RLP_CARD*.7,-.4,0,6.283);c.fill();
+  c.strokeStyle='#66BB6A';c.lineWidth=1.4;
+  c.beginPath();c.ellipse(x+1,y-1,RLP_CARD*.82,RLP_CARD*.7,-.4,0,6.283);c.stroke();
+  c.strokeStyle='rgba(200,230,201,.6)';c.lineWidth=1;
+  for(let i=0;i<4;i++){
+    const a=-1.1+i*.62;
+    c.beginPath();c.moveTo(x+1,y-1);c.lineTo(x+1+Math.cos(a)*RLP_CARD*.7,y-1+Math.sin(a)*RLP_CARD*.6);c.stroke();
+  }
+  c.restore();
+}
+function rlpDrawFx(c){
+  for(let i=0;i<rlp.parts.length;i++){
+    const p=rlp.parts[i];
+    c.globalAlpha=Math.max(0,1-p.m/p.life);
+    c.fillStyle=p.c;
+    c.beginPath();c.arc(p.x,p.y,2.4,0,6.283);c.fill();
+  }
+  c.globalAlpha=1;
+}
+function rlpDraw(){
+  const c=rlp.ctx;
+  if(!c)return;
+  c.clearRect(0,0,RLP_W,RLP_H);
+  rlpTray(c);
+  rlpBed(c);
+  rlpField(c);
+  rlpWaves(c);
+  rlpTideBand(c);
+  rlpBar(c);
+  rlpNow();
+  for(let i=0;i<rlp.cards.length;i++)if(!rlp.cards[i].got)rlpPlaque(c,rlp.cards[i],i);
+  for(let i=0;i<rlp.cards.length;i++)if(rlp.cards[i].got)rlpPlaque(c,rlp.cards[i],i);
+  rlpDrawFx(c);
+  /* 水面见底：整盘暗下来（浮条也会红）*/
+  if(rlp.fuel<rlpFuel(rlp.lv)*.22){
+    c.save();c.globalAlpha=.12+.09*Math.abs(Math.sin(rlp.t/420));
+    c.fillStyle='#000';c.fillRect(0,0,RLP_W,RLP_H);c.restore();
+  }
+}
+/* ---- 样图：这个字全在水底（第 4 场起淡下去），收到一笔亮一笔 ---- */
+function rlpMini(){
+  const svg=document.getElementById('rlpMiniSvg');
+  if(!svg)return;
+  const rec=rlp.rec;
+  if(!rec||!rec.paths){svg.innerHTML='';rlpCap();return}
+  const faint=rlpFaint(rlp.lv);
+  let s='';
+  for(let i=0;i<rec.paths.length;i++){
+    const got=!!rlp.gotIdx[i];
+    const p=rec.paths[i];
+    const dPath=Array.isArray(p)?p.map(function(q,k){return (k?'L':'M')+q[0]+' '+q[1]}).join(''):String(p||'');
+    if(!dPath)continue;
+    s+='<path d="'+dPath+'" fill="none" stroke="'+(got?RLP_INK4[rlpxRok(rec.dirs[i])]:
+      (faint?'#455A64':'#546E7A'))+'" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" opacity="'+
+      (got?.95:(faint?.22:.4))+'"/>';
+  }
+  svg.innerHTML=s;
+  rlpCap();
+}
+function rlpCap(){
+  const el=document.getElementById('rlpMiniCap');
+  if(!el)return;
+  if(!rlp.rec){el.textContent='这个字沉在水底，一笔一张牌';return}
+  el.textContent=(rlpFaint(rlp.lv)?'水图淡了：':'')+rlp.rec.ch+' · '+rlp.rec.n+' 笔 · '+rlp.rec.n+' 张牌'+
+    (rlpFakeN()?' · '+rlpFakeN()+' 张影牌':'')+' · 已收 '+rlp.pi+'/'+rlp.rec.n;
+}
+/* ---- 浪具条 ---- */
+function rlpToolBtn(id,n){
+  const b=document.getElementById(id);
+  if(!b)return;
+  b.disabled=!(n>0&&rlp.run&&!rlp.over);
+  const k=b.querySelector('b');
+  if(k)k.textContent='剩 '+n;
+}
+function rlpHud(){
+  if(!rlp.run)return;
+  const tot=rlpxInt('hz_ripple_words');
+  const rk=rlpxRank(tot);
+  let h='';
+  const hs=Math.max(RLP_HEARTS,rlp.hearts);
+  for(let i=0;i<rlp.hearts;i++)h+='❤️';
+  for(let i=rlp.hearts;i<hs;i++)h+='🤍';
+  rlpxPut('rlpRankTxt',rk.e+' '+rk.t);
+  rlpxPut('rlpHeartTxt',h||'💔');
+  rlpxPut('rlpComboTxt','🔥 连 '+rlp.combo);
+  rlpxPut('rlpGoalTxt','🎯 该收第 '+Math.min(rlp.pi+1,rlp.n)+' 笔'+
+    (rlp.rec?'（'+RLP_TAG4[rlpxRok(rlp.rec.dirs[Math.min(rlp.pi,rlp.n-1)])]+'）':''));
+  rlpxPut('rlpShotTxt','🤏 出手 '+rlp.shots+' · 收着 '+rlp.hits);
+  rlpxPut('rlpFakeTxt',rlpFakeN()?('🌑 影牌 '+rlpFakeN()+' 张 · 白收 '+rlp.fakes+' 次'):'🌑 这一场没影牌');
+  rlpxPut('rlpPingTxt','🍃 萍 '+rlpPingCount()+' 片 · 撇过 '+rlp.scopes+' 次 · 空手 '+rlp.empties);
+  rlpxPut('rlpTideTxt','🌊 长浪 '+rlp.tideN+' 道 · 赶上 '+rlp.tides);
+  rlpxPut('rlpChainTxt','✨ 连收 '+rlp.chain+'（最长 '+rlp.chainMax+'）· 顺手 '+rlp.tights+' · 擦纹 '+rlp.grazes);
+  rlpxPut('rlpScoreTxt','🎯 '+rlp.score+' 分');
+  rlpxPut('rlpLvTxt','第 '+rlp.lv+' 场 · 已收 '+tot+' 字');
+  rlpxPut('rlpQTxt','⏳ 这一笔 '+Math.ceil(Math.max(0,rlp.qms)/1000)+' 秒');
+  rlpToolBtn('rlpViewBtn',rlp.viewN);rlpToolBtn('rlpHoldBtn',rlp.holdN);
+  rlpToolBtn('rlpScopeBtn',rlp.scopeN);rlpToolBtn('rlpSwapBtn',rlp.swapN);
+  rlpMini();rlpPow();
+}
+function rlpPowStr(){
+  if(!rlp.rec)return '💠 这盘水还没起浪';
+  const deg=Math.round(rlp.th*180/Math.PI);
+  /* 报的是这一格浪尖能浮到的顶（振幅），不是此刻正浮到哪儿：
+     这一行是攒着 120 毫秒刷一次的，拿每一帧都在颤的瞬时高度来写，孩子读到的是「刚才那一瞬」，
+     而「浪尖最高到多少」才是他要判断的东西 —— 掐准时机下手，收的就是这个顶 */
+  let hi=0;
+  for(let j=0;j<rlp.live.length;j++){const c=rlp.cards[rlp.live[j]];if(c&&c.amp>hi)hi=c.amp}
+  return '💠 杆朝 '+deg+'°（'+(deg<=6||deg>=174?'正对盘左':'转着找')+'）· 波长 '+Math.round(rlp.lam)+
+    ' 像素（'+(rlp.lam<=RLP_L_MIN+3?'细纹':(rlp.lam>=RLP_L_MAX-3?'宽纹':'中纹'))+'）· 浪尖最高浮到 '+hi.toFixed(2)+
+    '（'+RLP_GRAB.toFixed(2)+' 以下算空手）'+
+    (rlp.tideOn>0?(rlpTideCover(rlpTargetCard())?' · 🌊 浪带正盖着该收的那张':' · 🌊 浪带在别处'):'')+
+    (rlp.holdMs>0?' · 🧊 浪冻着':'')+
+    (rlp.scopeMs>0?' · 🍃 萍撇开':'')+
+    (rlp.viewMs>0?' · ✨ 描着最凶的纹':'')+
+    (rlpPingCount()?' · 🍃 萍 '+rlpPingCount()+' 片':'');
+}
+function rlpPow(){rlpxPut('rlpPowTxt',rlpPowStr())}
+function rlpMeter(){
+  const qb=document.getElementById('rlpQBar'),fb=document.getElementById('rlpFuelBar'),bb=document.getElementById('rlpBeatBar');
+  if(qb)qb.style.width=Math.max(0,Math.min(100,rlp.qms/Math.max(1,rlp.qms0)*100))+'%';
+  const box=document.getElementById('rlpQBox');
+  if(box)box.classList.toggle('low',rlp.qms<=rlpQWarn());
+  rlpxPut('rlpQTxt2','⏳ 这一笔 '+(Math.max(0,rlp.qms)/1000).toFixed(1)+' 秒');
+  const fk=Math.max(0,Math.min(100,rlp.fuel/rlpFuel(rlp.lv)*100));
+  if(fb)fb.style.width=fk+'%';
+  const fbox=document.getElementById('rlpFuelBox');
+  if(fbox)fbox.classList.toggle('low',rlp.fuel<rlpFuel(rlp.lv)*.22);
+  rlpxPut('rlpFuelTxt','💧 这盘水 '+Math.ceil(Math.max(0,rlp.fuel)/1000)+' 秒');
+  if(bb)bb.style.width=(rlp.tideOn>0?Math.max(0,Math.min(100,rlp.tideOn/RLP_TIDE_ON*100)):0)+'%';
+  const bbox=document.getElementById('rlpBeatBox');
+  if(bbox)bbox.classList.toggle('on',rlp.tideOn>0);
+  rlpxPut('rlpBeatTxt2',rlp.tideOn>0?('🌊 长浪还在扫 '+((rlp.tideOn/1000).toFixed(1))+' 秒 · 浪带盖着下手 ×'+RLP_TIDE_MULT):
+    ('🌊 下一道长浪 '+Math.ceil(Math.max(0,rlpTideMs(rlp.lv)-rlp.tideMs)/1000)+' 秒后'));
+}
+/* ---- 题头：现在该收哪一笔、这一刻该做什么 ----
+   题头是一整块占死的版面（CSS 里 min-height reserve 满三行）：它只许换字，不许换行数。
+   口诀挂上来的时候顶掉的是第一行，不是在题头上面再加一行 —— 水盘要是在孩子手指底下往下挪五十像素，
+   他照着旧位置划的那一步，产品量到的是另一格 */
+function rlpAsk(){
+  if(!rlp.run||rlp.over||!rlp.rec){rlpxPut('rlpAsk','💠 这盘水还没亮<br><small>点「再叠一场」</small>');return}
+  if(rlp.helpMs>0){rlpxPut('rlpAsk','💠 <b>怎么把浪叠到一张牌上</b><br><small>两只钟都先冻住</small>');return}
+  const c=rlpTargetCard();
+  const si=Math.min(rlp.pi,rlp.rec.n-1);
+  if(rlp.nagHold>0){
+    rlpxPut('rlpAsk','🌱 <b>口诀</b>：一张牌荡多高，由<b>杆朝哪儿</b>和<b>波长多长</b>两样定死'+
+      '<br><small>先转杆指着它偏一点 · 再调波长 · 等它荡到尖再收</small>');
+    return;
+  }
+  if(rlp.warn){
+    rlpxPut('rlpAsk','🔥 <b>这一笔的钟要走光了</b>：'+(c?('它在 ('+Math.round(c.x)+','+Math.round(c.y)+') 那一格'):'')+
+      ' —— 先转杆把它的条纹逼宽<br><small>W/S 转杆 · A/D 调波长 · 空格 收浪</small>');
+    return;
+  }
+  rlpxPut('rlpAsk','🎯 该收 <b>第 '+(si+1)+' 笔 · '+(rlp.lv<=2||rlp.markForce?RLP_TAG4[rlpxRok(rlp.rec.dirs[si])]+' 那一类笔形':'牌里上墨的那一张')+'</b>'+
+    ' · 这一字还剩 <b>'+(rlp.rec.n-rlp.pi)+'</b> 笔'+
+    '<br><small>W/S 转杆 · A/D 调波长 · <b>空格</b> 收 —— 这一刻谁荡得最高就收谁</small>');
+}
+/* ---- 说明行：眼下最该知道的那一句 ---- */
+function rlpLine(){
+  if(!rlp.run)return;
+  let t;
+  if(rlp.helpMs>0)t='🛑 <b>歇一记看说明</b>：两只钟全冻住，按任意键就回到水跟前';
+  else if(rlp.holdMs>0)t='🧊 <b>定浪中</b>：整盘水停在此刻（杆照样转、波长照样调）—— 这一段先挑准地方，别去抢时机';
+  else if(rlp.nagHold>0)t='🌱 <b>发呆口诀</b>：'+(rlp.nagTip||'能挑的只有<b>杆向</b>、<b>波长</b>与<b>时机</b>三样 —— 路程差是半波长奇数倍的地方最凶，整波长那个地方水面是死的')+' —— 先把<b>杆转到指着它偏一点</b>的方向，再把<b>波长调到它那一格条纹最宽</b>，等它<b>荡到尖</b>那一下下手';
+  else if(rlp.tideOn>0)t=rlpTideCover(rlpTargetCard())?'🌊 <b>浪带正盖着该收的那张</b>：这一瞬下手 <b>×'+RLP_TIDE_MULT+'</b> —— 机会，不是威胁':
+    '🌊 <b>长浪扫过来了</b>：等浪带压到你该收的那张牌上再下手才吃得到 <b>×'+RLP_TIDE_MULT+'</b>';
+  else if(rlpPingCount())t='🍃 <b>水上盖了 '+rlpPingCount()+' 片萍</b>：牌里那一笔看不清了，萍下的只拿七成 —— <code>F</code> 撇萍';
+  else if(rlpFakeN())t='🌑 <b>水面混进 '+rlpFakeN()+' 张影牌</b>：真牌的圆面里一定压着这个字的一段印子，影牌里<b>干干净净</b> —— 空的别收';
+  else if(rlp.empties&&rlp.grabMs<4000)t='💧 <b>刚才空了一手</b>：'+'浪尖要到 '+RLP_GRAB.toFixed(2)+' 才算数 —— 浮条上写着此刻最高那张浮到多少';
+  else if(rlp.warn)t='🔥 <b>这一笔的钟只剩 '+(Math.max(0,rlp.qms)/1000).toFixed(1)+' 秒</b>：转杆比调浪快，先把条纹逼宽';
+  else if(rlp.lv<=2)t='💠 <b>该收的那张一直描着金边</b>：牌里上墨的那一笔就是它 —— 把杆转到它<b>偏开中垂线</b>的那一头，再把波长调到位';
+  else t='💠 <b>一根杆两头点水，两列浪在盘上叠起来</b>：你只能挑<b>杆朝哪儿</b>、<b>浪多长</b>、<b>哪一刻下手</b> —— 三样';
+  rlpxPut('rlpHintLine','💠 <b>'+t+'</b>');
+  rlpMeter();
+}
+/* ---- 浮条：一句话，两秒钟 ---- */
+function rlpTag(t,cls){
+  const el=document.getElementById('rlpTag');
+  if(!el)return;
+  el.textContent=t;
+  el.className='rlp-tag on'+(cls?' '+cls:'');
+  rlp.tagOn=1;
+  if(rlp.tagTimer)clearTimeout(rlp.tagTimer);
+  const g=rlp.gen;
+  rlp.tagTimer=setTimeout(function(){
+    rlp.tagTimer=0;rlp.tagOn=0;
+    if(g!==rlp.gen)return;
+    el.className='rlp-tag';
+  },RLP_TAG_MS);
+}
+
+/* ================= 段 E：主循环 · 真键盘与真指针（手指在水面上划杆）· 双人分工 · 说明 · 生命周期 ================= */
+function rlpStartLoop(){
+  if(rlp.rafId)return;
+  rlp.last=performance.now();
+  function step(now){
+    if(!rlp.run||rlp.over){rlp.rafId=0;return}
+    const dt=Math.min(120,Math.max(8,now-rlp.last));
+    rlp.last=now;
+    rlpTick(dt);
+    if(!rlp.run||rlp.over)return;
+    rlpDraw();
+    rlp.hudAcc+=dt;
+    if(rlp.hudAcc>=120){rlp.hudAcc=0;rlpHud();rlpLine();rlpAsk()}
+    rlp.rafId=requestAnimationFrame(step);
+  }
+  rlp.rafId=requestAnimationFrame(step);
+}
+function rlpStopLoop(){
+  if(rlp.rafId){cancelAnimationFrame(rlp.rafId);rlp.rafId=0}
+}
+function rlpPanels(){
+  const p1=document.getElementById('rlpDuoP1'),p2=document.getElementById('rlpDuoP2');
+  if(p1)p1.classList.toggle('off',!rlp.duo);
+  if(p2)p2.classList.toggle('off',!rlp.duo);
+  const b=document.getElementById('rlpGrabBtn');
+  if(b)b.disabled=!rlp.run||rlp.over;
+}
+/* ---- 亲子同屏：一个人只管两根旋钮、一个人只管下手那一瞬 ---- */
+function rlpDuo(on){
+  rlp.duo=(on===undefined?!rlp.duo:!!on);
+  rlp.duoCut=0;rlp.duoP1=0;rlp.duoP2=0;rlp.duoHalf=true;rlp.hug=0;rlp.hugW=0;
+  if(rlp.duo)rlpxAdd('hz_ripple_duon',1);
+  rlpTag(rlp.duo?'👥 双人：你只管旋钮、同伴只管下手':'👤 单人','gold');
+  rlpxSay(rlp.duo?
+    '👥 <b>亲子同屏</b>：<b>P1</b> 只管水面（<code>W</code>/<code>S</code> 转杆、<code>A</code>/<code>D</code> 调波长），'+
+    '<b>P2</b> 只管时机（<code>空格</code> 收浪）。两个人谁也替不了谁 —— 但 P1 挪完旋钮的 <b>0.42 秒</b>内 P2 下手，'+
+    '这一记才算<b>合抱</b>；一个字里合抱上过就另加 '+RLP_DUO_BONUS+' 分。'+
+    '一个人收也打得动，只是那句「两个人一起把浪尖掐住」就说不出口了'
+    :'👤 <b>单人</b>：<code>W</code>/<code>↑</code> 顺转杆、<code>S</code>/<code>↓</code> 逆转（按住才走），'+
+    '<code>A</code>/<code>←</code> 纹调细、<code>D</code>/<code>→</code> 纹调宽，<code>空格</code> 收浪','#B3E5FC');
+  const b=document.getElementById('rlpDuoBtn');
+  if(b){b.textContent=rlp.duo?'👥 双人 ✔':'👥 双人';b.classList.toggle('on',rlp.duo)}
+  rlpPanels();rlpLine();rlpHud();rlpDraw();
+  return rlp.duo?1:0;
+}
+/* ---- 绑定：键盘只认这几支键，指针只认水面上那一根杆和大按钮 ---- */
+function rlpBind(){
+  if(rlp.bound)return;
+  rlp.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!rlp.run||rlp.over)return;
+    const k=e.key;
+    if(k==='Escape'){rlpLeave();return}
+    if(k==='h'||k==='H'||k==='?'){e.preventDefault();rlpHelp();return}
+    /* 说明挂着时按下的第一个键只负责把说明收走，不替你收下这一浪 —— 读规矩的人不该被自己看书的动作判分 */
+    if(rlp.helpMs>0){rlp.helpMs=0;rlpAsk();rlpLine();rlpHud();return}
+    if(k===' '||k==='Spacebar'){e.preventDefault();rlpGrab(rlp.duo?2:0);return}
+    if(k==='w'||k==='W'||k==='ArrowUp'){e.preventDefault();rlp.keys.cw=1;rlpKnobTouch(!e.repeat);rlpNagOff();return}
+    if(k==='s'||k==='S'||k==='ArrowDown'){e.preventDefault();rlp.keys.ccw=1;rlpKnobTouch(!e.repeat);rlpNagOff();return}
+    if(k==='a'||k==='A'||k==='ArrowLeft'){e.preventDefault();rlp.keys.fine=1;rlpKnobTouch(!e.repeat);rlpNagOff();return}
+    if(k==='d'||k==='D'||k==='ArrowRight'){e.preventDefault();rlp.keys.coarse=1;rlpKnobTouch(!e.repeat);rlpNagOff();return}
+    if(k==='Enter'){e.preventDefault();rlpSwap();return}
+    if(k==='q'||k==='Q'){rlpView();return}
+    if(k==='e'||k==='E'){rlpHold();return}
+    if(k==='f'||k==='F'){rlpScope();return}
+  });
+  window.addEventListener('keyup',function(e){
+    const k=e.key;
+    if(k==='w'||k==='W'||k==='ArrowUp')rlp.keys.cw=0;
+    if(k==='s'||k==='S'||k==='ArrowDown')rlp.keys.ccw=0;
+    if(k==='a'||k==='A'||k==='ArrowLeft')rlp.keys.fine=0;
+    if(k==='d'||k==='D'||k==='ArrowRight')rlp.keys.coarse=0;
+  });
+  const cv=document.getElementById('rlpCanvas');
+  if(cv){
+    /* 水面只认两件事：手指在盘上划，杆就指着手指（这是转杆）；点一下不动（240 毫秒内、挪不到 10 像素）就是收浪。
+       两条路走的是同一份状态 —— 孩子的手在布面上转杆，跟键盘转的是同一个 θ */
+    const at=function(ev){
+      const r=cv.getBoundingClientRect();
+      if(!r.width||!r.height)return null;
+      return {x:(ev.clientX-r.left)/r.width*RLP_W,y:(ev.clientY-r.top)/r.height*RLP_H};
+    };
+    cv.addEventListener('pointerdown',function(ev){
+      if(!rlp.run||rlp.over)return;
+      ev.preventDefault();
+      const p=at(ev);
+      if(!p)return;
+      if(rlp.helpMs>0){rlp.helpMs=0;rlpAsk();rlpLine();rlpHud();return}
+      rlp.tapX=p.x;rlp.tapY=p.y;
+      rlp.pend={t:performance.now(),moved:0};
+      rlpNagOff();
+      try{cv.setPointerCapture(ev.pointerId)}catch(e){}
+    });
+    cv.addEventListener('pointermove',function(ev){
+      if(!rlp.run||rlp.over||!rlp.pend)return;
+      const p=at(ev);
+      if(!p)return;
+      const d=Math.hypot(p.x-rlp.tapX,p.y-rlp.tapY);
+      if(d>6)rlp.pend.moved+=d;
+      rlp.tapX=p.x;rlp.tapY=p.y;
+      /* 挪够 10 像素就当转杆：杆跟着手指走（一整个圆折成半圈 —— 杆没有正反面）*/
+      if(rlp.pend.moved>=10){
+        rlp.th=rlpxWrapTh(Math.atan2(p.y-RLP_CY,p.x-RLP_CX));
+        if(!rlp.pend.knob){rlp.pend.knob=1;rlpKnobTouch(1)}else rlpKnobTouch(0);
+      }
+    });
+    const up=function(ev){
+      const pd=rlp.pend;rlp.pend=null;
+      if(!pd||pd.moved>=10)return;
+      if(!rlp.run||rlp.over)return;
+      if(performance.now()-pd.t<=240)rlpGrab(rlp.duo?2:0);
+    };
+    cv.addEventListener('pointerup',up);
+    cv.addEventListener('pointercancel',function(){rlp.pend=null});
+    cv.addEventListener('pointerleave',function(){rlp.pend=null});
+  }
+  const hold=function(id,on,off){
+    const b=document.getElementById(id);
+    if(!b||b.dataset.on)return;
+    b.dataset.on='1';
+    const go=function(ev){if(ev&&ev.preventDefault)ev.preventDefault();on()};
+    const stop=function(ev){if(ev&&ev.preventDefault)ev.preventDefault();off()};
+    b.addEventListener('pointerdown',go);
+    b.addEventListener('pointerup',stop);
+    b.addEventListener('pointercancel',stop);
+    b.addEventListener('pointerleave',stop);
+  };
+  hold('rlpCwBtn',function(){rlp.keys.cw=1;rlpKnobTouch(1);rlpNagOff()},function(){rlp.keys.cw=0});
+  hold('rlpCcwBtn',function(){rlp.keys.ccw=1;rlpKnobTouch(1);rlpNagOff()},function(){rlp.keys.ccw=0});
+  hold('rlpFineBtn',function(){rlp.keys.fine=1;rlpKnobTouch(1);rlpNagOff()},function(){rlp.keys.fine=0});
+  hold('rlpCoarseBtn',function(){rlp.keys.coarse=1;rlpKnobTouch(1);rlpNagOff()},function(){rlp.keys.coarse=0});
+  const mk=[['rlpGrabBtn',function(){rlpGrab(rlp.duo?2:0)}],
+    ['rlpViewBtn',rlpView],['rlpHoldBtn',rlpHold],['rlpScopeBtn',rlpScope],['rlpSwapBtn',rlpSwap],
+    ['rlpDuoBtn',function(){rlpDuo()}],['rlpEndBtn',function(){rlpEnd('quit')}],
+    ['rlpAgainBtn',function(){rlpAgain()}],['rlpHomeBtn',function(){rlpLeave()}]];
+  for(let i=0;i<mk.length;i++){
+    const b=document.getElementById(mk[i][0]);
+    if(b&&!b.dataset.on){b.dataset.on='1';
+      /* 点完按钮把焦点交还出去：不 blur 的话孩子下一次真按 Space/Enter，浏览器会替他把刚点过的那个按钮
+         再点一遍 —— 一记按键同时走两条路，一边收浪、一边又把那件浪具用掉了 */
+      b.addEventListener('click',function(ev){const t=ev&&ev.currentTarget;if(t&&t.blur)t.blur();mk[i][1]()})}
+  }
+}
+function rlpHelp(){
+  if(!rlp.run)return;
+  rlp.helpMs=RLP_HELP_MS;
+  rlpxPut('rlpAsk','💠 <b>怎么把浪叠到一张牌上</b><br><small>两只钟都先冻住</small>');
+  rlpxSay(
+    '💠 <b>一句话的道理</b>：盘心那根杆两头各扎进水里，<b>一头压下去另一头就抬起来</b> —— 两列浪在盘上叠起来，'+
+    '牌浮多高由<b>这两列浪在它那一格是同步还是对冲</b>定死<br>'+
+    '🧭 <b>杆向</b>：<code>W</code>/<code>↑</code> 顺转、<code>S</code>/<code>↓</code> 逆转（按住才走，'+
+    (RLP_DTH*1000).toFixed(1)+' 圈/秒 ≈ 26 度一秒）。'+
+    '离两针<b>路程差是半波长奇数倍</b>的那几道条纹荡得最高；<b>路程差是整波长</b>的地方两列浪互相拆台，水面是死的 —— '+
+    '杆的中垂线那条<b>哑线</b>上谁也荡不开<br>'+
+    '📏 <b>波长</b>：<code>A</code>/<code>←</code> 纹调细、<code>D</code>/<code>→</code> 纹调宽（'+
+    (RLP_DL*1000).toFixed(0)+' 像素一秒，'+RLP_L_MIN+'~'+RLP_L_MAX+'）。'+
+    '条纹越<b>密</b>（波长短）越挑地方，越<b>疏</b>越松 —— 同一张牌换个波长就从浪尖掉进浪谷<br>'+
+    '🎯 <b>时机</b>：<code>空格</code> 收 —— 这一刻<b>谁荡得最高就收谁</b>，'+
+    '浮到 '+RLP_GRAB.toFixed(2)+' 以下算<b>空手</b>。远处那张牌<b>晚半拍到</b>（浪走过去要花时间）：'+
+    '周期 '+(RLP_T/1000).toFixed(1)+' 秒，越靠外的牌起浪越晚<br>'+
+    '🌑 第 3 场起水面混进<b>影牌</b>：真牌的圆面里一定压着这个字的一段印子（牌最多挪 '+RLP_DISP+
+    ' 像素，笔就长在圆面里），影牌里<b>干干净净</b> —— 空的别收<br>'+
+    '⏳ 两只钟：<b>这一笔的钟</b>（'+(rlpQms(rlp.lv)/1000).toFixed(1)+' 秒）走光扣 '+RLP_PEN_TIME+' 分；'+
+    '<b>这盘水</b>（'+(rlpFuel(rlp.lv)/1000).toFixed(0)+' 秒）见底这个字进<b>错字本</b>、掉一颗心<br>'+
+    '🌊 每 '+(rlpTideMs(rlp.lv)/1000).toFixed(1)+' 秒<b>一道长浪</b>横着扫过整盘，浪带盖着你那张牌时下手 <b>×'+RLP_TIDE_MULT+'</b>；'+
+    '上一张收走 <b>0.9 秒</b>内又下手叫<b>顺手收 ×'+RLP_TIGHT_MULT+'</b>（🧊 定浪那 8 秒里不算——浪是工具冻住的）；别的牌差一线也荡开叫<b>擦纹 ×'+RLP_GRAZE_MULT+'</b><br>'+
+    '✨ <code>Q</code> 看纹（把荡得最凶的几道纹点亮）· 🧊 <code>E</code> 定浪（整盘水停 8 秒，杆照样能转）· '+
+    '🍃 <code>F</code> 撇萍 · 🔁 <code>Enter</code> 换字（−'+RLP_PEN_SWAP+' 分、进错字本）<br>'+
+    '👥 点<b>双人</b>：P1 只管两根旋钮（<code>W</code>/<code>S</code>/<code>A</code>/<code>D</code>）、P2 只管下手（<code>空格</code>），'+
+    'P1 挪完 0.42 秒内 P2 收才算<b>合抱</b>','#C8E6C9');
+  rlpAsk();rlpLine();rlpHud();
+}
+/* ---- 一拍里的两只钟：说明与定浪都先把钟冻住，看规矩的人不该被钟判分 ---- */
+function rlpStopAll(){
+  rlpStopLoop();rlpxKillTimers();rlp.gen++;
+  if(rlp.tagTimer){clearTimeout(rlp.tagTimer);rlp.tagTimer=0}
+  rlp.tagOn=0;
+  rlp.load=false;rlp.helpMs=0;rlp.actMs=0;rlp.viewMs=0;rlp.holdMs=0;rlp.scopeMs=0;
+  rlp.nagMs=0;rlp.nagHold=0;rlp.markMs=0;rlp.markI=-1;
+  rlp.keys.cw=0;rlp.keys.ccw=0;rlp.keys.fine=0;rlp.keys.coarse=0;
+  rlp.cards=[];rlp.live=[];rlp.parts=[];rlp.pingL=[];rlp.pend=null;rlp.gotIdx=[];
+  const tg=document.getElementById('rlpTag');
+  if(tg)tg.className='rlp-tag';
+}
+async function rlpNewWord(){
+  if(!rlp.run||rlp.over)return null;
+  const g=rlp.gen,stale=function(){return g!==rlp.gen||!rlp.run||rlp.over};
+  const w=rlpWant(rlp.lv);
+  /* 池子里在档的字不足 3 张时补一批：按 🔁 换字、水面见底上新字全走这条路，不许孩子按回来还是同一个字。
+     一档里实在凑不出三张（摆得开的字就那么几个）记一笔 thinLv，别每一场都重扫字数据 */
+  const inR=function(){let k=0;for(let i=0;i<rlp.pool.length;i++)if(rlp.pool[i].n>=w[0]&&rlp.pool[i].n<=w[1])k++;return k};
+  if((inR()<3&&rlp.thinLv!==rlp.lv)||rlp.poolWantMore){
+    rlp.poolWantMore=false;
+    rlpxPut('rlpAsk','🔭 正在挑字……<br><small>第 '+rlp.lv+' 场要 '+w[0]+'~'+w[1]+' 笔、牌摆得开又都出得了头的字</small>');
+    rlp.load=true;
+    await rlpBuildPool(true,w[0],w[1]);
+    rlp.load=false;
+    if(stale())return null;
+    if(inR()<3)rlp.thinLv=rlp.lv;
+  }
+  let rec=rlpPickRec();
+  if(!rec){
+    rlp.run=false;
+    rlpxPut('rlpAsk','😢 挑不出牌摆得开的字<br><small>先去别的模式练两笔</small>');
+    rlpxT(function(){rlpEnd('pool')},900);
+    return null;
+  }
+  /* 池子里每个字进池前都按最深一场算过一遍账，这里再现场发一次牌（影牌是当场找的）：
+     这一版摆不开就当场换一个，不许把一把「该收的那张压根出不了头」的牌端给孩子 */
+  let cards=rlpDeal(rec,rlp.lv),rr=0;
+  while(!cards&&rr++<5){
+    const alt=rlpPickRec();
+    if(!alt||alt.ch===rec.ch)break;
+    cards=rlpDeal(alt,rlp.lv);
+    if(cards)rec=alt;
+  }
+  if(!cards){
+    rlp.run=false;
+    rlpxPut('rlpAsk','😢 这盘水摆不开<br><small>换个字再来</small>');
+    rlpxT(function(){rlpEnd('pool')},900);
+    return null;
+  }
+  rlp.rec=rec;rlp.n=rec.n;
+  rlp.cards=cards;rlp.live=[];rlp.gotIdx=[];
+  if(rlp.doneCh.indexOf(rec.ch)<0)rlp.doneCh.push(rec.ch);
+  rlp.pi=0;rlp.chain=0;rlp.hugW=0;
+  rlp.qms=rlp.qms0=rlpQms(rlp.lv);
+  rlp.fuel=rlpFuel(rlp.lv);rlp.warn=false;
+  rlp.pingMs=rlpPingMs(rlp.lv);rlp.tideMs=rlpTideMs(rlp.lv);rlp.tideOn=0;
+  rlp.nagMs=0;rlp.nagHold=0;rlp.helpMs=0;
+  /* 浪具的效果不许跨到下一个字：新字一上来整盘水还冻着、萍还挂在牌上，等于偷了孩子一拍 */
+  rlp.holdMs=0;rlp.viewMs=0;rlp.scopeMs=0;rlp.pingL=[];
+  rlp.cleanWord=true;rlp.dryWord=true;rlp.duoHalf=true;
+  rlp.parts=[];rlp.grabMs=RLP_TIGHT_MS+1;rlp.knobMs=RLP_HUG_MS+1;
+  rlp.th=Math.random()*Math.PI;rlp.lam=rlpxClamp(RLP_L_MIN+Math.random()*(RLP_L_MAX-RLP_L_MIN),RLP_L_MIN,RLP_L_MAX);
+  rlpNow();
+  rlpMarkTarget();
+  rlpMini();rlpHud();rlpMeter();rlpLine();rlpAsk();rlpDraw();
+  return rec;
+}
+async function rlpStart(){
+  rlpStopAll();
+  const g=rlp.gen,stale=function(){return g!==rlp.gen||!rlp.run||rlp.over};
+  rlp.run=true;rlp.over=false;rlp.timers=[];
+  rlp.lv=1;rlp.score=0;rlp.hearts=RLP_HEARTS;rlp.combo=0;rlp.maxCombo=0;
+  rlp.words=0;rlp.shots=0;rlp.hits=0;rlp.wrongs=0;rlp.fakes=0;rlp.grazes=0;
+  rlp.empties=0;rlp.pings=0;rlp.timeouts=0;rlp.tides=0;rlp.tideN=0;
+  rlp.holds=0;rlp.views=0;rlp.scopes=0;rlp.tights=0;rlp.chains=0;rlp.chain=0;rlp.chainMax=0;
+  rlp.tools=0;rlp.nags=0;rlp.broke=0;rlp.swept=0;
+  rlp.viewN=RLP_P0;rlp.holdN=RLP_P0;rlp.scopeN=RLP_P0;rlp.swapN=1;
+  rlp.viewUse=0;rlp.holdUse=0;rlp.scopeUse=0;rlp.swapUse=0;
+  rlp.pool=[];rlp.miss=[];rlp.doneCh=[];rlp.rec=null;rlp.n=0;
+  rlp.poolWantMore=false;rlp.thinLv=0;
+  rlp.t=0;rlp.playMs=0;rlp.tones=0;rlp.hudAcc=0;rlp.newBest=false;
+  rlp.qms0=rlpQms(1);rlp.qms=rlp.qms0;rlp.fuel=rlpFuel(1);
+  rlp.pingMs=rlpPingMs(1);rlp.tideMs=rlpTideMs(1);rlp.tideOn=0;rlp.tideD=0;rlp.warn=false;
+  rlp.duo=false;rlp.duoCut=0;rlp.duoHalf=true;rlp.duoP1=0;rlp.duoP2=0;rlp.knobMs=RLP_HUG_MS+1;rlp.grabMs=RLP_TIGHT_MS+1;
+  rlp.hug=0;rlp.hugW=0;rlp.lastTight=0;rlp.lastTide=0;rlp.lastGraze=0;rlp.lastPing=0;rlp.holdT=0;rlp.markForce=0;
+  rlp.th=0;rlp.lam=46;rlp.markMs=0;rlp.markI=-1;
+  rlp.miss=(localStorage.getItem('hz_ripple_miss')||'').split(',').filter(function(c){return c.length===1});
+  rlp.gotCh=(localStorage.getItem('hz_ripple_book')||'').split(',').filter(function(c){return c.length===1});
+  rlp.got0=rlp.gotCh.length;   /* 开局时架上有几个字：结算那句「这一场新收几个」得从这儿减 */
+  rlpMini();rlpCap();
+  showScreen('ripple');
+  rlpBind();rlpCanvasSize();
+  rlpPanels();
+  const yd=document.getElementById('rlpYard');
+  if(yd)yd.classList.remove('dead');
+  rlpHud();rlpMeter();rlpLine();
+  const d=document.getElementById('rlpDuoBtn');
+  if(d){d.textContent='👥 双人';d.classList.remove('on')}
+  rlpxSay('💠 <b>盘心一根杆，两头各扎进水里：一头压下去另一头就抬起来</b>，两列浪在盘上叠成条纹，一笔一张牌<br>'+
+    '🎯 <b>你只能挑三样</b>：<b>杆朝哪儿</b>（<code>W</code>/<code>S</code> 按住）、<b>浪多长</b>（<code>A</code>/<code>D</code> 按住）、'+
+    '<b>哪一刻下手</b>（<code>空格</code>，谁荡得最高收谁）—— 条纹本身你动不了，那是水自己定的<br>'+
+    '🌑 第 3 场起水面混进<b>影牌</b>：真牌圆面里压着这个字的一段印子，影牌里干干净净<br>'+
+    '⏳ 这一笔的钟 '+(rlpQms(1)/1000).toFixed(1)+' 秒、这盘水 '+(rlpFuel(1)/1000).toFixed(0)+' 秒；🍃 每 '+
+    (rlpPingMs(1)/1000).toFixed(1)+' 秒盖一片萍；🌊 每 '+(rlpTideMs(1)/1000).toFixed(1)+' 秒一道长浪横扫过来<br>'+
+    '✨ <code>Q</code> 看纹 · 🧊 <code>E</code> 定浪 · 🍃 <code>F</code> 撇萍 · 🔁 <code>Enter</code> 换字 · <code>H</code> 看说明<br>'+
+    '👥 点<b>双人</b>：P1 只管旋钮、P2 只管下手，挪完 0.42 秒内收才算<b>合抱</b>','#C8E6C9');
+  rlpxPut('rlpAsk','💠 正在给这盘水算账……<br><small>在字库里找「牌摆得开、每一笔都出得了头」的字</small>');
+  let ok=await rlpBuildPool();
+  if(stale())return;
+  if(!ok){
+    rlpxPut('rlpAsk','💠 水还没满……<br><small>多等一记</small>');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await rlpBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!rlp.pool.length){
+    rlp.run=false;
+    rlpxPut('rlpAsk','😢 字库没加载好<br><small>稍后再来叠浪</small>');
+    rlpxSay('先去别的模式练两笔，回来字就齐了','#FFF59D');
+    return;
+  }
+  rlpxAud('start');
+  rlpxAdd('hz_ripple_games',1);
+  await rlpNewWord();
+  if(!rlp.rec||!rlp.rec.n||!rlp.run||rlp.over||stale()){
+    rlp.run=false;
+    rlpxPut('rlpAsk','😢 这盘水没起浪<br><small>稍后再来叠浪</small>');
+    return;
+  }
+  rlpStartLoop();
+}
+function rlpLeave(){
+  rlpStopAll();
+  if(rlp.run&&!rlp.over){rlpBank();rlp.over=true;rlp.run=false}
+  const yd=document.getElementById('rlpYard');
+  if(rlp.over&&yd)yd.classList.add('dead');
+  goHome();
+}
+function rlpAgain(){rlpStart()}
+function rlpCanvasSize(){
+  const cv=document.getElementById('rlpCanvas');
+  if(!cv)return;
+  cv.width=RLP_W;cv.height=RLP_H;
+  rlp.ctx=cv.getContext?cv.getContext('2d'):null;
+}
+
+/* ================= 段 F：结算与落盘 · 浪具架（与别处的徽章、图鉴、小兽互通） ================= */
+/* hz_ripple_* 的分工：一堆累计计数键（收完字数/收对/收错/白手/空手/钟响/影牌/萍/定浪/看纹/撇萍/涨潮/顺手收/擦纹/连收/道具/换字/水尽/合抱/萍下收）
+   + 几个 max 键（最好一场分数/最长连击/最深一场/最长连收/最多合抱）
+   + 一张 avg 键（平均每收一笔试多少毫秒，越小越熟）
+   + 三个名单键（图鉴 hz_ripple_book · 错字本 hz_ripple_miss · 浪具架 hz_ripple_shelf）。
+   称号读累计收完字数 hz_ripple_words，不是「最好一场」那个。 */
+function rlpxAud(kind){
+  if(kind==='start'){rlpxTone(392,.06,'triangle',.025);return}
+  if(kind==='ok'){rlpxTone(RLP_NOTE[Math.min(10,2+rlp.combo)],.09,'triangle',.04);return}
+  if(kind==='bad'){rlpxTone(150,.18,'sawtooth',.05);return}
+  if(kind==='grab'){rlpxTone(523,.07,'square',.03);return}
+  if(kind==='tide'){rlpxTone(880,.05,'sine',.03);return}
+  if(kind==='word'){rlpxTone(659,.1,'triangle',.045);rlpxTone(880,.12,'triangle',.03);return}
+  if(kind==='warn'){rlpxTone(233,.08,'sine',.03);return}
+}
+function rlpMissAdd(ch){
+  if(!ch)return;
+  if(rlp.miss.indexOf(ch)<0){
+    rlp.miss.push(ch);
+    localStorage.setItem('hz_ripple_miss',rlp.miss.slice(0,RLP_BOOK_MAX).join(','));
+  }
+}
+function rlpBookAdd(ch){
+  if(!ch||rlp.gotCh.indexOf(ch)>=0)return;
+  rlp.gotCh.push(ch);
+  localStorage.setItem('hz_ripple_book',rlp.gotCh.slice(0,RLP_BOOK_MAX).join(','));
+}
+/* ---- 浪具架：八件家什，每一件都要真做到过才上架（第八件认别处打来的章节徽章） ---- */
+const RLP_SHELF=[
+  {k:'波纹尺',d:'收完第一个字',ok:function(){return rlpxInt('hz_ripple_words')>=1}},
+  {k:'滴漏杆',d:'打到第 3 场',ok:function(){return rlpxInt('hz_ripple_lv')>=3}},
+  {k:'浮牌夹',d:'顺手收累计 5 记',ok:function(){return rlpxInt('hz_ripple_tights')>=5}},
+  {k:'量浪绳',d:'擦纹 3 次',ok:function(){return rlpxInt('hz_ripple_grazes')>=3}},
+  {k:'撇萍勺',d:'水上累计落过 6 片萍',ok:function(){return rlpxInt('hz_ripple_pings')>=6}},
+  {k:'定浪闸',d:'定浪里收对 4 张',ok:function(){return rlpxInt('hz_ripple_holds')>=4}},
+  {k:'听纹筒',d:'赶上涨潮 3 记',ok:function(){return rlpxInt('hz_ripple_tides')>=3}},
+  {k:'叠浪镜',d:'别处的章节徽章攒到 3 枚',ok:function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}}}
+];
+function rlpShelfCheck(){
+  const have=(localStorage.getItem('hz_ripple_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  for(let i=0;i<RLP_SHELF.length;i++){
+    const s=RLP_SHELF[i];
+    if(have.indexOf(s.k)<0&&s.ok()){have.push(s.k);got.push(s.k)}
+  }
+  localStorage.setItem('hz_ripple_shelf',have.join(','));
+  localStorage.setItem('hz_ripple_trophy',String(have.length));
+  if(got.length){
+    localStorage.setItem('hz_ripple_trophy_n',String(rlpxInt('hz_ripple_trophy_n')+got.length));
+    rlpxSay('🗄️ 浪具架上多了 <b>'+got.join('、')+'</b>（一共 '+have.length+'/'+RLP_SHELF.length+' 件）','#FFE0B2');
+  }
+  return {have:have,got:got};
+}
+function rlpBankLite(){
+  /* 收完一个字当场就把纪录存进去了。这一场最后若是「平着自己破的纪录」，
+     结算那行还得给孩子挂上「新高」——所以破过就得留个记号，不能让孩子看不见自己刚破的纪录 */
+  if(rlp.score>rlpxInt('hz_ripple_best')){localStorage.setItem('hz_ripple_best',String(rlp.score));rlp.newBest=true}
+  if(rlp.maxCombo>rlpxInt('hz_ripple_combo'))localStorage.setItem('hz_ripple_combo',String(rlp.maxCombo));
+  if(rlp.lv>rlpxInt('hz_ripple_lv'))localStorage.setItem('hz_ripple_lv',String(rlp.lv));
+  if(rlp.chainMax>rlpxInt('hz_ripple_chainmax'))localStorage.setItem('hz_ripple_chainmax',String(rlp.chainMax));
+  rlpShelfCheck();
+}
+function rlpBank(){
+  /* newBest 是「这一场中途已经把纪录写进去了」的记号：分数只涨到那儿、结算时正好持平，
+     那也是孩子破的纪录，得照样挂「新高」。但这一场后来又掉了分，就不算破，也绝不许把纪录往下改 */
+  const best=rlpxInt('hz_ripple_best'),isBest=rlp.score>best||(rlp.newBest===true&&rlp.score===best);
+  if(isBest)localStorage.setItem('hz_ripple_best',String(rlp.score));
+  if(rlp.maxCombo>rlpxInt('hz_ripple_combo'))localStorage.setItem('hz_ripple_combo',String(rlp.maxCombo));
+  if(rlp.lv>rlpxInt('hz_ripple_lv'))localStorage.setItem('hz_ripple_lv',String(rlp.lv));
+  if(rlp.chainMax>rlpxInt('hz_ripple_chainmax'))localStorage.setItem('hz_ripple_chainmax',String(rlp.chainMax));
+  if(rlp.hug>rlpxInt('hz_ripple_duomax'))localStorage.setItem('hz_ripple_duomax',String(rlp.hug));
+  if(rlp.hits){
+    const per=Math.round(rlp.playMs/rlp.hits);
+    if(!rlpxInt('hz_ripple_fastest')||per<rlpxInt('hz_ripple_fastest'))localStorage.setItem('hz_ripple_fastest',String(per));
+  }
+  rlpxAdd('hz_ripple_words',rlp.words);
+  rlpxAdd('hz_ripple_hits',rlp.hits);
+  rlpxAdd('hz_ripple_shots',rlp.shots);
+  rlpxAdd('hz_ripple_wrongs',rlp.wrongs);
+  rlpxAdd('hz_ripple_timeouts',rlp.timeouts);
+  rlpxAdd('hz_ripple_fakes',rlp.fakes);
+  rlpxAdd('hz_ripple_empties',rlp.empties);
+  rlpxAdd('hz_ripple_pings',rlp.pings);
+  rlpxAdd('hz_ripple_swept',rlp.swept);
+  rlpxAdd('hz_ripple_grazes',rlp.grazes);
+  rlpxAdd('hz_ripple_tides',rlp.tides);
+  rlpxAdd('hz_ripple_tights',rlp.tights);
+  rlpxAdd('hz_ripple_views',rlp.views);
+  rlpxAdd('hz_ripple_scopes',rlp.scopes);
+  rlpxAdd('hz_ripple_holds',rlp.holds);
+  rlpxAdd('hz_ripple_chains',rlp.chains);
+  rlpxAdd('hz_ripple_tools',rlp.tools);
+  rlpxAdd('hz_ripple_swap',rlp.swapUse);
+  rlpxAdd('hz_ripple_broke',rlp.broke);
+  rlpxAdd('hz_ripple_hug',rlp.hug);
+  if(rlp.duo)rlpxAdd('hz_ripple_duos',1);
+  const sf=rlpShelfCheck();
+  return {best:Math.max(best,rlp.score),isBest:isBest,
+    shelf:Math.min(RLP_SHELF.length,(localStorage.getItem('hz_ripple_shelf')||'').split(',').filter(function(s){return s}).length),
+    got:sf.got};
+}
+/* 结算那一句「下一步该改哪儿」：先按死因说，死因之外再按最扎手的那个毛病说 */
+function rlpWhyTxt(why,acc,hit){
+  if(why==='broke')return '💔 <b>收错 '+rlp.wrongs+' 次</b>：牌里上墨的那一笔只保证「这一笔长这样」，'+
+    '<b>先收哪一笔</b>得你自己认。先在心理把这个字写一遍，再挑那一张'+
+    (rlp.fakes?'；还有 <b>'+rlp.fakes+' 次栽在影牌上</b> —— 真牌的圆面里压着这个字的一段印子，<b>干干净净那张就是它</b>':'')+
+    (rlp.empties?'；空手 '+rlp.empties+' 回说明下手早了 —— 浮条上写着此刻最高那张浮到多少，'+RLP_GRAB.toFixed(2)+' 以下都算摸空气':'');
+  if(why==='fuel')return '💧 <b>这盘水见了底</b>：'+(rlp.pings?'这一场落了 <b>'+rlp.pings+'</b> 片萍，到后面看不清牌里那一笔 —— ':'')+
+    '别抢按，先把<b>杆转到该收那张偏开中垂线</b>的方向：<b>路程差够半波长，那张才荡得开</b>，看准了再收';
+  if(why==='pool')return '😢 <b>字没凑齐</b>：这一坊要的是「三四笔以上、牌摆得开、每一笔都出得了头」的字，网络一断就挑不出来，回头再来';
+  if(rlp.empties>=4)return '💧 <b>空手 '+rlp.empties+' 回</b>：浪尖是要等的 —— 一根杆两头点水，'+
+    '同一张牌在<b>整拍里只有一段</b>浮在尖上（'+(RLP_T/1000).toFixed(1)+' 秒一拍，远处那张还得<b>晚半拍到</b>）；'+
+    '把 <code>E</code> 定浪摁上，先把地方挑对，时机那一拍再解冻来抢';
+  if(rlp.fakes>=2)return '🌑 <b>白收 '+rlp.fakes+' 次影牌</b>：它荡得再高也不是这个字的笔 —— '+
+    '把牌举到眼跟前看：<b>圆面里压着印子的才是真牌，干干净净那张是影子</b>（这一坊把底纹在影牌底下挖了洞，它压不着墨）';
+  if(rlp.wrongs>=3)return '🎯 <b>收错 '+rlp.wrongs+' 次</b>：水底有 '+rlp.n+' 条候选，'+
+    '认的是<b>笔形</b>（横竖撇捺点）不是编号 —— 别照「谁荡得高」收，那一张得是<b>该收的这一笔</b>';
+  if(!acc)return '💠 <b>这一场一记没下</b>：水一直在动 —— <code>W</code>/<code>S</code> 把杆转到该收那张偏开中垂线的方向，'+
+    '<code>A</code>/<code>D</code> 挑一条疏密刚好的纹，等它<b>荡到尖</b>那一下按<code>空格</code>';
+  return '💠 手感不错：'+acc+' 次里 <b>'+hit+'%</b> 收在对的牌上，最长连 '+rlp.maxCombo+'、连收 '+rlp.chainMax+
+    '、顺手收 '+rlp.tights+' —— 下一场影牌混进来、描着的金边也会收走，试试一件浪具不用收完一个字';
+}
+function rlpEnd(why){
+  if(rlp.over)return;
+  rlp.over=true;
+  rlpStopLoop();rlpxKillTimers();
+  rlp.run=false;rlp.load=false;
+  rlp.keys.cw=0;rlp.keys.ccw=0;rlp.keys.fine=0;rlp.keys.coarse=0;
+  rlp.parts=[];rlp.live=[];rlp.pend=null;
+  const tg=document.getElementById('rlpTag');if(tg)tg.className='rlp-tag';
+  if(rlp.tagTimer){clearTimeout(rlp.tagTimer);rlp.tagTimer=0}
+  rlp.tagOn=0;
+  const yd=document.getElementById('rlpYard');if(yd)yd.classList.add('dead');
+  /* 心掉完才算「这一笔没收下」；水面见底已经在 rlpFuelOut 里进过错字本了 */
+  if(why==='broke'&&rlp.rec&&rlp.pi<rlp.n)rlpMissAdd(rlp.rec.ch);
+  const bk=rlpBank(),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(rlp.score/14)+rlp.words*2);
+  if(why!=='pool')addStars(stars);
+  showScreen('ripple-result');
+  rlpxPut('rlpRsEmoji',{quit:'🏳️',fuel:'💧',broke:'💔',pool:'😢'}[why]||'💠');
+  rlpxPut('rlpRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  rlpxPut('rlpRsTitle',why==='broke'?'心掉完了':(why==='fuel'?'这盘水见了底':(why==='quit'?'这一场先收了':'字没凑齐')));
+  const tot=rlpxInt('hz_ripple_words'),rk=rlpxRank(tot);
+  rlpxPut('rlpRsSub','第 '+rlp.lv+' 场 · 累计收完 '+tot+' 个字 · '+rk.e+' '+rk.t);
+  rlpxPut('rlpRsScore','🎯 '+rlp.score+' 分'+(isBest?' 🏅 新高':''));
+  rlpxPut('rlpRsWords','💠 收完 '+rlp.words+' 个字 · 出手 '+rlp.shots+' 次');
+  rlpxPut('rlpRsShots','🎯 收对 '+rlp.hits+' 张 · 收错 '+rlp.wrongs+' 次');
+  rlpxPut('rlpRsSub2','⌛ 钟响 '+rlp.timeouts+' 回 · 🌑 白收 '+rlp.fakes+' 次 · 💧 空手 '+rlp.empties+' 回');
+  rlpxPut('rlpRsChain','✨ 连收 '+rlp.chains+' 回（最长一串 '+rlp.chainMax+'）· 顺手收 '+rlp.tights+' · 零错 '+rlpxInt('hz_ripple_cleanw')+' 个字');
+  rlpxPut('rlpRsBeat','🌊 长浪 '+rlp.tideN+' 道 · 赶上 '+rlp.tides+' · 擦纹 '+rlp.grazes+' · 🍃 落萍 '+rlp.pings+' 片 · 撇过 '+rlp.scopes+' 回 · 萍下收 '+rlp.swept);
+  rlpxPut('rlpRsTools','✨ 看纹 '+rlp.viewUse+' · 🧊 定浪 '+rlp.holdUse+' · 🍃 撇萍 '+rlp.scopeUse+' · 🔁 换字 '+rlp.swapUse);
+  rlpxPut('rlpRsDuo',rlp.duo?'👥 合抱 '+rlp.hug+' 记 · 一个人转 '+rlp.duoCut+' 次（一个字里合抱上过另加 '+RLP_DUO_BONUS+'）':
+    '👤 单人收：'+(rlp.hits?'平均收一笔 '+(Math.round(rlp.playMs/rlp.hits/100)/10)+' 秒':'这一场一记没落，说不上快慢')+' —— 想让同伴只管旋钮，点 <b>双人</b>');
+  rlpxPut('rlpRsCombo','🔥 最长连 '+rlp.maxCombo);
+  rlpxPut('rlpRsBest','🏆 最高 '+best+' 分 · ⚡ 最熟手 '+(rlpxInt('hz_ripple_fastest')||'—')+' 毫秒/张');
+  const book=(localStorage.getItem('hz_ripple_book')||'').split(',').filter(function(c){return c.length===1});
+  const miss=rlp.miss.slice();
+  /* gotCh 开局就装着架上原有的字：「这一场新收几个」得从那一刻减起，不然架上 12 个字时孩子会看到「新收 12 个」 */
+  const newGot=rlp.gotCh.length-rlp.got0;
+  rlpxPut('rlpRsBook','架上 <b>'+book.length+'</b> 个字'+(book.length?'<small>（'+book.slice(-14).join(' ')+'）</small>':'')+
+    (newGot>0?'，这一场新收 '+newGot+' 个':'')+
+    ' · 浪具架 <b>'+bk.shelf+'/'+RLP_SHELF.length+'</b> 件（'+(localStorage.getItem('hz_ripple_shelf')||'—')+'）'+
+    (bk.got.length?'<b>，新上架：'+bk.got.join('、')+'</b>':'')+
+    ' · 错字本 <b>'+miss.length+'</b> 个'+(miss.length?'（'+miss.slice(-12).join(' ')+'，过几轮优先还回来）':'')+
+    '<br>⭐ 这 '+stars+' 颗星已经喂给<b>书桌小兽</b>；收完的字也进了它的记忆池'+
+    (JSON.parse((function(){try{return localStorage.getItem('hz_badges')||'[]'}catch(e){return '[]'}})()).length?
+      ' · 你在<b>大冒险</b>里攒的章节徽章也被这间坊认了（浪具架上的叠浪镜就是这么来的）':''));
+  const acc=rlp.hits+rlp.wrongs;
+  const hit=acc?Math.round(rlp.hits/acc*100):0;
+  rlpxPut('rlpRsWhy',rlpWhyTxt(why,acc,hit));
+  rlpxSay('💠 这一场收了 <b>'+rlp.words+'</b> 个字、出手 <b>'+rlp.shots+'</b> 次、收对 <b>'+rlp.hits+'</b> 张'+
+    '（收错 <b>'+rlp.wrongs+'</b>、钟响 <b>'+rlp.timeouts+'</b>、白收 <b>'+rlp.fakes+'</b>、空手 <b>'+rlp.empties+
+    '</b>、擦纹 <b>'+rlp.grazes+'</b>、涨潮 <b>'+rlp.tides+'</b>、顺手收 <b>'+rlp.tights+'</b>、连收 <b>'+rlp.chains+
+    '</b> 回、落萍 <b>'+rlp.pings+'</b> 片、水尽 <b>'+rlp.broke+'</b> 回、浪具 <b>'+rlp.tools+'</b> 次、换字 <b>'+rlp.swapUse+
+    '</b> 回）'+(rlp.duo?'，合抱 <b>'+rlp.hug+'</b> 记、一个人转 <b>'+rlp.duoCut+'</b> 次':'')+
+    '。<br>战绩落盘 <code>hz_ripple_*</code>：称号按<b>累计收完的字数</b>走，浪具架 <b>'+bk.shelf+'/'+RLP_SHELF.length+
+    '</b> 件（<b>叠浪镜</b>认的是你在<b>大冒险</b>里打到的章节徽章），错字本里的字 <b>过几轮优先还回来</b>','#C8E6C9');
+  rlpNudge();
+}
+function rlpNudge(){
+  const dot=document.getElementById('rlpCardDot'),tip=document.getElementById('rlpCardTip');
+  const tot=rlpxInt('hz_ripple_words'),games=rlpxInt('hz_ripple_games'),hits=rlpxInt('hz_ripple_hits');
+  const rk=rlpxRank(tot),shelf=rlpxInt('hz_ripple_trophy');
+  if(tip)tip.textContent=games?(rk.e+' '+rk.t+' · 收完 '+tot+' 个字 · 收对 '+hits+' 张 · 收错 '+rlpxInt('hz_ripple_wrongs')+
+    ' 次 · 浪具架 '+shelf+' 件'):'一根能转的杆两头点水，两列浪在盘上叠成条纹：谁荡到浪尖谁被收走 —— 你只有杆朝哪儿、浪多长、哪一刻下手三样';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(games?'':'🆕')}
+}
+
+/* ================= 段 G：纯审计（把这坊赖以成立的四条理各算第二遍，不碰场上状态） ================= */
+/* ① 两针反相点水：中垂线上路程差恒为 0，那一整条线的振幅必须是 0（哑线不是画出来的，是算出来的）
+   ② 段 B 用「投影 + 勾股」走的几何路，这里换成「直接量两针距离」再走一遍 —— 两条路对得上，条纹才算数
+   ③ 每一张真牌都真的存在一片按得住的 (θ,λ) 让它当全场最高、且整拍里有 ≥RLP_FRAC 的时间浮在浪尖上
+   ④ 一张牌只许写一笔、n 笔正好 n 张真牌；影牌 i=-1、dir=-1，且圆面里压根不画墨
+   用的和段 B/C 不是同一条代码路：这里自带粗度更高的格子与另一种几何算法。*/
+function rlpGeo2(x,y,th){
+  const s=rlpSrc(th);
+  const ra=Math.hypot(x-s.ax,y-s.ay),rb=Math.hypot(x-s.bx,y-s.by);
+  return {d:Math.abs(ra-rb),mean:(ra+rb)/2,ra:ra,rb:rb};
+}
+/* ① 哑线：杆的中垂线整条线上振幅恒为 0 —— 沿线取样直接量两针距离 */
+function rlpAuditSilence(th){
+  const t=th===undefined?rlp.th:th;
+  const nx=-Math.sin(t),ny=Math.cos(t);
+  let worstD=0,worstA=0,n=0;
+  for(let k=-9;k<=9;k++){
+    const x=RLP_CX+nx*k*15,y=RLP_CY+ny*k*15;
+    if(x<2||x>RLP_W-2||y<2||y>RLP_H-2)continue;
+    n++;
+    const g=rlpGeo2(x,y,t);
+    if(g.d>worstD)worstD=g.d;
+    for(let lam=RLP_L_MIN;lam<=RLP_L_MAX;lam+=2){
+      const a=rlpAmpOf(g.d,lam);
+      if(a>worstA)worstA=a;
+    }
+  }
+  return {pts:n,worstD:Math.round(worstD*1e6)/1e6,worstAmp:Math.round(worstA*1e6)/1e6};
+}
+/* 一张牌圆面底下压着几像素的墨：真牌量自己那一笔，影牌量全场最近的底纹 */
+function rlpInkUnder(c){
+  if(!c.fake)return Math.round(rlpDistPath(c.x,c.y,c.path)*10)/10;
+  let m=1e9;
+  if(rlp.rec&&rlp.rec.pts)for(let j=0;j<rlp.rec.pts.length;j++){
+    const d=rlpDistPath(c.x,c.y,rlp.rec.pts[j].path);
+    if(d<m)m=d;
+  }
+  return Math.round(m*10)/10;
+}
+/* ② 两条几何路对不对得齐：随机在盘上扎点，各算一次路程差与平均路程 */
+function rlpAuditGeo(th){
+  const t=th===undefined?rlp.th:th;
+  let md=0,mm=0;
+  for(let k=0;k<400;k++){
+    const x=Math.random()*RLP_W,y=Math.random()*RLP_H;
+    const a=rlpGeo(x,y,t),b=rlpGeo2(x,y,t);
+    if(Math.abs(a.d-b.d)>md)md=Math.abs(a.d-b.d);
+    if(Math.abs(a.mean-b.mean)>mm)mm=Math.abs(a.mean-b.mean);
+  }
+  return {dErr:Math.round(md*1e6)/1e6,meanErr:Math.round(mm*1e6)/1e6};
+}
+/* ③ 这一张牌真能出头吗：用 2 度 × 1 像素的格子、一拍切 32 刀，全程走 rlpGeo2 那条独立几何路。
+   返回它当全场最高、又浮在浪尖上的那些格子的总数与最宽的连片 —— 段 B 的「证人」算错了这里就会露出来 */
+function rlpAuditReach(cards,k,t){
+  const ts=[],ls=[];
+  for(let a=0;a<180;a+=2)ts.push(a*Math.PI/180);
+  for(let l=RLP_L_MIN;l<=RLP_L_MAX+1e-9;l+=1)ls.push(l);
+  let cells=0,bestFr=0,bestTh=0,bestLam=0;
+  const good=ts.map(function(){return ls.map(function(){return 0})});
+  for(let a=0;a<ts.length;a++){
+    const G=[];
+    for(let i=k;i<cards.length;i++)G.push(rlpGeo2(cards[i].x,cards[i].y,ts[a]));
+    for(let b=0;b<ls.length;b++){
+      const v=G.map(function(g){return rlpAmpOf(g.d,ls[b])});
+      if(v[0]<RLP_RING)continue;
+      let m2=0;
+      for(let i=1;i<v.length;i++)if(v[i]>m2)m2=v[i];
+      if(v[0]-m2<RLP_MARGIN)continue;
+      let hit=0;
+      for(let s=0;s<32;s++){
+        const tt=s/32*RLP_T;
+        let bi=0,bv=-1e9;
+        for(let i=0;i<v.length;i++){
+          const L=rlpLiftOf(v[i],G[i].mean,ls[b],tt);
+          if(L>bv){bv=L;bi=i}
+        }
+        if(bi===0&&bv>=RLP_GRAB)hit++;
+      }
+      const fr=hit/32;
+      if(fr<RLP_FRAC)continue;
+      good[a][b]=fr;cells++;
+      if(fr>bestFr){bestFr=fr;bestTh=ts[a];bestLam=ls[b]}
+    }
+  }
+  let runT=0,rt=0,runL=0,rl2=0;
+  for(let b=0;b<ls.length;b++){
+    let r=0,c2=0;
+    for(let a=0;a<ts.length;a++){if(good[a][b]){r++;if(r>c2)c2=r}else r=0}
+    if(c2>runT){runT=c2;rt=b}
+  }
+  for(let a=0;a<ts.length;a++){
+    let r=0,c2=0;
+    for(let b=0;b<ls.length;b++){if(good[a][b]){r++;if(r>c2)c2=r}else r=0}
+    if(c2>runL)runL=c2;
+  }
+  return {cells:cells,deg:runT*2,degAt:Math.round(rt*2),px:runL,lamAt:Math.round(ls[rt]||0),
+    bestFr:Math.round(bestFr*100)/100,th:Math.round(bestTh*180/Math.PI),lam:Math.round(bestLam*10)/10};
+}
+/* ④ 发牌账：真牌一张一笔不许重、笔形与题面一致；每张真牌圆面里必须压得着自己那一笔；影牌不带编号也不带笔形 */
+function rlpAuditDeal(rec,cards){
+  const real=[],fake=[];
+  for(let i=0;i<cards.length;i++)(cards[i].fake?fake:real).push(cards[i]);
+  let bad=0,dup=0,inkOut=0;
+  const seen={};
+  for(let i=0;i<real.length;i++){
+    const c=real[i];
+    if(c.i<0||c.i>=rec.n||rec.dirs[c.i]!==c.dir)bad++;
+    if(seen[c.i])dup++;
+    seen[c.i]=1;
+    /* 圆面里压没压着自己那一笔：这段折线离牌心最近能到几像素（≤CARD−11：压得够深，圆面里才看得见一截墨） */
+    if(rlpInkUnder(c)>RLP_CARD-11)inkOut++;
+  }
+  let blank=0,far=0;
+  for(let i=0;i<fake.length;i++){
+    fake[i].ink=rlpInkUnder(fake[i]);
+    if(fake[i].ink>=RLP_CARD)far++;
+    blank++;
+  }
+  /* 牌不许压在盘心那根杆的转身处：离盘心都得 ≥RLP_CLEAR-1 */
+  let onBar=0;
+  for(let i=0;i<cards.length;i++)if(Math.hypot(cards[i].x-RLP_CX,cards[i].y-RLP_CY)<RLP_CLEAR-1)onBar++;
+  let tooClose=0;
+  for(let i=0;i<cards.length;i++)for(let j=i+1;j<cards.length;j++)
+    if(Math.hypot(cards[i].x-cards[j].x,cards[i].y-cards[j].y)<RLP_SEP-1)tooClose++;
+  return {real:real.length,expect:rec.n,bad:bad,dup:dup,inkOut:inkOut,fake:blank,fakeFar:far,
+    onBar:onBar,tooClose:tooClose};
+}
+/* 场上快照：无头侧只读不写（判定一律走产品自己那一套） */
+function rlpSnap(light){
+  const s={
+    run:rlp.run,over:rlp.over,lv:rlp.lv,score:rlp.score,hearts:rlp.hearts,combo:rlp.combo,
+    words:rlp.words,shots:rlp.shots,hits:rlp.hits,wrongs:rlp.wrongs,fakes:rlp.fakes,grazes:rlp.grazes,
+    empties:rlp.empties,pings:rlp.pings,swept:rlp.swept,timeouts:rlp.timeouts,scopes:rlp.scopes,
+    tides:rlp.tides,tideN:rlp.tideN,holds:rlp.holds,views:rlp.views,tights:rlp.tights,
+    chains:rlp.chains,chain:rlp.chain,chainMax:rlp.chainMax,tools:rlp.tools,nags:rlp.nags,broke:rlp.broke,
+    /* 结算页那几行读的就是这几只：快照里没有它们，「拿快照逐行对账」就成了拿不到而不是对得上 */
+    maxCombo:rlp.maxCombo,viewUse:rlp.viewUse,holdUse:rlp.holdUse,scopeUse:rlp.scopeUse,swapUse:rlp.swapUse,
+    viewN:rlp.viewN,holdN:rlp.holdN,scopeN:rlp.scopeN,swapN:rlp.swapN,swaps:rlp.swaps,
+    ch:rlp.rec?rlp.rec.ch:'',n:rlp.rec?rlp.rec.n:0,pi:rlp.pi,dirs:rlp.rec?rlp.rec.dirs.join(''):'',
+    thDeg:Math.round(rlp.th*180/Math.PI*10)/10,lam:Math.round(rlp.lam*10)/10,
+    qms:Math.round(rlp.qms),qms0:Math.round(rlp.qms0),fuel:Math.round(rlp.fuel),pingN:rlpPingCount(),tideOn:rlp.tideOn,
+    tideD:Math.round(rlp.tideD*1e4)/1e4,warn:rlp.warn?1:0,load:rlp.load?1:0,
+    fakeN:rlpFakeN(),fakeLv:rlpFake(rlp.lv),tideHit:rlpTideCover(rlpTargetCard())?1:0,
+    holdMs:Math.round(rlp.holdMs),viewMs:Math.round(rlp.viewMs),scopeMs:Math.round(rlp.scopeMs),
+    /* 三只还没露头的表（萍、长浪、说明）与三只在后台走的钟（发呆、动手、口诀）：
+       无头侧断「这一拍谁该走、谁该停」就得当场读它们，光靠 EVALF 一行行掏出来的是过去而不是这一眼 */
+    pingMs:Math.round(rlp.pingMs),tideMs:Math.round(rlp.tideMs),helpMs:Math.round(rlp.helpMs),
+    nagMs:Math.round(rlp.nagMs),actMs:Math.round(rlp.actMs),nagHold:Math.round(rlp.nagHold),
+    tgt:(function(){var c=rlpTargetCard();return c?rlp.cards.indexOf(c):-1})(),
+    grabMs:Math.round(rlp.grabMs),knobMs:Math.round(rlp.knobMs),duo:rlp.duo?1:0,duoCut:rlp.duoCut,
+    duoP1:rlp.duoP1,duoP2:rlp.duoP2,hug:rlp.hug,hugW:rlp.hugW,
+    keys:rlp.keys.cw+'/'+rlp.keys.ccw+'/'+rlp.keys.fine+'/'+rlp.keys.coarse,
+    pool:rlp.pool.length,book:rlp.gotCh.length,miss:rlp.miss.length,tag:rlp.tagOn,
+    lastTight:rlp.lastTight,lastTide:rlp.lastTide,lastGraze:rlp.lastGraze,lastPing:rlp.lastPing,
+    markI:rlp.markI,markMs:Math.round(rlp.markMs),markLive:rlpMarkLive()?1:0,
+    got:rlp.gotIdx.join(''),partN:rlp.parts.length,t:Math.round(rlp.t),playMs:Math.round(rlp.playMs),
+    tones:rlp.tones,period:RLP_T,grab:RLP_GRAB,ring:RLP_RING,
+    /* 此刻全场谁浮到多高：无头侧要断「收的是不是最高那张」，就得看得见产品自己算出来的这几个数 */
+    lift:(function(){const a=[];for(let i=0;i<rlp.cards.length;i++)a.push(Math.round((rlp.cards[i].got?-1:rlp.cards[i].lift)*100)/100);return a.join(',')}()),
+    amp:(function(){const a=[];for(let i=0;i<rlp.cards.length;i++)a.push(Math.round((rlp.cards[i].got?-1:rlp.cards[i].amp)*100)/100);return a.join(',')}())
+  };
+  if(!light){
+    s.cards=rlp.cards.map(function(c){
+      return {i:c.i,dir:c.dir,fake:c.fake?1:0,got:c.got?1:0,
+        x:Math.round(c.x*10)/10,y:Math.round(c.y*10)/10,
+        d:Math.round((c.d||0)*10)/10,mean:Math.round((c.mean||0)*10)/10,
+        amp:Math.round((c.got?-1:c.amp||0)*100)/100,lift:Math.round((c.got?-1:c.lift||0)*100)/100,
+        ink:rlpInkUnder(c)};
+    });
+    s.pingL=rlp.pingL.slice();
+    s.sols=rlp.rec&&rlp.rec.sols?rlp.rec.sols.map(function(o){
+      return Math.round(o.th*180/Math.PI)+'/'+Math.round(o.lam)+'/'+o.deg+'°/'+o.px+'px/'+Math.round(o.fr*100)+'%';
+    }):[];
+    s.box=rlp.rec&&rlp.rec.union?[Math.round(rlp.rec.union.x0),Math.round(rlp.rec.union.y0),
+      Math.round(rlp.rec.union.x1),Math.round(rlp.rec.union.y1)]:[];
   }
   return s;
 }
