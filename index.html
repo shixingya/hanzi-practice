@@ -6821,6 +6821,89 @@ button:active{transform:scale(.95)}
   #screen-shunt .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-shunt .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.99 🦊 笔顺夺字狐 ================= */
+.fox-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.fox-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+/* 题头占死三行（一行 1.35em，三行就是它最高那一副版面）：它换字不许换行数 ——
+   晒场就在它下面，多一行少一行都把整块场坪往下/往上顶五十像素，孩子的手还停在方向键上 */
+.fox-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*3)}
+.fox-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.fox-duo{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:0 auto 4px}
+.fox-duo span{flex:1 1 190px;font-size:12px;color:#FFE0B2;background:rgba(255,183,77,.13);border:1px solid rgba(255,183,77,.34);border-radius:10px;padding:3px 8px;text-align:center;line-height:1.35}
+.fox-duo span.off{opacity:.34;filter:grayscale(1)}
+.fox-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.fox-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.fox-mini svg{width:100%;height:auto;background:rgba(255,243,224,.06);border-radius:12px}
+.fox-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+/* 场坪：底色是晒谷的土坪，黑得深才衬得圆牌那一点米白 */
+.fox-field{flex:1;min-width:0;position:relative;background:#17110B;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.9)}
+.fox-field.dead{filter:grayscale(.85) brightness(.6)}
+.fox-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.fox-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#FFE0B2;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.fox-tag.on{opacity:1}
+.fox-tag.warn{background:rgba(96,38,12,.92);color:#FFCCBC}
+.fox-tag.gold{background:rgba(74,52,14,.94);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.fox-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.fox-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.fox-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#FFB74D,#FFE082);transition:width .15s linear}
+.fox-tl.fuel i{background:linear-gradient(90deg,#4FC3F7,#81D4FA)}
+.fox-tl.beat i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.fox-tl.beat.on i{background:linear-gradient(90deg,#66BB6A,#A5D6A7);box-shadow:0 0 12px rgba(102,187,106,.6)}
+.fox-tl.beat.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.6)}
+.fox-tl.low i{background:linear-gradient(90deg,#FF8A65,#FFD54F)}
+.fox-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.fox-pow{width:calc(100% - 28px);max-width:520px;margin:2px auto;font-size:11px;color:#90A4AE;text-align:center;line-height:1.45}
+.fox-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.fox-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.fox-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.fox-tool b{display:block;font-size:10px;color:#FFE082;font-weight:700}
+.fox-tool:disabled{opacity:.4;cursor:default}
+.fox-tool.duo{background:rgba(255,183,77,.2);border-color:#FFB74D}
+.fox-tool.duo.on{background:rgba(255,183,77,.42)}
+/* 四条走位键：按住才走、松手就停 —— 这一坊的方向盘只认「压着」，点一下就冲出去的老毛病不许有 */
+.fox-pad{display:flex;gap:6px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.fox-pad button{flex:1 1 0;max-width:112px;padding:8px 4px 6px;border-radius:11px;font-size:14px;font-weight:800;line-height:1.15;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#231A10;background:rgba(255,224,178,.24);touch-action:none;user-select:none}
+.fox-pad button small{display:block;font-size:10px;font-weight:400;color:rgba(35,26,16,.72)}
+.fox-pad button:active{transform:translateY(1px)}
+.fox-pad button.up{background:linear-gradient(180deg,#FFE0B2,#FFB74D)}
+.fox-pad button.down{background:linear-gradient(180deg,#FFCCBC,#FF8A65)}
+.fox-pad button.left{background:linear-gradient(180deg,#B3E5FC,#4FC3F7)}
+.fox-pad button.right{background:linear-gradient(180deg,#C8E6C9,#81C784)}
+/* 落手是这一场唯一的下手：一个大按钮占满（双人一开就锁住，只认键盘） */
+.fox-ans{display:flex;gap:10px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.fox-ans button{flex:1 1 0;max-width:300px;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#231A10}
+.fox-ans button.grab{background:linear-gradient(180deg,#FFCA28,#EF6C00);box-shadow:0 0 16px rgba(255,193,7,.34)}
+.fox-ans button small{display:block;font-size:11px;font-weight:400;color:rgba(35,26,16,.72)}
+.fox-ans button:disabled{opacity:.34;cursor:default;filter:grayscale(.6)}
+.fox-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.fox-hintline b{color:#FFE082}
+.fox-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.fox-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.fox-msg b{color:#CFD8DC}
+.fox-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.fox-msg small{font-size:11px;color:#78909C}
+.fox-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.fox-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.fox-rs-book b{color:#FFE082}
+.fox-rs-book small{color:#78909C}
+.fox-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px;z-index:4}
+.fox-cdot.on{display:block}
+#screen-fox .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：样图折到场坪上头，场坪独占整幅宽；三只钟折成一丸一行（字不许被裁）；四枚走位键折两行 */
+@media(max-width:460px){
+  .fox-stage{flex-direction:column}
+  .fox-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}
+  .fox-mini svg{flex:0 0 74px;width:74px}
+  .fox-cap{flex:0 1 auto;text-align:left}
+  /* 三只钟在窄屏是一丸一行：折成三丸一行时「还有 N 秒它就咬到第几笔」的尾字就被药丸右沿裁掉了 */
+  .fox-tl{flex:1 1 100%}
+  /* 窄屏上题头最宽的一副是四行：那一块就占死四行，场坪照样不许在手指底下挪 */
+  .fox-ask{min-height:calc(1.35em*4)}
+  .fox-pad{flex-wrap:wrap}.fox-pad button{flex:1 1 44%}
+  #screen-fox .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-fox .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-fox .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -6877,8 +6960,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 97 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">97</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 98 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">98</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6889,8 +6972,8 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>97 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>40</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>98 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>40</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
@@ -7326,6 +7409,11 @@ button:active{transform:scale(.95)}
     <div class="lab-group" id="labG5">
       <h4 class="lab-gtitle">⚔️ 对战与远征 <small>打魔王、和人斗</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="foxCard" onclick="enterMode('fox')">
+      <div class="icon">🦊</div>
+      <div class="info"><h3>笔顺夺字狐</h3><p id="foxCardTip">场上几张圆牌就是这个字几笔，牌摆成的正是这个字的模样：按笔顺一张张收走 —— 可这只狐也在读题，它读的是你。它挑哪一张看两样：第几笔，加上你这几秒朝哪儿走。你手里只有往哪儿走、哪一刻落手两样；它叼走了该收那一张，贴上它就抢得回来</p></div>
+      <span class="fox-cdot" id="foxCardDot">🆕</span>
+    </div>
     <div class="mode-card" onclick="enterMode('tug')">
       <div class="icon">🪢</div>
       <div class="info"><h3>笔顺拔河赛</h3><p id="tbCardTip">答对一笔拽一下，别被拖进泥坑</p></div>
@@ -7559,6 +7647,95 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-fox">
+  <div class="top-bar">
+    <button class="back-btn" onclick="foxLeave()">← 返回</button>
+    <div class="stats"><span id="foxScoreTxt">🎯 0 分</span><span id="foxLvTxt">第 1 场 · 已收 0 字</span><span id="foxQTxt">⏳ 这一笔 20 秒</span></div>
+    <button class="icon-btn" onclick="foxHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="fox-hud">
+    <span id="foxRankTxt" title="称号">🌱 头一回收字</span>
+    <span id="foxHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="foxComboTxt" title="连击">🔥 连 0</span>
+    <span id="foxGoalTxt" title="该收第几笔">🎯 该收第 1 笔</span>
+    <span id="foxShotTxt" title="落手">🖐 落 0 · 对上 0</span>
+    <span id="foxBeliefTxt" title="狐挑中哪张">🦊 还没挑中牌</span>
+    <span id="foxGullTxt" title="疑心">👁 疑心 1.00</span>
+    <span id="foxSnapTxt" title="虎口">🥊 虎口 0 · 刀口 0 · 夺回 0</span>
+    <span id="foxFoolTxt" title="骗成">🎭 骗成 0 回（一串最长 0）· 被吃 0</span>
+    <span id="foxChainTxt" title="连收">✨ 连收 0（最长 0）· 顺手 0</span>
+  </div>
+  <div class="fox-ask" id="foxAsk">🦊 正在给这片场摆牌……<br><small>在字库里找「硬抢抢得过、又有一趟险」的字</small></div>
+  <div class="fox-duo" id="foxDuoBar">
+    <span id="foxDuoP1" class="off">👩 P1：<b>W</b>/<b>A</b>/<b>S</b>/<b>D</b> 走位 —— 只管<b>脚下</b>（走位就是跟狐说话）</span>
+    <span id="foxDuoP2" class="off">🧔 P2：<b>空格</b> 落手 · <b>Q</b>/<b>E</b>/<b>F</b> 场具 —— 只管<b>手上那一瞬</b></span>
+  </div>
+  <div class="fox-stage">
+    <div class="fox-mini">
+      <svg viewBox="0 -1024 1024 1024" id="foxMiniSvg"></svg>
+      <div class="fox-cap" id="foxMiniCap">这个字还没拆成一张一张</div>
+    </div>
+    <div class="fox-field" id="foxField">
+      <canvas class="fox-canvas" id="foxCanvas" width="420" height="340"></canvas>
+      <div class="fox-tag" id="foxTag">🦊 这片晒场开张了</div>
+    </div>
+  </div>
+  <div class="fox-meter">
+    <div class="fox-tl q" id="foxQBox"><i id="foxQBar"></i><b id="foxQTxt2">⏳ 这一笔 —— 20 秒</b></div>
+    <div class="fox-tl fuel" id="foxFuelBox"><i id="foxFuelBar"></i><b id="foxFuelTxt">🛑 这一站 —— 秒</b></div>
+    <div class="fox-tl beat" id="foxBeatBox"><i id="foxBeatBar"></i><b id="foxBeatTxt2">🦊 它还没挑中牌</b></div>
+  </div>
+  <div class="fox-pow" id="foxPowTxt">🦊 场上还没开字</div>
+  <div class="fox-tools">
+    <button class="fox-tool" id="foxViewBtn" disabled>🔭 看相<span>Q</span><b>剩 2</b></button>
+    <button class="fox-tool" id="foxSlowBtn" disabled>🐾 轻脚<span>E</span><b>剩 2</b></button>
+    <button class="fox-tool" id="foxBaitBtn" disabled>🌾 撒糠<span>F</span><b>剩 2</b></button>
+    <button class="fox-tool" id="foxSwapBtn" disabled>🔁 换字<span>Enter</span><b>剩 1</b></button>
+    <button class="fox-tool duo" id="foxDuoBtn">👥 双人</button>
+    <button class="fox-tool" id="foxEndBtn">🏁 结算</button>
+  </div>
+  <div class="fox-pad">
+    <button class="up" id="foxUpBtn">⬆ 走上<small>W / ↑ 按住</small></button>
+    <button class="down" id="foxDownBtn">⬇ 走下<small>S / ↓ 按住</small></button>
+    <button class="left" id="foxLeftBtn">⬅ 走左<small>A / ← 按住</small></button>
+    <button class="right" id="foxRightBtn">➡ 走右<small>D / → 按住</small></button>
+  </div>
+  <div class="fox-ans">
+    <button class="grab" id="foxGrabBtn">🖐 落手<small>空格 · 只认脚边 28 像素内最近那一张（双人时归 P2）</small></button>
+  </div>
+  <div class="fox-hintline" id="foxHintLine">🦊 <b>场上几张圆牌就是这个字几笔</b>：按笔顺一张一张收走 —— 可<b>这只狐也在读题，它读的是你的脚步</b></div>
+  <div class="fox-msg" id="foxMsg">🦊 <b>它挑牌看两样：第几笔（46/26/12/4 分）＋你这几秒朝哪儿走（顶格 34 分 × 疑心）</b><br>✨ <code>Q</code> 看相 · 🐾 <code>E</code> 轻脚 · 🌾 <code>F</code> 撒糠 · 🔁 <code>Enter</code> 换字 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-fox-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="foxLeave()">← 返回</button>
+    <div class="stats"><span id="foxRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="foxRsEmoji">🦊</div>
+    <div style="font-size:26px;font-weight:800" id="foxRsTitle">收完了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="foxRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="fox-pk" id="foxRsScore">🎯 0 分</span>
+      <span class="fox-pk" id="foxRsWords">🦊 收完 0 个字 · 落 0 手</span>
+      <span class="fox-pk" id="foxRsShots">🎯 对上 0 张 · 落错 0 次</span>
+      <span class="fox-pk" id="foxRsSub2">⌛ 钟响 0 · 落空 0 · 影牌 0</span>
+      <span class="fox-pk" id="foxRsFool">🎭 骗成 0 回 · 疑心 1.00</span>
+      <span class="fox-pk" id="foxRsSnap">🥊 虎口 0 · 刀口 0 · 连收 0</span>
+      <span class="fox-pk" id="foxRsCarry">🦊 被叼 0 张 · 夺回 0 张 · 进窝 0 次</span>
+      <span class="fox-pk" id="foxRsTools">🔭 家什 0 次</span>
+      <span class="fox-pk" id="foxRsDuo">👤 单人夺</span>
+      <span class="fox-pk" id="foxRsBest">🏆 最高 0 分</span>
+    </div>
+    <div class="fox-rs-book" id="foxRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="foxRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="foxRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="foxAgainBtn">🦊 再夺一场</button>
+      <button class="tool-btn" id="foxHomeBtn">🏠 回书桌</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-shunt">
@@ -14733,6 +14910,7 @@ function updateHomeStats(){
   if(typeof obNudge==='function')obNudge();
   if(typeof rlpNudge==='function')rlpNudge();
   if(typeof sydNudge==='function')sydNudge();
+  if(typeof foxNudge==='function')foxNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -14776,6 +14954,7 @@ function enterMode(mode){
   if(mode==='orbit'){obStart();return}
   if(mode==='ripple'){rlpStart();return}
   if(mode==='shunt'){sydStart();return}
+  if(mode==='fox'){foxStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -99009,6 +99188,2193 @@ function sydSnap(light){
       return a;
     })();
   }
+  return s;
+}
+
+
+/* ================= v1.99 🦊 笔顺夺字狐（场上多了一个也在读题的对手 · 它抢的是「你下一步要收哪一笔」这件事 ================= */
+/* 场：420×340 的一片晒谷场。这个字几笔就场上几张圆牌，牌摆成的就是这个字本身的模样（每一笔的牌压在这一笔在中段那一格）；
+   左下角是书童（孩子），右上角是狐窝。牌不由人搬、狐不由人赶 —— 孩子手里只有两样：往哪儿走、哪一刻落手 */
+const FOX_W=420,FOX_H=340;
+const FOX_CARD=27;                       /* 牌半径 */
+const FOX_START={x:56,y:312};            /* 书童起手：左下角 */
+const FOX_DEN={x:368,y:44};              /* 狐窝：右上角 —— 它叼走的东西得先存回这儿 */
+/* 牌区：这一片是字形的投影区，摆不开（两张牌贴太近）这个字就不进池 */
+const FOX_PAD={x0:58,y0:96,x1:362,y1:252};
+const FOX_SEP=84,FOX_SEP_MIN=76;         /* 牌与牌必须拉开的距离：落手认「最近那张」，贴得太近就分不清落的是谁 */
+const FOX_SAFE=44;                       /* 牌离窝、离起手位都得不小于这个数 —— 一开场就被叼走的牌不许发 */
+const FOX_CLEAR=34;                      /* 场边留白 */
+/* 两条腿：孩子比狐快一点点，快出来的这一截就是「正面硬抢一定抢得过」的凭据 —— 段 B 的道岔账量的正是这一截 */
+const FOX_VC=138,FOX_VF0=118,FOX_VF_STEP=2,FOX_VF_MAX=134;
+const FOX_CARRY=.75;                     /* 叼着牌走：慢一成四 —— 夺回的窗口是结构给的，不是求来的 */
+/* 落手判定：踩上牌心 28 像素内才算落得着；狐 26 像素内就算它先咬着 */
+const FOX_GRAB=28,FOX_TEETH=26;
+const FOX_POUNCE=34;                     /* 孩子离叼着牌的狐这么近就夺得回来 */
+/* 归窝规矩：孩子每收一张，狐必须先回一趟窝（lock 这段时间它不许咬牌）——
+   段 B 那条「孩子走直线就一定先到位」的死账，锚点正是「狐每一趟都从窝里起」 */
+const FOX_LOCK=700,FOX_FOOL_MS=1100,FOX_PECK_MS=2200;
+/* 信念：sus = 笔顺先验 + 疑心系数 × 走动证据。先验按「还差第几笔」折死；证据只看孩子这 0.9 秒朝哪儿走 */
+const FOX_LOOK=900;                      /* 取证窗口：往前数 0.9 秒的位移当成「他要往哪儿去」 */
+const FOX_PRI0=46,FOX_PRI1=26,FOX_PRI2=12,FOX_PRI3=4;
+const FOX_EV=34,FOX_EV_RANGE=260;        /* 证据顶格 34 分、超过 260 像素就不算了 */
+const FOX_GULL0=1,FOX_GULL_DECAY=.62,FOX_GULL_MIN=.24,FOX_GULL_HEAL=.14;
+const FOX_MIN_STEP=6;                    /* 0.9 秒里挪不到 6 像素就算站着：站着没有证据，狐只按笔顺扑 */
+/* 旋钮与手感 */
+const FOX_TIGHT_MS=900;                  /* 上一收 0.9 秒内又落手 —— 顺手收 */
+const FOX_HUG_MS=420;                    /* 双人：P1 刚改过走位 0.42 秒内 P2 落手才算合抱 */
+const FOX_EDGE=46;                       /* 落手那一刻狐离牌这么近 —— 刀口拔字 ×1.18 */
+const FOX_STROKE_MIN=3,FOX_STROKE_MAX=7;
+const FOX_POOL_MIN=4,FOX_POOL_WANT=14;
+const FOX_P0=2,FOX_PCAP=3,FOX_HEARTS=3,FOX_HEART_MAX=5,FOX_BOOK_MAX=300;
+/* 两只钟：这一笔的钟（迟迟落不下手就响）、这一场的钟（走完换字、还掉心）*/
+const FOX_Q0=20000,FOX_Q_MIN=10000,FOX_Q_STEP=1200;
+const FOX_FUEL0=140000,FOX_FUEL_MIN=92000,FOX_FUEL_STEP=6000;
+/* 罚：抓错、白抓影牌、空落、钟响、换字 */
+const FOX_PEN_WRONG=6,FOX_PEN_FAKE=3,FOX_PEN_EMPTY=3,FOX_PEN_TIME=3,FOX_PEN_SWAP=8;
+/* 奖：收完一个字、整字不差、一件工具没借、合抱、连收；骗成/夺回/虎口各是各的账 */
+const FOX_WORD_BONUS=28,FOX_CLEAN_BONUS=18,FOX_DRY_BONUS=12,FOX_DUO_BONUS=28,FOX_CHAIN_BONUS=6;
+const FOX_FOOL_BONUS=10,FOX_RESCUE_BONUS=14,FOX_SNAP_BONUS=8;
+const FOX_TIGHT_MULT=1.28,FOX_SNAP_MULT=1.5,FOX_EDGE_MULT=1.18,FOX_DUST_MULT=.7;
+/* 三件场具的时长 */
+const FOX_VIEW_MS=2800,FOX_SLOW_MS=7000,FOX_SLOW_W=.22,FOX_BAIT_MS=FOX_PECK_MS;
+const FOX_MARK_MS=3400;
+/* 晒焦：一张牌在日头底下晾过 20 秒没人收，墨色就淡下去（收它只拿七成）—— 催的是「别磨蹭」，不是「别想」 */
+const FOX_STALE=20000;
+const FOX_NAG_MS=11000,FOX_NAG_HOLD=5200,FOX_HELP_MS=16000;
+const FOX_TAG_MS=2300;
+/* 发牌口径：一张摆开、抢得到的布局要过三关 —— 见段 B 的死账一 */
+const FOX_TRY=10;
+const FOX_MARGIN=260;                    /* 硬抢的净胜余量（毫秒）：孩子走直线到位，至少要比狐早这么多 */
+const FOX_TIGHT_RACE=1400;               /* 而且至少有一趟得险（净胜不到这么多）—— 一点不险的布局没对手 */
+const FOX_NOTE=[262,294,330,392,440,523,587,659,784,880,1047];
+const FOX_INK4=['#4FC3F7','#81C784','#FFD54F','#FFB74D'];
+const FOX_TAG4=['横','竖','撇','捺'];
+const FOX_RANKS=[
+  {n:0,e:'🌱',t:'头一回收字'},{n:2,e:'🐾',t:'抢得过狐'},{n:5,e:'🧠',t:'哄得住狐'},
+  {n:9,e:'🎭',t:'会做假动作'},{n:14,e:'🥊',t:'敢虎口夺食'},{n:21,e:'🏵',t:'晒场老手'},
+  {n:30,e:'🏮',t:'字串的主人'},{n:42,e:'🏆',t:'夺字的把总'},{n:58,e:'👑',t:'狐见着就绕道'}
+];
+const fox={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],toneAt:0,tones:0,
+  pool:[],miss:[],rec:null,n:0,pi:0,poolWantMore:false,thinLv:0,
+  lv:1,score:0,hearts:FOX_HEARTS,combo:0,maxCombo:0,
+  words:0,shots:0,hits:0,wrongs:0,fakes:0,empties:0,timeouts:0,
+  chains:0,chain:0,chainMax:0,
+  fools:0,foolChain:0,foolMax:0,snap:0,edge:0,tights:0,rescued:0,eaten:0,carried:0,
+  tools:0,nags:0,cleanWord:true,dryWord:true,nagTip:'',dusts:0,
+  viewN:FOX_P0,slowN:FOX_P0,baitN:FOX_P0,swapN:1,
+  viewUse:0,slowUse:0,baitUse:0,swapUse:0,
+  viewMs:0,slowMs:0,baitMs:0,nagMs:0,nagHold:0,helpMs:0,actMs:0,tagTimer:0,
+  /* 孩子的走位：8 向直接给速度；hist 是 0.9 秒取证窗（每帧压一份位置，够长就丢旧的）*/
+  kid:{x:FOX_START.x,y:FOX_START.y},keys:{u:0,d:0,l:0,r:0},hist:[],headX:0,headY:0,headOn:0,
+  /* 手指压在场里＝往那儿走（松手就停）；点一下不动＝落手。真键盘走的是同一套速度 */
+  walk:{x:0,y:0,on:0},tapX:0,tapY:0,pend:null,
+  /* 狐：mode=hunt/home/carry/fool/peck，gull 是它有多信「你朝哪儿走」这件事 */
+  fx:FOX_DEN.x,fy:FOX_DEN.y,fmode:'home',ftarget:-1,fdir:0,lockMs:0,gull:FOX_GULL0,
+  foolMs:0,peckMs:0,carry:-1,bait:{x:0,y:0,on:0},
+  /* 牌：cards[i]={i,dir,x,y,path,fake,got,taken} —— taken=被狐叼走了 */
+  cards:[],cid:0,parts:[],
+  /* 这个字的第 i 笔上岸了没：底纹上墨与样图都读这一张表（换字时清空）*/
+  gotIdx:[],
+  qms:0,qms0:0,fuel:FOX_FUEL0,warn:false,
+  hudAcc:0,newBest:false,markI:-1,markMs:0,markForce:0,
+  doneCh:[],gotCh:[],got0:0,
+  duo:false,duoCut:0,duoHalf:true,duoP1:0,duoP2:0,hug:0,hugW:0,hugTell:'',
+  knobMs:FOX_HUG_MS+1,grabMs:FOX_TIGHT_MS+1,
+  lastTight:0,lastSnap:0,lastEdge:0,lastDust:0,
+  broke:0,
+  ctx:null,bound:false,tagOn:0,seeded:0,
+  /* 挑字（等字数据回来那两秒）：两只钟停走 */
+  load:false
+};
+/* ---- 小工具 ---- */
+function foxxInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function foxxAdd(k,n){if(n)localStorage.setItem(k,String(foxxInt(k)+n))}
+function foxxPut(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function foxxSay(t,c){const el=document.getElementById('foxMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function foxxShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function foxxOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function foxxClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function foxxRok(d){return d>=0&&d<4?d:0}
+function foxxRank(x){let r=FOX_RANKS[0];for(let i=0;i<FOX_RANKS.length;i++)if(x>=FOX_RANKS[i].n)r=FOX_RANKS[i];return r}
+function foxxDist(ax,ay,bx,by){return Math.hypot(ax-bx,ay-by)}
+function foxxUnit(ax,ay,bx,by){
+  const L=Math.hypot(bx-ax,by-ay);
+  if(L<1e-6)return {x:0,y:0};
+  return {x:(bx-ax)/L,y:(by-ay)/L};
+}
+function foxxTone(f,d,t,v){
+  if(!fox.run||fox.over)return;
+  const n=performance.now();
+  if(n-fox.toneAt<22)return;
+  fox.tones++;tone(f,d,t,v);
+}
+function foxxT(fn,ms){const g=fox.gen;const id=setTimeout(function(){const k=fox.timers.indexOf(id);if(k>=0)fox.timers.splice(k,1);if(g!==fox.gen)return;fn()},ms);fox.timers.push(id);return id}
+function foxxKillTimers(){fox.timers.forEach(function(t){clearTimeout(t)});fox.timers=[]}
+/* ---- 难度表：场越深，狐越快、影牌越多、钟越紧、牌上的编号越淡 ---- */
+function foxLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function foxFuel(lv){return Math.max(FOX_FUEL_MIN,FOX_FUEL0-(lv-1)*FOX_FUEL_STEP)}
+function foxQms(lv){return Math.max(FOX_Q_MIN,FOX_Q0-(lv-1)*FOX_Q_STEP)}
+function foxVf(lv){return Math.min(FOX_VF_MAX,FOX_VF0+(lv-1)*FOX_VF_STEP)}
+function foxFake(lv){return lv<3?0:(lv>=6?2:1)}
+function foxStrokeMax(lv){return lv>=5?FOX_STROKE_MAX:6}
+function foxWant(lv){return lv<=2?[FOX_STROKE_MIN,5]:[FOX_STROKE_MIN,foxStrokeMax(lv)]}
+/* 第 4 场起牌上的编号淡去（这是第几笔得自己认）；第 6 场起左边米字格也淡（这个字长什么样得记在心里）*/
+function foxNoNum(lv){return lv>=4}
+function foxFaint(lv){return lv>=6}
+/* 落一手吃多少分：顺手收 ×1.28、虎口夺食 ×1.5、刀口拔字 ×1.18、被糠散过眼只拿七成 */
+function foxGain(tight,snap,edge,dust){
+  return Math.round((8+fox.combo*1.1+fox.lv*1.7)*(tight?FOX_TIGHT_MULT:1)*(snap?FOX_SNAP_MULT:1)*
+    (edge?FOX_EDGE_MULT:1)*(dust?FOX_DUST_MULT:1));
+}
+
+/* ================= 段 B：字形摆牌 · 「硬抢抢得过」的道岔账 · 字池 · 发牌 ================= */
+/* 这一坊全部的风险压在两件事上：① 牌摆得开（两张贴太近，落手就分不清落的是谁）
+   ② 孩子走直线就一定比狐先到位（否则这一场压根不该开）。两件都是纯几何，发牌之前就能算死。
+   段 G 拿另一种写法（另一次循环顺序、另一种距离式子）把②再算一遍，两条路对不上，池里那些字的凭据就作废。*/
+/* 三档口径就是三个场深段：档 0 = 第 1~2 场（没影牌、狐 118~120 像素/秒），档 1 = 第 3~5 场（1 张影牌、狐 122~126），档 2 = 第 6 场起（2 张影牌、狐 128~134）
+   档号与 foxFake/foxVf 的场深段一一对齐：每一档在「最深那场（狐最快）」证净胜下界，再在「最浅那场（狐最慢）」证还险得起来 ——
+   净胜随狐速单调（狐越慢孩子越从容），两头都过，同一副牌在这一档的任意一场都又抢得到、又险得起来 */
+const FOX_TIERS=[{fn:0,vf:0,lo:1,hi:2},{fn:1,vf:0,lo:3,hi:5},{fn:2,vf:0,lo:6,hi:9}];
+const FOX_PMAP=6;
+(function(){for(let i=0;i<FOX_TIERS.length;i++){const t=FOX_TIERS[i];t.vf=foxVf(t.hi);t.v0=foxVf(t.lo)}})();
+function foxTier(lv){return lv<=2?0:(lv<=5?1:2)}
+/* ---- 摆牌：把这一笔的中段中点按同一个比例投到场上的牌区 —— 牌摆成的就是这个字本身的模样
+   比例拿牌区（304×156）去套这个字的包围盒，长窄字按宽套、方字按高套，谁都不许溢出 */
+function foxMapPts(rec,fill){
+  const u=rec.union;
+  const w=Math.max(1,u.x1-u.x0),h=Math.max(1,u.y1-u.y0);
+  const availW=FOX_PAD.x1-FOX_PAD.x0,availH=FOX_PAD.y1-FOX_PAD.y0;
+  const k=Math.min(availW/w,availH/h)*(fill===undefined?1:fill);
+  const cx=(u.x0+u.x1)/2,cy=(u.y0+u.y1)/2;
+  const ox=(FOX_PAD.x0+FOX_PAD.x1)/2,oy=(FOX_PAD.y0+FOX_PAD.y1)/2;
+  const p=[];
+  for(let i=0;i<rec.n;i++){
+    const m=rec.mids[i];
+    /* 字数据是 y 朝上的，场子是 y 朝下的 —— 不翻这一记，牌摆出来的是这个字的倒影 */
+    p.push({x:ox+(m[0]-cx)*k,y:oy-(m[1]-cy)*k});
+  }
+  return {pts:p,k:k};
+}
+/* 拉开：谁跟谁贴得比 FOX_SEP 还近，就各往自己那头挪一半 —— 只许在牌区里挪，挪不出来的字直接不进池 */
+function foxRelax(pts){
+  const a=[];
+  for(let i=0;i<pts.length;i++)a.push({x:pts[i].x,y:pts[i].y});
+  for(let it=0;it<90;it++){
+    let moved=0;
+    for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++){
+      const dx=a[j].x-a[i].x,dy=a[j].y-a[i].y;
+      const d=Math.hypot(dx,dy);
+      if(d>=FOX_SEP)continue;
+      const push=(FOX_SEP-(d<1?1:d))/2;
+      const ux=d<1?1:dx/d,uy=d<1?0:dy/d;
+      a[i].x=foxxClamp(a[i].x-ux*push,FOX_PAD.x0,FOX_PAD.x1);
+      a[i].y=foxxClamp(a[i].y-uy*push,FOX_PAD.y0,FOX_PAD.y1);
+      a[j].x=foxxClamp(a[j].x+ux*push,FOX_PAD.x0,FOX_PAD.x1);
+      a[j].y=foxxClamp(a[j].y+uy*push,FOX_PAD.y0,FOX_PAD.y1);
+      moved++;
+    }
+    if(!moved)break;
+  }
+  return a;
+}
+function foxMinSep(a){
+  let m=1e9;
+  for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++)m=Math.min(m,foxxDist(a[i].x,a[i].y,a[j].x,a[j].y));
+  return m;
+}
+/* 离窝、离起手位都得不小于 FOX_SAFE：一开场就被狐咬着、或一脚就踩到的牌都不算这一场的题 */
+function foxSafePts(a){
+  for(let i=0;i<a.length;i++){
+    if(foxxDist(a[i].x,a[i].y,FOX_DEN.x,FOX_DEN.y)<FOX_SAFE)return 0;
+    if(foxxDist(a[i].x,a[i].y,FOX_START.x,FOX_START.y)<FOX_SAFE)return 0;
+  }
+  return 1;
+}
+/* ---- 道岔账（这一坊的死账）：孩子按笔顺一路走直线，狐每一趟都从窝里起 ——
+   tc_i = 从上一张牌跑到这一张 / 孩子的腿；tf_i = 归窝那 0.7 秒 + 从窝跑到这一张 / 狐的腿。
+   每一趟都要留下 FOX_MARGIN 的净胜（孩子稍微绕一点、犹豫一下也还抢得过），
+   而且至少有一趟净胜不到 FOX_TIGHT_RACE —— 一点都不险的布局压根没有对手，那也不叫这一坊 */
+function foxRace(a,vf){
+  const slack=[];
+  let px=FOX_START.x,py=FOX_START.y;
+  for(let i=0;i<a.length;i++){
+    const tc=foxxDist(px,py,a[i].x,a[i].y)/FOX_VC*1000;
+    const tf=FOX_LOCK+foxxDist(FOX_DEN.x,FOX_DEN.y,a[i].x,a[i].y)/vf*1000;
+    slack.push(tf-tc);
+    px=a[i].x;py=a[i].y;
+  }
+  let min=1e9,max=-1e9;
+  for(let i=0;i<slack.length;i++){if(slack[i]<min)min=slack[i];if(slack[i]>max)max=slack[i]}
+  return {slack:slack,min:min,max:max};
+}
+function foxWitness(a,vf){
+  if(!foxSafePts(a))return 0;
+  if(foxMinSep(a)<FOX_SEP_MIN)return 0;
+  const r=foxRace(a,vf);
+  if(r.min<FOX_MARGIN)return 0;
+  if(r.min>FOX_TIGHT_RACE)return 0;                /* 最险那一趟也得还险得起来 */
+  return 1;
+}
+/* 影牌摆哪儿：跟所有真牌一样要拉开、要离窝离手，但它不在笔顺链上，不参与道岔账 */
+function foxFakeSpot(pts,fn){
+  const out=[];
+  for(let f=0;f<fn;f++){
+    let best=null;
+    for(let a=0;a<70&&!best;a++){
+      const x=FOX_PAD.x0+Math.random()*(FOX_PAD.x1-FOX_PAD.x0);
+      const y=FOX_PAD.y0+Math.random()*(FOX_PAD.y1-FOX_PAD.y0);
+      let ok=foxxDist(x,y,FOX_DEN.x,FOX_DEN.y)>=FOX_SAFE&&foxxDist(x,y,FOX_START.x,FOX_START.y)>=FOX_SAFE;
+      if(ok)for(let i=0;i<pts.length;i++)if(foxxDist(x,y,pts[i].x,pts[i].y)<FOX_SEP){ok=0;break}
+      if(ok)for(let i=0;i<out.length;i++)if(foxxDist(x,y,out[i].x,out[i].y)<FOX_SEP){ok=0;break}
+      if(ok)best={x:x,y:y};
+    }
+    if(!best)break;                                 /* 塞不下就少塞一张：HUD 报的是这一盘实际几张 */
+    out.push(best);
+  }
+  return out;
+}
+/* 这个字过不过得了池门：三档口径每一档都要证得出两副布局，而且每一副都在这一档最快与最慢的两端狐速下证过
+   （证不出来的字压根不许端给孩子）*/
+function foxAudit(rec){
+  const lays=[];
+  for(let ti=0;ti<FOX_TIERS.length;ti++){
+    const t=FOX_TIERS[ti];
+    let found=0;
+    for(let p=0;p<FOX_PMAP&&found<2;p++){
+      const fill=1-p*0.045;
+      const m=foxMapPts(rec,fill);
+      /* 证的就是发出去的那一副：先把点位落成整数（牌心、米字格都按整数画），再拿这同一串点过三道死账。
+         先证后舍不行 —— 舍掉的那半像素能把净胜从 260.5 拖到 259.5，MARGIN 就破了 */
+      const a=foxRelax(m.pts).map(function(q){return {x:Math.round(q.x),y:Math.round(q.y)}});
+      if(!foxWitness(a,t.vf)||!foxWitness(a,t.v0))continue;
+      lays.push({t:ti,pts:a});
+      found++;
+    }
+    /* 门就是注释说的那一道：一档只证出一副也算过的话，发牌时「换一副布局」就无从可换 —— 必须两副 */
+    if(found<2)return null;
+  }
+  rec.lays=lays;
+  return lays;
+}
+/* ---- 这个字能不能拿来做这一坊：3~7 笔、每一笔都认得出笔形、至少两种笔形、每笔够长（牌里的印子要看得清）
+   还得留出余货：影牌得从这个字压根没有的笔形里挑，横竖撇捺全占满的字造不出一眼认得出的破绽 */
+function foxMake(ch,raw,lmax){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  const hi=lmax||6;
+  if(ms.length<FOX_STROKE_MIN||ms.length>hi)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=jtDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;
+  for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  let spare=0;
+  for(let d=0;d<4;d++)if(!(kinds&(1<<d)))spare++;
+  if(!spare)return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  const mids=[];
+  for(let i=0;i<ms.length;i++){
+    for(let j=0;j<ms[i].length;j++){
+      const x=ms[i][j][0],y=ms[i][j][1];
+      if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+    }
+    mids.push(ms[i][Math.floor(ms[i].length/2)]);
+  }
+  if(x1-x0<160||y1-y0<160)return null;              /* 太扁的字缩成牌阵就糊，几张牌挤成一坨摆不开 */
+  const ln=[],path=[];
+  for(let i=0;i<ms.length;i++){
+    let L=0;
+    for(let j=1;j<ms[i].length;j++)L+=Math.hypot(ms[i][j][0]-ms[i][j-1][0],ms[i][j][1]-ms[i][j-1][1]);
+    if(L<70)return null;
+    ln.push(L);path.push(ms[i]);
+  }
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp,meds:path,mids:mids,len:ln,
+    kinds:(function(){const a=[];for(let d=0;d<4;d++)if(kinds&(1<<d))a.push(d);return a})(),
+    union:{x0:x0,x1:x1,y0:y0,y1:y1},lays:null};
+}
+/* ---- 字池：进池之前三档口径全证过 ---- */
+async function foxBuildPool(keep,lo,hi){
+  const g=fox.gen,stale=function(){return g!==fox.gen||!fox.run||fox.over};
+  const mk=FOX_STROKE_MAX;
+  const enough=function(){
+    if(!isFinite(lo))return fox.pool.length>=FOX_POOL_WANT;
+    let c=0;
+    for(let i=0;i<fox.pool.length;i++)if(fox.pool[i].n>=lo&&fox.pool[i].n<=hi)c++;
+    return c>=6||fox.pool.length>=40;
+  };
+  fox.miss=(localStorage.getItem('hz_fox_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<240;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(foxxShuf(fox.miss.slice(0,6)));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(foxxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(foxxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(foxLetters());
+  if(typeof CHARS!=='undefined')push(foxxShuf(CHARS.slice()));
+  if(!keep)fox.pool=[];
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=foxMake(want[k+i],rs[i],mk);
+        if(m&&foxAudit(m)&&!fox.pool.some(function(p){return p.ch===m.ch}))fox.pool.push(m);
+      }
+    }
+  }
+  return fox.pool.length>=FOX_POOL_MIN;
+}
+function foxLetters(){
+  return '二十八三十人大干土王共其雨两寸对寺寻导安宋宗宜定宝'
+    +'常开式形往往待近返还进远选配采金针钉钓钝铃铁银需青非面'
+    +'音页顶项顺须风飞食饭马驶骨高鱼鸟麦米良走起始迎运道目且自白'
+    +'百吉同后告吾围固南先光当学字存它守居层岛已布带年并异弯强形彩表'
+    +'见观规视讲话谢象贝货资赏街工十土士干平幸左右有友月右'
+    +'本未末朱休体林森相目百皮盆盏直具典冬各同吉向君合告员'
+    +'味和品唯一回因困田由甲申电男界发变口可台史各合同'
+    +'天地人你我他她它们好坏多少大小中外早晚会上下中'.split('');
+}
+function foxPickRec(){
+  const w=foxWant(fox.lv);
+  let pool=fox.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]&&r.lays&&r.lays.length});
+  if(!pool.length)pool=fox.pool.filter(function(r){return r.n>=FOX_STROKE_MIN&&r.n<=FOX_STROKE_MAX&&r.lays&&r.lays.length});
+  if(!pool.length)return null;
+  const cur=fox.rec?fox.rec.ch:'';
+  const rest=pool.filter(function(r){return r.ch!==cur});
+  if(rest.length)pool=rest;
+  const mis=pool.filter(function(r){return fox.miss.indexOf(r.ch)>=0});
+  if(mis.length)return foxxOne(mis);
+  const fresh=pool.filter(function(r){return fox.doneCh.indexOf(r.ch)<0});
+  if(fresh.length)return foxxOne(fresh);
+  return foxxOne(pool);
+}
+/* 档 2 证的布局里摆了 2 张影牌，档 1 只要 1 张：多出来的摘掉就是 —— 影牌不参与道岔账，少摆绝不会把抢得到变成抢不到 */
+/* ---- 发牌：拿池里证过的那副布局，按这一场真正的狐速与影牌数现场再算一遍道岔账
+   验不过就换一副布局；影牌塞不下就少塞一张；试满 FOX_TRY 还摆不开就换一个字 —— 绝不发一张抢不到的牌给孩子 */
+function foxDeal(rec,lv){
+  if(!rec)return null;
+  if(!rec.lays){rec.lays=foxAudit(rec);if(!rec.lays)return null}
+  const L=lv||fox.lv,t=FOX_TIERS[foxTier(L)],vf=foxVf(L);
+  const cand=rec.lays.filter(function(o){return o.t===foxTier(L)});
+  if(!cand.length)return null;
+  const list=foxxShuf(cand.slice());
+  const want=foxFake(L);
+  for(let step=0;step<=want;step++){
+    const fn=want-step;
+    for(let a=0;a<list.length;a++){
+      if(!foxWitness(list[a].pts,vf))continue;
+      const fsp=foxFakeSpot(list[a].pts,fn);
+      if(fsp.length<fn)continue;
+      const cards=[];
+      for(let i=0;i<rec.n;i++)cards.push({id:fox.cid++,i:i,dir:rec.dirs[i],x:list[a].pts[i].x,y:list[a].pts[i].y,
+        path:rec.meds[i],fake:false,got:0,taken:0,age:0});
+      const off=[];
+      for(let d=0;d<4;d++)if(rec.dirs.indexOf(d)<0)off.push(d);
+      for(let f=0;f<fsp.length;f++)cards.push({id:fox.cid++,i:-1,dir:foxxOne(off),x:fsp[f].x,y:fsp[f].y,
+        path:null,fake:true,got:0,taken:0,age:0});
+      return cards;
+    }
+    if(!fn)break;
+  }
+  return null;
+}
+
+/* ================= 段 C：那只狐的算盘（它读的是「你觉得下一步收哪一笔」）· 两条腿 · 落手 · 叼走与夺回 · 三件场具 ================= */
+/* 这一坊只多了一个东西：场上多了一位也在读题的读者。它读的题面不是这个字，是<b>你</b>——
+   它把「笔顺先验」和「你这几秒朝哪儿走」加起来挑一张牌扑过去。所以孩子的活儿从「认笔顺」升成「管住自己怎么走」：
+   站着不动它就只按笔顺扑，朝别的牌走就能把它骗走；骗多了它就不信你了（疑心每回扑空打折，老实收一手才涨回来）。
+   这一整套算盘全是确定的算术，没有一处随机 —— 段 G 拿另一条路（另一种循环顺序、另一种写法）把同一张算盘再打一遍，
+   两边挑出的牌不一样，这场就不许开。*/
+function foxGate(){return fox.run&&!fox.over&&!fox.load}
+function foxCardById(id){
+  for(let i=0;i<fox.cards.length;i++)if(fox.cards[i].id===id)return fox.cards[i];
+  return null;
+}
+/* 该收的那一张（真牌、编号===pi、还没上岸也没被叼走）*/
+function foxTargetCard(){
+  if(!fox.rec)return null;
+  for(let i=0;i<fox.cards.length;i++){
+    const c=fox.cards[i];
+    if(!c.fake&&!c.got&&!c.taken&&c.i===fox.pi)return c;
+  }
+  return null;
+}
+/* 场上还活着的真牌（没上岸、没被叼走）*/
+function foxLiveN(){
+  let k=0;
+  for(let i=0;i<fox.cards.length;i++){const c=fox.cards[i];if(!c.fake&&!c.got&&!c.taken)k++}
+  return k;
+}
+function foxFakeN(){
+  let k=0;
+  for(let i=0;i<fox.cards.length;i++)if(fox.cards[i].fake&&!fox.cards[i].got)k++;
+  return k;
+}
+function foxDealFakeN(){
+  let k=0;
+  for(let i=0;i<fox.cards.length;i++)if(fox.cards[i].fake)k++;
+  return k;
+}
+function foxStaleN(){
+  let k=0;
+  for(let i=0;i<fox.cards.length;i++){const c=fox.cards[i];if(!c.fake&&!c.got&&c.age>=FOX_STALE)k++}
+  return k;
+}
+/* 这一张牌晒焦了没（被叼走的那一段不算：嘴里不晒日头）*/
+function foxStaleOf(c){return !c.fake&&!c.got&&c.age>=FOX_STALE}
+/* ---- 它的算盘 ---- */
+/* 笔顺先验：还差第几笔就给几分 —— 它知道这个字要按笔顺收，这一条不用读你 */
+function foxPri(i){
+  const d=i-fox.pi;
+  return d===0?FOX_PRI0:(d===1?FOX_PRI1:(d===2?FOX_PRI2:FOX_PRI3));
+}
+/* 走动证据：往前数 0.9 秒里书童真挪了多少（hist 由 foxMoveKid 每帧压一份、只留这一窗），
+   位移方向与「这儿去那张牌」的方向有多一致就算几分，超过 FOX_EV_RANGE 像素一律不算 */
+function foxEvid(c){
+  const h=fox.hist;
+  if(h.length<2)return 0;
+  const a=h[0];
+  const dx=fox.kid.x-a.x,dy=fox.kid.y-a.y;
+  const L=Math.hypot(dx,dy);
+  if(L<FOX_MIN_STEP)return 0;                        /* 站着没有证据：狐只按笔顺扑 */
+  const cx=c.x-fox.kid.x,cy=c.y-fox.kid.y;
+  const D=Math.hypot(cx,cy);
+  if(D<1)return FOX_EV;
+  const fall=Math.max(0,1-D/FOX_EV_RANGE);
+  return FOX_EV*((dx/L)*(cx/D)+(dy/L)*(cy/D))*fall;
+}
+/* 🐾 轻脚期间：走动证据整个折到两成二 —— 逼它回到「只按笔顺扑」那条老实话上，虎口才必定有得夺 */
+function foxGullNow(){return fox.slowMs>0?fox.gull*FOX_SLOW_W:fox.gull}
+function foxSus(c){return foxPri(c.i)+foxGullNow()*foxEvid(c)}
+/* 候选池：只有活着的真牌。影牌它压根不看 —— 它读的是笔顺，那几张不是这个字的笔（段 G 证这一条是结构给的）*/
+function foxSusList(){
+  const out=[];
+  for(let i=0;i<fox.cards.length;i++){
+    const c=fox.cards[i];
+    if(c.fake||c.got||c.taken)continue;
+    out.push({id:c.id,i:c.i,sus:foxSus(c)});
+  }
+  return out;
+}
+/* 挑一张扑过去：算分最大；并列挑离书童近的；再并列按编号小的先来 —— 全确定，没有一次随机 */
+function foxPickTarget(){
+  const l=foxSusList();
+  if(!l.length)return null;
+  let best=null,bd=0;
+  for(let i=0;i<l.length;i++){
+    const c=foxCardById(l[i].id);
+    if(!c)continue;
+    const d=foxxDist(fox.kid.x,fox.kid.y,c.x,c.y);
+    if(!best){best=l[i];bd=d;continue}
+    if(l[i].sus>best.sus+1e-9){best=l[i];bd=d;continue}
+    if(l[i].sus<best.sus-1e-9)continue;
+    if(d<bd-1e-9){best=l[i];bd=d;continue}
+    if(Math.abs(d-bd)>1e-9)continue;
+    if(l[i].i<best.i)best=l[i];
+  }
+  return best;
+}
+/* 眼下它盯着的那一张（看相、题头、HUD 都读这一个量；段 G 用另一条路重算同一个量）。撒了糠就没有 */
+function foxBelief(){
+  if(fox.bait.on)return null;
+  const b=foxPickTarget();
+  return b?foxCardById(b.id):null;
+}
+function foxHunting(c){return !!c&&fox.fmode==='hunt'&&!fox.bait.on&&fox.ftarget===c.id}
+/* ---- 两条腿 ---- */
+function foxKnobTouch(first){
+  fox.knobMs=0;fox.actMs=3000;fox.nagMs=0;
+  if(fox.duo&&first)fox.duoP1++;
+}
+function foxClampKid(){
+  fox.kid.x=foxxClamp(fox.kid.x,16,FOX_W-16);
+  fox.kid.y=foxxClamp(fox.kid.y,22,FOX_H-16);
+}
+/* 8 向直接给速度（斜走不加速）；手指压在场里＝往那一点走，键盘一压就让开 —— 两只手不许同时抢一个方向盘 */
+function foxMoveKid(dt){
+  let vx=0,vy=0;
+  if(fox.keys.l)vx-=1;
+  if(fox.keys.r)vx+=1;
+  if(fox.keys.u)vy-=1;
+  if(fox.keys.d)vy+=1;
+  const ox=fox.kid.x,oy=fox.kid.y;
+  if(vx||vy){
+    fox.walk.on=0;
+    const L=Math.hypot(vx,vy);
+    fox.kid.x+=vx/L*FOX_VC*dt/1000;
+    fox.kid.y+=vy/L*FOX_VC*dt/1000;
+    fox.headX=vx/L;fox.headY=vy/L;fox.headOn=1;
+  }else if(fox.walk.on){
+    const d=foxxDist(ox,oy,fox.walk.x,fox.walk.y);
+    if(d>2){
+      const u=foxxUnit(ox,oy,fox.walk.x,fox.walk.y);
+      const step=Math.min(d,FOX_VC*dt/1000);
+      fox.kid.x+=u.x*step;fox.kid.y+=u.y*step;
+      fox.headX=u.x;fox.headY=u.y;fox.headOn=1;
+    }else fox.headOn=0;
+  }else fox.headOn=0;
+  foxClampKid();
+  const moved=foxxDist(ox,oy,fox.kid.x,fox.kid.y);
+  if(moved>0.01){
+    fox.hist.push({x:fox.kid.x,y:fox.kid.y,t:fox.t});
+    fox.actMs=3000;fox.nagMs=0;
+  }
+  const h=fox.hist;
+  while(h.length&&fox.t-h[0].t>FOX_LOOK)h.shift();
+  if(h.length>90)h.shift();
+  return moved;
+}
+/* ---- 狐的状态机：home（回窝复锚）→ hunt（扑它挑中那张）→ carry（叼走了往回拖）/ fool（扑空愣住）/ peck（啄糠）
+   每一趟都必须从窝里起 —— 段 B 那条道岔账的锚点就是这一条，破了这一条整套凭据全废 */
+function foxHome(){
+  fox.fmode='home';
+  fox.ftarget=-1;
+  fox.lockMs=FOX_LOCK;
+}
+function foxSpeed(){
+  const vf=foxVf(fox.lv);
+  return fox.fmode==='carry'?vf*FOX_CARRY:vf;
+}
+function foxStepTo(tx,ty,sp,dt){
+  const d=foxxDist(fox.fx,fox.fy,tx,ty);
+  if(d<1)return 1;
+  const step=Math.min(d,sp*dt/1000);
+  const u=foxxUnit(fox.fx,fox.fy,tx,ty);
+  fox.fx+=u.x*step;fox.fy+=u.y*step;
+  fox.fdir=Math.atan2(u.y,u.x);
+  return d-step<2;
+}
+function foxMoveFox(dt){
+  if(fox.bait.on){
+    /* 糠撒在这儿：它先奔着糠去，扑到就啄满 FOX_PECK_MS —— 这一段它谁也咬不着 */
+    if(fox.fmode==='peck'){
+      fox.peckMs=Math.max(0,fox.peckMs-dt);
+      if(fox.peckMs<=0){fox.bait.on=0;foxHome();return}
+      return;
+    }
+    if(foxStepTo(fox.bait.x,fox.bait.y,foxSpeed(),dt)){
+      fox.fmode='peck';fox.peckMs=FOX_PECK_MS;
+      foxFoxDrawFx(4,'crane');
+      return;
+    }
+    return;
+  }
+  if(fox.fmode==='fool'){
+    fox.foolMs=Math.max(0,fox.foolMs-dt);
+    if(fox.foolMs<=0)foxHome();
+    return;
+  }
+  if(fox.fmode==='carry'){
+    const c=foxCardById(fox.carry);
+    if(!c||c.got){fox.carry=-1;foxHome();return}
+    if(foxStepTo(FOX_DEN.x,FOX_DEN.y,foxSpeed(),dt)){foxEaten(c);return}
+    /* 夺回：书童贴到这么近就抢下来 —— 它叼着走比空跑慢一成四，还比书童慢一整截（段 G 证的正是这一截）*/
+    if(foxxDist(fox.kid.x,fox.kid.y,fox.fx,fox.fy)<=FOX_POUNCE)foxRescue(c);
+    return;
+  }
+  /* home：先回窝（lock 那一段不许咬牌 —— 归窝复锚就是这一坊的门规）*/
+  if(fox.fmode==='home'){
+    fox.lockMs=Math.max(0,fox.lockMs-dt);
+    const arrived=foxStepTo(FOX_DEN.x,FOX_DEN.y,foxSpeed(),dt);
+    if(arrived&&fox.lockMs<=0){
+      const b=foxPickTarget();
+      if(!b){fox.ftarget=-1;return}
+      fox.fmode='hunt';fox.ftarget=b.id;
+    }
+    return;
+  }
+  /* hunt：扑它挑中那一张 */
+  const c=foxCardById(fox.ftarget);
+  if(!c||c.got||c.taken){foxHome();return}
+  if(foxxDist(fox.fx,fox.fy,c.x,c.y)<=FOX_TEETH){foxBite(c);return}
+  foxStepTo(c.x,c.y,foxSpeed(),dt);
+}
+/* ---- 咬着牌：该收那一张被叼走＝往窝里拖；其余的都是扑空＝骗成了 ---- */
+function foxBite(c){
+  if(c.i===fox.pi){
+    c.taken=1;
+    fox.carry=c.id;
+    fox.fmode='carry';
+    fox.carried++;
+    foxFoxDrawFx(6,'bite');
+    foxTag('🦊 叼走了：它扑的正是第 '+(c.i+1)+' 笔！贴上它就把这一笔抢下来（+'+FOX_RESCUE_BONUS+
+      ' 分），让它拖回窝这个字就废了 —— 你比它快 '+
+      (FOX_VC/(foxVf(fox.lv)*FOX_CARRY)).toFixed(2)+' 倍','warn');
+    foxHud();foxLine();foxAsk();
+    return;
+  }
+  /* 扑空：它咬下的不是该收那一笔 —— 骗成了，记一手；它对你的眼力当场打折 */
+  fox.fools++;fox.foolChain++;
+  if(fox.foolChain>fox.foolMax)fox.foolMax=fox.foolChain;
+  fox.score+=FOX_FOOL_BONUS;
+  fox.gull=Math.max(FOX_GULL_MIN,fox.gull*FOX_GULL_DECAY);
+  fox.fmode='fool';fox.foolMs=FOX_FOOL_MS;fox.ftarget=-1;
+  foxFoxDrawFx(7,'fool');
+  foxxTone(523,.08,'triangle',.03);
+  foxTag('🎭 骗成了：它按你刚才那条走动路线扑向第 '+(c.i+1)+' 笔，可现在该收第 '+(fox.pi+1)+
+    ' 笔 —— 空扑 +'+FOX_FOOL_BONUS+' 分，往后它不太信你的脚步了（疑心 ×'+FOX_GULL_DECAY+
+    '，眼下 '+fox.gull.toFixed(2)+'）','gold');
+  foxNagOff();
+  foxHud();foxLine();
+}
+function foxRescue(c){
+  c.taken=0;
+  fox.carry=-1;
+  fox.rescued++;
+  fox.score+=FOX_RESCUE_BONUS;
+  fox.combo++;
+  if(fox.combo>fox.maxCombo)fox.maxCombo=fox.combo;
+  foxHome();
+  foxFx(9,'ring');
+  foxxTone(659,.09,'triangle',.04);
+  foxTag('🥊 虎口夺食：从狐嘴里把第 '+(c.i+1)+' 笔抢下来了 +'+FOX_RESCUE_BONUS+
+    ' 分 —— 它叼着走只跑 '+(foxVf(fox.lv)*FOX_CARRY).toFixed(0)+' 像素/秒，你 '+FOX_VC,'gold');
+  foxMark();
+  foxHud();foxLine();foxAsk();
+}
+/* ---- 落手（这一坊唯一的下手）：只认离书童最近、且在 28 像素内的那一张活牌 ---- */
+function foxNearest(){
+  let best=null,bd=FOX_GRAB;
+  for(let i=0;i<fox.cards.length;i++){
+    const c=fox.cards[i];
+    if(c.got||c.taken)continue;
+    const d=foxxDist(fox.kid.x,fox.kid.y,c.x,c.y);
+    if(d<=bd){bd=d;best=c}
+  }
+  return best;
+}
+function foxGrab(who){
+  if(!foxGate())return 0;
+  if(fox.helpMs>0){fox.helpMs=0;foxLine();return 0}
+  if(foxLiveN()<=0)return 0;
+  fox.shots++;
+  fox.actMs=3000;fox.nagMs=0;
+  if(fox.duo&&who===2)fox.duoP2++;
+  const c=foxNearest();
+  const tight=fox.grabMs<=FOX_TIGHT_MS;
+  fox.lastTight=tight?1:0;
+  if(fox.duo&&fox.knobMs>FOX_HUG_MS)fox.duoCut++;
+  fox.grabMs=0;
+  if(!c){
+    if(fox.carry>=0){                       /* 手边没牌但嘴里有：那一张得贴上去抢，落手圈够不着 */
+      foxTag('🦊 手边没有牌：该收那张正在狐嘴里 —— <b>贴上它</b>（'+FOX_POUNCE+
+        ' 像素内）就把这一笔抢下来','warn');
+      return 0;
+    }
+    foxEmpty();return 0;
+  }
+  if(c.fake){foxFailFake(c);return 0}
+  if(c.i!==fox.pi){foxFail(c);return 0}
+  foxDeliver(c,{tight:tight,snap:foxHunting(c),
+    edge:foxxDist(fox.fx,fox.fy,c.x,c.y)<=FOX_EDGE,dust:foxStaleOf(c)});
+  return 1;
+}
+/* ---- 落对了：这一笔上岸（样图亮一块、场里那道墨也亮了），这一笔的钟重新上弦 ---- */
+function foxDeliver(car,m){
+  car.got=1;
+  fox.gotIdx[car.i]=true;
+  const g=foxGain(m.tight,m.snap,m.edge,m.dust);
+  fox.score+=g;
+  if(m.snap)fox.score+=FOX_SNAP_BONUS;
+  fox.hits++;fox.combo++;
+  if(m.tight)fox.tights++;
+  if(m.snap)fox.snap++;
+  if(m.edge)fox.edge++;
+  if(m.dust)fox.dusts++;
+  if(fox.combo>fox.maxCombo)fox.maxCombo=fox.combo;
+  fox.chain++;
+  if(fox.chain>=2){fox.score+=FOX_CHAIN_BONUS;fox.chains++;if(fox.chain>fox.chainMax)fox.chainMax=fox.chain}
+  fox.gull=Math.min(FOX_GULL0,fox.gull+FOX_GULL_HEAL);  /* 老实收一手就把眼力养回来：骗术不是越用越灵 */
+  if(fox.dryWord&&(fox.viewUse||fox.slowUse||fox.baitUse))fox.dryWord=false;
+  if(fox.duo&&fox.knobMs<=FOX_HUG_MS)foxHugTag();
+  fox.lastDust=m.dust?1:0;fox.lastSnap=m.snap?1:0;fox.lastEdge=m.edge?1:0;
+  fox.pi++;
+  fox.qms=fox.qms0=foxQms(fox.lv);
+  foxxTone(FOX_NOTE[Math.min(10,2+fox.combo)],.09,'triangle',.04);
+  foxFx(9,'ring');
+  foxTag('🎯 第 '+fox.pi+' 笔（'+FOX_TAG4[foxxRok(car.dir)]+'）收下了 +'+g+' 分'+
+    (m.tight?' · 顺手收 ×'+FOX_TIGHT_MULT:'')+
+    (m.snap?' · 虎口夺食 ×'+FOX_SNAP_MULT+'（它正扑这一张）':'')+
+    (m.edge?' · 刀口拔字 ×'+FOX_EDGE_MULT:'')+
+    (m.dust?' · 晒久了、只拿七成':'')+fox.hugTell,'gold');
+  fox.hugTell='';
+  foxHome();                                                 /* 门规：每收一张它必须回一趟窝 */
+  if(fox.pi>=fox.rec.n){foxWordDone();return}
+  foxMark();
+  foxHud();foxLine();foxAsk();
+}
+function foxHugTag(){
+  if(fox.hugW>0)return;
+  fox.hug++;fox.hugW++;
+  fox.hugTell=' · 🤝 合抱：刚有人改了走位就有人下手 +'+FOX_DUO_BONUS+'（这个字收完结账）';
+}
+function foxFail(car){
+  fox.score=Math.max(0,fox.score-FOX_PEN_WRONG);
+  fox.wrongs++;fox.combo=0;fox.chain=0;fox.cleanWord=false;fox.foolChain=0;
+  fox.hearts--;
+  fox.qms=fox.qms0=foxQms(fox.lv);
+  foxTag('💔 落错了：脚边这张是第 '+(car.i+1)+' 笔，现在该收第 '+(fox.pi+1)+' 笔 —— '+
+    '落手只认离你最近那一张。先把该收那张<b>走过去踩住</b>再按','warn');
+  foxFx(6,'bad');
+  foxxTone(150,.18,'sawtooth',.05);
+  if(fox.hearts<=0){foxEnd('broke');return}
+  foxMark();foxRemind();
+  foxHud();foxLine();
+}
+function foxFailFake(car){
+  /* 影牌落了就没了：它压根不是这个字的笔，留在场里只会挡在最近那一格 */
+  car.got=1;
+  fox.score=Math.max(0,fox.score-FOX_PEN_FAKE);
+  fox.fakes++;fox.combo=0;fox.chain=0;fox.cleanWord=false;fox.foolChain=0;
+  foxTag('🌫 影牌：这一种笔这个字压根没有（'+FOX_TAG4[foxxRok(car.dir)]+
+    '），牌面上也<b>没有编号</b> —— 白落一记 −'+FOX_PEN_FAKE+' 分，好在让开了','warn');
+  foxFx(5,'bad');
+  foxxTone(180,.14,'sawtooth',.045);
+  foxHud();foxLine();
+}
+function foxEmpty(){
+  fox.score=Math.max(0,fox.score-FOX_PEN_EMPTY);
+  fox.empties++;fox.combo=0;fox.chain=0;fox.cleanWord=false;
+  foxTag('💧 落空了：脚边 '+FOX_GRAB+' 像素内一张牌都没有 —— 书童得<b>踩到牌上</b>才落得手（−'+
+    FOX_PEN_EMPTY+' 分）','warn');
+  foxFx(4,'bad');
+  foxxTone(FOX_NOTE[0],.16,'sawtooth',.05);
+  foxHud();foxLine();foxAsk();
+}
+/* ---- 被吃进窝：这个字凑不齐了，掉一颗心、进错字本 ---- */
+function foxEaten(c){
+  c.taken=0;c.got=2;
+  fox.carry=-1;
+  fox.eaten++;
+  fox.combo=0;fox.chain=0;fox.foolChain=0;fox.cleanWord=false;
+  fox.hearts--;
+  foxMissAdd(fox.rec?fox.rec.ch:'');
+  foxHome();
+  foxFx(10,'bad');
+  foxxTone(120,.26,'sawtooth',.05);
+  if(fox.hearts<=0){foxEnd('eaten');return}
+  foxTag('🦊 进了窝：第 '+(c.i+1)+' 笔被叼回狐窝，这个字凑不齐了（掉一颗心、进错字本）。'+
+    '下一场趁它<b>还没咬到</b>就把这一张落掉','warn');
+  foxNewWord();
+}
+/* ---- 一个字收完 → 换个字 ---- */
+function foxWordDone(){
+  fox.words++;
+  let bonus=FOX_WORD_BONUS;
+  fox.score+=bonus;
+  if(fox.cleanWord){fox.score+=FOX_CLEAN_BONUS;bonus+=FOX_CLEAN_BONUS;foxxAdd('hz_fox_cleanw',1)}
+  if(fox.dryWord){fox.score+=FOX_DRY_BONUS;bonus+=FOX_DRY_BONUS}
+  if(fox.duo&&fox.hugW>0&&fox.duoP1){fox.score+=FOX_DUO_BONUS;bonus+=FOX_DUO_BONUS;fox.duoHalf=true}
+  foxBookAdd(fox.rec.ch);
+  foxTag('🦊 这个字从狐嘴里全数夺回来了：'+fox.rec.ch+' '+fox.rec.n+' 笔一张不差 + '+bonus+' 分','gold');
+  foxFx(14,'win');
+  foxAud('word');
+  foxBankLite();
+  const nl=foxLvOf(fox.words);
+  if(nl>fox.lv)foxLvUp(nl);
+  foxNudge();
+  foxNewWord();
+}
+function foxLvUp(nl){
+  fox.lv=nl;
+  fox.qms0=foxQms(nl);fox.fuel=foxFuel(nl);
+  fox.viewN=Math.min(FOX_PCAP,fox.viewN+1);
+  fox.slowN=Math.min(FOX_PCAP,fox.slowN+1);
+  fox.baitN=Math.min(FOX_PCAP,fox.baitN+1);
+  fox.hearts=Math.min(FOX_HEART_MAX,fox.hearts+1);
+  const t=FOX_TIERS[foxTier(nl)];
+  foxTag('🚉 第 '+nl+' 场：狐 '+foxVf(nl)+' 像素/秒、场上混 '+t.fn+' 张影牌、'+
+    '这一笔的钟 '+(foxQms(nl)/1000).toFixed(0)+' 秒、这一站 '+(foxFuel(nl)/1000).toFixed(0)+
+    ' 秒'+(nl>=4?'、牌上的编号淡了':'')+(nl>=6?'、场里的墨迹也没了':''),'gold');
+  foxFx(10,'up');
+}
+/* ---- 两只罚钟 ---- */
+function foxTimeOut(){
+  fox.score=Math.max(0,fox.score-FOX_PEN_TIME);
+  fox.timeouts++;fox.combo=0;fox.chain=0;fox.cleanWord=false;fox.foolChain=0;
+  fox.qms=fox.qms0=foxQms(fox.lv);
+  foxTag('⌛ 这一笔的钟走光了：−'+FOX_PEN_TIME+' 分、连击清零 —— 它每愣一回都要重新挑一张，想太久牌就进了窝','warn');
+  foxFx(5,'bad');
+  foxRemind();
+}
+function foxFuelOut(){
+  fox.broke=(fox.broke||0)+1;
+  foxMissAdd(fox.rec?fox.rec.ch:'');
+  fox.hearts--;
+  foxTag('🛑 这一站到点了：这个字进了错字本（过几轮优先还回来）','warn');
+  foxFx(6,'bad');
+  if(fox.hearts<=0){foxEnd('fuel');return}
+  fox.fuel=foxFuel(fox.lv);
+  foxNewWord();
+}
+/* ---- 一拍 ---- */
+function foxTick(dt){
+  fox.t+=dt;fox.playMs+=dt;
+  fox.grabMs+=dt;
+  if(fox.helpMs>0){
+    fox.helpMs=Math.max(0,fox.helpMs-dt);
+    const h=fox.hist;                                              /* 歇着这几秒不许把旧脚印留着当证据 */
+    while(h.length&&fox.t-h[0].t>FOX_LOOK)h.shift();
+    foxFxStep(dt);
+    return;
+  }
+  if(!fox.over&&!fox.load){
+    const moved=foxMoveKid(dt);
+    if(moved>0.01)fox.knobMs=0;else fox.knobMs+=dt;                 /* 合抱认的是「真改了走位」，不是按住了键 */
+    foxMoveFox(dt);
+    fox.qms-=dt;
+    if(fox.qms<=0){foxTimeOut();if(fox.over)return}
+    fox.warn=fox.qms<=foxQWarn();
+    fox.fuel-=dt;
+    if(fox.fuel<=0){foxFuelOut();if(fox.over)return}
+    if(fox.viewMs>0)fox.viewMs=Math.max(0,fox.viewMs-dt);
+    if(fox.slowMs>0)fox.slowMs=Math.max(0,fox.slowMs-dt);
+    if(fox.baitMs>0){
+      fox.baitMs=Math.max(0,fox.baitMs-dt);
+      if(fox.baitMs<=0&&fox.bait.on&&fox.peckMs<=0){fox.bait.on=0;foxHome()}
+    }
+    if(fox.markMs>0)fox.markMs=Math.max(0,fox.markMs-dt);
+    for(let i=0;i<fox.cards.length;i++){                            /* 牌在日头底下晾着就晒焦 */
+      const c=fox.cards[i];
+      if(!c.fake&&!c.got&&!c.taken)c.age+=dt;
+    }
+    fox.nagMs+=dt;
+    if(fox.nagMs>=FOX_NAG_MS&&!fox.actMs&&fox.nagHold<=0){fox.nagMs=0;foxNag()}
+    if(fox.nagHold>0)fox.nagHold=Math.max(0,fox.nagHold-dt);
+    if(fox.actMs>0)fox.actMs=Math.max(0,fox.actMs-dt);
+    foxFxStep(dt);
+  }
+}
+function foxQWarn(){return Math.min(8000,foxQms(fox.lv)*.35)}
+/* ---- 描亮该收的那一张：前两场一直描、往深了只描一阵（落错、钟响之后多描 8 秒）---- */
+function foxMark(){
+  const c=foxTargetCard();
+  fox.markI=c?c.id:-1;
+  if(!c)return;
+  if(fox.lv<=2||fox.markForce){fox.markMs=0;return}
+  fox.markMs=FOX_MARK_MS;
+}
+function foxRemind(){
+  foxMark();
+  if(fox.lv>2&&!fox.markForce)fox.markMs=Math.max(fox.markMs,8000);
+}
+function foxMarkLive(){
+  if(fox.markI<0)return false;
+  if(fox.lv<=2||fox.markForce)return true;
+  return fox.markMs>0;
+}
+function foxMarked(c){return fox.markI===c.id&&foxMarkLive()}
+/* ---- 三件场具 + 换字 ---- */
+function foxView(){
+  if(!foxGate())return 0;
+  if(fox.viewN<=0){foxTag('🔭 看相用完了');return 0}
+  fox.viewN--;fox.viewUse++;fox.tools++;fox.actMs=3000;fox.nagMs=0;
+  fox.viewMs=FOX_VIEW_MS;
+  const b=foxBelief();
+  if(fox.fmode==='home'&&b){                                       /* 掀这一记时它就站在窝里：把算盘拨到它下一趟要挑的那张 */
+    fox.ftarget=b.id;fox.fmode='hunt';fox.lockMs=0;
+  }
+  foxTag('🔭 看相 '+(FOX_VIEW_MS/1000).toFixed(1)+' 秒：把它此刻读到的那张、每张牌的算分全掀开来给你看');
+  foxHud();return 1;
+}
+function foxSlow(){
+  if(!foxGate())return 0;
+  if(fox.slowN<=0){foxTag('🐾 轻脚用完了');return 0}
+  fox.slowN--;fox.slowUse++;fox.tools++;fox.actMs=3000;fox.nagMs=0;
+  fox.slowMs=FOX_SLOW_MS;
+  foxTag('🐾 轻脚 '+(FOX_SLOW_MS/1000).toFixed(0)+' 秒：你的走动证据只算两成二 —— '+
+    '它退回「按笔顺扑」那条老实话，该收那张它必定来叼');
+  foxHud();return 1;
+}
+function foxBait(){
+  if(!foxGate())return 0;
+  if(fox.baitN<=0){foxTag('🌾 撒糠用完了');return 0}
+  if(fox.fmode==='carry'){foxTag('🌾 糠骗不动正叼着牌的狐：先把嘴里那一张抢下来','warn');return 0}
+  fox.baitN--;fox.baitUse++;fox.tools++;fox.actMs=3000;fox.nagMs=0;
+  fox.bait.x=fox.kid.x;fox.bait.y=fox.kid.y;fox.bait.on=1;
+  fox.baitMs=FOX_BAIT_MS+600;
+  fox.peckMs=0;
+  if(fox.fmode!=='peck')fox.fmode='hunt';
+  fox.ftarget=-1;
+  foxTag('🌾 撒糠：糠就落在书童脚边，它先奔着糠去、啄满 '+(FOX_PECK_MS/1000).toFixed(1)+
+    ' 秒 —— 这一段它谁也咬不着');
+  foxHud();return 1;
+}
+function foxSwap(){
+  if(!foxGate())return 0;
+  if(fox.swapN<=0){foxTag('🔁 换字只有一回');return 0}
+  fox.swapN--;fox.swapUse++;
+  fox.score=Math.max(0,fox.score-FOX_PEN_SWAP);
+  foxMissAdd(fox.rec?fox.rec.ch:'');
+  foxTag('🔁 换了一个字：−'+FOX_PEN_SWAP+' 分，这一个进了错字本','warn');
+  foxNewWord();
+  return 1;
+}
+/* ---- 发呆口诀：nagHold 是「口诀正占着题头」那 5.2 秒，手一动就撤 —— 题头空出来孩子才看得见该收第几笔 ---- */
+function foxNagOff(){fox.nagHold=0;fox.nagMs=0}
+function foxNag(){
+  fox.nags++;fox.nagHold=FOX_NAG_HOLD;
+  const b=foxBelief(),t=foxTargetCard();
+  if(!b||!t)fox.nagTip='👀 落手只认脚边最近那张：走过去踩住该收的那一笔，再按';
+  else if(b.id===t.id)fox.nagTip='👀 它和你读到了同一张 —— 这一手别硬抢：撒糠 🌾、轻脚 🐾，或者绕开它的眼睛再回来';
+  else fox.nagTip='👀 它正扑第 '+(b.i+1)+' 笔、你要收的是第 '+(t.i+1)+' 笔 —— 让它扑空这一趟，把手边该收那张落掉';
+  foxxTone(FOX_NOTE[2],.14,'triangle',.04);
+}
+/* ---- 粒子：落手在书童脚下炸，狐那边的事从狐身上炸 ---- */
+function foxFx(n,kind){
+  const x=fox.kid.x,y=fox.kid.y;
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,sp=.02+Math.random()*.06;
+    fox.parts.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,m:0,
+      life:kind==='win'?1200:(kind==='bad'?520:640),
+      c:kind==='bad'?'#FF8A65':(kind==='ring'?'#80DEEA':(kind==='up'?'#BA68C8':(kind==='fool'?'#FFE082':'#FFB74D')))});
+    if(fox.parts.length>180)fox.parts.shift();
+  }
+}
+function foxFoxDrawFx(n,kind){
+  const x=fox.bait.on&&kind==='crane'?fox.bait.x:fox.fx;
+  const y=fox.bait.on&&kind==='crane'?fox.bait.y:fox.fy;
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,sp=.02+Math.random()*.05;
+    fox.parts.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,m:0,
+      life:kind==='bite'?620:560,
+      c:kind==='bite'?'#FF7043':(kind==='fool'?'#FFE082':(kind==='crane'?'#FFD54F':'#B0BEC5'))});
+    if(fox.parts.length>180)fox.parts.shift();
+  }
+}
+function foxFxStep(dt){
+  for(let i=fox.parts.length-1;i>=0;i--){
+    const p=fox.parts[i];
+    p.m+=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;
+    if(p.m>p.life)fox.parts.splice(i,1);
+  }
+}
+
+/* ================= 段 D：画这片晒场（米字格底纹 · 圆牌 · 书童 · 狐与它的算盘 · 狐窝 · 糠堆）· 样图 · HUD ================= */
+/* 场坪上那些谷壳用固定种子生成一次：孩子第二场回来还认得脚下这片地 */
+const foxDots=(function(){
+  let s=20261025;
+  const rnd=function(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff};
+  const a=[];
+  for(let y=14;y<FOX_H-8;y+=17)for(let x=12;x<FOX_W-8;x+=17){
+    a.push({x:x+rnd()*6-3,y:y+rnd()*6-3,r:.7+rnd()*.9});
+  }
+  return a;
+})();
+function foxGround(c){
+  const g=c.createLinearGradient(0,0,0,FOX_H);
+  g.addColorStop(0,'#2A2016');g.addColorStop(.45,'#1A140E');g.addColorStop(1,'#100C08');
+  c.fillStyle=g;c.fillRect(0,0,FOX_W,FOX_H);
+  c.fillStyle='rgba(255,224,178,.075)';
+  for(let i=0;i<foxDots.length;i++){const p=foxDots[i];c.beginPath();c.arc(p.x,p.y,p.r,0,6.283);c.fill()}
+  c.strokeStyle='rgba(255,213,79,.20)';c.lineWidth=2;c.strokeRect(4,4,FOX_W-8,FOX_H-8);
+}
+/* 把这一笔的整条中缝按摆牌那同一个投影落到场里 —— 底纹就是「牌摆成的这个字」*/
+function foxStrokePts(rec,i){
+  const u=rec.union;
+  const w=Math.max(1,u.x1-u.x0),h=Math.max(1,u.y1-u.y0);
+  const k=Math.min((FOX_PAD.x1-FOX_PAD.x0)/w,(FOX_PAD.y1-FOX_PAD.y0)/h);
+  const cx=(u.x0+u.x1)/2,cy=(u.y0+u.y1)/2;
+  const ox=(FOX_PAD.x0+FOX_PAD.x1)/2,oy=(FOX_PAD.y0+FOX_PAD.y1)/2;
+  const m=rec.meds[i],a=[];
+  for(let j=0;j<m.length;j++)a.push([ox+(m[j][0]-cx)*k,oy-(m[j][1]-cy)*k]);
+  return a;
+}
+function foxInk(c){
+  const rec=fox.rec;
+  if(!rec)return;
+  const faint=foxFaint(fox.lv);
+  for(let i=0;i<rec.n;i++){
+    const pts=foxStrokePts(rec,i);
+    if(pts.length<2)continue;
+    c.strokeStyle=fox.gotIdx[i]?FOX_INK4[foxxRok(rec.dirs[i])]:(faint?'rgba(160,140,110,.13)':'rgba(190,170,140,.26)');
+    c.lineWidth=fox.gotIdx[i]?7:6;
+    c.lineCap='round';c.lineJoin='round';
+    c.beginPath();c.moveTo(pts[0][0],pts[0][1]);
+    for(let j=1;j<pts.length;j++)c.lineTo(pts[j][0],pts[j][1]);
+    c.stroke();
+  }
+  if(!faint){
+    c.strokeStyle='rgba(255,253,231,.10)';c.lineWidth=1;c.setLineDash([4,5]);
+    c.strokeRect(FOX_PAD.x0-16,FOX_PAD.y0-16,(FOX_PAD.x1-FOX_PAD.x0)+32,(FOX_PAD.y1-FOX_PAD.y0)+32);
+    c.setLineDash([]);
+  }
+}
+/* 狐窝：右上角一个黑洞，边上压几撮草 */
+function foxDen(c){
+  c.save();
+  c.fillStyle='rgba(0,0,0,.72)';
+  c.beginPath();c.ellipse(FOX_DEN.x,FOX_DEN.y,20,14,0,0,6.283);c.fill();
+  c.strokeStyle='rgba(255,213,79,.34)';c.lineWidth=1.6;
+  c.beginPath();c.ellipse(FOX_DEN.x,FOX_DEN.y,20,14,0,0,6.283);c.stroke();
+  c.strokeStyle='rgba(200,180,120,.5)';c.lineWidth=1.4;
+  for(let i=0;i<5;i++){
+    const a=-2.5+i*.5;
+    c.beginPath();c.moveTo(FOX_DEN.x+Math.cos(a)*20,FOX_DEN.y+Math.sin(a)*14);
+    c.lineTo(FOX_DEN.x+Math.cos(a)*27,FOX_DEN.y+Math.sin(a)*20);c.stroke();
+  }
+  c.restore();
+  c.font='9px system-ui,sans-serif';c.fillStyle='#8D6E63';c.textAlign='center';
+  c.fillText('狐窝',FOX_DEN.x,FOX_DEN.y+26);
+}
+/* 圆牌：编号（第 4 场起淡去）+ 这一笔的中缝印子 + 晒焦的一层土 */
+function foxCard(c,x,y,card,marked){
+  const R=FOX_CARD;
+  c.save();
+  c.globalAlpha=.3;c.fillStyle='#000';
+  c.beginPath();c.arc(x+2,y+3,R,0,6.283);c.fill();
+  c.globalAlpha=1;
+  const g=c.createLinearGradient(0,y-R,0,y+R);
+  if(card.fake){g.addColorStop(0,'#3A2F3F');g.addColorStop(1,'#241B28')}
+  else{g.addColorStop(0,'#F7EFDC');g.addColorStop(1,'#DCCDAF')}
+  c.fillStyle=g;
+  c.beginPath();c.arc(x,y,R,0,6.283);c.fill();
+  c.strokeStyle=marked?'#FFF176':(card.fake?'rgba(186,140,255,.6)':'rgba(93,64,55,.55)');
+  c.lineWidth=marked?2.6:1.5;
+  c.beginPath();c.arc(x,y,R,0,6.283);c.stroke();
+  /* 印子：这一笔的中缝缩进牌里 */
+  if(card.fake){
+    let dx=1,dy=0;
+    if(card.dir===1){dx=0;dy=1}
+    else if(card.dir===2){dx=-.72;dy=.72}
+    else if(card.dir===3){dx=.72;dy=.72}
+    const L=12;
+    c.strokeStyle='rgba(206,147,255,.85)';c.lineWidth=3;c.lineCap='round';
+    c.beginPath();c.moveTo(x-dx*L,y-dy*L);c.lineTo(x+dx*L,y+dy*L);c.stroke();
+    c.font='9px system-ui,sans-serif';c.fillStyle='#B39DDB';c.textAlign='center';
+    c.fillText('影',x,y+R-6);
+  }else if(card.path&&card.path.length>1){
+    let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+    for(let i=0;i<card.path.length;i++){
+      const p=card.path[i];
+      if(p[0]<x0)x0=p[0];if(p[0]>x1)x1=p[0];if(p[1]<y0)y0=p[1];if(p[1]>y1)y1=p[1];
+    }
+    const k=Math.min(30/Math.max(1,x1-x0),30/Math.max(1,y1-y0));
+    const cx=(x0+x1)/2,cy=(y0+y1)/2;
+    c.strokeStyle=FOX_INK4[foxxRok(card.dir)];c.lineWidth=3.2;c.lineCap='round';c.lineJoin='round';
+    c.beginPath();
+    for(let i=0;i<card.path.length;i++){
+      const p=card.path[i],px=x+(p[0]-cx)*k,py=y+(p[1]-cy)*k;
+      if(!i)c.moveTo(px,py);else c.lineTo(px,py);
+    }
+    c.stroke();
+  }
+  /* 编号：这是第几笔 —— 第 4 场起淡下去，孩子得自己认 */
+  if(!card.fake){
+    c.fillStyle=foxNoNum(fox.lv)?'rgba(93,64,55,.22)':'rgba(93,64,55,.9)';
+    c.beginPath();c.arc(x-R+9,y-R+9,8,0,6.283);c.fill();
+    c.font='bold 11px system-ui,sans-serif';c.textAlign='center';c.textBaseline='middle';
+    c.fillStyle=foxNoNum(fox.lv)?'rgba(255,241,118,.35)':'#4E342E';
+    c.fillText(String(card.i+1),x-R+9,y-R+9.5);
+    c.textBaseline='alphabetic';
+  }
+  /* 晒焦：压过 20 秒糊一层土（收它只拿七成）*/
+  if(!card.fake&&card.age>=FOX_STALE){
+    c.fillStyle='rgba(190,170,140,.3)';c.beginPath();c.arc(x,y,R,0,6.283);c.fill();
+    c.globalAlpha=.75;c.fillStyle='#8D6E63';c.font='9px system-ui,sans-serif';c.textAlign='center';
+    c.fillText('🌫',x+R-8,y-R+8);c.globalAlpha=1;
+  }else if(!card.fake&&card.age>=FOX_STALE*.55){
+    c.fillStyle='rgba(190,170,140,'+(.1*(card.age/FOX_STALE))+')';
+    c.beginPath();c.arc(x,y,R,0,6.283);c.fill();
+  }
+  /* 被叼走：牌面糊掉、拉一条虚线到狐嘴 */
+  if(card.taken){
+    c.globalAlpha=.42;c.fillStyle='#241B28';
+    c.beginPath();c.arc(x,y,R,0,6.283);c.fill();
+    c.globalAlpha=1;
+    c.strokeStyle='rgba(255,112,67,.7)';c.lineWidth=1.6;c.setLineDash([4,4]);
+    c.beginPath();c.moveTo(x,y);c.lineTo(fox.fx,fox.fy);c.stroke();c.setLineDash([]);
+    c.fillStyle='#FF8A65';c.font='bold 10px system-ui,sans-serif';c.textAlign='center';
+    c.fillText('叼走',x,y+3);
+  }
+  if(marked){
+    c.strokeStyle='rgba(255,241,118,'+(.3+.35*Math.abs(Math.sin(fox.t/260)))+')';
+    c.lineWidth=4;c.beginPath();c.arc(x,y,R+3.5,0,6.283);c.stroke();
+  }
+  c.restore();
+}
+/* 书童：一个压着草帽的小人，脸朝他刚走的那一头 */
+function foxKid(c){
+  const x=fox.kid.x,y=fox.kid.y;
+  c.save();
+  c.globalAlpha=.32;c.fillStyle='#000';
+  c.beginPath();c.ellipse(x+2,y+9,11,4.4,0,0,6.283);c.fill();
+  c.globalAlpha=1;
+  c.fillStyle='#4E6A8D';
+  c.beginPath();c.arc(x,y+2,8.4,0,6.283);c.fill();
+  c.fillStyle='#FFE0B2';
+  c.beginPath();c.arc(x,y-6,6.2,0,6.283);c.fill();
+  c.fillStyle='#C8A46A';
+  c.beginPath();c.ellipse(x,y-8.4,8.6,3,0,0,6.283);c.fill();
+  if(fox.headOn){
+    c.strokeStyle='#FFD54F';c.lineWidth=2;c.lineCap='round';
+    c.beginPath();c.moveTo(x+fox.headX*8,y-6+fox.headY*8);
+    c.lineTo(x+fox.headX*15,y-6+fox.headY*15);c.stroke();
+  }
+  c.restore();
+}
+/* 狐：一条压低的橙色身影，鼻子朝着它挑中那张 */
+function foxFoxDraw(c){
+  const x=fox.fx,y=fox.fy;
+  const st=fox.fmode==='fool'?'愣':(fox.fmode==='peck'?'啄':(fox.fmode==='carry'?'叼':(fox.fmode==='home'?'回窝':'扑')));
+  c.save();
+  c.globalAlpha=.34;c.fillStyle='#000';
+  c.beginPath();c.ellipse(x+2,y+8,12,4.6,0,0,6.283);c.fill();
+  c.globalAlpha=1;
+  c.save();
+  c.translate(x,y);c.rotate(fox.fdir);
+  const body=fox.fmode==='carry'?'#E64A19':'#FB8C00';
+  c.fillStyle=body;
+  c.beginPath();c.ellipse(0,0,13,7.4,0,0,6.283);c.fill();
+  c.fillStyle='#FFF3E0';
+  c.beginPath();c.moveTo(11,0);c.lineTo(4,-3.4);c.lineTo(4,3.4);c.closePath();c.fill();
+  c.fillStyle='#EF6C00';
+  c.beginPath();c.moveTo(-4,-6);c.lineTo(-9,-11);c.lineTo(-10,-4);c.closePath();c.fill();
+  c.beginPath();c.moveTo(-4,6);c.lineTo(-9,11);c.lineTo(-10,4);c.closePath();c.fill();
+  c.strokeStyle='#BF360C';c.lineWidth=2.6;c.lineCap='round';
+  c.beginPath();c.moveTo(-12,0);c.lineTo(-19,-4);c.stroke();
+  c.restore();
+  c.fillStyle='#FFE082';c.font='9px system-ui,sans-serif';c.textAlign='center';
+  c.fillText('🦊'+st,x,y-13);
+  c.restore();
+}
+/* 🔭 看相：把它此刻读到的那张、每张牌的算分掀开 */
+function foxViewLayer(c){
+  if(fox.viewMs<=0)return;
+  const l=foxSusList().sort(function(a,b){return b.sus-a.sus});
+  const b=l.length?l[0]:null;
+  c.save();
+  c.font='9px system-ui,sans-serif';c.textAlign='left';
+  for(let i=0;i<Math.min(4,l.length);i++){
+    const s=l[i];
+    c.fillStyle=i===0?'#FFD54F':'rgba(255,224,178,.5)';
+    c.fillText((s.i+1)+' 笔 '+s.sus.toFixed(1),8,FOX_H-8-(Math.min(4,l.length)-1-i)*11);
+  }
+  if(b){
+    const cd=foxCardById(b.id);
+    if(cd){
+      c.strokeStyle='rgba(255,213,79,'+(.45+.3*Math.abs(Math.sin(fox.t/300)))+')';
+      c.lineWidth=2.4;c.setLineDash([6,5]);
+      c.beginPath();c.moveTo(fox.fx,fox.fy);c.lineTo(cd.x,cd.y);c.stroke();c.setLineDash([]);
+      c.fillStyle='#FFD54F';c.textAlign='center';c.font='bold 10px system-ui,sans-serif';
+      c.fillText('它要扑这张',(fox.fx+cd.x)/2,(fox.fy+cd.y)/2-6);
+    }
+  }
+  c.restore();
+}
+/* 🐾 轻脚：脚下一圈淡纹，表示「这几秒脚步不算证据」*/
+function foxSlowRing(c){
+  if(fox.slowMs<=0)return;
+  c.save();
+  c.strokeStyle='rgba(128,222,234,'+(.22+.16*Math.abs(Math.sin(fox.t/420)))+')';
+  c.lineWidth=2;c.setLineDash([3,4]);
+  c.beginPath();c.arc(fox.kid.x,fox.kid.y,17+3*Math.abs(Math.sin(fox.t/500)),0,6.283);c.stroke();
+  c.setLineDash([]);
+  c.restore();
+}
+function foxBaitDraw(c){
+  if(!fox.bait.on)return;
+  c.save();
+  c.fillStyle='rgba(255,213,79,.8)';
+  for(let i=0;i<7;i++){
+    const a=i*.9+fox.t/900;
+    c.beginPath();c.arc(fox.bait.x+Math.cos(a)*9,fox.bait.y+Math.sin(a)*6,1.8,0,6.283);c.fill();
+  }
+  c.font='11px system-ui,sans-serif';c.textAlign='center';
+  c.fillText('🌾',fox.bait.x,fox.bait.y-11);
+  c.restore();
+}
+function foxParts(c){
+  for(let i=0;i<fox.parts.length;i++){
+    const p=fox.parts[i];
+    c.globalAlpha=Math.max(0,1-p.m/p.life);
+    c.fillStyle=p.c;
+    c.beginPath();c.arc(p.x,p.y,2.4,0,6.283);c.fill();
+  }
+  c.globalAlpha=1;
+}
+function foxDraw(){
+  const c=fox.ctx;
+  if(!c)return;
+  c.clearRect(0,0,FOX_W,FOX_H);
+  foxGround(c);
+  foxInk(c);
+  foxDen(c);
+  foxBaitDraw(c);
+  for(let i=0;i<fox.cards.length;i++){
+    const cd=fox.cards[i];
+    if(cd.got)continue;
+    foxCard(c,cd.x,cd.y,cd,foxMarked(cd));
+  }
+  foxSlowRing(c);
+  foxViewLayer(c);
+  foxFoxDraw(c);
+  foxKid(c);
+  foxParts(c);
+  /* 落手圈：孩子踩不踩得着牌，看的就是这一圈 */
+  c.strokeStyle='rgba(255,255,255,.16)';c.lineWidth=1;
+  c.beginPath();c.arc(fox.kid.x,fox.kid.y,FOX_GRAB,0,6.283);c.stroke();
+  if(fox.fmode==='carry'){
+    c.save();c.globalAlpha=.12+.1*Math.abs(Math.sin(fox.t/300));c.fillStyle='#FF5252';
+    c.fillRect(0,0,FOX_W,FOX_H);c.restore();
+  }
+  if(fox.warn){
+    c.save();c.globalAlpha=.1+.08*Math.abs(Math.sin(fox.t/420));c.fillStyle='#000';
+    c.fillRect(0,0,FOX_W,FOX_H);c.restore();
+  }
+}
+/* ---- 样图：这个字全在场外那张纸上，收一笔亮一笔 ---- */
+function foxMini(){
+  const svg=document.getElementById('foxMiniSvg');
+  if(!svg)return;
+  const rec=fox.rec;
+  if(!rec||!rec.paths){svg.innerHTML='';foxCapLine();return}
+  const faint=foxFaint(fox.lv);
+  let s='';
+  for(let i=0;i<rec.paths.length;i++){
+    const got=!!fox.gotIdx[i];
+    const p=rec.paths[i];
+    const dPath=Array.isArray(p)?p.map(function(q,k){return (k?'L':'M')+q[0]+' '+q[1]}).join(''):String(p||'');
+    if(!dPath)continue;
+    s+='<path d="'+dPath+'" fill="none" stroke="'+(got?FOX_INK4[foxxRok(rec.dirs[i])]:
+      (faint?'#4E4234':'#6D5B46'))+'" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" opacity="'+
+      (got?.95:(faint?.2:.38))+'"/>';
+  }
+  svg.innerHTML='<g transform="scale(1,-1)">'+s+'</g>';
+  foxCapLine();
+}
+function foxCapLine(){
+  const el=document.getElementById('foxMiniCap');
+  if(!el)return;
+  if(!fox.rec){el.textContent='这个字还没拆成一张一张';return}
+  const ks=[];
+  for(let i=0;i<fox.rec.kinds.length;i++)ks.push(FOX_TAG4[fox.rec.kinds[i]]);
+  el.textContent=fox.rec.ch+' · '+fox.rec.n+' 张牌 · 这个字只有：'+ks.join(' ');
+}
+/* ---- 站具条 ---- */
+function foxToolBtn(id,n){
+  const b=document.getElementById(id);
+  if(!b)return;
+  b.disabled=!(n>0&&fox.run&&!fox.over);
+  const k=b.querySelector('b');
+  if(k)k.textContent='剩 '+n;
+}
+function foxHud(){
+  if(!fox.run)return;
+  const tot=foxxInt('hz_fox_words');
+  const rk=foxxRank(tot);
+  let h='';
+  const hs=Math.max(FOX_HEARTS,fox.hearts);
+  for(let i=0;i<fox.hearts;i++)h+='❤️';
+  for(let i=fox.hearts;i<hs;i++)h+='🤍';
+  foxxPut('foxRankTxt',rk.e+' '+rk.t);
+  foxxPut('foxHeartTxt',h||'💔');
+  foxxPut('foxComboTxt','🔥 连 '+fox.combo);
+  const t=foxTargetCard();
+  foxxPut('foxGoalTxt','🎯 该收第 '+Math.min(fox.pi+1,fox.n)+' 笔'+
+    (fox.rec?'（'+FOX_TAG4[foxxRok(fox.rec.dirs[Math.min(fox.pi,fox.n-1)])]+'）':''));
+  foxxPut('foxShotTxt','🖐 落 '+fox.shots+' · 对上 '+fox.hits);
+  foxxPut('foxBeliefTxt','🦊 它'+(fox.bait.on?'正啄糠':
+    (!t?'还没挑中牌':(foxBeliefId()===t.id?'扑的正是这一张':
+      ('第 '+((foxCardById(foxBeliefId())||{i:fox.pi}).i+1)+' 笔')))));
+  foxxPut('foxGullTxt','👁 疑心 '+fox.gull.toFixed(2)+(fox.slowMs>0?'（轻脚中）':''));
+  foxxPut('foxSnapTxt','🥊 虎口 '+fox.snap+' · 刀口 '+fox.edge+' · 夺回 '+fox.rescued);
+  foxxPut('foxFoolTxt','🎭 骗成 '+fox.fools+' 回（一串最长 '+fox.foolMax+'）· 被吃 '+fox.eaten);
+  foxxPut('foxChainTxt','✨ 连收 '+fox.chain+'（最长 '+fox.chainMax+'）· 顺手 '+fox.tights);
+  foxxPut('foxScoreTxt','🎯 '+fox.score+' 分');
+  foxxPut('foxLvTxt','第 '+fox.lv+' 场 · 已收 '+tot+' 字');
+  foxxPut('foxQTxt','⏳ 这一笔 '+Math.ceil(Math.max(0,fox.qms)/1000)+' 秒');
+  foxToolBtn('foxViewBtn',fox.viewN);foxToolBtn('foxSlowBtn',fox.slowN);
+  foxToolBtn('foxBaitBtn',fox.baitN);foxToolBtn('foxSwapBtn',fox.swapN);
+  foxMini();foxPow();
+}
+function foxBeliefId(){
+  const b=foxBelief();
+  return b?b.id:-1;
+}
+function foxPowStr(){
+  if(!fox.rec)return '🦊 场上还没开字';
+  const t=foxTargetCard();
+  const b=foxBelief();
+  const cd=b?foxCardById(b.id):null;
+  const dkb=b?foxxDist(fox.fx,fox.fy,fox.kid.x,fox.kid.y):-1;
+  let s='🦊 '+fox.fmode+(cd?('（第 '+(cd.i+1)+' 笔，算分 '+foxSus(cd).toFixed(1)+'）'):'（没牌可扑）');
+  s+=' · 它 '+(foxVf(fox.lv)).toFixed(0)+' 像素/秒'+(fox.fmode==='carry'?('、叼着走 '+(foxVf(fox.lv)*FOX_CARRY).toFixed(0)):'');
+  s+=' · 你 '+FOX_VC+' 像素/秒';
+  s+=' · 狐↔你 '+((dkb<0)?'—':dkb.toFixed(0)+' 像素');
+  s+=' · 牌 '+foxLiveN()+' 张活着'+(foxDealFakeN()?'、影牌 '+foxDealFakeN()+' 张':'');
+  if(t&&b&&cd&&cd.i===t.i)s+=' · <b>它和你读到同一张</b>';
+  if(fox.slowMs>0)s+=' · 🐾 轻脚 '+(fox.slowMs/1000).toFixed(1)+' 秒（走动证据 ×'+FOX_SLOW_W+'）';
+  if(fox.viewMs>0)s+=' · 🔭 算盘掀开了';
+  if(foxStaleN())s+=' · 🌫 晒焦 '+foxStaleN()+' 张';
+  return s;
+}
+function foxPow(){foxxPut('foxPowTxt',foxPowStr())}
+function foxMeter(){
+  const qb=document.getElementById('foxQBar'),fb=document.getElementById('foxFuelBar'),bb=document.getElementById('foxBeatBar');
+  if(qb)qb.style.width=Math.max(0,Math.min(100,fox.qms/Math.max(1,fox.qms0)*100))+'%';
+  const box=document.getElementById('foxQBox');
+  if(box)box.classList.toggle('low',fox.qms<=foxQWarn());
+  foxxPut('foxQTxt2','⏳ 这一笔 '+(Math.max(0,fox.qms)/1000).toFixed(1)+' 秒');
+  const fk=Math.max(0,Math.min(100,fox.fuel/foxFuel(fox.lv)*100));
+  if(fb)fb.style.width=fk+'%';
+  const fbox=document.getElementById('foxFuelBox');
+  if(fbox)fbox.classList.toggle('low',fox.fuel<foxFuel(fox.lv)*.22);
+  foxxPut('foxFuelTxt','🛑 这一站 '+Math.ceil(Math.max(0,fox.fuel)/1000)+' 秒');
+  /* 第三只钟：这一张牌离被叼走还剩多少 —— 它挑中一张之后，孩子看得见自己还有几秒（都是 距离÷速度，不掺假）*/
+  const b=foxBelief(),cd=b?foxCardById(b.id):null;
+  let k=0,txt='🦊 它在窝里挑牌';
+  if(fox.bait.on){
+    if(fox.peckMs>0){k=foxxClamp(fox.peckMs/FOX_PECK_MS,0,1);txt='🌾 它正在啄糠，还剩 '+(fox.peckMs/1000).toFixed(1)+' 秒'}
+    else txt='🌾 它正奔向糠堆'
+  }else if(fox.fmode==='carry'){
+    const c=foxCardById(fox.carry);
+    const left=c?foxxDist(fox.fx,fox.fy,FOX_DEN.x,FOX_DEN.y):0;
+    const total=c?Math.max(1,foxxDist(c.x,c.y,FOX_DEN.x,FOX_DEN.y)):1;
+    k=foxxClamp(left/total,0,1);
+    txt='🥊 贴上它抢回来（'+(left/Math.max(1,foxVf(fox.lv)*FOX_CARRY)).toFixed(1)+' 秒后就进窝了）';
+  }else if(cd&&fox.fmode==='hunt'){
+    const left=foxxDist(fox.fx,fox.fy,cd.x,cd.y);
+    const secs=left/Math.max(1,foxVf(fox.lv));
+    k=foxxClamp(secs/2,0,1);
+    txt='🦊 还有 '+secs.toFixed(1)+' 秒它就咬到第 '+(cd.i+1)+' 笔';
+  }else txt='🦊 '+(fox.fmode==='fool'?'扑空了、正愣着':'回窝复锚中');
+  if(bb)bb.style.width=(k*100)+'%';
+  const bbox=document.getElementById('foxBeatBox');
+  if(bbox){bbox.classList.toggle('on',fox.fmode==='hunt'||fox.fmode==='peck');bbox.classList.toggle('low',fox.fmode==='carry')}
+  foxxPut('foxBeatTxt2',txt);
+}
+/* ---- 题头：现在该收第几笔、这一刻该做什么（占死版面，只许换字不许换行数）---- */
+function foxAsk(){
+  if(!fox.run||fox.over||!fox.rec){foxxPut('foxAsk','🦊 这片场还没开字<br><small>点「再夺一场」</small>');return}
+  if(fox.helpMs>0){foxxPut('foxAsk','🦊 <b>怎么哄住这只狐</b><br><small>两只钟与两条腿都先停住</small>');return}
+  if(fox.nagHold>0){
+    foxxPut('foxAsk','🌱 <b>口诀</b>：它挑牌看两样 —— <b>第几笔</b>＋<b>你这几秒朝哪儿走</b><br>'+
+      '<small>站着不动它只按笔顺扑 · 朝别的牌走就骗得动它 · 骗多了它就不信你</small>');
+    return;
+  }
+  const t=foxTargetCard(),b=foxBelief(),cd=b?foxCardById(b.id):null;
+  if(fox.carry>=0){
+    const c=foxCardById(fox.carry);
+    foxxPut('foxAsk','🦊 <b>第 '+(c?c.i+1:fox.pi+1)+' 笔在它嘴里</b>：贴上它（'+FOX_POUNCE+
+      ' 像素内）就抢下来 +'+FOX_RESCUE_BONUS+'<br><small>让它拖进窝这个字就废了 —— 你比它快 '+(
+        (FOX_VC/(foxVf(fox.lv)*FOX_CARRY)).toFixed(2))+' 倍</small>');
+    return;
+  }
+  if(fox.warn){
+    foxxPut('foxAsk','🔥 <b>这一笔的钟要走光了</b>：该收第 '+(fox.pi+1)+' 笔'+
+      (t?('，它就在你脚边 '+(foxxDist(fox.kid.x,fox.kid.y,t.x,t.y)).toFixed(0)+' 像素外'):'（还没走到牌上）')+
+      ' —— <b>踩住那张牌再落手</b><br><small>方向键走位 · 空格 落手 · 别硬抢狐的眼睛</small>');
+    return;
+  }
+  foxxPut('foxAsk','🎯 该收 <b>第 '+(fox.pi+1)+' 笔 · '+FOX_TAG4[foxxRok(fox.rec.dirs[Math.min(fox.pi,fox.n-1)])]+
+    '</b>'+(t?(' · 离你 '+(foxxDist(fox.kid.x,fox.kid.y,t.x,t.y)).toFixed(0)+' 像素'):'')+
+    ' · 这个字还剩 <b>'+(fox.n-fox.pi)+'</b> 张<br><small>方向键 WASD 走 · <b>空格</b> 落手（只认脚边最近那张）· 🦊 '+
+    (cd?('正扑第 '+(cd.i+1)+' 笔'):'在窝里挑')+'</small>');
+}
+/* ---- 说明行：眼下最该知道的那一句 ---- */
+function foxLine(){
+  if(!fox.run)return;
+  let txt;
+  const b=foxBelief(),cd=b?foxCardById(b.id):null,t=foxTargetCard();
+  if(fox.helpMs>0)txt='🛑 <b>歇一记看说明</b>：两只钟与两条腿全停住，按任意键就回到场上';
+  else if(fox.carry>=0){const c=foxCardById(fox.carry);txt='🦊 <b>它叼着第 '+(c?c.i+1:'?')+' 笔往窝里拖</b>：嘴里只有三速（'+
+    (foxVf(fox.lv)*FOX_CARRY).toFixed(0)+' 像素/秒），你 '+FOX_VC+' —— <b>贴上它就抢下来</b>（+'+FOX_RESCUE_BONUS+' 分）'}
+  else if(fox.nagHold>0)txt='🌱 <b>发呆口诀</b>：'+(fox.nagTip||'它挑牌看「第几笔」＋「你朝哪儿走」两样 —— 站着不动它就只能按笔顺扑');
+  else if(fox.bait.on)txt='🌾 <b>糠撒在这儿</b>：它先奔着糠、啄满 '+(FOX_PECK_MS/1000).toFixed(1)+
+    ' 秒 —— 这一段它谁也咬不着，抓紧把该收那几张收掉';
+  else if(fox.slowMs>0)txt='🐾 <b>轻脚中</b>：这几秒你的脚步只算两成证据 —— 它退回「按笔顺扑」那条老实话，'+
+    '该收那张它必定来叼，<b>虎口夺食 ×'+FOX_SNAP_MULT+'</b>就在这一趟';
+  else if(fox.eaten)txt='🦊 <b>被吃过 '+fox.eaten+' 回</b>：它叼走的是<b>该收那一张</b>时才会往窝里拖 —— '+
+    '<b>它一挑中这一张你就别硬抢</b>：撒糠、轻脚，或者绕开它的眼睛再回来';
+  else if(fox.fools&&fox.gull<=FOX_GULL_MIN+.01)txt='🎭 <b>它已经不太信你的脚步了</b>（疑心 '+fox.gull.toFixed(2)+
+    '）：假动作的分数越来越薄 —— 老实收一手才养得回来（每收 +'+FOX_GULL_HEAL+'）';
+  else if(cd&&t&&cd.i===t.i)txt='👁 <b>它和你读到了同一张</b>（第 '+(cd.i+1)+' 笔）：这一手硬抢就是'+
+    (foxxDist(fox.fx,fox.fy,cd.x,cd.y)<foxxDist(fox.kid.x,fox.kid.y,cd.x,cd.y)?'<b>它先到 —— 骗它</b>':'<b>你先到 —— 抢下来就是虎口夺食 ×'+FOX_SNAP_MULT+'</b>');
+  else if(cd&&cd.i!==fox.pi)txt='🎭 <b>它正扑第 '+(cd.i+1)+' 笔</b>（你要收第 '+(fox.pi+1)+' 笔）：'+
+    '让它扑空就 +'+FOX_FOOL_BONUS+' —— 别去拦，先把手边该收那张落掉';
+  else if(foxStaleN())txt='🌫 <b>有 '+foxStaleN()+' 张牌晒过 '+(FOX_STALE/1000).toFixed(0)+' 秒了</b>：收它<b>只拿七成</b> —— 别绕远路，最近的先落';
+  else if(foxDealFakeN())txt='🌑 <b>场里混着 '+foxDealFakeN()+' 张影牌</b>：那一种笔这个字压根没有、牌面上<b>也没有编号</b> —— '+
+    '它<b>骗不了狐</b>（狐读的是笔顺），只会挡在你脚边';
+  else if(fox.lv<=1)txt='🦊 <b>它每收一张都要回一趟窝</b>：窝↔牌那一段路就是给你的空当 —— 先踩住该收那张再落手';
+  else if(fox.lv<=2)txt='🦊 <b>该收的那一张一直描着金边</b>：脚边 '+(FOX_GRAB)+' 像素内落得着，别踩错到影牌上';
+  else txt='🦊 <b>它挑牌看两样：第几笔（46/26/12/4 分）＋你这几秒朝哪儿走（顶格 '+FOX_EV+' 分 × 疑心 '+
+    fox.gull.toFixed(2)+'）</b>：你手里只有<b>往哪儿走</b>、<b>哪一刻落手</b>两样';
+  foxxPut('foxHintLine','🦊 <b>'+txt+'</b>');
+  foxMeter();
+}
+/* ---- 浮条：一句话，两秒钟 ---- */
+function foxTag(txt,cls){
+  const el=document.getElementById('foxTag');
+  if(!el)return;
+  el.textContent=txt;
+  el.className='fox-tag on'+(cls?' '+cls:'');
+  fox.tagOn=1;
+  if(fox.tagTimer)clearTimeout(fox.tagTimer);
+  const g=fox.gen;
+  fox.tagTimer=setTimeout(function(){
+    fox.tagTimer=0;fox.tagOn=0;
+    if(g!==fox.gen)return;
+    el.className='fox-tag';
+  },FOX_TAG_MS);
+}
+
+/* ================= 段 E：主循环 · 真键盘与真手指（压着场里就走、点一下不动就落手）· 双人分工 · 说明 · 生命周期 ================= */
+function foxStartLoop(){
+  if(fox.rafId)return;
+  fox.last=performance.now();
+  function step(now){
+    if(!fox.run||fox.over){fox.rafId=0;return}
+    const dt=Math.min(120,Math.max(8,now-fox.last));
+    fox.last=now;
+    foxTick(dt);
+    if(!fox.run||fox.over)return;
+    foxDraw();
+    fox.hudAcc+=dt;
+    if(fox.hudAcc>=120){fox.hudAcc=0;foxHud();foxLine();foxAsk()}
+    fox.rafId=requestAnimationFrame(step);
+  }
+  fox.rafId=requestAnimationFrame(step);
+}
+function foxStopLoop(){
+  if(fox.rafId){cancelAnimationFrame(fox.rafId);fox.rafId=0}
+}
+function foxPanels(){
+  const p1=document.getElementById('foxDuoP1'),p2=document.getElementById('foxDuoP2');
+  if(p1)p1.classList.toggle('off',!fox.duo);
+  if(p2)p2.classList.toggle('off',!fox.duo);
+  const b=document.getElementById('foxGrabBtn');
+  if(b)b.disabled=!fox.run||fox.over;
+}
+/* ---- 亲子同屏：一个人只管脚下，一个人只管手上那一瞬 ---- */
+function fxDuo(on){
+  fox.duo=(on===undefined?!fox.duo:!!on);
+  fox.duoCut=0;fox.duoP1=0;fox.duoP2=0;fox.duoHalf=true;fox.hug=0;fox.hugW=0;
+  if(fox.duo)foxxAdd('hz_fox_duos',1);
+  foxTag(fox.duo?'👥 双人：你只管走位、同伴只管落手':'👤 单人','gold');
+  foxxSay(fox.duo?
+    '👥 <b>亲子同屏</b>：<b>P1</b> 只管脚下（<code>W</code>/<code>A</code>/<code>S</code>/<code>D</code> 八向走、'+
+    '或手指压在场里往那儿走），<b>P2</b> 只管手上（<code>空格</code> 落手、<code>Q</code>/<code>E</code>/<code>F</code> 三件场具）。'+
+    '这一对分工在这一坊是有道理的：<b>走位就是跟那只狐说话</b> —— 你往哪儿迈，它就往哪儿扑；'+
+    '而落手只认脚边最近那一张。谁替不了谁。P1 改完走位 <b>0.42 秒</b>内 P2 落手，这一记才算<b>合抱</b>；'+
+    '一个字里合抱上过另加 '+FOX_DUO_BONUS+' 分'+
+    '一个人也打得动，只是那句「一个人读它、一个人下手」就说不出口了'
+    :'👤 <b>单人</b>：<code>W</code>/<code>A</code>/<code>S</code>/<code>D</code>（或 <code>↑</code><code>↓</code><code>←</code><code>→</code>）八向走，'+
+      '<code>空格</code> 落手，<code>Q</code> 看相 · <code>E</code> 轻脚 · <code>F</code> 撒糠 · <code>Enter</code> 换字','#FFE0B2');
+  const b=document.getElementById('foxDuoBtn');
+  if(b){b.textContent=fox.duo?'👥 双人 ✔':'👥 双人';b.classList.toggle('on',fox.duo)}
+  foxPanels();foxLine();foxHud();foxDraw();
+  return fox.duo?1:0;
+}
+/* ---- 绑定：键盘只认这几支键，指针只认「压在场里往那一点走」和那一下不动的轻点 ---- */
+function foxBind(){
+  if(fox.bound)return;
+  fox.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!fox.run||fox.over)return;
+    const k=e.key;
+    if(k==='Escape'){foxLeave();return}
+    if(k==='h'||k==='H'||k==='?'){e.preventDefault();foxHelp();return}
+    /* 说明挂着时按下的第一个键只负责把说明收走，不替你走这一步 */
+    if(fox.helpMs>0){fox.helpMs=0;foxAsk();foxLine();foxHud();return}
+    if(k===' '||k==='Spacebar'){e.preventDefault();foxGrab(fox.duo?2:0);return}
+    if(k==='w'||k==='W'||k==='ArrowUp'){e.preventDefault();fox.keys.u=1;fxKnobFirst(e);return}
+    if(k==='s'||k==='S'||k==='ArrowDown'){e.preventDefault();fox.keys.d=1;fxKnobFirst(e);return}
+    if(k==='a'||k==='A'||k==='ArrowLeft'){e.preventDefault();fox.keys.l=1;fxKnobFirst(e);return}
+    if(k==='d'||k==='D'||k==='ArrowRight'){e.preventDefault();fox.keys.r=1;fxKnobFirst(e);return}
+    if(k==='Enter'){e.preventDefault();foxSwap();return}
+    if(k==='q'||k==='Q'){foxView();return}
+    if(k==='e'||k==='E'){foxSlow();return}
+    if(k==='f'||k==='F'){foxBait();return}
+  });
+  window.addEventListener('keyup',function(e){
+    const k=e.key;
+    if(k==='w'||k==='W'||k==='ArrowUp')fox.keys.u=0;
+    if(k==='s'||k==='S'||k==='ArrowDown')fox.keys.d=0;
+    if(k==='a'||k==='A'||k==='ArrowLeft')fox.keys.l=0;
+    if(k==='d'||k==='D'||k==='ArrowRight')fox.keys.r=0;
+  });
+  const cv=document.getElementById('foxCanvas');
+  if(cv){
+    /* 手指压在场里＝书童往那一点走（每帧跟着手指挪）；点一下不动（240 毫秒内、挪不到 10 像素）＝落手 */
+    const at=function(ev){
+      const r=cv.getBoundingClientRect();
+      if(!r.width||!r.height)return null;
+      return {x:(ev.clientX-r.left)/r.width*FOX_W,y:(ev.clientY-r.top)/r.height*FOX_H};
+    };
+    cv.addEventListener('pointerdown',function(ev){
+      if(!fox.run||fox.over)return;
+      ev.preventDefault();
+      const p=at(ev);
+      if(!p)return;
+      if(fox.helpMs>0){fox.helpMs=0;foxAsk();foxLine();foxHud();return}
+      fox.tapX=p.x;fox.tapY=p.y;
+      fox.pend={t:performance.now(),moved:0};
+      fox.walk.x=p.x;fox.walk.y=p.y;fox.walk.on=1;
+      foxKnobTouch(1);foxNagOff();
+      try{cv.setPointerCapture(ev.pointerId)}catch(e){}
+    });
+    cv.addEventListener('pointermove',function(ev){
+      if(!fox.run||fox.over||!fox.pend)return;
+      const p=at(ev);
+      if(!p)return;
+      fox.pend.moved+=Math.hypot(p.x-fox.tapX,p.y-fox.tapY);
+      fox.tapX=p.x;fox.tapY=p.y;
+      fox.walk.x=p.x;fox.walk.y=p.y;
+      foxKnobTouch(0);
+    });
+    const up=function(){
+      const pd=fox.pend;fox.pend=null;
+      fox.walk.on=0;
+      if(!pd)return;
+      if(pd.moved>=10){foxLine();foxHud();return}
+      if(!fox.run||fox.over)return;
+      if(performance.now()-pd.t<=240)foxGrab(fox.duo?2:0);
+    };
+    cv.addEventListener('pointerup',up);
+    cv.addEventListener('pointercancel',function(){fox.pend=null;fox.walk.on=0});
+    cv.addEventListener('pointerleave',function(){fox.pend=null;fox.walk.on=0});
+  }
+  const hold=function(id,on,off){
+    const b=document.getElementById(id);
+    if(!b||b.dataset.on)return;
+    b.dataset.on='1';
+    const go=function(ev){if(ev&&ev.preventDefault)ev.preventDefault();on()};
+    const stop=function(ev){if(ev&&ev.preventDefault)ev.preventDefault();off()};
+    b.addEventListener('pointerdown',go);
+    b.addEventListener('pointerup',stop);
+    b.addEventListener('pointercancel',stop);
+    b.addEventListener('pointerleave',stop);
+  };
+  hold('foxUpBtn',function(){fox.keys.u=1;fxKnobFirst()},function(){fox.keys.u=0});
+  hold('foxDownBtn',function(){fox.keys.d=1;fxKnobFirst()},function(){fox.keys.d=0});
+  hold('foxLeftBtn',function(){fox.keys.l=1;fxKnobFirst()},function(){fox.keys.l=0});
+  hold('foxRightBtn',function(){fox.keys.r=1;fxKnobFirst()},function(){fox.keys.r=0});
+  const mk=[['foxGrabBtn',function(){foxGrab(fox.duo?2:0)}],
+    ['foxViewBtn',foxView],['foxSlowBtn',foxSlow],['foxBaitBtn',foxBait],['foxSwapBtn',foxSwap],
+    ['foxDuoBtn',function(){fxDuo()}],['foxEndBtn',function(){foxEnd('quit')}],
+    ['foxAgainBtn',function(){foxStart()}],['foxHomeBtn',function(){foxLeave()}]];
+  for(let i=0;i<mk.length;i++){
+    const b=document.getElementById(mk[i][0]);
+    if(b&&!b.dataset.on){b.dataset.on='1';
+      /* 点完按钮把焦点交还出去：不 blur 的话孩子下一次真按 Space/Enter，浏览器会替他把刚点过的那个按钮
+         再点一遍 —— 一记按键同时走两条路，一边落手、一边又把那件场具用掉了 */
+      b.addEventListener('click',function(ev){const t=ev&&ev.currentTarget;if(t&&t.blur)t.blur();mk[i][1]()})}
+  }
+}
+/* 走位这一格算「P1 动了手」：重复触发（按住连发）只算脚下在走，不再重复记账 */
+function fxKnobFirst(e){
+  foxKnobTouch(!e||!e.repeat);
+  foxNagOff();
+}
+function foxHelp(){
+  if(!fox.run)return;
+  fox.helpMs=FOX_HELP_MS;
+  foxxPut('foxAsk','🦊 <b>怎么哄住这只狐</b><br><small>两只钟与两条腿都先停住</small>');
+  foxxSay(
+    '🦊 <b>一句话的道理</b>：场上几张圆牌，就是这个字几笔 —— <b>每一张牌压在这一笔的中段那一格</b>，'+
+    '牌摆成的正是这个字的模样。你要按笔顺一张一张收走；<b>可场里还有一只狐也在读题</b>，它读的是<b>你</b><br>'+
+    '🧠 <b>它怎么挑牌</b>：每张牌打两笔分 —— <b>笔顺先验</b>（差第几笔给 46/26/12/4 分）＋'+
+    '<b>你的走动证据</b>（往前 0.9 秒你朝哪头迈，顶格 '+FOX_EV+' 分，再乘它的<b>疑心</b> '+fox.gull.toFixed(2)+
+    '）。分最高的那张它就是往那儿扑<br>'+
+    '🚶 <b>你手里只有两样</b>：<b>往哪儿走</b>（<code>W</code>/<code>A</code>/<code>S</code>/<code>D</code> 八向、'+
+    '或手指压在场里往那一点走）、<b>哪一刻落手</b>（<code>空格</code>，只认脚边 '+FOX_GRAB+
+    ' 像素内<b>最近</b>那一张）。牌不由你搬、狐不由你赶<br>'+
+    '🎭 <b>骗它</b>：朝<b>不该收</b>那张走，它就扑那张 —— 扑空 +'+FOX_FOOL_BONUS+' 分。'+
+    '但它每被骗一回疑心就打 <b>×'+FOX_GULL_DECAY+'</b>（到 '+FOX_GULL_MIN+' 就基本只信笔顺了），'+
+    '老实收一手才养回来（+'+FOX_GULL_HEAL+'）<br>'+
+    '🥊 <b>虎口夺食</b>：它挑中<b>该收那一张</b>时不会扑空，而是把牌<b>叼回窝</b> —— 贴上它（'+FOX_POUNCE+
+    ' 像素内）就抢下来 +'+FOX_RESCUE_BONUS+'；你 '+FOX_VC+' 像素/秒，它叼着走只有 '+
+    (foxVf(fox.lv)*FOX_CARRY).toFixed(0)+'，追得上。让它拖进窝，这个字就<b>凑不齐了</b>（掉一颗心）<br>'+
+    '👁 <b>抢在同一张上</b>：落手那一刻它正扑这一张 = <b>虎口夺食 ×'+FOX_SNAP_MULT+'</b>；'+
+    '狐离牌 '+FOX_EDGE+' 像素内把这一张拔走 = <b>刀口拔字 ×'+FOX_EDGE_MULT+'</b>；上一收 '+
+    (FOX_TIGHT_MS/1000).toFixed(1)+' 秒内又落手 = <b>顺手收 ×'+FOX_TIGHT_MULT+'</b>；连收两张 <b>+'+FOX_CHAIN_BONUS+'</b><br>'+
+    '🌑 第 3 场起混<b>影牌</b>：那一种笔这个字压根没有、牌面上<b>也没有编号</b>。它<b>骗不了狐</b>'+
+    '（狐读的是笔顺），只会挡在你脚边 —— 落了 −'+FOX_PEN_FAKE+' 分，但路让开了<br>'+
+    '🌫 一张牌在日头底下压过 '+(FOX_STALE/1000).toFixed(0)+' 秒就<b>晒焦</b>，收它只拿七成<br>'+
+    '⏳ 两只罚钟：<b>这一笔的钟</b>（'+(foxQms(fox.lv)/1000).toFixed(0)+' 秒）走光扣 '+FOX_PEN_TIME+
+    ' 分；<b>这一站</b>（'+(foxFuel(fox.lv)/1000).toFixed(0)+' 秒）到点这个字进<b>错字本</b>、掉一颗心<br>'+
+    '✨ <code>Q</code> 看相（把它读到的那张与每张牌的算分掀开）· 🐾 <code>E</code> 轻脚（'+
+    (FOX_SLOW_MS/1000).toFixed(0)+' 秒内你的脚步只算两成二 —— 逼它只按笔顺扑，虎口必定有得夺）· '+
+    '🌾 <code>F</code> 撒糠（糠落脚边，它啄满 '+(FOX_PECK_MS/1000).toFixed(1)+' 秒，谁也咬不着）· '+
+    '🔁 <code>Enter</code> 换字（−'+FOX_PEN_SWAP+' 分、进错字本）· <code>H</code> 看说明<br>'+
+    '👥 点<b>双人</b>：P1 只管脚下走位、P2 只管落手与场具，改完走位 0.42 秒内落手才算<b>合抱</b>','#C8E6C9');
+  foxAsk();foxLine();foxHud();
+}
+/* ---- 开新局、换字之前的整备 ---- */
+function foxStopAll(){
+  foxStopLoop();foxxKillTimers();fox.gen++;
+  if(fox.tagTimer){clearTimeout(fox.tagTimer);fox.tagTimer=0}
+  fox.tagOn=0;
+  fox.load=false;fox.helpMs=0;fox.actMs=0;fox.viewMs=0;fox.slowMs=0;fox.baitMs=0;
+  fox.nagMs=0;fox.nagHold=0;fox.markMs=0;fox.markI=-1;
+  fox.keys.u=0;fox.keys.d=0;fox.keys.l=0;fox.keys.r=0;
+  fox.walk.on=0;fox.pend=null;
+  fox.cards=[];fox.parts=[];fox.gotIdx=[];fox.hist=[];
+  const tg=document.getElementById('foxTag');
+  if(tg)tg.className='fox-tag';
+}
+async function foxNewWord(){
+  if(!fox.run||fox.over)return null;
+  const g=fox.gen,stale=function(){return g!==fox.gen||!fox.run||fox.over};
+  const w=foxWant(fox.lv);
+  const inR=function(){let k=0;for(let i=0;i<fox.pool.length;i++)if(fox.pool[i].n>=w[0]&&fox.pool[i].n<=w[1])k++;return k};
+  if((inR()<3&&fox.thinLv!==fox.lv)||fox.poolWantMore){
+    fox.poolWantMore=false;
+    foxxPut('foxAsk','🔭 正在挑字……<br><small>第 '+fox.lv+' 场要 '+w[0]+'~'+w[1]+
+      ' 张牌、硬抢抢得过、又有一趟险的字</small>');
+    fox.load=true;
+    await foxBuildPool(true,w[0],w[1]);
+    fox.load=false;
+    if(stale())return null;
+    if(inR()<3)fox.thinLv=fox.lv;
+  }
+  let rec=foxPickRec();
+  if(!rec){
+    fox.run=false;
+    foxxPut('foxAsk','😢 挑不出摆得开的字<br><small>先去别的模式练两笔</small>');
+    foxxT(function(){foxEnd('pool')},900);
+    return null;
+  }
+  /* 池里每个字进池前都按三档口径证过；这里再按这一场真正的狐速现场摆一次：
+     这一副摆不开就换一副、影牌塞不下就少塞一张、还摆不开就换一个字 —— 绝不发一张抢不到的牌给孩子 */
+  let cards=foxDeal(rec,fox.lv),rr=0;
+  while(!cards&&rr++<FOX_TRY){
+    const alt=foxPickRec();
+    if(!alt||alt.ch===rec.ch)break;
+    cards=foxDeal(alt,fox.lv);
+    if(cards)rec=alt;
+  }
+  if(!cards){
+    fox.run=false;
+    foxxPut('foxAsk','😢 这片场摆不开<br><small>换个字再来</small>');
+    foxxT(function(){foxEnd('pool')},900);
+    return null;
+  }
+  fox.rec=rec;fox.n=rec.n;
+  fox.cards=cards;fox.gotIdx=[];
+  if(fox.doneCh.indexOf(rec.ch)<0)fox.doneCh.push(rec.ch);
+  fox.pi=0;fox.chain=0;fox.hugW=0;
+  fox.qms=fox.qms0=foxQms(fox.lv);
+  fox.fuel=foxFuel(fox.lv);fox.warn=false;
+  fox.nagMs=0;fox.nagHold=0;fox.helpMs=0;
+  /* 场具的效果不许跨到下一个字：新字一上来轻脚还踩着、糠还撒着，等于偷了孩子一拍 */
+  fox.viewMs=0;fox.slowMs=0;fox.baitMs=0;fox.bait.on=0;fox.peckMs=0;
+  /* 两条腿各回各位：孩子从左下角起步、狐回窝里重新挑 —— 段 B 那道账的锚点 */
+  fox.kid.x=FOX_START.x;fox.kid.y=FOX_START.y;
+  fox.headX=0;fox.headY=0;fox.headOn=0;fox.hist=[];
+  fox.fx=FOX_DEN.x;fox.fy=FOX_DEN.y;fox.fdir=-2.2;
+  fox.fmode='home';fox.ftarget=-1;fox.carry=-1;fox.lockMs=FOX_LOCK;
+  fox.cleanWord=true;fox.dryWord=true;fox.duoHalf=true;
+  fox.parts=[];fox.grabMs=FOX_TIGHT_MS+1;fox.knobMs=FOX_HUG_MS+1;
+  fox.lastTight=0;fox.lastSnap=0;fox.lastEdge=0;fox.lastDust=0;
+  foxMark();
+  foxMini();foxHud();foxMeter();foxLine();foxAsk();foxDraw();
+  return rec;
+}
+async function foxStart(){
+  foxStopAll();
+  const g=fox.gen,stale=function(){return g!==fox.gen||!fox.run||fox.over};
+  fox.run=true;fox.over=false;fox.timers=[];
+  fox.lv=1;fox.score=0;fox.hearts=FOX_HEARTS;fox.combo=0;fox.maxCombo=0;
+  fox.words=0;fox.shots=0;fox.hits=0;fox.wrongs=0;fox.fakes=0;fox.empties=0;
+  fox.timeouts=0;fox.dusts=0;
+  fox.chains=0;fox.chain=0;fox.chainMax=0;
+  fox.fools=0;fox.foolChain=0;fox.foolMax=0;fox.snap=0;fox.edge=0;fox.tights=0;
+  fox.rescued=0;fox.eaten=0;fox.carried=0;
+  fox.tools=0;fox.nags=0;fox.broke=0;
+  fox.viewN=FOX_P0;fox.slowN=FOX_P0;fox.baitN=FOX_P0;fox.swapN=1;
+  fox.viewUse=0;fox.slowUse=0;fox.baitUse=0;fox.swapUse=0;
+  fox.pool=[];fox.miss=[];fox.doneCh=[];fox.rec=null;fox.n=0;fox.cid=0;
+  fox.poolWantMore=false;fox.thinLv=0;
+  fox.t=0;fox.playMs=0;fox.tones=0;fox.hudAcc=0;fox.newBest=false;
+  fox.qms0=foxQms(1);fox.qms=fox.qms0;fox.fuel=foxFuel(1);fox.warn=false;
+  fox.gull=FOX_GULL0;fox.nagTip='';
+  fox.duo=false;fox.duoCut=0;fox.duoHalf=true;fox.duoP1=0;fox.duoP2=0;fox.hug=0;fox.hugW=0;fox.hugTell='';
+  fox.knobMs=FOX_HUG_MS+1;fox.grabMs=FOX_TIGHT_MS+1;
+  fox.markForce=0;fox.markI=-1;fox.markMs=0;
+  fox.miss=(localStorage.getItem('hz_fox_miss')||'').split(',').filter(function(c){return c.length===1});
+  fox.gotCh=(localStorage.getItem('hz_fox_book')||'').split(',').filter(function(c){return c.length===1});
+  fox.got0=fox.gotCh.length;
+  foxMini();foxCapLine();
+  showScreen('fox');
+  foxBind();foxCanvasSize();
+  foxPanels();
+  const fd=document.getElementById('foxField');
+  if(fd)fd.classList.remove('dead');
+  foxHud();foxMeter();foxLine();
+  const d=document.getElementById('foxDuoBtn');
+  if(d){d.textContent='👥 双人';d.classList.remove('on')}
+  foxxSay('🦊 <b>场上几张圆牌就是这个字几笔，牌摆成的正是这个字的模样</b>：按笔顺一张一张收走<br>'+
+    '🧠 <b>可这只狐也在读题，它读的是你</b>：每张牌打「笔顺先验 46/26/12/4 分」＋「你这几秒朝哪头迈，顶格 '+
+    FOX_EV+' 分 × 疑心」—— 分最高的那张它就往那儿扑<br>'+
+    '🎯 <b>你只有两样</b>：<b>往哪儿走</b>（<code>W</code><code>A</code><code>S</code><code>D</code> 八向，'+
+    '或手指压在场里）、<b>哪一刻落手</b>（<code>空格</code>，只认脚边最近那张）<br>'+
+    '🎭 朝不该收那张走就骗得动它（扑空 +'+FOX_FOOL_BONUS+'），但骗多了它就不信你的脚步；'+
+    '它叼走<b>该收</b>那一张时贴上它就抢下来（你比它快）—— 让它进窝这个字就废了<br>'+
+    '🌑 第 3 场起混<b>影牌</b>：这个字没有那一种笔、牌面上也没有编号，它骗不了狐<br>'+
+    '✨ <code>Q</code> 看相 · 🐾 <code>E</code> 轻脚 · 🌾 <code>F</code> 撒糠 · 🔁 <code>Enter</code> 换字 · <code>H</code> 看说明<br>'+
+    '👥 点<b>双人</b>：P1 只管走位、P2 只管落手，改完走位 0.42 秒内落手才算<b>合抱</b>','#C8E6C9');
+  foxxPut('foxAsk','🦊 正在给这片场摆牌……<br><small>在字库里找「硬抢抢得过、又有一趟险」的字</small>');
+  let ok=await foxBuildPool();
+  if(stale())return;
+  if(!ok){
+    foxxPut('foxAsk','🦊 场上还没摆好牌……<br><small>多等一记</small>');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await foxBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!fox.pool.length){
+    fox.run=false;
+    foxxPut('foxAsk','😢 字库没加载好<br><small>稍后再来夺字</small>');
+    foxxSay('先去别的模式练两笔，回来字就齐了','#FFF59D');
+    return;
+  }
+  foxAud('start');
+  foxxAdd('hz_fox_games',1);
+  await foxNewWord();
+  if(!fox.rec||!fox.rec.n||!fox.run||fox.over||stale()){
+    fox.run=false;
+    foxxPut('foxAsk','😢 这片场没开字<br><small>稍后再来夺字</small>');
+    return;
+  }
+  foxStartLoop();
+}
+function foxLeave(){
+  foxStopAll();
+  if(fox.run&&!fox.over){foxBank();fox.over=true;fox.run=false}
+  const fd=document.getElementById('foxField');
+  if(fox.over&&fd)fd.classList.add('dead');
+  goHome();
+}
+function foxAgain(){foxStart()}
+function foxCanvasSize(){
+  const cv=document.getElementById('foxCanvas');
+  if(!cv)return;
+  cv.width=FOX_W;cv.height=FOX_H;
+  fox.ctx=cv.getContext?cv.getContext('2d'):null;
+}
+
+/* ================= 段 F：结算与落盘 · 场边家什架（与别处的徽章、图鉴、小兽互通） ================= */
+/* hz_fox_* 的分工：一堆累计计数键（收完字数/落对/落错/白落/影牌/晒焦收走/看相/轻脚/撒糠/换字/连收/顺手/虎口/刀口/
+   骗成/夺回/被叼/被吃/发呆/到点/合抱/单人局/双人开局/零错字）
+   + 几个 max 键（最好一场分数/最长连击/最深一场/最长连收/最多骗成一串/最多合抱）
+   + 一个 avg 键（平均每落一手多少毫秒，越小越熟）
+   + 三个名单键（图鉴 hz_fox_book · 错字本 hz_fox_miss · 家什架 hz_fox_shelf）。
+   称号读累计收完字数 hz_fox_words，不是「最好一场」那个。 */
+function foxAud(kind){
+  if(kind==='start'){foxxTone(392,.06,'triangle',.025);return}
+  if(kind==='ok'){foxxTone(FOX_NOTE[Math.min(10,2+fox.combo)],.09,'triangle',.04);return}
+  if(kind==='bad'){foxxTone(150,.18,'sawtooth',.05);return}
+  if(kind==='word'){foxxTone(659,.1,'triangle',.045);foxxTone(880,.12,'triangle',.03);return}
+}
+function foxMissAdd(ch){
+  if(!ch)return;
+  if(fox.miss.indexOf(ch)<0){
+    fox.miss.push(ch);
+    localStorage.setItem('hz_fox_miss',fox.miss.slice(0,FOX_BOOK_MAX).join(','));
+  }
+}
+function foxBookAdd(ch){
+  if(!ch||fox.gotCh.indexOf(ch)>=0)return;
+  fox.gotCh.push(ch);
+  localStorage.setItem('hz_fox_book',fox.gotCh.slice(0,FOX_BOOK_MAX).join(','));
+}
+/* ---- 场边家什架：八件家什，每一件都要真做到过才上架（第八件认别处打来的章节徽章） ---- */
+const FOX_SHELF=[
+  {k:'草帽',d:'收完第一个字',ok:function(){return foxxInt('hz_fox_words')>=1}},
+  {k:'铃铛',d:'打到第 3 场',ok:function(){return foxxInt('hz_fox_lv')>=3}},
+  {k:'假脚印',d:'骗成狐 5 回',ok:function(){return foxxInt('hz_fox_fools')>=5}},
+  {k:'火钳',d:'从狐嘴里夺回 3 张',ok:function(){return foxxInt('hz_fox_rescues')>=3}},
+  {k:'糠袋',d:'撒糠 3 回',ok:function(){return foxxInt('hz_fox_baits')>=3}},
+  {k:'单片镜',d:'看相 4 次',ok:function(){return foxxInt('hz_fox_views')>=4}},
+  {k:'软底鞋',d:'轻脚 3 回',ok:function(){return foxxInt('hz_fox_slows')>=3}},
+  {k:'狐佩',d:'别处的章节徽章攒到 3 枚',ok:function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}}}
+];
+function foxShelfCheck(){
+  const have=(localStorage.getItem('hz_fox_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  for(let i=0;i<FOX_SHELF.length;i++){
+    const s=FOX_SHELF[i];
+    if(have.indexOf(s.k)<0&&s.ok()){have.push(s.k);got.push(s.k)}
+  }
+  localStorage.setItem('hz_fox_shelf',have.join(','));
+  localStorage.setItem('hz_fox_trophy',String(have.length));
+  if(got.length){
+    localStorage.setItem('hz_fox_trophy_n',String(foxxInt('hz_fox_trophy_n')+got.length));
+    foxxSay('🗄️ 家什架上多了 <b>'+got.join('、')+'</b>（一共 '+have.length+'/'+FOX_SHELF.length+' 件）','#FFE0B2');
+  }
+  return {have:have,got:got};
+}
+function foxBankLite(){
+  /* 收完一个字当场就把纪录存进去了。这一场最后若是「平着自己破的纪录」，
+     结算那行还得给孩子挂上「新高」——所以破过就得留个记号，不能让孩子看不见自己刚破的纪录 */
+  if(fox.score>foxxInt('hz_fox_best')){localStorage.setItem('hz_fox_best',String(fox.score));fox.newBest=true}
+  if(fox.maxCombo>foxxInt('hz_fox_combo'))localStorage.setItem('hz_fox_combo',String(fox.maxCombo));
+  if(fox.lv>foxxInt('hz_fox_lv'))localStorage.setItem('hz_fox_lv',String(fox.lv));
+  if(fox.chainMax>foxxInt('hz_fox_chainmax'))localStorage.setItem('hz_fox_chainmax',String(fox.chainMax));
+  foxShelfCheck();
+}
+function foxBank(){
+  /* newBest 是「这一场中途已经把纪录写进去了」的记号：分数只涨到那儿、结算时正好持平，
+     那也是孩子破的纪录，得照样挂「新高」。但这一场后来又掉了分，就不算破，也绝不许把纪录往下改 */
+  const best=foxxInt('hz_fox_best'),isBest=fox.score>best||(fox.newBest===true&&fox.score===best);
+  if(isBest)localStorage.setItem('hz_fox_best',String(fox.score));
+  if(fox.maxCombo>foxxInt('hz_fox_combo'))localStorage.setItem('hz_fox_combo',String(fox.maxCombo));
+  if(fox.lv>foxxInt('hz_fox_lv'))localStorage.setItem('hz_fox_lv',String(fox.lv));
+  if(fox.chainMax>foxxInt('hz_fox_chainmax'))localStorage.setItem('hz_fox_chainmax',String(fox.chainMax));
+  if(fox.foolMax>foxxInt('hz_fox_foolmax'))localStorage.setItem('hz_fox_foolmax',String(fox.foolMax));
+  if(fox.hug>foxxInt('hz_fox_duomax'))localStorage.setItem('hz_fox_duomax',String(fox.hug));
+  if(fox.hits){
+    const per=Math.round(fox.playMs/fox.hits);
+    if(!foxxInt('hz_fox_fastest')||per<foxxInt('hz_fox_fastest'))localStorage.setItem('hz_fox_fastest',String(per));
+  }
+  foxxAdd('hz_fox_words',fox.words);
+  foxxAdd('hz_fox_hits',fox.hits);
+  foxxAdd('hz_fox_shots',fox.shots);
+  foxxAdd('hz_fox_wrongs',fox.wrongs);
+  foxxAdd('hz_fox_timeouts',fox.timeouts);
+  foxxAdd('hz_fox_fakes',fox.fakes);
+  foxxAdd('hz_fox_empties',fox.empties);
+  foxxAdd('hz_fox_dusts',fox.dusts);
+  foxxAdd('hz_fox_views',fox.viewUse);
+  foxxAdd('hz_fox_slows',fox.slowUse);
+  foxxAdd('hz_fox_baits',fox.baitUse);
+  foxxAdd('hz_fox_swaps',fox.swapUse);
+  foxxAdd('hz_fox_chains',fox.chains);
+  foxxAdd('hz_fox_tights',fox.tights);
+  foxxAdd('hz_fox_snaps',fox.snap);
+  foxxAdd('hz_fox_edges',fox.edge);
+  foxxAdd('hz_fox_fools',fox.fools);
+  foxxAdd('hz_fox_rescues',fox.rescued);
+  foxxAdd('hz_fox_carried',fox.carried);
+  foxxAdd('hz_fox_eaten',fox.eaten);
+  foxxAdd('hz_fox_tools',fox.tools);
+  foxxAdd('hz_fox_nags',fox.nags);
+  foxxAdd('hz_fox_broke',fox.broke);
+  foxxAdd('hz_fox_hug',fox.hug);
+  if(fox.duo)foxxAdd('hz_fox_duos',1);
+  const sf=foxShelfCheck();
+  return {best:Math.max(best,fox.score),isBest:isBest,
+    shelf:Math.min(FOX_SHELF.length,(localStorage.getItem('hz_fox_shelf')||'').split(',').filter(function(s){return s}).length),
+    got:sf.got};
+}
+/* 结算那一句「下一步该改哪儿」：先按死因说，死因之外再按最扎手的那个毛病说 */
+function foxWhyTxt(why,acc,hit){
+  if(why==='broke')return '💔 <b>心掉完了</b>：这座场有两处掉心 —— <b>落错</b>（脚边最近那张不是该收那一笔）和'+
+    '<b>被叼进窝</b>（狐咬着该收那一张拖回了窝）。'+
+    (fox.eaten?'这一场被吃进窝 <b>'+fox.eaten+'</b> 回：它挑中的正是<b>该收那一张</b>时不会扑空，'+
+      '而是直接叼走 —— <b>一看见它扑这一张</b>，要么贴上它抢（+'+FOX_RESCUE_BONUS+'），'+
+      '要么 🐾 轻脚、🌾 撒糠把它引开，别让它咬着就走':
+      (fox.wrongs?'这一场落错 <b>'+fox.wrongs+'</b> 次：落手只认<b>脚边最近</b>那一张，'+
+        '想收哪一张就得<b>先走到那张上</b>再按':''))+
+    (fox.empties?'；落空 '+fox.empties+' 回说明手比脚快 —— 踩到 '+FOX_GRAB+' 像素内才落得手':'');
+  if(why==='eaten')return '🦊 <b>心都让狐叼进窝了</b>：这一场被吃了 <b>'+fox.eaten+'</b> 回。'+
+    '它挑中<b>该收那一张</b>就绝不扑空，直接往窝拖 —— 这一坊的规矩是<b>贴上去就抢得下来</b>（'+FOX_POUNCE+
+    ' 像素内）：你 '+FOX_VC+' 像素/秒，它叼着走只有 '+(foxVf(fox.lv)*FOX_CARRY).toFixed(0)+
+    '。看见「还有 N 秒它就咬到」那根钟走了底，就别绕远路了';
+  if(why==='fuel')return '🛑 <b>这一站到点了</b>：'+(fox.eaten?'这一场被叼走 <b>'+fox.eaten+
+    '</b> 张 —— ':'')+'这一坊掉分最狠的地方是<b>站着想</b>：它每愣一回、每回一趟窝都要重新挑一张，'+
+    '你越不动它越有余裕。口诀是<b>先踩住该收那张，再用走位骗它</b> —— 脚下有目的，算盘才骗得住';
+  if(why==='pool')return '😢 <b>字没凑齐</b>：这一坊要的是「牌摆得开、<b>硬抢抢得过</b>、又至少有一趟险」的字，'+
+    '道岔账算不过的字压根不进池，网络一断就挑不出来，回头再来';
+  if(fox.eaten>=2)return '🦊 <b>被叼走 '+fox.eaten+' 张</b>：它挑中该收那一张时你只有两条路 —— '+
+    '<b>贴上它抢</b>（嘴里只跑 '+(foxVf(fox.lv)*FOX_CARRY).toFixed(0)+' 像素/秒，你比它快 '+
+    (FOX_VC/(foxVf(fox.lv)*FOX_CARRY)).toFixed(2)+' 倍），或者趁它<b>还在半路</b>就先把手边该收那张落掉';
+  if(fox.wrongs>=3)return '🎯 <b>落错 '+fox.wrongs+' 次</b>：落手只认<b>脚边最近</b>那一张 —— '+
+    '该收那张在远处，就得先走过去踩住；站在两张牌中间，落的是<b>更近</b>那一张';
+  if(fox.fakes>=3)return '🌑 <b>落了 '+fox.fakes+' 张影牌</b>：那一种笔这个字压根没有、牌面上<b>也没有编号</b>。'+
+    '它<b>骗不了狐</b>（狐读的是笔顺），只会挡在你脚边 —— 认出破绽再落，或干脆让它挡着、从别处绕';
+  if(fox.empties>=4)return '💧 <b>落空 '+fox.empties+' 回</b>：脚边 '+FOX_GRAB+' 像素内没牌也能按，按了就是 −'+
+    FOX_PEN_EMPTY+' 分 —— 书童<b>踩到牌上</b>才落得手';
+  if(fox.dusts>=3)return '🌫 <b>晒焦了还收 '+fox.dusts+' 张</b>：压过 '+(FOX_STALE/1000).toFixed(0)+
+    ' 秒只拿七成 —— 该收的那一张<b>别绕远路</b>，最近的先落';
+  if(fox.fools&&fox.gull<=FOX_GULL_MIN+.01)return '🎭 <b>骗术用过了头</b>（疑心只剩 '+fox.gull.toFixed(2)+
+    '）：它现在几乎只信笔顺 —— 这一阵别指望假动作，<b>老实按笔顺抢时间</b>，收一手养 '+FOX_GULL_HEAL;
+  if(!acc)return '🦊 <b>这一场一手没落</b>：狐每回一趟窝就重新挑一张 —— <b>先走到该收那张上踩住</b>，'+
+    '看准「还有 N 秒它就咬到」那根钟，再按<code>空格</code>';
+  return '🦊 手感不错：'+acc+' 手里 <b>'+hit+'%</b> 落在对的牌上，最长连 '+fox.maxCombo+'、连收 '+fox.chainMax+
+    '、骗成 '+fox.fools+' 回、虎口夺食 '+fox.snap+' 记、夺回 '+fox.rescued+' 张 —— 下一场狐更快、影牌更多、'+
+    '编号也淡了，试试一件家什不用收完一个字';
+}
+function foxEnd(why){
+  if(fox.over)return;
+  fox.over=true;
+  foxStopLoop();foxxKillTimers();
+  fox.run=false;fox.load=false;
+  fox.keys.u=0;fox.keys.d=0;fox.keys.l=0;fox.keys.r=0;
+  fox.walk.on=0;fox.pend=null;
+  fox.parts=[];
+  const tg=document.getElementById('foxTag');if(tg)tg.className='fox-tag';
+  if(fox.tagTimer){clearTimeout(fox.tagTimer);fox.tagTimer=0}
+  fox.tagOn=0;
+  const fd=document.getElementById('foxField');if(fd)fd.classList.add('dead');
+  /* 心掉完、被吃进窝都算「这个字没收下」；被吃已经在 foxEaten 里进过错字本了，别记两遍 */
+  if(why==='broke'&&fox.rec&&fox.pi<fox.n)foxMissAdd(fox.rec.ch);
+  const bk=foxBank(),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(fox.score/14)+fox.words*2);
+  if(why!=='pool')addStars(stars);
+  showScreen('fox-result');
+  foxxPut('foxRsEmoji',{quit:'🏳️',fuel:'🛑',broke:'💔',eaten:'🦊',pool:'😢'}[why]||'🎯');
+  foxxPut('foxRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  foxxPut('foxRsTitle',why==='broke'?'心掉完了':(why==='eaten'?'心让狐叼进窝了':
+    (why==='fuel'?'这一站到点了':(why==='quit'?'这一场先收了':'字没凑齐'))));
+  const tot=foxxInt('hz_fox_words'),rk=foxxRank(tot);
+  foxxPut('foxRsSub','第 '+fox.lv+' 场 · 累计收完 '+tot+' 个字 · '+rk.e+' '+rk.t);
+  foxxPut('foxRsScore','🎯 '+fox.score+' 分'+(isBest?' 🏅 新高':''));
+  foxxPut('foxRsWords','🦊 收完 '+fox.words+' 个字 · 落 '+fox.shots+' 手');
+  foxxPut('foxRsShots','🎯 对上 '+fox.hits+' 张 · 落错 '+fox.wrongs+' 次');
+  foxxPut('foxRsSub2','⌛ 钟响 '+fox.timeouts+' · 落空 '+fox.empties+' · 影牌 '+fox.fakes);
+  foxxPut('foxRsFool','🎭 骗成 '+fox.fools+' 回（一串最长 '+fox.foolMax+'）· 疑心落到 '+fox.gull.toFixed(2));
+  foxxPut('foxRsSnap','🥊 虎口夺食 '+fox.snap+' 记 · 刀口拔字 '+fox.edge+' 次 · 顺手收 '+fox.tights+
+    ' · 连收 '+fox.chains+' 回（最长一串 '+fox.chainMax+'）· 零错 '+foxxInt('hz_fox_cleanw')+' 个字');
+  foxxPut('foxRsCarry','🦊 被叼 '+fox.carried+' 张 · 夺回 '+fox.rescued+' 张 · 进窝 '+fox.eaten+
+    ' 次 · 🌫 晒焦收走 '+fox.dusts+' 张');
+  foxxPut('foxRsTools','🔭 看相 '+fox.viewUse+' · 🐾 轻脚 '+fox.slowUse+' · 🌾 撒糠 '+fox.baitUse+
+    ' · 🔁 换字 '+fox.swapUse+' · 家什共 '+fox.tools+' 次');
+  foxxPut('foxRsDuo',fox.duo?'👥 合抱 '+fox.hug+' 记 · 一个人把两样都干了 '+fox.duoCut+' 次（一个字里合抱上过另加 '+FOX_DUO_BONUS+'）':
+    '👤 单人夺：'+(fox.hits?'平均落一手 '+(Math.round(fox.playMs/fox.hits/100)/10)+' 秒':'这一场一手没落，说不上快慢')+' —— 想让同伴只管落手，点 <b>双人</b>');
+  foxxPut('foxRsBest','🏆 最高 '+best+' 分 · ⚡ 最熟手 '+(foxxInt('hz_fox_fastest')||'—')+' 毫秒/手 · 🔥 最长连 '+fox.maxCombo);
+  const book=(localStorage.getItem('hz_fox_book')||'').split(',').filter(function(c){return c.length===1});
+  const miss=fox.miss.slice();
+  /* gotCh 开局就装着架上原有的字：「这一场新收几个」得从那一刻减起，不然架上 12 个字时孩子会看到「新收 12 个」 */
+  const newGot=fox.gotCh.length-fox.got0;
+  foxxPut('foxRsBook','架上 <b>'+book.length+'</b> 个字'+(book.length?'<small>（'+book.slice(-14).join(' ')+'）</small>':'')+
+    (newGot>0?'，这一场新收 '+newGot+' 个':'')+
+    ' · 家什架 <b>'+bk.shelf+'/'+FOX_SHELF.length+'</b> 件（'+(localStorage.getItem('hz_fox_shelf')||'—')+'）'+
+    (bk.got.length?'<b>，新上架：'+bk.got.join('、')+'</b>':'')+
+    ' · 错字本 <b>'+miss.length+'</b> 个'+(miss.length?'（'+miss.slice(-12).join(' ')+'，过几轮优先还回来）':'')+
+    '<br>⭐ 这 '+stars+' 颗星已经喂给<b>书桌小兽</b>；收完的字也进了它的记忆池'+
+    (JSON.parse((function(){try{return localStorage.getItem('hz_badges')||'[]'}catch(e){return '[]'}})()).length?
+      ' · 你在<b>大冒险</b>里攒的章节徽章也被这间坊认了（家什架上的狐佩就是这么来的）':''));
+  const acc=fox.hits+fox.wrongs;
+  const hit=acc?Math.round(fox.hits/acc*100):0;
+  foxxPut('foxRsWhy',foxWhyTxt(why,acc,hit));
+  foxxSay('🦊 这一场收了 <b>'+fox.words+'</b> 个字、落 <b>'+fox.shots+'</b> 手、对上 <b>'+fox.hits+'</b> 张'+
+    '（落错 <b>'+fox.wrongs+'</b>、钟响 <b>'+fox.timeouts+'</b>、落空 <b>'+fox.empties+'</b>、影牌 <b>'+fox.fakes+
+    '</b>、晒焦收走 <b>'+fox.dusts+'</b>、骗成 <b>'+fox.fools+'</b> 回、虎口 <b>'+fox.snap+'</b> 记、刀口 <b>'+fox.edge+
+    '</b> 次、夺回 <b>'+fox.rescued+'</b> 张、被叼 <b>'+fox.carried+'</b> 张、进窝 <b>'+fox.eaten+'</b> 次、连收 <b>'+fox.chains+
+    '</b> 回、顺手 <b>'+fox.tights+'</b>、看相 <b>'+fox.viewUse+'</b>、轻脚 <b>'+fox.slowUse+'</b>、撒糠 <b>'+fox.baitUse+
+    '</b>、换字 <b>'+fox.swapUse+'</b> 回）'+(fox.duo?'，合抱 <b>'+fox.hug+'</b> 记、一个人转 <b>'+fox.duoCut+'</b> 次':'')+
+    '。<br>战绩落盘 <code>hz_fox_*</code>：称号按<b>累计收完的字数</b>走，家什架 <b>'+bk.shelf+'/'+FOX_SHELF.length+
+    '</b> 件（<b>狐佩</b>认的是你在<b>大冒险</b>里打到的章节徽章），错字本里的字 <b>过几轮优先还回来</b>','#C8E6C9');
+  foxNudge();
+}
+function foxNudge(){
+  const dot=document.getElementById('foxCardDot'),tip=document.getElementById('foxCardTip');
+  const tot=foxxInt('hz_fox_words'),games=foxxInt('hz_fox_games'),hits=foxxInt('hz_fox_hits');
+  const rk=foxxRank(tot),shelf=foxxInt('hz_fox_trophy');
+  if(tip)tip.textContent=games?(rk.e+' '+rk.t+' · 收完 '+tot+' 个字 · 对上 '+hits+' 张 · 落错 '+foxxInt('hz_fox_wrongs')+
+    ' 次 · 骗成 '+foxxInt('hz_fox_fools')+' 回 · 被吃 '+foxxInt('hz_fox_eaten')+' 次 · 家什架 '+shelf+' 件'):
+    '场上几张圆牌就是这个字几笔，牌摆成的正是这个字的模样：按笔顺一张张收走 —— 可这只狐也在读题，它读的是你的脚步';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(games?'':'🆕')}
+}
+
+/* ================= 段 G：把这一坊的凭据拿另一条路再算一遍（只读，不许碰场上任何东西） ================= */
+/* 这一坊敢开给孩子，靠的是四句死话：① 它挑哪张牌这件事算得出、也读得准（孩子看得见的那张＝它真扑的那张）
+   ② 孩子按笔顺走直线，每一趟都比狐先到（段 B 的道岔账）③ 发到手这副牌摆得开、认得出、影牌骗不了它
+   ④ 两条腿都是走过去的、不是瞬移的；那 0.9 秒的脚印窗会自己往前滑。
+   段 B/段 C 各写了一遍①②；这里用另一种写法（另一条时间轴、另一种循环方向、另一种并列处理）再算一遍，
+   两边对不上，这套凭据就当场作废 —— 探针读的全是这一段算出来的数，绝不改任何一个量。*/
+/* ---- ① 它的算盘：另一种写法 ---- */
+/* 证据：另一头写（自己开平方、自己算余弦、折距离衰减用的是「先减再夹」而不是 Math.max）*/
+function foxAudEvid(c){
+  const h=fox.hist,n=h.length;
+  if(n<2)return 0;
+  const a=h[0];
+  const wx=fox.kid.x-a.x,wy=fox.kid.y-a.y;
+  const L=Math.sqrt(wx*wx+wy*wy);
+  if(L<FOX_MIN_STEP)return 0;
+  const tx=c.x-fox.kid.x,ty=c.y-fox.kid.y;
+  const D=Math.sqrt(tx*tx+ty*ty);
+  if(D<1)return FOX_EV;
+  const cos=(wx*tx+wy*ty)/(L*D);
+  const r=1-D/FOX_EV_RANGE;
+  return FOX_EV*cos*(r<0?0:r);
+}
+/* 先验：拿表下标去取，而不是把三层三目套下去（d<0 或 d>2 都归最后那一档）*/
+function foxAudPri(i){
+  const P=[FOX_PRI0,FOX_PRI1,FOX_PRI2,FOX_PRI3];
+  const d=i-fox.pi;
+  return (d>=0&&d<=2)?P[d]:P[3];
+}
+/* 疑心折在证据里（产品那行是折在系数上：gull*0.22 再乘证据，这里是证据先乘 0.22 再乘 gull —— 结合次序不同）*/
+function foxAudSus(c){
+  const ev=foxAudEvid(c);
+  return foxAudPri(c.i)+fox.gull*(fox.slowMs>0?ev*FOX_SLOW_W:ev);
+}
+/* 挑一张：倒着扫一遍拿最高分，把「分差小到分不开」的那些全捞出来，再按离书童近、编号小两条老规矩挑 ——
+   和段 C 那条「顺着扫、边走边比」的写法不是同一条路 */
+function foxAudBelief(){
+  const out={n:0,id:-1,agree:1,top:0,second:-999,gap:0,tie:0,baitskip:0};
+  if(fox.bait.on){out.baitskip=1;out.agree=foxBelief()===null?1:0;return out}
+  const s=[];
+  for(let i=fox.cards.length-1;i>=0;i--){
+    const c=fox.cards[i];
+    if(c.fake||c.got||c.taken)continue;
+    s.push({id:c.id,i:c.i,as:foxAudSus(c)});
+  }
+  out.n=s.length;
+  if(!s.length)return out;
+  let top=s[0].as;
+  for(let i=1;i<s.length;i++)if(s[i].as>top)top=s[i].as;
+  let cand=[];
+  for(let i=0;i<s.length;i++)if(top-s[i].as<=1e-7)cand.push(s[i]);
+  if(cand.length>1)out.tie=1;
+  let my=cand[0];
+  for(let i=1;i<cand.length;i++){
+    const ca=foxCardById(cand[i].id),cm=foxCardById(my.id);
+    if(!ca||!cm)continue;
+    const di=foxxDist(fox.kid.x,fox.kid.y,ca.x,ca.y);
+    const dm=foxxDist(fox.kid.x,fox.kid.y,cm.x,cm.y);
+    if(di<dm-1e-9)my=cand[i];
+    else if(Math.abs(di-dm)<=1e-9&&cand[i].i<my.i)my=cand[i];
+  }
+  for(let i=0;i<s.length;i++)if(s[i].id!==my.id&&s[i].as>out.second)out.second=s[i].as;
+  out.top=my.as;out.id=my.id;
+  const prod=foxBelief();
+  if(!prod){out.agree=0;out.gap=-999;return out}
+  out.agree=prod.id===my.id?1:0;
+  /* 不一致时给个能看的数：我这条算式里，产品挑的那张比我这头挑的高多少（负得多了才是真错）*/
+  const pc=foxCardById(prod.id);
+  out.gap=pc?(foxAudSus(pc)-my.as):0;
+  return out;
+}
+/* ---- ② 道岔账：换成绝对时间轴再累一遍（段 B 是一趟一趟求差，这里先把两条腿各自的时刻表拉出来再相减）---- */
+function foxAudRace(a,vf){
+  const n=a.length;
+  const A=[],B=[],slack=[];
+  let t=0,px=FOX_START.x,py=FOX_START.y;
+  for(let i=0;i<n;i++){
+    const dx=a[i].x-px,dy=a[i].y-py;
+    t+=Math.sqrt(dx*dx+dy*dy)/FOX_VC*1000;
+    A.push(t);px=a[i].x;py=a[i].y;
+  }
+  let prev=0,min=1e9,max=-1e9,dmax=0;
+  for(let i=0;i<n;i++){
+    const dx=a[i].x-FOX_DEN.x,dy=a[i].y-FOX_DEN.y;
+    const leg=Math.sqrt(dx*dx+dy*dy)/vf*1000;
+    B.push(prev+FOX_LOCK+leg);
+    const s=B[i]-A[i];
+    slack.push(s);
+    if(s<min)min=s;
+    if(s>max)max=s;
+    prev=A[i];
+  }
+  /* 和段 B 那条路逐趟对表：两条路算出来的同一趟净胜差得不到的毫秒数（浮点结合次序差） */
+  const r=foxRace(a,vf);
+  for(let i=0;i<n;i++)dmax=Math.max(dmax,Math.abs(slack[i]-r.slack[i]));
+  return {slack:slack,min:min,max:max,drift:dmax,
+    safe:foxSafePts(a),sep:foxMinSep(a),
+    witness:(foxSafePts(a)&&foxMinSep(a)>=FOX_SEP_MIN&&min>=FOX_MARGIN&&min<=FOX_TIGHT_RACE)?1:0};
+}
+/* ---- ③ 发到手这一副牌的形状账：编号不重不漏、笔形与字对得上、影牌压根不是这个字的笔 ---- */
+function foxAudHand(lv){
+  const out={ok:1,why:'',nReal:0,nFake:0,dup:0,miss:0,baddir:0,pathless:0,
+    fakeDir:0,fakePath:0,outPad:0,minSep:1e9,raceMin:0,raceDrift:0,raceWit:0};
+  const rec=fox.rec;
+  if(!rec){out.ok=0;out.why='no-rec';return out}
+  const L=lv||fox.lv;
+  const real=[],ids={};
+  for(let i=0;i<fox.cards.length;i++){
+    const c=fox.cards[i];
+    if(c.fake){
+      out.nFake++;
+      if(c.i!==-1)out.fakeDir++;
+      if(c.path)out.fakePath++;
+      if(rec.dirs.indexOf(c.dir)>=0)out.fakeDir++;   /* 影牌用的笔形必须是这个字没有的那一种 */
+      continue;
+    }
+    out.nReal++;
+    if(ids[c.i])out.dup++;
+    ids[c.i]=1;
+    if(c.i<0||c.i>=rec.n)out.miss++;
+    if(rec.dirs[c.i]!==c.dir)out.baddir++;
+    if(!c.path||c.path.length<2)out.pathless++;
+    real.push(c);
+    if(c.x<FOX_PAD.x0-1||c.x>FOX_PAD.x1+1||c.y<FOX_PAD.y0-1||c.y>FOX_PAD.y1+1)out.outPad++;
+  }
+  if(out.nReal!==rec.n)out.miss++;
+  for(let i=0;i<rec.n;i++)if(!ids[i])out.miss++;
+  if(out.nFake>foxFake(L))out.fakeDir++;
+  for(let i=0;i<fox.cards.length;i++)for(let j=i+1;j<fox.cards.length;j++)
+    out.minSep=Math.min(out.minSep,foxxDist(fox.cards[i].x,fox.cards[i].y,fox.cards[j].x,fox.cards[j].y));
+  /* 这一场真正生效的那条道岔账：拿发到手上的真牌位置、这一场的狐速重算一遍 */
+  if(real.length===rec.n){
+    const pts=[];
+    for(let i=0;i<real.length;i++)pts.push({x:real[i].x,y:real[i].y});
+    const ar=foxAudRace(pts,foxVf(L));
+    out.raceMin=ar.min;out.raceDrift=ar.drift;out.raceWit=ar.witness;
+    if(ar.drift>1)out.ok=0;                            /* 两条路连净胜都算不到一块去，凭据就作废 */
+    if(!ar.witness)out.ok=0;
+    if(ar.safe&&ar.sep<FOX_SEP_MIN)out.ok=0;
+  }
+  const bad=out.dup+out.miss+out.baddir+out.pathless+out.fakeDir+out.fakePath+out.outPad;
+  if(bad)out.ok=0;
+  if(!out.ok&&!out.why)out.why='dup='+out.dup+' miss='+out.miss+' baddir='+out.baddir+' pathless='+out.pathless+
+    ' fakeDir='+out.fakeDir+' fakePath='+out.fakePath+' outPad='+out.outPad+
+    ' raceWit='+out.raceWit+' raceMin='+out.raceMin.toFixed(0)+' drift='+out.raceDrift.toFixed(3)+
+    ' minSep='+(out.minSep===1e9?'-':out.minSep.toFixed(1));
+  return out;
+}
+/* ---- ④ 脚印窗：这段窗口的长度与「会不会自己往前滑」是探针逐帧读出来的；这里只把当下的量交出去 ---- */
+function foxAudHist(){
+  const h=fox.hist;
+  if(h.length<2)return {n:h.length,span:0,head:0,sorted:1,inside:1};
+  let span=fox.t-h[0].t,sorted=1,inside=1;
+  for(let i=1;i<h.length;i++){
+    if(h[i].t<h[i-1].t)sorted=0;
+    if(fox.t-h[i].t>FOX_LOOK+1)inside=0;
+  }
+  if(span>FOX_LOOK+1)inside=0;
+  return {n:h.length,span:span,head:fox.t-h[0].t,sorted:sorted,inside:inside};
+}
+/* ---- 只读快照：探针要看的、要比的全从这一个口子出去（light 只带两条腿与时钟，够逐帧连续性用）---- */
+function foxSnap(light){
+  const s={
+    run:fox.run,over:fox.over,load:fox.load,gen:fox.gen,t:fox.t,playMs:fox.playMs,
+    lv:fox.lv,pi:fox.pi,n:fox.n,ch:fox.rec?fox.rec.ch:'',
+    kidx:fox.kid.x,kidy:fox.kid.y,fx:fox.fx,fy:fox.fy,fmode:fox.fmode,ftarget:fox.ftarget,
+    carry:fox.carry,lockMs:fox.lockMs,gull:fox.gull,
+    qms:fox.qms,qms0:fox.qms0,fuel:fox.fuel,warn:fox.warn,
+    score:fox.score,hearts:fox.hearts,combo:fox.combo,words:fox.words,
+    shots:fox.shots,hits:fox.hits,wrongs:fox.wrongs,fakes:fox.fakes,empties:fox.empties,
+    fools:fox.fools,snap:fox.snap,rescued:fox.rescued,eaten:fox.eaten,carried:fox.carried,
+    viewMs:fox.viewMs,slowMs:fox.slowMs,baitOn:fox.bait.on,peckMs:fox.peckMs,
+    helpMs:fox.helpMs,nagHold:fox.nagHold,markMs:fox.markMs,markI:fox.markI,
+    viewN:fox.viewN,slowN:fox.slowN,baitN:fox.baitN,swapN:fox.swapN,
+    viewUse:fox.viewUse,slowUse:fox.slowUse,baitUse:fox.baitUse,swapUse:fox.swapUse,
+    duo:fox.duo,duoP1:fox.duoP1,duoP2:fox.duoP2,duoCut:fox.duoCut,hug:fox.hug,
+    dusts:fox.dusts,chains:fox.chains,tights:fox.tights,edge:fox.edge,
+    knobMs:fox.knobMs,grabMs:fox.grabMs,parts:fox.parts.length,histN:fox.hist.length,
+    beliefId:foxBeliefId(),liveN:foxLiveN(),fakeN:foxDealFakeN(),staleN:foxStaleN(),
+    vf:foxVf(fox.lv),vc:FOX_VC,denD:foxxDist(fox.fx,fox.fy,FOX_DEN.x,FOX_DEN.y),
+    kidDenD:foxxDist(fox.kid.x,fox.kid.y,FOX_DEN.x,FOX_DEN.y)
+  };
+  if(light)return s;
+  s.cards=[];
+  for(let i=0;i<fox.cards.length;i++){
+    const c=fox.cards[i];
+    s.cards.push({id:c.id,i:c.i,dir:c.dir,x:c.x,y:c.y,fake:!!c.fake,got:c.got,taken:!!c.taken,age:c.age,
+      sus:c.fake||c.got||c.taken?null:foxSus(c),
+      dkid:foxxDist(c.x,c.y,fox.kid.x,fox.kid.y),
+      dfox:foxxDist(c.x,c.y,fox.fx,fox.fy)});
+  }
+  s.susList=foxSusList();
+  s.belief=foxAudBelief();
+  s.hand=foxAudHand(fox.lv);
+  s.hista=foxAudHist();
+  s.target=foxTargetCard()?foxTargetCard().id:-1;
+  s.gotIdx=fox.gotIdx.slice();
   return s;
 }
 
