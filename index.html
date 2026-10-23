@@ -6741,6 +6741,86 @@ button:active{transform:scale(.95)}
   #screen-ripple .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-ripple .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.98 🚂 笔顺调车场 ================= */
+.syd-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.syd-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+/* 题头占死三行（一行 1.35em，三行就是它最高那一副版面）：它换字不许换行数 ——
+   站场就在它下面，多一行少一行都把整块铁轨往下/往上顶五十像素，孩子的手还停在扳道杆上 */
+.syd-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*3)}
+.syd-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.syd-duo{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:0 auto 4px}
+.syd-duo span{flex:1 1 190px;font-size:12px;color:#B3E5FC;background:rgba(79,195,247,.12);border:1px solid rgba(79,195,247,.3);border-radius:10px;padding:3px 8px;text-align:center;line-height:1.35}
+.syd-duo span.off{opacity:.34;filter:grayscale(1)}
+.syd-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.syd-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.syd-mini svg{width:100%;height:auto;background:rgba(255,243,224,.06);border-radius:12px}
+.syd-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+.syd-yard{flex:1;min-width:0;position:relative;background:#0B0F14;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.86)}
+.syd-yard.dead{filter:grayscale(.85) brightness(.6)}
+.syd-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.syd-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#FFE0B2;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.syd-tag.on{opacity:1}
+.syd-tag.warn{background:rgba(96,38,12,.92);color:#FFCCBC}
+.syd-tag.gold{background:rgba(74,52,14,.94);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.syd-meter{display:flex;gap:7px;align-items:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+/* 三只钟：药丸里那行字是死宽（nowrap），所以窄屏必须折成一丸一行 —— 折成三丸一行就把尾字裁没了 */
+.syd-meter{flex-wrap:wrap}
+.syd-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.syd-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#FFB74D,#FFE082);transition:width .15s linear}
+.syd-tl.fuel i{background:linear-gradient(90deg,#4FC3F7,#81D4FA)}
+.syd-tl.beat i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.syd-tl.beat.on i{background:linear-gradient(90deg,#66BB6A,#A5D6A7);box-shadow:0 0 12px rgba(102,187,106,.6)}
+.syd-tl.low i{background:linear-gradient(90deg,#FF8A65,#FFD54F)}
+.syd-tl.fuel.low i{background:linear-gradient(90deg,#FF5252,#FF8A65)}
+.syd-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.syd-pow{width:calc(100% - 28px);max-width:520px;margin:2px auto;font-size:11px;color:#90A4AE;text-align:center;line-height:1.45}
+.syd-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.syd-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.syd-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.syd-tool b{display:block;font-size:10px;color:#FFE082;font-weight:700}
+.syd-tool:disabled{opacity:.4;cursor:default}
+.syd-tool.duo{background:rgba(79,195,247,.2);border-color:#4FC3F7}
+.syd-tool.duo.on{background:rgba(79,195,247,.42)}
+/* 两只旋钮：扳道杆（上/下三道）、发车钟（慢/快）—— 各一对按住才走的按钮，谁也不许点一下就跑一半 */
+.syd-knob{display:flex;gap:6px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.syd-knob button{flex:1 1 0;max-width:126px;padding:7px 4px 5px;border-radius:11px;font-size:13px;font-weight:800;line-height:1.15;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#0D1B22;background:rgba(255,255,255,.16)}
+.syd-knob button small{display:block;font-size:10px;font-weight:400;color:rgba(13,27,34,.7)}
+.syd-knob button.up{background:linear-gradient(180deg,#90CAF9,#1976D2)}
+.syd-knob button.down{background:linear-gradient(180deg,#80DEEA,#26A0AE)}
+.syd-knob button.slow{background:linear-gradient(180deg,#B0BEC5,#78909C)}
+.syd-knob button.fast{background:linear-gradient(180deg,#FFD54F,#F57C00)}
+.syd-knob button:active{transform:translateY(1px)}
+/* 摘签是这一场唯一的下手：一个大按钮占满（双人一开就锁住，只认键盘） */
+.syd-ans{display:flex;gap:10px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.syd-ans button{flex:1 1 0;max-width:300px;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#0D1B22}
+.syd-ans button.pull{background:linear-gradient(180deg,#FFCA28,#EF6C00);box-shadow:0 0 16px rgba(255,193,7,.34)}
+.syd-ans button small{display:block;font-size:11px;font-weight:400;color:rgba(13,27,34,.72)}
+.syd-ans button:disabled{opacity:.34;cursor:default;filter:grayscale(.6)}
+.syd-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.syd-hintline b{color:#FFE082}
+.syd-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.syd-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.syd-msg b{color:#CFD8DC}
+.syd-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.syd-msg small{font-size:11px;color:#78909C}
+.syd-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.syd-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.syd-rs-book b{color:#FFE082}
+.syd-rs-book small{color:#78909C}
+.syd-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px;z-index:4}
+.syd-cdot.on{display:block}
+#screen-shunt .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：样图折到站场上头，站场独占整幅宽；三只钟折成一丸一行（字不许被裁）；四枚旋钮折两行 */
+@media(max-width:460px){.syd-stage{flex-direction:column}.syd-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}.syd-mini svg{flex:0 0 74px;width:74px}.syd-cap{flex:0 1 auto;text-align:left}
+  /* 三只钟在窄屏是一丸一行：折成三丸一行时「下一班绿灯 N 秒后」的尾字就被药丸右沿裁掉了 */
+  .syd-tl{flex:1 1 100%}
+  /* 窄屏上题面最宽的一副是四行：那一块就占死四行，站场照样不许在手指底下挪 */
+  .syd-ask{min-height:calc(1.35em*4)}
+  .syd-knob{flex-wrap:wrap}.syd-knob button{flex:1 1 44%}
+  #screen-shunt .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-shunt .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-shunt .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -6797,8 +6877,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 96 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">96</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 97 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">97</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6809,8 +6889,8 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>96 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>40</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>27</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>97 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>40</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>8</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
@@ -7073,6 +7153,11 @@ button:active{transform:scale(.95)}
     <div class="lab-group" id="labG3">
       <h4 class="lab-gtitle">⚡ 手速与反应 <small>眼疾手快抢答</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="sydCard" onclick="enterMode('shunt')">
+      <div class="icon">🚂</div>
+      <div class="info"><h3>笔顺调车场</h3><p id="sydCardTip">一节车厢装一笔：待挂线上的车自己往你扳开的那道里跑，三条存车线只许排队不许超车 —— 你手里只有扳道杆、发车快慢、摘签这一记三样；在道里压过 20 秒的车落一层灰，只拿七成</p></div>
+      <span class="syd-cdot" id="sydCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="wndCard" onclick="enterMode('wind')">
       <div class="icon">🌬</div>
       <div class="info"><h3>笔顺风谷</h3><p id="wndCardTip">你碰不到那颗墨籽，只能转动谷口的风箱吹它：风会自己散开、绕涡、被横风削偏 —— 把发光的墨籽吹进写着这一笔笔形的挂篮里</p></div>
@@ -7474,6 +7559,93 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-shunt">
+  <div class="top-bar">
+    <button class="back-btn" onclick="sydLeave()">← 返回</button>
+    <div class="stats"><span id="sydScoreTxt">🎯 0 分</span><span id="sydLvTxt">第 1 场 · 已收 0 字</span><span id="sydQTxt">⏳ 这一笔 24 秒</span></div>
+    <button class="icon-btn" onclick="sydHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="syd-hud">
+    <span id="sydRankTxt" title="称号">🌱 新来的连结员</span>
+    <span id="sydHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="sydComboTxt" title="连击">🔥 连 0</span>
+    <span id="sydGoalTxt" title="该收第几笔">🎯 该收第 1 笔</span>
+    <span id="sydShotTxt" title="摘了几记">🚩 摘 0 · 对上 0</span>
+    <span id="sydFakeTxt" title="影车">🌑 这一场没影车</span>
+    <span id="sydDustTxt" title="落灰">🌫 落灰 0 节</span>
+    <span id="sydLampTxt" title="绿灯">🚦 绿灯 0 班 · 赶上 0</span>
+    <span id="sydChainTxt" title="连摘">✨ 连摘 0（最长 0）</span>
+  </div>
+  <div class="syd-ask" id="sydAsk">🚂 正在给这场排车……<br><small>在字库里找「三道倒得开、每一笔都出得了头」的字</small></div>
+  <div class="syd-duo" id="sydDuoBar">
+    <span id="sydDuoP1" class="off">👩 P1：<b>W</b>/<b>S</b> 扳道 · <b>A</b>/<b>D</b> 调发车 —— 只管<b>进车</b></span>
+    <span id="sydDuoP2" class="off">🧔 P2：<b>空格</b> 摘签 —— 只管<b>出车</b></span>
+  </div>
+  <div class="syd-stage">
+    <div class="syd-mini">
+      <svg viewBox="0 0 1024 1024" id="sydMiniSvg"></svg>
+      <div class="syd-cap" id="sydMiniCap">这个字拆成一节一节，挂在待挂线上</div>
+    </div>
+    <div class="syd-yard" id="sydYard">
+      <canvas class="syd-canvas" id="sydCanvas" width="420" height="340"></canvas>
+      <div class="syd-tag" id="sydTag">🚂 调车场开张了</div>
+    </div>
+  </div>
+  <div class="syd-meter">
+    <div class="syd-tl q" id="sydQBox"><i id="sydQBar"></i><b id="sydQTxt2">⏳ 这一笔 —— 24 秒</b></div>
+    <div class="syd-tl fuel" id="sydFuelBox"><i id="sydFuelBar"></i><b id="sydFuelTxt">⛽ 这一站 —— 秒</b></div>
+    <div class="syd-tl beat" id="sydBeatBox"><i id="sydBeatBar"></i><b id="sydBeatTxt2">🚦 下一班绿灯 —— 秒后</b></div>
+  </div>
+  <div class="syd-pow" id="sydPowTxt">🚂 站里还没开车</div>
+  <div class="syd-tools">
+    <button class="syd-tool" id="sydViewBtn" disabled>🔭 看路<span>Q</span><b>剩 2</b></button>
+    <button class="syd-tool" id="sydHoldBtn" disabled>🚦 红灯<span>E</span><b>剩 2</b></button>
+    <button class="syd-tool" id="sydCraneBtn" disabled>🛠 倒位<span>F</span><b>剩 2</b></button>
+    <button class="syd-tool" id="sydSwapBtn" disabled>🔁 换字<span>Enter</span><b>剩 1</b></button>
+    <button class="syd-tool duo" id="sydDuoBtn">👥 双人</button>
+    <button class="syd-tool" id="sydEndBtn">🏁 结算</button>
+  </div>
+  <div class="syd-knob">
+    <button class="up" id="sydUpBtn">⬆ 道上扳<small>W / ↑</small></button>
+    <button class="down" id="sydDownBtn">⬇ 道下扳<small>S / ↓</small></button>
+    <button class="slow" id="sydSlowBtn">🐢 发车慢<small>A / ← 按住</small></button>
+    <button class="fast" id="sydFastBtn">🐇 发车快<small>D / → 按住</small></button>
+  </div>
+  <div class="syd-ans">
+    <button class="pull" id="sydPullBtn">🚩 摘签<small>空格 · 摘指针那道队头那一节（双人时归 P2）</small></button>
+  </div>
+  <div class="syd-hintline" id="sydHintLine">🚂 <b>三条存车线只许排队、不许超车</b>：你手里只有<b>扳哪道</b>、<b>发车多快</b>、<b>哪一刻摘签</b>三样</div>
+  <div class="syd-msg" id="sydMsg">🚂 <b>车往哪道去，只看你扳道杆那一刻指着谁</b><br>✨ <code>Q</code> 看路 · 🚦 <code>E</code> 红灯 · 🛠 <code>F</code> 倒位 · 🔁 <code>Enter</code> 换字 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-shunt-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="sydLeave()">← 返回</button>
+    <div class="stats"><span id="sydRsStars">⭐ 0</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="sydRsEmoji">🚂</div>
+    <div style="font-size:26px;font-weight:800" id="sydRsTitle">收完了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="sydRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="syd-pk" id="sydRsScore">🎯 0 分</span>
+      <span class="syd-pk" id="sydRsWords">🚂 收完 0 个字 · 摘 0 记</span>
+      <span class="syd-pk" id="sydRsShots">🎯 对上 0 节 · 摘错 0 次</span>
+      <span class="syd-pk" id="sydRsSub2">⌛ 钟响 0 · 白摘 0</span>
+      <span class="syd-pk" id="sydRsChain">✨ 连摘 0（最长一串 0）</span>
+      <span class="syd-pk" id="sydRsBeat">🚦 绿灯 0 班 · 擦灯 0</span>
+      <span class="syd-pk" id="sydRsJam">🚧 顶车 0 · 压线 0 · 补送 0</span>
+      <span class="syd-pk" id="sydRsTools">🛠 家什 0 次</span>
+      <span class="syd-pk" id="sydRsDuo">👤 单人调</span>
+      <span class="syd-pk" id="sydRsBest">🏆 最高 0 分</span>
+    </div>
+    <div class="syd-rs-book" id="sydRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="sydRsWhy"></div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="sydAgainBtn">🚂 再调一场</button>
+      <button class="tool-btn" id="sydHomeBtn">🏠 回书桌</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-ripple">
@@ -14560,6 +14732,7 @@ function updateHomeStats(){
   if(typeof wvNudge==='function')wvNudge();
   if(typeof obNudge==='function')obNudge();
   if(typeof rlpNudge==='function')rlpNudge();
+  if(typeof sydNudge==='function')sydNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -14602,6 +14775,7 @@ function enterMode(mode){
   if(mode==='weave'){wvStart();return}
   if(mode==='orbit'){obStart();return}
   if(mode==='ripple'){rlpStart();return}
+  if(mode==='shunt'){sydStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -96910,6 +97084,1930 @@ function rlpSnap(light){
     }):[];
     s.box=rlp.rec&&rlp.rec.union?[Math.round(rlp.rec.union.x0),Math.round(rlp.rec.union.y0),
       Math.round(rlp.rec.union.x1),Math.round(rlp.rec.union.y1)]:[];
+  }
+  return s;
+}
+
+
+/* ================= v1.98 笔顺调车场（一节车厢装一笔 · 三条存车线只许排队不许超车 —— 你手里只有扳哪道、发车多快、哪一刻摘签三样） ================= */
+/* 站场：420×340 的一块场坪。上方一条待挂线（车从右头的站口开进来，一路往左倒到岔口），
+   岔口在 (112,44)，往下接三条平行的存车线；每道右头是收签口，队头贴着收签口，后头的车一排往左摞 */
+const SYD_W=420,SYD_H=340;
+const SYD_IN_Y=44,SYD_FORK_X=112,SYD_HEAD_X=352,SYD_STEP=52,SYD_GATE_X=388;
+const SYD_LANE_Y=[128,196,264];
+/* 待挂线：队首永远停在岔口那一格（112），后头的车往右摞 —— 摞到第 4 格就到站口了，再来一节就压线撞车 */
+const SYD_IN_SLOTS=[112,166,220,274],SYD_IN_CAP=4;
+const SYD_CAR_W=46,SYD_CAR_H=26;
+/* 指针一格一格扳：按住 240 毫秒走一道（一次扳一道，扳过头就得扳回来）*/
+const SYD_PSTEP=240;
+/* 两把旋钮：指针 p（0~2，扳到哪一道）与发车间隔 run（毫秒）。
+   岔口只认「发车那一刻」的指针：那一刻指着哪道，岔口那节车就自己溜进哪道 —— 道里不许超车，新车只能排在队尾 */
+const SYD_RUN_MIN=1000,SYD_RUN_MAX=3200,SYD_DRUN=.66;   /* 660 毫秒/秒：把 1.0~3.2 秒整档扫一遍要 3.3 秒 */
+const SYD_RUN0=2400,SYD_RUN_STEP=150,SYD_RUN_FLOOR=1300;
+/* 进车钟与发车钟各吃各的：进车是「到达率」（站口不由人），发车是「服务率」（孩子自己调）——
+   调快了存车线塞满就顶车，调慢了待挂线堆到站口就压线撞车。这一对矛盾就是这一场全部的紧张 */
+const SYD_ARR0=2800,SYD_ARR_MIN=1700,SYD_ARR_STEP=140;
+/* 绿灯：每 SYD_LAMP 毫秒亮一班（SYD_LAMP_ON 绿 + SYD_LAMP_YL 黄），绿时摘签 ×1.5、黄时 ×1.18 */
+const SYD_LAMP0=9000,SYD_LAMP_MIN=6400,SYD_LAMP_STEP=320,SYD_LAMP_ON=2400,SYD_LAMP_YL=700;
+/* 落灰：一节车在存车线里压够 20 秒才被摘走，货就打折（只拿七成）—— 排队论里等得久的活儿不值钱 */
+const SYD_STALE=20000;
+const SYD_TIGHT_MS=900;            /* 上一记摘走 0.9 秒内又下手 —— 顺手摘 */
+const SYD_HUG_MS=420;              /* 双人局：P1 刚扳过道 0.42 秒内 P2 下手才算合抱 */
+const SYD_STROKE_MIN=3,SYD_STROKE_MAX=7;
+const SYD_POOL_MIN=4,SYD_POOL_WANT=14;
+const SYD_P0=2,SYD_PCAP=3,SYD_HEARTS=3,SYD_HEART_MAX=5,SYD_BOOK_MAX=300;
+/* 两只钟：这一笔的钟（迟迟摘不下来就响）、这一站的钟（走完收摊）*/
+const SYD_Q0=24000,SYD_Q_MIN=13000,SYD_Q_STEP=1400;
+const SYD_FUEL0=150000,SYD_FUEL_MIN=95000,SYD_FUEL_STEP=6500;
+/* 罚分：白摘、摘错、影车、钟响；堵车的两条路各罚各的 —— 顶车只扣分（车还在待挂线上），压线才掉心（车毁了一节、补送）*/
+const SYD_PEN_EMPTY=3,SYD_PEN_WRONG=6,SYD_PEN_TIME=3,SYD_PEN_FAKE=3,SYD_PEN_SWAP=8;
+const SYD_PEN_CRASH=8,SYD_PEN_JAM=6,SYD_PEN_CRANE=3;
+/* 描亮该收的那一节能挂多久（第 3 场起）：摘错、钟响之后另加 8 秒 */
+const SYD_MARK_MS=3400;
+const SYD_WORD_BONUS=28,SYD_CLEAR_BONUS=18,SYD_CLEAN_BONUS=18,SYD_DRY_BONUS=12,SYD_DUO_BONUS=28,SYD_CHAIN_BONUS=6;
+const SYD_TIGHT_MULT=1.28,SYD_GREEN_MULT=1.5,SYD_SAME_MULT=1.18,SYD_STALE_MULT=.7;
+const SYD_VIEW_MS=3400,SYD_HOLD_MS=8000;
+const SYD_NAG_MS=11000,SYD_NAG_HOLD=5200,SYD_HELP_MS=16000;
+const SYD_TAG_MS=2300;
+/* 发牌口径：一条到达序列要「三道倒得开」才算合格 —— 见段 B 的死账一 */
+const SYD_TRY=10;
+const SYD_NOTE=[262,294,330,392,440,523,587,659,784,880,1047];
+const SYD_INK4=['#4FC3F7','#81C784','#FFD54F','#FFB74D'];
+const SYD_TAG4=['横','竖','撇','捺'];
+const SYD_RANKS=[
+  {n:0,e:'🌱',t:'新来的连结员'},{n:2,e:'🔧',t:'会扳道了'},{n:5,e:'🚉',t:'看得懂队列'},
+  {n:9,e:'🚦',t:'掐得准绿灯'},{n:14,e:'🚂',t:'调得开三道'},{n:21,e:'🛤',t:'站场的老手'},
+  {n:30,e:'🏗️',t:'驼峰下的师傅'},{n:42,e:'🏆',t:'调车场的调度长'},{n:58,e:'👑',t:'调车场的站长'}
+];
+const syd={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],toneAt:0,tones:0,
+  pool:[],miss:[],rec:null,n:0,pi:0,poolWantMore:false,thinLv:0,
+  lv:1,score:0,hearts:SYD_HEARTS,combo:0,maxCombo:0,
+  words:0,shots:0,hits:0,wrongs:0,fakes:0,empties:0,timeouts:0,dusts:0,
+  views:0,holds:0,cranes:0,swaps:0,chains:0,chain:0,chainMax:0,
+  lights:0,greens:0,yellows:0,sames:0,tights:0,cleared:0,
+  jams:0,crashes:0,reship:0,tools:0,nags:0,cleanWord:true,dryWord:true,nagTip:'',
+  viewN:SYD_P0,holdN:SYD_P0,craneN:SYD_P0,swapN:1,
+  viewUse:0,holdUse:0,craneUse:0,swapUse:0,
+  viewMs:0,holdMs:0,nagMs:0,nagHold:0,helpMs:0,actMs:0,tagTimer:0,
+  /* 两把旋钮：p=指针（哪一道）、run=发车间隔（毫秒）*/
+  p:0,iv:2400,ivMs:0,arrMs:0,lampMs:0,lampOn:0,lampYl:0,lampN:0,pAcc:0,
+  /* 队列：queue=还没进站的到达序列（补送的车排到这一列的队尾）、inQ=待挂线、lanes=三条存车线 */
+  queue:[],inQ:[],lanes:[[],[],[]],cid:0,parts:[],lastLane:-1,
+  /* 这个字的第 i 笔上岸了没：底纹上墨与样图都读这一张表（换字时清空）*/
+  gotIdx:[],
+  qms:0,qms0:0,fuel:SYD_FUEL0,warn:false,
+  hudAcc:0,newBest:false,markForce:0,markMs:0,markLane:-1,markSlot:-1,
+  doneCh:[],gotCh:[],got0:0,
+  duo:false,duoCut:0,duoHalf:true,duoP1:0,duoP2:0,hug:0,hugW:0,hugTell:'',
+  pullMs:SYD_TIGHT_MS+1,knobMs:SYD_HUG_MS+1,
+  /* 上一摘攒下的加成（摘中签那一刻结算，先存这儿）*/
+  lastTight:0,lastGreen:0,lastSame:0,lastDust:0,
+  broke:0,
+  ctx:null,bound:false,tagOn:0,
+  keys:{up:0,down:0,slow:0,fast:0},
+  /* 挑字（等字数据回来那两秒）：两只钟停走 */
+  load:false
+};
+/* ---- 小工具 ---- */
+function sydxInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function sydxAdd(k,n){if(n)localStorage.setItem(k,String(sydxInt(k)+n))}
+function sydxPut(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function sydxSay(t,c){const el=document.getElementById('sydMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function sydxShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function sydxOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function sydxClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function sydxRok(d){return d>=0&&d<4?d:0}
+function sydxRank(x){let r=SYD_RANKS[0];for(let i=0;i<SYD_RANKS.length;i++)if(x>=SYD_RANKS[i].n)r=SYD_RANKS[i];return r}
+/* 第 i 格（从队头数起）在那条线上的横坐标 */
+function sydxSlot(i){return SYD_HEAD_X-SYD_STEP*i}
+function sydxLaneX(j,i){return {x:sydxSlot(i),y:SYD_LANE_Y[j]}}
+function sydxTone(f,d,t,v){
+  if(!syd.run||syd.over)return;
+  const n=performance.now();
+  if(n-syd.toneAt<22)return;
+  syd.tones++;tone(f,d,t,v);
+}
+function sydxT(fn,ms){const g=syd.gen;const id=setTimeout(function(){const k=syd.timers.indexOf(id);if(k>=0)syd.timers.splice(k,1);if(g!==syd.gen)return;fn()},ms);syd.timers.push(id);return id}
+function sydxKillTimers(){syd.timers.forEach(function(t){clearTimeout(t)});syd.timers=[]}
+/* ---- 难度表：场越深，两道越窄、进车越急、发车基线越快、钟越紧、影车越多、字越难 ---- */
+function sydLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function sydFuel(lv){return Math.max(SYD_FUEL_MIN,SYD_FUEL0-(lv-1)*SYD_FUEL_STEP)}
+function sydQms(lv){return Math.max(SYD_Q_MIN,SYD_Q0-(lv-1)*SYD_Q_STEP)}
+function sydArrMs(lv){return Math.max(SYD_ARR_MIN,SYD_ARR0-(lv-1)*SYD_ARR_STEP)}
+function sydLampMs(lv){return Math.max(SYD_LAMP_MIN,SYD_LAMP0-(lv-1)*SYD_LAMP_STEP)}
+function sydRunBase(lv){return Math.max(SYD_RUN_FLOOR,SYD_RUN0-(lv-1)*SYD_RUN_STEP)}
+/* 一道能停几节：前两场 5 节、3~5 场 4 节、第 6 场起 3 节 —— 道一窄，「倒得开」就真要靠排 */
+function sydCap(lv){return lv<=2?5:(lv<=5?4:3)}
+function sydFake(lv){return lv<3?0:(lv>=6?2:1)}
+function sydStrokeMax(lv){return lv>=5?SYD_STROKE_MAX:6}
+function sydWant(lv){return lv<=2?[SYD_STROKE_MIN,5]:[SYD_STROKE_MIN,sydStrokeMax(lv)]}
+/* 第 4 场起场坪底纹淡下去、样图也淡（这个字长什么样得记在心里，几种笔形才数得清）*/
+function sydFaint(lv){return lv>=4}
+/* 摘对一节：顺手摘 ×1.28、灯（绿 ×1.5、黄 ×1.18 —— 段 C 折算成 lamp 这一个数，绿黄绝不重复记账）、
+   连着摘同一条道 ×1.18、压过 20 秒落灰只拿七成 */
+function sydGain(tight,lamp,same,dust){
+  return Math.round((8+syd.combo*1.1+syd.lv*1.7)*(tight?SYD_TIGHT_MULT:1)*(lamp||1)*(same?SYD_SAME_MULT:1)*(dust?SYD_STALE_MULT:1));
+}
+
+/* ================= 段 B：到达序列 · 三道 FIFO 倒得开的死账 · 字池 · 发牌 ================= */
+/* 这一坊全部的风险都压在「倒得开」这三个字上：车一节一节按到达序列开进来，道里只许排队不许超车，
+   收签只认队头 —— 所以一个孩子能不能把这个字按笔顺摘出来，是一道纯粹的队列调度题，
+   它要么在发牌之前就成立，要么这一场压根就不该开。段 G 拿另一条代码路把这道题再算一遍。*/
+/* 三档口径就是三个场深段：档 0 = 第 1~2 场（道宽、只错一位、没影车），档 1 = 第 3~5 场，档 2 = 第 6 场起（三道各停 3 节、混 2 节影车）
+   档号与 sydCap/sydFake 的场深段一一对齐：所以池里每个字都在「这一档最窄的道 + 这一档最多的影车」下证过 */
+const SYD_TIERS=[{jit:1,cap:5,fn:0},{jit:2,cap:4,fn:1},{jit:3,cap:3,fn:2}];
+const SYD_PSEQ=22;
+function sydTier(lv){return lv<=2?0:(lv<=5?1:2)}
+/* ---- 这一档的到达序列：先按笔顺排好，再随机做几次「往后/往前挪 1~jit 位」的挪车
+   彻底乱序的序列三道倒不开的太多，孩子站在场上看不出所以然；挪一位、挪两位才是编组站真有的那种乱 */
+function sydSeqTry(rec,fn,jit){
+  const a=[];for(let i=0;i<rec.n;i++)a.push(i);
+  const mv=Math.max(1,Math.min(rec.n-1,Math.ceil(rec.n/3)+ (jit>=3?1:0)));
+  for(let m=0;m<mv;m++){
+    const from=Math.floor(Math.random()*a.length);
+    let d=1+Math.floor(Math.random()*jit);
+    if(Math.random()<.5)d=-d;
+    const to=sydxClamp(from+d,0,a.length-1);
+    if(to===from)continue;
+    const c=a.splice(from,1)[0];
+    a.splice(to,0,c);
+  }
+  const seq=[];
+  for(let i=0;i<a.length;i++)seq.push({i:a[i],dir:rec.dirs[a[i]],fake:false});
+  /* 影车：只能从这个字压根没有的那几种笔形里挑 —— 它才永远配不上任何一个该收的笔形，
+     「这个字没有捺，那节挂着捺的车就是影车」这条破绽才立得住 */
+  const off=[];
+  for(let d=0;d<4;d++)if(rec.dirs.indexOf(d)<0)off.push(d);
+  for(let f=0;f<fn&&off.length;f++){
+    const p=Math.floor(Math.random()*(seq.length+1));
+    seq.splice(p,0,{i:-1,dir:sydxOne(off),fake:true});
+  }
+  return seq;
+}
+/* ---- 死账：一道队列调度题到底解不解得开
+   状态 = (下一节要进站的车间号 i, 已经摘到第几笔 k, 三条道里各压着哪几节车)，深度优先 + 失败备忘录。
+   每一步只有三种走法：① 摘掉某条道的队头（它的编号正好就是该收的第 k 笔）② 白摘掉某条道的队头（那是节影车，编号 -1，摘它扣分但道通了）
+   ③ 发车：把岔口那一节排进任意一条还有位的道。道与道之间没有区别（指针扳到哪道都一样宽、都一样收），
+   所以备忘录把三道排序后折叠 —— 不折叠的话同一个死局会被绕着圈重算。
+   道里记的是「编号」不是「笔形」，为的是和产品自己那杆秤一模一样：段 C 的摘签判的是 h.i!==syd.pi，
+   两节同为「横」的车在笔形上可以互换，在编号上换不得 —— 拿笔形证的「倒得开」有可能要孩子去摘一个编号不对的队头。
+   这里没用待挂线那 4 格的封顶、也没用发车钟与进车钟的快慢：那两样是「手抖的余量」，由下面那道余量账（cap−1）替它们说话 */
+function sydSolvable(seq,dirs,cap,nlane){
+  const L=nlane===undefined?3:nlane;
+  if(cap<1||L<1)return false;
+  const n=dirs.length;
+  const lanes=[];
+  for(let j=0;j<L;j++)lanes.push([]);
+  const memo={};
+  function key(i,k,ls){
+    const a=[];
+    for(let j=0;j<ls.length;j++)a.push(ls[j].join(','));
+    a.sort();
+    return i+'#'+k+'#'+a.join('/');
+  }
+  function win(i,k,ls){
+    if(k>=n)return true;
+    const kk=key(i,k,ls);
+    if(memo[kk])return false;
+    memo[kk]=1;
+    for(let j=0;j<ls.length;j++){                      /* ① 摘中签：队头那节的编号就是第 k 笔 */
+      if(ls[j].length&&ls[j][0]===k){
+        ls[j].shift();
+        const r=win(i,k+1,ls);
+        ls[j].unshift(k);
+        if(r)return true;
+      }
+    }
+    for(let j=0;j<ls.length;j++){                      /* ② 白摘一节影车（编号 -1，道得通）*/
+      if(ls[j].length&&ls[j][0]<0){
+        ls[j].shift();
+        const r=win(i,k,ls);
+        ls[j].unshift(-1);
+        if(r)return true;
+      }
+    }
+    if(i<seq.length){                                  /* ③ 发车进任意一条有余位的道 */
+      for(let j=0;j<ls.length;j++){
+        if(ls[j].length>=cap)continue;
+        ls[j].push(seq[i].i);
+        const r=win(i+1,k,ls);
+        ls[j].pop();
+        if(r)return true;
+      }
+    }
+    return false;
+  }
+  return win(0,0,lanes);
+}
+/* 一条序列在这一档口径下算不算「真倒得开」：三道塞得开 + 每条道都留一格余位 + 单道压根倒不开（非得跨道不可）*/
+function sydWitness(seq,dirs,t){
+  if(!sydSolvable(seq,dirs,t.cap,3))return 0;
+  if(!sydSolvable(seq,dirs,t.cap-1,3))return 0;         /* 手抖余量：道里最挤也不许顶到封顶 */
+  if(sydSolvable(seq,dirs,t.cap,1))return 0;            /* 一条道就够的话这一档就没得练了 */
+  return 1;
+}
+/* 这个字过不过得了池门：三档口径每一档都要证得出几序列（证不出来的字压根不许端给孩子）*/
+function sydAudit(rec){
+  const seqs=[];
+  for(let ti=0;ti<SYD_TIERS.length;ti++){
+    const t=SYD_TIERS[ti];
+    let found=0;
+    for(let a=0;a<SYD_PSEQ&&found<4;a++){
+      const s=sydSeqTry(rec,t.fn,t.jit);
+      if(sydWitness(s,rec.dirs,t)){seqs.push({t:ti,seq:s});found++}
+    }
+    if(!found)return null;
+  }
+  rec.seqs=seqs;
+  return seqs;
+}
+/* ---- 这个字能不能拿来做这一坊：3~7 笔、每一笔都认得出笔形、至少两种笔形、每笔够长（车上的记号要看得清）
+   还得多于一种笔形之外的余货：影车得从这个字没有的笔形里挑，四种笔形全用光的字就造不出破绽 */
+function sydMake(ch,raw,lmax){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  const hi=lmax||6;
+  if(ms.length<SYD_STROKE_MIN||ms.length>hi)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=jtDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;
+  for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  let spare=0;
+  for(let d=0;d<4;d++)if(!(kinds&(1<<d)))spare++;
+  if(!spare)return null;                                /* 横竖撇捺全占满：造不出一眼认得出的影车，不进池 */
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++)for(let j=0;j<ms[i].length;j++){
+    const x=ms[i][j][0],y=ms[i][j][1];
+    if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+  }
+  if(x1-x0<160||y1-y0<160)return null;                  /* 太扁的字缩成样图就糊，几种笔形数不清 */
+  const ln=[];
+  for(let i=0;i<ms.length;i++){
+    let L=0;
+    for(let j=1;j<ms[i].length;j++)L+=Math.hypot(ms[i][j][0]-ms[i][j-1][0],ms[i][j][1]-ms[i][j-1][1]);
+    if(L<70)return null;
+    ln.push(L);
+  }
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp,meds:ms,len:ln,
+    kinds:(function(){const a=[];for(let d=0;d<4;d++)if(kinds&(1<<d))a.push(d);return a})(),
+    union:{x0:x0,x1:x1,y0:y0,y1:y1},seqs:null};
+}
+/* ---- 字池：进池之前三档口径全证过，证不出来的字孩子压根见不到 ---- */
+async function sydBuildPool(keep,lo,hi){
+  const g=syd.gen,stale=function(){return g!==syd.gen||!syd.run||syd.over};
+  const mk=SYD_STROKE_MAX;
+  const enough=function(){
+    if(!isFinite(lo))return syd.pool.length>=SYD_POOL_WANT;
+    let c=0;
+    for(let i=0;i<syd.pool.length;i++)if(syd.pool[i].n>=lo&&syd.pool[i].n<=hi)c++;
+    return c>=6||syd.pool.length>=40;
+  };
+  syd.miss=(localStorage.getItem('hz_shunt_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<240;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(sydxShuf(syd.miss.slice(0,6)));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(sydxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(sydxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(sydLetters());
+  if(typeof CHARS!=='undefined')push(sydxShuf(CHARS.slice()));
+  if(!keep)syd.pool=[];
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=sydMake(want[k+i],rs[i],mk);
+        if(m&&sydAudit(m)&&!syd.pool.some(function(p){return p.ch===m.ch}))syd.pool.push(m);
+      }
+    }
+  }
+  return syd.pool.length>=SYD_POOL_MIN;
+}
+function sydLetters(){
+  return '二十八三十人大干土王共其雨两寸对寺寻导安宋宗宜定宝'
+    +'常开式形往往待近返还进远选配采金针钉钓钝铃铁银需青非面'
+    +'音页顶项顺须风飞食饭马驶骨高鱼鸟麦米良走起始迎运道目且自白'
+    +'百吉同后告吾围固南先光当学字存它守居层岛已布带年并异弯强形彩表'
+    +'见观规视讲话谢象贝货资赏街工十土士干平幸左右有友月右'
+    +'本未末朱休体林森相目百皮盆盏直具典冬各同吉向君合告员'
+    +'味和品唯一回因困田由甲申电男界发变口可台史各合同'.split('');
+}
+function sydPickRec(){
+  const w=sydWant(syd.lv);
+  let pool=syd.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]&&r.seqs&&r.seqs.length});
+  if(!pool.length)pool=syd.pool.filter(function(r){return r.n>=SYD_STROKE_MIN&&r.n<=SYD_STROKE_MAX&&r.seqs&&r.seqs.length});
+  if(!pool.length)return null;
+  const cur=syd.rec?syd.rec.ch:'';
+  const rest=pool.filter(function(r){return r.ch!==cur});
+  if(rest.length)pool=rest;
+  const mis=pool.filter(function(r){return syd.miss.indexOf(r.ch)>=0});
+  if(mis.length)return sydxOne(mis);
+  const fresh=pool.filter(function(r){return syd.doneCh.indexOf(r.ch)<0});
+  if(fresh.length)return sydxOne(fresh);
+  return sydxOne(pool);
+}
+/* 档 2 证的序列里塞了 2 节影车，档 1 只要 1 节：多出来的影车摘掉就是 ——
+   少一节车只会让道更宽松，绝不会把一道证得开的题变成证不开 */
+function sydTrim(seq,fn){
+  const out=[];
+  let k=0;
+  for(let i=0;i<seq.length;i++){
+    if(seq[i].fake&&k>=fn){k++;continue}
+    out.push({i:seq[i].i,dir:seq[i].dir,fake:seq[i].fake});
+  }
+  return out;
+}
+/* ---- 发牌：从池里带来的证人里挑这一档的那几条，按这一场的口径（道宽、影车数）现场再验一遍
+   验不过就换一条证人、再不行就减一节影车；试满 SYD_TRY 还发不出一把就换字 —— 绝不发一把死局给孩子 */
+function sydDeal(rec,lv){
+  if(!rec)return null;
+  if(!rec.seqs){rec.seqs=sydAudit(rec);if(!rec.seqs)return null}
+  const L=lv||syd.lv,t=SYD_TIERS[sydTier(L)];
+  const cand=rec.seqs.filter(function(o){return o.t===sydTier(L)});
+  if(!cand.length)return null;
+  const list=sydxShuf(cand.slice());
+  for(let step=0;step<=t.fn;step++){
+    const fn=t.fn-step;
+    for(let a=0;a<list.length;a++){
+      const seq=sydTrim(list[a].seq,fn);
+      /* 发到手这一把重新验三件：三道塞得开、每条道留余位、单道倒不开（摘影车之后序列短了，
+         「非得跨道」这一条也可能松掉 —— 松掉就不发这一把，宁可换一个证人）*/
+      if(!sydSolvable(seq,rec.dirs,t.cap,3))continue;
+      if(!sydSolvable(seq,rec.dirs,t.cap-1,3))continue;
+      if(sydSolvable(seq,rec.dirs,t.cap,1))continue;
+      const cars=[];
+      for(let i=0;i<seq.length;i++)cars.push({id:syd.cid++,i:seq[i].i,dir:seq[i].dir,fake:seq[i].fake,age:0,in:0});
+      return cars;
+    }
+    if(!fn)break;
+  }
+  return null;
+}
+
+/* ================= 段 C：两把旋钮 · 进车钟与发车钟 · 摘签 · 信号灯 · 落灰 · 四件站具 ================= */
+function sydGate(){return syd.run&&!syd.over&&!syd.load}
+/* 岔口那一节（待挂线队头）：发车钟一响，它就到指针指着的那道里去 */
+function sydFork(){return syd.inQ.length?syd.inQ[0]:null}
+function sydHeadOf(j){return syd.lanes[j].length?syd.lanes[j][0]:null}
+function sydCapNow(){return sydCap(syd.lv)}
+/* 场上还没上岸的真车有几节（待挂线 + 三条道 + 还没进站的都算：它们都在这一场的序列里）*/
+function sydLiveN(){
+  let k=0;
+  for(let i=0;i<syd.queue.length;i++)if(!syd.queue[i].fake)k++;
+  for(let i=0;i<syd.inQ.length;i++)if(!syd.inQ[i].fake)k++;
+  for(let j=0;j<3;j++)for(let i=0;i<syd.lanes[j].length;i++)if(!syd.lanes[j][i].fake)k++;
+  return k;
+}
+function sydFakeN(){
+  let k=0;
+  for(let i=0;i<syd.inQ.length;i++)if(syd.inQ[i].fake)k++;
+  for(let j=0;j<3;j++)for(let i=0;i<syd.lanes[j].length;i++)if(syd.lanes[j][i].fake)k++;
+  return k;
+}
+function sydDustN(){
+  let k=0;
+  for(let j=0;j<3;j++)for(let i=0;i<syd.lanes[j].length;i++)if(syd.lanes[j][i].age>=SYD_STALE)k++;
+  return k;
+}
+/* 这一场实际混了几节影车（发牌时按档口减过，HUD 报的是场上这一份）*/
+function sydDealFakeN(){let k=0;for(let i=0;i<syd.queue.length;i++)if(syd.queue[i].fake)k++;return k}
+/* 该收的那一节车此刻在哪儿：还没进站 / 在待挂线 / 在哪条道的第几格 */
+function sydTargetWhere(){
+  if(!syd.rec)return null;
+  for(let i=0;i<syd.queue.length;i++)if(!syd.queue[i].fake&&syd.queue[i].i===syd.pi)return {w:'queue',j:i};
+  for(let i=0;i<syd.inQ.length;i++)if(!syd.inQ[i].fake&&syd.inQ[i].i===syd.pi)return {w:'fork',j:i};
+  for(let j=0;j<3;j++)for(let i=0;i<syd.lanes[j].length;i++)
+    if(!syd.lanes[j][i].fake&&syd.lanes[j][i].i===syd.pi)return {w:'lane',j:j,k:i};
+  return null;
+}
+/* ---- 指针：一次扳一道。键盘按住连发与手指压在道上走的是同一个 syd.p ---- */
+function sydMoveP(d){
+  const before=syd.p;
+  syd.p=sydxClamp(syd.p+d,0,2);
+  return syd.p!==before;
+}
+function sydKnobTouch(first){
+  syd.knobMs=0;syd.actMs=3000;syd.nagMs=0;
+  if(syd.duo&&first)syd.duoP1++;
+}
+/* ---- 发车：岔口那节车自己溜进指着的那道，排在队尾（道里不许超车）---- */
+function sydDispatch(){
+  const c=sydFork();
+  if(!c)return 0;
+  const L=syd.lanes[syd.p];
+  if(L.length>=sydCapNow()){sydJam(c);return 0}
+  syd.inQ.shift();
+  c.age=0;c.born=syd.t;
+  L.push(c);
+  syxFx(3,'go');
+  sydxTone(330,.05,'triangle',.02);
+  return 1;
+}
+/* 顶车：道满了还硬发 —— 车退回待挂线、只扣分不掉心（它没撞毁，只是进不了道）*/
+function sydJam(c){
+  syd.score=Math.max(0,syd.score-SYD_PEN_JAM);
+  syd.jams++;syd.combo=0;syd.chain=0;
+  sydTag('🚧 顶车：第 '+(syd.p+1)+' 道停了 '+syd.lanes[syd.p].length+' 节、已经满了 —— '+
+    '这一节进不了道（第 '+(c.i+1)+' 笔那节还堵在岔口）。先摘签把道腾开，或者 🐢 把发车放慢','warn');
+  syxFx(5,'bad');sydxAud('bad');
+  sydHud();sydLine();
+}
+/* ---- 进车：站口不由人。待挂线四格堆满了还往进站 —— 压线撞车，那一节退回队列尾补送 ----
+   补送会把到达顺序打乱：段 B 那道「倒得开」的死账当场作废，所以这一记掉心、罚得最重 */
+function sydArrive(){
+  if(!syd.queue.length)return 0;
+  const c=syd.queue[0];
+  if(syd.inQ.length>=SYD_IN_CAP){
+    syd.queue.shift();
+    syd.queue.push(c);
+    syd.reship++;
+    syd.crashes++;
+    syd.score=Math.max(0,syd.score-SYD_PEN_CRASH);
+    syd.hearts--;
+    syd.combo=0;syd.chain=0;
+    sydTag('💥 压线撞车：待挂线四格全满、站口还在往里塞 —— 第 '+(c.i+1)+' 笔那节车退到队尾补送（'+
+    '−'+SYD_PEN_CRASH+' 分、掉一颗心）。🐇 把发车调快、或者 🚦 红灯先把道腾开','warn');
+    syxFx(9,'bad');sydxAud('bad');
+    sydHud();sydLine();sydAsk();
+    if(syd.hearts<=0){sydEnd('broke');return 0}
+    return 2;
+  }
+  syd.queue.shift();
+  c.in=1;
+  syd.inQ.push(c);
+  sydxTone(247,.05,'triangle',.018);
+  return 1;
+}
+/* ---- 摘签（这一坊唯一的下手）：只认指针那条道的队头 ---- */
+function sydPull(who){
+  if(!syd.run||syd.over)return 0;
+  if(syd.helpMs>0){syd.helpMs=0;sydLine();return 0}
+  if(syd.load||!syd.rec)return 0;
+  if(sydLiveN()<=0)return 0;
+  const L=syd.lanes[syd.p];
+  syd.shots++;
+  sydNagOff();
+  if(syd.duo&&who===2)syd.duoP2++;
+  const h=L.length?L[0]:null;
+  const tight=syd.pullMs<=SYD_TIGHT_MS&&syd.holdMs<=0;
+  const green=syd.lampOn>0,yellow=!green&&syd.lampYl>0;
+  const same=h&&!h.fake&&syd.lastLane===syd.p&&syd.lastLane>=0;
+  const dust=h&&!h.fake&&h.age>=SYD_STALE;
+  syd.lastTight=tight?1:0;syd.lastGreen=green?1:0;syd.lastSame=same?1:0;syd.lastDust=dust?1:0;
+  if(syd.duo&&syd.knobMs>SYD_HUG_MS)syd.duoCut++;
+  syd.pullMs=0;
+  if(syd.holdMs>0)syd.holds++;
+  if(syd.viewMs>0)syd.views++;
+  if(!h){
+    syd.score=Math.max(0,syd.score-SYD_PEN_EMPTY);
+    syd.empties++;syd.combo=0;syd.chain=0;syd.cleanWord=false;
+    sydTag('💧 白摘：第 '+(syd.p+1)+' 道是空的 —— 车还没发进道里就按摘签（−'+SYD_PEN_EMPTY+' 分）。'+
+      '岔口的车要等发车钟那一响才进道','warn');
+    syxFx(4,'bad');sydxTone(SYD_NOTE[0],.16,'sawtooth',.05);
+    sydHud();sydLine();sydAsk();
+    return 0;
+  }
+  if(h.fake){sydBlunderFake(h,L);return 0}
+  if(h.i!==syd.pi){sydBlunder(h);return 0}
+  L.shift();
+  sydDeliver(h,{tight:tight,green:green,yellow:yellow,lamp:green?SYD_GREEN_MULT:(yellow?SYD_SAME_MULT:1),same:same,dust:dust});
+  return 1;
+}
+/* ---- 摘中签：这一笔上岸（样图亮一块、底纹上墨），这一笔的钟重新上弦 ---- */
+function sydDeliver(car,m){
+  const rec=syd.rec;
+  syd.gotIdx[car.i]=true;
+  const g=sydGain(m.tight,m.lamp,m.same,m.dust);
+  syd.score+=g;syd.hits++;syd.combo++;
+  if(m.green)syd.greens++;
+  if(m.yellow)syd.yellows++;
+  if(m.tight)syd.tights++;
+  if(m.same)syd.sames++;
+  if(m.dust)syd.dusts++;
+  if(syd.combo>syd.maxCombo)syd.maxCombo=syd.combo;
+  syd.chain++;
+  if(syd.chain>=2){syd.score+=SYD_CHAIN_BONUS;syd.chains++;if(syd.chain>syd.chainMax)syd.chainMax=syd.chain}
+  if(syd.dryWord&&(syd.viewUse||syd.holdUse||syd.craneUse))syd.dryWord=false;
+  if(syd.duo&&syd.knobMs<=SYD_HUG_MS)sydHugTag();
+  const lane=syd.p;
+  syd.lastLane=lane;
+  syd.pi++;
+  syd.qms=syd.qms0=sydQms(syd.lv);
+  /* 这道清空了：整条道让开一节位，另给一手 */
+  let clr=0;
+  if(syd.lanes[lane].length===0){syd.score+=SYD_CLEAR_BONUS;syd.cleared++;clr=SYD_CLEAR_BONUS}
+  syxFx(9,'ring');sydxAud('ok');
+  sydTag('🎯 第 '+syd.pi+' 笔（'+SYD_TAG4[sydxRok(car.dir)]+'）摘下来了 + '+g+' 分'+
+    (m.tight?' · 顺手摘 ×'+SYD_TIGHT_MULT:'')+
+    (m.green?' · 绿灯 ×'+SYD_GREEN_MULT:(m.yellow?' · 黄灯 ×'+SYD_SAME_MULT:''))+
+    (m.same?' · 同道连摘 ×'+SYD_SAME_MULT:'')+
+    (m.dust?' · 压过 20 秒落灰、只拿七成':'')+
+    (clr?(' · 第 '+(lane+1)+' 道倒空 +'+clr):'')+syd.hugTell,'gold');
+  syd.hugTell='';
+  if(syd.pi>=rec.n){sydWordDone();return}
+  sydMarkTarget();
+  sydHud();sydLine();sydAsk();
+}
+function sydHugTag(){
+  if(syd.hugW>0)return;
+  syd.hug++;syd.hugW++;
+  syd.hugTell=' · 🤝 合抱：刚扳完道就有人下手 +'+SYD_DUO_BONUS+'（这个字收完结账）';
+}
+function sydBlunder(car){
+  syd.score=Math.max(0,syd.score-SYD_PEN_WRONG);
+  syd.wrongs++;syd.combo=0;syd.chain=0;syd.cleanWord=false;
+  syd.hearts--;
+  syd.qms=syd.qms0=sydQms(syd.lv);
+  sydTag('💔 摘错了：队头那节装的是第 '+(car.i+1)+' 笔，现在该收第 '+(syd.pi+1)+' 笔 —— 它还在道里挡着（'+
+    '后面的车永远追不上它）。要么把这一笔发到别的道，要么 🛠 倒位把队尾那节吊回岔口','warn');
+  syxFx(6,'bad');sydxAud('bad');
+  if(syd.hearts<=0){sydEnd('broke');return}
+  sydMarkTarget();sydRemind();
+  sydHud();sydLine();
+}
+function sydBlunderFake(car){
+  /* 影车摘了就没了：它压根不是这个字的笔，留在道里只会挡一整条道 */
+  for(let j=0;j<3;j++){
+    const k=syd.lanes[j].indexOf(car);
+    if(k>=0)syd.lanes[j].splice(k,1);
+  }
+  syd.score=Math.max(0,syd.score-SYD_PEN_FAKE);
+  syd.fakes++;syd.combo=0;syd.chain=0;syd.cleanWord=false;
+  sydTag('🌫 影车：这一种笔这个字压根没有（'+SYD_TAG4[sydxRok(car.dir)]+
+    '），而且它身上没有编号 —— 白摘一记 −'+SYD_PEN_FAKE+' 分，好在道通了','warn');
+  syxFx(5,'bad');sydxAud('bad');
+  sydHud();sydLine();
+}
+/* ---- 描亮该收的那一节：前两场一直描、往深了只描一阵（摘错、钟响之后多描 8 秒）---- */
+function sydMarkTarget(){
+  syd.markI=-1;
+  const w=sydTargetWhere();
+  if(!w)return;
+  /* markLane：-1 = 这一节还看不见（在站外排着）、-2 = 在待挂线上（第 markSlot 格）、0~2 = 在第几道第几格 */
+  if(w.w==='lane'){syd.markLane=w.j;syd.markSlot=w.k}
+  else if(w.w==='fork'){syd.markLane=-2;syd.markSlot=w.j}
+  else{syd.markLane=-1;syd.markSlot=-1}
+  if(syd.lv<=2||syd.markForce){syd.markMs=0;return}
+  syd.markMs=SYD_MARK_MS;
+}
+function sydRemind(){
+  sydMarkTarget();
+  if(syd.lv>2&&!syd.markForce)syd.markMs=Math.max(syd.markMs,8000);
+}
+function sydMarkLive(){
+  if(syd.markLane===-1)return false;
+  if(syd.lv<=2||syd.markForce)return true;
+  return syd.markMs>0;
+}
+/* ---- 一个字收完 → 换个字 ---- */
+function sydWordDone(){
+  syd.words++;
+  let bonus=SYD_WORD_BONUS;
+  syd.score+=bonus;
+  if(syd.cleanWord){syd.score+=SYD_CLEAN_BONUS;bonus+=SYD_CLEAN_BONUS;sydxAdd('hz_shunt_cleanw',1)}
+  if(syd.dryWord){syd.score+=SYD_DRY_BONUS;bonus+=SYD_DRY_BONUS}
+  if(syd.duo&&syd.hugW>0&&syd.duoP1){syd.score+=SYD_DUO_BONUS;bonus+=SYD_DUO_BONUS;syd.duoHalf=true}
+  sydBookAdd(syd.rec.ch);
+  sydTag('🚂 这个字整列倒齐了：'+syd.rec.ch+' '+syd.rec.n+' 笔一节不差 + '+bonus+' 分','gold');
+  syxFx(14,'win');sydxAud('word');
+  sydBankLite();
+  const nl=sydLvOf(syd.words);
+  if(nl>syd.lv)sydLvUp(nl);
+  sydNudge();
+  sydNewWord();
+}
+function sydLvUp(nl){
+  syd.lv=nl;
+  syd.qms0=sydQms(nl);syd.fuel=sydFuel(nl);
+  syd.iv=sydRunBase(nl);
+  syd.viewN=Math.min(SYD_PCAP,syd.viewN+1);
+  syd.holdN=Math.min(SYD_PCAP,syd.holdN+1);
+  syd.craneN=Math.min(SYD_PCAP,syd.craneN+1);
+  syd.hearts=Math.min(SYD_HEART_MAX,syd.hearts+1);
+  const t=SYD_TIERS[sydTier(nl)];
+  sydTag('🚉 第 '+nl+' 场：三道各停 '+t.cap+' 节、进车 '+(sydArrMs(nl)/1000).toFixed(1)+
+    ' 秒一班、发车基线 '+(sydRunBase(nl)/1000).toFixed(1)+' 秒、这一笔的钟 '+(sydQms(nl)/1000).toFixed(1)+
+    ' 秒'+(t.fn?'、场上混 '+sydDealFakeN()+' 节影车':''),'gold');
+  syxFx(10,'up');
+}
+/* ---- 两只罚钟：这一笔的钟、这一站的钟 ---- */
+function sydTimeOut(){
+  syd.score=Math.max(0,syd.score-SYD_PEN_TIME);
+  syd.timeouts++;syd.combo=0;syd.chain=0;syd.cleanWord=false;
+  syd.qms=syd.qms0=sydQms(syd.lv);
+  sydTag('⌛ 这一笔的钟走光了：−'+SYD_PEN_TIME+' 分、连击清零 —— 岔口还在往里回车，想太久道就满了','warn');
+  syxFx(5,'bad');sydxAud('bad');
+  sydRemind();
+}
+function sydFuelOut(){
+  syd.broke=(syd.broke||0)+1;
+  sydMissAdd(syd.rec?syd.rec.ch:'');
+  syd.hearts--;
+  sydTag('🛑 这一站到点了：这个字进了错字本（过几轮优先还回来）','warn');
+  syxFx(6,'bad');
+  if(syd.hearts<=0){sydEnd('fuel');return}
+  syd.fuel=sydFuel(syd.lv);
+  sydNewWord();
+}
+/* ---- 一拍 ---- */
+function sydTick(dt){
+  syd.t+=dt;syd.playMs+=dt;
+  /* 两把旋钮：指针一格一格扳（按住连发）、发车间隔一路滑 */
+  let dp=0,dl=0;
+  if(syd.keys.up)dp-=1;
+  if(syd.keys.down)dp+=1;
+  if(syd.keys.fast)dl-=1;
+  if(syd.keys.slow)dl+=1;
+  if(dp||dl){
+    if(dp){
+      syd.pAcc+=dt;
+      while(syd.pAcc>=SYD_PSTEP){syd.pAcc-=SYD_PSTEP;if(sydMoveP(dp))break}
+    }
+    if(dl)syd.iv=sydxClamp(syd.iv+dl*SYD_DRUN*dt,SYD_RUN_MIN,SYD_RUN_MAX);
+    sydKnobTouch(0);
+  }else{syd.knobMs+=dt;syd.pAcc=0}
+  syd.pullMs+=dt;
+  if(syd.helpMs>0)syd.helpMs=Math.max(0,syd.helpMs-dt);
+  if(!syd.over&&!syd.load&&syd.helpMs<=0){
+    /* 两只罚钟一直在走：红灯冻结的是车流，不是钟 */
+    syd.qms-=dt;
+    if(syd.qms<=0){sydTimeOut();if(syd.over)return}
+    syd.warn=syd.qms<=sydQWarn();
+    syd.fuel-=dt;
+    if(syd.fuel<=0){sydFuelOut();if(syd.over)return}
+    if(syd.holdMs>0){
+      syd.holdMs=Math.max(0,syd.holdMs-dt);
+    }else{
+      /* 🚦 红灯：进车钟与发车钟一起停 —— 站里这一段不回车，让你把道理清 */
+      syd.arrMs+=dt;
+      if(syd.arrMs>=sydArrMs(syd.lv)){syd.arrMs=0;if(sydArrive()===2)return}
+      syd.ivMs+=dt;
+      if(syd.ivMs>=syd.iv){syd.ivMs=0;sydDispatch()}
+      for(let j=0;j<3;j++)for(let i=0;i<syd.lanes[j].length;i++)syd.lanes[j][i].age+=dt;
+    }
+    /* 信号灯：一班一班地亮，绿灯那一段摘签 ×1.5 */
+    if(syd.lampOn>0)syd.lampOn=Math.max(0,syd.lampOn-dt);
+    else if(syd.lampYl>0)syd.lampYl=Math.max(0,syd.lampYl-dt);
+    else{
+      syd.lampMs+=dt;
+      if(syd.lampMs>=sydLampMs(syd.lv)){
+        syd.lampMs=0;syd.lampN++;
+        syd.lampOn=SYD_LAMP_ON;syd.lampYl=SYD_LAMP_YL;
+        sydxTone(660,.06,'sine',.025);
+      }
+    }
+    if(syd.viewMs>0)syd.viewMs=Math.max(0,syd.viewMs-dt);
+    if(syd.markMs>0)syd.markMs=Math.max(0,syd.markMs-dt);
+    syd.nagMs+=dt;
+    if(syd.nagMs>=SYD_NAG_MS&&!syd.actMs&&syd.nagHold<=0){syd.nagMs=0;sydNag()}
+    if(syd.nagHold>0)syd.nagHold=Math.max(0,syd.nagHold-dt);
+    if(syd.actMs>0)syd.actMs=Math.max(0,syd.actMs-dt);
+    syxFxStep(dt);
+  }
+}
+function sydQWarn(){return Math.min(8000,sydQms(syd.lv)*.35)}
+/* ---- 粒子：从指针那条道的队头那一格冒出去 ---- */
+function syxFx(n,kind){
+  let x=SYD_FORK_X,y=SYD_LANE_Y[syd.p];
+  if(kind==='go'){x=sydxSlot(syd.lanes[syd.p].length-1)}
+  else if(kind==='bad'){x=sydxSlot(0)}
+  else if(kind==='crane'){x=SYD_FORK_X,y=SYD_IN_Y}
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,sp=.02+Math.random()*.06;
+    syd.parts.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,m:0,
+      life:kind==='win'?1200:(kind==='bad'?520:640),
+      c:kind==='bad'?'#FF8A65':(kind==='ring'?'#80DEEA':(kind==='up'?'#BA68C8':(kind==='crane'?'#FFD54F':'#B0BEC5')))});
+    if(syd.parts.length>180)syd.parts.shift();
+  }
+}
+function syxFxStep(dt){
+  for(let i=syd.parts.length-1;i>=0;i--){
+    const p=syd.parts[i];
+    p.m+=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;
+    if(p.m>p.life)syd.parts.splice(i,1);
+  }
+}
+/* ---- 四件站具 ---- */
+function sydView(){
+  if(!syd.run||syd.over)return 0;
+  if(syd.viewN<=0){sydTag('🔭 看路用完了');return 0}
+  syd.viewN--;syd.viewUse++;syd.tools++;syd.actMs=3000;syd.nagMs=0;
+  syd.viewMs=SYD_VIEW_MS;
+  sydTag('🔭 看路三秒半：把还没进站的下一批车掀开头牌 —— 谁跟在后头，你就知道这一节该发进哪道');
+  sydHud();return 1;
+}
+function sydHold(){
+  if(!syd.run||syd.over)return 0;
+  if(syd.holdN<=0){sydTag('🚦 红灯用完了');return 0}
+  syd.holdN--;syd.holdUse++;syd.tools++;syd.actMs=3000;syd.nagMs=0;
+  syd.holdMs=SYD_HOLD_MS;
+  sydTag('🚦 八秒红灯：进车与发车两班钟一起停（道里压着的车也不长灰）—— 这一段只理道，两只罚钟照走');
+  sydHud();return 1;
+}
+/* 倒位：把指针那条道队尾那一节吊回岔口。岔口有车就是换（那节顶车道去排队尾，得有位），
+   岔口空着就是纯吊回来。道里中间的次序一律不动 —— FIFO 这条规矩被这一记守得死死的 */
+function sydCrane(){
+  if(!syd.run||syd.over)return 0;
+  if(syd.craneN<=0){sydTag('🛠 倒位用完了');return 0}
+  const L=syd.lanes[syd.p];
+  if(!L.length){sydTag('🛠 第 '+(syd.p+1)+' 道是空的，没东西可吊','warn');return 0}
+  const fork=sydFork();
+  if(fork&&L.length>=sydCapNow()){
+    sydTag('🛠 第 '+(syd.p+1)+' 道已经停满 '+L.length+' 节：要吊队尾，得先把岔口那节发进别的道','warn');
+    return 0;
+  }
+  const tail=L.pop();
+  if(fork)L.push(fork);          /* 岔口那节顶进这条道的队尾：道里其余车的先后一点没动 */
+  syd.inQ.shift();               /* 让开岔口那一格 */
+  syd.inQ.unshift(tail);         /* 队尾那节回到岔口 */
+  syd.craneN--;syd.craneUse++;syd.tools++;syd.actMs=3000;syd.nagMs=0;
+  syd.score=Math.max(0,syd.score-SYD_PEN_CRANE);
+  syd.cranes++;
+  syxFx(6,'crane');
+  sydTag('🛠 倒位：把第 '+(syd.p+1)+' 道道尾那节（'+
+    (tail.fake?'影车':'第 '+(tail.i+1)+' 笔')+'）吊回岔口，−'+SYD_PEN_CRANE+
+    ' 分'+(fork?('、岔口那节顶进了道尾'):'')+' —— 道里其余车的先后一点没动','gold');
+  sydMarkTarget();
+  sydHud();sydLine();
+  return 1;
+}
+function sydSwap(){
+  if(!sydGate())return 0;
+  if(syd.swapN<=0){sydTag('🔁 换字只有一回');return 0}
+  syd.swapN--;syd.swapUse++;syd.swaps++;
+  syd.score=Math.max(0,syd.score-SYD_PEN_SWAP);
+  sydMissAdd(syd.rec?syd.rec.ch:'');
+  sydTag('🔁 换了一个字：−'+SYD_PEN_SWAP+' 分，这一个进了错字本','warn');
+  sydNewWord();
+  return 1;
+}
+/* nagHold 是「口诀正占着题头」那 5.2 秒：手一动就撤掉它 —— 题头空出来孩子才看得见「该收第几笔」 */
+function sydNagOff(){syd.nagHold=0;syd.nagMs=0}
+function sydNag(){
+  syd.nags++;syd.nagHold=SYD_NAG_HOLD;
+  const w=sydTargetWhere();
+  if(!w)syd.nagTip='👀 道里不许超车：一节车要发进哪道，得看那道队尾那节的编号比它大还是小';
+  else if(w.w==='lane')syd.nagTip='👀 第 '+(syd.pi+1)+' 笔在第 '+(w.j+1)+' 道的第 '+(w.k+1)+' 格 —— 它前头那几节不摘完，它出不来';
+  else if(w.w==='fork')syd.nagTip='👀 第 '+(syd.pi+1)+' 笔还压在待挂线第 '+(w.j+1)+' 格 —— 前头的车不发进道，它到不了岔口';
+  else syd.nagTip='👀 第 '+(syd.pi+1)+' 笔还在站外头排着 —— 先把道里的车摘开';
+  sydxTone(SYD_NOTE[2],.14,'triangle',.04);
+}
+
+/* ================= 段 D：画这座场（铁轨 · 岔口 · 待挂线四格 · 三道存车线 · 车厢 · 信号灯 · 落灰）· 样图 · HUD ================= */
+/* 道砟上的碎石头用固定种子生成一次：场坪得是同一座场，孩子第二场回来还认得这几颗石子 */
+const sydDots=(function(){
+  let s=20261024;
+  const rnd=function(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff};
+  const a=[];
+  for(let y=12;y<SYD_H-6;y+=15)for(let x=10;x<SYD_W-6;x+=15){
+    a.push({x:x+rnd()*5-2.5,y:y+rnd()*5-2.5});
+  }
+  return a;
+})();
+function sydYardBg(c){
+  const g=c.createLinearGradient(0,0,0,SYD_H);
+  g.addColorStop(0,'#101A20');g.addColorStop(.5,'#0A1116');g.addColorStop(1,'#060C10');
+  c.fillStyle=g;c.fillRect(0,0,SYD_W,SYD_H);
+  c.fillStyle='rgba(120,144,156,.10)';
+  for(let i=0;i<sydDots.length;i++){
+    const p=sydDots[i];
+    c.fillRect(p.x,p.y,1.6,1.2);
+  }
+  c.strokeStyle='rgba(134,179,192,.26)';c.lineWidth=2;
+  c.strokeRect(4,4,SYD_W-8,SYD_H-8);
+}
+/* 铁轨：待挂线一条（四格画得出刻度，满了就是满了）、存车线三条（按这一场的道宽画出空位）*/
+function sydRails(c){
+  const cap=sydCapNow();
+  /* 待挂线：站口在右、岔口在左，四格空位一律画出来 */
+  c.strokeStyle='#37505C';c.lineWidth=2;
+  c.beginPath();c.moveTo(SYD_FORK_X-34,SYD_IN_Y-6);c.lineTo(SYD_W-14,SYD_IN_Y-6);c.stroke();
+  c.beginPath();c.moveTo(SYD_FORK_X-34,SYD_IN_Y+6);c.lineTo(SYD_W-14,SYD_IN_Y+6);c.stroke();
+  for(let i=0;i<SYD_IN_CAP;i++){
+    const x=SYD_IN_SLOTS[i];
+    c.strokeStyle='rgba(144,164,174,.22)';c.lineWidth=1;
+    c.strokeRect(x-SYD_CAR_W/2,SYD_IN_Y-SYD_CAR_H/2,SYD_CAR_W,SYD_CAR_H);
+  }
+  /* 站口：还有几节在站外排着（看不见是什么，只数得清有几节）*/
+  c.fillStyle='rgba(255,213,79,'+(syd.queue.length?.85:.3)+')';
+  for(let i=0;i<Math.min(6,syd.queue.length);i++){c.beginPath();c.arc(SYD_W-16,SYD_IN_Y-16+i*7,2.1,0,6.283);c.fill()}
+  c.font='9px system-ui,sans-serif';c.fillStyle='#78909C';c.textAlign='left';
+  c.fillText('待挂线 '+SYD_IN_CAP+' 格',SYD_FORK_X-32,SYD_IN_Y-16);
+  /* 三条存车线 */
+  for(let j=0;j<3;j++){
+    const y=SYD_LANE_Y[j];
+    const hot=j===syd.p;
+    c.strokeStyle=hot?'#FFD54F':'#37505C';c.lineWidth=hot?2.4:2;
+    c.beginPath();c.moveTo(78,y-6);c.lineTo(SYD_GATE_X,y-6);c.stroke();
+    c.beginPath();c.moveTo(78,y+6);c.lineTo(SYD_GATE_X,y+6);c.stroke();
+    for(let i=0;i<cap;i++){
+      const x=sydxSlot(i);
+      c.strokeStyle=hot?'rgba(255,213,79,.26)':'rgba(144,164,174,.16)';c.lineWidth=1;
+      c.strokeRect(x-SYD_CAR_W/2,y-SYD_CAR_H/2,SYD_CAR_W,SYD_CAR_H);
+    }
+    c.font='9px system-ui,sans-serif';c.textAlign='left';
+    c.fillStyle=hot?'#FFE082':'#607D8B';
+    c.fillText('第'+(j+1)+'道',80,y-13);
+    /* 收签口上的信号灯：只有指着的那道亮，颜色就是此刻这一班（绿 / 黄 / 灭）*/
+    const lit=hot&&(syd.lampOn>0||syd.lampYl>0);
+    c.fillStyle=!hot?'#2B3A42':(syd.lampOn>0?'#66BB6A':(syd.lampYl>0?'#FFD54F':'#546E7A'));
+    c.beginPath();c.arc(SYD_GATE_X+8,y,4.6,0,6.283);c.fill();
+    c.strokeStyle=lit?'rgba(255,255,255,.5)':'rgba(255,255,255,.16)';c.lineWidth=1;
+    c.beginPath();c.arc(SYD_GATE_X+8,y,4.6,0,6.283);c.stroke();
+  }
+  /* 扳道杆：从岔口往指着的那道引一条亮线，另两条压暗 —— 发车那一刻它指着谁，车就进谁 */
+  const s=SYD_LANE_Y[syd.p];
+  c.strokeStyle='rgba(255,213,79,.75)';c.lineWidth=2.6;
+  c.beginPath();c.moveTo(SYD_FORK_X,SYD_IN_Y+8);c.lineTo(86,SYD_IN_Y+16);c.lineTo(86,s-14);c.lineTo(96,s);c.stroke();
+  for(let j=0;j<3;j++){
+    if(j===syd.p)continue;
+    const y=SYD_LANE_Y[j];
+    c.strokeStyle='rgba(120,144,156,.22)';c.lineWidth=1.4;
+    c.beginPath();c.moveTo(SYD_FORK_X,SYD_IN_Y+8);c.lineTo(86,SYD_IN_Y+16);c.lineTo(86,y-14);c.lineTo(96,y);c.stroke();
+  }
+  c.fillStyle='#FFD54F';c.beginPath();c.arc(SYD_FORK_X,SYD_IN_Y+9,3.2,0,6.283);c.fill();
+}
+/* 一节车厢：左边是编号（第几笔），右边是那一种笔形；影车没有编号 */
+function sydCar(c,x,y,car,marked){
+  const w=SYD_CAR_W,h=SYD_CAR_H;
+  c.save();
+  c.globalAlpha=.34;c.fillStyle='#000';
+  c.fillRect(x-w/2+2,y-h/2+3,w,h);
+  c.globalAlpha=1;
+  const g=c.createLinearGradient(0,y-h/2,0,y+h/2);
+  g.addColorStop(0,'#3B4A52');g.addColorStop(1,'#22303A');
+  c.fillStyle=g;
+  c.fillRect(x-w/2,y-h/2,w,h);
+  c.strokeStyle=marked?'#FFF176':'rgba(207,216,220,.62)';
+  c.lineWidth=marked?2.6:1.4;
+  c.strokeRect(x-w/2,y-h/2,w,h);
+  /* 编号牌 */
+  if(!car.fake){
+    c.fillStyle='rgba(255,255,255,.14)';
+    c.beginPath();c.arc(x-w/2+10,y,8.4,0,6.283);c.fill();
+    c.font='bold 11px system-ui,sans-serif';c.textAlign='center';c.textBaseline='middle';
+    c.fillStyle='#ECEFF1';
+    c.fillText(String(car.i+1),x-w/2+10,y+.5);
+  }
+  /* 笔形：横一横、竖一竖、撇捺各斜一头 */
+  const L=11;
+  let dx=1,dy=0;
+  if(car.dir===1){dx=0;dy=1}
+  else if(car.dir===2){dx=-.72;dy=.72}
+  else if(car.dir===3){dx=.72;dy=.72}
+  c.strokeStyle=SYD_INK4[sydxRok(car.dir)];c.lineWidth=3.4;c.lineCap='round';
+  c.beginPath();c.moveTo(x+8-dx*L,y-dy*L);c.lineTo(x+8+dx*L,y+dy*L);c.stroke();
+  /* 落灰：在道里压过 20 秒，车厢上一层灰（摘它只拿七成）*/
+  if(car.age>=SYD_STALE){
+    c.fillStyle='rgba(200,200,190,.30)';c.fillRect(x-w/2,y-h/2,w,h);
+    c.globalAlpha=.7;c.fillStyle='#CFD8DC';c.font='9px system-ui,sans-serif';
+    c.textAlign='center';c.textBaseline='middle';
+    c.fillText('🌫',x+w/2-8,y-h/2+7);
+    c.globalAlpha=1;
+  } else if(car.age>=SYD_STALE*.55){
+    c.fillStyle='rgba(200,200,190,'+(.10*(car.age/SYD_STALE)) + ')';
+    c.fillRect(x-w/2,y-h/2,w,h);
+  }
+  if(marked){
+    c.strokeStyle='rgba(255,241,118,'+(.3+.35*Math.abs(Math.sin(syd.t/260)))+')';
+    c.lineWidth=4;c.strokeRect(x-w/2-3,y-h/2-3,w+6,h+6);
+  }
+  c.restore();
+}
+/* 待挂线：岔口那一格是队头，后头的往右摞 */
+function sydDrawIn(c){
+  for(let i=0;i<syd.inQ.length;i++){
+    const car=syd.inQ[i];
+    const mk=(syd.markLane===-2&&syd.markSlot===i&&sydMarkLive());
+    sydCar(c,SYD_IN_SLOTS[i],SYD_IN_Y,car,mk);
+  }
+}
+function sydDrawLanes(c){
+  for(let j=0;j<3;j++){
+    const y=SYD_LANE_Y[j];
+    for(let i=0;i<syd.lanes[j].length;i++){
+      const car=syd.lanes[j][i];
+      const mk=(syd.markLane===j&&syd.markSlot===i&&sydMarkLive());
+      sydCar(c,sydxSlot(i),y,car,mk);
+    }
+  }
+}
+/* 🔭 看路：把站外排着的下一批车掀开头牌（最多三节），看不见的时候只数得清有几节 */
+function sydDrawPeek(c){
+  if(syd.viewMs<=0||!syd.queue.length)return;
+  const n=Math.min(3,syd.queue.length);
+  /* 掀的头牌排在站口上方那一条空坪里：一格压着待挂线的车、一格压着道口的灯都不行 */
+  for(let i=0;i<n;i++){
+    const car=syd.queue[i];
+    const x=SYD_W-46-i*30,y=20;
+    c.save();c.globalAlpha=.94;
+    c.translate(x,y);c.scale(.56,.56);c.translate(-x,-y);
+    sydCar(c,x,y,car,false);
+    c.restore();
+  }
+  c.font='9px system-ui,sans-serif';c.textAlign='right';c.fillStyle='#80DEEA';
+  c.fillText('🔭 站外 '+syd.queue.length+' 节（最右那节先进站）',SYD_W-9,38);
+}
+function sydDrawFx(c){
+  for(let i=0;i<syd.parts.length;i++){
+    const p=syd.parts[i];
+    c.globalAlpha=Math.max(0,1-p.m/p.life);
+    c.fillStyle=p.c;
+    c.beginPath();c.arc(p.x,p.y,2.4,0,6.283);c.fill();
+  }
+  c.globalAlpha=1;
+}
+function sydDraw(){
+  const c=syd.ctx;
+  if(!c)return;
+  c.clearRect(0,0,SYD_W,SYD_H);
+  sydYardBg(c);
+  sydRails(c);
+  sydDrawIn(c);
+  sydDrawLanes(c);
+  sydDrawPeek(c);
+  sydDrawFx(c);
+  /* 发车钟还剩多少：岔口车厢上一条走到头的黄进度，孩子看得见「这一响就要发车」*/
+  if(syd.inQ.length&&syd.iv>0){
+    const k=sydxClamp(syd.ivMs/syd.iv,0,1);
+    const y=SYD_IN_Y-SYD_CAR_H/2-5;
+    c.fillStyle='rgba(255,213,79,.22)';c.fillRect(SYD_FORK_X-SYD_CAR_W/2,y,SYD_CAR_W,3);
+    c.fillStyle=syd.holdMs>0?'#90A4AE':'#FFD54F';c.fillRect(SYD_FORK_X-SYD_CAR_W/2,y,SYD_CAR_W*k,3);
+  }
+  if(syd.holdMs>0){
+    c.save();c.globalAlpha=.14;c.fillStyle='#00415f';c.fillRect(0,0,SYD_W,SYD_H);c.restore();
+  }
+  /* 这一站的钟快见了底：整座场暗下去（进度条也会红）*/
+  if(syd.fuel<sydFuel(syd.lv)*.22){
+    c.save();c.globalAlpha=.12+.09*Math.abs(Math.sin(syd.t/420));
+    c.fillStyle='#000';c.fillRect(0,0,SYD_W,SYD_H);c.restore();
+  }
+}
+/* ---- 样图：这个字全在站上，收一笔亮一笔 ---- */
+function sydMini(){
+  const svg=document.getElementById('sydMiniSvg');
+  if(!svg)return;
+  const rec=syd.rec;
+  if(!rec||!rec.paths){svg.innerHTML='';sydCapLine();return}
+  const faint=sydFaint(syd.lv);
+  let s='';
+  for(let i=0;i<rec.paths.length;i++){
+    const got=!!syd.gotIdx[i];
+    const p=rec.paths[i];
+    const dPath=Array.isArray(p)?p.map(function(q,k){return (k?'L':'M')+q[0]+' '+q[1]}).join(''):String(p||'');
+    if(!dPath)continue;
+    s+='<path d="'+dPath+'" fill="none" stroke="'+(got?SYD_INK4[sydxRok(rec.dirs[i])]:
+      (faint?'#455A64':'#546E7A'))+'" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" opacity="'+
+      (got?.95:(faint?.22:.4))+'"/>';
+  }
+  svg.innerHTML=s;
+  sydCapLine();
+}
+function sydCapLine(){
+  const el=document.getElementById('sydMiniCap');
+  if(!el)return;
+  if(!syd.rec){el.textContent='这个字还没拆成一节一节';return}
+  const ks=[];
+  for(let i=0;i<syd.rec.kinds.length;i++)ks.push(SYD_TAG4[syd.rec.kinds[i]]);
+  el.textContent=syd.rec.ch+' · '+syd.rec.n+' 节 · 这个字只有：'+ks.join(' ');
+}
+/* ---- 站具条 ---- */
+function sydToolBtn(id,n){
+  const b=document.getElementById(id);
+  if(!b)return;
+  b.disabled=!(n>0&&syd.run&&!syd.over);
+  const k=b.querySelector('b');
+  if(k)k.textContent='剩 '+n;
+}
+function sydHud(){
+  if(!syd.run)return;
+  const tot=sydxInt('hz_shunt_words');
+  const rk=sydxRank(tot);
+  let h='';
+  const hs=Math.max(SYD_HEARTS,syd.hearts);
+  for(let i=0;i<syd.hearts;i++)h+='❤️';
+  for(let i=syd.hearts;i<hs;i++)h+='🤍';
+  sydxPut('sydRankTxt',rk.e+' '+rk.t);
+  sydxPut('sydHeartTxt',h||'💔');
+  sydxPut('sydComboTxt','🔥 连 '+syd.combo);
+  sydxPut('sydGoalTxt','🎯 该收第 '+Math.min(syd.pi+1,syd.n)+' 笔'+
+    (syd.rec?'（'+SYD_TAG4[sydxRok(syd.rec.dirs[Math.min(syd.pi,syd.n-1)])]+'）':''));
+  sydxPut('sydShotTxt','🚩 摘 '+syd.shots+' · 对上 '+syd.hits);
+  sydxPut('sydFakeTxt',sydFakeN()?('🌑 场上影车 '+sydFakeN()+' 节 · 白摘 '+syd.fakes+' 次'):
+    (sydDealFakeN()?'🌑 这一场混 '+sydDealFakeN()+' 节影车 · 都摘完了':'🌑 这一场没影车'));
+  sydxPut('sydDustTxt','🌫 落灰 '+sydDustN()+' 节 · 打折 '+syd.dusts+' 次');
+  sydxPut('sydLampTxt','🚦 绿灯 '+syd.lampN+' 班 · 赶上 '+syd.greens+' · 擦灯 '+syd.yellows);
+  sydxPut('sydChainTxt','✨ 连摘 '+syd.chain+'（最长 '+syd.chainMax+'）· 顺手 '+syd.tights+' · 同道 '+syd.sames);
+  sydxPut('sydScoreTxt','🎯 '+syd.score+' 分');
+  sydxPut('sydLvTxt','第 '+syd.lv+' 场 · 已收 '+tot+' 字');
+  sydxPut('sydQTxt','⏳ 这一笔 '+Math.ceil(Math.max(0,syd.qms)/1000)+' 秒');
+  sydToolBtn('sydViewBtn',syd.viewN);sydToolBtn('sydHoldBtn',syd.holdN);
+  sydToolBtn('sydCraneBtn',syd.craneN);sydToolBtn('sydSwapBtn',syd.swapN);
+  sydMini();sydPow();
+}
+function sydPowStr(){
+  if(!syd.rec)return '🚂 站里还没开车';
+  const fork=sydFork();
+  const cnt=[];
+  for(let j=0;j<3;j++)cnt.push(syd.lanes[j].length);
+  let s='🚦 指针：第 '+(syd.p+1)+' 道（停 '+cnt[syd.p]+'/'+sydCapNow()+' 节）· 发车 '+
+    (syd.iv/1000).toFixed(1)+' 秒/班 · 进车 '+(sydArrMs(syd.lv)/1000).toFixed(1)+' 秒/班';
+  s+=' · 岔口：'+(fork?(fork.fake?'影车（'+SYD_TAG4[sydxRok(fork.dir)]+'）':'第 '+(fork.i+1)+' 笔'):'空着');
+  s+=' · 三道：'+cnt.join(' / ')+' · 站外 '+syd.queue.length+' 节';
+  s+=syd.lampOn>0?' · 🚦 绿灯 '+((syd.lampOn/1000).toFixed(1))+' 秒（×'+SYD_GREEN_MULT+')'
+    :(syd.lampYl>0?' · 🚦 黄灯 ×'+SYD_SAME_MULT:'');
+  if(syd.holdMs>0)s+=' · 🚦 红灯停表 '+((syd.holdMs/1000).toFixed(1))+' 秒';
+  if(sydDustN())s+=' · 🌫 落灰 '+sydDustN()+' 节';
+  if(syd.viewMs>0)s+=' · 🔭 站外掀了牌';
+  return s;
+}
+function sydPow(){sydxPut('sydPowTxt',sydPowStr())}
+function sydMeter(){
+  const qb=document.getElementById('sydQBar'),fb=document.getElementById('sydFuelBar'),bb=document.getElementById('sydBeatBar');
+  if(qb)qb.style.width=Math.max(0,Math.min(100,syd.qms/Math.max(1,syd.qms0)*100))+'%';
+  const box=document.getElementById('sydQBox');
+  if(box)box.classList.toggle('low',syd.qms<=sydQWarn());
+  sydxPut('sydQTxt2','⏳ 这一笔 '+(Math.max(0,syd.qms)/1000).toFixed(1)+' 秒');
+  const fk=Math.max(0,Math.min(100,syd.fuel/sydFuel(syd.lv)*100));
+  if(fb)fb.style.width=fk+'%';
+  const fbox=document.getElementById('sydFuelBox');
+  if(fbox)fbox.classList.toggle('low',syd.fuel<sydFuel(syd.lv)*.22);
+  sydxPut('sydFuelTxt','🛑 这一站 '+Math.ceil(Math.max(0,syd.fuel)/1000)+' 秒');
+  const on=syd.lampOn>0,yl=!on&&syd.lampYl>0;
+  if(bb)bb.style.width=(on?Math.max(0,Math.min(100,syd.lampOn/SYD_LAMP_ON*100)):
+    (yl?Math.max(0,Math.min(100,syd.lampYl/SYD_LAMP_YL*100)):
+      Math.max(0,Math.min(100,syd.lampMs/sydLampMs(syd.lv)*100))))+'%';
+  const bbox=document.getElementById('sydBeatBox');
+  if(bbox){bbox.classList.toggle('on',on);bbox.classList.toggle('low',yl)}
+  sydxPut('sydBeatTxt2',on?('🚦 绿灯还亮 '+(syd.lampOn/1000).toFixed(1)+' 秒 · 摘签 ×'+SYD_GREEN_MULT):
+    (yl?('🚦 黄灯 '+(syd.lampYl/1000).toFixed(1)+' 秒 · ×'+SYD_SAME_MULT):
+      ('🚦 下一班绿灯 '+Math.ceil(Math.max(0,sydLampMs(syd.lv)-syd.lampMs)/1000)+' 秒后')));
+}
+/* ---- 题头：现在该收第几笔、这一刻该做什么（占死版面，只许换字不许换行数）---- */
+function sydAsk(){
+  if(!syd.run||syd.over||!syd.rec){sydxPut('sydAsk','🚂 这座场还没开车<br><small>点「再调一场」</small>');return}
+  if(syd.helpMs>0){sydxPut('sydAsk','🚂 <b>怎么把车倒齐</b><br><small>两班车流钟都先停住</small>');return}
+  const w=sydTargetWhere();
+  if(syd.nagHold>0){
+    sydxPut('sydAsk','🌱 <b>口诀</b>：一节车发进哪道，看那道<b>队尾那节的编号</b><br>'+
+      '<small>编号比它大才发得进去 · 道里不许超车 · 队头对上就摘</small>');
+    return;
+  }
+  if(syd.warn){
+    sydxPut('sydAsk','🔥 <b>这一笔的钟要走光了</b>：'+(w?(w.w==='lane'?('它在第 '+(w.j+1)+' 道的第 '+(w.k+1)+' 格')
+      :(w.w==='fork'?'它压在待挂线第 '+(w.j+1)+' 格':'它还在站外')):'')+' —— 先把挡在它前头的车摘开<br>'+
+      '<small>W/S 扳道 · A/D 调发车 · 空格 摘签</small>');
+    return;
+  }
+  sydxPut('sydAsk','🎯 该收 <b>第 '+(syd.pi+1)+' 笔 · '+SYD_TAG4[sydxRok(syd.rec.dirs[Math.min(syd.pi,syd.n-1)])]+
+    '</b>'+(w?(w.w==='lane'?(' · 在第 '+(w.j+1)+' 道第 '+(w.k+1)+' 格'):
+      (w.w==='fork'?' · 在待挂线第 '+(w.j+1)+' 格':' · 还在站外')):'')+
+    ' · 这一字还剩 <b>'+(syd.n-syd.pi)+'</b> 节<br>'+
+    '<small>W/S 扳道 · A/D 调发车 · <b>空格</b> 摘 —— 只认指针那道<b>队头</b>那一节</small>');
+}
+/* ---- 说明行：眼下最该知道的那一句 ---- */
+function sydLine(){
+  if(!syd.run)return;
+  let t;
+  if(syd.helpMs>0)t='🛑 <b>歇一记看说明</b>：两班车流钟全停住，按任意键就回到站跟前';
+  else if(syd.holdMs>0)t='🚦 <b>红灯中</b>：进车与发车一起停（指针照样扳、发车照样调）—— 这一段只理道，两只罚钟照走';
+  else if(syd.nagHold>0)t='🌱 <b>发呆口诀</b>：'+(syd.nagTip||'一节车发进哪道，看那道队尾的编号 —— 编号比它大才发得进去')+
+    '；道里<b>不许超车</b>，队头对不上就永远出不来';
+  else if(syd.crashes)t='💥 <b>压过 ' + syd.crashes + ' 回线</b>：待挂线只有 '+SYD_IN_CAP+' 格，'+
+    '堆满了还往进站就撞 —— <b>发车调快（D）</b>把道里的车送出去，或者 <b>🚦 红灯</b>先把车流停住';
+  else if(syd.jams)t='🚧 <b>顶过 '+syd.jams+' 回车</b>：'+(syd.p+1)+' 那道停了 '+syd.lanes[syd.p].length+
+    '/'+sydCapNow()+' 节 —— 道满了还硬发就是顶车，先摘签腾位或换个道';
+  else if(sydDustN())t='🌫 <b>道里有 '+sydDustN()+' 节压过 20 秒了</b>：等得久的货不值钱，摘它<b>只拿七成</b> —— 该收的那笔别发进最挤那道';
+  else if(sydFakeN())t='🌑 <b>场上混着 '+sydFakeN()+' 节影车</b>：这个字压根没有那一种笔，车厢上也<b>没有编号</b> —— 它挡道就白摘一回（−'+SYD_PEN_FAKE+' 分，总比堵死好）';
+  else if(syd.empties&&syd.pullMs<4000)t='💧 <b>刚才摘了个空</b>：'+(syd.p+1)+' 那道还没车 —— 岔口的车要等<b>发车钟那一响</b>才进道';
+  else if(syd.lampOn>0)t='🚦 <b>绿灯亮着</b>：这一班摘签 <b>×'+SYD_GREEN_MULT+'</b> —— 机会，不是威胁';
+  else if(syd.warn)t='🔥 <b>这一笔的钟只剩 '+(Math.max(0,syd.qms)/1000).toFixed(1)+' 秒</b>：先扳到挡着它的那道，把队头摘开';
+  else if(syd.lv<=1)t='🚂 <b>岔口那一节就是下一班要发的车</b>：它头顶上的黄条走完就发车 —— 想清楚它该进哪道';
+  else if(syd.lv<=2)t='🚂 <b>该收的那一节一直描着金边</b>：编号对得上、又在最外头的那一节才摘得走';
+  else t='🚂 <b>三道各停 '+sydCapNow()+' 节、只许排队不许超车</b>：你手里只有<b>扳哪道</b>、<b>发车多快</b>、<b>哪一刻摘签</b>三样';
+  sydxPut('sydHintLine','🚂 <b>'+t+'</b>');
+  sydMeter();
+}
+/* ---- 浮条：一句话，两秒钟 ---- */
+function sydTag(t,cls){
+  const el=document.getElementById('sydTag');
+  if(!el)return;
+  el.textContent=t;
+  el.className='syd-tag on'+(cls?' '+cls:'');
+  syd.tagOn=1;
+  if(syd.tagTimer)clearTimeout(syd.tagTimer);
+  const g=syd.gen;
+  syd.tagTimer=setTimeout(function(){
+    syd.tagTimer=0;syd.tagOn=0;
+    if(g!==syd.gen)return;
+    el.className='syd-tag';
+  },SYD_TAG_MS);
+}
+
+/* ================= 段 E：主循环 · 真键盘与真指针（手指压在道上就是扳道）· 双人分工 · 说明 · 生命周期 ================= */
+function sydStartLoop(){
+  if(syd.rafId)return;
+  syd.last=performance.now();
+  function step(now){
+    if(!syd.run||syd.over){syd.rafId=0;return}
+    const dt=Math.min(120,Math.max(8,now-syd.last));
+    syd.last=now;
+    sydTick(dt);
+    if(!syd.run||syd.over)return;
+    sydDraw();
+    syd.hudAcc+=dt;
+    if(syd.hudAcc>=120){syd.hudAcc=0;sydHud();sydLine();sydAsk()}
+    syd.rafId=requestAnimationFrame(step);
+  }
+  syd.rafId=requestAnimationFrame(step);
+}
+function sydStopLoop(){
+  if(syd.rafId){cancelAnimationFrame(syd.rafId);syd.rafId=0}
+}
+function sydPanels(){
+  const p1=document.getElementById('sydDuoP1'),p2=document.getElementById('sydDuoP2');
+  if(p1)p1.classList.toggle('off',!syd.duo);
+  if(p2)p2.classList.toggle('off',!syd.duo);
+  const b=document.getElementById('sydPullBtn');
+  if(b)b.disabled=!syd.run||syd.over;
+}
+/* ---- 亲子同屏：一个人只管两根旋钮、一个人只管下手那一瞬 ---- */
+function sydDuo(on){
+  syd.duo=(on===undefined?!syd.duo:!!on);
+  syd.duoCut=0;syd.duoP1=0;syd.duoP2=0;syd.duoHalf=true;syd.hug=0;syd.hugW=0;
+  if(syd.duo)sydxAdd('hz_shunt_duon',1);
+  sydTag(syd.duo?'👥 双人：你只管扳道、同伴只管摘签':'👤 单人','gold');
+  sydxSay(syd.duo?
+    '👥 <b>亲子同屏</b>：<b>P1</b> 只管车流（<code>W</code>/<code>S</code> 扳道、<code>A</code>/<code>D</code> 调发车快慢），'+
+    '<b>P2</b> 只管摘签（<code>空格</code>）。两个人谁也替不了谁 —— 但 P1 扳完道的 <b>0.42 秒</b>内 P2 下手，'+
+    '这一记才算<b>合抱</b>；一个字里合抱上过就另加 '+SYD_DUO_BONUS+' 分。'+
+    '一个人调也打得动，只是那句「两个人一起把这一班掐住」就说不出口了'
+    :'👤 <b>单人</b>：<code>W</code>/<code>↑</code> 把指针扳上、<code>S</code>/<code>↓</code> 扳下（一次一道），'+
+    '<code>A</code>/<code>←</code> 发车放慢、<code>D</code>/<code>→</code> 发车加快，<code>空格</code> 摘签','#FFE0B2');
+  const b=document.getElementById('sydDuoBtn');
+  if(b){b.textContent=syd.duo?'👥 双人 ✔':'👥 双人';b.classList.toggle('on',syd.duo)}
+  sydPanels();sydLine();sydHud();sydDraw();
+  return syd.duo?1:0;
+}
+/* ---- 绑定：键盘只认这几支键，指针只认「压在 which 道上」和那一下不动的轻点 ---- */
+function sydBind(){
+  if(syd.bound)return;
+  syd.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!syd.run||syd.over)return;
+    const k=e.key;
+    if(k==='Escape'){sydLeave();return}
+    if(k==='h'||k==='H'||k==='?'){e.preventDefault();sydHelp();return}
+    /* 说明挂着时按下的第一个键只负责把说明收走，不替你摘下这一签 */
+    if(syd.helpMs>0){syd.helpMs=0;sydAsk();sydLine();sydHud();return}
+    if(k===' '||k==='Spacebar'){e.preventDefault();sydPull(syd.duo?2:0);return}
+    if(k==='w'||k==='W'||k==='ArrowUp'){e.preventDefault();syd.keys.up=1;sydKnobTouch(!e.repeat);sydNagOff();
+      if(!e.repeat)sydMoveP(-1);return}
+    if(k==='s'||k==='S'||k==='ArrowDown'){e.preventDefault();syd.keys.down=1;sydKnobTouch(!e.repeat);sydNagOff();
+      if(!e.repeat)sydMoveP(1);return}
+    if(k==='a'||k==='A'||k==='ArrowLeft'){e.preventDefault();syd.keys.slow=1;sydKnobTouch(!e.repeat);sydNagOff();return}
+    if(k==='d'||k==='D'||k==='ArrowRight'){e.preventDefault();syd.keys.fast=1;sydKnobTouch(!e.repeat);sydNagOff();return}
+    if(k==='Enter'){e.preventDefault();sydSwap();return}
+    if(k==='q'||k==='Q'){sydView();return}
+    if(k==='e'||k==='E'){sydHold();return}
+    if(k==='f'||k==='F'){sydCrane();return}
+  });
+  window.addEventListener('keyup',function(e){
+    const k=e.key;
+    if(k==='w'||k==='W'||k==='ArrowUp')syd.keys.up=0;
+    if(k==='s'||k==='S'||k==='ArrowDown')syd.keys.down=0;
+    if(k==='a'||k==='A'||k==='ArrowLeft')syd.keys.slow=0;
+    if(k==='d'||k==='D'||k==='ArrowRight')syd.keys.fast=0;
+  });
+  const cv=document.getElementById('sydCanvas');
+  if(cv){
+    /* 手指压在道里就是扳道：轨道与键盘改的是同一个 syd.p；点一下不动（240 毫秒内、挪不到 10 像素）就是摘签 */
+    const at=function(ev){
+      const r=cv.getBoundingClientRect();
+      if(!r.width||!r.height)return null;
+      return {x:(ev.clientX-r.left)/r.width*SYD_W,y:(ev.clientY-r.top)/r.height*SYD_H};
+    };
+    const laneAt=function(y){
+      for(let j=0;j<3;j++)if(Math.abs(y-SYD_LANE_Y[j])<=22)return j;
+      return -1;
+    };
+    cv.addEventListener('pointerdown',function(ev){
+      if(!syd.run||syd.over)return;
+      ev.preventDefault();
+      const p=at(ev);
+      if(!p)return;
+      if(syd.helpMs>0){syd.helpMs=0;sydAsk();sydLine();sydHud();return}
+      syd.tapX=p.x;syd.tapY=p.y;
+      syd.pend={t:performance.now(),moved:0,lane:-1};
+      const j=laneAt(p.y);
+      if(j>=0&&j!==syd.p){syd.p=j;sydKnobTouch(1);sydNagOff();sydLaneByHand()}
+      else sydNagOff();
+      try{cv.setPointerCapture(ev.pointerId)}catch(e){}
+    });
+    cv.addEventListener('pointermove',function(ev){
+      if(!syd.run||syd.over||!syd.pend)return;
+      const p=at(ev);
+      if(!p)return;
+      syd.pend.moved+=Math.hypot(p.x-syd.tapX,p.y-syd.tapY);
+      syd.tapX=p.x;syd.tapY=p.y;
+      const j=laneAt(p.y);
+      if(j>=0&&j!==syd.p){
+        syd.p=j;
+        if(!syd.pend.lane){syd.pend.lane=1;sydKnobTouch(1)}else sydKnobTouch(0);
+        sydLaneByHand();
+      }
+    });
+    const up=function(ev){
+      const pd=syd.pend;syd.pend=null;
+      if(!pd)return;
+      if(pd.moved>=10){sydLine();sydHud();return}
+      if(!syd.run||syd.over)return;
+      if(performance.now()-pd.t<=240)sydPull(syd.duo?2:0);
+    };
+    cv.addEventListener('pointerup',up);
+    cv.addEventListener('pointercancel',function(){syd.pend=null});
+    cv.addEventListener('pointerleave',function(){syd.pend=null});
+  }
+  const hold=function(id,on,off){
+    const b=document.getElementById(id);
+    if(!b||b.dataset.on)return;
+    b.dataset.on='1';
+    const go=function(ev){if(ev&&ev.preventDefault)ev.preventDefault();on()};
+    const stop=function(ev){if(ev&&ev.preventDefault)ev.preventDefault();off()};
+    b.addEventListener('pointerdown',go);
+    b.addEventListener('pointerup',stop);
+    b.addEventListener('pointercancel',stop);
+    b.addEventListener('pointerleave',stop);
+  };
+  hold('sydUpBtn',function(){syd.keys.up=1;sydMoveP(-1);sydKnobTouch(1);sydNagOff()},function(){syd.keys.up=0});
+  hold('sydDownBtn',function(){syd.keys.down=1;sydMoveP(1);sydKnobTouch(1);sydNagOff()},function(){syd.keys.down=0});
+  hold('sydSlowBtn',function(){syd.keys.slow=1;sydKnobTouch(1);sydNagOff()},function(){syd.keys.slow=0});
+  hold('sydFastBtn',function(){syd.keys.fast=1;sydKnobTouch(1);sydNagOff()},function(){syd.keys.fast=0});
+  const mk=[['sydPullBtn',function(){sydPull(syd.duo?2:0)}],
+    ['sydViewBtn',sydView],['sydHoldBtn',sydHold],['sydCraneBtn',sydCrane],['sydSwapBtn',sydSwap],
+    ['sydDuoBtn',function(){sydDuo()}],['sydEndBtn',function(){sydEnd('quit')}],
+    ['sydAgainBtn',function(){sydAgain()}],['sydHomeBtn',function(){sydLeave()}]];
+  for(let i=0;i<mk.length;i++){
+    const b=document.getElementById(mk[i][0]);
+    if(b&&!b.dataset.on){b.dataset.on='1';
+      /* 点完按钮把焦点交还出去：不 blur 的话孩子下一次真按 Space/Enter，浏览器会替他把刚点过的那个按钮
+         再点一遍 —— 一记按键同时走两条路，一边摘签、一边又把那件站具用掉了 */
+      b.addEventListener('click',function(ev){const t=ev&&ev.currentTarget;if(t&&t.blur)t.blur();mk[i][1]()})}
+  }
+}
+/* 手指把指针按到某条道上之后补一次画面：不等下一拍，孩子抬眼就该看见那道亮起来 */
+function sydLaneByHand(){sydMeter();sydDraw()}
+function sydHelp(){
+  if(!syd.run)return;
+  syd.helpMs=SYD_HELP_MS;
+  sydxPut('sydAsk','🚂 <b>怎么把车倒齐</b><br><small>两班车流钟都先停住</small>');
+  sydxSay(
+    '🚂 <b>一句话的道理</b>：站口一节一节往<code>待挂线</code>上挂车（'+(sydArrMs(syd.lv)/1000).toFixed(1)+
+    ' 秒一班，不由你），每隔 <code>发车</code> 那一响，岔口那节车就开进<b>你扳着的那道</b> —— '+
+    '一道只能停 '+sydCap(syd.lv)+' 节、<b>只许排队不许超车</b>，摘签只认<b>队头</b><br>'+
+    '🧭 <b>扳道</b>：<code>W</code>/<code>↑</code> 扳上一道、<code>S</code>/<code>↓</code> 扳下一道（一次一道，'+
+    '按住 '+SYD_PSTEP+' 毫秒走一道）。手指直接压在你要的那道上也算扳道<br>'+
+    '📏 <b>发车快慢</b>：<code>A</code>/<code>←</code> 放慢、<code>D</code>/<code>→</code> 加快（'+
+    (SYD_DRUN*1000).toFixed(0)+' 毫秒一秒，'+(SYD_RUN_MIN/1000).toFixed(1)+'~'+(SYD_RUN_MAX/1000).toFixed(1)+' 秒/班）。'+
+    '<b>调快了道里塞满就顶车</b>（−'+SYD_PEN_JAM+' 分）、<b>调慢了待挂线堆到 '+SYD_IN_CAP+
+    ' 格就压线撞车</b>（−'+SYD_PEN_CRASH+' 分、掉一颗心、那一节退到队尾补送）—— 这一对矛盾就是这座场全部的紧张<br>'+
+    '🎯 <b>摘签</b>：<code>空格</code> 只摘<b>指针那道队头</b>那一节：编号对上「该收第几笔」就上岸，'+
+    '对不上就留在原地挡道（−'+SYD_PEN_WRONG+' 分、掉一颗心），空道摘了是白摘（−'+SYD_PEN_EMPTY+' 分）<br>'+
+    '🧩 <b>倒得开的诀窍</b>：一节车要发进哪道，看那道<b>队尾那节的编号</b> —— 它编号比你手里这节大，'+
+    '手里这节就得排在它前头的道里；排错了它就被压死在队尾，只能 <code>F</code> 倒位把它吊回岔口（−'+SYD_PEN_CRANE+' 分）<br>'+
+    '🌑 第 3 场起混进<b>影车</b>：它身上那个笔形<b>这个字压根没有</b>，而且车厢上<b>没有编号</b> —— 摘它 −'+
+    SYD_PEN_FAKE+' 分，但道就通了<br>'+
+    '🚦 <b>信号灯</b>：每 '+(sydLampMs(syd.lv)/1000).toFixed(1)+' 秒亮一班绿灯（'+(SYD_LAMP_ON/1000).toFixed(1)+
+    ' 秒 <b>×'+SYD_GREEN_MULT+'</b>，接 '+(SYD_LAMP_YL/1000).toFixed(1)+' 秒黄灯 ×'+SYD_SAME_MULT+
+    '）；上一摘 <b>0.9 秒</b>内又下手叫<b>顺手摘 ×'+SYD_TIGHT_MULT+'</b>；连着摘同一条道 <b>×'+SYD_SAME_MULT+
+    '</b>；一节车在道里压过 '+(SYD_STALE/1000).toFixed(0)+' 秒就<b>落灰</b>，只拿七成<br>'+
+    '⏳ 两只罚钟：<b>这一笔的钟</b>（'+(sydQms(syd.lv)/1000).toFixed(1)+' 秒）走光扣 '+SYD_PEN_TIME+
+    ' 分；<b>这一站</b>（'+(sydFuel(syd.lv)/1000).toFixed(0)+' 秒）到点这个字进<b>错字本</b>、掉一颗心<br>'+
+    '✨ <code>Q</code> 看路（把站外排着的头三节掀开）· 🚦 <code>E</code> 红灯（进车发车一起停 8 秒，罚钟照走）· '+
+    '🛠 <code>F</code> 倒位（队尾吊回岔口）· 🔁 <code>Enter</code> 换字（−'+SYD_PEN_SWAP+' 分、进错字本）· <code>H</code> 看说明<br>'+
+    '👥 点<b>双人</b>：P1 只管两根旋钮（<code>W</code>/<code>S</code>/<code>A</code>/<code>D</code>）、P2 只管摘签（<code>空格</code>），'+
+    '扳完道 0.42 秒内摘才算<b>合抱</b>','#C8E6C9');
+  sydAsk();sydLine();sydHud();
+}
+/* ---- 挑灯、发车之前的整备 ---- */
+function sydStopAll(){
+  sydStopLoop();sydxKillTimers();syd.gen++;
+  if(syd.tagTimer){clearTimeout(syd.tagTimer);syd.tagTimer=0}
+  syd.tagOn=0;
+  syd.load=false;syd.helpMs=0;syd.actMs=0;syd.viewMs=0;syd.holdMs=0;
+  syd.nagMs=0;syd.nagHold=0;syd.markMs=0;syd.markLane=-1;syd.markSlot=-1;
+  syd.keys.up=0;syd.keys.down=0;syd.keys.slow=0;syd.keys.fast=0;
+  syd.queue=[];syd.inQ=[];syd.lanes=[[],[],[]];syd.parts=[];syd.gotIdx=[];syd.pend=null;
+  const tg=document.getElementById('sydTag');
+  if(tg)tg.className='syd-tag';
+}
+async function sydNewWord(){
+  if(!syd.run||syd.over)return null;
+  const g=syd.gen,stale=function(){return g!==syd.gen||!syd.run||syd.over};
+  const w=sydWant(syd.lv);
+  const inR=function(){let k=0;for(let i=0;i<syd.pool.length;i++)if(syd.pool[i].n>=w[0]&&syd.pool[i].n<=w[1])k++;return k};
+  if((inR()<3&&syd.thinLv!==syd.lv)||syd.poolWantMore){
+    syd.poolWantMore=false;
+    sydxPut('sydAsk','🔭 正在挑字……<br><small>第 '+syd.lv+' 场要 '+w[0]+'~'+w[1]+
+      ' 节、三道倒得开、单道倒不开的字</small>');
+    syd.load=true;
+    await sydBuildPool(true,w[0],w[1]);
+    syd.load=false;
+    if(stale())return null;
+    if(inR()<3)syd.thinLv=syd.lv;
+  }
+  let rec=sydPickRec();
+  if(!rec){
+    syd.run=false;
+    sydxPut('sydAsk','😢 挑不出倒得开的字<br><small>先去别的模式练两笔</small>');
+    sydxT(function(){sydEnd('pool')},900);
+    return null;
+  }
+  /* 池子里每个字进池前都按这一档的死账算过一遍；这里再现场发一次车（影车数按这一场减）：
+     这一版倒不开就当场换一个，绝不发一把「该收的那一节压根出不来」的死局给孩子 */
+  let cars=sydDeal(rec,syd.lv),rr=0;
+  while(!cars&&rr++<SYD_TRY){
+    const alt=sydPickRec();
+    if(!alt||alt.ch===rec.ch)break;
+    cars=sydDeal(alt,syd.lv);
+    if(cars)rec=alt;
+  }
+  if(!cars){
+    syd.run=false;
+    sydxPut('sydAsk','😢 这座场倒不开<br><small>换个字再来</small>');
+    sydxT(function(){sydEnd('pool')},900);
+    return null;
+  }
+  syd.rec=rec;syd.n=rec.n;
+  syd.queue=cars;syd.inQ=[];syd.lanes=[[],[],[]];syd.gotIdx=[];
+  if(syd.doneCh.indexOf(rec.ch)<0)syd.doneCh.push(rec.ch);
+  syd.pi=0;syd.chain=0;syd.hugW=0;syd.lastLane=-1;
+  syd.qms=syd.qms0=sydQms(syd.lv);
+  syd.fuel=sydFuel(syd.lv);syd.warn=false;
+  syd.nagMs=0;syd.nagHold=0;syd.helpMs=0;
+  /* 站具的效果不许跨到下一个字：新字一上来红灯还按着、看路还掀着，等于偷了孩子一拍 */
+  syd.holdMs=0;syd.viewMs=0;
+  /* 车流从「这一场该有多快」起算：上一场调出来的旋钮不许带进这一场 */
+  syd.iv=sydRunBase(syd.lv);syd.ivMs=0;syd.arrMs=sydArrMs(syd.lv)-600;syd.lampMs=0;syd.lampOn=0;syd.lampYl=0;
+  syd.cleanWord=true;syd.dryWord=true;syd.duoHalf=true;
+  syd.parts=[];syd.pullMs=SYD_TIGHT_MS+1;syd.knobMs=SYD_HUG_MS+1;syd.pAcc=0;
+  syd.p=Math.floor(Math.random()*3);
+  /* 先把头两节挂上待挂线：一上来就空着道、等两班钟各响一次才开车，孩子看到的是静止的站 */
+  sydArrive();sydArrive();
+  sydMarkTarget();
+  sydMini();sydHud();sydMeter();sydLine();sydAsk();sydDraw();
+  return rec;
+}
+async function sydStart(){
+  sydStopAll();
+  const g=syd.gen,stale=function(){return g!==syd.gen||!syd.run||syd.over};
+  syd.run=true;syd.over=false;syd.timers=[];
+  syd.lv=1;syd.score=0;syd.hearts=SYD_HEARTS;syd.combo=0;syd.maxCombo=0;
+  syd.words=0;syd.shots=0;syd.hits=0;syd.wrongs=0;syd.fakes=0;syd.empties=0;
+  syd.timeouts=0;syd.dusts=0;syd.views=0;syd.holds=0;syd.cranes=0;syd.swaps=0;
+  syd.chains=0;syd.chain=0;syd.chainMax=0;
+  syd.lights=0;syd.greens=0;syd.yellows=0;syd.sames=0;syd.tights=0;syd.cleared=0;
+  syd.jams=0;syd.crashes=0;syd.reship=0;syd.tools=0;syd.nags=0;syd.broke=0;
+  syd.viewN=SYD_P0;syd.holdN=SYD_P0;syd.craneN=SYD_P0;syd.swapN=1;
+  syd.viewUse=0;syd.holdUse=0;syd.craneUse=0;syd.swapUse=0;
+  syd.pool=[];syd.miss=[];syd.doneCh=[];syd.rec=null;syd.n=0;syd.cid=0;
+  syd.poolWantMore=false;syd.thinLv=0;
+  syd.t=0;syd.playMs=0;syd.tones=0;syd.hudAcc=0;syd.newBest=false;
+  syd.qms0=sydQms(1);syd.qms=syd.qms0;syd.fuel=sydFuel(1);syd.warn=false;
+  syd.duo=false;syd.duoCut=0;syd.duoHalf=true;syd.duoP1=0;syd.duoP2=0;syd.hug=0;syd.hugW=0;syd.hugTell='';
+  syd.knobMs=SYD_HUG_MS+1;syd.pullMs=SYD_TIGHT_MS+1;
+  syd.lastTight=0;syd.lastGreen=0;syd.lastSame=0;syd.lastDust=0;syd.markForce=0;
+  syd.p=0;syd.iv=sydRunBase(1);syd.ivMs=0;syd.arrMs=0;syd.lampMs=0;syd.lampOn=0;syd.lampYl=0;syd.lampN=0;
+  syd.markMs=0;syd.markLane=-1;syd.markSlot=-1;
+  syd.miss=(localStorage.getItem('hz_shunt_miss')||'').split(',').filter(function(c){return c.length===1});
+  syd.gotCh=(localStorage.getItem('hz_shunt_book')||'').split(',').filter(function(c){return c.length===1});
+  syd.got0=syd.gotCh.length;
+  sydMini();sydCapLine();
+  showScreen('shunt');
+  sydBind();sydCanvasSize();
+  sydPanels();
+  const yd=document.getElementById('sydYard');
+  if(yd)yd.classList.remove('dead');
+  sydHud();sydMeter();sydLine();
+  const d=document.getElementById('sydDuoBtn');
+  if(d){d.textContent='👥 双人';d.classList.remove('on')}
+  sydxSay('🚂 <b>站口一节一节往待挂线上挂车，岔口每隔一班就把头一节发进你扳着的那道</b>：'+
+    '三道各停 '+sydCap(1)+' 节、只许排队不许超车，摘签只认队头<br>'+
+    '🎯 <b>你只能挑三样</b>：<b>扳哪道</b>（<code>W</code>/<code>S</code>）、<b>发车多快</b>（<code>A</code>/<code>D</code> 按住）、'+
+    '<b>哪一刻摘签</b>（<code>空格</code>）—— 车厢里装第几笔你改不了，那是这个字定的<br>'+
+    '🌑 第 3 场起混<b>影车</b>：那一种笔这个字压根没有，车厢上也没有编号<br>'+
+    '⚠️ 发车调快了道里塞满就<b>顶车</b>、调慢了待挂线堆满 '+SYD_IN_CAP+' 格就<b>压线撞车</b>：这一对矛盾就是这一场的紧张<br>'+
+    '✨ <code>Q</code> 看路 · 🚦 <code>E</code> 红灯 · 🛠 <code>F</code> 倒位 · 🔁 <code>Enter</code> 换字 · <code>H</code> 看说明<br>'+
+    '👥 点<b>双人</b>：P1 只管旋钮、P2 只管摘签，扳完道 0.42 秒内摘才算<b>合抱</b>','#C8E6C9');
+  sydxPut('sydAsk','🚂 正在给这座场排车……<br><small>在字库里找「三道倒得开、单道倒不开」的字</small>');
+  let ok=await sydBuildPool();
+  if(stale())return;
+  if(!ok){
+    sydxPut('sydAsk','🚂 站里还没备好车……<br><small>多等一记</small>');
+    await new Promise(function(r){setTimeout(r,1200)});
+    if(stale())return;
+    ok=await sydBuildPool(true);
+    if(stale())return;
+  }
+  if(!ok||!syd.pool.length){
+    syd.run=false;
+    sydxPut('sydAsk','😢 字库没加载好<br><small>稍后再来调车</small>');
+    sydxSay('先去别的模式练两笔，回来字就齐了','#FFF59D');
+    return;
+  }
+  sydxAud('start');
+  sydxAdd('hz_shunt_games',1);
+  await sydNewWord();
+  if(!syd.rec||!syd.rec.n||!syd.run||syd.over||stale()){
+    syd.run=false;
+    sydxPut('sydAsk','😢 这座场没开车<br><small>稍后再来调车</small>');
+    return;
+  }
+  sydStartLoop();
+}
+function sydLeave(){
+  sydStopAll();
+  if(syd.run&&!syd.over){sydBank();syd.over=true;syd.run=false}
+  const yd=document.getElementById('sydYard');
+  if(syd.over&&yd)yd.classList.add('dead');
+  goHome();
+}
+function sydAgain(){sydStart()}
+function sydCanvasSize(){
+  const cv=document.getElementById('sydCanvas');
+  if(!cv)return;
+  cv.width=SYD_W;cv.height=SYD_H;
+  syd.ctx=cv.getContext?cv.getContext('2d'):null;
+}
+
+/* ================= 段 F：结算与落盘 · 调度室家什架（与别处的徽章、图鉴、小兽互通） ================= */
+/* hz_shunt_* 的分工：一堆累计计数键（收完字数/摘对/摘错/白摘/影车/落灰摘走/红灯里摘对/看路/倒位/换字/连摘/顺手/绿灯赶上/黄灯擦过/
+   同道连摘/倒空道/顶车/压线/补送/站具/发呆/到点/合抱/单人局/双人开局/零错字）
+   + 几个 max 键（最好一场分数/最长连击/最深一场/最长连摘/最多合抱）
+   + 一张 avg 键（平均每摘一记多少毫秒，越小越熟）
+   + 三个名单键（图鉴 hz_shunt_book · 错字本 hz_shunt_miss · 家什架 hz_shunt_shelf）。
+   称号读累计收完字数 hz_shunt_words，不是「最好一场」那个。 */
+function sydxAud(kind){
+  if(kind==='start'){sydxTone(392,.06,'triangle',.025);return}
+  if(kind==='ok'){sydxTone(SYD_NOTE[Math.min(10,2+syd.combo)],.09,'triangle',.04);return}
+  if(kind==='bad'){sydxTone(150,.18,'sawtooth',.05);return}
+  if(kind==='word'){sydxTone(659,.1,'triangle',.045);sydxTone(880,.12,'triangle',.03);return}
+}
+function sydMissAdd(ch){
+  if(!ch)return;
+  if(syd.miss.indexOf(ch)<0){
+    syd.miss.push(ch);
+    localStorage.setItem('hz_shunt_miss',syd.miss.slice(0,SYD_BOOK_MAX).join(','));
+  }
+}
+function sydBookAdd(ch){
+  if(!ch||syd.gotCh.indexOf(ch)>=0)return;
+  syd.gotCh.push(ch);
+  localStorage.setItem('hz_shunt_book',syd.gotCh.slice(0,SYD_BOOK_MAX).join(','));
+}
+/* ---- 调度室家什架：八件家什，每一件都要真做到过才上架（第八件认别处打来的章节徽章） ---- */
+const SYD_SHELF=[
+  {k:'扳道锤',d:'收完第一个字',ok:function(){return sydxInt('hz_shunt_words')>=1}},
+  {k:'时刻表',d:'打到第 3 场',ok:function(){return sydxInt('hz_shunt_lv')>=3}},
+  {k:'同道签',d:'同道连摘累计 5 次',ok:function(){return sydxInt('hz_shunt_sames')>=5}},
+  {k:'灰斗',d:'把落灰的车摘走 3 节',ok:function(){return sydxInt('hz_shunt_dusts')>=3}},
+  {k:'吊钩',d:'倒位 3 回',ok:function(){return sydxInt('hz_shunt_cranes')>=3}},
+  {k:'红灯旗',d:'红灯里摘对 4 节',ok:function(){return sydxInt('hz_shunt_holds')>=4}},
+  {k:'绿灯罩',d:'赶满 5 班绿灯',ok:function(){return sydxInt('hz_shunt_greens')>=5}},
+  {k:'调度章',d:'别处的章节徽章攒到 3 枚',ok:function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}}}
+];
+function sydShelfCheck(){
+  const have=(localStorage.getItem('hz_shunt_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  for(let i=0;i<SYD_SHELF.length;i++){
+    const s=SYD_SHELF[i];
+    if(have.indexOf(s.k)<0&&s.ok()){have.push(s.k);got.push(s.k)}
+  }
+  localStorage.setItem('hz_shunt_shelf',have.join(','));
+  localStorage.setItem('hz_shunt_trophy',String(have.length));
+  if(got.length){
+    localStorage.setItem('hz_shunt_trophy_n',String(sydxInt('hz_shunt_trophy_n')+got.length));
+    sydxSay('🗄️ 家什架上多了 <b>'+got.join('、')+'</b>（一共 '+have.length+'/'+SYD_SHELF.length+' 件）','#FFE0B2');
+  }
+  return {have:have,got:got};
+}
+function sydBankLite(){
+  /* 收完一个字当场就把纪录存进去了。这一场最后若是「平着自己破的纪录」，
+     结算那行还得给孩子挂上「新高」——所以破过就得留个记号，不能让孩子看不见自己刚破的纪录 */
+  if(syd.score>sydxInt('hz_shunt_best')){localStorage.setItem('hz_shunt_best',String(syd.score));syd.newBest=true}
+  if(syd.maxCombo>sydxInt('hz_shunt_combo'))localStorage.setItem('hz_shunt_combo',String(syd.maxCombo));
+  if(syd.lv>sydxInt('hz_shunt_lv'))localStorage.setItem('hz_shunt_lv',String(syd.lv));
+  if(syd.chainMax>sydxInt('hz_shunt_chainmax'))localStorage.setItem('hz_shunt_chainmax',String(syd.chainMax));
+  sydShelfCheck();
+}
+function sydBank(){
+  /* newBest 是「这一场中途已经把纪录写进去了」的记号：分数只涨到那儿、结算时正好持平，
+     那也是孩子破的纪录，得照样挂「新高」。但这一场后来又掉了分，就不算破，也绝不许把纪录往下改 */
+  const best=sydxInt('hz_shunt_best'),isBest=syd.score>best||(syd.newBest===true&&syd.score===best);
+  if(isBest)localStorage.setItem('hz_shunt_best',String(syd.score));
+  if(syd.maxCombo>sydxInt('hz_shunt_combo'))localStorage.setItem('hz_shunt_combo',String(syd.maxCombo));
+  if(syd.lv>sydxInt('hz_shunt_lv'))localStorage.setItem('hz_shunt_lv',String(syd.lv));
+  if(syd.chainMax>sydxInt('hz_shunt_chainmax'))localStorage.setItem('hz_shunt_chainmax',String(syd.chainMax));
+  if(syd.hug>sydxInt('hz_shunt_duomax'))localStorage.setItem('hz_shunt_duomax',String(syd.hug));
+  if(syd.hits){
+    const per=Math.round(syd.playMs/syd.hits);
+    if(!sydxInt('hz_shunt_fastest')||per<sydxInt('hz_shunt_fastest'))localStorage.setItem('hz_shunt_fastest',String(per));
+  }
+  sydxAdd('hz_shunt_words',syd.words);
+  sydxAdd('hz_shunt_hits',syd.hits);
+  sydxAdd('hz_shunt_shots',syd.shots);
+  sydxAdd('hz_shunt_wrongs',syd.wrongs);
+  sydxAdd('hz_shunt_timeouts',syd.timeouts);
+  sydxAdd('hz_shunt_fakes',syd.fakes);
+  sydxAdd('hz_shunt_empties',syd.empties);
+  sydxAdd('hz_shunt_dusts',syd.dusts);
+  sydxAdd('hz_shunt_holds',syd.holds);
+  sydxAdd('hz_shunt_views',syd.views);
+  sydxAdd('hz_shunt_cranes',syd.cranes);
+  sydxAdd('hz_shunt_swaps',syd.swaps);
+  sydxAdd('hz_shunt_chains',syd.chains);
+  sydxAdd('hz_shunt_tights',syd.tights);
+  sydxAdd('hz_shunt_greens',syd.greens);
+  sydxAdd('hz_shunt_yellows',syd.yellows);
+  sydxAdd('hz_shunt_sames',syd.sames);
+  sydxAdd('hz_shunt_cleared',syd.cleared);
+  sydxAdd('hz_shunt_jams',syd.jams);
+  sydxAdd('hz_shunt_crashes',syd.crashes);
+  sydxAdd('hz_shunt_reship',syd.reship);
+  sydxAdd('hz_shunt_tools',syd.tools);
+  sydxAdd('hz_shunt_nags',syd.nags);
+  sydxAdd('hz_shunt_broke',syd.broke);
+  sydxAdd('hz_shunt_swap',syd.swapUse);
+  sydxAdd('hz_shunt_hug',syd.hug);
+  if(syd.duo)sydxAdd('hz_shunt_duos',1);
+  const sf=sydShelfCheck();
+  return {best:Math.max(best,syd.score),isBest:isBest,
+    shelf:Math.min(SYD_SHELF.length,(localStorage.getItem('hz_shunt_shelf')||'').split(',').filter(function(s){return s}).length),
+    got:sf.got};
+}
+/* 结算那一句「下一步该改哪儿」：先按死因说，死因之外再按最扎手的那个毛病说 */
+function sydWhyTxt(why,acc,hit){
+  if(why==='broke')return '💔 <b>心掉完了</b>：这座场有两处掉心 —— <b>摘错</b>（队头编号不对，它还留在道里挡着）和'+
+    '<b>压线撞车</b>（待挂线 '+SYD_IN_CAP+' 格堆满）。'+
+    (syd.crashes?'这一场撞了 <b>'+syd.crashes+'</b> 回：撞一次就把那一节车退到队尾补送，'+
+      '<b>到达顺序当场作废</b>，段 B 证的「倒得开」也就白证了 —— 看见待挂线堆到三格就 <code>D</code> 加快发车或摁 <code>E</code> 红灯':
+      (syd.wrongs?'这一场摘错 <b>'+syd.wrongs+'</b> 次：摘签只认<b>队头</b>，'+
+        '对不上就别硬摘 —— 先 <code>W</code>/<code>S</code> 把指针扳到装着该收那节车的道':''))+
+    (syd.empties?'；空摘 '+syd.empties+' 回说明手比车快 —— 岔口的车要等发车钟那一响才进道':'');
+  if(why==='fuel')return '🛑 <b>这一站到点了</b>：'+(syd.jams?'这一场顶了 <b>'+syd.jams+'</b> 回车（道里塞满还硬发）—— ':'')+
+    '别只盯着摘签：<b>一节车发进哪道，看那道队尾的编号</b>。它编号比你手里这节大，你就得把这一节发到<b>别的道</b>；'+
+    '排错了它就被压死在队尾，只能 <code>F</code> 倒位';
+  if(why==='pool')return '😢 <b>字没凑齐</b>：这一坊要的是「三道倒得开、<b>单道倒不开</b>、每一笔都出得来」的字，'+
+    '一道死账算不过的字压根不进池，网络一断就挑不出来，回头再来';
+  if(syd.jams>=4)return '🚧 <b>顶了 '+syd.jams+' 回车</b>：道只有 '+sydCap(syd.lv)+' 节位，'+
+    '<b>发车快了不等于顺畅</b> —— 摘不过来就 <code>A</code> 放慢，让岔口那节多等一班；实在挤不动就 <code>E</code> 红灯把车流停住';
+  if(syd.crashes>=2)return '💥 <b>压线 '+syd.crashes+' 回</b>：待挂线只有 '+SYD_IN_CAP+
+    ' 格，堆满就是撞车掉心 —— 这一坊的<b>发车快慢是拿两头的夹缝换的</b>：快了道满顶车、慢了站口压线';
+  if(syd.fakes>=3)return '🌑 <b>白摘 '+syd.fakes+' 次影车</b>：车厢上<b>没有编号</b>、那一种笔这个字压根没有 —— '+
+    '两种破绽都是结构给的：真车一定写着第几笔，影车写不出（它不是这个字的笔）';
+  if(syd.wrongs>=3)return '🎯 <b>摘错 '+syd.wrongs+' 次</b>：摘签只认<b>指针那条道的队头</b> —— '+
+    '该收的那节在第 2 道第 3 格，就得先把第 2 道前头两节摘开，扳过去再按';
+  if(syd.empties>=4)return '💧 <b>空摘 '+syd.empties+' 回</b>：道里没车也能按，按了就是 −'+SYD_PEN_EMPTY+
+    ' 分 —— 岔口那节头顶上的<b>黄条走完</b>才叫进道；想抢时机就 <code>E</code> 红灯把两班车流停住，先把道理清';
+  if(syd.dusts>=3)return '🌫 <b>摘了 '+syd.dusts+' 节落灰的车</b>：压过 '+(SYD_STALE/1000).toFixed(0)+
+    ' 秒只拿七成 —— 该收的那一节<b>别发进最挤那道</b>，发进空道它才等不了那么久';
+  if(!acc)return '🚂 <b>这一场一签没下</b>：车一直在进 —— <code>W</code>/<code>S</code> 把指针扳到该收那节车在的道，'+
+    '<code>A</code>/<code>D</code> 调发车快慢，等它<b>走到队头</b>那一下按<code>空格</code>';
+  return '🚂 手感不错：'+acc+' 记里 <b>'+hit+'%</b> 摘在对的节上，最长连 '+syd.maxCombo+'、连摘 '+syd.chainMax+
+    '、绿灯赶上 '+syd.greens+' 班、倒空 '+syd.cleared+' 次道 —— 下一场道更窄、影车更多、进车更急，试试一件家什不用收完一个字';
+}
+function sydEnd(why){
+  if(syd.over)return;
+  syd.over=true;
+  sydStopLoop();sydxKillTimers();
+  syd.run=false;syd.load=false;
+  syd.keys.up=0;syd.keys.down=0;syd.keys.slow=0;syd.keys.fast=0;
+  syd.parts=[];syd.pend=null;
+  const tg=document.getElementById('sydTag');if(tg)tg.className='syd-tag';
+  if(syd.tagTimer){clearTimeout(syd.tagTimer);syd.tagTimer=0}
+  syd.tagOn=0;
+  const yd=document.getElementById('sydYard');if(yd)yd.classList.add('dead');
+  /* 心掉完才算「这一笔没收下」；到点已经在 sydFuelOut 里进过错字本了 */
+  if(why==='broke'&&syd.rec&&syd.pi<syd.n)sydMissAdd(syd.rec.ch);
+  const bk=sydBank(),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(syd.score/14)+syd.words*2);
+  if(why!=='pool')addStars(stars);
+  showScreen('shunt-result');
+  sydxPut('sydRsEmoji',{quit:'🏳️',fuel:'🛑',broke:'💔',pool:'😢'}[why]||'🚂');
+  sydxPut('sydRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  sydxPut('sydRsTitle',why==='broke'?'心掉完了':(why==='fuel'?'这一站到点了':(why==='quit'?'这一场先收了':'字没凑齐')));
+  const tot=sydxInt('hz_shunt_words'),rk=sydxRank(tot);
+  sydxPut('sydRsSub','第 '+syd.lv+' 场 · 累计收完 '+tot+' 个字 · '+rk.e+' '+rk.t);
+  sydxPut('sydRsScore','🎯 '+syd.score+' 分'+(isBest?' 🏅 新高':''));
+  sydxPut('sydRsWords','🚂 收完 '+syd.words+' 个字 · 摘 '+syd.shots+' 记');
+  sydxPut('sydRsShots','🎯 对上 '+syd.hits+' 节 · 摘错 '+syd.wrongs+' 次');
+  sydxPut('sydRsSub2','⌛ 钟响 '+syd.timeouts+' · 白摘 '+syd.empties+' · 影车 '+syd.fakes);
+  sydxPut('sydRsChain','✨ 连摘 '+syd.chains+' 回（最长一串 '+syd.chainMax+'）· 顺手 '+syd.tights+' · 零错 '+sydxInt('hz_shunt_cleanw')+' 个字');
+  sydxPut('sydRsBeat','🚦 绿灯 '+syd.lampN+' 班 · 赶上 '+syd.greens+' · 擦灯 '+syd.yellows+' · 同道连摘 '+syd.sames+' · 🌫 落灰摘走 '+syd.dusts+' 节 · 倒空 '+syd.cleared+' 次道');
+  sydxPut('sydRsJam','🚧 顶车 '+syd.jams+' · 💥 压线 '+syd.crashes+' · 🔁 补送 '+syd.reship+' · 🛑 到点 '+syd.broke);
+  sydxPut('sydRsTools','🔭 看路 '+syd.viewUse+' · 🚦 红灯 '+syd.holdUse+' · 🛠 倒位 '+syd.craneUse+' · 🔁 换字 '+syd.swapUse+' · 家什共 '+syd.tools+' 次');
+  sydxPut('sydRsDuo',syd.duo?'👥 合抱 '+syd.hug+' 记 · 一个人把两样都干了 '+syd.duoCut+' 次（一个字里合抱上过另加 '+SYD_DUO_BONUS+'）':
+    '👤 单人调：'+(syd.hits?'平均摘一记 '+(Math.round(syd.playMs/syd.hits/100)/10)+' 秒':'这一场一记没落，说不上快慢')+' —— 想让同伴只管摘签，点 <b>双人</b>');
+  sydxPut('sydRsBest','🏆 最高 '+best+' 分 · ⚡ 最熟手 '+(sydxInt('hz_shunt_fastest')||'—')+' 毫秒/节 · 🔥 最长连 '+syd.maxCombo);
+  const book=(localStorage.getItem('hz_shunt_book')||'').split(',').filter(function(c){return c.length===1});
+  const miss=syd.miss.slice();
+  /* gotCh 开局就装着架上原有的字：「这一场新收几个」得从那一刻减起，不然架上 12 个字时孩子会看到「新收 12 个」 */
+  const newGot=syd.gotCh.length-syd.got0;
+  sydxPut('sydRsBook','架上 <b>'+book.length+'</b> 个字'+(book.length?'<small>（'+book.slice(-14).join(' ')+'）</small>':'')+
+    (newGot>0?'，这一场新收 '+newGot+' 个':'')+
+    ' · 家什架 <b>'+bk.shelf+'/'+SYD_SHELF.length+'</b> 件（'+(localStorage.getItem('hz_shunt_shelf')||'—')+'）'+
+    (bk.got.length?'<b>，新上架：'+bk.got.join('、')+'</b>':'')+
+    ' · 错字本 <b>'+miss.length+'</b> 个'+(miss.length?'（'+miss.slice(-12).join(' ')+'，过几轮优先还回来）':'')+
+    '<br>⭐ 这 '+stars+' 颗星已经喂给<b>书桌小兽</b>；收完的字也进了它的记忆池'+
+    (JSON.parse((function(){try{return localStorage.getItem('hz_badges')||'[]'}catch(e){return '[]'}})()).length?
+      ' · 你在<b>大冒险</b>里攒的章节徽章也被这间坊认了（家什架上的调度章就是这么来的）':''));
+  const acc=syd.hits+syd.wrongs;
+  const hit=acc?Math.round(syd.hits/acc*100):0;
+  sydxPut('sydRsWhy',sydWhyTxt(why,acc,hit));
+  sydxSay('🚂 这一场收了 <b>'+syd.words+'</b> 个字、摘 <b>'+syd.shots+'</b> 记、对上 <b>'+syd.hits+'</b> 节'+
+    '（摘错 <b>'+syd.wrongs+'</b>、钟响 <b>'+syd.timeouts+'</b>、白摘 <b>'+syd.empties+'</b>、影车 <b>'+syd.fakes+
+    '</b>、落灰摘走 <b>'+syd.dusts+'</b>、绿灯赶上 <b>'+syd.greens+'</b>、擦灯 <b>'+syd.yellows+'</b>、顺手 <b>'+syd.tights+
+    '</b>、同道 <b>'+syd.sames+'</b>、连摘 <b>'+syd.chains+'</b> 回、倒空 <b>'+syd.cleared+'</b> 次道、顶车 <b>'+syd.jams+
+    '</b>、压线 <b>'+syd.crashes+'</b>、补送 <b>'+syd.reship+'</b> 节、站具 <b>'+syd.tools+'</b> 次、换字 <b>'+syd.swapUse+
+    '</b> 回）'+(syd.duo?'，合抱 <b>'+syd.hug+'</b> 记、一个人转 <b>'+syd.duoCut+'</b> 次':'')+
+    '。<br>战绩落盘 <code>hz_shunt_*</code>：称号按<b>累计收完的字数</b>走，家什架 <b>'+bk.shelf+'/'+SYD_SHELF.length+
+    '</b> 件（<b>调度章</b>认的是你在<b>大冒险</b>里打到的章节徽章），错字本里的字 <b>过几轮优先还回来</b>','#C8E6C9');
+  sydNudge();
+}
+function sydNudge(){
+  const dot=document.getElementById('sydCardDot'),tip=document.getElementById('sydCardTip');
+  const tot=sydxInt('hz_shunt_words'),games=sydxInt('hz_shunt_games'),hits=sydxInt('hz_shunt_hits');
+  const rk=sydxRank(tot),shelf=sydxInt('hz_shunt_trophy');
+  if(tip)tip.textContent=games?(rk.e+' '+rk.t+' · 收完 '+tot+' 个字 · 对上 '+hits+' 节 · 摘错 '+sydxInt('hz_shunt_wrongs')+
+    ' 次 · 顶车 '+sydxInt('hz_shunt_jams')+' · 压线 '+sydxInt('hz_shunt_crashes')+' · 家什架 '+shelf+' 件'):
+    '站口往待挂线上挂车，岔口把车头一节发进你扳着的那道：三条存车线只许排队不许超车 —— 你手里只有扳哪道、发车多快、哪一刻摘签三样';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(games?'':'🆕')}
+}
+
+/* ================= 段 G：纯审计（把这坊赖以成立的四条理各算第二遍，不碰场上状态） ================= */
+/* ① 死账「倒得开」有两条独立算法：段 B 的深度优先 + 这里的广度优先（另一种状态编码、另一种折叠方式）——
+      两条路对不上，进池那些字的凭据就作废
+   ② 只许排队不许超车是结构给的：拿一份独立模拟，随便走一长串合法动作（含 🛠 倒位），
+      每一步都拿「这条道里的车按到达先后排一遍，应当与道内次序一模一样」对账
+   ③ 发到手这一把每一节真车都真出得来：按这一场真正的道宽、以及道宽减一格，各用第二条路（BFS）证一遍
+   ④ 影车的破绽是结构给的：n 节真车编号 0~n-1 一节笔不重不漏、笔形与这个字一致；影车 i=-1、笔形一定不在这个字的名单里
+   ⑤ 两班车流与待挂线封顶：拿一份独立时钟把「进车急、发车慢」与「发车快」各走 20 秒 ——
+      越界只有「压线撞车」这一个出口，且发车够快就不该有越界
+   这里没有一处写 syd：所有判断都吃参数、吐数字。*/
+function sydBfsSolvable(seq,dirs,cap,nlane){
+  const L=nlane===undefined?3:nlane;
+  if(cap<1||L<1)return false;
+  const n=dirs.length;
+  if(!n)return true;
+  const fold=function(ls){
+    const a=[];
+    for(let j=0;j<ls.length;j++)a.push(ls[j].join(','));
+    a.sort();
+    return a.join('/');
+  };
+  const enc=function(st){return st.i+'|'+st.k+'|'+fold(st.lanes)};
+  const start=[];
+  for(let j=0;j<L;j++)start.push([]);
+  const q=[{i:0,k:0,lanes:start}];
+  const seen={};
+  seen[enc(q[0])]=1;
+  for(let h=0;h<q.length;h++){
+    const st=q[h];
+    if(st.k>=n)return true;
+    const nxt=[];
+    for(let j=0;j<L;j++){                              /* 摘中签：队头编号就是第 k 笔（与产品同一杆秤）*/
+      if(st.lanes[j].length&&st.lanes[j][0]===st.k){
+        const ls=st.lanes.map(function(a,b){return b===j?a.slice(1):a.slice()});
+        nxt.push({i:st.i,k:st.k+1,lanes:ls});
+      }
+    }
+    for(let j=0;j<L;j++){                              /* 白摘一节影车（编号 -1）*/
+      if(st.lanes[j].length&&st.lanes[j][0]<0){
+        const ls=st.lanes.map(function(a,b){return b===j?a.slice(1):a.slice()});
+        nxt.push({i:st.i,k:st.k,lanes:ls});
+      }
+    }
+    if(st.i<seq.length){                               /* 发车进任意一条有余位的道 */
+      for(let j=0;j<L;j++){
+        if(st.lanes[j].length>=cap)continue;
+        const ls=st.lanes.map(function(a){return a.slice()});
+        ls[j].push(seq[st.i].i);
+        nxt.push({i:st.i+1,k:st.k,lanes:ls});
+      }
+    }
+    for(let m=0;m<nxt.length;m++){
+      const s2=nxt[m],e=enc(s2);
+      if(seen[e])continue;
+      seen[e]=1;
+      q.push(s2);
+      if(q.length>60000)return false;                  /* 状态炸了就当解不开（这一坊最多 9 节车，走不到这儿）*/
+    }
+  }
+  return false;
+}
+/* ① 两条解法对不对得齐：同一个字随机造一批到达序列，两种道宽各算一遍
+   （两条路都把道里记的东西当「编号」，与段 C 摘签那一记判的是同一个量）*/
+function sydAuditSolvable(rec,tries){
+  const t=SYD_TIERS[rec.n>=5?2:(rec.n>=4?1:0)];
+  const off=[];
+  for(let d=0;d<4;d++)if(rec.dirs.indexOf(d)<0)off.push(d);
+  let n=0,bad=0,both=0;
+  for(let a=0;a<(tries||26);a++){
+    const ord=[];
+    for(let i=0;i<rec.n;i++)ord.push(i);
+    const mv=1+Math.floor(Math.random()*3);
+    for(let m=0;m<mv;m++){
+      const f=Math.floor(Math.random()*ord.length);
+      const to=sydxClamp(f+(Math.random()<.5?-t.jit:t.jit),0,ord.length-1);
+      const c=ord.splice(f,1)[0];
+      ord.splice(to,0,c);
+    }
+    const seq=ord.map(function(i){return {i:i,dir:rec.dirs[i],fake:false}});
+    for(let s=0;s<t.fn&&off.length;s++)
+      seq.splice(Math.floor(Math.random()*(seq.length+1)),0,{i:-1,dir:sydxOne(off),fake:true});
+    for(let cp=1;cp<=t.cap;cp++){
+      n++;
+      const A=sydSolvable(seq,rec.dirs,cp,3),B=sydBfsSolvable(seq,rec.dirs,cp,3);
+      if(A!==B)bad++;
+      if(A&&B)both++;
+    }
+  }
+  return {cases:n,agree:n-bad,mismatch:bad,solvable:both};
+}
+/* ② 保序模拟：动作集合与产品一字不差 —— 发车只追加到队尾、摘签只从队头摘、倒位把队尾吊回岔口、岔口那节顶进这条道的队尾（与 sydCrane 同一杆秤）。
+   车就用传进来的那批对象引用 —— 道里存的是引用，seq.indexOf(车) 才量得出「它在到达序列里排第几」。
+   safe=1 时只在「不超车的位置」加车（发车、倒位都算）——随机乱走是能造出超车的，所以这一条 filter 砍掉的就是这坊真正难住孩子的那件事*/
+function sydBfsOrder(seq,cap,steps,safe){
+  const inQ=seq.slice(),lanes=[[],[],[]];
+  let k=0,viol=0,drained=0,crane=0,sent=0,okN=0;
+  const total=seq.filter(function(c){return !c.fake}).length;
+  const at=function(c){return seq.indexOf(c)};
+  const canAppend=function(L,c){return !safe||!L.length||at(c)>at(L[L.length-1])};
+  /* s 要在 return 里交出去，就不能声明在 for 的括号里（那是循环体的块级作用域）*/
+  let s=0;
+  for(s=0;s<(steps||240);s++){
+    const acts=[];
+    if(inQ.length)for(let j=0;j<3;j++)if(lanes[j].length<cap&&canAppend(lanes[j],inQ[0]))acts.push({a:'send',j:j});
+    for(let j=0;j<3;j++){
+      const h=lanes[j].length?lanes[j][0]:null;
+      if(h&&!h.fake&&h.i===k)acts.push({a:'ok',j:j});
+      if(h&&h.fake)acts.push({a:'fake',j:j});
+      if(lanes[j].length&&inQ.length<SYD_IN_CAP&&!(inQ.length&&lanes[j].length>=cap)&&
+        canAppend(lanes[j].slice(0,lanes[j].length-1),inQ[0]))acts.push({a:'crane',j:j});
+    }
+    if(!acts.length)break;
+    const p=acts[Math.floor(Math.random()*acts.length)];
+    if(p.a==='send'){lanes[p.j].push(inQ.shift());sent++}
+    else if(p.a==='crane'){const tail=lanes[p.j].pop();if(inQ.length)lanes[p.j].push(inQ.shift());inQ.unshift(tail);crane++}
+    else{
+      lanes[p.j].shift();
+      drained++;
+      if(p.a==='ok'){k++;okN++}
+    }
+    for(let j=0;j<3;j++){
+      let last=-1;
+      for(let i=0;i<lanes[j].length;i++){
+        const at=seq.indexOf(lanes[j][i]);
+        if(at<=last)viol++;
+        last=at;
+      }
+    }
+    if(k>=total)break;
+  }
+  return {steps:s,viol:viol,sent:sent,drained:drained,ok:okN,crane:crane,k:k,
+    left:inQ.length+lanes[0].length+lanes[1].length+lanes[2].length};
+}
+/* ③ 发到手这一把：按这一场真正的道宽与「道宽减一格」（手抖余量）各用 BFS 证一遍，顺带记下单道解不解得开 */
+function sydAuditDeal(cars,rec,cap){
+  const seq=cars.map(function(c){return {i:c.i,dir:c.dir,fake:c.fake}});
+  return {
+    capOK:sydBfsSolvable(seq,rec.dirs,cap,3)?1:0,
+    slackOK:sydBfsSolvable(seq,rec.dirs,Math.max(1,cap-1),3)?1:0,
+    oneLane:sydBfsSolvable(seq,rec.dirs,cap,1)?1:0
+  };
+}
+/* ④ 发牌账：真车一节一笔、编号不重不漏且笔形与这个字一致；影车不带编号、笔形一定不在这个字的名单里 */
+function sydAuditForm(cars,rec){
+  const real=[],fake=[];
+  for(let i=0;i<cars.length;i++)(cars[i].fake?fake:real).push(cars[i]);
+  let bad=0,dup=0;
+  const seen={},ids={};
+  let idDup=0;
+  for(let i=0;i<real.length;i++){
+    const c=real[i];
+    if(c.i<0||c.i>=rec.n||rec.dirs[c.i]!==c.dir)bad++;
+    if(seen[c.i])dup++;
+    seen[c.i]=1;
+  }
+  let noId=0,inRoster=0;
+  for(let i=0;i<fake.length;i++){
+    if(fake[i].i!==-1)noId++;
+    if(rec.dirs.indexOf(fake[i].dir)>=0)inRoster++;
+  }
+  for(let i=0;i<cars.length;i++){if(ids[cars[i].id])idDup++;ids[cars[i].id]=1}
+  return {real:real.length,expect:rec.n,bad:bad,dup:dup,fake:fake.length,
+    fakeBadId:noId,fakeInRoster:inRoster,idDup:idDup};
+}
+/* ⑤ 两班车流：64 毫秒一格各走 beats 毫秒。进车钟与发车钟各按自己的间隔响 ——
+   待挂线满员时再进车只有一条路：压线撞车（那一节当场不占格），所以 over 必须永远是 0。
+   inLeft 是收摊那一刻还挂在待挂线上的节数（不是峰值）：到站次数 = 发出去 + 撞回去 + 还挂着 */
+function sydFlowSim(arr,iv,beats){
+  const st=64;
+  let inQ=0,crash=0,send=0,over=0,aA=0,aB=0;
+  for(let b=0;b*st<beats;b++){
+    aA+=st;
+    if(aA>=arr){
+      aA=0;
+      if(inQ>=SYD_IN_CAP)crash++;
+      else inQ++;
+    }
+    aB+=st;
+    if(aB>=iv){
+      aB=0;
+      if(inQ>0){inQ--;send++}
+    }
+    if(inQ>SYD_IN_CAP)over++;
+  }
+  return {crash:crash,send:send,over:over,inLeft:inQ};
+}
+function sydAuditFlow(lv,beats){
+  const arr=sydArrMs(lv),B=beats||20000;
+  return {arr:Math.round(arr),inCap:SYD_IN_CAP,beats:B,
+    slow:sydFlowSim(arr,SYD_RUN_MAX,B),
+    fast:sydFlowSim(arr,SYD_RUN_MIN,B)};
+}
+/* 场上快照：无头侧只读不写（判定一律走产品自己那一套）*/
+function lanes0(L){
+  const a=[];
+  for(let i=0;i<L.length;i++)a.push(L[i].fake?'F'+L[i].dir:String(L[i].i+1));
+  return '['+(a.length?a.join('>'):'空')+']';
+}
+function sydSnap(light){
+  const s={
+    run:syd.run,over:syd.over,lv:syd.lv,score:syd.score,hearts:syd.hearts,combo:syd.combo,maxCombo:syd.maxCombo,
+    words:syd.words,shots:syd.shots,hits:syd.hits,wrongs:syd.wrongs,fakes:syd.fakes,empties:syd.empties,
+    timeouts:syd.timeouts,dusts:syd.dusts,views:syd.views,holds:syd.holds,cranes:syd.cranes,swaps:syd.swaps,
+    chains:syd.chains,chain:syd.chain,chainMax:syd.chainMax,tools:syd.tools,nags:syd.nags,broke:syd.broke,
+    greens:syd.greens,yellows:syd.yellows,sames:syd.sames,tights:syd.tights,cleared:syd.cleared,
+    jams:syd.jams,crashes:syd.crashes,reship:syd.reship,lampN:syd.lampN,
+    viewUse:syd.viewUse,holdUse:syd.holdUse,craneUse:syd.craneUse,swapUse:syd.swapUse,
+    viewN:syd.viewN,holdN:syd.holdN,craneN:syd.craneN,swapN:syd.swapN,
+    ch:syd.rec?syd.rec.ch:'',n:syd.rec?syd.rec.n:0,pi:syd.pi,dirs:syd.rec?syd.rec.dirs.join(''):'',
+    kinds:syd.rec?syd.rec.kinds.join(''):'',
+    p:syd.p,iv:Math.round(syd.iv),ivMs:Math.round(syd.ivMs),arrMs:Math.round(syd.arrMs),
+    lampOn:Math.round(syd.lampOn),lampYl:Math.round(syd.lampYl),lampMs:Math.round(syd.lampMs),
+    qms:Math.round(syd.qms),qms0:Math.round(syd.qms0),fuel:Math.round(syd.fuel),
+    warn:syd.warn?1:0,load:syd.load?1:0,
+    cap:sydCapNow(),arrBase:Math.round(sydArrMs(syd.lv)),runBase:Math.round(sydRunBase(syd.lv)),
+    tier:sydTier(syd.lv),lampBase:Math.round(sydLampMs(syd.lv)),
+    fakeN:sydFakeN(),fakeDeal:sydDealFakeN(),liveN:sydLiveN(),dustN:sydDustN(),
+    holdMs:Math.round(syd.holdMs),viewMs:Math.round(syd.viewMs),
+    nagMs:Math.round(syd.nagMs),nagHold:Math.round(syd.nagHold),actMs:Math.round(syd.actMs),
+    tgt:(function(){const w=sydTargetWhere();return w?(w.w+'#'+w.j+'#'+(w.k===undefined?'-':w.k)):''})(),
+    pullMs:Math.round(syd.pullMs),knobMs:Math.round(syd.knobMs),
+    duo:syd.duo?1:0,duoCut:syd.duoCut,duoP1:syd.duoP1,duoP2:syd.duoP2,hug:syd.hug,hugW:syd.hugW,
+    keys:syd.keys.up+'/'+syd.keys.down+'/'+syd.keys.slow+'/'+syd.keys.fast,
+    pool:syd.pool.length,book:syd.gotCh.length,miss:syd.miss.length,tag:syd.tagOn,
+    lastTight:syd.lastTight,lastGreen:syd.lastGreen,lastSame:syd.lastSame,lastDust:syd.lastDust,lastLane:syd.lastLane,
+    markLane:syd.markLane,markSlot:syd.markSlot,markLive:sydMarkLive()?1:0,
+    got:syd.gotIdx.map(function(v){return v?1:0}).join(''),
+    partN:syd.parts.length,t:Math.round(syd.t),playMs:Math.round(syd.playMs),tones:syd.tones,
+    stale:SYD_STALE,tightMs:SYD_TIGHT_MS,inCap:SYD_IN_CAP,heartsMax:SYD_HEART_MAX,
+    fork:(function(){const f=sydFork();return f?(f.fake?'F'+f.dir:'c'+f.i):''})(),
+    /* 此刻三条道各停着哪几节（左＝队头）：无头侧要断「摘的是不是队头」「道里没超车」，就得看得见产品自己排出来的这几列 */
+    heads:(function(){const a=[];for(let j=0;j<3;j++)a.push(lanes0(syd.lanes[j]));return a.join(' ')}()),
+    queueN:syd.queue.length,inN:syd.inQ.length
+  };
+  if(!light){
+    const nm=function(c){return (c.fake?'F'+c.dir:'c'+c.i)+':'+c.dir};
+    s.queue=syd.queue.map(nm);
+    s.inQ=syd.inQ.map(nm);
+    s.lanes=syd.lanes.map(function(L){
+      const a=[];
+      for(let i=0;i<L.length;i++)a.push(nm(L[i])+':'+Math.round(L[i].age/100));
+      return a.join(',');
+    });
+    s.sols=syd.rec&&syd.rec.seqs?syd.rec.seqs.map(function(o){
+      return 'T'+o.t+':'+o.seq.map(function(c){return c.fake?'F'+c.dir:String(c.i+1)}).join('');
+    }):[];
+    s.order=(function(){
+      if(!syd.rec||!syd.rec.seqs)return [];
+      const a=[];
+      for(let i=0;i<syd.rec.seqs.length;i++)
+        if(syd.rec.seqs[i].t===sydTier(syd.lv))
+          a.push(syd.rec.seqs[i].seq.map(function(c){return c.fake?'F':String(c.i+1)}).join(''));
+      return a;
+    })();
   }
   return s;
 }
