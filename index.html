@@ -6904,6 +6904,71 @@ button:active{transform:scale(.95)}
   #screen-fox .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-fox .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.100 🖌️ 笔顺洇纸坊 ================= */
+.soak-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.soak-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+/* 题头占死三行（一行 1.35em）：它换字不许换行数 —— 纸面就在它下头，多一行少一行都把整张纸往下顶五十像素，
+   孩子的手指还按在纸上看预览呢 */
+.soak-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*3)}
+.soak-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.soak-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.soak-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.soak-mini svg{width:100%;height:auto;background:rgba(255,251,240,.07);border-radius:12px}
+.soak-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+/* 纸台：底下是深色的书桌面，衬得那一整张宣纸亮 —— 墨在纸上黑到什么程度一眼看得出来 */
+.soak-field{flex:1;min-width:0;position:relative;background:#191410;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.9)}
+.soak-field.dead{filter:grayscale(.85) brightness(.6)}
+.soak-canvas{display:block;width:100%;height:auto;cursor:crosshair;touch-action:none}
+.soak-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#FFE0B2;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.soak-tag.on{opacity:1}
+.soak-tag.warn{background:rgba(96,38,12,.92);color:#FFCCBC}
+.soak-tag.gold{background:rgba(74,52,14,.94);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.soak-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.soak-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+/* 砚台那一条是墨色（越见底越短）；湿透那一条是纸色，越洇越往红里走；限期那一条是冷蓝 */
+.soak-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#37474F,#90A4AE);transition:width .15s linear}
+.soak-tl.wet i{background:linear-gradient(90deg,#4FC3F7,#81D4FA)}
+.soak-tl.wet.hot i{background:linear-gradient(90deg,#FF7043,#FFC107);box-shadow:0 0 12px rgba(255,112,67,.6)}
+.soak-tl.fuel i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.soak-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.soak-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.soak-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.soak-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.soak-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.soak-tool b{display:block;font-size:10px;color:#FFE082;font-weight:700}
+.soak-tool:disabled{opacity:.4;cursor:default}
+/* 蓄墨是这一坊唯一的下手：按住涨口径、松手照预览落子 —— 一个大按钮占满，手指头不许找小格子 */
+.soak-drop{display:flex;gap:10px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.soak-drop button{flex:1 1 0;max-width:300px;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1B140B;background:linear-gradient(180deg,#B3E5FC,#29B6F6);box-shadow:0 0 16px rgba(41,182,246,.3);touch-action:none;user-select:none}
+.soak-drop button small{display:block;font-size:11px;font-weight:400;color:rgba(27,20,11,.72)}
+.soak-drop button:active{transform:translateY(1px);background:linear-gradient(180deg,#81D4FA,#039BE5)}
+.soak-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.soak-hintline b{color:#FFE082}
+.soak-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.soak-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.soak-msg b{color:#CFD8DC}
+.soak-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.soak-msg small{font-size:11px;color:#78909C}
+.soak-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.soak-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.soak-rs-book b{color:#FFE082}
+.soak-rs-book small{color:#78909C}
+.soak-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px;z-index:4}
+.soak-cdot.on{display:block}
+#screen-soak .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：样图折到纸台上头，纸独占整幅宽；三条量表折成一丸一行（字不许被药丸右沿裁掉） */
+@media(max-width:460px){
+  .soak-stage{flex-direction:column}
+  .soak-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}
+  .soak-mini svg{flex:0 0 74px;width:74px}
+  .soak-cap{flex:0 1 auto;text-align:left}
+  .soak-tl{flex:1 1 100%}
+  /* 窄屏上题头最宽的一副是四行：那一块就占死四行，纸台照样不许在手指底下挪 */
+  .soak-ask{min-height:calc(1.35em*4)}
+  #screen-soak .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-soak .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-soak .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -6960,8 +7025,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 98 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">98</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 99 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">99</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -6972,12 +7037,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>98 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>40</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>99 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>41</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="soakCard" onclick="enterMode('soak')">
+      <div class="icon">🖌️</div>
+      <div class="info"><h3>笔顺洇纸坊</h3><p id="soakCardTip">一张粗纤维的宣纸，这个字几笔就在纸上占几串格子：笔尖落在哪一格、这一滴蓄几格墨、什么时候松手，就这三样。一滴能洇到哪几格由这张纸湿到几成说了算 —— 墨认湿路，已湿的格一块钱、干格两块钱。洒在字外的墨会自己连成一条穿过纸边的团，攒到三格纸就洇穿</p></div>
+      <span class="soak-cdot" id="soakCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="rlpCard" onclick="enterMode('ripple')">
       <div class="icon">💠</div>
       <div class="info"><h3>笔顺叠浪坊</h3><p id="rlpCardTip">盘心一根能转的杆，两头各扎进水里：一头压下去另一头就抬起来（反相），两列浪在盘上叠成条纹，一笔一张浮牌：谁荡到浪尖谁被收走 —— 你只能挑杆朝哪儿、浪多长、哪一刻下手三样；第 3 场起水面混进影牌（圆面里干干净净，没压着这个字的印子）</p></div>
@@ -7647,6 +7717,81 @@ button:active{transform:scale(.95)}
   <div class="write-controls">
     <button class="w-btn orange" onclick="ldRetry()">🏮 再摆一阵</button>
     <button class="w-btn blue" onclick="ldLeave()">🏠 回首页</button>
+  </div>
+</div>
+<div class="screen" id="screen-soak">
+  <div class="top-bar">
+    <button class="back-btn" onclick="soakLeave()">← 返回</button>
+    <div class="stats"><span id="soakScoreTxt">🖌 0 分</span><span id="soakLvTxt">第 1 场 · 已洇 0 字</span><span id="soakQTxt">⏳ 这一笔 18 秒</span></div>
+    <button class="icon-btn" onclick="soakHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="soak-hud">
+    <span id="soakRankTxt" title="称号">🌱 头一回洇纸</span>
+    <span id="soakHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="soakComboTxt" title="连击">🔥 连 0</span>
+    <span id="soakGoalTxt" title="该洇第几笔">🖌 第 1 笔 · 已洇 0/0</span>
+    <span id="soakDropTxt" title="落滴">💧 落 0 滴 · 用墨 0</span>
+    <span id="soakSpillTxt" title="洒墨">🌫 纸上洒 0 格 · 最多 0</span>
+    <span id="soakDangerTxt" title="湿团">🧭 湿团碰边 0 条</span>
+    <span id="soakGhostTxt" title="这一滴的预览">👁 这一滴洇 1 格</span>
+  </div>
+  <div class="soak-ask" id="soakAsk">🖌 正在裁一张新纸……<br><small>在字库里找「一笔洇得开、一砚墨够用完」的字</small></div>
+  <div class="soak-stage">
+    <div class="soak-mini">
+      <svg viewBox="0 -1024 1024 1024" id="soakMiniSvg"></svg>
+      <div class="soak-cap" id="soakMiniCap">这张纸还没上字</div>
+    </div>
+    <div class="soak-field" id="soakField">
+      <canvas class="soak-canvas" id="soakCanvas" width="420" height="340"></canvas>
+      <div class="soak-tag" id="soakTag">🖌 这张纸裁好了</div>
+    </div>
+  </div>
+  <div class="soak-meter">
+    <div class="soak-tl ink"><i id="soakInkBar"></i><b id="soakInkTxt">🫙 砚里 0 格</b></div>
+    <div class="soak-tl wet"><i id="soakWetBar"></i><b id="soakWetTxt">🌊 湿透 0/130 格</b></div>
+    <div class="soak-tl fuel"><i id="soakFuelBar"></i><b id="soakFuelTxt">⏳ 这张纸 —— 秒</b></div>
+  </div>
+  <div class="soak-tools">
+    <button class="soak-tool" id="soakFanBtn" disabled>🪶 扇一扇<span>F</span><b>剩 2</b></button>
+    <button class="soak-tool" id="soakBlotBtn" disabled>🧻 按纸巾<span>B</span><b>剩 2</b></button>
+    <button class="soak-tool" id="soakPeekBtn" disabled>🔍 映纸<span>P</span><b>剩 2</b></button>
+    <button class="soak-tool" id="soakSwapBtn" disabled>🔁 换纸<span>R</span><b>剩 1</b></button>
+    <button class="soak-tool" id="soakHelpBtn">📖 说明<span>H</span></button>
+    <button class="soak-tool" onclick="soakEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="soak-drop">
+    <button id="soakDropBtn">💧 蓄墨 · 松手就落<small>空格 / 手指按住纸面：每涨一格 190 毫秒，顶这一场的口径</small></button>
+  </div>
+  <div class="soak-hintline" id="soakHintLine">🖌 <b>一滴墨能洇到哪几格，由这张纸湿到几成说了算</b>：墨认湿路 —— 已湿的格一块钱、干格两块钱</div>
+  <div class="soak-msg" id="soakMsg">🖌 <b>笔尖落哪一格</b>：<code>←→↑↓</code>／<code>WASD</code>／斜着 <code>Q E Z C</code>，或者手指直接在纸上按那一格<br>🌫 <b>洒在字外的墨</b>自己连成一条穿过纸边的团、攒到 3 格就洇穿（掉一颗心）· 🪶 <code>F</code> 扇 · 🧻 <code>B</code> 纸巾 · 🔍 <code>P</code> 映纸 · 🔁 <code>R</code> 换纸 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-soak-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="soakLeave()">← 返回</button>
+    <div class="stats"><span id="soakRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="soakRsEmoji">🖌</div>
+    <div style="font-size:26px;font-weight:800" id="soakRsTitle">洇完了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="soakRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="soak-pk" id="soakRsScore">🖌 0 分</span>
+      <span class="soak-pk" id="soakRsWords">🈶 洇成 0 个字 · 落 0 滴</span>
+      <span class="soak-pk" id="soakRsInk">🫙 用墨 0 格 · 一砚 64 格</span>
+      <span class="soak-pk" id="soakRsSpill">🌫 洒在字外 0 格 · 湿透 0/130</span>
+      <span class="soak-pk" id="soakRsSnap">💧 一滴到底 0 笔 · 一点没洒 0 笔</span>
+      <span class="soak-pk" id="soakRsBad">💔 洇穿 0 · 🫙 墨尽 0 · ⌛ 风干 0</span>
+      <span class="soak-pk" id="soakRsTools">🪶 扇 0 · 🧻 纸巾 0 · 🔍 映纸 0</span>
+      <span class="soak-pk" id="soakRsBest">🏆 最高 0 分</span>
+    </div>
+    <div class="soak-rs-book" id="soakRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="soakRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="soakRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
+      <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
   </div>
 </div>
 <div class="screen" id="screen-fox">
@@ -14911,6 +15056,7 @@ function updateHomeStats(){
   if(typeof rlpNudge==='function')rlpNudge();
   if(typeof sydNudge==='function')sydNudge();
   if(typeof foxNudge==='function')foxNudge();
+  if(typeof soakNudge==='function')soakNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -14955,6 +15101,7 @@ function enterMode(mode){
   if(mode==='ripple'){rlpStart();return}
   if(mode==='shunt'){sydStart();return}
   if(mode==='fox'){foxStart();return}
+  if(mode==='soak'){soakStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -101376,6 +101523,1786 @@ function foxSnap(light){
   s.target=foxTargetCard()?foxTargetCard().id:-1;
   s.gotIdx=fox.gotIdx.slice();
   return s;
+}
+
+
+/* ================= v1.100 🖌️ 笔顺洇纸坊（一张粗纤维的纸 · 一滴墨能洇到哪儿由这张纸湿到几成说了算 —— 洒在字外的墨自己连成一条贯穿纸边的团，纸就洇穿了 ================= */
+/* 场：420×340 的一张宣纸，纸面切成 13×10 共 130 格纤维。这个字几笔，每一笔就在纸上占一串格子（把这一笔的中线按同一个比例投到纸面上落到格子里）；
+   孩子手里只有三样：笔尖落在哪一格、这一滴蓄成几格墨、什么时候松手。墨不由人搬、纸不由人烘 —— 洇开多少是纸自己决定的 */
+const SK_W=420,SK_H=340;
+const SK_CELL=30,SK_COLS=13,SK_ROWS=10;
+const SK_CELLS=SK_COLS*SK_ROWS;                  /* 130 格纤维 */
+const SK_PX0=15,SK_PY0=10;                       /* 纸面左上角：15..405 × 10..310 */
+const SK_PX1=SK_PX0+SK_COLS*SK_CELL,SK_PY1=SK_PY0+SK_ROWS*SK_CELL;
+/* 字区往里收一格：字形永远碰不到纸边 —— 于是「洇穿」只能是被洒在字外的墨自己连成了贯穿的一条，不会是孩子正常写完一笔的锅 */
+const SK_INSET=1;
+/* 渗流的味道：墨认湿路。进已湿的格花 1 格墨、进干格花 2 格 —— 同一滴墨落在半干的纸上洇不远，落在湿边边上能一路跑出去 */
+const SK_COST_WET=1,SK_COST_DRY=2;
+/* 一滴蓄几格墨：每 SK_CHARGE 毫秒涨一格，顶上一砚的口径 */
+const SK_CHARGE=190,SK_Q0=1,SK_QMAX_HI=9,SK_QMAX_MID=7,SK_QMAX_LO=6;
+/* 洇穿判据：一条同时碰到纸两条对边的湿团里，洒在字外的格攒到 SK_BLUR_SPILL 个 —— 少一个都不算破 */
+const SK_BLUR_SPILL=3;
+/* 蒸发：风只吹字外的浮墨（字上的墨一笔成就烙住了）。吹掉一个才够下一滴 —— 放着不打不会更糟，但也白丢了墨 */
+const SK_DRY0=3000,SK_DRY_MIN=1800,SK_DRY_STEP=150;
+/* 一砚墨：一个字从头到尾能洇出去的总格数。墨只照「这一滴新洇出来的格」扣 —— 走已经湿的格不费墨 */
+const SK_INK0=64,SK_INK_MIN=46,SK_INK_STEP=2;
+/* 罚：白洇（这一滴的墨全花在字外，字上一格没添）、洇穿、墨尽、场钟走光、换纸 */
+const SK_PEN_DUD=4,SK_PEN_BLUR=8,SK_PEN_EMPTY=5,SK_PEN_TIME=3,SK_PEN_SWAP=6;
+/* 奖：写完一个字、整字不洒、一件家什没借、预埋下一笔、一气到底、剩下的墨 */
+const SK_WORD_PTS=26,SK_CLEAN_PTS=18,SK_DRY_PTS=12,SK_PRE_PTS=4,SK_PERC_PTS=20,SK_LEFT_MAX=24;
+const SK_SNAP_MULT=1.6,SK_PURE_MULT=1.35;
+/* 字的口径：几笔的字、一笔占几格、整个字占几格（占太多一砚墨不够，占太少没得玩）*/
+const SK_STROKE_MIN=3,SK_STROKE_MAX=7;
+const SK_CELL_MIN=2,SK_CELL_MAX=12,SK_UNION_MIN=12,SK_UNION_MAX=58;
+const SK_HEADROOM=16;                            /* 一砚墨除了盖住这个字，还得留出这么多样子才进池 */
+const SK_FILL_N=6,SK_FILL_STEP=.04;              /* 投影缩放试这几档，一档要证得出两副布局 */
+const SK_POOL_MIN=4,SK_POOL_WANT=14;
+/* 两把钟：这一笔的钟（迟迟不松手就响）、这一场的钟（这张纸的限期）*/
+const SK_Q_MS0=18000,SK_Q_MIN=10000,SK_Q_STEP=1000,SK_WARN=.35;
+const SK_FUEL0=150000,SK_FUEL_MIN=96000,SK_FUEL_STEP=6000;
+const SK_HEARTS=3,SK_HEART_MAX=5,SK_BOOK_MAX=300;
+const SK_P0=2;                                   /* 三件家什各几把 */
+const SK_FAN_N=4;                                /* 扇一扇一回吹掉几个洒墨格 */
+const SK_BLOT_R=1;                               /* 按纸巾吸掉以笔尖为中心的 (2r+1)² 里的浮墨 */
+const SK_PEEK_MS=3200;                           /* 映纸把往后两笔的格亮出来多久 */
+const SK_NAG_MS=11000,SK_NAG_HOLD=5200,SK_HELP_MS=16000;
+const SK_TAG_MS=2300;
+const SK_INK4=['#4FC3F7','#81C784','#FFD54F','#FFB74D'];
+const SK_TAG4=['横','竖','撇','捺'];
+const SK_RANKS=[
+  {n:0,e:'🌱',t:'头一回洇纸'},{n:2,e:'💧',t:'洇得开'},{n:5,e:'🖌',t:'一滴够用'},
+  {n:9,e:'🪶',t:'会扇两下'},{n:14,e:'🧻',t:'敢按纸巾'},{n:21,e:'🏵',t:'纸上的老手'},
+  {n:30,e:'🏮',t:'认得出湿路'},{n:42,e:'🏆',t:'洇纸坊的把总'},{n:58,e:'👑',t:'纸见了不敢破'}
+];
+const soak={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],toneAt:0,tones:0,
+  pool:[],miss:[],rec:null,n:0,pi:0,poolWantMore:false,thinLv:0,
+  lv:1,score:0,hearts:SK_HEARTS,combo:0,maxCombo:0,
+  words:0,drops:0,duds:0,blurs:0,empties:0,timeouts:0,swaps:0,
+  snaps:0,pures:0,pres:0,perc:0,cellSum:0,inkSum:0,inkUse:0,spillMax:0,
+  tools:0,nags:0,cleanWord:true,dryWord:true,nagTip:'',
+  fanN:SK_P0,blotN:SK_P0,peekN:SK_P0,swapN:1,
+  fanUse:0,blotUse:0,peekUse:0,swapUse:0,
+  fanMs:0,peekMs:0,nagMs:0,nagHold:0,helpMs:0,actMs:0,tagTimer:0,
+  /* 纸面：wet[i] 0=干 1=浮墨（字外的、会被风吹走）2=烙墨（这一笔洇通了，永久）*/
+  wet:[],wetVer:0,paper:null,allSet:{},allArr:[],
+  /* 蒸发计时 */
+  dryMs:0,dryAcc:0,
+  /* 一砚墨 */
+  ink:0,
+  /* 笔尖与这一滴：cur=格子，holdMs 蓄墨累计，q 当前口径，ghost 预览会把哪几格洇湿 */
+  cur:{c:6,r:4},hold:false,holdMs:0,q:SK_Q0,ghost:[],ghostKey:'',ghostOn:1,
+  /* 这一笔落了几滴（一滴到底的凭据）、这一字有没有挨过罚 */
+  strokeDrops:0,wordFoul:false,lastNew:0,lastSpill:0,
+  /* 钟 */
+  qms:0,qms0:0,fuel:0,warn:false,
+  /* 渗流读数：眼下最危险的那一团 */
+  span:0,spanSpill:0,spanN:0,touch:0,maxSpill:0,maxN:0,dangerPct:0,
+  hudAcc:0,newBest:false,doneCh:[],gotIdx:[],parts:[],seeded:0,dots:[],
+  ctx:null,bound:false,tagOn:0,
+  /* 挑字（等字数据回来那两秒）：两把钟停走 */
+  load:false
+};
+/* ---- 小工具 ---- */
+function skxInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function skxAdd(k,n){if(n)localStorage.setItem(k,String(skxInt(k)+n))}
+function skxPut(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function skxSay(t,c){const el=document.getElementById('soakMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function skxShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function skxOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function skxClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function skxRok(d){return d>=0&&d<4?d:0}
+function skxRank(x){let r=SK_RANKS[0];for(let i=0;i<SK_RANKS.length;i++)if(x>=SK_RANKS[i].n)r=SK_RANKS[i];return r}
+function skxIdx(c,r){return r*SK_COLS+c}
+function skxCol(i){return i%SK_COLS}
+function skxRow(i){return Math.floor(i/SK_COLS)}
+function skxCx(i){return SK_PX0+skxCol(i)*SK_CELL+SK_CELL/2}
+function skxCy(i){return SK_PY0+skxRow(i)*SK_CELL+SK_CELL/2}
+function skxIn(c,r){return c>=0&&c<SK_COLS&&r>=0&&r<SK_ROWS}
+function skxPt2Cell(x,y){
+  const c=Math.floor((x-SK_PX0)/SK_CELL),r=Math.floor((y-SK_PY0)/SK_CELL);
+  return skxIn(c,r)?skxIdx(c,r):-1;
+}
+function skxAdj(i){
+  const c=skxCol(i),r=skxRow(i),a=[];
+  if(c>0)a.push(skxIdx(c-1,r));if(c<SK_COLS-1)a.push(skxIdx(c+1,r));
+  if(r>0)a.push(skxIdx(c,r-1));if(r<SK_ROWS-1)a.push(skxIdx(c,r+1));
+  return a;
+}
+function skxMan(i,j){return Math.abs(skxCol(i)-skxCol(j))+Math.abs(skxRow(i)-skxRow(j))}
+function skxKey(c,r){return r*SK_COLS+c}
+/* 湿路代价：已湿的格便宜一半 —— 墨认得湿路 */
+function skxCost(i){return soak.wet[i]>0?SK_COST_WET:SK_COST_DRY}
+function skxTone(f,d,t,v){
+  if(!soak.run||soak.over)return;
+  const n=performance.now();
+  if(n-soak.toneAt<22)return;
+  soak.tones++;tone(f,d,t,v);
+}
+function skxT(fn,ms){const g=soak.gen;const id=setTimeout(function(){const k=soak.timers.indexOf(id);if(k>=0)soak.timers.splice(k,1);if(g!==soak.gen)return;fn()},ms);soak.timers.push(id);return id}
+function skxKillTimers(){soak.timers.forEach(function(t){clearTimeout(t)});soak.timers=[]}
+/* ---- 难度表：场越深，一砚墨越少、风越急、墨滴越小、预览与样图越要孩子自己记 ---- */
+function soakLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function soakInk(lv){return Math.max(SK_INK_MIN,SK_INK0-(lv-1)*SK_INK_STEP)}
+function soakQms(lv){return Math.max(SK_Q_MIN,SK_Q_MS0-(lv-1)*SK_Q_STEP)}
+function soakFuel(lv){return Math.max(SK_FUEL_MIN,SK_FUEL0-(lv-1)*SK_FUEL_STEP)}
+function soakDry(lv){return Math.max(SK_DRY_MIN,SK_DRY0-(lv-1)*SK_DRY_STEP)}
+function soakQmax(lv){return lv<=3?SK_QMAX_HI:(lv<=6?SK_QMAX_MID:SK_QMAX_LO)}
+/* 第 4 场起不许看洇染预览（这一滴会洇到哪几格得自己在心里铺一遍）；第 6 场起样图也淡（这个字长什么样得记着）*/
+function soakNoGhost(lv){return lv>=4}
+function soakNoMini(lv){return lv>=6}
+function soakStrokeMax(lv){return lv>=5?SK_STROKE_MAX:6}
+function soakWant(lv){return lv<=2?[SK_STROKE_MIN,5]:[SK_STROKE_MIN,soakStrokeMax(lv)]}
+/* 落一笔吃多少分：一滴到底 ×1.6、通成时场上一点没洒 ×1.35 */
+function soakGain(snap,pure){
+  return Math.round((8+soak.combo*1.2+soak.lv*1.8)*(snap?SK_SNAP_MULT:1)*(pure?SK_PURE_MULT:1));
+}
+
+/* ================= 段 B：字形落到格子里 · 「一砚墨够不够」的死账 · 字池 · 发纸 ================= */
+/* 这一坊全部的风险压在两件事上：① 这个字投到纸上，每一笔都得是**连成的一串格**（一笔断成两截，孩子再怎么洇也连不到一块）
+   ② 一砚墨要真够把这个字洇完，还得留出余货 —— 每一滴墨只照「这一滴新洇出来的格」扣 ink，一滴最多只能洇出「口径」个新格，
+      所以「这个字占几格」就是这一场的最低消费，union + SK_HEADROOM ≤ soakInk(这一档最深那场) 是条死账，不是愿望。
+   段 G 拿另一种写法（Set 去重 + 逐笔重数）把 union 再算一遍，两条路对不上，池里那些字的凭据就作废。*/
+const SK_TIERS=[{lo:1,hi:2},{lo:3,hi:5},{lo:6,hi:9}];
+function soakTier(lv){return lv<=2?0:(lv<=5?1:2)}
+/* ---- 一笔经过哪几格：折线的每个顶点先投到纸面落到格子里，顶点之间在**格子空间**走 Bresenham ——
+   沿像素距离补点会给出「斜着一步」的两个方向同时变化，四邻接就断了；在格空间走，每步只动一个方向，
+   一笔天然是连成的一串格。断笔在这一层就不该存在，不该留给后面的门去筛掉。
+   字数据是 y 朝上的、纸面是 y 朝下的 —— 不翻这一记，洇出来的是这个字的倒影 ---- */
+function soakMapCells(rec,fill){
+  const u=rec.union;
+  const w=Math.max(1,u.x1-u.x0),h=Math.max(1,u.y1-u.y0);
+  const availW=(SK_COLS-2*SK_INSET)*SK_CELL,availH=(SK_ROWS-2*SK_INSET)*SK_CELL;
+  const k=Math.min(availW/w,availH/h)*(fill===undefined?1:fill);
+  const cx=(u.x0+u.x1)/2,cy=(u.y0+u.y1)/2;
+  const ox=(SK_PX0+SK_PX1)/2,oy=(SK_PY0+SK_PY1)/2;
+  const cells=[];
+  for(let i=0;i<rec.n;i++){
+    const m=rec.meds[i],seen={},one=[];
+    const pushId=function(id){
+      const c=skxCol(id),r=skxRow(id);
+      /* 字形永远不许贴纸边：贴上了「正常写完一笔」就可能自己凑出一条贯穿线，那笔账不该算在孩子头上 */
+      if(c<SK_INSET||c>=SK_COLS-SK_INSET||r<SK_INSET||r>=SK_ROWS-SK_INSET)return -2;
+      if(!seen[id]){seen[id]=1;one.push(id)}
+      return 0;
+    };
+    let bad=0,prev=-1;
+    for(let j=0;j<m.length&&!bad;j++){
+      const id=skxPt2Cell(ox+(m[j][0]-cx)*k,oy-(m[j][1]-cy)*k);
+      if(id<0){bad=-1;break}
+      if(prev<0){bad=pushId(id);prev=id;continue}
+      const ac=skxCol(prev),ar=skxRow(prev),bc=skxCol(id),br=skxRow(id);
+      const dc=Math.abs(bc-ac),dr=Math.abs(br-ar),sc=ac<bc?1:-1,sr=ar<br?1:-1;
+      let err=dc-dr,c=ac,r=ar,g=0;
+      while(g++<=SK_CELLS){
+        bad=pushId(skxIdx(c,r));
+        if(bad)break;
+        if(c===bc&&r===br)break;
+        const e2=2*err,mx=e2>=-dr,my=e2<=dc;
+        /* 两个条件同时成立就是 45° 的那记并列：一次只许动一个方向，
+           否则这一步斜着走、这一笔在纸上断成两截 */
+        if(mx&&my){if(err>=0){err-=dr;c+=sc}else{err+=dc;r+=sr}}
+        else if(mx){err-=dr;c+=sc}
+        else if(my){err+=dc;r+=sr}
+        else break;
+      }
+      prev=id;
+    }
+    if(bad)return null;
+    if(one.length<SK_CELL_MIN||one.length>SK_CELL_MAX)return null;
+    cells.push(one);
+  }
+  return cells;
+}
+/* 一串格子连不连成一片（只许走这一笔自己的格，四邻）*/
+function soakLinked(a){
+  if(a.length<2)return a.length===1?1:0;
+  const inSet={};for(let i=0;i<a.length;i++)inSet[a[i]]=1;
+  const seen={},stack=[a[0]];seen[a[0]]=1;let n=1;
+  while(stack.length){
+    const cur=stack.pop(),ad=skxAdj(cur);
+    for(let i=0;i<ad.length;i++){
+      const b=ad[i];
+      if(!inSet[b]||seen[b])continue;
+      seen[b]=1;n++;stack.push(b);
+    }
+  }
+  return n===a.length?1:0;
+}
+/* 整个字占几格（跨笔重叠只算一次：一笔压住另一笔的格，那一格只需洇一遍）*/
+function soakUnion(cells){
+  const s={};let n=0;
+  for(let i=0;i<cells.length;i++)for(let j=0;j<cells[i].length;j++){
+    const id=cells[i][j];
+    if(!s[id]){s[id]=1;n++}
+  }
+  return n;
+}
+function soakSig(cells){
+  const a=[];
+  for(let i=0;i<cells.length;i++)a.push(cells[i].slice().sort(function(x,y){return x-y}).join('.'));
+  return a.join('|');
+}
+/* 这一副布局过不过得了门：逐笔连成一片、整个字的最低消费加余货塞得进这一档最深那场的砚台 */
+function soakWitness(cells,ink){
+  const u=soakUnion(cells);
+  if(u<SK_UNION_MIN||u>SK_UNION_MAX)return 0;
+  if(u+SK_HEADROOM>ink)return 0;
+  for(let i=0;i<cells.length;i++)if(!soakLinked(cells[i]))return 0;
+  return u;
+}
+/* ---- 这个字过不过得了池门：三档口径每一档都要证得出两副布局（发纸时要能换一副），
+       而且证的是这一档最深那场（砚台最小）的账 —— 墨量随场深单调，最深的都够，浅的更够。
+       去重只在**同一档内**：同一副几何在浅档深档都合格是必然的（预算只会更宽），
+       跨档共一张签名表会让第二档永远找不到「新」布局 —— 那这条门谁也过不去，池子注定是空的 */
+function soakAudit(rec){
+  const lays=[];
+  for(let ti=0;ti<SK_TIERS.length;ti++){
+    const t=SK_TIERS[ti],ink=soakInk(t.hi),sig={};
+    let found=0;
+    for(let p=0;p<SK_FILL_N&&found<2;p++){
+      const fill=1-p*SK_FILL_STEP;
+      const cells=soakMapCells(rec,fill);
+      if(!cells)continue;
+      const u=soakWitness(cells,ink);
+      if(!u)continue;
+      const sg=soakSig(cells);
+      if(sig[sg])continue;
+      sig[sg]=1;
+      lays.push({t:ti,cells:cells,all:u,sig:sg,fill:fill});
+      found++;
+    }
+    if(found<2)return null;
+  }
+  rec.lays=lays;
+  return lays;
+}
+/* ---- 这个字能不能拿来做这一坊：3~7 笔、每一笔都认得出笔形、至少两种笔形、每笔够长（补点才连得上）---- */
+function soakMake(ch,raw,lmax){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  const hi=lmax||6;
+  if(ms.length<SK_STROKE_MIN||ms.length>hi)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=jtDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;
+  for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  if((kinds&(kinds-1))===0)return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++){
+    for(let j=0;j<ms[i].length;j++){
+      const x=ms[i][j][0],y=ms[i][j][1];
+      if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+    }
+  }
+  if(x1-x0<140||y1-y0<140)return null;             /* 太小的字投到纸上就一两格，玩不出渗流 */
+  for(let i=0;i<ms.length;i++){
+    let L=0;
+    for(let j=1;j<ms[i].length;j++)L+=Math.hypot(ms[i][j][0]-ms[i][j-1][0],ms[i][j][1]-ms[i][j-1][1]);
+    if(L<70)return null;
+  }
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp,meds:ms,
+    kinds:(function(){const a=[];for(let d=0;d<4;d++)if(kinds&(1<<d))a.push(d);return a})(),
+    union:{x0:x0,x1:x1,y0:y0,y1:y1},lays:null};
+}
+/* ---- 字池：进池之前三档口径全证过 ---- */
+async function soakBuildPool(keep,lo,hi){
+  const g=soak.gen,stale=function(){return g!==soak.gen||!soak.run||soak.over};
+  const mk=SK_STROKE_MAX;
+  const enough=function(){
+    if(!isFinite(lo))return soak.pool.length>=SK_POOL_WANT;
+    let c=0;
+    for(let i=0;i<soak.pool.length;i++)if(soak.pool[i].n>=lo&&soak.pool[i].n<=hi)c++;
+    return c>=6||soak.pool.length>=40;
+  };
+  soak.miss=(localStorage.getItem('hz_soak_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<240;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(skxShuf(soak.miss.slice(0,6)));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(skxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(skxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(soakLetters());
+  if(typeof CHARS!=='undefined')push(skxShuf(CHARS.slice()));
+  if(!keep)soak.pool=[];
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=soakMake(want[k+i],rs[i],mk);
+        if(m&&soakAudit(m)&&!soak.pool.some(function(p){return p.ch===m.ch}))soak.pool.push(m);
+      }
+    }
+  }
+  return soak.pool.length>=SK_POOL_MIN;
+}
+/* 这一坊吃的是「一笔在纸上是一长串格」的字：横平竖直、撇捺舒展的字最好；圈成一团的（口田皿）一笔就回到原点，格子太少没得玩 */
+function soakLetters(){
+  return '一二三十人大干土上下中正本末未朱休体林森相目且自白百吉'
+    +'天地人你我他她它们好坏多少大小中外早晚会工十士平幸左右友有'
+    +'年月午牛生王主玉田由甲申电男界町发变口可台史同向君合告员'
+    +'味和品唯一回因困在存它守居层岛已布带年并异弯强形彩表见观'
+    +'规视讲话谢象贝货资赏街开式待近返还进远选配采金针钉钓钝铃'
+    +'铁银需青非面顶项顺须风飞食饭马驶骨高鱼鸟麦米良走起始迎运'
+    +'道长门问间闻不上下小少尖尘尚光当学字常安宋宗宜定宝宫'
+    +'川州巢雨需雪雷雾青光日月明早晚昏易春是时景晒晴暖'
+    +'水冰冷热洗活流波泵沙沟河泉墨'
+    +'火灭灯炎照黑无焦爽人个大天夫太少尔尤就熟'
+    +'木本术机杀条来东松板极架架样根格核根'
+    +'手看拜拳拿掌热热相省直具典冬各同吉向君'.split('');
+}
+function soakPickRec(){
+  const w=soakWant(soak.lv);
+  let pool=soak.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]&&r.lays&&r.lays.length});
+  if(!pool.length)pool=soak.pool.filter(function(r){return r.n>=SK_STROKE_MIN&&r.n<=SK_STROKE_MAX&&r.lays&&r.lays.length});
+  if(!pool.length)return null;
+  const cur=soak.rec?soak.rec.ch:'';
+  const rest=pool.filter(function(r){return r.ch!==cur});
+  if(rest.length)pool=rest;
+  const mis=pool.filter(function(r){return soak.miss.indexOf(r.ch)>=0});
+  if(mis.length)return skxOne(mis);
+  const fresh=pool.filter(function(r){return soak.doneCh.indexOf(r.ch)<0});
+  if(fresh.length)return skxOne(fresh);
+  return skxOne(pool);
+}
+/* ---- 发纸：拿池里证过的布局，按这一场真正的砚台再核一遍死账；验不过就换一副，试满还不够就换一个字 ---- */
+function soakDeal(rec,lv){
+  if(!rec)return null;
+  if(!rec.lays){rec.lays=soakAudit(rec);if(!rec.lays)return null}
+  const L=lv||soak.lv,t=soakTier(L),ink=soakInk(L);
+  const cand=rec.lays.filter(function(o){return o.t===t});
+  if(!cand.length)return null;
+  const list=skxShuf(cand.slice());
+  for(let a=0;a<list.length;a++){
+    if(soakUnion(list[a].cells)+SK_HEADROOM>ink)continue;
+    let ok=1;
+    for(let i=0;i<list[a].cells.length&&ok;i++)if(!soakLinked(list[a].cells[i]))ok=0;
+    if(!ok)continue;
+    return {cells:list[a].cells.map(function(o){return o.slice()}),all:list[a].all,sig:list[a].sig};
+  }
+  return null;
+}
+
+/* ================= 段 C：墨怎么洇 · 团怎么连 · 纸什么时候算洇穿 ================= */
+/* 三件事全是纯函数（只读 soak.wet / soak.rec），落一笔之前预览算一遍、落下去再算一遍，两次必须一模一样 —— 这是这一坊的「看得见后果」 */
+function soakInAll(i){return !!(soak.allSet&&soak.allSet[i])}
+function soakWetN(){let n=0;for(let i=0;i<SK_CELLS;i++)if(soak.wet[i])n++;return n}
+function soakSpillN(){let n=0;for(let i=0;i<SK_CELLS;i++)if(soak.wet[i]&&!soakInAll(i))n++;return n}
+function soakSetN(){let n=0;for(let i=0;i<SK_CELLS;i++)if(soak.wet[i]===2)n++;return n}
+/* ---- 湿团：一次洪水给每个湿格发团号，顺手记下这一团洒了几格墨、碰到纸的哪几条边 ---- */
+function soakClusters(){
+  const comp=new Array(SK_CELLS),info=[];
+  for(let i=0;i<SK_CELLS;i++)comp[i]=-1;
+  for(let i=0;i<SK_CELLS;i++){
+    if(!soak.wet[i]||comp[i]>=0)continue;
+    const k=info.length,stack=[i];comp[i]=k;
+    const o={n:0,spill:0,L:SK_COLS,R:-1,T:SK_ROWS,B:-1,cells:[]};
+    info.push(o);
+    while(stack.length){
+      const cur=stack.pop(),c=skxCol(cur),r=skxRow(cur);
+      o.n++;o.cells.push(cur);
+      if(c<o.L)o.L=c;if(c>o.R)o.R=c;
+      if(r<o.T)o.T=r;if(r>o.B)o.B=r;
+      if(!soakInAll(cur))o.spill++;
+      const ad=skxAdj(cur);
+      for(let j=0;j<ad.length;j++){
+        const b=ad[j];
+        if(soak.wet[b]&&comp[b]<0){comp[b]=k;stack.push(b)}
+      }
+    }
+  }
+  return {comp:comp,info:info};
+}
+/* 一团碰了几条纸边 */
+function soakTouch(o){
+  return (o.L===0?1:0)+(o.R===SK_COLS-1?1:0)+(o.T===0?1:0)+(o.B===SK_ROWS-1?1:0);
+}
+function soakSpans(o){return (o.L===0&&o.R===SK_COLS-1)||(o.T===0&&o.B===SK_ROWS-1)}
+/* ---- 危险读数：眼下最危险的一团 —— 贯穿了的看它洒了几格墨，还没贯穿的看它离对边多远 ---- */
+function soakDanger(){
+  const cl=soakClusters();
+  let span=0,spanSpill=0,spanN=0,touch=0,maxSpill=0,maxN=0;
+  for(let k=0;k<cl.info.length;k++){
+    const o=cl.info[k];
+    if(o.n>maxN)maxN=o.n;
+    if(o.spill>maxSpill)maxSpill=o.spill;
+    const tt=soakTouch(o);
+    if(tt>touch)touch=tt;
+    if(soakSpans(o)){span=1;if(!spanN||o.spill>spanSpill){spanSpill=o.spill;spanN=o.n}}
+  }
+  return {span:span,spanSpill:spanSpill,spanN:spanN,touch:touch,maxSpill:maxSpill,maxN:maxN};
+}
+/* 洇穿判据：有一条贯穿纸面的湿团，团里洒在字外的格攒够 SK_BLUR_SPILL 个 */
+function soakBlurs(d){return d&&d.span&&d.spanSpill>=SK_BLUR_SPILL?1:0}
+/* ---- 一滴墨的落点序：Dijkstra，进湿格 1、进干格 2 —— 墨认湿路。
+       代价并列时按「离种子曼哈顿近 → 八个方向顺时针 → 格号」定死，全是几何量，跟松弛顺序无关（预览与落子必然同一串格）---- */
+function soakOct(i,seed){
+  const dc=skxCol(i)-skxCol(seed),dr=skxRow(i)-skxRow(seed);
+  if(dc===0&&dr===0)return 0;
+  /* 纸面 y 朝下：atan2 从正左往顺时针转一圈分八份，只用作并列时的定序 */
+  const a=Math.atan2(dr,dc)+Math.PI;
+  let k=Math.floor(a/(Math.PI/4));
+  return k>7?7:k;
+}
+const SK_INF=1e9;
+function soakCmp(a,b,dist,seed){
+  if(dist[a]!==dist[b])return dist[a]<dist[b]?-1:1;
+  const ma=skxMan(a,seed),mb=skxMan(b,seed);
+  if(ma!==mb)return ma<mb?-1:1;
+  const oa=soakOct(a,seed),ob=soakOct(b,seed);
+  if(oa!==ob)return oa<ob?-1:1;
+  return a<b?-1:(a>b?1:0);
+}
+/* 一滴的口径只数「新格」：已经湿的格是免费通道，踩过去不占口径、也不要墨。
+   于是同一条湿径能把这一滴的新格一路送到远处（墨认湿路），干纸上同样口径只够洇一小坨。
+   返回的就是这一滴要新洇的那几格 —— 预览看见的、落下去添的、砚里扣的，三个数必须是同一个数。*/
+function soakSpread(seed,q){
+  if(seed<0||seed>=SK_CELLS)return [];
+  const Q=Math.max(1,Math.min(q|0,SK_CELLS));
+  const dist=[],done=[],out=[];
+  for(let i=0;i<SK_CELLS;i++){dist[i]=SK_INF;done[i]=0}
+  dist[seed]=skxCost(seed);
+  for(let s=0;s<SK_CELLS&&out.length<Q;s++){
+    let best=-1;
+    for(let i=0;i<SK_CELLS;i++){
+      if(done[i]||dist[i]>=SK_INF)continue;
+      if(best<0){best=i;continue}
+      if(soakCmp(i,best,dist,seed)<0)best=i;
+    }
+    if(best<0)break;
+    done[best]=1;
+    if(soak.wet[best]===0)out.push(best);
+    const ad=skxAdj(best);
+    for(let j=0;j<ad.length;j++){
+      const b=ad[j];
+      if(done[b])continue;
+      const nd=dist[best]+skxCost(b);
+      if(nd<dist[b])dist[b]=nd;
+    }
+  }
+  return out;
+}
+/* 落下去：预览那一串本来全是干格，所以一格一格照原样烙上 —— 一滴正好添「口径」个新格，这条账就是段 B 那口砚台的底 */
+function soakApply(cells){
+  const newly=[];
+  for(let i=0;i<cells.length;i++){
+    const id=cells[i];
+    if(soak.wet[id]===0){soak.wet[id]=1;newly.push(id)}
+  }
+  if(newly.length)soak.wetVer++;
+  return newly;
+}
+/* ---- 蒸发：风只吹字外的浮墨，挑离字最远那一格（一样远吹下面那格）；字上的墨与烙住的墨吹不着 ---- */
+function soakFarSpill(){
+  let best=-1,bd=-1;
+  const arr=soak.allArr||[];
+  for(let i=0;i<SK_CELLS;i++){
+    if(soak.wet[i]!==1||soakInAll(i))continue;
+    let d=999;
+    for(let j=0;j<arr.length;j++){const m=skxMan(i,arr[j]);if(m<d)d=m}
+    if(d>bd||(d===bd&&i>best)){bd=d;best=i}
+  }
+  return best;
+}
+function soakEvapOne(){
+  const i=soakFarSpill();
+  if(i<0)return -1;
+  soak.wet[i]=0;soak.wetVer++;
+  return i;
+}
+function soakFan(n){
+  let k=0;
+  for(let a=0;a<n;a++)if(soakEvapOne()>=0)k++;
+  return k;
+}
+/* 纸巾：以笔尖为中心的 (2r+1)² 里，浮墨全吸走 —— 字上的浮墨也吸，双刃 */
+function soakBlot(r){
+  const c=soak.cur.c,ro=soak.cur.r;let k=0;
+  for(let dr=-r;dr<=r;dr++)for(let dc=-r;dc<=r;dc++){
+    if(!skxIn(c+dc,ro+dr))continue;
+    const i=skxIdx(c+dc,ro+dr);
+    if(soak.wet[i]===1){soak.wet[i]=0;k++}
+  }
+  if(k)soak.wetVer++;
+  return k;
+}
+/* ---- 这一笔：格串、已湿几格、连没连通 ---- */
+function soakCurCells(){
+  if(!soak.paper||!soak.paper.cells)return [];
+  return soak.paper.cells[Math.min(soak.pi,soak.n-1)]||[];
+}
+function soakWetOf(a){let n=0;for(let i=0;i<a.length;i++)if(soak.wet[a[i]])n++;return n}
+function soakPureOf(a){let n=0;for(let i=0;i<a.length;i++)if(soak.wet[a[i]]===2)n++;return n}
+/* 通了：这一笔每一格都湿，并且这些格在同一个湿团里（团号只有一个）*/
+function soakStrokeDone(a){
+  if(!a||!a.length)return 0;
+  for(let i=0;i<a.length;i++)if(!soak.wet[a[i]])return 0;
+  const cl=soakClusters(),k=cl.comp[a[0]];
+  if(k<0)return 0;
+  for(let i=1;i<a.length;i++)if(cl.comp[a[i]]!==k)return 0;
+  return cl.info[k].n;
+}
+/* 下一笔已经预埋了几格（顺手洇到后面的笔是给省墨定价的）*/
+function soakPreOfNext(){
+  if(!soak.paper||!soak.paper.cells)return 0;
+  if(soak.pi+1>=soak.n)return 0;
+  const a=soak.paper.cells[soak.pi+1];
+  return soakWetOf(a);
+}
+/* 整张字连成一片了没（一气到底的凭据：写完时所有目标格在一个团里）*/
+function soakWordLinked(){
+  if(!soak.allArr||!soak.allArr.length)return 0;
+  for(let i=0;i<soak.allArr.length;i++)if(!soak.wet[soak.allArr[i]])return 0;
+  const cl=soakClusters(),k=cl.comp[soak.allArr[0]];
+  if(k<0)return 0;
+  for(let i=1;i<soak.allArr.length;i++)if(cl.comp[soak.allArr[i]]!==k)return 0;
+  return 1;
+}
+/* ---- 预览缓存：湿地一变（wetVer）、笔尖一变、口径一变就重算，一帧一次也花不了多少 ---- */
+function soakGhostKey(){return soak.cur.r*SK_COLS+soak.cur.c+':'+soak.q+':'+soak.wetVer}
+function soakGhost(){
+  const k=soakGhostKey();
+  if(k===soak.ghostKey&&soak.ghost)return soak.ghost;
+  soak.ghostKey=k;
+  if(!soak.run||soak.over||soak.ink<=0||!soak.rec){soak.ghost=[];return soak.ghost}
+  soak.ghost=soakSpread(skxIdx(soak.cur.c,soak.cur.r),Math.min(soak.q,soak.ink));
+  return soak.ghost;
+}
+/* 墨团怎么画：每个湿格一个圆，相邻湿格之间补一段桥 —— 一眼看得出一团墨是不是连成了线 */
+function soakBridges(c,fill){
+  c.fillStyle=fill;
+  for(let i=0;i<SK_CELLS;i++){
+    if(!soak.wet[i])continue;
+    const x=skxCx(i),y=skxCy(i),ad=skxAdj(i);
+    for(let j=0;j<ad.length;j++){
+      const b=ad[j];
+      if(!soak.wet[b]||b<i)continue;
+      const mx=(x+skxCx(b))/2,my=(y+skxCy(b))/2;
+      const w=Math.abs(mx-x)*2+8,h=Math.abs(my-y)*2+8;
+      c.fillRect(mx-w/2,Math.min(y,my)-h/2+(Math.abs(my-y)<1?4:0),w,h);
+    }
+  }
+}
+
+/* ================= 段 D：落这一滴 · 通这一笔 · 三种塌法 · 三件家什 ================= */
+/* 落墨是这一坊唯一的动词：松手那一刻，预览算出来的那串格照单洇湿 —— 探针里「所见即所得」证的就是这一条 */
+function soakPenalty(n){
+  soak.score=Math.max(0,soak.score-n);
+  soak.combo=0;soak.wordFoul=true;
+}
+function soakTag(txt,cls){
+  const el=document.getElementById('soakTag');
+  if(!el)return;
+  el.innerHTML=txt;
+  el.className='soak-tag on'+(cls?' '+cls:'');
+  soak.tagOn=1;
+  clearTimeout(soak.tagTimer);
+  soak.tagTimer=skxT(function(){el.className='soak-tag';soak.tagOn=0},SK_TAG_MS);
+}
+function soakFx(x,y,kind){
+  const n=kind==='blur'?26:(kind==='done'?18:10);
+  const cols=kind==='blur'?['#B71C1C','#E57373','#7B1E12']:(kind==='done'?['#4FC3F7','#81C784','#FFF59D']:['#2B2B2B','#5D4037','#8D6E63']);
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,v=(kind==='blur'?1.6:1)+Math.random()*1.6;
+    soak.parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-.6,m:0,life:420+Math.random()*360,c:cols[i%cols.length]});
+  }
+  if(soak.parts.length>180)soak.parts.shift();
+}
+function soakStepFx(dt){
+  for(let i=soak.parts.length-1;i>=0;i--){
+    const p=soak.parts[i];
+    p.m+=dt;p.x+=p.vx*dt/16;p.y+=p.vy*dt/16;p.vy+=dt/340;
+    if(p.m>=p.life)soak.parts.splice(i,1);
+  }
+}
+/* ---- 铺一张新纸 ---- */
+function soakNewPaper(){
+  const w=[];for(let i=0;i<SK_CELLS;i++)w[i]=0;
+  soak.wet=w;soak.wetVer++;
+  const set={},arr=[];
+  const cells=soak.paper?soak.paper.cells:[];
+  for(let i=0;i<cells.length;i++)for(let j=0;j<cells[i].length;j++){
+    const id=cells[i][j];
+    if(!set[id]){set[id]=1;arr.push(id)}
+  }
+  soak.allSet=set;soak.allArr=arr;
+  soak.n=cells.length;soak.pi=0;soak.strokeDrops=0;
+  soak.gotIdx=[];
+  soak.ink=soakInk(soak.lv);soak.inkSum+=soak.ink;
+  soak.fuel=soakFuel(soak.lv);soak.qms0=soakQms(soak.lv);soak.qms=soak.qms0;
+  soak.warn=false;soak.helpMs=0;soak.peekMs=0;soak.nagMs=0;soak.nagHold=0;
+  soak.cleanWord=true;soak.dryWord=true;soak.wordFoul=false;
+  soak.ghost=[];soak.ghostKey='';
+  soak.cur={c:arr.length?skxCol(arr[0]):6,r:arr.length?skxRow(arr[0]):4};
+  soak.dryMs=soakDry(soak.lv);soak.dryAcc=0;
+  soakRefreshDanger();   /* 新纸是干的：危险条子不能还按上一张纸的旧账发红 */
+  const svg=document.getElementById('soakMiniSvg');if(svg)svg.innerHTML='';
+}
+/* ---- 落这一滴 ---- */
+function soakDropGo(){
+  if(!soak.run||soak.over||soak.load||!soak.rec)return {why:'off'};
+  if(soak.ink<=0){soakEmptyGo();return {why:'empty'}}
+  const seed=skxIdx(soak.cur.c,soak.cur.r);
+  const q=Math.max(1,Math.min(soak.q,soak.ink));
+  const cells=soakSpread(seed,q);            /* 与预览同一个函数、同一份湿地：落下去的必是看见的 */
+  const newly=soakApply(cells);
+  soak.ink-=newly.length;soak.inkUse+=newly.length;soak.drops++;soak.strokeDrops++;
+  soak.actMs=0;soak.nagMs=0;
+  skxTone(190+q*24,.1,'sine',.22);
+  soakFx(skxCx(seed),skxCy(seed),'drop');
+  const sp=soakSpillN();if(sp>soak.spillMax)soak.spillMax=sp;
+  let onGlyph=0;
+  for(let i=0;i<newly.length;i++)if(soakInAll(newly[i]))onGlyph++;
+  if(!onGlyph){                                /* 这一滴的墨全花在字外：字上一格没添，纯亏 */
+    soakPenalty(SK_PEN_DUD);soak.duds++;
+    soakTag('💧 白洇 −'+SK_PEN_DUD,'warn');
+    sndNo();
+    return {why:'dud',q:q,seed:seed,spent:newly.length};
+  }
+  const a=soakCurCells();
+  const cl=soakStrokeDone(a);
+  let done=0,snap=0,pure=0,pre=0,gain=0;
+  if(cl){done=soakStrokeGo(a,cl);gain=done.gain;snap=done.snap;pure=done.pure;pre=done.pre}
+  const d=soakDanger();
+  soak.span=d.span;soak.spanSpill=d.spanSpill;soak.touch=d.touch;
+  soak.dangerPct=Math.min(1,d.span?d.spanSpill/SK_BLUR_SPILL:(d.touch?Math.min(.8,d.maxSpill/SK_BLUR_SPILL):0));
+  if(soakBlurs(d)){soakBlurGo();return {why:'blur',q:q,seed:seed}}
+  if(soak.span&&!soak.over)soakTag('⚠️ 墨连到纸那头了：'+soak.spanSpill+'/'+SK_BLUR_SPILL,'warn');
+  return {why:soak.over?'blur':(snap?'snap':'drop'),q:q,seed:seed,newly:newly.length,gain:gain,pure:pure?1:0,pre:pre,spill:soakSpillN()};
+}
+/* ---- 这一笔通了：格子上烙住，分数按「一滴到底 ×1.6、一点没洒 ×1.35」翻倍，往后那一笔已经洇了几格照收预埋 ---- */
+function soakStrokeGo(a,cl){
+  const snap=soak.strokeDrops===1?1:0;
+  const pure=soakSpillN()===0?1:0;
+  const gain=soakGain(!!snap,!!pure);
+  soak.score+=gain;soak.combo++;soak.cellSum+=a.length;
+  if(soak.combo>soak.maxCombo)soak.maxCombo=soak.combo;
+  if(snap)soak.snaps++;
+  if(pure)soak.pures++;
+  const pre=soakPreOfNext();
+  if(pre){soak.score+=pre*SK_PRE_PTS;soak.pres+=pre}
+  for(let i=0;i<a.length;i++)if(soak.wet[a[i]])soak.wet[a[i]]=2;
+  soak.wetVer++;soak.gotIdx[soak.pi]=1;
+  const pi=soak.pi;soak.pi++;soak.strokeDrops=0;
+  soak.qms0=soakQms(soak.lv);soak.qms=soak.qms0;soak.warn=false;
+  const tag=SK_TAG4[skxRok(soak.rec.dirs[Math.min(pi,soak.rec.n-1)])];
+  if(soak.pi>=soak.n){
+    soakTag('🖌 最后一笔烙住了','gold');
+    soakWordGo();
+  }else{
+    soakTag('✅ 第 '+(pi+1)+' 笔 · '+tag+' 通了 +'+gain+(snap?' 一滴到底':'')+(pre?(' 预埋 '+pre):''),snap?'gold':'');
+    skxTone(720+pi*80,.12,'triangle',.2);
+  }
+  soak.ghost=[];soak.ghostKey='';
+  return {gain:gain,snap:snap,pure:pure,pre:pre,cluster:cl};
+}
+/* ---- 一个字写完：砚里剩的墨、整字不洒、家什没借、墨到底了，四笔账一起结 ---- */
+function soakWordGo(){
+  const left=Math.min(SK_LEFT_MAX,soak.ink);
+  let bonus=SK_WORD_PTS+left;
+  if(!soak.wordFoul)bonus+=SK_CLEAN_PTS;
+  if(soak.tools===0)bonus+=SK_DRY_PTS;
+  const linked=soakWordLinked()?1:0;
+  if(linked){bonus+=SK_PERC_PTS;soak.perc++}
+  soak.score+=bonus;
+  soak.words++;soak.doneCh.push(soak.rec.ch);
+  soakBookAdd(soak.rec.ch);
+  sndDone();
+  soakFx(SK_W/2,SK_H/2,'done');
+  soakBankLite();
+  soak.lv=soakLvOf(skxInt('hz_soak_words'));
+  if(soak.words%3===0&&soak.hearts<SK_HEART_MAX)soak.hearts++;
+  soakTag('🈶 '+soak.rec.ch+' 洇成了 +'+bonus+(linked?' · 一气到底':''),'gold');
+  soakNextWord();
+}
+/* ---- 三种塌法：洇穿（洒墨连成一条贯穿）、墨尽（砚空了）、场钟走光 ---- */
+function soakBlurGo(){
+  soak.hearts--;soak.blurs++;
+  soakPenalty(SK_PEN_BLUR);
+  soakMissAdd(soak.rec.ch);
+  soakFx(skxCx(soak.cur.c),skxCy(soak.cur.r),'blur');
+  sndNo();skxTone(120,.5,'sawtooth',.24);
+  soakTag('💔 洇穿了 −'+SK_PEN_BLUR,'warn');
+  if(soak.hearts<=0){soakEnd('blur');return}
+  soakNextWord();
+}
+function soakEmptyGo(){
+  soak.hearts--;soak.empties++;
+  soakPenalty(SK_PEN_EMPTY);
+  soakMissAdd(soak.rec.ch);
+  sndNo();
+  soakTag('🫙 砚空了 −'+SK_PEN_EMPTY,'warn');
+  if(soak.hearts<=0){soakEnd('empty');return}
+  soakNextWord();
+}
+function soakTimeGo(){
+  soak.hearts--;soak.timeouts++;
+  soakPenalty(SK_PEN_TIME);
+  soakMissAdd(soak.rec.ch);
+  soakTag('⏳ 这张纸晾干了 −'+SK_PEN_TIME,'warn');
+  skxTone(160,.4,'square',.18);
+  if(soak.hearts<=0){soakEnd('time');return}
+  soakNextWord();
+}
+function soakSwapGo(){
+  if(soak.swapN<=0||!soak.run||soak.over||soak.load)return 0;
+  soak.swapN--;soak.swaps++;soak.swapUse++;soak.tools++;
+  soakPenalty(SK_PEN_SWAP);
+  soakTag('🔁 换一张纸 −'+SK_PEN_SWAP,'');
+  soakNextWord(true);
+  return 1;
+}
+/* ---- 三件家什 ---- */
+function soakFanGo(){
+  if(soak.fanN<=0||!soak.run||soak.over||soak.load)return {why:'off',k:0};
+  soak.fanN--;soak.fanUse++;soak.tools++;
+  const k=soakFan(SK_FAN_N);
+  soakRefreshDanger();                                /* 扇掉的墨当场从危险条子里减掉：别让那根条子还按旧账发红 */
+  soak.fanMs=600;
+  for(let i=0;i<k;i++)soakFx(SK_W-Math.random()*40,SK_PY0+Math.random()*(SK_PY1-SK_PY0),'drop');
+  skxTone(1400,.18,'sine',.14);
+  soakTag(k?'🪶 扇掉 '+k+' 格浮墨':'🪶 纸上没有浮墨可扇','');
+  return {why:'fan',k:k};
+}
+function soakBlotGo(){
+  if(soak.blotN<=0||!soak.run||soak.over||soak.load)return {why:'off',k:0};
+  soak.blotN--;soak.blotUse++;soak.tools++;
+  const k=soakBlot(SK_BLOT_R);
+  soakRefreshDanger();                                /* 吸掉的墨同样要当场从危险条子里扣掉 */
+  sndStar();
+  soakTag(k?'🧻 按纸巾吸掉 '+k+' 格':'🧻 这一片本来就是干的','');
+  soak.ghost=[];soak.ghostKey='';
+  return {why:'blot',k:k};
+}
+function soakPeekGo(){
+  if(soak.peekN<=0||!soak.run||soak.over||soak.load)return 0;
+  soak.peekN--;soak.peekUse++;soak.tools++;
+  soak.peekMs=SK_PEEK_MS;
+  skxTone(980,.12,'triangle',.16);
+  soakTag('🔍 映纸：往后两笔的格亮出来了','');
+  return 1;
+}
+
+/* ================= 段 E：画这张纸 ================= */
+function soakCanvasSize(){
+  const cv=document.getElementById('soakCanvas');
+  if(!cv)return;
+  cv.width=SK_W;cv.height=SK_H;
+  soak.ctx=cv.getContext?cv.getContext('2d'):null;
+}
+/* 纤维噪点：固定种子，一开页就造好 —— 每张纸的纹路一样，孩子才学得准「这一滴会往哪儿跑」 */
+function soakDots(){
+  if(soak.dots&&soak.dots.length)return soak.dots;
+  let s=1349;const a=[];
+  const rnd=function(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff};
+  for(let i=0;i<230;i++){
+    a.push({x:SK_PX0+rnd()*(SK_PX1-SK_PX0),y:SK_PY0+rnd()*(SK_PY1-SK_PY0),
+      w:2+Math.floor(rnd()*4),v:rnd()});
+  }
+  soak.dots=a;return a;
+}
+/* 每一格归第几笔（跨笔重叠的格归先写那一笔）：烙墨按笔形上色就靠这一张表 */
+function soakOwners(){
+  const o=[],cells=soak.paper?soak.paper.cells:[];
+  for(let i=0;i<SK_CELLS;i++)o[i]=-1;
+  for(let k=0;k<cells.length;k++)for(let j=0;j<cells[k].length;j++){
+    const id=cells[k][j];
+    if(o[id]<0)o[id]=k;
+  }
+  return o;
+}
+function soakGround(c){
+  const g=c.createLinearGradient(0,0,0,SK_H);
+  g.addColorStop(0,'#5D4037');g.addColorStop(1,'#3E2723');
+  c.fillStyle=g;c.fillRect(0,0,SK_W,SK_H);
+  /* 纸：压在桌面上，四周露出一圈毛边 */
+  c.fillStyle='#EDE3D2';c.fillRect(SK_PX0-3,SK_PY0-3,SK_PX1-SK_PX0+6,SK_PY1-SK_PY0+6);
+  const pg=c.createLinearGradient(SK_PX0,SK_PY0,SK_PX1,SK_PY1);
+  pg.addColorStop(0,'#F7F0E2');pg.addColorStop(1,'#E9DDC8');
+  c.fillStyle=pg;c.fillRect(SK_PX0,SK_PY0,SK_PX1-SK_PX0,SK_PY1-SK_PY0);
+  const ds=soakDots();
+  for(let i=0;i<ds.length;i++){
+    const d=ds[i];
+    c.fillStyle='rgba(120,98,70,'+(.05+d.v*.09).toFixed(3)+')';
+    c.fillRect(d.x,d.y,d.w,1);
+    if(d.v>.72)c.fillRect(d.x,d.y,1,d.w);
+  }
+  /* 纤维格线：淡得几乎看不见，只有笔尖落到哪一格靠它对齐 */
+  c.strokeStyle='rgba(110,90,64,.13)';c.lineWidth=1;
+  for(let col=1;col<SK_COLS;col++){
+    const x=SK_PX0+col*SK_CELL+.5;
+    c.beginPath();c.moveTo(x,SK_PY0);c.lineTo(x,SK_PY1);c.stroke();
+  }
+  for(let r=1;r<SK_ROWS;r++){
+    const y=SK_PY0+r*SK_CELL+.5;
+    c.beginPath();c.moveTo(SK_PX0,y);c.lineTo(SK_PX1,y);c.stroke();
+  }
+  c.strokeStyle='rgba(62,39,35,.5)';c.lineWidth=2;
+  c.strokeRect(SK_PX0-3.5,SK_PY0-3.5,SK_PX1-SK_PX0+7,SK_PY1-SK_PY0+7);
+  /* 桌沿：纸下面是作坊的木桌 */
+  c.fillStyle='#2F1B16';c.fillRect(0,SK_PY1+4,SK_W,SK_H-SK_PY1-4);
+  c.fillStyle='rgba(255,220,180,.06)';
+  for(let i=0;i<9;i++)c.fillRect(6+i*46,SK_PY1+8,30,2);
+}
+/* 该洇哪几格：眼下这一笔描一圈笔形色，映纸时往后两笔淡描 —— 第 6 场起样图淡去，往后几笔得记在心里 */
+function soakGuide(c){
+  if(!soak.paper||!soak.rec)return;
+  const cells=soak.paper.cells,a=soakCurCells();
+  const dir=soak.rec.dirs[Math.min(soak.pi,soak.n-1)];
+  const ink=SK_INK4[skxRok(dir)];
+  c.save();
+  /* 已经烙住的笔：按笔形色压一层，越写越像一个字 */
+  const own=soakOwners();
+  for(let i=0;i<SK_CELLS;i++){
+    if(soak.wet[i]!==2)continue;
+    const k=own[i];
+    c.fillStyle=k>=0?SK_INK4[skxRok(soak.rec.dirs[k])]:'#3E2723';
+    c.globalAlpha=.92;
+    soakBlot2(c,i,SK_CELL*.34);
+  }
+  c.globalAlpha=1;
+  /* 未来的笔：场浅的时候淡淡露一点（第 4 场起连这个也没了，全凭记）*/
+  if(!soakNoMini(soak.lv)){
+    const hide=soakNoGhost(soak.lv);
+    for(let k=soak.pi+1;k<soak.n;k++){
+      const on=k<soak.pi+3&&soak.peekMs>0;
+      if(!on&&hide)continue;
+      const dd=soak.rec.dirs[k];
+      c.strokeStyle=SK_INK4[skxRok(dd)];
+      c.globalAlpha=on?.85:(.18+Math.max(0,3-(k-soak.pi))*.04);
+      c.lineWidth=on?2.6:1.4;
+      const arr=cells[k];
+      for(let j=0;j<arr.length;j++)soakFrame(c,arr[j],on?7:4);
+    }
+    c.globalAlpha=1;
+  }
+  /* 当前这一笔：虚线一圈，已经洇上的格填一半 */
+  c.strokeStyle=ink;c.lineWidth=2.4;
+  c.setLineDash([5,4]);
+  for(let j=0;j<a.length;j++)soakFrame(c,a[j],6);
+  c.setLineDash([]);
+  for(let j=0;j<a.length;j++){
+    if(!soak.wet[a[j]]||soak.wet[a[j]]===2)continue;
+    c.fillStyle=ink;c.globalAlpha=.5;soakBlot2(c,a[j],SK_CELL*.3);c.globalAlpha=1;
+  }
+  c.restore();
+}
+function soakFrame(c,i,pad){
+  const x=SK_PX0+skxCol(i)*SK_CELL+pad,y=SK_PY0+skxRow(i)*SK_CELL+pad,s=SK_CELL-pad*2;
+  c.strokeRect(x,y,s,s);
+}
+function soakBlot2(c,i,r){
+  const x=skxCx(i),y=skxCy(i);
+  c.beginPath();
+  /* 毛边：六个半径交替的钝圆，看着就是一滴洇开的墨 */
+  for(let k=0;k<12;k++){
+    const a=k/12*Math.PI*2,rr=r*(k%2?.86:1.06);
+    const px=x+Math.cos(a)*rr,py=y+Math.sin(a)*rr;
+    if(k)c.lineTo(px,py);else c.moveTo(px,py);
+  }
+  c.closePath();c.fill();
+}
+/* 浮墨：字外面的湿格，画成发灰的一团 —— 越攒越多就该扇了 */
+function soakFloats(c){
+  const n=soakSpillN();
+  if(!n)return;
+  c.save();
+  c.fillStyle='rgba(48,36,28,.5)';
+  soakBridges(c,'rgba(48,36,28,.38)');
+  for(let i=0;i<SK_CELLS;i++){
+    if(soak.wet[i]!==1)continue;
+    c.fillStyle=soakInAll(i)?'rgba(60,46,34,.55)':'rgba(120,60,44,.5)';
+    soakBlot2(c,i,SK_CELL*(soakInAll(i)?.26:.3));
+  }
+  c.restore();
+  return n;
+}
+/* 渗流的凭据：洒墨最多那一团要是已经穿过纸、或只碰到一条边，就把那半边描红 */
+function soakDangerMark(c){
+  const cl=soakClusters();
+  let worst=-1,ws=-1;
+  for(let k=0;k<cl.info.length;k++){
+    const o=cl.info[k];
+    if(!o.spill)continue;
+    const sc=(soakSpans(o)?100:0)+soakTouch(o)*2+o.spill;
+    if(sc>ws){ws=sc;worst=k}
+  }
+  if(worst<0)return {span:0,touch:0,spill:0};
+  const o=cl.info[worst];
+  const sp=soakSpans(o),tt=soakTouch(o);
+  if(tt){
+    c.save();
+    c.strokeStyle=sp?'rgba(198,40,40,.95)':'rgba(255,152,0,.8)';
+    c.lineWidth=sp?5:3;
+    c.fillStyle=c.strokeStyle;
+    if(o.L===0){c.beginPath();c.moveTo(SK_PX0-4,SK_PY0);c.lineTo(SK_PX0-4,SK_PY1);c.stroke()}
+    if(o.R===SK_COLS-1){c.beginPath();c.moveTo(SK_PX1+4,SK_PY0);c.lineTo(SK_PX1+4,SK_PY1);c.stroke()}
+    if(o.T===0){c.beginPath();c.moveTo(SK_PX0,SK_PY0-4);c.lineTo(SK_PX1,SK_PY0-4);c.stroke()}
+    if(o.B===SK_ROWS-1){c.beginPath();c.moveTo(SK_PX0,SK_PY1+4);c.lineTo(SK_PX1,SK_PY1+4);c.stroke()}
+    c.restore();
+  }
+  return {span:sp?1:0,touch:tt,spill:o.spill,n:o.n};
+}
+/* 预览：这一滴会洇到哪几格（第 4 场起不许看）*/
+function soakGhostDraw(c){
+  if(soakNoGhost(soak.lv)||soak.ink<=0)return 0;
+  const g=soakGhost();
+  if(!g.length)return 0;
+  c.save();
+  for(let k=0;k<g.length;k++){
+    const i=g[k],isNew=soak.wet[i]===0;
+    c.fillStyle=isNew?'rgba(33,33,33,.3)':'rgba(120,120,120,.16)';
+    soakBlot2(c,i,SK_CELL*(isNew?.24:.2));
+    if(isNew){
+      c.strokeStyle='rgba(33,33,33,.42)';c.lineWidth=1;
+      soakFrame(c,i,9);
+    }
+  }
+  c.restore();
+  return g.length;
+}
+/* 笔尖与蓄力：格心一个十字，外圈一段一段地涨 —— 松手就是这一格下墨 */
+function soakCursor(c){
+  const i=skxIdx(soak.cur.c,soak.cur.r);
+  const x=skxCx(i),y=skxCy(i);
+  c.save();
+  c.strokeStyle='rgba(255,241,196,.95)';c.lineWidth=2;
+  c.beginPath();c.moveTo(x-9,y);c.lineTo(x-3,y);c.moveTo(x+3,y);c.lineTo(x+9,y);
+  c.moveTo(x,y-9);c.lineTo(x,y-3);c.moveTo(x,y+3);c.lineTo(x,y+9);c.stroke();
+  const mx=soakQmax(soak.lv);
+  if(soak.hold){
+    c.strokeStyle='#FFD54F';c.lineWidth=3;
+    c.beginPath();
+    c.arc(x,y,SK_CELL*.42,-Math.PI/2,-Math.PI/2+Math.PI*2*(soak.q/mx));
+    c.stroke();
+  }
+  c.fillStyle='rgba(255,241,196,.9)';
+  c.font='bold 11px sans-serif';c.textAlign='center';
+  c.fillText(soak.q+' 格',x,y-SK_CELL*.5);
+  c.restore();
+}
+function soakDrawFx(c){
+  for(let i=0;i<soak.parts.length;i++){
+    const p=soak.parts[i];
+    const k=1-p.m/p.life;
+    c.fillStyle=p.c;c.globalAlpha=Math.max(0,k*.9);
+    c.fillRect(p.x-2,p.y-2,4*(.4+k),4*(.4+k));
+  }
+  c.globalAlpha=1;
+}
+function soakDraw(){
+  const c=soak.ctx;
+  if(!c)return;
+  soakGround(c);
+  soakGuide(c);
+  soakFloats(c);
+  soakDangerMark(c);
+  soakGhostDraw(c);
+  soakCursor(c);
+  soakDrawFx(c);
+  /* 砚里还剩多少墨：纸右下角一小汪 */
+  const mx=soakInk(soak.lv),k=Math.max(0,Math.min(1,soak.ink/mx));
+  c.save();
+  c.fillStyle='rgba(0,0,0,.35)';c.fillRect(SK_W-84,SK_PY1+9,72,9);
+  c.fillStyle=k>.25?'#263238':'#BF360C';c.fillRect(SK_W-83,SK_PY1+10,70*k,7);
+  c.fillStyle='rgba(255,241,196,.86)';c.font='9px sans-serif';c.textAlign='right';
+  c.fillText('砚 '+soak.ink+'/'+mx,SK_W-10,SK_PY1+8);
+  c.restore();
+}
+
+/* ================= 段 F：主循环 · 键与手 · HUD · 生命周期 ================= */
+/* 一滴墨的口径只由「按住多久」决定：每 SK_CHARGE 毫秒涨一格，顶到这一场的口径就停 —— 手一松就照预览落子 */
+function soakQCeil(){return Math.max(1,Math.min(soakQmax(soak.lv),soak.ink))}
+function soakCharge(dt){
+  if(!soak.hold)return;
+  const before=soak.q;
+  soak.holdMs+=dt;
+  soak.q=skxClamp(SK_Q0+Math.floor(soak.holdMs/SK_CHARGE),SK_Q0,soakQCeil());
+  if(soak.q!==before)skxTone(300+soak.q*70,.05,'sine',.1);
+}
+/* 这一笔的钟走光：风吹散这一笔上最孤立的一两格浮墨 —— 犹豫的代价是墨，不是分 */
+function soakQmsExpire(){
+  const a=soakCurCells();
+  let k=0;
+  for(let pass=0;pass<2&&k<2;pass++){
+    let best=-1,bd=-1;
+    for(let i=0;i<a.length;i++){
+      const id=a[i];
+      if(soak.wet[id]!==1)continue;
+      let d=SK_CELLS;
+      for(let j=0;j<a.length;j++){
+        if(j===i||soak.wet[a[j]]!==1)continue;
+        const m=skxMan(id,a[j]);if(m<d)d=m;
+      }
+      if(d>bd||(d===bd&&id>best)){bd=d;best=id}
+    }
+    if(best<0)break;
+    soak.wet[best]=0;soak.wetVer++;k++;
+  }
+  if(k){
+    soak.combo=0;
+    soakTag('🌬 风把这一笔吹散 '+k+' 格','warn');
+    skxTone(240,.3,'sine',.14);
+  }
+  soak.qms0=soakQms(soak.lv);soak.qms=soak.qms0;soak.warn=false;
+  soakRefreshDanger();
+  return k;
+}
+function soakRefreshDanger(){
+  const d=soakDanger();
+  soak.span=d.span;soak.spanSpill=d.spanSpill;soak.touch=d.touch;
+  soak.spanN=d.spanN;soak.maxSpill=d.maxSpill;soak.maxN=d.maxN;
+  soak.dangerPct=Math.min(1,d.span?d.spanSpill/SK_BLUR_SPILL:(d.touch?Math.min(.8,d.maxSpill/SK_BLUR_SPILL):0));
+  return d;
+}
+function soakTick(dt){
+  if(soak.helpMs>0){soak.helpMs-=dt;soak.peekMs=Math.max(0,soak.peekMs-dt);return}
+  soak.playMs+=dt;soak.actMs+=dt;soak.fuel-=dt;
+  soakCharge(dt);
+  if(soak.qms>0){
+    soak.qms-=dt;
+    if(soak.qms<=0)soakQmsExpire();
+    else if(!soak.warn&&soak.qms<=soak.qms0*SK_WARN){soak.warn=true;skxTone(660,.12,'square',.12)}
+  }
+  /* 蒸发：风只吹字外的浮墨，隔一会儿吹一格 */
+  if(soak.ink>0||soakSpillN()>0){
+    soak.dryAcc+=dt;
+    while(soak.dryAcc>=soak.dryMs){
+      soak.dryAcc-=soak.dryMs;
+      if(soakEvapOne()>=0)soakRefreshDanger();
+    }
+  }
+  if(soak.peekMs>0)soak.peekMs-=dt;
+  if(soak.fanMs>0)soak.fanMs-=dt;
+  if(soak.nagHold>0)soak.nagHold-=dt;
+  else if(soak.actMs>=SK_NAG_MS){
+    soak.actMs=0;soak.nags++;soak.nagMs=SK_NAG_MS;soak.nagHold=SK_NAG_HOLD;
+    soak.nagTip=soak.paper?'这一笔共 '+soakCurCells().length+' 格，已经洇上 '+soakWetOf(soakCurCells())+
+      ' 格 —— 笔尖挪到还没湿的那一格，按住蓄墨、松手就落':'先挑一笔最短的格子练手';
+  }
+  soakStepFx(dt);
+  if(soak.fuel<=0){soakTimeGo();return}
+}
+/* ---- HUD：顶栏三格 + 药丸一排 + 三条量表（条子的长度由产品自己写，DOM 镜像读的就是这一处）---- */
+function soakToolBtn(id,n){
+  const b=document.getElementById(id);
+  if(!b)return;
+  b.disabled=!(n>0&&soak.run&&!soak.over);
+  const k=b.querySelector('b');
+  if(k)k.textContent='剩 '+n;
+}
+function soakMeter(id,txtId,v,t,fmt){
+  const bar=document.getElementById(id),tx=document.getElementById(txtId);
+  const p=t>0?Math.max(0,Math.min(1,v/t)):0;
+  if(bar)bar.style.width=Math.round(p*100)+'%';
+  if(tx)tx.innerHTML=fmt;
+  return p;
+}
+/* 条子的底色由这一行自己翻：砚见底变红、湿团过纸发烫、纸快干了也变红 —— 危险不用读数字，看一眼条子就知道 */
+function soakRowState(id,cls,on){
+  const bar=document.getElementById(id),row=bar&&bar.parentNode;
+  if(row)row.classList.toggle(cls,!!on);
+}
+function soakHud(){
+  if(!soak.run)return;
+  const tot=skxInt('hz_soak_words');
+  const rk=skxRank(tot);
+  let h='';
+  const hs=Math.max(SK_HEARTS,soak.hearts);
+  for(let i=0;i<soak.hearts;i++)h+='❤️';
+  for(let i=soak.hearts;i<hs;i++)h+='🤍';
+  skxPut('soakRankTxt',rk.e+' '+rk.t);
+  skxPut('soakHeartTxt',h||'💔');
+  skxPut('soakComboTxt','🔥 连 '+soak.combo);
+  const a=soakCurCells();
+  skxPut('soakGoalTxt','🖌 第 '+Math.min(soak.pi+1,soak.n)+' 笔'+
+    (soak.rec?'（'+SK_TAG4[skxRok(soak.rec.dirs[Math.min(soak.pi,soak.n-1)])]+'）':'')+
+    ' · 已洇 '+soakWetOf(a)+'/'+a.length);
+  skxPut('soakDropTxt','💧 落 '+soak.drops+' 滴 · 用墨 '+soak.inkUse);
+  skxPut('soakSpillTxt','🌫 纸上洒 '+soakSpillN()+' 格 · 最多 '+soak.spillMax);
+  skxPut('soakDangerTxt',soak.span?('⚠️ 已穿纸：洒墨 '+soak.spanSpill+'/'+SK_BLUR_SPILL):
+    ('🧭 湿团碰边 '+soak.touch+' 条 · 最大一团洒 '+(soak.maxSpill||0)+' 格'));
+  skxPut('soakGhostTxt',soakNoGhost(soak.lv)?'🚫 第 '+(soak.lv)+' 场：不许看预览':
+    ('👁 这一滴洇 '+soak.ghost.length+' 格（'+soak.q+'/'+soakQmax(soak.lv)+'）'));
+  skxPut('soakScoreTxt','🖌 '+soak.score+' 分');
+  skxPut('soakLvTxt','第 '+soak.lv+' 场 · 已洇 '+tot+' 字');
+  skxPut('soakQTxt','⏳ 这一笔 '+Math.ceil(Math.max(0,soak.qms)/1000)+' 秒');
+  soakMeter('soakInkBar','soakInkTxt',soak.ink,soakInk(soak.lv),
+    '🫙 砚里 '+soak.ink+' 格'+(soak.ink<=6?'（快见底了）':''));
+  soakMeter('soakWetBar','soakWetTxt',soak.dangerPct,1,
+    (soak.span?'🔥 墨已过纸 ':'🌊 湿透 '+soakWetN()+'/'+SK_CELLS+' 格 · 洒 '+soakSpillN()));
+  soakMeter('soakFuelBar','soakFuelTxt',Math.max(0,soak.fuel),soakFuel(soak.lv),
+    '⏳ 这张纸 '+Math.ceil(Math.max(0,soak.fuel)/1000)+' 秒');
+  soakRowState('soakInkBar','low',soak.ink<=6);
+  soakRowState('soakWetBar','hot',soak.span===1);
+  soakRowState('soakFuelBar','low',soak.fuel<=soakFuel(soak.lv)*0.2);
+  soakToolBtn('soakFanBtn',soak.fanN);soakToolBtn('soakBlotBtn',soak.blotN);
+  soakToolBtn('soakPeekBtn',soak.peekN);soakToolBtn('soakSwapBtn',soak.swapN);
+  soakMini();
+}
+/* ---- 样图：米字格里这一个字，通了的笔按笔形色压黑 ---- */
+function soakMini(){
+  const svg=document.getElementById('soakMiniSvg');
+  if(!svg)return;
+  const rec=soak.rec;
+  if(!rec||!rec.paths){svg.innerHTML='';soakCapLine();return}
+  const faint=soakNoMini(soak.lv);
+  let s='';
+  for(let i=0;i<rec.paths.length;i++){
+    const got=!!soak.gotIdx[i];
+    const p=rec.paths[i];
+    const dPath=Array.isArray(p)?p.map(function(q,k){return (k?'L':'M')+q[0]+' '+q[1]}).join(''):String(p||'');
+    if(!dPath)continue;
+    s+='<path d="'+dPath+'" fill="none" stroke="'+(got?SK_INK4[skxRok(rec.dirs[i])]:
+      (faint?'#5C5148':'#8B7B66'))+'" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" opacity="'+
+      (got?.95:(faint?.16:.3))+'"/>';
+  }
+  svg.innerHTML='<g transform="scale(1,-1)">'+s+'</g>';
+  soakCapLine();
+}
+function soakCapLine(){
+  const el=document.getElementById('soakMiniCap');
+  if(!el)return;
+  if(!soak.rec){el.textContent='这张纸还没上字';return}
+  el.textContent=soak.rec.ch+' · '+soak.rec.n+' 笔 · 纸上占 '+
+    (soak.paper?soak.paper.all:0)+'/'+SK_CELLS+' 格';
+}
+/* ---- 题头（占死两行，只许换字不许换行数）---- */
+function soakAsk(){
+  if(!soak.run||soak.over||!soak.rec){skxPut('soakAsk','🖌 这张纸还没上字<br><small>点「再洇一张」</small>');return}
+  if(soak.helpMs>0){skxPut('soakAsk','🖌 <b>怎么洇开这一笔</b><br><small>两把钟与风都先停住</small>');return}
+  if(soak.nagHold>0){
+    skxPut('soakAsk','🌱 <b>口诀</b>：墨认湿路 —— 已湿的格一块钱、干格两块钱<br>'+
+      '<small>湿格一格不占口径、也不费墨 · 洒在字外的墨攒到 '+SK_BLUR_SPILL+' 格连成一条，纸就洇穿</small>');
+    return;
+  }
+  /* 裁纸的两秒里不许把上一张纸的题头刷回来 */
+  if(soak.load){skxPut('soakAsk','🖌 <b>正在裁一张新纸</b><br><small>这一坊的字要能在纸上洇得开</small>');return}
+  const a=soakCurCells();
+  skxPut('soakAsk','🖌 该洇 <b>第 '+(soak.pi+1)+' 笔 · '+SK_TAG4[skxRok(soak.rec.dirs[Math.min(soak.pi,soak.n-1)])]+
+    '</b>（'+soakWetOf(a)+'/'+a.length+' 格）· 这个字还剩 <b>'+(soak.n-soak.pi)+'</b> 笔<br>'+
+    '<small>←→↑↓ 挪笔尖 · <b>空格</b> 按住蓄墨、松手落子 · 这一滴 '+soak.q+'/'+soakQmax(soak.lv)+
+    ' 格 · 砚里剩 '+soak.ink+'</small>');
+}
+/* ---- 说明行：眼下最该知道的那一句 ---- */
+function soakLine(){
+  if(!soak.run)return;
+  let txt;
+  const spill=soakSpillN(),need=soakCurCells().length,got=soakWetOf(soakCurCells());
+  if(soak.helpMs>0)txt='🛑 <b>歇一记看说明</b>：两把钟与风全停住，按任意键就回到纸上';
+  else if(soak.nagHold>0)txt='🌱 <b>发呆口诀</b>：'+(soak.nagTip||'墨认湿路 —— 贴着湿边下墨最省');
+  else if(soak.span&&soak.spanSpill>=SK_BLUR_SPILL-1)txt='🔥 <b>要洇穿了</b>：穿过纸的那一团里已经洒了 '+soak.spanSpill+
+    '/'+SK_BLUR_SPILL+' 格 —— <b>🪶 扇一扇</b>（吹散 '+SK_FAN_N+' 格浮墨）或者别再往那边下墨';
+  else if(soak.span)txt='⚠️ <b>墨已经连到纸那头</b>：这一团里洒了 '+soak.spanSpill+' 格，攒到 '+SK_BLUR_SPILL+' 就算破 —— 下一滴别再贴边';
+  else if(spill>=6)txt='🌫 <b>纸上洒了 '+spill+' 格</b>：风一格一格吹得动它，但吹掉的都是白花的墨 —— <b>下一滴照着预览落</b>';
+  else if(need-got<=1&&got>0)txt='💧 <b>就差 '+(need-got)+' 格</b>：笔尖挪到那一格上，'+
+    (soakNoGhost(soak.lv)?'心里铺一遍这一滴会洇到哪':'预览亮着，看准了再松手');
+  else if(soak.qms<=soak.qms0*SK_WARN)txt='🔥 <b>这一笔的钟要走光了</b>：走光就吹散这一笔上的浮墨 —— <b>别犹豫，落子</b>';
+  else if(soak.ink<=8)txt='🫙 <b>砚里只剩 '+soak.ink+' 格</b>：这一笔要 '+need+' 格 —— <b>贴着已湿的边下墨</b>（湿格不再扣墨，一滴只照新洇出来的格扣）';
+  else txt='🖌 第 '+(soak.pi+1)+' 笔要 '+need+' 格 · 已洇 '+got+' 格：一笔要连着洇成一片才算通 —— <b>断了就再补一滴</b>';
+  skxPut('soakHintLine',txt);
+}
+function soakSay(t,c){skxSay(t,c)}
+/* ---- 帮助 ---- */
+function soakHelp(){
+  if(!soak.run)return;
+  soak.helpMs=SK_HELP_MS;
+  skxPut('soakAsk','🖌 <b>怎么洇开这一笔</b><br><small>两把钟与风都先停住</small>');
+  soakSay('🖌 <b>一句话的道理</b>：墨认湿路。<b>已湿的格一块钱、干格两块钱</b> —— 而且<b>湿格一格不占口径、也不扣墨</b>：'+
+    '笔尖落在洇透的一片里，这一滴照样添满口径，新格是从这片湿的<b>边上</b>冒出来的；落在四面干纸上就是方方正正一小坨。<br>'+
+    '<b>通一笔</b>：这一笔的格子全洇上、并且连成一个团。<b>一滴到底 ×'+SK_SNAP_MULT+'</b>、'+
+    '通成时纸上一点没洒 <b>×'+SK_PURE_MULT+'</b>、顺手预埋下一笔每格 +'+SK_PRE_PTS+'。<br>'+
+    '<b>三种塌法</b>：洒在字外的墨连成一条<b>穿过纸</b>的团、团里攒够 <b>'+SK_BLUR_SPILL+' 格</b> —— 洇穿（−'+
+    SK_PEN_BLUR+'、掉一颗心）；砚里空了 —— 墨尽（−'+SK_PEN_EMPTY+'、掉心）；这张纸限期到了 —— 风干（−'+
+    SK_PEN_TIME+'）。风平时只吹字外的浮墨，一格一格吹。<br>'+
+    '<b>三件家什</b>：🪶 扇一扇立刻吹散 '+SK_FAN_N+' 格浮墨 · 🧻 按纸巾吸掉笔尖周围 3×3 的浮墨（字上的也吸，双刃）· '+
+    '🔍 映纸把往后两笔的格亮 '+((SK_PEEK_MS/1000).toFixed(1))+' 秒。<br>'+
+    '<small>第 4 场起不许看预览，第 6 场起样图也淡 —— 这一滴会洇到哪几格，得自己在心里铺。'+
+    '按任意键回到纸上。</small>','#FFE0B2');
+  soakAsk();soakLine();soakHud();
+}
+/* ---- 事件绑定：只绑一次 ---- */
+function soakPt2Cell(e){
+  const cv=document.getElementById('soakCanvas');
+  if(!cv)return -1;
+  const r=cv.getBoundingClientRect();
+  if(!r.width)return -1;
+  const x=(e.clientX-r.left)*(SK_W/r.width),y=(e.clientY-r.top)*(SK_H/r.height);
+  return skxPt2Cell(x,y);
+}
+function soakMoveTo(i){
+  if(i<0)return;
+  soak.cur={c:skxCol(i),r:skxRow(i)};
+}
+function soakHoldStart(){
+  if(!soak.run||soak.over||soak.load)return;
+  if(soak.helpMs>0){soak.helpMs=0;return}
+  soak.hold=true;soak.holdMs=0;soak.q=SK_Q0;
+  soak.actMs=0;soak.nagHold=0;
+}
+function soakHoldEnd(){
+  if(!soak.hold)return;
+  soak.hold=false;
+  const r=soakDropGo();
+  soak.holdMs=0;soak.q=SK_Q0;
+  soak.ghost=[];soak.ghostKey='';
+  return r;
+}
+function soakNudge2(dc,dr){
+  if(!soak.run||soak.over||soak.load)return;
+  if(soak.helpMs>0){soak.helpMs=0;return}
+  soak.cur={c:skxClamp(soak.cur.c+dc,0,SK_COLS-1),r:skxClamp(soak.cur.r+dr,0,SK_ROWS-1)};
+  soak.actMs=0;soak.nagHold=0;
+}
+function soakBind(){
+  if(soak.bound)return;
+  soak.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!soak.run||soak.over)return;
+    if(soak.helpMs>0){soak.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){soakLeave();return}
+    if(k==='h'||k==='?'){soakHelp();e.preventDefault();return}
+    if(k==='arrowleft'||k==='a'){soakNudge2(-1,0);e.preventDefault();return}
+    if(k==='arrowright'||k==='d'){soakNudge2(1,0);e.preventDefault();return}
+    if(k==='arrowup'||k==='w'){soakNudge2(0,-1);e.preventDefault();return}
+    if(k==='arrowdown'||k==='s'){soakNudge2(0,1);e.preventDefault();return}
+    if(k==='q'){soakNudge2(-1,-1);e.preventDefault();return}
+    if(k==='e'){soakNudge2(1,-1);e.preventDefault();return}
+    if(k==='z'){soakNudge2(-1,1);e.preventDefault();return}
+    if(k==='c'){soakNudge2(1,1);e.preventDefault();return}
+    if(k==='f'){soakFanGo();e.preventDefault();return}
+    if(k==='b'){soakBlotGo();e.preventDefault();return}
+    if(k==='p'){soakPeekGo();e.preventDefault();return}
+    if(k==='r'){soakSwapGo();e.preventDefault();return}
+    if(k===' '||k==='spacebar'){if(!soak.hold)soakHoldStart();e.preventDefault()}
+  });
+  window.addEventListener('keyup',function(e){
+    const k=e.key.toLowerCase();
+    if((k===' '||k==='spacebar')&&soak.hold){soakHoldEnd();e.preventDefault()}
+  });
+  const cv=document.getElementById('soakCanvas');
+  if(cv){
+    cv.addEventListener('pointerdown',function(e){
+      const i=soakPt2Cell(e);
+      if(i<0)return;
+      soakMoveTo(i);soakHoldStart();
+      if(cv.setPointerCapture&&e.pointerId!==undefined){try{cv.setPointerCapture(e.pointerId)}catch(err){}}
+      e.preventDefault();
+    });
+    cv.addEventListener('pointermove',function(e){
+      const i=soakPt2Cell(e);
+      if(i<0)return;
+      soakMoveTo(i);
+    });
+    cv.addEventListener('pointerup',function(e){if(soak.hold)soakHoldEnd();e.preventDefault()});
+    cv.addEventListener('pointercancel',function(){soak.hold=false;soak.q=SK_Q0});
+    cv.addEventListener('pointerleave',function(){if(soak.hold){soak.hold=false;soak.q=SK_Q0}});
+  }
+  const hold=function(id,on,off){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('pointerdown',function(e){if(on)on();e.preventDefault()});
+    b.addEventListener('pointerup',function(){if(off)off()});
+    b.addEventListener('pointercancel',function(){if(off)off()});
+    b.addEventListener('click',function(e){if(!off)on&&on();e.preventDefault()});
+  };
+  hold('soakFanBtn',function(){soakFanGo()});
+  hold('soakBlotBtn',function(){soakBlotGo()});
+  hold('soakPeekBtn',function(){soakPeekGo()});
+  hold('soakSwapBtn',function(){soakSwapGo()});
+  hold('soakDropBtn',function(){soakHoldStart()},function(){soakHoldEnd()});
+  hold('soakHelpBtn',function(){soakHelp()});
+  hold('soakReBtn',function(){soakRestart()});
+  hold('soakLabBtn',function(){soakLeave('lab')});
+  hold('soakHomeBtn',function(){soakLeave()});
+}
+/* ---- 循环 ---- */
+function soakStartLoop(){
+  if(soak.rafId)return;
+  soak.last=performance.now();
+  function step(now){
+    if(!soak.run||soak.over){soak.rafId=0;return}
+    const dt=Math.min(120,Math.max(8,now-soak.last));
+    soak.last=now;soak.t+=dt;
+    if(!soak.load)soakTick(dt);
+    soakGhost();
+    soakDraw();
+    if(soak.hudAcc>=120){soak.hudAcc=0;soakHud();soakLine();soakAsk()}
+    soak.hudAcc+=dt;
+    soak.rafId=requestAnimationFrame(step);
+  }
+  soak.rafId=requestAnimationFrame(step);
+}
+function soakStopLoop(){if(soak.rafId){cancelAnimationFrame(soak.rafId);soak.rafId=0}}
+function soakStopAll(){soakStopLoop();skxKillTimers();soak.gen++;soak.hold=false}
+/* ---- 换一张纸（挑字、发纸、铺纸；两把钟在等字数据时停走）---- */
+async function soakNextWord(swap){
+  soak.load=true;soak.hold=false;soak.q=SK_Q0;
+  skxPut('soakAsk','🖌 <b>正在裁一张新纸</b><br><small>这一坊的字要能在纸上洇得开</small>');
+  const g=soak.gen;
+  const w=soakWant(soak.lv);
+  let ok=soak.pool.length>=SK_POOL_MIN;
+  if(!ok||soak.poolWantMore){
+    soak.poolWantMore=false;
+    ok=await soakBuildPool(true,w[0],w[1]);
+    if(g!==soak.gen||!soak.run||soak.over)return;
+  }
+  let started=0;
+  for(let a=0;a<8&&!started;a++){
+    const rec=soakPickRec();
+    if(!rec)break;
+    const paper=soakDeal(rec,soak.lv);
+    if(!paper){
+      /* 这一档发不出纸：把这个字从池里摘掉，换一个 */
+      const k=soak.pool.indexOf(rec);
+      if(k>=0){soak.pool.splice(k,1);soak.poolWantMore=true}
+      continue;
+    }
+    soak.rec=rec;soak.paper=paper;
+    soakNewPaper();
+    started=1;
+  }
+  if(!started){
+    /* 手上还没有纸，就不许把「裁纸中」放下来：场钟在空档里走光，会把这一场判成「这张纸晾干了」，
+       而那笔账（soakMissAdd(soak.rec.ch)）根本还没有一张纸可记 */
+    if(!soak.pool.length){ok=await soakBuildPool(false);if(g!==soak.gen||!soak.run)return;ok=ok||soak.pool.length>0}
+    if(!ok){soakEnd('pool');return}
+    soakNextWord(swap);
+    return;
+  }
+  soak.load=false;
+  if(swap)skxSay('🔁 换了一张纸：这一笔要 '+soakCurCells().length+' 格，砚里 '+soak.ink+' 格','#FFE0B2');
+  soakHud();soakAsk();soakLine();
+  return 1;
+}
+function soakStart(){
+  showScreen('soak');
+  const fd0=document.getElementById('soakField');if(fd0)fd0.classList.remove('dead');
+  soakBind();
+  soakCanvasSize();
+  if(!soak.wet||soak.wet.length!==SK_CELLS){const w=[];for(let i=0;i<SK_CELLS;i++)w[i]=0;soak.wet=w}
+  soak.run=true;soak.over=false;soak.gen++;
+  soak.lv=soakLvOf(skxInt('hz_soak_words'));
+  soak.score=0;soak.combo=0;soak.maxCombo=0;soak.words=0;soak.hearts=SK_HEARTS;
+  soak.drops=0;soak.duds=0;soak.blurs=0;soak.empties=0;soak.timeouts=0;soak.swaps=0;
+  soak.snaps=0;soak.pures=0;soak.pres=0;soak.perc=0;soak.cellSum=0;soak.inkSum=0;soak.inkUse=0;soak.spillMax=0;
+  soak.tools=0;soak.nags=0;soak.t=0;soak.playMs=0;soak.hudAcc=0;soak.newBest=false;
+  soak.fanN=SK_P0;soak.blotN=SK_P0;soak.peekN=SK_P0;soak.swapN=1;
+  soak.fanUse=0;soak.blotUse=0;soak.peekUse=0;soak.swapUse=0;
+  soak.doneCh=[];soak.gotIdx=[];soak.parts=[];soak.actMs=0;soak.tagOn=0;
+  soak.span=0;soak.spanSpill=0;soak.spanN=0;soak.touch=0;soak.maxSpill=0;soak.maxN=0;soak.dangerPct=0;
+  soak.book=null;soak.hold=false;soak.holdMs=0;soak.q=SK_Q0;soak.ghost=[];soak.ghostKey='';soak.wetVer=0;
+  soak.qms=0;soak.qms0=0;soak.fuel=0;soak.ink=0;soak.dryMs=soakDry(soak.lv);soak.dryAcc=0;
+  soak.rec=null;soak.paper=null;soak.allSet={};soak.allArr=[];soak.n=0;soak.pi=0;
+  soakGhost();
+  soakStartLoop();
+  soakNextWord();
+  skxSay('🖌 纸裁好了：笔尖落在哪一格、这一滴蓄几格、什么时候松手 —— 就这三样','#FFE0B2');
+}
+function soakEnd(why){
+  if(soak.over)return;
+  soak.over=true;soak.hold=false;soak.load=false;
+  soakStopAll();
+  soak.parts=[];
+  const tg=document.getElementById('soakTag');if(tg)tg.className='soak-tag';
+  clearTimeout(soak.tagTimer);soak.tagOn=0;
+  const fd=document.getElementById('soakField');if(fd)fd.classList.add('dead');
+  showScreen('soak-result');
+  soakFillResult(why);
+}
+function soakRestart(){
+  const fd=document.getElementById('soakField');if(fd)fd.classList.remove('dead');
+  showScreen('soak');
+  soakStart();
+}
+function soakLeave(where){
+  soakStopAll();
+  soak.run=false;soak.over=false;
+  const fd=document.getElementById('soakField');
+  if(soak.over&&fd)fd.classList.add('dead');
+  if(where==='lab'){goLab();return}
+  goHome();
+}
+
+/* ================= 段 G：落盘与结算 · 家什架 · 把这一坊的凭据拿另一条路再算一遍（只读，不许碰场上任何东西） ================= */
+/* hz_soak_* 的分工：一堆累计计数键（洇成字数/落滴/白洇/洇穿/墨尽/风干/换纸/一滴到底/不洒一笔/预埋格/一气到底/
+   烙格总数/扇/纸巾/映纸/家什/发呆/开局/零罚字）
+   + 几个 max 键（最好一场分数/最长连击/最深一场/单字最多洒墨）
+   + 一个 avg 键（平均每落一滴多少毫秒，越小越熟）
+   + 三个名单键（纸上图鉴 hz_soak_book · 错字本 hz_soak_miss · 家什架 hz_soak_shelf）。
+   称号读累计洇成字数 hz_soak_words，不是「最好一场」那个。 */
+/* ---- 这一坊敢开给孩子，靠的是四句死话：
+   ① 这一滴会洇到哪几格，算得出、也看得见（预览＝落子，同一串格）
+   ② 一砚墨真够把这个字洇完，还留得下余货（段 B 的最低消费账）
+   ③ 这个字投到纸上，每一笔都是连成的一串格（断了就再怎么洇也连不到一块）
+   ④ 洒在字外的墨要自己连成一条贯穿纸边的团、还攒够 SK_BLUR_SPILL 格才算洇穿 —— 正常写完一笔碰不到纸边（字区往里收了一格）
+   段 B 写了一遍②③，段 C 写了一遍①④；这里全用另一种写法（Bellman-Ford 反复松弛 + 整体排序、并查集、Set 去重逐笔重数）
+   再算一遍，两边对不上，这套凭据就当场作废 —— 探针读的全是这一段算出来的数，绝不改任何一个量。*/
+/* ---- ② 最低消费：换一条去重的路（Set + 逐笔重数，不拿 s[id] 那本账）---- */
+function soakAudUnion(cells){
+  const per=[],seen=new Set();
+  for(let i=0;i<cells.length;i++){
+    let k=0;
+    for(let j=0;j<cells[i].length;j++){
+      const id=cells[i][j];
+      if(!seen.has(id)){seen.add(id);k++}
+    }
+    per.push(k);
+  }
+  let dup=0;
+  for(let i=0;i<per.length;i++)dup+=cells[i].length-per[i];
+  return {n:seen.size,per:per,dup:dup};
+}
+/* ---- ③ 连不连成一片：换并查集（段 B 那一路是从第一格出发洪水，数走到几个）---- */
+function soakAudLinked(a){
+  const idOf={},par=[];
+  for(let i=0;i<a.length;i++){idOf[a[i]]=i;par.push(i)}
+  const find=function(x){while(par[x]!==x){par[x]=par[par[x]];x=par[x]}return x};
+  let parts=a.length;
+  for(let i=0;i<a.length;i++){
+    const ad=skxAdj(a[i]);
+    for(let j=0;j<ad.length;j++){
+      const b=ad[j];
+      if(!(b in idOf))continue;
+      const x=find(i),y=find(idOf[b]);
+      if(x!==y){par[x]=y;parts--}
+    }
+  }
+  return parts===1?1:0;
+}
+/* ---- ① 一滴墨的落点序：Bellman-Ford 把每一格到种子的最小代价松弛到位，再整表按同一套几何并列规则排一次序，
+       然后照这个次序只捡「干格」捡满口径（湿格是免费通道、不占口径）——
+       （段 C 是一轮一轮从「已知的」里面挑最小，这里是一次算全、一次排序 —— 两条路必须给出同一串格）---- */
+function soakAudSpread(seed,q){
+  if(seed<0||seed>=SK_CELLS)return {out:[],n:0,order:1};
+  const Q=Math.max(1,Math.min(q|0,SK_CELLS));
+  const d=[];
+  for(let i=0;i<SK_CELLS;i++)d[i]=SK_INF;
+  d[seed]=skxCost(seed);
+  for(let pass=0;pass<SK_CELLS;pass++){
+    let chg=0;
+    for(let i=0;i<SK_CELLS;i++){
+      if(d[i]>=SK_INF)continue;
+      const ad=skxAdj(i);
+      for(let j=0;j<ad.length;j++){
+        const b=ad[j],nd=d[i]+skxCost(b);
+        if(nd<d[b]){d[b]=nd;chg=1}
+      }
+    }
+    if(!chg)break;
+  }
+  const reach=[];
+  for(let i=0;i<SK_CELLS;i++)if(d[i]<SK_INF)reach.push(i);
+  reach.sort(function(x,y){return soakCmp(x,y,d,seed)});
+  const out=[];
+  for(let k=0;k<reach.length&&out.length<Q;k++)if(!soak.wet[reach[k]])out.push(reach[k]);
+  const prod=soakSpread(seed,q);
+  let order=1;
+  if(out.length!==prod.length)order=0;
+  else for(let i=0;i<out.length;i++)if(out[i]!==prod[i]){order=0;break}
+  return {out:out,n:out.length,order:order,costs:out.map(function(i){return d[i]}),
+    maxCost:out.length?d[out[out.length-1]]:0,seeded:out.length&&out[0]===seed?1:0,field:d};
+}
+/* ---- ④ 湿团：并查集版（段 C 那一路是栈式洪水），逐团对表 ---- */
+function soakAudDanger(){
+  const par=new Array(SK_CELLS),sz=new Array(SK_CELLS),sp=new Array(SK_CELLS);
+  const L=new Array(SK_CELLS),R=new Array(SK_CELLS),T=new Array(SK_CELLS),B=new Array(SK_CELLS);
+  for(let i=0;i<SK_CELLS;i++){par[i]=-1;sz[i]=0;sp[i]=0;L[i]=SK_COLS;R[i]=-1;T[i]=SK_ROWS;B[i]=-1}
+  const find=function(x){while(par[x]!==x){par[x]=par[par[x]];x=par[x]}return x};
+  const wet=[];
+  for(let i=0;i<SK_CELLS;i++)if(soak.wet[i]){wet.push(i);par[i]=i;sz[i]=1;sp[i]=soakInAll(i)?0:1;
+    const c=skxCol(i),r=skxRow(i);L[i]=R[i]=c;T[i]=B[i]=r}
+  for(let a=0;a<wet.length;a++){
+    const i=wet[a],ad=skxAdj(i);
+    for(let j=0;j<ad.length;j++){
+      const b=ad[j];
+      if(!soak.wet[b])continue;
+      const x=find(i),y=find(b);
+      if(x===y)continue;
+      par[x]=y;sz[y]+=sz[x];sp[y]+=sp[x];
+      if(L[x]<L[y])L[y]=L[x];if(R[x]>R[y])R[y]=R[x];
+      if(T[x]<T[y])T[y]=T[x];if(B[x]>B[y])B[y]=B[x];
+    }
+  }
+  let n=0,span=0,spanSpill=0,spanN=0,touch=0,maxSpill=0,maxN=0;
+  for(let a=0;a<wet.length;a++){
+    const i=wet[a];
+    if(find(i)!==i)continue;
+    n++;
+    if(sz[i]>maxN)maxN=sz[i];
+    if(sp[i]>maxSpill)maxSpill=sp[i];
+    const tt=(L[i]===0?1:0)+(R[i]===SK_COLS-1?1:0)+(T[i]===0?1:0)+(B[i]===SK_ROWS-1?1:0);
+    if(tt>touch)touch=tt;
+    const sp2=(L[i]===0&&R[i]===SK_COLS-1)||(T[i]===0&&B[i]===SK_ROWS-1);
+    if(sp2){span=1;if(!spanN||sp[i]>spanSpill){spanSpill=sp[i];spanN=sz[i]}}
+  }
+  const d=soakDanger();
+  const cl=soakClusters();
+  return {n:n,span:span,spanSpill:spanSpill,spanN:spanN,touch:touch,maxSpill:maxSpill,maxN:maxN,
+    agree:(n===cl.info.length&&span===d.span&&spanSpill===d.spanSpill&&touch===d.touch&&
+      maxSpill===d.maxSpill&&maxN===d.maxN)?1:0,
+    blurs:soakBlurs({span:span,spanSpill:spanSpill}),blursProd:soakBlurs(d)};
+}
+/* ---- 发到手这一张纸的形状账：笔数对得上、每笔连成一片、每笔在字区里、最低消费加余货塞得进这一场的砚台 ---- */
+function soakAudPaper(lv){
+  const out={ok:1,why:'',n:0,nStrokes:0,linked:0,inset:0,union:0,unionAlt:0,head:0,ink:0,
+    min:0,spare:0,sig:0,all:0};
+  const rec=soak.rec,pap=soak.paper;
+  if(!rec||!pap){out.ok=0;out.why='no-paper';return out}
+  const L=lv||soak.lv,ink=soakInk(L);
+  out.n=rec.n;out.nStrokes=pap.cells.length;out.ink=ink;
+  if(pap.cells.length!==rec.n){out.ok=0;out.why='strokes!='+rec.n}
+  for(let i=0;i<pap.cells.length;i++){
+    const a=pap.cells[i];
+    if(!soakLinked(a))out.linked++;
+    if(!soakAudLinked(a))out.linked++;
+    for(let j=0;j<a.length;j++){
+      const c=skxCol(a[j]),r=skxRow(a[j]);
+      if(c<SK_INSET||c>=SK_COLS-SK_INSET||r<SK_INSET||r>=SK_ROWS-SK_INSET)out.inset++;
+    }
+  }
+  const ua=soakAudUnion(pap.cells);
+  out.union=soakUnion(pap.cells);out.unionAlt=ua.n;out.head=out.union+SK_HEADROOM;
+  out.all=pap.all;
+  if(out.union!==ua.n){out.ok=0;out.why='union '+out.union+'!='+ua.n}
+  if(out.union!==pap.all){out.ok=0;out.why='union!=paper.all'}
+  if(out.union<SK_UNION_MIN||out.union>SK_UNION_MAX){out.ok=0;out.why='union out of range'}
+  if(out.head>ink){out.ok=0;out.why='ink not enough'}
+  out.min=out.union;out.spare=ink-out.union;
+  if(out.linked){out.ok=0;if(!out.why)out.why='断笔 '+out.linked}
+  if(out.inset){out.ok=0;if(!out.why)out.why='贴边 '+out.inset}
+  if(!out.ok&&!out.why)out.why='unknown';
+  return out;
+}
+/* ---- 一滴的账：这一滴最多添几个新格、就扣几格墨 —— 段 B 那口砚台的底就是这条不等式 ---- */
+function soakAudDrop(seed,q){
+  const sp=soakAudSpread(seed,q);
+  const inSet={};
+  const a=soakCurCells();
+  for(let i=0;i<a.length;i++)inSet[a[i]]=1;
+  let on=0,off=0,newly=0;
+  for(let i=0;i<sp.out.length;i++){if(inSet[sp.out[i]])on++;else off++;if(!soak.wet[sp.out[i]])newly++}
+  return {n:sp.n,order:sp.order,seeded:sp.seeded,on:on,off:off,maxCost:sp.maxCost,newly:newly,
+    within:sp.n<=Math.max(1,Math.min(q,soak.ink))?1:0};
+}
+/* ---- 只读快照：探针要看的、要比的全从这一个口子出去（light 只带钟与计数，够逐帧连续性用）---- */
+function soakSnap(light){
+  const s={
+    run:soak.run,over:soak.over,load:soak.load,gen:soak.gen,t:soak.t,playMs:soak.playMs,
+    lv:soak.lv,pi:soak.pi,n:soak.n,ch:soak.rec?soak.rec.ch:'',
+    cur:skxIdx(soak.cur.c,soak.cur.r),cc:soak.cur.c,cr:soak.cur.r,
+    q:soak.q,qCeil:soakQCeil(),hold:soak.hold?1:0,holdMs:soak.holdMs,
+    wetN:soakWetN(),spillN:soakSpillN(),setN:soakSetN(),ink:soak.ink,inkUse:soak.inkUse,
+    need:soakCurCells().length,wetOf:soakWetOf(soakCurCells()),
+    ghostN:soak.ghost.length,ghostKey:soakGhostKey(),ghostOn:soakNoGhost(soak.lv)?0:1,
+    span:soak.span,spanSpill:soak.spanSpill,touch:soak.touch,dangerPct:soak.dangerPct,
+    qms:soak.qms,qms0:soak.qms0,fuel:soak.fuel,warn:soak.warn,
+    dryMs:soak.dryMs,dryAcc:soak.dryAcc,
+    score:soak.score,hearts:soak.hearts,combo:soak.combo,maxCombo:soak.maxCombo,words:soak.words,
+    drops:soak.drops,duds:soak.duds,blurs:soak.blurs,empties:soak.empties,timeouts:soak.timeouts,
+    swaps:soak.swaps,snaps:soak.snaps,pures:soak.pures,pres:soak.pres,perc:soak.perc,
+    cellSum:soak.cellSum,spillMax:soak.spillMax,tools:soak.tools,nags:soak.nags,
+    fanMs:soak.fanMs,peekMs:soak.peekMs,nagMs:soak.nagMs,nagHold:soak.nagHold,helpMs:soak.helpMs,
+    actMs:soak.actMs,tagOn:soak.tagOn,
+    fanN:soak.fanN,blotN:soak.blotN,peekN:soak.peekN,swapN:soak.swapN,
+    fanUse:soak.fanUse,blotUse:soak.blotUse,peekUse:soak.peekUse,swapUse:soak.swapUse,
+    parts:soak.parts.length,wetVer:soak.wetVer,
+    inkMax:soakInk(soak.lv),qmax:soakQmax(soak.lv),vf:soakFuel(soak.lv),
+    strokeMax:soakStrokeMax(soak.lv),tier:soakTier(soak.lv)
+  };
+  if(light)return s;
+  s.wet=soak.wet.slice();
+  s.ghost=soak.ghost.slice();
+  s.gotIdx=soak.gotIdx.slice();
+  s.curCells=soakCurCells().slice();
+  s.allArr=(soak.allArr||[]).slice();
+  s.paper=[];
+  if(soak.paper)for(let i=0;i<soak.paper.cells.length;i++)s.paper.push(soak.paper.cells[i].slice());
+  s.danger=soakAudDanger();
+  s.paper_a=soakAudPaper(soak.lv);
+  s.drop=soakAudDrop(skxIdx(soak.cur.c,soak.cur.r),Math.max(1,Math.min(soak.q,soak.ink)));
+  s.strokeDone=soakStrokeDone(soakCurCells())||0;
+  s.preNext=soakPreOfNext();
+  s.wordLinked=soakWordLinked();
+  return s;
+}
+/* ---- 家什架：八件家什，每一件都要真做到过才上架（第八件认别处打来的章节徽章）---- */
+const SK_SHELF=[
+  {k:'笔架',d:'洇成第一个字',ok:function(){return skxInt('hz_soak_words')>=1}},
+  {k:'砚台',d:'打到第 3 场',ok:function(){return skxInt('hz_soak_lv')>=3}},
+  {k:'羽扇',d:'扇风 5 回',ok:function(){return skxInt('hz_soak_fans')>=5}},
+  {k:'纸巾',d:'按纸巾 3 回',ok:function(){return skxInt('hz_soak_blots')>=3}},
+  {k:'映纸',d:'映纸 4 次',ok:function(){return skxInt('hz_soak_peeks')>=4}},
+  {k:'一滴壶',d:'一滴到底收成一笔 6 回',ok:function(){return skxInt('hz_soak_snaps')>=6}},
+  {k:'干净手',d:'整字一点没洒 2 个',ok:function(){return skxInt('hz_soak_cleanw')>=2}},
+  {k:'纸样夹',d:'别处的章节徽章攒到 3 枚',ok:function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}}}
+];
+function soakShelfCheck(){
+  const have=(localStorage.getItem('hz_soak_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  for(let i=0;i<SK_SHELF.length;i++){
+    const s=SK_SHELF[i];
+    if(have.indexOf(s.k)<0&&s.ok()){have.push(s.k);got.push(s.k)}
+  }
+  localStorage.setItem('hz_soak_shelf',have.join(','));
+  localStorage.setItem('hz_soak_trophy',String(have.length));
+  if(got.length){
+    localStorage.setItem('hz_soak_trophy_n',String(skxInt('hz_soak_trophy_n')+got.length));
+    skxSay('🗄️ 家什架上多了 <b>'+got.join('、')+'</b>（一共 '+have.length+'/'+SK_SHELF.length+' 件）','#FFE0B2');
+  }
+  return {have:have,got:got};
+}
+function soakMissAdd(ch){
+  if(!ch)return;
+  if(soak.miss.indexOf(ch)<0){
+    soak.miss.push(ch);
+    localStorage.setItem('hz_soak_miss',soak.miss.slice(0,SK_BOOK_MAX).join(','));
+  }
+}
+function soakBookAdd(ch){
+  if(!ch)return;
+  if(!soak.book)soak.book=(localStorage.getItem('hz_soak_book')||'').split(',').filter(function(s){return s.length===1});
+  if(soak.book.indexOf(ch)>=0)return;
+  soak.book.push(ch);
+  localStorage.setItem('hz_soak_book',soak.book.slice(0,SK_BOOK_MAX).join(','));
+}
+function soakBankLite(){
+  /* 洇成一个字当场就把纪录写进去了。这一场最后若是「平着自己破的纪录」，
+     结算那行还得给孩子挂上「新高」——所以破过就得留个记号，不能让孩子看不见自己刚破的纪录 */
+  if(soak.score>skxInt('hz_soak_best')){localStorage.setItem('hz_soak_best',String(soak.score));soak.newBest=true}
+  if(soak.maxCombo>skxInt('hz_soak_combo'))localStorage.setItem('hz_soak_combo',String(soak.maxCombo));
+  if(soak.lv>skxInt('hz_soak_lv'))localStorage.setItem('hz_soak_lv',String(soak.lv));
+  if(soak.spillMax>skxInt('hz_soak_spillmax'))localStorage.setItem('hz_soak_spillmax',String(soak.spillMax));
+  soakShelfCheck();
+}
+function soakBank(why){
+  /* newBest 是「这一场中途已经把纪录写进去了」的记号：分数只涨到那儿、结算时正好持平，
+     那也是孩子破的纪录，得照样挂「新高」。但这一场后来又掉了分，就不算破，也绝不许把纪录往下改 */
+  const best=skxInt('hz_soak_best'),isBest=soak.score>best||(soak.newBest===true&&soak.score===best);
+  if(isBest)localStorage.setItem('hz_soak_best',String(soak.score));
+  if(soak.maxCombo>skxInt('hz_soak_combo'))localStorage.setItem('hz_soak_combo',String(soak.maxCombo));
+  if(soak.lv>skxInt('hz_soak_lv'))localStorage.setItem('hz_soak_lv',String(soak.lv));
+  if(soak.spillMax>skxInt('hz_soak_spillmax'))localStorage.setItem('hz_soak_spillmax',String(soak.spillMax));
+  if(soak.drops){
+    const per=Math.round(soak.playMs/soak.drops);
+    if(!skxInt('hz_soak_fastest')||per<skxInt('hz_soak_fastest'))localStorage.setItem('hz_soak_fastest',String(per));
+  }
+  skxAdd('hz_soak_words',soak.words);
+  skxAdd('hz_soak_drops',soak.drops);
+  skxAdd('hz_soak_duds',soak.duds);
+  skxAdd('hz_soak_blurs',soak.blurs);
+  skxAdd('hz_soak_empties',soak.empties);
+  skxAdd('hz_soak_timeouts',soak.timeouts);
+  skxAdd('hz_soak_swaps',soak.swaps);
+  skxAdd('hz_soak_snaps',soak.snaps);
+  skxAdd('hz_soak_pures',soak.pures);
+  skxAdd('hz_soak_pres',soak.pres);
+  skxAdd('hz_soak_perc',soak.perc);
+  skxAdd('hz_soak_cells',soak.cellSum);
+  skxAdd('hz_soak_inkuse',soak.inkUse);
+  skxAdd('hz_soak_fans',soak.fanUse);
+  skxAdd('hz_soak_blots',soak.blotUse);
+  skxAdd('hz_soak_peeks',soak.peekUse);
+  skxAdd('hz_soak_tools',soak.tools);
+  skxAdd('hz_soak_nags',soak.nags);
+  if(!soak.tools&&soak.words)skxAdd('hz_soak_cleanw',soak.words);
+  skxAdd('hz_soak_games',1);
+  const sf=soakShelfCheck();
+  return {best:Math.max(best,soak.score),isBest:isBest,
+    shelf:Math.min(SK_SHELF.length,(localStorage.getItem('hz_soak_shelf')||'').split(',').filter(function(s){return s}).length),
+    got:sf.got};
+}
+/* 结算那一句「下一步该改哪儿」：先按死因说，死因之外再按最扎手的那个毛病说 */
+function soakWhyTxt(why){
+  if(why==='blur')return '💔 <b>让墨把纸洇穿了</b>：这一场洇穿 <b>'+soak.blurs+'</b> 回。'+
+    '判据不是「洒得多」，是<b>洒在字外的墨自己连成了一条从这头到那头的团</b>，团里攒够 <b>'+SK_BLUR_SPILL+' 格</b> —— '+
+    '所以该防的是<b>往纸那一侧一路铺过去</b>：眼看「湿团碰边」那格开始报数，下一滴就<b>别再朝那条边下墨</b>，'+
+    '或者 🪶 扇一扇（当场吹散 '+SK_FAN_N+' 格浮墨）、🧻 按纸巾把笔尖周围 3×3 擦干净';
+  if(why==='empty')return '🫙 <b>砚里空了</b>：这一场墨尽 <b>'+soak.empties+'</b> 回。'+
+    '一砚 '+soakInk(soak.lv)+' 格，<b>墨只照这一滴新洇出来的格扣</b> —— 省墨只有一条路：<b>墨认湿路</b>，'+
+    '已湿的格一块钱、干格两块钱，<b>湿格一格不占口径、也不扣墨</b>，一滴的新格全落在字上才算没白花；'+
+    '每一笔的最低消费是这一笔占的格数，白洇（这一滴的墨全花在了<b>字外</b>，字上一格没添）就是纯亏 −'+SK_PEN_DUD;
+  if(why==='time')return '⏳ <b>这张纸晾干了</b>：纸有限期（第 '+soak.lv+' 场 '+(soakFuel(soak.lv)/1000).toFixed(0)+
+    ' 秒）。这一坊的钟不是催你乱按 —— 犹豫的代价写在另一处：<b>这一笔的钟走光会吹散这一笔上的浮墨</b>，'+
+    '吹掉的都是白花的墨。看准预览、一次落够，比来回补滴省得多';
+  if(why==='pool')return '😢 <b>纸没裁出来</b>：这一坊要的是「每一笔在纸上连成一串格、一砚墨够洇完还留 '+
+    SK_HEADROOM+' 格余货」的字，算不过这笔账的字压根不进池，网络一断就挑不出来，回头再来';
+  if(soak.blurs>=2)return '🌊 <b>洇穿 '+soak.blurs+' 回</b>：洒在字外的墨最会自己找路 —— 每一滴都<b>落在字里</b>，'+
+    '宁可多补一滴把这一笔从中间接着洇，也别图省事顺着边缘一路铺到纸那头';
+  if(soak.duds>=3)return '💧 <b>白洇 '+soak.duds+' 次</b>：那几滴的墨全花在了<b>字外</b>，这个字一格没添 —— '+
+    '笔尖挪到这一笔还没湿的格上再蓄墨；预览亮着的时候看得清清楚楚（第 4 场起不许看，得自己心里铺）';
+  if(soak.empties>=2)return '🫙 <b>砚空 '+soak.empties+' 回</b>：整场用掉 '+soak.inkUse+' 格墨、纸上占 '+
+    (soak.paper?soak.paper.all:0)+' 格 —— <b>一滴到底</b>（一笔一次洇成）额外 ×'+SK_SNAP_MULT+
+    '，通成时纸上一点没洒再 ×'+SK_PURE_MULT+'，这两笔账都是省墨换来的';
+  if(soak.snaps&&soak.pures>=2)return '🖌 <b>手很稳</b>：一滴到底 '+soak.snaps+' 笔、一点没洒 '+soak.pures+
+    ' 笔 —— 下一场一砚只有 '+soakInk(soak.lv+1)+' 格、风更急，第 4 场起预览也收走了，'+
+    '试试<b>一件家什不用洇完一个字</b>';
+  if(!soak.drops)return '🖌 <b>这一场一滴没落</b>：笔尖 ←→↑↓（斜着 q/e/z/c）挪一格，<code>空格</code>按住蓄墨、'+
+    '松手就照预览洇下去 —— 蓄得久口径大（顶 '+soakQmax(soak.lv)+' 格），但这一滴新洇几格就扣几格墨，落点要准';
+  return '🖌 手感不错：落 <b>'+soak.drops+'</b> 滴、用掉 '+soak.inkUse+' 格墨、一滴到底 '+soak.snaps+
+    ' 笔、一点没洒 '+soak.pures+' 笔、预埋下一笔 '+soak.pres+' 格、一气到底 '+soak.perc+' 个字 —— '+
+    '下一场砚里少 '+SK_INK_STEP+' 格、风快 '+SK_DRY_STEP+' 毫秒/格，试试贴着湿边下墨';
+}
+function soakFillResult(why){
+  const bk=soakBank(why),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(soak.score/14)+soak.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  skxPut('soakRsStarsTop','⭐ 结算 +'+stars);
+  skxPut('soakRsEmoji',{quit:'🏳️',time:'⏳',blur:'💔',empty:'🫙',pool:'😢'}[why]||'🖌');
+  skxPut('soakRsTitle',why==='blur'?'纸洇穿了':(why==='empty'?'砚里空了':
+    (why==='time'?'这张纸晾干了':(why==='quit'?'这一场先收了':'纸没裁出来'))));
+  const tot=skxInt('hz_soak_words'),rk=skxRank(tot);
+  skxPut('soakRsSub','第 '+soak.lv+' 场 · 累计洇成 '+tot+' 个字 · '+rk.e+' '+rk.t);
+  skxPut('soakRsScore','🖌 '+soak.score+' 分'+(isBest?' 🏅 新高':''));
+  skxPut('soakRsWords','🈶 洇成 '+soak.words+' 个字 · 落 '+soak.drops+' 滴 · 最长连 '+soak.maxCombo);
+  skxPut('soakRsInk','🫙 用墨 '+soak.inkUse+' 格 · 一砚 '+soakInk(soak.lv)+' 格 · 烙住 '+soakSetN()+' 格');
+  skxPut('soakRsSpill','🌫 洒在字外 '+soakSpillN()+' 格（单场最多 '+soak.spillMax+'）· 湿透 '+soakWetN()+'/'+SK_CELLS);
+  skxPut('soakRsSnap','💧 一滴到底 '+soak.snaps+' 笔 · 一点没洒 '+soak.pures+' 笔 · 预埋 '+soak.pres+
+    ' 格 · 一气到底 '+soak.perc+' 个字');
+  skxPut('soakRsBad','💔 洇穿 '+soak.blurs+' · 🫙 墨尽 '+soak.empties+' · ⌛ 风干 '+soak.timeouts+
+    ' · 💧 白洇 '+soak.duds+' · 🔁 换纸 '+soak.swaps);
+  skxPut('soakRsTools','🪶 扇 '+soak.fanUse+' · 🧻 纸巾 '+soak.blotUse+' · 🔍 映纸 '+soak.peekUse+
+    ' · 家什共 '+soak.tools+' 次 · 发呆 '+(soak.nags||skxInt('hz_soak_nags'))+' 回');
+  skxPut('soakRsBest','🏆 最高 '+best+' 分 · ⚡ 最熟手 '+(skxInt('hz_soak_fastest')||'—')+
+    ' 毫秒/滴 · 🔥 最长连 '+Math.max(soak.maxCombo,skxInt('hz_soak_combo'))+' · 🌫 最洒 '+
+    Math.max(soak.spillMax,skxInt('hz_soak_spillmax'))+' 格');
+  const book=(localStorage.getItem('hz_soak_book')||'').split(',').filter(function(c){return c.length===1});
+  const miss=soak.miss.slice();
+  skxPut('soakRsBook','纸上 <b>'+book.length+'</b> 个字'+(book.length?'<small>（'+book.slice(-14).join(' ')+'）</small>':'')+
+    (soak.words?'，这一场洇成 '+soak.words+' 个':'')+
+    ' · 家什架 <b>'+bk.shelf+'/'+SK_SHELF.length+'</b> 件（'+(localStorage.getItem('hz_soak_shelf')||'—')+'）'+
+    (bk.got.length?'<b>，新上架：'+bk.got.join('、')+'</b>':'')+
+    ' · 错字本 <b>'+miss.length+'</b> 个'+(miss.length?'（'+miss.slice(-12).join(' ')+'，下一轮优先裁这几张纸）':'')+
+    '<br>⭐ 这 '+stars+' 颗星已经喂给<b>书桌小兽</b>；洇成的字也进了它的记忆池'+
+    (JSON.parse((function(){try{return localStorage.getItem('hz_badges')||'[]'}catch(e){return '[]'}})()).length?
+      ' · 你在<b>大冒险</b>里攒的章节徽章也被这间坊认了（家什架上的纸样夹就是这么来的）':''));
+  skxPut('soakRsWhy',soakWhyTxt(why));
+  skxPut('soakRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  skxSay('🖌 这一场洇成 <b>'+soak.words+'</b> 个字、落 <b>'+soak.drops+'</b> 滴、用掉 <b>'+soak.inkUse+
+    '</b> 格墨（白洇 <b>'+soak.duds+'</b>、洇穿 <b>'+soak.blurs+'</b>、墨尽 <b>'+soak.empties+'</b>、风干 <b>'+
+    soak.timeouts+'</b>、换纸 <b>'+soak.swaps+'</b>、一滴到底 <b>'+soak.snaps+'</b> 笔、一点没洒 <b>'+soak.pures+
+    '</b> 笔、预埋 <b>'+soak.pres+'</b> 格、一气到底 <b>'+soak.perc+'</b> 个字）'+
+    '。<br>战绩落盘 <code>hz_soak_*</code>：称号按<b>累计洇成的字数</b>走，家什架 <b>'+bk.shelf+'/'+SK_SHELF.length+
+    '</b> 件（<b>纸样夹</b>认的是你在<b>大冒险</b>里打到的章节徽章），错字本里的字<b>下一轮优先裁回来</b>','#C8E6C9');
+  soakNudge();
+}
+function soakNudge(){
+  const dot=document.getElementById('soakCardDot'),tip=document.getElementById('soakCardTip');
+  const tot=skxInt('hz_soak_words'),games=skxInt('hz_soak_games'),drops=skxInt('hz_soak_drops');
+  const rk=skxRank(tot),shelf=skxInt('hz_soak_trophy');
+  if(tip)tip.textContent=games?(rk.e+' '+rk.t+' · 洇成 '+tot+' 个字 · 落 '+drops+' 滴 · 洇穿 '+skxInt('hz_soak_blurs')+
+    ' 回 · 一滴到底 '+skxInt('hz_soak_snaps')+' 笔 · 家什架 '+shelf+' 件'):
+    '一滴墨能洇到哪几格，由这张纸湿到几成说了算：墨认湿路 —— 洒在字外的墨自己连成一条贯穿纸边的团，纸就洇穿';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(games?'':'🆕')}
 }
 
 
