@@ -7108,6 +7108,95 @@ button:active{transform:scale(.95)}
   #screen-dye .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-dye .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.103 🔨 笔顺拍字行 ================= */
+.auc-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.auc-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.auc-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死三行：换字不许换行数 —— 牌桌就在它下头，多一行少一行都把整张案往下挪，
+   孩子的手指还按在价梯上数档呢 */
+.auc-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*3)}
+.auc-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.auc-ask b{color:#FFE082}
+.auc-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 柜台：红木台面，封套、三张座位牌、价梯尺全画在这一张案上（canvas 是透明的，木色由这里给） */
+.auc-field{flex:1;min-width:0;position:relative;background:linear-gradient(160deg,#4E342E,#2E1B16 62%,#241309);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.72)}
+.auc-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.auc-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(24,14,8,.88);color:#FFE0B2;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.auc-tag.on{opacity:1}
+.auc-tag.warn{background:rgba(96,38,12,.94);color:#FFCCBC}
+.auc-tag.gold{background:rgba(74,52,14,.96);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+/* 三条看货道：答对一道换回一条真线索，答错那道当场作废 */
+.auc-lanes{display:flex;gap:6px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.auc-lane{flex:1 1 0;min-width:0;padding:8px 2px 6px;border-radius:12px;border:1px solid rgba(255,255,255,.26);color:#1B140B;font-size:13px;font-weight:800;line-height:1.15;cursor:pointer;touch-action:none;user-select:none;background:linear-gradient(180deg,#D7CCC8,#A1887F)}
+.auc-lane small{display:block;font-size:10px;font-weight:400;color:rgba(27,20,11,.7)}
+.auc-lane:active{transform:translateY(1px)}
+.auc-lane.cur{background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 14px rgba(255,179,0,.42)}
+.auc-lane.done{background:linear-gradient(180deg,#A5D6A7,#5FA463);color:#0E2312}
+.auc-lane.dead{background:linear-gradient(180deg,#8D6E63,#5D4037);color:#D7CCC8;opacity:.62;cursor:default}
+/* 四个答案牌：数笔画那一道给数字，辨笔形那两道给方向 */
+.auc-opts{display:flex;gap:6px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.auc-opt{flex:1 1 0;min-width:0;padding:11px 2px;border-radius:12px;border:1px solid rgba(255,255,255,.26);color:#1B140B;background:linear-gradient(180deg,#FFF3E0,#D7CCC8);font-size:18px;font-weight:800;cursor:pointer;touch-action:none;user-select:none;line-height:1.1}
+.auc-opt small{display:block;font-size:10px;font-weight:400;color:rgba(27,20,11,.66)}
+.auc-opt:active{transform:translateY(1px)}
+.auc-opt:disabled{opacity:.42;cursor:default}
+.auc-opt.correct{background:linear-gradient(180deg,#C5E1A5,#7CB342);box-shadow:0 0 16px rgba(124,179,66,.55)}
+.auc-opt.wrong{background:linear-gradient(180deg,#EF9A9A,#E57373);animation:aucShake .34s}
+.auc-opt.reveal{outline:2px dashed #A5D6A7;outline-offset:2px}
+@keyframes aucShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* 四条账：这一手的钟（沙）· 这一件的钟（金）· 这一场的烛（冷蓝）· 现银（青） */
+.auc-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.auc-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.auc-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#6D4C41,#BCAAA4);transition:width .15s linear}
+.auc-tl.qms i{background:linear-gradient(90deg,#FFB74D,#FFE082)}
+.auc-tl.piece i{background:linear-gradient(90deg,#C8A46A,#FFE082)}
+.auc-tl.fuel i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.auc-tl.silver i{background:linear-gradient(90deg,#4FC3F7,#B3E5FC)}
+.auc-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.auc-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+/* 举牌与收手：这一坊的手下在「出到第几档」上 */
+.auc-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.auc-take button.pass{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#083344;background:linear-gradient(180deg,#B3E5FC,#4FC3F7)}
+.auc-take button.pass:active{transform:translateY(1px)}
+.auc-take button.pass:disabled{opacity:.42;cursor:default}
+.auc-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1B140B;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.auc-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(27,20,11,.72)}
+.auc-take button.big.risk{background:linear-gradient(180deg,#FFAB91,#E64A19);color:#2B0D04;box-shadow:0 0 18px rgba(230,74,25,.5)}
+.auc-take button.big:active{transform:translateY(1px)}
+.auc-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+/* 档位的加减：与键盘 ←→ 同一套 */
+.auc-step{display:flex;gap:6px;align-items:center;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:4px auto 2px}
+.auc-step button{flex:0 0 62px;padding:8px 2px;border-radius:11px;border:1px solid rgba(255,255,255,.26);color:#ECEFF1;background:rgba(255,255,255,.1);font-size:17px;font-weight:800;cursor:pointer}
+.auc-step button:disabled{opacity:.4;cursor:default}
+.auc-step .k{font-size:13px;font-weight:800;color:#FFE082;padding:0 8px;white-space:nowrap}
+.auc-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.auc-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.auc-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.auc-tool b{display:block;font-size:10px;color:#FFE082;font-weight:700}
+.auc-tool:disabled{opacity:.4;cursor:default}
+.auc-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.auc-hintline b{color:#FFE082}
+.auc-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.auc-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.auc-msg b{color:#CFD8DC}
+.auc-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.auc-msg small{font-size:11px;color:#78909C}
+.auc-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.auc-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.auc-rs-book b{color:#FFE082}
+.auc-rs-book small{color:#78909C}
+.auc-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px;z-index:4}
+.auc-cdot.on{display:block}
+#screen-auction .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：四条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是四行，就占死四行 */
+@media(max-width:460px){
+  .auc-tl{flex:1 1 100%}
+  .auc-ask{min-height:calc(1.35em*4)}
+  .auc-lane{font-size:12px;padding:7px 1px 5px}
+  .auc-opt{font-size:16px;padding:9px 1px}
+  #screen-auction .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-auction .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-auction .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7164,8 +7253,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 101 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">101</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 102 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">102</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7176,12 +7265,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>101 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>43</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>102 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>44</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="aucCard" onclick="enterMode('auction')">
+      <div class="icon">🔨</div>
+      <div class="info"><h3>笔顺拍字行</h3><p id="aucCardTip">拍的是封着的字：三条看货道问来路，答对一道换回一条真线索，答错那道当场作废。三位老主顾心里各有一个价，他们举到哪儿收手，就把这件货的公道价露出来几分 —— 你只比最高的那位多举一档就能把货拿下，可你要是举过了那件货真正值的那一档，槌子落下的一刻你就中了「赢家诅咒」：买贵多少，倒扣多少。看得越清才敢出越少的价，钱袋却一场只有一袋 —— 买了这件，下一件就没钱举牌</p></div>
+      <span class="auc-cdot" id="aucCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="dyeCard" onclick="enterMode('dye')">
       <div class="icon">🎨</div>
       <div class="info"><h3>笔顺调色坊</h3><p id="dyeCardTip">这个字有几笔，画案上就摆几口色票：横是朱砂、竖是石绿、撇是鹅黄、捺是赭橘。缸里的色就是这几滴的配比，而颜料只认「加」不认「减」—— 滴下去的一滴永远在缸里，想从头再来只有洗缸，清水每场却只给几碗。落一笔按配比舀走这一笔的墨，缸底还必须留一口：留着的那几滴就是下一笔的借色。省墨还是省水，这笔账得在你手里算</p></div>
@@ -7940,6 +8034,96 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-auction">
+  <div class="top-bar">
+    <button class="back-btn" onclick="aucLeave()">← 返回</button>
+    <div class="stats"><span id="aucScoreTxt">🔨 0 分</span><span id="aucLvTxt">第 1 场 · 成交 0 件</span><span id="aucQTxt">⏳ 这一手 5 秒</span></div>
+    <button class="icon-btn" onclick="aucHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="auc-hud">
+    <span id="aucRankTxt" title="称号">🔔 头一回举牌</span>
+    <span id="aucHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="aucComboTxt" title="连击">🔥 连 0</span>
+    <span id="aucLotTxt" title="这一场第几件">📦 第 1 件</span>
+    <span id="aucPriceTxt" title="台面上的现价">🔨 现价 —— 文</span>
+    <span id="aucSilverTxt" title="袋里的现银">💰 现银 64 文</span>
+    <span id="aucLedTxt" title="现在谁领先">🪧 没人举牌</span>
+    <span class="light" id="aucHitLight">✖ 还没开拍</span>
+  </div>
+  <div class="auc-ask" id="aucAsk">🔨 正在开箱……<br><small>在字库里找「三位主顾的价钱凑得出一句公道话、也算得出该不该放手」的字</small></div>
+  <div class="auc-stage">
+    <div class="auc-field" id="aucField">
+      <canvas class="auc-canvas" id="aucCanvas" width="420" height="340"></canvas>
+      <div class="auc-tag" id="aucTag">🔨 这张柜台擦亮了</div>
+    </div>
+  </div>
+  <div class="auc-lanes">
+    <button class="auc-lane" id="aucLane0">①一共几笔<small>Q · 换回一笔真容</small></button>
+    <button class="auc-lane" id="aucLane1">②第 k 笔往哪写<small>W · 问出一家上限</small></button>
+    <button class="auc-lane" id="aucLane2">③末笔是什么<small>E · 问出二家上限</small></button>
+  </div>
+  <div class="auc-opts">
+    <button class="auc-opt" id="aucOpt0">—<small>1</small></button>
+    <button class="auc-opt" id="aucOpt1">—<small>2</small></button>
+    <button class="auc-opt" id="aucOpt2">—<small>3</small></button>
+    <button class="auc-opt" id="aucOpt3">—<small>4</small></button>
+  </div>
+  <div class="auc-meter">
+    <div class="auc-tl qms"><i id="aucQmsBar"></i><b id="aucQmsTxt">⌛ 这一手 5 秒</b></div>
+    <div class="auc-tl piece"><i id="aucPieceBar"></i><b id="aucPieceTxt">🔨 这一件 —— 秒</b></div>
+    <div class="auc-tl fuel"><i id="aucFuelBar"></i><b id="aucFuelTxt">🕯 这一场 —— 秒</b></div>
+    <div class="auc-tl silver"><i id="aucSilverBar"></i><b id="aucSilverBig">💰 现银 ——</b></div>
+  </div>
+  <div class="auc-step">
+    <button id="aucDownBtn">−</button>
+    <span class="k" id="aucStepTxt">出 1 档 · 2 文</span>
+    <button id="aucUpBtn">＋</button>
+  </div>
+  <div class="auc-take">
+    <button class="pass" id="aucPassBtn">💤 收手<small>X</small></button>
+    <button class="big" id="aucBidBtn">🔨 举牌<small>空格 ／ 点柜台 —— 看货时开拍，增价中跟一档：出到主顾不敢跟的那一档就归你，出过了头是买贵</small></button>
+  </div>
+  <div class="auc-tools">
+    <button class="auc-tool" id="aucAskBtn" disabled>🧮 询价<span>G</span><b>剩 2</b></button>
+    <button class="auc-tool" id="aucTeaBtn" disabled>🍵 吃茶<span>T</span><b>剩 1</b></button>
+    <button class="auc-tool" id="aucLoanBtn" disabled>🪙 赊账<span>L</span><b>剩 2</b></button>
+    <button class="auc-tool" id="aucSwapBtn" disabled>🔁 换货<span>R</span><b>剩 1</b></button>
+    <button class="auc-tool" id="aucHelpBtn">📖 说明<span>H</span></button>
+    <button class="auc-tool" id="aucEndBtn">🏁 结算</button>
+  </div>
+  <div class="auc-hintline" id="aucHintTxt">🧮 <b>看货道答对一道，换回一条真线索</b>：线索就是钱 —— <b>看得越清，才敢出越少的价</b></div>
+  <div class="auc-msg" id="aucMsg">🔨 <b>拍的是封着的字</b>：三条看货道问来路，三位老主顾的举牌记录露公道价，<b>买贵了要倒扣</b>（赢家诅咒），出价低了被人截胡<br>💰 <b>省钱还是抢件</b>：现银一场一袋，买了这件就没钱买下件 · <code>Q</code><code>W</code><code>E</code> 走看货道 · <code>1~4</code> 牌面答题 · <code>←→</code> 抬顶压顶 · <code>空格</code> 举牌／跟一档 · <code>X</code> 收手 · 🧮 <code>G</code> 询价 · 🍵 <code>T</code> 吃茶 · 🪙 <code>L</code> 赊账 · 🔁 <code>R</code> 换货 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-auction-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="aucLeave()">← 返回</button>
+    <div class="stats"><span id="aucRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="aucRsEmoji">🔨</div>
+    <div style="font-size:26px;font-weight:800" id="aucRsTitle">散场了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="aucRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="auc-pk" id="aucRsScore">🔨 0 分</span>
+      <span class="auc-pk" id="aucRsWords">🈶 成交 0 件 · 收字 0 个</span>
+      <span class="auc-pk" id="aucRsMoney">💰 花 0 文 · 剩 0 文 · 一袋 0 文</span>
+      <span class="auc-pk" id="aucRsCurse">👺 买贵 0 件 · 捡漏 0 件</span>
+      <span class="auc-pk" id="aucRsLanes">🔍 线索 0 对 · 答错 0 道</span>
+      <span class="auc-pk" id="aucRsDeliver">🚚 交货 0 件 · 一件零罚 0 件 · 错笔 0</span>
+      <span class="auc-pk" id="aucRsTools">🧰 借家什 0 回</span>
+      <span class="auc-pk" id="aucRsBest">🏅 历史最高 0 分</span>
+      <span class="auc-pk" id="aucRsRank">🔔 头一回举牌</span>
+    </div>
+    <div class="auc-rs-book" id="aucRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="aucRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="aucRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="aucReBtn">🔨 再开一案</button>
+      <button class="tool-btn" id="aucLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="aucHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -15365,6 +15549,7 @@ function updateHomeStats(){
   if(typeof soakNudge==='function')soakNudge();
   if(typeof pebbleNudge==='function')pebbleNudge();
   if(typeof dyeNudge==='function')dyeNudge();
+  if(typeof aucNudge==='function')aucNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -15412,6 +15597,7 @@ function enterMode(mode){
   if(mode==='soak'){soakStart();return}
   if(mode==='pebble'){pebbleStart();return}
   if(mode==='dye'){dyeStart();return}
+  if(mode==='auction'){aucStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -106688,6 +106874,1540 @@ function dyeNudge(){
     ' 笔 · 家什架 '+shelf+' 件'):
     '颜料只认「加」不认「减」：多留几滴买的是下一笔的借色，洗一口缸买的是重新来过，而清水每场只给几碗';
   if(dot){dot.classList.toggle('on',!games);dot.textContent=(games?'':'🆕')}
+}
+
+
+/* ================= v1.103 🔨 笔顺拍字行（一张柜台 · 拍的是封着的字 · 三条看货道问来路 · 三位老主顾的举牌记录露公道价 —— 你手里只有「答哪道、出到第几档、举还是放」三样 ================= */
+/* 场：420×340 的一张红木柜台。左边一个米字格摆着这件货（封套：整个字的轮廓都看得见，可没写第几笔是第几笔），
+   右边三张座位牌坐着三位老主顾，底下一条十六档的价梯尺 —— 现价、谁举的、谁在哪一档收手，全刻在这把尺上。
+   规矩只有三条，而且三条全在整数上：
+   ① 英式增价：轮到的主顾要么往上涨一档，要么涨不过自己心里那个价就永久收手。他不做冤大头 ——
+      只举到「心价的前一档」就住口。所以孩子不在场时，三家自己把价爬到 最高心价 − 1 档；
+   ② 要把货举下来，只需举到那位最肯出价的主顾的心价那一档：他的顶就是前一档，必须在台下跌回座位。
+      于是「拿下这件货要付的价」= 全场最乐观那位的心价，而不是这件货值的价 —— 这就是赢家诅咒：
+      付这个价还赚，是因为它仍低于公道价；公道价其实更低时，槌子落下的一刻就是买贵；
+   ③ 公道价不是猜的，是这件货自己的属性：几笔、几种笔形、图鉴收没收过、第几场 —— 全写在封套里。
+      三条看货道答对一道换回一条真线索（公道区间收窄、某位主顾的心价、甚至公道档本身），答错那道当场作废。
+      现银一场只有一袋：买了这件，下件就没钱举牌。
+   教学点：看货道问的就是笔顺（一共几笔、第 k 笔往哪写、末笔是什么），答对了既换情报又换分；
+   货拍下来还得当场按笔顺一笔一笔「交货」—— 情报与手艺本是同一份笔顺功夫 */
+const AUC_W=420,AUC_H=340;
+/* 价梯：一档两文，顶上十六档。出到几档就付几档的钱 —— 多举的那一档全是白付 */
+const AUC_TOP=16,AUC_UNIT=2;
+/* 主顾的心价 = 公道档 + 这几个偏移（八张牌不放回抽三张，所以三家心价必不相同）。
+   全是负数的那一截就是「漏」；只要抽进一格正数，最肯出价那位就把价顶到公道之上 ——
+   三个人里挑最高，最高者偏高的毛病是算得出来的，不是运气 */
+const AUC_OFF=[-6,-5,-4,-3,-2,-1,1,3];
+/* 公道档的底子：笔数出大力（n/2），笔形种数与「图鉴没收回」各添一点，场号慢慢加 */
+const AUC_F0=6,AUC_KINDS=3,AUC_FLOOR=3;
+/* 一袋现银与一场几件：现银是这一坊的墨，买了这件就没钱举下件。
+   每一场的坡都是照「第 9 场正好走到底线」倒推的：9 场是 8 步，68−8×1=60 —— 坡有底，孩子知道顶到哪儿收手 */
+const AUC_SILVER0=68,AUC_SILVER_MIN=60,AUC_SILVER_STEP=1,AUC_PER=3;
+/* 三只钟：这一手（举牌的钟）、这一件（整件货的钟）、这一场（蜡烛）—— 54000−8×2500=34000、140000−8×6500=88000 */
+const AUC_QMS0=5000,AUC_QMS_MIN=3200,AUC_QMS_STEP=250;
+const AUC_PCS0=54000,AUC_PCS_MIN=34000,AUC_PCS_STEP=2500;
+const AUC_FUEL0=140000,AUC_FUEL_MIN=88000,AUC_FUEL_STEP=6500;
+/* 增价的脚步：隔这么久轮一位主顾表态（跟不跟就在这一息之间）；620−8×38=316 → 夹在 320 毫秒 */
+const AUC_AI0=620,AUC_AI_MIN=320,AUC_AI_STEP=38;
+const AUC_TEA_ADD=8000;
+/* 交货：一笔一个钟；三条看货道全问到位，交货窗口添五秒 */
+const AUC_DEL0=6000,AUC_DEL_MIN=3000,AUC_DEL_STEP=400,AUC_L_ALL=5000;
+/* 罚：买贵按档算（不是死数）· 线索答错 · 空手 · 交货错笔 · 件钟尽 · 换货 */
+const AUC_P_LANE=4,AUC_P_BLANK=3,AUC_P_CURSE_K=3,AUC_P_WRONG=5,AUC_P_PCS=5,AUC_P_SWAP=6;
+/* 赏：看货道答对 · 成交底分 · 收下一件 · 整件零罚 · 整场零罚 · 看准了放手 · 错过了漏 */
+const AUC_L0=7,AUC_L_CB=1.0,AUC_L_LV=1.5;
+const AUC_G0=9,AUC_G_CB=1.2,AUC_G_LV=1.7;
+const AUC_PIECE_PTS=22,AUC_CLEAN_PTS=12,AUC_TOOL_PTS=10,AUC_EYE_PTS=3,AUC_MISS_MIN=2,AUC_MISS_MAX=6;
+const AUC_LOAN_WEN=7,AUC_LOAN_MULT=2,AUC_SNIP_K=2;
+/* 倍率：这一件没买贵（成交价压在公道之下）才有的那一截 */
+const AUC_M_FAIR=1.35;
+/* 字的口径：4~7 笔（三笔的字一眼见底，八笔的字举完牌也交不完货）、至少两种笔形 */
+const AUC_STROKE_MIN=4,AUC_STROKE_MAX=7,AUC_KIND_MIN=2;
+const AUC_POOL_MIN=4,AUC_POOL_WANT=14,AUC_POOL_SCAN=320;
+/* 进池的凭据：举得过（心价不顶在梯尺头）、买得起（一袋现银还买得起两件这样的货）、不该白买（心价 ≠ 公道档），
+   再把同一个价算两遍（闭式与一步一步的举牌模拟）—— 三条里断一条就换字 */
+const AUC_AFFORD=2;
+const AUC_HEARTS=3,AUC_HEART_MAX=5,AUC_BOOK_MAX=300;
+const AUC_P0={ask:2,tea:1,loan:2,swap:1};   /* 询价 / 吃茶 / 赊账 / 换货 */
+const AUC_TAG_MS=2600,AUC_NAG_MS=11000,AUC_NAG_HOLD=5200,AUC_HELP_MS=16000;
+const AUC_FALL_MS=1400;
+/* 柜台摆位：左边米字格（封套就画在这里），右边三张座位牌，底下一条十六档价梯尺 */
+const AUC_GX=14,AUC_GY=46,AUC_GRID=132;
+const AUC_SEAT_X=196,AUC_SEAT_W=208,AUC_SEAT_H=44;
+const AUC_SEAT_Y=[14,64,114];
+const AUC_LX=14,AUC_LW=24,AUC_LY=296;
+const AUC_MID_X=14,AUC_MID_Y=182;
+const AUC_RANKS=[
+  {n:0,e:'🔔',t:'头一回举牌'},{n:2,e:'🧐',t:'看得出真假'},{n:5,e:'🪙',t:'会还价'},
+  {n:9,e:'🏵',t:'一槌即中'},{n:14,e:'👀',t:'认得老主顾'},{n:21,e:'🧾',t:'从不买贵'},
+  {n:30,e:'🎪',t:'满行都是我的货'},{n:42,e:'🧠',t:'价在心里'},{n:58,e:'👑',t:'老主顾让你三分'}
+];
+const AUC_SHELF_LV=4;   /* 家什架「金字招」的门槛：走到第几场才算撑得住 —— 与第 4 场的门槛门是两回事 */
+const AUC_SHELF=[
+  {k:'朱印',d:'收下一件货'},{k:'价签',d:'三条看货道全答对'},{k:'茶碗',d:'吃茶吃满两回'},
+  {k:'账本',d:'一场三件零罚'},{k:'木槌',d:'落槌拿下 8 件'},{k:'令签',d:'看准了放手 6 回'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},{k:'金字招',d:'第 '+AUC_SHELF_LV+' 场还在举牌'}
+];
+const AUC_NAMES=['张掌柜','李员外','王布商'];
+const AUC_KN=['横','竖','撇','捺'];
+const auc={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],miss:[],seen:[],rec:null,seed:0,fresh:0,
+  lv:1,piece:0,score:0,hearts:AUC_HEARTS,combo:0,maxCombo:0,phase:'look',load:false,
+  /* 牌桌：rs 是这一件的台面（cur/who/ptr/out/quit/bids 全在里面，场上的钟与模拟走同一份） */
+  rs:aucRaceNew([0,0,0],{}),qK:[0,0,0],sel:1,childOut:0,passOut:0,quitIdx:-1,
+  fairK:0,hiK:0,sndK:0,bargain:0,hi:0,
+  laneDone:[0,0,0],laneDead:[0,0,0],laneCur:-1,opts:[],optAns:-1,ki:-1,pick:-1,asked:[0,0,0],
+  marks:[],clue:[-1,-1],clueSeat:[-1,-1],range:0,fairKnown:0,lanes3:0,
+  silver:0,silver0:0,spent:0,loanWen:0,
+  qms:0,qms0:0,pcs:0,pcs0:0,fuel:0,fuel0:0,aiMs:0,aiLeft:0,
+  di:0,dlOk:0,dlBad:0,dlMs:0,dl0:0,hammerMs:0,fallWin:-1,
+  /* 账：买下的、买贵的、捡的漏、看准的放手、让掉的漏、空手、错笔、散案、换货 */
+  words:0,sold:0,delivered:0,curses:0,snipes:0,eyes:0,misses:0,blanks:0,
+  laneHits:0,laneBads:0,wrongs:0,pcsOut:0,swaps:0,curseWen:0,
+  tools:0,cleanN:0,toolRun:0,cleanPiece:1,cleanRun:0,loanOn:0,
+  askN:AUC_P0.ask,teaN:AUC_P0.tea,loanN:AUC_P0.loan,swapN:AUC_P0.swap,
+  askUse:0,teaUse:0,loanUse:0,swapUse:0,
+  gain:0,pen:0,hitOk:0,hitTxt:'',bound:false,helpMs:0,tagTimer:0,
+  msg:'',nags:0,nagMs:0,newBest:false
+};
+/* ---- 难度表：全部现算，页面与探针读的是同一张表 ---- */
+function aucLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function aucSilver(L){return Math.max(AUC_SILVER_MIN,AUC_SILVER0-(L-1)*AUC_SILVER_STEP)}
+function aucQms(L){return Math.max(AUC_QMS_MIN,AUC_QMS0-(L-1)*AUC_QMS_STEP)}
+function aucPcs(L){return Math.max(AUC_PCS_MIN,AUC_PCS0-(L-1)*AUC_PCS_STEP)}
+function aucFuel(L){return Math.max(AUC_FUEL_MIN,AUC_FUEL0-(L-1)*AUC_FUEL_STEP)}
+function aucAiMs(L){return Math.max(AUC_AI_MIN,AUC_AI0-(L-1)*AUC_AI_STEP)}
+function aucDelMs(L){return Math.max(AUC_DEL_MIN,AUC_DEL0-(L-1)*AUC_DEL_STEP)}
+function aucWant(L){return L<=2?[4,5]:[4,7]}
+function aucNoTell(L){return L>=4}   /* 第 4 场起价梯上不再标「谁在哪一档收的手」 */
+function aucDim(L){return L>=6}      /* 第 6 场起线索只报 ±1 区间，询价也只报区间 */
+function aucRank(w){
+  let r=AUC_RANKS[0];
+  for(let i=0;i<AUC_RANKS.length;i++)if(w>=AUC_RANKS[i].n)r=AUC_RANKS[i];
+  return r;
+}
+/* ---- 小工具：取整、夹住、打乱、点名、发声、清定时器 ---- */
+function auxInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function auxPut(k,v){localStorage.setItem(k,String(v))}
+function auxAdd(k,n){if(n)auxPut(k,auxInt(k)+n)}
+function auxClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function auxShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+/* 同字同场永远同价：种子只由字与场决定，探针在 node 侧照抄一条式子就能复算 */
+function auxSeedOf(ch,L){return (Math.imul(ch.charCodeAt(0),2654435761)^Math.imul(L,40503)^0x9E3779B9)>>>0}
+function auxNext(s){return (Math.imul(s,1664525)+1013904223)>>>0}
+/* LCG 的低位有自己的小循环（连取三次 mod 8 会走成一套死步子），所以抽签一律先搅高位再取模 */
+function auxMix(s){let e=(s^(s>>>15))>>>0;e=Math.imul(e,2246822519)>>>0;return (e^(e>>>13))>>>0}
+/* 走一步、用高位抽一格：返回 [新种子, 抽到的下标] */
+function auxPick(s,n){s=auxNext(s);return [s,auxMix(s)%n]}
+function auxTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!auc.ac)auc.ac=new AC();
+    const c=auc.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.value=g===undefined?.05:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+/* 回话条就是柜台上那一条 .auc-msg：早先抄来的 jtSay 写的是别的玩法那块隐藏的栏，孩子一个字也看不见 */
+function auxSay(msg,color){aucMsg(msg,color||'#FFE082')}
+function auxT(fn,ms){const id=setTimeout(function(){
+  const i=auc.timers.indexOf(id);if(i>=0)auc.timers.splice(i,1);
+  if(!auc.run||auc.over)return;
+  try{fn()}catch(e){}
+},ms);auc.timers.push(id);return id}
+function auxKillTimers(){
+  for(let i=0;i<auc.timers.length;i++)clearTimeout(auc.timers[i]);
+  auc.timers=[];
+  if(auc.rafId){cancelAnimationFrame(auc.rafId);auc.rafId=0}
+}
+/* ================= 价：公道档、三张心价、闭式解与一步一步的举牌模拟 =================
+   A 路 aucAnalyze —— 三个数一次算完（排序取最高与第二高、谁最肯出价、该不该跟），不建回合、不看次序；
+   B 路 aucSimRace —— 真把牌桌演一遍：主顾轮转、每次只涨一档、涨不过自己的顶（心价前一档）就永久收手。
+   两条路对不上，这件货就不配上案（段 W 还在 node 侧拿同一套常量算第三遍）。 */
+function aucFresh(ch){
+  const bk=localStorage.getItem('hz_auc_book')||'';
+  return bk.indexOf(ch+':')<0?1:0;
+}
+function aucFairK(rec,L,fresh){
+  const k=AUC_F0+Math.floor(rec.n/2)+(rec.kc-AUC_KINDS)+(fresh?2:0)+Math.floor((L-1)/3);
+  return auxClamp(k,AUC_FLOOR,AUC_TOP-5);
+}
+/* 三位老主顾的心价：八档价差里不放回地抽三档（各人抽的价互不相同，账才算得清），
+   第 i 位抽到的那档加在公道档上，再夹进价梯 */
+function aucSigs(rec,L,fresh,seed){
+  const fairK=aucFairK(rec,L,fresh);
+  let s=((seed>>>0)^Math.imul(L,911)^Math.imul(fairK,2246822519))>>>0;
+  const pool=[0,1,2,3,4,5,6,7],qK=[];
+  for(let i=0;i<3;i++){
+    const p=auxPick(s,pool.length);s=p[0];
+    const j=p[1],off=AUC_OFF[pool[j]];
+    pool.splice(j,1);                        /* 抽走的这张牌不再放回：三家心价必不相同 */
+    qK.push(auxClamp(fairK+off,1,AUC_TOP));
+  }
+  const a=aucAnalyze(qK,fairK);
+  return {fairK:fairK,qK:qK,hiK:a.hiK,sndK:a.sndK,hi:a.hi,bargain:a.bargain};
+}
+/* 闭式：心价最高那位、第二高、该不该跟 */
+function aucAnalyze(qK,fairK){
+  const s=qK.slice().sort(function(x,y){return y-x});
+  const hiK=s[0],sndK=s[1];
+  let hi=0;
+  for(let i=1;i<3;i++)if(qK[i]>qK[hi])hi=i;
+  return {hiK:hiK,sndK:sndK,hi:hi,bargain:hiK<fairK?1:0,curse:hiK>fairK?1:0,price:hiK*AUC_UNIT};
+}
+/* 主顾的顶：心价前一档（他不做冤大头）—— 闭式与模拟都认这一条 */
+function aucCeilOf(q){return q-1}
+/* 牌桌：一局的台面状态。场上的钟与闭式模拟共用这一个口子（aucRaceStep），
+   差别只在 childK —— 模拟里 childK>0 演的是「孩子一直跟到自己的顶」，场上孩子那一手归他自己按（0）*/
+function aucRaceNew(qK,o){
+  o=o||{};
+  return {qK:qK,childK:o.childK||0,ceil3:o.ceil3||0,out3:o.out3||0,cur:o.cur||0,who:(o.who===undefined?-1:o.who),ptr:o.ptr||0,
+    out:o.out||[0,0,0],quit:o.quit||[-1,-1,-1],bids:o.bids||0,g:0,quitIdx:-1};
+}
+/* 这一场各人的「顶」，从高到底排成一榜：主顾的顶是心价前一档（他不做冤大头），孩子的顶是他自己定的那一档
+   （模拟里是 childK，场上是 auc.sel 挂上牌桌的 ceil3）；孩子 explicit 收手（out3）就不在这个榜上。
+   同档算主顾的：孩子平手不得，才不会落槌落到自己顶之上。
+   这一榜没有 ptr、没有座位、也没有「谁最后被问过」—— 落槌的价与归谁只认这一榜，所以六个座位次序是同一笔账 */
+function aucTops(s){
+  const t=[{i:0,k:aucCeilOf(s.qK[0])},{i:1,k:aucCeilOf(s.qK[1])},{i:2,k:aucCeilOf(s.qK[2])}];
+  const kid=s.childK||s.ceil3||0;
+  if(kid>0&&!s.out3)t.push({i:3,k:kid});
+  t.sort(function(a,b){return b.k-a.k||(a.i===3?1:-1)});
+  return t;
+}
+/* 一槌落在哪一档（英式拍卖的定价规矩）：次高那位能出到的顶再加一档，也绝不越过赢家自己敢到的顶。
+   台面爬到这儿就封顶，所以这一式最多只抬一档 —— 段 W 拿六个次序演六遍，落槌档数只认这一式 */
+function aucHammer(s){
+  const t=aucTops(s),two=t[1].k+1;
+  s.cur=two<t[0].k?two:t[0].k;
+  return 'end';
+}
+/* 台上的一步：轮到哪位主顾表态 —— 加得起就加一档，加不到自己的顶就永久收手 */
+function aucRaceStep(s){
+  if(s.g++>600)return aucHammer(s);
+  if(s.childK>0&&!s.out3&&s.who!==3&&s.childK>s.cur){s.cur++;s.who=3;s.bids++;return 'bid'}
+  const act=[];
+  for(let i=0;i<3;i++)if(!s.out[i])act.push(i);
+  if(!act.length)return aucHammer(s);
+  for(let k=0;k<act.length;k++){
+    const i=act[(s.ptr+k)%act.length];
+    if(s.who===i)continue;                     /* 领先的人不跟自己抢价 */
+    if(s.cur<aucCeilOf(s.qK[i])){s.cur++;s.who=i;s.ptr=(i+1)%3;return 'bid'}
+    s.out[i]=1;s.quit[i]=s.cur;s.quitIdx=i;s.ptr=(i+1)%3;return 'quit';
+  }
+  return aucHammer(s);
+}
+/* 牌桌停了归谁：顶榜上最高那位（与谁最后被问过无关）*/
+function aucWinOf(s){return aucTops(s)[0].i}
+
+function aucSimRace(qK,childK){
+  const s=aucRaceNew(qK,{childK:childK});
+  for(;;){if(aucRaceStep(s)==='end')break}
+  return {price:s.cur,winner:aucWinOf(s),childBids:s.bids,quit:s.quit};
+}
+/* 这一手该出到哪一档：要拿下就是 hiK（那位最肯出价的顶只在 hiK−1），拿不下就一档也别出 */
+function aucOptK(a){return a.bargain?a.hiK:0}
+/* 这件货配不配上案：口径、举得过、买得起、不该白买，再加上两条路的互证 */
+function aucAudit(rec,L,why){
+  const say=function(t){if(why)why.why=t;return null};
+  if(!rec||!aucSeqOk(rec))return say('口径');
+  const sig=aucSigs(rec,L,aucFresh(rec.ch),auxSeedOf(rec.ch,L));
+  if(sig.hiK!==sig.qK[sig.hi])return say('心价两人');            /* 排序与逐格比出来的心价必须是同一个人 */
+  if(sig.qK[0]===sig.qK[1]||sig.qK[1]===sig.qK[2]||sig.qK[0]===sig.qK[2])return say('两张心价撞了');
+  if(sig.hiK<=1)return say('梯底');
+  if(sig.hiK>=AUC_TOP)return say('顶档');                        /* 顶档之上一档也加不了 = 孩子没得选 */
+  if(sig.hiK===sig.fairK)return say('平卡');                     /* 平卡没账可算 */
+  const silver=aucSilver(L),price=sig.hiK*AUC_UNIT;
+  if(price*AUC_AFFORD+AUC_UNIT>silver)return say('现银紧');      /* 一袋现银还买得起两件这样的货 */
+  const s0=aucSimRace(sig.qK,0),s1=aucSimRace(sig.qK,sig.hiK);
+  /* 孩子不举牌：三家自己爬，一槌落在「第二高心价」那一档 —— 闭式说 sndK，模拟就必须一个不差地给出 sndK */
+  if(s0.winner!==sig.hi||s0.price!==sig.sndK)return say('两路不合(空手)');
+  /* 孩子举到最贵那位的心价：稳赢，而付的价正是压过他的那一档 hiK（英式增价的定价规矩，与座位无关） */
+  if(s1.winner!==3||s1.price!==sig.hiK)return say('两路不合(举牌)');
+  if(why)why.why='过';
+  return {fairK:sig.fairK,qK:sig.qK,hiK:sig.hiK,sndK:sig.sndK,bargain:sig.bargain,price:price,
+    hi:sig.hi,sim0:s0.price,sim1:s1.price,silver:silver};
+}
+function aucTiers(){return [aucLvOf(0),aucLvOf(4),aucLvOf(8)]}
+function aucLenOf(m){
+  let t=0;
+  for(let i=1;i<m.length;i++){
+    const dx=m[i][0]-m[i-1][0],dy=m[i][1]-m[i-1][1];
+    t+=Math.sqrt(dx*dx+dy*dy);
+  }
+  return t;
+}
+/* ---- 这个字配不配得上这张柜台：4~7 笔、笔形认得出、至少两种笔形（一种笔形的字交货没得考）、字要大 ---- */
+function aucMake(ch,raw){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  if(ms.length<AUC_STROKE_MIN||ms.length>AUC_STROKE_MAX)return null;
+  const dirs=[],lens=[];
+  for(let i=0;i<ms.length;i++){
+    const d=jtDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    const L=aucLenOf(ms[i]);
+    if(!(L>0))return null;
+    dirs.push(d);lens.push(Math.round(L));
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  let kc=0;for(let d=0;d<4;d++)if(kinds&(1<<d))kc++;
+  if(kc<AUC_KIND_MIN)return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++)for(let j=0;j<ms[i].length;j++){
+    const x=ms[i][j][0],y=ms[i][j][1];
+    if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+  }
+  if(x1-x0<140||y1-y0<140)return null;
+  const dirsName=[];
+  for(let i=0;i<dirs.length;i++)dirsName.push(AUC_KN[dirs[i]]);
+  return {ch:ch,n:ms.length,dirs:dirs,dn:dirsName,lens:lens,paths:sp,meds:ms,
+    kc:kc,kinds:(function(){const a=[];for(let d=0;d<4;d++)if(kinds&(1<<d))a.push(d);return a})(),
+    union:{x0:x0,x1:x1,y0:y0,y1:y1}};
+}
+function aucSeqOk(rec){
+  if(!rec)return false;
+  if(rec.n<AUC_STROKE_MIN||rec.n>AUC_STROKE_MAX)return false;
+  if(rec.kc<AUC_KIND_MIN)return false;
+  for(let i=0;i<rec.dirs.length;i++)if(rec.dirs[i]<0||rec.dirs[i]>3)return false;
+  return true;
+}
+/* ---- 字池：进池之前按场的口径逐档试，三档全过才留（浅档现银松、深档抠，只过一两档的字是碰运气过的） ---- */
+async function aucBuildPool(keep,lo,hi){
+  const g=auc.gen,stale=function(){return g!==auc.gen||!auc.run||auc.over};
+  const enough=function(){
+    if(!isFinite(lo))return auc.pool.length>=AUC_POOL_WANT;
+    let c=0;
+    for(let i=0;i<auc.pool.length;i++)if(auc.pool[i].n>=lo&&auc.pool[i].n<=hi)c++;
+    return c>=6||auc.pool.length>=40;
+  };
+  auc.miss=(localStorage.getItem('hz_auc_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<AUC_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(auxShuf(auc.miss.slice(0,6)));
+  push(auxShuf(aucLetters().split('')));      /* 这一串每次洗一遍：不然开张永远是那几个字 */
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(auxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(auxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  if(typeof CHARS!=='undefined')push(auxShuf(CHARS.slice()));
+  if(!keep)auc.pool=[];
+  const tiers=aucTiers();                                  /* 1 场 · 3 场 · 5 场各是一道门槛 */
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=aucMake(want[k+i],rs[i]);
+        if(m&&isFinite(lo)&&(m.n<lo||m.n>hi))continue;
+        if(m&&tiers.every(function(L){return !!aucAudit(m,L)})&&
+          !auc.pool.some(function(p){return p.ch===m.ch}))auc.pool.push(m);
+      }
+    }
+  }
+  return auc.pool.length>=AUC_POOL_MIN;
+}
+/* 这一坊吃「笔画疏朗、横竖撇捺分得开」的字：三位主顾的心价要能被笔顺线索推到，圈成一团的字交货没账可考。
+   下面这一串不是随手写的：全字表 1372 个字拿这一坊自己的 aucMake（口径）+ 三档 aucAudit（举得过、买得起、
+   两条路互证）数过一遍（_tiers.cjs），真过闸的 255 个字全摆在这里 —— 串外的字就是过不了闸的字。 */
+function aucLetters(){
+  return '不专且丘丝严中丰主乎乒乓书乱争互亚亥亩什仅仇仗付仙代以仪价休众优伙估伴伸住体何余你兄克兰内冈册再写冬击刑列刘则刚勾匠匣区医华占卵厅去双叫司吃吆后君吞吨含听吸吾回困在址均坐坑块坛声夺好妇妈妒妙妨字存宁它宅安宋宏对寿尤尽岗巧巨巫市帆庄庆序庐库开异弃忌忙我戒扎托执扫扬扭扳扶批找抄投抖抗抡护拒拟改攻斗斤方日时曰曲更月有木未本朱朴杀杂杆材村杖束来欠欢歹民气水火灰灶父片牛状犹狂王瓦生甩田甲白矛矣石示社禾穴究米纤约级纪纯纱纵罕羊羽而肠臣至良色芒花芳虫见计议记设访证识诉诊谷豆贝贡赤走辽达迁迅迈返迟邮长闲阻阿附陈风饥饮驱驴';
+}
+
+/* ================= 柜台：封套米字格 · 三张座位牌 · 现价与槌子 · 十六档价梯尺 ================= */
+function aucCv(){const c=document.getElementById('aucCanvas');return c&&c.getContext?c.getContext('2d'):null}
+function aucRoundRect(g,x,y,w,h,r){
+  g.beginPath();
+  g.moveTo(x+r,y);g.lineTo(x+w-r,y);g.quadraticCurveTo(x+w,y,x+w,y+r);
+  g.lineTo(x+w,y+h-r);g.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  g.lineTo(x+r,y+h);g.quadraticCurveTo(x,y+h,x,y+h-r);
+  g.lineTo(x,y+r);g.quadraticCurveTo(x,y,x+r,y);
+  g.closePath();
+}
+/* 封套：整个字的轮廓都在，可没写第几笔是第几笔 —— 交货时孩子要自己认出这一笔排在第几位 */
+function aucDrawCase(g){
+  const rec=auc.rec;
+  g.save();
+  g.fillStyle='rgba(255,246,230,.09)';
+  aucRoundRect(g,AUC_GX-4,AUC_GY-22,AUC_GRID+8,AUC_GRID+30,10);g.fill();
+  g.fillStyle='#D7CCC8';g.font='11px sans-serif';g.textAlign='left';
+  g.fillText('封套 · 这件货'+(rec?('共 '+rec.n+' 笔'):'——'),AUC_GX-2,AUC_GY-8);
+  g.strokeStyle='rgba(215,204,200,.62)';g.lineWidth=1.6;
+  g.strokeRect(AUC_GX,AUC_GY,AUC_GRID,AUC_GRID);
+  g.strokeStyle='rgba(215,204,200,.24)';g.lineWidth=1;g.setLineDash([5,5]);
+  g.beginPath();
+  g.moveTo(AUC_GX+AUC_GRID/2,AUC_GY);g.lineTo(AUC_GX+AUC_GRID/2,AUC_GY+AUC_GRID);
+  g.moveTo(AUC_GX,AUC_GY+AUC_GRID/2);g.lineTo(AUC_GX+AUC_GRID,AUC_GY+AUC_GRID/2);
+  g.moveTo(AUC_GX,AUC_GY);g.lineTo(AUC_GX+AUC_GRID,AUC_GY+AUC_GRID);
+  g.moveTo(AUC_GX+AUC_GRID,AUC_GY);g.lineTo(AUC_GX,AUC_GY+AUC_GRID);
+  g.stroke();g.setLineDash([]);
+  if(!rec){g.restore();return}
+  const sc=AUC_GRID/1024;
+  g.save();
+  g.setTransform(sc,0,0,-sc,AUC_GX,AUC_GY+1024*sc);
+  for(let i=0;i<rec.paths.length;i++){
+    try{
+      const path=new Path2D(rec.paths[i]);
+      g.fillStyle=i<auc.di?'rgba(129,199,132,.95)':(aucMarkOf(i)>=0?'rgba(255,213,79,.92)':'rgba(255,240,214,.34)');
+      g.fill(path);
+    }catch(e){}
+  }
+  g.restore();
+  /* 看货道揭开的那几笔：牌上直接写着它是哪一笔（交过货的就不用再写了） */
+  g.fillStyle='#FFD54F';g.font='10px sans-serif';g.textAlign='left';
+  for(let i=0;i<auc.marks.length;i++){
+    const mk=auc.marks[i];
+    if(mk.i<auc.di)continue;
+    const p=rec.meds[mk.i][Math.floor(rec.meds[mk.i].length/2)];
+    const x=AUC_GX+p[0]*sc,y=AUC_GY+AUC_GRID-p[1]*sc;
+    g.fillText('第'+(mk.i+1)+'笔'+AUC_KN[mk.dir],Math.min(AUC_GX+AUC_GRID-40,Math.max(AUC_GX,x+6)),y);
+  }
+  if(auc.phase==='deliver'){
+    g.fillStyle='#FFCC80';g.font='12px sans-serif';g.textAlign='center';
+    g.fillText('交货：点出第 '+(auc.di+1)+' 笔',AUC_GX+AUC_GRID/2,AUC_GY+AUC_GRID+14);
+  }
+  g.restore();
+}
+/* 三张座位牌：名字、现在举到第几档、心价露没露（露了也只给这一家） */
+function aucClueTxt(k){
+  return aucDim(auc.lv)?('约 '+(k-1)+'~'+(k+1)+' 档'):('第 '+k+' 档');
+}
+function aucSeatNote(i){
+  if(auc.clue[0]===i||auc.clue[1]===i||auc.asked[i])return '心价 '+aucClueTxt(auc.qK[i]);
+  return '心价 —— 没问出来';
+}
+function aucLeadTxt(){
+  if(auc.rs.who<0)return '还没人开口';
+  if(auc.rs.who===3)return '台上是你举的牌';
+  return AUC_NAMES[auc.rs.who]+'举到 '+auc.rs.cur+' 档';
+}
+/* 这一笔被看货道揭过没有：揭过的染金，牌上写着它是第几笔 */
+function aucMarkOf(i){
+  for(let j=0;j<auc.marks.length;j++)if(auc.marks[j].i===i)return j;
+  return -1;
+}
+function aucDrawSeats(g){
+  for(let i=0;i<3;i++){
+    const y=AUC_SEAT_Y[i],dead=auc.rs.out[i],lead=auc.rs.who===i;
+    g.save();
+    g.fillStyle=dead?'rgba(93,64,55,.55)':(lead?'rgba(255,193,7,.30)':'rgba(215,204,200,.16)');
+    aucRoundRect(g,AUC_SEAT_X,y,AUC_SEAT_W,AUC_SEAT_H,9);g.fill();
+    g.strokeStyle=lead?'#FFD54F':'rgba(215,204,200,.34)';g.lineWidth=lead?2.2:1;
+    aucRoundRect(g,AUC_SEAT_X,y,AUC_SEAT_W,AUC_SEAT_H,9);g.stroke();
+    g.fillStyle=dead?'#BCAAA4':'#FFF3E0';g.font='13px sans-serif';g.textAlign='left';
+    g.fillText(AUC_NAMES[i]+'（'+(i+1)+' 号）',AUC_SEAT_X+9,y+18);
+    g.font='12px sans-serif';g.textAlign='right';
+    g.fillStyle=dead?'#FF8A65':(lead?'#FFE082':'#CFD8DC');
+    g.fillText(dead?'✖ 收手了':(lead?'举牌中':'还没开口'),AUC_SEAT_X+AUC_SEAT_W-9,y+18);
+    g.textAlign='left';g.fillStyle='#B0BEC5';g.font='11px sans-serif';
+    g.fillText(aucSeatNote(i),AUC_SEAT_X+9,y+35);
+    g.restore();
+  }
+}
+function aucMid(g){
+  const L=auc.lv;
+  g.save();
+  g.fillStyle='rgba(255,246,230,.08)';
+  aucRoundRect(g,AUC_MID_X,AUC_MID_Y,AUC_GRID+4,96,10);g.fill();
+  g.textAlign='center';
+  const cx=AUC_MID_X+(AUC_GRID+4)/2;
+  g.fillStyle='#FFF3E0';g.font='bold 15px sans-serif';
+  g.fillText(auc.phase==='look'?'看 货':(auc.phase==='race'?'增 价':(auc.phase==='fall'?'落 槌':(auc.phase==='deliver'?'交 货':'——'))),cx,AUC_MID_Y+18);
+  g.fillStyle='#FFD54F';g.font='bold 20px sans-serif';
+  g.fillText('现价 '+(auc.rs.cur*AUC_UNIT)+' 文',cx,AUC_MID_Y+44);
+  /* 落槌的一息把这一行让给槌音；交货时封套上已经写着「点出第 N 笔」，也不再重复 */
+  const hit=auc.hammerMs>0&&auc.phase==='fall';
+  if(!hit&&auc.phase!=='deliver'){
+    g.fillStyle='#CFD8DC';g.font='12px sans-serif';
+    g.fillText(aucLeadTxt(),cx,AUC_MID_Y+64);
+  }
+  g.fillStyle=auc.fairKnown?'#A5D6A7':'#8D6E63';g.font='12px sans-serif';
+  g.fillText(auc.fairKnown?('公道 '+auc.fairK+' 档 · '+(auc.fairK*AUC_UNIT)+' 文'):
+    (auc.range?('公道在 '+(auc.fairK-auc.range)+' ~ '+(auc.fairK+auc.range)+' 档'):'公道价 —— 没问出来'),
+    cx,AUC_MID_Y+80);
+  g.fillStyle='#B0BEC5';g.font='11px sans-serif';
+  g.fillText('袋里还有 '+auc.silver+' 文 · 这一件第 '+(auc.piece+1)+'/'+AUC_PER+' 件',cx,AUC_MID_Y+92);
+  /* 槌影压在这一行上：谁拿下、付了多少，落槌一息说清 */
+  if(hit){
+    g.globalAlpha=Math.min(1,auc.hammerMs/500);
+    g.fillStyle=auc.fallWin===3?'#A5D6A7':(auc.fallWin<0?'#FFCC80':'#FF8A65');
+    g.font='bold 17px sans-serif';
+    g.fillText(auc.hitTxt||'🔨 落槌',cx,AUC_MID_Y+64);
+    g.globalAlpha=1;
+  }
+  g.restore();
+}
+/* 十六档价梯尺：现价一针、孩子的选档一格、公道区间一片、主顾收手的刻度（第 4 场起收走） */
+function aucTickX(k){return AUC_LX+(k-1)*AUC_LW+AUC_LW/2}
+function aucDrawLadder(g){
+  const L=auc.lv;
+  g.save();
+  g.fillStyle='rgba(255,246,230,.07)';
+  aucRoundRect(g,AUC_LX-4,AUC_LY-14,AUC_LW*AUC_TOP+8,56,9);g.fill();
+  if(auc.range>0){
+    const lo=Math.max(1,auc.fairK-auc.range),hi=Math.min(AUC_TOP,auc.fairK+auc.range);
+    g.fillStyle='rgba(165,214,167,.22)';
+    g.fillRect(aucTickX(lo)-AUC_LW/2,AUC_LY-8,AUC_LW*(hi-lo+1),34);
+  }
+  for(let k=1;k<=AUC_TOP;k++){
+    const x=aucTickX(k),sel=k===auc.sel;
+    g.strokeStyle=sel?'#FFD54F':'rgba(215,204,200,.30)';g.lineWidth=sel?2.4:1;
+    g.strokeRect(x-AUC_LW/2+2,AUC_LY,AUC_LW-4,18);
+    if(!sel){g.fillStyle='rgba(215,204,200,.42)';g.font='9px sans-serif';g.textAlign='center';g.fillText(k,x,AUC_LY+12)}
+  }
+  for(let i=0;i<3;i++){
+    if(!auc.rs.out[i]||auc.rs.quit[i]<=0||aucNoTell(L))continue;
+    const x=aucTickX(Math.min(AUC_TOP,auc.rs.quit[i]));
+    g.fillStyle='#FF8A65';g.font='11px sans-serif';g.textAlign='center';
+    g.fillText('✕'+(i+1),x,AUC_LY-4);
+  }
+  if(auc.fairKnown){
+    const x=aucTickX(auc.fairK);
+    g.strokeStyle='#A5D6A7';g.lineWidth=2;g.setLineDash([3,3]);
+    g.beginPath();g.moveTo(x,AUC_LY-8);g.lineTo(x,AUC_LY+20);g.stroke();g.setLineDash([]);
+  }
+  if(auc.rs.cur>0){
+    const x=aucTickX(Math.min(AUC_TOP,auc.rs.cur));
+    g.fillStyle='#FF7043';g.beginPath();
+    g.moveTo(x,AUC_LY+20);g.lineTo(x-6,AUC_LY+28);g.lineTo(x+6,AUC_LY+28);g.closePath();g.fill();
+  }
+  const xs=aucTickX(auc.sel);
+  g.strokeStyle='#FFD54F';g.lineWidth=2.4;g.strokeRect(xs-AUC_LW/2+2,AUC_LY,AUC_LW-4,18);
+  /* 格子里只写档号：这一行十六格、一格 24 像素，多写一个字就骑到邻格头上 —— 值几文说在尺下那一行 */
+  g.fillStyle='#FFD54F';g.font='bold 12px sans-serif';g.textAlign='center';
+  g.fillText(''+auc.sel,xs,AUC_LY+13);
+  g.fillStyle='#BCAAA4';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText('价梯（一槌定音就付这一档的钱）· 你选 '+auc.sel+' 档 = '+(auc.sel*AUC_UNIT)+' 文',AUC_LX-2,AUC_LY+40);
+  g.restore();
+}
+function aucDraw(){
+  const g=aucCv();
+  if(!g)return;
+  g.setTransform(1,0,0,1,0,0);
+  g.clearRect(0,0,AUC_W,AUC_H);
+  aucDrawCase(g);
+  aucDrawSeats(g);
+  aucMid(g);
+  aucDrawLadder(g);
+}
+
+/* ================= 界面：四条账、三只钟、三张看货道、四件家什 ================= */
+function aucEl(id){return document.getElementById(id)}
+function aucPut(id,txt){const e=aucEl(id);if(e)e.textContent=txt}
+/* 带排版的行只给产品自己写的那几句用（句中没有一处来自孩子的手）*/
+function aucPutH(id,txt,color){const e=aucEl(id);if(e){e.innerHTML=txt;color&&(e.style.color=color)}}
+function aucBar(id,p){const e=aucEl(id);if(!e)return;p=Math.max(0,Math.min(1,p));e.style.width=Math.round(p*100)+'%';const r=e.parentNode;if(r)r.classList.toggle('low',p<.25)}
+/* 这一手该出到第几档：价梯上选的那一格，也是袋里现银允许的最高一格 */
+function aucCeilSel(){return auxClamp(Math.floor(auc.silver/AUC_UNIT),1,AUC_TOP)}
+function aucFairTxt(){
+  if(auc.fairKnown)return '公道 '+auc.fairK+' 档 · '+(auc.fairK*AUC_UNIT)+' 文';
+  if(auc.range)return '公道约在 '+(auc.fairK-auc.range)+' ~ '+(auc.fairK+auc.range)+' 档';
+  return '公道价 —— 一条道没问出来';
+}
+/* 已问出的心价：座位牌、题头、探针读的都是这一份 */
+function aucKnownTxt(){
+  const a=[];
+  for(let i=0;i<3;i++)if(auc.clue[0]===i||auc.clue[1]===i||auc.asked[i])a.push(AUC_NAMES[i]+' '+aucClueTxt(auc.qK[i]));
+  return a.length?a.join(' · '):'三家心价都没问出来';
+}
+function aucSync(){
+  const rec=auc.rec,L=auc.lv;
+  aucPut('aucScoreTxt','🔨 '+auc.score+' 分');
+  aucPut('aucLvTxt','第 '+L+' 场 · 成交 '+auc.sold+' 件');
+  aucPut('aucQTxt','⏳ 这一手 '+Math.ceil((auc.phase==='race'?auc.aiMs:auc.qms)/1000)+' 秒');
+  const rk=aucRank(auxInt('hz_auc_sold')+auc.sold);
+  aucPut('aucRankTxt',rk.e+' '+rk.t);
+  let hs='';for(let i=0;i<auc.hearts;i++)hs+='❤️';
+  aucPut('aucHeartTxt',hs||'💔');
+  aucPut('aucComboTxt','🔥 连 '+auc.combo);
+  aucPut('aucLotTxt','📦 第 '+(auc.piece+1)+'/'+AUC_PER+' 件'+(rec?(' · '+rec.n+' 笔'):''));
+  aucPut('aucPriceTxt','🔨 现价 '+(auc.rs.cur>0?(auc.rs.cur*AUC_UNIT)+' 文':'—— 文'));
+  aucPut('aucSilverTxt','💰 现银 '+auc.silver+' 文');
+  aucPut('aucLedTxt',auc.rs.who<0?'🪧 没人举牌':(auc.rs.who===3?'🪧 台上是你':'🪧 '+AUC_NAMES[auc.rs.who]+'领先'));
+  const light=aucEl('aucHitLight');
+  if(light){
+    const t=auc.phase==='race'?'⏳ 价在往上爬':
+      (auc.hitTxt?auc.hitTxt:(rec?'✖ 还没举牌':'✖ 还没开箱'));
+    light.textContent=t;
+    light.style.color=auc.hitOk>0?'#A5D6A7':(auc.hitOk<0?'#EF9A9A':'#FFE082');
+  }
+  aucBar('aucQmsBar',auc.qms/Math.max(1,auc.qms0));
+  aucBar('aucPieceBar',auc.pcs/Math.max(1,auc.pcs0));
+  aucBar('aucFuelBar',auc.fuel/Math.max(1,auc.fuel0));
+  aucBar('aucSilverBar',auc.silver/Math.max(1,auc.silver0));
+  aucPut('aucQmsTxt','⌛ 这一手 '+Math.ceil(auc.qms/1000)+' 秒');
+  aucPut('aucPieceTxt','🔨 这一件 '+Math.ceil(auc.pcs/1000)+' 秒');
+  aucPut('aucFuelTxt','🕯 这一场 '+Math.ceil(auc.fuel/1000)+' 秒');
+  aucPut('aucSilverBig','💰 袋里 '+auc.silver+' 文 · 这一场已花 '+auc.spent);
+  const ask=aucEl('aucAsk');
+  if(ask){
+    if(auc.load)ask.innerHTML='🔨 正在开箱……<br><small>在字库里找「三位主顾的价钱凑得出公道、也算得出该不该放手」的字</small>';
+    else if(auc.helpMs>0)ask.innerHTML=aucHelpText();
+    else if(!rec)ask.innerHTML='🔨 <b>案上空着</b>：这一场的货已拍完';
+    else if(auc.phase==='look')ask.innerHTML='🧾 <b>这件货共 '+rec.n+' 笔</b> · 出到 <b>'+auc.sel+' 档（'+(auc.sel*AUC_UNIT)+' 文）</b>'+
+      '<br><small>'+aucFairTxt()+' · '+aucKnownTxt()+'</small>'+
+      '<br><small>三条看货道问一条少一分糊涂：<b>看得越清，才敢出越少的价</b> —— 举牌之前先想明白这一档值不值</small>';
+    else if(auc.phase==='race')ask.innerHTML='🔨 <b>增价中</b>：台上 <b>'+(auc.rs.cur*AUC_UNIT)+' 文</b>（第 '+auc.rs.cur+' 档）· 你的顶在 '+(auc.rs.ceil3||auc.sel)+' 档'+
+      '<br><small>'+(auc.sel>(auc.rs.ceil3||0)?('价梯抬到了 '+auc.sel+' 档 —— 按下「跟一档」才算举上去'):(auc.rs.who===3?'是你领先，主顾要跟就得加档':'有人压着你的价'))+
+      ' · 还没收手的：'+aucAliveTxt()+'</small>'+
+      (aucDim(L)?'<br><small>第 '+L+' 场：主顾收手的刻度不再标在价梯上，全凭你记</small>':'');
+    else if(auc.phase==='fall')ask.innerHTML='🔨 <b>'+
+      (auc.fallWin===3?'一槌定音 · 这一件归你':(auc.fallWin<0?'这一件散案 · 谁也没拍走':'这一件被 '+AUC_NAMES[auc.fallWin]+' 拍走'))+'</b>'+
+      '<br><small>'+(auc.fallWin<0?('这一槌谁也没接：'+(auc.hitTxt||'散案')+' · 公道 '+(auc.fairK*AUC_UNIT)+' 文'):
+        ('成交 '+(auc.rs.cur*AUC_UNIT)+' 文 · 公道 '+(auc.fairK*AUC_UNIT)+' 文 · '+(auc.rs.cur>auc.fairK?'买贵了 '+(auc.rs.cur-auc.fairK)+' 档':(auc.rs.cur<auc.fairK?'捡了 '+(auc.fairK-auc.rs.cur)+' 档':'正正当当'))))+'</small>';
+    else if(auc.phase==='deliver')ask.innerHTML='🚚 <b>交货：点出第 '+(auc.di+1)+' 笔</b>（共 '+rec.n+' 笔，一笔一笔按笔顺点）'+
+      '<br><small>封套上不写第几笔 —— <b>'+(auc.marks.length?('已揭开 '+auc.marks.length+' 笔的位置'):'一条都没揭开')+
+      '</b>，点错一笔就散 · 这一笔还有 '+Math.ceil(auc.dlMs/1000)+' 秒</small>';
+    else ask.innerHTML='🔨 <b>拍字行</b>';
+  }
+  aucPut('aucStepTxt','出 '+auc.sel+' 档 · '+(auc.sel*AUC_UNIT)+' 文'+(auc.sel>=aucCeilSel()?'（袋里就这么多）':''));
+  for(let i=0;i<3;i++){
+    const b=aucEl('aucLane'+i);
+    if(!b)continue;
+    b.className='auc-lane'+(auc.laneDead[i]?' dead':'')+(auc.laneDone[i]?' done':'')+
+      (auc.phase==='look'&&!auc.laneDone[i]&&!auc.laneDead[i]&&auc.laneCur===i?' cur':'');
+  }
+  const live=auc.laneCur>=0&&auc.phase==='look';
+  /* 答完的那一手要把印子留在牌上：哪张是正解、自己按的是哪张，孩子当场看得见（auc.pick 是产品记的那一下） */
+  const kept=live||auc.pick<0?null:(auc.opts[auc.pick]!==undefined?auc.pick:-1);
+  for(let i=0;i<4;i++){
+    const b=aucEl('aucOpt'+i);
+    if(!b)continue;
+    const show=(live||kept!==null)&&auc.opts[i]!==undefined;
+    /* 牌面上那一小块 <small> 写的是键位，动不得：只换它前面那个文本节点 */
+    if(b.firstChild&&b.firstChild.nodeType===3)b.firstChild.nodeValue=show?auc.opts[i]:'—';
+    b.disabled=!live;
+    b.className='auc-opt'+(kept!==null&&show&&auc.phase==='look'?
+      (i===auc.optAns?(i===kept?' correct':' reveal'):(i===kept?' wrong':'')):'');
+  }
+  const d=document.getElementById('aucDownBtn'),u=document.getElementById('aucUpBtn');
+  const see=auc.phase==='look'||auc.phase==='race';        /* 定档在增价中也抬得动：抬的就是买贵的风险 */
+  if(d)d.disabled=!see||auc.sel<=1;
+  if(u)u.disabled=!see||auc.sel>=aucCeilSel();
+  const pb=document.getElementById('aucPassBtn');
+  if(pb){pb.disabled=!rec||auc.over||!(auc.phase==='look'||auc.phase==='race')}
+  const bb=document.getElementById('aucBidBtn');
+  if(bb){
+    const rs=auc.rs,race=auc.phase==='race';
+    const canRace=race&&!auc.childOut&&rs.who!==3&&rs.cur<auc.sel&&(rs.cur+1)*AUC_UNIT<=auc.silver;
+    if(bb.firstChild&&bb.firstChild.nodeType===3)bb.firstChild.nodeValue=race?'🔨 跟一档':'🔨 举牌';
+    bb.disabled=!rec||auc.over||(race?!canRace:(auc.phase!=='look'||auc.sel*AUC_UNIT>auc.silver));
+    bb.classList.toggle('risk',!!(rec&&auc.fairKnown&&(race?rs.cur+1>auc.fairK:auc.sel>auc.fairK)));
+  }
+  const btns=[['aucAskBtn',auc.askN],['aucTeaBtn',auc.teaN],['aucLoanBtn',auc.loanN],['aucSwapBtn',auc.swapN]];
+  for(let i=0;i<btns.length;i++){
+    const b=aucEl(btns[i][0]);
+    if(b){
+      const n=b.getElementsByTagName('b')[0];
+      if(n)n.textContent='剩 '+btns[i][1];
+      b.disabled=btns[i][1]<=0||!rec||auc.over||auc.phase!=='look';
+    }
+  }
+}
+/* 还没收手的主顾：增价阶段唯一该盯的那一行 */
+function aucAliveTxt(){
+  const a=[];
+  for(let i=0;i<3;i++)if(!auc.rs.out[i])a.push(AUC_NAMES[i]);
+  return a.length?a.join('、'):'都收手了';
+}
+function aucHelpText(){
+  return '🔨 <b>拍的是封着的字</b>：看不见笔顺，只能问 —— 三条看货道问一笔就少一分糊涂，问出来的都是<b>真价钱</b><br>'+
+    '🪧 <b>英式增价</b>：价一档一档往上爬，谁肯加谁领先；一家加不过自己的心价就<b>永久收手</b>，加不到心价那一档（他不做冤大头）<br>'+
+    '👺 <b>赢家诅咒</b>：拿下这件的人是你，付的是<b>台面上那一档</b>的钱 —— 三位主顾里最高的那个心价多半比公道高，你举得过他，就得替他多付那一截<br>'+
+    '💤 <b>收手也是赢</b>：看准这件是坑，一档不出，省下的是买贵罚和袋里的现银；看走了眼错过漏，那才叫亏<br>'+
+    '🚚 <b>交货</b>：拍下来还得按笔顺一笔一笔点出来，封套不写第几笔 —— 情报与手艺本是同一份笔顺功夫<br>'+
+    '⌨️ <code>Q</code><code>W</code><code>E</code> 走看货道 · <code>1~4</code> 牌面答题 · <code>←→</code> 加减压档 · <code>空格</code> 举牌 · <code>X</code> 收手 · 🧮 <code>G</code> 询价 · 🍵 <code>T</code> 吃茶 · 🪙 <code>L</code> 赊账 · 🔁 <code>R</code> 换货';
+}
+function aucMsg(txt,color){
+  auc.msg=txt;
+  const e=aucEl('aucMsg');
+  if(e){e.innerHTML=txt;color&&(e.style.color=color)}
+}
+function aucTag(txt,kind){
+  const e=aucEl('aucTag');
+  if(!e)return;
+  /* 灯上这几句是产品自己写的话（句中没有一处来自孩子的手），里头带着要加粗的那几个字 */
+  e.innerHTML=txt;
+  e.className='auc-tag on'+(kind?(' '+kind):'');
+  clearTimeout(auc.tagTimer);
+  auc.tagTimer=setTimeout(function(){e.classList.remove('on')},AUC_TAG_MS);
+}
+/* 上案之前把柜台擦干净：牌面上不许留着上一件的字 */
+function aucClearTag(){
+  clearTimeout(auc.tagTimer);
+  const e=aucEl('aucTag');
+  if(e){e.textContent='🔨 这张柜台擦亮了';e.className='auc-tag'}
+}
+
+/* ================= 这一案的手：上货、看货、举牌、增价、落槌、交货、四件家什 ================= */
+/* ---- 上货：错字本上的字优先挑回来，其次挑本场没上过案的 ---- */
+function aucTake(){
+  const pool=auc.pool;
+  if(!pool.length)return null;
+  for(let i=0;i<auc.miss.length;i++){
+    for(let k=0;k<pool.length;k++){
+      if(pool[k].ch===auc.miss[i]&&auc.seen.indexOf(pool[k].ch)<0)return pool[k];
+    }
+  }
+  const fresh=[];
+  for(let k=0;k<pool.length;k++)if(auc.seen.indexOf(pool[k].ch)<0)fresh.push(pool[k]);
+  const list=fresh.length?fresh:pool;
+  return list[Math.floor(Math.random()*list.length)];
+}
+/* 两件看货道问的是哪两家：由种子定 —— 孩子不知道自己问出来的是不是最肯出价那位，诅咒就是这么来的 */
+function aucSeatPair(seed){
+  const pool=[0,1,2],a=[];
+  let s=seed>>>0;
+  for(let i=0;i<2;i++){const p=auxPick(s,pool.length);s=p[0];a.push(pool[p[1]]);pool.splice(p[1],1)}
+  return a;
+}
+function aucSetLot(rec,flash){
+  const L=auc.lv;
+  auc.rec=rec;auc.seed=auxSeedOf(rec.ch,L);auc.fresh=aucFresh(rec.ch);
+  const sig=aucSigs(rec,L,auc.fresh,auc.seed);
+  auc.qK=sig.qK.slice();auc.fairK=sig.fairK;auc.hiK=sig.hiK;auc.sndK=sig.sndK;auc.hi=sig.hi;auc.bargain=sig.bargain;
+  auc.clueSeat=aucSeatPair(auxNext(auc.seed)>>>0);
+  auc.clue=[-1,-1];auc.asked=[0,0,0];
+  /* 场上的牌桌：与闭式模拟同一个 aucRaceStep，孩子那一手归他自己按（childK=0 就是「不自动跟」）*/
+  auc.rs=aucRaceNew(sig.qK,{cur:0,who:-1,ptr:0,out:[0,0,0],quit:[-1,-1,-1],bids:0});
+  auc.range=0;auc.fairKnown=0;auc.marks=[];
+  auc.laneDone=[0,0,0];auc.laneDead=[0,0,0];auc.laneCur=-1;auc.opts=[];auc.optAns=-1;auc.ki=-1;auc.pick=-1;
+  auc.sel=1;auc.childOut=0;auc.hitOk=0;auc.hitTxt='';auc.passOut=0;
+  auc.qms0=aucQms(L);auc.qms=auc.qms0;
+  auc.pcs0=aucPcs(L);auc.pcs=auc.pcs0;
+  auc.aiMs=aucAiMs(L);auc.aiLeft=auc.aiMs;
+  auc.dl0=aucDelMs(L);auc.dlMs=auc.dl0;auc.di=0;auc.dlOk=0;auc.dlBad=0;
+  auc.gain=0;auc.pen=0;auc.hammerMs=0;
+  auc.phase='look';auc.cleanPiece=1;auc.loanOn=0;
+  auc.seen.push(rec.ch);
+  auxTone(660,70);
+  /* 换场那一句话要压在同一盏灯上：先亮「开秤」再被「上案」一口盖掉，孩子就看不见袋换新了 */
+  aucTag((flash||'')+'📦 上案：一件封好的货 · 共 '+rec.n+' 笔','gold');
+}
+/* ---- 换下一件：三件拍完就换场（换一袋现银、换一支烛） ---- */
+async function aucNextPiece(){
+  if(!auc.run||auc.over)return;
+  if(auc.hearts<=0){aucEnd('hearts');return}
+  auc.piece++;
+  let flash='';
+  if(auc.piece>=AUC_PER){
+    auc.piece=0;auc.lv=Math.min(9,auc.lv+1);
+    auc.seen=[];auc.silver0=aucSilver(auc.lv);auc.silver=auc.silver0;auc.spent=0;auc.loanWen=0;
+    auc.fuel0=aucFuel(auc.lv);auc.fuel=auc.fuel0;auc.cleanRun=0;
+    flash='🕯 第 '+auc.lv+' 场开秤：一袋现银 '+auc.silver+' 文 · ';
+    auxSay('第 '+auc.lv+' 场开秤');
+    if(!auc.pool.length){auc.pool=[];auc.seen=[]}
+  }
+  if(!auc.pool.length){
+    auc.load=true;aucSync();
+    const w=aucWant(auc.lv);
+    const ok=await aucBuildPool(true,w[0],w[1]);
+    auc.load=false;
+    if(!auc.run||auc.over)return;
+    if(!ok){aucEnd('pool');return}
+  }
+  const rec=aucTake();
+  if(!rec){aucEnd('pool');return}
+  aucSetLot(rec,flash);
+  aucSync();aucDraw();
+}
+/* ================= 三条看货道：问一条少一分糊涂 ================= */
+function aucLaneAsk(j){
+  const rec=auc.rec;
+  if(!rec||auc.phase!=='look'||auc.laneDone[j]||auc.laneDead[j]||auc.laneCur>=0)return;
+  const n=rec.n;
+  auc.laneCur=j;auc.pick=-1;
+  if(j===0){
+    /* 一共几笔：公道就藏在笔数里 —— 这一道换来的是「公道大概在哪一截」 */
+    const cand=[];
+    for(let d=-2;d<=2;d++){
+      const v=n+d;
+      if(v>=AUC_STROKE_MIN-1&&v<=AUC_STROKE_MAX+1&&v!==n)cand.push(String(v));
+    }
+    auxShuf(cand);
+    auc.opts=[cand[0],cand[1],cand[2],String(n)];
+    auxShuf(auc.opts);
+    auc.optAns=auc.opts.indexOf(String(n));
+  }else{
+    /* 第 k 笔 / 末笔往哪写：换来的是某一位主顾的心价 */
+    auc.ki=j===1?Math.floor(n/2):n-1;
+    auc.opts=AUC_KN.slice();
+    auc.optAns=rec.dirs[auc.ki];
+  }
+  auc.qms=auc.qms0;
+  auxTone(520,50);
+  aucMsg(j===0?'🔍 <b>这一件共几笔？</b>笔数多一笔，公道就高一档':
+    ('🔍 <b>第 '+(auc.ki+1)+' 笔往哪写？</b>答出来，'+AUC_NAMES[auc.clueSeat[j-1]]+'的心价就露给你'));
+  aucSync();
+}
+function aucLaneAnswer(i){
+  if(auc.laneCur<0||auc.phase!=='look')return;
+  const j=auc.laneCur,ok=(i===auc.optAns),rec=auc.rec;
+  /* 印子交给 aucSync 去画（牌面只有它一个人动，谁也不许在这儿偷偷加格子）*/
+  auc.pick=i;
+  const qmsLeft=auc.qms;
+  auc.laneCur=-1;
+  if(!ok||qmsLeft<=0){
+    auc.laneDead[j]=1;auc.laneBads++;auc.cleanPiece=0;
+    auc.score-=AUC_P_LANE;auc.combo=0;
+    /* 钟尽与听岔是两件事，罚是同一种罚：灯上得让孩子看清是自己手慢了，还是听岔了 */
+    aucTag(qmsLeft<=0?'⌛ 这一手的钟尽了：这条线索作废，倒扣 '+AUC_P_LANE+' 分'
+      :'✖ 这一道听岔了：这条线索作废，倒扣 '+AUC_P_LANE+' 分','warn');
+    auxTone(180,180);auxSay(qmsLeft<=0?'⌛ 钟尽了':'✖ 听岔了');
+    aucSync();return;
+  }
+  auc.laneDone[j]=1;auc.laneHits++;auc.combo++;
+  if(auc.combo>auc.maxCombo)auc.maxCombo=auc.combo;
+  const pts=Math.round(AUC_L0+auc.combo*AUC_L_CB+auc.lv*AUC_L_LV);
+  auc.score+=pts;
+  if(j===0){
+    auc.range=2;
+    aucRevealMark();
+    aucTag('🔍 一共 '+rec.n+' 笔 → 公道在 '+(auc.fairK-2)+' ~ '+(auc.fairK+2)+' 档，顺手揭开一笔 · +'+pts+' 分','gold');
+  }else{
+    const seat=auc.clueSeat[j-1];
+    auc.clue[j-1]=seat;
+    aucTag('🔍 '+AUC_NAMES[seat]+'的心价：'+aucClueTxt(auc.qK[seat])+' · +'+pts+' 分','gold');
+  }
+  auxTone(880,90);auxSay('✔ +'+pts);
+  if(auc.laneDone[0]&&auc.laneDone[1]&&auc.laneDone[2]){
+    auc.fairKnown=1;auc.lanes3++;auc.pcs+=AUC_L_ALL;
+    aucTag('🏵 三条道全问到了：公道钉死在 '+auc.fairK+' 档（'+(auc.fairK*AUC_UNIT)+' 文），交货窗口 +5 秒','gold');
+  }
+  aucSync();aucDraw();
+}
+/* 揭开一笔的真容：挑还没揭开过的那一笔（交货时孩子就认得它排第几） */
+function aucRevealMark(){
+  const rec=auc.rec;if(!rec)return;
+  const order=[];
+  for(let i=0;i<rec.n;i++)if(aucMarkOf(i)<0&&i>=auc.di)order.push(i);
+  if(!order.length)return;
+  const pick=order[Math.floor(order.length/2)];
+  auc.marks.push({i:pick,dir:rec.dirs[pick]});
+}
+/* ================= 定档 · 举牌 · 跟价 · 收手 ================= */
+/* 定档 = 这一件你最多出到第几档：看货时先定好，增价中也能反悔往上抬（抬的就是买贵的风险） */
+function aucSetSel(k){
+  if((auc.phase!=='look'&&auc.phase!=='race')||!auc.rec)return;
+  auc.sel=auxClamp(k,1,aucCeilSel());
+  if(auc.rs)auc.rs.ceil3=auc.sel;   /* 孩子自己定的顶挂上牌桌：一槌压过对手也不许越过这一档 */
+  auxTone(420+auc.sel*22,32);
+  aucSync();aucDraw();
+}
+function aucStep(d){aucSetSel((auc.sel||1)+d)}
+/* 举牌 = 开拍：孩子把手里的牌举出去，价从一档起爬 */
+function aucBid(){
+  if(auc.phase!=='look'||!auc.rec||auc.over)return;
+  auc.phase='race';auc.aiLeft=auc.aiMs;auc.qms=auc.qms0;
+  auc.rs.ceil3=auc.sel;   /* 开拍这一息把孩子的顶交给牌桌：一槌的价由它夹住，抬了顶再开拍就是另一笔账 */
+  auxTone(760,110);auxSay('🔨 举牌');
+  aucMsg('🔨 <b>开拍</b>：有人加一档你就得跟 —— <b>跟一档多付两文</b>，三家都收手了这一件才归你（你定的顶：'+auc.sel+' 档）');
+  aucSync();aucDraw();
+}
+/* 跟一档：台上不是孩子领先时才举得了 */
+function aucFollow(){
+  if(auc.phase!=='race'||auc.childOut)return false;
+  const rs=auc.rs;
+  if(rs.who===3){aucTag('🪧 台上已经是你：等主顾加档或收手');return false}
+  if(rs.cur>=auc.sel){
+    aucTag('🪜 这一档出过你定的顶（'+auc.sel+' 档）：按 → 抬顶再加，不然就收手','warn');
+    return false;
+  }
+  if(rs.cur>=AUC_TOP){aucTag('🪜 价到梯尺头了，再举也没档可出','warn');return false}
+  if((rs.cur+1)*AUC_UNIT>auc.silver){
+    aucTag('💰 袋里只剩 '+auc.silver+' 文：这一档买不起','warn');
+    return false;
+  }
+  rs.cur++;rs.who=3;rs.bids++;
+  auc.qms=auc.qms0;
+  auxTone(620+rs.cur*18,55);
+  if(rs.cur===auc.sel)auxSay('🔨 举到你定的顶了');
+  aucSync();aucDraw();
+  return true;
+}
+/* 收手：看货阶段一档不出让给主顾；增价阶段收手 = 举出去的牌不再往上加 */
+function aucPass(){
+  if(!auc.rec||auc.over)return;
+  if(auc.phase==='look'){auc.passOut=1;auc.phase='fall';auc.fallWin=-1;aucDecline();return}
+  if(auc.phase==='race'){auc.childOut=1;if(auc.rs)auc.rs.out3=1;auc.passOut=1;auc.phase='fall';aucAfterFall()}
+}
+/* ================= 落槌：钱货两讫的那一笔账 ================= */
+/* 一档没出就放手：看准了是赏，看走眼了是漏 —— 这一件字从此不在你手上 */
+function aucDecline(){
+  auc.hammerMs=AUC_FALL_MS;
+  auxTone(240,220);
+  if(auc.bargain){
+    const p=auxClamp(2*(auc.fairK-auc.hiK),AUC_MISS_MIN,AUC_MISS_MAX);
+    auc.score-=p;auc.misses++;auc.cleanPiece=0;
+    auc.hitOk=-1;auc.hitTxt='💤 收手收错了 · −'+p;
+    aucTag('💤 这一件本是 <b>漏</b>：三位主顾最高的心价才 '+auc.hiK+' 档，公道 '+auc.fairK+' 档 —— 让出去倒扣 '+p+' 分','warn');
+    auxSay('💤 错过了漏');
+  }else{
+    auc.score+=AUC_EYE_PTS;auc.eyes++;
+    auc.hitOk=1;auc.hitTxt='💤 看准了 +'+AUC_EYE_PTS;
+    aucTag('💤 看准了：最肯出价那位的心价 '+auc.hiK+' 档压在公道 '+auc.fairK+' 档之上，举就是买贵 —— 一档不出反倒落 '+AUC_EYE_PTS+' 分','gold');
+    auxSay('💤 看准了');
+  }
+  aucSync();aucDraw();
+  auxT(aucNextPiece,1200);
+}
+/* 牌桌停了：归孩子就是成交，归主顾就是空手或被挤出去 */
+function aucAfterFall(){
+  const rs=auc.rs,w=aucWinOf(rs);
+  auc.fallWin=w;auc.hammerMs=AUC_FALL_MS;
+  if(w===3){aucDeal();return}
+  auxTone(170,260);
+  if(auc.bargain){
+    const p=auxClamp(2*(auc.fairK-auc.hiK),AUC_MISS_MIN,AUC_MISS_MAX);
+    auc.score-=p;auc.misses++;auc.cleanPiece=0;
+    auc.hitOk=-1;auc.hitTxt=(auc.childOut?'⌛ 手慢了':'✖ 让掉了漏')+' · −'+p;
+    aucTag('✖ 这一件是 <b>漏</b>（最高心价 '+auc.hiK+' 档 < 公道 '+auc.fairK+' 档）：'+AUC_NAMES[w]+' 只出到 '+rs.cur+' 档就拿下，倒扣 '+p+' 分','warn');
+    auxSay('✖ 让掉了漏');
+  }else{
+    auc.blanks++;auc.score-=AUC_P_BLANK;auc.combo=0;auc.cleanPiece=0;
+    auc.hitOk=-1;auc.hitTxt=(auc.childOut?'⌛ 被挤出去':'✖ 被截胡')+' · −'+AUC_P_BLANK;
+    aucTag('✖ 压不过最肯出价那位（'+auc.hiK+' 档）：这一件 '+AUC_NAMES[w]+' 拍走，空手倒扣 '+AUC_P_BLANK+' 分','warn');
+    auxSay('✖ 空手');
+  }
+  aucSync();aucDraw();
+  auxT(aucNextPiece,1200);
+}
+/* 主顾表态的一步：加一档或永久收手（走的是与闭式模拟同一个 aucRaceStep） */
+function aucAiGo(){
+  const r=aucRaceStep(auc.rs);
+  if(r==='quit')auc.quitIdx=auc.rs.quitIdx;
+  if(r==='end'){auc.phase='fall';aucAfterFall();return}
+  if(r==='bid'){
+    auxTone(300+auc.rs.cur*20,45);
+    aucMsg('🪧 '+AUC_NAMES[auc.rs.who]+'加到 <b>'+(auc.rs.cur*AUC_UNIT)+' 文</b> —— 跟不跟？');
+  }else if(r==='quit'){
+    const i=auc.quitIdx;
+    aucMsg('💤 '+AUC_NAMES[i]+'在 <b>'+auc.rs.cur+' 档</b> 收手了'+(aucNoTell(auc.lv)?'':'（价梯上画了 ✕'+(i+1)+'）'));
+    auxTone(210,150);
+  }
+  aucSync();aucDraw();
+}
+/* 成交：付钱、算买贵、进交货 */
+function aucDeal(){
+  const rs=auc.rs,price=rs.cur*AUC_UNIT,fair=auc.fairK*AUC_UNIT;
+  auc.silver-=price;auc.spent+=price;auc.sold++;
+  if(rs.cur>auc.fairK){
+    auc.pen=Math.round((rs.cur-auc.fairK)*AUC_P_CURSE_K*(auc.loanOn?AUC_LOAN_MULT:1));
+    auc.score-=auc.pen;auc.curses++;auc.curseWen+=price-fair;auc.cleanPiece=0;
+    auc.hitOk=-1;auc.hitTxt='👺 买贵 '+(rs.cur-auc.fairK)+' 档 · −'+auc.pen;
+    aucTag('👺 落槌 '+price+' 文 · 公道 '+fair+' 文：赢的人付的是<b>压过最胆大那位</b>的价 —— 买贵倒扣 '+auc.pen+' 分'+(auc.loanOn?'（赊的账罚翻倍）':''),'warn');
+    auxSay('👺 买贵了');
+  }else if(rs.cur<auc.fairK){
+    const g=(auc.fairK-rs.cur)*AUC_SNIP_K;
+    auc.score+=g;auc.snipes++;auc.pen=-g;
+    auc.hitOk=1;auc.hitTxt='🧤 捡漏 '+(auc.fairK-rs.cur)+' 档 · +'+g;
+    aucTag('🧤 落槌 '+price+' 文，公道 '+fair+' 文：三位主顾都没看够，你捡了 '+(auc.fairK-rs.cur)+' 档 · +'+g+' 分','gold');
+    auxSay('🧤 捡漏');
+  }else{
+    auc.hitOk=1;auc.hitTxt='⚖️ 正正当当';
+    aucTag('⚖️ 落槌 '+price+' 文 = 公道价：不赚不亏，赚的是这一件字','gold');
+  }
+  auc.gain=Math.round((AUC_G0+auc.combo*AUC_G_CB+auc.lv*AUC_G_LV)*(rs.cur<=auc.fairK?AUC_M_FAIR:1));
+  auc.score+=auc.gain;
+  auxTone(980,240);
+  aucMsg('🔨 一槌定音：成交 <b>'+price+' 文</b> · 成交分 +'+auc.gain+' —— 袋里剩 '+auc.silver+' 文');
+  aucSync();aucDraw();
+  auxT(function(){
+    auc.phase='deliver';auc.di=0;auc.dlMs=auc.dl0;
+    aucMsg('🚚 <b>交货</b>：按笔顺在封套上点出下一笔，点错一笔就散');
+    aucSync();
+  },AUC_FALL_MS);
+}
+/* ================= 交货：按笔顺一笔一笔点出来 ================= */
+function aucDeliverPick(i){
+  const rec=auc.rec;
+  if(auc.phase!=='deliver'||!rec||i<0||i>=rec.n)return;
+  if(i!==auc.di){
+    auc.wrongs++;auc.dlBad++;auc.score-=AUC_P_WRONG;auc.cleanPiece=0;auc.hearts--;
+    aucTag('✖ 第 '+(i+1)+' 笔不是下一笔（该点第 '+(auc.di+1)+' 笔）：倒扣 '+AUC_P_WRONG+' 分 · 掉一颗心 · 这一件散了','warn');
+    auxTone(150,260);auxSay('✖ 点错了');
+    aucMissPut(rec.ch);
+    auc.hitOk=-1;auc.hitTxt='✖ 点错这一笔 · −'+AUC_P_WRONG;
+    auc.phase='fall';auc.fallWin=-1;auc.hammerMs=AUC_FALL_MS;
+    aucSync();aucDraw();
+    auxT(aucNextPiece,1300);
+    return;
+  }
+  auc.di++;auc.dlOk++;
+  auc.dlMs=auc.dl0;
+  auxTone(700+i*40,60);
+  if(auc.di>=rec.n){aucReceive();return}
+  aucSync();aucDraw();
+}
+/* 点完最后一笔：收货、印图鉴、补心 */
+function aucReceive(){
+  const rec=auc.rec;
+  auc.words++;auc.delivered++;
+  auc.score+=AUC_PIECE_PTS;
+  if(auc.cleanPiece){
+    auc.score+=AUC_CLEAN_PTS;auc.cleanRun++;auc.cleanN++;
+    aucTag('🚚 收货：+'+AUC_PIECE_PTS+' · 一件零罚：+'+AUC_CLEAN_PTS,'gold');
+  }else{
+    aucTag('🚚 收货：+'+AUC_PIECE_PTS+' 分');
+  }
+  if(auc.cleanRun>=AUC_PER){
+    auc.score+=AUC_TOOL_PTS;auc.cleanRun=0;auc.toolRun++;
+    auxSay('🧾 整场三件零罚 +'+AUC_TOOL_PTS);
+  }
+  aucBookPut(rec.ch);
+  /* 交齐三件货才补一颗心：光拿下不算本事，笔笔点齐了才算收成 */
+  if(auc.delivered%3===0&&auc.hearts<AUC_HEART_MAX)auc.hearts++;
+  auxTone(1040,220);auxSay('✔ 收货');
+  if(typeof spawnConfetti==='function'){try{spawnConfetti()}catch(e){}}
+  aucSync();
+  auxT(aucNextPiece,1300);
+}
+/* ================= 四件家什 ================= */
+/* 🧮 询价：照 1→3 号挨个问没问过的那一家 —— 这一件买的是「少一家糊涂」，不是「问最好的那家」 */
+function aucAskTool(){
+  if(!auc.askN||auc.phase!=='look'||!auc.rec)return;
+  let t=-1;
+  for(let i=0;i<3;i++){
+    if(auc.asked[i]||auc.clue[0]===i||auc.clue[1]===i)continue;
+    t=i;break;
+  }
+  if(t<0){aucTag('🧮 三家心价都在你手上了，这一问白花');return}
+  auc.askN--;auc.askUse++;auc.tools++;auc.asked[t]=1;
+  auxTone(600,80);
+  aucTag('🧮 小二回话：'+AUC_NAMES[t]+'说他出到 '+aucClueTxt(auc.qK[t])+' 就收手（还剩 '+auc.askN+' 回）');
+  aucSync();aucDraw();
+}
+/* 🍵 吃茶：这一件的钟添八秒 —— 看货看仔细，别把钱花在慌上 */
+function aucTea(){
+  if(!auc.teaN||auc.phase!=='look'||!auc.rec)return;
+  auc.teaN--;auc.teaUse++;auc.tools++;
+  auc.pcs+=AUC_TEA_ADD;
+  auxTone(480,140);
+  aucTag('🍵 吃一盏茶：这一件多 '+Math.round(AUC_TEA_ADD/1000)+' 秒（还剩 '+auc.teaN+' 回）');
+  aucSync();
+}
+/* 🪙 赊账：袋里添七文，这一件买贵罚翻倍 */
+function aucLoan(){
+  if(!auc.loanN||auc.phase!=='look'||!auc.rec||auc.loanOn)return;
+  auc.loanN--;auc.loanUse++;auc.tools++;auc.loanOn=1;
+  auc.silver+=AUC_LOAN_WEN;auc.loanWen+=AUC_LOAN_WEN;
+  auc.sel=auxClamp(auc.sel,1,aucCeilSel());
+  auxTone(560,120);
+  aucTag('🪙 赊 '+AUC_LOAN_WEN+' 文：袋里 '+auc.silver+' 文 —— 这一件若买贵，罚钱翻倍','warn');
+  aucSync();aucDraw();
+}
+/* 🔁 换货：这一件退回库里再上一件（倒扣六分） */
+function aucSwap(){
+  if(!auc.swapN||auc.phase!=='look'||!auc.rec)return;
+  auc.swapN--;auc.swapUse++;auc.swaps++;auc.tools++;
+  auc.score-=AUC_P_SWAP;
+  auxTone(280,140);
+  const rec=aucTake();
+  aucTag('🔁 换货：退回库里倒扣 '+AUC_P_SWAP+' 分（还剩 '+auc.swapN+' 回）','warn');
+  if(rec)aucSetLot(rec);
+  aucSync();aucDraw();
+}
+/* ================= 三只钟 ================= */
+function aucTick(dt){
+  if(!auc.run||auc.over)return;
+  auc.t+=dt;auc.playMs+=dt;
+  if(auc.helpMs>0){auc.helpMs-=dt;if(auc.helpMs<=0){auc.helpMs=0;aucSync()}return}
+  /* 落槌的那一息：钟全停，让孩子看清是谁拿下的 */
+  if(auc.hammerMs>0){auc.hammerMs-=dt;if(auc.hammerMs<0)auc.hammerMs=0;return}
+  if(!auc.rec)return;
+  /* 场钟：一支烛照这一场的三件货 */
+  if(auc.fuel>0){
+    auc.fuel-=dt;
+    if(auc.fuel<=0){auc.fuel=0;aucEnd('fuel');return}
+  }
+  /* 件钟：这一件在案上摆多久（看货、增价、交货都吃这一支）*/
+  if(auc.phase==='look'||auc.phase==='race'||auc.phase==='deliver'){
+    auc.pcs-=dt;
+    if(auc.pcs<=0){
+      auc.pcs=0;auc.pcsOut++;auc.hearts--;auc.cleanPiece=0;
+      auc.score-=AUC_P_PCS;
+      aucTag('🔨 件钟尽了：这一件散案，倒扣 '+AUC_P_PCS+' 分 · 掉一颗心','warn');
+      auxTone(150,300);auxSay('🔨 件钟尽了');
+      aucMissPut(auc.rec.ch);
+      auc.hitOk=-1;auc.hitTxt='🔨 摆到钟尽 · −'+AUC_P_PCS;
+      auc.phase='fall';auc.fallWin=-1;auc.hammerMs=AUC_FALL_MS;
+      aucSync();aucDraw();
+      auxT(aucNextPiece,1100);
+      return;
+    }
+  }
+  if(auc.phase==='look'&&auc.laneCur>=0){
+    auc.qms-=dt;
+    /* 钟尽先把这支钟归零再去作废那条道：留个负数在账上，牌面上就是一道倒着走的缝 */
+    if(auc.qms<=0){auc.qms=0;aucLaneAnswer(-1)}      /* 这一手的钟尽了：按答错处理，那条道作废 */
+  }
+  if(auc.phase==='race'){
+    auc.aiLeft-=dt;
+    if(auc.aiLeft<=0){auc.aiLeft+=auc.aiMs;aucAiGo()}
+    if(auc.phase==='race'){
+      if(auc.rs.who!==3){
+        auc.qms-=dt;
+        if(auc.qms<=0){
+          /* 钟尽了就是被动收手：与按 X 收手同一本账，孩子的顶得从榜上撤下来，不然「价过去了」还照旧付钱 */
+          auc.qms=0;auc.childOut=1;if(auc.rs)auc.rs.out3=1;auc.phase='fall';
+          aucTag('⌛ 这一手钟尽了：价从你手上过去了','warn');
+          auxTone(160,260);
+          aucAfterFall();
+          return;
+        }
+      }else auc.qms=auc.qms0;
+    }
+  }
+  if(auc.phase==='deliver'){
+    auc.dlMs-=dt;
+    if(auc.dlMs<=0){
+      auc.dlMs=0;auc.wrongs++;auc.dlBad++;auc.hearts--;auc.cleanPiece=0;
+      auc.score-=AUC_P_WRONG;
+      aucTag('⌛ 这一笔钟尽了：货点不齐，散了','warn');
+      auxTone(150,280);
+      aucMissPut(auc.rec.ch);
+      auc.hitOk=-1;auc.hitTxt='⌛ 这一笔没点出来 · −'+AUC_P_WRONG;
+      auc.phase='fall';auc.fallWin=-1;auc.hammerMs=AUC_FALL_MS;
+      aucSync();aucDraw();
+      auxT(aucNextPiece,1200);
+    }
+  }
+  /* 干等太久给一句提示：孩子不点，柜台就只是一张画 */
+  if(auc.phase==='look'&&auc.rec&&auc.laneCur<0){
+    auc.nagMs+=dt;
+    if(auc.nagMs>AUC_NAG_MS){auc.nagMs=0;auc.nags++;auxSay(auc.laneDone[0]?'🔨 举牌试试':'🔍 先问一条看货道')}
+  }
+}
+
+/* ================= 开工 · 三只钟的那一根 rAF · 键盘与真指针 ================= */
+/* 开张：先开箱（字池），再上第一件货 —— 这两步合在一起才叫一案 */
+async function aucBoot(){
+  const g=auc.gen;
+  auc.load=true;aucSync();
+  const w=aucWant(auc.lv);
+  const ok=await aucBuildPool(true,w[0],w[1]);
+  if(g!==auc.gen||!auc.run||auc.over)return;
+  auc.load=false;
+  if(!ok){aucEnd('pool');aucSync();return}
+  const rec=aucTake();
+  if(!rec){aucEnd('pool');aucSync();return}
+  aucSetLot(rec);
+  aucSync();aucDraw();
+}
+function aucStart(){
+  auc.run=true;auc.over=false;auc.gen++;
+  aucBind();
+  auxKillTimers();
+  auc.t=0;auc.playMs=0;auc.last=0;
+  auc.pool=[];auc.miss=[];auc.seen=[];auc.rec=null;auc.seed=0;auc.fresh=0;
+  auc.lv=aucLvOf(auxInt('hz_auc_words'));
+  auc.piece=0;auc.score=0;auc.hearts=AUC_HEARTS;auc.combo=0;auc.maxCombo=0;auc.phase='look';auc.load=false;
+  auc.rs=aucRaceNew([0,0,0],{});auc.qK=[0,0,0];auc.sel=1;auc.childOut=0;auc.passOut=0;auc.quitIdx=-1;
+  auc.fairK=0;auc.hiK=0;auc.sndK=0;auc.bargain=0;auc.hi=0;
+  auc.laneDone=[0,0,0];auc.laneDead=[0,0,0];auc.laneCur=-1;auc.opts=[];auc.optAns=-1;auc.ki=-1;auc.pick=-1;auc.asked=[0,0,0];
+  auc.marks=[];auc.clue=[-1,-1];auc.clueSeat=[-1,-1];auc.range=0;auc.fairKnown=0;auc.lanes3=0;
+  auc.silver0=aucSilver(auc.lv);auc.silver=auc.silver0;auc.spent=0;auc.loanWen=0;
+  auc.qms0=aucQms(auc.lv);auc.qms=auc.qms0;
+  auc.pcs0=aucPcs(auc.lv);auc.pcs=auc.pcs0;
+  auc.fuel0=aucFuel(auc.lv);auc.fuel=auc.fuel0;
+  auc.aiMs=aucAiMs(auc.lv);auc.aiLeft=auc.aiMs;
+  auc.di=0;auc.dlOk=0;auc.dlBad=0;auc.dl0=aucDelMs(auc.lv);auc.dlMs=auc.dl0;auc.hammerMs=0;auc.fallWin=-1;
+  auc.words=0;auc.sold=0;auc.delivered=0;auc.curses=0;auc.snipes=0;auc.eyes=0;auc.misses=0;
+  auc.blanks=0;auc.laneHits=0;auc.laneBads=0;auc.wrongs=0;auc.pcsOut=0;auc.swaps=0;auc.curseWen=0;
+  auc.tools=0;auc.cleanN=0;auc.toolRun=0;auc.cleanPiece=1;auc.cleanRun=0;auc.loanOn=0;
+  auc.askN=AUC_P0.ask;auc.teaN=AUC_P0.tea;auc.loanN=AUC_P0.loan;auc.swapN=AUC_P0.swap;
+  auc.askUse=0;auc.teaUse=0;auc.loanUse=0;auc.swapUse=0;
+  auc.gain=0;auc.pen=0;auc.hitOk=0;auc.hitTxt='';auc.helpMs=0;auc.newBest=false;
+  auc.nags=0;auc.nagMs=0;
+  aucClearTag();
+  if(typeof stopBGM==='function')stopBGM();  showScreen('auction');
+  aucSync();aucDraw();
+  aucBoot();
+  aucStartLoop();
+}
+/* 主循环的起停各只有一处：摆拍要冻画面就掐这一根，别在别处再挂一条 rAF */
+function aucLoop(ts){
+  if(!auc.run||auc.over){auc.rafId=0;return}
+  const dt=auc.last?Math.min(120,ts-auc.last):16;
+  auc.last=ts;
+  aucTick(dt);
+  aucSync();aucDraw();
+  auc.rafId=requestAnimationFrame(aucLoop);
+}
+function aucStartLoop(){if(!auc.run||auc.over||auc.rafId)return;auc.last=0;auc.rafId=requestAnimationFrame(aucLoop)}
+function aucStopLoop(){if(auc.rafId){cancelAnimationFrame(auc.rafId);auc.rafId=0}}
+function aucRestart(){aucStart()}
+function aucLeave(where){
+  auc.run=false;auc.over=false;
+  auxKillTimers();aucStopLoop();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function aucHelp(){
+  if(!auc.run||auc.over)return;
+  auc.helpMs=AUC_HELP_MS;
+  aucSync();
+  auxSay('🔨 <b>拍的是封着的字</b>：三位老主顾心里有价、你只看得见他们举出去的牌','#FFE0B2');
+}
+/* ---- 那一只槌：看货时落下去是开拍，增价中落下去是跟一档 ---- */
+function aucTap(){
+  if(auc.helpMs>0){auc.helpMs=0;return}
+  if(auc.phase==='look'){aucBid();return}
+  if(auc.phase==='race'){aucFollow();return}
+  if(auc.phase==='deliver')aucTag('🚚 交货点的是封套上的那一笔：横竖撇捺，按笔顺一笔一笔点');
+}
+/* ================= 柜台上的落点：价梯一格、封套一笔、台心一处 ================= */
+/* 这一点离这一笔的折线有多近（都在 1024 的方格里量） */
+function aucDist(gx,gy,med){
+  let best=1e9;
+  for(let i=1;i<med.length;i++){
+    const ax=med[i-1][0],ay=med[i-1][1],bx=med[i][0],by=med[i][1];
+    const dx=bx-ax,dy=by-ay,ll=dx*dx+dy*dy;
+    let t=ll?((gx-ax)*dx+(gy-ay)*dy)/ll:0;
+    t=Math.max(0,Math.min(1,t));
+    const px=ax+t*dx-gx,py=ay+t*dy-gy;
+    const d=Math.sqrt(px*px+py*py);
+    if(d<best)best=d;
+  }
+  if(med.length===1){
+    const px=med[0][0]-gx,py=med[0][1]-gy;
+    best=Math.sqrt(px*px+py*py);
+  }
+  return best;
+}
+/* 封套上点中了第几笔：挑最近的那一笔，远过这一截就不算点着 */
+function aucStrokeAt(gx,gy){
+  const rec=auc.rec;
+  if(!rec||!rec.meds)return -1;
+  let best=-1,d0=90;
+  for(let i=0;i<rec.meds.length;i++){
+    const d=aucDist(gx,gy,rec.meds[i]);
+    if(d<d0){d0=d;best=i}
+  }
+  return best;
+}
+function aucPt2(e){
+  const cv=document.getElementById('aucCanvas');
+  const out={x:-1,y:-1,cell:-1,stroke:-1,mid:false,case:false};
+  if(!cv||!cv.getBoundingClientRect)return out;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return out;
+  const x=Math.round((e.clientX-r.left)*(AUC_W/r.width)*10)/10,
+        y=Math.round((e.clientY-r.top)*(AUC_H/r.height)*10)/10;
+  out.x=x;out.y=y;
+  if(x>=AUC_LX-4&&x<=AUC_LX+AUC_LW*AUC_TOP+4&&y>=AUC_LY-12&&y<=AUC_LY+22){
+    out.cell=auxClamp(Math.floor((x-AUC_LX)/AUC_LW)+1,1,AUC_TOP);
+    return out;
+  }
+  if(x>=AUC_MID_X&&x<=AUC_MID_X+AUC_GRID+4&&y>=AUC_MID_Y&&y<=AUC_MID_Y+96){out.mid=true;return out}
+  if(x>=AUC_GX-4&&x<=AUC_GX+AUC_GRID+4&&y>=AUC_GY-22&&y<=AUC_GY+AUC_GRID+10){
+    out.case=true;
+    if(x>=AUC_GX&&x<=AUC_GX+AUC_GRID&&y>=AUC_GY&&y<=AUC_GY+AUC_GRID){
+      const sc=AUC_GRID/1024;
+      out.stroke=aucStrokeAt((x-AUC_GX)/sc,(AUC_GY+1024*sc-y)/sc);
+    }
+  }
+  return out;
+}
+/* ================= 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子 ================= */
+function aucBind(){
+  if(auc.bound)return;
+  auc.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!auc.run||auc.over)return;
+    if(auc.helpMs>0){auc.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){aucLeave();return}
+    if(k==='h'||k==='?'){aucHelp();e.preventDefault();return}
+    if(k==='q'||k==='w'||k==='e'){aucLaneAsk(k==='q'?0:(k==='w'?1:2));e.preventDefault();return}
+    if(k>='1'&&k<='4'){aucLaneAnswer(+k-1);e.preventDefault();return}
+    if(k==='arrowleft'||k==='arrowdown'||k==='a'){aucStep(-1);e.preventDefault();return}
+    if(k==='arrowright'||k==='arrowup'||k==='d'){aucStep(1);e.preventDefault();return}
+    if(k==='x'){aucPass();e.preventDefault();return}
+    if(k==='g'){aucAskTool();e.preventDefault();return}
+    if(k==='t'){aucTea();e.preventDefault();return}
+    if(k==='l'){aucLoan();e.preventDefault();return}
+    if(k==='r'){aucSwap();e.preventDefault();return}
+    if(k===' '||k==='enter'){aucTap();e.preventDefault()}
+  });
+  const cv=document.getElementById('aucCanvas');
+  if(cv){
+    cv.addEventListener('pointerdown',function(e){
+      if(!auc.run||auc.over)return;
+      if(auc.helpMs>0){auc.helpMs=0;return}
+      const h=aucPt2(e);
+      if(h.cell>=0){aucSetSel(h.cell);e.preventDefault();return}
+      if(auc.phase==='deliver'&&h.stroke>=0){aucDeliverPick(h.stroke);e.preventDefault();return}
+      if(h.case||h.mid){aucTap();e.preventDefault()}
+    });
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){
+      if(!auc.run||auc.over)return;
+      if(auc.helpMs>0){auc.helpMs=0;return}
+      on();ev.preventDefault();
+    });
+  };
+  for(let i=0;i<3;i++)tap('aucLane'+i,(function(j){return function(){aucLaneAsk(j)}})(i));
+  for(let i=0;i<4;i++)tap('aucOpt'+i,(function(j){return function(){aucLaneAnswer(j)}})(i));
+  tap('aucDownBtn',function(){aucStep(-1)});
+  tap('aucUpBtn',function(){aucStep(1)});
+  tap('aucBidBtn',function(){aucTap()});
+  tap('aucPassBtn',function(){aucPass()});
+  tap('aucAskBtn',function(){aucAskTool()});
+  tap('aucTeaBtn',function(){aucTea()});
+  tap('aucLoanBtn',function(){aucLoan()});
+  tap('aucSwapBtn',function(){aucSwap()});
+  tap('aucHelpBtn',function(){aucHelp()});
+  tap('aucEndBtn',function(){aucEnd('quit')});
+  /* 散场之后的那三颗钮不能按 run/over 拦：孩子站在结算屏上，「再开一案」「回工坊」「回家」
+     必须点得动 —— 拦在前面就等于把结算屏变成一堵墙 */
+  const tapFree=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){on();ev.preventDefault()});
+  };
+  tapFree('aucReBtn',function(){aucRestart()});
+  tapFree('aucLabBtn',function(){aucLeave('lab')});
+  tapFree('aucHomeBtn',function(){aucLeave()});
+}
+
+/* ================= 散场：结算、落盘、图鉴与家什架、拿另一条路把这件的账算第三遍 ================= */
+function aucEnd(why){
+  if(!auc.run||auc.over)return;
+  auc.over=true;auc.run=false;
+  auxKillTimers();
+  const stars=Math.max(1,Math.round(auc.score/14)+auc.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  aucPut('aucRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['🔨','收摊','自己按的结算'],
+    hearts:['💔','心都赔光了','掉够了心'],
+    fuel:['🕯','烛烧尽了','这一场的光用完'],
+    pool:['🔨','案头摆不开','字池里挑不出算得出公道价的字']}[why]||['🔨','散场',''];
+  aucPut('aucRsEmoji',head[0]);
+  aucPut('aucRsTitle',head[1]);
+  aucPut('aucRsSub','第 '+auc.lv+' 场 · '+head[2]+' · 收齐 '+auc.words+' 字 · 落槌 '+auc.sold+' 件');
+  aucPut('aucRsScore','🔨 '+auc.score+' 分');
+  aucPut('aucRsWords','🈶 落槌 '+auc.sold+' 件 · 交齐 '+auc.delivered+' 件 · 收字 '+auc.words+' 个');
+  aucPut('aucRsMoney','💰 花 '+auc.spent+' 文 · 袋里剩 '+auc.silver+' 文 · 一袋 '+auc.silver0+' 文'+
+    (auc.loanWen?' · 赊过 '+auc.loanWen+' 文':''));
+  aucPut('aucRsCurse','👺 买贵 '+auc.curses+' 件（多付 '+auc.curseWen+' 文）· 捡漏 '+auc.snipes+' 件 · 看准了放手 '+
+    auc.eyes+' 回 · 让掉的漏 '+auc.misses+' 件');
+  aucPut('aucRsLanes','🔍 线索 '+auc.laneHits+' 对 · 答错 '+auc.laneBads+' 道 · 三道全问 '+auc.lanes3+' 案 · 空手 '+
+    auc.blanks+' 回');
+  aucPut('aucRsDeliver','🚚 交货 '+auc.delivered+' 件 · 一件零罚 '+auc.cleanN+' 件 · 错笔 '+auc.wrongs+
+    ' · 散案 '+auc.pcsOut);
+  aucPut('aucRsTools','🧰 借家什 '+auc.tools+' 回 · 询价 '+auc.askUse+' · 吃茶 '+auc.teaUse+
+    ' · 赊账 '+auc.loanUse+' · 换货 '+auc.swapUse);
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账 */
+  aucSave(why);
+  aucPut('aucRsBest','🏅 历史最高 '+auxInt('hz_auc_best')+' 分 · 累计 '+auxInt('hz_auc_words')+' 字');
+  aucPut('aucRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  const rk=aucRank(auxInt('hz_auc_sold'));
+  aucPut('aucRsRank',rk.e+' '+rk.t);
+  const bk=aucBookCount();
+  aucPutH('aucRsBook','📖 <b>成交价图鉴 '+bk.book+' 张</b> · 家什架 <b>'+bk.shelf+'/'+AUC_SHELF.length+
+    '</b> 件 · 错字本 <b>'+bk.miss+'</b> 个字<br><small>最远走到第 '+auxInt('hz_auc_lvmax')+' 场 · 累计落槌 '+
+    auxInt('hz_auc_sold')+' 件 · 买贵 '+auxInt('hz_auc_curse')+' 件 · 看准了放手 '+auxInt('hz_auc_eye')+' 回</small>');
+  aucPutH('aucRsWhy','🔨 这一行的道理：<b>赢的人付的是压过最胆大那位的那一档</b> —— 三位老主顾里最肯出价的只肯出到'+
+    '自己心价的<b>前一档</b>，你要拿下这件，就得比那位多举一档；可这件货真正值的是<b>公道那一档</b>。'+
+    '所以举牌之前只有一件事值得做：<b>把三家的心价问清楚</b>。问得越清，敢出的价越低；一条道也没问出来就举牌，'+
+    '那就是拿现银赌一把。<br>战绩落盘 <code>hz_auc_*</code>：场档按<b>收齐的字数</b>走，称号按<b>累计落槌的件数</b>走，'+
+    '第 4 场起价梯不再标「谁在哪一档收的手」、第 6 场起线索只报 ±1 区间，错字本里的字<b>下一轮优先挑回来</b>','#C8E6C9');
+  aucNudge();
+  showScreen('auction-result');
+}
+/* ---- 落盘：全局账与这一局账各走各的口子 ---- */
+function aucSave(why){
+  auxAdd('hz_auc_games',1);
+  auxAdd('hz_auc_words',auc.words);
+  auxAdd('hz_auc_sold',auc.sold);
+  auxAdd('hz_auc_delivered',auc.delivered);
+  auxAdd('hz_auc_spent',auc.spent);
+  auxAdd('hz_auc_curse',auc.curses);
+  auxAdd('hz_auc_snipe',auc.snipes);
+  auxAdd('hz_auc_eye',auc.eyes);
+  /* hz_auc_miss 是错字本上那一串字，不是数目：看走眼让掉的漏另记一本账 */
+  auxAdd('hz_auc_lost',auc.misses);
+  auxAdd('hz_auc_blank',auc.blanks);
+  auxAdd('hz_auc_lanes',auc.laneHits);
+  auxAdd('hz_auc_lanebad',auc.laneBads);
+  auxAdd('hz_auc_lanes3',auc.lanes3);
+  auxAdd('hz_auc_wrong',auc.wrongs);
+  auxAdd('hz_auc_pcsout',auc.pcsOut);
+  auxAdd('hz_auc_tools',auc.tools);
+  auxAdd('hz_auc_tea',auc.teaUse);
+  auxAdd('hz_auc_swap',auc.swaps);
+  auxAdd('hz_auc_clean',auc.cleanN);
+  auxAdd('hz_auc_toolrun',auc.toolRun);
+  auxAdd('hz_auc_cursewen',auc.curseWen);
+  if(auc.maxCombo>auxInt('hz_auc_combo'))auxPut('hz_auc_combo',auc.maxCombo);
+  if(auc.lv>auxInt('hz_auc_lvmax'))auxPut('hz_auc_lvmax',auc.lv);
+  if(auc.score>auxInt('hz_auc_best')){auxPut('hz_auc_best',auc.score);auc.newBest=true}
+  aucShelfCheck();
+}
+/* ---- 图鉴：一个字一张成交价（记的是首回收齐那一件的字、场与公道档） ---- */
+function aucBookCount(){
+  const book=(localStorage.getItem('hz_auc_book')||'').split(',').filter(function(s){return s}).length;
+  const shelf=(localStorage.getItem('hz_auc_shelf')||'').split(',').filter(function(s){return s}).length;
+  const miss=(localStorage.getItem('hz_auc_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0}).length;
+  return {book:book,shelf:shelf,miss:miss};
+}
+function aucBookPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  const bk=localStorage.getItem('hz_auc_book')||'';
+  if(bk.indexOf(ch+':')>=0)return;
+  const list=bk.split(',').filter(function(s){return s});
+  list.unshift(ch+':'+auc.lv+':'+auc.fairK+':'+(auc.rs.cur*AUC_UNIT));
+  auxPut('hz_auc_book',list.slice(0,AUC_BOOK_MAX).join(','));
+}
+/* 散场的字进错字本：下一轮优先挑回来 */
+function aucMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_auc_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  auxPut('hz_auc_miss',miss.slice(0,AUC_BOOK_MAX).join(','));
+}
+/* 家什架：八件各认一件实事，其中「名刺」认的是别处的章节徽章 */
+function aucShelfCheck(){
+  const have=(localStorage.getItem('hz_auc_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    auxInt('hz_auc_words')+auc.words>=1,
+    auxInt('hz_auc_lanes3')+auc.lanes3>=1,
+    auxInt('hz_auc_tea')+auc.teaUse>=2,
+    auxInt('hz_auc_toolrun')+auc.toolRun>=1,
+    auxInt('hz_auc_sold')+auc.sold>=8,
+    auxInt('hz_auc_eye')+auc.eyes>=6,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    auxInt('hz_auc_lvmax')>=AUC_SHELF_LV||auc.lv>=AUC_SHELF_LV
+  ];
+  for(let i=0;i<AUC_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(AUC_SHELF[i].k)<0){have.push(AUC_SHELF[i].k);got.push(AUC_SHELF[i].k)}
+  }
+  auxPut('hz_auc_shelf',have.join(','));
+  auxPut('hz_auc_trophy',have.length);
+  if(got.length)auxPut('hz_auc_trophy_n',auxInt('hz_auc_trophy_n')+got.length);
+}
+/* ---- 段 W 的另一条路：只读，不许碰场上任何东西 ---- */
+/* 三个座位轮一遍（6 种次序）：落槌的档数与赢家不该因为谁坐哪儿而变 —— 变了一次就是回合制漏了规矩 */
+function aucAudPerms(qK,fairK){
+  const P=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];
+  const out={perms:0,bad:0,hiK:0,sndK:0,price0:[],price1:[]};
+  const an=aucAnalyze(qK,fairK);
+  out.hiK=an.hiK;out.sndK=an.sndK;
+  for(let p=0;p<P.length;p++){
+    const q=[qK[P[p][0]],qK[P[p][1]],qK[P[p][2]]];
+    const a=aucAnalyze(q,fairK);
+    const s0=aucSimRace(q,0),s1=aucSimRace(q,an.hiK);
+    out.perms++;out.price0.push(s0.price);out.price1.push(s1.price);
+    if(a.hiK!==an.hiK||a.sndK!==an.sndK)out.bad++;         /* 换个座位不该换个公道 */
+    if(s0.winner!==a.hi)out.bad++;                          /* 没人跟：归最肯出价那位 */
+    if(s0.price!==an.sndK)out.bad++;                        /* 一槌落在次高心价那一档，与谁坐哪儿无关 */
+    if(s1.winner!==3||s1.price!==an.hiK)out.bad++;          /* 跟到顶就付压过最胆大那位的那一档 */
+  }
+  return out;
+}
+/* 这个字的凭据：闭式、逐步模拟、六个座位次序三把算完再对表 */
+function aucAudWord(rec,lv){
+  const out={ok:0,why:'',n:0,fairK:0,hiK:0,sndK:0,qK:[],hi:-1,bargain:0,opt:0,price:0,silver:0,
+    perms:0,permBad:0,sigBad:0,dup:0,afford:0,flat:0,edge:0,simPrice:-1,simWinner:-1};
+  if(!rec||!aucSeqOk(rec)){out.why='字的口径不合格';return out}
+  out.n=rec.n;
+  const seed=auxSeedOf(rec.ch,lv),fresh=aucFresh(rec.ch);
+  const sig=aucSigs(rec,lv,fresh,seed);
+  out.fairK=sig.fairK;out.hiK=sig.hiK;out.sndK=sig.sndK;out.qK=sig.qK.slice();
+  out.hi=sig.hi;out.bargain=sig.bargain;out.opt=aucOptK(sig);
+  out.silver=aucSilver(lv);out.price=sig.hiK*AUC_UNIT;
+  /* 同字同场同价：换一个种子入口再算一遍，式子里的种子必须一模一样 */
+  const sig2=aucSigs(rec,lv,fresh,auxSeedOf(rec.ch,lv));
+  for(let i=0;i<3;i++)if(sig.qK[i]!==sig2.qK[i]||sig.fairK!==sig2.fairK)out.sigBad++;
+  for(let i=0;i<3;i++)for(let j=i+1;j<3;j++)if(sig.qK[i]===sig.qK[j])out.dup++;
+  if(sig.hiK!==sig.qK[sig.hi])out.sigBad++;
+  if(out.sigBad){out.why='心价的种子对不上';return out}
+  if(out.dup){out.why='两家心价撞了';return out}
+  if(sig.hiK===sig.fairK){out.flat=1;out.why='平卡没账可算';return out}
+  if(sig.hiK<=1||sig.hiK>=AUC_TOP){out.edge=1;out.why='价梯到头';return out}
+  if(out.price*AUC_AFFORD+AUC_UNIT>out.silver){out.afford=1;out.why='一袋现银买不起两件';return out}
+  /* 该举就举到 opt：孩子跟到底必定拿下；该放手就一档不出：三家自己爬，停在次高那一档 */
+  const optK=out.opt,s1=aucSimRace(sig.qK,optK);
+  out.simPrice=s1.price;out.simWinner=s1.winner;
+  if(optK>0){
+    if(s1.winner!==3||s1.price!==sig.hiK){out.why='两条路数不出同一笔账';return out}
+  }else if(s1.winner!==sig.hi||s1.price!==sig.sndK){
+    out.why='两条路数不出同一笔账';return out;
+  }
+  const pm=aucAudPerms(sig.qK,sig.fairK);
+  out.perms=pm.perms;out.permBad=pm.bad;
+  if(out.permBad){out.why='座位次序改了账';return out}
+  /* 公道档自己也要能被式子复算：笔数、笔形种数、图鉴新旧、场档，一项不许飘 */
+  if(aucFairK(rec,lv,fresh)!==sig.fairK){out.why='公道档复算不合';return out}
+  out.ok=1;
+  return out;
+}
+/* 眼下这一案的账：台面、心价、三条道、袋里的现银，各条式子当场核一遍 */
+function aucAudState(){
+  const s={has:0,phase:auc.phase,n:0,di:0,marks:0,cur:0,who:-1,bids:0,steps:0,
+    out:[0,0,0],quit:[-1,-1,-1],qK:[],fairK:0,hiK:0,sndK:0,sel:0,childOut:0,
+    silver:0,silver0:0,spent:0,loanWen:0,ledger:0,leadDead:0,ceilBad:0,paidBad:0,
+    marksBad:0,markDup:0,delivered:0,laneSum:0,hearts:0,over:0,sigBad:0,words:0,sold:0};
+  if(!auc.rec)return s;
+  const rec=auc.rec;
+  s.has=1;s.n=rec.n;s.di=auc.di;s.marks=auc.marks.length;
+  s.cur=auc.rs.cur;s.who=auc.rs.who;s.bids=auc.rs.bids;s.steps=auc.rs.g;
+  s.out=auc.rs.out.slice();s.quit=auc.rs.quit.slice();s.qK=auc.qK.slice();
+  s.fairK=auc.fairK;s.hiK=auc.hiK;s.sndK=auc.sndK;s.sel=auc.sel;s.childOut=auc.childOut;
+  s.silver=auc.silver;s.silver0=auc.silver0;s.spent=auc.spent;s.loanWen=auc.loanWen;
+  s.hearts=auc.hearts;s.words=auc.words;s.sold=auc.sold;s.delivered=auc.delivered;
+  /* 现银总账：一袋 + 赊的 − 花掉的 = 袋里现在有的 */
+  s.ledger=(auc.silver0+auc.loanWen-auc.spent===auc.silver)?1:0;
+  /* 台上领先的那位不该是已经收手的；收手的都该留一个刻度 */
+  for(let i=0;i<3;i++){
+    if(auc.rs.out[i]&&auc.rs.who===i)s.leadDead=1;
+    if(auc.rs.out[i]&&auc.rs.quit[i]<0)s.ceilBad=1;
+    if(!auc.rs.out[i]&&auc.rs.quit[i]>=0)s.ceilBad=1;
+  }
+  /* 付出去的钱不许超过袋里曾经有过的：花了的加剩的正好是一袋加赊的 */
+  s.paidBad=(auc.spent>auc.silver0+auc.loanWen)?1:0;
+  /* 揭开与点过的笔：同一笔不许揭两遍、交货进度不许越过笔数、已交的都染了色 */
+  const seenMark={};
+  for(let i=0;i<auc.marks.length;i++){
+    const k=auc.marks[i].i;
+    if(seenMark[k])s.markDup++;
+    seenMark[k]=1;
+    if(!(k>=0&&k<rec.n))s.marksBad++;
+  }
+  if(auc.di>rec.n)s.marksBad++;
+  s.laneSum=auc.laneDone[0]+auc.laneDone[1]+auc.laneDone[2];
+  /* 三条道各自只认一次：done 与 dead 不许同时是 1 */
+  for(let i=0;i<3;i++)if(auc.laneDone[i]&&auc.laneDead[i])s.sigBad++;
+  return s;
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一行开到第几场了 ---- */
+function aucNudge(){
+  const dot=document.getElementById('aucCardDot'),tip=document.getElementById('aucCardTip');
+  const tot=auxInt('hz_auc_words'),sold=auxInt('hz_auc_sold'),lv=auxInt('hz_auc_lvmax');
+  const rk=aucRank(sold),shelf=auxInt('hz_auc_trophy');
+  if(tip)tip.textContent=sold?('🔔 '+rk.e+' '+rk.t+' · 收字 '+tot+' 个 · 落槌 '+sold+' 件 · 最远第 '+lv+
+    ' 场 · 买贵 '+auxInt('hz_auc_curse')+' 件 · 捡漏 '+auxInt('hz_auc_snipe')+' 件 · 看准了放手 '+
+    auxInt('hz_auc_eye')+' 回 · 家什架 '+shelf+' 件'):
+    '拍的是封着的字：三条看货道答对一道换回一条真线索，而三位老主顾心里各有一个价 —— 赢的人付的是压过最胆大那一位的价，'
+    +'举过了那件货真正值的那一档就中了「赢家诅咒」。所以举牌之前只有一件事值得做：把心价问清楚；'
+    +'钱袋一场只有一袋，买了这件，下一件就没钱举牌';
+  if(dot){dot.classList.toggle('on',!sold);dot.textContent=(sold?'':'🆕')}
 }
 
 
