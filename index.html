@@ -6969,6 +6969,73 @@ button:active{transform:scale(.95)}
   #screen-soak .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-soak .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.101 🪨 笔顺抢石坊 ================= */
+.pebble-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.pebble-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+/* 题头占死三行（一行 1.35em）：它换字不许换行数 —— 石滩就在它下头，多一行少一行都把整片滩往下顶五十像素，
+   孩子的手指还按在石头上数颗数呢 */
+.pebble-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*3)}
+.pebble-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.pebble-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+.pebble-mini{flex:0 0 92px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+.pebble-mini svg{width:100%;height:auto;background:rgba(255,251,240,.07);border-radius:12px}
+.pebble-cap{font-size:11px;color:#B0BEC5;text-align:center;line-height:1.3}
+/* 滩台：底下是暮色的河岸，衬得那一排竹牌与石头亮 —— 几颗一眼数得清 */
+.pebble-field{flex:1;min-width:0;position:relative;background:#1B1414;border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.9)}
+.pebble-field.dead{filter:grayscale(.85) brightness(.6)}
+.pebble-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.pebble-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#FFE0B2;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.pebble-tag.on{opacity:1}
+.pebble-tag.warn{background:rgba(96,38,12,.92);color:#FFCCBC}
+.pebble-tag.gold{background:rgba(74,52,14,.94);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.pebble-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.pebble-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+/* 手袋那一条是皮革色（越见底越短）；这一手的钟是沙色；场钟是冷蓝 */
+.pebble-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#6D4C41,#BCAAA4);transition:width .15s linear}
+.pebble-tl.qms i{background:linear-gradient(90deg,#FFB74D,#FFE082)}
+.pebble-tl.fuel i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.pebble-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.pebble-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.pebble-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.pebble-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.pebble-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.pebble-tool b{display:block;font-size:10px;color:#FFE082;font-weight:700}
+.pebble-tool:disabled{opacity:.4;cursor:default}
+/* 定颗数与出手：这一坊的手下在「取几颗」上，两个小手枪 + 一个大出手键，手指头不许找小格子 */
+.pebble-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.pebble-take .step{flex:0 0 54px;padding:8px 2px;border-radius:12px;font-size:20px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#1B140B;background:linear-gradient(180deg,#D7CCC8,#A1887F)}
+.pebble-take .step:active{transform:translateY(1px)}
+.pebble-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1B140B;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.pebble-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(27,20,11,.72)}
+.pebble-take button.big:active{transform:translateY(1px);background:linear-gradient(180deg,#FFD54F,#FF8F00)}
+.pebble-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.pebble-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.pebble-hintline b{color:#FFE082}
+.pebble-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.pebble-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.pebble-msg b{color:#CFD8DC}
+.pebble-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.pebble-msg small{font-size:11px;color:#78909C}
+.pebble-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.pebble-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.pebble-rs-book b{color:#FFE082}
+.pebble-rs-book small{color:#78909C}
+.pebble-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px;z-index:4}
+.pebble-cdot.on{display:block}
+#screen-pebble .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：样图折到滩台上头，滩独占整幅宽；三条量表折成一丸一行（字不许被药丸右沿裁掉） */
+@media(max-width:460px){
+  .pebble-stage{flex-direction:column}
+  .pebble-mini{flex:0 0 auto;flex-direction:row;justify-content:center;align-items:center;gap:8px}
+  .pebble-mini svg{flex:0 0 74px;width:74px}
+  .pebble-cap{flex:0 1 auto;text-align:left}
+  .pebble-tl{flex:1 1 100%}
+  /* 窄屏上题头最宽的一副是四行：那一块就占死四行，滩台照样不许在手指底下挪 */
+  .pebble-ask{min-height:calc(1.35em*4)}
+  #screen-pebble .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-pebble .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-pebble .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7025,8 +7092,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 99 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">99</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 100 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">100</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7037,12 +7104,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>99 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>41</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>100 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>42</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="pebbleCard" onclick="enterMode('pebble')">
+      <div class="icon">🪨</div>
+      <div class="info"><h3>笔顺抢石坊</h3><p id="pebbleCardTip">这个字有几笔，滩上就压几堆石头：一堆压一张牌，牌上写着这一笔是横是撇、每手最多取几颗。你和石妖轮流从该收那一堆里取子，谁取走最后一颗，那一笔就归谁背走 —— 它叼走了这个字就缺一笔、当场作废。兵法只有一句：剩的颗数正好是「每手上限 +1」的倍数时轮到谁谁输，他抓 x 你补满一圈，最后一颗就归你</p></div>
+      <span class="pebble-cdot" id="pebbleCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="soakCard" onclick="enterMode('soak')">
       <div class="icon">🖌️</div>
       <div class="info"><h3>笔顺洇纸坊</h3><p id="soakCardTip">一张粗纤维的宣纸，这个字几笔就在纸上占几串格子：笔尖落在哪一格、这一滴蓄几格墨、什么时候松手，就这三样。一滴能洇到哪几格由这张纸湿到几成说了算 —— 墨认湿路，已湿的格一块钱、干格两块钱。洒在字外的墨会自己连成一条穿过纸边的团，攒到三格纸就洇穿</p></div>
@@ -7791,6 +7863,83 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-pebble">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pebbleLeave()">← 返回</button>
+    <div class="stats"><span id="pebbleScoreTxt">🪨 0 分</span><span id="pebbleLvTxt">第 1 场 · 已收 0 字</span><span id="pebbleQTxt">⏳ 这一手 9 秒</span></div>
+    <button class="icon-btn" onclick="pebbleHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="pebble-hud">
+    <span id="pebbleRankTxt" title="称号">🌱 头一回抢石</span>
+    <span id="pebbleHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="pebbleComboTxt" title="连击">🔥 连 0</span>
+    <span id="pebbleGoalTxt" title="该收第几笔">🪨 第 1 笔</span>
+    <span id="pebbleHandTxt" title="双方手数">✋ 你 0 手 · 妖 0 手</span>
+    <span id="pebbleTakeTxt" title="本手取几颗">🖐 本手取 1 颗</span>
+    <span id="pebbleBagTxt" title="手袋">🖐 手袋剩 0 · 收 0 颗</span>
+    <span id="pebbleItTxt" title="先手在谁手里">🖐 轮到你</span>
+  </div>
+  <div class="pebble-ask" id="pebbleAsk">🪨 正在挑字……<br><small>在字库里找「每笔压得住一堆、一袋手数抢得完」的字</small></div>
+  <div class="pebble-stage">
+    <div class="pebble-mini">
+      <svg viewBox="0 -1024 1024 1024" id="pebbleMiniSvg"></svg>
+      <div class="pebble-cap" id="pebbleMiniCap">这片滩还没上字</div>
+    </div>
+    <div class="pebble-field" id="pebbleField">
+      <canvas class="pebble-canvas" id="pebbleCanvas" width="420" height="340"></canvas>
+      <div class="pebble-tag" id="pebbleTag">🪨 这片滩摆好了</div>
+    </div>
+  </div>
+  <div class="pebble-meter">
+    <div class="pebble-tl moves"><i id="pebbleMovesBar"></i><b id="pebbleMovesTxt">🖐 手袋 0 手</b></div>
+    <div class="pebble-tl qms"><i id="pebbleQmsBar"></i><b id="pebbleQmsTxt">⌛ 这一手 9 秒</b></div>
+    <div class="pebble-tl fuel"><i id="pebbleFuelBar"></i><b id="pebbleFuelTxt">🕯 这一场 —— 秒</b></div>
+  </div>
+  <div class="pebble-tools">
+    <button class="pebble-tool" id="pebbleAbacusBtn" disabled>🧮 摆算珠<span>G</span><b>剩 2</b></button>
+    <button class="pebble-tool" id="pebblePeekBtn" disabled>👁 看相<span>X</span><b>剩 2</b></button>
+    <button class="pebble-tool" id="pebbleMagnetBtn" disabled>🧲 吸石<span>M</span><b>剩 2</b></button>
+    <button class="pebble-tool" id="pebbleSwapBtn" disabled>🔁 换字<span>R</span><b>剩 1</b></button>
+    <button class="pebble-tool" id="pebbleHelpBtn">📖 说明<span>H</span></button>
+    <button class="pebble-tool" onclick="pebbleEnd('quit')">🏁 结算</button>
+  </div>
+  <div class="pebble-take">
+    <button class="step" id="pebbleLessBtn">−</button>
+    <button class="big" id="pebbleTakeBtn">🖐 出手取子<small>空格 ／ 手指点滩上第几颗，就是取几颗 · 最后一颗归你，这一笔就归你背</small></button>
+    <button class="step" id="pebbleMoreBtn">＋</button>
+  </div>
+  <div class="pebble-hintline" id="pebbleHintLine">🪨 <b>谁取走最后一颗，那一笔就归谁背走</b>：一圈是「每手上限 +1」颗 —— 他抓 x 你补满一圈</div>
+  <div class="pebble-msg" id="pebbleMsg">🪨 <b>这个字几笔就压几堆石头</b>：一堆一张牌，牌上写第几笔、是横是撇、每手最多取几颗（横 6 竖 4 撇 3 捺 5）<br>🧮 <b>兵法一句</b>：剩的颗数正好是「上限 +1」的倍数时轮到谁谁输 · <code>←→</code>／<code>AD</code> 挑堆 · <code>↑↓</code>／<code>WS</code> 或 <code>1~9</code> 定颗数 · <code>空格</code> 出手 · 🧮 <code>G</code> 算珠 · 👁 <code>X</code> 看相 · 🧲 <code>M</code> 吸石 · 🔁 <code>R</code> 换字 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-pebble-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pebbleLeave()">← 返回</button>
+    <div class="stats"><span id="pebbleRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="pebbleRsEmoji">🪨</div>
+    <div style="font-size:26px;font-weight:800" id="pebbleRsTitle">收齐了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="pebbleRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="pebble-pk" id="pebbleRsScore">🪨 0 分</span>
+      <span class="pebble-pk" id="pebbleRsWords">🈶 收齐 0 个字 · 落 0 手</span>
+      <span class="pebble-pk" id="pebbleRsHands">🖐 你 0 手 / 妖 0 手 · 一袋 0 手</span>
+      <span class="pebble-pk" id="pebbleRsStones">🪨 背走 0 颗 · 取走 0 颗</span>
+      <span class="pebble-pk" id="pebbleRsChain">🧮 凑 0 圈 · 一把清 0 堆 · 铁算盘 0 个字</span>
+      <span class="pebble-pk" id="pebbleRsBad">🐺 被叼 0 · 🖐 手袋空 0 · ⌛ 弃权 0</span>
+      <span class="pebble-pk" id="pebbleRsTools">🧮 算珠 0 · 👁 看相 0 · 🧲 吸石 0</span>
+      <span class="pebble-pk" id="pebbleRsBest">🏆 最高 0 分</span>
+    </div>
+    <div class="pebble-rs-book" id="pebbleRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="pebbleRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="pebbleRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="pebbleReBtn">🪨 再抢一场</button>
+      <button class="tool-btn" id="pebbleLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="pebbleHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -15057,6 +15206,7 @@ function updateHomeStats(){
   if(typeof sydNudge==='function')sydNudge();
   if(typeof foxNudge==='function')foxNudge();
   if(typeof soakNudge==='function')soakNudge();
+  if(typeof pebbleNudge==='function')pebbleNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -15102,6 +15252,7 @@ function enterMode(mode){
   if(mode==='shunt'){sydStart();return}
   if(mode==='fox'){foxStart();return}
   if(mode==='soak'){soakStart();return}
+  if(mode==='pebble'){pebbleStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -103302,6 +103453,1649 @@ function soakNudge(){
   if(tip)tip.textContent=games?(rk.e+' '+rk.t+' · 洇成 '+tot+' 个字 · 落 '+drops+' 滴 · 洇穿 '+skxInt('hz_soak_blurs')+
     ' 回 · 一滴到底 '+skxInt('hz_soak_snaps')+' 笔 · 家什架 '+shelf+' 件'):
     '一滴墨能洇到哪几格，由这张纸湿到几成说了算：墨认湿路 —— 洒在字外的墨自己连成一条贯穿纸边的团，纸就洇穿';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(games?'':'🆕')}
+}
+
+
+/* ================= v1.101 🪨 笔顺抢石坊（这个字几笔就摆几堆石头 · 一堆只归该收那一笔 · 谁取走最后一颗谁背走那一笔 ================= */
+/* 场：420×340 的一片石滩。这个字有几笔，滩上就压几堆石头 —— 一堆压一张牌，牌上写着这一笔是横是撇、每手最多取几颗。
+   两人轮流（孩子 ↔ 石妖）从**当前那一堆**里取子，一次至少一颗、至多上限颗；取到最后一颗的人把那一笔背走：
+   孩子背着了就是收下这一笔，妖叼走了这个字就缺一笔、当场作废。规矩全在整数上，一步也不靠手感 */
+const PPB_W=420,PPB_H=340;
+/* 一堆的石头：由这一笔的中线长度换算（长笔压大堆），最少 5 颗最多 26 颗。
+   地板压到 5 颗（比横的 6 颗、捺的 5 颗上限还矮）是有意留的那口气：最短的那一笔就该能一手取光整堆 —— 
+   「一把清 ×1.6」和孩子手里那张「快放手」石牌全都指这件事，光靠吸石抬两颗是抬不出来的 */
+const PPB_N_MIN=5,PPB_N_MAX=26,PPB_LEN_K=26,PPB_LEN_MIN=90;
+/* 每手最多取几颗**由笔形定**：横最长能捋 6 颗、竖 4、撇最短只捋 3、捺 5 —— 认得出这一笔是什么，才知道自己这一手能动几次 */
+const PPB_CAP4=[6,4,3,5];
+const PPB_TAG4=['横','竖','撇','捺'];
+const PPB_INK4=['#4FC3F7','#81C784','#FFD54F','#FFB74D'];
+/* 散石：发堆的时候往堆顶添几颗浮石，把这一堆的余数从「先手必输」扳成「先手必胜」—— 添几颗是算出来的，不是碰运气 */
+const PPB_SPARE_TRY=2,PPB_SPARE_MAX=4;
+/* 一手凑满一圈（对手取 x 你取 cap+1−x）叫「一凑」，攒够两凑这一堆就成环 */
+const PPB_CHAIN_PTS=6,PPB_LOOP_N=2;
+/* 一袋手数：一个字的总回合数，孩子与妖各占一手。最优走法一手就吃掉一圈，磨磨蹭蹭取一颗一手，袋子先空 */
+const PPB_MOV0=54,PPB_MOV_MIN=38,PPB_MOV_STEP=2,PPB_MOV_HEAD=8,PPB_MOV_LEFT=20;
+/* 两只钟：这一手的钟（磨蹭就弃权，妖替你取一颗并抢走先手）、这一场的钟 */
+const PPB_QMS0=9000,PPB_QMS_MIN=6200,PPB_QMS_STEP=300,PPB_WARN=.34;
+const PPB_FUEL0=150000,PPB_FUEL_MIN=98000,PPB_FUEL_STEP=6000;
+/* 妖出手的间隔 */
+const PPB_AI0=1150,PPB_AI_STEP=60,PPB_AI_MIN=620;
+/* 罚：错笔（动了不该动的那一堆）、影堆（这个字压根没有那一笔）、空手、弃权、被叼、袋空、换局 */
+const PPB_PEN_WRONG=6,PPB_PEN_FAKE=3,PPB_PEN_IDLE=3,PPB_PEN_TIME=3,PPB_PEN_ROB=8,PPB_PEN_EMPTY=5,PPB_PEN_SWAP=6;
+/* 奖：收齐一个字、整字没挨过罚、一件家什没借、铁算盘（这个字每一手都走在必胜线上）、剩在袋里的空手 */
+const PPB_WORD_PTS=28,PPB_CLEAN_PTS=18,PPB_DRY_PTS=12,PPB_IRON_PTS=20;
+/* 倍率：一把清（这一堆一手取光）、步步赢（这一堆你每一手都留给它必输的那个数）、成环（这一堆凑满两圈）*/
+const PPB_SWEEP_MULT=1.6,PPB_OPT_MULT=1.35,PPB_LOOP_MULT=1.2;
+/* 字的口径：几笔的字、至少两种笔形、影牌要有来源（这个字没用的那种笔形才拿来当影） */
+const PPB_STROKE_MIN=3,PPB_STROKE_MAX=6,PPB_KIND_MAX=3;
+const PPB_FILL_N=6,PPB_FILL_STEP=.05;
+const PPB_POOL_MIN=4,PPB_POOL_WANT=14;
+const PPB_HEARTS=3,PPB_HEART_MAX=5,PPB_BOOK_MAX=300;
+const PPB_P0=2;                                  /* 算珠 / 看相 / 吸石各几回 */
+const PPB_ABACUS_MS=3400;                        /* 摆算珠标一次线，亮多久 */
+const PPB_PEEK_MS=1;                             /* 看相一回：盯住妖下一手（到它出手为止） */
+const PPB_MAG_BONUS=2;                           /* 吸石：本手上限多两颗 */
+const PPB_NAG_MS=11000,PPB_NAG_HOLD=5200,PPB_HELP_MS=16000;
+const PPB_TAG_MS=2300;
+/* 滩面：上面一条牌带（一堆一张牌），牌下面是这一堆的石头，石头从滩线往上码 —— 取走的就是最上面那几颗 */
+const PPB_CARD_Y=8,PPB_CARD_H=46,PPB_GY=300;
+const PPB_RANKS=[
+  {n:0,e:'🌱',t:'头一回抢石'},{n:2,e:'🪨',t:'数得清颗'},{n:5,e:'✋',t:'掐得住最后一颗'},
+  {n:9,e:'🧮',t:'会凑一圈'},{n:14,e:'🐺',t:'敢跟妖算'},{n:21,e:'🏵',t:'石滩老手'},
+  {n:30,e:'🏮',t:'算珠不停'},{n:42,e:'🪨',t:'留得下一手'},{n:58,e:'👑',t:'妖见你绕道'}
+];
+const pebble={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],toneAt:0,tones:0,
+  pool:[],miss:[],rec:null,n:0,pi:0,poolWantMore:false,
+  lv:1,score:0,hearts:PPB_HEARTS,combo:0,maxCombo:0,
+  words:0,hands:0,itHands:0,takes:0,stones:0,
+  /* 这一个字的账（段 G 拿它跟滩上少的石头对总账）：w*=within word */
+  wHands:0,wItHands:0,wTakes:0,wItTakes:0,cleans:0,
+  sweeps:0,opts:0,loops:0,chains:0,irons:0,robbed:0,wrongs:0,fakes:0,idles:0,timeouts:0,empties:0,fuels:0,swaps:0,
+  tools:0,nags:0,handMax:0,chainRun:0,chainBest:0,
+  abacusN:PPB_P0,peekN:PPB_P0,magnetN:PPB_P0,swapN:1,
+  abacusUse:0,peekUse:0,magnetUse:0,swapUse:0,
+  abacusMs:0,nagMs:0,nagHold:0,helpMs:0,actMs:0,tagTimer:0,
+  /* 局面：piles[i]={k 第几笔,dir,n 原本几颗,s 散石,tot 总数,rem 还剩,cap 每手上限,x,y,ph 牌,影} */
+  piles:[],turn:0,aiMs:0,aiPlan:0,aiPeek:-1,qms:0,qms0:0,fuel:0,moves:0,warn:false,
+  /* 本手：take=准备取几颗（预览在最上面那几颗上），sel=眼下瞄着哪一堆 */
+  take:1,lastTake:0,sel:0,magnet:0,abacusT:0,peekMs:0,
+  /* 一堆内部的账：pileHands=这一堆你落了几手、pileOpt=这一堆目前步步都赢、chainRun=连了几凑 */
+  pileHands:0,pileOpt:true,prevIt:0,itLastTake:0,
+  snapWord:true,wordFoul:false,optAll:true,
+  /* 妖的账 */
+  itSmart:true,itStuck:0,
+  nudge:0,parts:[],dots:[],bound:false,tagOn:0,ctx:null,hudAcc:0,newBest:false,doneCh:[],gotIdx:[],
+  /* 挑字（等字数据回来那两秒）：两只钟停走 */
+  load:false
+};
+/* ---- 小工具 ---- */
+function pbxInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function pbxAdd(k,n){if(n)localStorage.setItem(k,String(pbxInt(k)+n))}
+function pbxPut(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
+function pbxSay(t,c){const el=document.getElementById('pebbleMsg');if(!el)return;el.innerHTML=t;if(c)el.style.color=c}
+function pbxShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function pbxOne(a){return a&&a.length?a[Math.floor(Math.random()*a.length)]:null}
+function pbxClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function pbxRok(d){return d>=0&&d<4?d:0}
+function pbxRank(x){let r=PPB_RANKS[0];for(let i=0;i<PPB_RANKS.length;i++)if(x>=PPB_RANKS[i].n)r=PPB_RANKS[i];return r}
+function pbxTone(f,d,t,v){
+  if(!pebble.run||pebble.over)return;
+  const n=performance.now();
+  if(n-pebble.toneAt<22)return;
+  pebble.tones++;tone(f,d,t,v);
+}
+function pbxT(fn,ms){const g=pebble.gen;const id=setTimeout(function(){const k=pebble.timers.indexOf(id);if(k>=0)pebble.timers.splice(k,1);if(g!==pebble.gen)return;fn()},ms);pebble.timers.push(id);return id}
+function pbxKillTimers(){pebble.timers.forEach(function(t){clearTimeout(t)});pebble.timers=[]}
+/* ---- 博弈的底：一堆剩 rem 颗、每手最多 cap 颗、轮到你取 —— 赢不赢？
+   win[0]=假（轮到你却没石头可取，就是你刚被对手取走最后一颗 ⇒ 对手背走这一笔，这一堆你输了）；
+   win[n]=∃t∈[1,min(cap,n)] 让 win[n−t] 为假 —— 段 B 自底向上把整张表填出来，段 G 拿「除 cap+1 看余数」那条老定理再填一遍，
+   两张表逐格比对：对上才敢把「留几颗稳赢」这句话印到题面上给孩子看 ---- */
+const PBWinTab={};
+function pbpWin(cap){
+  const c=Math.max(1,cap|0);
+  if(PBWinTab[c])return PBWinTab[c];
+  const w=[];
+  w[0]=0;
+  for(let n=1;n<=PPB_N_MAX+8;n++){
+    let win=0;
+    const hi=Math.min(c,n);
+    for(let t=1;t<=hi;t++){if(!w[n-t]){win=1;break}}
+    w[n]=win;
+  }
+  PBWinTab[c]=w;
+  return w;
+}
+/* 该取几颗：能留给对手必输的那几个 t 里挑最小的一个；一个都挑不出来（自己已在必输局）就取 1 颗等它犯错 */
+function pbpBest(cap,rem){
+  if(rem<=0)return 0;
+  const w=pbpWin(cap),hi=Math.min(cap,rem);
+  for(let t=1;t<=hi;t++)if(!w[rem-t])return t;
+  return 1;
+}
+function pbpWinAt(cap,rem){return rem<=0?0:pbpWin(cap)[rem]===1}
+/* 一圈几颗：双方各一手正好吃掉 cap+1 颗 —— 这一句话就是这一坊的全部兵法 */
+function pbpRound(cap){return cap+1}
+/* 最优走完这一堆要吃几手：一圈两手，最后再补一手收口 */
+function pbpHands(cap,rem){
+  const r=pbpRound(cap),q=Math.floor(rem/r),m=rem%r;
+  return m===0?q*2:q*2+1;
+}
+/* ---- 难度表：场越深，上限缩一挡、手数越少、妖越会算、牌上的数字越要孩子自己数 ---- */
+function pebbleLvOf(w){return Math.min(9,1+Math.floor(w/2))}
+function pebbleCap(dir,lv){return Math.max(2,PPB_CAP4[pbxRok(dir)]-(lv>=4?1:0))}
+function pebbleQms(lv){return Math.max(PPB_QMS_MIN,PPB_QMS0-(lv-1)*PPB_QMS_STEP)}
+function pebbleFuel(lv){return Math.max(PPB_FUEL_MIN,PPB_FUEL0-(lv-1)*PPB_FUEL_STEP)}
+function pebbleMoves(lv){return Math.max(PPB_MOV_MIN,PPB_MOV0-(lv-1)*PPB_MOV_STEP)}
+function pebbleAiMs(lv){return Math.max(PPB_AI_MIN,PPB_AI0-(lv-1)*PPB_AI_STEP)}
+/* 妖几成会走必胜线：第 3 场起它开始真算，第 6 场起每手都算 */
+function pebbleSmartP(lv){return lv<=2?.34:(lv<=5?.7:1)}
+/* 第 3 场起滩上掺影堆、第 4 场起堆的左右次序打乱（编号还在，得认牌）、第 6 场起牌上写不出总数（几颗得自己数）*/
+function pebbleFake(lv){return lv<=2?0:(lv<=5?1:2)}
+function pebbleShuf(lv){return lv>=4}
+function pebbleDim(lv){return lv>=6}
+function pebbleWant(lv){return lv<=2?[PPB_STROKE_MIN,5]:[PPB_STROKE_MIN,PPB_STROKE_MAX]}
+/* 收一笔吃多少分：一把清 ×1.6、这一堆步步赢 ×1.35、凑成环 ×1.2 */
+function pebbleGain(sweep,opt,loop){
+  return Math.round((9+pebble.combo*1.3+pebble.lv*1.9)*(sweep?PPB_SWEEP_MULT:1)*(opt?PPB_OPT_MULT:1)*(loop?PPB_LOOP_MULT:1));
+}
+
+/* ================= 段 B：这一笔压几颗石头 · 「散石扳余数」的死账 · 一袋手数够不够 · 字池与发堆 ================= */
+/* 这一坊敢开给孩子，压在两句死话上：
+   ① 每一堆都得是「先手赢得起」的数 —— 一堆剩 n 颗、每手最多 cap 颗，若 n 恰是 (cap+1) 的倍数，先手必输；
+      这种堆压着孩子该收的那一笔，等于一上手就把这一笔判给妖。所以发堆要往堆顶添几颗散石，把余数扳回来（添几颗是算出来的）；
+   ② 一袋手数要真够把这个字按最优走法收完，还得留下余货 —— 手数不够，收得再准也是白搭。
+   段 B 用自底向上的 win[] 表填这两笔账，段 G 拿「除 cap+1 看余数」那条老定理和双方最优对弈的模拟各再算一遍。*/
+const PPB_TIERS=[{lo:1,hi:2},{lo:3,hi:5},{lo:6,hi:9}];
+function pebbleTier(lv){return lv<=2?0:(lv<=5?1:2)}
+/* ---- 一笔的长短 → 几颗石头：拿这一笔中线的实际长度换算（横长堆大、撇短堆小），落不进 7~26 的字不玩 ---- */
+function pebbleLens(rec){
+  const a=[];
+  for(let i=0;i<rec.n;i++){
+    let L=0;const m=rec.meds[i];
+    for(let j=1;j<m.length;j++)L+=Math.hypot(m[j][0]-m[j-1][0],m[j][1]-m[j-1][1]);
+    if(L<PPB_LEN_MIN)return null;
+    a.push(L);
+  }
+  return a;
+}
+function pebbleStones(lens,fill){
+  const a=[];
+  for(let i=0;i<lens.length;i++){
+    const n=Math.round(lens[i]*(fill===undefined?1:fill)/PPB_LEN_K);
+    if(n<PPB_N_MIN||n>PPB_N_MAX)return null;
+    a.push(n);
+  }
+  return a;
+}
+/* ---- 散石分配：每一堆要么不用添（本来先手就赢），要么添 1~PPB_SPARE_TRY 颗把余数扳过来；
+       总数还得压在 PPB_SPARE_MAX 以内 —— 满滩都是浮石就太假了。深度优先把合格分配全收集下来（布局要的就是这几副不同的分配）---- */
+function pebbleSpares(ns,caps){
+  const out=[];
+  const walk=function(i,ds,sum){
+    if(i===ns.length){out.push({d:ds.slice(),sum:sum});return}
+    const r=pbpRound(caps[i]);
+    for(let d=0;d<=PPB_SPARE_TRY;d++){
+      if(sum+d>PPB_SPARE_MAX)break;
+      if((ns[i]+d)%r===0)continue;               /* 添成 (cap+1) 的倍数 = 亲手把这堆判给妖 */
+      ds.push(d);walk(i+1,ds,sum+d);ds.pop();
+    }
+  };
+  walk(0,[],0);
+  return out;
+}
+/* 一堆的账：颗数在范围内、且不是先手必输的那个数 */
+function pebblePileOk(tot,cap){
+  if(tot<PPB_N_MIN||tot>PPB_N_MAX+PPB_SPARE_TRY)return 0;
+  return tot%pbpRound(cap)===0?0:1;
+}
+/* ---- 一副布局过不过得了门：每一堆先手都赢得起（win 表口径）、按最优走完整个字吃几手，
+       加上手头余货塞得进这一场的袋子。返回最优手数，验不过返回 0 ---- */
+function pebbleWitness(list,moves){
+  let hands=0;
+  for(let i=0;i<list.length;i++){
+    const p=list[i];
+    if(p.fake)continue;
+    if(!pebblePileOk(p.tot,p.cap))return 0;
+    hands+=pbpHands(p.cap,p.tot);
+  }
+  return hands+PPB_MOV_HEAD<=moves?hands:0;
+}
+/* ---- 这个字过不过得了池门：三档口径（浅 1~2 / 中 3~5 / 深 6~9）每一档都要证得出两副布局，
+       而且证的是这一档最深那场（上限最小、手数最少）的账 —— 上限与手数都随场深单调，最深的都够，浅的更够。
+       影牌要有来源：这个字没用的那种笔形才拿来当影（ kinds≤3 那道门在 pebbleMake 里）---- */
+function pebbleAudit(rec){
+  const lays=[];
+  const lens=pebbleLens(rec);
+  if(!lens)return null;
+  for(let ti=0;ti<PPB_TIERS.length;ti++){
+    const t=PPB_TIERS[ti],moves=pebbleMoves(t.hi);
+    const caps=[];
+    for(let i=0;i<rec.n;i++)caps.push(pebbleCap(rec.dirs[i],t.hi));
+    const sig={};
+    let found=0;
+    for(let p=0;p<PPB_FILL_N&&found<2;p++){
+      const fill=1-p*PPB_FILL_STEP;
+      const ns=pebbleStones(lens,fill);
+      if(!ns)continue;
+      const list=pebbleSpares(ns,caps);
+      for(let a=0;a<list.length&&found<2;a++){
+        const d=list[a].d,piles=[],tot=[];
+        let bad=0;
+        for(let i=0;i<ns.length;i++){
+          const o={k:i,dir:pbxRok(rec.dirs[i]),n:ns[i],spare:d[i],tot:ns[i]+d[i],rem:ns[i]+d[i],cap:caps[i],x:0,y:0,fake:0,dead:0};
+          if(!pebblePileOk(o.tot,o.cap)){bad=1;break}
+          piles.push(o);tot.push(o.tot);
+        }
+        if(bad)continue;
+        const h=pebbleWitness(piles,moves);
+        if(!h)continue;
+        const sg=tot.join('.');
+        if(sig[sg])continue;
+        sig[sg]=1;
+        lays.push({t:ti,piles:piles,hands:h,spare:list[a].sum,sig:sg,fill:fill});
+        found++;
+      }
+    }
+    if(found<2)return null;
+  }
+  /* 影牌的笔形：这个字没用的那一种 */
+  rec.shadowDirs=[];
+  for(let d2=0;d2<4;d2++)if(rec.dirs.indexOf(d2)<0)rec.shadowDirs.push(d2);
+  if(!rec.shadowDirs.length)return null;
+  rec.lays=lays;
+  return lays;
+}
+/* ---- 这个字能不能拿来做这一坊：3~6 笔、笔形认得出、至少两种笔形（全是横的字没得抢）、最多三种（要给影牌留一种）、字要大 ---- */
+function pebbleMake(ch,raw){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  if(ms.length<PPB_STROKE_MIN||ms.length>PPB_STROKE_MAX)return null;
+  const dirs=[];
+  for(let i=0;i<ms.length;i++){const d=jtDirOf(ms[i]);if(d<0)return null;dirs.push(d)}
+  let kinds=0;
+  for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  let kc=0;for(let d2=0;d2<4;d2++)if(kinds&(1<<d2))kc++;
+  if(kc<2||kc>PPB_KIND_MAX)return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++)for(let j=0;j<ms[i].length;j++){
+    const x=ms[i][j][0],y=ms[i][j][1];
+    if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+  }
+  if(x1-x0<150||y1-y0<150)return null;            /* 太小的字每笔都短，堆就全挤成一样高 */
+  return {ch:ch,n:ms.length,dirs:dirs,paths:sp,meds:ms,
+    kinds:(function(){const a=[];for(let d2=0;d2<4;d2++)if(kinds&(1<<d2))a.push(d2);return a})(),
+    union:{x0:x0,x1:x1,y0:y0,y1:y1},lays:null};
+}
+/* ---- 字池：进池之前三档口径全证过 ---- */
+async function pebbleBuildPool(keep,lo,hi){
+  const g=pebble.gen,stale=function(){return g!==pebble.gen||!pebble.run||pebble.over};
+  const enough=function(){
+    if(!isFinite(lo))return pebble.pool.length>=PPB_POOL_WANT;
+    let c=0;
+    for(let i=0;i<pebble.pool.length;i++)if(pebble.pool[i].n>=lo&&pebble.pool[i].n<=hi)c++;
+    return c>=6||pebble.pool.length>=40;
+  };
+  pebble.miss=(localStorage.getItem('hz_pebble_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<240;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(pbxShuf(pebble.miss.slice(0,6)));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(pbxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(pbxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  push(pebbleLetters());
+  if(typeof CHARS!=='undefined')push(pbxShuf(CHARS.slice()));
+  if(!keep)pebble.pool=[];
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=pebbleMake(want[k+i],rs[i]);
+        if(m&&pebbleAudit(m)&&!pebble.pool.some(function(p){return p.ch===m.ch}))pebble.pool.push(m);
+      }
+    }
+  }
+  return pebble.pool.length>=PPB_POOL_MIN;
+}
+/* 这一坊吃「每一笔都拉得开」的字：横平竖直、撇捺舒展的最合适；圈成一团（口田皿）每笔都短，堆全是一样高 */
+function pebbleLetters(){
+  return '一二三十人大干土上下中正本末未朱休体林森相目且自白百吉'
+    +'天地人你我他她它们好坏多少大小中外早晚会工十士平幸左右友有'
+    +'年月午牛生王主玉田由甲申电男界町发变口可台史同向君合告员'
+    +'味和品唯一回因困在存它守居层岛已布带年并异弯强形彩表见观'
+    +'规视讲话谢象贝货资赏街开式待近返还进远选配采金针钉钓钝铃'
+    +'铁银需青非面顶项顺须风飞食饭马驶骨高鱼鸟麦米良走起始迎运'
+    +'道长门问间闻不上下小少尖尘尚光当学字常安宋宗宜定宝宫'
+    +'川州巢雨需雪雷雾青光日月明早晚昏易春是时景晒晴暖'
+    +'水冰冷热洗活流波泵沙沟河泉墨'
+    +'火灭灯炎照黑无焦爽人个大天夫太少尔尤就熟'
+    +'木本术机杀条来东松板极架样根格核'
+    +'手看拜拳拿掌相省直具典冬各同吉向君'.split('');
+}
+function pebblePickRec(){
+  const w=pebbleWant(pebble.lv);
+  let pool=pebble.pool.filter(function(r){return r.n>=w[0]&&r.n<=w[1]&&r.lays&&r.lays.length});
+  if(!pool.length)pool=pebble.pool.filter(function(r){return r.n>=PPB_STROKE_MIN&&r.n<=PPB_STROKE_MAX&&r.lays&&r.lays.length});
+  if(!pool.length)return null;
+  const cur=pebble.rec?pebble.rec.ch:'';
+  const rest=pool.filter(function(r){return r.ch!==cur});
+  if(rest.length)pool=rest;
+  const mis=pool.filter(function(r){return pebble.miss.indexOf(r.ch)>=0});
+  if(mis.length)return pbxOne(mis);
+  const fresh=pool.filter(function(r){return pebble.doneCh.indexOf(r.ch)<0});
+  if(fresh.length)return pbxOne(fresh);
+  return pbxOne(pool);
+}
+/* ---- 发堆：拿池里证过的布局，按这一场真正的上限与手数再核一遍；验不过就换一副，试满还不够就换一个字。
+       影堆在这一步掺进来（占滩上的位置、不占笔顺），第 4 场起堆的左右次序打乱 ---- */
+function pebbleDeal(rec,lv){
+  if(!rec)return null;
+  if(!rec.lays){rec.lays=pebbleAudit(rec);if(!rec.lays)return null}
+  const L=lv||pebble.lv,t=pebbleTier(L),moves=pebbleMoves(L);
+  const cand=rec.lays.filter(function(o){return o.t===t});
+  if(!cand.length)return null;
+  const list=pbxShuf(cand.slice());
+  for(let a=0;a<list.length;a++){
+    const piles=list[a].piles.map(function(o){
+      const cap=pebbleCap(rec.dirs[o.k],L);
+      return {k:o.k,dir:pbxRok(rec.dirs[o.k]),n:o.n,spare:o.spare,tot:o.tot,rem:o.tot,cap:cap,x:0,y:0,fake:0,dead:0};
+    });
+    const h=pebbleWitness(piles,moves);
+    if(!h)continue;
+    /* 影堆：笔形用这个字没有的那一种，颗数照这一场的上限算成一个「看着也像该收」的数 —— 也不许摆成先手必输 */
+    const fn=pebbleFake(L);
+    for(let f=0;f<fn&&rec.shadowDirs.length;f++){
+      const dir=rec.shadowDirs[f%rec.shadowDirs.length],cap=pebbleCap(dir,L);
+      let tot=PPB_N_MIN+((f*5+L*3)%(PPB_N_MAX-PPB_N_MIN));
+      if(tot%pbpRound(cap)===0)tot++;
+      piles.push({k:-1,dir:dir,n:tot,spare:0,tot:tot,rem:tot,cap:cap,x:0,y:0,fake:1,dead:0});
+    }
+    /* 滩上的左右次序：浅档按笔顺从左边摆起，第 4 场起打乱 —— 牌上的编号还在，认牌就得认笔顺 */
+    const seq=piles.slice();
+    if(pebbleShuf(L))pbxShuf(seq);
+    for(let s=0;s<seq.length;s++)seq[s].slot=s;
+    return {piles:seq,hands:h,spare:list[a].spare,sig:list[a].sig,shuf:pebbleShuf(L)?1:0};
+  }
+  return null;
+}
+
+/* ================= 段 C：取子 · 妖手 · 背笔与叼笔 · 四种塌法 · 四件家什 ================= */
+/* 出手是这一坊唯一的动词：轮到你、瞄着该收那一堆、本手取几颗 —— 三样都对，那一笔才归你。
+   妖的那一手在孩子出手那一刻就定下来（aiPlan），看相读的就是这本已经写好的账 —— 不许预告一套、落子另一套 */
+function pebblePenalty(n){
+  pebble.score=Math.max(0,pebble.score-n);
+  pebble.combo=0;pebble.wordFoul=true;pebble.snapWord=false;
+}
+function pebbleTag(txt,cls){
+  const el=document.getElementById('pebbleTag');
+  if(!el)return;
+  el.innerHTML=txt;
+  el.className='pebble-tag on'+(cls?' '+cls:'');
+  pebble.tagOn=1;
+  clearTimeout(pebble.tagTimer);
+  pebble.tagTimer=pbxT(function(){el.className='pebble-tag';pebble.tagOn=0},PPB_TAG_MS);
+}
+function pebbleFx(x,y,kind){
+  const n=kind==='rob'?24:(kind==='done'?18:9);
+  const cols=kind==='rob'?['#B71C1C','#E57373','#8D6E63']:(kind==='done'?['#FFD54F','#81C784','#FFF59D']:['#90A4AE','#5D4037','#CFD8DC']);
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,v=(kind==='rob'?1.8:1)+Math.random()*1.6;
+    pebble.parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-.8,m:0,life:400+Math.random()*360,c:cols[i%cols.length]});
+  }
+  if(pebble.parts.length>170)pebble.parts.shift();
+}
+function pebbleStepFx(dt){
+  for(let i=pebble.parts.length-1;i>=0;i--){
+    const p=pebble.parts[i];
+    p.m+=dt;p.x+=p.vx*dt/16;p.y+=p.vy*dt/16;p.vy+=dt/300;
+    if(p.m>=p.life)pebble.parts.splice(i,1);
+  }
+}
+/* ---- 该收那一堆 / 眼下瞄着哪一堆 ---- */
+function ppbCur(){
+  for(let i=0;i<pebble.piles.length;i++)if(!pebble.piles[i].fake&&pebble.piles[i].k===pebble.pi)return pebble.piles[i];
+  return null;
+}
+function ppbSel(){return pebble.piles.length?pebble.piles[pbxClamp(pebble.sel,0,pebble.piles.length-1)]:null}
+/* 这一把抓得住几颗：笔形给的上限，吸石多两颗，最多到这一堆剩的颗数 */
+function ppbCapOf(p){return p?Math.max(1,Math.min(p.cap+(pebble.magnet?PPB_MAG_BONUS:0),p.rem)):0}
+/* ---- 摆开一堆：局面交还给孩子（该收那堆先手、瞄准它、回合钟重新上弦）---- */
+function pebbleNewPile(){
+  const p=ppbCur();
+  pebble.sel=p?p.slot:0;
+  pebble.turn=1;pebble.magnet=0;
+  pebble.take=p?Math.min(1,ppbCapOf(p)):1;
+  pebble.pileHands=0;pebble.pileOpt=true;pebble.chainRun=0;
+  pebble.prevIt=0;pebble.itLastTake=0;pebble.aiPlan=0;pebble.itSmart=true;
+  pebble.qms0=pebbleQms(pebble.lv);pebble.qms=pebble.qms0;pebble.warn=false;
+  pebble.abacusMs=0;pebble.peekMs=0;
+  pebble.nagMs=0;pebble.nagHold=0;pebble.actMs=0;
+}
+/* ---- 妖这一手要抓几颗（一次定死，写进 aiPlan）：轮到它必胜且它真会算 —— 走必胜线；
+       它已经落在必输局 —— 瞎抓一把，等孩子漏一手 ---- */
+function ppbAiPlanOf(p){
+  if(!p||p.rem<=0)return 0;
+  const cap=Math.max(1,Math.min(p.cap,p.rem));
+  const smart=Math.random()<pebbleSmartP(pebble.lv);
+  pebble.itSmart=smart?1:0;
+  if(pbpWinAt(cap,p.rem)&&smart)return pbpBest(cap,p.rem);
+  return 1+Math.floor(Math.random()*cap);
+}
+/* 妖的那一手由主循环的 aiMs 驱动（不是 setTimeout）：说明、发呆、挑字这些空档里两只钟和妖的手一起停住 */
+function ppbAiDue(){return pebble.turn===0&&!pebble.load&&pebble.aiMs<=0}
+/* ---- 你这一手 ---- */
+function pebbleTakeGo(){
+  if(!pebble.run||pebble.over||pebble.load||!pebble.rec)return {why:'off'};
+  const cur=ppbCur(),p=ppbSel();
+  if(!cur)return {why:'off'};
+  if(pebble.helpMs>0){pebble.helpMs=0;return {why:'help'}}
+  if(p&&p.fake){                                /* 这个字压根没有那一笔：影堆 */
+    pebblePenalty(PPB_PEN_FAKE);pebble.fakes++;
+    pebbleFx(p.x,p.y-24,'dust');sndNo();
+    pebbleTag('👻 影堆 · 「'+PPB_TAG4[pbxRok(p.dir)]+'」这个字没有 −'+PPB_PEN_FAKE,'warn');
+    return {why:'fake'};
+  }
+  if(!p||p.k!==cur.k){                          /* 动了不该动的那一堆 = 错笔 */
+    pebblePenalty(PPB_PEN_WRONG);pebble.wrongs++;
+    pebbleFx(p?p.x:cur.x,p?p.y-24:cur.y,'dust');sndNo();
+    pebbleTag('🪨 错笔：该收第 '+(cur.k+1)+' 笔 · '+PPB_TAG4[pbxRok(cur.dir)]+' −'+PPB_PEN_WRONG,'warn');
+    return {why:'wrong'};
+  }
+  if(pebble.turn!==1){                          /* 妖还没松手，你这一把抓空 */
+    pebblePenalty(PPB_PEN_IDLE);pebble.idles++;
+    pebbleTag('🖐 空手：还没轮到你','warn');
+    sndNo();
+    return {why:'idle'};
+  }
+  if(pebble.moves<=0){ppbMovesExpire();return {why:'empty'}}
+  const hi=ppbCapOf(p),want=pebble.take|0;
+  if(want<1||want>hi){                          /* 一把抓不住那么多：不扣手数，原样退回 */
+    pebbleTag('🖐 这一把最多抓 '+hi+' 颗（'+PPB_TAG4[pbxRok(p.dir)]+' · 每手 ≤'+p.cap+
+      (pebble.magnet?('+'+PPB_MAG_BONUS):'')+'）','warn');
+    return {why:'over',hi:hi};
+  }
+  const t=Math.min(want,p.rem);
+  p.rem-=t;pebble.moves--;pebble.hands++;pebble.takes+=t;
+  pebble.wHands++;pebble.wTakes+=t;
+  if(pebble.hands>pebble.handMax)pebble.handMax=pebble.hands;
+  pebble.pileHands++;
+  pebble.lastTake=t;pebble.magnet=0;
+  pebble.actMs=0;pebble.nagMs=0;
+  /* 一凑：妖刚抓过 x 颗，你正好补满一圈（cap+1）—— 跟着它凑，就是这一坊的兵法 */
+  let chain=0;
+  if(pebble.prevIt&&pebble.itLastTake+t===pbpRound(p.cap)){
+    chain=1;pebble.chains++;pebble.chainRun++;
+    if(pebble.chainRun>pebble.chainBest)pebble.chainBest=pebble.chainRun;
+    pebble.score+=PPB_CHAIN_PTS;
+    pebbleTag('🧮 一凑 '+pebble.itLastTake+'+'+t+'='+pbpRound(p.cap)+' +'+PPB_CHAIN_PTS,'');
+  }
+  pebble.prevIt=0;
+  /* 这一手留给妖的是必输数吗 —— 不是，这一堆的「步步赢」就断了 */
+  if(pbpWinAt(p.cap,p.rem)){pebble.pileOpt=false;pebble.optAll=false}
+  pbxTone(300+t*46,.08,'triangle',.18);
+  pebbleFx(p.x,p.y-6-t*4,'dust');
+  if(chain)pbxTone(880,.1,'sine',.18);
+  if(p.rem<=0){ppbStrokeGo(p,t);return {why:pebble.pileHands<=1&&t===p.tot?'sweep':'stroke',t:t,chain:chain}}
+  pebble.turn=0;
+  pebble.aiMs=pebbleAiMs(pebble.lv);
+  pebble.aiPlan=ppbAiPlanOf(cur);
+  pebble.take=Math.min(pebble.take,ppbCapOf(ppbCur()));
+  return {why:'take',t:t,rem:p.rem,chain:chain};
+}
+/* ---- 妖落子 ---- */
+function ppbAiGo(){
+  if(!pebble.run||pebble.over||pebble.load)return {why:'off'};
+  const cur=ppbCur();
+  if(!cur)return {why:'off'};
+  if(cur.rem<=0){ppbStrokeGo(cur,0);return {why:'stroke'}}
+  if(pebble.moves<=0){ppbMovesExpire();return {why:'empty'}}
+  const p=cur,hi=Math.max(1,Math.min(p.cap,p.rem));
+  let t=pebble.aiPlan>0?Math.min(pebble.aiPlan,hi):ppbAiPlanOf(p);
+  if(t>p.rem)t=p.rem;
+  pebble.aiPlan=0;
+  p.rem-=t;pebble.moves--;pebble.itHands++;pebble.itLastTake=t;pebble.prevIt=1;
+  pebble.wItHands++;pebble.wItTakes+=t;
+  pebbleFx(p.x,p.y-6-t*4,'rob');
+  pbxTone(180+t*30,.12,'sawtooth',.16);
+  if(p.rem<=0){ppbRobGo(p);return {why:'rob',t:t}}
+  pebble.turn=1;
+  pebble.qms0=pebbleQms(pebble.lv);pebble.qms=pebble.qms0;pebble.warn=false;
+  pebble.take=Math.min(pebble.take,ppbCapOf(p));
+  pebble.actMs=0;
+  return {why:'it',t:t,rem:p.rem};
+}
+/* ---- 背走这一笔（你取到最后一颗）：收讫、连击、下一堆还是你先手 ---- */
+function ppbStrokeGo(p,t){
+  const sweep=pebble.pileHands===1&&t===p.tot?1:0;
+  const opt=pebble.pileOpt?1:0;
+  const loop=pebble.chainRun>=PPB_LOOP_N?1:0;
+  if(sweep)pebble.sweeps++;
+  if(opt)pebble.opts++;
+  if(loop)pebble.loops++;
+  const gain=pebbleGain(sweep,opt,loop);
+  pebble.score+=gain;pebble.combo++;
+  if(pebble.combo>pebble.maxCombo)pebble.maxCombo=pebble.combo;
+  pebble.gotIdx[p.k]=1;p.dead=1;
+  pebble.stones+=p.tot;
+  pebble.pi++;
+  pebbleFx(p.x,p.y-30,'done');
+  sndStar();pbxTone(700+p.k*90,.14,'triangle',.2);
+  if(pebble.pi>=pebble.n){
+    pebbleTag('🪨 最后一笔背回来了','gold');
+    pebbleWordGo();
+  }else{
+    pebbleTag('✅ 第 '+(p.k+1)+' 笔 · '+PPB_TAG4[pbxRok(p.dir)]+' 背走了 +'+gain+
+      (sweep?' 一把清':'')+(opt?' 步步赢':'')+(loop?' 成环':''),(sweep||opt)?'gold':'');
+    pebbleNewPile();
+  }
+  return {gain:gain,sweep:sweep,opt:opt,loop:loop};
+}
+/* ---- 妖叼走这一笔：这个字缺了一笔，当场作废 ---- */
+function ppbRobGo(p){
+  pebble.hearts--;pebble.robbed++;
+  pebblePenalty(PPB_PEN_ROB);
+  p.dead=2;
+  pebbleMissAdd(pebble.rec.ch);
+  pebbleFx(p.x,p.y-28,'rob');
+  sndNo();pbxTone(120,.5,'sawtooth',.24);
+  pebbleTag('🐺 第 '+(p.k+1)+' 笔被妖叼走了 −'+PPB_PEN_ROB,'warn');
+  if(pebble.hearts<=0){pebbleEnd('rob');return}
+  pebbleNextWord();
+}
+/* ---- 四种塌法：被叼、袋空、弃权（这一手的钟走光，妖替你抓一颗）、场钟走光 ---- */
+function ppbMovesExpire(){
+  pebble.hearts--;pebble.empties++;
+  pebblePenalty(PPB_PEN_EMPTY);
+  pebbleMissAdd(pebble.rec.ch);
+  sndNo();
+  pebbleTag('🖐 手袋空了 −'+PPB_PEN_EMPTY,'warn');
+  if(pebble.hearts<=0){pebbleEnd('moves');return}
+  pebbleNextWord();
+}
+function ppbQmsExpire(){
+  pebblePenalty(PPB_PEN_TIME);pebble.timeouts++;pebble.optAll=false;pebble.pileOpt=false;
+  pebbleTag('⌛ 这一手磨没了：妖替你抓一颗 −'+PPB_PEN_TIME,'warn');
+  pbxTone(160,.4,'square',.18);
+  pebble.turn=0;pebble.prevIt=1;
+  pebble.aiMs=Math.max(320,pebbleAiMs(pebble.lv)-260);
+  pebble.aiPlan=ppbAiPlanOf(ppbCur());
+  pebble.qms0=pebbleQms(pebble.lv);pebble.qms=pebble.qms0;pebble.warn=false;
+}
+function ppbFuelExpire(){
+  pebble.hearts--;pebble.fuels++;
+  pebblePenalty(PPB_PEN_TIME);
+  pebbleMissAdd(pebble.rec.ch);
+  pebbleTag('⏳ 这一场收摊了 −'+PPB_PEN_TIME,'warn');
+  if(pebble.hearts<=0){pebbleEnd('time');return}
+  pebbleNextWord();
+}
+/* ---- 一个字收齐：袋里剩的手、整字没挨罚、家什没借、全程算珠没拨错，四笔账一起结 ---- */
+function pebbleWordGo(){
+  const left=Math.min(PPB_MOV_LEFT,pebble.moves);
+  let bonus=PPB_WORD_PTS+left;
+  if(!pebble.wordFoul)bonus+=PPB_CLEAN_PTS;
+  if(pebble.tools===0)bonus+=PPB_DRY_PTS;
+  let iron=0;
+  if(pebble.optAll){bonus+=PPB_IRON_PTS;iron=1;pebble.irons++}
+  if(!pebble.wordFoul)pebble.cleans++;
+  pebble.score+=bonus;
+  pebble.words++;pebble.doneCh.push(pebble.rec.ch);
+  pebbleBookAdd(pebble.rec.ch);
+  sndDone();
+  pebbleFx(PPB_W/2,120,'done');
+  pebbleBankLite();
+  pebble.lv=pebbleLvOf(pbxInt('hz_pebble_words'));
+  if(pebble.words%3===0&&pebble.hearts<PPB_HEART_MAX)pebble.hearts++;
+  pebbleTag('🈶 '+pebble.rec.ch+' 收齐了 +'+bonus+(iron?' · 铁算盘':''),'gold');
+  pebbleNextWord();
+}
+/* ---- 四件家什 ---- */
+function pebbleAbacusGo(){
+  if(pebble.abacusN<=0||!pebble.run||pebble.over||pebble.load)return 0;
+  pebble.abacusN--;pebble.abacusUse++;pebble.tools++;
+  pebble.abacusMs=PPB_ABACUS_MS;
+  const cur=ppbCur();
+  pebble.abacusT=cur?pbpBest(Math.max(1,Math.min(cur.cap,cur.rem)),cur.rem):0;
+  pbxTone(980,.12,'triangle',.16);
+  pebbleTag(cur?('🧮 算珠：这一手取 '+pebble.abacusT+' 颗 · 一圈 '+pbpRound(cur.cap)+' 颗'):'🧮 算珠：这一堆已经空了','');
+  return 1;
+}
+function pebblePeekGo(){
+  if(pebble.peekN<=0||!pebble.run||pebble.over||pebble.load)return 0;
+  const cur=ppbCur();
+  if(!cur)return 0;
+  pebble.peekN--;pebble.peekUse++;pebble.tools++;
+  if(!pebble.aiPlan)pebble.aiPlan=ppbAiPlanOf(cur);
+  pebble.peekMs=3400;
+  pbxTone(1180,.1,'sine',.14);
+  pebbleTag('👁 看相：它这一手要抓 '+pebble.aiPlan+' 颗','');
+  return 1;
+}
+function pebbleMagnetGo(){
+  if(pebble.magnetN<=0||!pebble.run||pebble.over||pebble.load)return 0;
+  const cur=ppbCur();
+  if(!cur||pebble.turn!==1)return 0;
+  pebble.magnetN--;pebble.magnetUse++;pebble.tools++;
+  pebble.magnet=1;
+  pbxTone(620,.14,'sine',.16);
+  pebbleTag('🧲 吸石：这一把多抓 '+PPB_MAG_BONUS+' 颗（顶 '+(cur.cap+PPB_MAG_BONUS)+' 颗）','');
+  return 1;
+}
+function pebbleSwapGo(){
+  if(pebble.swapN<=0||!pebble.run||pebble.over||pebble.load)return 0;
+  pebble.swapN--;pebble.swaps++;pebble.swapUse++;pebble.tools++;
+  pebblePenalty(PPB_PEN_SWAP);
+  pebbleTag('🔁 换一个字重摆 −'+PPB_PEN_SWAP,'');
+  pebbleNextWord(true);
+  return 1;
+}
+
+/* ================= 段 D：画这一片石滩 ================= */
+function pebbleCanvasSize(){
+  const cv=document.getElementById('pebbleCanvas');
+  if(!cv)return;
+  cv.width=PPB_W;cv.height=PPB_H;
+  pebble.ctx=cv.getContext?cv.getContext('2d'):null;
+}
+/* 滩上的噪石：固定种子，一开页就造好 —— 背景不动，孩子才数得清哪几颗是这一堆的 */
+function pebbleDots(){
+  if(pebble.dots&&pebble.dots.length)return pebble.dots;
+  let s=7723;const a=[];
+  const rnd=function(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff};
+  for(let i=0;i<64;i++){
+    a.push({x:8+rnd()*(PPB_W-16),y:PPB_GY+6+rnd()*(PPB_H-PPB_GY-14),r:2+rnd()*4,v:rnd()});
+  }
+  for(let i=0;i<26;i++)a.push({x:6+rnd()*(PPB_W-12),y:60+rnd()*(PPB_H-130),r:1+rnd()*2,v:rnd()});
+  pebble.dots=a;return a;
+}
+/* ---- 滩面布局：堆数决定堆宽，堆宽决定一排几颗、一颗多大 —— 纯函数，画的时候和点的时候算的是同一套坐标 ---- */
+function pebbleGeo(){
+  const n=Math.max(1,pebble.piles.length);
+  const pw=Math.max(38,Math.min(78,Math.floor((PPB_W-16)/n)));
+  const per=Math.max(3,Math.min(5,Math.floor(pw/13)));
+  const r=Math.max(5,Math.min(8,Math.floor(pw/(per*2))-1));
+  const gap=r*2+2,step=r*1.78;
+  const x0=(PPB_W-pw*n)/2+pw/2;
+  return {n:n,pw:pw,per:per,r:r,gap:gap,step:step,x0:x0,gy:PPB_GY};
+}
+function ppbPileX(i,g){return g.x0+i*g.pw}
+/* 第 idx 颗石头（从下往上、从整排到不满的那排）摆在哪 —— 取走的就是序号最大的那几颗 */
+function ppbStoneXY(p,idx,g){
+  const row=Math.floor(idx/g.per);
+  const cnt=Math.max(1,Math.min(g.per,p.rem-row*g.per));
+  const x=p.x+(idx%g.per-(cnt-1)/2)*g.gap;
+  const y=g.gy-row*g.step-g.r;
+  return {x:x,y:y,row:row,skel:idx>=p.rem};
+}
+/* ---- 滩：暮色下的河滩，牌带压在上方，滩线以下卧着噪石 ---- */
+function pebbleGround(c){
+  const g=c.createLinearGradient(0,0,0,PPB_H);
+  g.addColorStop(0,'#33272B');g.addColorStop(.55,'#4A3B33');g.addColorStop(1,'#2B1F1B');
+  c.fillStyle=g;c.fillRect(0,0,PPB_W,PPB_H);
+  /* 河面：滩线下面一层深水，边上两道波纹 */
+  const wg=c.createLinearGradient(0,PPB_GY,0,PPB_H);
+  wg.addColorStop(0,'#4E6E77');wg.addColorStop(1,'#22383F');
+  c.fillStyle=wg;c.fillRect(0,PPB_GY+4,PPB_W,PPB_H-PPB_GY-4);
+  c.strokeStyle='rgba(255,255,255,.13)';c.lineWidth=1;
+  for(let k=0;k<3;k++){
+    c.beginPath();
+    for(let x=0;x<=PPB_W;x+=8){
+      const y=PPB_GY+12+k*13+Math.sin((x+k*40)/26+pebble.t/(900+k*300))*2.2;
+      if(x)c.lineTo(x,y);else c.moveTo(x,y);
+    }
+    c.stroke();
+  }
+  /* 滩身：中间一大片被水冲平的浅沙 */
+  c.fillStyle='rgba(214,197,168,.20)';
+  c.beginPath();
+  c.moveTo(0,PPB_GY+6);
+  c.quadraticCurveTo(PPB_W*.34,PPB_GY-120,PPB_W*.62,PPB_GY-40);
+  c.quadraticCurveTo(PPB_W*.82,PPB_GY+2,PPB_W,PPB_GY-16);
+  c.lineTo(PPB_W,PPB_GY+30);c.lineTo(0,PPB_GY+30);
+  c.closePath();c.fill();
+  c.strokeStyle='rgba(255,236,200,.16)';c.lineWidth=1.4;
+  c.beginPath();c.moveTo(0,PPB_GY+5);c.lineTo(PPB_W,PPB_GY+5);c.stroke();
+  const ds=pebbleDots();
+  for(let i=0;i<ds.length;i++){
+    const d=ds[i];
+    c.fillStyle='rgba(226,214,192,'+(.05+d.v*.10).toFixed(3)+')';
+    c.beginPath();c.ellipse(d.x,d.y,d.r,d.r*.72,0,0,Math.PI*2);c.fill();
+  }
+}
+/* ---- 一张石头 ---- */
+function ppbRock(c,x,y,r,shade){
+  c.beginPath();
+  for(let k=0;k<10;k++){
+    const a=k/10*Math.PI*2,rr=r*(k%2?.86:1.04);
+    const px=x+Math.cos(a)*rr,py=y+Math.sin(a)*rr*.86;
+    if(k)c.lineTo(px,py);else c.moveTo(px,py);
+  }
+  c.closePath();
+  const gg=c.createLinearGradient(x,y-r,x,y+r);
+  gg.addColorStop(0,shade?'#8C8C96':'#B9AFA0');
+  gg.addColorStop(1,shade?'#4E4A55':'#6D6455');
+  c.fillStyle=gg;c.fill();
+  c.strokeStyle='rgba(28,20,18,.5)';c.lineWidth=.8;c.stroke();
+  c.fillStyle='rgba(255,246,224,.30)';
+  c.beginPath();c.ellipse(x-r*.28,y-r*.30,r*.30,r*.17,-.5,0,Math.PI*2);c.fill();
+}
+/* ---- 牌：一张竹牌写着这一笔是什么、每手最多几颗、压着几颗（第 6 场起总数不写，得自己数）---- */
+function ppbCard(c,p,g,cur){
+  const w=g.pw-6,h=PPB_CARD_H;
+  const x=p.x-w/2,y=PPB_CARD_Y;
+  c.save();
+  if(p.dead===1)c.globalAlpha=.42;
+  if(p.dead===2)c.globalAlpha=.5;
+  /* 牌身 */
+  const cg=c.createLinearGradient(x,y,x,y+h);
+  cg.addColorStop(0,p.fake?'#5B4B68':'#EFE0C4');
+  cg.addColorStop(1,p.fake?'#3A2F45':'#CBB48D');
+  c.fillStyle=cg;
+  c.beginPath();c.rect(x,y,w,h);c.fill();
+  c.strokeStyle=cur?'#FFD54F':(p.fake?'#8A6FA0':'rgba(62,39,35,.7)');
+  c.lineWidth=cur?2.4:1.2;c.strokeRect(x+.5,y+.5,w-1,h-1);
+  /* 牌头一笔形色条 */
+  c.fillStyle=PPB_INK4[pbxRok(p.dir)];
+  c.fillRect(x+2,y+2,w-4,4);
+  const dim=pebbleDim(pebble.lv);
+  c.textAlign='center';
+  c.fillStyle=p.fake?'#E1D6EE':'#3E2723';
+  c.font='bold 13px sans-serif';
+  c.fillText(p.fake?'？':PPB_TAG4[pbxRok(p.dir)],p.x,y+20);
+  c.font='bold 10px sans-serif';
+  c.fillStyle=p.fake?'#CBB8DE':(cur?'#B71C1C':'#5D4037');
+  const no=p.fake?'影':('第'+(p.k+1)+'笔');
+  c.fillText(no+' · ≤'+p.cap+(pebble.magnet&&cur?'+2':''),p.x,y+32);
+  c.fillStyle=p.fake?'#9C86B4':(dim?'#8D6E63':'#263238');
+  c.font=(dim?'bold 11px':'bold 12px')+' sans-serif';
+  c.fillText(dim?(p.dead?'—':'自己数'):('压'+p.rem+'颗'),p.x,y+h-4);
+  if(p.dead===1){
+    c.strokeStyle='#1B5E20';c.lineWidth=2.4;
+    c.beginPath();c.moveTo(p.x-8,y+h-16);c.lineTo(p.x-2,y+h-10);c.lineTo(p.x+9,y+h-24);c.stroke();
+  }
+  if(p.dead===2){
+    c.strokeStyle='#B71C1C';c.lineWidth=2.4;
+    c.beginPath();c.moveTo(p.x-8,y+h-22);c.lineTo(p.x+8,y+h-8);c.moveTo(p.x+8,y+h-22);c.lineTo(p.x-8,y+h-8);c.stroke();
+  }
+  c.restore();
+}
+/* ---- 一堆的石头 + 预览：要取走的那几颗描金，算珠标的是「取 t 颗」也就照那几颗描 ---- */
+function ppbPile(c,p,g){
+  const cur=!!pebble.rec&&!p.fake&&p.k===pebble.pi&&!p.dead;
+  const sel=p===ppbSel();
+  const showTake=(cur&&pebble.turn===1)?pbxClamp(pebble.take|0,0,Math.min(p.rem,ppbCapOf(p))):0;
+  const ab=(pebble.abacusMs>0&&cur&&pebble.turn===1)?pbxClamp(pebble.abacusT|0,0,p.rem):0;
+  /* 已经不在滩上的那些（这一堆被取走的）不画；rem 颗从下往上码 */
+  for(let i=0;i<p.rem;i++){
+    const s=ppbStoneXY(p,i,g);
+    const top=i>=p.rem-showTake;
+    if(top){c.strokeStyle='rgba(255,213,79,.95)';c.lineWidth=1.8}
+    else if(ab&&i>=p.rem-ab){c.strokeStyle='rgba(79,195,247,.9)';c.lineWidth=1.4}
+    else c.strokeStyle=null;
+    ppbRock(c,s.x,s.y,g.r,p.fake);
+    if(c.strokeStyle){c.beginPath();c.arc(s.x,s.y,g.r+2.4,0,Math.PI*2);c.stroke()}
+  }
+  /* 瞄准框：从牌顶一直圈到滩线 —— 石头是往上少的，框子不动，孩子才知道瞄的是哪一堆 */
+  if(sel&&!p.dead){
+    c.save();
+    c.strokeStyle=cur?(p.rem?'rgba(255,241,196,.85)':'rgba(255,241,196,.4)'):'rgba(255,138,0,.75)';
+    c.setLineDash(cur?[]:[4,3]);
+    c.lineWidth=cur?1.6:1.2;
+    c.strokeRect(p.x-g.pw/2+2,PPB_CARD_Y-4,g.pw-4,(PPB_GY-g.r+g.r*.8)-PPB_CARD_Y+6);
+    c.restore();
+  }
+}
+/* ---- 谁的手在上面：轮到孩子写 ✋、轮到妖写 🐺，都挂在当前那堆的牌顶上 ---- */
+function ppbTurnMark(c,p){
+  const y=PPB_CARD_Y+PPB_CARD_H+16;
+  c.save();
+  c.textAlign='center';
+  c.font='15px sans-serif';
+  c.globalAlpha=pebble.turn===1?.95:.85;
+  c.fillText(pebble.turn===1?'✋':'🐺',p.x,y);
+  if(pebble.aiPlan>0&&pebble.peekMs>0){
+    c.font='bold 10px sans-serif';c.fillStyle='#CE93D8';c.globalAlpha=1;
+    c.fillText('它要抓 '+pebble.aiPlan+' 颗',p.x,y+13);
+  }
+  c.restore();
+}
+/* ---- 一袋手数：右下角一小袋，剩下的手画成一排勾 ---- */
+function ppbMovesBag(c){
+  const mv=pebbleMoves(pebble.lv),left=Math.max(0,pebble.moves);
+  const k=Math.max(0,Math.min(1,left/mv));
+  c.save();
+  c.fillStyle='rgba(0,0,0,.4)';c.fillRect(PPB_W-92,PPB_H-13,84,8);
+  c.fillStyle=k>.28?'#A1887F':'#BF360C';c.fillRect(PPB_W-91,PPB_H-12,82*k,6);
+  c.fillStyle='rgba(255,241,196,.88)';c.font='9px sans-serif';c.textAlign='right';
+  c.fillText('手袋 '+left+'/'+mv,PPB_W-8,PPB_H-16);
+  /* 这一手的钟：左下角一段会缩的弧 */
+  if(pebble.qms>0&&pebble.turn===1){
+    const q=Math.max(0,Math.min(1,pebble.qms/Math.max(1,pebble.qms0)));
+    c.strokeStyle=q<.34?'#FF7043':'rgba(255,241,196,.6)';
+    c.lineWidth=2.6;
+    c.beginPath();c.arc(16,PPB_H-16,9,-Math.PI/2,-Math.PI/2+Math.PI*2*q);c.stroke();
+    c.fillStyle='rgba(255,241,196,.7)';c.textAlign='center';c.font='8px sans-serif';
+    c.fillText('⌛',16,PPB_H-13);
+  }
+  c.restore();
+}
+function pebbleDrawFx(c){
+  for(let i=0;i<pebble.parts.length;i++){
+    const p=pebble.parts[i];
+    const k=1-p.m/p.life;
+    c.fillStyle=p.c;c.globalAlpha=Math.max(0,k*.9);
+    c.fillRect(p.x-2,p.y-2,4*(.4+k),4*(.4+k));
+  }
+  c.globalAlpha=1;
+}
+function pebbleDraw(){
+  const c=pebble.ctx;
+  if(!c)return;
+  pebbleGround(c);
+  if(!pebble.piles.length){ppbMovesBag(c);return}
+  const g=pebbleGeo();
+  for(let i=0;i<pebble.piles.length;i++)pebble.piles[i].x=ppbPileX(i,g);
+  /* 影堆的石头掺在滩上有点透，看着就比真堆虚 */
+  for(let i=0;i<pebble.piles.length;i++){
+    const p=pebble.piles[i];
+    c.save();
+    if(p.fake)c.globalAlpha=.62;
+    if(p.dead){/* 收走／叼走的堆：滩上已经没石头，只剩牌 */}
+    ppbPile(c,p,g);
+    c.restore();
+  }
+  for(let i=0;i<pebble.piles.length;i++)ppbCard(c,pebble.piles[i],g,!pebble.piles[i].fake&&pebble.piles[i].k===pebble.pi);
+  const cur=ppbCur();
+  if(cur&&!cur.dead&&pebble.turn>=0)ppbTurnMark(c,cur);
+  ppbMovesBag(c);
+  pebbleDrawFx(c);
+}
+/* ---- 手点在哪：先认堆（横向落在谁的牌宽里），再认那颗石头 —— 点第几颗（从下往上数）就是本手取几颗 ---- */
+function pebbleHit(x,y){
+  if(!pebble.piles.length)return {p:-1,s:-1};
+  const g=pebbleGeo();
+  let bi=-1,bd=1e9;
+  for(let i=0;i<pebble.piles.length;i++){
+    const p=pebble.piles[i],d=Math.abs(x-p.x);
+    if(d<=g.pw/2&&d<bd){bd=d;bi=i}
+  }
+  if(bi<0)return {p:-1,s:-1};
+  const p=pebble.piles[bi];
+  let si=-1,sd=1e9;
+  for(let k=0;k<p.rem;k++){
+    const s=ppbStoneXY(p,k,g),d=Math.hypot(x-s.x,y-s.y);
+    if(d<g.r*1.9&&d<sd){sd=d;si=k}
+  }
+  return {p:bi,s:si};
+}
+function pebblePt2(e){
+  const cv=document.getElementById('pebbleCanvas');
+  if(!cv)return {p:-1,s:-1};
+  const r=cv.getBoundingClientRect();
+  if(!r.width)return {p:-1,s:-1};
+  const x=(e.clientX-r.left)*(PPB_W/r.width),y=(e.clientY-r.top)*(PPB_H/r.height);
+  if(x<0||y<0||x>PPB_W||y>PPB_H)return {p:-1,s:-1};
+  return pebbleHit(x,y);
+}
+/* ---- 样图：米字格里这个字，背回来的笔按笔形色压黑 ---- */
+function pebbleMini(){
+  const svg=document.getElementById('pebbleMiniSvg');
+  if(!svg)return;
+  const rec=pebble.rec;
+  if(!rec||!rec.paths){svg.innerHTML='';return}
+  let s='';
+  for(let i=0;i<rec.paths.length;i++){
+    const got=!!pebble.gotIdx[i];
+    const p=rec.paths[i];
+    const dPath=Array.isArray(p)?p.map(function(q,k){return (k?'L':'M')+q[0]+' '+q[1]}).join(''):String(p||'');
+    if(!dPath)continue;
+    s+='<path d="'+dPath+'" fill="none" stroke="'+(got?PPB_INK4[pbxRok(rec.dirs[i])]:
+      (pebbleDim(pebble.lv)?'#5C5148':'#8B7B66'))+'" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" opacity="'+
+      (got?.95:(pebbleDim(pebble.lv)?.15:.3))+'"/>';
+  }
+  svg.innerHTML='<g transform="scale(1,-1)">'+s+'</g>';
+}
+
+/* ================= 段 E：主循环 · 键与手 · HUD · 生命周期 ================= */
+/* 本手取几颗只由瞄准与颗数两样决定：←→ 挑堆、↑↓ 或 1~9 定颗数、空格（或点那颗石头）出手 —— 出手前预览一直描金 */
+function pebbleTakeHi(){
+  const p=ppbSel();
+  return p?ppbCapOf(p):0;
+}
+function pebbleTakeSet(v){
+  /* 故意不许按上限截：孩子按 9 就是想抓 9 颗，那一手要照实退回（不扣手数），比偷偷改成 6 颗讲得清 */
+  pebble.take=pbxClamp(v|0,1,PPB_N_MAX+PPB_SPARE_TRY);
+  pebble.actMs=0;pebble.nagMs=0;
+}
+function pebbleTakeNudge(d){
+  pebbleTakeSet(pebble.take+d);
+  pbxTone(340+pebble.take*60,.04,'sine',.08);
+}
+function pebbleSelNudge(d){
+  if(!pebble.piles.length)return;
+  pebble.sel=(pebble.sel+d+pebble.piles.length)%pebble.piles.length;
+  pebble.actMs=0;pebble.nagMs=0;
+  pbxTone(520,.03,'sine',.07);
+}
+function pebbleSelTo(i){
+  if(!pebble.piles.length)return;
+  pebble.sel=pbxClamp(i|0,0,pebble.piles.length-1);
+  pebble.actMs=0;pebble.nagMs=0;
+}
+/* ---- 主循环：两只钟 + 妖的手 + 发呆口诀都由这一处走，空档（说明／挑字）一律停表 ---- */
+function pebbleTick(dt){
+  if(pebble.helpMs>0){
+    pebble.helpMs-=dt;
+    pebble.abacusMs=Math.max(0,pebble.abacusMs-dt);
+    pebble.peekMs=Math.max(0,pebble.peekMs-dt);
+    return;
+  }
+  pebble.playMs+=dt;pebble.actMs+=dt;pebble.fuel-=dt;
+  if(pebble.turn===1){
+    if(pebble.qms>0){
+      pebble.qms-=dt;
+      if(pebble.qms<=0)ppbQmsExpire();
+      else if(!pebble.warn&&pebble.qms<=pebble.qms0*PPB_WARN){pebble.warn=true;pbxTone(660,.12,'square',.12)}
+    }
+  }else if(pebble.turn===0){
+    pebble.aiMs-=dt;
+    if(ppbAiDue())ppbAiGo();
+  }
+  if(pebble.abacusMs>0)pebble.abacusMs-=dt;
+  if(pebble.peekMs>0){
+    pebble.peekMs-=dt;
+    if(pebble.turn!==0)pebble.peekMs=0;          /* 看相盯的是妖那一手，它落了子这条信息就作废 */
+  }
+  if(pebble.nagHold>0)pebble.nagHold-=dt;
+  else if(pebble.actMs>=PPB_NAG_MS){
+    pebble.actMs=0;pebble.nags++;pebble.nagMs=PPB_NAG_MS;pebble.nagHold=PPB_NAG_HOLD;
+    const cur=ppbCur();
+    pebble.nagTip=cur?('这一堆剩 '+cur.rem+' 颗、一圈 '+pbpRound(cur.cap)+' 颗 —— 该取 '+
+      pbpBest(Math.max(1,Math.min(cur.cap,cur.rem)),cur.rem)+' 颗'):'先挑该收那一堆，↑↓ 定颗数，空格出手';
+  }
+  pebbleStepFx(dt);
+  if(pebble.fuel<=0){ppbFuelExpire();return}
+}
+/* ---- HUD ---- */
+function pebbleToolBtn(id,n){
+  const b=document.getElementById(id);
+  if(!b)return;
+  b.disabled=!(n>0&&pebble.run&&!pebble.over);
+  const k=b.querySelector('b');
+  if(k)k.textContent='剩 '+n;
+}
+function pebbleMeter(id,txtId,v,t,fmt){
+  const bar=document.getElementById(id),tx=document.getElementById(txtId);
+  const p=t>0?Math.max(0,Math.min(1,v/t)):0;
+  if(bar)bar.style.width=Math.round(p*100)+'%';
+  if(tx)tx.innerHTML=fmt;
+  return p;
+}
+function pebbleRowState(id,cls,on){
+  const bar=document.getElementById(id),row=bar&&bar.parentNode;
+  if(row)row.classList.toggle(cls,!!on);
+}
+function pebbleHud(){
+  if(!pebble.run)return;
+  const tot=pbxInt('hz_pebble_words'),rk=pbxRank(tot);
+  const hs=Math.max(PPB_HEARTS,pebble.hearts);
+  let h='';
+  for(let i=0;i<pebble.hearts;i++)h+='❤️';
+  for(let i=pebble.hearts;i<hs;i++)h+='🤍';
+  pbxPut('pebbleRankTxt',rk.e+' '+rk.t);
+  pbxPut('pebbleHeartTxt',h||'💔');
+  pbxPut('pebbleComboTxt','🔥 连 '+pebble.combo);
+  const cur=ppbCur();
+  pbxPut('pebbleGoalTxt','🪨 第 '+Math.min(pebble.pi+1,pebble.n)+' 笔'+
+    (cur?(' · '+PPB_TAG4[pbxRok(cur.dir)]+' · 剩 '+cur.rem+' 颗'):''));
+  pbxPut('pebbleHandTxt','✋ 你 '+pebble.hands+' 手 · 妖 '+pebble.itHands+' 手');
+  pbxPut('pebbleTakeTxt',cur?('🖐 本手取 '+pebble.take+'/'+pebbleTakeHi()+' 颗（一圈 '+pbpRound(cur.cap)+'）'):'🖐 本手 —');
+  pbxPut('pebbleBagTxt','🖐 手袋剩 '+pebble.moves+' · 收 '+pebble.stones+' 颗');
+  pbxPut('pebbleItTxt',pebble.turn===1?'🖐 轮到你':'🐺 妖在算'+(pebble.peekMs>0?'：要抓 '+pebble.aiPlan+' 颗':''));
+  pbxPut('pebbleScoreTxt','🪨 '+pebble.score+' 分');
+  pbxPut('pebbleLvTxt','第 '+pebble.lv+' 场 · 已收 '+tot+' 字');
+  pbxPut('pebbleQTxt','⏳ 这一手 '+Math.ceil(Math.max(0,pebble.qms)/1000)+' 秒');
+  pebbleMeter('pebbleMovesBar','pebbleMovesTxt',Math.max(0,pebble.moves),pebbleMoves(pebble.lv),
+    '🖐 手袋 '+Math.max(0,pebble.moves)+' 手'+(pebble.moves<=6?'（快空了）':''));
+  pebbleMeter('pebbleQmsBar','pebbleQmsTxt',Math.max(0,pebble.qms),pebble.qms0,
+    '⌛ 这一手 '+Math.ceil(Math.max(0,pebble.qms)/1000)+' 秒');
+  pebbleMeter('pebbleFuelBar','pebbleFuelTxt',Math.max(0,pebble.fuel),pebbleFuel(pebble.lv),
+    '🕯 这一场 '+Math.ceil(Math.max(0,pebble.fuel)/1000)+' 秒');
+  pebbleRowState('pebbleMovesBar','low',pebble.moves<=6);
+  pebbleRowState('pebbleQmsBar','low',pebble.warn===true);
+  pebbleRowState('pebbleFuelBar','low',pebble.fuel<=pebbleFuel(pebble.lv)*0.2);
+  pebbleToolBtn('pebbleAbacusBtn',pebble.abacusN);
+  pebbleToolBtn('pebblePeekBtn',pebble.peekN);
+  pebbleToolBtn('pebbleMagnetBtn',pebble.magnetN);
+  pebbleToolBtn('pebbleSwapBtn',pebble.swapN);
+  pebbleMini();
+  const cap=document.getElementById('pebbleMiniCap');
+  if(cap)cap.textContent=pebble.rec?(pebble.rec.ch+' · '+pebble.rec.n+' 笔 · 背回 '+
+    pebble.gotIdx.filter(function(o){return o}).length+' 笔'):'这片滩还没上字';
+  const tb=document.getElementById('pebbleTakeBtn');
+  if(tb)tb.disabled=!cur||pebble.turn!==1;
+}
+/* ---- 题头（占死三行，只许换字不许换行数）---- */
+function pebbleAsk(){
+  if(!pebble.run||pebble.over||!pebble.rec){pbxPut('pebbleAsk','🪨 这片滩还没上字<br><small>点「再抢一场」</small>');return}
+  if(pebble.helpMs>0){pbxPut('pebbleAsk','🪨 <b>怎么抢这一堆</b><br><small>两只钟与妖的手都先停住</small>');return}
+  if(pebble.nagHold>0){
+    pbxPut('pebbleAsk','🌱 <b>口诀</b>：一圈 '+((ppbCur()?ppbCur().cap:4)+1)+' 颗 —— 他抓 x 你补 '+
+      (ppbCur()?ppbCur().cap+1:5)+'−x<br><small>'+pebble.nagTip+'</small>');
+    return;
+  }
+  if(pebble.load){pbxPut('pebbleAsk','🪨 <b>正在挑字</b><br><small>这一坊的字要每笔都压得住一堆、一袋手数抢得完</small>');return}
+  const cur=ppbCur(),p=ppbSel();
+  if(!cur){pbxPut('pebbleAsk','🪨 <b>该收那一堆已经空了</b><br><small>这一笔让妖叼走了，这个字作废 —— 换一个重摆</small>');return}
+  const hi=pebbleTakeHi();
+  pbxPut('pebbleAsk','🪨 该收 <b>第 '+(pebble.pi+1)+' 笔 · '+PPB_TAG4[pbxRok(cur.dir)]+
+    '</b>（'+cur.rem+' 颗 · 每手 ≤'+cur.cap+(pebble.magnet?('+'+PPB_MAG_BONUS):'')+'）· 这个字还剩 <b>'+
+    (pebble.n-pebble.pi)+'</b> 笔<br><small>'+(!p||p.k!==cur.k?'⚠️ 瞄错了堆（点右边那张 '+PPB_TAG4[pbxRok(cur.dir)]+' 牌）':
+      ('本手取 '+pebble.take+' 颗 · ←→ 挑堆 · ↑↓ 或 1~9 改颗数 · 空格 出手'))+
+    ' · 手袋剩 '+pebble.moves+' 手</small>');
+  if(hi>0&&pebble.take>hi)pbxPut('pebbleTakeTxt','🖐 本手取 '+pebble.take+' 颗（抓不住，顶 '+hi+' 颗）');
+}
+/* ---- 说明行：眼下最该知道的那一句 ---- */
+function pebbleLine(){
+  if(!pebble.run)return;
+  let txt;
+  const cur=ppbCur(),p=ppbSel(),hi=pebbleTakeHi();
+  if(pebble.helpMs>0)txt='🛑 <b>歇一记看说明</b>：两只钟与妖的手全停住，按任意键就回到滩上';
+  else if(pebble.nagHold>0)txt='🌱 <b>发呆口诀</b>：'+(pebble.nagTip||'一圈 cap+1 颗，跟着它凑最省手');
+  else if(!cur)txt='🐺 <b>该收那一堆没了</b>：这一笔已经被妖叼走，这个字作废 —— 换一个重摆';
+  else if(p&&p.fake)txt='👻 <b>那是影堆</b>：牌上的「'+PPB_TAG4[pbxRok(p.dir)]+'」这个字压根没有 —— 动它 −'+PPB_PEN_FAKE;
+  else if(p&&p.k!==cur.k)txt='🪨 <b>瞄错了堆</b>：这一堆是第 '+(p.k+1)+' 笔的，眼下该收第 '+(cur.k+1)+' 笔 · '+
+    PPB_TAG4[pbxRok(cur.dir)]+' —— 错笔 −'+PPB_PEN_WRONG;
+  else if(pebble.turn!==1)txt='🐺 <b>妖的手还没收</b>：它抓 '+Math.max(1,pebble.aiPlan||1)+' 颗（'+
+    Math.ceil(Math.max(0,pebble.aiMs)/1000)+' 秒后落下）—— 这时候出手算空手';
+  else if(pebble.take>hi)txt='🖐 <b>一把抓不住 '+pebble.take+' 颗</b>：'+PPB_TAG4[pbxRok(cur.dir)]+
+    ' 每手最多 '+hi+' 颗 —— ↑ 往下减、或者直接点滩上第 '+hi+' 颗';
+  else if(pebble.qms>0&&pebble.qms<=pebble.qms0*PPB_WARN)txt='🔥 <b>这一手的钟要走光了</b>：走光就弃权，'+
+    '妖替你抓一颗还抢走先手 —— <b>别磨，出手</b>';
+  else if(pebble.moves<=6)txt='🖐 <b>手袋只剩 '+pebble.moves+' 手</b>：一圈才吃 '+pbpRound(cur.cap)+
+    ' 颗 —— 别一手一颗地磨，<b>一次抓满</b>才省手';
+  else if(!pbpWinAt(Math.max(1,Math.min(cur.cap,cur.rem)),cur.rem))
+    txt='🐺 <b>它留给你的是必输数</b>：'+cur.rem+' 颗 · 一圈 '+pbpRound(cur.cap)+
+      ' 颗正好除尽 —— 怎么取都翻不回来，<b>抓 1 颗</b>等它下一手犯错（一抓就是 '+PPB_TAG4[pbxRok(cur.dir)]+' 的短手）';
+  else txt='🧮 <b>该取 '+pbpBest(Math.max(1,Math.min(cur.cap,cur.rem)),cur.rem)+' 颗</b>：取完剩 '+
+    (cur.rem-pbpBest(Math.max(1,Math.min(cur.cap,cur.rem)),cur.rem))+
+    ' 颗 —— 正好是一圈（'+pbpRound(cur.cap)+' 颗）的倍数，它接下来怎么抓都翻不回来'+
+    '（他抓 x 你补 '+pbpRound(cur.cap)+'−x）';
+  pbxPut('pebbleHintLine',txt);
+}
+/* ---- 帮助 ---- */
+function pebbleHelp(){
+  if(!pebble.run)return;
+  pebble.helpMs=PPB_HELP_MS;
+  pbxPut('pebbleAsk','🪨 <b>怎么抢这一堆</b><br><small>两只钟与妖的手都先停住</small>');
+  pbxSay('🪨 <b>一句话的道理</b>：这个字有几笔，滩上就压几堆石头；一堆压一张牌，牌上写这一笔是横是撇、'+
+    '<b>每手最多取几颗</b>（横 6、竖 4、撇 3、捺 5 —— 认得出笔形才知道自己动得了几次）。'+
+    '你和石妖<b>轮流</b>从<b>该收那一堆</b>里取，取到<b>最后一颗</b>的人把那一笔背走：你背着了就是收下这一笔，'+
+    '它叼走了这个字就缺一笔、当场作废。<br>'+
+    '<b>兵法只有一句</b>：一堆剩的颗数正好是<b>「每手上限 +1」的倍数</b>时，轮到谁谁输 —— 这叫<b>一圈</b>。'+
+    '所以<b>他抓 x 颗，你就补满一圈（cap+1−x）</b>，一路补到最后一颗归你。发堆的时候滩顶本来就添了几颗散石，'+
+    '把这一堆从必输扳成必赢，<b>该取几颗是算得出的</b>（🧮 摆算珠就给你标出来）。<br>'+
+    '<b>怎么算分</b>：背走一笔 <b>'+Math.round(9+pebble.lv*1.9)+'</b> 分起（连击越长越厚）—— <b>一把清</b>（这一堆一手取光）×'+PPB_SWEEP_MULT+
+    '、<b>步步赢</b>（这一堆你每一手都留给它必输的数）×'+PPB_OPT_MULT+
+    '、<b>成环</b>（这一堆凑满两圈）×'+PPB_LOOP_MULT+'；收齐一个字 +'+PPB_WORD_PTS+
+    '，整字没挨罚 +'+PPB_CLEAN_PTS+'、一件家什没借 +'+PPB_DRY_PTS+'、<b>铁算盘</b>（整个字每一手都走在必胜线上）+'+PPB_IRON_PTS+'。<br>'+
+    '<b>四种塌法</b>：被叼（那一笔归妖，掉一颗心）· 手袋空了（一个字的总手数用完）· 弃权（这一手的钟走光，妖替你抓一颗还抢走先手）· 收摊（这一场钟走光）。'+
+    '另外还有<b>错笔</b>−'+PPB_PEN_WRONG+'（动了不该动那一堆）与<b>影堆</b>−'+PPB_PEN_FAKE+'（牌上那个笔形这个字压根没有）。<br>'+
+    '<b>四件家什</b>：🧮 算珠标「这一手该取几颗」· 👁 看相盯住妖<b>已经定死</b>的下一手 · 🧲 吸石本手多抓 '+PPB_MAG_BONUS+
+    ' 颗 · 🔁 换一个字重摆。<br>'+
+    '<small>第 3 场起滩上掺影堆，第 4 场起堆的左右次序打乱（编号还在，得认牌），第 6 场起牌上不写几颗 —— 得自己数。'+
+    '按任意键回到滩上。</small>','#FFE0B2');
+  pebbleAsk();pebbleLine();pebbleHud();
+}
+/* ---- 事件绑定：只绑一次 ---- */
+function pebbleBind(){
+  if(pebble.bound)return;
+  pebble.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!pebble.run||pebble.over)return;
+    if(pebble.helpMs>0){pebble.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){pebbleLeave();return}
+    if(k==='h'||k==='?'){pebbleHelp();e.preventDefault();return}
+    if(k==='arrowleft'||k==='a'){pebbleSelNudge(-1);e.preventDefault();return}
+    if(k==='arrowright'||k==='d'){pebbleSelNudge(1);e.preventDefault();return}
+    if(k==='arrowup'||k==='w'){pebbleTakeNudge(1);e.preventDefault();return}
+    if(k==='arrowdown'||k==='s'){pebbleTakeNudge(-1);e.preventDefault();return}
+    if(k>='1'&&k<='9'){pebbleTakeSet(+k);e.preventDefault();return}
+    if(k==='0'){pebbleTakeSet(10);e.preventDefault();return}
+    if(k==='g'){pebbleAbacusGo();e.preventDefault();return}
+    if(k==='x'){pebblePeekGo();e.preventDefault();return}
+    if(k==='m'){pebbleMagnetGo();e.preventDefault();return}
+    if(k==='r'){pebbleSwapGo();e.preventDefault();return}
+    if(k===' '||k==='spacebar'){pebbleTakeGo();e.preventDefault()}
+  });
+  const cv=document.getElementById('pebbleCanvas');
+  if(cv){
+    cv.addEventListener('pointerdown',function(e){
+      const h=pebblePt2(e);
+      if(h.p<0)return;
+      if(h.s>=0)pebbleTakeSet(h.s+1);else pebbleSelTo(h.p);
+      e.preventDefault();
+    });
+    cv.addEventListener('pointerup',function(e){
+      const h=pebblePt2(e);
+      if(h.p>=0&&h.p===pebble.sel&&h.s>=0)pebbleTakeGo();
+      e.preventDefault();
+    });
+    cv.addEventListener('pointermove',function(e){
+      const h=pebblePt2(e);
+      if(h.p>=0){pebbleSelTo(h.p);if(h.s>=0)pebbleTakeSet(h.s+1)}
+    });
+    cv.addEventListener('pointercancel',function(){});
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(e){if(pebble.helpMs>0){pebble.helpMs=0;return}on();e.preventDefault()});
+  };
+  tap('pebbleAbacusBtn',function(){pebbleAbacusGo()});
+  tap('pebblePeekBtn',function(){pebblePeekGo()});
+  tap('pebbleMagnetBtn',function(){pebbleMagnetGo()});
+  tap('pebbleSwapBtn',function(){pebbleSwapGo()});
+  tap('pebbleHelpBtn',function(){pebbleHelp()});
+  tap('pebbleTakeBtn',function(){pebbleTakeGo()});
+  tap('pebbleLessBtn',function(){pebbleTakeNudge(-1)});
+  tap('pebbleMoreBtn',function(){pebbleTakeNudge(1)});
+  tap('pebbleReBtn',function(){pebbleRestart()});
+  tap('pebbleLabBtn',function(){pebbleLeave('lab')});
+  tap('pebbleHomeBtn',function(){pebbleLeave()});
+}
+/* ---- 循环 ---- */
+function pebbleStartLoop(){
+  if(pebble.rafId)return;
+  pebble.last=performance.now();
+  function step(now){
+    if(!pebble.run||pebble.over){pebble.rafId=0;return}
+    const dt=Math.min(120,Math.max(8,now-pebble.last));
+    pebble.last=now;pebble.t+=dt;
+    if(!pebble.load)pebbleTick(dt);
+    pebbleDraw();
+    if(pebble.hudAcc>=120){pebble.hudAcc=0;pebbleHud();pebbleLine();pebbleAsk()}
+    pebble.hudAcc+=dt;
+    pebble.rafId=requestAnimationFrame(step);
+  }
+  pebble.rafId=requestAnimationFrame(step);
+}
+function pebbleStopLoop(){if(pebble.rafId){cancelAnimationFrame(pebble.rafId);pebble.rafId=0}}
+function pebbleStopAll(){pebbleStopLoop();pbxKillTimers();pebble.gen++;pebble.turn=0}
+/* ---- 摆一片新滩（挑字、发堆、开秤）---- */
+function pebbleNewWord(deal){
+  pebble.piles=deal.piles;
+  pebble.n=pebble.rec.n;pebble.pi=0;pebble.gotIdx=[];
+  pebble.moves=pebbleMoves(pebble.lv);   /* 段 B 证的死账是「最优手数 + 余货 ≤ 这一场的手袋」，发下来的就是这一场的整袋 */
+  pebble.optAll=true;pebble.wordFoul=false;pebble.snapWord=true;
+  pebble.chainRun=0;pebble.pileHands=0;pebble.pileOpt=true;
+  /* 这一副滩的石头账与手数账从头记，不接着上一副字累 */
+  pebble.wHands=0;pebble.wItHands=0;pebble.wTakes=0;pebble.wItTakes=0;
+  pebble.magnet=0;pebble.abacusMs=0;pebble.peekMs=0;pebble.aiPlan=0;
+  pebble.fuel=pebbleFuel(pebble.lv);
+  for(let i=0;i<pebble.piles.length;i++){pebble.piles[i].rem=pebble.piles[i].tot;pebble.piles[i].dead=0}
+  pebbleNewPile();
+  pebbleMini();
+}
+async function pebbleNextWord(swap){
+  pebble.load=true;pebble.turn=0;pebble.aiMs=0;
+  pbxPut('pebbleAsk','🪨 <b>正在挑字</b><br><small>这一坊的字要每笔都压得住一堆、一袋手数抢得完</small>');
+  const g=pebble.gen;
+  const w=pebbleWant(pebble.lv);
+  let ok=pebble.pool.length>=PPB_POOL_MIN;
+  if(!ok||pebble.poolWantMore){
+    pebble.poolWantMore=false;
+    ok=await pebbleBuildPool(true,w[0],w[1]);
+    if(g!==pebble.gen||!pebble.run||pebble.over)return;
+  }
+  let started=0;
+  for(let a=0;a<8&&!started;a++){
+    const rec=pebblePickRec();
+    if(!rec)break;
+    const deal=pebbleDeal(rec,pebble.lv);
+    if(!deal){
+      /* 这一档发不出堆：把这个字从池里摘掉，换一个 */
+      const k=pebble.pool.indexOf(rec);
+      if(k>=0){pebble.pool.splice(k,1);pebble.poolWantMore=true}
+      continue;
+    }
+    pebble.rec=rec;
+    pebbleNewWord(deal);
+    started=1;
+  }
+  if(!started){
+    /* 池子是空的就不许把「挑字中」放下来：场钟在空档里走光会把这一场判成「收摊」，
+       而那笔账根本还没有一堆石头可记 */
+    if(!pebble.pool.length){ok=await pebbleBuildPool(false);if(g!==pebble.gen||!pebble.run)return;ok=ok||pebble.pool.length>0}
+    if(!ok){pebbleEnd('pool');return}
+    pebbleNextWord(swap);
+    return;
+  }
+  pebble.load=false;
+  if(swap)pbxSay('🔁 换了一个字：该收第 1 笔 · '+PPB_TAG4[pbxRok(ppbCur().dir)]+'，手袋 '+pebble.moves+' 手','#FFE0B2');
+  pebbleHud();pebbleAsk();pebbleLine();
+  return 1;
+}
+function pebbleStart(){
+  showScreen('pebble');
+  const fd0=document.getElementById('pebbleField');if(fd0)fd0.classList.remove('dead');
+  pebbleBind();
+  pebbleCanvasSize();
+  pebble.run=true;pebble.over=false;pebble.gen++;
+  pebble.lv=pebbleLvOf(pbxInt('hz_pebble_words'));
+  pebble.score=0;pebble.combo=0;pebble.maxCombo=0;pebble.words=0;pebble.hearts=PPB_HEARTS;
+  pebble.hands=0;pebble.itHands=0;pebble.takes=0;pebble.stones=0;pebble.handMax=0;pebble.chainBest=0;
+  pebble.sweeps=0;pebble.opts=0;pebble.loops=0;pebble.chains=0;pebble.irons=0;
+  pebble.robbed=0;pebble.wrongs=0;pebble.fakes=0;pebble.idles=0;pebble.timeouts=0;pebble.empties=0;pebble.swaps=0;
+  pebble.tools=0;pebble.nags=0;pebble.cleans=0;pebble.fuels=0;pebble.t=0;pebble.playMs=0;pebble.hudAcc=0;pebble.newBest=false;
+  pebble.abacusN=PPB_P0;pebble.peekN=PPB_P0;pebble.magnetN=PPB_P0;pebble.swapN=1;
+  pebble.abacusUse=0;pebble.peekUse=0;pebble.magnetUse=0;pebble.swapUse=0;
+  pebble.doneCh=[];pebble.gotIdx=[];pebble.actMs=0;pebble.tagOn=0;
+  pebble.book=null;pebble.aiPlan=0;pebble.itStuck=0;
+  pebble.sel=0;pebble.take=1;pebble.magnet=0;pebble.abacusT=0;pebble.peekMs=0;
+  pebble.prevIt=0;pebble.itLastTake=0;pebble.pileHands=0;pebble.pileOpt=true;pebble.chainRun=0;
+  pebble.turn=0;pebble.aiMs=0;pebble.qms=0;pebble.qms0=0;pebble.fuel=0;pebble.moves=0;pebble.warn=false;
+  pebble.rec=null;pebble.piles=[];pebble.n=0;pebble.pi=0;pebble.load=false;
+  pebbleStartLoop();
+  pebbleNextWord();
+  pbxSay('🪨 滩摆好了：这个字几笔就压几堆石头 —— 谁取走最后一颗，那一笔就归谁背走','#FFE0B2');
+}
+function pebbleEnd(why){
+  if(pebble.over)return;
+  pebble.over=true;pebble.load=false;pebble.turn=0;
+  pebbleStopAll();
+  pebble.parts=[];
+  const tg=document.getElementById('pebbleTag');if(tg)tg.className='pebble-tag';
+  clearTimeout(pebble.tagTimer);pebble.tagOn=0;
+  const fd=document.getElementById('pebbleField');if(fd)fd.classList.add('dead');
+  showScreen('pebble-result');
+  pebbleFillResult(why);
+}
+function pebbleRestart(){
+  const fd=document.getElementById('pebbleField');if(fd)fd.classList.remove('dead');
+  showScreen('pebble');
+  pebbleStart();
+}
+function pebbleLeave(where){
+  pebbleStopAll();
+  pebble.run=false;pebble.over=false;
+  const fd=document.getElementById('pebbleField');
+  if(pebble.over&&fd)fd.classList.add('dead');
+  if(where==='lab'){goLab();return}
+  goHome();
+}
+
+/* ================= 段 F：落盘与结算 · 家什架 · 把这一滩的凭据拿另一条路再算一遍（只读，不许碰场上任何东西） ================= */
+/* hz_pebble_* 的分工：一堆累计计数键（收成的字/你落的手/妖落的手/取走的颗/背走的石头/凑的圈/一把清/步步赢/成环/
+   铁算盘/被叼/错笔/影堆/空手/弃权/手袋空/换字/家什/发呆/开局/整字没挨罚/干净字）
+   + 几个 max 键（最好一场分数/最长连击/最深一场）
+   + 一个 avg 键（平均每落一手多少毫秒，越小越熟）
+   + 三个名单键（滩上图鉴 hz_pebble_book · 错字本 hz_pebble_miss · 家什架 hz_pebble_shelf）。
+   称号读累计收成的字数 hz_pebble_words，不是「最好一场」那个。 */
+/* ---- 这一坊敢开给孩子，靠的是四句死话：
+   ① 一堆剩几颗、轮到你，赢不赢算得出（win[] 表），题面「该取几颗」也照这张表给 —— 孩子照了就一定赢
+   ② 一袋手数真够把这个字按最优走法收完，还留得下余货（段 B 的最低手数账）
+   ③ 摆出来的每一堆都不许是「先手必输」的那个数 —— 那种堆压着该收那一笔，等于一上手就把这一笔判给妖
+   ④ 妖的那一手在孩子出手那一刻就定死（aiPlan），看相读的就是这本已写好的账 —— 不许预告一套、落子另一套
+   段 B/C 用自底向上的 win[] 表与 pbpBest 写了一遍①③，这里全用另一种写法（「除 cap+1 看余数」那条老定理 +
+   双方最优对弈的模拟 + 石头总账）再算一遍，两边对不上，这套凭据就当场作废 —— 探针读的全是这一段算出来的数，绝不改任何一个量。*/
+/* ---- ① 的另一种算法：不看表，只看余数 ---- */
+function pebbleAudWin(cap,rem){
+  if(rem<=0)return 0;
+  return rem%(cap+1)===0?0:1;
+}
+function pebbleAudBest(cap,rem){
+  if(rem<=0)return 0;
+  const r=cap+1,m=rem%r;
+  if(m!==0&&m<=cap)return m;                       /* 赢得起：一把把余数拿干净 */
+  return 1;                                        /* 已经在必输局：磨一手，等它犯错 */
+}
+function pebbleAudRound(cap){return cap+1}
+/* ---- ③ 的另一种算法：不查表，直接看这一堆的余数 ---- */
+function pebbleAudPileOk(tot,cap){
+  if(tot<PPB_N_MIN||tot>PPB_N_MAX+PPB_SPARE_TRY)return 0;
+  return tot%(cap+1)===0?0:1;
+}
+/* ---- ② 的另一种算法：双方都按定理走最优，一手一手模拟下去，数各吃几手、最后一颗归谁 ---- */
+function pebbleAudSim(cap,rem){
+  let r=rem,who=0,ch=0,ih=0,ct=0,it=0,g=0,loop=0;
+  while(r>0&&++loop<600){
+    const t=Math.min(pebbleAudBest(cap,r),r);
+    if(who===0){ch++;ct+=t}else{ih++;it+=t}
+    r-=t;who=1-who;g++;
+  }
+  return {hands:g,ch:ch,ih:ih,takes:ct,itTakes:it,childWin:who===1?1:0,
+    /* 按定理走完一圈两手、最后补一手收口：段 B 的闭式子必须和这里的模拟数出一样的手数 */
+    handsAlt:(function(){const rr=cap+1,q=Math.floor(rem/rr),m=rem%rr;return m===0?q*2:q*2+1})()};
+}
+/* ---- win[] 表逐格对定理（cap 从 1 到滩上最大上限）---- */
+function pebbleAudTab(){
+  let bad=0,n=0,caps=[];
+  for(let c=1;c<=PPB_CAP4[0]+PPB_MAG_BONUS;c++)caps.push(c);
+  for(let i=0;i<caps.length;i++){
+    const c=caps[i],w=pbpWin(c);
+    for(let rem=1;rem<w.length;rem++){
+      n++;
+      if((w[rem]===1?1:0)!==pebbleAudWin(c,rem))bad++;
+    }
+    for(let rem=1;rem<=PPB_N_MAX+PPB_SPARE_TRY;rem++){
+      n++;
+      const b=pbpBest(c,rem),a=pebbleAudBest(c,rem);
+      if(b!==a)bad++;
+      /* 必胜线还得真能走完：这一格赢得起时，取完留给对手的必须是必输数；
+         必输的那一格走的是「磨一手等它犯错」，本来就留不下必输数，不许按这条判它 */
+      if(w[rem]===1&&rem-b>0&&(rem-b)%(c+1)!==0)bad++;
+      if(b>c||b>rem)bad++;
+    }
+  }
+  return {n:n,bad:bad};
+}
+/* ---- 一副布局的总账：逐堆对定理、手数对闭式子、整字的最低手数塞得进这一场的袋子 ---- */
+function pebbleAudDeal(lv){
+  const out={ok:1,why:'',n:0,nPiles:0,fake:0,badMod:0,badRange:0,badDir:0,badSlot:0,
+    hands:0,handsAlt:0,head:0,moves:0,spare:0,cw:0,winAll:0,agree:1};
+  const rec=pebble.rec;
+  if(!rec||!pebble.piles.length){out.ok=0;out.why='no-deal';return out}
+  const L=lv||pebble.lv,moves=pebbleMoves(L);
+  out.n=rec.n;out.nPiles=pebble.piles.length;out.moves=moves;
+  out.fake=pebbleFake(L);
+  const slots={},ks={};
+  let cw=0;
+  for(let i=0;i<pebble.piles.length;i++){
+    const p=pebble.piles[i];
+    if(slots[p.slot]!==undefined)out.badSlot++;
+    slots[p.slot]=1;
+    if(p.slot<0||p.slot>=pebble.piles.length)out.badSlot++;
+    if(p.fake){
+      if(rec.dirs.indexOf(p.dir)>=0)out.badDir++;   /* 影牌必须是这个字压根没有的那种笔形 */
+      if(p.k!==-1)out.badDir++;
+      if(!pebbleAudPileOk(p.tot,p.cap))out.badMod++;
+      continue;
+    }
+    if(ks[p.k])out.badDir++;                        /* 一笔一堆，不许重不许缺 */
+    ks[p.k]=1;
+    if(p.dir!==pbxRok(rec.dirs[p.k]))out.badDir++;
+    if(p.cap!==pebbleCap(rec.dirs[p.k],L))out.badDir++;
+    if(p.tot<PPB_N_MIN||p.tot>PPB_N_MAX+PPB_SPARE_TRY)out.badRange++;
+    if(!pebbleAudPileOk(p.tot,p.cap))out.badMod++;   /* 先手必输的那个数不许压着该收那一笔 */
+    out.spare+=p.tot-p.n;
+    const s=pebbleAudSim(p.cap,p.tot);
+    out.hands+=s.hands;out.handsAlt+=s.handsAlt;
+    if(s.childWin)cw++;
+    if(s.hands!==pbpHands(p.cap,p.tot))out.agree=0;
+    if(s.hands!==s.handsAlt)out.agree=0;
+    if(s.takes+s.itTakes!==p.tot)out.agree=0;
+  }
+  for(let k=0;k<rec.n;k++)if(!ks[k])out.badDir++;
+  out.cw=cw;
+  out.winAll=cw===rec.n?1:0;
+  if(out.nPiles!==rec.n+pebbleFake(L))out.badSlot++;
+  if(out.spare>PPB_SPARE_MAX)out.badRange++;
+  out.head=PPB_MOV_HEAD;
+  if(out.hands+out.head>moves){out.ok=0;out.why='手数不够'}
+  if(out.badMod||out.badRange||out.badDir||out.badSlot){out.ok=0;if(!out.why)out.why='布局不合格'}
+  if(!out.agree){out.ok=0;if(!out.why)out.why='两条路数不出同一笔账'}
+  if(!out.winAll){out.ok=0;if(!out.why)out.why='有一堆先手赢不起'}
+  if(!out.ok&&!out.why)out.why='unknown';
+  return out;
+}
+/* ---- 眼下这一手的账：题面给孩子的「该取几颗」与妖已经定死的那一手，全用定理再算一遍 ---- */
+function pebbleAudState(){
+  const cur=ppbCur(),p=ppbSel();
+  const s={has:cur?1:0,rem:cur?cur.rem:0,cap:cur?cur.cap:0,round:cur?pbpRound(cur.cap):0,
+    win:0,best:0,claim:0,take:pebble.take|0,legal:1,aiPlan:pebble.aiPlan,aiOk:1,
+    gone:0,takes:0,itTakes:0,agree:1,moves:0,heads:0,ith:0};
+  if(!cur)return s;
+  const cap=Math.max(1,Math.min(cur.cap,cur.rem));
+  s.win=pebbleAudWin(cap,cur.rem);
+  s.best=pebbleAudBest(cap,cur.rem);
+  s.claim=(pbpWinAt(cap,cur.rem)?1:0)===s.win?1:0;
+  s.legal=pebble.take>=1&&pebble.take<=ppbCapOf(cur)?1:0;
+  /* 妖定死的那一手：不许超上限、不许超剩的颗数；它要是站在必胜位又真会算，就必须走定理那一手 */
+  if(pebble.turn===0&&pebble.aiPlan>0){
+    const rr=pebble.aiPlan;
+    if(rr<1||rr>cur.cap||rr>cur.rem)s.aiOk=0;
+    if(pebble.itSmart&&pebbleAudWin(cap,cur.rem)&&rr!==s.best)s.aiOk=0;
+  }
+  /* 石头总账：滩上少的每一颗，要么在你手里、要么在妖手里 —— 影堆也是被人一手一手搬走的，账上不许漏 */
+  for(let i=0;i<pebble.piles.length;i++){
+    const o=pebble.piles[i];
+    s.gone+=o.tot-o.rem;
+  }
+  s.takes=pebble.wTakes;s.itTakes=pebble.wItTakes;
+  s.agree=s.gone===s.takes+s.itTakes?1:0;
+  /* 手数总账：这一场的袋子减去双方落过的手，就是摊上还挂着的手 */
+  s.moves=pebble.moves;s.heads=pebble.wHands;s.ith=pebble.wItHands;
+  if(s.moves!==pebbleMoves(pebble.lv)-s.heads-s.ith)s.agree=0;
+  return s;
+}
+/* ---- 只读快照：探针要看的、要比的全从这一个口子出去（light 只带计数，够逐帧连续性用）---- */
+function pebbleSnap(light){
+  const cur=ppbCur(),p=ppbSel();
+  const s={
+    run:pebble.run,over:pebble.over,load:pebble.load,gen:pebble.gen,t:pebble.t,playMs:pebble.playMs,
+    lv:pebble.lv,pi:pebble.pi,n:pebble.n,ch:pebble.rec?pebble.rec.ch:'',
+    sel:pebble.sel,pile:p?p.k:-1,pSlot:p?p.slot:-1,take:pebble.take,takeHi:pebbleTakeHi(),
+    turn:pebble.turn,aiMs:pebble.aiMs,aiPlan:pebble.aiPlan,itSmart:pebble.itSmart,
+    rem:cur?cur.rem:0,cap:cur?cur.cap:0,tot:cur?cur.tot:0,dir:cur?cur.dir:-1,
+    qms:pebble.qms,qms0:pebble.qms0,fuel:pebble.fuel,warn:pebble.warn,moves:pebble.moves,
+    score:pebble.score,hearts:pebble.hearts,combo:pebble.combo,maxCombo:pebble.maxCombo,words:pebble.words,
+    hands:pebble.hands,itHands:pebble.itHands,takes:pebble.takes,stones:pebble.stones,
+    wHands:pebble.wHands,wItHands:pebble.wItHands,wTakes:pebble.wTakes,wItTakes:pebble.wItTakes,
+    sweeps:pebble.sweeps,opts:pebble.opts,loops:pebble.loops,chains:pebble.chains,irons:pebble.irons,
+    robbed:pebble.robbed,wrongs:pebble.wrongs,fakes:pebble.fakes,idles:pebble.idles,
+    timeouts:pebble.timeouts,empties:pebble.empties,swaps:pebble.swaps,
+    tools:pebble.tools,nags:pebble.nags,tagOn:pebble.tagOn,magnet:pebble.magnet,
+    abacusMs:pebble.abacusMs,abacusT:pebble.abacusT,peekMs:pebble.peekMs,nagMs:pebble.nagMs,nagHold:pebble.nagHold,
+    helpMs:pebble.helpMs,actMs:pebble.actMs,
+    abacusN:pebble.abacusN,peekN:pebble.peekN,magnetN:pebble.magnetN,swapN:pebble.swapN,
+    abacusUse:pebble.abacusUse,peekUse:pebble.peekUse,magnetUse:pebble.magnetUse,swapUse:pebble.swapUse,
+    parts:pebble.parts.length,
+    movesMax:pebbleMoves(pebble.lv),fuelMax:pebbleFuel(pebble.lv),qmsMax:pebbleQms(pebble.lv),
+    capShown:cur?(''+cur.cap+(pebble.magnet?'+'+PPB_MAG_BONUS:'')):'',
+    dim:pebbleDim(pebble.lv)?1:0,shuf:pebbleShuf(pebble.lv)?1:0,
+    smartP:pebbleSmartP(pebble.lv),fakeN:pebbleFake(pebble.lv),tier:pebbleTier(pebble.lv)
+  };
+  if(light)return s;
+  s.piles=pebble.piles.map(function(o){
+    return {k:o.k,slot:o.slot,dir:o.dir,n:o.n,spare:o.spare,tot:o.tot,rem:o.rem,cap:o.cap,
+      fake:o.fake,dead:o.dead,x:o.x};
+  });
+  s.slots=pebble.piles.map(function(o){return o.slot});
+  s.ks=pebble.piles.filter(function(o){return !o.fake}).map(function(o){return o.k}).join(',');
+  s.audDeal=pebbleAudDeal(pebble.lv);
+  s.audState=pebbleAudState();
+  s.audTab=pebbleAudTab();
+  s.gotIdx=pebble.gotIdx.slice();
+  s.deadCh=pebble.doneCh.slice();
+  return s;
+}
+/* ---- 家什架：八件家什，每一件都要真做到过才上架（第八件认别处打来的章节徽章）---- */
+const PPB_SHELF=[
+  {k:'石牌',d:'收齐第一个字',ok:function(){return pbxInt('hz_pebble_words')>=1}},
+  {k:'算珠',d:'打到第 3 场',ok:function(){return pbxInt('hz_pebble_lv')>=3}},
+  {k:'看相筒',d:'看相 5 回',ok:function(){return pbxInt('hz_pebble_peeks')>=5}},
+  {k:'吸石',d:'吸石 3 回',ok:function(){return pbxInt('hz_pebble_magnets')>=3}},
+  {k:'快放手',d:'一把取光 6 堆',ok:function(){return pbxInt('hz_pebble_sweeps')>=6}},
+  {k:'干净手',d:'整字没挨罚收成 2 个',ok:function(){return pbxInt('hz_pebble_cleanw')>=2}},
+  {k:'铁算盘',d:'全程步步赢收齐 1 个字',ok:function(){return pbxInt('hz_pebble_irons')>=1}},
+  {k:'石样夹',d:'别处的章节徽章攒到 3 枚',ok:function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}}}
+];
+function pebbleShelfCheck(){
+  const have=(localStorage.getItem('hz_pebble_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  for(let i=0;i<PPB_SHELF.length;i++){
+    const s=PPB_SHELF[i];
+    if(have.indexOf(s.k)<0&&s.ok()){have.push(s.k);got.push(s.k)}
+  }
+  localStorage.setItem('hz_pebble_shelf',have.join(','));
+  localStorage.setItem('hz_pebble_trophy',String(have.length));
+  if(got.length){
+    localStorage.setItem('hz_pebble_trophy_n',String(pbxInt('hz_pebble_trophy_n')+got.length));
+    pbxSay('🗄️ 家什架上多了 <b>'+got.join('、')+'</b>（一共 '+have.length+'/'+PPB_SHELF.length+' 件）','#FFE0B2');
+  }
+  return {have:have,got:got};
+}
+function pebbleMissAdd(ch){
+  if(!ch)return;
+  if(pebble.miss.indexOf(ch)<0){
+    pebble.miss.push(ch);
+    localStorage.setItem('hz_pebble_miss',pebble.miss.slice(0,PPB_BOOK_MAX).join(','));
+  }
+}
+function pebbleBookAdd(ch){
+  if(!ch)return;
+  if(!pebble.book)pebble.book=(localStorage.getItem('hz_pebble_book')||'').split(',').filter(function(s){return s.length===1});
+  if(pebble.book.indexOf(ch)>=0)return;
+  pebble.book.push(ch);
+  localStorage.setItem('hz_pebble_book',pebble.book.slice(0,PPB_BOOK_MAX).join(','));
+}
+function pebbleBankLite(){
+  /* 收齐一个字当场就把纪录写进去了。这一场最后若是「平着自己破的纪录」，
+     结算那行还得给孩子挂上「新高」——所以破过就得留个记号，不能让孩子看不见自己刚破的纪录 */
+  if(pebble.score>pbxInt('hz_pebble_best')){localStorage.setItem('hz_pebble_best',String(pebble.score));pebble.newBest=true}
+  if(pebble.maxCombo>pbxInt('hz_pebble_combo'))localStorage.setItem('hz_pebble_combo',String(pebble.maxCombo));
+  if(pebble.lv>pbxInt('hz_pebble_lv'))localStorage.setItem('hz_pebble_lv',String(pebble.lv));
+  if(pebble.chainBest>pbxInt('hz_pebble_chainmax'))localStorage.setItem('hz_pebble_chainmax',String(pebble.chainBest));
+  pebbleShelfCheck();
+}
+function pebbleBank(why){
+  /* newBest 是「这一场中途已经把纪录写进去了」的记号：分数只涨到那儿、结算时正好持平，
+     那也是孩子破的纪录，得照样挂「新高」。但这一场后来又掉了分，就不算破，也绝不许把纪录往下改 */
+  const best=pbxInt('hz_pebble_best'),isBest=pebble.score>best||(pebble.newBest===true&&pebble.score===best);
+  if(isBest)localStorage.setItem('hz_pebble_best',String(pebble.score));
+  if(pebble.maxCombo>pbxInt('hz_pebble_combo'))localStorage.setItem('hz_pebble_combo',String(pebble.maxCombo));
+  if(pebble.lv>pbxInt('hz_pebble_lv'))localStorage.setItem('hz_pebble_lv',String(pebble.lv));
+  if(pebble.chainBest>pbxInt('hz_pebble_chainmax'))localStorage.setItem('hz_pebble_chainmax',String(pebble.chainBest));
+  if(pebble.hands){
+    const per=Math.round(pebble.playMs/pebble.hands);
+    if(!pbxInt('hz_pebble_fastest')||per<pbxInt('hz_pebble_fastest'))localStorage.setItem('hz_pebble_fastest',String(per));
+  }
+  pbxAdd('hz_pebble_words',pebble.words);
+  pbxAdd('hz_pebble_hands',pebble.hands);
+  pbxAdd('hz_pebble_ithands',pebble.itHands);
+  pbxAdd('hz_pebble_takes',pebble.takes);
+  pbxAdd('hz_pebble_stones',pebble.stones);
+  pbxAdd('hz_pebble_chains',pebble.chains);
+  pbxAdd('hz_pebble_sweeps',pebble.sweeps);
+  pbxAdd('hz_pebble_opts',pebble.opts);
+  pbxAdd('hz_pebble_loops',pebble.loops);
+  pbxAdd('hz_pebble_irons',pebble.irons);
+  pbxAdd('hz_pebble_cleanw',pebble.cleans);
+  pbxAdd('hz_pebble_robbed',pebble.robbed);
+  pbxAdd('hz_pebble_wrongs',pebble.wrongs);
+  pbxAdd('hz_pebble_fakes',pebble.fakes);
+  pbxAdd('hz_pebble_idles',pebble.idles);
+  pbxAdd('hz_pebble_timeouts',pebble.timeouts);
+  pbxAdd('hz_pebble_empties',pebble.empties);
+  pbxAdd('hz_pebble_fuels',pebble.fuels);
+  pbxAdd('hz_pebble_swaps',pebble.swaps);
+  pbxAdd('hz_pebble_abacuses',pebble.abacusUse);
+  pbxAdd('hz_pebble_peeks',pebble.peekUse);
+  pbxAdd('hz_pebble_magnets',pebble.magnetUse);
+  pbxAdd('hz_pebble_tools',pebble.tools);
+  pbxAdd('hz_pebble_nags',pebble.nags);
+  pbxAdd('hz_pebble_games',1);
+  const sf=pebbleShelfCheck();
+  return {best:Math.max(best,pebble.score),isBest:isBest,
+    shelf:Math.min(PPB_SHELF.length,(localStorage.getItem('hz_pebble_shelf')||'').split(',').filter(function(s){return s}).length),
+    got:sf.got};
+}
+/* 结算那一句「下一步该改哪儿」：先按死因说，死因之外再按最扎手的那个毛病说 */
+function pebbleWhyTxt(why){
+  if(why==='rob')return '🐺 <b>让妖叼走了笔</b>：这一场被叼 <b>'+pebble.robbed+'</b> 次。'+
+    '叼走那一笔的判据只有一条：<b>最后一颗让对手取走了</b> —— 所以该防的不是「手快」，是<b>别把必输的那个数留给自己</b>：'+
+    '一圈是 cap+1 颗，<b>它抓 x 你就补满一圈</b>；眼看剩的颗数是 cap+1 的倍数，这一手怎么取都翻不回来，就抓 1 颗<b>等它犯错</b>，'+
+    '或者 🧮 摆算珠（直接标该取几颗）、👁 看相（盯住它已经定死的下一手）';
+  if(why==='moves')return '🖐 <b>手袋空了</b>：这一场手袋尽 <b>'+pebble.empties+'</b> 回。'+
+    '一个字一袋 '+pebbleMoves(pebble.lv)+' 手，<b>最优走法一手就吃掉一圈</b> —— 段 B 证的死账就是「最优手数 + '+PPB_MOV_HEAD+
+    ' 手余货 ≤ 这一袋」，所以省手只有一条路：<b>一次抓满该抓的那几颗</b>，一手一颗地磨，袋子先空';
+  if(why==='time')return '⏳ <b>这一场收摊了</b>：场有限期（第 '+pebble.lv+' 场 '+(pebbleFuel(pebble.lv)/1000).toFixed(0)+
+    ' 秒）。这一坊的钟不是催你乱按 —— 犹豫的代价写在另一处：<b>这一手的钟走光算弃权</b>，妖替你抓一颗还抢走先手，'+
+    '那一颗正好把余数弄乱。看准牌上的颗数、一次抓够，比来回补手省得多';
+  if(why==='pool')return '😢 <b>字没挑出来</b>：这一坊要的是「每一笔压得住一堆、每堆都不是先手必输、一袋手数收得完」的字，'+
+    '算不过这笔账的字压根不进池，网络一断就挑不出来，回头再来';
+  if(pebble.wrongs>=2)return '🪨 <b>错笔 '+pebble.wrongs+' 回</b>：那几手动了不该动的那一堆 —— 滩上每张牌都写着<b>第几笔</b>，'+
+    '题头也写着该收第几笔。<b>先认牌再伸手</b>：←→ 挑到那张牌上，看清「第几笔」和笔形，再定颗数';
+  if(pebble.fakes>=2)return '👻 <b>影堆 '+pebble.fakes+' 回</b>：牌上那个笔形这个字压根没有（'+
+    '比如「三」没有撇）—— 影堆也是<b>一张牌一堆积</b>，看着一样规整。<b>先把这个字有哪几种笔形在心里过一遍</b>，再挑堆';
+  if(pebble.idles>=2)return '🖐 <b>空手 '+pebble.idles+' 回</b>：妖的手还没收你就伸出去了。'+
+    '牌顶上写着 ✋／🐺 —— 看到 ✋ 再出手；想抢在它前头，只有🧲 吸石那一手管用';
+  if(pebble.timeouts>=2)return '⌛ <b>弃权 '+pebble.timeouts+' 次</b>：这一手的钟走光了，'+
+    '妖替你抓一颗、还把先手抢走 —— <b>先想一圈有几颗（cap+1），再算该取几颗</b>，算得出就别磨';
+  if(pebble.chains>=6&&pebble.loops>=2)return '🧮 <b>算得很稳</b>：凑满 '+pebble.chains+
+    ' 圈、成环 '+pebble.loops+' 堆 —— 下一场一圈短了（上限缩一挡）、第 4 场起堆的次序还打乱，'+
+    '试试<b>一件家什不用收完一个字</b>';
+  if(pebble.irons>=1)return '🪨 <b>铁算盘已经上过手</b>：整字每一手都走在必胜线上。'+
+    '第 6 场起牌上不写几颗、妖每手都算 —— 那一档靠的是<b>数石头</b>和<b>算余数</b>，不是运气';
+  if(!pebble.hands)return '🖐 <b>这一场一手没落</b>：←→（或 A D）挑堆，↑↓（或 W S）改本手的颗数，'+
+    '1~9 直接点颗数，<code>空格</code>出手 —— 或者手指直接点滩上第几颗，就是取几颗';
+  return '🖐 手感不错：落 <b>'+pebble.hands+'</b> 手、取走 '+pebble.takes+' 颗、凑 '+pebble.chains+
+    ' 圈、一把清 '+pebble.sweeps+' 堆、步步赢 '+pebble.opts+' 堆、铁算盘 '+pebble.irons+' 个字 —— '+
+    '下一场一袋只有 '+pebbleMoves(pebble.lv+1)+' 手、妖更会算，试试<b>算珠不用拨也自己报余数</b>';
+}
+function pebbleFillResult(why){
+  const bk=pebbleBank(why),best=bk.best,isBest=bk.isBest;
+  const stars=Math.max(1,Math.round(pebble.score/14)+pebble.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  pbxPut('pebbleRsStarsTop','⭐ 结算 +'+stars);
+  pbxPut('pebbleRsEmoji',{quit:'🏳️',time:'⏳',rob:'🐺',moves:'🖐',pool:'😢'}[why]||'🪨');
+  pbxPut('pebbleRsTitle',why==='rob'?'笔被妖叼走了':(why==='moves'?'手袋空了':
+    (why==='time'?'这一场收摊了':(why==='quit'?'这一场先收了':'字没挑出来'))));
+  const tot=pbxInt('hz_pebble_words'),rk=pbxRank(tot);
+  pbxPut('pebbleRsSub','第 '+pebble.lv+' 场 · 累计收成 '+tot+' 个字 · '+rk.e+' '+rk.t);
+  pbxPut('pebbleRsScore','🪨 '+pebble.score+' 分'+(isBest?' 🏅 新高':''));
+  pbxPut('pebbleRsWords','🈶 收齐 '+pebble.words+' 个字 · 落 '+pebble.hands+' 手 · 最长连 '+pebble.maxCombo);
+  pbxPut('pebbleRsHands','🖐 你 '+pebble.hands+' 手 / 妖 '+pebble.itHands+' 手 · 一袋 '+pebbleMoves(pebble.lv)+' 手');
+  pbxPut('pebbleRsStones','🪨 背走 '+pebble.stones+' 颗 · 取走 '+pebble.takes+' 颗 · 滩上剩 '+
+    pebble.piles.reduce(function(a,o){return a+o.rem},0)+' 颗');
+  pbxPut('pebbleRsChain','🧮 凑 '+pebble.chains+' 圈（最长连 '+pebble.chainBest+'）· 一把清 '+pebble.sweeps+
+    ' 堆 · 步步赢 '+pebble.opts+' 堆 · 成环 '+pebble.loops+' 堆 · 铁算盘 '+pebble.irons+' 个字');
+  pbxPut('pebbleRsBad','🐺 被叼 '+pebble.robbed+' · 🖐 手袋空 '+pebble.empties+' · ⌛ 弃权 '+pebble.timeouts+
+    ' · 🕯 收摊 '+pebble.fuels+' · 🪨 错笔 '+pebble.wrongs+' · 👻 影堆 '+pebble.fakes+' · 🖐 空手 '+pebble.idles+
+    ' · 🔁 换字 '+pebble.swaps);
+  pbxPut('pebbleRsTools','🧮 算珠 '+pebble.abacusUse+' · 👁 看相 '+pebble.peekUse+' · 🧲 吸石 '+pebble.magnetUse+
+    ' · 家什共 '+pebble.tools+' 次 · 发呆 '+(pebble.nags||pbxInt('hz_pebble_nags'))+' 回');
+  pbxPut('pebbleRsBest','🏆 最高 '+best+' 分 · ⚡ 最熟手 '+(pbxInt('hz_pebble_fastest')||'—')+
+    ' 毫秒/手 · 🔥 最长连 '+Math.max(pebble.maxCombo,pbxInt('hz_pebble_combo'))+' · 🧮 最长一串 '+
+    Math.max(pebble.chainBest,pbxInt('hz_pebble_chainmax'))+' 凑');
+  const book=(localStorage.getItem('hz_pebble_book')||'').split(',').filter(function(c){return c.length===1});
+  const miss=pebble.miss.slice();
+  pbxPut('pebbleRsBook','滩上 <b>'+book.length+'</b> 个字'+(book.length?'<small>（'+book.slice(-14).join(' ')+'）</small>':'')+
+    (pebble.words?'，这一场收齐 '+pebble.words+' 个':'')+
+    ' · 家什架 <b>'+bk.shelf+'/'+PPB_SHELF.length+'</b> 件（'+(localStorage.getItem('hz_pebble_shelf')||'—')+'）'+
+    (bk.got.length?'<b>，新上架：'+bk.got.join('、')+'</b>':'')+
+    ' · 错字本 <b>'+miss.length+'</b> 个'+(miss.length?'（'+miss.slice(-12).join(' ')+'，下一轮优先挑这几张牌）':'')+
+    '<br>⭐ 这 '+stars+' 颗星已经喂给<b>书桌小兽</b>；收齐的字也进了它的记忆池'+
+    (JSON.parse((function(){try{return localStorage.getItem('hz_badges')||'[]'}catch(e){return '[]'}})()).length?
+      ' · 你在<b>大冒险</b>里攒的章节徽章也被这间坊认了（家什架上的石样夹就是这么来的）':''));
+  pbxPut('pebbleRsWhy',pebbleWhyTxt(why));
+  pbxPut('pebbleRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  pbxSay('🪨 这一场收齐 <b>'+pebble.words+'</b> 个字、落 <b>'+pebble.hands+'</b> 手、取走 <b>'+pebble.takes+
+    '</b> 颗（被叼 <b>'+pebble.robbed+'</b>、手袋空 <b>'+pebble.empties+'</b>、弃权 <b>'+pebble.timeouts+
+    '</b>、错笔 <b>'+pebble.wrongs+'</b>、影堆 <b>'+pebble.fakes+'</b>、空手 <b>'+pebble.idles+'</b>、换字 <b>'+pebble.swaps+
+    '</b>、凑 <b>'+pebble.chains+'</b> 圈、一把清 <b>'+pebble.sweeps+'</b> 堆、铁算盘 <b>'+pebble.irons+'</b> 个字）'+
+    '。<br>战绩落盘 <code>hz_pebble_*</code>：称号按<b>累计收成的字数</b>走，家什架 <b>'+bk.shelf+'/'+PPB_SHELF.length+
+    '</b> 件（<b>石样夹</b>认的是你在<b>大冒险</b>里打到的章节徽章），错字本里的字<b>下一轮优先挑回来</b>','#C8E6C9');
+  pebbleNudge();
+}
+function pebbleNudge(){
+  const dot=document.getElementById('pebbleCardDot'),tip=document.getElementById('pebbleCardTip');
+  const tot=pbxInt('hz_pebble_words'),games=pbxInt('hz_pebble_games'),hands=pbxInt('hz_pebble_hands');
+  const rk=pbxRank(tot),shelf=pbxInt('hz_pebble_trophy');
+  if(tip)tip.textContent=games?(rk.e+' '+rk.t+' · 收成 '+tot+' 个字 · 落 '+hands+' 手 · 被叼 '+pbxInt('hz_pebble_robbed')+
+    ' 次 · 凑 '+pbxInt('hz_pebble_chains')+' 圈 · 一把清 '+pbxInt('hz_pebble_sweeps')+' 堆 · 家什架 '+shelf+' 件'):
+    '一堆剩的颗数正好是「每手上限 +1」的倍数时，轮到谁谁输：他抓 x 你补满一圈，最后一颗就归你背走';
   if(dot){dot.classList.toggle('on',!games);dot.textContent=(games?'':'🆕')}
 }
 
