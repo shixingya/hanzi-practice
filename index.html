@@ -7036,6 +7036,78 @@ button:active{transform:scale(.95)}
   #screen-pebble .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-pebble .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.102 🎨 笔顺调色坊 ================= */
+.dye-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.dye-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.dye-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死三行（一行 1.35em）：换字不许换行数 —— 画案就在它下头，多一行少一行都把整张案往下挪，
+   孩子的手指还按在颜料罐上数滴数呢 */
+.dye-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*3)}
+.dye-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.dye-ask b{color:#FFE082}
+.dye-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 画案：宣纸底色，笔顺、色票、缸与四味罐全画在这一张纸上（canvas 是透明的，纸色由这里给） */
+.dye-field{flex:1;min-width:0;position:relative;background:linear-gradient(160deg,#FBF7EC,#EFE6D4 62%,#E4D8C0);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 20px rgba(93,64,55,.28)}
+.dye-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.dye-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(46,32,20,.86);color:#FFE0B2;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.dye-tag.on{opacity:1}
+/* 四条账：色差（紫）· 砚墨（棕）· 这一笔的钟（沙）· 这一场的烛（冷蓝） */
+.dye-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.dye-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.dye-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#6D4C41,#BCAAA4);transition:width .15s linear}
+.dye-tl.dist i{background:linear-gradient(90deg,#7E57C2,#B39DDB)}
+.dye-tl.qms i{background:linear-gradient(90deg,#FFB74D,#FFE082)}
+.dye-tl.fuel i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.dye-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.dye-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+/* 四味颜料罐：滴哪一味，手指头直接点罐口 —— 与画案上那四只罐是同一套坐标 */
+.dye-jars{display:flex;gap:6px;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.dye-jar{flex:1 1 0;min-width:0;padding:8px 2px 6px;border-radius:12px;border:1px solid rgba(255,255,255,.26);color:#1B140B;font-size:13px;font-weight:800;line-height:1.15;cursor:pointer;touch-action:none;user-select:none}
+.dye-jar small{display:block;font-size:10px;font-weight:400;color:rgba(27,20,11,.7)}
+.dye-jar:active{transform:translateY(1px)}
+.dye-jar:disabled{opacity:.4;cursor:default}
+.dye-jar.p0{background:linear-gradient(180deg,#FFFDF6,#E8E2D3)}
+.dye-jar.p1{background:linear-gradient(180deg,#7FD3F0,#2BA8D8);color:#082530}
+.dye-jar.p2{background:linear-gradient(180deg,#F079B0,#C8327D);color:#2E0A1C}
+.dye-jar.p3{background:linear-gradient(180deg,#FFD877,#E8B420);color:#3A2A04}
+/* 落笔与洗缸：这一坊的手下在「落不落这一笔」上，大出手键 + 一只洗缸键 */
+.dye-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.dye-take button.wash{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#083344;background:linear-gradient(180deg,#B3E5FC,#4FC3F7)}
+.dye-take button.wash:active{transform:translateY(1px)}
+.dye-take button.wash:disabled{opacity:.42;cursor:default}
+.dye-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1B140B;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.dye-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(27,20,11,.72)}
+.dye-take button.big.ready{background:linear-gradient(180deg,#C5E1A5,#7CB342);box-shadow:0 0 18px rgba(132,189,54,.5)}
+.dye-take button.big:active{transform:translateY(1px)}
+.dye-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.dye-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.dye-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.dye-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.dye-tool b{display:block;font-size:10px;color:#FFE082;font-weight:700}
+.dye-tool:disabled{opacity:.4;cursor:default}
+.dye-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.dye-hintline b{color:#FFE082}
+.dye-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.dye-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.dye-msg b{color:#CFD8DC}
+.dye-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.dye-msg small{font-size:11px;color:#78909C}
+.dye-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.dye-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.dye-rs-book b{color:#FFE082}
+.dye-rs-book small{color:#78909C}
+.dye-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,110,64,.9);color:#fff;border-radius:9px;padding:1px 6px;z-index:4}
+.dye-cdot.on{display:block}
+#screen-dye .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：四条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是四行，就占死四行 */
+@media(max-width:460px){
+  .dye-tl{flex:1 1 100%}
+  .dye-ask{min-height:calc(1.35em*4)}
+  .dye-jar{font-size:12px;padding:7px 1px 5px}
+  #screen-dye .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-dye .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-dye .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7092,8 +7164,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 100 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">100</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 101 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">101</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7104,12 +7176,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>100 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>42</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>101 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>43</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="dyeCard" onclick="enterMode('dye')">
+      <div class="icon">🎨</div>
+      <div class="info"><h3>笔顺调色坊</h3><p id="dyeCardTip">这个字有几笔，画案上就摆几口色票：横是朱砂、竖是石绿、撇是鹅黄、捺是赭橘。缸里的色就是这几滴的配比，而颜料只认「加」不认「减」—— 滴下去的一滴永远在缸里，想从头再来只有洗缸，清水每场却只给几碗。落一笔按配比舀走这一笔的墨，缸底还必须留一口：留着的那几滴就是下一笔的借色。省墨还是省水，这笔账得在你手里算</p></div>
+      <span class="dye-cdot" id="dyeCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="pebbleCard" onclick="enterMode('pebble')">
       <div class="icon">🪨</div>
       <div class="info"><h3>笔顺抢石坊</h3><p id="pebbleCardTip">这个字有几笔，滩上就压几堆石头：一堆压一张牌，牌上写着这一笔是横是撇、每手最多取几颗。你和石妖轮流从该收那一堆里取子，谁取走最后一颗，那一笔就归谁背走 —— 它叼走了这个字就缺一笔、当场作废。兵法只有一句：剩的颗数正好是「每手上限 +1」的倍数时轮到谁谁输，他抓 x 你补满一圈，最后一颗就归你</p></div>
@@ -7863,6 +7940,86 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-dye">
+  <div class="top-bar">
+    <button class="back-btn" onclick="dyeLeave()">← 返回</button>
+    <div class="stats"><span id="dyeScoreTxt">🎨 0 分</span><span id="dyeLvTxt">第 1 场 · 已收 0 字</span><span id="dyeQTxt">⏳ 这一笔 9 秒</span></div>
+    <button class="icon-btn" onclick="dyeHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="dye-hud">
+    <span id="dyeRankTxt" title="称号">🌱 头一回调色</span>
+    <span id="dyeHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="dyeComboTxt" title="连击">🔥 连 0</span>
+    <span id="dyeGoalTxt" title="该上第几笔">🖌 第 1 笔</span>
+    <span id="dyeInkTxt" title="砚墨与清水">🫙 砚墨 68 · 清水 4</span>
+    <span id="dyeBowlTxt" title="缸里几滴">🥣 缸里 0 滴 · 上限 13</span>
+    <span id="dyeDistTxt" title="色差与容限">📏 色差 ——</span>
+    <span class="light" id="dyeMatchLight">✖ 还没到</span>
+  </div>
+  <div class="dye-ask" id="dyeAsk">🎨 正在挑字……<br><small>在字库里找「算得出一条省水计划、还算得出第二条省墨计划」的字</small></div>
+  <div class="dye-stage">
+    <div class="dye-field" id="dyeField">
+      <canvas class="dye-canvas" id="dyeCanvas" width="420" height="340"></canvas>
+      <div class="dye-tag" id="dyeTag">🎨 这张画案摆好了</div>
+    </div>
+  </div>
+  <div class="dye-meter">
+    <div class="dye-tl dist"><i id="dyeDistBar"></i><b id="dyeDistBig">📏 色差（离这一笔的目标色还有多远）</b></div>
+    <div class="dye-tl ink"><i id="dyeInkBar"></i><b id="dyeInkBig">🫙 砚墨剩 68 滴 · 已花 0</b></div>
+    <div class="dye-tl qms"><i id="dyeQmsBar"></i><b id="dyeQmsTxt">⌛ 这一笔 9 秒</b></div>
+    <div class="dye-tl fuel"><i id="dyeFuelBar"></i><b id="dyeFuelTxt">🕯 这一场 —— 秒</b></div>
+  </div>
+  <div class="dye-jars">
+    <button class="dye-jar p0" id="dyeJar0">钛白<small>1 · 白往灰里拽</small></button>
+    <button class="dye-jar p1" id="dyeJar1">花青<small>2 · 蓝</small></button>
+    <button class="dye-jar p2" id="dyeJar2">洋红<small>3 · 红</small></button>
+    <button class="dye-jar p3" id="dyeJar3">藤黄<small>4 · 黄</small></button>
+  </div>
+  <div class="dye-take">
+    <button class="wash" id="dyeWashBtn">💧 洗缸<small>W</small></button>
+    <button class="big" id="dyePaintBtn">🖌 落这一笔<small>空格 ／ 手指点缸里 —— 色不到位是错色，缸里滴数不够抹不出一整笔</small></button>
+  </div>
+  <div class="dye-tools">
+    <button class="dye-tool" id="dyeWheelBtn" disabled>🎨 色轮<span>G</span><b>剩 2</b></button>
+    <button class="dye-tool" id="dyeTowelBtn" disabled>🧻 净手巾<span>T</span><b>剩 1</b></button>
+    <button class="dye-tool" id="dyeLidBtn" disabled>🛡 缸盖<span>Q</span><b>剩 2</b></button>
+    <button class="dye-tool" id="dyeSwapBtn" disabled>🔁 换字<span>R</span><b>剩 1</b></button>
+    <button class="dye-tool" id="dyeHelpBtn">📖 说明<span>H</span></button>
+    <button class="dye-tool" id="dyeEndBtn">🏁 结算</button>
+  </div>
+  <div class="dye-hintline" id="dyeWheelTxt">🎨 <b>缸里的色就是这几滴的配比</b>：落一笔舀走这一笔的墨，<b>缸底留一口</b> —— 那几滴就是下一笔的<b>借色</b></div>
+  <div class="dye-msg" id="dyeMsg">🖌 <b>这个字几笔就调几次色</b>：横是朱砂、竖是石绿、撇是鹅黄、捺是赭橘，一笔一口缸<br>⚖️ <b>省墨还是省水</b>：颜料只认「加」不认「减」，洗缸是唯一的后悔药，而清水按场配额 · <code>1~4</code> 滴一味 · <code>空格</code> 落笔 · <code>W</code> 洗缸 · 🧻 <code>T</code> 净手巾 · 🛡 <code>Q</code> 缸盖 · 🔁 <code>R</code> 换字 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-dye-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="dyeLeave()">← 返回</button>
+    <div class="stats"><span id="dyeRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="dyeRsEmoji">🎨</div>
+    <div style="font-size:26px;font-weight:800" id="dyeRsTitle">收齐了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="dyeRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="dye-pk" id="dyeRsScore">🎨 0 分</span>
+      <span class="dye-pk" id="dyeRsWords">🈶 收齐 0 个字 · 上色 0 笔</span>
+      <span class="dye-pk" id="dyeRsDrops">🫙 滴墨 0 滴 · 舀走 0 滴 · 冲掉 0 滴</span>
+      <span class="dye-pk" id="dyeRsWash">💧 洗缸 0 回</span>
+      <span class="dye-pk" id="dyeRsBorrow">🖌 借色 0 笔 · 一色即中 0 笔</span>
+      <span class="dye-pk" id="dyeRsBad">👺 挨泼 0 · 挡下 0 · 错色 0</span>
+      <span class="dye-pk" id="dyeRsTools">🧰 借家什 0 回</span>
+      <span class="dye-pk" id="dyeRsBest">🏅 历史最高 0 分</span>
+      <span class="dye-pk" id="dyeRsRank">🌱 头一回调色</span>
+    </div>
+    <div class="dye-rs-book" id="dyeRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="dyeRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="dyeRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="dyeReBtn">🎨 再调一案</button>
+      <button class="tool-btn" id="dyeLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="dyeHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -15207,6 +15364,7 @@ function updateHomeStats(){
   if(typeof foxNudge==='function')foxNudge();
   if(typeof soakNudge==='function')soakNudge();
   if(typeof pebbleNudge==='function')pebbleNudge();
+  if(typeof dyeNudge==='function')dyeNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -15253,6 +15411,7 @@ function enterMode(mode){
   if(mode==='fox'){foxStart();return}
   if(mode==='soak'){soakStart();return}
   if(mode==='pebble'){pebbleStart();return}
+  if(mode==='dye'){dyeStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -105096,6 +105255,1438 @@ function pebbleNudge(){
   if(tip)tip.textContent=games?(rk.e+' '+rk.t+' · 收成 '+tot+' 个字 · 落 '+hands+' 手 · 被叼 '+pbxInt('hz_pebble_robbed')+
     ' 次 · 凑 '+pbxInt('hz_pebble_chains')+' 圈 · 一把清 '+pbxInt('hz_pebble_sweeps')+' 堆 · 家什架 '+shelf+' 件'):
     '一堆剩的颗数正好是「每手上限 +1」的倍数时，轮到谁谁输：他抓 x 你补满一圈，最后一颗就归你背走';
+  if(dot){dot.classList.toggle('on',!games);dot.textContent=(games?'':'🆕')}
+}
+
+
+/* ================= v1.102 🎨 笔顺调色坊（一张画案 · 这个字几笔就调几次色 · 颜料只认「加」不认「减」—— 你手里只有「滴哪一味、哪一笔落色、哪一刻洗缸」三样 ================= */
+/* 场：420×340 的一张画案。左边一个米字格摆着这个字（一笔一笔等着上色），中间一只缸盛着正在调的颜料，
+   右边挂着这一笔的「目标色票」。规矩只有三条，而且三条全在整数上：
+   ① 缸里的颜色 = 四味原色（加妖吐的浊灰共五味）按滴数加权平均 —— 配比就是滴数的比，没有第二条路；
+   ② 颜料**只能加不能减**：滴下去的一滴永远在缸里，想从头再来只有「洗缸」这一味药，而清水按场配额；
+   ③ 落一笔要从缸里舀走「这一笔用墨」那么几滴（按比例舀，缸里剩的还是同一个色），而且**缸底必须留一口** ——
+      舀得一滴不剩就不是调色，是重新来过。多留的那几滴不是为了好看，是为了下一笔能借色：
+      借色省一碗水，省墨还是省水，这就是这一坊全程在算的那笔账。
+   教学点：按笔顺给每一笔调出它的笔形色（横朱砂、竖石绿、撇鹅黄、捺赭橘），色差条实时告诉你差多少、往哪一味差 */
+const DYE_W=420,DYE_H=340;
+/* 五味颜料：前四味是孩子手里的原色，第五味「浊灰」只有妖吐得出来（滴数账上它与前四味完全同等） */
+const DYE_P=[[242,238,230],[43,168,216],[200,50,125],[232,180,32],[104,98,92]];
+const DYE_PN=['钛白','花青','洋红','藤黄','浊灰'];
+const DYE_PK=['1','2','3','4'];                 /* 孩子只能滴前四味，键位 1~4 */
+/* 四个笔形的目标色**不写死颜色，只写死配方**：色票、色差、上纸、算路全从 dyeColor(配方) 现算 ——
+   目标色一定调得出来，因为它的定义就是「那一串滴数」 */
+const DYE_REC4=[[0,0,2,1,0],[0,2,0,1,0],[2,0,0,1,0],[1,0,1,2,0]];
+const DYE_TAG4=['横','竖','撇','捺'];
+const DYE_TN4=['朱砂','石绿','鹅黄','赭橘'];
+/* 缸：容量按场缩，色差容限按场紧，一砚墨与清水按场抠。
+   容限是这一坊唯一松动的尺：它一松（45 那种），从空缸滴够 need 滴就「像」了 —— 落完缸见底、下一笔又从头调，
+   零洗缸就是墨的下界，「省水」与「省墨」永远并成一条路，孩子面前没得选。收到 27 起、每场再紧 1，
+   配合下面这条「缸底留一口」，两条路才真分得开（离线数过：124 个可上案的字里 41 个证得出两条互不支配的路） */
+const DYE_CAP0=13,DYE_CAP_MIN=9;
+const DYE_TOL0=27,DYE_TOL_MIN=22,DYE_TOL_STEP=1;
+const DYE_INK0=68,DYE_INK_MIN=44,DYE_INK_STEP=3;
+const DYE_WATER0=4,DYE_WATER_MIN=2;
+/* 缸底留一口：落一笔不许把缸舀干 —— 舀干了就得从头调，那口余墨才是下一笔的借色。
+   这一条是这一坊的物理学：达标要「色像」且「缸里的墨够吃这一笔、吃完还留得下这一口」 */
+const DYE_RESIDUE=1;
+/* 这一笔用墨：拿这一笔中线的实际长度换算（长笔吃墨），2~6 滴 */
+const DYE_NEED_MIN=2,DYE_NEED_MAX=6,DYE_LEN_K=170,DYE_LEN_MIN=60;
+/* 三只钟：这一笔的钟（磨蹭到点墨就结壳）、这一场的钟、洗缸之后的晾干 */
+const DYE_QMS0=9500,DYE_QMS_MIN=6500,DYE_QMS_STEP=300;
+const DYE_FUEL0=150000,DYE_FUEL_MIN=96000,DYE_FUEL_STEP=6000;
+const DYE_DRY0=1200,DYE_DRY_MIN=700,DYE_DRY_STEP=50;
+/* 脏笔妖：每隔一会儿往缸里吐一滴浊灰，吐哪一味提前公告（第 4 场起不预告） */
+const DYE_AI0=3400,DYE_AI_MIN=1500,DYE_AI_STEP=200;
+/* 罚：错色（没调到位就落笔）、溢缸（缸满还滴）、泼溢（缸满时挨妖一口）、墨干、砚空、场钟尽、换字 */
+const DYE_P_WRONG=6,DYE_P_SPILL=4,DYE_P_OVER=6,DYE_P_DRY=3,DYE_P_EMPTY=5,DYE_P_FUEL=5,DYE_P_SWAP=6,DYE_P_THIN=4;
+/* 赏：收齐一个字、整字零罚、一件家什没借、滴水不漏（洗缸次数不超过算出来的最优水额）、铁配方（每一笔都一色即中） */
+const DYE_WORD_PTS=26,DYE_CLEAN_PTS=16,DYE_TOOL_PTS=10,DYE_LEAK_PTS=22,DYE_IRON_PTS=20,DYE_INK_LEFT_MAX=18;
+/* 倍率：一色即中（第一次达标就落手，一滴也没多花）、借色（这一笔没洗缸）、准得发亮（落笔时色差 ≤ 容限的三分之一） */
+const DYE_G0=9,DYE_G_CB=1.1,DYE_G_LV=1.6;
+const DYE_M_FIRST=1.6,DYE_M_BORROW=1.35,DYE_M_PRECISE=1.25,DYE_PRECISE_K=3;
+/* 字的口径：3~6 笔、至少两种笔形（一种笔形的字只考一味色，没账可算）、最多三种（要给色票留出预告的层次） */
+const DYE_STROKE_MIN=3,DYE_STROKE_MAX=6,DYE_KIND_MAX=3;
+const DYE_POOL_MIN=4,DYE_POOL_WANT=14,DYE_POOL_SCAN=320;
+/* 进池的凭据：最省水的那条计划之外，还得再有一条「多花墨换省水」或「多花水换省墨」的第二条路，
+   而且墨账要留余货 —— 只有一条路可走的字，孩子没有选择可做，就不配上这张画案 */
+const DYE_PLAN_ALT=2,DYE_INK_HEAD=6;
+const DYE_HEARTS=3,DYE_HEART_MAX=5,DYE_BOOK_MAX=300;
+const DYE_P0={wheel:2,towel:1,lid:2,swap:1};     /* 色轮 / 净手巾 / 缸盖 / 换字 */
+const DYE_WHEEL_MS=3600,DYE_TAG_MS=2300;
+const DYE_NAG_MS=11000,DYE_NAG_HOLD=5200,DYE_HELP_MS=16000;
+/* 画案摆位：左边米字格（字就画在这里），右上色票带，右下那只缸，缸沿一圈是容量的刻度 */
+const DYE_GX=14,DYE_GY=20,DYE_GRID=150;
+const DYE_CHIP_X=286,DYE_CHIP_Y=14,DYE_CHIP_W=60,DYE_CHIP_H=42;
+const DYE_BOWL_X=338,DYE_BOWL_Y=198,DYE_BOWL_R=52;
+const DYE_AIX=210,DYE_AIY=250;
+const DYE_RANKS=[
+  {n:0,e:'🌱',t:'头一回调色'},{n:2,e:'🎨',t:'认得四味'},{n:5,e:'🖌',t:'调得出朱砂'},
+  {n:9,e:'💧',t:'舍得洗缸'},{n:14,e:'🪣',t:'会借色'},{n:21,e:'🏵',t:'滴水不漏'},
+  {n:30,e:'🎑',t:'满案生色'},{n:42,e:'🧑‍🎨',t:'配方在心里'},{n:58,e:'👑',t:'妖见你绕道'}
+];
+const DYE_SHELF=[
+  {k:'朱砂',d:'收齐一个字里全是横的字'},{k:'石绿',d:'借色连成三笔'},
+  {k:'鹅黄',d:'一个字一滴墨没多花'},{k:'赭橘',d:'第 4 场还在调色'},
+  {k:'净手巾',d:'净手巾用满三回'},{k:'缸盖',d:'一口也没让妖吐进来'},
+  {k:'色样夹',d:'别处的章节徽章攒到 3 枚'},{k:'铁配方',d:'一个字每一笔都一色即中'}
+];
+const dye={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],
+  pool:[],miss:[],rec:null,n:0,pi:0,
+  lv:1,score:0,hearts:DYE_HEARTS,combo:0,maxCombo:0,
+  words:0,strokes:0,drops:0,washes:0,borrow:0,firsts:0,precise:0,iron:0,
+  /* 这一个字的账（段 G 拿它跟缸里滴数对总账）：w*=within word */
+  planWater:0,planInk:0,
+  splashes:0,blocked:0,mud:0,wrongs:0,spills:0,overflows:0,drys:0,empties:0,fuels:0,swaps:0,
+  thin:0,scooped:0,leaks:0,noSplash:0,dist:0,wheelHint:-1,base:null,
+  bound:false,borrowRun:0,maxBorrow:0,washedAway:0,
+  tools:0,nags:0,cleanWord:0,
+  counts:[0,0,0,0,0],vol:0,ink:0,water:0,lid:0,dryMs:0,
+  wheelN:DYE_P0.wheel,towelN:DYE_P0.towel,lidN:DYE_P0.lid,swapN:DYE_P0.swap,
+  wheelUse:0,towelUse:0,lidUse:0,swapUse:0,wheelMs:0,nagMs:0,nagHold:0,helpMs:0,tagTimer:0,
+  aiMs:0,aiFlash:0,qms:0,qms0:0,fuel:0,fuel0:0,paid:[],load:false,
+  matchAt:false,overshot:false,washedThis:false,newBest:false,msg:''
+};
+/* ---- 缸的色：滴数加权平均，整数算到底。空缸就是宣纸本色，不算成黑色 ---- */
+function dyeColor(c){
+  let t=0;for(let i=0;i<5;i++)t+=c[i];
+  if(t<=0)return DYE_P[0].slice();
+  const r=[0,0,0];
+  for(let k=0;k<3;k++){
+    let s=0;for(let i=0;i<5;i++)s+=c[i]*DYE_P[i][k];
+    r[k]=Math.round(s/t);
+  }
+  return r;
+}
+/* 色差：RGB 三维的整距，四舍五入到整数 —— 色票、色差条、达标判定读的是同一个数 */
+function dyeDist(a,b){
+  const x=a[0]-b[0],y=a[1]-b[1],z=a[2]-b[2];
+  return Math.round(Math.sqrt(x*x+y*y+z*z));
+}
+function dyeVol(c){let t=0;for(let i=0;i<5;i++)t+=c[i];return t}
+function dyeSame(a,b){return a[0]===b[0]&&a[1]===b[1]&&a[2]===b[2]}
+function dyeTarget(dir){return dyeColor(DYE_REC4[dir])}
+/* 舀墨：落一笔要从缸里带走 need 滴。颜料是搅匀的，所以带走的应当「按比例」——
+   按最大余数法分给五味：每味先取 floor(c*need/t)，余下的名额按小数部分从大到小补，
+   平手时先补滴数少的那一味（少的那味本来就容易一次被抹平），再按味序。
+   这条规矩是死的：五味取完总数必定等于 need，且每味取的不多于它有的 */
+function dyeScoop(c,need){
+  const out=c.slice(),t=dyeVol(c);
+  if(!(t>0)||need<=0)return out;
+  const n=Math.min(need,t),cut=[],frac=[];
+  let used=0;
+  for(let i=0;i<5;i++){
+    const q=Math.floor(c[i]*n/t);
+    cut.push(Math.min(q,c[i]));used+=Math.min(q,c[i]);
+    frac.push(c[i]*n/t-Math.floor(c[i]*n/t));
+  }
+  const idx=[0,1,2,3,4];
+  idx.sort(function(a,b){
+    if(frac[b]!==frac[a])return frac[b]-frac[a];
+    if(c[a]!==c[b])return c[a]-c[b];
+    return a-b;
+  });
+  for(let k=0;k<idx.length&&used<n;k++){
+    const i=idx[k];
+    if(cut[i]<c[i]){cut[i]++;used++}
+  }
+  for(let i=0;i<5;i++)out[i]=c[i]-cut[i];
+  return out;
+}
+/* ---- 难度表：全部现算，页面与探针读同一张表 ---- */
+function dyeLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function dyeCap(L){return Math.max(DYE_CAP_MIN,DYE_CAP0-((L>=4)?1:0)-((L>=7)?1:0))}
+function dyeTol(L){return Math.max(DYE_TOL_MIN,DYE_TOL0-(L-1)*DYE_TOL_STEP)}
+function dyeInk(L){return Math.max(DYE_INK_MIN,DYE_INK0-(L-1)*DYE_INK_STEP)}
+function dyeWater(L){return Math.max(DYE_WATER_MIN,DYE_WATER0-Math.floor((L-1)/3))}
+function dyeNeedOf(dir,len){
+  let v=Math.round((len-DYE_LEN_MIN)/DYE_LEN_K)+DYE_NEED_MIN;
+  return Math.max(DYE_NEED_MIN,Math.min(DYE_NEED_MAX,v));
+}
+function dyeQms(L){return Math.max(DYE_QMS_MIN,DYE_QMS0-(L-1)*DYE_QMS_STEP)}
+function dyeFuel(L){return Math.max(DYE_FUEL_MIN,DYE_FUEL0-(L-1)*DYE_FUEL_STEP)}
+function dyeDry(L){return Math.max(DYE_DRY_MIN,DYE_DRY0-(L-1)*DYE_DRY_STEP)}
+function dyeAiMs(L){return Math.max(DYE_AI_MIN,DYE_AI0-(L-1)*DYE_AI_STEP)}
+function dyeDim(L){return L>=6}          /* 第 6 场起色差条收走：只剩「像 / 不像」那一颗灯 */
+function dyeNoTell(L){return L>=4}       /* 第 4 场起妖不预告吐哪一味 */
+function dyeWant(L){return L<=2?[3,5]:[3,6]}
+function dyeRank(w){
+  let r=DYE_RANKS[0];
+  for(let i=0;i<DYE_RANKS.length;i++)if(w>=DYE_RANKS[i].n)r=DYE_RANKS[i];
+  return r;
+}
+/* ---- 小工具：取整、打乱、点名、发声、清定时器 ---- */
+function dyxInt(k){const v=+localStorage.getItem(k);return isNaN(v)?0:v}
+function dyxPut(k,v){localStorage.setItem(k,String(v))}
+function dyxAdd(k,n){if(n)dyxPut(k,dyxInt(k)+n)}
+function dyxClamp(v,a,b){return v<a?a:(v>b?b:v)}
+function dyxShuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+function dyxTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!dye.ac)dye.ac=new AC();
+    const c=dye.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.value=g===undefined?.05:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+function dyxSay(msg,color){if(typeof jtSay==='function')jtSay(msg,color||'#FFE082')}
+function dyxT(fn,ms){const id=setTimeout(function(){
+  const i=dye.timers.indexOf(id);if(i>=0)dye.timers.splice(i,1);
+  if(!dye.run||dye.over)return;
+  try{fn()}catch(e){}
+},ms);dye.timers.push(id);return id}
+function dyxKillTimers(){
+  for(let i=0;i<dye.timers.length;i++)clearTimeout(dye.timers[i]);
+  dye.timers=[];
+  if(dye.rafId){cancelAnimationFrame(dye.rafId);dye.rafId=0}
+}
+function dyeHex(c){return '#'+c.map(function(v){return (v<16?'0':'')+v.toString(16)}).join('').toUpperCase()}
+
+/* ================= 算路：一只缸能走出的所有配方，全在整数上，两条路各算各的 =================
+   A 路 dyePlanDp —— 逐笔分层：把这一笔之前「能滴出来的所有缸」按体积一层层摊开（每一层只加一滴），
+        落得下去的就进下一笔；每个缸号对「洗了几回」各记一个最少墨数。
+   B 路 dyePlanDij —— 全局字典序寻路：不分层，把 (第几笔, 缸号) 当成一张大图上的格，
+        每次从待扩的格里挑「水最少、水一样时墨最少」的那一个来松弛。次序与 A 完全不同，
+        所以两条路给出同一个数才算数。
+   另有一把硬碰硬的尺 dyeReach —— 不许洗缸、只许加滴，枚举所有 Δ 组合问一句「够不够得到这一笔的目标色」，
+        它既不构分层也不建优先队列，段 G 拿它跟 A/B 的逐笔决策逐格对表。 */
+const DYE_INF=1e9;
+function dyePack(c){return (c[0]|0)+((c[1]|0)<<4)+((c[2]|0)<<8)+((c[3]|0)<<12)+((c[4]|0)<<16)}
+function dyeUnpack(p){return [p&15,(p>>4)&15,(p>>8)&15,(p>>12)&15,(p>>16)&15]}
+/* 这一笔的目标：色从配方现算，用墨从这一笔的长度换算 —— 页面、算路、探针读的是同一个口子 */
+function dyeGoal(rec,k){return {dir:rec.dirs[k],tg:dyeTarget(rec.dirs[k]),need:rec.needs[k]}}
+/* 落得下去吗：这一笔要吃得饱（need 滴），缸底还得留下一口给下一笔借色，且色差在容限内 */
+function dyeCanPaint(c,tg,need,tol){
+  if(dyeVol(c)<need+DYE_RESIDUE)return false;
+  return dyeDist(dyeColor(c),tg)<=tol;
+}
+/* 一步的三种走法：滴一味（花 1 滴墨，缸满就滴不进去）、洗缸（花 1 碗清水、缸归空）、落一笔（舀墨，不花钱） */
+function dyeStep(c,act,tg,need,tol,cap){
+  if(act==='w')return {c:[0,0,0,0,0],ink:0,water:1};
+  if(act==='p'){
+    if(!dyeCanPaint(c,tg,need,tol))return null;
+    return {c:dyeScoop(c,need),ink:0,water:0,paint:1};
+  }
+  const i=+act;
+  if(!(i>=0&&i<=3))return null;
+  if(dyeVol(c)>=cap)return null;
+  const nc=c.slice();nc[i]++;
+  return {c:nc,ink:1,water:0};
+}
+/* 同一个缸号、同一个水额，只留最省的那条 */
+function dybPut(map,pc,w,ink){
+  let arr=map.get(pc);
+  if(!arr){arr=[];for(let i=0;i<=w;i++)arr.push(DYE_INF);map.set(pc,arr)}
+  else if(arr[w]===undefined)for(let i=arr.length;i<=w;i++)arr.push(DYE_INF);
+  if(ink<arr[w]){arr[w]=ink;return true}
+  return false;
+}
+function dybMin(arr){let m=DYE_INF;for(let i=0;i<arr.length;i++)if(arr[i]<m)m=arr[i];return m}
+/* ---- A 路：逐笔分层 + 按体积一层层加滴的闭包 ---- */
+function dyePlanDp(dirs,needs,cap,tol,W){
+  const N=dirs.length;
+  let layer=new Map();
+  const a0=[];for(let i=0;i<=W;i++)a0.push(DYE_INF);a0[0]=0;
+  layer.set(0,a0);                                 /* 空缸起步，一回没洗、一滴没花 */
+  for(let k=0;k<N;k++){
+    const tg=dyeTarget(dirs[k]),need=needs[k];
+    const seen=new Map(),buckets=[];
+    for(let v=0;v<=cap;v++)buckets.push([]);
+    /* 种子：上一笔落完的那些缸；以及「先洗一口再从头调」的那些缸（水额 +1） */
+    layer.forEach(function(costs,pc){
+      for(let w=0;w<=W;w++){
+        if(costs[w]>=DYE_INF)continue;
+        if(dybPut(seen,pc,w,costs[w]))buckets[dyeVol(dyeUnpack(pc))].push([pc,w]);
+        if(w+1<=W&&dybPut(seen,0,w+1,costs[w]))buckets[0].push([0,w+1]);
+      }
+    });
+    for(let v=0;v<=cap;v++){
+      const list=buckets[v];
+      for(let x=0;x<list.length;x++){
+        const pc=list[x][0],w=list[x][1],ink=seen.get(pc)[w],c=dyeUnpack(pc);
+        if(v>=cap)continue;                        /* 缸满：再滴只能漫出缸沿 */
+        for(let i=0;i<4;i++){
+          const nc=c.slice();nc[i]++;
+          const npc=dyePack(nc);
+          if(dybPut(seen,npc,w,ink+1))buckets[v+1].push([npc,w]);
+        }
+      }
+    }
+    const next=new Map();
+    seen.forEach(function(costs,pc){
+      const c=dyeUnpack(pc);
+      if(!dyeCanPaint(c,tg,need,tol))return;
+      const pcc=dyeScoop(c,need),npc=dyePack(pcc);
+      let arr=next.get(npc);
+      if(!arr){arr=[];for(let i=0;i<=W;i++)arr.push(DYE_INF);next.set(npc,arr)}
+      for(let w=0;w<=W;w++)if(costs[w]<arr[w])arr[w]=costs[w];
+    });
+    layer=next;
+    if(!layer.size)return null;
+  }
+  const out=[];
+  layer.forEach(function(costs){
+    for(let w=0;w<=W;w++)if(costs[w]<DYE_INF){
+      const old=out[w];
+      if(old===undefined||costs[w]<old)out[w]=costs[w];
+    }
+  });
+  return out.length?out:null;
+}
+/* ---- B 路：全局字典序（先水后墨）寻路，格是 (第几笔, 缸号) ---- */
+function dyePlanDij(dirs,needs,cap,tol,W){
+  const N=dirs.length,tg=[],nd=[];
+  for(let k=0;k<N;k++){tg.push(dyeTarget(dirs[k]));nd.push(needs[k])}
+  const best=new Map(),pq=[];
+  const key=function(l,pc){return l*1048576+pc};
+  best.set(key(0,0),0);                            /* 值 = 水额*(INK上限+1)+墨，字典序压成一个数 */
+  pq.push({l:0,pc:0,w:0,ink:0});
+  const BIG=4096;
+  let done=null;
+  while(pq.length){
+    let bi=0;
+    for(let i=1;i<pq.length;i++){
+      const a=pq[i],b=pq[bi];
+      if(a.w*BIG+a.ink<b.w*BIG+b.ink)bi=i;
+    }
+    const s=pq.splice(bi,1)[0];
+    if(s.w>W)break;
+    if(s.l>=N){done={w:s.w,ink:s.ink};break}
+    const c=dyeUnpack(s.pc);
+    const acts=['0','1','2','3','w','p'];
+    for(let ai=0;ai<acts.length;ai++){
+      const r=dyeStep(c,acts[ai],tg[s.l],nd[s.l],tol,cap);
+      if(!r)continue;
+      const nl=acts[ai]==='p'?s.l+1:s.l;
+      if(nl>N)continue;
+      const nw=s.w+r.water,ni=s.ink+r.ink;
+      if(nw>W)continue;
+      const kk=key(nl,dyePack(r.c)),cost=nw*BIG+ni,old=best.get(kk);
+      if(old===undefined||cost<old){
+        best.set(kk,cost);
+        pq.push({l:nl,pc:dyePack(r.c),w:nw,ink:ni});
+      }
+    }
+  }
+  return done;
+}
+/* 一条计划里「不同水额」的方案数：省水那条与省墨那条必须在，孩子才有得挑 */
+function dyePlanAlts(dirs,needs,cap,tol,W,inkCap){
+  const out=[];
+  for(let w=0;w<=W;w++){
+    const m=dyePlanDp(dirs,needs,cap,tol,w);
+    if(!m)continue;
+    let ink=DYE_INF;
+    for(let i=0;i<m.length;i++)if(m[i]<ink)ink=m[i];
+    if(ink<=inkCap)out.push({w:w,ink:ink});
+  }
+  const pruned=[];
+  for(let i=0;i<out.length;i++){
+    let dom=false;
+    for(let j=0;j<out.length;j++){
+      if(i===j)continue;
+      if(out[j].w<=out[i].w&&out[j].ink<=out[i].ink&&(out[j].w<out[i].w||out[j].ink<out[i].ink))dom=true;
+    }
+    if(!dom)pruned.push(out[i]);
+  }
+  return pruned;
+}
+/* 两条路并排读一份：A 的最少水额、该水额上的最少墨，B 的字典序最优，再加非支配方案数，全给探针去比 */
+function dyePlanBoth(rec,lv){
+  const cap=dyeCap(lv),tol=dyeTol(lv),W=dyeWater(lv),inkCap=dyeInk(lv);
+  const A=dyePlanDp(rec.dirs,rec.needs,cap,tol,W);
+  const B=dyePlanDij(rec.dirs,rec.needs,cap,tol,W);
+  let minW=-1,inkAtA=DYE_INF;
+  if(A)for(let w=0;w<A.length;w++)if(A[w]<DYE_INF){minW=w;inkAtA=A[w];break}
+  const alts=dyePlanAlts(rec.dirs,rec.needs,cap,tol,W,inkCap-DYE_INK_HEAD);
+  return {cap:cap,tol:tol,W:W,inkCap:inkCap,ok:!!A&&!!B,minW:minW,inkAtA:inkAtA,
+    dijW:B?B.w:-1,dijInk:B?B.ink:-1,alt:alts.length,alts:alts};
+}
+/* 这个字在这档位上到底走不走得通：算死账 —— 最省水的计划要的水 ≤ 清水配额，花的墨 ≤ 砚墨配额 − 余货，
+   而且非支配的方案至少两条（只有唯一一条路的字，孩子没得选，这一坊就退化成填色） */
+function dyeWitness(rec,lv){
+  const cap=dyeCap(lv),tol=dyeTol(lv),W=dyeWater(lv),inkCap=dyeInk(lv);
+  for(let k=0;k<rec.needs.length;k++)if(rec.needs[k]>cap)return null;
+  const alts=dyePlanAlts(rec.dirs,rec.needs,cap,tol,W,inkCap-DYE_INK_HEAD);
+  if(alts.length<DYE_PLAN_ALT)return null;
+  const b=dyePlanDij(rec.dirs,rec.needs,cap,tol,W);
+  if(!b)return null;
+  let best=alts[0];
+  for(let i=0;i<alts.length;i++)if(alts[i].w<best.w||(alts[i].w===best.w&&alts[i].ink<best.ink))best=alts[i];
+  return {water:best.w,ink:best.ink,alts:alts.length,cap:cap,tol:tol,plan:b};
+}
+/* ---- 硬碰硬的尺：不许洗缸，只枚举「各味各加几滴」的所有组合，问够不够得到目标色 ----
+   给了 need 就连「舀得饱这一笔、缸底还留得下一口」一起问（与 dyeCanPaint 同一道门，段 G 那两把尺才许逐格相等）；
+   不给 need 只问色 —— 配方自己那一遍要的就是这个 */
+function dyeReach(from,tg,tol,cap,need){
+  const room=cap-dyeVol(from),res={ok:false,drops:cap+1,c:null};
+  const min=(need===undefined)?0:(need|0)+DYE_RESIDUE;
+  const enough=function(c){return dyeVol(c)>=min&&dyeDist(dyeColor(c),tg)<=tol};
+  const d=[0,0,0,0];
+  (function walk(i,left){
+    if(i>3){
+      const n=d[0]+d[1]+d[2]+d[3];
+      if(n>0&&n>=res.drops)return;                 /* 只找最省的那一串；一滴不加本来就在门口查过了 */
+      const c=from.slice();
+      c[0]+=d[0];c[1]+=d[1];c[2]+=d[2];c[3]+=d[3];
+      if(enough(c)){res.ok=true;res.drops=n;res.c=c}
+      return;
+    }
+    if(dyeVol(from)+left>cap){d[i]=0;return}
+    for(let v=0;v<=left;v++){d[i]=v;walk(i+1,left-v)}
+    d[i]=0;
+  })(0,room);
+  if(!res.ok&&enough(from)){res.ok=true;res.drops=0;res.c=from.slice()}
+  return res;
+}
+/* 逐笔的路口：在这一口缸面前，「接着加」与「洗了重来」各要几滴墨 —— 纯枚举，独立于 A/B */
+function dyeCrossStep(from,rec,k,lv){
+  const cap=dyeCap(lv),tol=dyeTol(lv),g=dyeGoal(rec,k);
+  const a=dyeReach(from,g.tg,tol,cap,g.need),e=dyeReach([0,0,0,0,0],g.tg,tol,cap,g.need);
+  return {addOk:a.ok,addDrops:a.drops,washOk:e.ok,washDrops:1+e.drops,need:g.need,tol:tol,cap:cap};
+}
+/* ---- 舀墨的账（段 G 拿去逐格硬算）：总数必定少 need，配比偏移不超过一格 ---- */
+function dyeAudScoop(c,need){
+  const t=dyeVol(c),o=dyeScoop(c,Math.min(Math.max(0,need|0),t));
+  let s=0,neg=0;
+  for(let i=0;i<5;i++){s+=o[i];if(o[i]<0)neg++}
+  const drift=dyeDist(dyeColor(c),dyeColor(o));
+  return {in:t,out:s,need:Math.min(need,t),neg:neg,drift:drift,ok:t-s===Math.min(need,t)?1:0};
+}
+/* 全缸枚举：容量之内、孩子那四味之内的每一口缸都跑一遍舀墨（浊灰留给妖，算路的尺不看它） */
+function dyeAudTable(cap,needMax){
+  const out={states:0,scoopBad:0,over:0,driftMax:0};
+  for(let a=0;a<=cap;a++)for(let b=0;b<=cap-a;b++)for(let m=0;m<=cap-a-b;m++)for(let y=0;y<=cap-a-b-m;y++){
+    const c=[a,b,m,y,0];
+    out.states++;
+    if(dyeVol(c)>cap)out.over++;
+    for(let n=1;n<=needMax;n++){
+      const s=dyeAudScoop(c,n);
+      if(!s.ok)out.scoopBad++;
+      if(s.drift>out.driftMax)out.driftMax=s.drift;
+    }
+  }
+  return out;
+}
+
+/* ---- 一根中线的长度（字模坐标系，1024 见方）：这一笔吃几滴墨就是从它换算的 ---- */
+function dyeLenOf(m){
+  let t=0;
+  for(let i=1;i<m.length;i++){
+    const dx=m[i][0]-m[i-1][0],dy=m[i][1]-m[i-1][1];
+    t+=Math.sqrt(dx*dx+dy*dy);
+  }
+  return t;
+}
+/* ---- 这个字配不配得上这张画案：3~6 笔、笔形认得出、至少两种笔形（一味色的字没账可算）、
+       最多三种（要给色票预告留层次）、至少一笔吃三滴以上（全是一口的短笔，缸里留不下余色）、字要大 ---- */
+function dyeMake(ch,raw){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  if(ms.length<DYE_STROKE_MIN||ms.length>DYE_STROKE_MAX)return null;
+  const dirs=[],lens=[],needs=[];
+  for(let i=0;i<ms.length;i++){
+    const d=jtDirOf(ms[i]);
+    if(d<0)return null;
+    const L=dyeLenOf(ms[i]);
+    if(!(L>0))return null;
+    dirs.push(d);lens.push(Math.round(L));needs.push(dyeNeedOf(d,L));
+  }
+  let kinds=0,mx=0;
+  for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  for(let i=0;i<needs.length;i++)if(needs[i]>mx)mx=needs[i];
+  let kc=0;for(let d=0;d<4;d++)if(kinds&(1<<d))kc++;
+  if(kc<2||kc>DYE_KIND_MAX)return null;
+  if(mx<DYE_NEED_MIN+1)return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++)for(let j=0;j<ms[i].length;j++){
+    const x=ms[i][j][0],y=ms[i][j][1];
+    if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+  }
+  if(x1-x0<140||y1-y0<140)return null;
+  let sum=0;for(let i=0;i<needs.length;i++)sum+=needs[i];
+  return {ch:ch,n:ms.length,dirs:dirs,needs:needs,lens:lens,paths:sp,meds:ms,load:sum,
+    kinds:(function(){const a=[];for(let d=0;d<4;d++)if(kinds&(1<<d))a.push(d);return a})(),
+    union:{x0:x0,x1:x1,y0:y0,y1:y1},targets:(function(){
+      const a=[];for(let i=0;i<dirs.length;i++)a.push(dyeTarget(dirs[i]));return a})()};
+}
+/* 上色的顺序就是笔顺：这一坊不许挑笔，孩子挑的是「这一口缸留多少余墨」 */
+function dyeSeqOk(rec){
+  for(let i=0;i<rec.dirs.length;i++)if(rec.dirs[i]<0||rec.dirs[i]>3)return false;
+  for(let i=0;i<rec.needs.length;i++)if(rec.needs[i]<DYE_NEED_MIN||rec.needs[i]>DYE_NEED_MAX)return false;
+  return true;
+}
+/* 池子的门槛：这一档要证得出一条真计划（含余货、含第二条路）才算这一场的凭据 */
+function dyeAudit(rec,lv){
+  if(!dyeSeqOk(rec))return null;
+  return dyeWitness(rec,lv);
+}
+/* ---- 字池：进池之前按场的口径逐档试，三档全过才留（浅档容量宽松、深档收紧，只过一两档的字是碰运气过的） ---- */
+function dyeTiers(){return [dyeLvOf(0),dyeLvOf(4),dyeLvOf(8)]}
+function dyeTierOf(w){const lo=dyeLvOf(w);return Math.min(2,Math.max(0,Math.floor((lo-1)/3)))}
+async function dyeBuildPool(keep,lo,hi){
+  const g=dye.gen,stale=function(){return g!==dye.gen||!dye.run||dye.over};
+  const enough=function(){
+    if(!isFinite(lo))return dye.pool.length>=DYE_POOL_WANT;
+    let c=0;
+    for(let i=0;i<dye.pool.length;i++)if(dye.pool[i].n>=lo&&dye.pool[i].n<=hi)c++;
+    return c>=6||dye.pool.length>=40;
+  };
+  dye.miss=(localStorage.getItem('hz_dye_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<DYE_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(dyxShuf(dye.miss.slice(0,6)));
+  push(dyeLetters());                                            /* 手写的这一串排第二：里头每个字都真过三档的证 */
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(dyxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(dyxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  if(typeof CHARS!=='undefined')push(dyxShuf(CHARS.slice()));
+  if(!keep)dye.pool=[];
+  const tiers=dyeTiers();                                  /* 1 场 · 3 场 · 5 场各是一道门槛 */
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=dyeMake(want[k+i],rs[i]);
+        if(m&&isFinite(lo)&&(m.n<lo||m.n>hi))continue;      /* 这一场要摆开的是这个笔画段的案子，别的档留给后面 */
+        if(m&&tiers.every(function(lv){return !!dyeAudit(m,lv)})&&
+          !dye.pool.some(function(p){return p.ch===m.ch}))dye.pool.push(m);
+      }
+    }
+  }
+  return dye.pool.length>=DYE_POOL_MIN;
+}
+/* 这一坊吃「撇捺舒展、横竖也拉得开」的字：颜色配比要够复杂，圈成一团的（口田皿）每笔一味，没账可算。
+   前头这一串不是随手写的：全字表 1453 个字拿这一坊自己的 dyeMake + 三档 dyeAudit 数过一遍，
+   只有 38 个字三档全过（笔笔都是直的、两种以上笔形、至少一笔吃三滴、还能算出两条互不支配的路）——
+   就把这 38 个摆在最前头，池子一开张就攒得起来；后面那串老字面留着当后备（新字模进来时先来这儿找）。 */
+function dyeLetters(){
+  return '门马子下飞小上瓦专书市生仪对丘主田写'
+    +'华存而至在伙曲再托好纤异妈虫乒芒匠价约'
+    +'一二三十人大干土上下中正本末未朱休体林森相目且自白百吉'
+    +'天地人你我他她它们好坏多少大小中外早晚会工十士平幸左右友有'
+    +'年月午牛生王主玉田由甲申电男界发变口可台史同向君合告员'
+    +'味和品唯一回因困在存它守居层岛已布带年并异弯强形彩表见观'
+    +'规视讲话谢象贝货资赏街开式待近返还进远选配采金针钉钓钝铃'
+    +'铁银需青非面顶项顺须风飞食饭马驶骨高鱼鸟麦米良走起始迎运'
+    +'道长门问间闻不小少尖尘尚光当学字常安宋宗宜定宝宫'
+    +'川州巢雨需雪雷雾青光日月明早晚昏易春是时景晒晴暖'
+    +'水冰冷热洗活流波泵沙沟河泉墨深清情请'
+    +'火灭灯炎照黑无焦爽个夫太少尔尤就熟'
+    +'花草茶药荷菊芒芳芬蓝菜共其基堂报执地场'
+    +'木机权材村板束东柱树校根格样椅植'
+    +'言计订认讥心必忆快忙总想意悉悲'
+    +'手打托拔抓拍排接推提握援放收数整'
+    +'目看直天眼真眠着地场'
+    +'不还这进远连近送适选遗'
+    +'走行街徵德心得'
+    +'金金银铜铁钢钻钥'
+    +'人个中为主求江沟河泥';
+}
+
+/* ================= 画案：米字格 · 目标色票 · 一只缸 · 缸沿的容量刻度 · 脏笔妖 ================= */
+function dyeCv(){const c=document.getElementById('dyeCanvas');return c&&c.getContext?c.getContext('2d'):null}
+function dyeRoundRect(g,x,y,w,h,r){
+  g.beginPath();
+  g.moveTo(x+r,y);g.lineTo(x+w-r,y);g.quadraticCurveTo(x+w,y,x+w,y+r);
+  g.lineTo(x+w,y+h-r);g.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  g.lineTo(x+r,y+h);g.quadraticCurveTo(x,y+h,x,y+h-r);
+  g.lineTo(x,y+r);g.quadraticCurveTo(x,y,x+r,y);
+  g.closePath();
+}
+/* 字就画在米字格里：一笔一张 Path2D，未上色的淡成影，上过的填「落笔那一刻缸里的色」 */
+function dyeDrawChar(g){
+  const rec=dye.rec;
+  if(!rec)return;
+  const sc=DYE_GRID/1024;
+  g.save();
+  g.setTransform(sc,0,0,-sc,DYE_GX,DYE_GY+1024*sc);
+  for(let i=0;i<rec.paths.length;i++){
+    const p=dye.paid[i];
+    try{
+      const path=new Path2D(rec.paths[i]);
+      if(p){g.fillStyle=p.hex;g.fill(path)}
+      else{g.fillStyle=i===dye.pi?'rgba(120,90,40,.20)':'rgba(120,90,40,.08)';g.fill(path)}
+    }catch(e){}
+  }
+  g.restore();
+}
+function dyeDrawGrid(g){
+  g.save();
+  g.strokeStyle='rgba(150,110,70,.55)';g.lineWidth=1.6;
+  g.strokeRect(DYE_GX,DYE_GY,DYE_GRID,DYE_GRID);
+  g.strokeStyle='rgba(150,110,70,.22)';g.lineWidth=1;g.setLineDash([5,5]);
+  g.beginPath();
+  g.moveTo(DYE_GX+DYE_GRID/2,DYE_GY);g.lineTo(DYE_GX+DYE_GRID/2,DYE_GY+DYE_GRID);
+  g.moveTo(DYE_GX,DYE_GY+DYE_GRID/2);g.lineTo(DYE_GX+DYE_GRID,DYE_GY+DYE_GRID/2);
+  g.moveTo(DYE_GX,DYE_GY);g.lineTo(DYE_GX+DYE_GRID,DYE_GY+DYE_GRID);
+  g.moveTo(DYE_GX+DYE_GRID,DYE_GY);g.lineTo(DYE_GX,DYE_GY+DYE_GRID);
+  g.stroke();g.restore();
+}
+/* 色票带：这一笔要调成什么色、吃几滴墨；第 4 场起接下来的色票收走 */
+function dyeDrawChips(g){
+  const rec=dye.rec,L=dye.lv;
+  if(!rec)return;
+  const k=dye.pi,tg=dyeTarget(rec.dirs[k]);
+  g.save();
+  g.fillStyle='rgba(255,255,255,.72)';
+  dyeRoundRect(g,DYE_CHIP_X-6,DYE_CHIP_Y-6,DYE_CHIP_W+12,DYE_CHIP_H+30,7);g.fill();
+  g.fillStyle=dyeHex(tg);
+  g.fillRect(DYE_CHIP_X,DYE_CHIP_Y,DYE_CHIP_W,DYE_CHIP_H);
+  g.strokeStyle='rgba(90,60,30,.5)';g.lineWidth=1.4;
+  g.strokeRect(DYE_CHIP_X,DYE_CHIP_Y,DYE_CHIP_W,DYE_CHIP_H);
+  g.fillStyle='#4E342E';g.font='11px sans-serif';g.textAlign='left';
+  g.fillText(DYE_TAG4[rec.dirs[k]]+' · '+DYE_TN4[rec.dirs[k]]+' · 吃'+rec.needs[k]+'滴',DYE_CHIP_X-2,DYE_CHIP_Y+DYE_CHIP_H+15);
+  /* 后面几笔的色票：只作预告，不作凭据 */
+  if(!dyeNoTell(L)){
+    let x=DYE_CHIP_X+DYE_CHIP_W+12;
+    for(let j=k+1;j<rec.dirs.length&&j<=k+2;j++,x+=30){
+      g.fillStyle=dyeHex(dyeTarget(rec.dirs[j]));
+      g.fillRect(x,DYE_CHIP_Y+4,24,24);
+      g.strokeStyle='rgba(90,60,30,.35)';g.strokeRect(x,DYE_CHIP_Y+4,24,24);
+    }
+  }
+  g.restore();
+}
+/* 缸：底色是缸里现在的色，缸沿一圈刻度是容量，蓝进去的滴数一根一根亮着 */
+function dyeDrawBowl(g){
+  const cap=dyeCap(dye.lv),c=dye.counts,col=dyeVol(c)>0?dyeColor(c):[250,246,238];
+  g.save();
+  g.beginPath();g.arc(DYE_BOWL_X,DYE_BOWL_Y,DYE_BOWL_R,0,Math.PI*2);
+  g.fillStyle=dyeHex(col);g.fill();
+  g.lineWidth=3;g.strokeStyle=dye.vol>=cap?'#D84315':'rgba(93,64,55,.62)';g.stroke();
+  for(let i=0;i<cap;i++){
+    const a=-Math.PI/2+i*(Math.PI*2/cap);
+    const r0=DYE_BOWL_R+4,r1=DYE_BOWL_R+12;
+    g.beginPath();
+    g.moveTo(DYE_BOWL_X+Math.cos(a)*r0,DYE_BOWL_Y+Math.sin(a)*r0);
+    g.lineTo(DYE_BOWL_X+Math.cos(a)*r1,DYE_BOWL_Y+Math.sin(a)*r1);
+    g.lineWidth=3;g.strokeStyle=i<dye.vol?'#6D4C41':'rgba(120,90,40,.2)';g.stroke();
+  }
+  g.fillStyle='#3E2723';g.font='11px sans-serif';g.textAlign='center';
+  g.fillText('缸里 '+dye.vol+'/'+cap+' 滴',DYE_BOWL_X,DYE_BOWL_Y+DYE_BOWL_R+30);
+  if(dye.dryMs>0){
+    g.beginPath();g.arc(DYE_BOWL_X,DYE_BOWL_Y,DYE_BOWL_R-7,0,Math.PI*2);
+    g.fillStyle='rgba(255,255,255,.6)';g.fill();
+    g.fillStyle='#0277BD';g.fillText('缸还在晾干',DYE_BOWL_X,DYE_BOWL_Y);
+  }
+  g.restore();
+}
+/* 脏笔妖：那一口浊灰从鼓起的滴斗里看得出还剩多久（第 4 场起滴斗收起，只留一声响） */
+function dyeDrawAi(g){
+  if(dye.dryMs>0)return;
+  const span=dyeAiMs(dye.lv),p=dyxClamp(1-dye.aiMs/span,0,1);
+  g.save();
+  g.fillStyle='#5D4037';
+  g.beginPath();g.arc(DYE_AIX,DYE_AIY,16,0,Math.PI*2);g.fill();
+  g.fillStyle='#FFCC80';g.font='15px sans-serif';g.textAlign='center';
+  g.fillText('👺',DYE_AIX,DYE_AIY+6);
+  if(!dyeNoTell(dye.lv)){
+    g.beginPath();
+    g.moveTo(DYE_AIX+26,DYE_AIY-16);
+    g.quadraticCurveTo(DYE_AIX+34,DYE_AIY-2,DYE_AIX+26,DYE_AIY+2);
+    g.quadraticCurveTo(DYE_AIX+18,DYE_AIY-2,DYE_AIX+26,DYE_AIY-16);
+    g.fillStyle=dyeHex(DYE_P[4]);g.globalAlpha=.25+.7*p;g.fill();g.globalAlpha=1;
+  }
+  if(dye.aiFlash>0){
+    g.beginPath();g.arc(DYE_BOWL_X,DYE_BOWL_Y,DYE_BOWL_R+6,0,Math.PI*2);
+    g.strokeStyle='rgba(104,98,92,.85)';g.lineWidth=4;g.stroke();
+  }
+  g.restore();
+}
+/* 这一笔的进度：格子右下角写着第几笔/共几笔，收齐了整案上色 */
+function dyeDrawStep(g){
+  const rec=dye.rec;if(!rec)return;
+  g.save();
+  g.fillStyle='#4E342E';g.font='12px sans-serif';g.textAlign='left';
+  g.fillText('第 '+(dye.pi+1)+' / '+rec.n+' 笔 · '+rec.ch,DYE_GX+2,DYE_GY+DYE_GRID+16);
+  for(let i=0;i<rec.n;i++){
+    const x=DYE_GX+i*13,y=DYE_GY+DYE_GRID+24;
+    g.fillStyle=i<dye.pi?dyeHex((dye.paid[i]||{rgb:dyeTarget(rec.dirs[i])}).rgb):'rgba(120,90,40,.18)';
+    g.fillRect(x,y,10,7);
+  }
+  g.restore();
+}
+/* 四味颜料罐：画在缸下方，和 dyeJarXY 的落点同一套坐标 —— 手点得到、眼看得见
+   罐口亮着 = 这一味还滴得进去；罐子发暗 = 缸满了 / 砚空了 / 缸还在晾干 */
+function dyeDrawJars(g){
+  const cap=dyeCap(dye.lv),off=dye.vol>=cap||dye.ink<=0||dye.dryMs>0||dye.over;
+  for(let i=0;i<4;i++){
+    const j=dyeJarXY(i),x=j.x-j.w/2,y=j.y-j.h/2;
+    g.save();
+    g.globalAlpha=off?.34:1;
+    dyeRoundRect(g,x,y,j.w,j.h,6);
+    g.fillStyle=dyeHex(DYE_P[i]);g.fill();
+    g.lineWidth=(i===dye.wheelHint&&dye.wheelMs>0)?3:1.6;
+    g.strokeStyle=g.lineWidth===3?'#FF6F00':'rgba(93,64,55,.7)';g.stroke();
+    g.fillStyle=dyeSame(DYE_P[i],[242,238,230])?'#5D4037':'#FFFDE7';
+    g.font='11px sans-serif';g.textAlign='center';
+    g.fillText(DYE_PN[i],j.x,y+15);
+    g.fillText((i+1)+'',j.x,y+j.h-6);
+    g.fillStyle='#4E342E';g.fillText(''+dye.counts[i],j.x,y+j.h+12);
+    g.restore();
+  }
+}
+function dyeDraw(){
+  const g=dyeCv();
+  if(!g)return;
+  g.setTransform(1,0,0,1,0,0);
+  g.clearRect(0,0,DYE_W,DYE_H);
+  dyeDrawGrid(g);
+  dyeDrawChar(g);
+  dyeDrawChips(g);
+  dyeDrawBowl(g);
+  dyeDrawAi(g);
+  dyeDrawJars(g);
+  dyeDrawStep(g);
+}
+/* ---- 界面：三只钟、两本账、色差条、四味罐与家什 ---- */
+function dyeEl(id){return document.getElementById(id)}
+function dyePut(id,txt){const e=dyeEl(id);if(e)e.textContent=txt}
+/* 带排版的行只给产品自己写的那几句用（句中没有一处来自孩子的手）*/
+function dyePutH(id,txt,color){const e=dyeEl(id);if(e){e.innerHTML=txt;color&&(e.style.color=color)}}
+function dyeBar(id,p){const e=dyeEl(id);if(!e)return;p=Math.max(0,Math.min(1,p));e.style.width=Math.round(p*100)+'%';const r=e.parentNode;if(r)r.classList.toggle('low',p<.25)}
+function dyeSync(){
+  const rec=dye.rec,L=dye.lv,tg=rec?dyeTarget(rec.dirs[dyxClamp(dye.pi,0,rec.n-1)]):null;
+  const cur=dyeVol(dye.counts)>0?dyeColor(dye.counts):null;
+  const dist=(tg&&cur)?dyeDist(cur,tg):(tg?9999:0);
+  dyePut('dyeScoreTxt','🎨 '+dye.score+' 分');
+  dyePut('dyeLvTxt','第 '+L+' 场 · 已收 '+dye.words+' 字');
+  dyePut('dyeQTxt','⏳ 这一笔 '+Math.ceil(dye.qms/1000)+' 秒');
+  const rk=dyeRank(dyxInt('hz_dye_words')+dye.words);
+  dyePut('dyeRankTxt',rk.e+' '+rk.t);
+  let hs='';for(let i=0;i<dye.hearts;i++)hs+='❤️';
+  dyePut('dyeHeartTxt',hs||'💔');
+  dyePut('dyeComboTxt','🔥 连 '+dye.combo);
+  dyePut('dyeGoalTxt',rec?('🖌 第 '+(dye.pi+1)+' 笔 · '+DYE_TAG4[rec.dirs[dye.pi]]+' · '+DYE_TN4[rec.dirs[dye.pi]]):'🖌 还没上字');
+  dyePut('dyeInkTxt','🫙 砚墨 '+dye.ink+' · 清水 '+dye.water);
+  dyePut('dyeBowlTxt','🥣 缸里 '+dye.vol+' 滴 · 上限 '+dyeCap(L));
+  dyePut('dyeDistTxt',dyeDim(L)?(dye.matchAt?'🌗 像不像不告诉你':'🌗 ——'):(tg?(cur?('📏 色差 '+dist+' · 容限 '+dyeTol(L)):'📏 缸还空着 · 容限 '+dyeTol(L)):'📏 色差 ——'));
+  const light=dyeEl('dyeMatchLight');
+  if(light){
+    light.textContent=dye.matchAt?'✔ 调到了':'✖ 还没到';
+    light.style.color=dye.matchAt?'#A5D6A7':'#EF9A9A';
+  }
+  dyeBar('dyeDistBar',tg?(1-Math.min(1,dist/120)):0);
+  dyePut('dyeDistBig',tg?(dyeDim(L)?('📏 像不像：'+(dye.matchAt?'像':'不像')):(cur?('📏 色差 '+dist+' ／ 容限 '+dyeTol(L)):'📏 缸还空着 · 先滴一味')):'📏 色差 ——');
+  dyeBar('dyeInkBar',dye.ink/dyeInk(L));
+  dyeBar('dyeQmsBar',dye.qms/Math.max(1,dye.qms0));
+  dyeBar('dyeFuelBar',dye.fuel/Math.max(1,dye.fuel0));
+  dyePut('dyeQmsTxt','⌛ 这一笔 '+Math.ceil(dye.qms/1000)+' 秒');
+  dyePut('dyeFuelTxt','🕯 这一场 '+Math.ceil(dye.fuel/1000)+' 秒');
+  dyePut('dyeInkBig','🫙 砚墨剩 '+dye.ink+' 滴 · 已花 '+(dyeInk(L)-dye.ink));
+  const ask=dyeEl('dyeAsk');
+  if(ask){
+    if(dye.load)ask.innerHTML='🎨 正在挑字……<br><small>在字库里找「算得出一条省水计划、还算得出第二条省墨计划」的字</small>';
+    else if(dye.helpMs>0)ask.innerHTML=dyeHelpText();
+    else if(rec)ask.innerHTML='🖌 <b>第 '+(dye.pi+1)+' 笔要的是 '+DYE_TN4[rec.dirs[dye.pi]]+'（'+DYE_TAG4[rec.dirs[dye.pi]]+'）· 吃 '+rec.needs[dye.pi]+' 滴、缸底再留 '+DYE_RESIDUE+' 滴</b>'+
+      (dyeDim(L)?'':(cur?(' · 色差 <b>'+dist+'</b> 容限 <b>'+dyeTol(L)+'</b>'):' · <b>缸还空着</b>，先滴一味'))+
+      '<br><small>缸里：'+(dye.vol?('滴数 '+dye.counts.join('·')+' → '+dyeHex(dyeColor(dye.counts))):('空缸 · 上限 '+dyeCap(L)+' 滴'))+
+      ' · 这一字算出来最少要洗 <b>'+dye.planWater+'</b> 回、花 <b>'+dye.planInk+'</b> 滴</small>';
+    else ask.innerHTML='🎨 <b>画案空着</b>';
+  }
+  const btns=[['dyeWheelBtn',dye.wheelN],['dyeTowelBtn',dye.towelN],['dyeLidBtn',dye.lidN],['dyeSwapBtn',dye.swapN]];
+  for(let i=0;i<btns.length;i++){
+    const b=dyeEl(btns[i][0]);
+    if(b){
+      const n=b.getElementsByTagName('b')[0];
+      if(n)n.textContent='剩 '+btns[i][1];
+      b.disabled=btns[i][1]<=0||dye.over;
+    }
+  }
+  for(let i=0;i<4;i++){
+    const b=dyeEl('dyeJar'+i);
+    if(b)b.disabled=dye.vol>=dyeCap(L)||dye.ink<=0||dye.dryMs>0||dye.over;
+  }
+  const pb=dyeEl('dyePaintBtn');
+  if(pb){
+    pb.disabled=!rec||dye.dryMs>0||dye.over;
+    pb.classList.toggle('ready',!!dyeJudge().ok);   /* 亮不亮这一盏，问的是落笔那一道门（色像 + 吃得饱 + 留得下一口） */
+  }
+  const wb=dyeEl('dyeWashBtn');
+  if(wb)wb.disabled=dye.water<=0||dye.dryMs>0||dye.over;
+}
+function dyeHelpText(){
+  return '🎨 <b>颜料只认「加」，不认「减」</b>：滴进去的一滴永远在缸里，想从头再来只有洗缸，而清水按场配额<br>'+
+    '🖌 <b>每一笔有自己的色</b>：横是朱砂（洋红 2 + 藤黄 1）、竖是石绿（花青 2 + 藤黄 1）、撇是鹅黄（钛白 2 + 藤黄 1）、捺是赭橘（钛白 1 + 洋红 1 + 藤黄 2）<br>'+
+    '⚖️ <b>省墨还是省水</b>：落一笔要按比例舀走这一笔的墨，而且<b>缸底必须留一口</b> —— 舀干了就得从头调；留着的那几滴是同一个色，下一笔接着用就叫借色，省下一碗清水<br>'+
+    '👺 <b>脏笔妖</b>会往缸里吐一口浊灰：它不进砚墨的账，却把配比拽向灰色，盖子上扣得住一回<br>'+
+    '⌨️ <code>1</code>钛白 <code>2</code>花青 <code>3</code>洋红 <code>4</code>藤黄 · <code>空格</code>落笔 · <code>W</code>洗缸 · 🎨 <code>G</code>色轮 · 🧻 <code>T</code>净手巾 · 🛡 <code>Q</code>缸盖 · 🔁 <code>R</code>换字';
+}
+function dyeMsg(txt,color){
+  dye.msg=txt;
+  const e=dyeEl('dyeMsg');
+  if(e){e.innerHTML=txt;color&&(e.style.color=color)}
+}
+function dyeTag(txt){
+  const e=dyeEl('dyeTag');
+  if(!e)return;
+  e.textContent=txt;e.classList.add('on');
+  clearTimeout(dye.tagTimer);
+  dye.tagTimer=setTimeout(function(){e.classList.remove('on')},DYE_TAG_MS);
+}
+
+/* ================= 这一坊的手：挑字、滴墨、落笔、洗缸、挨泼、三只钟 ================= */
+function dyeCur(){return dye.rec&&dye.pi<dye.rec.n?dye.rec:null}
+function dyeGoalNow(){const r=dyeCur();if(!r)return null;return dyeGoal(r,dye.pi)}
+/* 达标与余量：色这一关、量这一关各判各的，两关都过才落得下去 */
+function dyeJudge(){
+  const r=dyeCur();
+  if(!r)return {has:false,tg:null,need:0,vol:0,dist:9999,color:false,enough:false,ok:false};
+  const g=dyeGoal(r,dye.pi),cur=dyeColor(dye.counts),v=dyeVol(dye.counts);
+  const dist=v>0?dyeDist(cur,g.tg):9999,tol=dyeTol(dye.lv);
+  return {has:true,dir:g.dir,tg:g.tg,need:g.need,vol:v,dist:dist,tol:tol,
+    color:v>0&&dist<=tol,enough:v>=g.need+DYE_RESIDUE,ok:v>0&&dist<=tol&&v>=g.need+DYE_RESIDUE};
+}
+/* 滴完一味、洗完缸、挨完一口之后都要重算这一格：「已经达标了还继续加」就是浪费的那一口 */
+function dyeRefresh(){
+  const j=dyeJudge();
+  dye.matchAt=j.color;
+  dye.dist=j.dist;
+  dye.vol=j.vol;
+  return j;
+}
+function dyePenalty(n){dye.score=Math.max(0,dye.score-n)}
+/* ---- 滴一味：缸满滴不进去（滴下去只能漫出缸沿），砚空则这一字塌在墨上 ---- */
+function dyeDrop(i){
+  if(!dye.run||dye.over||dye.load||!dyeCur())return 0;
+  if(dye.dryMs>0)return 0;
+  if(dye.helpMs>0)return 0;
+  const cap=dyeCap(dye.lv);
+  if(dye.ink<=0){
+    dye.empties++;dye.hearts--;
+    dyePenalty(DYE_P_EMPTY);dye.combo=0;
+    dyeMsg('🫙 <b>砚空了</b>：一滴也加不进去，这一字塌在墨上（−'+DYE_P_EMPTY+'、掉一颗心）','#FFCCBC');
+    dyxTone(180,220);
+    dyeMissPut(dye.rec?dye.rec.ch:'');
+    if(dye.hearts<=0){dyeEnd('empty');return 0}
+    dyeNextWord();
+    return 0;
+  }
+  if(dye.vol>=cap){
+    dye.spills++;dyePenalty(DYE_P_SPILL);dye.combo=0;
+    dyeMsg('🥣 <b>缸满还滴</b>：'+DYE_PN[i]+'漫过缸沿，白搭（−'+DYE_P_SPILL+'，上限 '+cap+' 滴）','#FFCCBC');
+    dyxTone(210,180);
+    dyeRefresh();dyeSync();dyeDraw();
+    return 0;
+  }
+  dye.counts[i]++;
+  dye.ink--;dye.drops++;
+  const was=dye.matchAt;
+  dyeRefresh();
+  if(was&&!dye.matchAt)dye.overshot=true;         /* 已经像了又添一味：把到手的「一色即中」花掉了 */
+  else if(was)dye.overshot=true;                  /* 已经像了还继续加：这一笔不算一步到位 */
+  dyxTone(520+i*70,60,.04);
+  dye.nagMs=0;
+  dyeSync();dyeDraw();
+  return 1;
+}
+/* ---- 落一笔：色不到位是错色，量不够是缸浅，两关都过才上色 ---- */
+function dyePaint(){
+  if(!dye.run||dye.over||dye.load||!dyeCur())return 0;
+  if(dye.dryMs>0||dye.helpMs>0)return 0;
+  const j=dyeJudge();
+  if(!j.has)return 0;
+  if(!j.color){
+    dye.wrongs++;dye.combo=0;dyePenalty(DYE_P_WRONG);
+    dyeMsg('🎨 <b>错色</b>：这一笔要的是 '+DYE_TN4[j.dir]+'，缸里差 '+
+      (dyeDim(dye.lv)?'一大截':('色差 <b>'+j.dist+'</b>（容限 '+j.tol+'）'))+'就落了笔（−'+DYE_P_WRONG+'）','#FFCCBC');
+    dyxTone(190,200);
+    dyeSync();dyeDraw();
+    return 0;
+  }
+  if(!j.enough){
+    dye.thin++;dye.combo=0;dyePenalty(DYE_P_THIN);
+    dyeMsg('🖌 <b>缸浅</b>：这一笔要吃 '+j.need+' 滴，缸底还得留 '+DYE_RESIDUE+' 滴给下一笔借色，缸里只有 '+j.vol+' 滴，抹不出一整笔（−'+DYE_P_THIN+'）','#FFCCBC');
+    dyxTone(230,170);
+    dyeSync();dyeDraw();
+    return 0;
+  }
+  /* 上色：缸里的色按现在的配比记在这一笔上，落完从缸里按比例舀走 need 滴 */
+  const col=dyeColor(dye.counts),before=dyeVol(dye.counts);
+  dye.counts=dyeScoop(dye.counts,j.need);
+  dye.paid[dye.pi]={rgb:col.slice(),hex:dyeHex(col),dist:j.dist,need:j.need,dir:j.dir};
+  dye.scooped+=before-dyeVol(dye.counts);
+  let pts=DYE_G0+dye.combo*DYE_G_CB+dye.lv*DYE_G_LV;
+  const first=!dye.overshot;
+  const borrow=!dye.washedThis&&dye.pi>0&&dye.bowlStart>0;
+  const precise=j.dist*3<=j.tol;
+  if(first){pts*=DYE_M_FIRST;dye.firsts++}
+  if(borrow){pts*=DYE_M_BORROW;dye.borrow++;dye.borrowRun++;if(dye.borrowRun>dye.maxBorrow)dye.maxBorrow=dye.borrowRun}
+  else dye.borrowRun=0;
+  if(precise){pts*=DYE_M_PRECISE;dye.precise++}
+  pts=Math.round(pts);
+  dye.score+=pts;
+  dye.combo++;dye.strokes++;
+  if(dye.combo>dye.maxCombo)dye.maxCombo=dye.combo;
+  dyeMsg('🖌 <b>第 '+(dye.pi+1)+' 笔 '+DYE_TAG4[j.dir]+'上成 '+DYE_TN4[j.dir]+'</b> +'+pts+
+    (first?' · 一色即中':'')+(borrow?' · 借色':'')+(precise?' · 准得发亮':''),'#FFF59D');
+  dyeTag('+'+pts+(first?' 一步到位':'')+(borrow?' 借色':''));
+  dyxTone(620+dye.pi*40,90);
+  dye.pi++;
+  dye.washedThis=false;dye.overshot=false;
+  dye.bowlStart=dyeVol(dye.counts);
+  dye.qms=dye.qms0=dyeQms(dye.lv);
+  dyeRefresh();
+  if(dye.pi>=dye.rec.n){dyeFinishWord();return 2}
+  dyeSync();dyeDraw();
+  return 1;
+}
+/* ---- 洗缸：唯一的后悔药，清水按场配额；洗完要等缸晾干 ---- */
+function dyeWash(free){
+  if(!dye.run||dye.over||dye.load||!dyeCur())return 0;
+  if(free&&dye.towelN<=0)return 0;
+  if(dye.dryMs>0||dye.helpMs>0)return 0;
+  if(!free){
+    if(dye.water<=0){
+      dyeMsg('💧 <b>清水用完了</b>：这一场的 '+dyeWater(dye.lv)+' 碗水已经见底，只能硬调或换字','#FFCCBC');
+      return 0;
+    }
+    dye.water--;
+  }
+  dye.washedAway+=dyeVol(dye.counts);
+  dye.counts=[0,0,0,0,0];
+  dye.vol=0;dye.matchAt=false;dye.overshot=false;dye.washedThis=true;
+  dye.washes++;
+  dye.dryMs=dyeDry(dye.lv);
+  dye.bowlStart=0;
+  if(free){dye.towelN--;dye.towelUse++;dye.tools++;dyeMsg('🧻 <b>净手巾</b>：不花清水洗了一口缸，等它晾干','#B3E5FC')}
+  else dyeMsg('💧 <b>洗缸</b>：清水剩 '+dye.water+' 碗 · 缸里得晾干 '+Math.round(dye.dryMs/100)/10+' 秒','#B3E5FC');
+  dyxTone(400,120,.04);
+  dyeRefresh();dyeSync();dyeDraw();
+  return 1;
+}
+/* ---- 色轮：眼下这一口缸，加哪一味最靠近目标（只报一步，不替孩子落笔） ---- */
+function dyeWheel(){
+  if(!dye.run||dye.over||!dyeCur())return 0;
+  if(dye.wheelN<=0)return 0;
+  const j=dyeJudge(),cap=dyeCap(dye.lv);
+  let best=-1,bd=j.dist;
+  if(dye.vol<cap){
+    for(let i=0;i<4;i++){
+      const c=dye.counts.slice();c[i]++;
+      const d=dyeDist(dyeColor(c),j.tg);
+      if(d<bd){bd=d;best=i}
+    }
+  }
+  dye.wheelN--;dye.wheelUse++;dye.tools++;dye.wheelMs=DYE_WHEEL_MS;
+  dye.wheelHint=best;
+  const e=dyeEl('dyeWheelTxt');
+  if(e)e.textContent=best<0?('缸满了：加哪一味都溢，洗一口吧'):
+    ('加 '+DYE_PN[best]+' 最近：色差 '+j.dist+' → '+bd);
+  dyeMsg('🎨 <b>色轮</b>：'+(e?e.textContent:''),'#FFE082');
+  dyeSync();
+  return 1;
+}
+/* ---- 缸盖：扣住妖的下一口 ---- */
+function dyeLid(){
+  if(!dye.run||dye.over||dye.lidN<=0)return 0;
+  dye.lidN--;dye.lidUse++;dye.tools++;dye.lid=1;
+  dyeMsg('🛡 <b>缸盖扣上了</b>：妖下一口浊灰吐不进来','#B39DDB');
+  dyeSync();
+  return 1;
+}
+function dyeSwap(){
+  if(!dye.run||dye.over)return 0;
+  if(dye.swapN<=0)return 0;
+  dye.swapN--;dye.swapUse++;dye.tools++;dye.swaps++;
+  dyePenalty(DYE_P_SWAP);dye.combo=0;
+  dyeMsg('🔁 <b>换字</b>：这张画案撤了换一幅（−'+DYE_P_SWAP+'）','#B0BEC5');
+  dyeNextWord();
+  return 1;
+}
+/* ---- 妖的一口：不花孩子的墨，只把配比往灰里拽；扣了盖就挡下，缸满就漫出来 ---- */
+function dyeSplash(){
+  if(!dyeCur())return;
+  if(dye.lid){dye.lid=0;dye.blocked++;dyeMsg('🛡 <b>挡下了</b>：缸盖扣住妖这一口浊灰','#B39DDB');dyxTone(300,90,.04)}
+  else if(dye.vol>=dyeCap(dye.lv)){
+    dye.overflows++;dye.hearts--;dye.combo=0;dyePenalty(DYE_P_OVER);
+    dyeMissPut(dye.rec?dye.rec.ch:'');
+    dyeMsg('👺 <b>缸满挨泼</b>：浊灰挤不进去，墨从缸沿漫了满案（−'+DYE_P_OVER+'、掉一颗心）','#FF8A80');
+    if(dye.hearts<=0){dyeEnd('overflow');return}
+  }else{
+    const was=dye.matchAt;
+    dye.counts[4]++;dye.mud++;dye.splashes++;
+    dyeRefresh();
+    dyeMsg('👺 <b>妖吐了一口浊灰</b>：缸里 '+DYE_PN[4]+' +1'+(was?' · 刚调到的色被拽跑了':''),'#FFCCBC');
+    dyxTone(150,260,.05);
+  }
+  dye.aiMs=dyeAiMs(dye.lv);
+  dye.aiFlash=420;
+  dyeSync();dyeDraw();
+}
+/* ---- 收齐一个字：算这一字的总账，落盘、进图鉴、抬场 ---- */
+function dyeFinishWord(){
+  const rec=dye.rec;
+  const left=dye.ink;
+  let pts=DYE_WORD_PTS+Math.min(DYE_INK_LEFT_MAX,left);
+  const cleanWord=!dyeWd('wrongs')&&!dyeWd('spills')&&!dyeWd('thin')&&!dyeWd('drys')&&!dyeWd('overflows');
+  const leak=dyeWd('washes')<=dye.planWater;
+  const ironed=dyeWd('firsts')===rec.n;
+  if(cleanWord){pts+=DYE_CLEAN_PTS;dye.cleanWord++}
+  if(leak){pts+=DYE_LEAK_PTS;dye.leaks++}
+  if(ironed){pts+=DYE_IRON_PTS;dye.iron++}
+  const noTool=dyeWd('tools')===0;
+  if(noTool)pts+=DYE_TOOL_PTS;
+  if(dyeWd('splashes')===0)dye.noSplash++;
+  pts=Math.round(pts);
+  dye.score+=pts;
+  dye.words++;
+  dye.maxCombo=Math.max(dye.maxCombo,dye.combo);
+  dyeBookPut(rec.ch);
+  dyeMsg('🎨 <b>「'+rec.ch+'」满案生色</b> +'+pts+'（省墨 '+left+'、洗 '+dyeWd('washes')+'/'+dye.planWater+
+    ' 回、一色即中 '+dyeWd('firsts')+'/'+rec.n+(cleanWord?' · 整字零罚':'')+(leak?' · 滴水不漏':'')+(ironed?' · 铁配方':'')+(noTool?' · 没借家什':'')+'）','#FFF59D');
+  dyxTone(760,140);dyxTone(980,180,.04);
+  if(dye.words%3===0&&dye.hearts<DYE_HEART_MAX)dye.hearts++;
+  dye.lv=dyeLvOf(dye.words+dyxInt('hz_dye_words'));
+  dyeNextWord();
+}
+/* 每一个字开工时把全局计数抄一份：收字时算的就是「这一个字」的账，不跟上一字混 */
+function dyeMark(){
+  dye.base={wrongs:dye.wrongs,spills:dye.spills,thin:dye.thin,drys:dye.drys,
+    overflows:dye.overflows,tools:dye.tools,washes:dye.washes,firsts:dye.firsts,empties:dye.empties,
+    drops:dye.drops,scooped:dye.scooped,mud:dye.mud,washedAway:dye.washedAway,splashes:dye.splashes};
+}
+function dyeWd(k){return dye[k]-(dye.base?dye.base[k]:0)}
+/* ---- 挑字：错字本里的字优先挑回来；挑中的字必须在这一场这一档上算得出一条真计划 ---- */
+function dyePick(){
+  const lo=dyeWant(dye.lv)[0],hi=dyeWant(dye.lv)[1];
+  let pick=-1;
+  for(let i=0;i<dye.pool.length;i++){
+    const r=dye.pool[i];
+    if(r.n<lo||r.n>hi)continue;
+    if(dye.miss.indexOf(r.ch)>=0){pick=i;break}
+  }
+  if(pick<0){
+    for(let i=0;i<dye.pool.length;i++){
+      const r=dye.pool[i];
+      if(r.n<lo||r.n>hi)continue;
+      if(dyeAudit(r,dye.lv)){pick=i;break}
+    }
+  }
+  if(pick<0)return null;
+  return dye.pool[pick];
+}
+function dyeNextWord(){
+  const g=dye.gen;
+  dye.load=true;
+  dye.rec=null;dye.paid=[];dye.pi=0;
+  dye.counts=[0,0,0,0,0];dye.vol=0;dye.matchAt=false;dye.overshot=false;dye.washedThis=false;dye.bowlStart=0;
+  dyeMark();
+  dyeSync();dyeDraw();
+  const w=dyePick();
+  if(w){dyeSplice(w);dyeStartWord(w,g);return}
+  setTimeout(function(){
+    if(g!==dye.gen||!dye.run||dye.over)return;
+    dyeBuildPool(false,dyeWant(dye.lv)[0],dyeWant(dye.lv)[1]).then(function(){
+      if(g!==dye.gen||!dye.run||dye.over)return;
+      const r=dyePick()||(dye.pool.length?dye.pool[0]:null);
+      if(r){dyeSplice(r);dyeStartWord(r,g);return}
+      dyeEnd('pool');
+    });
+  },120);
+}
+/* 算不出计划的字从池子里摘掉：它就是不该摆上这张画案（挑不空才不断档） */
+function dyeSplice(r){
+  const i=dye.pool.indexOf(r);
+  if(i>=0)dye.pool.splice(i,1);
+
+}
+function dyeStartWord(rec,g){
+  if(g!==dye.gen||!dye.run||dye.over)return;
+  const L=dye.lv;
+  dye.rec=rec;dye.n=rec.n;dye.pi=0;dye.paid=[];
+  dye.counts=[0,0,0,0,0];dye.vol=0;dye.matchAt=false;dye.overshot=false;dye.washedThis=false;dye.bowlStart=0;
+  dye.ink=dyeInk(L);dye.water=dyeWater(L);dye.lid=0;
+  dye.qms=dye.qms0=dyeQms(L);dye.fuel=dye.fuel0=dyeFuel(L);dye.aiMs=dyeAiMs(L);dye.dryMs=0;dye.wheelMs=0;
+  const w=dyeAudit(rec,L)||{water:dyeWater(L),ink:dyeInk(L)};
+  dye.planWater=w.water;dye.planInk=w.ink;
+  dye.load=false;
+  dyeMark();
+  dyeMsg('🎨 <b>「'+rec.ch+'」上案</b>：'+rec.n+' 笔 · 这一字算出来最少洗 <b>'+w.water+'</b> 回、花 <b>'+w.ink+
+    '</b> 滴（砚墨 '+dye.ink+'、清水 '+dye.water+'、缸上限 '+dyeCap(L)+' 滴）','#FFE082');
+  dyeSync();dyeDraw();
+}
+/* ---- 三只钟：这一笔（墨干）、这一场（场钟尽）、晾干；妖的钟另算 ---- */
+function dyeTick(dt){
+  if(!dye.run||dye.over||dye.load)return;
+  dye.t+=dt;dye.playMs+=dt;
+  if(dye.helpMs>0){dye.helpMs-=dt;if(dye.helpMs<0)dye.helpMs=0;return}
+  if(dye.dryMs>0){
+    dye.dryMs-=dt;
+    if(dye.dryMs<=0){dye.dryMs=0;dyeRefresh();dyeMsg('🥣 <b>缸干了</b>：可以接着调','#B3E5FC')}
+  }else{
+    dye.aiMs-=dt;
+    if(dye.aiMs<=0)dyeSplash();
+  }
+  if(dye.wheelMs>0){dye.wheelMs-=dt;if(dye.wheelMs<=0){dye.wheelMs=0;const e=dyeEl('dyeWheelTxt');if(e)e.textContent='🎨 色轮已收'}}
+  if(dye.aiFlash>0)dye.aiFlash-=dt;
+  if(dyeCur()){
+    dye.qms-=dt;
+    if(dye.qms<=0){
+      dye.drys++;dye.combo=0;dyePenalty(DYE_P_DRY);
+      dyeMsg('🌵 <b>墨干了</b>：这一笔磨太久，缸沿结了一层壳（−'+DYE_P_DRY+'）','#FFCCBC');
+      dye.qms=dye.qms0=dyeQms(dye.lv);
+      dyxTone(240,150,.04);
+    }
+    dye.fuel-=dt;
+    if(dye.fuel<=0){
+      dye.fuels++;dye.hearts--;dyePenalty(DYE_P_FUEL);
+      dyeMissPut(dye.rec?dye.rec.ch:'');
+      dyeMsg('🕯 <b>这一场的蜡烛烧尽了</b>（−'+DYE_P_FUEL+'、掉一颗心）','#FF8A80');
+      if(dye.hearts<=0){dyeEnd('fuel');return}
+      dye.fuel=dye.fuel0=dyeFuel(dye.lv);
+    }
+  }
+  if(!dye.nags&&dye.t>DYE_NAG_MS){dye.nags++;dye.nagHold=DYE_NAG_HOLD;dye.nagMs=DYE_NAG_MS}
+  if(dye.nagMs>0){dye.nagMs-=dt;if(dye.nagMs<=0){dye.nagHold=0;dye.nags=0;dye.t=0}}
+}
+function dyeStart(){
+  dye.run=true;dye.over=false;dye.gen++;
+  dyeBind();
+  dyxKillTimers();
+  dye.t=0;dye.playMs=0;dye.score=0;dye.words=0;dye.strokes=0;dye.drops=0;dye.washes=0;
+  dye.borrow=0;dye.firsts=0;dye.precise=0;dye.iron=0;dye.splashes=0;dye.blocked=0;dye.mud=0;
+  dye.wrongs=0;dye.spills=0;dye.overflows=0;dye.drys=0;dye.empties=0;dye.fuels=0;dye.swaps=0;
+  dye.combo=0;dye.maxCombo=0;dye.hearts=DYE_HEARTS;dye.lv=dyeLvOf(dyxInt('hz_dye_words'));
+  dye.thin=0;dye.scooped=0;dye.leaks=0;dye.tools=0;
+  dye.noSplash=0;dye.borrowRun=0;dye.maxBorrow=0;dye.washedAway=0;dye.cleanWord=0;
+  dye.wheelN=DYE_P0.wheel;dye.towelN=DYE_P0.towel;dye.lidN=DYE_P0.lid;dye.swapN=DYE_P0.swap;
+  dye.wheelUse=0;dye.towelUse=0;dye.lidUse=0;dye.swapUse=0;
+  dye.newBest=false;dye.nags=0;dye.helpMs=0;dye.msg='';
+  dyeMark();
+  if(typeof stopBGM==='function')stopBGM();
+  showScreen('dye');
+  dye.pool=[];
+  dyeNextWord();
+  dyeStartLoop();
+}
+/* 主循环的起停各只有一处：摆拍要冻画面就掐这一根，别在别处再挂一条 rAF */
+function dyeLoop(ts){
+  if(!dye.run||dye.over){dye.rafId=0;return}
+  const dt=dye.last?Math.min(120,ts-dye.last):16;
+  dye.last=ts;
+  dyeTick(dt);
+  dyeSync();dyeDraw();
+  dye.rafId=requestAnimationFrame(dyeLoop);
+}
+function dyeStartLoop(){if(!dye.run||dye.over||dye.rafId)return;dye.last=0;dye.rafId=requestAnimationFrame(dyeLoop)}
+function dyeStopLoop(){if(dye.rafId){cancelAnimationFrame(dye.rafId);dye.rafId=0}}
+function dyeRestart(){dyeStart()}
+function dyeLeave(where){
+  dye.run=false;dye.over=false;
+  dyxKillTimers();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+
+/* ================= 说明 · 事件绑定 · 结算落盘 · 家什架 · 拿另一条路把凭据算第二遍 ================= */
+function dyeHelp(){
+  if(!dye.run||dye.over)return;
+  dye.helpMs=DYE_HELP_MS;
+  dyeSync();
+  dyxSay('🎨 <b>颜料只认「加」不认「减」</b>：滴进去的一滴永远在缸里，想从头再来只有洗缸，而清水按场配额',
+    '#FFE0B2');
+}
+/* ---- 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子，没有第二套判定 ---- */
+function dyeBind(){
+  if(dye.bound)return;
+  dye.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!dye.run||dye.over)return;
+    if(dye.helpMs>0){dye.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){dyeLeave();return}
+    if(k==='h'||k==='?'){dyeHelp();e.preventDefault();return}
+    if(k>='1'&&k<='4'){dyeDrop(+k-1);e.preventDefault();return}
+    if(k==='w'||k==='arrowup'){dyeWash(false);e.preventDefault();return}
+    if(k==='g'){dyeWheel();e.preventDefault();return}
+    if(k==='t'){dyeWash(true);e.preventDefault();return}
+    if(k==='q'){dyeLid();e.preventDefault();return}
+    if(k==='r'){dyeSwap();e.preventDefault();return}
+    if(k===' '||k==='enter'){dyePaint();e.preventDefault()}
+  });
+  const cv=document.getElementById('dyeCanvas');
+  if(cv){
+    cv.addEventListener('pointerdown',function(e){
+      if(dye.helpMs>0){dye.helpMs=0;return}
+      const h=dyePt2(e);
+      if(h.bowl){dyePaint();e.preventDefault()}
+      else if(h.jar>=0){dyeDrop(h.jar);e.preventDefault()}
+    });
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(e){if(dye.helpMs>0){dye.helpMs=0;return}on();e.preventDefault()});
+  };
+  for(let i=0;i<4;i++)tap('dyeJar'+i,(function(j){return function(){dyeDrop(j)}})(i));
+  tap('dyePaintBtn',function(){dyePaint()});
+  tap('dyeWashBtn',function(){dyeWash(false)});
+  tap('dyeWheelBtn',function(){dyeWheel()});
+  tap('dyeTowelBtn',function(){dyeWash(true)});
+  tap('dyeLidBtn',function(){dyeLid()});
+  tap('dyeSwapBtn',function(){dyeSwap()});
+  tap('dyeHelpBtn',function(){dyeHelp()});
+  tap('dyeEndBtn',function(){dyeEnd('quit')});
+  tap('dyeReBtn',function(){dyeRestart()});
+  tap('dyeLabBtn',function(){dyeLeave('lab')});
+  tap('dyeHomeBtn',function(){dyeLeave()});
+}
+/* 画案上的两处落点：缸里 = 落笔，缸外那四枚罐位 = 滴一味（其余地方不算手） */
+function dyePt2(e){
+  const cv=document.getElementById('dyeCanvas');
+  if(!cv)return {x:-1,y:-1,bowl:false,jar:-1};
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return {x:-1,y:-1,bowl:false,jar:-1};
+  const x=Math.round((e.clientX-r.left)*(DYE_W/r.width)*10)/10,
+        y=Math.round((e.clientY-r.top)*(DYE_H/r.height)*10)/10;
+  const out={x:x,y:y,bowl:false,jar:-1};
+  const dx=x-DYE_BOWL_X,dy=y-DYE_BOWL_Y;
+  if(dx*dx+dy*dy<=DYE_BOWL_R*DYE_BOWL_R)out.bowl=true;
+  for(let i=0;i<4;i++){
+    const j=dyeJarXY(i);
+    if(Math.abs(x-j.x)<=j.w/2&&Math.abs(y-j.y)<=j.h/2)out.jar=i;
+  }
+  return out;
+}
+function dyeJarXY(i){return {x:36+i*52,y:306,w:40,h:34}}
+/* ---- 结算：死因表不看场档，招牌与标题一一对得上 ---- */
+function dyeEnd(why){
+  if(!dye.run)return;
+  if(dye.over)return;
+  dye.over=true;dye.run=false;
+  dyxKillTimers();
+  const stars=Math.max(1,Math.round(dye.score/14)+dye.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  dyePut('dyeRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['🖌','收工','自己按的结算'],
+    empty:['🫙','砚空了','一滴也加不进去'],
+    fuel:['🕯','蜡烛烧尽了','这一场的光用完'],
+    overflow:['💧','墨漫了满案','缸满还挨妖一口'],
+    pool:['🎨','画案摆不开了','字池里挑不出算得出计划的字']}[why]||['🎨','收工',''];
+  dyePut('dyeRsEmoji',head[0]);
+  dyePut('dyeRsTitle',head[1]);
+  dyePut('dyeRsSub','第 '+dye.lv+' 场 · '+head[2]+' · 已收 '+dye.words+' 字 · 上 '+dye.strokes+' 笔');
+  dyePut('dyeRsScore','🎨 '+dye.score+' 分');
+  dyePut('dyeRsWords','🈶 收齐 '+dye.words+' 个字 · 上色 '+dye.strokes+' 笔');
+  dyePut('dyeRsDrops','🫙 滴墨 '+dye.drops+' 滴 · 舀走 '+dye.scooped+' 滴 · 冲掉 '+dye.washedAway+' 滴');
+  dyePut('dyeRsWash','💧 洗缸 '+dye.washes+' 回 · 清水本场剩 '+dye.water+' 碗');
+  dyePut('dyeRsBorrow','🖌 借色 '+dye.borrow+' 笔 · 一色即中 '+dye.firsts+' 笔 · 准 '+dye.precise+' 笔'+
+    (dye.maxBorrow?' · 最长连借 '+dye.maxBorrow+' 笔':''));
+  dyePut('dyeRsBad','👺 挨泼 '+dye.splashes+' 口 · 挡下 '+dye.blocked+' 口 · 错色 '+dye.wrongs+
+    ' · 溢缸 '+dye.spills+' · 缸浅 '+dye.thin+' · 墨干 '+dye.drys+' · 泼溢 '+dye.overflows);
+  dyePut('dyeRsTools','🧰 借家什 '+dye.tools+' 回 · 色轮 '+dye.wheelUse+' · 净手巾 '+dye.towelUse+
+    ' · 缸盖 '+dye.lidUse+' · 换字 '+dye.swapUse);
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账，
+     先读后写会当着孩子的面报出「收齐 5 个字 · 累计 0 字」这样自相矛盾的一眼 */
+  dyeSave(why);
+  dyePut('dyeRsBest','🏅 历史最高 '+dyxInt('hz_dye_best')+' 分 · 累计 '+dyxInt('hz_dye_words')+' 字');
+  dyePut('dyeRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  const rk=dyeRank(dyxInt('hz_dye_words'));
+  dyePut('dyeRsRank',rk.e+' '+rk.t);
+  const bk=dyeBookCount();
+  dyePut('dyeRsBook','📚 色样图鉴 '+bk.book+' 张 · 家什架 '+bk.shelf+'/'+DYE_SHELF.length+' 件 · 错字本 '+bk.miss+' 个字');
+  dyePutH('dyeRsWhy','🎨 这一坊的道理：<b>颜料只认加、不认减</b> —— 缸里的色就是这几滴的配比，'+
+    '落一笔按配比舀走几滴，剩下还是那个色。'+
+    '所以「多留几滴」买的是下一笔的<b>借色</b>，「洗一口缸」买的是<b>重新来过</b>，'+
+    '而清水每场只给 <b>'+dyeWater(dye.lv)+'</b> 碗：省墨还是省水，这笔账得在孩子手里算，不是在按钮上点。'+
+    '<br>战绩落盘 <code>hz_dye_*</code>：称号按<b>累计收成的字数</b>走，家什架 <b>'+bk.shelf+'/'+DYE_SHELF.length+
+    '</b> 件（<b>色样夹</b>认的是你在<b>大冒险</b>里打到的章节徽章），错字本里的字<b>下一轮优先挑回来</b>','#C8E6C9');
+  dyeNudge();
+  showScreen('dye-result');
+}
+/* ---- 落盘：全局账与这一局账各走各的口子 ---- */
+function dyeSave(why){
+  dyxAdd('hz_dye_games',1);
+  dyxAdd('hz_dye_words',dye.words);
+  dyxAdd('hz_dye_strokes',dye.strokes);
+  dyxAdd('hz_dye_drops',dye.drops);
+  dyxAdd('hz_dye_scooped',dye.scooped);
+  dyxAdd('hz_dye_washed',dye.washedAway);
+  dyxAdd('hz_dye_washes',dye.washes);
+  dyxAdd('hz_dye_borrow',dye.borrow);
+  dyxAdd('hz_dye_firsts',dye.firsts);
+  dyxAdd('hz_dye_precise',dye.precise);
+  dyxAdd('hz_dye_iron',dye.iron);
+  dyxAdd('hz_dye_leaks',dye.leaks);
+  dyxAdd('hz_dye_splash',dye.splashes);
+  dyxAdd('hz_dye_blocked',dye.blocked);
+  dyxAdd('hz_dye_mud',dye.mud);
+  dyxAdd('hz_dye_wrongs',dye.wrongs);
+  dyxAdd('hz_dye_spills',dye.spills);
+  dyxAdd('hz_dye_thin',dye.thin);
+  dyxAdd('hz_dye_drys',dye.drys);
+  dyxAdd('hz_dye_overflows',dye.overflows);
+  dyxAdd('hz_dye_empties',dye.empties);
+  dyxAdd('hz_dye_fuels',dye.fuels);
+  dyxAdd('hz_dye_swaps',dye.swaps);
+  dyxAdd('hz_dye_clean',dye.cleanWord);
+  dyxAdd('hz_dye_tools',dye.tools);
+  dyxAdd('hz_dye_borrowmax',dye.maxBorrow);
+  if(dye.score>dyxInt('hz_dye_best')){dyxPut('hz_dye_best',dye.score);dye.newBest=true}
+  if(dye.maxCombo>dyxInt('hz_dye_combo'))dyxPut('hz_dye_combo',dye.maxCombo);
+  if(dye.lv>dyxInt('hz_dye_lv'))dyxPut('hz_dye_lv',dye.lv);
+  if(dye.strokes&&dye.playMs){
+    const per=Math.round(dye.playMs/dye.strokes);
+    if(!dyxInt('hz_dye_fastest')||per<dyxInt('hz_dye_fastest'))dyxPut('hz_dye_fastest',per);
+  }
+  dyeShelfCheck();
+}
+function dyeBookCount(){
+  return {
+    book:(localStorage.getItem('hz_dye_book')||'').split(',').filter(function(s){return s}).length,
+    miss:(localStorage.getItem('hz_dye_miss')||'').split(',').filter(function(s){return s.length===1}).length,
+    shelf:Math.min(DYE_SHELF.length,(localStorage.getItem('hz_dye_shelf')||'').split(',').filter(function(s){return s}).length)
+  };
+}
+/* 色样图鉴：收齐一个字就印一张色票，票上写着这个字的配比串 */
+function dyeBookPut(ch){
+  const rec=dye.rec;if(!rec)return;
+  let book=(localStorage.getItem('hz_dye_book')||'').split(',').filter(function(s){return s});
+  const tag=ch+':'+rec.dirs.join('');
+  if(book.indexOf(tag)<0)book.unshift(tag);
+  if(book.length>DYE_BOOK_MAX)book.length=DYE_BOOK_MAX;
+  dyxPut('hz_dye_book',book.join(','));
+}
+function dyeShelfCheck(){
+  const bk=dyeBookCount();
+  const have=(localStorage.getItem('hz_dye_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    dyxInt('hz_dye_firsts')+dye.firsts>=10,
+    dyxInt('hz_dye_borrowmax')>=3||dye.maxBorrow>=3,
+    dye.precise>=6,
+    dye.lv>=4,
+    dye.towelUse>=3,
+    dye.noSplash>0,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    dyxInt('hz_dye_iron')>0||dye.iron>0
+  ];
+  for(let i=0;i<DYE_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(DYE_SHELF[i].k)<0){have.push(DYE_SHELF[i].k);got.push(DYE_SHELF[i].k)}
+  }
+  dyxPut('hz_dye_shelf',have.join(','));
+  dyxPut('hz_dye_trophy',have.length);
+  if(got.length)dyxPut('hz_dye_trophy_n',dyxInt('hz_dye_trophy_n')+got.length);
+}
+/* 塌了的字进错字本：下一轮优先挑回来 */
+function dyeMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_dye_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  dyxPut('hz_dye_miss',miss.slice(0,DYE_BOOK_MAX).join(','));
+}
+/* ================= 段 G 的另一条路：只读，不许碰场上任何东西 ================= */
+/* 逐笔可达：枚举所有 Δ（硬碰硬）对上一滴一滴滴开的闭包（BFS），两个都是「不洗缸能不能调到」 */
+function dyeAudReach(from,rec,k,lv){
+  const cap=dyeCap(lv),tol=dyeTol(lv),g=dyeGoal(rec,k);
+  const e=dyeReach(from,g.tg,tol,cap,g.need);
+  /* BFS：每次只加一滴，先到先得的那一层就是最少滴数 */
+  let ok=0,drops=-1;
+  const seen={},q=[[from,0]];
+  seen[dyePack(from)]=1;
+  if(dyeCanPaint(from,g.tg,g.need,tol)){ok=1;drops=0}
+  while(q.length&&drops<0){
+    const s=q.shift(),c=s[0],d=s[1];
+    if(d>=cap-dyeVol(from))continue;
+    for(let i=0;i<4;i++){
+      if(dyeVol(c)>=cap)continue;
+      const nc=c.slice();nc[i]++;
+      const p=dyePack(nc);
+      if(seen[p])continue;
+      seen[p]=1;
+      if(dyeCanPaint(nc,g.tg,g.need,tol)){ok=1;drops=d+1;q.length=0;break}
+      q.push([nc,d+1]);
+    }
+  }
+  return {enumOk:e.ok?1:0,enumDrops:e.ok?e.drops:-1,bfsOk:ok,bfsDrops:drops,
+    need:g.need,tol:tol,cap:cap,agree:(e.ok?1:0)===ok&&(e.ok?e.drops:-1)===drops?1:0};
+}
+/* 这个字的凭据：A 路（分层闭包）、B 路（字典序寻路）、逐笔可达的硬尺，三把算完再对表 */
+function dyeAudWord(rec,lv){
+  const out={ok:0,why:'',n:rec.n,load:rec.load,needs:rec.needs.join('.'),dirs:rec.dirs.join(''),
+    cap:dyeCap(lv),tol:dyeTol(lv),water:dyeWater(lv),ink:dyeInk(lv),alt:0,minW:-1,inkAtA:-1,dijW:-1,dijInk:-1,
+    reachBad:0,recBad:0,over:0};
+  if(!dyeSeqOk(rec)){out.why='字的口径不合格';return out}
+  for(let i=0;i<rec.needs.length;i++)if(rec.needs[i]>out.cap)out.over++;
+  if(out.over){out.why='有的笔吃得比缸还多';return out}
+  for(let d=0;d<4;d++){
+    const t=dyeTarget(d),r=DYE_REC4[d];
+    let s=0;for(let i=0;i<5;i++)s+=r[i];
+    if(dyeVol(r)!==s){out.recBad++;continue}
+    if(!dyeSame(dyeColor(r),t))out.recBad++;         /* 色票那块色就是这串滴数现算出来的，一个通道也不许差 */
+    const rr=dyeReach([0,0,0,0,0],t,out.tol,out.cap); /* 不给 need：这一遍只问色，问的是配方本身调不调得出来 */
+    if(!rr.ok||rr.drops>s)out.recBad++;              /* 空缸起步：枚举出来的最省滴数不许比配方还贵 */
+  }
+  if(out.recBad){out.why='配方与渲染色对不上';return out}
+  const A=dyePlanDp(rec.dirs,rec.needs,out.cap,out.tol,out.water);
+  const B=dyePlanDij(rec.dirs,rec.needs,out.cap,out.tol,out.water);
+  if(!A||!B){out.why='这条路走不通';return out}
+  for(let w=0;w<A.length;w++)if(A[w]<DYE_INF){out.minW=w;out.inkAtA=A[w];break}
+  out.dijW=B.w;out.dijInk=B.ink;
+  if(out.minW!==B.w||out.inkAtA!==B.ink){out.why='两条路数不出同一笔账';return out}
+  if(out.minW>out.water||out.inkAtA>out.ink-DYE_INK_HEAD){out.why='水或墨不够';return out}
+  const alts=dyePlanAlts(rec.dirs,rec.needs,out.cap,out.tol,out.water,out.ink-DYE_INK_HEAD);
+  out.alt=alts.length;
+  if(alts.length<DYE_PLAN_ALT){out.why='只有一条路，孩子没得选';return out}
+  /* 逐笔可达：从空缸与从「配方舀完剩一口」的两种起手各查一遍，两把尺一格不许差 */
+  for(let k=0;k<rec.n;k++){
+    const a=dyeAudReach([0,0,0,0,0],rec,k,lv);
+    if(!a.agree){out.reachBad++;continue}
+    const seed=DYE_REC4[rec.dirs[k]].slice(),v=dyeVol(seed);
+    if(v>rec.needs[k]){
+      const left=dyeScoop(seed,rec.needs[k]);
+      const b=dyeAudReach(left,rec,Math.min(k+1,rec.n-1),lv);
+      if(!b.agree)out.reachBad++;
+    }
+  }
+  if(out.reachBad){out.why='可达的两把尺对不上';return out}
+  out.ok=1;
+  return out;
+}
+/* 眼下这一格的账：缸里的色、达没达标、够不够抹这一笔，以及滴数总账平不平 */
+function dyeAudState(){
+  const s={has:0,vol:0,cap:dyeCap(dye.lv),dist:-1,need:0,tol:dyeTol(dye.lv),color:0,enough:0,ok:0,
+    mud:0,drops:0,scooped:0,washed:0,away:0,agree:1,ink:0,ink0:0,water:0,washes:0};
+  if(!dyeCur())return s;
+  const j=dyeJudge();
+  s.has=1;s.vol=j.vol;s.cap=dyeCap(dye.lv);s.dist=j.dist;s.need=j.need;s.tol=j.tol;
+  s.color=j.color?1:0;s.enough=j.enough?1:0;s.ok=j.ok?1:0;
+  s.mud=dye.counts[4];
+  s.drops=dyeWd('drops');s.scooped=dyeWd('scooped');s.washed=dyeWd('washes');s.away=dyeWd('washedAway');
+  s.ink=dye.ink;s.ink0=dyeInk(dye.lv);s.water=dye.water;s.washes=dye.washes;
+  /* 滴数总账：这一字滴进去的 + 妖吐进来的 − 舀走的 − 冲掉的 = 缸里现在有的 */
+  const expect=s.drops+dyeWd('mud')-s.scooped-s.away;
+  s.agree=expect===dyeVol(dye.counts)?1:0;
+  s.badInk=dye.ink<0?1:0;
+  s.over=s.vol>s.cap?1:0;
+  /* 妖不花孩子的墨：滴数账上的每一滴都该从砚里出 */
+  s.inkLedger=(s.ink0-dye.ink===s.drops)?1:0;
+  return s;
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一坊走到哪了 ---- */
+function dyeNudge(){
+  const dot=document.getElementById('dyeCardDot'),tip=document.getElementById('dyeCardTip');
+  const tot=dyxInt('hz_dye_words'),games=dyxInt('hz_dye_games'),strokes=dyxInt('hz_dye_strokes');
+  const rk=dyeRank(tot),shelf=dyxInt('hz_dye_trophy');
+  if(tip)tip.textContent=games?(rk.e+' '+rk.t+' · 收成 '+tot+' 个字 · 上色 '+strokes+' 笔 · 借色 '+
+    dyxInt('hz_dye_borrow')+' 笔 · 洗缸 '+dyxInt('hz_dye_washes')+' 回 · 一色即中 '+dyxInt('hz_dye_firsts')+
+    ' 笔 · 家什架 '+shelf+' 件'):
+    '颜料只认「加」不认「减」：多留几滴买的是下一笔的借色，洗一口缸买的是重新来过，而清水每场只给几碗';
   if(dot){dot.classList.toggle('on',!games);dot.textContent=(games?'':'🆕')}
 }
 
