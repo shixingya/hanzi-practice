@@ -7197,6 +7197,78 @@ button:active{transform:scale(.95)}
   #screen-auction .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-auction .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.104 🔍 笔顺调焦坊 ================= */
+.fj-hud{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC}
+.fj-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.fj-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死三行：换拍不许换行数 —— 光具座就在它下头，多一行少一行都把整张案往下挪，
+   孩子的手指还按在导轨上数格呢 */
+.fj-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*3)}
+.fj-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.fj-ask b{color:#FFE082}
+.fj-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 调焦台：一块墨绿的暗箱底板，光具座、字片、毛玻璃屏、底片窗全画在这一张案上（canvas 透明，底色由这里给） */
+.fj-field{flex:1;min-width:0;position:relative;background:linear-gradient(160deg,#1A2A3A,#0E1720 60%,#070C12);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.78)}
+.fj-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.fj-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(8,16,24,.9);color:#B3E5FC;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.fj-tag.on{opacity:1}
+.fj-tag.warn{background:rgba(88,24,24,.94);color:#FFCCBC}
+.fj-tag.gold{background:rgba(74,58,14,.96);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.fj-tag.cyan{background:rgba(6,58,74,.94);color:#84FFFF;box-shadow:0 0 14px rgba(0,229,255,.4)}
+/* 四条账：这一拍的钟（沙）· 这一笔归位的钟（青）· 这一字的钟（金）· 这一场的灯（冷蓝）· 底片（紫） */
+.fj-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.fj-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.fj-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#37474F,#78909C);transition:width .15s linear}
+.fj-tl.shot i{background:linear-gradient(90deg,#FFB74D,#FFE082)}
+.fj-tl.wipe i{background:linear-gradient(90deg,#4DD0E1,#B2EBF2)}
+.fj-tl.word i{background:linear-gradient(90deg,#C8A46A,#FFE082)}
+.fj-tl.fuel i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.fj-tl.film i{background:linear-gradient(90deg,#9575CD,#D1C4E9)}
+.fj-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.fj-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+/* 挪屏：这一坊的手下在「屏挪到第几格」上，一格一格地挪，糊→清全在这一截连续的量里 */
+.fj-step{display:flex;gap:6px;align-items:center;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:4px auto 2px}
+.fj-step button{flex:0 0 62px;padding:8px 2px;border-radius:11px;border:1px solid rgba(255,255,255,.26);color:#ECEFF1;background:rgba(255,255,255,.1);font-size:17px;font-weight:800;cursor:pointer}
+.fj-step button:disabled{opacity:.4;cursor:default}
+.fj-step .k{font-size:13px;font-weight:800;color:#84FFFF;padding:0 8px;white-space:nowrap}
+.fj-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.fj-take button.pass{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#083344;background:linear-gradient(180deg,#B3E5FC,#4FC3F7)}
+.fj-take button.pass:active{transform:translateY(1px)}
+.fj-take button.pass:disabled{opacity:.42;cursor:default}
+.fj-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#0A1620;background:linear-gradient(180deg,#B2EBF2,#00B8D4);box-shadow:0 0 16px rgba(0,184,212,.3);touch-action:none;user-select:none}
+.fj-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(10,22,32,.72)}
+.fj-take button.big.sharp{background:linear-gradient(180deg,#C5E1A5,#7CB342);box-shadow:0 0 20px rgba(124,179,66,.55)}
+.fj-take button.big:active{transform:translateY(1px)}
+.fj-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.fj-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.fj-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.fj-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.fj-tool b{display:block;font-size:10px;color:#84FFFF;font-weight:700}
+.fj-tool:disabled{opacity:.4;cursor:default}
+.fj-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.fj-hintline b{color:#84FFFF}
+.fj-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.fj-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.fj-msg b{color:#CFD8DC}
+.fj-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.fj-msg small{font-size:11px;color:#78909C}
+.fj-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.fj-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.fj-rs-book b{color:#84FFFF}
+.fj-rs-book small{color:#78909C}
+.fj-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(0,200,255,.9);color:#04141c;border-radius:9px;padding:1px 6px;z-index:4}
+.fj-cdot.on{display:block}
+#screen-focus .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：五条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是四行，就占死四行 */
+@media(max-width:460px){
+  .fj-tl{flex:1 1 100%}
+  .fj-ask{min-height:calc(1.35em*4)}
+  .fj-step button{flex:0 0 56px}
+  .fj-take button.big{font-size:17px}
+  #screen-focus .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-focus .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-focus .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7253,8 +7325,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 102 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">102</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 103 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">103</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7265,12 +7337,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>102 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>44</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>103 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>45</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="fjCard" onclick="enterMode('focus')">
+      <div class="icon">🔍</div>
+      <div class="info"><h3>笔顺调焦坊</h3><p id="fjCardTip">暗箱里架着一根光具座：字片上一笔，中间一片凸透镜（焦距 6 格），右边一块毛玻璃屏。屏挪到第几格，像就落在第几格 —— 压在焦平面上糊的自己就清了，可这一片屏只能一格一格地挪，而能拍清的格子整根导轨上只有七处（物距 8 格时像距 24 格，12 格时正好等大）。屏上的像是<b>倒过来</b>的，大小由像距除以物距说了算：物挪得近，像就跑得远、跑得大。洗出底片还得认出这一笔是这个字的第几笔，回到米字格把它点出来 —— 底片一场只有一卷，快门按下就是一张，糊了也吃这张</p></div>
+      <span class="fj-cdot" id="fjCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="aucCard" onclick="enterMode('auction')">
       <div class="icon">🔨</div>
       <div class="info"><h3>笔顺拍字行</h3><p id="aucCardTip">拍的是封着的字：三条看货道问来路，答对一道换回一条真线索，答错那道当场作废。三位老主顾心里各有一个价，他们举到哪儿收手，就把这件货的公道价露出来几分 —— 你只比最高的那位多举一档就能把货拿下，可你要是举过了那件货真正值的那一档，槌子落下的一刻你就中了「赢家诅咒」：买贵多少，倒扣多少。看得越清才敢出越少的价，钱袋却一场只有一袋 —— 买了这件，下一件就没钱举牌</p></div>
@@ -8034,6 +8111,85 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-focus">
+  <div class="top-bar">
+    <button class="back-btn" onclick="fjLeave()">← 返回</button>
+    <div class="stats"><span id="fjScoreTxt">🔍 0 分</span><span id="fjLvTxt">第 1 场 · 收 0 字</span><span id="fjQTxt">⏳ 这一拍 6 秒</span></div>
+    <button class="icon-btn" onclick="fjHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="fj-hud">
+    <span id="fjRankTxt" title="称号">🔍 头一回对焦</span>
+    <span id="fjHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="fjComboTxt" title="连击">🔥 连 0</span>
+    <span id="fjLotTxt" title="这一场第几字第几笔">🈶 第 1 字 · 第 1 笔</span>
+    <span id="fjCellTxt" title="毛玻璃屏在第几格">🔍 屏在第 7 格</span>
+    <span id="fjFilmTxt" title="底片">🎞 底片 24 张</span>
+    <span class="light" id="fjHitLight">💡 还没合焦</span>
+  </div>
+  <div class="fj-ask" id="fjAsk">🔍 正在装底片……<br><small>在字库里找「一笔一个孔位、倒立的像还认得出是第几笔」的字</small></div>
+  <div class="fj-stage">
+    <div class="fj-field" id="fjField">
+      <canvas class="fj-canvas" id="fjCanvas" width="420" height="340"></canvas>
+      <div class="fj-tag" id="fjTag">🔍 这块暗箱擦亮了</div>
+    </div>
+  </div>
+  <div class="fj-meter">
+    <div class="fj-tl shot"><i id="fjShotBar"></i><b id="fjQmsTxt">⌛ 这一拍 6 秒</b></div>
+    <div class="fj-tl wipe"><i id="fjWipeBar"></i><b id="fjWipeTxt">🧼 归位 5 秒</b></div>
+    <div class="fj-tl word"><i id="fjWordBar"></i><b id="fjWordTxt">🈶 这个字 90 秒</b></div>
+    <div class="fj-tl fuel"><i id="fjFuelBar"></i><b id="fjFuelTxt">💡 这一场 150 秒</b></div>
+    <div class="fj-tl film"><i id="fjFilmBar"></i><b id="fjFilmBig">🎞 底片 24 张</b></div>
+  </div>
+  <div class="fj-step">
+    <button id="fjDownBtn">←</button>
+    <span class="k" id="fjStepTxt">屏在第 7 格 · 像距要几格自己找</span>
+    <button id="fjUpBtn">→</button>
+  </div>
+  <div class="fj-take">
+    <button class="pass" id="fjSkipBtn">💤 弃拍<small>X</small></button>
+    <button class="big" id="fjShotBtn">📸 快门<small>空格 ／ 点屏 —— 屏压在焦平面上像就清了：正好压住是分毫不差，挪过头这张底片就废了</small></button>
+  </div>
+  <div class="fj-tools">
+    <button class="fj-tool" id="fjProbeBtn" disabled>🔍 试焦<span>G</span><b>剩 2</b></button>
+    <button class="fj-tool" id="fjScaleBtn" disabled>📏 焦尺<span>T</span><b>剩 1</b></button>
+    <button class="fj-tool" id="fjFilmBtn" disabled>🎞 补片<span>Q</span><b>剩 2</b></button>
+    <button class="fj-tool" id="fjSwapBtn" disabled>🔁 换字<span>R</span><b>剩 1</b></button>
+    <button class="fj-tool" id="fjHelpBtn">📖 说明<span>H</span></button>
+    <button class="fj-tool" id="fjEndBtn">🏁 结算</button>
+  </div>
+  <div class="fj-hintline" id="fjHintTxt">🔍 <b>物近像远像大</b>：字片挪得越近，屏就得挪得越远，像也越大 —— <b>只有像距落在整格上才拍得清</b></div>
+  <div class="fj-msg" id="fjMsg">🔍 <b>拍的是封在暗箱里的字</b>：字片上一笔，凸透镜 f=6 格，把毛玻璃屏一格一格挪到像该落的那一格，糊的就自己清了<br>💡 <b>倒立与倍率</b>：屏上的像是<b>倒过来</b>的（放大率＝像距÷物距），洗出底片还得认出它是这个字的<b>第几笔</b>，回米字格点出来 · <code>←→</code> 挪屏 · <code>空格</code> 快门 · <code>X</code> 弃拍 · 🔍 <code>G</code> 试焦 · 📏 <code>T</code> 焦尺 · 🎞 <code>Q</code> 补片 · 🔁 <code>R</code> 换字 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-focus-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="fjLeave()">← 返回</button>
+    <div class="stats"><span id="fjRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="fjRsEmoji">🔍</div>
+    <div style="font-size:26px;font-weight:800" id="fjRsTitle">收工了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="fjRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="fj-pk" id="fjRsScore">🔍 0 分</span>
+      <span class="fj-pk" id="fjRsWords">🈶 收字 0 个 · 归位 0 笔</span>
+      <span class="fj-pk" id="fjRsMoney">🎞 用底片 0 张 · 剩 0 张 · 一卷 0 张</span>
+      <span class="fj-pk" id="fjRsFocus">🔍 合焦 0 张 · 分毫不差 0 张 · 糊片 0 张</span>
+      <span class="fj-pk" id="fjRsFlip">⚡ 光路倒冲 0 回 · 认对 0 回</span>
+      <span class="fj-pk" id="fjRsWipe">🧼 归位 0 笔 · 点错 0 笔 · 弃拍 0 拍</span>
+      <span class="fj-pk" id="fjRsTools">🧰 借家什 0 回</span>
+      <span class="fj-pk" id="fjRsBest">🏅 历史最高 0 分</span>
+      <span class="fj-pk" id="fjRsRank">🔍 头一回对焦</span>
+    </div>
+    <div class="fj-rs-book" id="fjRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="fjRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="fjRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="fjReBtn">🔍 再调一台</button>
+      <button class="tool-btn" id="fjLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="fjHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -15550,6 +15706,7 @@ function updateHomeStats(){
   if(typeof pebbleNudge==='function')pebbleNudge();
   if(typeof dyeNudge==='function')dyeNudge();
   if(typeof aucNudge==='function')aucNudge();
+  if(typeof fjNudge==='function')fjNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -15598,6 +15755,7 @@ function enterMode(mode){
   if(mode==='pebble'){pebbleStart();return}
   if(mode==='dye'){dyeStart();return}
   if(mode==='auction'){aucStart();return}
+  if(mode==='focus'){fjStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -108408,6 +108566,1552 @@ function aucNudge(){
     +'举过了那件货真正值的那一档就中了「赢家诅咒」。所以举牌之前只有一件事值得做：把心价问清楚；'
     +'钱袋一场只有一袋，买了这件，下一件就没钱举牌';
   if(dot){dot.classList.toggle('on',!sold);dot.textContent=(sold?'':'🆕')}
+}
+
+
+/* ================= v1.104 🔍 笔顺调焦坊（一块暗箱 · 一根光具座 · 字片上一笔 · 凸透镜 f=6 格 —— 屏只能一格一格挪，能拍清的那几格整根导轨上只有七处：压住就清、差一格就糊，而屏上的像永远是倒过来的 ================= */
+/* 场：420×340 的一块暗箱。左上角一格米字摆着这个字（正立、灰的，收齐一笔染绿一笔），
+   右上角是底片窗（快门洗出来的那一张：倒立、按倍率放大），
+   下半张案是一根光具座：中点立着凸透镜，左边导轨上卡着字片（物距 d 由台子给定），
+   右边导轨上那块毛玻璃屏由孩子一格一格挪（屏位 s），底下 48 格刻度尺一把。
+   规矩只有三条，而且三条全在整数上：
+   ① 薄透镜成像 1/d + 1/s = 1/f，f=6 格 —— 化成整数式子就是 (d−6)(s−6)=36。
+      36 的因子对只有六对，落在 24 格导轨上（物距、像距都不许越过轨长）的就是七处共轭位：
+      (8,24)(9,18)(10,15)(12,12)(15,10)(18,9)(24,8) —— 除这七个物距之外，屏停在任何一格都拍不实，
+      因为像正好落在两格之间。所以「拍得清的格子」不是猜出来的，是数的：36 的因子；
+   ② 挪屏是一格一格的手艺，糊→清是唯一的仪器：屏差几格，像就糊几格（差一格糊 4 像素）。
+      孩子不用会公式也能玩，但他一定会发现：字片越近，屏就得挪得越远，像也越大（放大率＝s/d）；
+   ③ 像永远是倒的（上下左右全反），大小由倍率说了算。快门洗出底片，这一坊真正的考题才来：
+      倒着的这一笔是这个字的第几笔？回到米字格把它点出来 —— 点错了不是重来，是倒扣 + 掉心 + 这一笔废了。
+   教学点：物近像远像大、光路可逆（第 5 场起「⚡ 光路倒冲」把字片与屏对调，像平面就落在刚才的物距那一格，
+   还是整数，孩子亲手验证一遍「反过来一样通」）；而认笔那一手考的是笔顺与字形 */
+const FJ_W=420,FJ_H=340;
+/* 导轨：透镜立在案面正中，单侧 24 格、一格 8 像素（24×8=192，两边正好铺到 18…402）*/
+const FJ_F=6,FJ_R=24,FJ_PX=8,FJ_CX=210,FJ_AXIS=250;
+const FJ_MIN=1,FJ_TOP=FJ_R;
+/* 主孔位：台子给字片卡的那几档。只取放大率 ≥1 的那四对（1、1.5、2、3 倍），
+   倒过来的像才永远不小于原物 —— 底片要认笔，缩小到三分之一的字孩子点不动；
+   放大率低的那三对（15,10)(18,9)(24,8) 留给「⚡ 光路倒冲」：对调之后像平面正好落回物距那一格 */
+const FJ_MOUNT=[12,10,9,8];
+/* 糊：差一格糊 4 像素，最多糊到 18 像素（再糊就成一团墨，孩子连「往哪儿挪」都看不出来了）*/
+const FJ_BLUR=4,FJ_BLUR_MAX=18;
+/* 起始那一格离焦平面最多七格：屏上的像只有一两个像素粗，糊过八像素就淡得快看不见了 ——
+   一起手就把孩子放在「挪一格看得见差别」的那一段路上，别让他在一片空屏前摸十几格。
+   这一段路上的差别由「屏上那点墨气」来报（FJ_GLOW）：差几格就暗几档，一格一档，
+   形状糊没了还剩亮暗 —— 这才是暗箱里唯一的那把尺，它只说清不清，不说是第几格 */
+const FJ_START_MIN=3,FJ_START_MAX=7,FJ_GLOW=8;
+/* 物片与底片窗的字框尺寸（同一个字的方框在两处各是多少像素）*/
+const FJ_OBJ=30,FJ_PRINT=96;
+/* 案面上三块地方：左上米字格（归位台）· 右上底片窗（洗出来的那一张）· 下面一根光具座 */
+const FJ_GX=14,FJ_GY=14,FJ_GRID=132;
+const FJ_PNX=252,FJ_PNY=14,FJ_PNW=154,FJ_PNH=132;
+/* 毛玻璃屏那块卡：宽 24、高 104，中心压在光轴上，一格挪 8 像素 */
+const FJ_SCW=24,FJ_SCH=104,FJ_RY=316;
+/* 底片一卷与一场几字：30−8×1=22 —— 坡有底，孩子知道顶到哪儿收手。
+   一场最多 3 字 × 7 笔 = 21 拍，快门按一下吃一张，所以深场只容一次失手 */
+const FJ_PER=3,FJ_FILM0=30,FJ_FILM_MIN=22,FJ_FILM_STEP=1;
+/* 四支钟：这一拍（对焦）、这一笔（归位）、这一字、这一场的灯 —— 全部在第 9 场正好走到底线 */
+const FJ_QMS0=6000,FJ_QMS_MIN=3200,FJ_QMS_STEP=350;
+const FJ_WIPE0=5000,FJ_WIPE_MIN=3000,FJ_WIPE_STEP=250;
+const FJ_WORD0=90000,FJ_WORD_MIN=58000,FJ_WORD_STEP=4000;
+const FJ_FUEL0=150000,FJ_FUEL_MIN=98000,FJ_FUEL_STEP=6500;
+/* 罚：糊片 · 弃拍 · 拍钟尽 · 点错笔 · 归位钟尽 · 字钟尽 · 换字 · 卷底 */
+const FJ_P_BAD=4,FJ_P_SKIP=3,FJ_P_SHOT=3,FJ_P_WRONG=5,FJ_P_LATE=3,FJ_P_WORD=5,FJ_P_SWAP=6,FJ_P_ROLL=5;
+/* 赏：合焦底分（连击与场号加成，正好压在焦平面上再乘一档）· 归位点对 */
+const FJ_M0=8,FJ_M_CB=1.1,FJ_M_LV=1.5,FJ_M_CLICK=1.5;
+const FJ_W0=6,FJ_W_CB=0.9,FJ_W_LV=1.3;
+/* 收齐一个字的整包账：底分 · 零罚 · 张张分毫不差 · 家什没借 · 一张不废（快门次数＝拍数）· 倒冲认对每回 */
+const FJ_WORD_PTS=26,FJ_CLEAN_PTS=16,FJ_EXACT_PTS=20,FJ_TOOL_PTS=10,FJ_ONE_PTS=12,FJ_FLIP_PTS=8;
+/* 字的口径：4~7 笔、至少两种笔形、字要大（三笔的字挪两下就拍完了，八笔的字一卷底片不够）*/
+const FJ_STROKE_MIN=4,FJ_STROKE_MAX=7,FJ_KIND_MIN=2;
+/* 认笔不歧义的口径：倒立的像只靠形状与长短认人 —— 同方向又同长短档的两笔，底片上就是同一张片，
+   孩子点谁都是猜。长度一档 40（1024 的方格）*/
+const FJ_LEN_BKT=40;
+const FJ_POOL_MIN=4,FJ_POOL_WANT=14,FJ_POOL_SCAN=320;
+const FJ_HEARTS=3,FJ_HEART_MAX=5,FJ_BOOK_MAX=300;
+const FJ_P0={probe:2,scale:1,film:2,swap:1};   /* 试焦 / 焦尺 / 补片 / 换字 */
+const FJ_FILM_ADD=6;
+const FJ_TAG_MS=2600,FJ_NAG_MS=11000,FJ_NAG_HOLD=5200,FJ_HELP_MS=16000;
+const FJ_FLASH_MS=900,FJ_SETTLE_MS=1100;
+/* 场档：按收齐的字数走，每两个字进一场 */
+function fjLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function fjFilm(L){return Math.max(FJ_FILM_MIN,FJ_FILM0-(L-1)*FJ_FILM_STEP)}
+function fjQms(L){return Math.max(FJ_QMS_MIN,FJ_QMS0-(L-1)*FJ_QMS_STEP)}
+function fjWipe(L){return Math.max(FJ_WIPE_MIN,FJ_WIPE0-(L-1)*FJ_WIPE_STEP)}
+function fjWord(L){return Math.max(FJ_WORD_MIN,FJ_WORD0-(L-1)*FJ_WORD_STEP)}
+function fjFuel(L){return Math.max(FJ_FUEL_MIN,FJ_FUEL0-(L-1)*FJ_FUEL_STEP)}
+function fjWant(L){return L<=2?[4,5]:[4,7]}
+/* 合焦容差：前三场差两格也算清（先让孩子尝到糊变清的甜头），四场起一格，七场起必须分毫不差 */
+function fjTol(L){return L<=3?2:(L<=6?1:0)}
+/* 第 4 场起案上不再画三条主光线、不再标倍率（那本是给孩子看「像该落在哪儿」的教具）*/
+function fjNoTell(L){return L>=4}
+/* 第 6 场起导轨不再标格数、屏位读数也收走 —— 只剩糊与清这一把尺，孩子得自己数格子 */
+function fjDim(L){return L>=6}
+/* 第 5 场起才可能倒冲：这一拍是不是倒冲由「字 + 场 + 第几拍」的种子定，同字同场永远同一套 */
+const FJ_FLIP_LV=5;
+function fjFlipLv(L){return L>=FJ_FLIP_LV}
+function fjRank(w){
+  let r=FJ_RANKS[0];
+  for(let i=0;i<FJ_RANKS.length;i++)if(w>=FJ_RANKS[i].n)r=FJ_RANKS[i];
+  return r;
+}
+const FJ_RANKS=[
+  {n:0,e:'🔍',t:'头一回对焦'},{n:2,e:'🪞',t:'认得倒像'},{n:5,e:'💡',t:'会挪屏'},
+  {n:9,e:'📸',t:'一按就清'},{n:14,e:'🔎',t:'眼里有格'},{n:21,e:'🎞',t:'底片不废'},
+  {n:30,e:'🧰',t:'全套家什'},{n:42,e:'⚡',t:'倒冲随便认'},{n:58,e:'👑',t:'闭眼也对得准'}
+];
+const FJ_SHELF_LV=4;   /* 家什架「卷尺」的门槛：走到第几场才算看得清 —— 与第 4 场收走光线那道门是两回事 */
+const FJ_SHELF=[
+  {k:'相纸',d:'收齐一个字'},{k:'定影盘',d:'一场三字零罚'},{k:'倒冲闸',d:'光路倒冲压准 6 回'},
+  {k:'卷尺',d:'走到第 '+FJ_SHELF_LV+' 场还在对焦'},{k:'焦轮',d:'分毫不差满 12 张'},{k:'墨屏',d:'一个字张张分毫不差'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},{k:'金框',d:'累计归位 60 笔'}
+];
+const FJ_KN=['横','竖','撇','捺'];
+/* 放大率怎么说：倍率就是像距除以物距，四档主孔位正好是 1、1.5、2、3 倍 */
+function fjMagTxt(d,v){
+  if(d===v)return '一样大';
+  if(v>d&&v%d===0)return '放大 '+(v/d)+' 倍';
+  if(v>d)return '放大 '+(Math.round(v/d*10)/10)+' 倍';
+  return '缩小到 1/'+(Math.round(d/v*10)/10);
+}
+const fj={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],miss:[],seen:[],rec:null,seed:0,fresh:0,
+  /* 场：一场三字，字收齐（或散了）算一个；lv 就是场号，进一场 +1 */
+  lv:1,wi:0,score:0,hearts:FJ_HEARTS,combo:0,maxCombo:0,phase:'focus',load:false,
+  /* 这一拍：ord 是待拍队列（前三场正着拍、第四场起乱序，拍废的笔退回队尾再拍），
+     ki 是这一拍要拍的那一笔（0 起），pmap 是按笔号查这一拍的摆位账 */
+  ord:[],pi:0,ki:-1,d:0,v:0,s:0,cell0:0,tol:2,pmap:[],
+  /* 倒冲：flip=这一拍该不该倒冲，flipLeg=眼下是不是倒冲那一腿，flipped=这一拍已经倒冲过 */
+  flip:0,flipLeg:0,flipped:0,flipD:0,flashMs:0,settleMs:0,
+  /* 底片：plate 是快门洗出来的那一张（哪一笔、多大倍率、压得准不准、还剩几像素糊）*/
+  plate:null,done:[],shotN:0,
+  /* 底片两本账：filmUsed/filmUse 记整局（结算与图鉴用），rollUsed/rollAdd 只记眼前这一卷 ——
+     换场换卷时后者归零，「一卷 + 补的 − 按过的 = 案上剩的」这条总账才每卷都平 */
+  film:0,film0:0,filmUsed:0,rollUsed:0,rollAdd:0,
+  qms:0,qms0:0,wipeMs:0,wipe0:0,wordMs:0,wordMs0:0,fuel:0,fuel0:0,
+  /* 账：收字 · 归位笔数 · 合焦张数 · 分毫不差 · 糊片 · 弃拍 · 拍钟尽 · 点错笔 · 归位钟尽 · 倒冲 · 压准 · 换字 · 卷底 · 散字 */
+  words:0,strokes:0,focusN:0,exactN:0,bads:0,skips:0,shotOuts:0,wrongs:0,lates:0,
+  flips:0,flipOk:0,swaps:0,rolls:0,wordOuts:0,
+  /* 一字的清白账：cleanWord 零罚 · cleanW 张张分毫不差 · oneShot 一张不废 · wordTools 借过家什 · toolRun 整场三字零罚 */
+  tools:0,cleanWord:1,cleanW:1,oneShot:1,wordTools:0,cleanRun:0,toolRun:0,
+  probeN:FJ_P0.probe,scaleN:FJ_P0.scale,filmN:FJ_P0.film,swapN:FJ_P0.swap,
+  probeUse:0,scaleUse:0,filmUse:0,swapUse:0,scaleShow:0,plate2:null,locked:0,
+  gain:0,pen:0,hitOk:0,hitTxt:'',bound:false,helpMs:0,tagTimer:0,
+  msg:'',nags:0,nagMs:0,newBest:false
+};
+
+/* ---- 小工具：本坊自己的发声、回话、清定时器 ----
+   这几只不能抄公共那几只：auxSay 写的是拍字行那条 .auc-msg、auxTone 揣的是 auc.ac 那块声卡、
+   auxT/auxKillTimers 管的是 auc.timers 那一串 —— 借来用，孩子的话就落在别人家的栏里。 */
+function fjTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!fj.ac)fj.ac=new AC();
+    const c=fj.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.value=g===undefined?.05:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+/* 回话条就是案面上那一条 .fj-msg：写错了栏，孩子一个字也看不见 */
+function fjSay(msg,color){fjMsg(msg,color||'#FFE082')}
+function fjT(fn,ms){const id=setTimeout(function(){
+  const i=fj.timers.indexOf(id);if(i>=0)fj.timers.splice(i,1);
+  if(!fj.run||fj.over)return;
+  try{fn()}catch(e){}
+},ms);fj.timers.push(id);return id}
+function fjKill(){
+  for(let i=0;i<fj.timers.length;i++)clearTimeout(fj.timers[i]);
+  fj.timers=[];
+  if(fj.rafId){cancelAnimationFrame(fj.rafId);fj.rafId=0}
+}
+
+/* ================= 焦：共轭位、起始格、糊几像素、拍序，与「这个字配不配上这台」 =================
+   A 路 fjVOf —— 闭式：1/d + 1/s = 1/f 解出 s = f·d/(d−f)，d=6 之左不成实像（−1）；
+   B 路 fjPairs —— 整数枚举：(d−f)(s−f)=f² —— 把 36 拆成两个整数因子，一格也不靠浮点；
+   C 路 fjSym —— 光路可逆：把物距与像距对调再算一遍必须回到原数（第 5 场的倒冲就是这一条）；
+   D 路 fjSimWalk —— 真把屏一格一格朝更清的方向挪：必须正好走 |s0−v| 步压住焦平面，不许有走不出去的浅坑。
+   四路对不上，这个字就不配上案（段 W 在 Node 里拿同一套常量算第五遍）。 */
+function fjVOf(d){
+  if(d<=FJ_F)return -1;                     /* 物在焦点之内：出不来实像，屏上永远是一片亮 */
+  const v=FJ_F*d/(d-FJ_F);
+  return v>FJ_TOP||v<FJ_MIN?-1:v;
+}
+function fjVInt(d){
+  const v=fjVOf(d);
+  return (v>=0&&v===Math.round(v))?v:-1;    /* 像落在两格之间 = 屏停在哪一格都糊 */
+}
+/* 整数路：36 的每一对因子 (a,b) 给一个共轭位 (6+a, 6+b)，两端都不许越过轨长 */
+function fjPairs(){
+  const out=[];
+  for(let a=1;a*a<=FJ_F*FJ_F;a++){
+    if((FJ_F*FJ_F)%a)continue;
+    const b=FJ_F*FJ_F/a;
+    const d=FJ_F+a,v=FJ_F+b;
+    if(d<=FJ_TOP&&v<=FJ_TOP)out.push([d,v]);
+    if(a!==b&&d<=FJ_TOP&&v<=FJ_TOP)out.push([v,d]);   /* 两个方向都是解：这就是可逆 */
+  }
+  out.sort(function(x,y){return x[0]-y[0]});
+  return out;
+}
+/* 共轭位的查表（由整数枚举现算，不是一张手写的表 —— 手写的表会与式子各走各的）*/
+function fjPairOf(d){
+  const P=fjPairs();
+  for(let i=0;i<P.length;i++)if(P[i][0]===d)return P[i][1];
+  return -1;
+}
+/* 这一拍字片卡在第几格：四档主孔位轮着来，起点由「字 + 场」的种子定 —— 同字同场永远同一套摆位 */
+function fjMountOf(i,seed){
+  return FJ_MOUNT[(i+auxMix(seed)%FJ_MOUNT.length)%FJ_MOUNT.length];
+}
+/* 屏一开始摆在哪一格：候选是「离焦平面三到七格」的那些格子，由种子抽一格 ——
+   一定差着三格才开始（不挪一下就拍不实），又一定不越过七格（那一头屏上已经什么都看不见了，
+   挪一格没差别就等于让孩子在空屏前瞎走）。这一段里挑不出格子时才退回「至少差三格」 */
+function fjStartCell(v,seed){
+  const cand=[],wide=[];
+  for(let c=FJ_MIN;c<=FJ_TOP;c++){
+    if(c===v)continue;
+    const g=Math.abs(c-v);
+    if(g>=FJ_START_MIN)wide.push(c);
+    if(g>=FJ_START_MIN&&g<=FJ_START_MAX)cand.push(c);
+  }
+  const list=cand.length?cand:wide;
+  if(!list.length)return v;
+  return list[auxMix(seed)%list.length];
+}
+function fjBlur(s,v){return Math.min(FJ_BLUR_MAX,Math.abs(s-v)*FJ_BLUR)}
+/* 屏上那点墨气：差几格就暗一档，差到 FJ_GLOW 格正好没了 —— 它是「糊与清」这把尺的可见那一半
+   （一笔缩到一两个像素粗，糊过八像素形状就散了，散成一片亮暗孩子还看得见）。
+   只说清不清，不说 v 是第几格：画面上、读数里都不许写出焦平面 */
+function fjGlow(s,v){return Math.max(0,1-Math.abs(s-v)/FJ_GLOW)}
+/* 这一拍要不要倒冲：第 5 场起、且这一对的物距像距不同（12,12 自己可逆，倒了等于没倒）*/
+function fjFlipOf(i,d,v,seed,L){
+  if(!fjFlipLv(L)||d===v)return 0;
+  return auxMix((seed^Math.imul(i+7,2654435761))>>>0)%100<45?1:0;
+}
+/* 拍序：前三场正着拍（第一笔、第二笔……先认熟），第 4 场起乱序 —— 底片上那一笔是谁，全凭字形认 */
+function fjOrder(n,L,seed){
+  const a=[];
+  for(let i=0;i<n;i++)a.push(i);
+  if(L<=3)return a;
+  let s=seed>>>0;
+  for(let i=n-1;i>0;i--){
+    const p=auxPick(s,i+1);s=p[0];
+    const t=a[i];a[i]=a[p[1]];a[p[1]]=t;
+  }
+  return a;
+}
+/* D 路：一格一格朝更清的方向挪，几步压住焦平面（挪不到就是这段路不平 —— 不该发生）*/
+function fjSimWalk(s0,v){
+  let s=s0,g=0;
+  while(s!==v&&g++<400){
+    const l=Math.abs((s-1)-v),r=Math.abs((s+1)-v),c=Math.abs(s-v);
+    if(l<c)s--;else if(r<c)s++;else break;
+  }
+  return {ok:s===v?1:0,steps:g,cell:s};
+}
+/* 这一笔有多长（1024 的方格里量折线）*/
+function fjLenOf(m){
+  let t=0;
+  for(let i=1;i<m.length;i++){
+    const dx=m[i][0]-m[i-1][0],dy=m[i][1]-m[i-1][1];
+    t+=Math.sqrt(dx*dx+dy*dy);
+  }
+  return t;
+}
+function fjFresh(ch){
+  const bk=localStorage.getItem('hz_fj_book')||'';
+  return bk.indexOf(ch+':')<0?1:0;
+}
+/* ---- 这个字配不配得上这台：口径 + 每一笔的「方向 + 长短档」互不相同（倒立的像才认得出是谁）---- */
+function fjMake(ch,raw){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  if(ms.length<FJ_STROKE_MIN||ms.length>FJ_STROKE_MAX)return null;
+  const dirs=[],lens=[],bkey=[];
+  for(let i=0;i<ms.length;i++){
+    const d=jtDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    const L=fjLenOf(ms[i]);
+    if(!(L>0))return null;
+    dirs.push(d);lens.push(Math.round(L));
+    bkey.push(d+'@'+Math.floor(L/FJ_LEN_BKT));
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  let kc=0;for(let d=0;d<4;d++)if(kinds&(1<<d))kc++;
+  if(kc<FJ_KIND_MIN)return null;
+  for(let i=0;i<bkey.length;i++)for(let j=i+1;j<bkey.length;j++)if(bkey[i]===bkey[j])return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++)for(let j=0;j<ms[i].length;j++){
+    const x=ms[i][j][0],y=ms[i][j][1];
+    if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+  }
+  if(x1-x0<140||y1-y0<140)return null;
+  const dn=[];
+  for(let i=0;i<dirs.length;i++)dn.push(FJ_KN[dirs[i]]);
+  return {ch:ch,n:ms.length,dirs:dirs,dn:dn,lens:lens,bkey:bkey,paths:sp,meds:ms,
+    kc:kc,kinds:(function(){const a=[];for(let d=0;d<4;d++)if(kinds&(1<<d))a.push(d);return a})(),
+    union:{x0:x0,x1:x1,y0:y0,y1:y1,xc:(x0+x1)/2,yc:(y0+y1)/2,w:x1-x0,h:y1-y0}};
+}
+function fjSeqOk(rec){
+  if(!rec)return false;
+  if(rec.n<FJ_STROKE_MIN||rec.n>FJ_STROKE_MAX)return false;
+  if(rec.kc<FJ_KIND_MIN)return false;
+  for(let i=0;i<rec.dirs.length;i++)if(rec.dirs[i]<0||rec.dirs[i]>3)return false;
+  const u=rec.union;
+  if(!(u.w>=140&&u.h>=140))return false;
+  const k={};
+  for(let i=0;i<rec.bkey.length;i++){
+    if(k[rec.bkey[i]])return false;
+    k[rec.bkey[i]]=1;
+  }
+  return true;
+}
+/* ---- 摆位账：这个字在这一场，每一拍卡哪一档、屏起于哪一格、像落在哪一格、要挪几步 ---- */
+function fjPlan(rec,L,seed){
+  const ord=fjOrder(rec.n,L,seed),P=[];
+  for(let i=0;i<ord.length;i++){
+    const d=fjMountOf(i,seed),v=fjPairOf(d);
+    if(v<0||fjVInt(d)!==v)return null;              /* 主孔位必须全在整数共轭解里 */
+    const c=fjStartCell(v,auxNext((seed^Math.imul(i+3,40503))>>>0));
+    const w=fjSimWalk(c,v);
+    if(c===v||!w.ok)return null;                    /* 一上来就压住焦平面 = 这一拍没活儿可干 */
+    P.push({i:ord[i],d:d,v:v,s0:c,mag:v/d,steps:w.steps,flip:fjFlipOf(i,d,v,seed,L)});
+    if(P[i].flip){
+      const back=fjVInt(v);
+      if(back!==d)return null;                      /* 倒冲后的新焦平面必须正好是刚才的物距那一格 */
+    }
+  }
+  return P;
+}
+/* ---- 配上案的凭据：口径、每一拍摆得开、一卷底片够拍完这一场最坏的一串字、四路各算一遍 ---- */
+function fjAudit(rec,L,why){
+  const say=function(t){if(why)why.why=t;return null};
+  if(!rec||!fjSeqOk(rec))return say('口径');
+  const P=fjPlan(rec,L,auxSeedOf(rec.ch,L));
+  if(!P)return say('摆不开');
+  if(FJ_PER*rec.n>fjFilm(L))return say('底片紧');    /* 一卷底片不够拍完这一场最坏的那一串字 */
+  const PA=fjPairs();
+  if(PA.length!==7)return say('共轭位不是七处');
+  for(let i=0;i<PA.length;i++){
+    if(fjVInt(PA[i][0])!==PA[i][1])return say('闭式与枚举不合');
+    if(fjVInt(PA[i][1])!==PA[i][0])return say('光路不可逆');
+  }
+  for(let i=0;i<P.length;i++){
+    const p=P[i];
+    if(fjBlur(p.s0,p.v)<=0)return say('起始就清');
+    if(p.v<FJ_MIN||p.v>FJ_TOP)return say('像出轨');
+    if(fjBlur(p.v,p.v)!==0)return say('焦平面不糊零');
+  }
+  if(why)why.why='过';
+  return {n:rec.n,tol:fjTol(L),film:fjFilm(L),plan:P,pairs:PA.length,
+    shots:P.reduce(function(a,p){return a+p.steps},0)};
+}
+function fjTiers(){return [fjLvOf(0),fjLvOf(4),fjLvOf(8)]}
+/* ---- 字池：进池之前按场的口径逐档试，三档全过才留（浅档容两格、深档必须分毫不差，只过一两档的字是碰运气过的）---- */
+async function fjBuildPool(keep,lo,hi){
+  const g=fj.gen,stale=function(){return g!==fj.gen||!fj.run||fj.over};
+  const enough=function(){
+    if(!isFinite(lo))return fj.pool.length>=FJ_POOL_WANT;
+    let c=0;
+    for(let i=0;i<fj.pool.length;i++)if(fj.pool[i].n>=lo&&fj.pool[i].n<=hi)c++;
+    return c>=6||fj.pool.length>=40;
+  };
+  fj.miss=(localStorage.getItem('hz_fj_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<FJ_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(auxShuf(fj.miss.slice(0,6)));
+  push(auxShuf(fjLetters().split('')));      /* 这一串每次洗一遍：不然开张永远是那几个字 */
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(auxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(auxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  if(typeof CHARS!=='undefined')push(auxShuf(CHARS.slice()));
+  if(!keep)fj.pool=[];
+  const tiers=fjTiers();                                  /* 1 场 · 3 场 · 5 场各是一道门槛 */
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=fjMake(want[k+i],rs[i]);
+        if(m&&isFinite(lo)&&(m.n<lo||m.n>hi))continue;
+        if(m&&tiers.every(function(L){return !!fjAudit(m,L)}))
+          if(!fj.pool.some(function(p){return p.ch===m.ch}))fj.pool.push(m);
+      }
+    }
+  }
+  return fj.pool.length>=FJ_POOL_MIN;
+}
+/* 这一坊吃「每一笔的形状与长短都独一份」的字：倒立的像只有形状与长短可认，两笔撞档孩子就是猜。
+   下面这一串不是随手写的：全字表 1372 个字拿这一坊自己的 fjMake（口径）+ 三档 fjAudit（摆得开、
+   底片够、四路各算一遍）数过一遍（_fjtiers.cjs），真过闸的字全摆在这里 —— 串外的字就是过不了闸的字。 */
+function fjLetters(){
+  return '不专丘中主乎乓书乱争互亚亥亩什仅仇仗付仙代以仪价休优伙伴伸住体何余你兄兰内冈再写冬刑列刘则刚勾匠匣区医占卵厅去双叫司吃吆后君吞吨含听吸吾回困在址均坐坑坛声好妈妒妙妨字存宁它宅安宋宏对寿尤尽岗巧巨市帆庄庆序庐库开异弃忙我戒扎托执扫扬扳批找抄投抗抡拟改攻斤方日曰曲更木未本朱朴杀杂杆村杖来欠欢歹民气水火灰灶父片牛犹狂王瓦生甩田甲矛矣石示社禾穴米纤约级纪纯纱羊肠臣至良芒芳虫见计议记设证识诉诊谷豆贝贡赤走辽达迅迈返迟邮长闲附陈风饥饮驴';
+}
+
+/* ================= 案面：一块暗箱 · 一根光具座 · 一格米字 · 一张底片 =================
+   画的东西只有四块，全部由 fj 里那几个整数说了算：
+   ① 左上米字格（归位台）：整个字一笔一笔摆在这儿，归好位的染绿；
+   ② 光具座：透镜立在案心，左轨卡字片（物距 d），右轨那块毛玻璃屏由孩子一格一格挪（屏位 s）；
+   ③ 屏上那块像：永远是倒过来的（上下左右全反），大小 = 字片 × 倍率，糊几像素 = |s−v| × 4；
+   ④ 右上底片窗：快门洗出来的那一张，放大给看清 —— 底下这一笔究竟是第几笔，就看这一张。
+   第 4 场起 ③ 上那三条主光线与倍率收走，第 6 起导轨不标格数、屏位读数也收走。 */
+function fjCv(){const c=document.getElementById('fjCanvas');return c&&c.getContext?c.getContext('2d'):null}
+function fjRoundRect(g,x,y,w,h,r){
+  g.beginPath();
+  g.moveTo(x+r,y);g.lineTo(x+w-r,y);g.quadraticCurveTo(x+w,y,x+w,y+r);
+  g.lineTo(x+w,y+h-r);g.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  g.lineTo(x+r,y+h);g.quadraticCurveTo(x,y+h,x,y+h-r);
+  g.lineTo(x,y+r);g.quadraticCurveTo(x,y,x+r,y);
+  g.closePath();
+}
+/* 把「这个字的第 i 笔」画在 (cx,cy) 那块方框里：
+   缩放一律按整个字的轮廓（union）来算，不按这一笔自己的边框 ——
+   只有这样才能把「这笔有多长」留在画上：短横与长横在底片上一眼能分，这正是认笔的凭据。
+   inv=1 就是屏上那种倒立的像（上下左右一起反，等于转过 180°）*/
+function fjDrawPen(g,cx,cy,box,k,inv,i,blur,fill){
+  const rec=fj.rec;
+  if(!rec||i<0||i>=rec.n)return;
+  const u=rec.union;
+  const s=box/Math.max(u.w,u.h)*k;
+  g.save();
+  if(blur>0.05)g.filter='blur('+blur.toFixed(2)+'px)';
+  if(inv)g.setTransform(-s,0,0,s,cx+s*u.xc,cy-s*u.yc);
+  else g.setTransform(s,0,0,-s,cx-s*u.xc,cy+s*u.yc);
+  try{g.fillStyle=fill||'#FFF8E1';g.fill(new Path2D(rec.paths[i]))}catch(e){}
+  g.restore();
+  g.filter='none';
+}
+/* ---- ① 归位台：整个字都在这儿，就差认出底片是哪一笔 ---- */
+function fjDrawGrid(g){
+  const rec=fj.rec;
+  g.save();
+  g.fillStyle='rgba(255,246,230,.09)';
+  fjRoundRect(g,FJ_GX-4,FJ_GY-16,FJ_GRID+8,FJ_GRID+24,10);g.fill();
+  g.fillStyle='#D7CCC8';g.font='11px sans-serif';g.textAlign='left';
+  g.fillText('归位台'+(rec?(' · 共 '+rec.n+' 笔'):'——'),FJ_GX-2,FJ_GY-5);
+  g.strokeStyle='rgba(215,204,200,.62)';g.lineWidth=1.6;
+  g.strokeRect(FJ_GX,FJ_GY,FJ_GRID,FJ_GRID);
+  g.strokeStyle='rgba(215,204,200,.24)';g.lineWidth=1;g.setLineDash([5,5]);
+  g.beginPath();
+  g.moveTo(FJ_GX+FJ_GRID/2,FJ_GY);g.lineTo(FJ_GX+FJ_GRID/2,FJ_GY+FJ_GRID);
+  g.moveTo(FJ_GX,FJ_GY+FJ_GRID/2);g.lineTo(FJ_GX+FJ_GRID,FJ_GY+FJ_GRID/2);
+  g.moveTo(FJ_GX,FJ_GY);g.lineTo(FJ_GX+FJ_GRID,FJ_GY+FJ_GRID);
+  g.moveTo(FJ_GX+FJ_GRID,FJ_GY);g.lineTo(FJ_GX,FJ_GY+FJ_GRID);
+  g.stroke();g.setLineDash([]);
+  if(!rec){g.restore();return}
+  const sc=FJ_GRID/1024;
+  g.save();
+  g.setTransform(sc,0,0,-sc,FJ_GX,FJ_GY+1024*sc);
+  for(let i=0;i<rec.paths.length;i++){
+    try{
+      const path=new Path2D(rec.paths[i]);
+      g.fillStyle=fjDoneOf(i)?'rgba(129,199,132,.95)':'rgba(255,240,214,.30)';
+      g.fill(path);
+    }catch(e){}
+  }
+  g.restore();
+  g.filter='none';
+  if(fj.phase==='wipe'){
+    g.fillStyle='#FFCC80';g.font='12px sans-serif';g.textAlign='center';
+    g.fillText('点出底片上那一笔',FJ_GX+FJ_GRID/2,FJ_GY+FJ_GRID+16);
+  }
+  g.restore();
+}
+function fjDoneOf(i){return fj.done.indexOf(i)>=0}
+/* ---- ② 光具座：导轨、透镜、字片、毛玻璃屏、三条主光线、刻度尺 ---- */
+function fjObjX(d){return FJ_CX-d*FJ_PX}
+function fjImgX(s){return FJ_CX+s*FJ_PX}
+/* 案上这两行跟着游标走的字（字片那一行、屏那一行）按中心对齐画：
+   游标压到导轨两头（第 24 格）时中心离画布边只剩 18 像素，整行字就切出界了 ——
+   照实测的字宽把中心推回来，宁可字离游标偏一点，也不让它缺半截 */
+function fjClampText(g,txt,x,y){
+  const hw=g.measureText(txt).width/2+2;
+  g.fillText(txt,Math.max(hw,Math.min(FJ_W-hw,x)),y);
+}
+function fjDrawLens(g){
+  const h=124;
+  g.save();
+  /* 镜体：两片圆弧对出来的梭形 */
+  g.fillStyle='rgba(129,212,255,.22)';
+  g.strokeStyle='rgba(179,229,252,.85)';g.lineWidth=1.8;
+  g.beginPath();
+  g.moveTo(FJ_CX,FJ_AXIS-h/2);
+  g.quadraticCurveTo(FJ_CX+15,FJ_AXIS,FJ_CX,FJ_AXIS+h/2);
+  g.quadraticCurveTo(FJ_CX-15,FJ_AXIS,FJ_CX,FJ_AXIS-h/2);
+  g.closePath();g.fill();g.stroke();
+  g.strokeStyle='rgba(179,229,252,.5)';g.lineWidth=1;
+  g.beginPath();g.moveTo(FJ_CX,FJ_AXIS-h/2-4);g.lineTo(FJ_CX,FJ_AXIS+h/2+4);g.stroke();
+  g.fillStyle='#B3E5FC';g.font='10px sans-serif';g.textAlign='center';
+  g.fillText('凸透镜 f='+FJ_F+' 格',FJ_CX,FJ_AXIS-h/2-8);
+  g.restore();
+}
+/* 三条主光线：一条平行于光轴、折过去穿过焦点，一条直穿镜心，外加光轴本身 ——
+   它们正好交在像平面上，孩子照着交点就能把屏挪过去（第 4 场起这一套教具收走）*/
+function fjDrawRays(g){
+  const d=fj.d,v=fj.v;
+  if(fjNoTell(fj.lv))return;
+  const xo=fjObjX(d),h=FJ_OBJ/2,m=v/d;
+  g.save();
+  g.strokeStyle='rgba(255,238,170,.55)';g.lineWidth=1;
+  /* 光轴 */
+  g.beginPath();g.moveTo(FJ_CX-FJ_R*FJ_PX,FJ_AXIS);g.lineTo(FJ_CX+FJ_R*FJ_PX,FJ_AXIS);g.stroke();
+  const xi=fjImgX(v);
+  /* ① 平行光线：从物点水平走到镜面，再折向像点 */
+  g.strokeStyle='rgba(255,214,79,.8)';
+  g.beginPath();g.moveTo(xo,FJ_AXIS-h);g.lineTo(FJ_CX,FJ_AXIS-h);g.lineTo(xi,FJ_AXIS+h*m);g.stroke();
+  /* ② 过镜心的光线：一条直线穿过去 */
+  g.strokeStyle='rgba(129,212,255,.8)';
+  g.beginPath();g.moveTo(xo,FJ_AXIS-h);g.lineTo(FJ_CX,FJ_AXIS);g.lineTo(xi,FJ_AXIS+h*m);g.stroke();
+  /* ③ 焦点标记：两侧各 f 格 */
+  g.fillStyle='rgba(255,238,170,.85)';g.font='9px sans-serif';g.textAlign='center';
+  g.fillText('F',FJ_CX-FJ_F*FJ_PX,FJ_AXIS+14);g.fillText('F',FJ_CX+FJ_F*FJ_PX,FJ_AXIS+14);
+  g.restore();
+}
+function fjDrawRuler(g){
+  const L=fj.lv,dim=fjDim(L);
+  g.save();
+  g.strokeStyle='rgba(215,204,200,.5)';g.lineWidth=2;
+  g.beginPath();g.moveTo(FJ_CX-FJ_R*FJ_PX,FJ_RY);g.lineTo(FJ_CX+FJ_R*FJ_PX,FJ_RY);g.stroke();
+  for(let i=FJ_MIN;i<=FJ_TOP;i++){
+    const xl=FJ_CX-i*FJ_PX,xr=FJ_CX+i*FJ_PX;
+    const big=(i%4===0);
+    g.strokeStyle=(i===fj.s)?'#FFD54F':'rgba(215,204,200,.4)';g.lineWidth=(i===fj.s)?2:1;
+    g.beginPath();g.moveTo(xr,FJ_RY);g.lineTo(xr,FJ_RY+(big?8:4));g.stroke();
+    g.strokeStyle='rgba(215,204,200,.26)';g.lineWidth=1;
+    g.beginPath();g.moveTo(xl,FJ_RY);g.lineTo(xl,FJ_RY+(big?8:4));g.stroke();
+    if(!dim&&big){
+      g.fillStyle=(i===fj.s)?'#FFD54F':'#8D6E63';g.font='9px sans-serif';g.textAlign='center';
+      g.fillText(i,xr,FJ_RY+20);
+      g.fillStyle=(i===fj.d)?'#B3E5FC':'#6D4C41';
+      g.fillText(i,xl,FJ_RY+20);
+    }
+  }
+  /* 字片、屏各自压在第几格：刻度尺上两个游标 */
+  g.fillStyle='#B3E5FC';g.beginPath();
+  g.moveTo(fjObjX(fj.d),FJ_RY-2);g.lineTo(fjObjX(fj.d)-5,FJ_RY-9);g.lineTo(fjObjX(fj.d)+5,FJ_RY-9);
+  g.closePath();g.fill();
+  g.fillStyle='#FFD54F';g.beginPath();
+  g.moveTo(fjImgX(fj.s),FJ_RY-2);g.lineTo(fjImgX(fj.s)-5,FJ_RY-9);g.lineTo(fjImgX(fj.s)+5,FJ_RY-9);
+  g.closePath();g.fill();
+  g.fillStyle='#BCAAA4';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText((dim?'导轨（格数不标了）· 屏自己数':'左轨 = 物距 d · 右轨 = 屏位 s')+
+    (dim?'':' · 你压在 '+fj.s+' 格'),FJ_CX-FJ_R*FJ_PX,FJ_RY+30);
+  g.restore();
+}
+function fjDrawBench(g){
+  const d=fj.d,s=fj.s,v=fj.v,mag=v/d,blur=fjBlur(s,v),sharp=blur<=0;
+  /* 墨气：差几格就暗一档，一格一档、差到 FJ_GLOW 格正好没了 ——
+     形状糊到看不见的那一段路上还剩亮与暗，孩子靠这一档一档的亮起来找焦平面。
+     它是「清不清」这把尺，不是「第几格」的答案：屏上从来不写出 v */
+  const glow=fjGlow(s,v);
+  fjDrawRays(g);
+  /* 字片：暗箱里那一片，只刻这一笔，正立 */
+  g.save();
+  const xo=fjObjX(d);
+  g.fillStyle='rgba(255,246,230,.13)';
+  fjRoundRect(g,xo-FJ_OBJ/2-4,FJ_AXIS-FJ_OBJ/2-4,FJ_OBJ+8,FJ_OBJ+8,5);g.fill();
+  g.strokeStyle='rgba(179,229,252,.8)';g.lineWidth=1.4;
+  fjRoundRect(g,xo-FJ_OBJ/2-4,FJ_AXIS-FJ_OBJ/2-4,FJ_OBJ+8,FJ_OBJ+8,5);g.stroke();
+  g.restore();
+  if(fj.rec&&fj.ki>=0)fjDrawPen(g,xo,FJ_AXIS,FJ_OBJ,1,0,fj.ki,0,'rgba(255,248,225,.94)');
+  g.fillStyle='#B3E5FC';g.font='10px sans-serif';g.textAlign='center';
+  fjClampText(g,'字片 · 第 '+d+' 格',xo,FJ_AXIS-FJ_OBJ/2-10);
+  /* 屏：暗箱外那块毛玻璃，像就落在这一条上（永远是倒的）*/
+  const xi=fjImgX(s),ih=FJ_SCH/2;
+  g.save();
+  g.fillStyle=sharp?'rgba(255,241,118,.20)':('rgba(255,224,130,'+(0.03+0.26*glow).toFixed(3)+')');
+  fjRoundRect(g,xi-FJ_SCW/2,FJ_AXIS-ih,FJ_SCW,FJ_SCH,6);g.fill();
+  g.strokeStyle=sharp?'#FFEE58':('rgba(207,216,220,'+(0.32+0.52*glow).toFixed(2)+')');
+  g.lineWidth=sharp?2.4:1.4;
+  fjRoundRect(g,xi-FJ_SCW/2,FJ_AXIS-ih,FJ_SCW,FJ_SCH,6);g.stroke();
+  g.restore();
+  /* 像：裁在屏这块卡里，倒立、按倍率放大、差几格糊几格。
+     糊得越远就叠画几层（离焦的光不是没了，是摊开了 —— 摊开就得看得见一团），
+     省得薄薄一笔糊到八像素以上就整块屏一片黑，孩子连往哪儿挪都没了凭据 */
+  g.save();
+  g.beginPath();g.rect(xi-FJ_SCW/2,FJ_AXIS-ih,FJ_SCW,FJ_SCH);g.clip();
+  const rep=blur>0?Math.min(5,1+Math.floor(blur/FJ_BLUR)):1;
+  if(rep>1)g.globalCompositeOperation='lighter';
+  for(let t=0;t<rep;t++)
+    fjDrawPen(g,xi,FJ_AXIS,FJ_OBJ,mag,1,fj.ki,blur,sharp?'rgba(255,241,118,.96)':'rgba(255,248,225,.86)');
+  g.globalCompositeOperation='source-over';
+  g.restore();
+  g.filter='none';
+  g.fillStyle=sharp?'#FFEE58':'#90A4AE';g.font=sharp?'bold 11px sans-serif':'10px sans-serif';
+  g.textAlign='center';
+  fjClampText(g,sharp?'✔ 屏压在焦平面上':'屏 · 第 '+(fjDim(fj.lv)?'——':s)+' 格',xi,FJ_AXIS+ih+12);
+  /* 焦平面那一竖条只在孩子自己按了 📏 焦尺 之后才画：式子从不替他挪屏 */
+  if(fj.scaleShow>0){
+    const xf=fjImgX(fj.scaleShow);
+    g.save();
+    g.strokeStyle='rgba(165,214,167,.85)';g.lineWidth=1.4;g.setLineDash([4,4]);
+    g.beginPath();g.moveTo(xf,FJ_AXIS-ih-6);g.lineTo(xf,FJ_AXIS+ih+6);g.stroke();
+    g.setLineDash([]);
+    g.fillStyle='#A5D6A7';g.font='9px sans-serif';g.textAlign='center';
+    g.fillText('焦平面',xf,FJ_AXIS-ih-9);
+    g.restore();
+  }
+  fjDrawLens(g);
+  fjDrawRuler(g);
+}
+/* ---- ④ 底片窗：快门洗出来的那一张（倒立、放大、糊几像素是那一拍的账）---- */
+function fjDrawPlate(g){
+  const p=fj.plate,L=fj.lv;
+  g.save();
+  g.fillStyle='rgba(13,20,28,.72)';
+  fjRoundRect(g,FJ_PNX,FJ_PNY,FJ_PNW,FJ_PNH,10);g.fill();
+  g.strokeStyle=p?'rgba(255,214,79,.8)':'rgba(215,204,200,.3)';g.lineWidth=p?2:1;
+  fjRoundRect(g,FJ_PNX,FJ_PNY,FJ_PNW,FJ_PNH,10);g.stroke();
+  g.fillStyle='#CFD8DC';g.font='11px sans-serif';g.textAlign='left';
+  g.fillText('底片'+(fj.shotN?(' · 第 '+fj.shotN+' 张'):''),FJ_PNX+8,FJ_PNY+14);
+  if(!p){
+    g.fillStyle='#546E7A';g.font='12px sans-serif';g.textAlign='center';
+    g.fillText('还没按快门',FJ_PNX+FJ_PNW/2,FJ_PNY+FJ_PNH/2+4);
+    g.restore();return;
+  }
+  const cx=FJ_PNX+FJ_PNW/2,cy=FJ_PNY+FJ_PNH/2+6;
+  const pb=Math.min(FJ_BLUR_MAX,p.blur*2);
+  g.save();
+  g.beginPath();g.rect(FJ_PNX+4,FJ_PNY+18,FJ_PNW-8,FJ_PNH-24);g.clip();
+  fjDrawPen(g,cx,cy,FJ_PRINT,1,1,p.ki,pb,p.ok?'rgba(255,241,118,.96)':'rgba(255,248,225,.8)');
+  g.restore();
+  g.filter='none';
+  g.textAlign='center';g.font='10px sans-serif';
+  /* 判词与倍率这两行写在窗下方的台面上，不压在像里：
+     像那一片墨是这段路唯一的凭据（倒立、放大几倍、糊几格都从它身上量），
+     字挤进去就等于在凭据上盖了一层 —— 洗相台前把判词写在台面那张纸条上，本来就该这么摆 */
+  g.fillStyle=p.ok?'#A5D6A7':'#EF9A9A';
+  g.fillText(p.ok?(p.exact?'✔ 分毫不差':'✔ 合焦 · 差 '+Math.abs(p.s-p.v)+' 格'):('✖ 糊了 '+Math.abs(p.s-p.v)+' 格 · 这张废了'),
+    FJ_PNX+FJ_PNW/2,FJ_PNY+FJ_PNH+12);
+  if(!fjNoTell(L)){
+    g.fillStyle='#FFCC80';
+    g.fillText('倒立 · '+fjMagTxt(p.d,p.v),FJ_PNX+FJ_PNW/2,FJ_PNY+FJ_PNH+26);
+  }
+  g.restore();
+}
+function fjDraw(){
+  const g=fjCv();
+  if(!g)return;
+  g.setTransform(1,0,0,1,0,0);
+  g.clearRect(0,0,FJ_W,FJ_H);
+  fjDrawGrid(g);
+  if(fj.rec){fjDrawBench(g);fjDrawPlate(g)}
+  else{
+    g.fillStyle='#546E7A';g.font='13px sans-serif';g.textAlign='center';
+    g.fillText('暗箱里还没上字片',FJ_CX,FJ_AXIS);
+  }
+}
+
+/* ================= 界面：七行账、五支条、四件家什 ================= */
+function fjEl(id){return document.getElementById(id)}
+function fjPut(id,txt){const e=fjEl(id);if(e)e.textContent=txt}
+/* 带排版的行只给产品自己写的那几句用（句中没有一处来自孩子的手）*/
+function fjPutH(id,txt,color){const e=fjEl(id);if(e){e.innerHTML=txt;color&&(e.style.color=color)}}
+function fjBar(id,p){const e=fjEl(id);if(!e)return;p=Math.max(0,Math.min(1,p));e.style.width=Math.round(p*100)+'%';const r=e.parentNode;if(r)r.classList.toggle('low',p<.25)}
+/* 眼下这一拍的糊几像素：屏没压在焦平面上就糊，压上了就是零 */
+function fjBlurNow(){return fjBlur(fj.s,fj.v)}
+function fjTolTxt(){return fj.tol<=0?'必须一格不差':('差 '+fj.tol+' 格以内都算合焦')}
+/* 一卷底片剩多少怎么说：紧了就提醒，别等按到一张不剩才知道心疼 */
+function fjFilmHint(){return fj.film<=6?('只剩 '+fj.film+' 张，省着用'):('一卷 '+fj.film+' 张，够拍 '+(fj.rec?Math.floor(fj.film/Math.max(1,fj.rec.n)):'——')+' 回')}
+function fjDoneTxt(){
+  const rec=fj.rec;
+  if(!rec)return '案上没字';
+  return '归好 '+fj.done.length+'/'+rec.n+' 笔 · 还差 '+fj.ord.length+' 拍';
+}
+function fjHelpText(){
+  return '🔍 <b>拍的是封在暗箱里的一笔</b>：字片上刻着这个字的一笔，凸透镜 f='+FJ_F+' 格 —— 把毛玻璃屏一格一格挪到像该落的那一格，糊的自己就清了<br>'+
+    '🪞 <b>像永远是倒的</b>：上下左右全反，大小是「像距 ÷ 物距」—— <b>字片越近，屏就得挪得越远，像也越大</b><br>'+
+    '🧮 <b>能拍清的那几格整根导轨上只有七处</b>：'+FJ_F+' 的式子是 (d−'+FJ_F+')(s−'+FJ_F+')='+(FJ_F*FJ_F)+
+    '，'+(FJ_F*FJ_F)+' 拆成两个整数因子才落在整格上 —— 别的格子像骑在两格中间，屏停哪儿都糊<br>'+
+    '🎞 <b>快门一按就吃一张底片</b>：糊片废一张、重拍再吃一张，一卷只有 '+FJ_FILM0+' 张起（越深越少）—— 见好就按，别挪过头<br>'+
+    '🧐 <b>认笔</b>：底片上是倒着的这一笔，回米字格点出它是第几笔（<code>1~7</code> 也行）；点错倒扣 '+FJ_P_WRONG+' 分 · 掉一颗心 · 这一笔还得重拍<br>'+
+    '⚡ <b>光路倒冲</b>（第 '+FJ_FLIP_LV+' 场起）：字片挪到刚才像落的那一格，焦平面就该在刚才字片那一格 —— 反过来一样通，这一腿不吃底片<br>'+
+    '⌨️ <code>←→</code> 挪屏 · <code>空格</code> 快门 · <code>X</code> 弃拍 · <code>1~7</code> 点第几笔 · 🔍 <code>G</code> 试焦 · 📏 <code>T</code> 焦尺 · 🎞 <code>Q</code> 补片 · 🔁 <code>R</code> 换字 · <code>H</code> 看说明';
+}
+function fjMsg(txt,color){
+  fj.msg=txt;
+  const e=fjEl('fjMsg');
+  if(e){e.innerHTML=txt;color&&(e.style.color=color)}
+}
+function fjTag(txt,kind){
+  const e=fjEl('fjTag');
+  if(!e)return;
+  /* 屏上这几句是产品自己写的话（句中没有一处来自孩子的手），里头带着要加粗的那几个字 */
+  e.innerHTML=txt;
+  e.className='fj-tag on'+(kind?(' '+kind):'');
+  clearTimeout(fj.tagTimer);
+  fj.tagTimer=setTimeout(function(){e.classList.remove('on')},FJ_TAG_MS);
+}
+/* 上台之前把案面擦干净：屏上不许留着上一拍的话 */
+function fjClearTag(){
+  clearTimeout(fj.tagTimer);
+  const e=fjEl('fjTag');
+  if(e){e.textContent='🔍 这块暗箱擦亮了';e.className='fj-tag'}
+}
+function fjAskTxt(){
+  const rec=fj.rec,L=fj.lv;
+  if(fj.load)return '🔍 正在装底片……<br><small>在字库里找「一笔一个孔位、倒过来的像还认得出是第几笔」的字</small>';
+  if(fj.helpMs>0)return fjHelpText();
+  if(!rec)return '🔍 <b>案上空着</b>：这一场的字已经拍完';
+  if(fj.phase==='wipe')return '🧐 <b>底片上这一笔（倒立的）是这个字的第几笔？</b>点米字格里那一笔，或按 <b>1~'+rec.n+'</b>'+
+    '<br><small>'+fjDoneTxt()+' · 点错一笔倒扣 '+FJ_P_WRONG+' 分并掉一颗心 · 这一笔还有 '+Math.ceil(fj.wipeMs/1000)+' 秒</small>'+
+    (fj.flipLeg?'<br><small>这张是 <b>⚡ 倒冲</b>之后重拍的：同一笔换了个倍率，认出它才算真认得</small>':'');
+  if(fj.flashMs>0)return '🎞 <b>洗片……</b><br><small>定影盘里晃两下，这一张就上了底片窗</small>';
+  if(fj.settleMs>0)return '⚡ <b>光路倒冲：字片挪到刚才像落的那一格</b><br><small>焦平面就该在刚才字片那一格 —— 反过来一样通，这一腿不吃底片</small>';
+  const dim=fjDim(L);
+  return '📸 <b>第 '+(fj.pi+1)+' 拍 · 这一笔在第 '+fj.d+' 格上</b>：把屏一格一格挪到像清的那一格'+
+    '<br><small>'+fjTolTxt()+' · 拍钟还有 '+Math.ceil(fj.qms/1000)+' 秒 · 底片剩 '+fj.film+' 张 · '+fjDoneTxt()+'</small>'+
+    (dim?'<br><small>第 '+L+' 场：导轨不标格数、屏位读数也收走了 —— 只剩「糊与清」这一把尺，格子自己数</small>':
+      (L>=4?'<br><small>第 '+L+' 场：三条主光线与倍率不再画在案上，全凭这块屏给的眼睛</small>':'<br><small>案上那三条光线正好交在像平面上 —— 屏挪到交点那一格就清</small>'))+
+    (fj.flip&&!fj.flipped?'<br><small>这一拍挂着 <b>⚡ 光路倒冲</b>：这一张拍准了，字片会自己挪到像那一头再拍一腿（不吃底片）':'');
+}
+function fjSync(){
+  const rec=fj.rec,L=fj.lv;
+  fjPut('fjScoreTxt','🔍 '+fj.score+' 分');
+  fjPut('fjLvTxt','第 '+L+' 场 · 收 '+fj.words+' 字');
+  fjPut('fjQTxt','⏳ '+(fj.phase==='wipe'?'这一笔 ':'这一拍 ')+
+    Math.ceil((fj.phase==='wipe'?fj.wipeMs:fj.qms)/1000)+' 秒');
+  const rk=fjRank(auxInt('hz_fj_words')+fj.words);
+  fjPut('fjRankTxt',rk.e+' '+rk.t);
+  let hs='';for(let i=0;i<fj.hearts;i++)hs+='❤️';
+  fjPut('fjHeartTxt',hs||'💔');
+  fjPut('fjComboTxt','🔥 连 '+fj.combo);
+  fjPut('fjLotTxt','🈶 第 '+(fj.wi+1)+'/'+FJ_PER+' 字 · 第 '+(fj.pi+1)+' 拍'+(rec?(' · 共 '+rec.n+' 笔'):''));
+  /* 只报清没清，不报糊几像素：糊的像素就是 |s−v|×4，报了等于把焦平面念给孩子 */
+  fjPut('fjCellTxt','🔍 屏在'+(fjDim(L)?'——':('第 '+fj.s+' 格'))+' · '+
+    (fjBlurNow()<=0?'✔ 这块清了':'还糊着'));
+  fjPut('fjFilmTxt','🎞 底片 '+fj.film+' 张');
+  const light=fjEl('fjHitLight');
+  if(light){
+    const t=(fj.phase==='focus'&&fjBlurNow()<=0)?'✔ 正压着焦平面':
+      (fj.hitTxt?fj.hitTxt:(rec?'✖ 还没合焦':'✖ 还没上案'));
+    light.textContent=t;
+    light.style.color=fj.hitOk>0?'#A5D6A7':(fj.hitOk<0?'#EF9A9A':'#FFE082');
+  }
+  fjBar('fjShotBar',fj.qms/Math.max(1,fj.qms0));
+  fjBar('fjWipeBar',fj.wipeMs/Math.max(1,fj.wipe0));
+  fjBar('fjWordBar',fj.wordMs/Math.max(1,fj.wordMs0));
+  fjBar('fjFuelBar',fj.fuel/Math.max(1,fj.fuel0));
+  fjBar('fjFilmBar',fj.film/Math.max(1,fj.film0));
+  fjPut('fjQmsTxt','⌛ 这一拍 '+Math.ceil(fj.qms/1000)+' 秒');
+  fjPut('fjWipeTxt','🧼 归位 '+Math.ceil(fj.wipeMs/1000)+' 秒');
+  fjPut('fjWordTxt','🈶 这个字 '+Math.ceil(fj.wordMs/1000)+' 秒');
+  fjPut('fjFuelTxt','💡 这一场 '+Math.ceil(fj.fuel/1000)+' 秒');
+  fjPut('fjFilmBig','🎞 底片 '+fj.film+' 张 · 一卷 '+fj.film0+' 张');
+  const ask=fjEl('fjAsk');
+  if(ask)ask.innerHTML=fjAskTxt();
+  /* 第 6 场起屏位读数一并收走：进度那行不许比 HUD 多说一句 —— 多说一个字就把孩子自己数的格子替他数了 */
+  fjPut('fjStepTxt','屏在'+(fjDim(L)?'——':('第 '+fj.s+' 格'))+(fj.rec?(' · 共 '+FJ_R+' 格的导轨'):'')+
+    (fj.s>=FJ_TOP?'（到头了）':(fj.s<=FJ_MIN?'（到边了）':'')));
+  const d=document.getElementById('fjDownBtn'),u=document.getElementById('fjUpBtn');
+  const see=fj.phase==='focus'&&!fj.flashMs&&!fj.settleMs;
+  if(d)d.disabled=!see||fj.s<=FJ_MIN;
+  if(u)u.disabled=!see||fj.s>=FJ_TOP;
+  const kb=document.getElementById('fjSkipBtn');
+  if(kb)kb.disabled=!rec||fj.over||fj.phase!=='focus'||fj.flashMs>0||fj.settleMs>0;
+  const sb=document.getElementById('fjShotBtn');
+  if(sb){
+    const can=!!rec&&!fj.over&&fj.phase==='focus'&&!fj.flashMs&&!fj.settleMs;
+
+    sb.disabled=!can||fj.film<=0;
+    sb.classList.toggle('sharp',!!(can&&fj.rec&&fjBlurNow()<=0));
+  }
+  const btns=[['fjProbeBtn',fj.probeN],['fjScaleBtn',fj.scaleN],['fjFilmBtn',fj.filmN],['fjSwapBtn',fj.swapN]];
+  for(let i=0;i<btns.length;i++){
+    const b=fjEl(btns[i][0]);
+    if(b){
+      const n=b.getElementsByTagName('b')[0];
+      if(n)n.textContent='剩 '+btns[i][1];
+      b.disabled=btns[i][1]<=0||!rec||fj.over;
+    }
+  }
+}
+
+/* ================= 这一案的手：上字、挪屏、快门、倒冲、归位、四件家什 ================= */
+/* ---- 上字：错字本上的字优先挑回来，其次挑本场没上过案的 ---- */
+function fjTake(){
+  const pool=fj.pool;
+  if(!pool.length)return null;
+  for(let i=0;i<fj.miss.length;i++){
+    for(let k=0;k<pool.length;k++){
+      if(pool[k].ch===fj.miss[i]&&fj.seen.indexOf(pool[k].ch)<0)return pool[k];
+    }
+  }
+  const fresh=[];
+  for(let k=0;k<pool.length;k++)if(fj.seen.indexOf(pool[k].ch)<0)fresh.push(pool[k]);
+  const list=fresh.length?fresh:pool;
+  return list[Math.floor(Math.random()*list.length)];
+}
+/* ---- 一个字上台：摆位账由「字 + 场」的种子定死，每一笔卡哪档、屏起于哪格，重来一遍一模一样 ---- */
+function fjSetWord(rec,flash){
+  const L=fj.lv;
+  fj.rec=rec;fj.seed=auxSeedOf(rec.ch,L);fj.fresh=fjFresh(rec.ch);
+  const P=fjPlan(rec,L,fj.seed);
+  fj.pmap=[];
+  for(let i=0;i<P.length;i++)fj.pmap[P[i].i]=P[i];
+  /* 待拍队列：队头就是眼下这一拍；拍废了的（糊片、点错、钟尽）退回队尾再拍一回，每一回都吃一张底片 */
+  fj.ord=[];
+  for(let i=0;i<P.length;i++)fj.ord.push(P[i].i);
+  fj.done=[];fj.pi=0;fj.shotN=0;fj.locked=0;
+  fj.wordMs0=fjWord(L);fj.wordMs=fj.wordMs0;
+  fj.wipe0=fjWipe(L);fj.wipeMs=fj.wipe0;
+  fj.cleanWord=1;fj.cleanW=1;fj.oneShot=1;fj.wordTools=0;
+  fj.plate=null;fj.plate2=null;fj.flipLeg=0;fj.flipped=0;fj.flashMs=0;fj.settleMs=0;fj.scaleShow=0;
+  fj.seen.push(rec.ch);
+  fj.phase='focus';
+  fjTone(640,70);
+  fjTag((flash||'')+'🈶 上案：共 '+rec.n+' 笔 · 一卷底片 '+fj.film+' 张 · '+fjFilmHint(),'gold');
+  fjStartTake();
+}
+/* ---- 开一拍：字片卡上第 d 格，屏摆在起始那一格（离焦平面至少三格，不挪一下永远拍不实）---- */
+function fjStartTake(){
+  if(!fj.rec||fj.locked||!fj.ord.length)return;
+  if(fj.film<=0){fjRollOut();return}
+  const k=fj.ord[0],e=fj.pmap[k],L=fj.lv;
+  fj.ki=k;fj.d=e.d;fj.v=e.v;fj.s=e.s0;fj.cell0=e.s0;
+  fj.tol=fjTol(L);fj.flip=e.flip;fj.flipLeg=0;fj.flipped=0;
+  fj.plate=null;fj.scaleShow=0;fj.phase='focus';
+  fj.qms0=fjQms(L);fj.qms=fj.qms0;
+  fj.hitOk=0;fj.hitTxt='';
+  fjSync();fjDraw();
+}
+/* ---- 挪屏：一格一格的手艺。刻度尺上直接点那一格也算 —— 心里有数的人不必按一下挪一格 ---- */
+function fjSetCell(c){
+  if(!fj.rec||fj.over||fj.locked||fj.phase!=='focus'||fj.flashMs>0||fj.settleMs>0)return;
+  const n=auxClamp(Math.round(c),FJ_MIN,FJ_TOP);
+  if(n===fj.s)return;
+  fj.s=n;fj.scaleShow=0;
+  fjTone(420+n*22,28);
+  fjSync();fjDraw();
+}
+function fjStep(d){fjSetCell((fj.s||FJ_MIN)+d)}
+/* ---- 快门：吃一张底片，洗出这一张账（倒冲那一腿不吃）---- */
+function fjShoot(){
+  if(!fj.rec||fj.over||fj.locked||fj.phase!=='focus'||fj.flashMs>0||fj.settleMs>0)return;
+  if(fj.film<=0&&!fj.flipLeg){fjRollOut();return}
+  const s=fj.s,v=fj.v,d=fj.d;
+  const exact=(s===v)?1:0,ok=(Math.abs(s-v)<=fj.tol)?1:0;
+  if(!fj.flipLeg){
+    fj.film--;fj.filmUsed++;fj.shotN++;fj.rollUsed++;
+    fj.plate={ki:fj.ki,d:d,v:v,s:s,mag:v/d,blur:fjBlur(s,v),exact:exact,ok:ok,leg:0};
+  }else{
+    fj.plate2={ki:fj.ki,d:d,v:v,s:s,mag:v/d,blur:fjBlur(s,v),exact:exact,ok:ok,leg:1};
+  }
+  fj.flashMs=FJ_FLASH_MS;
+  fjTone(1180,60);fjTone(300,120);
+  fjSync();fjDraw();
+}
+/* 洗片那一息走完：这一张到底是清了还是糊了，账在这儿结 */
+function fjAfterFlash(){
+  const p=fj.flipLeg?fj.plate2:fj.plate;
+  if(!p)return;
+  if(fj.flipLeg){fjResolveFlip(p);return}
+  if(!p.ok){
+    fj.bads++;fj.cleanWord=0;fj.cleanW=0;fj.combo=0;
+    fj.score-=FJ_P_BAD;
+    fj.hitOk=-1;fj.hitTxt='✖ 糊片 · −'+FJ_P_BAD;
+    fjTag('✖ 这块屏差 '+Math.abs(p.s-p.v)+' 格，像糊成一团：底片废了一张，倒扣 '+FJ_P_BAD+' 分 —— 这一笔退回队尾再拍一回','warn');
+    fjTone(170,240);fjSay('✖ 这张糊了');
+    fjFailTake();return;
+  }
+  const L=fj.lv,mul=p.exact?FJ_M_CLICK:1;
+  const pts=Math.round((FJ_M0+fj.combo*FJ_M_CB+L*FJ_M_LV)*mul);
+  fj.score+=pts;fj.gain=pts;fj.combo++;
+  if(fj.combo>fj.maxCombo)fj.maxCombo=fj.combo;
+  fj.focusN++;
+  if(p.exact){fj.exactN++;fj.hitTxt='✔ 分毫不差 +'+pts}else{fj.cleanW=0;fj.hitTxt='✔ 合焦 +'+pts}
+
+  fj.hitOk=1;
+  fjTone(920,90);fjSay('✔ 洗出来一张');
+  if(fj.flip&&!fj.flipped){fjBeginFlip(p);return}
+  fjEnterWipe();
+}
+/* 拍废了：这一笔退回队尾，下一拍接着来（底片就是这么吃光的）*/
+function fjFailTake(){
+  if(!fj.ord.length)return;
+  fj.ord.push(fj.ord.shift());
+  fj.pi++;
+  if(fj.hearts<=0){fjEnd('hearts');return}
+  fjStartTake();
+}
+/* 拍成了（认完这一笔）：队头出列 */
+function fjNextTake(){
+  fj.ord.shift();fj.pi++;
+  if(!fj.ord.length){fjCollect();return}
+  if(fj.hearts<=0){fjEnd('hearts');return}
+  fjStartTake();
+}
+/* ---- ⚡ 光路倒冲：物距与像距对调，焦平面正好落回刚才字片那一格（整数账，一格不差）---- */
+function fjBeginFlip(p){
+  const back=fjVInt(p.v);
+  if(back!==p.d){fjEnterWipe();return}        /* 式子对不上就不演这一腿：绝不摆出一个拍不清的场面 */
+  fj.flipped=1;fj.flipLeg=1;fj.flips++;
+  fj.d=p.v;fj.v=p.d;                           /* 字片挪到像那一头，屏还留在刚才按住的那一格 */
+  fj.scaleShow=0;
+  fj.qms0=fjQms(fj.lv);fj.qms=fj.qms0;
+  fj.settleMs=FJ_SETTLE_MS;
+  fjTone(520,180);
+  /* 第 6 场起格数从案上收走了，这一句也不能把数念回来：换成「刚才那一格」这一种说法 */
+  fjTag(fjDim(fj.lv)?'⚡ 光路倒冲：字片挪到刚才像落的那一格 —— 焦平面该回到刚才字片那一格，这一腿不吃底片'
+    :'⚡ 光路倒冲：字片挪到第 '+fj.d+' 格 —— 焦平面该回到第 '+fj.v+' 格，这一腿不吃底片','cyan');
+  fjSync();fjDraw();
+}
+function fjResolveFlip(p){
+  fj.flipLeg=0;
+  if(p.exact){
+    fj.score+=FJ_FLIP_PTS;fj.flipOk++;
+    fj.plate=p;                                /* 缩小倒立的这一张更认不出：认出它才算真认得 */
+    fjTag('⚡ 倒冲压准了：像真落在刚才字片那一格 · +'+FJ_FLIP_PTS+' 分 —— 底片换了一张缩小 '+
+      (Math.round(p.d/p.v*10)/10)+' 倍的，这一笔可就不好认了','gold');
+    fjSay('⚡ 反过来一样通');
+  }else if(p.ok){
+    fj.plate=p;
+    fjTag('⚡ 倒冲也合了焦（差 '+Math.abs(p.s-p.v)+' 格）：只是没压准，赏钱没有 · 底片换成了缩小那一张','cyan');
+  }else{
+    fjTag('⚡ 倒冲这一腿糊了：不吃底片也不罚钱，案上还是刚才那一张','warn');
+  }
+  fjEnterWipe();
+}
+/* ---- 归位：底片上那一笔（倒立的）是这个字的第几笔 ---- */
+function fjEnterWipe(){
+  fj.phase='wipe';fj.wipeMs=fj.wipe0;
+  fjSync();fjDraw();
+}
+function fjWipePick(i){
+  const rec=fj.rec;
+  if(fj.phase!=='wipe'||!rec||i<0||i>=rec.n)return;
+  if(i!==fj.ki){
+    fj.wrongs++;fj.cleanWord=0;fj.hearts--;fj.combo=0;
+    fj.score-=FJ_P_WRONG;
+    fj.hitOk=-1;fj.hitTxt='✖ 认错了这一笔 · −'+FJ_P_WRONG;
+    fjTag('✖ 底片上那一笔不是第 '+(i+1)+' 笔（'+rec.dn[i]+'）：倒扣 '+FJ_P_WRONG+' 分 · 掉一颗心 · 这一笔退回队尾再拍','warn');
+    fjTone(150,260);fjSay('✖ 认错了');
+    fjFailTake();return;
+  }
+  const pts=Math.round(FJ_W0+fj.combo*FJ_W_CB+fj.lv*FJ_W_LV);
+  fj.done.push(i);fj.strokes++;fj.score+=pts;
+  fjTone(700+i*40,60);fjSay('✔ 归位 +'+pts);
+  fjNextTake();
+}
+/* 💤 弃拍：这一拍不拍了（不吃底片，倒扣三分），这一笔退回队尾 */
+function fjSkip(){
+  if(!fj.rec||fj.over||fj.locked||fj.phase!=='focus'||fj.flashMs>0||fj.settleMs>0)return;
+  fj.skips++;fj.cleanWord=0;fj.combo=0;
+  fj.score-=FJ_P_SKIP;
+  fj.hitOk=-1;fj.hitTxt='💤 弃拍 · −'+FJ_P_SKIP;
+  fjTag('💤 这一拍弃了：倒扣 '+FJ_P_SKIP+' 分，这一笔还得重拍一回','warn');
+  fjTone(200,180);fjSay('💤 这一拍不要了');
+  fjFailTake();
+}
+/* ---- 收字：一笔一笔都归了位才算收成，几笔赏钱在这一息一次结清 ---- */
+function fjCollect(){
+  const rec=fj.rec;
+  if(!rec)return;
+  fj.words++;fj.phase='focus';fj.locked=1;
+  let add=FJ_WORD_PTS,txt='🈶 收字：+'+FJ_WORD_PTS;
+  if(fj.cleanWord){add+=FJ_CLEAN_PTS;fj.cleanRun++;txt+=' · 一字零罚 +'+FJ_CLEAN_PTS}else fj.cleanRun=0;
+  if(fj.cleanW){add+=FJ_EXACT_PTS;txt+=' · 张张分毫不差 +'+FJ_EXACT_PTS;auxAdd('hz_fj_cleanw',1)}
+  if(!fj.wordTools){add+=FJ_TOOL_PTS;txt+=' · 家什一回没借 +'+FJ_TOOL_PTS}
+  /* 一张不废：快门按的次数正好等于这个字的笔数（糊一张重拍一张，底片替孩子记账）*/
+  if(fj.oneShot&&fj.shotN===rec.n){add+=FJ_ONE_PTS;txt+=' · 一张不废 +'+FJ_ONE_PTS}
+  fj.score+=add;
+  fjBookPut(rec.ch);
+  if(fj.cleanRun>=FJ_PER){fj.cleanRun=0;fj.toolRun++;fj.score+=FJ_TOOL_PTS;fjSay('🧰 整场三字零罚 +'+FJ_TOOL_PTS)}
+  /* 收满三字补一颗心：光拍得清不算本事，笔笔认齐了才算收成 */
+  if(fj.words%FJ_PER===0&&fj.hearts<FJ_HEART_MAX)fj.hearts++;
+  fj.hitOk=1;fj.hitTxt='🈶 收齐 · +'+add;
+  fjTone(1040,220);
+  fjTag(txt,'gold');
+  if(typeof spawnConfetti==='function'){try{spawnConfetti()}catch(e){}}
+  fjSync();fjDraw();
+  fjT(fjNextWord,1250);
+}
+/* ---- 换下一个字：一场三字拍完就换场（换一卷底片、换一盏场灯）---- */
+async function fjNextWord(){
+  if(!fj.run||fj.over)return;
+  if(fj.hearts<=0){fjEnd('hearts');return}
+  fj.wi++;
+  let flash='';
+  if(fj.wi>=FJ_PER){
+    fj.wi=0;fj.lv=Math.min(9,fj.lv+1);
+    fj.seen=[];
+    fj.film0=fjFilm(fj.lv);fj.film=fj.film0;fj.rollUsed=0;fj.rollAdd=0;
+    fj.fuel0=fjFuel(fj.lv);fj.fuel=fj.fuel0;
+    fj.cleanRun=0;
+    flash='💡 第 '+fj.lv+' 场上灯：一卷新底片 '+fj.film+' 张 · ';
+    fjSay('第 '+fj.lv+' 场：暗箱换了卷底片');
+  }
+  if(!fj.pool.length){fj.pool=[];fj.seen=[]}
+  if(!fj.pool.length){
+    fj.load=true;fjSync();
+    const w=fjWant(fj.lv);
+    const ok=await fjBuildPool(true,w[0],w[1]);
+    fj.load=false;
+    if(!fj.run||fj.over)return;
+    if(!ok){fjEnd('pool');return}
+  }
+  const rec=fjTake();
+  if(!rec){fjEnd('pool');return}
+  fjSetWord(rec,flash);
+  fjSync();fjDraw();
+}
+/* 这个字散了：字钟尽、换字、卷底都走这一条道 —— 进错字本，下一轮优先挑回来。
+   字数与场次一律交给 fjNextWord 去翻，这儿只负责把这个字请下案。 */
+function fjWordOut(heart){
+  const rec=fj.rec;
+  if(rec)fjMissPut(rec.ch);
+  fj.wordOuts++;
+  if(heart){fj.hearts--;fj.combo=0}
+  fj.cleanWord=0;fj.cleanRun=0;
+  fj.locked=1;
+  fj.phase='focus';fj.plate=null;fj.plate2=null;fj.ord=[];fj.ki=-1;
+  fjSync();fjDraw();
+  fjT(fjNextWord,900);
+}
+/* ---- 卷底：暗箱里一张底片也不剩了 —— 这一场散场，换一卷重来（罚五分、掉一颗心）---- */
+function fjRollOut(){
+  fj.rolls++;fj.locked=1;
+  fj.score-=FJ_P_ROLL;fj.hearts--;fj.combo=0;fj.cleanWord=0;fj.cleanRun=0;
+  fjTag('🎞 一卷底片用光了：这一场散场，倒扣 '+FJ_P_ROLL+' 分 · 掉一颗心','warn');
+  fjTone(140,320);fjSay('🎞 底片用光了');
+  if(fj.hearts<=0){fjEnd('hearts');return}
+  const rec=fj.rec;
+  if(rec)fjMissPut(rec.ch);
+  fj.wi=FJ_PER;                      /* 剩下的字不补了：直接进下一场、换一卷 */
+  fj.ord=[];fj.ki=-1;fj.plate=null;fj.plate2=null;fj.phase='focus';
+  fjSync();fjDraw();
+  fjT(fjNextWord,1100);
+}
+/* ================= 四件家什 ================= */
+/* 🔍 试焦：朝更清的方向挪一格 —— 它只替孩子试一手，不替他定格（已经压住了就不花这一回）*/
+function fjProbe(){
+  if(!fj.probeN||!fj.rec||fj.over||fj.locked||fj.phase!=='focus'||fj.flashMs>0||fj.settleMs>0)return;
+  if(fj.s===fj.v){fjTag('🔍 这一回不用借：屏眼下正压在焦平面上，按快门就是分毫不差');return}
+  fj.probeN--;fj.probeUse++;fj.tools++;fj.wordTools++;fj.cleanWord=0;
+  fjSetCell(fj.s+(fj.s<fj.v?1:-1));
+  fj.scaleShow=0;
+  fjTone(600,80);
+  fjTag('🔍 试焦：朝更清的那一头挪了一格（还剩 '+fj.probeN+' 回）—— 定不定格还是你的手');
+  fjSync();fjDraw();
+}
+/* 📏 焦尺：报这一拍的焦平面在第几格；第 6 场起只报 ±2 的区间（尺也磨秃了）*/
+function fjScale(){
+  if(!fj.scaleN||!fj.rec||fj.over||fj.locked||fj.phase!=='focus'||fj.flashMs>0||fj.settleMs>0)return;
+  fj.scaleN--;fj.scaleUse++;fj.tools++;fj.wordTools++;fj.cleanWord=0;
+  if(fjDim(fj.lv)){
+    fj.scaleShow=0;
+    fjTag('📏 焦尺报个区间：焦平面在第 '+Math.max(FJ_MIN,fj.v-2)+' ~ '+Math.min(FJ_TOP,fj.v+2)+' 格里（还剩 '+fj.scaleN+' 回）','warn');
+  }else{
+    fj.scaleShow=fj.v;
+    fjTag('📏 焦尺：焦平面就在第 '+fj.v+' 格 —— 屏挪过去，别挪过头（还剩 '+fj.scaleN+' 回）','cyan');
+  }
+  fjTone(560,120);
+  fjSync();fjDraw();
+}
+/* 🎞 补片：暗箱里添六张 */
+function fjFilmTool(){
+  if(!fj.filmN||!fj.rec||fj.over||fj.locked)return;
+  fj.filmN--;fj.filmUse++;fj.rollAdd+=FJ_FILM_ADD;fj.tools++;fj.wordTools++;fj.cleanWord=0;
+  fj.film+=FJ_FILM_ADD;
+  fjTone(480,140);
+  fjTag('🎞 补进 '+FJ_FILM_ADD+' 张：案上 '+fj.film+' 张（还剩 '+fj.filmN+' 回）');
+  fjSync();
+}
+/* 🔁 换字：这个字退回库里再上一个（倒扣六分，进错字本）*/
+function fjSwap(){
+  if(!fj.swapN||!fj.rec||fj.over||fj.locked)return;
+  fj.swapN--;fj.swapUse++;fj.swaps++;fj.tools++;fj.wordTools++;fj.cleanWord=0;
+  fj.score-=FJ_P_SWAP;
+  fjTone(280,140);
+  fjTag('🔁 换字：倒扣 '+FJ_P_SWAP+' 分，这个字进了错字本（还剩 '+fj.swapN+' 回）','warn');
+  fjWordOut(false);
+}
+/* ================= 四支钟：场灯 · 字 · 这一拍 · 这一笔 ================= */
+function fjTick(dt){
+  if(!fj.run||fj.over)return;
+  fj.t+=dt;fj.playMs+=dt;
+  if(fj.helpMs>0){fj.helpMs-=dt;if(fj.helpMs<=0){fj.helpMs=0;fjSync()}return}
+  /* 洗片与倒冲的那两息：钟全停，让孩子看清屏上这一张究竟洗成了什么样 */
+  if(fj.flashMs>0){fj.flashMs-=dt;if(fj.flashMs<=0){fj.flashMs=0;fjAfterFlash()}return}
+  if(fj.settleMs>0){fj.settleMs-=dt;if(fj.settleMs<=0)fj.settleMs=0;return}
+  if(!fj.rec)return;
+  /* 场灯：一盏照这一场的三个字 */
+  if(fj.fuel>0){
+    fj.fuel-=dt;
+    if(fj.fuel<=0){fj.fuel=0;fjEnd('fuel');return}
+  }
+  /* 字钟：一个字从头拍到尾（对焦、认笔都吃这一支）*/
+  if(fj.wordMs>0){
+    fj.wordMs-=dt;
+    if(fj.wordMs<=0){
+      fj.wordMs=0;fj.score-=FJ_P_WORD;fj.cleanWord=0;fj.combo=0;
+      fjTag('🈶 这个字的钟尽了：倒扣 '+FJ_P_WORD+' 分 · 掉一颗心 · 进了错字本','warn');
+      fjTone(150,300);fjSay('🈶 字钟尽了');
+      fjWordOut(true);
+      return;
+    }
+  }
+  if(fj.phase==='focus'&&!fj.locked&&fj.ord.length){
+    fj.qms-=dt;
+    if(fj.qms<=0){
+      /* 拍钟尽：这一拍作废，不吃底片也不认笔 —— 罚三分，这一笔退回队尾 */
+      fj.qms=0;fj.shotOuts++;fj.cleanWord=0;fj.combo=0;
+      fj.score-=FJ_P_SHOT;
+      fj.hitOk=-1;fj.hitTxt='⌛ 拍钟尽 · −'+FJ_P_SHOT;
+      fjTag('⌛ 这一拍的钟尽了：屏还没压住，倒扣 '+FJ_P_SHOT+' 分','warn');
+      fjTone(160,260);
+      fjFailTake();
+      return;
+    }
+    /* 干等太久给一句提示：孩子不挪屏，暗箱就只是一张画 */
+    fj.nagMs+=dt;
+    if(fj.nagMs>FJ_NAG_MS){
+      fj.nagMs=0;fj.nags++;
+      fjSay(fjBlurNow()<=0?'📸 屏正清着：按快门':'🔍 挪一格看看糊没糊 —— 朝更清的那一头走');
+    }
+  }
+  if(fj.phase==='wipe'){
+    fj.wipeMs-=dt;
+    if(fj.wipeMs<=0){
+      fj.wipeMs=0;fj.lates++;fj.cleanWord=0;fj.combo=0;
+      fj.score-=FJ_P_LATE;
+      fj.hitOk=-1;fj.hitTxt='⌛ 归位钟尽 · −'+FJ_P_LATE;
+      fjTag('⌛ 这一笔的钟尽了：底片没认出来，倒扣 '+FJ_P_LATE+' 分 · 退回队尾再拍','warn');
+      fjTone(150,280);
+      fjFailTake();
+    }
+  }
+}
+
+/* ================= 开工 · 那四支钟的一根 rAF · 键盘与真指针 ================= */
+/* 开张：先洗字池（这一坊吃的字要「一笔一个孔位、倒立的像还认得出」），再上第一个字 */
+async function fjBoot(){
+  const g=fj.gen;
+  fj.load=true;fjSync();
+  const w=fjWant(fj.lv);
+  const ok=await fjBuildPool(true,w[0],w[1]);
+  if(g!==fj.gen||!fj.run||fj.over)return;
+  fj.load=false;
+  if(!ok){fjEnd('pool');fjSync();return}
+  const rec=fjTake();
+  if(!rec){fjEnd('pool');fjSync();return}
+  fjSetWord(rec);
+  fjSync();fjDraw();
+}
+function fjStart(){
+  fj.run=true;fj.over=false;fj.gen++;
+  fjBind();
+  fjKill();
+  fj.t=0;fj.playMs=0;fj.last=0;
+  fj.pool=[];fj.miss=[];fj.seen=[];fj.rec=null;fj.seed=0;fj.fresh=0;
+  fj.lv=fjLvOf(auxInt('hz_fj_words'));
+  fj.wi=0;fj.score=0;fj.hearts=FJ_HEARTS;fj.combo=0;fj.maxCombo=0;fj.phase='focus';fj.load=false;
+  fj.ord=[];fj.pmap=[];fj.pi=0;fj.ki=-1;fj.d=0;fj.v=0;fj.s=FJ_MIN;fj.cell0=0;fj.tol=fjTol(fj.lv);
+  fj.flip=0;fj.flipLeg=0;fj.flipped=0;fj.flipD=0;fj.flashMs=0;fj.settleMs=0;
+  fj.plate=null;fj.plate2=null;fj.done=[];fj.shotN=0;fj.locked=0;
+  fj.film0=fjFilm(fj.lv);fj.film=fj.film0;fj.filmUsed=0;fj.rollUsed=0;fj.rollAdd=0;
+  fj.qms0=fjQms(fj.lv);fj.qms=fj.qms0;
+  fj.wipe0=fjWipe(fj.lv);fj.wipeMs=fj.wipe0;
+  fj.wordMs0=fjWord(fj.lv);fj.wordMs=fj.wordMs0;
+  fj.fuel0=fjFuel(fj.lv);fj.fuel=fj.fuel0;
+  fj.words=0;fj.strokes=0;fj.focusN=0;fj.exactN=0;fj.bads=0;fj.skips=0;fj.shotOuts=0;
+  fj.wrongs=0;fj.lates=0;fj.flips=0;fj.flipOk=0;fj.swaps=0;fj.rolls=0;fj.wordOuts=0;
+  fj.tools=0;fj.cleanWord=1;fj.cleanW=1;fj.oneShot=1;fj.wordTools=0;fj.cleanRun=0;fj.toolRun=0;
+  fj.probeN=FJ_P0.probe;fj.scaleN=FJ_P0.scale;fj.filmN=FJ_P0.film;fj.swapN=FJ_P0.swap;
+  fj.probeUse=0;fj.scaleUse=0;fj.filmUse=0;fj.swapUse=0;fj.scaleShow=0;
+  fj.gain=0;fj.pen=0;fj.hitOk=0;fj.hitTxt='';fj.helpMs=0;fj.newBest=false;
+  fj.nags=0;fj.nagMs=0;
+  fjClearTag();
+  if(typeof stopBGM==='function')stopBGM();  showScreen('focus');
+  fjSync();fjDraw();
+  fjBoot();
+  fjStartLoop();
+}
+/* 主循环的起停各只有一处：摆拍要冻画面就掐这一根，别在别处再挂一条 rAF */
+function fjLoop(ts){
+  if(!fj.run||fj.over){fj.rafId=0;return}
+  const dt=fj.last?Math.min(120,ts-fj.last):16;
+  fj.last=ts;
+  fjTick(dt);
+  fjSync();fjDraw();
+  fj.rafId=requestAnimationFrame(fjLoop);
+}
+function fjStartLoop(){if(!fj.run||fj.over||fj.rafId)return;fj.last=0;fj.rafId=requestAnimationFrame(fjLoop)}
+function fjStopLoop(){if(fj.rafId){cancelAnimationFrame(fj.rafId);fj.rafId=0}}
+function fjRestart(){fjStart()}
+function fjLeave(where){
+  fj.run=false;fj.over=false;
+  fjKill();fjStopLoop();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function fjHelp(){
+  if(!fj.run||fj.over)return;
+  fj.helpMs=FJ_HELP_MS;
+  fjSync();
+  fjSay('🔍 <b>把屏挪到像清的那一格</b>：整根导轨上只有七处拍得实，像还永远是倒过来的','#FFE0B2');
+}
+/* ---- 那一根快门指头：对焦阶段按下去就是快门，认笔阶段按下去只给一句提示 ---- */
+function fjTap(){
+  if(fj.helpMs>0){fj.helpMs=0;return}
+  if(fj.phase==='focus'){fjShoot();return}
+  if(fj.phase==='wipe')fjTag('🧐 认笔点的是米字格里那一笔：按 <code>1~'+(fj.rec?fj.rec.n:7)+'</code> 或直接点它');
+}
+/* ================= 案面上的落点：刻度尺一格、屏一下、米字格一笔 ================= */
+/* 这一点离这一笔的折线有多近（都在 1024 的方格里量）*/
+function fjDist(gx,gy,med){
+  let best=1e9;
+  for(let i=1;i<med.length;i++){
+    const ax=med[i-1][0],ay=med[i-1][1],bx=med[i][0],by=med[i][1];
+    const dx=bx-ax,dy=by-ay,ll=dx*dx+dy*dy;
+    let t=ll?((gx-ax)*dx+(gy-ay)*dy)/ll:0;
+    t=Math.max(0,Math.min(1,t));
+    const px=ax+t*dx-gx,py=ay+t*dy-gy;
+    const d=Math.sqrt(px*px+py*py);
+    if(d<best)best=d;
+  }
+  if(med.length===1){
+    const px=med[0][0]-gx,py=med[0][1]-gy;
+    best=Math.sqrt(px*px+py*py);
+  }
+  return best;
+}
+/* 米字格上点中了第几笔：挑最近的那一笔，远过这一截就不算点着 */
+function fjStrokeAt(gx,gy){
+  const rec=fj.rec;
+  if(!rec||!rec.meds)return -1;
+  let best=-1,d0=90;
+  for(let i=0;i<rec.meds.length;i++){
+    const d=fjDist(gx,gy,rec.meds[i]);
+    if(d<d0){d0=d;best=i}
+  }
+  return best;
+}
+function fjPt2(e){
+  const cv=document.getElementById('fjCanvas');
+  const out={x:-1,y:-1,cell:-1,stroke:-1,screen:false};
+  if(!cv||!cv.getBoundingClientRect)return out;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return out;
+  const x=Math.round((e.clientX-r.left)*(FJ_W/r.width)*10)/10,
+        y=Math.round((e.clientY-r.top)*(FJ_H/r.height)*10)/10;
+  out.x=x;out.y=y;
+  /* 刻度尺：右轨那一半才是屏能站的地方，左轨是台子给定死的物距 */
+  if(y>=FJ_RY-14&&y<=FJ_RY+24&&x>=FJ_CX&&x<=FJ_CX+FJ_R*FJ_PX+6){
+    out.cell=auxClamp(Math.round((x-FJ_CX)/FJ_PX),FJ_MIN,FJ_TOP);
+    return out;
+  }
+  const xi=FJ_CX+fj.s*FJ_PX;
+  if(x>=xi-FJ_SCW/2-6&&x<=xi+FJ_SCW/2+6&&y>=FJ_AXIS-FJ_SCH/2&&y<=FJ_AXIS+FJ_SCH/2){out.screen=true;return out}
+  if(x>=FJ_GX&&x<=FJ_GX+FJ_GRID&&y>=FJ_GY&&y<=FJ_GY+FJ_GRID){
+    const sc=FJ_GRID/1024;
+    out.stroke=fjStrokeAt((x-FJ_GX)/sc,(FJ_GY+1024*sc-y)/sc);
+  }
+  return out;
+}
+/* ================= 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子 ================= */
+function fjBind(){
+  if(fj.bound)return;
+  fj.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!fj.run||fj.over)return;
+    if(fj.helpMs>0){fj.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){fjLeave();return}
+    if(k==='h'||k==='?'){fjHelp();e.preventDefault();return}
+    if(k==='arrowleft'||k==='arrowdown'||k==='a'){fjStep(-1);e.preventDefault();return}
+    if(k==='arrowright'||k==='arrowup'||k==='d'){fjStep(1);e.preventDefault();return}
+    if(k>='1'&&k<='7'){fjWipePick(+k-1);e.preventDefault();return}
+    if(k==='x'){fjSkip();e.preventDefault();return}
+    if(k==='g'){fjProbe();e.preventDefault();return}
+    if(k==='t'){fjScale();e.preventDefault();return}
+    if(k==='q'){fjFilmTool();e.preventDefault();return}
+    if(k==='r'){fjSwap();e.preventDefault();return}
+    if(k===' '||k==='enter'){fjTap();e.preventDefault()}
+  });
+  const cv=document.getElementById('fjCanvas');
+  if(cv){
+    cv.addEventListener('pointerdown',function(e){
+      if(!fj.run||fj.over)return;
+      if(fj.helpMs>0){fj.helpMs=0;return}
+      const h=fjPt2(e);
+      if(h.cell>=0){fjSetCell(h.cell);e.preventDefault();return}
+      if(fj.phase==='wipe'&&h.stroke>=0){fjWipePick(h.stroke);e.preventDefault();return}
+      if(h.screen){fjShoot();e.preventDefault()}
+    });
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){
+      if(!fj.run||fj.over)return;
+      if(fj.helpMs>0){fj.helpMs=0;return}
+      on();ev.preventDefault();
+    });
+  };
+  tap('fjDownBtn',function(){fjStep(-1)});
+  tap('fjUpBtn',function(){fjStep(1)});
+  tap('fjShotBtn',function(){fjTap()});
+  tap('fjSkipBtn',function(){fjSkip()});
+  tap('fjProbeBtn',function(){fjProbe()});
+  tap('fjScaleBtn',function(){fjScale()});
+  tap('fjFilmBtn',function(){fjFilmTool()});
+  tap('fjSwapBtn',function(){fjSwap()});
+  tap('fjHelpBtn',function(){fjHelp()});
+  tap('fjEndBtn',function(){fjEnd('quit')});
+  const tapFree=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){on();ev.preventDefault()});
+  };
+  /* 散场之后的那三颗钮不能按 run/over 拦：孩子站在结算屏上，「再调一台」「回实验室」「回书桌」
+     必须点得动 —— 拦在前面就等于把结算屏变成一堵墙 */
+  tapFree('fjReBtn',function(){fjRestart()});
+  tapFree('fjLabBtn',function(){fjLeave('lab')});
+  tapFree('fjHomeBtn',function(){fjLeave()});
+}
+
+/* ================= 散场：结算、落盘、图鉴与家什架、拿另一条路把这个字的账算第三遍 ================= */
+function fjEnd(why){
+  if(!fj.run||fj.over)return;
+  fj.over=true;fj.run=false;
+  fjKill();
+  const stars=Math.max(1,Math.round(fj.score/14)+fj.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  fjPut('fjRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['🔍','收工','自己按的结算'],
+    hearts:['💔','心都赔光了','掉够了心'],
+    fuel:['💡','场灯灭了','这一场的灯烧完了'],
+    pool:['🔍','案头摆不开','字池里挑不出「一笔一个孔位、倒立还认得出」的字']}[why]||['🔍','散场',''];
+  fjPut('fjRsEmoji',head[0]);
+  fjPut('fjRsTitle',head[1]);
+  fjPut('fjRsSub','第 '+fj.lv+' 场 · '+head[2]+' · 收齐 '+fj.words+' 字');
+  fjPut('fjRsScore','🔍 '+fj.score+' 分');
+  fjPut('fjRsWords','🈶 收字 '+fj.words+' 个 · 归位 '+fj.strokes+' 笔 · 散了 '+fj.wordOuts+' 个字');
+  fjPut('fjRsMoney','🎞 用底片 '+fj.filmUsed+' 张 · 案上剩 '+fj.film+' 张 · 一卷 '+fj.film0+' 张'+
+    (fj.filmUse?' · 补过 '+FJ_FILM_ADD*fj.filmUse+' 张':''));
+  fjPut('fjRsFocus','🔍 合焦 '+fj.focusN+' 张 · 分毫不差 '+fj.exactN+' 张 · 糊片 '+fj.bads+' 张 · 弃拍 '+fj.skips+
+    ' · 拍钟尽 '+fj.shotOuts);
+  fjPut('fjRsFlip','⚡ 光路倒冲 '+fj.flips+' 回 · 压准 '+fj.flipOk+' 回');
+  fjPut('fjRsWipe','🧼 归位 '+fj.strokes+' 笔 · 认错 '+fj.wrongs+' 笔 · 归位钟尽 '+fj.lates+' 笔 · 卷底 '+fj.rolls+' 回');
+  fjPut('fjRsTools','🧰 借家什 '+fj.tools+' 回 · 试焦 '+fj.probeUse+' · 焦尺 '+fj.scaleUse+' · 补片 '+fj.filmUse+
+    ' · 换字 '+fj.swapUse);
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账 */
+  fjSave(why);
+  fjPut('fjRsBest','🏅 历史最高 '+auxInt('hz_fj_best')+' 分 · 累计收字 '+auxInt('hz_fj_words')+' 字');
+  fjPut('fjRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  const rk=fjRank(auxInt('hz_fj_words'));
+  fjPut('fjRsRank',rk.e+' '+rk.t);
+  const bk=fjBookCount();
+  fjPutH('fjRsBook','📖 <b>底片图鉴 '+bk.book+' 张</b> · 家什架 <b>'+bk.shelf+'/'+FJ_SHELF.length+
+    '</b> 件 · 错字本 <b>'+bk.miss+'</b> 个字<br><small>最远走到第 '+auxInt('hz_fj_lvmax')+' 场 · 累计归位 '+
+    auxInt('hz_fj_strokes')+' 笔 · 分毫不差 '+auxInt('hz_fj_exact')+' 张 · 倒冲压准 '+auxInt('hz_fj_flipok')+
+    ' 回 · 一卷最多 '+auxInt('hz_fj_filmused')+' 张</small>');
+  fjPutH('fjRsWhy','🔍 这一坊的道理：<b>能拍清的那几格整根导轨上只有七处</b>。薄透镜的账是 <b>1/物距 + 1/像距 = 1/'+
+    FJ_F+'</b>，化成整数就是 <b>(d−'+FJ_F+')(s−'+FJ_F+')='+(FJ_F*FJ_F)+'</b> —— 只有把 '+(FJ_F*FJ_F)+
+    ' 拆成两个整数因子的那七对，像才正好落在整格上；落在两格之间时，屏停在哪一格都糊。<br>还有一条躲不掉：'+
+    '<b>像是倒过来的</b>，放大率＝像距÷物距 —— <b>字片越近，屏就得挪得越远，像也越大</b>。第 '+FJ_FLIP_LV+
+    ' 场起的「⚡ 光路倒冲」就是把物距与像距对调：像平面正好落回刚才字片那一格，光路反过来一样通。<br>战绩落盘 <code>hz_fj_*</code>：'+
+    '场档按<b>收齐的字数</b>走，称号按<b>累计收字数</b>走，第 4 场起案上不再画三条主光线、第 6 场起导轨不标格数，'+
+    '错字本里的字<b>下一轮优先挑回来</b>','#C8E6C9');
+  fjNudge();
+  showScreen('focus-result');
+}
+/* ---- 落盘：全局账与这一局账各走各的口子 ---- */
+function fjSave(why){
+  auxAdd('hz_fj_games',1);
+  auxAdd('hz_fj_words',fj.words);
+  auxAdd('hz_fj_strokes',fj.strokes);
+  auxAdd('hz_fj_focus',fj.focusN);
+  auxAdd('hz_fj_exact',fj.exactN);
+  auxAdd('hz_fj_bad',fj.bads);
+  auxAdd('hz_fj_skip',fj.skips);
+  auxAdd('hz_fj_shotout',fj.shotOuts);
+  auxAdd('hz_fj_wrong',fj.wrongs);
+  auxAdd('hz_fj_late',fj.lates);
+  auxAdd('hz_fj_flip',fj.flips);
+  auxAdd('hz_fj_flipok',fj.flipOk);
+  auxAdd('hz_fj_swap',fj.swaps);
+  auxAdd('hz_fj_roll',fj.rolls);
+  auxAdd('hz_fj_wordout',fj.wordOuts);
+  auxAdd('hz_fj_tools',fj.tools);
+  auxAdd('hz_fj_clean',fj.toolRun);
+  auxAdd('hz_fj_toolrun',fj.toolRun);
+  auxAdd('hz_fj_probe',fj.probeUse);
+  auxAdd('hz_fj_scale',fj.scaleUse);
+  auxAdd('hz_fj_filmadd',fj.filmUse);
+  auxAdd('hz_fj_filmused',fj.filmUsed);
+  if(fj.maxCombo>auxInt('hz_fj_combo'))auxPut('hz_fj_combo',fj.maxCombo);
+  if(fj.lv>auxInt('hz_fj_lvmax'))auxPut('hz_fj_lvmax',fj.lv);
+  if(fj.score>auxInt('hz_fj_best')){auxPut('hz_fj_best',fj.score);fj.newBest=true}
+  fjShelfCheck();
+}
+/* ---- 图鉴：一个字一张底片（记的是首回收齐那个字的场号与笔数）---- */
+function fjBookCount(){
+  const book=(localStorage.getItem('hz_fj_book')||'').split(',').filter(function(s){return s}).length;
+  const shelf=(localStorage.getItem('hz_fj_shelf')||'').split(',').filter(function(s){return s}).length;
+  const miss=(localStorage.getItem('hz_fj_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0}).length;
+  return {book:book,shelf:shelf,miss:miss};
+}
+function fjBookPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  const bk=localStorage.getItem('hz_fj_book')||'';
+  if(bk.indexOf(ch+':')>=0)return;
+  const list=bk.split(',').filter(function(s){return s});
+  list.unshift(ch+':'+fj.lv+':'+(fj.rec?fj.rec.n:0));
+  auxPut('hz_fj_book',list.slice(0,FJ_BOOK_MAX).join(','));
+}
+/* 散场的字进错字本：下一轮优先挑回来 */
+function fjMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_fj_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  auxPut('hz_fj_miss',miss.slice(0,FJ_BOOK_MAX).join(','));
+}
+/* 家什架：八件各认一件实事，其中「名刺」认的是别处的章节徽章 */
+function fjShelfCheck(){
+  const have=(localStorage.getItem('hz_fj_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    auxInt('hz_fj_words')+fj.words>=1,
+    auxInt('hz_fj_toolrun')+fj.toolRun>=1,
+    auxInt('hz_fj_flipok')+fj.flipOk>=6,
+    auxInt('hz_fj_lvmax')>=FJ_SHELF_LV||fj.lv>=FJ_SHELF_LV,
+    auxInt('hz_fj_exact')+fj.exactN>=12,
+    auxInt('hz_fj_cleanw')>=1,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    auxInt('hz_fj_strokes')+fj.strokes>=60
+  ];
+  for(let i=0;i<FJ_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(FJ_SHELF[i].k)<0){have.push(FJ_SHELF[i].k);got.push(FJ_SHELF[i].k)}
+  }
+  auxPut('hz_fj_shelf',have.join(','));
+  auxPut('hz_fj_trophy',have.length);
+  if(got.length)auxPut('hz_fj_trophy_n',auxInt('hz_fj_trophy_n')+got.length);
+}
+/* ---- 段 W 的另一条路：只读，不许碰场上任何东西 ---- */
+/* 这个字的凭据：闭式、整数枚举、光路可逆、一格一格真走一遍，四把算完再对表 */
+function fjAudWord(rec,lv){
+  const out={ok:0,why:'',n:0,tol:0,film:0,want:0,pairs:0,plan:0,steps:0,shots:0,
+    closedBad:0,revBad:0,walkBad:0,startBad:0,blurBad:0,dupBad:0,flipBad:0,mags:[],legs:[]};
+  if(!rec||!fjSeqOk(rec)){out.why='字的口径不合格';return out}
+  out.n=rec.n;out.tol=fjTol(lv);out.film=fjFilm(lv);out.want=FJ_PER*rec.n;
+  if(out.want>out.film){out.why='一卷底片不够拍完这一场最坏的一串字';return out}
+  /* 每一笔的「方向 + 长短档」独一份：倒立的像只靠形状与长短认人，撞档孩子就是猜 */
+  const kk={};
+  for(let i=0;i<rec.bkey.length;i++){if(kk[rec.bkey[i]])out.dupBad++;kk[rec.bkey[i]]=1}
+  if(out.dupBad){out.why='两笔撞了档，倒立的像认不出是谁';return out}
+  const P=fjPlan(rec,lv,auxSeedOf(rec.ch,lv));
+  if(!P){out.why='摆不开：起始格、焦平面或倒冲的回算有一处对不上';return out}
+  out.plan=P.length;
+  const PA=fjPairs();
+  out.pairs=PA.length;
+  if(PA.length!==7){out.why='共轭位不是七处';return out}
+  for(let i=0;i<PA.length;i++){
+    if(fjVInt(PA[i][0])!==PA[i][1])out.closedBad++;      /* 闭式与整数枚举各算一遍 */
+    if(fjVInt(PA[i][1])!==PA[i][0])out.revBad++;         /* 光路可逆：对调再算必须回原数 */
+  }
+  if(out.closedBad||out.revBad){out.why='式子与枚举不合';return out}
+  for(let i=0;i<P.length;i++){
+    const p=P[i];
+    out.steps+=p.steps;
+    out.mags.push(Math.round(p.mag*100)/100);
+    out.legs.push({ki:p.i,d:p.d,v:p.v,s0:p.s0,steps:p.steps,flip:p.flip,blur:fjBlur(p.s0,p.v)});
+    if(p.v<FJ_MIN||p.v>FJ_TOP||p.d<FJ_MIN||p.d>FJ_TOP){out.why='像出轨';return out}
+    if(Math.abs(p.s0-p.v)<FJ_START_MIN||Math.abs(p.s0-p.v)>FJ_START_MAX)out.startBad++;  /* 起手那一段路：差三到七格 —— 太近没活儿，太远屏上连亮暗都没了 */
+    if(fjSimWalk(p.s0,p.v).ok!==1)out.walkBad++;         /* 一格一格朝更清的方向走，必须走得到 */
+    if(fjBlur(p.s0,p.v)<=0)out.blurBad++;                /* 一上台就压住了：这拍是白给的 */
+    if(fjBlur(p.v,p.v)!==0)out.blurBad++;                /* 焦平面上必须糊零 */
+    if(p.flip&&fjVInt(p.v)!==p.d)out.flipBad++;          /* 倒冲后的新焦平面正好是刚才的物距那一格 */
+  }
+  if(out.startBad||out.walkBad||out.blurBad||out.flipBad){
+    out.why='摆位账对不上(起始'+out.startBad+' 走不到'+out.walkBad+' 糊账'+out.blurBad+' 倒冲'+out.flipBad+')';
+    return out;
+  }
+  /* 同字同场永远同一套摆位：换一个入口再算一遍，式子里的种子必须一模一样 */
+  const P2=fjPlan(rec,lv,auxSeedOf(rec.ch,lv));
+  for(let i=0;i<P.length;i++){
+    if(!P2[i]||P2[i].d!==P[i].d||P2[i].v!==P[i].v||P2[i].s0!==P[i].s0||P2[i].flip!==P[i].flip){
+      out.why='摆位的种子对不上';return out;
+    }
+  }
+  out.shots=P.length;
+  out.ok=1;
+  return out;
+}
+/* 眼下这一拍的账：屏、物距、焦平面、底片与四支钟，各条式子当场核一遍 */
+function fjAudState(){
+  const s={has:0,phase:fj.phase,n:0,ki:-1,d:0,v:0,s:0,cell0:0,tol:0,blur:-1,glow:-1,sharp:0,walk:-1,
+    mag:0,film:0,film0:0,filmUsed:0,rollUsed:0,rollAdd:0,filmAdd:0,ledger:0,done:0,ord:0,pi:0,locked:0,over:0,
+    flip:0,flipLeg:0,flipped:0,flips:0,flipOk:0,shotN:0,words:0,strokes:0,focusN:0,exactN:0,
+    bads:0,skips:0,shotOuts:0,wrongs:0,lates:0,swaps:0,rolls:0,wordOuts:0,hearts:0,lv:0,
+    qms:0,wipeMs:0,wordMs:0,fuel:0,scaleShow:0,plate:null,plateBad:0,cleanWord:0,cleanW:0,oneShot:0};
+  if(!fj.rec)return s;
+  const rec=fj.rec;
+  s.has=1;s.n=rec.n;s.ki=fj.ki;s.d=fj.d;s.v=fj.v;s.s=fj.s;s.cell0=fj.cell0;s.tol=fj.tol;
+  s.blur=fjBlurNow();s.sharp=fjBlurNow()<=0?1:0;s.walk=fjSimWalk(fj.s,fj.v).steps;
+  s.glow=Math.round(fjGlow(fj.s,fj.v)*1000)/1000;
+  s.mag=Math.round(fj.v/fj.d*100)/100;
+  s.film=fj.film;s.film0=fj.film0;s.filmUsed=fj.filmUsed;s.filmAdd=fj.rollAdd;
+  s.rollUsed=fj.rollUsed;s.rollAdd=fj.rollAdd;
+  /* 底片总账（只算眼前这一卷）：一卷 + 补的 − 这一卷按过的快门 = 案上现在剩的 */
+  s.ledger=(fj.film0+fj.rollAdd-fj.rollUsed===fj.film)?1:0;
+  s.done=fj.done.length;s.ord=fj.ord.length;s.pi=fj.pi;s.locked=fj.locked?1:0;s.over=fj.over?1:0;
+  s.flip=fj.flip;s.flipLeg=fj.flipLeg;s.flipped=fj.flipped;s.flips=fj.flips;s.flipOk=fj.flipOk;
+  s.shotN=fj.shotN;s.words=fj.words;s.strokes=fj.strokes;s.focusN=fj.focusN;s.exactN=fj.exactN;
+  s.bads=fj.bads;s.skips=fj.skips;s.shotOuts=fj.shotOuts;s.wrongs=fj.wrongs;s.lates=fj.lates;
+  s.swaps=fj.swaps;s.rolls=fj.rolls;s.wordOuts=fj.wordOuts;s.hearts=fj.hearts;s.lv=fj.lv;
+  s.qms=fj.qms;s.wipeMs=fj.wipeMs;s.wordMs=fj.wordMs;s.fuel=fj.fuel;s.scaleShow=fj.scaleShow;
+  s.cleanWord=fj.cleanWord;s.cleanW=fj.cleanW;s.oneShot=fj.oneShot;
+  /* 洗出来的那一张：笔号、糊几像素、压没压准，全得与式子对得上 */
+  const ps=[];
+  if(fj.plate)ps.push(fj.plate);
+  if(fj.plate2)ps.push(fj.plate2);
+  for(let i=0;i<ps.length;i++){
+    const p=ps[i];
+    if(p.ki<0||p.ki>=rec.n)s.plateBad++;
+    if(p.blur!==fjBlur(p.s,p.v))s.plateBad++;
+    if(p.ok!==(Math.abs(p.s-p.v)<=fjTol(fj.lv)?1:0))s.plateBad++;
+    if(p.exact!==(p.s===p.v?1:0))s.plateBad++;
+    if(p.mag!==p.v/p.d)s.plateBad++;
+  }
+  s.plate=fj.plate?(fj.plate2?fj.plate2:fj.plate):null;
+  /* 归好位的笔不许重、不许越过笔数；待拍队列里的笔号必须都在字里 */
+  const seen={};
+  for(let i=0;i<fj.done.length;i++){
+    if(seen[fj.done[i]])s.plateBad++;
+    seen[fj.done[i]]=1;
+    if(!(fj.done[i]>=0&&fj.done[i]<rec.n))s.plateBad++;
+  }
+  if(fj.done.length>rec.n)s.plateBad++;
+  for(let i=0;i<fj.ord.length;i++)if(!(fj.ord[i]>=0&&fj.ord[i]<rec.n))s.plateBad++;
+  return s;
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一坊开到第几场了 ---- */
+function fjNudge(){
+  const dot=document.getElementById('fjCardDot'),tip=document.getElementById('fjCardTip');
+  const tot=auxInt('hz_fj_words'),st=auxInt('hz_fj_strokes'),lv=auxInt('hz_fj_lvmax');
+  const rk=fjRank(tot),shelf=auxInt('hz_fj_trophy'),ex=auxInt('hz_fj_exact'),fl=auxInt('hz_fj_flipok');
+  if(tip)tip.textContent=st?('🔔 '+rk.e+' '+rk.t+' · 收字 '+tot+' 个 · 归位 '+st+' 笔 · 最远第 '+lv+
+    ' 场 · 分毫不差 '+ex+' 张 · 倒冲压准 '+fl+' 回 · 卷底 '+auxInt('hz_fj_roll')+
+    ' 回 · 家什架 '+shelf+' 件'):
+    '把毛玻璃屏一格一格挪到像清的那一格：凸透镜 f='+FJ_F+' 格，整根导轨上只有七处拍得实（'+
+    '(d−'+FJ_F+')(s−'+FJ_F+')='+(FJ_F*FJ_F)+'，拆不成整数因子的格子像就骑在两格中间）。'+
+    '屏上的像永远是倒过来的，放大率＝像距÷物距 —— 字片越近屏就得挪得越远、像也越大。'+
+    '快门一按吃一张底片，洗出来还得认出这一笔是这个字的第几笔';
+  if(dot){dot.classList.toggle('on',!st);dot.textContent=(st?'':'🆕')}
 }
 
 
