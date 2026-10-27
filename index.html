@@ -7344,6 +7344,80 @@ button:active{transform:scale(.95)}
   #screen-hoist .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-hoist .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.106 🧲 笔顺剩磁坊 ================= */
+/* 账条占死三行（76 像素就是它满三行那一个高度）：案上没字的那一息它只折两行，
+   不留这一格的话整张案会被往上抬二十七像素 —— 档位尺就在它下头，孩子的指头还按在尺上挪档呢 */
+.hs-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.hs-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.hs-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死五行（块级排版，只是垫高、不改排版）：三副题面里最宽的那一副（认槽还带一句警告）就是五行 ——
+   回线图与档位尺都在它下头，认槽三行、励磁两行都把整张案往上抬，一行也不许裁（裁字比挪案更糟）*/
+.hs-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*5)}
+.hs-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.hs-ask b{color:#FFE082}
+.hs-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 铁工案：一块烧黑的铁底板，字排、回线图、接料盘、工艺卡、电磁铁、档位尺、料架全画在这一张案上（canvas 透明，底色由这里给）*/
+.hs-field{flex:1;min-width:0;position:relative;background:linear-gradient(160deg,#241B14,#15100A 60%,#0B0805);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.78)}
+.hs-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.hs-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(16,12,8,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.hs-tag.on{opacity:1}
+.hs-tag.warn{background:rgba(88,24,24,.94);color:#FFCCBC}
+.hs-tag.gold{background:rgba(74,58,14,.96);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.hs-tag.cyan{background:rgba(6,58,74,.94);color:#84FFFF;box-shadow:0 0 14px rgba(0,229,255,.4)}
+/* 五条账：认槽的钟（青）· 这一字的钟（金）· 这一场的灯（冷蓝）· 一卷电（绿）· 一炉热（橙，倒着走：满格就是凉）*/
+.hs-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.hs-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.hs-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#37474F,#78909C);transition:width .15s linear}
+.hs-tl.place i{background:linear-gradient(90deg,#4DD0E1,#B2EBF2)}
+.hs-tl.word i{background:linear-gradient(90deg,#C8A46A,#FFE082)}
+.hs-tl.lamp i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.hs-tl.batt i{background:linear-gradient(90deg,#66BB6A,#C8E6C9)}
+.hs-tl.heat i{background:linear-gradient(90deg,#FF7043,#FFAB91)}
+.hs-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.hs-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+/* 励磁档位：这一坊的手下在「往几档冲」上，一格一格挪 —— 冲过去几档就一口气吸上几张 */
+.hs-step{display:flex;gap:6px;align-items:center;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:4px auto 2px}
+.hs-step button{flex:0 0 62px;padding:8px 2px;border-radius:11px;border:1px solid rgba(255,255,255,.26);color:#ECEFF1;background:rgba(255,255,255,.1);font-size:17px;font-weight:800;cursor:pointer}
+.hs-step button:disabled{opacity:.4;cursor:default}
+.hs-step .k{font-size:13px;font-weight:800;color:#FFD54F;padding:0 8px;white-space:nowrap}
+.hs-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.hs-take button.pass{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#083344;background:linear-gradient(180deg,#B3E5FC,#4FC3F7)}
+.hs-take button.pass:active{transform:translateY(1px)}
+.hs-take button.pass:disabled{opacity:.42;cursor:default}
+.hs-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1A1206;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.hs-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(26,18,6,.72)}
+.hs-take button.big.ready{background:linear-gradient(180deg,#B3E5FC,#4FC3F7);box-shadow:0 0 20px rgba(79,195,247,.55);color:#082632}
+.hs-take button.big:active{transform:translateY(1px)}
+.hs-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.hs-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.hs-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.hs-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.hs-tool b{display:block;font-size:10px;color:#FFD54F;font-weight:700}
+.hs-tool:disabled{opacity:.4;cursor:default}
+.hs-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.hs-hintline b{color:#FFD54F}
+.hs-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.hs-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.hs-msg b{color:#CFD8DC}
+.hs-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.hs-msg small{font-size:11px;color:#78909C}
+.hs-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.hs-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.hs-rs-book b{color:#FFD54F}
+.hs-rs-book small{color:#78909C}
+.hs-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,179,0,.92);color:#1A1206;border-radius:9px;padding:1px 6px;z-index:4}
+.hs-cdot.on{display:block}
+#screen-hyst .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：五条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是六七行，就垫死七行 */
+@media(max-width:460px){
+  .hs-tl{flex:1 1 100%}
+  .hs-ask{min-height:calc(1.35em*7)}
+  .hs-step button{flex:0 0 56px}
+  .hs-take button.big{font-size:17px}
+  #screen-hyst .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-hyst .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-hyst .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7400,8 +7474,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 104 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">104</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 105 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">105</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7412,12 +7486,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>104 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>46</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>105 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>47</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="hsCard" onclick="enterMode('hyst')">
+      <div class="icon">🧲</div>
+      <div class="info"><h3>笔顺剩磁坊</h3><p id="hsCardTip">一台电磁吸盘：励磁到 I 档，厚 t 点的铁牌吸得住的条件是 <b>I ≥ on＝⌈t÷2⌉</b>；可断了电铁芯还剩着磁，顶得住 3 档 ⇒ 吸上的牌要降到 <b>off−1</b> 才脱得开。<b>升上去与退下来走的是两条支路</b> —— 同一档上牌在不在吸盘上，全看你怎么走到这一档（<b>这就是剩磁与磁滞</b>）。薄牌降到 0 档还挂着不掉，只有打进反向第 2 档（<b>矫顽力</b>）才「啪」地退磁。两本账都是<b>路径的积分</b>：电池记走了几格档程，热＝电池＋3×重走过的格数 —— 一路不回头只交一份，来回试探就把同一段烧两遍，<b>回线包围的那块面积就是白烧掉的铁损</b>。第 9 场最狠：一炉只剩 180 点、一卷只剩 96 档</p></div>
+      <span class="hs-cdot" id="hsCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="htCard" onclick="enterMode('hoist')">
       <div class="icon">🏗️</div>
       <div class="info"><h3>笔顺吊装坊</h3><p id="htCardTip">塔架上一笔就是一箱货：货重＝这一笔的真实长度 ÷88，再加动滑轮自重 4 点。承重绳绕几段自己挑 —— 绕 2 段力约省一半、绳就得收两倍长，多绕的那一段还要吃一份摩擦。<b>省力就是不省功</b>：每格拉力 × 绳程，绕得越多白烧的越多。力气红线卡住「至少绕几段」，绳卷和体力卡住「最多绕几段」，可行的绕法是一个闭区间，不是猜出来的。钩到箱子上还得认出这一笔是这个字的<b>第几笔</b>，落回卸货台才算收成 —— 一卷绳就那么多格，第 5 场起力拉过头还会<b>打滑</b>（每收 4 格滑回 1 格）</p></div>
@@ -8191,6 +8270,84 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-hyst">
+  <div class="top-bar">
+    <button class="back-btn" onclick="hsLeave()">← 返回</button>
+    <div class="stats"><span id="hsScoreTxt">🧲 0 分</span><span id="hsLvTxt">第 1 场 · 收 0 字</span><span id="hsQTxt">⏳ 励磁 88 秒</span></div>
+    <button class="icon-btn" onclick="hsHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="hs-hud">
+    <span id="hsRankTxt" title="称号">🧲 头一回合闸</span>
+    <span id="hsHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="hsComboTxt" title="连击">🔥 连 0</span>
+    <span id="hsLotTxt" title="这一场第几字第几片">🈶 第 1/3 字 · 第 1 片</span>
+    <span id="hsFieldTxt" title="眼下这一档">🧲 0 档：不励磁</span>
+    <span class="light" id="hsHitLight">💡 吸盘通了电</span>
+  </div>
+  <div class="hs-ask" id="hsAsk">🧲 正在选料……<br><small>在字库里找「厚薄跨度够、两条支路真打架、而且最省那条道收得齐」的字</small></div>
+  <div class="hs-stage">
+    <div class="hs-field" id="hsField">
+      <canvas class="hs-canvas" id="hsCanvas" width="420" height="340"></canvas>
+      <div class="hs-tag" id="hsTag">🧲 吸盘通了电</div>
+    </div>
+  </div>
+  <div class="hs-meter">
+    <div class="hs-tl place"><i id="hsPlaceBar"></i><b id="hsPlaceTxt">🎯 认槽 5 秒</b></div>
+    <div class="hs-tl word"><i id="hsWordBar"></i><b id="hsWordTxt">🈶 这个字 88 秒</b></div>
+    <div class="hs-tl lamp"><i id="hsLampBar"></i><b id="hsLampTxt">💡 这一场 152 秒</b></div>
+    <div class="hs-tl batt"><i id="hsBattBar"></i><b id="hsBattBig">🔋 电 144 / 144 档</b></div>
+    <div class="hs-tl heat"><i id="hsHeatBar"></i><b id="hsHeatBig">🔥 热 0 / 300 点</b></div>
+  </div>
+  <div class="hs-step">
+    <button id="hsDownBtn">−</button>
+    <span class="k" id="hsStepTxt">现在 0 档 · 吸盘 0/4 · 盘 0/2</span>
+    <button id="hsUpBtn">+</button>
+  </div>
+  <div class="hs-take">
+    <button class="pass" id="hsDumpBtn">🧹 卸料<small>X</small></button>
+    <button class="big" id="hsActBtn">⬆ 升一档<small>往上升一档：跨过几个 on 就吸几张</small></button>
+  </div>
+  <div class="hs-tools">
+    <button class="hs-tool" id="hsIceBtn" disabled>🧊 降温<span>O</span><b>剩 3</b></button>
+    <button class="hs-tool" id="hsShakeBtn" disabled>🪄 抖料<span>T</span><b>剩 2</b></button>
+    <button class="hs-tool" id="hsProbeBtn" disabled>📐 测档<span>P</span><b>剩 2</b></button>
+    <button class="hs-tool" id="hsSwapBtn" disabled>🔁 换字<span>R</span><b>剩 1</b></button>
+    <button class="hs-tool" id="hsHelpBtn">📖 说明<span>H</span></button>
+    <button class="hs-tool" id="hsEndBtn">🏁 结算</button>
+  </div>
+  <div class="hs-hintline" id="hsHintTxt">🧲 <b>吸得住，还得放得下</b>：升上来那一条支路与退下去那一条<b>不重合</b> —— 同一档位，牌在不在吸盘上全看你怎么走到这一档</div>
+  <div class="hs-msg" id="hsMsg">🧲 <b>一片就是一笔</b>：牌厚＝这一笔的真实长度 ÷ 52（料架上写的几「点」）；励磁到 I 档吸得住的条件是 I ≥ on＝⌈厚÷2⌉，跨过几个 on 就一口气吸上几张<br>💡 <b>断电了铁芯还有剩磁</b>：顶得住 3 档 ⇒ 吸上的牌要降到 off−1 才脱得开；薄牌降到 0 档还挂着不掉，只有打进反向第 2 档（矫顽力）才「啪」地退磁。🔋 一卷电池记档程（升降都吃），🔥 一炉热对<b>重走过的同一格</b>多收 3 点 —— 来回试探就是把同一段烧两遍，热到居里点全体退磁 · <code>←→</code> 挪档 · <code>空格</code> 主手 · <code>1～7</code> 认槽 · <code>X</code> 卸料 · 🧊 <code>O</code> 降温 · 🪄 <code>T</code> 抖料 · 📐 <code>P</code> 测档 · 🔁 <code>R</code> 换字 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-hyst-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="hsLeave()">← 返回</button>
+    <div class="stats"><span id="hsRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="hsRsEmoji">🧲</div>
+    <div style="font-size:26px;font-weight:800" id="hsRsTitle">收工了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="hsRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="hs-pk" id="hsRsScore">🧲 0 分</span>
+      <span class="hs-pk" id="hsRsWords">🈶 收字 0 个 · 落定 0 笔</span>
+      <span class="hs-pk" id="hsRsMoney">🔋 用掉 0 档 · 剩 0 档 · 一卷 0 档</span>
+      <span class="hs-pk" id="hsRsFocus">🔥 峰值热 0 / 0 点 · 重走 0 格</span>
+      <span class="hs-pk" id="hsRsFlip">🧲 吸上 0 张 · 连吸 0 回 · 掉盘 0 张</span>
+      <span class="hs-pk" id="hsRsWipe">🎯 落定 0 笔 · 认错 0 次 · 卸料 0 回</span>
+      <span class="hs-pk" id="hsRsTools">🧰 借家什 0 回</span>
+      <span class="hs-pk" id="hsRsBest">🏅 历史最高 0 分</span>
+      <span class="hs-pk" id="hsRsRank">🧲 头一回合闸</span>
+    </div>
+    <div class="hs-rs-book" id="hsRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="hsRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="hsRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="hsReBtn">🧲 再励一炉</button>
+      <button class="tool-btn" id="hsLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="hsHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -15866,6 +16023,7 @@ function updateHomeStats(){
   if(typeof aucNudge==='function')aucNudge();
   if(typeof fjNudge==='function')fjNudge();
   if(typeof htNudge==='function')htNudge();
+  if(typeof hsNudge==='function')hsNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -15916,6 +16074,7 @@ function enterMode(mode){
   if(mode==='auction'){aucStart();return}
   if(mode==='focus'){fjStart();return}
   if(mode==='hoist'){htStart();return}
+  if(mode==='hyst'){hsStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -111994,6 +112153,1994 @@ function htNudge(){
     '每格拉力 F＝⌈货重÷n⌉＋'+HT_MU+'×(n−1) 点摩擦，可绳子要收 n×'+HT_LIFT+' 格箱子才升 '+HT_LIFT+' 格 —— '+
     '多绕一段少受一分力，白烧在摩擦上的却更多（<b>省力就是不省功</b>）。当场拦住你的是<b>力气红线</b>：'+
     '绕得不够就是拉不动，绕够了往上每一段都拉得动 —— 可行的绕法是一段闭区间，不是猜';
+  if(dot){dot.classList.toggle('on',!st);dot.textContent=(st?'':'🆕')}
+}
+
+
+/* ================= v1.106.0 🧲 笔顺剩磁坊（一台电磁吸盘 · 一块料架 · 一条孩子自己走出来的磁滞回线 ================= */
+/* 场：420×340 的一处铁工案。左上米字格是「字排」（这个字一笔一笔贴在这儿，落定一笔染绿一笔），
+   字排右边一窄条是「回线图」——这一字走过的档位路线画在这儿，重走的那一段会红起来；
+   再右一张工艺卡（眼下第几档 · 吸盘几张 · 接料盘几张 · 本字热了多少），
+   案中央一台电磁铁：线圈 + 铁芯，底下挂着吸住的几张铁牌，
+   铁牌下面一根档位尺（−3 到 +10，0 档正中标出，吸合的那几格亮着），最底下一排料架站着这一字的几片铁牌。
+   规矩只有三条，而且三条全在整数上：
+   ① 上升支（吸合）：铁牌厚 t 点，励磁到 I 档吸得住的条件是 I ≥ on＝⌈t/2⌉。
+      档位是一格一格走的，跨过几个 on 就一口气吸上几张 —— 这就是「升过头，连吸一串」；
+   ② 下降支（释放）：断电了铁芯还有剩磁，顶得住 HS_BR 档 ⇒ 吸上的牌要降到 off−1 才脱得开，
+      off＝max(0, on−HS_BR)。薄牌（on ≤ HS_BR）的 off 是 0，也就是降到 0 档还挂着不掉 ——
+      「吸得住、放不下」，只有打进反向区（−HS_COER 档，那叫矫顽力）才「啪」地退磁；
+      于是 on 与 off 之间那一段（迟滞带）里，牌在不在吸盘上全看孩子是怎么走到这一档的 ——
+      从下面升上来：还在料架上；从上面降下来：还挂在吸盘上。这一坊的全部机关就在这两条支路不重合；
+   ③ 两本账都是路径的积分，不是这一档的函数：电池（档程）记走了多少格 —— 升降都吃；
+      热（磁滞损耗）对「重走过的同一格」多收 HS_H 点 —— 单调一条道走过去只交一份，
+      来回试探就把同一段路烧两遍。热到居里点这一炉全体退磁。
+   落定一张牌还有一问：这一片是这个字的第几笔 —— 点字排上那一笔的淡墨位置。
+   教学点：剩磁、矫顽力、回线包围的面积就是白烧掉的铁损（第 4 场起工艺卡不报 on/off，
+   第 6 场起连牌厚都不标，剩下的凭据只有「咔」那一响与这块回线图）*/
+const HS_W=420,HS_CVH=340;
+/* 案面七块地方，互不压：字排 · 回线图 · 接料盘 · 工艺卡 · 电磁铁与吸盘 · 档位尺 · 料架 */
+const HS_GX=14,HS_GY=14,HS_GRID=132;             /* 字排 14..146 × 14..146 */
+const HS_LX=154,HS_LY=14,HS_LW=86,HS_LH=84;      /* 回线图 154..240 × 14..98 */
+const HS_TX=154,HS_TY=104,HS_TC=40;              /* 接料盘两格 154..194、200..240 × 104..144 */
+const HS_SX=252,HS_SY=14,HS_SW=154,HS_SH=132;    /* 工艺卡 252..406 × 14..146 */
+const HS_COLX=214,HS_COILY=152,HS_COILH=44;      /* 电磁铁：线圈中心 x=214，152..196 */
+const HS_HELDY=200,HS_HCW=40,HS_HCH=30;          /* 吸盘下那排铁牌：挂 200..246，一张 40 宽 */
+const HS_KX=20,HS_KW=280,HS_KY=258,HS_KH=30;     /* 档位尺 20..300 × 258..288 */
+const HS_RY=320,HS_RSX=24,HS_RSP=38,HS_RSW=34,HS_RSH=26; /* 料架：一格 38，七片最右 24+6×38+34=286；牌下两行字（色名 +8、厚 +18）连同 9 像素的字高都得留在 340 以内 */
+/* 三行整数账的口径：牌厚 · 吸合档 · 释放档 · 脱开档 */
+const HS_K=52;                 /* 笔长多少算一点厚（全字表 13415 笔量出来：中位 328、p90 718 → 折成 6~14 点厚）*/
+const HS_BR=3;                 /* 剩磁顶得住几档 —— on 与 off 之间的那条迟滞带就是它 */
+const HS_COER=2;               /* 矫顽力：off 抹到零的薄牌，要打进反向第 2 档才彻底退磁 */
+const HS_IMAX=10,HS_NEG=3;     /* 档位尺的两端：正向最高 10 档，反向最底 −3 档 */
+const HS_TRAY=2;               /* 接料盘就两格：一次脱开第三张就挤回料架 —— 别贪 */
+const HS_POLE0=4,HS_POLE5=3;   /* 吸盘最多挂几张（第 5 场起铁芯老化，缩成 3 张）*/
+const HS_H=3;                  /* 重走同一格多收几点热（第一趟 1 点，回头那一趟 1+HS_H 点）*/
+/* 两本随场收紧的账：一炉热（每字清零）、一卷电（每场清零）*/
+function hsCurie(L){return Math.max(170,300-15*(L-1))}
+function hsBatt(L){return Math.max(96,144-6*(L-1))}
+/* ---- 三行式子：厚 → 吸合档、释放档、脱得开的那一档 ---- */
+function hsTOf(len){return Math.max(2,Math.ceil(len/HS_K))}
+function hsOnOf(t){return Math.ceil(t/2)}
+function hsOffOf(t){return Math.max(0,hsOnOf(t)-HS_BR)}
+/* 脱开档：off 还够得着正档的就降一格；off 已经被剩磁抹到 0 的，只有反向 −HS_COER 那一格 */
+function hsFreeOf(t){const o=hsOffOf(t);return o>0?o-1:-HS_COER}
+/* 这一档吸不吸得住（I ≤ 0 一律不吸 —— 反向不吸铁片，只管去磁）*/
+function hsStick(t,I){return I>0&&I>=hsOnOf(t)}
+/* 这一档脱不脱得开 */
+function hsFree(t,I){return I<=hsFreeOf(t)}
+/* 四支钟：认槽 · 这一字 · 这一场的灯 · 干等提示 */
+const HS_PLACE0=5200,HS_PLACE_MIN=3400,HS_PLACE_STEP=225;
+const HS_WORD0=88000,HS_WORD_MIN=58000,HS_WORD_STEP=3750;
+const HS_LAMP0=152000,HS_LAMP_MIN=98000,HS_LAMP_STEP=6750;
+function hsPlace(L){return Math.max(HS_PLACE_MIN,HS_PLACE0-(L-1)*HS_PLACE_STEP)}
+function hsWord(L){return Math.max(HS_WORD_MIN,HS_WORD0-(L-1)*HS_WORD_STEP)}
+function hsLamp(L){return Math.max(HS_LAMP_MIN,HS_LAMP0-(L-1)*HS_LAMP_STEP)}
+/* 罚：认错槽 · 认槽钟尽 · 挤回料架一张 · 居里退磁 · 电池底 · 字钟尽 · 卸料回炉 · 换字 */
+const HS_P_WRONG=5,HS_P_LATE=3,HS_P_SCAT=2,HS_P_CURIE=6,HS_P_BATT=5,HS_P_WORD=5,HS_P_DUMP=3,HS_P_SWAP=6;
+/* 赏：落定底分（连击与场号加成）*/
+const HS_M0=8,HS_M_CB=1.1,HS_M_LV=1.5;
+/* 收齐一个字的整包账：底分 · 零罚 · 热没多烧 · 家什没借 · 一张不挤 · 少回头 */
+const HS_WORD_PTS=26,HS_CLEAN_PTS=16,HS_COOL_PTS=20,HS_TOOL_PTS=10,HS_NEAT_PTS=12,HS_MONO_PTS=14;
+/* 家什的手感：🧊 一盒冰退几点热 · 🪄 抖料摘一张 · 一份赏的门槛按这个字最省那条道算（多走 2 格以内、多烧 8 点以内）*/
+const HS_ICE=48,HS_MONO_SLACK=2,HS_COOL_SLACK=8;
+/* 字的口径：4~7 笔、至少两种笔形、字要大；on 值至少三档不同（路线才有得排）*/
+const HS_STROKE_MIN=4,HS_STROKE_MAX=7,HS_KIND_MIN=2,HS_ONSPAN=3;
+/* 认牌不歧义的口径：牌上的墨样只靠形状与长短认人，同方向又同长短档的两片就是同一张片 */
+const HS_LEN_BKT=40;
+const HS_POOL_MIN=4,HS_POOL_WANT=14,HS_POOL_SCAN=320;
+const HS_HEARTS=3,HS_HEART_MAX=5,HS_BOOK_MAX=300;
+const HS_P0={ice:3,shake:2,probe:2,swap:1};   /* 降温 / 抖料 / 测档 / 换字 */
+const HS_TAG_MS=2600,HS_NAG_MS=11000,HS_HELP_MS=16000;
+/* 场档：按收齐的字数走，每两个字进一场 */
+function hsLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+/* 这一坊吃几笔的字：浅场只收 4~5 笔的小料，第 3 场起 4~7 笔都上 */
+function hsWant(L){return L<=2?[4,5]:[4,7]}
+/* 一场三字（一炉铁芯三个字，每换一字清零、每换一场换一卷电）*/
+const HS_PER=3;
+/* 第 4 场起工艺卡不再写 on / off / 脱开档，第 6 场起料架连牌厚都不标 */
+function hsNoTell(L){return L>=4}
+function hsDim(L){return L>=6}
+function hsPole(L){return L>=5?HS_POLE5:HS_POLE0}
+function hsRank(w){
+  let r=HS_RANKS[0];
+  for(let i=0;i<HS_RANKS.length;i++)if(w>=HS_RANKS[i].n)r=HS_RANKS[i];
+  return r;
+}
+const HS_RANKS=[
+  {n:0,e:'🧲',t:'头一回合闸'},{n:2,e:'🔌',t:'认得吸合档'},{n:5,e:'🪫',t:'知道省着走'},
+  {n:9,e:'🌀',t:'剩磁心里有数'},{n:14,e:'🧊',t:'一炉烧不热'},{n:21,e:'⚙️',t:'吸盘不空'},
+  {n:30,e:'🧰',t:'全套家什'},{n:42,e:'🎯',t:'一步不多一档'},{n:58,e:'👑',t:'回线画成一条道'}
+];
+const HS_SHELF_LV=4;   /* 家什架「测档枪」的门槛：走到第几场还在励磁 */
+const HS_SHELF=[
+  {k:'铁牌',d:'收齐一个字'},{k:'洁净闸',d:'一场三字零罚'},{k:'回线卡',d:'少回头满 8 个字'},
+  {k:'测档枪',d:'走到第 '+HS_SHELF_LV+' 场还在励磁'},{k:'冰盒',d:'热没多烧满 12 个字'},
+  {k:'抖料刷',d:'一个字一张不挤'},{k:'名刺',d:'别处的章节徽章攒到 3 枚'},{k:'金闸',d:'累计落定 60 笔'}
+];
+const HS_KN=['横','竖','撇','捺'];
+/* 铁牌的名字：一片一个色名（由种子里洗出来，与笔顺无关）。牌上不许写它是第几笔 ——
+   写了就等于把答案印在题目上；孩子认的是墨样的形状与长短 */
+const HS_MARK=['红','蓝','黄','绿','紫','白','黑'];
+function hsMarkOf(i){return HS_MARK[(hs.mark&&hs.mark[i])||0]+'牌'}
+/* 档位这一格重走过没有：走过几次就多收几份 —— 这就是回线包围的那块面积 */
+function hsEdgeOf(a,b){return Math.min(a,b)+HS_NEG}
+/* 一句话说清这一档：吸住几张、脱开几张，全靠两条支路 */
+function hsFieldTxt(I){
+  if(I<=0)return I===0?'0 档：不励磁 —— 可吸盘上挂住的还在挂（剩磁）':
+    ('反向 '+I+' 档：去磁中 —— 挂着的薄牌也会掉');
+  return '正向 '+I+' 档：厚 ≤'+(I*2)+' 点的牌都吸得住';
+}
+const hs={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],miss:[],seen:[],rec:null,seed:0,fresh:0,
+  /* 场：一场三字；lv 就是场号 */
+  lv:1,wi:0,score:0,hearts:HS_HEARTS,combo:0,maxCombo:0,phase:'field',load:false,locked:0,
+  /* 案上三堆牌：料架 rack · 吸盘 held · 接料盘 tray · 已落定 done */
+  rack:[],held:[],tray:[],done:[],slot:[],mark:[],sel:-1,
+  /* 眼下这一炉的档位与两本账：I 档 · 电池（档程）· 热（磁滞损耗）· iceOff 记这一炉被 🧊 退掉的那几点
+     （积分式子 heat＝wBatt+H×retr−iceOff 要一直合，自检才不会被一盒冰骗过去）
+     wPulls 是「这一炉挪了几手」——挪档一手就是一格，所以它必须与 wBatt 同进同退；
+     pulls 是整局的手数（结算与总账吃那个数），两个 scope 不许混（混了自检就一路亏账）*/
+  I:0,batt:0,batt0:0,battUsed:0,wBatt:0,wPulls:0,heat:0,curie:0,peak:0,iceOff:0,edge:[],fwd:0,back:0,retr:0,grace:0,
+  /* 磁滞回线的历史：走过的点（档位, 吸住数）*/
+  trace:[],
+  /* 账：收字 · 落定笔 · 挪档几手 · 连吸 · 挤回料架 · 反向去磁 · 卸料 · 散场 */
+  words:0,strokes:0,pulls:0,multi:0,scatN:0,coerN:0,dumps:0,wordOuts:0,
+  wrongs:0,lates:0,curies:0,botts:0,grabs:0,drops:0,sweeps:0,lastDir:0,swaps:0,
+  /* 这一字的赏钱门槛：由这个字最省那条道算出来（多走 2 格、多烧 8 点以内），所以这份赏一定是实的 */
+  monoCap:99,coolCap:99,
+  /* 一字的清白账 */
+  cleanWord:1,neatWord:1,monoWord:1,coolWord:1,wordTools:0,tools:0,cleanRun:0,toolRun:0,
+  neatN:0,monoN:0,coolN:0,
+  placeMs:0,place0:0,wordMs:0,wordMs0:0,lamp:0,lamp0:0,
+  iceN:HS_P0.ice,shakeN:HS_P0.shake,probeN:HS_P0.probe,swapN:HS_P0.swap,
+  iceUse:0,shakeUse:0,probeUse:0,swapUse:0,probeShow:0,
+  gain:0,pen:0,hitOk:0,hitTxt:'',bound:false,helpMs:0,tagTimer:0,
+  msg:'',nags:0,nagMs:0,newBest:false
+};
+
+/* ---- 小工具：本坊自己的发声、回话、清定时器 ----
+   这几只不许抄公共那几只：公共的 auxSay 往别人家的消息条里写字、auxTone 揣的是别人那块声卡、
+   auxT/auxKill 管的是别人那一串定时器 —— 借来用，孩子的话就落在别人家的栏里。 */
+function hsTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!hs.ac)hs.ac=new AC();
+    const c=hs.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.value=g===undefined?.05:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+/* 回话条就是铁工案上那一条 .hs-msg：写错了栏，孩子的话一个字也看不见 */
+function hsSay(msg,color){hsMsg(msg,color||'#FFE082')}
+function hsT(fn,ms){const id=setTimeout(function(){
+  const i=hs.timers.indexOf(id);if(i>=0)hs.timers.splice(i,1);
+  if(!hs.run||hs.over)return;
+  try{fn()}catch(e){}
+},ms);hs.timers.push(id);return id}
+function hsKill(){
+  for(let i=0;i<hs.timers.length;i++)clearTimeout(hs.timers[i]);
+  hs.timers=[];
+  if(hs.rafId){cancelAnimationFrame(hs.rafId);hs.rafId=0}
+}
+
+/* ================= 账：两条支路的式子、一次场迁移、两本路径积分，与「这个字配不配得上这台吸盘」 =================
+   这一坊最要紧的是三把尺各算各的，算出来的必须一模一样：
+   ① 闭式：on＝⌈厚÷2⌉、off＝max(0,on−'+HS_BR+')、脱开档＝off−1（off 归零的薄牌＝−'+HS_COER+'）—— 三行式子；
+   ② 状态迁移 hsField：料架 → 吸盘 → 接料盘全在这一处算，产品与审计调的是同一只函数；
+   ③ 一条档位路线走到底 hsRouteSim：一步一步挪档、每步过一遍 ②，自己数电池、热、重复格与挤牌。
+   两本账的等式必须永远成立：电池＝Σ|Δ档|，热＝电池＋'+HS_H+'×重复走过的格数 ——
+   单调一条道走完时热正好等于电池，来回试探的那几格才多收，多收的那一份就是回线包围的面积 */
+/* ---- 一片有多长（1024 的方格里量），折成几点厚 ---- */
+function hsLenOf(m){
+  let t=0;
+  for(let i=1;i<m.length;i++){
+    const dx=m[i][0]-m[i-1][0],dy=m[i][1]-m[i-1][1];
+    t+=Math.sqrt(dx*dx+dy*dy);
+  }
+  return t;
+}
+/* ---- ② 状态迁移：把「眼下这一档」落到三堆牌上。只写这一处，产品与审计共用 ----
+   升档吸料（上升支）、降档脱料（下降支）、迟滞带里一律不动 —— 动不动全看是怎么走到这一档的 */
+function hsBlank(){return {I:0,rack:[],held:[],tray:[]}}
+function hsField(ts,st,pole,trayMax){
+  const ev={grab:[],drop:[],squeez:[],spill:[]};
+  /* 先降后升：这一档脱得开的先撒手落盘（脱开档大的先掉 —— 厚牌先落，薄牌靠剩磁挂着），
+     腾出来的那几个空位才轮到料架上吸得住的牌往上爬。
+     顺序反过来就漏账：先吸满再挤掉最弱的那张，紧接着厚牌落盘腾出空位，
+     那张被挤回去的薄牌却留在料架上「明明吸得住」—— 案面与自检就此对不上（settleBad）。*/
+  const go=[];
+  for(let i=0;i<st.held.length;i++)if(hsFree(ts[st.held[i]],st.I))go.push(st.held[i]);
+  go.sort(function(a,b){return (hsFreeOf(ts[b])-hsFreeOf(ts[a]))||(a-b)});
+  if(go.length){
+    const left=[];
+    for(let i=0;i<st.held.length;i++)if(go.indexOf(st.held[i])<0)left.push(st.held[i]);
+    st.held=left;
+  }
+  for(let k=0;k<go.length;k++){
+    if(st.tray.length<trayMax){st.tray.push(go[k]);ev.drop.push(go[k])}
+    else{st.rack.push(go[k]);ev.spill.push(go[k])}
+  }
+  /* 吸上来按「先薄后厚、同厚按牌号」排，掉下去按「先厚后薄（脱开档大的先掉）」排 ——
+     两头的次序都必须与档位无关地定死，孩子重来一遍才会看到同一张案 */
+  const cand=[];
+  for(let i=0;i<st.rack.length;i++)if(hsStick(ts[st.rack[i]],st.I))cand.push(st.rack[i]);
+  cand.sort(function(a,b){return (hsOnOf(ts[a])-hsOnOf(ts[b]))||(a-b)});
+  if(cand.length){
+    const keep=[];
+    for(let i=0;i<st.rack.length;i++)if(cand.indexOf(st.rack[i])<0)keep.push(st.rack[i]);
+    st.rack=keep;
+  }
+  for(let k=0;k<cand.length;k++){st.held.push(cand[k]);ev.grab.push(cand[k])}
+  /* 吸盘挂不住：挤回去的是眼下吸力最弱那几张（on 最小的先掉回料架）*/
+  while(st.held.length>pole){
+    /* 候选人从第一张起算：刚吸上来那一串是「先薄后厚」排的，最薄的那张正好挂在头一位 ——
+       只跟它比就永远挑不出「谁更弱」，吸盘就会挂着超出极点数的牌不挤（第 5 场缩到 3 张时最容易撞上）*/
+    let w=0,best=st.held[0];
+    for(let i=1;i<st.held.length;i++){
+      const a=st.held[i],b=st.held[w];
+      if(hsOnOf(ts[a])<hsOnOf(ts[b])||(hsOnOf(ts[a])===hsOnOf(ts[b])&&a<b)){best=a;w=i}
+    }
+    st.held.splice(w,1);st.rack.push(best);
+    ev.squeez.push(best);
+  }
+  st.tray.sort(function(a,b){return a-b});
+  st.rack.sort(function(a,b){return a-b});
+  return ev;
+}
+/* 把一堆积木搬到 st 上：I 是给定的档位 */
+function hsAt(ts,st,I,pole,trayMax){st.I=I;return hsField(ts,st,pole,trayMax)}
+/* ---- ① 闭式的两本账：从一条档位路线（整数序列，每步只差 1）算出电池、热、重复格 ---- */
+function hsCostFormula(route,L){
+  const edge=[];let batt=0,retr=0;
+  for(let i=1;i<route.length;i++){
+    const a=Math.min(route[i-1],route[i]),b=Math.max(route[i-1],route[i]);
+    if(b-a!==1)return {bad:1,batt:batt,retr:retr,heat:0,route:route};
+    for(let q=a;q<b;q++){
+      const e=q+HS_NEG;
+      edge[e]=(edge[e]||0)+1;
+      batt++;
+      if(edge[e]>1)retr++;
+    }
+  }
+  return {bad:0,batt:batt,retr:retr,heat:batt+HS_H*retr,route:route.slice()};
+}
+/* ---- ③ 一步一步真走：给一个「先认谁后认谁」的顺序，把这条路线走完并记账 ----
+   每一趟都是：从眼下档位一格一格挪到这一片的吸合档（吸上），再一格一格挪到它的脱开档（掉进接料盘）。
+   挪档不许跳格：每挪一格都过一遍状态迁移（连吸与脱料只在真实经过的那一档发生），
+   产品的手与审计的账走的正是同一只 ② —— 差半格都不许。
+   轮到某一片时它可能已经在盘里（ earlier 那一趟顺路掉的），也可能还挂在吸盘上：
+   那就不必再走一趟，认槽摘下来即可 —— 这一条分支就是「贪多」能省下的那一段路 */
+function hsRouteSim(ts,order,L){
+  const pole=hsPole(L),curie=hsCurie(L),battMax=hsBatt(L);
+  const st=hsBlank();
+  for(let i=0;i<ts.length;i++)st.rack.push(i);
+  const edge=[];
+  const out={ok:0,why:'',batt:0,heat:0,retr:0,peak:0,grab:0,drop:0,squeez:0,spill:0,
+    multi:0,coer:0,route:[0],done:[],bad:0,free0:0};
+  const step=function(to){
+    const dir=to>st.I?1:-1;
+    while(st.I!==to){
+      const from=st.I,nxt=from+dir;
+      const e=Math.min(from,nxt)+HS_NEG;
+      edge[e]=(edge[e]||0)+1;
+      out.batt++;
+      if(edge[e]>1){out.retr++;out.heat+=1+HS_H}else out.heat+=1;
+      st.I=nxt;
+      const ev=hsField(ts,st,pole,HS_TRAY);
+      for(let i=0;i<ev.grab.length;i++)out.grab++;
+      for(let i=0;i<ev.drop.length;i++)out.drop++;
+      out.squeez+=ev.squeez.length;out.spill+=ev.spill.length;
+      if(ev.grab.length>1)out.multi++;
+      if(nxt<0)out.coer+=ev.drop.length;
+      out.route.push(nxt);
+      if(out.heat>out.peak)out.peak=out.heat;
+      if(out.heat>curie||out.batt>battMax){out.why='炉子或电池先见底';return false}
+    }
+    return true;
+  };
+  for(let k=0;k<order.length;k++){
+    const i=order[k];
+    if(st.tray.indexOf(i)>=0){
+      st.tray=st.tray.filter(function(x){return x!==i});
+      out.free0++;out.done.push(i);
+      continue;
+    }
+    const on=hsOnOf(ts[i]),free=hsFreeOf(ts[i]);
+    if(st.held.indexOf(i)>=0){
+      if(!step(free))break;
+    }else{
+      if(st.rack.indexOf(i)<0){out.bad++;out.why='这一片既不在料架也不在吸盘与盘上';break}
+      if(!step(on))break;
+      if(st.held.indexOf(i)<0){out.bad++;out.why='升到吸合档却没吸住这一片';break}
+      if(!step(free))break;
+    }
+    if(st.tray.indexOf(i)<0){out.bad++;out.why='降到脱开档这一片却没落进接料盘';break}
+    st.tray=st.tray.filter(function(x){return x!==i});
+    out.done.push(i);
+  }
+  if(!out.why&&!out.bad&&out.done.length!==ts.length){out.why='还有片没落进接料盘';out.bad++}
+  out.ok=(!out.bad&&out.why==='')?1:0;
+  if(!out.ok&&!out.why)out.why='账见底';
+  return out;
+}
+/* 单调上冲那条道：按吸合档从小到大排（同档按牌号）—— 一路升、每升一档摘一批薄的 */
+function hsBestOrder(ts){
+  const a=[];for(let i=0;i<ts.length;i++)a.push(i);
+  a.sort(function(x,y){return (hsOnOf(ts[x])-hsOnOf(ts[y]))||(hsFreeOf(ts[x])-hsFreeOf(ts[y]))||(x-y)});
+  return a;
+}
+/* 先厚后薄：一次冲到顶再一路退下来 —— 厚牌先掉进盘，薄牌靠剩磁挂着（这一条是「贪多」那条道）*/
+function hsThickOrder(ts){
+  const a=[];for(let i=0;i<ts.length;i++)a.push(i);
+  a.sort(function(x,y){return (hsFreeOf(ts[y])-hsFreeOf(ts[x]))||(hsOnOf(ts[y])-hsOnOf(ts[x]))||(x-y)});
+  return a;
+}
+/* 笔顺序：题目给的那一条 —— 它一定不比最优路省，两本账才有的挑 */
+function hsSeqOrder(ts){
+  const a=[];for(let i=0;i<ts.length;i++)a.push(i);
+  return a;
+}
+/* 几条候选道都真走一遍，取最省的那一条：热少的先，热一样看电池 */
+function hsBestRoute(ts,L){
+  const cs=[hsBestOrder(ts),hsThickOrder(ts),hsSeqOrder(ts)];
+  let best=null;
+  for(let i=0;i<cs.length;i++){
+    const s=hsRouteSim(ts,cs[i],L);
+    if(!s.ok)continue;
+    if(!best||s.heat<best.heat||(s.heat===best.heat&&s.batt<best.batt))best=s;
+  }
+  return best;
+}
+/* 闭式与逐步两条腿算同一条路：路线数组必须由 hsRouteSim 里那串真实挪档生成，
+   再把公式（电池＝Σ|Δ|，热＝电池＋'+HS_H+'×重复）算一遍对表 */
+function hsCrossCheck(sim){
+  const f=hsCostFormula(sim.route);
+  const out={ok:1,bad:0,why:''};
+  if(f.bad){out.ok=0;out.bad=f.bad;out.why='路线跳档';return out}
+  if(f.batt!==sim.batt){out.ok=0;out.bad++;out.why='电池不合'}
+  if(f.retr!==sim.retr){out.ok=0;out.bad++;out.why='重复格不合'}
+  if(f.heat!==sim.heat){out.ok=0;out.bad++;out.why='热不合'}
+  return out;
+}
+/* ---- 这个字配不配得上这台吸盘 ---- */
+function hsMake(ch,raw){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  if(ms.length<HS_STROKE_MIN||ms.length>HS_STROKE_MAX)return null;
+  const dirs=[],lens=[],ts=[],bkey=[],ons=[];
+  for(let i=0;i<ms.length;i++){
+    const d=jtDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    const len=hsLenOf(ms[i]);
+    if(!(len>0))return null;
+    const t=hsTOf(len);
+    if(t<3||t>19)return null;
+    dirs.push(d);lens.push(Math.round(len));ts.push(t);ons.push(hsOnOf(t));
+    bkey.push(d+'@'+Math.floor(len/HS_LEN_BKT));
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  let kc=0;for(let d=0;d<4;d++)if(kinds&(1<<d))kc++;
+  if(kc<HS_KIND_MIN)return null;
+  for(let i=0;i<bkey.length;i++)for(let j=i+1;j<bkey.length;j++)if(bkey[i]===bkey[j])return null;
+  /* 吸合档的跨度：至少 HS_ONSPAN 档不同，路线才有得排；同档最多两片（三片一起掉就接不住）*/
+  const span={};for(let i=0;i<ons.length;i++)span[ons[i]]=1;
+  let ns=0;for(const kk in span)ns++;
+  if(ns<HS_ONSPAN)return null;
+  for(let v=0;v<=HS_IMAX;v++){
+    let c=0;for(let i=0;i<ons.length;i++)if(ons[i]===v)c++;
+    if(c>2)return null;
+  }
+  /* 两条支路必须真打架：至少一片薄牌（on ≤ '+HS_BR+' —— 掉不到 0 档以下下不来）+
+     至少一片厚牌（on ≥ '+HS_BR+'+2 —— 得一路升上去才够得着）*/
+  let thin=0,thick=0;
+  for(let i=0;i<ons.length;i++){if(ons[i]<=HS_BR)thin++;if(ons[i]>=HS_BR+2)thick++}
+  if(!thin||!thick)return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++)for(let j=0;j<ms[i].length;j++){
+    const x=ms[i][j][0],y=ms[i][j][1];
+    if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+  }
+  if(x1-x0<140||y1-y0<140)return null;
+  const dn=[];for(let i=0;i<dirs.length;i++)dn.push(HS_KN[dirs[i]]);
+  return {ch:ch,n:ms.length,dirs:dirs,dn:dn,lens:lens,ts:ts,ons:ons,bkey:bkey,paths:sp,meds:ms,
+    kc:kc,span:ns,thin:thin,thick:thick,
+    union:{x0:x0,x1:x1,y0:y0,y1:y1,xc:(x0+x1)/2,yc:(y0+y1)/2,w:x1-x0,h:y1-y0}};
+}
+function hsSeqOk(rec){
+  if(!rec)return false;
+  if(rec.n<HS_STROKE_MIN||rec.n>HS_STROKE_MAX)return false;
+  if(rec.kc<HS_KIND_MIN)return false;
+  if(rec.span<HS_ONSPAN)return false;
+  if(!rec.thin||!rec.thick)return false;
+  for(let i=0;i<rec.dirs.length;i++)if(rec.dirs[i]<0||rec.dirs[i]>3)return false;
+  const u=rec.union;
+  if(!(u.w>=140&&u.h>=140))return false;
+  const k={};
+  for(let i=0;i<rec.bkey.length;i++){
+    if(k[rec.bkey[i]])return false;
+    k[rec.bkey[i]]=1;
+  }
+  const oc={};
+  for(let i=0;i<rec.ons.length;i++){
+    oc[rec.ons[i]]=(oc[rec.ons[i]]||0)+1;
+    if(oc[rec.ons[i]]>2)return false;
+  }
+  for(let i=0;i<rec.ts.length;i++)if(rec.ts[i]<3||rec.ts[i]>19)return false;
+  return true;
+}
+/* 料架站位：第 3 场起把牌打乱 —— 站哪儿不许泄露笔顺 */
+function hsSlots(rec,L,seed){
+  const p=[];
+  for(let i=0;i<rec.n;i++)p.push(i);
+  if(L>=3){
+    for(let i=rec.n-1;i>0;i--){
+      const j=auxNext(seed^Math.imul(i+11,40503))%(i+1);
+      const t=p[i];p[i]=p[j];p[j]=t;
+    }
+  }
+  const slot=[];
+  for(let i=0;i<rec.n;i++)slot[p[i]]=i;
+  return slot;
+}
+/* 铁牌的名字：从种子里洗一遍色名，与笔顺、与料架站位都不相关 ——
+   牌上写什么色就叫什么色，绝不能写着「第几笔」把答案印在题目上 */
+function hsMarks(rec,L,seed){
+  const p=[];
+  for(let i=0;i<rec.n;i++)p.push(i);
+  for(let i=rec.n-1;i>0;i--){
+    const j=auxNext(seed^Math.imul(i+23,3266489917))%(i+1);
+    const t=p[i];p[i]=p[j];p[j]=t;
+  }
+  const mk=[];
+  for(let i=0;i<rec.n;i++)mk[p[i]]=i;
+  return mk;
+}
+/* ---- 配案的凭据：口径、几条候选道里最省的那条真收得齐、两本账有余量、笔顺序比它费（有省头才有得挑）、三把尺对表 ---- */
+function hsAudit(rec,L,why){
+  const say=function(t){if(why)why.why=t;return null};
+  if(!rec||!hsSeqOk(rec))return say('口径');
+  const ts=rec.ts;
+  /* 三条候选道都真走一遍：最省的那条是孩子的靶子，一条不挤牌的干净道是这一场的「摆得开」 */
+  const cs=[hsBestOrder(ts),hsThickOrder(ts),hsSeqOrder(ts)],sims=[];
+  for(let i=0;i<cs.length;i++){const s=hsRouteSim(ts,cs[i],L);if(s.ok)sims.push(s)}
+  if(!sims.length)return say('三条候选道都收不齐');
+  let best=null,clean=null;
+  for(let i=0;i<sims.length;i++){
+    const s=sims[i];
+    if(!best||s.heat<best.heat||(s.heat===best.heat&&s.batt<best.batt))best=s;
+    if(s.squeez||s.spill)continue;
+    if(!clean||s.heat<clean.heat||(s.heat===clean.heat&&s.batt<clean.batt))clean=s;
+  }
+  const cc=hsCrossCheck(best);
+  if(!cc.ok)return say('闭式与逐步不合('+cc.why+')');
+  const seq=hsRouteSim(ts,hsSeqOrder(ts),L);
+  if(!seq.ok)return say('按笔顺收不齐');
+  const cc2=hsCrossCheck(seq);
+  if(!cc2.ok)return say('闭式与逐步不合('+cc2.why+')');
+  if(!(seq.heat>best.heat))return say('笔顺序不比最优路费：没得挑');
+  /* 最省那条道常常是「一次冲到顶」的贪多路：牌挂不住挤回料架是这一坊的价钱，账里已经扣过，
+     不该再把它当不合格。可这一场必须摆得开 —— 三条道里得有一条从头到尾不挤不溢的干净道，
+     孩子照它走就能收齐，贪多只是更省，不是唯一出路 */
+  if(!clean)return say('三条道条条都要挤牌：这一场摆不开');
+  /* 电池是一场的（一场三字），热是一炉的（一字一炉清零）：最坏的一串也摆得开 */
+  if(best.batt*HS_PER>hsBatt(L))return say('一卷电不够收完这一场最坏的一串字');
+  if(best.heat>hsCurie(L))return say('一炉热不够收这个字');
+  /* 两条支路不重合才是这一坊：任何一片都得有「升到了还没吸住之前掉不下来」那一段 */
+  for(let i=0;i<ts.length;i++){
+    const on=hsOnOf(ts[i]),fr=hsFreeOf(ts[i]);
+    if(!(fr<on))return say('这片没有迟滞带');
+    if(hsStick(ts[i],fr))return say('脱开档还吸得住：式子写反了');
+    if(!hsStick(ts[i],on))return say('吸合档吸不住');
+    if(hsFree(ts[i],on))return say('吸合档同时脱得开：两条支路重合了');
+  }
+  if(why)why.why='过';
+  return {n:rec.n,batt:hsBatt(L),curie:hsCurie(L),pole:hsPole(L),
+    bestBatt:best.batt,bestHeat:best.heat,bestRetr:best.retr,
+    seqBatt:seq.batt,seqHeat:seq.heat,seqRetr:seq.retr,
+    save:seq.heat-best.heat,grab:best.grab,span:rec.span};
+}
+function hsTiers(){return [hsLvOf(0),hsLvOf(4),hsLvOf(16)]}
+/* ---- 字池：进池之前按场的口径逐档试，三档全过才留。电池、炉子、吸盘位一律随场收紧，
+   第 9 场最难 —— 过得了 1·3·9 三道门槛的字，中间每一场都摆得开 ---- */
+async function hsBuildPool(keep,lo,hi){
+  const g=hs.gen,stale=function(){return g!==hs.gen||!hs.run||hs.over};
+  const enough=function(){
+    if(!isFinite(lo))return hs.pool.length>=HS_POOL_WANT;
+    let c=0;
+    for(let i=0;i<hs.pool.length;i++)if(hs.pool[i].n>=lo&&hs.pool[i].n<=hi)c++;
+    return c>=6||hs.pool.length>=40;
+  };
+  hs.miss=(localStorage.getItem('hz_hs_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<HS_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(auxShuf(hs.miss.slice(0,6)));
+  push(auxShuf(hsLetters().split('')));      /* 这一串每次洗一遍：不然开机永远是那几个字 */
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(auxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(auxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  if(typeof CHARS!=='undefined')push(auxShuf(CHARS.slice()));
+  if(!keep)hs.pool=[];
+  const tiers=hsTiers();
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=hsMake(want[k+i],rs[i]);
+        if(m&&isFinite(lo)&&(m.n<lo||m.n>hi))continue;
+        if(m&&tiers.every(function(L){return !!hsAudit(m,L)}))
+          if(!hs.pool.some(function(p){return p.ch===m.ch}))hs.pool.push(m);
+      }
+    }
+  }
+  return hs.pool.length>=HS_POOL_MIN;
+}
+function hsFresh(ch){
+  const bk=localStorage.getItem('hz_hs_book')||'';
+  return bk.indexOf(ch+':')<0?1:0;
+}
+/* 这一坊吃「厚薄跨度够、两片薄牌把吸盘挂住、而且最优路真收得齐、三条道里还有一条摆得开的干净道」的字。
+   下面这一串不是随手写的：全字表 1372 个字拿这一坊自己的 hsMake（口径）+ 三档 hsAudit
+   （最优路收得齐、闭式与逐步对表、笔顺序比最优路费、一卷电够收完最坏的一串字）数过一遍（_hstiers.cjs），
+   真过闸的字全摆在这里 —— 串外的字就是过不了闸的字。 */
+function hsLetters(){
+  return '丘中主乎亚亥付以仪优伙何兄兰冬刘则卵去叫吆后吞吾字宁它宅安对寿尤异托抗攻斤方日朱村来歹火父牛示穴米约纪纱羊芒虫计记贝贡辽达迈附';
+}
+
+/* ================= 案面：一块米字格 · 一台电磁铁 · 一根档位尺 · 一条自己走出来的回线 =================
+   画的东西只有八块，全部由 hs 里那几个整数说了算：
+   ① 左上米字格（字排）：这个字一笔一笔淡墨码在这儿，认槽落定的染绿，每一笔角上标它是第几笔；
+   ② 中上一窄条回线图：横着是档位、竖着是吸盘上挂几张 —— 孩子走的路线就画在这儿，
+      往上冲的那一段是青的，退下来的那一段是橙的，同一条档位再走第二遍就红起来（那一段就是白烧的铁损）；
+   ③ 回线图底下接料盘两格：掉出来的铁牌站在这儿等认槽，盘只两格 —— 第三张挤回料架；
+   ④ 右上工艺卡：眼下第几档 · 吸盘几张 · 盘几张 · 一炉热了多少 · 一卷电还剩多少，
+      第 4 场起 on / off 那几行收走（📐 测档借来还看得见）；
+   ⑤ 案中央一台电磁铁：线圈 + 铁芯 + 两根引线接档位尺，吸盘底下挂着吸住的铁牌；
+   ⑥ 左边两根横条：🔋 一卷电（这一场的）· 🔥 一炉热（这一字的，热到居里点全体退磁）；
+   ⑦ 底上一根档位尺：−3 到 +10，0 档加粗，正档上头有小三角（那是吸合档），重走过的格子下面点一颗红痣；
+   ⑧ 最底一排料架：这一字的几片铁牌站着等励磁，牌上就画这一笔的模样。
+   第 6 场起料架连牌厚都不标 —— 剩下的凭据只有「咔」那一响、吸盘上挂住的张数与这块回线图 */
+function hsCv(){const c=document.getElementById('hsCanvas');return c&&c.getContext?c.getContext('2d'):null}
+function hsRoundRect(g,x,y,w,h,r){
+  g.beginPath();
+  g.moveTo(x+r,y);g.lineTo(x+w-r,y);g.quadraticCurveTo(x+w,y,x+w,y+r);
+  g.lineTo(x+w,y+h-r);g.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  g.lineTo(x+r,y+h);g.quadraticCurveTo(x,y+h,x,y+h-r);
+  g.lineTo(x,y+r);g.quadraticCurveTo(x,y,x+r,y);
+  g.closePath();
+}
+/* 把「这个字的第 i 笔」画在 (cx,cy) 那块方框里：缩放按整个字的轮廓（union）算，
+   不按这一笔自己的边框 —— 只有这样才能把「这一笔有多长」留在画上，牌厚不厚看的就是它 */
+function hsDrawPen(g,cx,cy,box,k,i,fill){
+  const rec=hs.rec;
+  if(!rec||i<0||i>=rec.n)return;
+  const u=rec.union;
+  const s=box/Math.max(u.w,u.h)*k;
+  g.save();
+  g.setTransform(s,0,0,-s,cx-s*u.xc,cy+s*u.yc);
+  try{g.fillStyle=fill||'#FFF3E0';g.fill(new Path2D(rec.paths[i]))}catch(e){}
+  g.restore();
+  g.filter='none';
+}
+/* 跟着牌走的那几行（吸盘下面那一行、料架上那一行）按中心对齐画：牌挨着画布边时整行字会切出界 */
+function hsClampText(g,txt,x,y){
+  const hw=g.measureText(txt).width/2+2;
+  g.fillText(txt,Math.max(hw,Math.min(HS_W-hw,x)),y);
+}
+function hsDoneOf(i){return hs.done.indexOf(i)>=0}
+function hsInRack(i){return hs.rack.indexOf(i)>=0}
+function hsOnHeld(i){return hs.held.indexOf(i)>=0}
+function hsOnTray(i){return hs.tray.indexOf(i)>=0}
+/* 眼下待认槽的那一片：接料盘左边那一张（先掉的先认，第二张得排队）*/
+function hsActCard(){return hs.tray.length?hs.tray[0]:-1}
+function hsPoleN(){return hsPole(hs.lv)}
+/* 一格档位的编号：−3 与 +10 之间一共 13 格，格号 0..12 */
+function hsEdgeIdx(a,b){return Math.min(a,b)+HS_NEG}
+function hsEdgeCnt(e){return hs.edge[e]||0}
+/* ---- 认槽的落点：米字格里点 nearest 的那一笔 ---- */
+function hsSegDist(px,py,ax,ay,bx,by){
+  const dx=bx-ax,dy=by-ay,L2=dx*dx+dy*dy;
+  if(!L2)return Math.sqrt((px-ax)*(px-ax)+(py-ay)*(py-ay));
+  let t=((px-ax)*dx+(py-ay)*dy)/L2;
+  t=Math.max(0,Math.min(1,t));
+  const qx=ax+t*dx-px,qy=ay+t*dy-py;
+  return Math.sqrt(qx*qx+qy*qy);
+}
+function hsPenDist(i,u,v){
+  const m=hs.rec&&hs.rec.meds&&hs.rec.meds[i];
+  if(!m)return 1e9;
+  let d=1e9;
+  for(let k=1;k<m.length;k++){
+    const q=hsSegDist(u,v,m[k-1][0],m[k-1][1],m[k][0],m[k][1]);
+    if(q<d)d=q;
+  }
+  return d;
+}
+/* 这一笔那一行小号码站哪儿：取中点那一段，号码不压住墨样 */
+function hsPenMid(i){
+  const m=hs.rec&&hs.rec.meds&&hs.rec.meds[i];
+  if(!m||!m.length)return null;
+  return m[Math.floor(m.length/2)];
+}
+function hsSlotAt(x,y){
+  const rec=hs.rec;
+  if(!rec)return -1;
+  if(x<HS_GX-4||x>HS_GX+HS_GRID+4||y<HS_GY-4||y>HS_GY+HS_GRID+4)return -1;
+  const sc=HS_GRID/1024;
+  const u=(x-HS_GX)/sc,v=(HS_GY+HS_GRID-y)/sc;
+  let best=-1,bd=1e9;
+  for(let i=0;i<rec.n;i++){
+    const d=hsPenDist(i,u,v);
+    if(d<bd){bd=d;best=i}
+  }
+  return best;
+}
+/* ---- ① 字排：整个字都在这儿，就差认出这一片铁牌是第几笔 ---- */
+function hsDrawGrid(g){
+  const rec=hs.rec;
+  g.save();
+  g.fillStyle='rgba(255,240,210,.08)';
+  hsRoundRect(g,HS_GX-4,HS_GY-16,HS_GRID+8,HS_GRID+24,10);g.fill();
+  g.fillStyle='#D7CCC8';g.font='11px sans-serif';g.textAlign='left';
+  g.fillText('字排'+(rec?(' · 共 '+rec.n+' 笔'):'——'),HS_GX-2,HS_GY-5);
+  g.strokeStyle='rgba(215,204,200,.62)';g.lineWidth=1.6;
+  g.strokeRect(HS_GX,HS_GY,HS_GRID,HS_GRID);
+  g.strokeStyle='rgba(215,204,200,.24)';g.lineWidth=1;g.setLineDash([5,5]);
+  g.beginPath();
+  g.moveTo(HS_GX+HS_GRID/2,HS_GY);g.lineTo(HS_GX+HS_GRID/2,HS_GY+HS_GRID);
+  g.moveTo(HS_GX,HS_GY+HS_GRID/2);g.lineTo(HS_GX+HS_GRID,HS_GY+HS_GRID/2);
+  g.moveTo(HS_GX,HS_GY);g.lineTo(HS_GX+HS_GRID,HS_GY+HS_GRID);
+  g.moveTo(HS_GX+HS_GRID,HS_GY);g.lineTo(HS_GX,HS_GY+HS_GRID);
+  g.stroke();g.setLineDash([]);
+  if(!rec){g.restore();return}
+  const sc=HS_GRID/1024;
+  g.save();
+  g.setTransform(sc,0,0,-sc,HS_GX,HS_GY+1024*sc);
+  for(let i=0;i<rec.paths.length;i++){
+    try{
+      g.fillStyle=hsDoneOf(i)?'rgba(129,199,132,.95)':'rgba(255,240,214,.26)';
+      g.fill(new Path2D(rec.paths[i]));
+    }catch(e){}
+  }
+  g.restore();
+  g.filter='none';
+  /* 每一笔一个号码：认槽按 1~n 也能答，号码就是答案的那个数 */
+  for(let i=0;i<rec.n;i++){
+    const p=hsPenMid(i);
+    if(!p)continue;
+    const x=HS_GX+p[0]*sc,y=HS_GY+HS_GRID-p[1]*sc;
+    if(x<HS_GX+6||x>HS_GX+HS_GRID-6||y<HS_GY+7||y>HS_GY+HS_GRID-4)continue;
+    g.fillStyle=hsDoneOf(i)?'rgba(129,199,132,.9)':'rgba(255,224,130,.85)';
+    g.font='bold 9px sans-serif';g.textAlign='center';
+    g.fillText(i+1,x,y+3);
+  }
+  if(hs.tray.length){
+    g.fillStyle='#FFCC80';g.font='12px sans-serif';g.textAlign='center';
+    hsClampText(g,'这一片是第几笔？点它',HS_GX+HS_GRID/2,HS_GY+HS_GRID+15);
+  }
+  g.restore();
+}
+/* ---- ② 回线图：走过的档位路线画成一条回线，重走的那一段红起来 ---- */
+function hsLoopX(I){return HS_LX+(I+HS_NEG)/(HS_IMAX+HS_NEG)*HS_LW}
+function hsLoopY(k){
+  const p=Math.max(1,hsPoleN());
+  return HS_LY+HS_LH-Math.max(0,Math.min(p,k))/p*(HS_LH-8);
+}
+function hsDrawLoop(g){
+  g.save();
+  g.fillStyle='rgba(255,244,214,.07)';
+  hsRoundRect(g,HS_LX-4,HS_LY-14,HS_LW+8,HS_LH+18,8);g.fill();
+  g.strokeStyle='rgba(255,213,79,.45)';g.lineWidth=1.2;
+  hsRoundRect(g,HS_LX-4,HS_LY-14,HS_LW+8,HS_LH+18,8);g.stroke();
+  g.fillStyle='#FFE082';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText('回线图',HS_LX-2,HS_LY-4);
+  g.strokeStyle='rgba(215,204,200,.3)';g.lineWidth=1;
+  g.beginPath();
+  g.moveTo(HS_LX,HS_LY+HS_LH);g.lineTo(HS_LX+HS_LW,HS_LY+HS_LH);
+  g.moveTo(HS_LX,HS_LY+HS_LH);g.lineTo(HS_LX,HS_LY);
+  g.stroke();
+  g.setLineDash([2,3]);g.strokeStyle='rgba(215,204,200,.3)';
+  g.beginPath();g.moveTo(hsLoopX(0),HS_LY+HS_LH);g.lineTo(hsLoopX(0),HS_LY);g.stroke();
+  g.setLineDash([]);
+  if(hs.trace.length>1){
+    const done={};
+    for(let i=1;i<hs.trace.length;i++){
+      const a=hs.trace[i-1],b=hs.trace[i];
+      const e=Math.min(a.I,b.I)+HS_NEG;
+      const rep=done[e]?1:0;
+      done[e]=1;
+      g.strokeStyle=rep?'#EF5350':(b.I>a.I?'#4DD0E1':'#FFB74D');
+      g.lineWidth=rep?2.2:1.6;
+      g.beginPath();
+      g.moveTo(hsLoopX(a.I),hsLoopY(a.held));
+      g.lineTo(hsLoopX(b.I),hsLoopY(b.held));
+      g.stroke();
+    }
+    const last=hs.trace[hs.trace.length-1];
+    g.fillStyle='#FFD54F';
+    g.beginPath();g.arc(hsLoopX(last.I),hsLoopY(last.held),2.6,0,Math.PI*2);g.fill();
+  }else{
+    g.fillStyle='#8D6E63';g.font='9px sans-serif';g.textAlign='center';
+    g.fillText('一条道还没走',HS_LX+HS_LW/2,HS_LY+HS_LH/2);
+  }
+  g.fillStyle='#BCAAA4';g.font='9px sans-serif';g.textAlign='center';
+  g.fillText('横档竖张',HS_LX+HS_LW/2,HS_LY+HS_LH+12);
+  g.restore();
+}
+/* ---- ③ 接料盘：掉出来的铁牌站在这儿等认槽，盘就两格 ---- */
+function hsTrayX(k){return HS_TX+k*(HS_TC+6)}
+function hsDrawTray(g){
+  g.save();
+  g.fillStyle='#D7CCC8';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText('接料盘',HS_TX,HS_TY-3);
+  for(let k=0;k<HS_TRAY;k++){
+    const x=hsTrayX(k),card=hs.tray[k];
+    g.strokeStyle='rgba(215,204,200,.4)';g.lineWidth=1.2;
+    hsRoundRect(g,x,HS_TY,HS_TC,HS_TC,5);g.stroke();
+    if(card===undefined||card<0)continue;
+    const act=(k===0);
+    g.fillStyle=act?'rgba(84,174,212,.34)':'rgba(93,64,55,.55)';
+    hsRoundRect(g,x,HS_TY,HS_TC,HS_TC,5);g.fill();
+    g.strokeStyle=act?'#4FC3F7':'rgba(255,213,79,.5)';g.lineWidth=act?2:1.2;
+    hsRoundRect(g,x,HS_TY,HS_TC,HS_TC,5);g.stroke();
+    hsDrawPen(g,x+HS_TC/2,HS_TY+HS_TC/2,HS_TC-9,1,card,'rgba(255,248,225,.95)');
+    g.fillStyle='#FFD54F';g.font='9px sans-serif';g.textAlign='center';
+    /* 牌上只写色名：写了第几笔就等于把答案印在题目上 */
+    g.fillText(hsMarkOf(card),x+HS_TC/2,HS_TY+HS_TC+9);
+  }
+  g.restore();
+}
+/* ---- ④ 工艺卡：眼下这几本的账（第 4 场起 on / off 收走）---- */
+function hsSpecLines(){
+  const rec=hs.rec,L=hs.lv,tell=hsNoTell(L)&&!hs.probeShow;
+  if(!rec)return ['工艺卡','案上没字'];
+  const out=['工艺卡 · 第 '+(hs.wi+1)+'/'+HS_PER+' 字'];
+  out.push('眼下 '+(hs.I<0?('反向 '+(-hs.I)+' 档'):hs.I+' 档'));
+  out.push('吸盘 '+hs.held.length+' / '+hsPoleN()+' 张');
+  out.push('接料盘 '+hs.tray.length+' / '+HS_TRAY+' 张');
+  if(tell){
+    out.push('吸合档 ——');
+    out.push('脱开档 ——');
+  }else{
+    let on='',off='';
+    for(let i=0;i<rec.n;i++){on+=(i?' ':'')+hsOnOf(rec.ts[i]);off+=(i?' ':'')+hsFreeOf(rec.ts[i])}
+    out.push('吸合档 '+on);
+    out.push('脱开档 '+off);
+  }
+  out.push('一炉热 '+hs.heat+' / '+hs.curie);
+  out.push('一卷电剩 '+hs.batt+' 档');
+  out.push('本字落定 '+hs.done.length+' / '+rec.n+' 笔');
+  return out;
+}
+function hsDrawSpec(g){
+  const L=hs.lv;
+  g.save();
+  g.fillStyle='rgba(255,244,214,.10)';
+  hsRoundRect(g,HS_SX,HS_SY,HS_SW,HS_SH,10);g.fill();
+  g.strokeStyle='rgba(255,213,79,.55)';g.lineWidth=1.4;
+  hsRoundRect(g,HS_SX,HS_SY,HS_SW,HS_SH,10);g.stroke();
+  const ls=hsSpecLines();
+  const pitch=Math.max(10,Math.min(13,Math.floor((HS_SH-30)/Math.max(1,ls.length-1))));
+  g.textAlign='left';
+  g.fillStyle='#FFE082';g.font='bold 11px sans-serif';
+  g.fillText(ls[0],HS_SX+8,HS_SY+18);
+  g.fillStyle=hs.probeShow?'#B3E5FC':'#CFD8DC';g.font='10px sans-serif';
+  for(let i=1;i<ls.length;i++)g.fillText(ls[i],HS_SX+8,HS_SY+18+i*pitch);
+  if(hs.probeShow){
+    g.fillStyle='#84FFFF';g.font='9px sans-serif';
+    g.fillText('📐 测档：这几行是量出来的（本字有效）',HS_SX+6,HS_SY+HS_SH-4);
+  }else if(hsNoTell(L)){
+    g.fillStyle='#BCAAA4';g.font='9px sans-serif';
+    g.fillText('听「咔」那一响自己数档',HS_SX+8,HS_SY+HS_SH-4);
+  }
+  g.restore();
+}
+/* ---- ⑤ 电磁铁：线圈 + 铁芯 + 吸盘上那几张牌 ---- */
+function hsHeldX(k,count){return HS_COLX+(k-(count-1)/2)*42}
+function hsDrawCoil(g){
+  const rec=hs.rec;
+  g.save();
+  /* 铁芯 */
+  g.fillStyle='rgba(120,144,156,.5)';
+  hsRoundRect(g,HS_COLX-16,HS_COILY,32,HS_COILH,4);g.fill();
+  /* 线圈：励磁到几档就绕几道，反向是蓝的 */
+  const turns=Math.max(0,Math.min(HS_IMAX,hs.I));
+  g.strokeStyle=hs.I<0?'#4FC3F7':(turns?'#FFCC80':'rgba(255,204,128,.25)');
+  g.lineWidth=1.6;
+  for(let j=0;j<Math.max(2,turns);j++){
+    const x=HS_COLX-14+j*2.2;
+    g.beginPath();g.arc(x,HS_COILY+HS_COILH/2,HS_COILH/2-2,0,Math.PI*2);g.stroke();
+  }
+  g.strokeStyle='rgba(215,204,200,.5)';g.lineWidth=1.4;
+  hsRoundRect(g,HS_COLX-20,HS_COILY-4,40,HS_COILH+8,6);g.stroke();
+  /* 引线接到档位尺 */
+  g.strokeStyle='rgba(255,213,79,.4)';g.lineWidth=1;
+  g.beginPath();
+  g.moveTo(HS_COLX-20,HS_COILY+HS_COILH);g.lineTo(HS_KX+HS_KW/2,HS_KY);
+  g.stroke();
+  g.fillStyle='#BCAAA4';g.font='10px sans-serif';g.textAlign='center';
+  g.fillText('电磁吸盘 · '+(hs.I<0?('反向 '+(-hs.I)):hs.I)+' 档',HS_COLX,HS_COILY-10);
+  g.restore();
+  if(!rec)return;
+  /* 吸盘下挂住的牌：一张一张并排挂，最右那一张就是「贪多」的证据 */
+  const cnt=hs.held.length;
+  for(let k=0;k<cnt;k++){
+    const i=hs.held[k],x=hsHeldX(k,cnt);
+    g.save();
+    g.strokeStyle='rgba(255,213,79,.55)';g.lineWidth=1.2;
+    g.beginPath();g.moveTo(x,HS_COILY+HS_COILH+4);g.lineTo(x,HS_HELDY);g.stroke();
+    g.fillStyle='rgba(141,110,99,.6)';
+    hsRoundRect(g,x-HS_HCW/2,HS_HELDY,HS_HCW,HS_HCH,4);g.fill();
+    g.strokeStyle='#FFD54F';g.lineWidth=1.4;
+    hsRoundRect(g,x-HS_HCW/2,HS_HELDY,HS_HCW,HS_HCH,4);g.stroke();
+    hsDrawPen(g,x,HS_HELDY+HS_HCH/2,HS_HCH-8,1,i,'rgba(255,248,225,.94)');
+    g.restore();
+  }
+  g.fillStyle='#FFE082';g.font='10px sans-serif';g.textAlign='center';
+  hsClampText(g,cnt?('吸住 '+cnt+' 张（'+hs.held.map(hsMarkOf).join('、')+'）'):
+    '吸盘上还没挂住牌',HS_COLX,HS_HELDY+HS_HCH+11);
+}
+/* ---- ⑥ 两根横条：一卷电（这一场）· 一炉热（这一字）---- */
+function hsDrawGauges(g){
+  const x=14,w=132;
+  const bp=Math.max(0,Math.min(1,hs.batt/Math.max(1,hs.batt0)));
+  const hp=Math.max(0,Math.min(1,hs.heat/Math.max(1,hs.curie)));
+  g.save();
+  g.fillStyle='rgba(255,255,255,.12)';
+  hsRoundRect(g,x,156,w,15,7);g.fill();
+  if(bp>0){
+    g.fillStyle=bp<.25?'rgba(255,82,82,.85)':'rgba(129,199,132,.8)';
+    hsRoundRect(g,x,156,Math.max(6,w*bp),15,7);g.fill();
+  }
+  g.fillStyle='#0D0A06';g.font='bold 10px sans-serif';g.textAlign='center';
+  g.fillText('🔋 一卷电剩 '+hs.batt+' 档',x+w/2,167);
+  g.fillStyle='rgba(255,255,255,.12)';
+  hsRoundRect(g,x,178,w,15,7);g.fill();
+  if(hp>0){
+    g.fillStyle=hp>.75?'rgba(255,82,82,.9)':'rgba(255,138,101,.85)';
+    hsRoundRect(g,x,178,Math.max(6,w*hp),15,7);g.fill();
+  }
+  g.fillStyle='#1A1206';g.font='bold 10px sans-serif';g.textAlign='center';
+  g.fillText('🔥 一炉热 '+hs.heat+' / '+hs.curie,x+w/2,189);
+  g.fillStyle='#BCAAA4';g.font='9px sans-serif';g.textAlign='left';
+  g.fillText(hp>.75?'⚠ 快到居里点了，热过头全体退磁':'热＝档程＋'+HS_H+'×重走的格数',x,203);
+  g.fillStyle='#90A4AE';
+  g.fillText('已走 '+hs.battUsed+' 档程 · 重复 '+hs.retr+' 格',x,216);
+  g.restore();
+}
+/* ---- ⑦ 档位尺：−3 到 +10，0 档加粗；正档上头小三角是吸合档，格子下沿红痣是重走过 ---- */
+function hsCellW(){return HS_KW/(HS_IMAX+HS_NEG+1)}
+function hsCellX(I){return HS_KX+(I+HS_NEG)*hsCellW()}
+function hsDrawScale(g){
+  const rec=hs.rec,L=hs.lv,tell=!(hsNoTell(L)&&!hs.probeShow);
+  const cw=hsCellW(),y=HS_KY,h=HS_KH;
+  g.save();
+  for(let I=-HS_NEG;I<=HS_IMAX;I++){
+    const x=hsCellX(I),now=(I===hs.I);
+    g.fillStyle=now?(I>0?'rgba(255,213,79,.85)':'rgba(79,195,247,.8)'):'rgba(255,255,255,.08)';
+    hsRoundRect(g,x+1,y,cw-2,h,4);g.fill();
+    g.fillStyle=now?'#1A1206':'#B0BEC5';g.font=(now?'bold ':'')+'9px sans-serif';g.textAlign='center';
+    g.fillText(I,x+cw/2,y+h/2+3);
+    if(I===0){g.strokeStyle='#CFD8DC';g.lineWidth=1.6;hsRoundRect(g,x+1,y,cw-2,h,4);g.stroke()}
+    if(hs.edge[I+HS_NEG]>1){
+      g.fillStyle='#EF5350';
+      g.beginPath();g.arc(x+cw/2,y+h+3,1.8,0,Math.PI*2);g.fill();
+    }
+    /* 这一格上头有几个吸合档：跨过它就要一口气吸上几张 */
+    if(tell&&rec&&I>0){
+      let c=0;
+      for(let i=0;i<rec.n;i++)if(hsOnOf(rec.ts[i])===I)c++;
+      if(c){
+        g.fillStyle='rgba(255,204,128,.9)';g.font='8px sans-serif';
+        g.fillText('▲'+c,x+cw/2,y-3);
+      }
+    }
+  }
+  g.fillStyle='#D7CCC8';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText('档位尺 · 一次只挪一格',HS_KX,HS_KY-6);
+  g.fillStyle='#8D6E63';g.font='9px sans-serif';g.textAlign='right';
+  g.fillText('反向＝去磁',HS_KX+HS_KW,HS_KY-6);
+  g.restore();
+}
+/* ---- ⑧ 料架：每一笔一片铁牌，牌上画这一笔的模样，厚薄写在牌下沿 ---- */
+function hsRackX(pos){return HS_RSX+pos*HS_RSP}
+function hsDrawRack(g){
+  const rec=hs.rec,L=hs.lv;
+  g.save();
+  g.strokeStyle='rgba(215,204,200,.5)';g.lineWidth=2;
+  g.beginPath();g.moveTo(14,HS_RY);g.lineTo(HS_W-14,HS_RY);g.stroke();
+  g.fillStyle='#BCAAA4';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText('料架',HS_RSX+7*HS_RSP,HS_RY-HS_RSH+9);
+  if(!rec){g.restore();return}
+  for(let i=0;i<rec.n;i++){
+    const pos=hs.slot[i],x=hsRackX(pos),y=HS_RY-HS_RSH;
+    if(hsDoneOf(i)){
+      g.strokeStyle='rgba(129,199,132,.35)';g.lineWidth=1;g.setLineDash([3,3]);
+      hsRoundRect(g,x,y,HS_RSW,HS_RSH,4);g.stroke();g.setLineDash([]);
+      continue;
+    }
+    if(!hsInRack(i))continue;              /* 挂在吸盘上或站在接料盘里的，牌面上就不画了 */
+    g.fillStyle='rgba(93,64,55,.62)';
+    hsRoundRect(g,x,y,HS_RSW,HS_RSH,4);g.fill();
+    g.strokeStyle=hs.tray.length?'rgba(215,204,200,.22)':'rgba(255,213,79,.5)';
+    g.lineWidth=1.2;
+    hsRoundRect(g,x,y,HS_RSW,HS_RSH,4);g.stroke();
+    hsDrawPen(g,x+HS_RSW/2,y+HS_RSH/2,HS_RSH-8,1,i,'rgba(255,244,220,.9)');
+    /* 牌下沿写的是色名，不是第几笔：色名由种子洗出来，与笔顺对不上号 */
+    g.fillStyle='#FFD54F';g.font='9px sans-serif';g.textAlign='center';
+    g.fillText(hsMarkOf(i),x+HS_RSW/2,HS_RY+8);
+    if(!hsDim(L)){
+      g.fillStyle='#D7CCC8';
+      g.fillText(rec.ts[i]+' 点',x+HS_RSW/2,HS_RY+18);
+    }
+  }
+  g.restore();
+}
+function hsDraw(){
+  const g=hsCv();
+  if(!g)return;
+  g.setTransform(1,0,0,1,0,0);
+  g.clearRect(0,0,HS_W,HS_CVH);
+  hsDrawGrid(g);
+  hsDrawLoop(g);
+  hsDrawTray(g);
+  hsDrawSpec(g);
+  hsDrawCoil(g);
+  hsDrawGauges(g);
+  hsDrawScale(g);
+  hsDrawRack(g);
+  if(!hs.rec){
+    g.fillStyle='#5D4037';g.font='13px sans-serif';g.textAlign='center';
+    g.fillText('料架上还没片牌',HS_COLX,HS_HELDY+10);
+  }
+}
+
+/* ================= 界面：七行账、五支条、四件家什 ================= */
+function hsEl(id){return document.getElementById(id)}
+function hsPut(id,txt){const e=hsEl(id);if(e)e.textContent=txt}
+/* 带排版的行只给产品自己写的那几句用（句中没有一处来自孩子的手）*/
+function hsPutH(id,txt,color){const e=hsEl(id);if(e){e.innerHTML=txt;color&&(e.style.color=color)}}
+function hsBar(id,p){const e=hsEl(id);if(!e)return;p=Math.max(0,Math.min(1,p));e.style.width=Math.round(p*100)+'%';const r=e.parentNode;if(r)r.classList.toggle('low',p<.25)}
+function hsMsg(txt,color){
+  hs.msg=txt;
+  const e=hsEl('hsMsg');
+  if(e){e.innerHTML=txt;color&&(e.style.color=color)}
+}
+function hsTag(txt,kind){
+  const e=hsEl('hsTag');
+  if(!e)return;
+  /* 屏上这几句是产品自己写的话（句中没有一处来自孩子的手），里头带着要加粗的那几个字 */
+  e.innerHTML=txt;
+  e.className='hs-tag on'+(kind?(' '+kind):'');
+  clearTimeout(hs.tagTimer);
+  hs.tagTimer=setTimeout(function(){e.classList.remove('on')},HS_TAG_MS);
+}
+/* 上台之前把案面擦干净：屏上不许留着上一字的话 */
+function hsClearTag(){
+  clearTimeout(hs.tagTimer);
+  const e=hsEl('hsTag');
+  if(e){e.textContent='🧲 吸盘通了电';e.className='hs-tag'}
+}
+/* 省头这一句只说「有没有更省的那条道」，不替孩子报数：报了数就等于替他把路线走了 */
+function hsHintTxt(){
+  if(!hs.rec)return '案上没字';
+  if(hs.tray.length)return '🎯 接料盘上 '+hs.tray.length+' 张：先认左边那一张';
+  if(hs.held.length)return '🧲 吸盘挂住 '+hs.held.length+' 张：退到脱开档才落得进盘';
+  return '💡 往上冲还是稳着走：冲得高一口气吸一串，可同一段路再走一遍要交两份热';
+}
+function hsHelpText(){
+  return '🧲 <b>一片就是一笔</b>：牌厚＝这一笔的真实长度 ÷'+HS_K+'（料架上写的几「点」）；励磁到 I 档吸得住的条件是 <b>I ≥ on＝⌈厚÷2⌉</b><br>'+
+    '⬆️ <b>上升支</b>：档位一格一格挪（<code>← →</code> 或点档位尺），<b>跨过几个 on 就一口气吸上几张</b> —— 这就是「升过头，连吸一串」；吸盘最多挂 '+hsPoleN()+' 张，挂不住的最弱那几张挤回料架<br>'+
+    '⬇️ <b>下降支</b>：断了电铁芯还有<b>剩磁</b>，顶得住 '+HS_BR+' 档 ⇒ 吸上的牌要降到 <b>off−1</b> 才脱得开（off＝max(0,on−'+HS_BR+')）；薄牌（on ≤ '+HS_BR+'）的 off 是 0 —— <b>降到 0 档还挂着不掉</b>，只有打进反向第 '+HS_COER+' 档（那叫<b>矫顽力</b>）才「啪」地退磁<br>'+
+    '🌀 <b>迟滞带</b>：on 与 off 之间那一段，牌在不在吸盘上全看孩子是怎么走到这一档的 —— 从下面升上来还在料架上，从上面降下来还挂在吸盘上。<b>这一坊的全部机关就是这两条支路不重合</b><br>'+
+    '🔋 <b>两本账都是路径的积分</b>：电池（档程）＝Σ|每步挪几档|，升降都吃，一卷 '+hs.batt0+' 档管这一场三个字；🔥 热＝电池＋'+HS_H+'×<b>重走过的格数</b> —— 单调一条道走过去只交一份，来回试探就把同一段烧两遍，一炉 '+hs.curie+' 点热到<b>居里点</b>全体退磁<br>'+
+    '📐 <b>回线图</b>：横着是档位、竖着是吸住几张。往上冲那一段画青、退下来那一段画橙、<b>同一条档位再走第二遍就红起来</b> —— 红的那几段围出来的就是回线面积，就是白烧掉的铁损<br>'+
+    '🎯 <b>落定还有一问</b>：牌掉进接料盘（盘只 '+HS_TRAY+' 格，第三张挤回料架）之后要点字排上它那一笔的淡墨位置 —— <code>1~'+(hs.rec?hs.rec.n:7)+'</code> 也能答，<b>认错一片这一片退回料架</b>，那一趟路白走<br>'+
+    '🧊 <code>O</code> 降温退热 · 🪄 <code>T</code> 抖料（不降档也能摘一张）· 📐 <code>P</code> 测档看 on/off · 🔁 <code>R</code> 换字 · 🧹 <code>X</code> 卸料回炉 · <code>1~7</code> 认槽 · <code>←→</code> 挪档 · <code>H</code> 看说明';
+}
+function hsAskTxt(){
+  const rec=hs.rec,L=hs.lv;
+  if(hs.load)return '🧲 正在选料……<br><small>在字库里找「厚薄跨度够、两条支路真打架、而且最优路收得齐」的字</small>';
+  if(hs.helpMs>0)return hsHelpText();
+  if(!rec)return '🧲 <b>案上空着</b>：这一场的字已经收完';
+  if(hs.tray.length){
+    const card=hsActCard();
+    return '🎯 <b>'+hsMarkOf(card)+'是哪一笔？</b>点字排上那一笔，或按 <b>1~'+rec.n+'</b>'+
+      '<br><small>牌上的墨样就是那一笔的模样，长短就是厚薄 · 认槽钟还有 '+Math.ceil(hs.placeMs/1000)+' 秒 · 盘上还有 '+(hs.tray.length-1)+' 张排队</small>'+
+      (hs.tray.length>1?'<br><small>⚠ 盘只 '+HS_TRAY+' 格：不认掉这张，下一张掉下来就挤回料架</small>':'');
+  }
+  if(hs.held.length){
+    return '🧲 <b>吸盘挂着 '+hs.held.length+' 张</b>（'+hs.held.map(hsMarkOf).join('、')+'）：往下降到它的脱开档才落进盘'+
+      '<br><small>'+hsFieldTxt(hs.I)+' · 现在 '+hs.I+' 档 · 一炉热 '+hs.heat+' / '+hs.curie+
+      (hsNoTell(L)?' · on/off 卡上不写了，听「咔」那一响':'')+' · 这一字钟还有 '+Math.ceil(hs.wordMs/1000)+' 秒</small>';
+  }
+  return '💡 <b>励磁往几档冲？</b>按 <code>→</code> 升一档（点档位尺右半边也行）'+
+    '<br><small>'+hsFieldTxt(hs.I)+' · 吸合档'+(hsNoTell(L)&&!hs.probeShow?'自己听':'从小到大排')+' · 跨过几个 on 就吸上几张'+
+    ' · 已落定 '+hs.done.length+'/'+rec.n+' 笔 · 一卷电剩 '+hs.batt+' 档</small>';
+}
+function hsSync(){
+  const rec=hs.rec,L=hs.lv;
+  /* 题头跟着盘走：盘上有牌就问「它是第几笔」，盘空了问句交还给励磁那一头。
+     这一处是唯一的口径 —— 凡是动过接料盘的手落完都走到这儿来重认一次，别处只许读不许写 */
+  hs.phase=hs.tray.length?'answer':'field';
+  hsPut('hsScoreTxt','🧲 '+hs.score+' 分');
+  hsPut('hsLvTxt','第 '+L+' 场 · 收 '+hs.words+' 字');
+  hsPut('hsQTxt','⏳ '+(hs.phase==='answer'?'认槽 ':'励磁 ')+
+    Math.ceil((hs.phase==='answer'?hs.placeMs:hs.wordMs)/1000)+' 秒');
+  const rk=hsRank(auxInt('hz_hs_words')+hs.words);
+  hsPut('hsRankTxt',rk.e+' '+rk.t);
+  let hs2='';for(let i=0;i<hs.hearts;i++)hs2+='❤️';
+  hsPut('hsHeartTxt',hs2||'💔');
+  hsPut('hsComboTxt','🔥 连 '+hs.combo);
+  hsPut('hsLotTxt','🈶 第 '+(hs.wi+1)+'/'+HS_PER+' 字 · 第 '+(hs.done.length+1)+' 片'+(rec?(' · 共 '+rec.n+' 笔'):''));
+  /* 只报这一档吸得住多厚的牌，不报每片牌的 on/off：那几行是式子的答案，念出来等于替孩子把路线走了 */
+  hsPut('hsFieldTxt','🧲 '+hsFieldTxt(hs.I));
+  const light=hsEl('hsHitLight');
+  if(light){
+    const t=(hs.tray.length&&hs.hitOk===0)?'🎯 该认槽了':
+      (hs.hitTxt?hs.hitTxt:(rec?(hs.held.length?'🧲 挂着牌':'✖ 吸盘空着'):'✖ 案上没字'));
+    light.textContent=t;
+    light.style.color=hs.hitOk>0?'#A5D6A7':(hs.hitOk<0?'#EF9A9A':'#FFE082');
+  }
+  hsBar('hsPlaceBar',hs.placeMs/Math.max(1,hs.place0));
+  hsBar('hsWordBar',hs.wordMs/Math.max(1,hs.wordMs0));
+  hsBar('hsLampBar',hs.lamp/Math.max(1,hs.lamp0));
+  hsBar('hsBattBar',hs.batt/Math.max(1,hs.batt0));
+  hsBar('hsHeatBar',1-hs.heat/Math.max(1,hs.curie));
+  hsPut('hsPlaceTxt','🎯 认槽 '+Math.ceil(hs.placeMs/1000)+' 秒');
+  hsPut('hsWordTxt','🈶 这一字 '+Math.ceil(hs.wordMs/1000)+' 秒');
+  hsPut('hsLampTxt','💡 这一场 '+Math.ceil(hs.lamp/1000)+' 秒');
+  hsPut('hsBattBig','🔋 电 '+hs.batt+' / '+hs.batt0+' 档');
+  hsPut('hsHeatBig','🔥 热 '+hs.heat+' / '+hs.curie+' 点');
+  const ask=hsEl('hsAsk');
+  if(ask)ask.innerHTML=hsAskTxt();
+  const hl=hsEl('hsHintTxt');
+  if(hl)hl.innerHTML=hsHintTxt();
+  hsPut('hsStepTxt','现在 '+hs.I+' 档 · 吸盘 '+hs.held.length+'/'+hsPoleN()+' · 盘 '+hs.tray.length+'/'+HS_TRAY);
+  const lb=hsEl('hsDownBtn'),rb=hsEl('hsUpBtn');
+  const can=!!rec&&!hs.over&&!hs.locked;
+  if(lb)lb.disabled=!can||hs.I<=-HS_NEG;
+  if(rb)rb.disabled=!can||hs.I>=HS_IMAX;
+  const db=hsEl('hsDumpBtn');
+  if(db)db.disabled=!can||!hs.tray.length;
+  const ab=hsEl('hsActBtn');
+  if(ab){
+    ab.disabled=!can;
+    ab.classList.toggle('ready',!!(can&&hs.tray.length));
+    const small=hs.tray.length?'点字排上它那一笔 —— 1～'+(rec?rec.n:7)+' 也能按':
+      (hs.held.length?'往下降：退到脱开档才落得进盘':'往上升一档：跨过几个 on 就吸几张');
+    ab.innerHTML=(hs.tray.length?'🎯 认槽':(hs.held.length?'⬇ 降一档':'⬆ 升一档'))+'<small>'+small+'</small>';
+  }
+  const btns=[['hsIceBtn',hs.iceN],['hsShakeBtn',hs.shakeN],['hsProbeBtn',hs.probeN],['hsSwapBtn',hs.swapN]];
+  for(let i=0;i<btns.length;i++){
+    const b=hsEl(btns[i][0]);
+    if(b){
+      const n=b.getElementsByTagName('b')[0];
+      if(n)n.textContent='剩 '+btns[i][1];
+      b.disabled=btns[i][1]<=0||!rec||hs.over||hs.locked;
+    }
+  }
+}
+
+/* ================= 这一场的手：上字、挪档、吸料、脱料、认槽、归位、四件家什 ================= */
+/* ---- 上字：错字本上的字优先挑回来，其次挑本场没上过案的 ---- */
+function hsTake(){
+  const pool=hs.pool;
+  if(!pool.length)return null;
+  for(let i=0;i<hs.miss.length;i++){
+    for(let k=0;k<pool.length;k++){
+      if(pool[k].ch===hs.miss[i]&&hs.seen.indexOf(pool[k].ch)<0)return pool[k];
+    }
+  }
+  const fresh=[];
+  for(let k=0;k<pool.length;k++)if(hs.seen.indexOf(pool[k].ch)<0)fresh.push(pool[k]);
+  const list=fresh.length?fresh:pool;
+  return list[Math.floor(Math.random()*list.length)];
+}
+/* ---- 这一字的赏钱门槛：拿这个字最省那条道算，多走 2 格、多烧 8 点以内都算数（这份赏一定是实的）---- */
+function hsCaps(rec,L){
+  const best=hsBestRoute(rec.ts,L);
+  if(!best)return {mono:99,cool:99};
+  return {mono:best.retr+HS_MONO_SLACK,cool:best.heat+HS_COOL_SLACK,batt:best.batt,heat:best.heat,retr:best.retr};
+}
+/* ---- 一个字上台：几片牌、多厚、叫什么色，都由「字 + 场」的种子定死，重来一遍一模一样 ---- */
+function hsSetWord(rec,flash){
+  const L=hs.lv;
+  hs.rec=rec;hs.seed=auxSeedOf(rec.ch,L);hs.fresh=hsFresh(rec.ch);
+  const cap=hsCaps(rec,L);
+  hs.monoCap=cap.mono;hs.coolCap=cap.cool;
+  hs.rack=[];for(let i=0;i<rec.n;i++)hs.rack.push(i);
+  hs.held=[];hs.tray=[];hs.done=[];
+  hs.slot=hsSlots(rec,L,hs.seed);hs.mark=hsMarks(rec,L,hs.seed);
+  hs.I=0;hs.heat=0;hs.curie=hsCurie(L);hs.peak=0;hs.iceOff=0;
+  hs.wBatt=0;hs.wPulls=0;hs.grace=0;
+  hs.edge=[];hs.retr=0;hs.fwd=0;hs.back=0;hs.sweeps=0;hs.lastDir=0;
+  hs.trace=[{I:0,held:0}];
+  hs.place0=hsPlace(L);hs.placeMs=hs.place0;
+  hs.wordMs0=hsWord(L);hs.wordMs=hs.wordMs0;
+  hs.cleanWord=1;hs.neatWord=1;hs.monoWord=1;hs.coolWord=1;hs.wordTools=0;hs.probeShow=0;
+  hs.locked=0;hs.sel=-1;
+  hs.seen.push(rec.ch);
+  hsTone(620,70);
+  hsTag((flash||'')+'🈶 上案：'+rec.n+' 片铁牌 · 一炉 '+hs.curie+' 点热 · 一卷电剩 '+hs.batt+' 档','gold');
+  hsSync();hsDraw();
+}
+/* 掉进盘里那一张的认槽钟：每掉下来一张就重给一支 */
+function hsResetPlace(){hs.place0=hsPlace(hs.lv);hs.placeMs=hs.place0}
+/* ---- 挪档：一次只许挪一格。账在这儿结，状态迁移交给 ② 那一只函数 ---- */
+function hsStep(d){
+  if(!hs.rec||hs.over||hs.locked)return;
+  if(hs.batt<=0){hsBattOut();return}
+  const dir=d>0?1:-1;
+  const to=hs.I+dir;
+  if(to>HS_IMAX){hsTag('已经是最高 '+HS_IMAX+' 档：最厚的牌也吸住了，再升没有新牌');return}
+  if(to<-HS_NEG){hsTag('反向到 −'+HS_NEG+' 档了：矫顽力使到底就是这一档');return}
+  if(hs.lastDir&&dir!==hs.lastDir)hs.sweeps++;
+  hs.lastDir=dir;
+  const from=hs.I;
+  hs.I=to;hs.pulls++;
+  if(dir>0)hs.fwd++;else hs.back++;
+  const e=Math.min(from,to)+HS_NEG;
+  hs.edge[e]=(hs.edge[e]||0)+1;
+  hs.batt--;hs.battUsed++;hs.wBatt++;hs.wPulls++;
+  if(hs.edge[e]>1){hs.retr++;hs.heat+=1+HS_H}else hs.heat+=1;
+  if(hs.heat>hs.peak)hs.peak=hs.heat;
+  if(hs.retr>hs.monoCap)hs.monoWord=0;
+  if(hs.peak>hs.coolCap)hs.coolWord=0;
+  if(hs.heat>=hs.curie){hsCurieOut();return}
+  hsApply();
+}
+/* ---- 状态迁移：把眼下这一档落到三堆牌上，再把「咔」「啪」那几声响报给孩子 ---- */
+function hsApply(){
+  const ts=hs.rec.ts;
+  const st={I:hs.I,rack:hs.rack,held:hs.held,tray:hs.tray};
+  const ev=hsField(ts,st,hsPole(hs.lv),HS_TRAY);
+  hs.rack=st.rack;hs.held=st.held;hs.tray=st.tray;
+  hs.grace=0;                        /* 挪过档了：料架上不该再留着吸得住的牌 */
+  for(let i=0;i<ev.grab.length;i++)hs.grabs++;
+  for(let i=0;i<ev.drop.length;i++)hs.drops++;
+  if(ev.grab.length>1)hs.multi++;
+  if(ev.drop.length&&hs.I<0)hs.coerN+=ev.drop.length;
+  if(ev.squeez.length){
+    hs.scatN+=ev.squeez.length;hs.cleanWord=0;hs.neatWord=0;hs.combo=0;
+    hs.score-=HS_P_SCAT*ev.squeez.length;
+    hs.hitOk=-1;hs.hitTxt='✖ 挤回料架 · −'+(HS_P_SCAT*ev.squeez.length);
+    hsTone(170,200);
+  }
+  if(ev.spill.length){
+    hs.scatN+=ev.spill.length;hs.cleanWord=0;hs.neatWord=0;hs.combo=0;
+    hs.score-=HS_P_SCAT*ev.spill.length;
+    hs.hitOk=-1;hs.hitTxt='✖ 盘满挤回 · −'+(HS_P_SCAT*ev.spill.length);
+    hsTag('🪤 接料盘只 '+HS_TRAY+' 格：掉出来的 '+ev.spill.length+' 张没处放，挤回料架 · 倒扣 '+
+      HS_P_SCAT*ev.spill.length+' 分 —— 先认掉一张再往下退','warn');
+    hsTone(170,200);
+  }
+  if(ev.grab.length){
+    hsTone(700+ev.grab.length*80,70);
+    /* 挤牌这一句要紧（它带倒扣的数），可它单独立一句就被下面那句「咔」盖掉 ——
+       挂不住必然是这一档刚跨过吸合档（吸盘上本来就挂不满），所以把它接在吸牌那一句后面，一句话全说完 */
+    const sq=ev.squeez.length?('｜🪤 挂不住 '+ev.squeez.length+' 张：最弱那几张掉回料架 · 倒扣 '+
+      HS_P_SCAT*ev.squeez.length+' 分，想摘它们还得重走一趟'):'';
+    if(ev.grab.length>1){
+      hsTag('🧲 这一档一口气吸上 '+ev.grab.length+' 张（'+ev.grab.map(hsMarkOf).join('、')+
+        '）：升过头了 —— 跨过几个吸合档就吸几张'+sq,'cyan');
+    }else hsTag('🧲 咔 —— '+hsMarkOf(ev.grab[0])+'挂上吸盘了'+sq,'cyan');
+  }
+  if(ev.drop.length){
+    hsTone(300,120);
+    hsResetPlace();
+    hsTag((hs.I<0?'🌀 反向去磁 —— ':'🔩 掉进接料盘 —— ')+ev.drop.map(hsMarkOf).join('、')+
+      ' '+ev.drop.length+' 张：认它是第几笔','cyan');
+  }
+  hs.trace.push({I:hs.I,held:hs.held.length});
+  if(hs.trace.length>170)hs.trace.shift();
+  hsSync();hsDraw();
+}
+/* ---- 认槽：接料盘上那一片是这个字的第几笔 ---- */
+function hsAnswer(i){
+  const rec=hs.rec;
+  if(!rec||hs.over||hs.locked)return;
+  if(i<0||i>=rec.n)return;
+  if(!hs.tray.length){
+    hsTag('🎯 接料盘上还没牌：先升档吸住，再退到它的脱开档让它掉下来');
+    return;
+  }
+  const card=hsActCard();
+  if(i!==card){hsWrongMark(card,i);return}
+  hsLand(card);
+}
+function hsWrongMark(card,i){
+  const rec=hs.rec;
+  hs.wrongs++;hs.cleanWord=0;hs.hearts--;hs.combo=0;
+  hs.score-=HS_P_WRONG;
+  hs.hitOk=-1;hs.hitTxt='✖ 认错了 · −'+HS_P_WRONG;
+  /* 认错的那一片退回料架：这一趟路白走 —— 想再摘它，档位得重走一遍，两本账跟着多一笔 */
+  hs.tray=hs.tray.filter(function(x){return x!==card});
+  hs.rack.push(card);hs.rack.sort(function(a,b){return a-b});
+  /* 手工请回料架的这几片不走 ② 那一步：料架上可能留着「这一档明明吸得住」的牌 ——
+     下一次挪档过 ② 就归位了，自检拿这个标记区分「案面 settling 了」与「刚被人为塞回去」*/
+  hs.grace=1;
+  hsTag('✖ 第 '+(i+1)+' 笔是「'+rec.dn[i]+'·'+rec.ts[i]+' 点厚」，'+hsMarkOf(card)+'不是它：倒扣 '+HS_P_WRONG+
+    ' 分 · 掉一颗心 · 这一片退回料架（再摘它得重走一趟）','warn');
+  hsTone(150,260);hsSay('✖ 认错了');
+  if(hs.hearts<=0){hsEnd('hearts');return}
+  if(!hs.tray.length)hs.placeMs=hs.place0;
+  hsSync();hsDraw();
+}
+/* ---- 归位：牌认了主就回到字排上那一笔，一笔染墨 ---- */
+function hsLand(i){
+  const rec=hs.rec;
+  hs.tray=hs.tray.filter(function(x){return x!==i});
+  hs.done.push(i);hs.strokes++;
+  const pts=Math.round(HS_M0+hs.combo*HS_M_CB+hs.lv*HS_M_LV);
+  hs.score+=pts;hs.gain=pts;hs.combo++;
+  if(hs.combo>hs.maxCombo)hs.maxCombo=hs.combo;
+  hs.hitOk=1;hs.hitTxt='✔ 归位 +'+pts;
+  hsTone(1000,120);
+  hsTag('🧱 归位：'+hsMarkOf(i)+'就是第 '+(i+1)+' 笔（'+rec.dn[i]+'·'+rec.ts[i]+' 点）· +'+pts+
+    ' 分 · 盘上还有 '+hs.tray.length+' 张 · 本字落定 '+hs.done.length+'/'+rec.n,'gold');
+  hsSay('✔ 归位 +'+pts);
+  if(hs.done.length>=rec.n){hsCollect();return}
+  if(hs.tray.length)hsResetPlace();
+  hsSync();hsDraw();
+}
+/* 🧹 卸料：盘上那几张自己请回料架（不吃档程，倒扣三分）*/
+function hsDump(){
+  if(!hs.rec||hs.over||hs.locked)return;
+  if(!hs.tray.length){hsTag('🧹 接料盘是空的，没得卸');return}
+  const n=hs.tray.length;
+  hs.dumps++;hs.cleanWord=0;hs.combo=0;
+  hs.score-=HS_P_DUMP;
+  hs.hitOk=-1;hs.hitTxt='🧹 卸料 · −'+HS_P_DUMP;
+  for(let i=0;i<n;i++)hs.rack.push(hs.tray[i]);
+  hs.tray=[];
+  hs.rack.sort(function(a,b){return a-b});
+  hs.grace=1;
+  hsTag('🧹 卸回 '+n+' 张：倒扣 '+HS_P_DUMP+' 分 —— 这几片的脱开档还得重走一趟','warn');
+  hsTone(200,180);hsSay('🧹 卸回料架了');
+  hsSync();hsDraw();
+}
+/* ---- 收字：每一片都认了主才算收成，几笔赏钱在这一息一次结清 ---- */
+function hsCollect(){
+  const rec=hs.rec;
+  if(!rec)return;
+  hs.words++;hs.locked=1;
+  let add=HS_WORD_PTS,txt='🈶 收字：+'+HS_WORD_PTS;
+  if(hs.cleanWord){add+=HS_CLEAN_PTS;hs.cleanRun++;txt+=' · 一字零罚 +'+HS_CLEAN_PTS}else hs.cleanRun=0;
+  /* 三份「省头」赏各按这个字自己那条最省的道结算：门槛是模型算出来的，孩子够得着 */
+  if(hs.monoWord){add+=HS_MONO_PTS;txt+=' · 少回头（重走 '+hs.retr+' ≤ '+hs.monoCap+' 格）+'+HS_MONO_PTS;auxAdd('hz_hs_mono',1)}
+  if(hs.coolWord){add+=HS_COOL_PTS;txt+=' · 热没多烧（峰值 '+hs.peak+' ≤ '+hs.coolCap+' 点）+'+HS_COOL_PTS;auxAdd('hz_hs_cool',1)}
+  if(hs.neatWord){add+=HS_NEAT_PTS;txt+=' · 一张不挤 +'+HS_NEAT_PTS;auxAdd('hz_hs_neat',1)}
+  if(!hs.wordTools){add+=HS_TOOL_PTS;txt+=' · 家什一回没借 +'+HS_TOOL_PTS}
+  hs.score+=add;
+  hsBookPut(rec.ch);
+  if(hs.cleanRun>=HS_PER){hs.cleanRun=0;hs.toolRun++;hs.score+=HS_TOOL_PTS;hsSay('🧰 整场三字零罚 +'+HS_TOOL_PTS)}
+  /* 收满三字补一颗心：光吸得住不算本事，片片认齐归齐才算收成 */
+  if(hs.words%HS_PER===0&&hs.hearts<HS_HEART_MAX)hs.hearts++;
+  hs.hitOk=1;hs.hitTxt='🈶 收齐 · +'+add;
+  hsTone(1040,220);
+  hsTag(txt,'gold');
+  if(typeof spawnConfetti==='function'){try{spawnConfetti()}catch(e){}}
+  hsSync();hsDraw();
+  hsT(hsNextWord,1250);
+}
+/* ---- 换下一个字：一场三字收完就换场（换一卷电、换一盏场灯、炉子跟着换一块）---- */
+async function hsNextWord(){
+  if(!hs.run||hs.over)return;
+  if(hs.hearts<=0){hsEnd('hearts');return}
+  hs.wi++;
+  let flash='';
+  if(hs.wi>=HS_PER){
+    hs.wi=0;hs.lv=Math.min(9,hs.lv+1);
+    hs.seen=[];
+    hs.batt0=hsBatt(hs.lv);hs.batt=hs.batt0;hs.battUsed=0;
+    hs.lamp0=hsLamp(hs.lv);hs.lamp=hs.lamp0;
+    hs.cleanRun=0;
+    flash='💡 第 '+hs.lv+' 场上灯：一卷新电 '+hs.batt+' 档 · 吸盘挂 '+hsPole(hs.lv)+' 张 · ';
+    hsSay('第 '+hs.lv+' 场：换了新的一卷电、新点了一盏场灯');
+  }
+  if(!hs.pool.length){hs.pool=[];hs.seen=[]}
+  if(!hs.pool.length){
+    hs.load=true;hsSync();
+    const w=hsWant(hs.lv);
+    const ok=await hsBuildPool(true,w[0],w[1]);
+    hs.load=false;
+    if(!hs.run||hs.over)return;
+    if(!ok){hsEnd('pool');return}
+  }
+  const rec=hsTake();
+  if(!rec){hsEnd('pool');return}
+  hsSetWord(rec,flash);
+}
+/* 这个字散了：字钟尽、换字都走这一条道 —— 进错字本，下一轮优先挑回来。
+   字数与场次一律交给 hsNextWord 去翻，这儿只负责把这个字请下案。 */
+function hsWordOut(heart){
+  const rec=hs.rec;
+  if(rec)hsMissPut(rec.ch);
+  hs.wordOuts++;
+  if(heart){hs.hearts--;hs.combo=0}
+  hs.cleanWord=0;hs.neatWord=0;hs.monoWord=0;hs.coolWord=0;hs.cleanRun=0;
+  hs.locked=1;
+  hs.tray=[];hs.sel=-1;
+  hsSync();hsDraw();
+  hsT(hsNextWord,900);
+}
+/* ---- 一卷电见底：档位一格也挪不动了 —— 这一场散场，换一卷重来（罚五分、掉一颗心）---- */
+function hsBattOut(){
+  hs.batt=0;hs.botts++;hs.locked=1;
+  hs.score-=HS_P_BATT;hs.hearts--;hs.combo=0;
+  hs.cleanWord=0;hs.neatWord=0;hs.monoWord=0;hs.coolWord=0;hs.cleanRun=0;
+  hsTag('🔋 一卷电用光了：这一场散场，倒扣 '+HS_P_BATT+' 分 · 掉一颗心','warn');
+  hsTone(140,320);hsSay('🔋 电见底了');
+  if(hs.hearts<=0){hsEnd('hearts');return}
+  const rec=hs.rec;
+  if(rec)hsMissPut(rec.ch);
+  hs.wi=HS_PER;                       /* 剩下的字不补了：直接进下一场、换一卷 */
+  hs.tray=[];hs.sel=-1;
+  hsSync();hsDraw();
+  hsT(hsNextWord,1100);
+}
+/* ---- 热到居里点：这一炉全体退磁 —— 挂住的、盘里的都掉回料架 ---- */
+function hsCurieOut(){
+  /* 这一炉凉了，字还是原来那个字：不像收字 / 字钟尽 / 电池见底那样要把这个字请下案，
+     所以这里不锁案面 —— 锁了就没人给它开锁，孩子连档都挪不动了 */
+  hs.curies++;
+  const lost=hs.held.length+hs.tray.length;
+  for(let i=0;i<hs.held.length;i++)hs.rack.push(hs.held[i]);
+  for(let i=0;i<hs.tray.length;i++)hs.rack.push(hs.tray[i]);
+  hs.held=[];hs.tray=[];
+  hs.rack.sort(function(a,b){return a-b});
+  hs.grace=1;
+  /* 一炉凉透：这一字的两本账跟着清零重记（热是「一炉」的，炉子换了就是一炉新的）*/
+  hs.heat=0;hs.peak=0;hs.iceOff=0;hs.wBatt=0;hs.retr=0;hs.edge=[];hs.fwd=0;hs.back=0;hs.sweeps=0;hs.lastDir=0;hs.wPulls=0;
+  hs.trace=[{I:hs.I,held:0}];
+  hs.score-=HS_P_CURIE;hs.hearts--;hs.combo=0;
+  hs.cleanWord=0;hs.monoWord=0;hs.coolWord=0;hs.monoCap=99;hs.coolCap=99;
+  hs.hitOk=-1;hs.hitTxt='🔥 居里退磁 · −'+HS_P_CURIE;
+  hsTag('🔥 热到居里点 '+hs.curie+' 了：铁芯一热就留不住磁性，挂着的 '+lost+' 张全掉回料架 —— 倒扣 '+
+    HS_P_CURIE+' 分 · 掉一颗心 · 这一炉凉了重算','warn');
+  hsTone(120,360);hsSay('🔥 到居里点，全体退磁');
+  if(hs.hearts<=0){hsEnd('hearts');return}
+  hsSync();hsDraw();
+}
+/* ================= 四件家什 ================= */
+/* 🧊 降温：这一炉的热退掉 '+HS_ICE+' 点 —— 炉子不离居里点，热这一本就压得住 */
+function hsIce(){
+  if(!hs.iceN||!hs.rec||hs.over||hs.locked)return;
+  if(hs.heat<=0){hsTag('🧊 炉子还是凉的：这会儿没热可退，别白扔一盒冰');return}
+  hs.iceN--;hs.iceUse++;hs.tools++;hs.wordTools++;
+  const before=hs.heat;
+  hs.heat=Math.max(0,hs.heat-HS_ICE);
+  hs.iceOff+=before-hs.heat;   /* 退掉的那几点要记进积分式子，不然 heat=wBatt+H×retr−iceOff 就不合了 */
+  if(hs.heat>hs.coolCap)hs.coolWord=0;
+  hsTone(880,90);
+  hsTag('🧊 上冰：这一炉的热从 '+before+' 退到 '+hs.heat+' 点（还剩 '+hs.iceN+' 盒）'+
+    (hs.heat<=hs.coolCap?'，热这一赏还要得':'，还是多烧了'),'cyan');
+  hsSync();hsDraw();
+}
+/* 🪄 抖料：不降档也能从吸盘上摘一张 —— 省下的那一段路就是它的价钱 */
+function hsShake(){
+  if(!hs.shakeN||!hs.rec||hs.over||hs.locked)return;
+  if(!hs.held.length){hsTag('🪄 吸盘上空的：先升一档吸住牌再抖');return}
+  if(hs.tray.length>=HS_TRAY){hsTag('🪄 接料盘满了：先认掉那一张再抖');return}
+  hs.shakeN--;hs.shakeUse++;hs.tools++;hs.wordTools++;
+  const ts=hs.rec.ts;
+  /* 抖掉的是吸力最弱那一张（on 最小的先松手）—— 与档位无关，这一段路就白省了 */
+  let w=0;
+  for(let i=1;i<hs.held.length;i++)if(hsOnOf(ts[hs.held[i]])<hsOnOf(ts[hs.held[w]]))w=i;
+  const card=hs.held[w];
+  hs.held.splice(w,1);
+  hs.tray.push(card);
+  hs.tray.sort(function(a,b){return a-b});
+  hs.drops++;
+  hsResetPlace();
+  /* 抖下来那一张不改档位，改的是「吸盘上挂几张」—— 回线得跟着画一笔，不然图上最后一点的挂牌数对不上案面 */
+  hs.trace.push({I:hs.I,held:hs.held.length});
+  hsTone(520,120);
+  hsTag('🪄 抖下 '+hsMarkOf(card)+'：没降档就摘下来一张（还剩 '+hs.shakeN+' 回）—— 这一趟的档程与热都省了','cyan');
+  hsSay('🪄 抖下一张');
+  hsSync();hsDraw();
+}
+/* 📐 测档：把这个字每片牌的吸合档与脱开档量出来 —— 工艺卡上那两行在第 4 场起只在这儿露脸 */
+function hsProbe(){
+  if(!hs.probeN||!hs.rec||hs.over||hs.locked)return;
+  if(hs.probeShow){hsTag('📐 这一字已经量过了：工艺卡上那两行一直写着，写到你收齐这个字');return}
+  hs.probeN--;hs.probeUse++;hs.tools++;hs.wordTools++;
+  hs.probeShow=1;
+  const rec=hs.rec;
+  let s='';
+  for(let i=0;i<rec.n;i++)s+=(i?' · ':'')+hsMarkOf(i)+' 吸≥'+hsOnOf(rec.ts[i])+'/掉≤'+hsFreeOf(rec.ts[i]);
+  hsTone(560,120);
+  hsTag('📐 测档：'+s+'（还剩 '+hs.probeN+' 回）—— 冲上去了没响，就是还没到那一档','cyan');
+  hsSync();hsDraw();
+}
+/* 🔁 换字：这个字退回库里再上一个（倒扣六分，进错字本）*/
+function hsSwap(){
+  if(!hs.swapN||!hs.rec||hs.over||hs.locked)return;
+  hs.swapN--;hs.swapUse++;hs.swaps++;hs.tools++;hs.wordTools++;
+  hs.score-=HS_P_SWAP;
+  hsTone(280,140);
+  hsTag('🔁 换字：倒扣 '+HS_P_SWAP+' 分，这个字进了错字本（还剩 '+hs.swapN+' 回）','warn');
+  hsWordOut(false);
+}
+/* ================= 三支钟：场灯 · 这一字 · 认槽 ================= */
+function hsTick(dt){
+  if(!hs.run||hs.over)return;
+  hs.t+=dt;hs.playMs+=dt;
+  if(hs.helpMs>0){hs.helpMs-=dt;if(hs.helpMs<=0){hs.helpMs=0;hsSync()}return}
+  if(!hs.rec||hs.locked)return;
+  /* 场灯：一盏照这一场的三个字 */
+  if(hs.lamp>0){
+    hs.lamp-=dt;
+    if(hs.lamp<=0){hs.lamp=0;hsEnd('lamp');return}
+  }
+  /* 字钟：一个字从上台收到齐（挪档、吸料、认槽都吃这一支）*/
+  if(hs.wordMs>0){
+    hs.wordMs-=dt;
+    if(hs.wordMs<=0){
+      hs.wordMs=0;hs.score-=HS_P_WORD;hs.cleanWord=0;hs.neatWord=0;hs.monoWord=0;hs.coolWord=0;hs.combo=0;
+      hsTag('🈶 这个字的钟尽了：倒扣 '+HS_P_WORD+' 分 · 掉一颗心 · 进了错字本','warn');
+      hsTone(150,300);hsSay('🈶 字钟尽了');
+      hsWordOut(true);
+      return;
+    }
+  }
+  /* 认槽钟：只在盘上真有牌的时候走 */
+  if(hs.tray.length){
+    hs.placeMs-=dt;
+    if(hs.placeMs<=0){
+      hs.placeMs=0;hs.lates++;hs.cleanWord=0;hs.combo=0;
+      hs.score-=HS_P_LATE;
+      hs.hitOk=-1;hs.hitTxt='⌛ 认槽钟尽 · −'+HS_P_LATE;
+      const card=hsActCard();
+      hs.tray=hs.tray.filter(function(x){return x!==card});
+      hs.rack.push(card);hs.rack.sort(function(a,b){return a-b});
+      hs.grace=1;
+      hsTag('⌛ 认槽的钟尽了：'+hsMarkOf(card)+' 退回料架，倒扣 '+HS_P_LATE+' 分 —— 再摘它得重走一趟','warn');
+      hsTone(160,260);
+      if(hs.tray.length)hsResetPlace();
+      hsSync();hsDraw();
+      return;
+    }
+    hs.nagMs+=dt;
+    if(hs.nagMs>HS_NAG_MS){hs.nagMs=0;hs.nags++;hsSay('🎯 点字排上它那一笔，或按 1~'+hs.rec.n)}
+    return;
+  }
+  hs.nagMs+=dt;
+  if(hs.nagMs>HS_NAG_MS){
+    hs.nagMs=0;hs.nags++;
+    hsSay(hs.held.length?'⬇ 退档：降到脱开档才落得进盘（听「咔」之后还有剩磁顶着）'
+      :'⬆ 升一档：跨过几个吸合档就吸几张');
+  }
+}
+
+/* ================= 开工 · 那三支钟的一根 rAF · 键盘与真指针 ================= */
+/* 开张：先选料（这一坊吃的字要「厚薄跨度够、两条支路真打架、而且最省那条道收得齐」），再上第一个字 */
+async function hsBoot(){
+  const g=hs.gen;
+  hs.load=true;hsSync();
+  const w=hsWant(hs.lv);
+  const ok=await hsBuildPool(true,w[0],w[1]);
+  if(g!==hs.gen||!hs.run||hs.over)return;
+  hs.load=false;
+  if(!ok){hsEnd('pool');hsSync();return}
+  const rec=hsTake();
+  if(!rec){hsEnd('pool');hsSync();return}
+  hsSetWord(rec);
+  hsSync();hsDraw();
+}
+function hsStart(){
+  hs.run=true;hs.over=false;hs.gen++;
+  hsBind();
+  hsKill();
+  hs.t=0;hs.playMs=0;hs.last=0;
+  hs.pool=[];hs.miss=[];hs.seen=[];hs.rec=null;hs.seed=0;hs.fresh=0;
+  hs.lv=hsLvOf(auxInt('hz_hs_words'));
+  hs.wi=0;hs.score=0;hs.hearts=HS_HEARTS;hs.combo=0;hs.maxCombo=0;hs.load=false;
+  hs.rack=[];hs.held=[];hs.tray=[];hs.done=[];hs.slot=[];hs.mark=[];hs.sel=-1;
+  hs.I=0;hs.batt=hsBatt(hs.lv);hs.batt0=hs.batt;hs.battUsed=0;hs.wBatt=0;hs.wPulls=0;
+  hs.curie=hsCurie(hs.lv);hs.heat=0;hs.peak=0;hs.iceOff=0;hs.edge=[];hs.fwd=0;hs.back=0;hs.retr=0;hs.grace=0;
+  hs.trace=[{I:0,held:0}];
+  hs.place0=hsPlace(hs.lv);hs.placeMs=hs.place0;
+  hs.wordMs0=hsWord(hs.lv);hs.wordMs=hs.wordMs0;
+  hs.lamp0=hsLamp(hs.lv);hs.lamp=hs.lamp0;
+  hs.words=0;hs.strokes=0;hs.pulls=0;hs.multi=0;hs.scatN=0;hs.coerN=0;hs.dumps=0;hs.wordOuts=0;
+  hs.wrongs=0;hs.lates=0;hs.curies=0;hs.botts=0;hs.grabs=0;hs.drops=0;hs.sweeps=0;hs.lastDir=0;hs.swaps=0;
+  hs.monoCap=99;hs.coolCap=99;
+  hs.cleanWord=1;hs.neatWord=1;hs.monoWord=1;hs.coolWord=1;hs.wordTools=0;hs.tools=0;hs.cleanRun=0;hs.toolRun=0;
+  hs.neatN=0;hs.monoN=0;hs.coolN=0;
+  hs.iceN=HS_P0.ice;hs.shakeN=HS_P0.shake;hs.probeN=HS_P0.probe;hs.swapN=HS_P0.swap;
+  hs.iceUse=0;hs.shakeUse=0;hs.probeUse=0;hs.swapUse=0;hs.probeShow=0;
+  hs.gain=0;hs.pen=0;hs.hitOk=0;hs.hitTxt='';hs.helpMs=0;hs.newBest=false;
+  hs.nags=0;hs.nagMs=0;hs.msg='';hs.locked=0;
+  hsClearTag();
+  if(typeof stopBGM==='function')stopBGM();   showScreen('hyst');
+  hsSync();hsDraw();
+  hsBoot();
+  hsStartLoop();
+}
+/* 主循环的起停各只有一处：结算要冻画面就掐这一根，别在别处再挂一条 rAF */
+function hsLoop(ts){
+  if(!hs.run||hs.over){hs.rafId=0;return}
+  const dt=hs.last?Math.min(120,ts-hs.last):16;
+  hs.last=ts;
+  hsTick(dt);
+  hsSync();hsDraw();
+  hs.rafId=requestAnimationFrame(hsLoop);
+}
+function hsStartLoop(){if(!hs.run||hs.over||hs.rafId)return;hs.last=0;hs.rafId=requestAnimationFrame(hsLoop)}
+function hsStopLoop(){if(hs.rafId){cancelAnimationFrame(hs.rafId);hs.rafId=0}}
+function hsRestart(){hsStart()}
+function hsLeave(where){
+  hs.run=false;hs.over=false;
+  hsKill();hsStopLoop();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function hsHelp(){
+  if(!hs.run||hs.over)return;
+  hs.helpMs=HS_HELP_MS;
+  hsSync();
+  hsSay('🧲 <b>吸得住、放不下</b>：升上去跨过几个吸合档就吸几张，退下来却要靠剩磁顶过的那几档 —— 两条支路不重合','#FFE0B2');
+}
+/* ---- 主手那一下：盘上有牌就只给一句提示（认槽是点字排或按号），没牌就挪一档 ---- */
+function hsTap(){
+  if(hs.helpMs>0){hs.helpMs=0;return}
+  if(hs.tray.length){
+    hsTag('🎯 认槽点的是<b>字排上那一笔的淡墨位置</b>：按 <code>1~'+(hs.rec?hs.rec.n:7)+'</code> 或直接点它');
+    return;
+  }
+  /* 挂着牌先往下退（退到脱开档才落得进盘），空着才往上冲 —— 手顺序就这一条，不给反着来的口子 */
+  hsStep(hs.held.length?-1:1);
+}
+/* ================= 案面上的落点：字排那一笔 · 档位尺那一格 ================= */
+/* 点档位尺：落在哪一格就朝那一格挪一档（一次只挪一格，跳档这一坊不许 —— 两本账都是按格结的）*/
+function hsScaleAt(x,y){
+  if(y<HS_KY-6||y>HS_KY+HS_KH+6)return 0;
+  if(x<HS_KX-6||x>HS_KX+HS_KW+6)return 0;
+  const w=hsCellW();
+  let I=-HS_NEG;
+  for(let k=0;k<=HS_IMAX+HS_NEG;k++){
+    const cx=HS_KX+k*w;
+    if(x>=cx&&x<cx+w){I=k-HS_NEG;break}
+  }
+  return I===hs.I?0:(I>hs.I?1:-1);
+}
+/* 点吸盘下挂着的那一排：抖料的家什另有一钮，这儿只当「降一档」的手 */
+function hsCoilAt(x,y){
+  return (y>=HS_HELDY-6&&y<=HS_HELDY+HS_HCH+6&&hs.held.length)?-1:0;
+}
+/* 点料架上那一片：这一坊的手不在料架上，只回一句「先给它励磁」*/
+function hsRackAt(x,y){
+  if(!hs.rec)return false;
+  if(y<HS_RY-HS_RSH-4||y>HS_RY+6)return false;
+  for(let i=0;i<hs.rec.n;i++){
+    const cx=hsRackX(hs.slot[i]);
+    if(x>=cx-2&&x<=cx+HS_RSW+2)return true;
+  }
+  return false;
+}
+function hsPt2(e){
+  const cv=document.getElementById('hsCanvas');
+  const out={x:-1,y:-1,slot:-1,dir:0,rack:false};
+  if(!cv||!cv.getBoundingClientRect)return out;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return out;
+  const x=Math.round((e.clientX-r.left)*(HS_W/r.width)*10)/10,
+        y=Math.round((e.clientY-r.top)*(HS_CVH/r.height)*10)/10;
+  out.x=x;out.y=y;
+  const s=hsSlotAt(x,y);
+  if(s>=0){out.slot=s;return out}
+  const d=hsScaleAt(x,y);
+  if(d){out.dir=d;return out}
+  const c=hsCoilAt(x,y);
+  if(c){out.dir=c;return out}
+  if(hsRackAt(x,y))out.rack=true;
+  return out;
+}
+/* ================= 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子 ================= */
+function hsBind(){
+  if(hs.bound)return;
+  hs.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!hs.run||hs.over)return;
+    if(hs.helpMs>0){hs.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){hsLeave();return}
+    if(k==='h'||k==='?'){hsHelp();e.preventDefault();return}
+    if(k==='arrowleft'||k==='a'||k==='arrowdown'||k==='s'){hsStep(-1);e.preventDefault();return}
+    if(k==='arrowright'||k==='d'||k==='arrowup'||k==='w'){hsStep(1);e.preventDefault();return}
+    if(k>='1'&&k<='7'){hsAnswer(+k-1);e.preventDefault();return}
+    if(k==='x'){hsDump();e.preventDefault();return}
+    if(k==='o'){hsIce();e.preventDefault();return}
+    if(k==='t'){hsShake();e.preventDefault();return}
+    if(k==='p'){hsProbe();e.preventDefault();return}
+    if(k==='r'){hsSwap();e.preventDefault();return}
+    if(k===' '||k==='enter'){hsTap();e.preventDefault()}
+  });
+  const cv=document.getElementById('hsCanvas');
+  if(cv){
+    cv.addEventListener('pointerdown',function(e){
+      if(!hs.run||hs.over)return;
+      if(hs.helpMs>0){hs.helpMs=0;return}
+      const h=hsPt2(e);
+      if(h.slot>=0){hsAnswer(h.slot);e.preventDefault();return}
+      if(h.dir){hsStep(h.dir);e.preventDefault();return}
+      if(h.rack){hsTag('🪹 这一片还在料架上：给它励磁才谈得上摘 —— 按 <code>→</code> 升一档');e.preventDefault()}
+    });
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){
+      if(!hs.run||hs.over)return;
+      if(hs.helpMs>0){hs.helpMs=0;return}
+      on();ev.preventDefault();
+    });
+  };
+  tap('hsDownBtn',function(){hsStep(-1)});
+  tap('hsUpBtn',function(){hsStep(1)});
+  tap('hsActBtn',function(){hsTap()});
+  tap('hsDumpBtn',function(){hsDump()});
+  tap('hsIceBtn',function(){hsIce()});
+  tap('hsShakeBtn',function(){hsShake()});
+  tap('hsProbeBtn',function(){hsProbe()});
+  tap('hsSwapBtn',function(){hsSwap()});
+  tap('hsHelpBtn',function(){hsHelp()});
+  tap('hsEndBtn',function(){hsEnd('quit')});
+  const tapFree=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){on();ev.preventDefault()});
+  };
+  /* 散场之后的那三颗钮不能按 run/over 拦：孩子站在结算屏上，「再来一局」「回实验室」「回书桌」
+     必须点得动 —— 拦在前面就等于把结算屏变成一堵墙 */
+  tapFree('hsReBtn',function(){hsRestart()});
+  tapFree('hsLabBtn',function(){hsLeave('lab')});
+  tapFree('hsHomeBtn',function(){hsLeave()});
+}
+
+/* ================= 散场：结算、落盘、图鉴与家什架、拿另一条路把这笔账算第三遍 ================= */
+function hsEnd(why){
+  if(!hs.run||hs.over)return;
+  hs.over=true;hs.run=false;
+  hsKill();
+  const stars=Math.max(1,Math.round(hs.score/14)+hs.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  hsPut('hsRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['🧲','收工','自己按的结算'],
+    hearts:['💔','心都赔光了','掉够了心'],
+    lamp:['🧲','场灯灭了','这一场的灯烧完了'],
+    pool:['🧲','料选不齐','字库里挑不出「厚薄跨度够、两条支路真打架、而且最省那条道收得齐」的字']}[why]||['🧲','散场',''];
+  hsPut('hsRsEmoji',head[0]);
+  hsPut('hsRsTitle',head[1]);
+  hsPut('hsRsSub','第 '+hs.lv+' 场 · '+head[2]+' · 收齐 '+hs.words+' 字');
+  hsPut('hsRsScore','🧲 '+hs.score+' 分');
+  hsPut('hsRsWords','🈶 收字 '+hs.words+' 个 · 落定 '+hs.strokes+' 笔 · 散了 '+hs.wordOuts+' 个字');
+  hsPut('hsRsMoney','🔋 用掉 '+hs.battUsed+' 档 · 案上剩 '+hs.batt+' 档 · 一卷 '+hs.batt0+' 档 · 见底 '+hs.botts+' 回');
+  hsPut('hsRsFocus','🔥 峰值热 '+hs.peak+' / '+hs.curie+' 点 · 重走 '+hs.retr+' 格 · 居里退磁 '+hs.curies+' 回');
+  hsPut('hsRsFlip','🧲 吸上 '+hs.grabs+' 张 · 连吸 '+hs.multi+' 回 · 掉进盘 '+hs.drops+' 张 · 反向去磁 '+hs.coerN+' 张');
+  hsPut('hsRsWipe','🎯 落定 '+hs.strokes+' 笔 · 认错 '+hs.wrongs+' 次 · 认槽钟尽 '+hs.lates+' 次 · 卸料 '+hs.dumps+' 回 · 挤回料架 '+hs.scatN+' 张');
+  hsPut('hsRsTools','🧰 借家什 '+hs.tools+' 回 · 降温 '+hs.iceUse+' · 抖料 '+hs.shakeUse+' · 测档 '+hs.probeUse+' · 换字 '+hs.swapUse);
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账 */
+  hsSave(why);
+  hsPut('hsRsBest','🏅 历史最高 '+auxInt('hz_hs_best')+' 分 · 累计收字 '+auxInt('hz_hs_words')+' 字');
+  hsPut('hsRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  const rk=hsRank(auxInt('hz_hs_words'));
+  hsPut('hsRsRank',rk.e+' '+rk.t);
+  const bk=hsBookCount();
+  hsPutH('hsRsBook','📖 <b>剩磁图鉴 '+bk.book+' 张</b> · 家什架 <b>'+bk.shelf+'/'+HS_SHELF.length+
+    '</b> 件 · 错字本 <b>'+bk.miss+'</b> 个字<br><small>最远走到第 '+auxInt('hz_hs_lvmax')+' 场 · 累计落定 '+
+    auxInt('hz_hs_strokes')+' 笔 · 少回头 '+auxInt('hz_hs_mono')+' 个字 · 热没多烧 '+auxInt('hz_hs_cool')+
+    ' 个字 · 一张不挤 '+auxInt('hz_hs_neat')+' 个字</small>');
+  hsPutH('hsRsWhy','🧲 这一坊的道理：<b>吸得住，还得放得下</b>。励磁到 I 档吸得住的条件是 <b>I ≥ on＝⌈厚÷2⌉</b>；'+
+    '可断了电磁铁，铁芯里还剩着磁，顶得住 '+HS_BR+' 档 ⇒ 吸上的牌要降到 <b>off−1</b> 才脱得开（off＝max(0,on−'+HS_BR+
+    ')）。<b>升上去的那条支路与退下来的那条不重合</b> —— on 与 off 之间那一段叫<b>迟滞带</b>，同一档位上牌在不在吸盘上，'+
+    '全看孩子是怎么走到这一档的：从下面升上来还在料架上，从上面降下来还挂在吸盘上。<br>薄牌（on ≤ '+HS_BR+
+    '）的 off 被剩磁抹到 0，<b>降到 0 档也挂着不掉</b>，只有打进反向第 '+HS_COER+' 档（那叫<b>矫顽力</b>）才「啪」地退磁。<br>'+
+    '🔋 两本账都是<b>路径的积分</b>，不是这一档的函数：电池（档程）＝Σ|每步挪几档|，升降都吃，一卷 '+hsBatt(1)+
+    ' 档管三个字；🔥 热＝电池＋'+HS_H+'×<b>重走过的格数</b> —— 单调一条道走过去只交一份，来回试探就把同一段路烧两遍，'+
+    '回线包围的那块面积就是<b>白烧掉的铁损</b>；热到居里点 '+hsCurie(1)+' 点这一炉全体退磁。案上那两块 <b>▲</b> 记的是每格档程走过几趟，'+
+    '<b>红起来的那几段围出的就是这一块损耗</b>。<br>第 '+4+' 场起工艺卡不再写每片牌的吸合档与脱开档，第 '+6+
+    ' 场起连牌厚都不标 —— 剩下的凭据只有「咔」那一响与这条回线。战绩落盘 <code>hz_hs_*</code>：场档按<b>收齐的字数</b>走，'+
+    '称号按<b>累计收字数</b>走，错字本里的字<b>下一轮优先挑回来</b>','#C8E6C9');
+  hsNudge();
+  showScreen('hyst-result');
+}
+/* ---- 落盘：全局账与这一局账各走各的口子 ---- */
+function hsSave(why){
+  auxAdd('hz_hs_games',1);
+  auxAdd('hz_hs_words',hs.words);
+  auxAdd('hz_hs_strokes',hs.strokes);
+  auxAdd('hz_hs_pulls',hs.pulls);
+  auxAdd('hz_hs_multi',hs.multi);
+  auxAdd('hz_hs_scat',hs.scatN);
+  auxAdd('hz_hs_coer',hs.coerN);
+  auxAdd('hz_hs_curie',hs.curies);
+  auxAdd('hz_hs_battout',hs.botts);
+  auxAdd('hz_hs_wrong',hs.wrongs);
+  auxAdd('hz_hs_late',hs.lates);
+  auxAdd('hz_hs_dump',hs.dumps);
+  auxAdd('hz_hs_swap',hs.swaps);
+  auxAdd('hz_hs_wordout',hs.wordOuts);
+  auxAdd('hz_hs_tools',hs.tools);
+  auxAdd('hz_hs_toolrun',hs.toolRun);
+  auxAdd('hz_hs_ice',hs.iceUse);
+  auxAdd('hz_hs_shake',hs.shakeUse);
+  auxAdd('hz_hs_probe',hs.probeUse);
+  /* mono / cool / neat 三本记的是「字」：收一个字在 hsCollect 里当场记一笔，结算不许再按同一格加第二遍 */
+  if(hs.maxCombo>auxInt('hz_hs_combo'))auxPut('hz_hs_combo',hs.maxCombo);
+  if(hs.lv>auxInt('hz_hs_lvmax'))auxPut('hz_hs_lvmax',hs.lv);
+  if(hs.battUsed>auxInt('hz_hs_battused'))auxPut('hz_hs_battused',hs.battUsed);
+  if(hs.score>auxInt('hz_hs_best')){auxPut('hz_hs_best',hs.score);hs.newBest=true}
+  hsShelfCheck();
+}
+/* ---- 图鉴：一个字一张剩磁卡（记的是首回收齐那个字的场号与笔数）---- */
+function hsBookCount(){
+  const book=(localStorage.getItem('hz_hs_book')||'').split(',').filter(function(s){return s}).length;
+  const shelf=(localStorage.getItem('hz_hs_shelf')||'').split(',').filter(function(s){return s}).length;
+  const miss=(localStorage.getItem('hz_hs_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0}).length;
+  return {book:book,shelf:shelf,miss:miss};
+}
+function hsBookPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  const bk=localStorage.getItem('hz_hs_book')||'';
+  if(bk.indexOf(ch+':')>=0)return;
+  const list=bk.split(',').filter(function(s){return s});
+  list.unshift(ch+':'+hs.lv+':'+(hs.rec?hs.rec.n:0));
+  auxPut('hz_hs_book',list.slice(0,HS_BOOK_MAX).join(','));
+}
+/* 散场的字进错字本：下一轮优先挑回来 */
+function hsMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_hs_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  auxPut('hz_hs_miss',miss.slice(0,HS_BOOK_MAX).join(','));
+}
+/* 家什架：八件各认一件实事，其中「名刺」认的是别处的章节徽章 */
+function hsShelfCheck(){
+  const have=(localStorage.getItem('hz_hs_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    auxInt('hz_hs_words')+hs.words>=1,
+    auxInt('hz_hs_toolrun')+hs.toolRun>=1,
+    auxInt('hz_hs_mono')>=8,
+    auxInt('hz_hs_lvmax')>=HS_SHELF_LV||hs.lv>=HS_SHELF_LV,
+    auxInt('hz_hs_cool')>=12,
+    auxInt('hz_hs_neat')>=1,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    auxInt('hz_hs_strokes')+hs.strokes>=60
+  ];
+  for(let i=0;i<HS_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(HS_SHELF[i].k)<0){have.push(HS_SHELF[i].k);got.push(HS_SHELF[i].k)}
+  }
+  auxPut('hz_hs_shelf',have.join(','));
+  auxPut('hz_hs_trophy',have.length);
+  auxPut('hz_hs_trophy_n',auxInt('hz_hs_trophy_n')+got.length);
+}
+/* ---- 段 W 的另一条路：只读，不许碰场上任何东西 ----
+   三把尺各算各的：① 闭式 hsOnOf/hsOffOf/hsFreeOf/hsCostFormula，② 状态迁移 hsField（产品与审计共用），
+   ③ 一步一步真走 hsRouteSim（一格一档，每格过一遍 ②）。哪两把不一样，就是产品算错了。 */
+function hsAudWord(rec,lv){
+  const out={ok:0,why:'',n:0,batt:0,curie:0,pole:0,span:0,thin:0,thick:0,
+    bestBatt:0,bestHeat:0,bestRetr:0,seqHeat:0,save:0,
+    bandBad:0,costBad:0,seedBad:0,reachBad:0,fixedBad:0,trayBad:0,poleBad:0,info:[]};
+  if(!rec||!hsSeqOk(rec)){out.why='字的口径不合格';return out}
+  const ts=rec.ts,L=lv;
+  out.n=rec.n;out.batt=hsBatt(L);out.curie=hsCurie(L);out.pole=hsPole(L);
+  out.span=rec.span;out.thin=rec.thin;out.thick=rec.thick;
+  /* ① 三行式子的不变式：每片都得有迟滞带，而且两条支路不许重合 */
+  for(let i=0;i<ts.length;i++){
+    const on=hsOnOf(ts[i]),off=hsOffOf(ts[i]),fr=hsFreeOf(ts[i]);
+    if(!(off===Math.max(0,on-HS_BR)))out.bandBad++;
+    if(!(fr<on))out.bandBad++;
+    if(on<1||on>HS_IMAX)out.bandBad++;
+    if(hsStick(ts[i],fr))out.bandBad++;         /* 脱开档还吸得住：式子写反了 */
+    if(!hsStick(ts[i],on))out.bandBad++;
+    if(hsFree(ts[i],on))out.bandBad++;          /* 吸合档同时脱得开：两条支路重合 */
+    if(off>0&&hsFree(ts[i],off))out.bandBad++;  /* off 那一档必须还挂着，再降一格才脱 */
+    if(off<=0&&hsFree(ts[i],0))out.bandBad++;   /* 薄牌：0 档不许脱得开（剩磁顶着）*/
+    if(hsStick(ts[i],0))out.bandBad++;          /* 不励磁不吸铁 */
+    if(hsStick(ts[i],-HS_COER))out.bandBad++;   /* 反向不吸铁片，只管去磁 */
+  }
+  /* ③ 最省那条道真走得通，而且两本账与 ① 的闭式对表 */
+  const best=hsBestRoute(ts,L);
+  if(!best){out.why='三条候选道都收不齐';return out}
+  const cc=hsCrossCheck(best);
+  if(!cc.ok){out.why='闭式与逐步不合('+cc.why+')';out.costBad++;return out}
+  if(best.batt!==hsCostFormula(best.route,L).batt)out.costBad++;
+  out.bestBatt=best.batt;out.bestHeat=best.heat;out.bestRetr=best.retr;
+  /* 一卷电必须够收完这一场最坏的一串字；一炉热必须够收这个字 —— 门槛是模型自己算出来的 */
+  if(best.batt*HS_PER>out.batt){out.why='一卷电不够收完这一场最坏的一串字';return out}
+  if(best.heat>out.curie){out.why='一炉热不够收这个字';return out}
+  if(best.squeez||best.spill){out.why='最省那条道也得挤牌';return out}
+  /* 笔顺序那条道必须也走得通、而且比最省那条费 —— 两本账才有的挑 */
+  const seq=hsRouteSim(ts,hsSeqOrder(ts),L);
+  if(!seq.ok){out.why='按笔顺收不齐';return out}
+  const cc2=hsCrossCheck(seq);
+  if(!cc2.ok){out.why='闭式与逐步不合('+cc2.why+')';out.costBad++;return out}
+  out.seqHeat=seq.heat;out.save=seq.heat-best.heat;
+  if(!(seq.heat>best.heat)){out.why='笔顺序不比最优路费：没得挑';return out}
+  /* 三份赏的门槛由模型给出：孩子照最省那条道走就一定够得着 */
+  const cap=hsCaps(rec,L);
+  if(!cap||!isFinite(cap.mono)||!isFinite(cap.cool)){out.why='赏的门槛算不出来';return out}
+  if(cap.mono<best.retr||cap.cool<best.heat)out.reachBad++;
+  /* ② 的定点性：料架上一张不挂、档位停在 0 档过一遍 ②，案面必须一动不动（没人手工塞过牌）*/
+  const st0=hsBlank();
+  for(let i=0;i<rec.n;i++)st0.rack.push(i);
+  const ev0=hsField(ts,st0,hsPole(L),HS_TRAY);
+  if(ev0.grab.length||ev0.drop.length||ev0.squeez.length||ev0.spill.length)out.fixedBad++;
+  if(st0.rack.length!==rec.n||st0.held.length||st0.tray.length)out.fixedBad++;
+  /* 冲到高过最厚那片：几片一并吸上，而吸盘只挂得住 pole 张 —— 挤出来的必须回到料架，一张不许凭空消失 */
+  const stHi=hsBlank();
+  for(let i=0;i<rec.n;i++)stHi.rack.push(i);
+  const evHi=hsField(ts,stHi,hsPole(L),HS_TRAY);
+  if(stHi.rack.length+stHi.held.length!==rec.n)out.poleBad++;
+  if(stHi.held.length>hsPole(L))out.poleBad++;
+  if(evHi.grab.length&&stHi.held.length===0)out.poleBad++;
+  /* 一路退到反向最低档：吸盘上挂得住的只剩「脱不开的那几张」，其余必须落进盘或挤回料架 */
+  const stLo={I:-HS_NEG,rack:[],held:[],tray:[]};
+  for(let i=0;i<rec.n;i++)stLo.held.push(i);
+  const evLo=hsField(ts,stLo,hsPole(L),HS_TRAY);
+  if(stLo.rack.length+stLo.held.length+stLo.tray.length!==rec.n)out.trayBad++;
+  if(stLo.held.length)out.trayBad++;            /* 反向到底：一张都不该还挂着 */
+  if(!evLo.drop.length)out.trayBad++;
+  /* 同字同场永远同一套站位与色名：换一个入口再算一遍，种子里出来的必须一模一样 */
+  const sd=auxSeedOf(rec.ch,L);
+  const s2=hsSlots(rec,L,sd),m2=hsMarks(rec,L,sd);
+  const s1=hsSlots(rec,L,sd),m1=hsMarks(rec,L,sd);
+  for(let i=0;i<rec.n;i++)if(s1[i]!==s2[i]||m1[i]!==m2[i])out.seedBad++;
+  const pos={},mk={};
+  for(let i=0;i<rec.n;i++){
+    if(!(s1[i]>=0&&s1[i]<rec.n)||pos[s1[i]])out.seedBad++;
+    pos[s1[i]]=1;
+    if(!(m1[i]>=0&&m1[i]<HS_MARK.length)||mk[m1[i]])out.seedBad++;
+    mk[m1[i]]=1;                                /* 色名不许重：两张「红牌」就是题目出错了 */
+  }
+  if(out.bandBad||out.costBad||out.seedBad||out.reachBad||out.fixedBad||out.trayBad||out.poleBad){
+    out.why='三把尺不合(迟滞'+out.bandBad+' 账'+out.costBad+' 种子'+out.seedBad+
+      ' 门槛'+out.reachBad+' 定点'+out.fixedBad+' 退磁'+out.trayBad+' 挂位'+out.poleBad+')';
+    return out;
+  }
+  out.info.push({ch:rec.ch,lv:L,on:rec.ons.slice(),free:ts.map(hsFreeOf),off:ts.map(hsOffOf)});
+  out.ok=1;
+  return out;
+}
+/* 眼下案面的账：两本积分、三堆牌、回线与色名，各条式子当场核一遍 */
+function hsAudState(){
+  const s={has:0,lv:hs.lv,n:0,I:hs.I,batt:hs.batt,batt0:hs.batt0,battUsed:hs.battUsed,wBatt:hs.wBatt,
+    heat:hs.heat,curie:hs.curie,peak:hs.peak,retr:hs.retr,monoCap:hs.monoCap,coolCap:hs.coolCap,
+    rack:hs.rack.length,held:hs.held.length,tray:hs.tray.length,done:hs.done.length,
+    phase:hs.phase,locked:hs.locked?1:0,over:hs.over?1:0,grace:hs.grace?1:0,probeShow:hs.probeShow?1:0,
+    pole:hsPoleN(),trayMax:HS_TRAY,words:hs.words,strokes:hs.strokes,pulls:hs.pulls,
+    grabs:hs.grabs,drops:hs.drops,multi:hs.multi,scatN:hs.scatN,coerN:hs.coerN,dumps:hs.dumps,
+    wrongs:hs.wrongs,lates:hs.lates,curies:hs.curies,botts:hs.botts,sweeps:hs.sweeps,
+    fwd:hs.fwd,back:hs.back,tools:hs.tools,hearts:hs.hearts,combo:hs.combo,
+    cleanWord:hs.cleanWord?1:0,neatWord:hs.neatWord?1:0,monoWord:hs.monoWord?1:0,coolWord:hs.coolWord?1:0,
+    trace:hs.trace.length,lastTraceHeld:(hs.trace.length?hs.trace[hs.trace.length-1].held:-1),
+    edgeBad:0,battBad:0,heatBad:0,partBad:0,bandBad:0,settleBad:0,traceBad:0,markBad:0,capBad:0,
+    wordBad:0,stick:0,freeN:0,routeBad:0};
+  /* 没上案的这一息也认整场那本电账：batt 是这一场剩下的档数（一卷 − 已经走过的）*/
+  if(!hs.rec){
+    s.battBad=(hs.batt===hs.batt0-hs.battUsed)?1:0;
+    return s;
+  }
+  const rec=hs.rec,ts=rec.ts;
+  s.has=1;s.n=rec.n;
+  /* ① 与 ② 之间不许有两本账：档位尺的两端、炉子与一卷电的口径都按式子重算 */
+  if(hs.I>HS_IMAX||hs.I<-HS_NEG)s.routeBad++;
+  if(hs.curie!==hsCurie(hs.lv))s.bandBad++;
+  if(hs.batt0!==hsBatt(hs.lv))s.bandBad++;
+  if(hs.place0!==hsPlace(hs.lv))s.bandBad++;
+  /* 电池是一场的：一卷 − 这一场走过的 = 案上剩的 */
+  s.battBad=(hs.batt0-hs.battUsed===hs.batt)?1:0;
+  /* 热是一炉的：本字走过的格数 + 每格重走多收的 HS_H − 🧊 退掉的那几点 —— 与 ① 那条闭式一条不差 */
+  s.heatBad=(hs.wBatt+HS_H*hs.retr-(hs.iceOff||0)===hs.heat)?1:0;
+  let sum=0,rep=0;
+  for(let k=0;k<hs.edge.length;k++){
+    const c=hs.edge[k]||0;
+    if(c>1){rep+=c-1}
+    sum+=c;
+  }
+  if(sum!==hs.wBatt||rep!==hs.retr)s.edgeBad++;
+  /* 手数与格数同 scope 才比得动：pulls 是一局的、wPulls 才是这一炉的（换字与居里退磁都不许把它俩当成一笔账）*/
+  if(hs.wPulls!==hs.wBatt)s.edgeBad++;
+  if(hs.fwd+hs.back!==hs.wPulls)s.edgeBad++;
+  if(hs.sweeps>hs.wPulls)s.edgeBad++;
+  if(hs.peak<hs.heat)s.heatBad++;
+  /* 三堆牌 + 已落定 = 这一字的片数，而且一堆里不许有同一张牌 */
+  const seen={};let tot=0;
+  [[hs.rack,'r'],[hs.held,'h'],[hs.tray,'t'],[hs.done,'d']].forEach(function(pair){
+    const arr=pair[0];tot+=arr.length;
+    for(let i=0;i<arr.length;i++){
+      const v=arr[i];
+      if(!(v>=0&&v<rec.n))s.partBad++;
+      if(seen[v])s.partBad++;
+      seen[v]=1;
+    }
+  });
+  if(tot!==rec.n)s.partBad++;
+  /* 落定的笔不许重、不许越过片数；已落定的那一片不许还留在盘上（认槽认完就得从盘里摘走）*/
+  const dn={};
+  for(let i=0;i<hs.done.length;i++){
+    if(dn[hs.done[i]])s.wordBad++;
+    dn[hs.done[i]]=1;
+    if(hs.tray.indexOf(hs.done[i])>=0||hs.held.indexOf(hs.done[i])>=0)s.wordBad++;
+  }
+  if(hs.done.length>rec.n)s.wordBad++;
+  /* ② 的定点性：料架上一张不该留着「这一档明明吸得住」的牌 —— 除非刚被人为塞回去（grace）*/
+  s.stick=0;s.freeN=0;
+  for(let i=0;i<hs.rack.length;i++)if(hsStick(ts[hs.rack[i]],hs.I))s.stick++;
+  for(let i=0;i<hs.held.length;i++){
+    if(hsFree(ts[hs.held[i]],hs.I))s.freeN++;   /* 挂在吸盘上却已经到了脱开档：该掉没掉 */
+  }
+  if(!hs.grace){
+    /* 料架上留着「这一档明明吸得住」的牌只有一种来路：吸盘已经挂满了，挤回来的那几张
+       （挂不住才回料架的 —— 档位一到，它们下一档又会被吸上去，这是这一坊的价钱，不是漏结算）*/
+    if(s.stick&&hs.held.length<hsPole(hs.lv))s.settleBad++;
+    if(s.freeN)s.settleBad++;
+    if(hs.tray.length>HS_TRAY)s.settleBad++;
+    if(hs.held.length>hsPole(hs.lv))s.settleBad++;
+  }
+  /* 连吸的账：只有真有一步吸上两张以上才许记 */
+  if(hs.multi>hs.grabs)s.wordBad++;
+  /* 赏的门槛由模型给出：越了线还留着赏，就是账算错了（扣赏的原因有好几处，这一头只核「不许漏扣」）*/
+  if(hs.coolWord&&hs.peak>hs.coolCap)s.capBad++;
+  if(hs.monoWord&&hs.retr>hs.monoCap)s.capBad++;
+  /* 回线图：每挪一档添一个点（🪄 抖料不改档也添，因为它改了挂牌数）——
+     点数不许少于「本字走过的格数 + 起点」，而且最后一点的挂牌数必须就是案上的数 */
+  if(hs.trace.length<hs.wBatt+1)s.traceBad++;
+  if(s.lastTraceHeld!==hs.held.length)s.traceBad++;
+  /* 色名：一片一个，不许重名（重名就是两张「红牌」，题目出错了）*/
+  const mk={};
+  for(let i=0;i<rec.n;i++){
+    const v=hs.mark[i];
+    if(!(v>=0&&v<HS_MARK.length))s.markBad++;
+    if(mk[v])s.markBad++;
+    mk[v]=1;
+  }
+  /* 料架站位：一片一格，一格一片 */
+  const pos={};
+  for(let i=0;i<rec.n;i++){
+    const p=hs.slot[i];
+    if(!(p>=0&&p<rec.n))s.markBad++;
+    if(pos[p])s.markBad++;
+    pos[p]=1;
+  }
+  /* 测档枪：第 4 场起卡上那两行必须是「——」，数字一露头就是答案印在题目上 */
+  if(hsNoTell(hs.lv)&&!hs.probeShow){
+    const j=hsSpecLines().join('|');
+    if(!(j.indexOf('吸合档 ——')>=0&&j.indexOf('脱开档 ——')>=0))s.markBad++;
+    if(/吸合档 -?\d|脱开档 -?\d/.test(j))s.markBad++;
+  }
+  return s;
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一坊开到第几场了 ---- */
+function hsNudge(){
+  const dot=document.getElementById('hsCardDot'),tip=document.getElementById('hsCardTip');
+  const tot=auxInt('hz_hs_words'),st=auxInt('hz_hs_strokes'),lv=auxInt('hz_hs_lvmax');
+  const rk=hsRank(tot),shelf=auxInt('hz_hs_trophy'),mn=auxInt('hz_hs_mono'),cl=auxInt('hz_hs_cool');
+  if(tip)tip.innerHTML=st?('🔔 '+rk.e+' '+rk.t+' · 收字 '+tot+' 个 · 落定 '+st+' 笔 · 最远第 '+lv+
+    ' 场 · 少回头 '+mn+' 个字 · 热没多烧 '+cl+' 个字 · 居里退磁 '+auxInt('hz_hs_curie')+
+    ' 回 · 家什架 '+shelf+' 件'):
+    '一台电磁吸盘：励磁到 I 档，厚 t 点的铁牌吸得住的条件是 <b>I ≥ on＝⌈t÷2⌉</b>；可断了电铁芯还剩着磁，'+
+    '顶得住 '+HS_BR+' 档 ⇒ 吸上的牌要降到 <b>off−1</b> 才脱得开。<b>升上去与退下来走的是两条支路</b> —— '+
+    '同一档上牌在不在吸盘上，全看你怎么走到这一档（<b>这就是剩磁与磁滞</b>）。薄牌降到 0 档还挂着不掉，'+
+    '只有打进反向第 '+HS_COER+' 档（<b>矫顽力</b>）才退磁。<br>两本账都是<b>路径的积分</b>：电池记走了几格档程，'+
+    '热＝电池＋'+HS_H+'×重走过的格数 —— 一路不回头只交一份，来回试探就把同一段烧两遍，'+
+    '<b>回线包围的那块面积就是白烧掉的铁损</b>。第 9 场最狠：一炉只剩 '+hsCurie(9)+' 点、一卷只剩 '+hsBatt(9)+' 档';
   if(dot){dot.classList.toggle('on',!st);dot.textContent=(st?'':'🆕')}
 }
 
