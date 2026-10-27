@@ -7269,6 +7269,81 @@ button:active{transform:scale(.95)}
   #screen-focus .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-focus .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.105 🏗️ 笔顺吊装坊 ================= */
+/* 账条占死三行（76 像素就是它满三行那一个高度）：案上没字的那一息它只折两行，
+   不留这一格的话整张案会被往上抬二十七像素 —— 跟题头同一句道理，塔架不许在手指底下跳 */
+.ht-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.ht-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.ht-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死五行（块级排版，只是垫高、不改排版）：三副 gameplay 题面里最宽的那一副（挑绕法）就是五行 ——
+   塔架就在它下头，认箱四行、拉绳三行都把整张案往上抬二十到五十像素，孩子的手指还按在鼓轮上收绳呢；
+   字少的那几副就在垫高的这一格里顶着天，一行也不许裁（裁字比挪案更糟）*/
+.ht-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*5)}
+.ht-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.ht-ask b{color:#FFE082}
+.ht-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 工地：一块锈黄的钢板底，塔架、货箱、拉力表、绳卷计全画在这一张案上（canvas 透明，底色由这里给） */
+.ht-field{flex:1;min-width:0;position:relative;background:linear-gradient(160deg,#2A2118,#181209 60%,#0D0A06);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.78)}
+.ht-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.ht-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(16,12,8,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.ht-tag.on{opacity:1}
+.ht-tag.warn{background:rgba(88,24,24,.94);color:#FFCCBC}
+.ht-tag.gold{background:rgba(74,58,14,.96);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.ht-tag.cyan{background:rgba(6,58,74,.94);color:#84FFFF;box-shadow:0 0 14px rgba(0,229,255,.4)}
+/* 五条账：这一吊的钟（沙）· 认箱的钟（青）· 这一字的钟（金）· 这一场的灯（冷蓝）· 绳卷（紫） */
+.ht-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.ht-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.ht-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#37474F,#78909C);transition:width .15s linear}
+.ht-tl.haul i{background:linear-gradient(90deg,#FFB74D,#FFE082)}
+.ht-tl.pick i{background:linear-gradient(90deg,#4DD0E1,#B2EBF2)}
+.ht-tl.word i{background:linear-gradient(90deg,#C8A46A,#FFE082)}
+.ht-tl.fuel i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.ht-tl.rope i{background:linear-gradient(90deg,#A1887F,#D7CCC8)}
+.ht-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.ht-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+/* 绕法：这一坊的手下在「承重绳绕几段」上，一段一段地加 —— 力省几倍，绳就多收几倍 */
+.ht-step{display:flex;gap:6px;align-items:center;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:4px auto 2px}
+.ht-step button{flex:0 0 62px;padding:8px 2px;border-radius:11px;border:1px solid rgba(255,255,255,.26);color:#ECEFF1;background:rgba(255,255,255,.1);font-size:17px;font-weight:800;cursor:pointer}
+.ht-step button:disabled{opacity:.4;cursor:default}
+.ht-step .k{font-size:13px;font-weight:800;color:#FFD54F;padding:0 8px;white-space:nowrap}
+.ht-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.ht-take button.pass{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#083344;background:linear-gradient(180deg,#B3E5FC,#4FC3F7)}
+.ht-take button.pass:active{transform:translateY(1px)}
+.ht-take button.pass:disabled{opacity:.42;cursor:default}
+.ht-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1A1206;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.ht-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(26,18,6,.72)}
+.ht-take button.big.ready{background:linear-gradient(180deg,#C5E1A5,#7CB342);box-shadow:0 0 20px rgba(124,179,66,.55);color:#0A1620}
+.ht-take button.big:active{transform:translateY(1px)}
+.ht-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.ht-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.ht-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.ht-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.ht-tool b{display:block;font-size:10px;color:#FFD54F;font-weight:700}
+.ht-tool:disabled{opacity:.4;cursor:default}
+.ht-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.ht-hintline b{color:#FFD54F}
+.ht-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.ht-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.ht-msg b{color:#CFD8DC}
+.ht-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.ht-msg small{font-size:11px;color:#78909C}
+.ht-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.ht-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.ht-rs-book b{color:#FFD54F}
+.ht-rs-book small{color:#78909C}
+.ht-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,179,0,.92);color:#1A1206;border-radius:9px;padding:1px 6px;z-index:4}
+.ht-cdot.on{display:block}
+#screen-hoist .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：五条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是六七行，就垫死七行 */
+@media(max-width:460px){
+  .ht-tl{flex:1 1 100%}
+  .ht-ask{min-height:calc(1.35em*7)}
+  .ht-step button{flex:0 0 56px}
+  .ht-take button.big{font-size:17px}
+  #screen-hoist .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-hoist .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-hoist .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7325,8 +7400,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 103 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">103</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 104 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">104</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7337,12 +7412,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>103 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>45</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>104 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>46</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="htCard" onclick="enterMode('hoist')">
+      <div class="icon">🏗️</div>
+      <div class="info"><h3>笔顺吊装坊</h3><p id="htCardTip">塔架上一笔就是一箱货：货重＝这一笔的真实长度 ÷88，再加动滑轮自重 4 点。承重绳绕几段自己挑 —— 绕 2 段力约省一半、绳就得收两倍长，多绕的那一段还要吃一份摩擦。<b>省力就是不省功</b>：每格拉力 × 绳程，绕得越多白烧的越多。力气红线卡住「至少绕几段」，绳卷和体力卡住「最多绕几段」，可行的绕法是一个闭区间，不是猜出来的。钩到箱子上还得认出这一笔是这个字的<b>第几笔</b>，落回卸货台才算收成 —— 一卷绳就那么多格，第 5 场起力拉过头还会<b>打滑</b>（每收 4 格滑回 1 格）</p></div>
+      <span class="ht-cdot" id="htCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="fjCard" onclick="enterMode('focus')">
       <div class="icon">🔍</div>
       <div class="info"><h3>笔顺调焦坊</h3><p id="fjCardTip">暗箱里架着一根光具座：字片上一笔，中间一片凸透镜（焦距 6 格），右边一块毛玻璃屏。屏挪到第几格，像就落在第几格 —— 压在焦平面上糊的自己就清了，可这一片屏只能一格一格地挪，而能拍清的格子整根导轨上只有七处（物距 8 格时像距 24 格，12 格时正好等大）。屏上的像是<b>倒过来</b>的，大小由像距除以物距说了算：物挪得近，像就跑得远、跑得大。洗出底片还得认出这一笔是这个字的第几笔，回到米字格把它点出来 —— 底片一场只有一卷，快门按下就是一张，糊了也吃这张</p></div>
@@ -8111,6 +8191,84 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-hoist">
+  <div class="top-bar">
+    <button class="back-btn" onclick="htLeave()">← 返回</button>
+    <div class="stats"><span id="htScoreTxt">🏗️ 0 分</span><span id="htLvTxt">第 1 场 · 收 0 字</span><span id="htQTxt">⏳ 这一吊 9 秒</span></div>
+    <button class="icon-btn" onclick="htHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="ht-hud">
+    <span id="htRankTxt" title="称号">🏗️ 头一回落钩</span>
+    <span id="htHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="htComboTxt" title="连击">🔥 连 0</span>
+    <span id="htLotTxt" title="这一场第几字第几吊">🈶 第 1 字 · 第 1 吊</span>
+    <span id="htRopeTxt" title="绳卷">🪢 绳 320 格</span>
+    <span class="light" id="htHitLight">💡 还没落钩</span>
+  </div>
+  <div class="ht-ask" id="htAsk">🏗️ 正在点货……<br><small>在字库里找「一笔一箱货、绕几段绳才吊得动」的字</small></div>
+  <div class="ht-stage">
+    <div class="ht-field" id="htField">
+      <canvas class="ht-canvas" id="htCanvas" width="420" height="340"></canvas>
+      <div class="ht-tag" id="htTag">🏗️ 塔架立好了</div>
+    </div>
+  </div>
+  <div class="ht-meter">
+    <div class="ht-tl haul"><i id="htHaulBar"></i><b id="htHaulTxt">⌛ 这一吊 9 秒</b></div>
+    <div class="ht-tl pick"><i id="htPickBar"></i><b id="htPickTxt">📦 认箱 6 秒</b></div>
+    <div class="ht-tl word"><i id="htWordBar"></i><b id="htWordTxt">🈶 这个字 90 秒</b></div>
+    <div class="ht-tl fuel"><i id="htFuelBar"></i><b id="htFuelTxt">💡 这一场 150 秒</b></div>
+    <div class="ht-tl rope"><i id="htRopeBar"></i><b id="htRopeBig">🪢 绳 320 格</b></div>
+  </div>
+  <div class="ht-step">
+    <button id="htLeftBtn">−</button>
+    <span class="k" id="htRigTxt">绕 1 段 · 每格拉力自己看力表</span>
+    <button id="htRightBtn">+</button>
+  </div>
+  <div class="ht-take">
+    <button class="pass" id="htSkipBtn">💤 弃吊<small>X</small></button>
+    <button class="big" id="htActBtn">📦 先认箱<small>在这排货箱里点出这一笔 —— 1～7 也能按</small></button>
+  </div>
+  <div class="ht-tools">
+    <button class="ht-tool" id="htOilBtn" disabled>🛢️ 上油<span>O</span><b>剩 3</b></button>
+    <button class="ht-tool" id="htGaugeBtn" disabled>📏 测力<span>T</span><b>剩 2</b></button>
+    <button class="ht-tool" id="htRopeBtn" disabled>🪢 接绳<span>Q</span><b>剩 2</b></button>
+    <button class="ht-tool" id="htSwapBtn" disabled>🔁 换字<span>R</span><b>剩 1</b></button>
+    <button class="ht-tool" id="htHelpBtn">📖 说明<span>H</span></button>
+    <button class="ht-tool" id="htEndBtn">🏁 结算</button>
+  </div>
+  <div class="ht-hintline" id="htHintTxt">🏗️ <b>省力不省功</b>：多绕一段绳，力约省到几分之一，绳就得按几倍收 —— <b>功＝每格拉力 × 绳程</b>，摩擦一分没省</div>
+  <div class="ht-msg" id="htMsg">🏗️ <b>一笔就是一箱货</b>：货重＝这一笔的真实长度 ÷ 88，加上动滑轮自重 4 点；承重绳绕 n 段，每格拉力 F＝⌈货重÷n⌉＋（n−1）点摩擦，绳要收 n×5 格<br>💡 <b>三本账各管一头</b>：当场拦住你的是<b>力气红线</b>——绕得不够就是拉不动，够多了往上每一段都拉得动，可行的绕法是一整段<b>闭区间</b>；🪢 绳卷记的是这个字吃了多少格绳（一卷最少 240 格、一吊最多 15 格，所以它光记账、不拦路），⚡ 体力记的是这一吊花了多少功；第 5 场起力太大还会<b>打滑</b>（每收 4 格滑回 1 格），双钩并吊少付一份滑轮自重 · <code>1～7</code> 认箱 · <code>←→</code> 绕法 · <code>空格</code> 拉一格 · <code>Enter</code> 上绳 · <code>X</code> 弃吊 · 🛢️ <code>O</code> 上油 · 📏 <code>T</code> 测力 · 🪢 <code>Q</code> 接绳 · 🔁 <code>R</code> 换字 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-hoist-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="htLeave()">← 返回</button>
+    <div class="stats"><span id="htRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="htRsEmoji">🏗️</div>
+    <div style="font-size:26px;font-weight:800" id="htRsTitle">收工了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="htRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="ht-pk" id="htRsScore">🏗️ 0 分</span>
+      <span class="ht-pk" id="htRsWords">🈶 收字 0 个 · 落位 0 笔</span>
+      <span class="ht-pk" id="htRsMoney">🪢 用绳 0 格 · 剩 0 格 · 一卷 0 格</span>
+      <span class="ht-pk" id="htRsFocus">⚙️ 落位 0 趟 · 最省功 0 趟 · 打滑 0 次</span>
+      <span class="ht-pk" id="htRsFlip">⚡ 双钩并吊 0 回 · 省功 0 回</span>
+      <span class="ht-pk" id="htRsWipe">📦 认对 0 箱 · 认错 0 箱 · 认箱钟尽 0 箱</span>
+      <span class="ht-pk" id="htRsTools">🧰 借家什 0 回</span>
+      <span class="ht-pk" id="htRsBest">🏅 历史最高 0 分</span>
+      <span class="ht-pk" id="htRsRank">🏗️ 头一回落钩</span>
+    </div>
+    <div class="ht-rs-book" id="htRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="htRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="htRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="htReBtn">🏗️ 再吊一场</button>
+      <button class="tool-btn" id="htLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="htHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -15707,6 +15865,7 @@ function updateHomeStats(){
   if(typeof dyeNudge==='function')dyeNudge();
   if(typeof aucNudge==='function')aucNudge();
   if(typeof fjNudge==='function')fjNudge();
+  if(typeof htNudge==='function')htNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -15756,6 +15915,7 @@ function enterMode(mode){
   if(mode==='dye'){dyeStart();return}
   if(mode==='auction'){aucStart();return}
   if(mode==='focus'){fjStart();return}
+  if(mode==='hoist'){htStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -110111,6 +110271,1729 @@ function fjNudge(){
     '(d−'+FJ_F+')(s−'+FJ_F+')='+(FJ_F*FJ_F)+'，拆不成整数因子的格子像就骑在两格中间）。'+
     '屏上的像永远是倒过来的，放大率＝像距÷物距 —— 字片越近屏就得挪得越远、像也越大。'+
     '快门一按吃一张底片，洗出来还得认出这一笔是这个字的第几笔';
+  if(dot){dot.classList.toggle('on',!st);dot.textContent=(st?'':'🆕')}
+}
+
+
+/* ================= v1.105.0 🏗️ 笔顺吊装坊（一副滑轮组 · 一卷绳 · 一笔一箱货 —— 绕几段绳自己挑，可省力就是不省功 ================= */
+/* 场：420×340 的一处工地。左上角一块米字格是「卸货台」（这个字一笔一笔码在这儿，收齐一笔染绿一笔），
+   右上角一张吊装单（这一吊的账：货重 · 段数 · 每格拉力 · 绳程 · 功），
+   下面半张案是一台塔架：横梁上挂定滑轮，钩子上吊一只货箱，箱子沿着一根高度尺往上升，
+   右下角一台卷扬机 —— 鼓轮一卷绳、一块拉力表（指针顶着红线就是拉不动），底下一排货箱站在轨道上让孩子挑。
+   规矩只有三条，而且三条全在整数上：
+   ① 滑轮组的账：承重绳绕 n 段（1 段就是只改方向的定滑轮），货重 w 点 + 动滑轮自重 4 点，
+      每格拉力 F = ⌈(w+4)/n⌉ + (n−1) —— 多绕一段少受一分力，可每段绳都要多吃 1 点摩擦；
+      绳要收 s = n×5 格，箱子才升 5 格。于是功 F·s = (w+4)×5 + 摩擦 × 绳程：
+      <b>省力就是不省功</b>，绕得越多，白烧在摩擦上的越多；
+   ② 三本账各管一头：当场否决孩子的只有力气（每格拉力不许顶过红线）—— 它卡住 n 的<b>下界</b>，
+      红线以上一直到第 3 段都拉得动，所以可行的绕法不是猜出来的，是一个<b>闭区间</b>（F 随 n 不减这一步
+      要 S≥5 才成立，而货重最少也是 1 点笔长＋滑轮 '+HT_G+' 点＝5 点，孩子压根进不了那一片轻货）；
+      绳卷（一卷绳就这么长，一个字一卷）与体力（这一吊的功预算）记的是另外两笔账，段 W 在
+      S=5..28 × 场 1..9 × 上油与否（432 行 × 三档）逐档数过谁真咬人：红线否决 617 档、绳卷 0 档
+      （s≤15 永远小于一卷的 240 格）、功 9 档而<b>单独否决 0 档</b> —— 凡 F·s 顶穿预算的那一档，F 早已顶过红线；
+      在白名单真正的货重带 S=6..16 里两本账各 0 档，真拉最狠的一吊 152 点功、最紧的预算 156 点，还余 4 点；
+      区间空了这一箱就压根吊不起来，只能上油（把摩擦抹掉）或者弃吊、换字；
+   ③ 货箱的重量就是这个字的这一笔<b>真实长度</b>除以 88（一笔折 2~18 点货）—— 笔顺与物理吃同一份账。
+      题头问「这个字的第 k 笔是哪一只箱」，认错了不是重来：倒扣 + 掉心 + 这一笔退回队尾再吊。
+   教学点：机械利益、功守恒、摩擦是代价（第 5 场起力太大就<b>打滑</b>：每收 4 格绳滑回 1 格，
+   硬拉不如换绕法）；而第 5 场起的<b>⚡ 双钩并吊</b>把两笔并成一吊 —— 少付一份动滑轮自重，
+   这一手必须真的比分开吊两回省功，验不出这条账的字不上案 */
+const HT_W=420,HT_H=340;
+/* 工地：案面五块地方，互不压 —— 左上卸货台（米字格）、右上吊装单（这张吊的账）、
+   中间塔架（横梁 + 定滑轮 + 升降列）、右下拉力表与绳卷计、底下一排货箱站在轨道上让孩子挑 */
+const HT_GX=14,HT_GY=14,HT_GRID=132;          /* 卸货台 14..146 × 14..146 */
+const HT_SX=252,HT_SY=14,HT_SW=154,HT_SH=132; /* 吊装单 252..406 × 14..146 */
+const HT_CRW=34,HT_CRH=26;                     /* 钩上那只货箱：中心 (214, 272−升格×12)，半高 13 */
+const HT_CSX=28,HT_CSP=38,HT_CSW=34,HT_CSH=26; /* 轨道上七只箱：左沿 28、一格 38，最右 256+34=290 */
+const HT_MBX=300,HT_MBY=182,HT_MBW=106,HT_MBH=100; /* 拉力表表盘 300..406 × 182..282 */
+const HT_RMX=300,HT_RMY=290,HT_RMW=106,HT_RMH=16;   /* 绳卷计 300..406 × 290..306 */
+const HT_ULX=176;                                    /* 高度尺：刻度线从这一条往右挑，字写在左边 */
+const HT_LIFT=5,HT_PX=12,HT_COLX=214;     /* 升 5 格、一格 12 像素（5×12=60），升程正好从 272 到 212 */
+const HT_G=4,HT_MU=1,HT_NSEG=3,HT_K=88;   /* 动滑轮自重 · 每段摩擦 · 最多绕几段 · 笔长多少算一点货（全字表 13415 笔量出来：中位 328、p90 718 → 折成 2~18 点货）*/
+const HT_HOOK0=272,HT_BEAM=170,HT_RY=316; /* 挂钩起升位 · 横梁 · 货箱轨道 */
+/* 打滑：每收 4 格绳滑回 1 格，力气顶到红线的四分之三以上才会滑（第 5 场起）*/
+const HT_SLIP_LV=5,HT_SLIP_EVERY=4,HT_SLIP_NUM=3,HT_SLIP_DEN=4;
+/* 三本账的档位：力气是孩子的胳膊（越深越没劲？不 —— 深场的货一样沉，可绳卷与体力都缩）
+   力气红线 A：每格拉力不许超过它；绳卷 R：一卷绳的格数；体力 P：一吊的功预算 */
+function htA(L){return Math.max(8,13-L)}
+function htRoll(L){return Math.max(240,320-10*(L-1))}
+function htPwr(L){return Math.max(150,220-8*(L-1))}
+/* 起始绕法：一上台先给第 1 段（最费力的那一档），孩子得自己往上调 */
+const HT_N0=1;
+/* 一卷绳与一场几字：320−10×8=240 —— 坡有底，孩子知道顶到哪儿收手。
+   一场最多 3 字 × 7 笔 = 21 吊，每吊最少 5 格绳，深档一卷只够最省绳的那条路走到底 */
+const HT_PER=3,HT_ROPE_ADD=60;
+/* 四支钟：这一吊（认箱之后到落位）、这一笔（认箱）、这一字、这一场的灯 —— 全部在第 9 场正好走到底线 */
+const HT_HAUL0=9000,HT_HAUL_MIN=5200,HT_HAUL_STEP=475;
+const HT_PICK0=6000,HT_PICK_MIN=3200,HT_PICK_STEP=350;
+const HT_WORD0=90000,HT_WORD_MIN=58000,HT_WORD_STEP=4000;
+const HT_FUEL0=150000,HT_FUEL_MIN=98000,HT_FUEL_STEP=6500;
+/* 罚：认错箱 · 弃吊 · 吊钟尽 · 力尽拉不动 · 认箱钟尽 · 字钟尽 · 换字 · 绳卷底 */
+const HT_P_WRONG=5,HT_P_SKIP=3,HT_P_HAUL=3,HT_P_STUCK=4,HT_P_LATE=3,HT_P_WORD=5,HT_P_SWAP=6,HT_P_ROLL=5;
+/* 赏：落位底分（连击与场号加成，走最省功那条路再乘一档）· 认对箱 */
+const HT_M0=8,HT_M_CB=1.1,HT_M_LV=1.5;
+/* 收齐一个字的整包账：底分 · 零罚 · 趟趟省功 · 家什没借 · 一趟不滑 · 双钩省功每回 */
+const HT_WORD_PTS=26,HT_CLEAN_PTS=16,HT_MIN_PTS=20,HT_TOOL_PTS=10,HT_NOSLIP_PTS=12,HT_TAN_PTS=8;
+/* 字的口径：4~7 笔、至少两种笔形、字要大 —— 三笔的字吊两下就完，八笔的一卷绳不够放 */
+const HT_STROKE_MIN=4,HT_STROKE_MAX=7,HT_KIND_MIN=2;
+/* 认箱不歧义的口径：箱子上的墨样只靠形状与长短认人 —— 同方向又同长短档的两笔就是同一张片，
+   孩子点谁都是猜。长度一档 40（1024 的方格）*/
+const HT_LEN_BKT=40;
+const HT_POOL_MIN=4,HT_POOL_WANT=14,HT_POOL_SCAN=320;
+const HT_HEARTS=3,HT_HEART_MAX=5,HT_BOOK_MAX=300;
+const HT_P0={oil:3,gauge:2,rope:2,swap:1};   /* 上油 / 测力 / 接绳 / 换字 */
+const HT_TAG_MS=2600,HT_NAG_MS=11000,HT_HELP_MS=16000;
+const HT_LAND_MS=900;
+/* 场档：按收齐的字数走，每两个字进一场 */
+function htLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function htHaul(L){return Math.max(HT_HAUL_MIN,HT_HAUL0-(L-1)*HT_HAUL_STEP)}
+function htPick(L){return Math.max(HT_PICK_MIN,HT_PICK0-(L-1)*HT_PICK_STEP)}
+function htWord(L){return Math.max(HT_WORD_MIN,HT_WORD0-(L-1)*HT_WORD_STEP)}
+function htFuel(L){return Math.max(HT_FUEL_MIN,HT_FUEL0-(L-1)*HT_FUEL_STEP)}
+function htWant(L){return L<=2?[4,5]:[4,7]}
+/* 第 4 场起吊装单不再写 F / 绳程 / 功（那本是给孩子抄答案的教具），第 6 场起高度尺与力表不标数 */
+function htNoTell(L){return L>=4}
+function htDim(L){return L>=6}
+/* 第 5 场起才可能双钩，且必须真比分开吊省账（htTanSave 验不过就这一腿不演）*/
+const HT_TAN_LV=5;
+function htTanLv(L){return L>=HT_TAN_LV}
+function htRank(w){
+  let r=HT_RANKS[0];
+  for(let i=0;i<HT_RANKS.length;i++)if(w>=HT_RANKS[i].n)r=HT_RANKS[i];
+  return r;
+}
+const HT_RANKS=[
+  {n:0,e:'🏗️',t:'头一回落钩'},{n:2,e:'🪝',t:'认得货重'},{n:5,e:'⚙️',t:'会挑绕法'},
+  {n:9,e:'🧭',t:'省力心里有数'},{n:14,e:'📦',t:'一吊就到位'},{n:21,e:'🧱',t:'塔架不空'},
+  {n:30,e:'🧰',t:'全套家什'},{n:42,e:'⚡',t:'双钩随便并'},{n:58,e:'👑',t:'功算得一分不差'}
+];
+const HT_SHELF_LV=4;   /* 家什架「力表」的门槛：走到第几场还在拉绳 */
+const HT_SHELF=[
+  {k:'吊钩',d:'收齐一个字'},{k:'保险扣',d:'一场三字零罚'},{k:'双钩闸',d:'双钩并吊省功 6 回'},
+  {k:'力表',d:'走到第 '+HT_SHELF_LV+' 场还在拉绳'},{k:'油壶',d:'一趟趟最省功满 12 个字'},
+  {k:'绳梯',d:'一个字一趟都不滑'},{k:'名刺',d:'别处的章节徽章攒到 3 枚'},{k:'金帽',d:'累计落位 60 笔'}
+];
+const HT_KN=['横','竖','撇','捺'];
+/* 绕法怎么说：段数就是省几倍的力，绳程就是多收几倍的绳 */
+function htRigTxt(n){
+  if(n===1)return '1 段定滑轮：只改方向，一分力不省';
+  return n+' 段承重：力约省到 1/'+n+'，绳要收 '+n+' 倍长';
+}
+const ht={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],miss:[],seen:[],rec:null,seed:0,fresh:0,
+  /* 场：一场三字，字收齐（或散了）算一个；lv 就是场号，进一场 +1 */
+  lv:1,wi:0,score:0,hearts:HT_HEARTS,combo:0,maxCombo:0,phase:'pick',load:false,
+  /* 吊序：legs 是这一字的账（每一腿吊第几笔、并不并钩、可行绕法几档），ord 是待吊队列 */
+  ord:[],legs:[],li:null,pi:0,ki:-1,ki2:-1,need:1,picks:[],done:[],
+  /* 这一吊：n 是眼下选的绕法，take 是收进来几格绳，presses 是真拉了几下 */
+  n:HT_N0,take:0,presses:0,slips:0,S:0,w:0,F:0,sNeed:0,work:0,win:[],slip:0,oiled:0,rigOk:0,
+  /* 货箱站位：slot[i] 是第 i 笔站在轨道第几个位置（第 3 场起打乱，位置不许泄露笔顺）*/
+  slot:[],landMs:0,
+  /* 三本账的眼下值：力气红线 A · 一卷绳 R · 一吊的功预算 P */
+  A:12,R:320,P:220,rope:0,rope0:0,ropeUsed:0,rollUsed:0,rollAdd:0,
+  qms:0,qms0:0,pickMs:0,pick0:0,wordMs:0,wordMs0:0,fuel:0,fuel0:0,
+  /* 账：收字 · 落位笔数 · 落位趟数 · 省功落位 · 打滑回退 · 弃吊 · 吊钟尽 · 力尽 · 认错箱 · 认箱钟尽 · 双钩 · 双钩省功 · 换字 · 绳卷底 · 散字 */
+  words:0,strokes:0,lifts:0,minN:0,slipN:0,skips:0,haulOuts:0,stuckN:0,wrongs:0,lates:0,
+  tans:0,tanOk:0,swaps:0,rolls:0,wordOuts:0,
+  /* 一字的清白账：cleanWord 零罚 · cleanMin 趟趟省功 · noSlip 一趟不滑 · wordTools 借过家什 · toolRun 整场三字零罚 */
+  tools:0,cleanWord:1,cleanMin:1,noSlip:1,wordTools:0,cleanRun:0,toolRun:0,
+  oilN:HT_P0.oil,gaugeN:HT_P0.gauge,ropeN:HT_P0.rope,swapN:HT_P0.swap,
+  oilUse:0,gaugeUse:0,ropeUse:0,swapUse:0,gaugeShow:0,
+  gain:0,pen:0,hitOk:0,hitTxt:'',bound:false,helpMs:0,tagTimer:0,
+  msg:'',nags:0,nagMs:0,newBest:false
+};
+
+/* ---- 小工具：本坊自己的发声、回话、清定时器 ----
+   这几只不许抄公共那几只：公共的 auxSay 往别人家的消息条里写字、auxTone 揣的是别人那块声卡、
+   auxT/auxKill 管的是别人那一串定时器 —— 借来用，孩子的话就落在别人家的栏里。 */
+function htTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!ht.ac)ht.ac=new AC();
+    const c=ht.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.value=g===undefined?.05:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+/* 回话条就是工地上那一条 .ht-msg：写错了栏，孩子一个字也看不见 */
+function htSay(msg,color){htMsg(msg,color||'#FFE082')}
+function htT(fn,ms){const id=setTimeout(function(){
+  const i=ht.timers.indexOf(id);if(i>=0)ht.timers.splice(i,1);
+  if(!ht.run||ht.over)return;
+  try{fn()}catch(e){}
+},ms);ht.timers.push(id);return id}
+function htKill(){
+  for(let i=0;i<ht.timers.length;i++)clearTimeout(ht.timers[i]);
+  ht.timers=[];
+  if(ht.rafId){cancelAnimationFrame(ht.rafId);ht.rafId=0}
+}
+
+/* ================= 账：滑轮组的式子、可行绕法那个闭区间、打滑真实吃的功，与「这个字配不配上这台塔」 =================
+   这一坊最要紧的是三把尺各算各的，算出来的必须一模一样：
+   ① 闭式：F = ⌈S/n⌉+(n−1)μ，s = n×5，账面功 = F·s；
+   ② 区间：把 n=1..3 三个整数档逐个数过去（三道界都写在式子里，按现在的档位真卡人的是力气红线），
+      得到的就是可行绕法；
+   ③ 一步一步真拉：htHaulSim 一次只收一格绳，打滑就滑回一格，收满 5 格才算落位 ——
+      它给出的回数、吃绳、耗功必须与闭式对得上，对不上就是产品算错了，不是断言写错了。 */
+/* ---- 一笔有多长（1024 的方格里量），折成几点货 ---- */
+function htLenOf(m){
+  let t=0;
+  for(let i=1;i<m.length;i++){
+    const dx=m[i][0]-m[i-1][0],dy=m[i][1]-m[i-1][1];
+    t+=Math.sqrt(dx*dx+dy*dy);
+  }
+  return t;
+}
+function htWOf(len){return Math.max(1,Math.ceil(len/HT_K))}
+/* ---- ① 闭式：这一段绳要吃几点力、这一吊要收几格绳、账面上花多少功 ---- */
+function htFOf(S,n,oil){return Math.ceil(S/n)+(oil?0:(n-1)*HT_MU)}
+function htSOf(n){return n*HT_LIFT}
+function htWorkOf(S,n,oil){return htFOf(S,n,oil)*htSOf(n)}
+/* 打滑：力气顶到红线的 3/4 以上（第 5 场起）—— 每收 4 格绳滑回 1 格 */
+function htSlipOf(F,A,L){
+  if(L<HT_SLIP_LV)return 0;
+  return F*HT_SLIP_DEN>A*HT_SLIP_NUM?1:0;
+}
+/* 滑到底要回几下手：闭式是 s + ⌊(s−1)/3⌋（每第 4 下白收）*/
+function htPressOf(n,slip){
+  const s=htSOf(n);
+  return slip?s+Math.floor((s-1)/(HT_SLIP_EVERY-1)):s;
+}
+/* ---- ② 区间：把三档绕法逐个数过去。账面账（孩子起吊前看得见的那三本账）---- */
+function htWin(S,L,R,oil){
+  const A=htA(L),P=htPwr(L),out=[];
+  for(let n=1;n<=HT_NSEG;n++){
+    const F=htFOf(S,n,oil),s=htSOf(n);
+    if(F>A)continue;                 /* 顶过红线：这一档压根拉不动 */
+    if(s>R)continue;                 /* 绳不够长：这一段挂不上 */
+    if(F*s>P)continue;               /* 功超预算：账面体力不够 */
+    out.push(n);
+  }
+  return out;
+}
+/* 区间为什么一定是「一个」区间：F 随 n 不减（多绕一段只会更省力）、功随 n 不减（摩擦多吃的绳在这儿）——
+   三条界一条盯下界（力气红线）、两条盯上界（绳卷、功预算），单调性保证交出来必是连续的一段，
+   不会中间断一格。哪一条真咬人由段 W 在 S=5..28 的全域数过：当场否决的只有红线（绳卷 0 档，
+   功 9 档却从不单独否决 —— 顶穿预算的那一档 F 也早已顶过红线）。注意 F 随 n 不减这一步要 S≥'+HT_G+'+1 才成立：
+   货比动滑轮还轻时摩擦压过省力，那一片孩子进不去（货重最少 '+HT_G+'+1 点），可自检别关掉 */
+function htWinMonotone(S,L,R){
+  let bad=0;
+  for(let n=2;n<=HT_NSEG;n++){
+    if(htFOf(S,n,0)>htFOf(S,n-1,0))bad++;      /* 绕得越多反而越费力 = 式子写错了 */
+    if(htWorkOf(S,n,0)<htWorkOf(S,n-1,0))bad++;/* 越费力越省功 = 「省力不省功」被推翻 */
+  }
+  return bad;
+}
+/* ---- ③ 一步一步真拉：打滑真实吃掉的回数、绳子与功（这才是这一坊第二条算式）---- */
+function htHaulSim(S,L,n,R,oil){
+  const A=htA(L),P=htPwr(L),F=htFOf(S,n,oil),s=htSOf(n),slip=htSlipOf(F,A,L);
+  let take=0,presses=0,slips=0,rope=0,work=0,fail='';
+  while(take<s){
+    presses++;
+    if(work+F>P){fail='stam';break}
+    work+=F;rope++;
+    if(rope>R){fail='rope';break}
+    take++;
+    if(slip&&presses%HT_SLIP_EVERY===0){slips++;take--;rope--}
+    if(presses>600){fail='loop';break}
+  }
+  return {ok:fail?0:1,fail:fail,presses:presses,take:take,slips:slips,rope:rope,work:work,
+    F:F,s:s,n:n,slip:slip,S:S,oil:oil?1:0};
+}
+/* 真拉能拉到位的那几档（账面可行不等于拉得动：打滑多收的手把体力吃穿了）*/
+function htWinReal(S,L,R,oil){
+  const W=htWin(S,L,R,oil),out=[];
+  for(let i=0;i<W.length;i++)if(htHaulSim(S,L,W[i],R,oil).ok)out.push(W[i]);
+  return out;
+}
+/* 两本账各挑一头：最省力的那一档（n 最大）与最省功的那一头（n 最小）*/
+function htPaths(S,L,R){
+  const W=htWin(S,L,R,0);
+  if(!W.length)return {ns:W,nF:-1,nW:-1,ok:0,why:'空'};
+  let nF=W[0],nW=W[0];
+  for(let i=0;i<W.length;i++){
+    const F=htFOf(S,W[i],0);
+    if(F<=htFOf(S,nF,0))nF=W[i];
+    if(htWorkOf(S,W[i],0)<=htWorkOf(S,nW,0))nW=W[i];
+  }
+  return {ns:W,nF:nF,nW:nW,ok:(nF!==nW&&W.length>=2)?1:0,why:nF===nW?'一条路':'两档并列'};
+}
+/* ---- 双钩并吊：两笔并成一吊只付一份动滑轮自重 —— 必须真比分开吊省，验不过就不演这一腿 ---- */
+function htSingleBest(S,L,R){
+  const W=htWinReal(S,L,R,0);
+  if(!W.length)return null;
+  let b=W[0];
+  for(let i=0;i<W.length;i++)if(htWorkOf(S,W[i],0)<htWorkOf(S,b,0))b=W[i];
+  return {n:b,work:htWorkOf(S,b,0),rope:htSOf(b),F:htFOf(S,b,0)};
+}
+function htTanSave(w1,w2,L){
+  const R=htRoll(L),S1=w1+HT_G,S2=w2+HT_G,St=w1+w2+HT_G;
+  const a=htSingleBest(S1,L,R),b=htSingleBest(S2,L,R);
+  if(!a||!b)return null;
+  const Wt=htWinReal(St,L,R,0);
+  if(!Wt.length)return null;
+  let t=Wt[0];
+  for(let i=0;i<Wt.length;i++)if(htWorkOf(St,Wt[i],0)<htWorkOf(St,t,0))t=Wt[i];
+  const work=htWorkOf(St,t,0),rope=htSOf(t);
+  if(!(work<a.work+b.work))return null;      /* 省不了功就不许说「并钩省一份自重」 */
+  if(!(rope<=a.rope+b.rope))return null;
+  return {n:t,S:St,work:work,rope:rope,solo:a.work+b.work,soloRope:a.rope+b.rope,
+    n1:a.n,n2:b.n,ok:1};
+}
+function htFresh(ch){
+  const bk=localStorage.getItem('hz_ht_book')||'';
+  return bk.indexOf(ch+':')<0?1:0;
+}
+/* ---- 这个字配不配得上这台塔：口径 + 每一笔的「方向 + 长短档」互不相同（货箱上的墨样才认得出是谁）---- */
+function htMake(ch,raw){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  if(ms.length<HT_STROKE_MIN||ms.length>HT_STROKE_MAX)return null;
+  const dirs=[],lens=[],ws=[],bkey=[];
+  for(let i=0;i<ms.length;i++){
+    const d=jtDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    const len=htLenOf(ms[i]);
+    if(!(len>0))return null;
+    const w=htWOf(len);
+    if(w<2||w>24)return null;
+    dirs.push(d);lens.push(Math.round(len));ws.push(w);
+    bkey.push(d+'@'+Math.floor(len/HT_LEN_BKT));
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  let kc=0;for(let d=0;d<4;d++)if(kinds&(1<<d))kc++;
+  if(kc<HT_KIND_MIN)return null;
+  for(let i=0;i<bkey.length;i++)for(let j=i+1;j<bkey.length;j++)if(bkey[i]===bkey[j])return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++)for(let j=0;j<ms[i].length;j++){
+    const x=ms[i][j][0],y=ms[i][j][1];
+    if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+  }
+  if(x1-x0<140||y1-y0<140)return null;
+  const dn=[];
+  for(let i=0;i<dirs.length;i++)dn.push(HT_KN[dirs[i]]);
+  return {ch:ch,n:ms.length,dirs:dirs,dn:dn,lens:lens,ws:ws,bkey:bkey,paths:sp,meds:ms,
+    kc:kc,kinds:(function(){const a=[];for(let d=0;d<4;d++)if(kinds&(1<<d))a.push(d);return a})(),
+    union:{x0:x0,x1:x1,y0:y0,y1:y1,xc:(x0+x1)/2,yc:(y0+y1)/2,w:x1-x0,h:y1-y0}};
+}
+function htSeqOk(rec){
+  if(!rec)return false;
+  if(rec.n<HT_STROKE_MIN||rec.n>HT_STROKE_MAX)return false;
+  if(rec.kc<HT_KIND_MIN)return false;
+  for(let i=0;i<rec.dirs.length;i++)if(rec.dirs[i]<0||rec.dirs[i]>3)return false;
+  const u=rec.union;
+  if(!(u.w>=140&&u.h>=140))return false;
+  const k={};
+  for(let i=0;i<rec.bkey.length;i++){
+    if(k[rec.bkey[i]])return false;
+    k[rec.bkey[i]]=1;
+  }
+  for(let i=0;i<rec.ws.length;i++)if(rec.ws[i]<2)return false;
+  return true;
+}
+/* ---- 吊序：前三场按笔顺正着吊，第四场起乱序（认错一只箱，这一笔退回队尾再吊一回）---- */
+function htOrder(n,L,seed){
+  const a=[];for(let i=0;i<n;i++)a.push(i);
+  if(L<=3)return a;
+  for(let i=n-1;i>0;i--){
+    const j=auxNext(seed^Math.imul(i+7,2654435761))%(i+1);
+    const t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+}
+/* 货箱站位：第 3 场起把箱子打乱站在轨道上 —— 位置不许泄露笔顺 */
+function htSlots(rec,L,seed){
+  const p=[];
+  for(let i=0;i<rec.n;i++)p.push(i);
+  if(L>=3){
+    for(let i=rec.n-1;i>0;i--){
+      const j=auxNext(seed^Math.imul(i+11,40503))%(i+1);
+      const t=p[i];p[i]=p[j];p[j]=t;
+    }
+  }
+  const slot=[];
+  for(let i=0;i<rec.n;i++)slot[p[i]]=i;
+  return slot;
+}
+function htTanOf(i,seed,L){
+  if(!htTanLv(L))return 0;
+  const r=auxMix(auxNext(seed^Math.imul(i+5,2246822519)))%3;
+  return r===0?1:0;
+}
+/* ---- 摆位账：这个字在这一场，每一腿吊哪一笔、并并不并钩、可行绕法有几档 ---- */
+function htPlan(rec,L,seed){
+  const ord=htOrder(rec.n,L,seed),legs=[];
+  for(let i=0;i<ord.length;){
+    const k=ord[i];
+    let tan=null,nx=-1;
+    if(i+1<ord.length&&htTanOf(i,seed,L)){
+      nx=ord[i+1];
+      tan=htTanSave(rec.ws[k],rec.ws[nx],L);
+      if(!tan)nx=-1;                    /* 并钩验不过省不了功：这一腿退回单吊，别并出一笔死账 */
+    }
+    const S=tan?(rec.ws[k]+rec.ws[nx]+HT_G):(rec.ws[k]+HT_G);
+    const W=htWin(S,L,htRoll(L),0),R2=htWinReal(S,L,htRoll(L),0);
+    if(!R2.length)return null;                     /* 账面可行而真拉拉不动 = 这一腿是死局，不许上台 */
+    if(!tan&&W.length<2)return null;               /* 单吊必须两条路可选：省力一条、省功一条 */
+    legs.push({ki:k,k2:nx,tan:tan?1:0,S:S,ws:W,real:R2,
+      save:tan,nF:htPaths(S,L,htRoll(L)).nF,nW:htPaths(S,L,htRoll(L)).nW});
+    i+=tan?2:1;
+  }
+  return {ord:ord,legs:legs,slots:htSlots(rec,L,seed)};
+}
+/* ---- 配上案的凭据：口径、每一腿拉得动、一卷绳吊得完这一场最坏的一串字、三把尺各算一遍 ---- */
+function htAudit(rec,L,why){
+  const say=function(t){if(why)why.why=t;return null};
+  if(!rec||!htSeqOk(rec))return say('口径');
+  const P=htPlan(rec,L,auxSeedOf(rec.ch,L));
+  if(!P)return say('吊不起来');
+  let need=0;
+  for(let i=0;i<P.legs.length;i++){
+    let mn=1e9;
+    const l=P.legs[i];
+    for(let k=0;k<l.real.length;k++)mn=Math.min(mn,htSOf(l.real[k]));
+    if(!isFinite(mn))return say('死局');
+    need+=mn;
+  }
+  if(need*HT_PER>htRoll(L))return say('绳卷紧');    /* 一卷绳不够吊完这一场最坏的那一串字 */
+  /* ①闭式 ②逐档数 ③一步一步真拉：三把尺必须各算各的又各各相同 */
+  for(let i=0;i<P.legs.length;i++){
+    const l=P.legs[i];
+    for(let k=0;k<l.ws.length;k++){
+      const n=l.ws[k],sim=htHaulSim(l.S,L,n,htRoll(L),0);
+      if(sim.presses!==htPressOf(n,htSlipOf(htFOf(l.S,n,0),htA(L),L)))return say('回数和真拉不合');
+      if(sim.ok!==1&&l.real.indexOf(n)>=0)return say('真拉与可行表不合');
+      if(sim.slips!==(sim.slip?Math.floor(sim.presses/HT_SLIP_EVERY):0))return say('滑的账对不上');
+    }
+    if(!l.tan){
+      const pa=htPaths(l.S,L,htRoll(L));
+      if(!pa.ok)return say('省力省功同一条路');
+      if(htWinMonotone(l.S,L,htRoll(L)))return say('账不单调');
+    }
+  }
+  if(why)why.why='过';
+  return {n:rec.n,A:htA(L),roll:htRoll(L),pwr:htPwr(L),legs:P.legs.length,need:need,
+    rope:need*HT_PER,press:P.legs.reduce(function(a,l){
+      let mn=1e9;for(let k=0;k<l.real.length;k++)mn=Math.min(mn,htPressOf(l.real[k],0));
+      return a+mn},0)};
+}
+function htTiers(){return [htLvOf(0),htLvOf(4),htLvOf(16)]}
+/* ---- 字池：进池之前按场的口径逐档试，三档全过才留。力气红线、绳卷、体力三条界一律随场号收紧，
+   第 9 场最难 —— 过得了 1·3·9 三道门槛的字，中间每一场都摆得开；只过浅档的字是碰运气过的 ---- */
+async function htBuildPool(keep,lo,hi){
+  const g=ht.gen,stale=function(){return g!==ht.gen||!ht.run||ht.over};
+  const enough=function(){
+    if(!isFinite(lo))return ht.pool.length>=HT_POOL_WANT;
+    let c=0;
+    for(let i=0;i<ht.pool.length;i++)if(ht.pool[i].n>=lo&&ht.pool[i].n<=hi)c++;
+    return c>=6||ht.pool.length>=40;
+  };
+  ht.miss=(localStorage.getItem('hz_ht_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<HT_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(auxShuf(ht.miss.slice(0,6)));
+  push(auxShuf(htLetters().split('')));      /* 这一串每次洗一遍：不然开工永远是那几个字 */
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(auxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(auxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  if(typeof CHARS!=='undefined')push(auxShuf(CHARS.slice()));
+  if(!keep)ht.pool=[];
+  const tiers=htTiers();                                  /* 1 场 · 3 场 · 5 场各是一道门槛 */
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=htMake(want[k+i],rs[i]);
+        if(m&&isFinite(lo)&&(m.n<lo||m.n>hi))continue;
+        if(m&&tiers.every(function(L){return !!htAudit(m,L)}))
+          if(!ht.pool.some(function(p){return p.ch===m.ch}))ht.pool.push(m);
+      }
+    }
+  }
+  return ht.pool.length>=HT_POOL_MIN;
+}
+/* 这一坊吃「每一笔的形状长短独一份、而且每一腿真拉得动」的字：箱子上的墨样只靠形状认人，两笔撞档孩子就是猜；
+   货重折成点数后还要能落进可行绕法那个闭区间。下面这一串不是随手写的：全字表 1372 个字拿这一坊自己的
+   htMake（口径）+ 三档 htAudit（拉得动、一卷绳够、三把尺各算一遍）数过一遍（_httiers.cjs），
+   真过闸的 121 个字全摆在这里（三道门槛就是第 1·3·9 场） —— 串外的字就是过不了闸的字。 */
+function htLetters(){
+  return '不丘中主乓争互亚亥仙以仪价休优伙住体何余你兰占卵厅去叫吆后君吞含听吾在址坐坛声好妒妙妨字存宁宅安宋宏尽市庄庆序庐库开异弃忙抄拟改攻斤方木朴杀杆杖欠欢歹灰灶父片犹王生矣石示社禾穴纤约纪纱羊至良芒芳虫计议记设证识诉诊谷豆贝贡赤走辽达迈返迟邮附陈饮';
+}
+
+/* ================= 案面：一台塔架 · 一卷绳 · 一排货箱 · 一张吊装单 =================
+   画的东西只有五块，全部由 ht 里那几个整数说了算：
+   ① 左上卸货台（米字格）：整个字一笔一笔码在这儿，落好位的染绿；
+   ② 右上吊装单：这一吊的账（第几笔 · 货重 · 段数），第 4 场起 F / 绳程 / 功三行收走；
+   ③ 中间塔架：横梁 + 定滑轮 + 升降列，钩上那只箱子沿着左边的高度尺往上升，
+      收几格绳升一格 —— 这一段绳子数得出来的，式子从不替孩子数；
+   ④ 右下拉力表：指针顶着红线就是拉不动，一根绳也收不进来；底下一根绳卷计看还剩几格；
+   ⑤ 底下一排货箱站在轨道上让孩子挑，箱上就画这一笔的模样，重量写在箱子下沿。
+   第 6 场起高度尺与力表不标数，吊装单早在第 4 场就不写了 —— 剩下的凭据只有这块表针与这排箱子 */
+function htCv(){const c=document.getElementById('htCanvas');return c&&c.getContext?c.getContext('2d'):null}
+function htRoundRect(g,x,y,w,h,r){
+  g.beginPath();
+  g.moveTo(x+r,y);g.lineTo(x+w-r,y);g.quadraticCurveTo(x+w,y,x+w,y+r);
+  g.lineTo(x+w,y+h-r);g.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  g.lineTo(x+r,y+h);g.quadraticCurveTo(x,y+h,x,y+h-r);
+  g.lineTo(x,y+r);g.quadraticCurveTo(x,y,x+r,y);
+  g.closePath();
+}
+/* 把「这个字的第 i 笔」画在 (cx,cy) 那块方框里：
+   缩放一律按整个字的轮廓（union）来算，不按这一笔自己的边框 ——
+   只有这样才能把「这笔有多长」留在画上：箱子沉不沉，看的就是这一笔的真实长度 */
+function htDrawPen(g,cx,cy,box,k,i,fill){
+  const rec=ht.rec;
+  if(!rec||i<0||i>=rec.n)return;
+  const u=rec.union;
+  const s=box/Math.max(u.w,u.h)*k;
+  g.save();
+  g.setTransform(s,0,0,-s,cx-s*u.xc,cy+s*u.yc);
+  try{g.fillStyle=fill||'#FFF3E0';g.fill(new Path2D(rec.paths[i]))}catch(e){}
+  g.restore();
+  g.filter='none';
+}
+/* 案上跟着箱子走的行（升降列那一行、钩上那一行）按中心对齐画：
+   箱子升到顶、降到最低都离画布边不远，整行字会切出界 —— 照实测字宽把中心推回来 */
+function htClampText(g,txt,x,y){
+  const hw=g.measureText(txt).width/2+2;
+  g.fillText(txt,Math.max(hw,Math.min(HT_W-hw,x)),y);
+}
+function htRise(){return ht.n>0?ht.take/ht.n:0}
+function htHookY(){return HT_HOOK0-htRise()*HT_PX}
+function htDoneOf(i){return ht.done.indexOf(i)>=0}
+/* 眼下这一档的账面功：每格拉力 × 绳程 */
+function htWorkNow(){return ht.F*ht.sNeed}
+/* 这一档在不在三本账划出来的那个闭区间里 */
+function htInWin(n){return ht.win.indexOf(n)>=0}
+/* ---- ① 卸货台：整个字都在这儿，就差认出那一只箱是第几笔 ---- */
+function htDrawGrid(g){
+  const rec=ht.rec;
+  g.save();
+  g.fillStyle='rgba(255,240,210,.08)';
+  htRoundRect(g,HT_GX-4,HT_GY-16,HT_GRID+8,HT_GRID+24,10);g.fill();
+  g.fillStyle='#D7CCC8';g.font='11px sans-serif';g.textAlign='left';
+  g.fillText('卸货台'+(rec?(' · 共 '+rec.n+' 笔'):'——'),HT_GX-2,HT_GY-5);
+  g.strokeStyle='rgba(215,204,200,.62)';g.lineWidth=1.6;
+  g.strokeRect(HT_GX,HT_GY,HT_GRID,HT_GRID);
+  g.strokeStyle='rgba(215,204,200,.24)';g.lineWidth=1;g.setLineDash([5,5]);
+  g.beginPath();
+  g.moveTo(HT_GX+HT_GRID/2,HT_GY);g.lineTo(HT_GX+HT_GRID/2,HT_GY+HT_GRID);
+  g.moveTo(HT_GX,HT_GY+HT_GRID/2);g.lineTo(HT_GX+HT_GRID,HT_GY+HT_GRID/2);
+  g.moveTo(HT_GX,HT_GY);g.lineTo(HT_GX+HT_GRID,HT_GY+HT_GRID);
+  g.moveTo(HT_GX+HT_GRID,HT_GY);g.lineTo(HT_GX,HT_GY+HT_GRID);
+  g.stroke();g.setLineDash([]);
+  if(!rec){g.restore();return}
+  const sc=HT_GRID/1024;
+  g.save();
+  g.setTransform(sc,0,0,-sc,HT_GX,HT_GY+1024*sc);
+  for(let i=0;i<rec.paths.length;i++){
+    try{
+      const path=new Path2D(rec.paths[i]);
+      g.fillStyle=htDoneOf(i)?'rgba(129,199,132,.95)':'rgba(255,240,214,.26)';
+      g.fill(path);
+    }catch(e){}
+  }
+  g.restore();
+  g.filter='none';
+  if(ht.phase==='pick'){
+    g.fillStyle='#FFCC80';g.font='12px sans-serif';g.textAlign='center';
+    g.fillText('这一笔落回哪儿',HT_GX+HT_GRID/2,HT_GY+HT_GRID+16);
+  }
+  g.restore();
+}
+/* ---- ② 吊装单：这一吊的账（深场只留第几笔与货重，F / 绳程 / 功三行收走）---- */
+function htSpecLines(){
+  const rec=ht.rec,L=ht.lv,tell=htNoTell(L);   /* tell 这一把门同时管着吊装单与测力那三行 */
+  if(!rec)return ['吊装单','案上没字'];
+  const who=ht.li&&ht.li.tan?('第 '+(ht.ki+1)+'＋第 '+(ht.ki2+1)+' 笔'):('第 '+(ht.ki+1)+' 笔');
+  const out=['吊装单 · '+who];
+  out.push('货重 '+(ht.li?ht.li.S:ht.S)+' 点（笔长＋滑轮 '+HT_G+'）');
+  out.push('绕 '+(tell?'——':ht.n)+' 段');
+  if(tell){
+    out.push('每格拉力 ——');out.push('绳程 ——');
+    out.push('一卷绳 '+(htDim(L)?'——':ht.R+' 格'));
+  }else{
+    out.push('每格拉力 '+ht.F+' 点');
+    out.push('绳程 '+ht.sNeed+' 格（升 '+HT_LIFT+' 格）');
+    out.push('功 '+htWorkNow()+' · 上限 '+ht.P);
+  }
+  if(ht.gaugeShow){
+    out.push('—— 测力 ——');
+    for(let n=1;n<=HT_NSEG;n++){
+      /* 测力报的是「手上真要拉几下」（那是账面看不出来的那一头）；每格几点力与绳程在第 4 场起照样收走 */
+      out.push(tell?'⚠ '+n+' 段：要拉 '+htPressOf(n,htSlipOf(htFOf(ht.S,n,ht.oiled),ht.A,L))+' 下'
+        :n+' 段：力 '+htFOf(ht.S,n,ht.oiled)+' · 绳 '+htSOf(n)+' · 拉 '+
+        htPressOf(n,htSlipOf(htFOf(ht.S,n,ht.oiled),ht.A,L))+' 下');
+    }
+  }
+  return out;
+}
+function htDrawSpec(g){
+  const L=ht.lv;
+  g.save();
+  g.fillStyle='rgba(255,244,214,.10)';
+  htRoundRect(g,HT_SX,HT_SY,HT_SW,HT_SH,10);g.fill();
+  g.strokeStyle='rgba(255,213,79,.55)';g.lineWidth=1.4;
+  htRoundRect(g,HT_SX,HT_SY,HT_SW,HT_SH,10);g.stroke();
+  const ls=htSpecLines();
+  /* 行距按行数收：📏 测力一开就是十行，13 像素的行距会把最后一行顶出面板 ——
+     账写在纸上是要孩子照着调绕法的，漏一行就等于把那一档的功课藏起来 */
+  const note=(ht.li&&ht.li.tan)||(ht.li&&ht.li.save);
+  const pitch=Math.max(9,Math.min(13,Math.floor((HT_SH-(note?30:24))/Math.max(1,ls.length-1))));
+  g.textAlign='left';
+  g.fillStyle='#FFE082';g.font='bold 11px sans-serif';
+  g.fillText(ls[0],HT_SX+8,HT_SY+18);
+  g.fillStyle=ht.gaugeShow?'#B3E5FC':'#CFD8DC';g.font='10px sans-serif';
+  for(let i=1;i<ls.length;i++)g.fillText(ls[i],HT_SX+8,HT_SY+18+i*pitch);
+  if(ht.li&&ht.li.tan){
+    g.fillStyle='#84FFFF';g.font='10px sans-serif';
+    g.fillText('⚡ 双钩并吊：只付一份滑轮重',HT_SX+8,HT_SY+HT_SH-6);
+  }else if(ht.li&&ht.li.save){
+    g.fillStyle='#A5D6A7';g.font='10px sans-serif';
+    g.fillText('省功这一头：'+ht.li.save.work+' ＜ 分开吊 '+ht.li.save.solo,HT_SX+8,HT_SY+HT_SH-6);
+  }
+  g.restore();
+}
+/* ---- ③ 塔架：横梁、定滑轮、承重绳那 n 段、钩上的箱子、左边那根高度尺 ---- */
+function htDrawTower(g){
+  const cy=htHookY(),top=cy-HT_CRH/2,lift=Math.round(htRise());
+  g.save();
+  /* 横梁与立柱 */
+  g.strokeStyle='rgba(188,170,120,.72)';g.lineWidth=3;
+  g.beginPath();g.moveTo(HT_COLX-64,HT_BEAM);g.lineTo(HT_COLX+70,HT_BEAM);g.stroke();
+  g.lineWidth=5;
+  g.beginPath();g.moveTo(HT_COLX,HT_BEAM);g.lineTo(HT_COLX,286);g.stroke();
+  g.strokeStyle='rgba(188,170,120,.34)';g.lineWidth=1.4;
+  g.beginPath();g.moveTo(HT_COLX-64,HT_BEAM);g.lineTo(HT_COLX-52,HT_BEAM+14);
+  g.moveTo(HT_COLX+70,HT_BEAM);g.lineTo(HT_COLX+58,HT_BEAM+14);g.stroke();
+  /* 承重绳：绕几段就是几根竖线，箱子沿这一排列往上走 */
+  g.strokeStyle='rgba(255,224,130,.85)';g.lineWidth=1.2;
+  g.beginPath();
+  for(let j=0;j<ht.n;j++){
+    const x=HT_COLX+(j-(ht.n-1)/2)*9;
+    g.moveTo(x,HT_BEAM);g.lineTo(x,top);
+  }
+  g.stroke();
+  /* 定滑轮：绳在这一头折向卷扬机 */
+  const px=HT_COLX+(ht.n-1)/2*9+13;
+  g.strokeStyle='#D7CCC8';g.lineWidth=1.6;
+  g.beginPath();g.arc(px,HT_BEAM+6,7,0,Math.PI*2);g.stroke();
+  g.beginPath();g.moveTo(px,HT_BEAM+13);g.lineTo(HT_MBX+6,HT_MBY+HT_MBH/2);g.stroke();
+  g.fillStyle='#BCAAA4';g.font='10px sans-serif';g.textAlign='center';
+  g.fillText('承重绳 '+ht.n+' 段',HT_COLX,HT_BEAM-8);
+  g.restore();
+  /* 高度尺：升程就这几格，一格 12 像素，格数第 6 场起不标 */
+  g.save();
+  g.strokeStyle='rgba(215,204,200,.5)';g.lineWidth=1.6;
+  g.beginPath();g.moveTo(HT_ULX,HT_HOOK0);g.lineTo(HT_ULX,HT_HOOK0-HT_LIFT*HT_PX);g.stroke();
+  for(let i=0;i<=HT_LIFT;i++){
+    const y=HT_HOOK0-i*HT_PX,big=(i===HT_LIFT);
+    g.strokeStyle=(i===lift)?'#FFD54F':'rgba(215,204,200,.42)';g.lineWidth=(i===lift)?2:1;
+    g.beginPath();g.moveTo(HT_ULX,y);g.lineTo(HT_ULX+(big?12:7),y);g.stroke();
+    if(!htDim(ht.lv)){
+      g.fillStyle=(i===lift)?'#FFD54F':'#8D6E63';g.font='9px sans-serif';g.textAlign='right';
+      g.fillText(i,HT_ULX-3,y+3);
+    }
+  }
+  g.fillStyle='#BCAAA4';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText(htDim(ht.lv)?'升程（自己数）':'升程 · 一格一格的绳',HT_ULX-24,HT_HOOK0+14);
+  g.restore();
+  /* 钩上那一只（双钩就是两只）箱子：箱里只画这一笔的模样，字一律写在箱子外 */
+  const its=(ht.li&&ht.li.tan)?[ht.ki,ht.ki2]:[ht.ki];
+  for(let q=0;q<its.length;q++){
+    const cx=HT_COLX+(its.length>1?(q?15:-15):0);
+    g.save();
+    g.fillStyle='rgba(141,110,99,.55)';
+    htRoundRect(g,cx-HT_CRW/2,cy-HT_CRH/2,HT_CRW,HT_CRH,4);g.fill();
+    g.strokeStyle=ht.phase==='haul'?'#FFD54F':'rgba(255,213,79,.6)';g.lineWidth=1.4;
+    htRoundRect(g,cx-HT_CRW/2,cy-HT_CRH/2,HT_CRW,HT_CRH,4);g.stroke();
+    g.beginPath();g.moveTo(cx,cy-HT_CRH/2);g.lineTo(cx,cy-HT_CRH/2-7);g.stroke();
+    g.restore();
+    htDrawPen(g,cx,cy,HT_CRH-8,1,its[q],'rgba(255,248,225,.94)');
+  }
+  g.fillStyle='#FFE082';g.font='10px sans-serif';g.textAlign='center';
+  htClampText(g,'箱 · 升 '+lift+' 格 · 绳 '+ht.take+' 格',HT_COLX,top-12);
+}
+/* ---- ④ 拉力表：指针顶到红线就是这一档压根拉不动；底下一根绳卷计 ---- */
+function htDrawGauge(g){
+  const L=ht.lv,dim=htDim(L);
+  const x=HT_MBX,y=HT_MBY,w=HT_MBW,h=HT_MBH;
+  const cx=x+w/2,cy=y+h*0.72,rad=w*0.40;
+  g.save();
+  g.fillStyle='rgba(12,18,24,.66)';
+  htRoundRect(g,x,y,w,h,10);g.fill();
+  g.strokeStyle=ht.F>ht.A?'rgba(239,83,80,.9)':'rgba(255,213,79,.5)';g.lineWidth=1.6;
+  htRoundRect(g,x,y,w,h,10);g.stroke();
+  g.fillStyle='#CFD8DC';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText('拉力表',x+8,y+14);
+  g.strokeStyle='rgba(215,204,200,.5)';g.lineWidth=2;
+  g.beginPath();g.arc(cx,cy,rad,Math.PI,Math.PI*2);g.stroke();
+  /* 刻度：红线就是这一场的力气上限 A，指针是这一档的每格拉力 F */
+  const frac=Math.max(0,Math.min(1.16,ht.F/Math.max(1,ht.A)));
+  for(let i=0;i<=4;i++){
+    const a=Math.PI+(i/4)*Math.PI;
+    const ca=Math.cos(a),sa=Math.sin(a);
+    g.strokeStyle=i===4?'#EF5350':'rgba(215,204,200,.4)';g.lineWidth=i===4?2.4:1;
+    g.beginPath();g.moveTo(cx+ca*(rad-4),cy+sa*(rad-4));g.lineTo(cx+ca*(rad+3),cy+sa*(rad+3));g.stroke();
+    if(!dim){
+      g.fillStyle=i===4?'#EF5350':'#8D6E63';g.font='9px sans-serif';g.textAlign='center';
+      g.fillText(Math.round(ht.A*i/4),cx+ca*(rad+9),cy+sa*(rad+9)+3);
+    }
+  }
+  const na=Math.PI+Math.min(1,frac)*Math.PI;
+  g.strokeStyle=frac>=1?'#EF5350':(frac>.75?'#FFB74D':'#A5D6A7');g.lineWidth=2.4;
+  g.beginPath();g.moveTo(cx,cy);g.lineTo(cx+Math.cos(na)*(rad-6),cy+Math.sin(na)*(rad-6));g.stroke();
+  g.fillStyle='#FFD54F';g.beginPath();g.arc(cx,cy,3.4,0,Math.PI*2);g.fill();
+  g.textAlign='center';g.font='10px sans-serif';
+  g.fillStyle=frac>=1?'#EF9A9A':'#A5D6A7';
+  g.fillText(frac>=1?'✖ 顶到红线：这一档拉不动':(ht.slip?'⚠ 力有点顶：绳子会滑':'✔ 拉得动'),cx,y+h-8);
+  /* 绳卷计：一卷绳就这么长，收一格少一格 */
+  const p=Math.max(0,Math.min(1,ht.rope/Math.max(1,ht.rope0)));
+  g.fillStyle='rgba(255,255,255,.12)';
+  htRoundRect(g,HT_RMX,HT_RMY,HT_RMW,HT_RMH,8);g.fill();
+  g.fillStyle=p<.25?'rgba(255,82,82,.85)':'rgba(215,204,200,.75)';
+  if(p>0){htRoundRect(g,HT_RMX,HT_RMY,Math.max(6,HT_RMW*p),HT_RMH,8);g.fill()}
+  g.fillStyle='#0D0A06';g.font='bold 10px sans-serif';g.textAlign='center';
+  g.fillText('🪢 绳 '+ht.rope+' / '+ht.rope0+' 格',HT_RMX+HT_RMW/2,HT_RMY+12);
+  g.restore();
+}
+/* ---- ⑤ 货箱轨道：每一笔一只箱，箱上画这一笔的模样，重量写在箱下沿 ---- */
+function htCrateX(pos){return HT_CSX+pos*HT_CSP}
+function htDrawRail(g){
+  const rec=ht.rec;
+  g.save();
+  g.strokeStyle='rgba(215,204,200,.5)';g.lineWidth=2;
+  g.beginPath();g.moveTo(14,HT_RY);g.lineTo(HT_W-14,HT_RY);g.stroke();
+  /* 这四个字贴在轨道右端：左端那一格是 1~7 的指认序号，写过去就把第一只箱的键帽盖掉了 */
+  g.fillStyle='#BCAAA4';g.font='10px sans-serif';g.textAlign='right';
+  g.fillText('货箱轨道',HT_W-14,HT_RY+24);
+  if(!rec){g.restore();return}
+  for(let i=0;i<rec.n;i++){
+    const pos=ht.slot[i],x=htCrateX(pos),y=HT_RY-HT_CSH;
+    if(htDoneOf(i)){
+      g.strokeStyle='rgba(129,199,132,.35)';g.lineWidth=1;
+      g.setLineDash([3,3]);
+      htRoundRect(g,x,y,HT_CSW,HT_CSH,4);g.stroke();
+      g.setLineDash([]);
+      continue;
+    }
+    const picked=ht.picks.indexOf(i)>=0;
+    g.fillStyle=picked?'rgba(84,174,212,.30)':'rgba(93,64,55,.62)';
+    htRoundRect(g,x,y,HT_CSW,HT_CSH,4);g.fill();
+    g.strokeStyle=picked?'#4FC3F7':(ht.phase==='pick'?'rgba(255,213,79,.5)':'rgba(215,204,200,.22)');
+    g.lineWidth=picked?2:1.2;
+    htRoundRect(g,x,y,HT_CSW,HT_CSH,4);g.stroke();
+    htDrawPen(g,x+HT_CSW/2,y+HT_CSH/2,HT_CSH-8,1,i,picked?'rgba(179,229,252,.95)':'rgba(255,244,220,.9)');
+    g.fillStyle='#D7CCC8';g.font='9px sans-serif';g.textAlign='center';
+    g.fillText(rec.ws[i]+' 点',x+HT_CSW/2,HT_RY+11);
+    g.fillStyle='#8D6E63';g.font='9px sans-serif';
+    g.fillText(i+1,x+HT_CSW/2,HT_RY+22);
+  }
+  g.restore();
+}
+function htDraw(){
+  const g=htCv();
+  if(!g)return;
+  g.setTransform(1,0,0,1,0,0);
+  g.clearRect(0,0,HT_W,HT_H);
+  htDrawGrid(g);
+  htDrawSpec(g);
+  if(ht.rec){htDrawTower(g);htDrawGauge(g);htDrawRail(g)}
+  else{
+    g.fillStyle='#5D4037';g.font='13px sans-serif';g.textAlign='center';
+    g.fillText('塔架上还没挂货',HT_COLX,HT_HOOK0-30);
+  }
+}
+
+/* ================= 界面：七行账、五支条、四件家什 ================= */
+function htEl(id){return document.getElementById(id)}
+function htPut(id,txt){const e=htEl(id);if(e)e.textContent=txt}
+/* 带排版的行只给产品自己写的那几句用（句中没有一处来自孩子的手）*/
+function htPutH(id,txt,color){const e=htEl(id);if(e){e.innerHTML=txt;color&&(e.style.color=color)}}
+function htBar(id,p){const e=htEl(id);if(!e)return;p=Math.max(0,Math.min(1,p));e.style.width=Math.round(p*100)+'%';const r=e.parentNode;if(r)r.classList.toggle('low',p<.25)}
+/* 深场不再念绳程：吊装单上不写的这一句，界面那一行也不许漏出去 */
+function htTolTxt(){
+  if(!htInWin(ht.n))return '这一档拉不动 · 换绕法';
+  return htNoTell(ht.lv)?'这一档拉得动 · 收几格绳看塔上那几段':'这一档拉得动 · 要收 '+ht.sNeed+' 格绳';
+}
+/* 一卷绳剩多少怎么说：紧了就提醒，别等收到一根不剩才知道心疼 */
+function htRopeHint(){
+  const per=ht.sNeed||5;
+  return ht.rope<=24?('只剩 '+ht.rope+' 格，省着收'):('一卷 '+ht.rope+' 格，够吊 '+Math.floor(ht.rope/per)+' 回');
+}
+function htDoneTxt(){
+  const rec=ht.rec;
+  if(!rec)return '案上没字';
+  return '落好 '+ht.done.length+'/'+rec.n+' 笔 · 还差 '+ht.ord.length+' 吊';
+}
+function htHelpText(){
+  return '🏗️ <b>一笔就是一箱货</b>：货重＝这一笔的真实长度 ÷'+HT_K+'，再加上动滑轮自重 '+HT_G+' 点；钩上箱子，认它是这个字的第几笔<br>'+
+    '⚙️ <b>绕几段绳自己挑</b>：承重绳绕 n 段，每格拉力 F＝⌈货重÷n⌉＋'+HT_MU+'×(n−1) 点摩擦，绳子要收 n×'+HT_LIFT+' 格箱子才升 '+HT_LIFT+' 格<br>'+
+    '🧮 <b>省力就是不省功</b>：功＝F×绳程＝货重×'+HT_LIFT+' ＋ 摩擦×绳程 —— 绕得越多，白烧在摩擦上的越多<br>'+
+    '🪝 <b>三本账各管一头</b>：力气红线（每格拉力不许顶过 '+ht.A+' 点）卡住至少绕几段，绕够了往上每一段都拉得动；🪢 绳卷记这一字吃了多少格绳（一卷 '+ht.R+' 格、一吊最多 '+HT_LIFT*HT_NSEG+' 格），⚡ 体力记这一吊花了多少功 —— 可行的绕法是一段闭区间，不是猜<br>'+
+    '🌀 <b>打滑</b>（第 '+HT_SLIP_LV+' 场起）：力顶到红线的四分之三以上，每收 '+HT_SLIP_EVERY+' 格滑回 1 格 —— 账面上 '+HT_LIFT*3+' 格的绳，手上要拉 '+htPressOf(3,1)+' 下，📏 测力 才说真回数<br>'+
+    '⚡ <b>双钩并吊</b>（第 '+HT_TAN_LV+' 场起）：两笔并成一吊只付一份滑轮自重，验过真比分开吊省功才上台<br>'+
+    '🛢️ <code>O</code> 上油去摩擦 · 📏 <code>T</code> 测力看真回数 · 🪢 <code>Q</code> 接绳 · 🔁 <code>R</code> 换字 · <code>1~7</code> 认箱 · <code>←→</code> 绕法 · <code>空格</code> 拉一格 · <code>Enter</code> 上绳 · <code>X</code> 弃吊 · <code>H</code> 看说明';
+}
+function htMsg(txt,color){
+  ht.msg=txt;
+  const e=htEl('htMsg');
+  if(e){e.innerHTML=txt;color&&(e.style.color=color)}
+}
+function htTag(txt,kind){
+  const e=htEl('htTag');
+  if(!e)return;
+  /* 屏上这几句是产品自己写的话（句中没有一处来自孩子的手），里头带着要加粗的那几个字 */
+  e.innerHTML=txt;
+  e.className='ht-tag on'+(kind?(' '+kind):'');
+  clearTimeout(ht.tagTimer);
+  ht.tagTimer=setTimeout(function(){e.classList.remove('on')},HT_TAG_MS);
+}
+/* 上台之前把案面擦干净：屏上不许留着上一吊的话 */
+function htClearTag(){
+  clearTimeout(ht.tagTimer);
+  const e=htEl('htTag');
+  if(e){e.textContent='🏗️ 塔架立好了';e.className='ht-tag'}
+}
+function htAskTxt(){
+  const rec=ht.rec,L=ht.lv;
+  if(ht.load)return '🏗️ 正在点货……<br><small>在字库里找「每一笔长短独一份、而且真拉得动」的字</small>';
+  if(ht.helpMs>0)return htHelpText();
+  if(!rec)return '🏗️ <b>案上空着</b>：这一场的字已经吊完';
+  const who=(ht.li&&ht.li.tan)?('<b>第 '+(ht.ki+1)+' 笔和第 '+(ht.ki2+1)+' 笔</b>这两只箱'):
+    ('这个字的<b>第 '+(ht.ki+1)+' 笔</b>是哪只箱');
+  if(ht.phase==='pick')return '📦 <b>'+who+'</b>？点轨道上那一只，或按 <b>1~'+rec.n+'</b>'+
+    '<br><small>箱子上的墨样就是这一笔的模样，沉不沉看长短 · 认箱钟还有 '+Math.ceil(ht.pickMs/1000)+' 秒 · '+htDoneTxt()+'</small>'+
+    ((ht.li&&ht.li.tan)?'<br><small>这一吊挂着 <b>⚡ 双钩</b>：两只箱一起上钩，只付一份滑轮自重</small>':'');
+  if(ht.phase==='rig')return '⚙️ <b>承重绳绕几段自己挑</b>（<code>← →</code>，现在 '+ht.n+' 段）：按 <code>空格</code> 上绳'+
+    '<br><small>'+htTolTxt()+' · '+htRigTxt(ht.n)+' · 吊钟还有 '+Math.ceil(ht.qms/1000)+' 秒</small>'+
+    '<br><small>力表指针顶到红线就是这一档压根拉不动 —— 绳卷与功预算也各卡一头</small>';
+  if(ht.phase==='land')return '🧱 <b>落位……</b><br><small>箱子放回卸货台，这一笔染墨</small>';
+  return '💪 <b>一格一格收绳</b>：按 <code>空格</code>（或点鼓轮那一条）拉一格'+
+    '<br><small>已经收了 '+ht.take+' 格 · 升 '+Math.round(htRise())+'/'+HT_LIFT+' 格 · 箱上这一笔是第 '+(ht.ki+1)+' 笔</small>'+
+    (ht.slip?'<br><small>这一档力有点顶：绳子会不会滑，拉下去自己看（📏 测力 报真回数）':'');
+}
+function htSync(){
+  const rec=ht.rec,L=ht.lv;
+  htPut('htScoreTxt','🏗️ '+ht.score+' 分');
+  htPut('htLvTxt','第 '+L+' 场 · 收 '+ht.words+' 字');
+  htPut('htQTxt','⏳ '+(ht.phase==='pick'?'认箱 ':'这一吊 ')+
+    Math.ceil((ht.phase==='pick'?ht.pickMs:ht.qms)/1000)+' 秒');
+  const rk=htRank(auxInt('hz_ht_words')+ht.words);
+  htPut('htRankTxt',rk.e+' '+rk.t);
+  let hs='';for(let i=0;i<ht.hearts;i++)hs+='❤️';
+  htPut('htHeartTxt',hs||'💔');
+  htPut('htComboTxt','🔥 连 '+ht.combo);
+  htPut('htLotTxt','🈶 第 '+(ht.wi+1)+'/'+HT_PER+' 字 · 第 '+(ht.pi+1)+' 吊'+(rec?(' · 共 '+rec.n+' 笔'):''));
+  /* 只报拉得德拉不动，不报 F 是几点：F 就是式子给的答案，念出来等于替孩子挑绕法 */
+  htPut('htRopeTxt','🪢 绳 '+ht.rope+' 格 · '+(htInWin(ht.n)?'✔ 这一档拉得动':'✖ 顶到红线了'));
+  const light=htEl('htHitLight');
+  if(light){
+    const t=(ht.phase==='rig'&&htInWin(ht.n))?'✔ 上绳就能拉':
+      (ht.hitTxt?ht.hitTxt:(rec?'✖ 还没落钩':'✖ 还没上案'));
+    light.textContent=t;
+    light.style.color=ht.hitOk>0?'#A5D6A7':(ht.hitOk<0?'#EF9A9A':'#FFE082');
+  }
+  htBar('htHaulBar',ht.qms/Math.max(1,ht.qms0));
+  htBar('htPickBar',ht.pickMs/Math.max(1,ht.pick0));
+  htBar('htWordBar',ht.wordMs/Math.max(1,ht.wordMs0));
+  htBar('htFuelBar',ht.fuel/Math.max(1,ht.fuel0));
+  htBar('htRopeBar',ht.rope/Math.max(1,ht.rope0));
+  htPut('htHaulTxt','⌛ 这一吊 '+Math.ceil(ht.qms/1000)+' 秒');
+  htPut('htPickTxt','📦 认箱 '+Math.ceil(ht.pickMs/1000)+' 秒');
+  htPut('htWordTxt','🈶 这个字 '+Math.ceil(ht.wordMs/1000)+' 秒');
+  htPut('htFuelTxt','💡 这一场 '+Math.ceil(ht.fuel/1000)+' 秒');
+  htPut('htRopeBig','🪢 绳 '+ht.rope+' 格 · 一卷 '+ht.rope0+' 格');
+  const ask=htEl('htAsk');
+  if(ask){
+    ask.innerHTML=htAskTxt();
+  }
+  htPut('htRigTxt','绕 '+ht.n+' 段 · '+(htNoTell(L)?'拉力表针自己看':('每格 '+ht.F+' 点 / 绳 '+ht.sNeed+' 格')));
+  const lb=htEl('htLeftBtn'),rb=htEl('htRightBtn');
+  const see=ht.phase==='rig';
+  if(lb)lb.disabled=!see||ht.n<=1;
+  if(rb)rb.disabled=!see||ht.n>=HT_NSEG;
+  const kb=htEl('htSkipBtn');
+  if(kb)kb.disabled=!rec||ht.over||ht.locked||ht.phase==='land';
+  const ab=htEl('htActBtn');
+  if(ab){
+    const can=!!rec&&!ht.over&&!ht.locked&&ht.phase!=='land';
+    ab.disabled=!can;
+    ab.classList.toggle('ready',!!(can&&ht.phase==='haul'));
+    const small=ht.phase==='pick'?'在这排货箱里点出这一笔 —— 1～7 也能按':
+      (ht.phase==='rig'?'按空格上绳：绕几段是自己挑的':
+        (ht.phase==='haul'?'每按一次收一格绳，升一格要收几格自己算':'箱子正在落位'));
+    ab.innerHTML=(ht.phase==='pick'?'📦 先认箱':(ht.phase==='rig'?'⚙️ 上绳':'💪 拉一格'))+'<small>'+small+'</small>';
+  }
+  const btns=[['htOilBtn',ht.oilN],['htGaugeBtn',ht.gaugeN],['htRopeBtn',ht.ropeN],['htSwapBtn',ht.swapN]];
+  for(let i=0;i<btns.length;i++){
+    const b=htEl(btns[i][0]);
+    if(b){
+      const n=b.getElementsByTagName('b')[0];
+      if(n)n.textContent='剩 '+btns[i][1];
+      b.disabled=btns[i][1]<=0||!rec||ht.over;
+    }
+  }
+}
+
+/* ================= 这一场的手：上字、认箱、上绳、拉格、落位、四件家什 ================= */
+/* ---- 上字：错字本上的字优先挑回来，其次挑本场没上过案的 ---- */
+function htTake(){
+  const pool=ht.pool;
+  if(!pool.length)return null;
+  for(let i=0;i<ht.miss.length;i++){
+    for(let k=0;k<pool.length;k++){
+      if(pool[k].ch===ht.miss[i]&&ht.seen.indexOf(pool[k].ch)<0)return pool[k];
+    }
+  }
+  const fresh=[];
+  for(let k=0;k<pool.length;k++)if(ht.seen.indexOf(pool[k].ch)<0)fresh.push(pool[k]);
+  const list=fresh.length?fresh:pool;
+  return list[Math.floor(Math.random()*list.length)];
+}
+/* ---- 一个字上台：吊序账由「字 + 场」的种子定死，哪一腿并钩、箱子站第几个位置，重来一遍一模一样 ---- */
+function htSetWord(rec,flash){
+  const L=ht.lv;
+  ht.rec=rec;ht.seed=auxSeedOf(rec.ch,L);ht.fresh=htFresh(rec.ch);
+  const P=htPlan(rec,L,ht.seed);
+  if(!P)return;
+  ht.legs=P.legs;ht.slot=P.slots;
+  /* 待吊队列：队头就是眼下这一吊；认错的、拉不动的、钟尽的一律退回队尾再吊一回（绳子已经吃掉了）*/
+  ht.ord=[];
+  for(let i=0;i<P.legs.length;i++)ht.ord.push(i);
+  ht.done=[];ht.pi=0;ht.locked=0;
+  ht.wordMs0=htWord(L);ht.wordMs=ht.wordMs0;
+  ht.cleanWord=1;ht.cleanMin=1;ht.noSlip=1;ht.wordTools=0;ht.tans=0;
+  ht.picks=[];ht.li=null;ht.ki=-1;ht.ki2=-1;ht.gaugeShow=0;
+  ht.seen.push(rec.ch);
+  htTone(620,70);
+  htTag((flash||'')+'🈶 上案：共 '+rec.n+' 笔 · 一卷绳 '+ht.rope+' 格 · '+htRopeHint(),'gold');
+  htStartLeg();
+}
+/* ---- 开一吊：先认箱（这一笔是哪只箱），箱子挂上钩才轮到选绕法 ---- */
+function htStartLeg(){
+  if(!ht.rec||ht.locked||!ht.ord.length)return;
+  if(ht.rope<=0){htRollOut();return}
+  const leg=ht.legs[ht.ord[0]],L=ht.lv;
+  ht.li=leg;ht.ki=leg.ki;ht.ki2=leg.k2;ht.need=leg.tan?2:1;
+  ht.picks=[];ht.S=leg.S;ht.A=htA(L);ht.R=htRoll(L);ht.P=htPwr(L);
+  ht.n=HT_N0;ht.oiled=0;ht.gaugeShow=0;
+  ht.take=0;ht.presses=0;ht.slips=0;ht.work=0;
+  htRigApply();
+  ht.phase='pick';
+  ht.pick0=htPick(L);ht.pickMs=ht.pick0;
+  ht.qms0=htHaul(L);ht.qms=ht.qms0;
+  ht.hitOk=0;ht.hitTxt='';
+  htSync();htDraw();
+}
+/* ---- 绕法改了，三本账跟着重算：这一段全靠闭式，没有第二把尺 ---- */
+function htRigApply(){
+  ht.n=auxClamp(ht.n,1,HT_NSEG);
+  ht.F=htFOf(ht.S,ht.n,ht.oiled);
+  ht.sNeed=htSOf(ht.n);
+  ht.slip=htSlipOf(ht.F,ht.A,ht.lv);
+  ht.win=htWin(ht.S,ht.lv,ht.R,ht.oiled);
+  ht.rigOk=htInWin(ht.n)?1:0;
+}
+function htSetN(n){
+  if(!ht.rec||ht.over||ht.locked||ht.phase!=='rig')return;
+  const v=auxClamp(Math.round(n),1,HT_NSEG);
+  if(v===ht.n)return;
+  ht.n=v;htRigApply();
+  htTone(360+v*60,30);
+  htSync();htDraw();
+}
+function htStepN(d){htSetN((ht.n||HT_N0)+d)}
+/* ---- 认箱：这一笔（这一笔和第几笔）是哪只箱 ---- */
+function htPickCrate(i){
+  const rec=ht.rec;
+  if(!rec||ht.over||ht.locked||ht.phase!=='pick')return;
+  if(i<0||i>=rec.n||htDoneOf(i))return;
+  if(ht.picks.indexOf(i)>=0)return;
+  const right=(i===ht.ki)||(ht.need>1&&i===ht.ki2);
+  if(!right){htWrongPick(i);return}
+  ht.picks.push(i);
+  htTone(660+i*40,60);
+  htSay('✔ 第 '+(i+1)+' 笔那一只挂上钩了');
+  if(ht.picks.length<ht.need){htSync();htDraw();return}
+  htEnterRig();
+}
+function htWrongPick(i){
+  const rec=ht.rec;
+  ht.wrongs++;ht.cleanWord=0;ht.hearts--;ht.combo=0;
+  ht.score-=HT_P_WRONG;
+  ht.hitOk=-1;ht.hitTxt='✖ 认错了箱 · −'+HT_P_WRONG;
+  htTag('✖ 那只箱是第 '+(i+1)+' 笔（'+rec.dn[i]+'·'+rec.ws[i]+' 点），这一吊要的是第 '+(ht.ki+1)+' 笔：'+
+    '倒扣 '+HT_P_WRONG+' 分 · 掉一颗心 · 这一吊退回队尾再吊','warn');
+  htTone(150,260);htSay('✖ 认错了');
+  htFailLeg();
+}
+/* ---- 上绳：绕法定了就把绳挂上鼓轮，这一段路上不许再改（要改只能弃吊）---- */
+function htEnterRig(){
+  ht.phase='rig';
+  htSetN(ht.n||HT_N0);
+  htSync();htDraw();
+}
+function htConfirmRig(){
+  if(!ht.rec||ht.over||ht.locked||ht.phase!=='rig')return;
+  if(ht.rope<=0){htRollOut();return}
+  ht.phase='haul';
+  htTone(520,120);
+  htTag(htNoTell(ht.lv)?('⚙️ 上绳：承重绳 '+ht.n+' 段，每格几分力看表针')
+    :'⚙️ 上绳：'+htRigTxt(ht.n)+' · 每格 '+ht.F+' 点 · 绳程 '+ht.sNeed+' 格','cyan');
+  htSync();htDraw();
+}
+/* ---- 拉绳：一次一下，收一格绳、吃一格体力；打滑那一手下白收 ---- */
+function htPull(){
+  if(!ht.rec||ht.over||ht.locked||ht.phase!=='haul')return;
+  if(ht.F>ht.A){htStuck('force');return}
+  if(ht.work+ht.F>ht.P){htStuck('stam');return}
+  if(ht.rope<=0){htRollOut();return}
+  ht.presses++;ht.take++;ht.work+=ht.F;
+  ht.rope--;ht.ropeUsed++;ht.rollUsed++;
+  if(ht.slip&&ht.presses%HT_SLIP_EVERY===0){
+    /* 滑回去的那一格连绳子一起滑回来：绳没丢，丢的是手上的回数与功 */
+    ht.slips++;ht.slipN++;ht.take--;ht.rope++;ht.ropeUsed--;ht.rollUsed--;
+    ht.noSlip=0;
+    htTag('🌀 这一手滑了：每收 '+HT_SLIP_EVERY+' 格滑回 1 格 —— '+
+      (htNoTell(ht.lv)?'手上已经拉了 ':'账面 '+ht.sNeed+' 格的绳，手上已经拉了 ')+ht.presses+' 下','warn');
+    htTone(190,160);
+    htSync();htDraw();
+    return;
+  }
+  if(ht.take>=ht.sNeed){htEnterLand();return}
+  htTone(400+ht.take*14,20);
+  htSync();htDraw();
+}
+/* 拉不动分两种：这一档压根超红线（退回选绕法，绳没吃），与手上一口气见底（这一吊作废）*/
+function htStuck(why){
+  ht.stuckN++;ht.cleanWord=0;ht.combo=0;
+  ht.score-=HT_P_STUCK;
+  ht.hitOk=-1;ht.hitTxt='✖ 拉不动 · −'+HT_P_STUCK;
+  if(why==='force'){
+    htTag('✖ 表针顶过红线了：这一档每格的力比胳膊的极限还大，一格绳也没收进来 · 倒扣 '+HT_P_STUCK+
+      ' 分 —— 回去多绕一段（🛢️ 上油也能把摩擦那几点抹掉）','warn');
+    htTone(140,300);htSay('✖ 这一档拉不动');
+    ht.phase='rig';
+    htSync();htDraw();
+    return;
+  }
+  htTag('✖ 一口气见底：这一吊的功超了预算 '+ht.P+'，绳子已经吃进去了 · 倒扣 '+HT_P_STUCK+' 分 —— 这一吊退回队尾','warn');
+  htTone(140,320);htSay('✖ 手没了力气');
+  htFailLeg();
+}
+/* ---- 落位：箱子回到卸货台，这一笔染墨 ---- */
+function htEnterLand(){
+  ht.phase='land';ht.landMs=HT_LAND_MS;
+  htTone(880,90);
+  htSync();htDraw();
+}
+function htLand(){
+  const leg=ht.li,rec=ht.rec,L=ht.lv;
+  if(!rec||!leg){htNextLeg();return}
+  for(let q=0;q<ht.picks.length;q++){
+    const i=ht.picks[q];
+    if(ht.done.indexOf(i)<0){ht.done.push(i);ht.strokes++}
+  }
+  ht.lifts++;
+  const min=(ht.n===leg.nW)?1:0;      /* 走的是最省功那一头（n 最小的那一档）*/
+  if(min)ht.minN++;else ht.cleanMin=0;
+  const pts=Math.round(HT_M0+ht.combo*HT_M_CB+L*HT_M_LV);
+  ht.score+=pts;ht.gain=pts;ht.combo++;
+  if(ht.combo>ht.maxCombo)ht.maxCombo=ht.combo;
+  ht.hitOk=1;ht.hitTxt='✔ 落位 +'+pts;
+  if(leg.tan){ht.tans++;ht.tanOk++}
+  htTone(1000,120);
+  htTag('🧱 落位：第 '+(leg.ki+1)+(leg.tan?('＋第 '+(leg.ki2+1)+' 笔'):(' 笔'))+' · +'+pts+' 分 · 绕 '+ht.n+
+    ' 段拉了 '+ht.presses+' 下'+(htNoTell(L)?'':('（账面 '+ht.sNeed+' 格绳）'))+
+    (min?' · 这一趟走的是最省功那头':'')+
+    (leg.tan?(htNoTell(L)?' · ⚡ 并吊少付一份滑轮重':
+      (' · ⚡ 并吊省 '+Math.max(0,leg.save.solo-leg.save.work)+' 点功')):''),'gold');
+  htSay('✔ 落位 +'+pts);
+  htNextLeg();
+}
+/* 这一吊废了：整腿退回队尾，下一吊接着来（绳子就是这么吃光的）*/
+function htFailLeg(){
+  if(!ht.ord.length)return;
+  ht.ord.push(ht.ord.shift());
+  ht.pi++;
+  if(ht.hearts<=0){htEnd('hearts');return}
+  htStartLeg();
+}
+/* 这一吊成了（箱子落回台上）：队头出列 */
+function htNextLeg(){
+  ht.ord.shift();ht.pi++;
+  if(!ht.ord.length){htCollect();return}
+  if(ht.hearts<=0){htEnd('hearts');return}
+  htStartLeg();
+}
+/* 💤 弃吊：这一吊不吊了（不吃绳，倒扣三分），这一腿退回队尾 */
+function htSkip(){
+  if(!ht.rec||ht.over||ht.locked||ht.phase==='land')return;
+  ht.skips++;ht.cleanWord=0;ht.combo=0;
+  ht.score-=HT_P_SKIP;
+  ht.hitOk=-1;ht.hitTxt='💤 弃吊 · −'+HT_P_SKIP;
+  htTag('💤 这一吊弃了：倒扣 '+HT_P_SKIP+' 分，这一笔还得重吊一回','warn');
+  htTone(200,180);htSay('💤 这一吊不要了');
+  htFailLeg();
+}
+/* ---- 收字：一笔一笔都落了位才算收成，几笔赏钱在这一息一次结清 ---- */
+function htCollect(){
+  const rec=ht.rec;
+  if(!rec)return;
+  ht.words++;ht.phase='pick';ht.locked=1;ht.li=null;
+  let add=HT_WORD_PTS,txt='🈶 收字：+'+HT_WORD_PTS;
+  if(ht.cleanWord){add+=HT_CLEAN_PTS;ht.cleanRun++;txt+=' · 一字零罚 +'+HT_CLEAN_PTS}else ht.cleanRun=0;
+  if(ht.cleanMin){add+=HT_MIN_PTS;txt+=' · 趟趟走最省功 +'+HT_MIN_PTS;auxAdd('hz_ht_minw',1)}
+  if(!ht.wordTools){add+=HT_TOOL_PTS;txt+=' · 家什一回没借 +'+HT_TOOL_PTS}
+  /* 一趟不滑：这个字每一吊都滑都没滑过 —— 省力挑得好，摩擦与打滑就都绕开了 */
+  if(ht.noSlip){add+=HT_NOSLIP_PTS;txt+=' · 一趟不滑 +'+HT_NOSLIP_PTS;auxAdd('hz_ht_noslipw',1)}
+  if(ht.tans){add+=HT_TAN_PTS*ht.tans;txt+=' · ⚡ 双钩 '+ht.tans+' 回 +'+(HT_TAN_PTS*ht.tans)}
+  ht.score+=add;
+  htBookPut(rec.ch);
+  if(ht.cleanRun>=HT_PER){ht.cleanRun=0;ht.toolRun++;ht.score+=HT_TOOL_PTS;htSay('🧰 整场三字零罚 +'+HT_TOOL_PTS)}
+  /* 收满三字补一颗心：光吊得动不算本事，笔笔认齐落齐才算收成 */
+  if(ht.words%HT_PER===0&&ht.hearts<HT_HEART_MAX)ht.hearts++;
+  ht.hitOk=1;ht.hitTxt='🈶 收齐 · +'+add;
+  htTone(1040,220);
+  htTag(txt,'gold');
+  if(typeof spawnConfetti==='function'){try{spawnConfetti()}catch(e){}}
+  htSync();htDraw();
+  htT(htNextWord,1250);
+}
+/* ---- 换下一个字：一场三字吊完就换场（换一卷绳、换一盏场灯）---- */
+async function htNextWord(){
+  if(!ht.run||ht.over)return;
+  if(ht.hearts<=0){htEnd('hearts');return}
+  ht.wi++;
+  let flash='';
+  if(ht.wi>=HT_PER){
+    ht.wi=0;ht.lv=Math.min(9,ht.lv+1);
+    ht.seen=[];
+    ht.rope0=htRoll(ht.lv);ht.rope=ht.rope0;ht.rollUsed=0;ht.rollAdd=0;
+    ht.fuel0=htFuel(ht.lv);ht.fuel=ht.fuel0;
+    ht.cleanRun=0;
+    flash='💡 第 '+ht.lv+' 场上灯：一卷新绳 '+ht.rope+' 格 · ';
+    htSay('第 '+ht.lv+' 场：塔架换了卷绳');
+  }
+  if(!ht.pool.length){ht.pool=[];ht.seen=[]}
+  if(!ht.pool.length){
+    ht.load=true;htSync();
+    const w=htWant(ht.lv);
+    const ok=await htBuildPool(true,w[0],w[1]);
+    ht.load=false;
+    if(!ht.run||ht.over)return;
+    if(!ok){htEnd('pool');return}
+  }
+  const rec=htTake();
+  if(!rec){htEnd('pool');return}
+  htSetWord(rec,flash);
+  htSync();htDraw();
+}
+/* 这个字散了：字钟尽、换字、绳卷底都走这一条道 —— 进错字本，下一轮优先挑回来。
+   字数与场次一律交给 htNextWord 去翻，这儿只负责把这个字请下案。 */
+function htWordOut(heart){
+  const rec=ht.rec;
+  if(rec)htMissPut(rec.ch);
+  ht.wordOuts++;
+  if(heart){ht.hearts--;ht.combo=0}
+  ht.cleanWord=0;ht.cleanMin=0;ht.cleanRun=0;
+  ht.locked=1;
+  ht.phase='pick';ht.ord=[];ht.li=null;ht.ki=-1;ht.ki2=-1;ht.picks=[];
+  htSync();htDraw();
+  htT(htNextWord,900);
+}
+/* ---- 卷底：一卷绳一根也不剩了 —— 这一场散场，换一卷重来（罚五分、掉一颗心）---- */
+function htRollOut(){
+  ht.rolls++;ht.locked=1;
+  ht.score-=HT_P_ROLL;ht.hearts--;ht.combo=0;ht.cleanWord=0;ht.cleanMin=0;ht.cleanRun=0;
+  htTag('🪢 一卷绳用光了：这一场散场，倒扣 '+HT_P_ROLL+' 分 · 掉一颗心','warn');
+  htTone(140,320);htSay('🪢 绳子用光了');
+  if(ht.hearts<=0){htEnd('hearts');return}
+  const rec=ht.rec;
+  if(rec)htMissPut(rec.ch);
+  ht.wi=HT_PER;                       /* 剩下的字不补了：直接进下一场、换一卷 */
+  ht.ord=[];ht.li=null;ht.ki=-1;ht.ki2=-1;ht.picks=[];ht.phase='pick';
+  htSync();htDraw();
+  htT(htNextWord,1100);
+}
+/* ================= 四件家什 ================= */
+/* 🛢️ 上油：把这一吊的摩擦抹掉 —— F 只剩 ⌈货重÷n⌉，绕法表上多出一档 */
+function htOil(){
+  if(!ht.oilN||!ht.rec||ht.over||ht.locked||ht.phase!=='rig')return;
+  if(ht.oiled){htTag('🛢️ 这一吊的油已经上过了：绳上的摩擦一抹就没了，不用连抹两回');return}
+  ht.oilN--;ht.oilUse++;ht.tools++;ht.wordTools++;
+  ht.oiled=1;htRigApply();
+  htTone(700,90);
+  htTag('🛢️ 上油：这一吊的摩擦抹掉了 —— 每格的力少了 '+(ht.n-1)*HT_MU+' 点（还剩 '+ht.oilN+' 回）'+
+    (htInWin(ht.n)?'，这一档现在拉得动':'，这一档还是顶红线'),'cyan');
+  htSync();htDraw();
+}
+/* 📏 测力：把三档绕法的真回数摊开给看 —— 打滑那一条只在这一句里露脸 */
+function htGauge(){
+  if(!ht.gaugeN||!ht.rec||ht.over||ht.locked||ht.phase==='land')return;
+  ht.gaugeN--;ht.gaugeUse++;ht.tools++;ht.wordTools++;
+  ht.gaugeShow=1;
+  const sim=htHaulSim(ht.S,ht.lv,ht.n,ht.R,ht.oiled);
+  htTone(560,120);
+  htTag('📏 测力：眼下 '+ht.n+' 段 · '+(htDim(ht.lv)?'每格几分看表针':('每格 '+ht.F+' 点 · 账面 '+ht.sNeed+' 格绳，'))+
+    '可手上要拉 '+sim.presses+' 下'+(sim.slips?('（滑掉 '+sim.slips+' 下）'):'')+
+    (sim.presses>ht.sNeed
+      ? (htDim(ht.lv)?(' —— 多出来的那 '+(sim.presses-ht.sNeed)+' 下白烧在手上了'):(' —— 功 '+ht.F*sim.presses+' ＞ 账面 '+ht.F*ht.sNeed))
+      : (htDim(ht.lv)?' —— 手上这几下与账面正好对齐':(' —— 功 '+ht.F*sim.presses+' ＝ 账面 '+ht.F*ht.sNeed)))+
+    '（还剩 '+ht.gaugeN+' 回）','cyan');
+  htSync();htDraw();
+}
+/* 🪢 接绳：这一卷上添 60 格 */
+function htRopeTool(){
+  if(!ht.ropeN||!ht.rec||ht.over||ht.locked)return;
+  ht.ropeN--;ht.ropeUse++;ht.rollAdd+=HT_ROPE_ADD;ht.tools++;ht.wordTools++;
+  ht.rope+=HT_ROPE_ADD;
+  htTone(480,140);
+  htTag('🪢 接进 '+HT_ROPE_ADD+' 格：案上 '+ht.rope+' 格（还剩 '+ht.ropeN+' 回）');
+  htSync();
+}
+/* 🔁 换字：这个字退回库里再上一个（倒扣六分，进错字本）*/
+function htSwap(){
+  if(!ht.swapN||!ht.rec||ht.over||ht.locked)return;
+  ht.swapN--;ht.swapUse++;ht.swaps++;ht.tools++;ht.wordTools++;
+  ht.score-=HT_P_SWAP;
+  htTone(280,140);
+  htTag('🔁 换字：倒扣 '+HT_P_SWAP+' 分，这个字进了错字本（还剩 '+ht.swapN+' 回）','warn');
+  htWordOut(false);
+}
+/* ================= 四支钟：场灯 · 字 · 认箱 · 这一吊 ================= */
+function htTick(dt){
+  if(!ht.run||ht.over)return;
+  ht.t+=dt;ht.playMs+=dt;
+  if(ht.helpMs>0){ht.helpMs-=dt;if(ht.helpMs<=0){ht.helpMs=0;htSync()}return}
+  /* 落位那一息：钟全停，让孩子看清这一笔到底码在卸货台哪儿 */
+  if(ht.landMs>0){ht.landMs-=dt;if(ht.landMs<=0){ht.landMs=0;htLand()}return}
+  if(!ht.rec)return;
+  /* 场灯：一盏照这一场的三个字 */
+  if(ht.fuel>0){
+    ht.fuel-=dt;
+    if(ht.fuel<=0){ht.fuel=0;htEnd('fuel');return}
+  }
+  /* 字钟：一个字从头吊到尾（认箱、上绳、拉格都吃这一支）*/
+  if(ht.wordMs>0){
+    ht.wordMs-=dt;
+    if(ht.wordMs<=0){
+      ht.wordMs=0;ht.score-=HT_P_WORD;ht.cleanWord=0;ht.cleanMin=0;ht.combo=0;
+      htTag('🈶 这个字的钟尽了：倒扣 '+HT_P_WORD+' 分 · 掉一颗心 · 进了错字本','warn');
+      htTone(150,300);htSay('🈶 字钟尽了');
+      htWordOut(true);
+      return;
+    }
+  }
+  if(ht.phase==='pick'&&!ht.locked&&ht.ord.length){
+    ht.pickMs-=dt;
+    if(ht.pickMs<=0){
+      /* 认箱钟尽：这一吊作废，不吃绳 —— 罚三分，整腿退回队尾 */
+      ht.pickMs=0;ht.lates++;ht.cleanWord=0;ht.combo=0;
+      ht.score-=HT_P_LATE;
+      ht.hitOk=-1;ht.hitTxt='⌛ 认箱钟尽 · −'+HT_P_LATE;
+      htTag('⌛ 认箱的钟尽了：箱子还没挂上钩，倒扣 '+HT_P_LATE+' 分','warn');
+      htTone(160,260);
+      htFailLeg();
+      return;
+    }
+  }
+  if((ht.phase==='rig'||ht.phase==='haul')&&!ht.locked&&ht.ord.length){
+    ht.qms-=dt;
+    if(ht.qms<=0){
+      ht.qms=0;ht.haulOuts++;ht.cleanWord=0;ht.combo=0;
+      ht.score-=HT_P_HAUL;
+      ht.hitOk=-1;ht.hitTxt='⌛ 吊钟尽 · −'+HT_P_HAUL;
+      htTag('⌛ 这一吊的钟尽了：箱子还在半空，倒扣 '+HT_P_HAUL+' 分 · 退回队尾','warn');
+      htTone(160,260);
+      htFailLeg();
+      return;
+    }
+    /* 干等太久给一句提示：孩子不动手，塔架就只是一张画 */
+    ht.nagMs+=dt;
+    if(ht.nagMs>HT_NAG_MS){
+      ht.nagMs=0;ht.nags++;
+      htSay(ht.phase==='rig'?'⚙️ 挑一档上绳：表针没顶红线才拉得动':'💪 空格收绳：升一格要收几格，绳子数得出来');
+    }
+  }
+}
+
+/* ================= 开工 · 那四支钟的一根 rAF · 键盘与真指针 ================= */
+/* 开张：先点货（这一坊吃的字要「每一笔长短独一份、而且三档账每一腿真拉得动」），再上第一个字 */
+async function htBoot(){
+  const g=ht.gen;
+  ht.load=true;htSync();
+  const w=htWant(ht.lv);
+  const ok=await htBuildPool(true,w[0],w[1]);
+  if(g!==ht.gen||!ht.run||ht.over)return;
+  ht.load=false;
+  if(!ok){htEnd('pool');htSync();return}
+  const rec=htTake();
+  if(!rec){htEnd('pool');htSync();return}
+  htSetWord(rec);
+  htSync();htDraw();
+}
+function htStart(){
+  ht.run=true;ht.over=false;ht.gen++;
+  htBind();
+  htKill();
+  ht.t=0;ht.playMs=0;ht.last=0;
+  ht.pool=[];ht.miss=[];ht.seen=[];ht.rec=null;ht.seed=0;ht.fresh=0;
+  ht.lv=htLvOf(auxInt('hz_ht_words'));
+  ht.wi=0;ht.score=0;ht.hearts=HT_HEARTS;ht.combo=0;ht.maxCombo=0;ht.phase='pick';ht.load=false;
+  ht.ord=[];ht.legs=[];ht.li=null;ht.pi=0;ht.ki=-1;ht.ki2=-1;ht.need=1;ht.picks=[];ht.done=[];ht.slot=[];
+  ht.n=HT_N0;ht.take=0;ht.presses=0;ht.slips=0;ht.S=0;ht.w=0;ht.F=0;ht.sNeed=0;ht.work=0;
+  ht.win=[];ht.slip=0;ht.oiled=0;ht.rigOk=0;ht.landMs=0;
+  ht.A=htA(ht.lv);ht.R=htRoll(ht.lv);ht.P=htPwr(ht.lv);
+  ht.rope0=ht.R;ht.rope=ht.rope0;ht.ropeUsed=0;ht.rollUsed=0;ht.rollAdd=0;
+  ht.qms0=htHaul(ht.lv);ht.qms=ht.qms0;
+  ht.pick0=htPick(ht.lv);ht.pickMs=ht.pick0;
+  ht.wordMs0=htWord(ht.lv);ht.wordMs=ht.wordMs0;
+  ht.fuel0=htFuel(ht.lv);ht.fuel=ht.fuel0;
+  ht.words=0;ht.strokes=0;ht.lifts=0;ht.minN=0;ht.slipN=0;ht.skips=0;ht.haulOuts=0;ht.stuckN=0;
+  ht.wrongs=0;ht.lates=0;ht.tans=0;ht.tanOk=0;ht.swaps=0;ht.rolls=0;ht.wordOuts=0;
+  ht.tools=0;ht.cleanWord=1;ht.cleanMin=1;ht.noSlip=1;ht.wordTools=0;ht.cleanRun=0;ht.toolRun=0;
+  ht.oilN=HT_P0.oil;ht.gaugeN=HT_P0.gauge;ht.ropeN=HT_P0.rope;ht.swapN=HT_P0.swap;
+  ht.oilUse=0;ht.gaugeUse=0;ht.ropeUse=0;ht.swapUse=0;ht.gaugeShow=0;
+  ht.gain=0;ht.pen=0;ht.hitOk=0;ht.hitTxt='';ht.helpMs=0;ht.newBest=false;
+  ht.nags=0;ht.nagMs=0;ht.msg='';
+  htClearTag();
+  if(typeof stopBGM==='function')stopBGM();  showScreen('hoist');
+  htSync();htDraw();
+  htBoot();
+  htStartLoop();
+}
+/* 主循环的起停各只有一处：结算要冻画面就掐这一根，别在别处再挂一条 rAF */
+function htLoop(ts){
+  if(!ht.run||ht.over){ht.rafId=0;return}
+  const dt=ht.last?Math.min(120,ts-ht.last):16;
+  ht.last=ts;
+  htTick(dt);
+  htSync();htDraw();
+  ht.rafId=requestAnimationFrame(htLoop);
+}
+function htStartLoop(){if(!ht.run||ht.over||ht.rafId)return;ht.last=0;ht.rafId=requestAnimationFrame(htLoop)}
+function htStopLoop(){if(ht.rafId){cancelAnimationFrame(ht.rafId);ht.rafId=0}}
+function htRestart(){htStart()}
+function htLeave(where){
+  ht.run=false;ht.over=false;
+  htKill();htStopLoop();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function htHelp(){
+  if(!ht.run||ht.over)return;
+  ht.helpMs=HT_HELP_MS;
+  htSync();
+  htSay('🏗️ <b>绕几段绳自己挑</b>：多绕一段少受一分力，可绳要按几倍收 —— 省力就是不省功','#FFE0B2');
+}
+/* ---- 那根拉绳指头：认箱阶段按下去只给一句提示，上绳与拉格各走各的口子 ---- */
+function htTap(){
+  if(ht.helpMs>0){ht.helpMs=0;return}
+  if(ht.phase==='pick'){
+    htTag('📦 认箱点的是轨道上那一只箱：按 <code>1~'+(ht.rec?ht.rec.n:7)+'</code> 或直接点它');
+    return;
+  }
+  if(ht.phase==='rig'){htConfirmRig();return}
+  if(ht.phase==='haul'){htPull();return}
+}
+/* ================= 案面上的落点：轨道一只箱 · 钩上一只箱 · 底下那排 =====  */
+/* 点中了轨道上第几笔的箱：箱子站在 slot 给的那一格上，点的是格子里那只 */
+function htCrateAt(x,y){
+  const rec=ht.rec;
+  if(!rec)return -1;
+  if(y<HT_RY-HT_CSH-4||y>HT_RY+4)return -1;
+  for(let i=0;i<rec.n;i++){
+    const cx=htCrateX(ht.slot[i]);
+    if(x>=cx-2&&x<=cx+HT_CSW+2)return i;
+  }
+  return -1;
+}
+/* 钩上那一吊（双钩就是并排那两只）的落点：拉绳那一下点在箱子上 */
+function htCraneAt(x,y){
+  const cy=htHookY();
+  const lo=HT_COLX-HT_CRW,hi=HT_COLX+HT_CRW;
+  return (x>=lo&&x<=hi&&y>=cy-HT_CRH/2-18&&y<=cy+HT_CRH/2+10);
+}
+function htPt2(e){
+  const cv=document.getElementById('htCanvas');
+  const out={x:-1,y:-1,crate:-1,crane:false};
+  if(!cv||!cv.getBoundingClientRect)return out;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return out;
+  const x=Math.round((e.clientX-r.left)*(HT_W/r.width)*10)/10,
+        y=Math.round((e.clientY-r.top)*(HT_H/r.height)*10)/10;
+  out.x=x;out.y=y;
+  const c=htCrateAt(x,y);
+  if(c>=0){out.crate=c;return out}
+  if(htCraneAt(x,y))out.crane=true;
+  return out;
+}
+/* ================= 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子 ================= */
+function htBind(){
+  if(ht.bound)return;
+  ht.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!ht.run||ht.over)return;
+    if(ht.helpMs>0){ht.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){htLeave();return}
+    if(k==='h'||k==='?'){htHelp();e.preventDefault();return}
+    if(k==='arrowleft'||k==='a'){htStepN(-1);e.preventDefault();return}
+    if(k==='arrowright'||k==='d'){htStepN(1);e.preventDefault();return}
+    if(k>='1'&&k<='7'){htPickCrate(+k-1);e.preventDefault();return}
+    if(k==='x'){htSkip();e.preventDefault();return}
+    if(k==='o'){htOil();e.preventDefault();return}
+    if(k==='t'){htGauge();e.preventDefault();return}
+    if(k==='q'){htRopeTool();e.preventDefault();return}
+    if(k==='r'){htSwap();e.preventDefault();return}
+    if(k===' '||k==='enter'){htTap();e.preventDefault()}
+  });
+  const cv=document.getElementById('htCanvas');
+  if(cv){
+    cv.addEventListener('pointerdown',function(e){
+      if(!ht.run||ht.over)return;
+      if(ht.helpMs>0){ht.helpMs=0;return}
+      const h=htPt2(e);
+      if(h.crate>=0){if(ht.phase==='pick')htPickCrate(h.crate);e.preventDefault();return}
+      if(h.crane){htTap();e.preventDefault()}
+    });
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){
+      if(!ht.run||ht.over)return;
+      if(ht.helpMs>0){ht.helpMs=0;return}
+      on();ev.preventDefault();
+    });
+  };
+  tap('htLeftBtn',function(){htStepN(-1)});
+  tap('htRightBtn',function(){htStepN(1)});
+  tap('htActBtn',function(){htTap()});
+  tap('htSkipBtn',function(){htSkip()});
+  tap('htOilBtn',function(){htOil()});
+  tap('htGaugeBtn',function(){htGauge()});
+  tap('htRopeBtn',function(){htRopeTool()});
+  tap('htSwapBtn',function(){htSwap()});
+  tap('htHelpBtn',function(){htHelp()});
+  tap('htEndBtn',function(){htEnd('quit')});
+  const tapFree=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){on();ev.preventDefault()});
+  };
+  /* 散场之后的那三颗钮不能按 run/over 拦：孩子站在结算屏上，「再吊一场」「回实验室」「回书桌」
+     必须点得动 —— 拦在前面就等于把结算屏变成一堵墙 */
+  tapFree('htReBtn',function(){htRestart()});
+  tapFree('htLabBtn',function(){htLeave('lab')});
+  tapFree('htHomeBtn',function(){htLeave()});
+}
+
+/* ================= 散场：结算、落盘、图鉴与家什架、拿另一条路把这笔账算第三遍 ================= */
+function htEnd(why){
+  if(!ht.run||ht.over)return;
+  ht.over=true;ht.run=false;
+  htKill();
+  const stars=Math.max(1,Math.round(ht.score/14)+ht.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  htPut('htRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['🏗️','收工','自己按的结算'],
+    hearts:['💔','心都赔光了','掉够了心'],
+    fuel:['💡','场灯灭了','这一场的灯烧完了'],
+    pool:['🏗️','货点不齐','字池里挑不出「每一笔长短独一份、而且真拉得动」的字']}[why]||['🏗️','散场',''];
+  htPut('htRsEmoji',head[0]);
+  htPut('htRsTitle',head[1]);
+  htPut('htRsSub','第 '+ht.lv+' 场 · '+head[2]+' · 收齐 '+ht.words+' 字');
+  htPut('htRsScore','🏗️ '+ht.score+' 分');
+  htPut('htRsWords','🈶 收字 '+ht.words+' 个 · 落位 '+ht.strokes+' 笔 · 散了 '+ht.wordOuts+' 个字');
+  htPut('htRsMoney','🪢 用绳 '+ht.ropeUsed+' 格 · 案上剩 '+ht.rope+' 格 · 一卷 '+ht.rope0+' 格'+
+    (ht.ropeUse?' · 接过 '+HT_ROPE_ADD*ht.ropeUse+' 格':''));
+  htPut('htRsFocus','⚙️ 落位 '+ht.lifts+' 趟 · 最省功 '+ht.minN+' 趟 · 打滑 '+ht.slipN+' 次 · 拉不动 '+
+    ht.stuckN+' 回 · 吊钟尽 '+ht.haulOuts);
+  htPut('htRsFlip','⚡ 双钩并吊 '+ht.tans+' 回 · 省功 '+ht.tanOk+' 回 · 卷底 '+ht.rolls+' 回');
+  htPut('htRsWipe','📦 落位 '+ht.strokes+' 笔 · 认错箱 '+ht.wrongs+' 次 · 认箱钟尽 '+ht.lates+' 次 · 弃吊 '+ht.skips);
+  htPut('htRsTools','🧰 借家什 '+ht.tools+' 回 · 上油 '+ht.oilUse+' · 测力 '+ht.gaugeUse+' · 接绳 '+ht.ropeUse+
+    ' · 换字 '+ht.swapUse);
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账 */
+  htSave(why);
+  htPut('htRsBest','🏅 历史最高 '+auxInt('hz_ht_best')+' 分 · 累计收字 '+auxInt('hz_ht_words')+' 字');
+  htPut('htRsStars','⭐ +'+stars+(why==='pool'?'':'（已喂小兽）'));
+  const rk=htRank(auxInt('hz_ht_words'));
+  htPut('htRsRank',rk.e+' '+rk.t);
+  const bk=htBookCount();
+  htPutH('htRsBook','📖 <b>吊装图鉴 '+bk.book+' 张</b> · 家什架 <b>'+bk.shelf+'/'+HT_SHELF.length+
+    '</b> 件 · 错字本 <b>'+bk.miss+'</b> 个字<br><small>最远走到第 '+auxInt('hz_ht_lvmax')+' 场 · 累计落位 '+
+    auxInt('hz_ht_strokes')+' 笔 · 最省功 '+auxInt('hz_ht_minw')+' 个字 · 一趟不滑 '+auxInt('hz_ht_noslipw')+
+    ' 个字 · 双钩省功 '+auxInt('hz_ht_tanok')+' 回 · 一卷最多 '+auxInt('hz_ht_ropeused')+' 格</small>');
+  htPutH('htRsWhy','🏗️ 这一坊的道理：<b>省力就是不省功</b>。承重绳绕 n 段，每格拉力 <b>F＝⌈货重÷n⌉＋'+HT_MU+
+    '×(n−1)</b>，可绳子要收 <b>n×'+HT_LIFT+' 格</b>箱子才升 '+HT_LIFT+' 格 —— 一乘下来功＝<b>货重×'+HT_LIFT+
+    ' ＋ 摩擦×绳程</b>：绕得越多，白烧在摩擦上的越多，<b>功这条线只会往上走</b>。<br>绕法不是猜出来的：<b>当场拦住你的是力气红线</b>——每格拉力顶过红线就是拉不动，绕得够多了往上每一段都拉得动，交出来正是一段<b>闭区间</b>（F 随 n 不减、功随 n 不降，所以区间中间不会断格）；<b>绳卷</b>与<b>体力</b>记的是另外两笔账——一卷绳最少 '+htRoll(9)+' 格而一吊最多吃 '+HT_LIFT*HT_NSEG+' 格，这一坊里它只记账不拦路。<br>第 '+
+    HT_SLIP_LV+' 场起力顶到红线的四分之三就<b>打滑</b>：每收 '+HT_SLIP_EVERY+' 格滑回 1 格 —— 绕 2 段账面 '+HT_LIFT*2+
+    ' 格绳、手上要拉 '+htPressOf(2,1)+' 下，绕到 3 段账面 '+HT_LIFT*3+' 格拉 '+htPressOf(3,1)+' 下，这一笔多出来的功只有 📏 测力 会说；第 '+HT_TAN_LV+' 场起的<b>⚡ 双钩并吊</b>把两笔并成一吊，少付一份动滑轮自重（'+
+    HT_G+' 点），验过真比分开吊省功才上台。<br>战绩落盘 <code>hz_ht_*</code>：场档按<b>收齐的字数</b>走，称号按<b>累计收字数</b>走，第 4 场起吊装单不再写 F / 绳程 / 功，第 6 场起高度尺与力表不标数，错字本里的字<b>下一轮优先挑回来</b>','#C8E6C9');
+  htNudge();
+  showScreen('hoist-result');
+}
+/* ---- 落盘：全局账与这一局账各走各的口子 ---- */
+function htSave(why){
+  auxAdd('hz_ht_games',1);
+  auxAdd('hz_ht_words',ht.words);
+  auxAdd('hz_ht_strokes',ht.strokes);
+  auxAdd('hz_ht_lifts',ht.lifts);
+  /* hz_ht_minw 记的是「趟趟走最省功」的字数，收一个字在 htCollect 里当场记一笔 ——
+     结算不许再按「趟」（ht.minN）往同一格里加第二遍，不然这本账一个字能记成好几个 */
+  auxAdd('hz_ht_slip',ht.slipN);
+  auxAdd('hz_ht_skip',ht.skips);
+  auxAdd('hz_ht_haulout',ht.haulOuts);
+  auxAdd('hz_ht_stuck',ht.stuckN);
+  auxAdd('hz_ht_wrong',ht.wrongs);
+  auxAdd('hz_ht_late',ht.lates);
+  auxAdd('hz_ht_tan',ht.tans);
+  auxAdd('hz_ht_tanok',ht.tanOk);
+  auxAdd('hz_ht_swap',ht.swaps);
+  auxAdd('hz_ht_roll',ht.rolls);
+  auxAdd('hz_ht_wordout',ht.wordOuts);
+  auxAdd('hz_ht_tools',ht.tools);
+  auxAdd('hz_ht_toolrun',ht.toolRun);
+  auxAdd('hz_ht_oil',ht.oilUse);
+  auxAdd('hz_ht_gauge',ht.gaugeUse);
+  auxAdd('hz_ht_ropeadd',ht.ropeUse);
+  auxAdd('hz_ht_ropeused',ht.ropeUsed);
+  if(ht.maxCombo>auxInt('hz_ht_combo'))auxPut('hz_ht_combo',ht.maxCombo);
+  if(ht.lv>auxInt('hz_ht_lvmax'))auxPut('hz_ht_lvmax',ht.lv);
+  if(ht.score>auxInt('hz_ht_best')){auxPut('hz_ht_best',ht.score);ht.newBest=true}
+  htShelfCheck();
+}
+/* ---- 图鉴：一个字一张吊装单（记的是首回收齐那个字的场号与笔数）---- */
+function htBookCount(){
+  const book=(localStorage.getItem('hz_ht_book')||'').split(',').filter(function(s){return s}).length;
+  const shelf=(localStorage.getItem('hz_ht_shelf')||'').split(',').filter(function(s){return s}).length;
+  const miss=(localStorage.getItem('hz_ht_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0}).length;
+  return {book:book,shelf:shelf,miss:miss};
+}
+function htBookPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  const bk=localStorage.getItem('hz_ht_book')||'';
+  if(bk.indexOf(ch+':')>=0)return;
+  const list=bk.split(',').filter(function(s){return s});
+  list.unshift(ch+':'+ht.lv+':'+(ht.rec?ht.rec.n:0));
+  auxPut('hz_ht_book',list.slice(0,HT_BOOK_MAX).join(','));
+}
+/* 散场的字进错字本：下一轮优先挑回来 */
+function htMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_ht_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  auxPut('hz_ht_miss',miss.slice(0,HT_BOOK_MAX).join(','));
+}
+/* 家什架：八件各认一件实事，其中「名刺」认的是别处的章节徽章 */
+function htShelfCheck(){
+  const have=(localStorage.getItem('hz_ht_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    auxInt('hz_ht_words')+ht.words>=1,
+    auxInt('hz_ht_toolrun')+ht.toolRun>=1,
+    auxInt('hz_ht_tanok')+ht.tanOk>=6,
+    auxInt('hz_ht_lvmax')>=HT_SHELF_LV||ht.lv>=HT_SHELF_LV,
+    auxInt('hz_ht_minw')>=12,
+    auxInt('hz_ht_noslipw')>=1,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    auxInt('hz_ht_strokes')+ht.strokes>=60
+  ];
+  for(let i=0;i<HT_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(HT_SHELF[i].k)<0){have.push(HT_SHELF[i].k);got.push(HT_SHELF[i].k)}
+  }
+  auxPut('hz_ht_shelf',have.join(','));
+  auxPut('hz_ht_trophy',have.length);
+  auxPut('hz_ht_trophy_n',auxInt('hz_ht_trophy_n')+got.length);
+}
+/* ---- 段 W 的另一条路：只读，不许碰场上任何东西 ----
+   三把尺各算各的：① 闭式 htFOf/htSOf/htWorkOf，② 逐档数 htWin（把 n=1..3 三个整数档数过去），
+   ③ 一步一步真拉 htHaulSim（一次一格，打滑滑回一格）。哪两把不一样，就是产品算错了。 */
+function htAudWord(rec,lv){
+  const out={ok:0,why:'',n:0,legs:0,tan:0,need:0,rope:0,press:0,A:0,roll:0,pwr:0,
+    closedBad:0,realBad:0,slipBad:0,monoBad:0,winBad:0,seedBad:0,saveBad:0,ns:[],info:[]};
+  if(!rec||!htSeqOk(rec)){out.why='字的口径不合格';return out}
+  const A=htA(lv),R=htRoll(lv),P=htPwr(lv);
+  out.A=A;out.roll=R;out.pwr=P;out.n=rec.n;
+  const sd=auxSeedOf(rec.ch,lv);
+  const PL=htPlan(rec,lv,sd);
+  if(!PL){out.why='摆不开：可行绕法空了，或账面可行却真拉不动';return out}
+  out.legs=PL.legs.length;
+  for(let i=0;i<PL.legs.length;i++)if(PL.legs[i].tan)out.tan++;
+  const sg=rec.union;
+  if(!(sg.w>=140&&sg.h>=140)){out.why='字太小，箱子上的墨样认不出';return out}
+  for(let i=0;i<PL.legs.length;i++){
+    const l=PL.legs[i];
+    if(l.S!==rec.ws[l.ki]+HT_G+(!l.tan?0:(rec.ws[l.k2]+0))){out.closedBad++;continue}
+    /* ② 逐档数出来的必须是连续一段，而且真拉的 ⊆ 账面的 */
+    const W=l.ws;
+    for(let k=0;k<W.length;k++){
+      if(k>0&&W[k]!==W[k-1]+1)out.winBad++;
+      if(W[k]<1||W[k]>HT_NSEG)out.winBad++;
+      const F=htFOf(l.S,W[k],0),s=htSOf(W[k]);
+      if(F>A)out.closedBad++;                 /* 顶过红线却列在可行表里 */
+      if(s>R)out.closedBad++;                  /* 绳不够长却列在可行表里 */
+      if(F*s>P)out.closedBad++;                /* 功超预算却列在可行表里 */
+      const sim=htHaulSim(l.S,lv,W[k],R,0);
+      if(sim.F!==F||sim.s!==s)out.closedBad++; /* ③ 真拉用的式子与闭式不合 */
+      if(sim.presses!==htPressOf(W[k],sim.slip))out.slipBad++;
+      if(sim.slips!==(sim.slip?Math.floor(sim.presses/HT_SLIP_EVERY):0))out.slipBad++;
+      if(sim.ok&&(F>A||s>R||F*s>P))out.realBad++;
+      if(sim.ok!==1&&l.real.indexOf(W[k])>=0)out.realBad++;   /* 可行表上有它，真拉却拉不动 */
+      if(!sim.ok&&l.real.indexOf(W[k])>=0)out.realBad++;
+      if(sim.work!==F*sim.presses)out.slipBad++;              /* 功＝每格力 × 回数，一处不差 */
+    }
+    if(l.real.length>W.length)out.realBad++;
+    if(!W.length){out.why='这一腿的可行绕法空了';return out}
+    if(l.tan){
+      const sv=l.save;
+      if(!sv){out.saveBad++;continue}
+      if(!(sv.S===rec.ws[l.ki]+rec.ws[l.k2]+HT_G))out.saveBad++;
+      if(!(sv.work<sv.solo))out.saveBad++;     /* 并钩不省功就不许上台 */
+      if(!(sv.rope<=sv.soloRope))out.saveBad++;
+      if(sv.n<1||sv.n>HT_NSEG)out.saveBad++;
+    }else{
+      if(W.length<2){out.why='单吊只有一条路：省力省功没得挑';return out}
+      if(htWinMonotone(l.S,lv,R))out.monoBad++;
+      if(l.nF!==htPaths(l.S,lv,R).nF||l.nW!==htPaths(l.S,lv,R).nW)out.closedBad++;
+      if(l.nW!==W[0]||l.nF!==W[W.length-1])out.closedBad++;  /* 省功=n 最小，省力=n 最大 */
+    }
+    let mn=1e9;
+    for(let k=0;k<l.real.length;k++)mn=Math.min(mn,htSOf(l.real[k]));
+    if(!isFinite(mn)){out.why='这一腿真拉一次都拉不动';return out}
+    out.need+=mn;
+    out.press+=htPressOf(l.real[0],0);
+    out.ns.push(l.nF);
+    out.info.push({ki:l.ki,k2:l.k2,tan:l.tan,S:l.S,ws:l.ws.slice(),real:l.real.slice(),
+      nF:l.nF,nW:l.nW,min:mn,work:htWorkOf(l.S,l.nW,0)});
+  }
+  /* 一卷绳必须够吊完这一场最坏的一串字：三个字 × 每腿最少绳 */
+  out.rope=out.need*HT_PER;
+  if(out.rope>R){out.why='一卷绳不够吊完这一场最坏的一串字';return out}
+  if(out.closedBad||out.realBad||out.slipBad||out.monoBad||out.winBad||out.saveBad){
+    out.why='三把尺不合(闭式'+out.closedBad+' 真拉'+out.realBad+' 滑账'+out.slipBad+
+      ' 单调'+out.monoBad+' 区间'+out.winBad+' 并钩'+out.saveBad+')';
+    return out;
+  }
+  /* 同字同场永远同一套吊序：换一个入口再算一遍，种子里出来的腿序、站位必须一模一样 */
+  const P2=htPlan(rec,lv,sd);
+  if(!P2||P2.ord.length!==PL.ord.length||P2.slots.length!==PL.slots.length){out.seedBad++;out.why='吊序的种子对不上';return out}
+  for(let i=0;i<PL.ord.length;i++)if(P2.ord[i]!==PL.ord[i])out.seedBad++;
+  for(let i=0;i<PL.slots.length;i++)if(P2.slots[i]!==PL.slots[i])out.seedBad++;
+  for(let i=0;i<PL.legs.length;i++){
+    if(!P2.legs[i]||P2.legs[i].ki!==PL.legs[i].ki||P2.legs[i].S!==PL.legs[i].S||
+      P2.legs[i].tan!==PL.legs[i].tan||P2.legs[i].ws.join()!==PL.legs[i].ws.join()){out.seedBad++;break}
+  }
+  if(out.seedBad){out.why='吊序的种子对不上';return out}
+  out.ok=1;
+  return out;
+}
+/* 眼下这一吊的账：绕法、三本账、手上的回数与绳子总账，各条式子当场核一遍 */
+function htAudState(){
+  const s={has:0,phase:ht.phase,n:ht.n,S:0,w:0,F:0,sNeed:0,win:[],real:[],slip:0,oiled:0,
+    take:0,presses:0,slips:0,work:0,rope:0,rope0:0,ropeUsed:0,rollUsed:0,rollAdd:0,ledger:0,
+    done:0,ord:0,legs:0,pi:0,locked:ht.locked?1:0,over:ht.over?1:0,need:1,
+    A:ht.A,R:ht.R,P:ht.P,lv:ht.lv,hearts:ht.hearts,words:ht.words,strokes:ht.strokes,lifts:ht.lifts,
+    minN:ht.minN,slipN:ht.slipN,skips:ht.skips,haulOuts:ht.haulOuts,stuckN:ht.stuckN,
+    wrongs:ht.wrongs,lates:ht.lates,tans:ht.tans,tanOk:ht.tanOk,swaps:ht.swaps,rolls:ht.rolls,
+    wordOuts:ht.wordOuts,tools:ht.tools,gaugeShow:ht.gaugeShow,
+    qms:ht.qms,pickMs:ht.pickMs,wordMs:ht.wordMs,fuel:ht.fuel,
+    formulaBad:0,rigBad:0,slipBad:0,workBad:0,walkBad:0,pickBad:0,doneBad:0,slotBad:0,inWin:0,rise:-1,pressExp:-1};
+  if(!ht.rec)return s;
+  const rec=ht.rec,L=ht.lv;
+  s.has=1;s.S=ht.S;s.w=ht.S;s.F=ht.F;s.sNeed=ht.sNeed;s.win=ht.win.slice();s.slip=ht.slip?1:0;s.oiled=ht.oiled?1:0;
+  s.take=ht.take;s.presses=ht.presses;s.slips=ht.slips;s.work=ht.work;
+  s.rope=ht.rope;s.rope0=ht.rope0;s.ropeUsed=ht.ropeUsed;s.rollUsed=ht.rollUsed;s.rollAdd=ht.rollAdd;
+  s.done=ht.done.length;s.ord=ht.ord.length;s.legs=ht.legs.length;s.pi=ht.pi;s.need=ht.need;
+  /* 绳子总账按「卷」记：一卷 + 这一卷上接的 − 这一卷收走的 = 案上现在剩的
+     （ropeUsed 是整场的总用绳，换卷不清，不能拿来对这一卷的账）*/
+  s.ledger=(ht.rope0+ht.rollAdd-ht.rollUsed===ht.rope)?1:0;
+  /* ① 闭式：眼下每格的力、绳程、区间，全部由式子重算一遍再对表 */
+  if(ht.F!==htFOf(ht.S,ht.n,ht.oiled))s.formulaBad++;
+  if(ht.sNeed!==htSOf(ht.n))s.formulaBad++;
+  if(ht.slip!==(htSlipOf(ht.F,ht.A,L)?1:0))s.slipBad++;
+  const W=htWin(ht.S,L,ht.R,ht.oiled);
+  if(W.join()!==ht.win.join())s.formulaBad++;
+  s.inWin=htInWin(ht.n)?1:0;
+  if(ht.n<1||ht.n>HT_NSEG)s.formulaBad++;
+  /* 眼下的绕法与可行区间：区间外必须顶了线（拉不动）或超了预算，不是随手划掉的 */
+  if(!s.inWin){
+    const F=htFOf(ht.S,ht.n,ht.oiled),sN=htSOf(ht.n);
+    if(!(F>ht.A||sN>ht.R||F*sN>ht.P))s.rigBad++;
+  }
+  /* ② 一步一步真拉：账面上的收绳、回数、滑的次数与功 —— 与手上这几条必须一条不差 */
+  const sim=htHaulSim(ht.S,L,ht.n,ht.R,ht.oiled);
+  s.real=[];
+  const rl=htWinReal(ht.S,L,ht.R,ht.oiled);
+  for(let i=0;i<rl.length;i++)s.real.push(rl[i]);
+  if(sim.F!==ht.F||sim.s!==ht.sNeed)s.walkBad++;
+  s.pressExp=htPressOf(ht.n,htSlipOf(ht.F,ht.A,L));
+  if(sim.slip!==(ht.slip?1:0))s.slipBad++;
+  /* 手上的账：work＝每格力×回数，净收绳＝回数−滑回，绳子只吃净收的那几格 */
+  if(ht.work!==ht.F*ht.presses)s.workBad++;
+  if(ht.take!==ht.presses-ht.slips)s.walkBad++;
+  if(ht.slips!==(ht.slip?Math.floor(ht.presses/HT_SLIP_EVERY):0))s.slipBad++;
+  if(ht.slips>0&&ht.noSlip)s.walkBad++;
+  /* 升程：收 n 格绳升 1 格，高度尺上那个数必须是 take/n */
+  s.rise=Math.round(htRise()*1000)/1000;
+  if(htRise()>HT_LIFT)s.walkBad++;
+  if(ht.phase==='haul'&&htRise()>=HT_LIFT)s.walkBad++;
+  /* 认箱：挂上钩的必须是这一腿要的（双钩两个都算），不许重、不许越过笔数 */
+  const want={};want[ht.ki]=1;
+  if(ht.need>1)want[ht.ki2]=1;
+  for(let i=0;i<ht.picks.length;i++){
+    if(!want[ht.picks[i]])s.pickBad++;
+    if(ht.picks.indexOf(ht.picks[i])!==i)s.pickBad++;
+    if(!(ht.picks[i]>=0&&ht.picks[i]<rec.n))s.pickBad++;
+  }
+  if(ht.phase!=='pick'&&ht.picks.length!==ht.need)s.pickBad++;
+  /* 落好位的笔不许重、不许越过笔数；待吊队列里的腿号必须都在这一字的账里 */
+  const seen={};
+  for(let i=0;i<ht.done.length;i++){
+    if(seen[ht.done[i]])s.doneBad++;
+    seen[ht.done[i]]=1;
+    if(!(ht.done[i]>=0&&ht.done[i]<rec.n))s.doneBad++;
+  }
+  if(ht.done.length>rec.n)s.doneBad++;
+  for(let i=0;i<ht.ord.length;i++)if(!(ht.ord[i]>=0&&ht.ord[i]<ht.legs.length))s.doneBad++;
+  /* 箱子站位：每只箱站一格，一格只站一只（位置不许泄露笔顺，也不许叠在一起）*/
+  const pos={};
+  for(let i=0;i<rec.n;i++){
+    const p=ht.slot[i];
+    if(!(p>=0&&p<rec.n)){s.slotBad++;continue}
+    if(pos[p])s.slotBad++;
+    pos[p]=1;
+  }
+  return s;
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一坊开到第几场了 ---- */
+function htNudge(){
+  const dot=document.getElementById('htCardDot'),tip=document.getElementById('htCardTip');
+  const tot=auxInt('hz_ht_words'),st=auxInt('hz_ht_strokes'),lv=auxInt('hz_ht_lvmax');
+  const rk=htRank(tot),shelf=auxInt('hz_ht_trophy'),mn=auxInt('hz_ht_minw'),tn=auxInt('hz_ht_tanok');
+  if(tip)tip.textContent=st?('🔔 '+rk.e+' '+rk.t+' · 收字 '+tot+' 个 · 落位 '+st+' 笔 · 最远第 '+lv+
+    ' 场 · 最省功 '+mn+' 个字 · 双钩省功 '+tn+' 回 · 卷底 '+auxInt('hz_ht_roll')+
+    ' 回 · 家什架 '+shelf+' 件'):
+    '一笔就是一箱货：货重＝这一笔的真实长度÷'+HT_K+'，再加动滑轮自重 '+HT_G+' 点。承重绳绕 n 段，'+
+    '每格拉力 F＝⌈货重÷n⌉＋'+HT_MU+'×(n−1) 点摩擦，可绳子要收 n×'+HT_LIFT+' 格箱子才升 '+HT_LIFT+' 格 —— '+
+    '多绕一段少受一分力，白烧在摩擦上的却更多（<b>省力就是不省功</b>）。当场拦住你的是<b>力气红线</b>：'+
+    '绕得不够就是拉不动，绕够了往上每一段都拉得动 —— 可行的绕法是一段闭区间，不是猜';
   if(dot){dot.classList.toggle('on',!st);dot.textContent=(st?'':'🆕')}
 }
 
