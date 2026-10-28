@@ -7418,6 +7418,74 @@ button:active{transform:scale(.95)}
   #screen-hyst .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-hyst .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.107 📦 笔顺装箱坊 ================= */
+/* 账条占死三行（76 像素就是它满三行那一个高度）：案上没货的那一息它只折两行，
+   不留这一格的话整张案会被往上抬二十七像素 —— 货案就在它下头，孩子的指头还按在货上装箱呢 */
+.pk-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.pk-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.pk-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死五行（块级排版，只是垫高、不改排版）：三副题面里最宽的那一副（装箱单认位还带一句警告）就是五行 ——
+   承重标尺与货案都在它下头，封箱两行、掉货三行都把整张案往上抬，一行也不许裁（裁字比挪案更糟）*/
+.pk-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*5)}
+.pk-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.pk-ask b{color:#FFE082}
+.pk-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 货栈案：一块烧旧的木板，装箱单、承重标尺、货单卡、木箱、货案、秤全画在这一张案上（canvas 透明，底色由这里给）*/
+.pk-field{flex:1;min-width:0;position:relative;background:linear-gradient(160deg,#2B2016,#1A1309 60%,#0C0805);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.78)}
+.pk-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.pk-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(16,12,8,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.pk-tag.on{opacity:1}
+.pk-tag.warn{background:rgba(88,24,24,.94);color:#FFCCBC}
+.pk-tag.gold{background:rgba(74,58,14,.96);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.pk-tag.cyan{background:rgba(6,58,74,.94);color:#84FFFF;box-shadow:0 0 14px rgba(0,229,255,.4)}
+/* 四条账：认位的钟（青）· 这一字的钟（金）· 这一场的灯（冷蓝）· 这一箱的斤两（橙，越接近承重线越红）*/
+.pk-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.pk-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.pk-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#37474F,#78909C);transition:width .15s linear}
+.pk-tl.place i{background:linear-gradient(90deg,#4DD0E1,#B2EBF2)}
+.pk-tl.word i{background:linear-gradient(90deg,#C8A46A,#FFE082)}
+.pk-tl.lamp i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.pk-tl.boxw i{background:linear-gradient(90deg,#FFB300,#FFD54F)}
+.pk-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.pk-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.pk-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.pk-take button.pass{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#3E2723;background:linear-gradient(180deg,#D7CCC8,#A1887F)}
+.pk-take button.pass:active{transform:translateY(1px)}
+.pk-take button.pass:disabled{opacity:.42;cursor:default}
+.pk-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1A1206;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.pk-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(26,18,6,.72)}
+.pk-take button.big.ready{background:linear-gradient(180deg,#A5D6A7,#66BB6A);box-shadow:0 0 20px rgba(102,187,106,.55);color:#10260F}
+.pk-take button.big:active{transform:translateY(1px)}
+.pk-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.pk-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.pk-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.pk-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.pk-tool b{display:block;font-size:10px;color:#FFD54F;font-weight:700}
+.pk-tool:disabled{opacity:.4;cursor:default}
+.pk-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.pk-hintline b{color:#FFD54F}
+.pk-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.pk-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.pk-msg b{color:#CFD8DC}
+.pk-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.pk-msg small{font-size:11px;color:#78909C}
+.pk-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.pk-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.pk-rs-book b{color:#FFD54F}
+.pk-rs-book small{color:#78909C}
+.pk-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,179,0,.92);color:#1A1206;border-radius:9px;padding:1px 6px;z-index:4}
+.pk-cdot.on{display:block}
+#screen-pack .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：四条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是六七行，就垫死七行 */
+@media(max-width:460px){
+  .pk-tl{flex:1 1 100%}
+  .pk-ask{min-height:calc(1.35em*7)}
+  .pk-take button.pass{flex:0 0 84px}
+  .pk-take button.big{font-size:17px}
+  #screen-pack .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-pack .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-pack .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7474,8 +7542,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 105 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">105</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 106 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">106</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7486,12 +7554,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>105 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>47</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>106 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>48</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="pkCard" onclick="enterMode('pack')">
+      <div class="icon">📦</div>
+      <div class="info"><h3>笔顺装箱坊</h3><p id="pkCardTip">一箱货、一条承重线：这个字一笔是一件货，<b>斤两</b>看它拐几道弯、占多大地方（<b>w＝2＋2×转折数＋⌈弧长÷150⌉</b>，3~11 斤），<b>钱</b>是笔形行情加成色（横十竖十四撇廿捺三十，普/上/极品加 0/3/8 文）。<b>钱与斤两故意脱钩</b> —— 脱了钩，「轻又值钱」和「一头沉」才是两条真会打架的路。箱里装不下整个字（配字时就挑「比箱至少沉 4 斤」的字），<b>必须舍掉几件</b>。两头各收一份钱：压在<b>黄金线</b>（承重减顶压段）上面每斤赔 18 文，离它空着又欠<b>空位租</b>（空 ≤2 斤不欠、3~5 欠 2、6~9 欠 5、10 以上欠 9）—— 最省那一篓就夹在黄金线上下两斤以内，<b>这一小条贪心贪不出来，是要凑的</b>。秤对面那条影子一路按「每斤钱」排队装，配字时就验过它<b>真输</b>。第 4 场起货牌不写斤两只写手感，第 6 场起连手感也收走</p></div>
+      <span class="pk-cdot" id="pkCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="hsCard" onclick="enterMode('hyst')">
       <div class="icon">🧲</div>
       <div class="info"><h3>笔顺剩磁坊</h3><p id="hsCardTip">一台电磁吸盘：励磁到 I 档，厚 t 点的铁牌吸得住的条件是 <b>I ≥ on＝⌈t÷2⌉</b>；可断了电铁芯还剩着磁，顶得住 3 档 ⇒ 吸上的牌要降到 <b>off−1</b> 才脱得开。<b>升上去与退下来走的是两条支路</b> —— 同一档上牌在不在吸盘上，全看你怎么走到这一档（<b>这就是剩磁与磁滞</b>）。薄牌降到 0 档还挂着不掉，只有打进反向第 2 档（<b>矫顽力</b>）才「啪」地退磁。两本账都是<b>路径的积分</b>：电池记走了几格档程，热＝电池＋3×重走过的格数 —— 一路不回头只交一份，来回试探就把同一段烧两遍，<b>回线包围的那块面积就是白烧掉的铁损</b>。第 9 场最狠：一炉只剩 180 点、一卷只剩 96 档</p></div>
@@ -8270,6 +8343,79 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-pack">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pkLeave()">← 返回</button>
+    <div class="stats"><span id="pkScoreTxt">📦 0 分</span><span id="pkLvTxt">第 1 场 · 收 0 字</span><span id="pkQTxt">⏳ 认位 5 秒</span></div>
+    <button class="icon-btn" onclick="pkHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="pk-hud">
+    <span id="pkRankTxt" title="称号">📦 头一箱</span>
+    <span id="pkHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="pkComboTxt" title="连击">🔥 连 0</span>
+    <span id="pkLotTxt" title="这一场第几字第几程">🈶 第 1/3 字 · 第 1 程</span>
+    <span id="pkBoxTxt" title="眼下这一箱的账">📦 空箱 0/18 斤 · 净头 0 文</span>
+    <span class="light" id="pkHitLight">💡 案上还没货</span>
+  </div>
+  <div class="pk-ask" id="pkAsk">📦 正在挑货……<br><small>在字库里找「非取舍不可、凑得到黄金线、而且会算的确实比贪心的多赚」的字</small></div>
+  <div class="pk-stage">
+    <div class="pk-field" id="pkField">
+      <canvas class="pk-canvas" id="pkCanvas" width="420" height="340"></canvas>
+      <div class="pk-tag" id="pkTag">📦 货栈开了案</div>
+    </div>
+  </div>
+  <div class="pk-meter">
+    <div class="pk-tl place"><i id="pkPlaceBar"></i><b id="pkPlaceTxt">🎯 认位 5 秒</b></div>
+    <div class="pk-tl word"><i id="pkWordBar"></i><b id="pkWordTxt">🈶 这个字 88 秒</b></div>
+    <div class="pk-tl lamp"><i id="pkLampBar"></i><b id="pkLampTxt">💡 这一场 152 秒</b></div>
+    <div class="pk-tl boxw"><i id="pkBoxBar"></i><b id="pkBoxBig">📦 箱里 0 / 18 斤</b></div>
+  </div>
+  <div class="pk-take">
+    <button class="pass" id="pkDropBtn">🪧 丢货<small>X</small></button>
+    <button class="big" id="pkActBtn">📦 掉下一件<small>从梁上掉一件货到货案上 · 空格</small></button>
+    <button class="pass" id="pkSealBtn">⚖️ 封箱<small>F</small></button>
+  </div>
+  <div class="pk-tools">
+    <button class="pk-tool" id="pkProbeBtn" disabled>⚖️ 掂货<span>P</span><b>剩 2</b></button>
+    <button class="pk-tool" id="pkPeekBtn" disabled>👀 看票<span>V</span><b>剩 2</b></button>
+    <button class="pk-tool" id="pkDumpBtn" disabled>🧹 倒箱<span>D</span><b>剩 1</b></button>
+    <button class="pk-tool" id="pkSwapBtn" disabled>🔁 换字<span>S</span><b>剩 1</b></button>
+    <button class="pk-tool" id="pkHelpBtn">📖 说明<span>H</span></button>
+    <button class="pk-tool" id="pkEndBtn">🏁 结算</button>
+  </div>
+  <div class="pk-hintline" id="pkHintTxt">📦 <b>一箱装不下整个字</b>：挑哪几件、凑到黄金线上下两斤以内 —— 这一小条贪心贪不出来，是要凑的</div>
+  <div class="pk-msg" id="pkMsg">📦 <b>一笔就是一件货</b>：斤两＝这一笔拐的弯与占的地方（案上牌写的几「斤」），钱＝笔形行情＋成色（横十竖十四撇廿捺三十，普/上/极品加 0/3/8 文）<br>💡 <b>钱与斤两故意脱钩</b>：脱了钩，「轻又值钱」和「一头沉」才是两条真会打架的路。承重线顶上那几斤是<b>顶压段</b>，压上去每斤赔 18 文；离黄金线空着要交<b>空位租</b>（空 ≤2 斤不欠、3~5 欠 2、6~9 欠 5、10 以上欠 9）—— 一头嫌你沉、一头嫌你空，最省那一篓就夹在黄金线上下两斤以内。摊在案上的货每过一程掉 1 文，摊到第 4 程就烂 · <code>空格</code> 掉下一件 · <code>1～8</code> 认它是第几笔 · 点货案上那一件就装进箱 · <code>F</code> 封箱 · <code>X</code> 丢货 · ⚖️ <code>P</code> 掂货 · 👀 <code>V</code> 看票 · 🧹 <code>D</code> 倒箱 · 🔁 <code>S</code> 换字 · <code>H</code> 看说明</div>
+</div>
+<div class="screen" id="screen-pack-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pkLeave()">← 返回</button>
+    <div class="stats"><span id="pkRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="pkRsEmoji">📦</div>
+    <div style="font-size:26px;font-weight:800" id="pkRsTitle">收摊了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="pkRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="pk-pk" id="pkRsScore">📦 0 分</span>
+      <span class="pk-pk" id="pkRsWords">🈶 收字 0 个 · 认下 0 笔</span>
+      <span class="pk-pk" id="pkRsMoney">📦 封了 0 箱 · 装箱 0 件 · 净头共 0 文</span>
+      <span class="pk-pk" id="pkRsMargin">⚖️ 比贪心篓多赚 0 箱 · 最多一箱多 0 文</span>
+      <span class="pk-pk" id="pkRsPack">🧺 凑整（黄金线两斤以内）0 箱 · 压线过 0 回 · 空位欠过 0 回</span>
+      <span class="pk-pk" id="pkRsWipe">🎯 认下 0 笔 · 认错 0 次 · 认位钟尽 0 次 · 硬塞 0 回 · 丢货 0 件 · 烂掉 0 件</span>
+      <span class="pk-pk" id="pkRsTools">🧰 借家什 0 回 · 掂货 0 · 看票 0 · 倒箱 0 · 换字 0</span>
+      <span class="pk-pk" id="pkRsBest">🏅 历史最高 0 分</span>
+      <span class="pk-pk" id="pkRsRank">📦 头一箱</span>
+    </div>
+    <div class="pk-rs-book" id="pkRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="pkRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="pkRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="pkReBtn">📦 再开一箱</button>
+      <button class="tool-btn" id="pkLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="pkHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -16024,6 +16170,7 @@ function updateHomeStats(){
   if(typeof fjNudge==='function')fjNudge();
   if(typeof htNudge==='function')htNudge();
   if(typeof hsNudge==='function')hsNudge();
+  if(typeof pkNudge==='function')pkNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -16075,6 +16222,7 @@ function enterMode(mode){
   if(mode==='focus'){fjStart();return}
   if(mode==='hoist'){htStart();return}
   if(mode==='hyst'){hsStart();return}
+  if(mode==='pack'){pkStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -114142,6 +114290,1987 @@ function hsNudge(){
     '热＝电池＋'+HS_H+'×重走过的格数 —— 一路不回头只交一份，来回试探就把同一段烧两遍，'+
     '<b>回线包围的那块面积就是白烧掉的铁损</b>。第 9 场最狠：一炉只剩 '+hsCurie(9)+' 点、一卷只剩 '+hsBatt(9)+' 档';
   if(dot){dot.classList.toggle('on',!st);dot.textContent=(st?'':'🆕')}
+}
+
+
+/* ================= v1.107.0 📦 笔顺装箱坊（一箱货 · 一条承重线 · 装哪几件全凭孩子自己算 ================= */
+/* 场：420×340 的一处货栈案。左上米字格是「装箱单」（这个字一笔一笔贴在这儿，装上一笔染绿一笔），
+   装箱单右边一条承重标尺（箱里几斤压在第几格，顶上那几格是顶压段），再右一张货单卡
+   （眼下第几程 · 箱里几斤几文 · 顶压吃掉几文 · 空位欠几文 · 净头几文），
+   案中央一只敞口木箱（货一件一件堆进去，压过承重线就再也塞不进），
+   案底下一排货案（这一程挣来的货摊在这儿，最多四格，摊过第 4 程就烂），
+   最右一杆秤：秤盘上是这一篓的真净头，对面那只钩上挂着「按每斤钱贪心」那条影子。
+   规矩只有四条，而且四条全在整数上：
+   ① 一笔一件货：答对这一笔的题才掉下这一件货。货的**斤两**看它拐几道弯、占多大地方
+      （`w＝2＋2×转折数＋⌈弧长÷150⌉`，3~11 斤 —— 拐弯压手、长杆占地），**钱**是笔形行情加成色
+      （`v＝行情＋成色钱`：行情横十竖十四撇廿捺三十，成色普/上/极品加 0/3/8 文）。
+      钱与斤两**故意脱钩**：脱了钩，「轻又值钱」和「一头沉」才是两条真会打架的路 ——
+      这一坊考的就是挑哪几件。
+   ② 一只箱一条承重线：承重 `cap` 随场收紧（第 1 场 18 斤，每场减 2 斤，最低 14 斤），
+      而配字那一步就挑「整个字的货加起来至少比箱沉 4 斤」的字 ——
+      **想一件不落全装进去是装不下的，必须舍掉几件**。硬按装不进的那一件，底板「咔」一声弹回，罚钱。
+   ③ 一箱货两本账：**脚钱按件结** —— 每件货的斤两各交 1 文，可压在黄金线上面那几斤要加固：
+      黄金线 `黄金线＝承重−顶压段`（顶压段第 1~4 场 3 斤、第 5 场起 4 斤），
+      超一线一斤就多赔 `PK_TSUR`=18 文，这一段就叫顶压；**空位租按开秤那一笔结** ——
+      离一线空 ≤2 斤不欠、3~5 斤欠 2 文、6~9 斤欠 5 文、10 斤以上欠 9 文。
+      净头 = Σ钱 − 脚钱 − 顶压 − 空位租。一个嫌你沉、一个嫌你空，两头一夹，
+      最省那一篓就夹在「一线两斤以内」那一小段里 —— 这一小段贪心贪不出来，是要凑的。
+   ④ 货放久了不值钱：摊在货案上的每一件每过一程掉 1 文，掉到 1 文为止；摊到第 `PK_KEEP` 程就烂掉。
+      「现在就装」有彩头、「留着待价」有代价，装错了想换出来要付脚钱。
+   落定一件货还有一问：这一件是这个字的第几笔 —— 点装箱单上那一笔的淡墨位置。
+   教学点：秤对面那条影子就是「按每斤钱排队装」的贪心篓，它一直比会凑整的这一篓少赚；
+   第 4 场起货牌不写确切斤两、只写手感（轻 ≤5 斤 / 中 6~8 斤 / 沉 ≥9 斤），第 6 场起连手感也收走，
+   剩下的凭据只有 ⚖️ 那一掂与脑子里那本账。*/
+const PK_W=420,PK_CVH=340;
+/* 案面六块地方，互不压：装箱单 · 货单卡 · 木箱 ｜ 承重标尺（通长一条）｜ 货案四格 · 秤
+   三排：14..134（三块并排）· 144..166（标尺）· 180..286（货案四格 + 秤）· 306/322（回话两行）*/
+const PK_GX=14,PK_GY=14,PK_GRID=120;              /* 装箱单 14..134 × 14..134（n 格米字，点格认位就在这儿）*/
+const PK_SX=150,PK_SY=14,PK_SW=120,PK_SH=120;     /* 货单卡 150..270 × 14..134 */
+const PK_BX=282,PK_BY=14,PK_BW=124,PK_BH=120;     /* 木箱 282..406 × 14..134（箱口 14、底板 134）*/
+const PK_LX=14,PK_LY=144,PK_LW=392,PK_LH=22;      /* 承重标尺 14..406 × 144..166 */
+const PK_TX=14,PK_TY=180,PK_TC=60,PK_TGAP=6,PK_TH=106;  /* 货案四格 14/80/146/212 起，各 60 宽 · 180..286 */
+const PK_CX=282,PK_CY=180,PK_CW=124,PK_CH=106;    /* 秤 282..406 × 180..286 */
+const PK_MSGY=306;                                /* 回话两行写在 306 与 322 的基线上，340 以内 */
+/* ---- ① 斤两：拐几道弯、占多大地方 ---- */
+const PK_SLACK_FRAC=.12;      /* 短于总长一成的那几段是抖出来的，不许算拐弯 */
+const PK_W0=2,PK_WMAX=11,PK_TURN_MAX=5;   /* 斤两 = 2＋2×转折数＋⌈长÷150⌉，算出来超过 11 斤的笔不收（一件货顶大半箱）*/
+const PK_TURN_K=2,PK_K=150;   /* 拐一道弯加 2 斤（压手），每 150 长加 1 斤（占地方）*/
+function pkFeelOf(w){return w<=5?0:w<=8?1:2}   /* 一档三斤：轻 2~5 · 中 6~8 · 沉 9~11 */
+const PK_FEEL=['轻','中','沉'];
+/* ---- 每件货几文：一口价看笔形行情，成色再加一笔 —— 与斤两无关 ----
+   刻意不与斤两成正比：正比的话「按每斤钱排队」和「挑最值钱的装」会一路同质，
+   贪心与最优就老是打平（实测：正比版 85 个口径合格字里只有 2 个真分出胜负）。
+   价与重脱钩，「轻巧又值钱」和「大件一头沉」才是两条真会打架的路。*/
+const PK_PRICE=[10,14,20,30];  /* 行情：横十、竖十四、撇廿、捺三十（撇捺少见所以贵）*/
+const PK_BASE=[0,3,8];          /* 成色普/上/极品各加 0、3、8 文 */
+const PK_GRADE_N=3,PK_FLOOR=1;
+const PK_KN=['横','竖','撇','捺'];
+function pkBaseOf(q){return PK_BASE[q-1]}
+function pkV0(d,q){return PK_PRICE[d]+pkBaseOf(q)}
+/* ---- ②③ 一条承重线与两本账 ---- */
+const PK_CAP0=18,PK_CAP_STEP=2,PK_CAP_MIN=14;
+const PK_TOP=3,PK_TOP5=4,PK_TOP_LV=5;
+const PK_TSUR=18;             /* 顶压段每斤几文：压在黄金线上面的那几斤要加固、要赔钱 */
+const PK_GAP=[2,5,9],PK_GAP_P=[0,2,5,9];
+const PK_NICE=2,PK_LEAVE=4;
+/* ---- 四支钟：这一程 · 这一字 · 这一场的灯 · 干等说明牌 ---- */
+const PK_PLACE0=5200,PK_PLACE_MIN=3400,PK_PLACE_STEP=225;
+const PK_WORD0=88000,PK_WORD_MIN=58000,PK_WORD_STEP=3750;
+const PK_LAMP0=152000,PK_LAMP_MIN=98000,PK_LAMP_STEP=6750;
+function pkPlace(L){return Math.max(PK_PLACE_MIN,PK_PLACE0-(L-1)*PK_PLACE_STEP)}
+function pkWord(L){return Math.max(PK_WORD_MIN,PK_WORD0-(L-1)*PK_WORD_STEP)}
+function pkLamp(L){return Math.max(PK_LAMP_MIN,PK_LAMP0-(L-1)*PK_LAMP_STEP)}
+/* ---- 罚：答错 · 手慢 · 硬塞 · 主动丢货 · 货烂在案 · 半路封箱 · 换手脚钱 · 倒箱 · 看票 ---- */
+const PK_P_WRONG=5,PK_P_LATE=3,PK_P_NOFIT=3,PK_P_DROP=2,PK_P_ROTTEN=2,PK_P_SEAL=3;
+const PK_P_SWAP=3,PK_P_DUMP=5,PK_P_PEEK=3,PK_P_WORD=6,PK_P_WSWAP=8;
+/* ---- 赏：落定底分（连击与场号加成）与收字那一整包 ---- */
+const PK_M0=8,PK_M_CB=1.1,PK_M_LV=1.5;
+const PK_WORD_PTS=26,PK_CLEAN_PTS=16,PK_FILL_PTS=20,PK_TOOL_PTS=10,PK_NEAT_PTS=12,PK_SMART_PTS=14;
+/* ---- 配字口径：4~8 笔、至少两种笔形、手感至少两档、字要大 ---- */
+const PK_N_MIN=4,PK_N_MAX=8,PK_KIND_MIN=2,PK_LEN_BKT=40;
+const PK_TABLE=4,PK_KEEP=4;   /* 案四格、摊满 4 程才烂：这两条得配着看 —— 一程只落一件，
+                                 案上同时活着 k 件时它们的年龄正好是 0/1/…/(k−1)（刚落下那件是 0）。
+                                 所以门槛要 ≥ 格子数，否则第 4 件落下的同时就把最久那件烂掉，
+                                 「货案满了」那一条成了画给空气的；门槛又得 ≤ 件数 − 1，
+                                 不然一笔货摊不到那么久，烂货那一格也永远验不到 —— 4 是这两头之间唯一的数
+                                 （配字 4~8 笔：5 件以上的字才烂得起来） */
+const PK_POOL_MIN=4,PK_POOL_WANT=14,PK_POOL_SCAN=320;
+const PK_HEARTS=3,PK_HEART_MAX=5,PK_BOOK_MAX=300;
+const PK_P0={probe:2,swap:1,dump:1,peek:2};   /* 掂货 / 换手 / 倒箱 / 看票
+   掂货与看票各起手两回：这两件家什都有「那一口气还没写完」的挡话（斤两写 PROBE 秒、票写 PEEK 毫秒），
+   余量只给一张，孩子第二回按下去撞上的是「用光了」那一格，「等它自己收走」这一句就永远说不出口了
+   （白补一回 +1 也救不回来：那一格要的是「手里还有余量 + 票还写着」同时成立）*/
+const PK_TAG_MS=2600,PK_NAG_MS=11000,PK_HELP_MS=16000;
+/* ⚖️ 掂货：确切的斤两请回来这么多秒 · 👀 看票：只报最优一篓几件、净头几文 */
+const PK_PROBE_MS=4200,PK_PEEK_MS=5200;
+/* 场档：开局那一场的场号按「一辈子收齐的字数」走（每两个字进一场），
+   局内再每收满 PK_PER 字自己往上进一场 —— 前者是这一坊给老孩子的起点，后者是这一把的台阶 */
+function pkLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+/* 一把之内的场：一箱货管一个字，收满三字换场（换场就换一套货、收一次场灯）*/
+const PK_PER=3;
+/* 第 PK_TELL_LV 场起货牌不写确切斤两、只写手感，第 PK_DIM_LV 场起连手感也不写 */
+const PK_TELL_LV=4,PK_DIM_LV=6;
+function pkNoTell(L){return L>=PK_TELL_LV}
+function pkDim(L){return L>=PK_DIM_LV}
+function pkCap(L){return Math.max(PK_CAP_MIN,PK_CAP0-(L-1)*PK_CAP_STEP)}
+function pkTop(L){return L>=PK_TOP_LV?PK_TOP5:PK_TOP}
+function pkWant(L){return L<=2?[4,6]:[4,8]}   /* 浅场只摆 4~6 件的小案，第 3 场起 4~8 件都上 */
+function pkRank(w){
+  let r=PK_RANKS[0];
+  for(let i=0;i<PK_RANKS.length;i++)if(w>=PK_RANKS[i].n)r=PK_RANKS[i];
+  return r;
+}
+const PK_RANKS=[
+  {n:0,e:'📦',t:'头一箱'},      {n:2,e:'⚖️',t:'掂得出轻重'},  {n:5,e:'🧮',t:'会凑整'},
+  {n:9,e:'🪙',t:'压线不误'},    {n:14,e:'🧺',t:'一箱不空'},     {n:21,e:'🏮',t:'账算得响'},
+  {n:30,e:'🧰',t:'全套家什'},    {n:42,e:'🎯',t:'一步不错'},     {n:58,e:'👑',t:'贪心从未赢过'}
+];
+const PK_SHELF_LV=4;
+const PK_SHELF=[
+  {k:'货样',d:'收齐一个字'},      {k:'清白票',d:'一场三字零罚'},   {k:'凑整章',d:'压线两斤以内满 8 箱'},
+  {k:'戥子',d:'走到第 '+PK_SHELF_LV+' 场还在装箱'},  {k:'会算票',d:'比贪心篓赚满 12 箱'},
+  {k:'空手牌',d:'一箱一件不换不丢'}, {k:'名刺',d:'别处的章节徽章攒到 3 枚'}, {k:'金箱',d:'累计装箱 60 件'}
+];
+/* 货牌的名字：一件一个花色名（由种子里洗出来，与笔顺无关）。牌上不许写它是第几笔 ——
+   写了就等于把答案印在题目上；孩子认的是手感与钱数 */
+const PK_MARK=['布包','麻袋','竹篓','木匣','油纸','藤篮','草席','皮囊'];
+function pkMarkOf(i){return PK_MARK[(pk.mark&&pk.mark[i])||0]}
+const pk={
+  run:false,over:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],seen:[],rec:null,seed:0,fresh:0,
+  /* 场：一场三字；lv 就是场号 */
+  lv:1,wi:0,score:0,hearts:PK_HEARTS,combo:0,maxCombo:0,phase:'ask',load:false,locked:0,
+  /* 案上四堆：货案 table（摊着待装的）· 箱里 box · 已落定 done · 挂在梁上待认的 pending · 烂掉 rotten
+     order 是掉货的顺序（种子洗出来的笔号）：pending 永远是 order[at]，不按笔顺掉 */
+  goods:[],table:[],box:[],done:[],rotten:[],mark:[],order:[],pending:-1,sel:-1,
+  /* 眼下这一箱的账：sum 斤 · val 钱 · fee 脚钱（按件结）· top 顶压那一截 · gap 空位（开秤才结租）
+     feeHand/sumHand 是「① 逐件的手」一格一格加出来的那本；屏上写的与结算收的都是闭式那本 ——
+     两只手各走各的路，自检拿它们互核（谁算歪了一眼就红）*/
+  sum:0,val:0,fee:0,top:0,gap:0,cap:18,feeHand:0,sumHand:0,
+  /* 这一字的账：程数、每件落下时的程号 */
+  at:0,
+  /* 账：收字 · 装箱件数 · 硬塞 · 丢货 · 烂货 · 封箱 · 换手 · 掂货 · 看票 · 倒箱 · 换字 */
+  words:0,strokes:0,packs:0,nofits:0,drops:0,dropGoods:0,rottens:0,seals:0,swaps:0,
+  dumps:0,wswaps:0,
+  wrongs:0,lates:0,wordOuts:0,fillN:0,smartN:0,topN:0,gapN:0,
+  /* 这一箱的赏钱门槛：由这一字的最优装法与贪心装法算出来，所以那份赏一定是实的 */
+  bestNet:0,greedyNet:0,marginNet:0,bookNet:0,marMax:0,
+  /* 一字的清白账 */
+  cleanWord:1,neatWord:1,tools:0,wordTools:0,cleanRun:0,toolRun:0,
+  placeMs:0,place0:0,wordMs:0,wordMs0:0,lamp:0,lamp0:0,
+  probeN:PK_P0.probe,swapN:PK_P0.swap,dumpN:PK_P0.dump,peekN:PK_P0.peek,
+  probeUse:0,swapUse:0,dumpUse:0,peekUse:0,probeShow:0,probeMs:0,peekMs:0,
+  shadow:0,bestK:0,
+  gain:0,pen:0,hitOk:0,hitTxt:'',bound:false,helpMs:0,tagTimer:0,
+  msg:'',nags:0,nagMs:0,newBest:false
+};
+
+/* ---- 小工具：本坊自己的发声、回话、清定时器 ----
+   这几只不许抄公共那几只：公共的 auxSay 往别人家的消息条里写字、auxTone 揣的是别人那块声卡、
+   auxT/auxKill 管的是别人那一串定时器 —— 借来用，孩子的话就落在别人家的栏里。 */
+function pkTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!pk.ac)pk.ac=new AC();
+    const c=pk.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.value=g===undefined?.05:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+/* 回话条就是货栈案上那一条 .pk-msg：写错了栏，孩子的话一个字也看不见 */
+function pkSay(msg,color){pkMsg(msg,color||'#FFE082')}
+function pkT(fn,ms){const id=setTimeout(function(){
+  const i=pk.timers.indexOf(id);if(i>=0)pk.timers.splice(i,1);
+  if(!pk.run||pk.over)return;
+  try{fn()}catch(e){}
+},ms);pk.timers.push(id);return id}
+function pkKill(){
+  for(let i=0;i<pk.timers.length;i++)clearTimeout(pk.timers[i]);
+  pk.timers=[];
+  if(pk.rafId){cancelAnimationFrame(pk.rafId);pk.rafId=0}
+}
+
+/* ================= 账：四条尺各算各的，算出来的必须一模一样 =================
+   这一坊全部的风险压在「同一箱货有四条算账的路」上：
+   ① 逐件的手 pkFeeDelta：孩子每装一件，脚钱当场结在这件头上（顶压段那几斤算在这一件）——产品只有这一只手；
+   ② 闭式 pkSale：给一堆货一次算完（斤两 Σw＋压在顶上的那几斤，钱 Σv，再减空位租）；
+   ③ 枚举 pkBest：这一堆货的所有装法（2^n 个）逐个过 ②，取净头最大的那一个 —— 审计与 ⚖️ 看票吃它；
+   ④ 贪心 pkGreedy：按每斤钱从高到低一件件往箱里放、放不下就跳过 —— 秤对面那条影子。
+   必须永远成立的三条等式：
+   · 同一堆货，无论按什么次序一件件装，脚钱累加＝闭式的脚钱（顶压只是「算在哪一件头上」在变，总账不变）；
+   · 枚举的净头 ≥ 贪心的净头（贪心永远不许赢过最优 —— 赢了就是这一坊的课教反了）；
+   · 净头 ＝ Σ钱 − Σ脚钱 − 空位租，一次也不许多减或少减。
+   段 W 在 Node 里把 ②③④ 各重写一遍、逐堆货对表；产品那一只手走的是 ①，四把算完再对。*/
+/* ---- 一笔有多长（1024 的方格里量真实折线长）与拐几道弯 ---- */
+function pkLenOf(m){
+  let t=0;
+  for(let i=1;i<m.length;i++){
+    const dx=m[i][0]-m[i-1][0],dy=m[i][1]-m[i-1][1];
+    t+=Math.sqrt(dx*dx+dy*dy);
+  }
+  return t;
+}
+/* 八分方位：这一段的方向归到 0..7（45° 一格）。与 jtDirOf 那四向各算各的 ——
+   四向量的是「这一笔往哪儿起」，八向量的是「一路拐了几道弯」 */
+function pkOct(x,y){
+  const a=Math.atan2(y,x)*180/Math.PI;
+  let k=Math.round(a/45);
+  k=((k%8)+8)%8;
+  return k;
+}
+function pkTurnOf(m){
+  if(!m||m.length<3)return 0;
+  const segs=[];let total=0;
+  for(let i=1;i<m.length;i++){
+    const sx=m[i][0]-m[i-1][0],sy=m[i-1][1]-m[i][1];
+    const L=Math.sqrt(sx*sx+sy*sy);
+    total+=L;segs.push([sx,sy,L]);
+  }
+  if(!(total>0))return 0;
+  let dir=-1,n=-1;
+  for(let i=0;i<segs.length;i++){
+    if(segs[i][2]<total*PK_SLACK_FRAC)continue;
+    const o=pkOct(segs[i][0],segs[i][1]);
+    if(dir<0){dir=o;n=0;continue}
+    if(o!==dir){dir=o;n++}
+  }
+  return n<0?0:n;
+}
+function pkW(m){return PK_W0+PK_TURN_K*pkTurnOf(m)+Math.ceil(pkLenOf(m)/PK_K)}
+/* ---- 货放久了不值钱：一件货在「它落案的那一程」born 开始算年龄，
+       往后再每过一程掉 1 文，掉到 1 文为止。还没轮到的那几件（at<born）年龄记 0 —— 
+       不许倒着长回去，否则秤上那条影子会把未来的货算成已经摊了三程的旧货 ---- */
+function pkValue(g,at){return Math.max(PK_FLOOR,g.v0-Math.max(0,at-g.born))}
+/* ---- ② 闭式的两本账：脚钱（按斤结＋顶压那一截）与空位租（按开秤那一笔结）---- */
+function pkFeeOf(sum,cap,L){
+  const over=sum-(cap-pkTop(L));
+  return sum+(over>0?PK_TSUR*over:0);
+}
+/* ① 逐件的手：装这件之前箱里 sum 斤、装完 sum+w，顶压段多出来的那几斤算在这一件头上 */
+function pkFeeDelta(w,sum,cap,L){
+  const o1=sum-(cap-pkTop(L)),o2=(sum+w)-(cap-pkTop(L));
+  return w+PK_TSUR*((o2>0?o2:0)-(o1>0?o1:0));
+}
+/* ③ 空位租：四段阶梯。gap 是「承重线还空几斤」，负数（超载）压根不许发生 —— 装不进就是装不进 */
+function pkGapPen(gap,cap,L){
+  if(gap<=PK_GAP[0])return PK_GAP_P[0];
+  if(gap<=PK_GAP[1])return PK_GAP_P[1];
+  if(gap<=PK_GAP[2])return PK_GAP_P[2];
+  return PK_GAP_P[3];
+}
+function pkBlank(){return {n:0,sum:0,val:0,fee:0,top:0,gap:0,net:0,items:[]}}
+/* 闭式一次算完：items 是「这一堆货」（每件带 w、v0、born），at 是眼下第几程 */
+function pkSale(items,cap,L,at){
+  const st=pkBlank();
+  for(let i=0;i<items.length;i++){
+    const g=items[i];
+    st.n++;st.sum+=g.w;st.val+=pkValue(g,at);
+  }
+  st.fee=pkFeeOf(st.sum,cap,L);
+  st.top=st.fee-st.sum;
+  st.gap=pkGapPen(pkGold(L)-st.sum,cap,L);
+  st.net=st.val-st.fee-st.gap;
+  st.items=items.slice();
+  return st;
+}
+/* ① 逐件累加那一路（产品的手就是这么走的）：次序不同、每件头上摊的顶压不同，总账必须一样 */
+function pkPackSim(items,cap,L,at){
+  const st=pkBlank();
+  for(let i=0;i<items.length;i++){
+    const g=items[i];
+    if(st.sum+g.w>cap)return {bad:1,why:'装到第'+(i+1)+'件压不住线',n:st.n,sum:st.sum,val:st.val,fee:st.fee,top:st.top,gap:st.gap,net:st.net};
+    st.fee+=pkFeeDelta(g.w,st.sum,cap,L);
+    st.sum+=g.w;st.val+=pkValue(g,at);st.n++;
+  }
+  st.top=st.fee-st.sum;
+  st.gap=pkGapPen(pkGold(L)-st.sum,cap,L);
+  st.net=st.val-st.fee-st.gap;
+  return st;
+}
+/* ⑤ 逐件的手与闭式对表：拿同一篓货按「先轻后重」「先重后轻」「原样」三种次序各走一遍。
+   次序不同、每件头上摊的顶压不同，脚钱/顶压/净头一个字也不许变。
+   走的一定是「装得下的那一篓」而不是整个字的货：整字的货比箱沉（① 立的就是这一条），
+   按任何次序都必然压不住线，拿它当对表样本这一闸就永远红 */
+function pkOrderCheck(sub,cap,L,at,items){
+  const subSet=[];
+  for(let i=0;i<items.length;i++)if(sub.indexOf(items[i])>=0)subSet.push(items[i]);
+  const list=[subSet.slice().sort(function(a,b){return a.w-b.w}),
+    subSet.slice().sort(function(a,b){return b.w-a.w}),
+    subSet.slice()];
+  const cl=pkSale(sub,cap,L,at);
+  for(let i=0;i<list.length;i++){
+    const s=pkPackSim(list[i],cap,L,at);
+    if(s.bad)return {bad:1,why:'这一篓按第'+(i+1)+'种次序装不进压线以内'};
+    if(s.fee!==cl.fee)return {bad:1,why:'脚钱与次序有关（第'+(i+1)+'种次序）'};
+    if(s.top!==cl.top)return {bad:1,why:'顶压那一截与次序有关（第'+(i+1)+'种次序）'};
+    if(s.net!==cl.net)return {bad:1,why:'净头与次序有关（第'+(i+1)+'种次序）'};
+  }
+  return {bad:0,fee:cl.fee,top:cl.top,net:cl.net,sum:cl.sum};
+}
+/* ③ 枚举那把尺：2^n 个装法里净头最大的那一个（n ≤ 7 ⇒ 128 个，账才敢当真）*/
+function pkBest(items,cap,L,at){
+  let best=null;
+  const n=items.length;
+  for(let k=0;k<(1<<n);k++){
+    let sum=0,val=0,fee=0,cnt=0;
+    for(let i=0;i<n;i++)if(k&(1<<i)){
+      const g=items[i];
+      fee+=pkFeeDelta(g.w,sum,cap,L);
+      sum+=g.w;val+=pkValue(g,at);cnt++;
+    }
+    if(sum>cap)continue;
+    const net=val-fee-pkGapPen(pkGold(L)-sum,cap,L);
+    const s={k:k,n:cnt,sum:sum,val:val,fee:fee,net:net};
+    if(!best||net>best.net||(net===best.net&&s.sum>best.sum))best=s;
+  }
+  return best;
+}
+/* ④ 贪心那把尺：按每斤钱从高到低一件件放，放不下就跳过去 —— 秤对面那条影子。
+   一样划算的两件先装件头大的（孩子的自然直觉：「反正一样划算，装个大的实在」）；
+   这一条不许反着写来哄自己 —— 反过来（先装小的）会让影子更容易凑得满，
+   看着像「贪心其实常常最优」，那是把这一坊的课教没了。*/
+function pkGreedy(items,cap,L,at){
+  const idx=[];
+  for(let i=0;i<items.length;i++)idx.push(i);
+  idx.sort(function(a,b){
+    const va=pkValue(items[a],at),vb=pkValue(items[b],at);
+    const da=va/items[a].w,db=vb/items[b].w;
+    if(db!==da)return db-da;
+    if(items[a].w!==items[b].w)return items[b].w-items[a].w;
+    return a-b;
+  });
+  let sum=0,val=0,fee=0,cnt=0,jumps=0;
+  for(let i=0;i<idx.length;i++){
+    const g=items[idx[i]];
+    if(sum+g.w>cap){jumps++;continue}
+    fee+=pkFeeDelta(g.w,sum,cap,L);
+    sum+=g.w;val+=pkValue(g,at);cnt++;
+  }
+  return {n:cnt,sum:sum,val:val,fee:fee,jumps:jumps,net:val-fee-pkGapPen(pkGold(L)-sum,cap,L)};
+}
+/* ---- 这个字配不配得上这一箱 ---- */
+function pkMake(ch,raw){
+  const ms=raw&&raw.medians,sp=raw&&raw.strokes;
+  if(!ms||!sp||ms.length!==sp.length)return null;
+  if(ms.length<PK_N_MIN||ms.length>PK_N_MAX)return null;
+  const dirs=[],ws=[],lens=[],bkey=[];
+  for(let i=0;i<ms.length;i++){
+    const d=jtDirOf(ms[i]);
+    if(d<0||d>3)return null;
+    const len=pkLenOf(ms[i]);
+    if(!(len>0))return null;
+    const t=pkTurnOf(ms[i]);
+    if(t>PK_TURN_MAX)return null;
+    const w=pkW(ms[i]);
+    if(w<PK_W0||w>PK_WMAX)return null;
+    dirs.push(d);ws.push(w);lens.push(Math.round(len));
+    bkey.push(d+'@'+Math.floor(len/PK_LEN_BKT));
+  }
+  let kinds=0;for(let i=0;i<dirs.length;i++)kinds|=1<<dirs[i];
+  let kc=0;for(let d=0;d<4;d++)if(kinds&(1<<d))kc++;
+  if(kc<PK_KIND_MIN)return null;
+  /* 认牌不歧义：同方向又同长短档的两笔就是同一件货，题面与货牌都对不上号 */
+  for(let i=0;i<bkey.length;i++)for(let j=i+1;j<bkey.length;j++)if(bkey[i]===bkey[j])return null;
+  /* 手感要真分得开：全案一样重就没什么好掂的 */
+  const feel={};for(let i=0;i<ws.length;i++)feel[pkFeelOf(ws[i])]=1;
+  let nf=0;for(const kk in feel)nf++;
+  if(nf<2)return null;
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let i=0;i<ms.length;i++)for(let j=0;j<ms[i].length;j++){
+    const x=ms[i][j][0],y=ms[i][j][1];
+    if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;
+  }
+  if(x1-x0<140||y1-y0<140)return null;
+  const dn=[];for(let i=0;i<dirs.length;i++)dn.push(PK_KN[dirs[i]]);
+  return {ch:ch,n:ms.length,dirs:dirs,dn:dn,ws:ws,lens:lens,bkey:bkey,paths:sp,meds:ms,kc:kc,
+    sumAll:ws.reduce(function(a,b){return a+b},0),
+    union:{x0:x0,x1:x1,y0:y0,y1:y1,xc:(x0+x1)/2,yc:(y0+y1)/2,w:x1-x0,h:y1-y0}};
+}
+function pkSeqOk(rec){
+  if(!rec)return false;
+  if(rec.n<PK_N_MIN||rec.n>PK_N_MAX)return false;
+  if(rec.kc<PK_KIND_MIN)return false;
+  for(let i=0;i<rec.dirs.length;i++)if(rec.dirs[i]<0||rec.dirs[i]>3)return false;
+  for(let i=0;i<rec.ws.length;i++)if(rec.ws[i]<PK_W0||rec.ws[i]>PK_WMAX)return false;
+  const u=rec.union;
+  if(!(u.w>=140&&u.h>=140))return false;
+  const k={};
+  for(let i=0;i<rec.bkey.length;i++){
+    if(k[rec.bkey[i]])return false;
+    k[rec.bkey[i]]=1;
+  }
+  return true;
+}
+/* 成色与花色：都从种子里洗，与笔顺、与货案站位都不相关 */
+function pkGrades(rec,seed){
+  const g=[];
+  for(let i=0;i<rec.n;i++)g.push(1+auxNext(seed^Math.imul(i+7,2654435761))%PK_GRADE_N);
+  return g;
+}
+function pkMarks(rec,seed){
+  const p=[];
+  for(let i=0;i<rec.n;i++)p.push(i);
+  for(let i=rec.n-1;i>0;i--){
+    const j=auxNext(seed^Math.imul(i+23,3266489917))%(i+1);
+    const t=p[i];p[i]=p[j];p[j]=t;
+  }
+  const mk=[];
+  for(let i=0;i<rec.n;i++)mk[p[i]]=i;
+  return mk;
+}
+/* 掉货的顺序：种子洗出来的一串笔号 —— 这一坊不许按笔顺掉货。
+   按笔顺掉的话「这一件是第几笔」的答案永远是 at+1，那一句题就成了摆设；
+   洗过之后孩子必须拿牌上那张墨样去装箱单上比对，认的是笔形与位置 */
+function pkOrder(rec,seed){
+  const p=[];
+  for(let i=0;i<rec.n;i++)p.push(i);
+  for(let i=rec.n-1;i>0;i--){
+    const j=auxNext(seed^Math.imul(i+61,2246822519))%(i+1);
+    const t=p[i];p[i]=p[j];p[j]=t;
+  }
+  return p;
+}
+/* 这一坊的货是从笔顺来的，但货牌上写的是花色名：斤两与钱都是当场算的，不许有一处写「第几笔」。
+   born 一上案就按掉货顺序定死（第 k 件货在第 k+1 程落案）：还没轮到的那几件年龄记 0，
+   秤上那条影子与票上那个数才与真收秤时同一口径 */
+function pkGoods(rec,grades,order){
+  const g=[];
+  for(let i=0;i<rec.n;i++){
+    const born=order?order.indexOf(i)+1:0;
+    g.push({i:i,w:rec.ws[i],v0:pkV0(rec.dirs[i],grades[i]),born:born});
+  }
+  return g;
+}
+/* ---- 配案的凭据：这一箱必须「非取舍不可」，而且贪心那一篓必须真输 ----
+   成色与掉货顺序都不靠运气：按 auxSeedOf(字,场) 真洗一套出来算，收秤那一刻的折价也算进去。
+   黄金线 GL＝承重线减去顶压段：一箱货最妙的位置是「贴着 GL 而不压上去」，
+   压上去每斤多交 PK_TSUR 文，空着又欠空位租 —— 两头一夹，GL 上下 PK_NICE 斤那一小条就是这一坊的答案。*/
+function pkGold(L){return pkCap(L)-pkTop(L)}
+function pkAudit(rec,L,why){
+  const say=function(t){if(why)why.why=t;return null};
+  if(!rec||!pkSeqOk(rec))return say('口径');
+  const cap=pkCap(L),GL=pkGold(L);
+  /* ① 非取舍不可：整个字的货加起来至少比这一箱沉 PK_LEAVE 斤 */
+  if(rec.sumAll<cap+PK_LEAVE)return say('整箱装得下，没得挑');
+  const items=[];
+  /* 成色与掉货顺序都按这个字在这一场的种子真洗一遍（与产品上案时同一口径）：
+     这样「会算票」那份赏就不是运气 —— 收秤那一刻真存在一种装法比贪心篓多赚。
+     以前这里一律按极品算，理由是「成色只加价不改重量」；那句话对一半：
+     加的那几文各件不同，照样能把贪心那条道推成打平 —— 实测极品口径 46 个字里 19 处 margin=0 */
+  const sd=auxSeedOf(rec.ch,L),ord=pkOrder(rec,sd),grs=pkGrades(rec,sd);
+  for(let i=0;i<rec.n;i++)items.push({w:rec.ws[i],v0:pkV0(rec.dirs[i],grs[i]),born:ord.indexOf(i)+1});
+  /* ② 凑得准：真存在一种装法落在黄金线上下 PK_NICE 斤以内（凑整赏必须是实的）*/
+  let fill=0;
+  for(let k=0;k<(1<<items.length);k++){
+    let sum=0;
+    for(let i=0;i<items.length;i++)if(k&(1<<i))sum+=items[i].w;
+    if(sum<=cap&&Math.abs(sum-GL)<=PK_NICE)fill++;
+  }
+  if(!fill)return say('凑不到黄金线以内');
+  /* ③ 贪心必须真输：满价那一头（at=0，几件都还没摊）与收秤那一刻（at=n，每件各按摊了几程折价）
+     两头都验，一路不许打平 —— 孩子就是在收秤那一息领这份赏 */
+  const atLo=0,atHi=rec.n;
+  const bs=pkBest(items,cap,L,atLo),gr=pkGreedy(items,cap,L,atLo);
+  if(!bs)return say('一种都装不进');
+  if(!(bs.net>gr.net))return say('贪心赢了或打平（满价那一头）：枚举写反了或没课可教');
+  const bs2=pkBest(items,cap,L,atHi),gr2=pkGreedy(items,cap,L,atHi);
+  if(!(bs2.net>gr2.net))return say('贪心赢了或打平（收秤那一刻）：这一坊没课可教');
+  /* ④ 顶压与空位两头都得真踩得到：只有一条直线的话这一坊就退化成「挑每斤钱最高的」 */
+  let touchTop=0,touchGap=0;
+  for(let k=0;k<(1<<items.length);k++){
+    let sum=0;
+    for(let i=0;i<items.length;i++)if(k&(1<<i))sum+=items[i].w;
+    if(sum>cap)continue;
+    if(sum>GL)touchTop=1;
+    if(pkGapPen(pkGold(L)-sum,cap,L)>0)touchGap=1;
+  }
+  if(!touchTop)return say('顶压段压根够不着');
+  if(!touchGap)return say('空位租压根躲不开');
+  /* ⑤ 逐件的手与闭式对表：拿最优那一篓走三种次序（整字的货比箱沉，任何次序都装不进，不能当样本）*/
+  const sub=[];
+  for(let i=0;i<items.length;i++)if(bs.k&(1<<i))sub.push(items[i]);
+  const oc=pkOrderCheck(sub,cap,L,atLo,items);
+  if(oc.bad)return say(oc.why);
+  if(why)why.why='过';
+  return {n:rec.n,cap:cap,gl:GL,top:pkTop(L),sumAll:rec.sumAll,leave:rec.sumAll-cap,fill:fill,
+    best:bs.net,greedy:gr.net,margin:bs.net-gr.net,marginLate:bs2.net-gr2.net,
+    bestSum:bs.sum,gsum:gr.sum,fee:oc.fee,topFee:oc.top,net:oc.net,bestK:bs.k};
+}
+/* ---- 字池：一场一套货 —— 成色与掉货顺序都由 auxSeedOf(字,这一场) 定死，
+   所以门槛也只有一条：「在这一场真打得出取舍」。换场就得重验一遍池子，
+   上一场摆得开的字，这一场未必还教得出课。*/
+async function pkBuildPool(keep,lo,hi){
+  const g=pk.gen,stale=function(){return g!==pk.gen||!pk.run||pk.over};
+  const lv=pk.lv||1;
+  const enough=function(){
+    if(!isFinite(lo))return pk.pool.length>=PK_POOL_WANT;
+    let c=0;
+    for(let i=0;i<pk.pool.length;i++)if(pk.pool[i].n>=lo&&pk.pool[i].n<=hi)c++;
+    return c>=6||pk.pool.length>=40;
+  };
+  pk.miss=(localStorage.getItem('hz_pk_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<PK_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(auxShuf(pk.miss.slice(0,6).filter(function(c){return PK_LEV[lv].indexOf(c)>=0})));
+  push(auxShuf(pkLetters(lv).split('')));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(auxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(auxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  if(typeof CHARS!=='undefined')push(auxShuf(CHARS.slice()));
+  if(!keep)pk.pool=[];
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      if(!rs[i]||!rs[i].medians)continue;
+      const n=rs[i].medians.length;
+      if(rs[i].strokes&&rs[i].strokes.length===n){
+        const m=pkMake(want[k+i],rs[i]);
+        if(m&&isFinite(lo)&&(m.n<lo||m.n>hi))continue;
+        /* 这一场验这一场：串内的字是按同一把种子离线数过的，上台前再当场核一遍 ——
+           数据换了、口径变了，这一眼就把它挡在池外 */
+        if(m&&pkAudit(m,lv))
+          if(!pk.pool.some(function(p){return p.ch===m.ch}))pk.pool.push(m);
+      }
+    }
+  }
+  pk.poolLv=lv;
+  return pk.pool.length>=PK_POOL_MIN;
+}
+function pkFresh(ch){
+  const bk=localStorage.getItem('hz_pk_book')||'';
+  return bk.indexOf(ch+':')<0?1:0;
+}
+/* 下面九串字（一场一串）由 _pkpool.cjs 拿本坊自己的 pkMake（口径）＋ pkAudit（这一场的六道闸：
+   非取舍不可、凑得到黄金线、贪心在新货与收秤两头都真输、顶压与空位两头踩得到、逐件的手与闭式对表）
+   逐场数过，只留落在这场笔数带里的 —— 串外的字在这一场就是过不了闸的字。*/
+const PK_LEV={
+  1:"不中乓争互什付仙以仪优伙兄刑刘刚占叫后在好宁宅尽市庄庆忙托本杂歹民火灰片王甲矛石示纪至虫",
+  2:"主乎亥仅付优兰再刘则占厅去双后好宁巧市帆庄开扫日曰本朱杀欠歹民水甲石禾纪羊至芒见达",
+  3:"中主乓乱争亚亥亩什仅仗仙伴伸体余佩使兰冬刑刘则刮卑厅双叫吆君吞咐坐坑坛坦好妒妙姐宁安官审寿尽岳巧帆庄庆庐库庙府废建开弦戒托执扫扳抄投抡抬拟择改攻斤斧更未本朱朴村杖来枣欢民灶炉炊爸牛牧犹狂狐王生甲画社禾纪纱羊者良芒英虎虫见规谷豆贝质走辽达迟钓长降风饥饮驶",
+  4:"不中乓亚亥亩仙伴伸住体余佩兄兰冬刑刘则刮厅去双受吆后君吞听呵坐坑坛坦声好妒妙妨姐宁宅安宋官定寿尤尽居岳巧市帆庄庐库庙府废开弦录或托执扫扳找抄投抡抬拨择攻斤斧更未本朱朴杀村杖枣欢灶炊牛牧犹狂狐王瓦生画盲石示社禾穴纪纱者至良芒英虎见规谷豆贝质走轮达迟金钓长陌降风饥饮驶",
+  5:"中主乓乱事互亚亥亩什仅仗仙伙伴伸体余佩兄兰典冬刑刘则刮卑厅去双受叫吆君吞含听咐址坐坑坛坦声好妒妙妨姐字宁宅安宋官定审寿尽屉岳巧帆庄庆序庐库庙府废建开弦录忙或所托执扫扳找抄投抗抡抬拟择改攻斤斧更未本朱朴杀村杖来枣欢火灰灶炊片牛牧犹狐王生甲盲石示社禾穴纪纱羊者胀至良芒英虎虫见规视谷豆贝贡质走轮辽达迟金钓长陌风饥饮驶",
+  6:"中主乓乱事互亚亥亩什仗仙伴伸住体余佩兰冬刑刘则刮卑厅去双受叫吆后君吞含听吾呵咐在址坐坑坛坦声好妒妙妨姐字存安宋官定审寿尤尽岳巧帆庄庆序庐库庙府废建开弦录彼忙戒或所托执扫扳找抄投抗抡抬拟拨择改攻斤斧更未本朱朴村杖来枣欢火灶炉炊爸牛牧犹狂狐王瓦甲盲示社禾穴纪纱羊者胀至良芒苦英虫见规谷豆贝贡质贩轮辽达迟金钓长陌降风饮驶",
+  7:"不中主乓乱事亚亥亩什仅仗仙伙伴伸体余佩兄兰典冬刑刘则刮卑占厅去双受叫吆君吞含听咐在址坐坑坛坦声好妒妙姐字存孤宁宅安宋官定审寿尽居屉岳巧帆庄庆序庐库庙府废开弦录忙所托执扫扳找抄投抗抡抬拟拨择改攻斤斧日更未本朱朴杀杆村杖来枣欢火灰灶炉炊牛牧狂狐王瓦生甲画盲石示社禾穴米纱羊者胀至良芒英虎虫见规谷豆贝贡质走轮辽达迟钓长陌降风饥饮驶",
+  8:"不中主乓乱事互亚亥亩什仗仙伙伴伸体余佩使兰冬刑刘则刚刮卑厅去双受叫吆后君吞听呵咐址坐坑坛坦声好妒妙姐字存孤宅安宋官定审寿尽居岳巧帆庄庆序庐庙府废建开弦录彼戒或所执扫扳找抄投抗抡抬拟拨择改攻斤斧日更未本朱朴杀村来枣欢民火灶炉炊片牛牧犹狂狐王生甲盲石示社禾穴米纪纱者至良英虎虫规谷豆贝贡质贩走轮辽达迟金钓长附陌风饥饮驶",
+  9:"不中主乓乱事互亚亥亩什仗仙伴伸住体余佩使兰冬刑刘则刮卑厅去双受叫吆君吞听咐址坐坑坛坦声好妒妙妨姐字存宁宅安宋官定审寿尤尽屉岳巧帆庄庆序庐庙府废建开弦录彼忙戒或所托执扫扳找抄投抗抡抬拟拨择改攻斤斧更未本朱朴村杖来枣欢火灶炉炊爸片牛牧犹狂狐王生画盲石示社禾穴米纱羊者胀至良芒苦英虎虫见规谷豆贝贡走辽达迟邮金钓长陌降风饥饮驶"
+};
+function pkLetters(L){return PK_LEV[L]||''}
+
+/* ================= 案面：一张装箱单 · 一根承重标尺 · 一只木箱 · 一排货案 · 一杆秤 =================
+   画的东西只有六块，全部由 pk 里那几个整数说了算：
+   ① 左上米字格「装箱单」：这个字一笔一笔淡墨码在这儿，认下来的染白、装进箱的染绿，每一笔角上标第几笔；
+   ② 中上货单卡：眼下第几程 · 箱里几斤 · 钱几文 · 脚钱几文 · 顶压几文 · 空位租几文 · 净头几文；
+   ③ 右上木箱：装进去的货一件一件从底板往上堆，箱里画着黄金线与顶压段，压过线那一截立刻红起来；
+   ④ 通长一根承重标尺：0 到 cap 斤一格一格，黄金线以右是顶压段（橙），黄金线那一竖是金线；
+   ⑤ 底一排货案四格：认下来的货摊在这儿，牌上画这一笔的墨样、写花色名、写手感与钱，摊了几程点几颗点；
+   ⑥ 最右一杆秤：左盘是这一篓的真净头，右钩挂着「按每斤钱排队装」那条影子 —— 哪头低哪头赚得多。
+   第 4 场起货案不写确切斤两、只写手感，第 6 场起连手感也收走 —— 剩下的凭据只有 ⚖️ 那一掂与脑子里那本账 */
+function pkCv(){const c=document.getElementById('pkCanvas');return c&&c.getContext?c.getContext('2d'):null}
+function pkRoundRect(g,x,y,w,h,r){
+  g.beginPath();
+  g.moveTo(x+r,y);g.lineTo(x+w-r,y);g.quadraticCurveTo(x+w,y,x+w,y+r);
+  g.lineTo(x+w,y+h-r);g.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  g.lineTo(x+r,y+h);g.quadraticCurveTo(x,y+h,x,y+h-r);
+  g.lineTo(x,y+r);g.quadraticCurveTo(x,y,x+r,y);
+  g.closePath();
+}
+/* 把「这个字的第 i 笔」画在 (cx,cy) 那块方框里：缩放按整个字的轮廓（union）算，不按这一笔自己的边框
+   —— 只有这样才能把「这一笔有多长」留在画上：长杆占地，牌上看着就沉 */
+function pkDrawPen(g,cx,cy,box,k,i,fill){
+  const rec=pk.rec;
+  if(!rec||i<0||i>=rec.n)return;
+  const u=rec.union;
+  const s=box/Math.max(u.w,u.h)*k;
+  g.save();
+  g.setTransform(s,0,0,-s,cx-s*u.xc,cy+s*u.yc);
+  try{g.fillStyle=fill||'#FFF3E0';g.fill(new Path2D(rec.paths[i]))}catch(e){}
+  g.restore();
+  g.filter='none';
+}
+function pkClampText(g,txt,x,y){
+  const hw=g.measureText(txt).width/2+2;
+  g.fillText(txt,Math.max(hw,Math.min(PK_W-hw,x)),y);
+}
+function pkDoneOf(i){return pk.done.indexOf(i)>=0}
+function pkInBox(i){return pk.box.indexOf(i)>=0}
+function pkInTable(i){return pk.table.indexOf(i)>=0}
+function pkRottenOf(i){return pk.rotten.indexOf(i)>=0}
+/* 一件货摊了几程：眼下的程号减去它落案那一程 */
+function pkAge(g){return Math.max(0,pk.at-g.born)}
+function pkVal(g){return pkValue(g,pk.at)}
+function pkTell(){return !pkNoTell(pk.lv)||pk.probeShow>0}
+function pkFeelTell(){return !pkDim(pk.lv)||pk.probeShow>0}
+/* 眼下这一篓的账（与逐件那一只手对表：脚钱按件结，空位租开秤才结）*/
+function pkLedger(){
+  const L=pk.lv,cap=pk.cap,GL=pkGold(L);
+  let sum=0,val=0;
+  for(let i=0;i<pk.box.length;i++){const g=pk.goods[pk.box[i]];sum+=g.w;val+=pkVal(g)}
+  const fee=pkFeeOf(sum,cap,L),top=fee-sum,gap=pkGapPen(GL-sum,cap,L);
+  return {sum:sum,val:val,fee:fee,top:top,gap:gap,net:val-fee-gap,GL:GL,cap:cap,
+    nice:Math.abs(sum-GL)<=PK_NICE};
+}
+/* 秤对面那条影子：同一篓货（这个字已经认下来的那些）按「每斤钱」排队装，眼下这一程的价 */
+function pkShadow(){
+  if(!pk.rec)return 0;
+  const pool=[];
+  for(let i=0;i<pk.rec.n;i++)if(pkRottenOf(i))continue;else pool.push(pk.goods[i]);
+  return pkGreedy(pool,pk.cap,pk.lv,pk.at).net;
+}
+/* ---- 落点：装箱单上那一笔 · 货案上那一格 · 箱里那一件 ---- */
+function pkSegDist(px,py,ax,ay,bx,by){
+  const dx=bx-ax,dy=by-ay,L2=dx*dx+dy*dy;
+  if(!L2)return Math.sqrt((px-ax)*(px-ax)+(py-ay)*(py-ay));
+  let t=((px-ax)*dx+(py-ay)*dy)/L2;
+  t=Math.max(0,Math.min(1,t));
+  const qx=ax+t*dx-px,qy=ay+t*dy-py;
+  return Math.sqrt(qx*qx+qy*qy);
+}
+function pkPenDist(i,u,v){
+  const m=pk.rec&&pk.rec.meds&&pk.rec.meds[i];
+  if(!m)return 1e9;
+  let d=1e9;
+  for(let k=1;k<m.length;k++){
+    const q=pkSegDist(u,v,m[k-1][0],m[k-1][1],m[k][0],m[k][1]);
+    if(q<d)d=q;
+  }
+  return d;
+}
+function pkPenMid(i){
+  const m=pk.rec&&pk.rec.meds&&pk.rec.meds[i];
+  if(!m||!m.length)return null;
+  return m[Math.floor(m.length/2)];
+}
+/* 点装箱单：落在哪一笔的墨样上（认位的答案就在这儿）*/
+function pkGridAt(x,y){
+  const rec=pk.rec;
+  if(!rec)return -1;
+  if(x<PK_GX-4||x>PK_GX+PK_GRID+4||y<PK_GY-4||y>PK_GY+PK_GRID+4)return -1;
+  const sc=PK_GRID/1024;
+  const u=(x-PK_GX)/sc,v=(PK_GY+PK_GRID-y)/sc;
+  let best=-1,bd=1e9;
+  for(let i=0;i<rec.n;i++){
+    const d=pkPenDist(i,u,v);
+    if(d<bd){bd=d;best=i}
+  }
+  return best;
+}
+function pkCellX(j){return PK_TX+j*(PK_TC+PK_TGAP)}
+/* 点货案：那一格摊着货就返回这件货的笔号，空格返回 -2（让 caller 分得开「点了空处」与「点了空案」）*/
+function pkTableHit(x,y){
+  if(y<PK_TY-4||y>PK_TY+PK_TH+4)return -2;
+  for(let j=0;j<PK_TABLE;j++){
+    const cx=pkCellX(j);
+    if(x>=cx-2&&x<=cx+PK_TC+2)return j<pk.table.length?pk.table[j]:-2;
+  }
+  return -2;
+}
+/* 箱里那一件一件堆到哪儿：从底板往上堆，每块高度按斤两摊到 0..cap 那一根柱上 */
+function pkBoxStack(){
+  const L=pk.lv,cap=pk.cap;
+  const x0=PK_BX+8,y1=PK_BY+PK_BH-8;
+  const hMax=PK_BH-26;
+  const rows=[];
+  let acc=0;
+  for(let i=0;i<pk.box.length;i++){
+    const g=pk.goods[pk.box[i]];
+    const h=g.w/cap*hMax;
+    rows.push({i:pk.box[i],g:g,y:y1-acc-h,h:h});
+    acc+=h;
+  }
+  return {x0:x0,w:PK_BW-16,y1:y1,hMax:hMax,goldY:y1-GLh(L,cap,hMax),capY:y1-1,rows:rows,used:acc};
+}
+function GLh(L,cap,hMax){return (pkGold(L))/cap*hMax}
+function toph(L,cap,hMax){return pkTop(L)/cap*hMax}
+/* 点箱里那一件：请回货案（换手要付脚钱）*/
+function pkBoxHit(x,y){
+  if(x<PK_BX||x>PK_BX+PK_BW||y<PK_BY||y>PK_BY+PK_BH)return -1;
+  const st=pkBoxStack();
+  for(let i=0;i<st.rows.length;i++){
+    const r=st.rows[i];
+    if(y>=r.y-1&&y<=r.y+r.h+1)return r.i;
+  }
+  return -1;
+}
+/* ================= 六块案面 ================= */
+function pkDrawGrid(g){
+  const rec=pk.rec;
+  g.save();
+  g.fillStyle='rgba(255,240,210,.07)';
+  pkRoundRect(g,PK_GX-4,PK_GY-14,PK_GRID+8,PK_GRID+22,10);g.fill();
+  g.fillStyle='#D7CCC8';g.font='11px sans-serif';g.textAlign='left';
+  g.fillText('装箱单'+(rec?(' · '+rec.ch+' 共 '+rec.n+' 笔'):'——'),PK_GX-2,PK_GY-4);
+  g.strokeStyle='rgba(215,204,200,.62)';g.lineWidth=1.6;
+  g.strokeRect(PK_GX,PK_GY,PK_GRID,PK_GRID);
+  g.strokeStyle='rgba(215,204,200,.22)';g.lineWidth=1;g.setLineDash([5,5]);
+  g.beginPath();
+  g.moveTo(PK_GX+PK_GRID/2,PK_GY);g.lineTo(PK_GX+PK_GRID/2,PK_GY+PK_GRID);
+  g.moveTo(PK_GX,PK_GY+PK_GRID/2);g.lineTo(PK_GX+PK_GRID,PK_GY+PK_GRID/2);
+  g.moveTo(PK_GX,PK_GY);g.lineTo(PK_GX+PK_GRID,PK_GY+PK_GRID);
+  g.moveTo(PK_GX+PK_GRID,PK_GY);g.lineTo(PK_GX,PK_GY+PK_GRID);
+  g.stroke();g.setLineDash([]);
+  if(!rec){g.restore();return}
+  const sc=PK_GRID/1024;
+  g.save();
+  g.setTransform(sc,0,0,-sc,PK_GX,PK_GY+1024*sc);
+  for(let i=0;i<rec.paths.length;i++){
+    try{
+      /* 堆的顺序：箱里的（绿）优先盖住烂掉的（灰）—— 烂货已经不在箱里，这两条不会撞车；
+         认下来过又烂在案上的那一件（rotten ⊂ done）必须先判 rotten，不然它会被 done 那条染成奶油色，
+         案上看着像还好好的 */
+      g.fillStyle=pkInBox(i)?'rgba(129,199,132,.95)':
+        (pkRottenOf(i)?'rgba(120,110,105,.30)':
+        (pkDoneOf(i)?'rgba(255,245,220,.86)':'rgba(255,240,214,.24)'));
+      g.fill(new Path2D(rec.paths[i]));
+    }catch(e){}
+  }
+  g.restore();
+  g.filter='none';
+  for(let i=0;i<rec.n;i++){
+    const p=pkPenMid(i);
+    if(!p)continue;
+    const x=PK_GX+p[0]*sc,y=PK_GY+PK_GRID-p[1]*sc;
+    g.font='10px sans-serif';g.textAlign='center';
+    g.fillStyle=pkInBox(i)?'#A5D6A7':(pkDoneOf(i)?'#FFF3E0':'rgba(255,224,130,.5)');
+    g.fillText(''+(i+1),x,y+3);
+  }
+  /* 挂在梁上的那一件**不许**在装箱单上圈出来 —— 那一圈就是答案本身。
+     它的墨样只画在货案第一个空格里（见 pkDrawTable），孩子拿那张样去单上比对 */
+  g.restore();
+}
+function pkDrawRuler(g){
+  const L=pk.lv,cap=pk.cap,GL=pkGold(L);
+  const led=pkLedger();
+  g.save();
+  g.fillStyle='#BCAAA4';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText('承重 '+cap+' 斤 · 黄金线 '+GL+' 斤（顶上 '+pkTop(L)+' 斤是顶压段，压上去每斤赔 '+PK_TSUR+' 文）',
+    PK_LX,PK_LY-3);
+  const w1=PK_LW/cap;
+  g.fillStyle='rgba(255,255,255,.10)';
+  pkRoundRect(g,PK_LX,PK_LY,PK_LW,PK_LH,7);g.fill();
+  /* 顶压段：黄金线以右那几格 */
+  g.fillStyle='rgba(255,138,101,.22)';
+  g.fillRect(PK_LX+GL*w1,PK_LY+1,(cap-GL)*w1-1,PK_LH-2);
+  /* 装进去的货：一格一格堆到 sum */
+  for(let k=0;k<cap;k++){
+    if(k>=led.sum)break;
+    g.fillStyle=k>=GL?'#FF8A65':'#FFD54F';
+    g.fillRect(PK_LX+k*w1+1,PK_LY+2,w1-2,PK_LH-4);
+  }
+  g.strokeStyle='rgba(0,0,0,.5)';g.lineWidth=1;
+  for(let k=0;k<=cap;k++){
+    g.beginPath();g.moveTo(PK_LX+k*w1,PK_LY);g.lineTo(PK_LX+k*w1,PK_LY+PK_LH);g.stroke();
+  }
+  g.strokeStyle='#FFECB3';g.lineWidth=2;
+  g.beginPath();g.moveTo(PK_LX+GL*w1,PK_LY-3);g.lineTo(PK_LX+GL*w1,PK_LY+PK_LH+3);g.stroke();
+  g.fillStyle='#FFECB3';g.font='bold 10px sans-serif';g.textAlign='center';
+  g.fillText('黄金线',PK_LX+GL*w1,PK_LY+PK_LH+11);
+  g.fillStyle='#B0BEC5';g.textAlign='left';g.font='10px sans-serif';
+  g.fillText('0',PK_LX+1,PK_LY+PK_LH+11);
+  g.textAlign='right';g.fillText(cap+' 斤',PK_LX+PK_LW-1,PK_LY+PK_LH+11);
+  g.restore();
+}
+function pkDrawCard(g){
+  const L=pk.lv,led=pkLedger();
+  g.save();
+  g.fillStyle='rgba(255,248,225,.06)';
+  pkRoundRect(g,PK_SX,PK_SY,PK_SW,PK_SH,10);g.fill();
+  g.strokeStyle='rgba(255,224,130,.30)';g.lineWidth=1.2;
+  pkRoundRect(g,PK_SX,PK_SY,PK_SW,PK_SH,10);g.stroke();
+  g.fillStyle='#D7CCC8';g.font='11px sans-serif';g.textAlign='left';
+  g.fillText('货单卡',PK_SX+8,PK_SY+16);
+  const rows=[
+    ['第 '+(pk.at+1)+' 程',(pk.rec?('· 已认 '+pk.done.length+'/'+pk.rec.n+' 笔'):''),'#FFE082'],
+    ['箱里 '+led.sum+'/'+pk.cap+' 斤',(led.sum>pk.cap?'压线了':''),'#FFF3E0'],
+    ['钱 '+led.val+' 文','('+pk.box.length+' 件)','#A5D6A7'],
+    ['脚钱 −'+led.fee,'每斤 1 文','#B0BEC5'],
+    ['顶压 −'+led.top,led.top?'压过一线':'没压线',led.top?'#FF8A65':'#B0BEC5'],
+    ['空位租 −'+led.gap,led.gap?'欠着':'不欠',led.gap?'#FFCC80':'#B0BEC5'],
+    ['净头 '+led.net+' 文',led.nice?'凑到一线了':'','' ]
+  ];
+  /* 七行账 + 那一行票全得留在卡框 14..134 里：卡框是死的，行距写松一格，末行就跨过卡底
+     与标尺那行「承重」压成一片糊 —— 给孩子读的数，压字就是没数 */
+  for(let i=0;i<rows.length;i++){
+    const y=PK_SY+28+i*12;
+    g.font=(i===6?'bold 11px':'11px')+' sans-serif';
+    g.fillStyle=rows[i][2]||'#B0BEC5';g.textAlign='left';
+    g.fillText(rows[i][0],PK_SX+8,y);
+    g.fillStyle='rgba(176,190,197,.75)';g.textAlign='right';
+    g.fillText(rows[i][1],PK_SX+PK_SW-8,y);
+  }
+  if(pk.peekMs>0){
+    /* 票只报两个数，可这一行横着不许爬出卡框去糊右边那块木箱 */
+    g.fillStyle='#84FFFF';g.font='9px sans-serif';g.textAlign='left';
+    g.fillText('票 最多'+pk.bestK+'件 · 净头'+pk.bestNet+'文',PK_SX+6,PK_SY+PK_SH-5);
+  }
+  g.restore();
+}
+function pkDrawBox(g){
+  const L=pk.lv,led=pkLedger();
+  const st=pkBoxStack();
+  g.save();
+  g.fillStyle='#D7CCC8';g.font='11px sans-serif';g.textAlign='left';
+  g.fillText('木箱',PK_BX+2,PK_BY-2+12);
+  /* 箱身：一块木匣，装了货的那一段涂琥珀 */
+  g.fillStyle='rgba(93,64,55,.55)';
+  pkRoundRect(g,PK_BX,PK_BY+12,PK_BW,PK_BH-12,8);g.fill();
+  g.strokeStyle='#A1887F';g.lineWidth=2;
+  pkRoundRect(g,PK_BX,PK_BY+12,PK_BW,PK_BH-12,8);g.stroke();
+  /* 顶压段那一条 */
+  g.fillStyle='rgba(255,138,101,.16)';
+  g.fillRect(PK_BX+3,st.goldY,PK_BW-6,Math.max(0,st.y1-3-st.goldY));
+  /* 一件一件堆上去 */
+  for(let i=0;i<st.rows.length;i++){
+    const r=st.rows[i];
+    g.fillStyle=r.g.w>0&&r.y+r.h>st.goldY+1?'rgba(255,138,101,.9)':'rgba(255,213,79,.85)';
+    pkRoundRect(g,st.x0,r.y,st.w,r.h-1,3);g.fill();
+    g.fillStyle='#3E2723';g.font='bold 10px sans-serif';g.textAlign='left';
+    const nm=pkMarkOf(r.i)+(pkTell()?' '+r.g.w+'斤':'');
+    g.fillText(nm,st.x0+4,r.y+r.h/2+3);
+    g.textAlign='right';
+    g.fillText(pkVal(r.g)+'文',st.x0+st.w-4,r.y+r.h/2+3);
+  }
+  /* 黄金线那一横 */
+  g.strokeStyle='#FFECB3';g.lineWidth=2;
+  g.beginPath();g.moveTo(PK_BX-2,st.goldY);g.lineTo(PK_BX+PK_BW+2,st.goldY);g.stroke();
+  g.fillStyle='#3E2723';g.fillRect(PK_BX,PK_BY+PK_BH-8,PK_BW,6);
+  if(!pk.box.length){
+    g.fillStyle='#8D6E63';g.font='11px sans-serif';g.textAlign='center';
+    g.fillText('箱里一件货也没有',PK_BX+PK_BW/2,st.y1-14);
+  }
+  g.restore();
+}
+function pkDrawTable(g){
+  const rec=pk.rec;
+  g.save();
+  g.fillStyle='#BCAAA4';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText('货案 · 最多摊 '+PK_TABLE+' 格，摊到第 '+PK_KEEP+' 程就烂（每过一程掉 1 文）',PK_TX,PK_TY-4);
+  for(let j=0;j<PK_TABLE;j++){
+    const x=pkCellX(j);
+    g.fillStyle='rgba(255,248,225,.05)';
+    pkRoundRect(g,x,PK_TY,PK_TC,PK_TH,8);g.fill();
+    g.strokeStyle=j<pk.table.length?'rgba(255,224,130,.42)':'rgba(188,170,164,.22)';
+    g.lineWidth=1.2;
+    pkRoundRect(g,x,PK_TY,PK_TC,PK_TH,8);g.stroke();
+    if(j>=pk.table.length){
+      g.fillStyle='rgba(188,170,164,.4)';g.font='10px sans-serif';g.textAlign='center';
+      g.fillText('空',x+PK_TC/2,PK_TY+PK_TH/2);
+      continue;
+    }
+    const i=pk.table[j],gg=pk.goods[i];
+    const age=pkAge(gg);
+    /* 墨样：这一笔的模样就是题面 */
+    pkDrawPen(g,x+PK_TC/2,PK_TY+30,42,.82,i,'rgba(255,245,220,.9)');
+    g.textAlign='center';g.fillStyle='#FFE082';g.font='bold 11px sans-serif';
+    pkClampText(g,pkMarkOf(i),x+PK_TC/2,PK_TY+58);
+    g.font='10px sans-serif';
+    g.fillStyle=pkTell()?'#FFF3E0':'#90A4AE';
+    pkClampText(g,pkTell()?(gg.w+' 斤'):('手感 '+(pkFeelTell()?PK_FEEL[pkFeelOf(gg.w)]:'——')),x+PK_TC/2,PK_TY+72);
+    g.fillStyle='#A5D6A7';
+    pkClampText(g,pkVal(gg)+' 文',x+PK_TC/2,PK_TY+84);
+    /* 摊了几程：几颗点，满了三程就画一朵灰花 */
+    let dots='';for(let k=0;k<age;k++)dots+='·';
+    g.fillStyle=age>=PK_KEEP-1?'#FF8A65':'rgba(255,224,130,.7)';
+    pkClampText(g,dots||'新',x+PK_TC/2,PK_TY+96);
+    if(pk.sel===i){
+      g.strokeStyle='#84FFFF';g.lineWidth=2;
+      pkRoundRect(g,x,PK_TY,PK_TC,PK_TH,8);g.stroke();
+    }
+  }
+  /* 挂在梁上的那一件：案头第一个空格里画一张虚牌 —— 题面就是它，装箱单上一律不许圈出它的位置 */
+  if(pk.pending>=0){
+    const j=Math.min(PK_TABLE-1,pk.table.length),x=pkCellX(j),gg=pk.goods[pk.pending];
+    g.save();
+    g.setLineDash([4,4]);g.strokeStyle='#FFD54F';g.lineWidth=1.6;
+    pkRoundRect(g,x,PK_TY,PK_TC,PK_TH,8);g.stroke();g.setLineDash([]);
+    pkDrawPen(g,x+PK_TC/2,PK_TY+30,42,.82,pk.pending,'rgba(255,213,79,.92)');
+    g.textAlign='center';g.fillStyle='#FFD54F';g.font='bold 11px sans-serif';
+    pkClampText(g,'第几笔？',x+PK_TC/2,PK_TY+58);
+    g.font='10px sans-serif';g.fillStyle=pkTell()?'#FFF3E0':'#90A4AE';
+    pkClampText(g,pkTell()?(gg.w+' 斤'):('手感 '+(pkFeelTell()?PK_FEEL[pkFeelOf(gg.w)]:'——')),x+PK_TC/2,PK_TY+72);
+    g.fillStyle='#A5D6A7';
+    pkClampText(g,pkVal(gg)+' 文',x+PK_TC/2,PK_TY+84);
+    g.restore();
+  }
+  g.restore();
+}
+function pkDrawScale(g){
+  const led=pkLedger(),sh=pk.shadow;
+  const cx=PK_CX+PK_CW/2,cy=PK_CY+22;
+  g.save();
+  g.fillStyle='#BCAAA4';g.font='10px sans-serif';g.textAlign='left';
+  g.fillText('一杆秤',PK_CX,PK_CY-4);
+  g.strokeStyle='#A1887F';g.lineWidth=2;
+  g.beginPath();g.moveTo(cx,cy);g.lineTo(cx,PK_CY+58);g.stroke();
+  g.beginPath();g.moveTo(cx-4,PK_CY+58);g.lineTo(cx+4,PK_CY+58);g.stroke();
+  const dif=Math.max(-1,Math.min(1,(led.net-sh)/40));
+  const ang=dif*-0.28;
+  const bx=Math.cos(ang)*(PK_CW/2-14),by=Math.sin(ang)*(PK_CW/2-14);
+  g.strokeStyle='#FFD54F';g.lineWidth=3;
+  g.beginPath();g.moveTo(cx-bx,cy-by);g.lineTo(cx+bx,cy+by);g.stroke();
+  g.fillStyle='#FFD54F';g.beginPath();g.arc(cx,cy,3.5,0,6.2832);g.fill();
+  const pan=function(x,y,txt,c){
+    g.strokeStyle='rgba(255,255,255,.35)';g.lineWidth=1;
+    g.beginPath();g.moveTo(x,y);g.lineTo(x,y+12);g.stroke();
+    g.fillStyle=c;g.beginPath();g.arc(x,y+18,11,0,6.2832);g.fill();
+    g.fillStyle='#1A1206';g.font='bold 9px sans-serif';g.textAlign='center';
+    g.fillText(txt,x,y+21);
+  };
+  pan(cx-bx,cy-by,led.net+'','#FFE082');
+  pan(cx+bx,cy+by,sh+'','#B0BEC5');
+  g.fillStyle='#90A4AE';g.font='9px sans-serif';g.textAlign='center';
+  g.fillText('左：这一篓　右：贪心影子',cx,PK_CY+PK_CH-2);
+  g.fillStyle=led.net>sh?'#A5D6A7':(led.net<sh?'#EF9A9A':'#FFE082');
+  g.font='bold 11px sans-serif';
+  g.fillText(led.net>sh?('会凑整，多赚 '+(led.net-sh)+' 文'):(led.net<sh?('贪心多赚 '+(sh-led.net)+' 文'):'打平'),cx,PK_CY+42);
+  g.restore();
+}
+function pkDrawMsg(g){
+  if(!pk.msg)return;
+  g.save();
+  g.font='11px sans-serif';g.textAlign='center';g.fillStyle='rgba(255,224,130,.86)';
+  const t=pk.msg.length>46?pk.msg.slice(0,45)+'…':pk.msg;
+  g.fillText(t,PK_W/2,PK_MSGY+2);
+  g.fillStyle='rgba(176,190,197,.6)';
+  g.font='10px sans-serif';
+  g.fillText(pk.rec?('第 '+pk.at+' 程 · 案上 '+pk.table.length+' 件 · 箱里 '+pk.box.length+' 件 · 烂掉 '+pk.rotten.length+' 件'):'案上还没开箱',
+    PK_W/2,PK_MSGY+16);
+  g.restore();
+}
+function pkDraw(){
+  const g=pkCv();
+  if(!g)return;
+  g.setTransform(1,0,0,1,0,0);
+  g.clearRect(0,0,PK_W,PK_CVH);
+  pkDrawGrid(g);
+  pkDrawCard(g);
+  pkDrawBox(g);
+  pkDrawRuler(g);
+  pkDrawTable(g);
+  pkDrawScale(g);
+  pkDrawMsg(g);
+  if(!pk.rec){
+    g.fillStyle='#8D6E63';g.font='13px sans-serif';g.textAlign='center';
+    g.fillText(pk.load?'正在挑货……':'货栈案上还没字',PK_BX+PK_BW/2,PK_BY+70);
+  }
+}
+
+/* ================= 界面：四行账、四条条、四件家什 ================= */
+function pkEl(id){return document.getElementById(id)}
+function pkPut(id,txt){const e=pkEl(id);if(e)e.textContent=txt}
+/* 带排版的行只给产品自己写的那几句用（句中没有一处来自孩子的手）*/
+function pkPutH(id,txt,color){const e=pkEl(id);if(e){e.innerHTML=txt;color&&(e.style.color=color)}}
+function pkBar(id,p){const e=pkEl(id);if(!e)return;p=Math.max(0,Math.min(1,p));e.style.width=Math.round(p*100)+'%';const r=e.parentNode;if(r)r.classList.toggle('low',p<.25)}
+function pkPlain(t){return String(t||'').replace(/<[^>]*>/g,'')}
+function pkMsg(txt,color){
+  pk.msg=pkPlain(txt);
+  const e=pkEl('pkMsg');
+  if(e){e.innerHTML=txt;color&&(e.style.color=color)}
+}
+function pkTag(txt,kind){
+  const e=pkEl('pkTag');
+  if(!e)return;
+  /* 屏上这几句是产品自己写的话（句中没有一处来自孩子的手），里头带着要加粗的那几个字 */
+  e.innerHTML=txt;
+  e.className='pk-tag on'+(kind?(' '+kind):'');
+  clearTimeout(pk.tagTimer);
+  pk.tagTimer=setTimeout(function(){e.classList.remove('on')},PK_TAG_MS);
+}
+/* 上台之前把案面擦干净：屏上不许留着上一字的话 */
+function pkClearTag(){
+  clearTimeout(pk.tagTimer);
+  const e=pkEl('pkTag');
+  if(e){e.textContent='📦 货栈开了案';e.className='pk-tag'}
+}
+/* 这一句只指方向、不替孩子报数：报了哪几件就等于替他把这一箱装完了 */
+function pkHintTxt(){
+  if(!pk.rec)return '案上没字';
+  if(pk.pending>=0)return '🎯 点装箱单上它那一笔的淡墨位置（或按 1~'+pk.rec.n+'）';
+  if(pk.table.length>=PK_TABLE)return '🧺 货案满了：先装走一件（点货案上那一件）或按 <code>F</code> 提前封箱';
+  if(pk.table.length)return '📦 案上 '+pk.table.length+' 件：挑一件装进箱，或按 <code>空格</code> 再掉一件';
+  return '📦 按 <code>空格</code> 掉下一件货（第 '+(pk.at+1)+' 程）';
+}
+function pkHelpText(){
+  const L=pk.lv,cap=pk.cap,GL=pkGold(L);
+  return '📦 <b>一笔就是一件货</b>：斤两＝<b>2＋2×转折数＋⌈弧长÷'+PK_K+'⌉</b>（拐弯压手、长杆占地，'+PK_W0+'~'+PK_WMAX+' 斤）；钱＝<b>笔形行情＋成色</b>（横'+PK_PRICE[0]+' 竖'+PK_PRICE[1]+' 撇'+PK_PRICE[2]+' 捺'+PK_PRICE[3]+'，普/上/极品加 '+PK_BASE[0]+'/'+PK_BASE[1]+'/'+PK_BASE[2]+' 文）—— <b>钱与斤两故意脱钩</b>，脱了钩「轻又值钱」和「一头沉」才真打架<br>'+
+    '📦 <b>掉货</b>：按 <code>空格</code>（或点大钮）从梁上掉下一件货 —— <b>掉货的顺序是洗过的，不是笔顺</b>，掉之前先问一句 <b>这一件是第几笔</b> —— 点装箱单上那一笔的淡墨位置，或按 <code>1~'+(pk.rec?pk.rec.n:8)+'</code>。<b>认错了这一件不掉下来</b>，倒扣 '+PK_P_WRONG+' 分 · 掉一颗心<br>'+
+    '🧺 <b>装箱</b>：点货案上那一件就装进箱（当场结脚钱：每斤 1 文）；压过承重线 '+cap+' 斤就是装不进 —— 底板「咔」一声弹回，倒扣 '+PK_P_NOFIT+' 分。点箱里那一件把它请回货案（<b>换手</b>要付 '+PK_P_SWAP+' 文脚钱）<br>'+
+    '⚖️ <b>两头收钱</b>：黄金线 <b>'+GL+' 斤</b>（承重 − 顶压段 '+pkTop(L)+' 斤）。压上去的每一斤赔 <b>'+PK_TSUR+' 文</b>（顶压）；离一线空着要交<b>空位租</b>：空 ≤'+PK_GAP[0]+' 斤不欠、'+PK_GAP[0]+'~'+PK_GAP[1]+' 欠 '+PK_GAP_P[1]+'、'+PK_GAP[1]+'~'+PK_GAP[2]+' 欠 '+PK_GAP_P[2]+'、'+PK_GAP[2]+' 以上欠 '+PK_GAP_P[3]+' —— 一头嫌你沉、一头嫌你空，最省那一篓夹在<b>一线上下 '+PK_NICE+' 斤</b>以内<br>'+
+    '⏳ <b>货放久了不值钱</b>：摊在案上的每一件每过一程掉 1 文（掉到 '+PK_FLOOR+' 文为止），摊到第 '+PK_KEEP+' 程就烂掉（倒扣 '+PK_P_ROTTEN+' 分）；案只 '+PK_TABLE+' 格，满了就掉不下新货<br>'+
+    '🏮 <b>封箱结秤</b>：'+(pk.rec?recNtxt():'')+'这一字 '+pkWordTxt()+' 秒内认齐（<code>F</code> 提前封箱要倒扣 '+PK_P_SEAL+' 分、这个字进错字本）。秤上左盘是你这一篓的净头，右钩是<b>按每斤钱排队装</b>那条影子 —— 配字的时候就算过它<b>一定输</b>，会凑整的那一小条是要凑出来的<br>'+
+    '⚖️ <code>P</code> 掂货（把案上每件的确切斤两请回来 '+PK_PROBE_MS/1000+' 秒）· 👀 <code>V</code> 看票（只报「最优一篓几件、净头几文」，不报哪几件）· 🧹 <code>D</code> 倒箱（箱里全请回货案）· 🔁 <code>S</code> 换字 · 🪧 <code>X</code> 丢掉摊得最久那件 · <code>H</code> 看说明 · <b>第 '+PK_TELL_LV+' 场起货牌不写斤两只写手感，第 '+PK_DIM_LV+' 场起连手感也收走</b>';
+}
+function recNtxt(){return '这一字的货加起来 '+pk.rec.sumAll+' 斤，比 '+pk.cap+' 斤的箱沉 '+(pk.rec.sumAll-pk.cap)+' 斤 —— 全装进去是装不下的，'+' '}
+function pkWordTxt(){return Math.round(pkWord(pk.lv)/1000)}
+function pkAskTxt(){
+  const rec=pk.rec,L=pk.lv;
+  if(pk.load)return '📦 正在挑货……<br><small>在字库里找「整箱装不下、凑得到黄金线、而且会算的确实比贪心的多赚」的字</small>';
+  if(pk.helpMs>0)return pkHelpText();
+  if(!rec)return '📦 <b>案上空着</b>：这一场的字已经收完';
+  if(pk.pending>=0){
+    return '🎯 <b>这一件「'+pkMarkOf(pk.pending)+'」是第几笔？</b>点装箱单上那一笔的淡墨位置，或按 <b>1~'+rec.n+'</b>'+
+      '<br><small>牌上就是这一笔的墨样：横平竖直撇有腰捺有脚 · 认位钟还有 '+Math.ceil(pk.placeMs/1000)+' 秒 · 秤上影子 '+pk.shadow+' 文</small>'+
+      (pk.table.length>=PK_TABLE?'<br><small>⚠ 案满 '+PK_TABLE+' 格：认下来也没处摊，先装走一件</small>':'');
+  }
+  if(pk.done.length>=rec.n)return '⚖️ <b>这个字认齐了</b>：按 <code>F</code> 封箱结秤'+
+    '<br><small>箱里 '+pkLedger().sum+' / '+pk.cap+' 斤 · 净头 '+pkLedger().net+' 文 · 黄金线 '+pkGold(L)+' 斤 · 摊着 '+pk.table.length+' 件</small>';
+  return '📦 <b>第 '+(pk.at+1)+' 程：掉下一件货，还是先装手里的？</b>点货案上那一件就装进箱'+
+    '<br><small>箱里 '+pkLedger().sum+'/'+pk.cap+' 斤 · 顶压 −'+pkLedger().top+' · 空位租 −'+pkLedger().gap+' · 净头 '+pkLedger().net+
+    ' 文 · 已认 '+pk.done.length+'/'+rec.n+' 笔 · 这一字钟还有 '+Math.ceil(pk.wordMs/1000)+' 秒</small>'+
+    (pkTell()?'':'<br><small>牌上不写确切斤两了 —— 只剩手感、墨样与 ⚖️ 那一掂</small>');
+}
+function pkSync(){
+  const rec=pk.rec,L=pk.lv,led=pkLedger();
+  pk.sum=led.sum;pk.val=led.val;pk.fee=led.fee;pk.top=led.top;pk.gap=led.gap;
+  /* 题头跟着案面走：挂着货就问认位，案上有货就问装哪一件。
+     这一处是唯一的口径 —— 凡是动过货案与箱的手落完都走到这儿来重认一次，别处只许读不许写 */
+  pk.phase=pk.pending>=0?'answer':(pk.load?'load':'field');
+  pk.shadow=rec?pkShadow():0;
+  pkPut('pkScoreTxt','📦 '+pk.score+' 分');
+  pkPut('pkLvTxt','第 '+L+' 场 · 收 '+pk.words+' 字');
+  pkPut('pkQTxt','⏳ '+(pk.phase==='answer'?'认位 ':'这一字 ')+
+    Math.ceil((pk.phase==='answer'?pk.placeMs:pk.wordMs)/1000)+' 秒');
+  const rk=pkRank(auxInt('hz_pk_words')+pk.words);
+  pkPut('pkRankTxt',rk.e+' '+rk.t);
+  let h='';for(let i=0;i<pk.hearts;i++)h+='❤️';
+  pkPut('pkHeartTxt',h||'💔');
+  pkPut('pkComboTxt','🔥 连 '+pk.combo);
+  pkPut('pkLotTxt','🈶 第 '+(pk.wi+1)+'/'+PK_PER+' 字 · 第 '+(pk.at+1)+' 程'+(rec?(' · 共 '+rec.n+' 笔'):''));
+  pkPut('pkBoxTxt','📦 箱里 '+led.sum+'/'+pk.cap+' 斤 · 净头 '+led.net+' 文'+(led.nice?' · 凑到一线了':''));
+  const light=pkEl('pkHitLight');
+  if(light){
+    const t=(pk.pending>=0&&pk.hitOk===0)?'🎯 该认位了':
+      (pk.hitTxt?pk.hitTxt:(rec?(pk.table.length?'🧺 案上有货':'✖ 案上一件货也没有'):'✖ 案上没字'));
+    light.textContent=t;
+    light.style.color=pk.hitOk>0?'#A5D6A7':(pk.hitOk<0?'#EF9A9A':'#FFE082');
+  }
+  pkBar('pkPlaceBar',pk.placeMs/Math.max(1,pk.place0));
+  pkBar('pkWordBar',pk.wordMs/Math.max(1,pk.wordMs0));
+  pkBar('pkLampBar',pk.lamp/Math.max(1,pk.lamp0));
+  pkBar('pkBoxBar',led.sum/Math.max(1,pk.cap));
+  pkPut('pkPlaceTxt','🎯 认位 '+Math.ceil(pk.placeMs/1000)+' 秒');
+  pkPut('pkWordTxt','🈶 这一字 '+Math.ceil(pk.wordMs/1000)+' 秒');
+  pkPut('pkLampTxt','💡 这一场 '+Math.ceil(pk.lamp/1000)+' 秒');
+  pkPut('pkBoxBig','📦 箱里 '+led.sum+' / '+pk.cap+' 斤 · 线 '+led.GL);
+  const ask=pkEl('pkAsk');
+  if(ask)ask.innerHTML=pkAskTxt();
+  const hl=pkEl('pkHintTxt');
+  if(hl)hl.innerHTML=pkHintTxt();
+  const can=!!rec&&!pk.over&&!pk.locked;
+  const db=pkEl('pkDropBtn');
+  if(db)db.disabled=!can||!pk.table.length;
+  const sb=pkEl('pkSealBtn');
+  if(sb)sb.disabled=!can;
+  const ab=pkEl('pkActBtn');
+  if(ab){
+    const full=pk.table.length>=PK_TABLE;
+    ab.disabled=!can||pk.pending>=0||pk.at>=rec_n();
+    ab.classList.toggle('ready',!!(can&&pk.pending<0&&!full&&pk.at<rec_n()));
+    const small=pk.pending>=0?'🎯 先认位：这一件是第几笔':
+      (pk.at>=rec_n()?'货全落完了：按 <code>F</code> 封箱结秤':
+        (full?'⚠ 货案满了：先装进箱再掉下一件':'下一件从梁上掉下来'));
+    ab.innerHTML='📦 掉下一件<small>'+small+'</small>';
+  }
+  const btns=[['pkProbeBtn',pk.probeN],['pkPeekBtn',pk.peekN],['pkDumpBtn',pk.dumpN],['pkSwapBtn',pk.swapN]];
+  for(let i=0;i<btns.length;i++){
+    const b=pkEl(btns[i][0]);
+    if(b){
+      const n=b.getElementsByTagName('b')[0];
+      if(n)n.textContent='剩 '+btns[i][1];
+      b.disabled=btns[i][1]<=0||!rec||pk.over||pk.locked;
+    }
+  }
+}
+function rec_n(){return pk.rec?pk.rec.n:0}
+
+/* ================= 这一场的手：上字、掉货、认位、装箱、换手、烂货、封箱、四件家什 ================= */
+/* 一箱货管一个字：上字开新箱、封箱结这一箱的秤。承重 cap 随场收紧，箱子本身每字一开一封。
+   账上有两只手：① 逐件的手（pkPack 里 feeHand/sumHand 一格一格累加），② 闭式的手（pkLedger 一次算完）。
+   pkSync 只把闭式那几个数抄到屏上（sum/val/fee/top/gap），逐件那两只留在 feeHand/sumHand 里对表 ——
+   两只手各有独立的路，结算与自检都拿它们互核，谁算歪了一眼就红。*/
+/* ---- 上字：错字本上的字优先挑回来，其次挑本场没上过案的 ---- */
+function pkTake(){
+  const pool=pk.pool;
+  if(!pool.length)return null;
+  for(let i=0;i<pk.miss.length;i++){
+    for(let k=0;k<pool.length;k++){
+      if(pool[k].ch===pk.miss[i]&&pk.seen.indexOf(pool[k].ch)<0)return pool[k];
+    }
+  }
+  const fresh=[];
+  for(let k=0;k<pool.length;k++)if(pk.seen.indexOf(pool[k].ch)<0)fresh.push(pk.pool[k]);
+  const list=fresh.length?fresh:pool;
+  return list[Math.floor(Math.random()*list.length)];
+}
+/* ---- 一个字上台：几件货、每件几斤几文、什么花色，都由「字 + 场」的种子定死，重来一遍一模一样 ---- */
+function pkSetWord(rec,flash){
+  const L=pk.lv;
+  pk.rec=rec;pk.seed=auxSeedOf(rec.ch,L);pk.fresh=pkFresh(rec.ch);
+  pk.cap=pkCap(L);
+  pk.order=pkOrder(rec,pk.seed);
+  pk.goods=pkGoods(rec,pkGrades(rec,pk.seed),pk.order);
+  pk.mark=pkMarks(rec,pk.seed);
+  pk.table=[];pk.box=[];pk.done=[];pk.rotten=[];
+  pk.at=0;pk.pending=-1;pk.sel=-1;
+  pk.sumHand=0;pk.feeHand=0;
+  /* 这一字的赏钱门槛：拿这个字真洗出来的成色、按新货那一程算一遍枚举与贪心 ——
+     票上那句「最多几件、净头几文」与秤上那条影子都是从这儿来的，一定是实的 */
+  const bs=pkBest(pk.goods,pk.cap,L,0),gr=pkGreedy(pk.goods,pk.cap,L,0);
+  pk.bestNet=bs?bs.net:0;pk.greedyNet=gr.net;pk.marginNet=bs?bs.net-gr.net:0;pk.bestK=bs?bs.n:0;
+  pk.place0=pkPlace(L);pk.placeMs=pk.place0;
+  pk.wordMs0=pkWord(L);pk.wordMs=pk.wordMs0;
+  pk.cleanWord=1;pk.neatWord=1;pk.tools=0;pk.wordTools=0;
+  /* 「家什一回没借」那一笔赏是逐字结的：新字上台就得把「这个字借过几回家什」清空 ——
+     不清的话，上一个字借过的账会赖在下一个字头上，孩子这个字一回没借也拿不着赏 */
+  pk.probeShow=0;pk.peekMs=0;pk.locked=0;
+  pk.hitOk=0;pk.hitTxt='';
+  pk.seen.push(rec.ch);
+  pkTone(600,70);
+  pkTag((flash||'')+'🈶 上案：'+rec.n+' 件货 · 承重 '+pk.cap+' 斤 · 黄金线 '+pkGold(L)+' 斤','gold');
+  pkSync();pkDraw();
+}
+/* ---- 掉货：先把它挂上梁（问一句「这是第几笔」），认下来了才摊进货案 ---- */
+function pkDrop(){
+  const rec=pk.rec;
+  if(!rec||pk.over||pk.locked)return;
+  if(pk.pending>=0){pkTag('🎯 梁上已经挂着「'+pkMarkOf(pk.pending)+'」：先认下它是第几笔');return}
+  if(pk.at>=rec.n){pkTag('📦 这一字的 '+rec.n+' 件货都掉完了：按 <code>F</code> 封箱结秤');return}
+  if(pk.table.length>=PK_TABLE){pkTag('🧺 货案满了（'+PK_TABLE+' 格）：先点一件装进箱，或按 <code>X</code> 丢掉摊得最久那件');return}
+  const p=pk.order[pk.at],g=pk.goods[p];
+  /* born 上案时就按掉货顺序定死了（第 k 件货落在第 k+1 程）：这一程刚掉下来的那件年龄是 0，
+     往后每多掉一件、案上每一件各老一程、各掉 1 文 */
+  pk.pending=p;
+  pk.drops++;
+  pk.placeMs=pk.place0;
+  pk.nagMs=0;
+  pkTone(760,60);
+  pkSync();pkDraw();
+}
+/* ---- 认位：这一件货是这个字的第几笔（点装箱单上那一笔的淡墨位置，或按 1~n）---- */
+function pkAnswer(i){
+  const rec=pk.rec;
+  if(!rec||pk.over||pk.locked)return;
+  if(i<0||i>=rec.n)return;
+  if(pk.pending<0){pkTag('🪝 梁上还没挂货：先按 <code>空格</code> 掉下一件');return}
+  if(i!==pk.pending){pkWrongLand(i);return}
+  pkLand(i);
+}
+function pkWrongLand(i){
+  const rec=pk.rec,p=pk.pending;
+  pk.wrongs++;pk.cleanWord=0;pk.hearts--;pk.combo=0;
+  pk.score-=PK_P_WRONG;
+  pk.hitOk=-1;pk.hitTxt='✖ 认错 · −'+PK_P_WRONG;
+  /* 认错的那一件不掉下来：还挂在梁上，重认一次不吃程数，只吃这一笔罚与这一颗心 */
+  pk.pending=-1;
+  pkTag('✖ 第 '+(i+1)+' 笔是「'+rec.dn[i]+'·'+rec.ws[i]+' 斤」，'+pkMarkOf(p)+'不是它：倒扣 '+PK_P_WRONG+
+    ' 分 · 掉一颗心 · 这一件收回梁上重认','warn');
+  pkTone(150,240);pkSay('✖ 认错了');
+  if(pk.hearts<=0){pkEnd('hearts');return}
+  pkSync();pkDraw();
+}
+/* ---- 落案：认对了，这一件货摊进货案，程数走一格 ---- */
+function pkLand(i){
+  const rec=pk.rec;
+  pk.pending=-1;
+  pk.table.push(i);pk.done.push(i);pk.strokes++;
+  const pts=Math.round(PK_M0+pk.combo*PK_M_CB+pk.lv*PK_M_LV);
+  pk.score+=pts;pk.gain=pts;pk.combo++;
+  if(pk.combo>pk.maxCombo)pk.maxCombo=pk.combo;
+  pk.at++;
+  pk.hitOk=1;pk.hitTxt='✔ 落案 +'+pts;
+  pkTone(980,110);
+  pkTag('🧺 落案：'+pkMarkOf(i)+'是第 '+(i+1)+' 笔（'+rec.dn[i]+'·'+rec.ws[i]+' 斤）· +'+pts+
+    ' 分 · 案上 '+pk.table.length+'/'+PK_TABLE+' 格 · 本字认到 '+pk.done.length+'/'+rec.n,'gold');
+  pkSay('✔ 落案 +'+pts);
+  /* 先报「认齐了、可以封箱」，再查烂货 —— 同一记手里两句话撞车时，坏消息得留在最后一眼上，
+     封箱那一句题头本来就一直在问，不缺这一行 */
+  if(pk.done.length>=rec.n)pkTag('🏮 这一字 '+rec.n+' 件货全落到案上了：按 <code>F</code> 封箱结秤','gold');
+  pkRotCheck();
+  pkSync();pkDraw();
+}
+/* ---- 摊到第 PK_KEEP 程就烂：一件一件查，烂掉的请出货案 ---- */
+function pkRotCheck(){
+  let n=0;
+  for(let j=pk.table.length-1;j>=0;j--){
+    const i=pk.table[j],g=pk.goods[i];
+    if(pkAge(g)>=PK_KEEP){
+      pk.table.splice(j,1);
+      pk.rotten.push(i);
+      n++;
+    }
+  }
+  if(!n)return;
+  pk.rottens+=n;pk.cleanWord=0;pk.neatWord=0;pk.combo=0;
+  pk.score-=PK_P_ROTTEN*n;
+  pk.hitOk=-1;pk.hitTxt='🪱 货烂了 · −'+(PK_P_ROTTEN*n);
+  pkTag('🪱 摊过第 '+PK_KEEP+' 程：'+n+' 件货烂在案上，倒扣 '+PK_P_ROTTEN*n+
+    ' 分 —— 装走早一件就不会烂在这儿','warn');
+  pkTone(180,240);pkSay('🪱 货烂在案上了');
+}
+/* ---- 装箱：点货案上那一件就装进箱（当场结脚钱）；压不住线就「咔」一声弹回 ---- */
+function pkPack(i){
+  const rec=pk.rec;
+  if(!rec||pk.over||pk.locked)return;
+  if(i<0||!pkInTable(i)){pkTag('🧺 点货案上摊着的那一件才装得进箱');return}
+  if(pk.pending>=0){pkTag('🎯 先认下梁上那一件「'+pkMarkOf(pk.pending)+'」是第几笔');return}
+  const g=pk.goods[i],led=pkLedger();
+  if(led.sum+g.w>pk.cap){
+    pk.nofits++;pk.cleanWord=0;pk.combo=0;
+    pk.score-=PK_P_NOFIT;
+    pk.hitOk=-1;pk.hitTxt='✖ 压不住线 · −'+PK_P_NOFIT;
+    pkTag('✖ 咔 —— 箱里已 '+led.sum+' 斤，再加这件 '+g.w+' 斤就压过承重 '+pk.cap+
+      ' 斤：底板弹回、倒扣 '+PK_P_NOFIT+' 分（'+(led.sum+g.w-pk.cap>0?('超出 '+(led.sum+g.w-pk.cap)+' 斤'):'')+
+      '）','warn');
+    pkTone(160,220);pkSay('✖ 这一件压不住线');
+    pkSync();pkDraw();
+    return;
+  }
+  /* ① 逐件的手：这件的脚钱＝自己的斤两＋顶压段多出来的那几斤各赔 '+PK_TSUR+' 文 */
+  pk.feeHand+=pkFeeDelta(g.w,pk.sumHand,pk.cap,pk.lv);
+  pk.sumHand+=g.w;
+  pk.table.splice(pk.table.indexOf(i),1);
+  pk.box.push(i);
+  pk.packs++;
+  pk.hitOk=1;pk.hitTxt='📦 装箱';
+  pkTone(520,90);
+  const nl=pkLedger();
+  pkTag('📦 装箱：'+pkMarkOf(i)+'（'+(pkTell()?g.w+' 斤':'这件货')+'）压进箱里 —— 现在 '+nl.sum+'/'+pk.cap+
+    ' 斤 · 净头 '+nl.net+' 文'+(nl.sum>nl.GL?'（压过一线了，每斤赔 '+PK_TSUR+' 文）':'')+
+    (pk.table.length?' · 案上还剩 '+pk.table.length+' 件':''),'cyan');
+  pkSay('📦 装进箱了 · 案上 '+(PK_TABLE-pk.table.length)+' 格空着');
+  pkSync();pkDraw();
+}
+/* ---- 换手：点箱里那一件请回货案（付脚钱，案满就不许换）---- */
+function pkUnpack(i){
+  const rec=pk.rec;
+  if(!rec||pk.over||pk.locked)return;
+  if(!pkInBox(i)){pkTag('📦 点箱里那一件才请得出来');return}
+  if(pk.table.length>=PK_TABLE){pkTag('🧺 货案满了（'+PK_TABLE+' 格）：请出来也没处摊');return}
+  if(pk.pending>=0){pkTag('🎯 先认下梁上那一件「'+pkMarkOf(pk.pending)+'」是第几笔');return}
+  const g=pk.goods[i],led=pkLedger();
+  /* 换手就是把这一件从顶上抽走：逐件的手倒着走一格，总账跟着退 */
+  pk.feeHand-=pkFeeDelta(g.w,pk.sumHand-g.w,pk.cap,pk.lv);
+  pk.sumHand-=g.w;
+  pk.box.splice(pk.box.indexOf(i),1);
+  pk.table.push(i);
+  pk.table.sort(function(a,b){return pkAge(pk.goods[b])-pkAge(pk.goods[a])});
+  pk.swaps++;pk.cleanWord=0;pk.neatWord=0;
+  pk.score-=PK_P_SWAP;
+  pk.hitOk=-1;pk.hitTxt='🔁 换手 · −'+PK_P_SWAP;
+  const nl=pkLedger();
+  pkTag('🔁 换手：'+pkMarkOf(i)+' 请回货案，付脚钱 '+PK_P_SWAP+' 文 —— 箱里 '+nl.sum+'/'+pk.cap+
+    ' 斤 · 净头 '+nl.net+' 文（这件摊 '+pkAge(g)+' 程了，再不装就烂）','warn');
+  pkSay('🔁 请回货案了');
+  pkRotCheck();
+  pkSync();pkDraw();
+}
+/* ---- 🪧 丢货：案上摊得最久那一件直接扔掉（腾格子，倒扣两分）---- */
+function pkToss(){
+  if(!pk.rec||pk.over||pk.locked)return;
+  if(!pk.table.length){pkTag('🪧 货案是空的，没得丢');return}
+  if(pk.pending>=0){pkTag('🎯 先认下梁上那一件再丢货');return}
+  let w=0;
+  for(let j=1;j<pk.table.length;j++)if(pkAge(pk.goods[pk.table[j]])>pkAge(pk.goods[pk.table[w]]))w=j;
+  const i=pk.table[w];
+  pk.table.splice(w,1);
+  pk.rotten.push(i);
+  pk.dropGoods++;pk.cleanWord=0;pk.neatWord=0;
+  pk.score-=PK_P_DROP;
+  pk.hitOk=-1;pk.hitTxt='🪧 丢货 · −'+PK_P_DROP;
+  pkTag('🪧 丢掉 '+pkMarkOf(i)+'（摊了 '+pkAge(pk.goods[i])+' 程）：倒扣 '+PK_P_DROP+
+    ' 分 · 货案腾出一格','warn');
+  pkTone(200,180);pkSay('🪧 丢了一件');
+  pkSync();pkDraw();
+}
+/* ================= 四件家什 ================= */
+/* ⚖️ 掂货：案上与箱里每件的确切斤两请回来这么多秒（第 4 场起牌上本来不写）*/
+function pkProbe(){
+  if(!pk.probeN||!pk.rec||pk.over||pk.locked)return;
+  if(pk.probeShow>0){pkTag('⚖️ 已经掂过了：牌上的斤两一直写到这一掂过去');return}
+  pk.probeN--;pk.probeUse++;pk.tools++;pk.wordTools++;
+  pk.probeShow=PK_PROBE_MS;
+  let s='';
+  const put=function(list,txt){
+    for(let j=0;j<list.length;j++)s+=(s?' · ':'')+pkMarkOf(list[j])+' '+pk.goods[list[j]].w+'斤';
+    if(list.length)s+='（'+txt+'）';
+  };
+  put(pk.table,'案上');put(pk.box,'箱里');
+  pkTone(880,90);
+  pkTag('⚖️ 掂货：'+(s||'案上箱里都空着')+' —— 斤两写 '+Math.round(PK_PROBE_MS/1000)+' 秒（还剩 '+
+    pk.probeN+' 回）','cyan');
+  pkSync();pkDraw();
+}
+/* 👀 看票：只报「这一箱最多装几件、净头几文」，不报哪几件 —— 报了哪几件就等于替孩子装完了 */
+function pkPeek(){
+  if(!pk.peekN||!pk.rec||pk.over||pk.locked)return;
+  if(pk.peekMs>0){pkTag('👀 票还在货单卡上写着：等到它自己收走');return}
+  pk.peekN--;pk.peekUse++;pk.tools++;pk.wordTools++;
+  pk.peekMs=PK_PEEK_MS;
+  pk.score-=PK_P_PEEK;
+  pkTone(560,120);
+  pkTag('👀 看票：这一箱最多装 '+pk.bestK+' 件、净头 '+pk.bestNet+' 文（新货那一程的价，摊久了要少）—— '+
+    '倒扣 '+PK_P_PEEK+' 分 · 哪几件不写（还剩 '+pk.peekN+' 张票）','cyan');
+  pkSync();pkDraw();
+}
+/* 🧹 倒箱：箱里全请回货案（案装得下才许倒，倒一次付 '+PK_P_DUMP+' 分）*/
+function pkDump(){
+  if(!pk.rec||pk.over||pk.locked)return;
+  if(!pk.box.length){pkTag('🧹 箱里空的，没得倒');return}
+  if(pk.box.length+pk.table.length>PK_TABLE){
+    pkTag('🧹 箱里 '+pk.box.length+' 件、案上已摊 '+pk.table.length+' 件，货案只有 '+PK_TABLE+
+      ' 格：倒不空 —— 先用 🔁 一件一件请进箱，或按 <code>X</code> 丢掉一件腾格');
+    return;
+  }
+  if(pk.pending>=0){pkTag('🎯 先认下梁上那一件再倒箱');return}
+  const n=pk.box.length;
+  for(let j=0;j<n;j++){
+    const i=pk.box[0];
+    const g=pk.goods[i];
+    pk.feeHand-=pkFeeDelta(g.w,pk.sumHand-g.w,pk.cap,pk.lv);
+    pk.sumHand-=g.w;
+    pk.box.shift();
+    pk.table.push(i);
+  }
+  pk.dumps++;pk.cleanWord=0;pk.neatWord=0;
+  pk.score-=PK_P_DUMP;
+  pk.hitOk=-1;pk.hitTxt='🧹 倒箱 · −'+PK_P_DUMP;
+  pk.table.sort(function(a,b){return pkAge(pk.goods[b])-pkAge(pk.goods[a])});
+  pkRotCheck();
+  pkTag('🧹 倒箱：'+n+' 件全请回货案，倒扣 '+PK_P_DUMP+' 分 —— 脚钱跟着退，空位租又欠上了','warn');
+  pkTone(210,200);pkSay('🧹 箱倒空了');
+  pkSync();pkDraw();
+}
+/* 🔁 换字：这个字退回库里再上一个（倒扣 '+PK_P_WSWAP+' 分，进错字本）*/
+function pkSwapWord(){
+  if(!pk.swapN||!pk.rec||pk.over||pk.locked)return;
+  pk.swapN--;pk.swapUse++;pk.wswaps++;pk.tools++;pk.wordTools++;
+  pk.score-=PK_P_WSWAP;
+  pkTone(280,140);
+  pkTag('🔁 换字：倒扣 '+PK_P_WSWAP+' 分，这一箱散了、这个字进了错字本（还剩 '+pk.swapN+' 回）','warn');
+  pkWordOut(false);
+}
+/* ---- 封箱开秤：这一箱的账在这一息一次结清 ---- */
+function pkSeal(){
+  const rec=pk.rec;
+  if(!rec||pk.over||pk.locked)return;
+  if(pk.pending>=0){pkTag('🎯 梁上还挂着「'+pkMarkOf(pk.pending)+'」：先认位再封箱');return}
+  if(pk.at<rec.n){
+    /* 半路封箱：还剩几件没认 —— 这一箱散掉、进错字本 */
+    pk.seals++;
+    pk.score-=PK_P_SEAL;
+    pkTag('🏮 半路封箱：还有 '+(rec.n-pk.at)+' 件货没认下来，倒扣 '+PK_P_SEAL+' 分 · 这个字进错字本','warn');
+    pkTone(200,200);pkSay('🏮 提前封了箱');
+    pkWordOut(false);
+    return;
+  }
+  pkCollect();
+}
+/* ---- 收字：整字的货认齐了才结这一箱，几笔赏钱在这一息一次结清 ---- */
+function pkCollect(){
+  const rec=pk.rec,L=pk.lv;
+  if(!rec)return;
+  pk.seals++;
+  const led=pkLedger(),GL=led.GL;
+  /* ② 闭式结秤：净头 = Σ钱 − 脚钱 − 空位租。逐件那只手（feeHand/sumHand）必须与它对表 */
+  pk.locked=1;pk.words++;
+  /* 净头是负的那一头不反手扣孩子：账上写「净头 −9 文」，发到手上写「→ +0」——
+     两个数各说各的，混成一个「+−9」就成了病句 */
+  let add=Math.max(0,led.net),txt='🏮 开秤：净头 '+led.net+' 文 → +'+add;
+  add+=PK_WORD_PTS;txt+=' · 收字 +'+PK_WORD_PTS;
+  const gap=Math.abs(led.sum-GL);
+  if(led.top>0){pk.topN++;txt+=' · 这一箱压过线 '+led.top+' 文脚钱'}
+  if(led.gap>0)pk.gapN++;
+  if(led.nice){add+=PK_FILL_PTS;txt+=' · 凑整（'+led.sum+' 斤贴一线 '+GL+'，差 '+gap+' 斤）+'+PK_FILL_PTS;
+    pk.fillN++;auxAdd('hz_pk_fill',1)}
+  if(led.net>pk.shadow){add+=PK_SMART_PTS;txt+=' · 比贪心篓多赚（'+led.net+' > '+pk.shadow+'）+'+PK_SMART_PTS;
+    pk.smartN++;auxAdd('hz_pk_smart',1);
+    if(led.net-pk.shadow>pk.marMax)pk.marMax=led.net-pk.shadow}
+  if(pk.cleanWord){add+=PK_CLEAN_PTS;txt+=' · 一箱零罚 +'+PK_CLEAN_PTS;auxAdd('hz_pk_clean',1);
+    /* 连收三箱零罚：家什架白补一回 —— 干净不是运气，是一路不换不丢不烂攒出来的 */
+    pk.cleanRun++;
+    if(pk.cleanRun>=PK_PER){
+      pk.cleanRun=0;pk.toolRun++;
+      pk.probeN++;pk.peekN++;pk.dumpN++;pk.swapN++;
+      add+=PK_TOOL_PTS;txt+=' · 连三箱零罚：家什架白补一回 +'+PK_TOOL_PTS;
+      auxAdd('hz_pk_toolrun',1);
+    }
+  }else pk.cleanRun=0;
+  if(pk.neatWord){add+=PK_NEAT_PTS;txt+=' · 一件不换不丢不烂 +'+PK_NEAT_PTS;auxAdd('hz_pk_neat',1)}
+  if(!pk.wordTools){add+=PK_TOOL_PTS;txt+=' · 家什一回没借 +'+PK_TOOL_PTS}
+  pk.score+=add;
+  pk.bookNet=led.net;
+  pkBookPut(rec.ch);
+  /* 收满三字补一颗心：光认齐不算本事，挑得准、凑得整、还比贪心赚得多才算收成 */
+  if(pk.words%PK_PER===0&&pk.hearts<PK_HEART_MAX)pk.hearts++;
+  pk.hitOk=1;pk.hitTxt='🏮 开秤 · +'+add;
+  pkTone(1040,220);
+  pkTag(txt+(pk.table.length?'｜案上还摊着 '+pk.table.length+' 件，没卖出去':''),'gold');
+  pkSay('🏮 这一箱净头 '+led.net+' 文');
+  if(typeof spawnConfetti==='function'){try{spawnConfetti()}catch(e){}}
+  pkSync();pkDraw();
+  pkT(pkNextWord,1400);
+}
+/* ---- 换下一个字：一场三字收完就换场（承重收紧、换一盏场灯）---- */
+async function pkNextWord(){
+  if(!pk.run||pk.over)return;
+  if(pk.hearts<=0){pkEnd('hearts');return}
+  pk.wi++;
+  let flash='';
+  if(pk.wi>=PK_PER){
+    pk.wi=0;pk.lv=Math.min(9,pk.lv+1);
+    pk.cleanRun=0;
+    pk.lamp0=pkLamp(pk.lv);pk.lamp=pk.lamp0;
+    flash='💡 第 '+pk.lv+' 场上案：承重收到 '+pkCap(pk.lv)+' 斤 · 顶压段 '+pkTop(pk.lv)+' 斤 · ';
+    pkSay('第 '+pk.lv+' 场：箱子收窄了，顶压段也变厚');
+  }
+  /* 换场就是换一套货：池子是上一场验的那一串，这一场得重新过闸 */
+  if(pk.poolLv!==pk.lv){pk.pool=[];pk.seen=[];pk.poolLv=pk.lv}
+  if(!pk.pool.length){
+    pk.load=true;pkSync();
+    const w=pkWant(pk.lv);
+    const ok=await pkBuildPool(true,w[0],w[1]);
+    pk.load=false;
+    if(!pk.run||pk.over)return;
+    if(!ok){pkEnd('pool');return}
+  }
+  const rec=pkTake();
+  if(!rec){pkEnd('pool');return}
+  pkSetWord(rec,flash);
+}
+/* 这个字散了：字钟尽、半路封箱、换字都走这一条道 —— 进错字本，下一轮优先挑回来 */
+function pkWordOut(heart){
+  const rec=pk.rec;
+  if(rec)pkMissPut(rec.ch);
+  pk.wordOuts++;
+  if(heart){pk.hearts--;pk.combo=0}
+  pk.cleanWord=0;pk.neatWord=0;pk.wordTools=0;pk.cleanRun=0;
+  pk.locked=1;
+  /* 这一箱散了就散到底：案、箱、认下账、烂货账、程数、手累计的斤两与脚钱一次全清 ——
+     只清案的话，锁住等下一个字的那 1 秒里「认过的件不在任何一堆里」这笔账是赖着的，
+     下一个字上台才清只是把它藏起来，账面对不上就是账面对不上 */
+  pk.pending=-1;pk.table=[];pk.box=[];pk.done=[];pk.rotten=[];pk.sel=-1;
+  pk.at=0;pk.sumHand=0;pk.feeHand=0;
+  pkSync();pkDraw();
+  pkT(pkNextWord,1000);
+}
+/* ================= 三支钟：场灯 · 这一字 · 认位 ================= */
+function pkTick(dt){
+  if(!pk.run||pk.over)return;
+  pk.t+=dt;pk.playMs+=dt;
+  if(pk.helpMs>0){pk.helpMs-=dt;if(pk.helpMs<=0){pk.helpMs=0;pkSync()}return}
+  if(!pk.rec||pk.locked)return;
+  if(pk.probeShow>0){pk.probeShow-=dt;if(pk.probeShow<0)pk.probeShow=0}
+  if(pk.peekMs>0){pk.peekMs-=dt;if(pk.peekMs<0)pk.peekMs=0}
+  /* 场灯：一盏照这一场的三个字 */
+  if(pk.lamp>0){
+    pk.lamp-=dt;
+    if(pk.lamp<=0){pk.lamp=0;pkEnd('lamp');return}
+  }
+  /* 字钟：一个字从上台收到齐（掉货、认位、装箱都吃这一支）*/
+  if(pk.wordMs>0){
+    pk.wordMs-=dt;
+    if(pk.wordMs<=0){
+      pk.wordMs=0;pk.score-=PK_P_WORD;pk.cleanWord=0;pk.neatWord=0;pk.combo=0;
+      pkTag('🈶 这个字的钟尽了：还有 '+(pk.rec.n-pk.at)+' 件没认，倒扣 '+PK_P_WORD+' 分 · 掉一颗心 · 进错字本','warn');
+      pkTone(150,300);pkSay('🈶 字钟尽了');
+      pkWordOut(true);
+      return;
+    }
+  }
+  /* 认位钟：只在梁上真挂着货的时候走 */
+  if(pk.pending>=0){
+    pk.placeMs-=dt;
+    if(pk.placeMs<=0){
+      pk.placeMs=0;pk.lates++;pk.cleanWord=0;pk.combo=0;
+      pk.score-=PK_P_LATE;
+      pk.hitOk=-1;pk.hitTxt='⌛ 认位钟尽 · −'+PK_P_LATE;
+      const p=pk.pending;
+      pk.pending=-1;
+      pkTag('⌛ 认位的钟尽了：'+pkMarkOf(p)+' 收回梁上，倒扣 '+PK_P_LATE+' 分 —— 再掉一次、认准它','warn');
+      pkTone(160,260);
+      pkSync();pkDraw();
+      return;
+    }
+    pk.nagMs+=dt;
+    /* 认位的提醒按「这一支钟走了一半」算，不按固定的 11 秒：
+       认位钟整支最长也只有 PK_PLACE 那么多（第 1 场 5.2 秒，往后越收越短），
+       拿 11 秒当门槛的话这一句永远说不出口 —— 钟先尽、提醒后到 */
+    if(pk.nagMs>pk.place0/2){pk.nagMs=0;pk.nags++;pkSay('🎯 点装箱单上它那一笔，或按 1~'+pk.rec.n)}
+    return;
+  }
+  pk.nagMs+=dt;
+  if(pk.nagMs>PK_NAG_MS){
+    pk.nagMs=0;pk.nags++;
+    pkSay(pk.table.length?'📦 点货案上那一件就装进箱（挑轻又值钱的）':'📦 按 <code>空格</code> 掉下一件货');
+  }
+}
+
+/* ================= 开工 · 三支钟的一根 rAF · 键盘与真指针 ================= */
+/* 开张：先挑货（这一坊吃的字要「整箱装不下、凑得到黄金线、而且会算的确实比贪心的多赚」），再上第一个字 */
+async function pkBoot(){
+  const g=pk.gen;
+  pk.load=true;pkSync();
+  const w=pkWant(pk.lv);
+  const ok=await pkBuildPool(true,w[0],w[1]);
+  if(g!==pk.gen||!pk.run||pk.over)return;
+  pk.load=false;
+  if(!ok){pkEnd('pool');pkSync();return}
+  const rec=pkTake();
+  if(!rec){pkEnd('pool');pkSync();return}
+  pkSetWord(rec);
+  pkSync();pkDraw();
+}
+function pkStart(){
+  pk.run=true;pk.over=false;pk.gen++;
+  pkBind();
+  pkKill();
+  pk.t=0;pk.playMs=0;pk.last=0;
+  pk.pool=[];pk.poolLv=-1;pk.miss=[];pk.seen=[];pk.rec=null;pk.seed=0;pk.fresh=0;
+  pk.lv=pkLvOf(auxInt('hz_pk_words'));
+  pk.wi=0;pk.score=0;pk.hearts=PK_HEARTS;pk.combo=0;pk.maxCombo=0;pk.load=false;
+  pk.goods=[];pk.table=[];pk.box=[];pk.done=[];pk.rotten=[];pk.mark=[];pk.order=[];
+  pk.pending=-1;pk.sel=-1;
+  pk.cap=pkCap(pk.lv);pk.sum=0;pk.val=0;pk.fee=0;pk.top=0;pk.gap=0;pk.sumHand=0;pk.feeHand=0;pk.at=0;
+  pk.lamp0=pkLamp(pk.lv);pk.lamp=pk.lamp0;
+  pk.place0=pkPlace(pk.lv);pk.placeMs=pk.place0;
+  pk.wordMs0=pkWord(pk.lv);pk.wordMs=pk.wordMs0;
+  pk.words=0;pk.strokes=0;pk.packs=0;pk.nofits=0;pk.drops=0;pk.dropGoods=0;
+  pk.rottens=0;pk.seals=0;pk.swaps=0;pk.dumps=0;pk.wswaps=0;pk.wrongs=0;pk.lates=0;pk.wordOuts=0;
+  pk.fillN=0;pk.smartN=0;pk.topN=0;pk.gapN=0;
+  pk.bestNet=0;pk.greedyNet=0;pk.marginNet=0;pk.bookNet=0;pk.bestK=0;pk.shadow=0;pk.marMax=0;
+  pk.cleanWord=1;pk.neatWord=1;pk.tools=0;pk.wordTools=0;
+  pk.cleanRun=0;pk.toolRun=0;
+  pk.probeN=PK_P0.probe;pk.swapN=PK_P0.swap;pk.dumpN=PK_P0.dump;pk.peekN=PK_P0.peek;
+  pk.probeUse=0;pk.swapUse=0;pk.dumpUse=0;pk.peekUse=0;pk.probeShow=0;pk.peekMs=0;
+  pk.gain=0;pk.pen=0;pk.hitOk=0;pk.hitTxt='';pk.helpMs=0;
+  pk.nags=0;pk.nagMs=0;pk.msg='';pk.locked=0;pk.newBest=false;
+  pkClearTag();
+  if(typeof stopBGM==='function')stopBGM();   showScreen('pack');
+  pkSync();pkDraw();
+  pkBoot();
+  pkStartLoop();
+}
+/* 主循环的起停各只有一处：结算要冻画面就掐这一根，别在别处再挂一条 rAF */
+function pkLoop(ts){
+  if(!pk.run||pk.over){pk.rafId=0;return}
+  const dt=pk.last?Math.min(120,ts-pk.last):16;
+  pk.last=ts;
+  pkTick(dt);
+  pkSync();pkDraw();
+  pk.rafId=requestAnimationFrame(pkLoop);
+}
+function pkStartLoop(){if(!pk.run||pk.over||pk.rafId)return;pk.last=0;pk.rafId=requestAnimationFrame(pkLoop)}
+function pkStopLoop(){if(pk.rafId){cancelAnimationFrame(pk.rafId);pk.rafId=0}}
+function pkRestart(){pkStart()}
+function pkLeave(where){
+  pk.run=false;pk.over=false;
+  pkKill();pkStopLoop();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function pkHelp(){
+  if(!pk.run||pk.over)return;
+  pk.helpMs=PK_HELP_MS;
+  pkSync();
+  pkMsg('📦 <b>一箱装不下整个字</b>：挑哪几件压线、每件几斤几文，全凭你自己算 —— 秤对面那条影子就是「只按每斤钱排队」的贪心篓','#FFE0B2');
+}
+/* ---- 主手那一下：梁上挂着货只给一句提示（认位是点装箱单或按号），没挂着就掉下一件 ---- */
+function pkTap(){
+  if(pk.helpMs>0){pk.helpMs=0;return}
+  if(pk.pending>=0){
+    pkTag('🎯 认位点的是<b>装箱单上那一笔的淡墨位置</b>：按 <code>1~'+(pk.rec?pk.rec.n:8)+'</code> 或直接点它');
+    return;
+  }
+  if(pk.at>=rec_n()){pkSeal();return}
+  if(pk.table.length>=PK_TABLE){
+    pkTag('🧺 货案满了（'+PK_TABLE+' 格）：点货案上那一件装进箱，或按 <code>X</code> 丢掉摊得最久那件');
+    return;
+  }
+  pkDrop();
+}
+/* ================= 案面上的落点：装箱单那一笔 · 货案那一格 · 箱里那一件 ================= */
+function pkPt2(e){
+  const cv=document.getElementById('pkCanvas');
+  const out={x:-1,y:-1,slot:-1,cell:-2,box:-1};
+  if(!cv||!cv.getBoundingClientRect)return out;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return out;
+  const x=Math.round((e.clientX-r.left)*(PK_W/r.width)*10)/10,
+        y=Math.round((e.clientY-r.top)*(PK_CVH/r.height)*10)/10;
+  out.x=x;out.y=y;
+  const s=pkGridAt(x,y);
+  if(s>=0){out.slot=s;return out}
+  const c=pkTableHit(x,y);
+  if(c!==-2){out.cell=c;return out}
+  const b=pkBoxHit(x,y);
+  if(b>=0){out.box=b;return out}
+  return out;
+}
+/* ================= 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子 ================= */
+function pkBind(){
+  if(pk.bound)return;
+  pk.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!pk.run||pk.over)return;
+    if(pk.helpMs>0){pk.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){pkLeave();return}
+    if(k==='h'||k==='?'){pkHelp();e.preventDefault();return}
+    if(k>='1'&&k<='8'){pkAnswer(+k-1);e.preventDefault();return}
+    if(k==='f'){pkSeal();e.preventDefault();return}
+    if(k==='x'){pkToss();e.preventDefault();return}
+    if(k==='p'){pkProbe();e.preventDefault();return}
+    if(k==='v'){pkPeek();e.preventDefault();return}
+    if(k==='d'){pkDump();e.preventDefault();return}
+    if(k==='s'){pkSwapWord();e.preventDefault();return}
+    if(k===' '||k==='enter'){pkTap();e.preventDefault()}
+  });
+  const cv=document.getElementById('pkCanvas');
+  if(cv){
+    cv.addEventListener('pointerdown',function(e){
+      if(!pk.run||pk.over)return;
+      if(pk.helpMs>0){pk.helpMs=0;return}
+      const h=pkPt2(e);
+      if(h.slot>=0){pkAnswer(h.slot);e.preventDefault();return}
+      if(h.cell>=0){pkPack(h.cell);e.preventDefault();return}
+      if(h.box>=0){pkUnpack(h.box);e.preventDefault();return}
+      /* 案面上那几块空白（标尺、秤、货单卡）都当「掉下一件」的手：孩子的眼在这儿四处点，
+         点空白不该什么也不发生 —— 但满案与挂着货的时候由 pkTap 自己回话 */
+      pkTap();e.preventDefault();
+    });
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){
+      if(!pk.run||pk.over)return;
+      if(pk.helpMs>0){pk.helpMs=0;return}
+      on();ev.preventDefault();
+    });
+  };
+  tap('pkActBtn',function(){pkTap()});
+  tap('pkDropBtn',function(){pkToss()});
+  tap('pkSealBtn',function(){pkSeal()});
+  tap('pkProbeBtn',function(){pkProbe()});
+  tap('pkPeekBtn',function(){pkPeek()});
+  tap('pkDumpBtn',function(){pkDump()});
+  tap('pkSwapBtn',function(){pkSwapWord()});
+  tap('pkHelpBtn',function(){pkHelp()});
+  tap('pkEndBtn',function(){pkEnd('quit')});
+  const tapFree=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){on();ev.preventDefault()});
+  };
+  /* 散场之后的那三颗钮不能按 run/over 拦：孩子站在结算屏上，「再来一局」「回实验室」「回书桌」
+     必须点得动 —— 拦在前面就等于把结算屏变成一堵墙 */
+  tapFree('pkReBtn',function(){pkRestart()});
+  tapFree('pkLabBtn',function(){pkLeave('lab')});
+  tapFree('pkHomeBtn',function(){pkLeave()});
+}
+
+/* ================= 散场：结算、落盘、图鉴与家什架、拿另一条路把这箱货再算一遍 ================= */
+function pkEnd(why){
+  if(!pk.run||pk.over)return;
+  pk.over=true;pk.run=false;
+  pkKill();pkClearTag();
+  const stars=Math.max(1,Math.round(pk.score/14)+pk.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  pkPut('pkRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['📦','收摊了','自己按的结算'],
+    hearts:['💔','心都赔光了','认错与字钟尽把心磨完了'],
+    lamp:['🕯️','场灯灭了','这一场的灯烧完了'],
+    pool:['📦','配不出这一箱的字','字库里挑不出「整字比箱沉、凑得到黄金线、而且会算的确实比贪心的多赚」的字']}[why]||
+    ['📦','散场',''];
+  pkPut('pkRsEmoji',head[0]);
+  pkPut('pkRsTitle',head[1]);
+  pkPut('pkRsSub','第 '+pk.lv+' 场 · '+head[2]+' · 收齐 '+pk.words+' 字');
+  pkPut('pkRsScore','📦 '+pk.score+' 分');
+  pkPut('pkRsWords','🈶 收字 '+pk.words+' 个 · 认下 '+pk.strokes+' 笔 · 散了 '+pk.wordOuts+' 个字');
+  pkPut('pkRsMoney','📦 封了 '+pk.seals+' 箱 · 装箱 '+pk.packs+' 件 · 最后一箱净头 '+pk.bookNet+' 文');
+  pkPut('pkRsMargin','⚖️ 比贪心篓多赚 '+pk.smartN+' 箱 · 最多一箱多 '+pk.marMax+' 文 · 换手 '+pk.swaps+' 回');
+  pkPut('pkRsPack','🧺 凑整（黄金线 '+PK_NICE+' 斤以内）'+pk.fillN+' 箱 · 压过线 '+pk.topN+' 箱 · 欠空位租 '+pk.gapN+' 箱');
+  pkPut('pkRsWipe','🎯 认下 '+pk.strokes+' 笔 · 认错 '+pk.wrongs+' 次 · 认位钟尽 '+pk.lates+' 次 · 硬塞 '+pk.nofits+
+    ' 回 · 丢货 '+pk.dropGoods+' 件 · 烂掉 '+pk.rottens+' 件');
+  pkPut('pkRsTools','🧰 借家什 '+pk.tools+' 回 · 掂货 '+pk.probeUse+' · 看票 '+pk.peekUse+' · 倒箱 '+pk.dumps+' · 换字 '+pk.wswaps);
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账 */
+  pkSave(why);
+  pkPut('pkRsBest','🏅 历史最高 '+auxInt('hz_pk_best')+' 分 · 累计收字 '+auxInt('hz_pk_words')+' 字');
+  pkPut('pkRsStars','⭐ +'+stars+(why==='pool'?'':'（已上星）'));
+  const rk=pkRank(auxInt('hz_pk_words'));
+  pkPut('pkRsRank',rk.e+' '+rk.t);
+  const bk=pkBookCount();
+  pkPutH('pkRsBook','📖 <b>装箱图鉴 '+bk.book+' 张</b> · 家什架 <b>'+bk.shelf+'/'+PK_SHELF.length+
+    '</b> 件 · 错字本 <b>'+bk.miss+'</b> 个字<br><small>最远走到第 '+auxInt('hz_pk_lvmax')+' 场 · 累计装箱 '+
+    auxInt('hz_pk_packs')+' 件 · 凑整 '+auxInt('hz_pk_fill')+' 箱 · 赢过贪心 '+auxInt('hz_pk_smart')+
+    ' 箱 · 一箱零罚 '+auxInt('hz_pk_clean')+' 箱</small>');
+  pkPutH('pkRsWhy','📦 这一坊的道理：<b>箱子装不下整个字，所以必须舍掉几件</b>。一笔是一件货：<b>斤两</b>＝这一笔拐的弯与占的地方'+
+    '（<b>w＝'+PK_W0+'＋'+PK_TURN_K+'×转折数＋⌈弧长÷'+PK_K+'⌉</b>），<b>钱</b>＝笔形行情＋成色（横'+PK_PRICE[0]+'、竖'+PK_PRICE[1]+
+    '、撇'+PK_PRICE[2]+'、捺'+PK_PRICE[3]+'，普/上/极品加 '+PK_BASE[0]+'/'+PK_BASE[1]+'/'+PK_BASE[2]+' 文）。<b>钱与斤两故意脱钩</b> —— '+
+    '脱了钩，「轻又值钱」与「一头沉」才是两条真会打架的路。<br>两头各收一份钱：承重线减去顶压段那条叫<b>黄金线</b>（第 1 场 '+
+    pkGold(1)+' 斤），压上去每斤赔 '+PK_TSUR+' 文；离它空着要交<b>空位租</b>（空 ≤'+PK_GAP[0]+' 斤不欠、≤'+PK_GAP[1]+' 欠 '+PK_GAP_P[1]+
+    '、≤'+PK_GAP[2]+' 欠 '+PK_GAP_P[2]+'、以上欠 '+PK_GAP_P[3]+'）。两头一夹，<b>答案就夹在黄金线上下 '+PK_NICE+' 斤那一小条里</b> —— '+
+    '按「每斤钱」排队装的贪心篓凑不到这一小条，配字时就当场验过它真输。<br>脚钱是<b>逐件结在这一件头上</b>的（顶压段算给压上去的那一件），'+
+    '可不管按什么次序装，累加起来都等于闭式那本 —— <b>次序只挪走「算在谁头上」，总账一个字也不变</b>。摊在案上的货每过一程掉 1 文、'+
+    '摊到第 '+PK_KEEP+' 程就烂。<br>第 '+PK_TELL_LV+' 场起货牌不写确切斤两、只写手感（'+PK_FEEL[0]+'/'+PK_FEEL[1]+'/'+PK_FEEL[2]+
+    '），第 '+PK_DIM_LV+' 场起连手感也收走 —— 剩下的凭据只有墨样、⚖️ 那一掂与 👀 那一张票。战绩落盘 <code>hz_pk_*</code>：场档按<b>收齐的字数</b>走，'+
+    '称号按<b>累计收字数</b>走，错字本里的字<b>下一轮优先挑回来</b>','#C8E6C9');
+  pkNudge();
+  showScreen('pack-result');
+}
+/* ---- 落盘：全局账与这一局账各走各的口子 ----
+   fill / smart / clean / neat / toolrun 五本记的是「箱」：封箱那一息在 pkCollect 里当场记一笔，结算不许再补第二遍 */
+function pkSave(why){
+  auxAdd('hz_pk_games',1);
+  auxAdd('hz_pk_words',pk.words);
+  auxAdd('hz_pk_strokes',pk.strokes);
+  auxAdd('hz_pk_packs',pk.packs);
+  auxAdd('hz_pk_drops',pk.drops);
+  auxAdd('hz_pk_nofit',pk.nofits);
+  auxAdd('hz_pk_toss',pk.dropGoods);
+  auxAdd('hz_pk_rotten',pk.rottens);
+  auxAdd('hz_pk_seal',pk.seals);
+  auxAdd('hz_pk_swap',pk.swaps);
+  auxAdd('hz_pk_dump',pk.dumps);
+  auxAdd('hz_pk_wswap',pk.wswaps);
+  auxAdd('hz_pk_wrong',pk.wrongs);
+  auxAdd('hz_pk_late',pk.lates);
+  auxAdd('hz_pk_wordout',pk.wordOuts);
+  auxAdd('hz_pk_tools',pk.tools);
+  auxAdd('hz_pk_probe',pk.probeUse);
+  auxAdd('hz_pk_peek',pk.peekUse);
+  if(pk.maxCombo>auxInt('hz_pk_combo'))auxPut('hz_pk_combo',pk.maxCombo);
+  if(pk.lv>auxInt('hz_pk_lvmax'))auxPut('hz_pk_lvmax',pk.lv);
+  if(pk.marMax>auxInt('hz_pk_margin'))auxPut('hz_pk_margin',pk.marMax);
+  if(pk.score>auxInt('hz_pk_best')){auxPut('hz_pk_best',pk.score);pk.newBest=true}
+  pkShelfCheck();
+}
+/* ---- 图鉴：一个字一张货样卡（记的是首回收齐那个字的场号与件数）---- */
+function pkBookCount(){
+  const book=(localStorage.getItem('hz_pk_book')||'').split(',').filter(function(s){return s}).length;
+  const shelf=(localStorage.getItem('hz_pk_shelf')||'').split(',').filter(function(s){return s}).length;
+  const miss=(localStorage.getItem('hz_pk_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0}).length;
+  return {book:book,shelf:shelf,miss:miss};
+}
+function pkBookPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  const bk=localStorage.getItem('hz_pk_book')||'';
+  if(bk.indexOf(ch+':')>=0)return;
+  const list=bk.split(',').filter(function(s){return s});
+  list.unshift(ch+':'+pk.lv+':'+(pk.rec?pk.rec.n:0));
+  auxPut('hz_pk_book',list.slice(0,PK_BOOK_MAX).join(','));
+}
+/* 散场的字进错字本：下一轮优先挑回来 */
+function pkMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_pk_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  auxPut('hz_pk_miss',miss.slice(0,PK_BOOK_MAX).join(','));
+}
+/* 家什架：八件各认一件实事，其中「名刺」认的是别处的章节徽章 */
+function pkShelfCheck(){
+  const have=(localStorage.getItem('hz_pk_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    auxInt('hz_pk_words')+pk.words>=1,
+    auxInt('hz_pk_toolrun')+pk.toolRun>=1,
+    auxInt('hz_pk_fill')>=8,
+    auxInt('hz_pk_lvmax')>=PK_SHELF_LV||pk.lv>=PK_SHELF_LV,
+    auxInt('hz_pk_smart')>=12,
+    auxInt('hz_pk_neat')>=1,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    auxInt('hz_pk_packs')+pk.packs>=60
+  ];
+  for(let i=0;i<PK_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(PK_SHELF[i].k)<0){have.push(PK_SHELF[i].k);got.push(PK_SHELF[i].k)}
+  }
+  auxPut('hz_pk_shelf',have.join(','));
+  auxPut('hz_pk_trophy',have.length);
+  auxPut('hz_pk_trophy_n',auxInt('hz_pk_trophy_n')+got.length);
+}
+/* ---- 段 W 的另一条路：只读，不许碰场上任何东西 ----
+   四条尺各算各的：① 逐件的手 pkFeeDelta，② 闭式 pkSale，③ 枚举 pkBest（吃的是 ① 那一只手的累加），
+   ⑤ 独立枚举（吃的是 ② 那一只闭式，与 ③ 谁也不赖谁），④ 贪心 pkGreedy。
+   再加两条边界：空位租那四段阶梯必须单调、不许对超载发钱；顶压段只在压过线时才收。 */
+function pkAudWord(rec,L){
+  const out={ok:0,why:'',n:0,cap:0,gl:0,top:0,sumAll:0,leave:0,fill:0,
+    best:0,greedy:0,margin:0,bestAlt:0,altBad:0,feeBad:0,gapBad:0,seedBad:0,
+    wBad:0,vBad:0,reachBad:0,loseBad:0,info:[]};
+  if(!rec||!pkSeqOk(rec)){out.why='字的口径不合格';return out}
+  const cap=pkCap(L),GL=pkGold(L),topN=pkTop(L);
+  out.n=rec.n;out.cap=cap;out.gl=GL;out.top=topN;out.sumAll=rec.sumAll;out.leave=rec.sumAll-cap;
+  /* ① 斤两与钱：从原始折线独立再量一遍，与 rec.ws / pkV0 对表 */
+  const grs=pkGrades(rec,auxSeedOf(rec.ch,L));
+  for(let i=0;i<rec.n;i++){
+    const m=rec.meds[i],w=pkW(m);
+    if(w!==rec.ws[i])out.wBad++;
+    if(w<PK_W0||w>PK_WMAX)out.wBad++;
+    const turns=pkTurnOf(m);
+    if(turns>PK_TURN_MAX||w!==PK_W0+PK_TURN_K*turns+Math.ceil(pkLenOf(m)/PK_K))out.wBad++;
+    const d=rec.dirs[i];
+    if(pkV0(d,grs[i])!==PK_PRICE[d]+PK_BASE[grs[i]-1])out.vBad++;
+    if(pkValue({v0:pkV0(d,grs[i]),born:1},1)!==Math.max(PK_FLOOR,PK_PRICE[d]+PK_BASE[grs[i]-1]))out.vBad++;
+    if(pkValue({v0:PK_FLOOR,born:0},9)!==PK_FLOOR)out.vBad++;   /* 掉到底就不许再掉 */
+    if(!(pkFeelOf(w)>=0&&pkFeelOf(w)<PK_FEEL.length))out.wBad++;
+  }
+  /* ② 两条阶梯式子的边界：脚钱 ≥ 斤两、随斤两单调；空位租单调且不替超载发钱 */
+  let lastFee=-1;
+  for(let s=0;s<=cap+6;s++){
+    const f=pkFeeOf(s,cap,L);
+    if(f<s)out.gapBad++;
+    if(f<lastFee)out.gapBad++;
+    if(s<=cap-topN&&f!==s)out.gapBad++;            /* 没压过线：脚钱就是斤两本身 */
+    if(s>cap-topN&&f!==s+PK_TSUR*(s-(cap-topN)))out.gapBad++;
+    lastFee=f;
+  }
+  let lastGap=-1;
+  for(let g=-2;g<=cap;g++){
+    const p=pkGapPen(g,cap,L);
+    if(p<lastGap)out.gapBad++;
+    lastGap=p;
+    if(g<=PK_GAP[0]&&p!==0)out.gapBad++;            /* 空得少不欠租 */
+    if(g<0&&p!==PK_GAP_P[0])out.gapBad++;           /* 压过线那一头不欠空位租：嫌你沉的那只手已经收过钱了 */
+  }
+  /* ③⑤ 两套枚举互相核：同一堆货、两条独立的路，最优净头必须一模一样 */
+  const sd=auxSeedOf(rec.ch,L),ord=pkOrder(rec,sd),items=[];
+  for(let i=0;i<rec.n;i++)items.push({w:rec.ws[i],v0:pkV0(rec.dirs[i],grs[i]),born:ord.indexOf(i)+1});
+  const altBest=function(at){
+    let best=null;
+    for(let k=0;k<(1<<items.length);k++){
+      let sum=0;
+      for(let i=0;i<items.length;i++)if(k&(1<<i))sum+=items[i].w;
+      if(sum>cap)continue;
+      const sub=[];
+      for(let i=0;i<items.length;i++)if(k&(1<<i))sub.push(items[i]);
+      const st=pkSale(sub,cap,L,at);
+      if(!best||st.net>best.net||(st.net===best.net&&st.sum>best.sum))best=st;
+    }
+    return best;
+  };
+  const bs=pkBest(items,cap,L,0),ba=altBest(0);
+  if(!bs||!ba){out.why='一种装法都没有';return out}
+  out.best=bs.net;out.bestAlt=ba.net;out.margin=bs.net-pkGreedy(items,cap,L,0).net;
+  if(ba.net!==bs.net||ba.sum!==bs.sum)out.altBad++;
+  /* ④ 贪心两头都真输：新货那一程与收秤那一刻 —— 这一坊的课不许靠运气 */
+  const gr=pkGreedy(items,cap,L,0),bs2=pkBest(items,cap,L,rec.n),gr2=pkGreedy(items,cap,L,rec.n);
+  out.greedy=gr.net;
+  if(!(bs.net>gr.net)||!(bs2.net>gr2.net))out.loseBad++;
+  /* ① 与 ② 对表：最优那一篓按三种次序各走一遍，脚钱/顶压/净头一个字不许变 */
+  const sub=[];
+  for(let i=0;i<items.length;i++)if(bs.k&(1<<i))sub.push(items[i]);
+  const oc=pkOrderCheck(sub,cap,L,0,items);
+  if(oc.bad){out.why='逐件的手与闭式不合('+oc.why+')';out.feeBad++;return out}
+  if(oc.fee!==bs.fee)out.feeBad++;
+  /* ⑤ 赏一定是实的：凑整那条夹缝真存在、顶压与空位两头真踩得到、整字确实比箱沉 */
+  if(rec.sumAll<cap+PK_LEAVE)out.reachBad++;
+  let fill=0,touchTop=0,touchGap=0;
+  for(let k=0;k<(1<<items.length);k++){
+    let sum=0;
+    for(let i=0;i<items.length;i++)if(k&(1<<i))sum+=items[i].w;
+    if(sum>cap)continue;
+    if(Math.abs(sum-GL)<=PK_NICE)fill++;
+    if(sum>GL)touchTop=1;
+    if(pkGapPen(GL-sum,cap,L)>0)touchGap=1;
+  }
+  out.fill=fill;
+  if(!fill||!touchTop||!touchGap)out.reachBad++;
+  /* 种子的定点性：同字同场永远同一套顺序、成色与花色；不同场洗出来的顺序至少换一处 */
+  const o2=pkOrder(rec,sd),g2=pkGrades(rec,sd),m2=pkMarks(rec,sd),m1=pkMarks(rec,sd);
+  for(let i=0;i<rec.n;i++){
+    if(o2[i]!==ord[i]||g2[i]!==grs[i]||m2[i]!==m1[i])out.seedBad++;
+    if(!(ord[i]>=0&&ord[i]<rec.n))out.seedBad++;
+    if(!(grs[i]>=1&&grs[i]<=PK_GRADE_N))out.seedBad++;
+    if(!(m1[i]>=0&&m1[i]<PK_MARK.length))out.seedBad++;
+  }
+  const seen={},mseen={};
+  for(let i=0;i<rec.n;i++){
+    if(seen[ord[i]])out.seedBad++;seen[ord[i]]=1;
+    if(mseen[m1[i]])out.seedBad++;mseen[m1[i]]=1;   /* 花色不许重：两张「布包」就是题目出错了 */
+  }
+  /* 这一坊摆的是什么货：至少两种笔形、至少两档手感（屏上有的掂）*/
+  const feel={};let kc=0;
+  for(let i=0;i<rec.n;i++){feel[pkFeelOf(rec.ws[i])]=1}
+  for(let d=0;d<4;d++)if(rec.dirs.indexOf(d)>=0)kc++;
+  if(kc<PK_KIND_MIN)out.seedBad++;
+  let nf=0;for(const kk in feel)nf++;
+  if(nf<2)out.seedBad++;
+  if(out.wBad||out.vBad||out.gapBad||out.altBad||out.feeBad||out.reachBad||out.seedBad||out.loseBad){
+    out.why='几把尺不合(斤两'+out.wBad+' 钱'+out.vBad+' 阶梯'+out.gapBad+' 枚举'+out.altBad+
+      ' 手账'+out.feeBad+' 门槛'+out.reachBad+' 种子'+out.seedBad+' 贪心'+out.loseBad+')';
+    return out;
+  }
+  out.info.push({ch:rec.ch,lv:L,ws:rec.ws.slice(),v0:items.map(function(g){return g.v0}),born:items.map(function(g){return g.born})});
+  out.ok=1;
+  return out;
+}
+/* ---- 眼下案面的账：三堆货、两只手、四条式子当场互核（只读）---- */
+function pkAudState(){
+  const s={has:0,lv:pk.lv,n:0,at:pk.at,cap:pk.cap,gl:0,
+    boxN:0,tableN:0,doneN:0,rottenN:0,sum:0,val:0,fee:0,top:0,gap:0,net:0,
+    sumHand:pk.sumHand,feeHand:pk.feeHand,shadow:pk.shadow,ledNet:0,ledSum:0,
+    pending:pk.pending,hearts:pk.hearts,words:pk.words,strokes:pk.strokes,packs:pk.packs,
+    drops:pk.drops,nofits:pk.nofits,dropGoods:pk.dropGoods,rottens:pk.rottens,seals:pk.seals,
+    swaps:pk.swaps,dumps:pk.dumps,wswaps:pk.wswaps,wrongs:pk.wrongs,lates:pk.lates,
+    tools:pk.tools,fillN:pk.fillN,smartN:pk.smartN,topN:pk.topN,gapN:pk.gapN,marMax:pk.marMax,
+    score:pk.score,combo:pk.combo,over:pk.over?1:0,locked:pk.locked?1:0,
+    tell:pkTell()?1:0,feelTell:pkFeelTell()?1:0,probeShow:pk.probeShow?1:0,
+    placeMs:pk.placeMs,wordMs:pk.wordMs,lamp:pk.lamp,bad:0,note:[]};
+  const rec=pk.rec;
+  /* 哪一条不合式就写哪一条：bad 只给个数的话，脚本红了也不知道红在哪 —— 这一本账的每一条都得指名道姓 */
+  const why=function(t){s.bad++;s.note.push(t)};
+  if(!rec)return s;
+  s.has=1;s.n=rec.n;s.gl=pkGold(s.lv);
+  if(s.cap!==pkCap(s.lv))why('承重与场号对不上');
+  /* 三堆货各不相干：箱里 ∩ 案上 ＝ 空；烂掉的与案上的也不许重叠；done 记的是「认下来过」的那几件 */
+  const inX={},inT={},inR={};
+  for(let i=0;i<pk.box.length;i++)inX[pk.box[i]]=1;
+  for(let i=0;i<pk.table.length;i++)inT[pk.table[i]]=1;
+  for(let i=0;i<pk.rotten.length;i++)inR[pk.rotten[i]]=1;
+  for(const k in inX)if(inT[k])why('件 '+k+' 同时摊在案上又压进箱');
+  for(const k in inR)if(inT[k])why('件 '+k+' 已经烂了还摊在案上');
+  if(Object.keys(inX).length!==pk.box.length)why('箱里有重件');   /* 箱里不许有重件 */
+  if(Object.keys(inT).length!==pk.table.length)why('案上有重件');
+  if(pk.table.length>PK_TABLE)why('案上 '+pk.table.length+' 件比 '+PK_TABLE+' 格还多');
+  s.boxN=pk.box.length;s.tableN=pk.table.length;s.doneN=pk.done.length;s.rottenN=pk.rotten.length;
+  if(s.at!==s.doneN)why('程数 '+s.at+' ≠ 认下来的件数 '+s.doneN);   /* 程数只走「认下来过」的那几件 */
+  if(s.rottenN>s.doneN)why('烂掉 '+s.rottenN+' 件比认下来的还多');   /* 烂掉的必须先认下来 */
+  for(let i=0;i<pk.done.length;i++)if(!inR[pk.done[i]]&&!inX[pk.done[i]]&&!inT[pk.done[i]])why('认过的件 '+pk.done[i]+' 不在任何一堆里');
+  if(s.pending>=0&&s.pending>=rec.n)why('梁上挂的件号 '+s.pending+' 出了这个字');
+  if(s.pending>=0&&(inX[s.pending]||inT[s.pending]||inR[s.pending]))why('梁上挂的件 '+s.pending+' 同时又在堆里');
+  /* ① 逐件的手 与 ② 闭式：屏上写的、孩子一件件装出来的，必须是同一本账 */
+  const led=pkLedger();
+  s.sum=led.sum;s.val=led.val;s.fee=led.fee;s.top=led.top;s.gap=led.gap;s.net=led.net;
+  s.ledNet=led.net;s.ledSum=led.sum;
+  if(led.sum!==s.sumHand)why('逐件累计斤两 '+s.sumHand+' ≠ 闭式 '+led.sum);
+  if(led.fee!==s.feeHand)why('逐件累计脚钱 '+s.feeHand+' ≠ 闭式 '+led.fee);
+  if(led.fee!==pkFeeOf(led.sum,s.cap,s.lv))why('闭式脚钱 '+led.fee+' ≠ 承重那一条式子');
+  if(led.top!==led.fee-led.sum)why('顶压那一截 '+led.top+' ≠ 脚钱 − 斤两');
+  if(led.GL!==s.gl)why('闭式自带的黄金线 '+led.GL+' ≠ pkGold(场) '+s.gl);
+  if(led.gap!==pkGapPen(led.GL-led.sum,s.cap,s.lv))why('空位租 '+led.gap+' ≠ 那一格阶梯（一线 '+led.GL+
+    ' 空 '+(led.GL-led.sum)+' 斤）');
+  if(led.net!==led.val-led.fee-led.gap)why('净头 '+led.net+' ≠ 钱 − 脚钱 − 空位租');
+  if(led.sum>s.cap)why('箱里 '+led.sum+' 斤压过了承重 '+s.cap+' 斤');   /* 压不住线的那一件压根进不来 */
+  if((led.nice?1:0)!==(Math.abs(led.sum-led.GL)<=PK_NICE?1:0))why('凑没凑到一线与黄金线对不上');
+  /* ④ 秤对面那条影子：只拿「没烂掉的那些货」按每斤钱排队装，且不许赢过真最优 */
+  const sh=pkShadow(),pool=[];
+  for(let i=0;i<rec.n;i++)if(!pkRottenOf(i))pool.push(pk.goods[i]);
+  const bs=pkBest(pk.goods,s.cap,s.lv,s.at);
+  if(sh!==pkGreedy(pool,s.cap,s.lv,s.at).net)why('秤上的影子 '+sh+' ≠ 当场重算的贪心');
+  if(bs&&sh>bs.net)why('贪心 '+sh+' 赢了最优 '+bs.net);                   /* 贪心永远不许赢过最优 */
+  for(let i=0;i<rec.n;i++)if(pk.goods[i].w!==rec.ws[i])why('第 '+i+' 件的斤两与字料对不上');
+  /* 四支钟不许倒挂、心与场号不许出格 */
+  if(s.placeMs>pk.place0)why('认位钟 '+s.placeMs+' 比整支 '+pk.place0+' 还长');
+  if(s.wordMs>pk.wordMs0)why('字钟 '+s.wordMs+' 比整支 '+pk.wordMs0+' 还长');
+  if(s.lamp>pk.lamp0)why('场灯 '+s.lamp+' 比整支 '+pk.lamp0+' 还长');
+  if(s.lv<1||s.lv>9)why('场号 '+s.lv+' 出了 1~9');
+  if(s.hearts<0||s.hearts>PK_HEART_MAX)why('心 '+s.hearts+' 颗出了格');
+  if(pkTell()!==(!pkNoTell(s.lv)||pk.probeShow>0))why('斤两写不写与场号/掂货对不上');
+  if(pkFeelTell()!==(!pkDim(s.lv)||pk.probeShow>0))why('手感写不写与场号/掂货对不上');
+  return s;
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一坊开到第几箱了 ---- */
+function pkNudge(){
+  const dot=document.getElementById('pkCardDot'),tip=document.getElementById('pkCardTip');
+  const tot=auxInt('hz_pk_words'),pk_=auxInt('hz_pk_packs'),lv=auxInt('hz_pk_lvmax');
+  const rk=pkRank(tot),shelf=auxInt('hz_pk_trophy'),fl=auxInt('hz_pk_fill'),sm=auxInt('hz_pk_smart');
+  if(tip)tip.innerHTML=pk_?('🔔 '+rk.e+' '+rk.t+' · 收字 '+tot+' 个 · 装箱 '+pk_+' 件 · 最远第 '+lv+
+    ' 场 · 凑整 '+fl+' 箱 · 赢过贪心 '+sm+' 箱 · 比它最多一箱多 '+auxInt('hz_pk_margin')+
+    ' 文 · 家什架 '+shelf+' 件'):
+    '一箱货、一条承重线：这个字一笔是一件货，<b>斤两</b>看它拐几道弯、占多大地方（<b>w＝'+PK_W0+'＋'+PK_TURN_K+
+    '×转折数＋⌈弧长÷'+PK_K+'⌉</b>），<b>钱</b>是笔形行情加成色。<b>钱与斤两故意脱钩</b> —— 脱了钩，'+
+    '「轻又值钱」和「一头沉」才是两条真会打架的路。箱里装不下整个字，<b>必须舍掉几件</b>：压在<b>黄金线</b>上面每斤赔 '+
+    PK_TSUR+' 文，离它空着又欠<b>空位租</b> —— 最省那一篓夹在黄金线上下 '+PK_NICE+' 斤以内，<b>贪心贪不出来，是要凑的</b>。'+
+    '秤对面那条影子一路按「每斤钱」排队装，配字时就验过它<b>真输</b>';
+  if(dot){dot.classList.toggle('on',!pk_);dot.textContent=(pk_?'':'🆕')}
 }
 
 
