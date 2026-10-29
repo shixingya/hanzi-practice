@@ -7486,6 +7486,74 @@ button:active{transform:scale(.95)}
   #screen-pack .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-pack .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.108 ✒️ 笔顺抬笔坊 ================= */
+/* HUD 占死三行（76 像素就是它满三行那一个高度）：字没上台那两息它只折两行，
+   不留这一格的话整张走笔案会被往上抬 —— 案上的头就画在抬起来那几像素里，孩子的指头还点着头呢 */
+.eu-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.eu-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.eu-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死六行（块级排版，只是垫高、不改排版）：三副题面里最宽的那一副（抬笔落点还带一句「还有几个头可落」）就是六行 ——
+   走笔案与四条量表都在它下头，封字两行、起笔三行都把整张案往上抬，一行也不许裁（裁字比挪案更糟）*/
+.eu-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*6)}
+.eu-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.eu-ask b{color:#FFE082}
+.eu-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 走笔案：一块磨旧的砚台，米字格、淡墨的字底、道、头、号牌、笔尖全画在这一张案上（canvas 透明，底色由这里给）*/
+.eu-field{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#1D2733,#131A22 58%,#080C11);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8)}
+.eu-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.eu-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(10,14,18,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.eu-tag.on{opacity:1}
+.eu-tag.warn{background:rgba(88,24,24,.94);color:#FFCCBC}
+.eu-tag.gold{background:rgba(74,58,14,.96);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.eu-tag.cyan{background:rgba(6,58,74,.94);color:#84FFFF;box-shadow:0 0 14px rgba(0,229,255,.4)}
+/* 四条量表：下手的钟（青）· 这一字的钟（金）· 这一场的灯（冷绿）· 这一趟的账（橙，多花到那一格就一路变红）*/
+.eu-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.eu-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.eu-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#37474F,#78909C);transition:width .15s linear}
+.eu-tl.place i{background:linear-gradient(90deg,#4DD0E1,#B2EBF2)}
+.eu-tl.word i{background:linear-gradient(90deg,#C8A46A,#FFE082)}
+.eu-tl.lamp i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.eu-tl.costw i{background:linear-gradient(90deg,#FFB300,#FFD54F)}
+.eu-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.eu-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.eu-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.eu-take button.pass{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#263238;background:linear-gradient(180deg,#CFD8DC,#90A4AE)}
+.eu-take button.pass small{display:block;font-size:10px;font-weight:400;color:rgba(38,50,56,.7)}
+.eu-take button.pass:active{transform:translateY(1px)}
+.eu-take button.pass:disabled{opacity:.42;cursor:default}
+.eu-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1A1206;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.eu-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(26,18,6,.72)}
+.eu-take button.big.ready{background:linear-gradient(180deg,#A5D6A7,#66BB6A);box-shadow:0 0 20px rgba(102,187,106,.55);color:#10260F}
+.eu-take button.big:active{transform:translateY(1px)}
+.eu-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.eu-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.eu-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.eu-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.eu-tool b{display:block;font-size:10px;color:#FFD54F;font-weight:700}
+.eu-tool:disabled{opacity:.4;cursor:default}
+.eu-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.eu-hintline b{color:#FFD54F}
+.eu-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.eu-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.eu-msg b{color:#CFD8DC}
+.eu-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.eu-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.eu-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.eu-rs-book b{color:#FFD54F}
+.eu-rs-book small{color:#78909C}
+.eu-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,179,0,.92);color:#1A1206;border-radius:9px;padding:1px 6px;z-index:4}
+.eu-cdot.on{display:block}
+#screen-eu .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：四条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是六行半，就垫死八行 */
+@media(max-width:460px){
+  .eu-tl{flex:1 1 100%}
+  .eu-ask{min-height:calc(1.35em*8)}
+  .eu-take button.pass{flex:0 0 84px}
+  .eu-take button.big{font-size:17px}
+  #screen-eu .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-eu .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-eu .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7542,8 +7610,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 106 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">106</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 107 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">107</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7554,12 +7622,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>106 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>48</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>107 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>49</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="euCard" onclick="enterMode('eu')">
+      <div class="icon">✒️</div>
+      <div class="info"><h3>笔顺抬笔坊</h3><p id="euCardTip">一个字被交叉点切成一段一段「道」，头与头之间一条道。<b>走完所有的道</b>只有两种代价：<b>抬笔 3 分</b>（眼前接不到没走的道，挪起来在别处落）、<b>倒描 1 分</b>（逆着笔顺描一条，便宜但连击断了）—— 一贵一贱两条路，同一个字走得好不好差的就是这几分。🎯 <b>起笔那个头值钱</b>：连着奇数条道的叫<b>单头</b>，k 个单头 ⇒ 最少 k/2 条迹走完，从单头起正好用满（抬 k/2−1 次），从双头起多抬一次 —— 配字时当场验过<b>最好的头与最差的头账不一样</b>，一样的字不收。📐 案上那个「最省 N 分」是反向填 mask×头 的表算的，另有正向逐头账、会算的手与不动脑的手 —— <b>五只手同一个数</b>才准上台，而且不动脑那只必须<b>真比精确账贵</b>，孩子这一算才有肉吃。🧭 <b>割边留到最后</b>：走完就把字劈成两半的道能不碰就不碰。第 4 场起不再标逐个头的分数，第 6 场起连红蓝圈也收走</p></div>
+      <span class="eu-cdot" id="euCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="pkCard" onclick="enterMode('pack')">
       <div class="icon">📦</div>
       <div class="info"><h3>笔顺装箱坊</h3><p id="pkCardTip">一箱货、一条承重线：这个字一笔是一件货，<b>斤两</b>看它拐几道弯、占多大地方（<b>w＝2＋2×转折数＋⌈弧长÷150⌉</b>，3~11 斤），<b>钱</b>是笔形行情加成色（横十竖十四撇廿捺三十，普/上/极品加 0/3/8 文）。<b>钱与斤两故意脱钩</b> —— 脱了钩，「轻又值钱」和「一头沉」才是两条真会打架的路。箱里装不下整个字（配字时就挑「比箱至少沉 4 斤」的字），<b>必须舍掉几件</b>。两头各收一份钱：压在<b>黄金线</b>（承重减顶压段）上面每斤赔 18 文，离它空着又欠<b>空位租</b>（空 ≤2 斤不欠、3~5 欠 2、6~9 欠 5、10 以上欠 9）—— 最省那一篓就夹在黄金线上下两斤以内，<b>这一小条贪心贪不出来，是要凑的</b>。秤对面那条影子一路按「每斤钱」排队装，配字时就验过它<b>真输</b>。第 4 场起货牌不写斤两只写手感，第 6 场起连手感也收走</p></div>
@@ -8343,6 +8416,76 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-eu">
+  <div class="top-bar">
+    <button class="back-btn" onclick="euLeave()">← 返回</button>
+    <div class="stats"><span id="euScoreTxt">✒ 0 文</span><span id="euLvTxt">第 1 场 · 收 0 字</span><span id="euQTxt">⏳ 起笔 8 秒</span></div>
+    <button class="icon-btn" onclick="euHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="eu-hud">
+    <span id="euRankTxt" title="称号">✒️ 头一趟</span>
+    <span id="euHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="euComboTxt" title="连击">🔥 连 0</span>
+    <span id="euLotTxt" title="这一场第几字、走到第几段">🈶 1/3 字 · 已走 0/0 段</span>
+    <span id="euCostTxt" title="这一趟的账">✒ 抬 0 · 倒 0 · 花 0 分</span>
+    <span class="light" id="euHitLight">💡 挑个头下笔</span>
+  </div>
+  <div class="eu-ask" id="euAsk">📥 正在挑字……<br><small>在字库里找「起笔头真分高下、不动脑必多花钱、账算得过来」的字</small></div>
+  <div class="eu-stage">
+    <div class="eu-field" id="euField">
+      <canvas class="eu-canvas" id="euCanvas" width="420" height="380"></canvas>
+      <div class="eu-tag" id="euTag">✒️ 案还没开</div>
+    </div>
+  </div>
+  <div class="eu-meter">
+    <div class="eu-tl place"><i id="euPlaceBar"></i><b id="euPlaceTxt">🖊 起笔 8.0 秒</b></div>
+    <div class="eu-tl word"><i id="euWordBar"></i><b id="euWordTxt">🈶 这个字（每段 4.6 秒起）</b></div>
+    <div class="eu-tl lamp"><i id="euLampBar"></i><b id="euLampTxt">💡 这一场 150 秒</b></div>
+    <div class="eu-tl costw"><i id="euCostBar"></i><b id="euCostBig">✒ 花 0 / 最省 0 分</b></div>
+  </div>
+  <div class="eu-take">
+    <button class="pass" id="euLiftBtn">✋ 主动抬笔<small>X</small></button>
+    <button class="big" id="euActBtn">📥 正在挑字……<small>←→ 换头 · 回车落笔</small></button>
+    <button class="pass" id="euNextBtn">🏁 结算<small>F</small></button>
+  </div>
+  <div class="eu-tools">
+    <button class="eu-tool" id="euProbeBtn" disabled>✨ 数头<span>P</span><b>剩 2</b></button>
+    <button class="eu-tool" id="euGuideBtn" disabled>🧭 指道<span>V</span><b>剩 2</b></button>
+    <button class="eu-tool" id="euSwapBtn" disabled>🔁 换字<span>S</span><b>剩 1</b></button>
+    <button class="eu-tool" id="euHelpBtn">📖 说明<span>H</span></button>
+  </div>
+  <div class="eu-hintline" id="euHintTxt">✒ <b>两种代价</b>：抬笔 3 分、倒描 1 分 —— 倒描便宜但断连击，抬笔贵还能挑落点</div>
+  <div class="eu-msg" id="euMsg">✒️ <b>一个字被交叉点切成一段一段「道」</b>：走道只能从站着的那个头出发，把每一条道都染绿就算这个字写完<br>💡 <b>抬笔 3 分</b>（眼前接不到没走的道，挪起来在别处落）· <b>倒描 1 分</b>（逆着笔顺描一条，便宜但连击断了）—— 一贵一贱两条路，同一个字走得好不好差的就是这几分<br>🎯 <b>起笔那个头值钱</b>：连着奇数条道的叫<b>单头</b>，k 个单头 ⇒ 这个字最少 k/2 条迹走完，从单头起正好用满（抬 k/2−1 次），从双头起多抬一次 · <code>←→</code> 挑头 · <code>回车</code> 落笔 · <code>1~6</code> 走哪一条道 · <code>X</code> 抬笔 · ✨ <code>P</code> 数头 · 🧭 <code>V</code> 指道 · 🔁 <code>S</code> 换字 · <code>F</code> 结算</div>
+</div>
+<div class="screen" id="screen-eu-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="euLeave()">← 返回</button>
+    <div class="stats"><span id="euRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="euRsEmoji">✒️</div>
+    <div style="font-size:26px;font-weight:800" id="euRsTitle">收笔了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="euRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="eu-pk" id="euRsScore">✒ 0 文</span>
+      <span class="eu-pk" id="euRsWords">🈶 收字 0 个 · 染绿 0 段</span>
+      <span class="eu-pk" id="euRsWalk">✋ 抬笔 0 次 · ↺ 倒描 0 段 · 最长连击 0</span>
+      <span class="eu-pk" id="euRsAward">🏅 一步不差 0 趟 · 零倒描 0 趟 · 一趟不抬笔 0 趟</span>
+      <span class="eu-pk" id="euRsWipe">⚖ 这一场共多花 0 分 · 下手钟尽 0 次 · 犹豫 0 回</span>
+      <span class="eu-pk" id="euRsTools">🧰 借家什 0 回 · ✨数头 0 · 🧭指道 0 · 🔁换字 0</span>
+      <span class="eu-pk" id="euRsBest">🏅 历史最高 0 文</span>
+      <span class="eu-pk" id="euRsRank">✒️ 头一趟</span>
+    </div>
+    <div class="eu-rs-book" id="euRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="euRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="euRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="euReBtn">✒️ 再走一趟</button>
+      <button class="tool-btn" id="euLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="euHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -16171,6 +16314,7 @@ function updateHomeStats(){
   if(typeof htNudge==='function')htNudge();
   if(typeof hsNudge==='function')hsNudge();
   if(typeof pkNudge==='function')pkNudge();
+  if(typeof euNudge==='function')euNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -16223,6 +16367,7 @@ function enterMode(mode){
   if(mode==='hoist'){htStart();return}
   if(mode==='hyst'){hsStart();return}
   if(mode==='pack'){pkStart();return}
+  if(mode==='eu'){euStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -116271,6 +116416,1982 @@ function pkNudge(){
     PK_TSUR+' 文，离它空着又欠<b>空位租</b> —— 最省那一篓夹在黄金线上下 '+PK_NICE+' 斤以内，<b>贪心贪不出来，是要凑的</b>。'+
     '秤对面那条影子一路按「每斤钱」排队装，配字时就验过它<b>真输</b>';
   if(dot){dot.classList.toggle('on',!pk_);dot.textContent=(pk_?'':'🆕')}
+}
+
+
+/* ================= v1.108.0 ✒️ 笔顺抬笔坊（一张墨道图 · 两种代价 · 起笔那个头自己挑 ================= */
+/* 场：420×380 的一处走笔案。整张案就是一张「墨道图」：把这个字的每一笔中线按 12 个单位取一个样，
+   不同笔的样点凑到一处（笔肚子遇笔肚子 24 单位、笔头挨别笔 130 单位）就算一个「头」——
+   岔口、十字、T 头、笔笔收尾相接处都是头；两点头之间的中段是一条「道」。
+   于是一个字被交叉点切成一段一段：一笔若被两个岔口拦住，它就是三条道。段数 5~16，头数最多 16。
+   规矩只有四条，四条全在整数上：
+   ① 走完这个字所有的道。笔落在一个头上，只能走**接着这个头**的道；走到对岸的头，再走下一条。
+   ② 两种代价，一贵一贱：
+      **抬笔** `EU_LIFT`=3 分 —— 眼前这个头接不到任何没走的道了，把笔挪起来在别处落下去；
+      **倒描** `EU_BACK`=1 分 —— 逆着书写方向描一条道（从这条道的收笔头进去、起笔头出来）。
+      倒描便宜，可它把连击打断了；抬笔贵，还要多点一次落点 —— 一贵一贱两条路，
+      同一个字走得好不好，差的就是这几分。
+   ③ 起笔那个头值钱。图论把底牌摊在明处：连着奇数条道的头叫**单头**，偶数条的叫**双头**；
+      单头一共 k 个 ⇒ 这个字最少要 k/2 条迹走完，从单头起笔正好用满（抬 k/2−1 次），
+      从双头起笔第一条迹得自己收回来，多抬一次。所以「从哪个头起」不是摆设 ——
+      配字那一步就验过：最好的头与最差的头，走下来的账必须不一样（`起笔头挑哪儿都一样，没得算` 的字不收）。
+   ④ 每一笔赏都当场证得起。案上写的「这个字最省 N 分」不是一把手算的：
+      同一个掩码表（`euPlanTable`）自顶向下反着填一遍，逐个头各答一次「从这儿起还差几分」；
+      另外三只手（正向逐头 DP、自顶向下 memo、表驱动）在配字时互核，
+      再加一只不动脑的（见顺写就走、走投无路就抬）与一只会算的（割边能不碰就不碰）——
+      不动脑的那只必须**真比精确账贵**，孩子这一算才有肉吃（`省` 就是这个差价）。
+      赏格也只列这一趟真办得到的：`零抬笔` 那一格，只有单头 ≤2 个字才亮灯（全站只有瓦、双两个）。
+   教学点：数一数单头几个，就知道这个字最少抬几次笔 —— 起笔挑单头，抬笔也落在单头；
+   第 `EU_TELL_LV` 场起案上的头不再标「从这儿起最省几分」，第 `EU_DIM_LV` 场起连单双头的红蓝圈也收走，
+   剩下的凭据只有 ✨ 数头那一眼与脑子里那条 k/2。*/
+const EU_W=420,EU_CVH=380;
+/* 案面两块地方：整幅走笔案 + 底上两行回话。
+   米字格淡墨在道底下，三排：10..310（案）· 330/358（回话两行）*/
+const EU_BX=12,EU_BY=10,EU_BW=396,EU_BH=300;   /* 走笔案 12..408 × 10..310 */
+const EU_PAD=16;                                /* 图在案内的留白：号牌要画得下 */
+const EU_L1=330,EU_L2=358;                      /* 回话两行的基线，380 以内 */
+const EU_HIT=15,EU_NR=7;                        /* 指头点到就算的半径 / 头画多大 */
+/* ---- ① 几何尺子：与离线扫描 _eugeo.cjs 一字一样。改任何一个数都得重生成 EU_LEV ---- */
+const EU_RSTEP=12;      /* 每 12（1024 方格单位）取一个样：交叉点两头各自离样本 ≤12 */
+const EU_MERGE=24;      /* 两段「笔肚子」相遇（真交叉）*/
+const EU_ANCH=130;      /* 笔头挨上别笔（角、T 头）：折线在接点处各让出一个笔画宽，半径得放宽 */
+const EU_NMIN=3,EU_NMAX=8;      /* 收几笔的字 */
+const EU_EMIN=5,EU_EMAX=16;     /* 收成几条道：少于 5 条一眼看穿，多于 16 条这张表就填不动了 */
+const EU_ODDMAX=10;     /* 单头超过 10 个 ⇒ 下限 4 抬起步，孩子只会在案上乱抬 */
+const EU_DEGMAX=6,EU_DEGCHOICE=3;/* 最密的头最多 6 条道（数字键 1~6 刚好盖住）；至少得有一个头 ≥3 条道才有岔口可选 */
+const EU_SIZE=300;      /* 字在 1024 空间里横竖都得 ≥300，小字在案上挤成一团 */
+const EU_NEAR=38,EU_NEARMAX=2;   /* 两个头离得太近（案面上不足 11 像素）最多容忍两对 */
+const EU_KINDMIN=2;     /* 笔形至少两种 */
+/* ---- ② 两种代价 ---- */
+const EU_LIFT=3,EU_BACK=1;
+/* ---- 四支钟：下手这一口 · 这一字 · 这一场的灯 · 封字那一息 ---- */
+const EU_START0=8000,EU_START_MIN=4000,EU_START_STEP=450;
+const EU_STEP0=4200,EU_STEP_MIN=2200,EU_STEP_STEP=240;
+const EU_LIFT0=7000,EU_LIFT_MIN=3600,EU_LIFT_STEP=380;
+const EU_WORD0=4600,EU_WORD_CUT=170,EU_WORD_MIN=24000;/* 这一字的钟 = 段数 × 每段几秒 − 场号折扣 */
+const EU_LAMP0=150000,EU_LAMP_MIN=96000,EU_LAMP_STEP=6600;
+const EU_SEAL_MS=3000,EU_ANIM_MS=210;
+function euStartMs(L){return Math.max(EU_START_MIN,EU_START0-(L-1)*EU_START_STEP)}
+function euStepMs(L){return Math.max(EU_STEP_MIN,EU_STEP0-(L-1)*EU_STEP_STEP)}
+function euLiftMs(L){return Math.max(EU_LIFT_MIN,EU_LIFT0-(L-1)*EU_LIFT_STEP)}
+function euWordMs(L,E){return Math.max(EU_WORD_MIN,E*(EU_WORD0-(L-1)*EU_WORD_CUT))}
+function euLamp(L){return Math.max(EU_LAMP_MIN,EU_LAMP0-(L-1)*EU_LAMP_STEP)}
+/* ---- 罚：一律从「文」里扣（孩子口袋里的赏）；案上那本账（分）只记抬笔与倒描 ----
+   手慢 · 犹豫 · 字钟尽 · 半路收场 · 换字 · 借家什 · 翻说明 */
+const EU_P_LATE=3,EU_P_HES=4,EU_P_WORD=8,EU_P_SEAL=5,EU_P_SWAP=6,EU_P_HELP=3,EU_P_EYEBALL=4;
+const EU_HES_KEY=6;                         /* 挑头那一步上 ←→ 敲过六回还不落笔，算犹豫 */
+/* ---- 赏：染绿一段的底文（连击与场号加成）与封字那一整包 ---- */
+const EU_M0=7,EU_CB=.14,EU_LVW=.07;
+const EU_PTS_SEAL=12;                 /* 封字底包 */
+const EU_PTS_MAR=[30,18,11,6];        /* 与全字最省之比：多花 0/1/2/3 分各给几文，多花 ≥4 分不给 */
+const EU_PTS_START=8,EU_PTS_FWD=10,EU_PTS_NOLIFT=24,EU_PTS_FRESH=6;
+const EU_PTS_CLEAN=8,EU_PTS_NOTOOL=8,EU_PTS_TOOLRUN=14;
+const EU_MAR_LINE=5;                  /* 多花到这一格就掉一颗心：这一趟走得太糙了 */
+const EU_MAR_CLEAN=2;                 /* 一场三字「每趟多花 ≤2 分」才算清白 ---- 藏书阁那条票 ---- */
+/* ---- ④ 配字口径：一场一串字，串外的字在这一场就是过不了闸的字 ---- */
+const EU_PER=3;                       /* 一场三字 */
+const EU_POOL_MIN=4,EU_POOL_WANT=14,EU_POOL_SCAN=320;
+const EU_HEARTS=3,EU_HEART_MAX=5,EU_BOOK_MAX=300;
+const EU_TELL_LV=4,EU_DIM_LV=6;       /* 第 4 场起不标逐个头的最省，第 6 场起连单双头的圈也不标 */
+function euNoTell(L){return L>=EU_TELL_LV}
+function euDim(L){return L>=EU_DIM_LV}
+const EU_P0={probe:2,guide:2,swap:1};  /* ✨ 数头 / 🧭 指道 / 🔁 换字
+   数头与指道各起手两回：这两件家什都带「那一口气还没写完」的挡话（数头标圈 EU_PROBE_MS 秒、
+   指道亮那一条道 EU_GUIDE_MS 秒），余量只给一张的话，第二回按下去撞上「用光了」，
+   「等它自己收走」这一句就永远说不出口了 */
+const EU_PROBE_MS=5200,EU_GUIDE_MS=4200;
+const EU_TAG_MS=2600,EU_NAG_MS=11000,EU_HELP_MS=16000;
+/* 场档：开局那一场按「一辈子收齐的字数」走（每两个字进一场），局内每收满 EU_PER 字自己往上进一场 */
+function euLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+const EU_KN=['横','竖','撇','捺'];
+function euKnOf(m){const d=jtDirOf(m);return d<0?'折':EU_KN[d]}
+function euRankOf(w){
+  let r=EU_RANKS[0];
+  for(let i=0;i<EU_RANKS.length;i++)if(w>=EU_RANKS[i].n)r=EU_RANKS[i];
+  return r;
+}
+const EU_RANKS=[
+  {n:0,e:'✒️',t:'头一趟'},      {n:2,e:'🧭',t:'认得单头'},  {n:5,e:'📐',t:'数得清迹'},
+  {n:9,e:'🖊',t:'少抬一次'},     {n:14,e:'🪶',t:'一笔到底'},   {n:21,e:'🏮',t:'账算得响'},
+  {n:30,e:'🧰',t:'全套家什'},    {n:42,e:'🎯',t:'一步不差'},   {n:58,e:'👑',t:'从没多抬过'}
+];
+const EU_SHELF_LV=4;
+const EU_SHELF=[
+  {k:'墨道图',d:'收齐一个字'},        {k:'清白票',d:'一场三字每趟多花 ≤'+EU_MAR_CLEAN+' 分'},
+  {k:'神来之笔',d:'一趟不差一分，满 5 趟'},    {k:'不抬章',d:'一趟到底不抬笔（全站只有两个字办得到）'},
+  {k:'戥子',d:'走到第 '+EU_SHELF_LV+' 场还在走'},  {k:'空手趟',d:'一趟家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'}, {k:'金笔尖',d:'累计染绿 120 段'}
+];
+const eu={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  /* 场：一场三字；lv 就是场号 */
+  lv:1,wi:0,score:0,hearts:EU_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一趟：字 · 图 · 表 · 已染绿的道 · 眼下站着的头 · 挑中的起笔头 */
+  ch:'',rec:null,g:null,tb:null,ink:null,inkN:0,at:-1,start:-1,
+  lifts:0,backs:0,cost:0,steps:[],opts:[],cand:[],sel:0,candKeys:0,pen:null,
+  /* 这一趟的账：已花、这一头起最省、全字最省、差几分 */
+  headMin:0,mar:-1,marAll:-1,
+  /* 家什 */
+  probeN:EU_P0.probe,guideN:EU_P0.guide,swapN:EU_P0.swap,
+  probeUse:0,guideUse:0,swapUse:0,probeMs:0,guideMs:0,guideE:-1,guideLift:0,
+  /* 钟 */
+  placeMs:0,place0:0,placeKind:'',wordMs:0,wordMs0:0,lamp:0,lamp0:0,sealMs:0,
+  /* 账：收字 · 染绿段数 · 抬笔 · 倒描 · 省 0 趟 · 零倒描趟 · 零抬笔趟 · 起笔挑中最优头的趟 */
+  words:0,segs:0,liftTotal:0,backTotal:0,perfect:0,fwdN:0,noliftN:0,bestN:0,
+  wrongs:0,lates:0,hes:0,swaps:0,wordOuts:0,eyeballs:0,
+  /* 清白账：一场三字每趟省 ≤EU_MAR_CLEAN · 一趟不借家什 */
+  cleanWord:1,neatWord:1,tools:0,wordTools:0,cleanRun:0,toolRun:0,marSum:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',nags:0,nagMs:0,newBest:false,
+  helpMs:0,tagTimer:0
+};
+
+/* ---- 小工具：本坊自己的发声、回话、清定时器 ----
+   这几只不许抄公共那几只：公共的 auxSay 往别人家的消息条里写字、auxTone 揣的是别人那块声卡、
+   auxT/auxKill 管的是别人那一串定时器 —— 借来用，孩子的话就落在别人家的栏里。 */
+function euTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!eu.ac)eu.ac=new AC();
+    const c=eu.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.value=g===undefined?.05:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+/* 回话条就是走笔案上那一条 .eu-msg：写错了栏，孩子的话一个字也看不见 */
+function euSay(msg,color){euMsg(msg,color||'#FFE082')}
+function euT(fn,ms){const id=setTimeout(function(){
+  const i=eu.timers.indexOf(id);if(i>=0)eu.timers.splice(i,1);
+  if(!eu.run||eu.over)return;
+  try{fn()}catch(e){}
+},ms);eu.timers.push(id);return id}
+function euKill(){
+  for(let i=0;i<eu.timers.length;i++)clearTimeout(eu.timers[i]);
+  eu.timers=[];
+  if(eu.rafId){cancelAnimationFrame(eu.rafId);eu.rafId=0}
+}
+
+/* ---------- ① 墨道图：折线重采样 → 邻近合点 → 头与道 ----------
+   与离线扫描 _eugeo.cjs 同一套几何，连样本顺序、合点顺序、边的序号都一样 ——
+   字表（EU_LEV 那九串）是那头数出来的，这头若换了算法，字表当场作废 */
+function euResample(m){
+  const out=[[m[0][0],m[0][1]]];
+  let from=[m[0][0],m[0][1]],carry=0;
+  for(let i=1;i<m.length;i++){
+    let dx=m[i][0]-from[0],dy=m[i][1]-from[1];
+    let rest=Math.sqrt(dx*dx+dy*dy);
+    let guard=0;
+    while(carry+rest>=EU_RSTEP&&guard++<600){
+      const t=(EU_RSTEP-carry)/rest;
+      from=[from[0]+dx*t,from[1]+dy*t];
+      out.push([Math.round(from[0]),Math.round(from[1])]);
+      dx=m[i][0]-from[0];dy=m[i][1]-from[1];
+      rest=Math.sqrt(dx*dx+dy*dy);
+      carry=0;
+    }
+    carry+=rest;
+    from=[m[i][0],m[i][1]];
+    dx=0;
+  }
+  const last=m[m.length-1];
+  if(Math.abs(last[0]-out[out.length-1][0])>1||Math.abs(last[1]-out[out.length-1][1])>1)out.push([last[0],last[1]]);
+  return out;
+}
+/* 节点 = 「岔口组」（不同笔的样本点彼此靠近 ⇒ 同一个交叉/相接处）∪ 每笔的首末锚点。
+   同一笔上相邻样本天生只差 EU_RSTEP，绝不能互相合点 —— 合了就把整笔缩成一个点。 */
+function euGraphOf(meds){
+  const pts=[],owner=[],anc=[],chains=[];
+  for(let s=0;s<meds.length;s++){
+    const rs=euResample(meds[s]);
+    if(rs.length<2)return null;
+    const ch=[];
+    for(let i=0;i<rs.length;i++){
+      pts.push(rs[i]);owner.push(s);
+      anc.push(i===0||i===rs.length-1);
+      ch.push(pts.length-1);
+    }
+    chains.push(ch);
+  }
+  const parent=[];
+  for(let i=0;i<pts.length;i++)parent.push(i);
+  function find(a){while(parent[a]!==a){parent[a]=parent[parent[a]];a=parent[a]}return a}
+  function union(a,b){const x=find(a),y=find(b);if(x!==y)parent[Math.max(x,y)]=Math.min(x,y)}
+  const B=EU_ANCH,bucket={};
+  for(let i=0;i<pts.length;i++){
+    const bx=Math.floor(pts[i][0]/B),by=Math.floor(pts[i][1]/B);
+    for(let ox=-1;ox<=1;ox++)for(let oy=-1;oy<=1;oy++){
+      const list=bucket[(bx+ox)+','+(by+oy)];
+      if(!list)continue;
+      for(let j=0;j<list.length;j++){
+        const k=list[j];
+        if(k===i||owner[k]===owner[i])continue;      /* 只合别笔的点 */
+        const dx=pts[i][0]-pts[k][0],dy=pts[i][1]-pts[k][1],d2=dx*dx+dy*dy;
+        /* 笔头挨上别笔（角、T 头）：折线在接点上各留了一个笔画宽的缺口，半径要放宽；
+           两段笔肚子相遇只能是真交叉，样本密到 12，收紧半径才不会把并行近邻错合 */
+        const r=(anc[i]||anc[k])?EU_ANCH:EU_MERGE;
+        if(d2<=r*r)union(i,k);
+      }
+    }
+    if(!bucket[bx+','+by])bucket[bx+','+by]=[i];else bucket[bx+','+by].push(i);
+  }
+  /* 组里有 ≥2 支笔的点 ⇒ 这一堆是接点/岔口；只含一支笔的组是笔肚子，不成节点 */
+  const own={},cnt={},sumx={},sumy={};
+  for(let i=0;i<pts.length;i++){
+    const r=find(i);
+    cnt[r]=(cnt[r]||0)+1;
+    sumx[r]=(sumx[r]||0)+pts[i][0];
+    sumy[r]=(sumy[r]||0)+pts[i][1];
+    if(!own[r])own[r]={};
+    own[r][owner[i]]=1;
+  }
+  const multi={};
+  for(const r in cnt){let k=0;for(const o in own[r])k++;if(k>=2)multi[r]=1}
+  const nodes=[];
+  const nodeOf={};
+  function nodeOfPoint(pi,anchor){
+    const r=find(pi);
+    if(multi[r]!==undefined){
+      if(nodeOf[r]===undefined)nodeOf[r]=(nodes.push({x:Math.round(sumx[r]/cnt[r]),y:Math.round(sumy[r]/cnt[r])})-1);
+      return nodeOf[r];
+    }
+    if(!anchor)return -1;
+    const n=nodes.length;
+    nodes.push({x:pts[pi][0],y:pts[pi][1]});
+    return n;
+  }
+  /* 边 = 两个头之间的一段道。pts 记下这一段的样本折线（画出来才像这个字：
+     一笔弯来弯去，两头之间未必是一条直线），a 是书写方向的那一头（a→b 顺写不花钱，b→a 就是倒描）*/
+  const edges=[];
+  for(let s=0;s<chains.length;s++){
+    const ch=chains[s];
+    const first=nodeOfPoint(ch[0],1);
+    if(first<0)return null;
+    let cur=first;
+    const acc=[[nodes[first].x,nodes[first].y]];
+    let seen=1;
+    for(let i=1;i<ch.length;i++){
+      const n=nodeOfPoint(ch[i],i===ch.length-1);
+      acc.push([pts[ch[i]][0],pts[ch[i]][1]]);
+      if(n<0||n===cur)continue;
+      acc.push([nodes[n].x,nodes[n].y]);
+      edges.push({a:cur,b:n,s:s,k:edges.length,pts:acc.slice()});
+      cur=n;acc.length=0;acc.push([nodes[n].x,nodes[n].y]);
+      seen++;
+    }
+    if(seen<2)return null;                       /* 这一笔从头到尾没分出过一段道 */
+  }
+  if(!edges.length)return null;
+  const deg=[],out=[],inn=[],adj=[];
+  for(let n=0;n<nodes.length;n++){deg[n]=0;out[n]=0;inn[n]=0;adj[n]=[]}
+  for(let i=0;i<edges.length;i++){
+    deg[edges[i].a]++;deg[edges[i].b]++;
+    out[edges[i].a]++;inn[edges[i].b]++;
+    adj[edges[i].a].push(i);adj[edges[i].b].push(i);
+  }
+  return {nodes:nodes,edges:edges,deg:deg,out:out,inn:inn,adj:adj};
+}
+/* ---------- 判定：这张图连通吗、有几个单头 ---------- */
+function euOdd(g){const o=[];for(let n=0;n<g.deg.length;n++)if(g.deg[n]%2)o.push(n);return o}
+function euComp(g,from,banned){
+  const seen={},st=[from];seen[from]=1;
+  while(st.length){
+    const v=st.pop(),a=g.adj[v];
+    for(let j=0;j<a.length;j++){
+      if(banned&&banned[a[j]])continue;
+      const e=g.edges[a[j]],o=e.a===v?e.b:e.a;
+      if(!seen[o]){seen[o]=1;st.push(o)}
+    }
+  }
+  return seen;
+}
+function euConnected(g){
+  let first=-1,cnt=0;
+  for(let n=0;n<g.deg.length;n++)if(g.deg[n]>0){cnt++;if(first<0)first=n}
+  if(first<0)return false;
+  let reach=0;const seen=euComp(g,first,null);
+  for(const k in seen)reach++;
+  return reach===cnt;
+}
+/* 走过 e 之后，眼前这一头还剩边没剩：剩了而对岸带不走它 ⇒ e 是割边，走它就把字劈成两半 */
+function euStrands(g,v,e,taken){
+  let left=0;
+  for(let i=0;i<g.adj[v].length;i++){const k=g.adj[v][i];if(!taken[k]&&k!==e){left=1;break}}
+  if(!left)return false;
+  const to=g.edges[e].a===v?g.edges[e].b:g.edges[e].a;
+  const seen=euComp(g,to,taken);
+  for(let k=0;k<g.edges.length;k++){
+    if(taken[k]||k===e)continue;
+    if(!seen[g.edges[k].a]&&!seen[g.edges[k].b])return true;
+  }
+  return false;
+}
+/* ---------- ② 四只手算同一张图的账 ----------
+   表（产品跑的那只）：反向填 mask×头 两张表，一次算完 ⇒ 逐个头从这儿起还差几分、
+                    眼下该走哪一条、离最省差几分，全从这张表里读；
+   正向逐头 DP：自底向上，逐个头各来一遍（与表完全两行路，互核用）；
+   会算的手（Fleury）：岔口上先挑不断路的，抬笔落在剩下图里的奇头；
+   不动脑的手（贪心）：见顺写的就走，看不见就倒着描，眼前空了随手抬。
+   配字时验：表 == 正向逐头（逐个头都要合），会算的手与不动脑的手都真比表贵，
+   而且不动脑的手不能一样贵 —— 孩子这一算才有肉吃。*/
+function euPlanTable(g){
+  const E=g.edges.length,V=g.nodes.length;
+  if(E>EU_EMAX)return null;
+  const FULL=(1<<E)-1,INF=30000,CAP=29000;
+  const walk=new Int16Array((1<<E)*V),full=new Int16Array((1<<E)*V);
+  for(let m=FULL;m>=0;m--){
+    const base=m*V;
+    if(m===FULL){for(let v=0;v<V;v++){walk[base+v]=0;full[base+v]=0}continue}
+    let minLive=INF;
+    for(let v=0;v<V;v++){
+      let best=INF;
+      const a=g.adj[v];
+      for(let i=0;i<a.length;i++){
+        const e=a[i];
+        if(m&(1<<e))continue;
+        const ed=g.edges[e],fwd=ed.a===v;
+        const c=(fwd?0:EU_BACK)+full[((m|(1<<e))*V)+(fwd?ed.b:ed.a)];
+        if(c<best)best=c;
+      }
+      if(best>CAP)best=INF;
+      walk[base+v]=best;
+      if(best<minLive)minLive=best;
+    }
+    /* 抬笔不落掩码、只换头：抬到哪一个还有活的头，代价都是「最省的那个活头 + LIFT」——
+       所以整张表只需一个数，不用挑落点。连着抬两次，第一次纯属白抬，故不叠加。
+       掩码 0 那一趟不许抬：那一个孩子是「挑起笔头」，挑头不要钱 */
+    const lift=m>0&&minLive<INF?minLive+EU_LIFT:INF;
+    for(let v=0;v<V;v++){const w=walk[base+v];full[base+v]=w<lift?w:lift}
+  }
+  return {walk:walk,full:full,V:V,E:E,FULL:FULL};
+}
+function euPlanDp(g,start){
+  const E=g.edges.length,V=g.nodes.length;
+  if(E>EU_EMAX)return null;
+  const INF=0x3fffffff,FULL=(1<<E)-1;
+  const dp=new Int32Array((1<<E)*V).fill(INF);
+  let best=INF;
+  dp[start]=0;
+  for(let m=0;m<=FULL;m++){
+    const base=m*V;
+    if(m===FULL){for(let v=0;v<V;v++)if(dp[base+v]<best)best=dp[base+v];continue}
+    let minAll=INF;
+    const live=[];
+    for(let v=0;v<V;v++){
+      if(dp[base+v]<minAll)minAll=dp[base+v];
+      const a=g.adj[v];
+      for(let i=0;i<a.length;i++)if(!(m&(1<<a[i]))){live.push(v);break}
+    }
+    if(m>0&&minAll<INF){
+      const c=minAll+EU_LIFT;
+      for(let i=0;i<live.length;i++)if(c<dp[base+live[i]])dp[base+live[i]]=c;
+    }
+    for(let vi=0;vi<live.length;vi++){
+      const v=live[vi],cur=dp[base+v];
+      if(cur>=INF)continue;
+      const a=g.adj[v];
+      for(let i=0;i<a.length;i++){
+        const e=a[i];
+        if(m&(1<<e))continue;
+        const ed=g.edges[e],fwd=ed.a===v;
+        const nm=(m|(1<<e))*V+(fwd?ed.b:ed.a);
+        const c=cur+(fwd?0:EU_BACK);
+        if(c<dp[nm])dp[nm]=c;
+      }
+    }
+  }
+  return best>=INF?null:best;
+}
+function euNewPlan(){return {steps:[],lifts:[],backs:0,cost:0,done:0}}
+function euStepOn(p,g,e,v,allowBack){
+  const ed=g.edges[e],fwd=ed.a===v;
+  if(!fwd&&!allowBack)return false;
+  p.steps.push({e:e,from:v,to:fwd?ed.b:ed.a,fwd:fwd?1:0});
+  if(!fwd){p.backs++;p.cost+=EU_BACK}
+  return true;
+}
+function euRunWalk(g,start,take,pick){
+  const taken=new Array(g.edges.length).fill(0);
+  const p=euNewPlan();
+  let v=start;
+  for(;;){
+    const cand=[];
+    for(let i=0;i<g.adj[v].length;i++){const e=g.adj[v][i];if(!taken[e])cand.push(e)}
+    if(cand.length){
+      const e=take(g,v,cand,taken);
+      if(e<0||!euStepOn(p,g,e,v,true))return null;
+      taken[e]=1;p.done++;
+      v=p.steps[p.steps.length-1].to;
+      continue;
+    }
+    if(p.done===g.edges.length)break;
+    const w=pick(g,taken,v);                  /* pick 只负责「落在哪一个头」，两只手各有各的挑法 */
+    if(w<0)break;
+    p.lifts.push({from:v,to:w});
+    p.cost+=EU_LIFT;
+    v=w;
+  }
+  if(p.done!==g.edges.length)return null;
+  p.end=v;
+  return p;
+}
+/* 剩下那堆里挑一个头落脚 */
+function euPickFirst(g,taken){
+  for(let e=0;e<g.edges.length;e++){if(!taken[e])return g.edges[e].a}
+  return -1;
+}
+/* 会算的手抬笔挑剩下图里的奇头（偶头起迹要多花一条迹，也就多一次抬笔）*/
+function euPickOdd(g,taken){
+  const d={};
+  for(let e=0;e<g.edges.length;e++){
+    if(taken[e])continue;
+    d[g.edges[e].a]=(d[g.edges[e].a]||0)+1;
+    d[g.edges[e].b]=(d[g.edges[e].b]||0)+1;
+  }
+  let any=-1,odd=-1;
+  for(const k in d){
+    const n=+k;
+    if(any<0)any=n;
+    if(d[n]%2&&odd<0)odd=n;
+  }
+  return odd>=0?odd:any;
+}
+function euPlanGreedy(g,start){
+  return euRunWalk(g,start,
+    function(g,v,cand){
+      for(let i=0;i<cand.length;i++)if(g.edges[cand[i]].a===v)return cand[i];
+      return cand[0];
+    },euPickFirst);
+}
+function euPlanFleury(g,start){
+  return euRunWalk(g,start,
+    function(g,v,cand,taken){
+      for(let i=0;i<cand.length;i++){
+        const b=taken.slice();b[cand[i]]=1;
+        if(!euStrands(g,v,cand[i],b))return cand[i];
+      }
+      return cand[0];
+    },euPickOdd);
+}
+/* 抬笔下限（无向连通图的定理）：单头 k 个 ⇒ 全图最少 k/2 条迹。
+   从单头起笔正好用满这个下限；从双头起，第一条迹得自己收回来，多一条迹、多一次抬笔 */
+function euLiftFloor(g,start){
+  const k=euOdd(g).length;
+  if(!k)return 0;
+  return k/2-1+(g.deg[start]%2?0:1);
+}
+/* 一段也不倒描要抬几次笔：每段道只许顺着书写方向走 ⇒ 有向迹覆盖 */
+function euFwdFloor(g){
+  let ex=0;
+  for(let n=0;n<g.nodes.length;n++)if(g.out[n]>g.inn[n])ex+=g.out[n]-g.inn[n];
+  return ex?ex-1:0;
+}
+/* 「零倒描」那一笔赏真拿得到吗：只顺写、走不通就抬笔，抬到还有顺道可走的头上。
+   落脚挑「剩下这堆里出得多进得少」的那个头 —— 那是有向迹覆盖的正差端，落错了要多抬一回 */
+function euFwdWalk(g,start){
+  const taken=new Array(g.edges.length).fill(0);
+  const p=euNewPlan();
+  let v=start;
+  for(;;){
+    let e=-1;
+    for(let i=0;i<g.adj[v].length;i++){
+      const ee=g.adj[v][i];
+      if(!taken[ee]&&g.edges[ee].a===v){e=ee;break}
+    }
+    if(e>=0){
+      p.steps.push({e:e,from:v,to:g.edges[e].b,fwd:1});
+      taken[e]=1;p.done++;v=g.edges[e].b;
+      continue;
+    }
+    if(p.done===g.edges.length)break;
+    const out={},inn={};
+    for(let ee=0;ee<g.edges.length;ee++){
+      if(taken[ee])continue;
+      out[g.edges[ee].a]=(out[g.edges[ee].a]||0)+1;
+      inn[g.edges[ee].b]=(inn[g.edges[ee].b]||0)+1;
+    }
+    let w=-1,bad=-1e9;
+    for(const k in out){
+      const n=+k,d=out[k]-(inn[n]||0);
+      if(d>bad){bad=d;w=n}
+    }
+    if(w<0)break;
+    p.lifts.push({from:v,to:w});
+    p.cost+=EU_LIFT;
+    v=w;
+  }
+  if(p.done!==g.edges.length)return null;
+  p.end=v;
+  return p;
+}
+function euOct(m){
+  const dx=m[m.length-1][0]-m[0][0],dy=m[m.length-1][1]-m[0][1];
+  return Math.round(Math.atan2(dy,dx)/(Math.PI/4));
+}
+/* ---------- ③ 口径闸门：这一个字配不配上台 ----------
+   便宜闸门在前，三只手互核在后（最后那一步最贵）*/
+function euAuditWord(ch,j){
+  const meds=j.medians,sp=j.strokes;
+  if(!meds||!sp||meds.length!==sp.length)return {why:'笔数不合'};
+  if(meds.length<EU_NMIN||meds.length>EU_NMAX)return {why:'笔数带外'};
+  const g=euGraphOf(meds);
+  if(!g)return {why:'折线洗不出图'};
+  if(!euConnected(g))return {why:'图不连通'};
+  const E=g.edges.length,V=g.nodes.length;
+  if(E<EU_EMIN||E>EU_EMAX)return {why:'段数 '+E+' 带外'};
+  let maxDeg=0,choice=0;
+  for(let n=0;n<V;n++){if(g.deg[n]>maxDeg)maxDeg=g.deg[n];if(g.deg[n]>=EU_DEGCHOICE)choice++}
+  if(maxDeg>EU_DEGMAX)return {why:'最密的头 '+maxDeg+' 条道，数字键盖不住'};
+  if(!choice)return {why:'一路只有一条道，没得挑'};
+  const odd=euOdd(g).length;
+  if(odd>EU_ODDMAX)return {why:'单头 '+odd+' 个，抬笔太多'};
+  if(!odd)return {why:'一个单头也没有，从哪儿起都一样'};
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(let n=0;n<V;n++){
+    const p=g.nodes[n];
+    if(p.x<x0)x0=p.x;if(p.x>x1)x1=p.x;
+    if(p.y<y0)y0=p.y;if(p.y>y1)y1=p.y;
+  }
+  if(x1-x0<EU_SIZE||y1-y0<EU_SIZE)return {why:'字太小'};
+  let near=0;
+  for(let a=0;a<V;a++)for(let b=a+1;b<V;b++){
+    const dx=g.nodes[a].x-g.nodes[b].x,dy=g.nodes[a].y-g.nodes[b].y;
+    if(dx*dx+dy*dy<EU_NEAR*EU_NEAR)near++;
+  }
+  if(near>EU_NEARMAX)return {why:'头太挤 '+near+' 对'};
+  const kinds={};
+  for(let s=0;s<meds.length;s++)kinds[euOct(meds[s])]=1;
+  if(Object.keys(kinds).length<EU_KINDMIN)return {why:'只有一种笔形'};
+  /* 表：逐个头「从这儿起还差几分」 */
+  const tb=euPlanTable(g);
+  if(!tb)return {why:'反向表算不出'};
+  let bp=null,wp=null;
+  const costAt=[];
+  for(let s=0;s<V;s++){
+    if(!g.deg[s]){costAt[s]=-1;continue}
+    const c=tb.full[s];
+    if(c>=30000)return {why:'这个头走不完'};
+    costAt[s]=c;
+    if(!bp||c<bp.cost)bp={start:s,cost:c};
+    if(!wp||c>wp.cost)wp={start:s,cost:c};
+  }
+  if(!bp)return {why:'一个头也没有'};
+  if(wp.cost<=bp.cost)return {why:'起笔头挑哪儿都一样，没得算'};
+  /* 第二只手：正向逐头 DP（段数少的字逐个头顶着核，段数多的至少核最好与最差这两头）*/
+  const chk=[];
+  if(E<=12){for(let s=0;s<V;s++)if(costAt[s]>=0)chk.push(s)}
+  else{chk.push(bp.start);if(wp.start!==bp.start)chk.push(wp.start)}
+  for(let i=0;i<chk.length;i++){
+    const d=euPlanDp(g,chk[i]);
+    if(d===null)return {why:'正向账算不出走法'};
+    if(d!==costAt[chk[i]])return {why:'两只手的精确账不合（'+d+'≠'+costAt[chk[i]]+'）'};
+  }
+  const fl=euPlanFleury(g,bp.start),gr=euPlanGreedy(g,bp.start);
+  if(!fl||!gr)return {why:'有一只手走不完这个字'};
+  if(fl.cost<bp.cost||gr.cost<bp.cost)return {why:'手算比精确账还省（尺子有病）'};
+  if(gr.cost<=bp.cost)return {why:'不动脑也一样省（'+gr.cost+'≤'+bp.cost+'），没得算'};
+  const floor=euLiftFloor(g,bp.start);
+  if(floor*EU_LIFT>bp.cost)return {why:'抬笔下限比精确账还贵（尺子不合）'};
+  return {
+    ok:1,ch:ch,n:meds.length,E:E,V:V,odd:odd,maxDeg:maxDeg,g:g,strokes:sp,meds:meds,
+    cost:bp.cost,start:bp.start,worst:wp.cost,headAt:costAt,
+    lifts:fl.lifts.length,backs:fl.backs,fl:fl.cost,gr:gr.cost,margin:gr.cost-bp.cost,
+    floor:floor,fwd:euFwdFloor(g),one:(odd<=2)?1:0,near:near,x0:x0,x1:x1,y0:y0,y1:y1
+  };
+}
+/* ---------- ④ 字池：一场一套字 ----------
+   EU_LEV 那九串由 _eugeo.cjs 拿这一模一样的闸门离线数过（三只手互核、两头赏都证得到），
+   上台前当场再核一遍 —— 数据换了、口径变了，这一眼就把它挡在池外 */
+function euMake(ch,j){const r=euAuditWord(ch,j);return r.ok?r:null}
+async function euBuildPool(keep,lo,hi){
+  const g=eu.gen,stale=function(){return g!==eu.gen||!eu.run||eu.over};
+  const lv=eu.lv||1;
+  const enough=function(){
+    if(!isFinite(lo))return eu.pool.length>=EU_POOL_WANT;
+    let c=0;
+    for(let i=0;i<eu.pool.length;i++)if(eu.pool[i].n>=lo&&eu.pool[i].n<=hi)c++;
+    return c>=6||eu.pool.length>=40;
+  };
+  eu.miss=(localStorage.getItem('hz_eu_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<EU_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  push(auxShuf(eu.miss.slice(0,6).filter(function(c){return (EU_LEV[lv]||'').indexOf(c)>=0})));
+  push(auxShuf(euLetters(lv).split('')));
+  if(typeof charQueue!=='undefined'&&charQueue.length)push(auxShuf(charQueue.slice()));
+  if(typeof getGradeChars==='function'){try{push(auxShuf(getGradeChars(currentGrade||'all')))}catch(e){}}
+  if(typeof CHARS!=='undefined')push(auxShuf(CHARS.slice()));
+  if(!keep)eu.pool=[];
+  for(let k=0;k<want.length&&!enough();k+=12){
+    const rs=await Promise.all(want.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+    if(stale())break;
+    for(let i=0;i<rs.length;i++){
+      const ch=want[k+i];
+      if(!rs[i]||!rs[i].medians)continue;
+      const rec=euMake(ch,rs[i]);
+      if(!rec)continue;
+      if(isFinite(lo)&&(rec.n<lo||rec.n>hi))continue;
+      if(!eu.pool.some(function(p){return p.ch===rec.ch}))eu.pool.push(rec);
+    }
+  }
+  eu.poolLv=lv;
+  return eu.pool.length>=EU_POOL_MIN;
+}
+function euFresh(ch){
+  const bk=localStorage.getItem('hz_eu_book')||'';
+  return bk.indexOf(ch+':')<0?1:0;
+}
+
+/* 下面九串字（一场一串）由 _eugeo.cjs 离线数出来：全站 1372 字过闸 101 字，
+   按「最优那一趟值几分」从低到高排，平手再看段数、再看单头数，然后均分九场 ——
+   这一个数把抬笔与倒描两头的难度一起称出来了，比单看段数或单看奇点都准：
+   第 1 场的字真好走（瓦、双甚至是全站仅有的两个「一趟不抬笔」字），第 9 场的字真难走。
+   串外的字在这一场就是过不了闸的字（当场 euAuditWord 再核一遍才准上台）。*/
+const EU_LEV={
+  1:"瓦凡贝马见仇石级双月丈仅",
+  2:"民且庐冈穷姐沮田阻废厅",
+  3:"木欠写匆它扫歹气乎宁内",
+  4:"区宅市风饥妈攻坪钓历迈",
+  5:"匠开异臣仗优宋有罕驴成驱",
+  6:"对侧宜寿付伙禾而他仪未",
+  7:"灰字存扬本返伶坚夺安在",
+  8:"困亚庆库圣你庄庞欢金拨",
+  9:"定爸戒休苏实闲余伟府体"
+};
+function euLetters(L){return EU_LEV[L]||''}
+
+/* ---------- 案面：把墨道图画出来，再把屏上每一个数从常量与表里读出来 ----------
+   中线与笔形路径都在 1024 空间、y 向上（与全站一致，jtDirOf 那句注释就是出处），
+   所以换上屏幕坐标要翻一次 y：X=x·sc+ox，Y=(1024−y)·sc+oy。
+   整张 1024 方格等比缩进走笔案 —— 不按节点外接框缩放，字才不会被拉扁。*/
+const EU_BOX=1024;
+function euView(){
+  const sc=Math.min((EU_BW-2*EU_PAD)/EU_BOX,(EU_BH-2*EU_PAD)/EU_BOX);
+  return {sc:sc,ox:EU_BX+(EU_BW-EU_BOX*sc)/2,oy:EU_BY+(EU_BH-EU_BOX*sc)/2};
+}
+function euX(x,v){return v.ox+x*v.sc}
+function euY(y,v){return v.oy+(EU_BOX-y)*v.sc}
+/* 一条道的中点（号牌就钉在那儿）：沿折线走到一半弧长的那个位置 */
+function euMidOf(pts,v){
+  let total=0;const seg=[];
+  for(let i=1;i<pts.length;i++){
+    const dx=pts[i][0]-pts[i-1][0],dy=pts[i][1]-pts[i-1][1],L=Math.sqrt(dx*dx+dy*dy);
+    seg.push(L);total+=L;
+  }
+  let want=total/2,x=pts[0][0],y=pts[0][1];
+  for(let i=0;i<seg.length;i++){
+    if(want>seg[i]){want-=seg[i];x=pts[i+1][0];y=pts[i+1][1];continue}
+    const t=want/(seg[i]||1);
+    x=pts[i][0]+(pts[i+1][0]-pts[i][0])*t;
+    y=pts[i][1]+(pts[i+1][1]-pts[i][1])*t;
+    break;
+  }
+  return [euX(x,v),euY(y,v)];
+}
+/* 沿一条道走 frac 弧长，笔尖滑动的位置 */
+function euAtOf(pts,frac,v){
+  let total=0;const seg=[];
+  for(let i=1;i<pts.length;i++){
+    const dx=pts[i][0]-pts[i-1][0],dy=pts[i][1]-pts[i-1][1],L=Math.sqrt(dx*dx+dy*dy);
+    seg.push(L);total+=L;
+  }
+  let want=total*frac,x=pts[0][0],y=pts[0][1];
+  for(let i=0;i<seg.length;i++){
+    if(want>seg[i]){want-=seg[i];x=pts[i+1][0];y=pts[i+1][1];continue}
+    const t=want/(seg[i]||1);
+    x=pts[i][0]+(pts[i+1][0]-pts[i][0])*t;
+    y=pts[i][1]+(pts[i+1][1]-pts[i][1])*t;
+    break;
+  }
+  return [euX(x,v),euY(y,v)];
+}
+function euBadge(x,y,txt,bg,fg){
+  const c=euCv.getContext('2d');
+  c.font='bold 11px system-ui';
+  const w=Math.max(15,c.measureText(txt).width+7);
+  c.fillStyle=bg;c.strokeStyle='rgba(0,0,0,.55)';c.lineWidth=1;
+  c.beginPath();
+  if(c.roundRect)c.roundRect(x-w/2,y-8,w,16,7);else c.rect(x-w/2,y-8,w,16);
+  c.fill();c.stroke();
+  c.fillStyle=fg;c.textAlign='center';c.textBaseline='middle';
+  c.fillText(txt,x,y+.5);
+  c.textAlign='left';c.textBaseline='alphabetic';
+}
+/* 案面底下那两行回话：横竖都是「整行居中」，所以只有行高 y 需要传进来 ——
+   调用处一律 euLine(EU_L1, 话, 颜色, 字号[, 字重])，别再摆一个用不上的 x */
+function euLine(y,txt,fg,size,weight){
+  const c=euCv.getContext('2d');
+  c.font=(weight||'bold')+' '+(size||13)+'px system-ui';
+  c.textAlign='center';c.fillStyle=fg;
+  c.fillText(txt,EU_BX+EU_BW/2,y);
+  c.textAlign='left';
+}
+/* 一息就散的强调：指道亮那一条、数头标的那一圈 —— 都靠 eu.t 自己收走，不许留一辈子 */
+function euDraw(){
+  const cv=euCv;if(!cv)return;
+  const c=cv.getContext('2d');
+  c.clearRect(0,0,EU_W,EU_CVH);
+  if(!eu.g||!eu.rec){
+    euLine(EU_L1,'✒️ 正在挑字……','#B0BEC5',15);
+    euLine(EU_L2,'在字库里找「起笔头真分高下、不动脑必多花钱」的字','#78909C',12,'normal');
+    return;
+  }
+  const v=euView(),g=eu.g,rec=eu.rec;
+  /* 米字格 */
+  c.save();
+  c.strokeStyle='rgba(255,255,255,.09)';c.lineWidth=1;
+  c.strokeRect(euX(0,v),euY(EU_BOX,v),EU_BOX*v.sc,EU_BOX*v.sc);
+  c.setLineDash([4,5]);c.strokeStyle='rgba(255,255,255,.07)';
+  c.beginPath();
+  c.moveTo(euX(512,v),euY(1024,v));c.lineTo(euX(512,v),euY(0,v));
+  c.moveTo(euX(0,v),euY(512,v));c.lineTo(euX(1024,v),euY(512,v));
+  c.moveTo(euX(0,v),euY(1024,v));c.lineTo(euX(1024,v),euY(0,v));
+  c.moveTo(euX(0,v),euY(0,v));c.lineTo(euX(1024,v),euY(1024,v));
+  c.stroke();c.restore();
+  /* 淡墨的字底：走道走在真字上，孩子才知道这一条是哪一笔 */
+  if(rec.strokes){
+    c.save();
+    c.translate(v.ox,v.oy+EU_BOX*v.sc);c.scale(v.sc,-v.sc);
+    c.fillStyle='rgba(255,255,255,.055)';
+    for(let i=0;i<rec.strokes.length;i++){
+      try{c.fill(new Path2D(rec.strokes[i]))}catch(e){}
+    }
+    c.restore();
+  }
+  /* 道：没走的淡墨，走过的亮墨 */
+  const pulse=.55+.45*Math.sin(eu.t/240);
+  for(let k=0;k<g.edges.length;k++){
+    const ed=g.edges[k],pts=ed.pts;
+    c.lineCap='round';c.lineJoin='round';
+    c.beginPath();
+    c.moveTo(euX(pts[0][0],v),euY(pts[0][1],v));
+    for(let i=1;i<pts.length;i++)c.lineTo(euX(pts[i][0],v),euY(pts[i][1],v));
+    if(eu.ink[k]){
+      c.strokeStyle='rgba(255,213,79,.94)';c.lineWidth=7;c.stroke();
+      c.strokeStyle='rgba(255,245,200,.5)';c.lineWidth=2.6;c.stroke();
+    }else{
+      c.strokeStyle='rgba(207,216,222,.24)';c.lineWidth=8;c.stroke();
+      c.strokeStyle='rgba(207,216,222,.16)';c.lineWidth=4;c.stroke();
+    }
+  }
+  /* 眼前这一头的可走道：青色描一遍，边上钉 1~6 的号牌（最密的头 6 条道，数字键刚好盖住）*/
+  if(eu.phase==='walk'&&eu.opts.length){
+    for(let i=0;i<eu.opts.length;i++){
+      const o=eu.opts[i],ed=g.edges[o.e],pts=ed.pts;
+      c.save();
+      c.strokeStyle='rgba(0,229,255,'+(.30+.45*pulse)+')';
+      c.lineWidth=11;c.lineCap='round';c.lineJoin='round';
+      c.beginPath();
+      c.moveTo(euX(pts[0][0],v),euY(pts[0][1],v));
+      for(let k=1;k<pts.length;k++)c.lineTo(euX(pts[k][0],v),euY(pts[k][1],v));
+      c.stroke();c.restore();
+      const m=euMidOf(pts,v);
+      euBadge(m[0],m[1],(i+1)+(o.fwd?'':'↺'),'rgba(6,58,74,.95)','#84FFFF');
+    }
+  }
+  /* 🧭 指道亮的那一条（一息就收）*/
+  if(eu.guideE>=0&&eu.t<eu.guideMs){
+    const ed=g.edges[eu.guideE],pts=ed.pts,al=1-(eu.t-(eu.guideMs-EU_GUIDE_MS))/EU_GUIDE_MS;
+    c.save();
+    c.strokeStyle='rgba(255,64,129,'+(.35+.5*Math.max(0,Math.min(1,al)))+')';
+    c.shadowColor='#FF4081';c.shadowBlur=16;
+    c.lineWidth=13;c.lineCap='round';c.lineJoin='round';
+    c.beginPath();
+    c.moveTo(euX(pts[0][0],v),euY(pts[0][1],v));
+    for(let k=1;k<pts.length;k++)c.lineTo(euX(pts[k][0],v),euY(pts[k][1],v));
+    c.stroke();c.restore();
+  }
+  /* 头：单头红圈、双头蓝圈（第 EU_DIM_LV 场起收走，除非 ✨ 数头正亮着）*/
+  const showRing=!euDim(eu.lv)||(eu.probeMs>eu.t);
+  for(let n=0;n<g.nodes.length;n++){
+    if(!g.deg[n])continue;
+    const x=euX(g.nodes[n].x,v),y=euY(g.nodes[n].y,v);
+    const isOdd=g.deg[n]%2===1;
+    c.beginPath();c.arc(x,y,EU_NR,0,6.2832);
+    c.fillStyle=n===eu.at?'rgba(255,64,129,.95)':'rgba(20,16,10,.9)';c.fill();
+    if(showRing){
+      c.strokeStyle=isOdd?'rgba(255,138,128,.95)':'rgba(130,177,255,.8)';
+      c.lineWidth=2.2;c.beginPath();c.arc(x,y,EU_NR+2.6,0,6.2832);c.stroke();
+    }
+    if(n===eu.at){
+      c.strokeStyle='rgba(255,64,129,.45)';c.lineWidth=2;
+      c.beginPath();c.arc(x,y,EU_NR+6+2.5*pulse,0,6.2832);c.stroke();
+    }
+  }
+  /* 起笔 / 抬笔落点：候选头亮圈，选中的那个标号；第 4 场前还把「从这儿起最少几分」写在头上 */
+  if(eu.phase==='start'||eu.phase==='lift'){
+    for(let i=0;i<eu.cand.length;i++){
+      const n=eu.cand[i];
+      const x=euX(g.nodes[n].x,v),y=euY(g.nodes[n].y,v);
+      const on=i===eu.sel;
+      c.beginPath();c.arc(x,y,EU_NR+5,0,6.2832);
+      c.strokeStyle=on?'rgba(255,224,130,.98)':'rgba(255,255,255,.34)';
+      c.lineWidth=on?3:1.6;c.stroke();
+      if(eu.phase==='lift'){
+        /* 抬过去的落点不看「从头起」，看「眼里这堆道已经走完了一半，抬到它头上还剩几分」：full 那一行（掩码不是 0，允许再抬）*/
+        if(on&&eu.tb)euBadge(x,y-(EU_NR+13),'抬到这儿还要 '+euRestOf(n)+' 分','rgba(88,24,24,.92)','#FFCCBC');
+      }else if(!euNoTell(eu.lv)&&eu.tb){
+        euBadge(x,y-(EU_NR+13),'从这儿起 '+eu.tb.full[n]+' 分',on?'rgba(74,58,14,.95)':'rgba(20,16,10,.8)',on?'#FFE082':'#B0BEC5');
+      }
+    }
+    euBadge(euX(g.nodes[eu.cand[eu.sel]].x,v),euY(g.nodes[eu.cand[eu.sel]].y,v)+(EU_NR+13),
+      (eu.phase==='start'?'起笔 ':'落笔 ')+(eu.sel+1)+'/'+eu.cand.length+' 号头',
+      'rgba(6,58,74,.9)','#84FFFF');
+  }
+  /* 笔尖：正在滑的那一段 */
+  if(eu.pen){
+    const ed=g.edges[eu.pen.e],f=Math.min(1,(eu.t-eu.pen.t0)/EU_ANIM_MS);
+    const fr=eu.pen.fwd?f:1-f;
+    const p=euAtOf(ed.pts,fr,v);
+    c.beginPath();c.arc(p[0],p[1],6.4,0,6.2832);
+    c.fillStyle='#FF4081';c.shadowColor='#FF4081';c.shadowBlur=14;c.fill();c.shadowBlur=0;
+  }
+  /* 两行回话：全部从常量与表里读，不许自己再算一遍。
+     眼下这一头还没站定时（挑起笔头），下限与道数都按「正挑着的那个头」算 —— 孩子挑哪个，账就随哪个变 */
+  const left=rec.E-eu.inkN;
+  const v0=eu.at>=0?eu.at:(eu.cand.length?eu.cand[eu.sel]:-1);
+  const fl=v0>=0?euLiftFloor(g,v0):rec.floor;
+  euLine(EU_L1,'✒ 已花 '+eu.cost+' 分（抬 '+eu.lifts+' · 倒 '+eu.backs+'）｜ 这个字最省 '+rec.cost+' 分 ｜ 已经多花 '+
+    Math.max(0,eu.cost-rec.cost)+' 分',eu.cost>rec.cost?'#FFCCBC':'#FFE082',13);
+  euLine(EU_L2,'还剩 '+left+' 段 · 单头 '+rec.odd+' 个 · '+(v0>=0?(g.deg[v0]%2?'这个头是单头':'这个头是双头，起笔要多抬一次')+
+    ' ⇒ 抬笔下限 '+fl+' 次':'挑个头')+' ｜ 连着 '+(v0>=0?g.adj[v0].length:0)+' 条道','#90A4AE',12,'normal');
+}
+/* ---------- 屏上的字：HUD / 题头 / 回话条 / 标签 ---------- */
+function euSync(){
+  const q=document.getElementById('euQTxt');
+  if(q)q.textContent=eu.phase==='seal'?'🏁 封字':(eu.phase==='load'||eu.locked?'📥 换字':(eu.placeKind==='start'?'⏳ 起笔 ':'⏳ 下手 ')+Math.ceil(eu.placeMs/1000)+' 秒');
+  const s=document.getElementById('euScoreTxt');
+  if(s)s.textContent='✒ '+(eu.score|0)+' 文';
+  const l=document.getElementById('euLvTxt');
+  if(l)l.textContent='第 '+eu.lv+' 场 · 收 '+eu.words+' 字';
+  const r=document.getElementById('euRankTxt');
+  if(r){const rk=euRankOf(eu.perfect);r.textContent=rk.e+' '+rk.t}
+  const h=document.getElementById('euHeartTxt');
+  if(h)h.textContent='❤️'.repeat(Math.max(0,eu.hearts));
+  const cb=document.getElementById('euComboTxt');
+  if(cb)cb.textContent='🔥 连 '+eu.combo;
+  const lot=document.getElementById('euLotTxt');
+  if(lot)lot.textContent=eu.rec?('🈶 '+(eu.wi+1)+'/'+EU_PER+' 字 · 已走 '+eu.inkN+'/'+eu.rec.E+' 段'):'🈶 正在挑字';
+  const ct=document.getElementById('euCostTxt');
+  if(ct)ct.textContent=eu.rec?('✒ 抬 '+eu.lifts+' · 倒 '+eu.backs+' · 花 '+eu.cost+' 分'):'✒ 案还没开';
+  const ht=document.getElementById('euHitLight');
+  if(ht){
+    const t=eu.hitTxt||(eu.phase==='walk'?'💡 走哪一条？':'💡 挑个头下笔');
+    ht.textContent=t;
+    ht.style.color=eu.hitOk===2?'#FF8A80':eu.hitOk===1?'#A5D6A7':eu.hitOk===3?'#84FFFF':'#FFE082';
+  }
+  /* 四条量表：下手的钟 · 这一字 · 这一场的灯 · 这一趟的账（超了最省就一路变红）*/
+  const pb=document.getElementById('euPlaceBar'),pt=document.getElementById('euPlaceTxt');
+  if(pb)pb.style.width=Math.max(0,Math.min(100,eu.placeMs/Math.max(1,eu.place0)*100))+'%';
+  if(pt)pt.textContent=(eu.placeKind==='start'?'🖊 起笔 ':'🖊 下手 ')+(eu.placeMs/1000).toFixed(1)+' 秒';
+  const tl=pb?pb.parentNode:null;
+  if(tl)tl.classList.toggle('low',eu.placeMs<Math.min(1200,eu.place0*.22));
+  const wb=document.getElementById('euWordBar'),wt=document.getElementById('euWordTxt');
+  if(wb)wb.style.width=Math.max(0,Math.min(100,eu.wordMs/Math.max(1,eu.wordMs0)*100))+'%';
+  if(wt)wt.textContent='🈶 这个字 '+(eu.wordMs/1000).toFixed(0)+' 秒';
+  const lb=document.getElementById('euLampBar'),lt=document.getElementById('euLampTxt');
+  if(lb)lb.style.width=Math.max(0,Math.min(100,eu.lamp/Math.max(1,eu.lamp0)*100))+'%';
+  if(lt)lt.textContent='💡 这一场 '+(eu.lamp/1000).toFixed(0)+' 秒';
+  const kb=document.getElementById('euCostBar'),kt=document.getElementById('euCostBig');
+  const over=eu.rec?Math.max(0,eu.cost-eu.rec.cost):0;
+  if(kb)kb.style.width=Math.max(0,Math.min(100,eu.rec?eu.cost/Math.max(1,eu.rec.cost+EU_MAR_LINE)*100:0))+'%';
+  if(kt)kt.textContent=eu.rec?('✒ 花 '+eu.cost+' / 最省 '+eu.rec.cost+' 分'):'✒ 账还没开';
+  const kl=kb?kb.parentNode:null;
+  if(kl)kl.classList.toggle('low',over>=EU_MAR_LINE);
+  /* 家什的余量与挡话 */
+  const P=document.getElementById('euProbeBtn'),G=document.getElementById('euGuideBtn'),S=document.getElementById('euSwapBtn');
+  if(P){P.disabled=!(eu.run&&!eu.over&&eu.probeN>0&&eu.phase!=='load');P.querySelector('b').textContent=eu.probeMs>eu.t?'正标着':'剩 '+eu.probeN}
+  if(G){G.disabled=!(eu.run&&!eu.over&&eu.guideN>0&&eu.phase==='walk');G.querySelector('b').textContent=eu.guideMs>eu.t?'正亮着':'剩 '+eu.guideN}
+  if(S){S.disabled=!(eu.run&&!eu.over&&eu.swapN>0);S.querySelector('b').textContent='剩 '+eu.swapN}
+  const act=document.getElementById('euActBtn');
+  if(act){
+    const lab={load:'📥 正在挑字……',start:'✒ 就这个头（回车）',walk:'🖊 挑一条道（1～6）',lift:'✋ 就落这个头（回车）',seal:'⏎ 下一个字'}[eu.phase]||'✒️';
+    act.firstChild.nodeValue=lab;
+    const sm=act.querySelector('small');
+    if(sm)sm.textContent=eu.phase==='walk'?('眼下 '+eu.opts.length+' 条可走 · 顺写不花钱，倒描 '+EU_BACK+' 分'):
+      eu.phase==='lift'?('抬一次笔 '+EU_LIFT+' 分 · ←→ 换头'):
+      eu.phase==='start'?('←→ 换头 · 共 '+eu.cand.length+' 个候选'):'';
+    act.disabled=(eu.phase==='load'||eu.locked>0);
+    act.classList.toggle('ready',eu.phase==='seal'||(eu.phase==='walk'&&eu.guideE>=0&&eu.guideMs>eu.t));
+  }
+  const lift=document.getElementById('euLiftBtn');
+  if(lift){
+    lift.disabled=!(eu.run&&!eu.over&&(eu.phase==='walk'||eu.phase==='lift'));
+    if(lift.firstChild)lift.firstChild.nodeValue=eu.phase==='lift'?(eu.opts.length?'✋ 收回抬笔':'✋ 非抬不可'):'✋ 主动抬笔';
+  }
+  const nk=document.getElementById('euNextBtn');
+  if(nk)nk.disabled=!(eu.run&&!eu.over);
+  const ask=document.getElementById('euAsk');
+  if(ask)ask.innerHTML=euAskTxt();
+  const hl=document.getElementById('euHintTxt');
+  if(hl)hl.innerHTML=euHintTxt();
+}
+function euAskTxt(){
+  if(eu.phase==='load')return '📥 正在挑字……<br><small>在字库里找「起笔头真分高下、不动脑必多花钱、账算得过来」的字</small>';
+  const rec=eu.rec,g=eu.g;
+  if(!rec)return '✒️ 案还没开';
+  if(eu.phase==='start')return '🖊 <b>'+eu.ch+'</b>：从哪个头起笔？<br><small>单头连着奇数条道 · 一共 '+rec.odd+' 个单头 ⇒ 最少抬 '+rec.floor+' 次笔（挑双头要多抬一次）</small>';
+  if(eu.phase==='lift')return '✋ 眼前这个头接不到没走的道了：挑一个头落下<br><small>抬一次笔 '+EU_LIFT+' 分 · 还有道可走的头 '+euLiveNodes().length+' 个（眼下这个不算）· 落在单头上最省</small>';
+  if(eu.phase==='walk'){
+    return '🖊 <b>'+eu.ch+'</b>：走哪一条？'+
+      '<br><small>顺写不花钱 · 倒描一条 '+EU_BACK+' 分 · 抬一次笔 '+EU_LIFT+' 分 ｜ 照最省走到底这一趟会花 '+
+      eu.headMin+' 分（已花 '+eu.cost+' 分，比这个字的最省多 '+eu.mar+' 分）</small>';
+  }
+  if(eu.phase==='seal')return '🏁 <b>'+eu.ch+'</b> 封字：花 '+eu.cost+' 分 · 这个字最省 '+eu.rec.cost+' 分 · 多花 '+eu.marAll+
+    '<br><small>这一趟染绿 '+eu.rec.E+' 段（'+eu.rec.n+' 笔切成 '+eu.rec.E+' 段道，'+eu.rec.V+' 个头、'+eu.rec.odd+' 个单头）</small>';
+  return '✒️';
+}
+function euHintTxt(){
+  if(eu.phase==='start'||eu.phase==='lift')return '🖊 <b>数单头就知道下限</b>：单头 k 个 ⇒ 这个字最少 k/2 条迹，起笔挑单头正好用满（抬 k/2−1 次）';
+  if(eu.phase==='walk')return '🧭 <b>割边留到最后</b>：一条道走完会把字劈成两半的就是割边 —— 能不碰就不碰，碰了就要多抬一次笔';
+  if(eu.phase==='seal')return '🏁 <b>多花 0 分</b>就是这一趟走得和精确账一模一样（补一颗心）';
+  return '✒ <b>两种代价</b>：抬笔 '+EU_LIFT+' 分、倒描 '+EU_BACK+' 分 —— 倒描便宜但断连击，抬笔贵还能挑落点';
+}
+function euMsg(msg,color){
+  const el=document.getElementById('euMsg');
+  if(!el)return;
+  el.innerHTML=msg;
+  el.style.color=color||'#90A4AE';
+}
+function euClearTag(){
+  if(eu.tagTimer){clearTimeout(eu.tagTimer);eu.tagTimer=0}
+  const el=document.getElementById('euTag');
+  if(el)el.className='eu-tag'
+}
+function euTag(txt,cls){
+  const el=document.getElementById('euTag');
+  if(!el)return;
+  /* 这一行是给孩子的正文：调用处一路写的是 <b>/<code> 那一种强调（与 chnTag、jlyTag 同一口径），
+     用 textContent 落下去孩子就读到一对尖括号。此处只许 innerHTML，且调用处只喂自家模板串。 */
+  el.innerHTML=txt;
+  el.className='eu-tag on'+(cls?' '+cls:'');
+  if(eu.tagTimer)clearTimeout(eu.tagTimer);
+  eu.tagTimer=setTimeout(function(){el.className='eu-tag'},EU_TAG_MS);
+}
+function euHelpText(){
+  return '✒️ <b>笔顺抬笔坊</b> —— 这个字的每一笔被交叉点切成一段一段「道」，头与头之间一条道。<br>'+
+    '🖊 <b>走完所有的道</b>：笔只能走接着眼下这个头的道；走到对岸，再走下一条。<br>'+
+    '💰 <b>两种代价</b>：眼前接不到没走的道就<b>抬笔</b>（挪起来在别处落下，'+EU_LIFT+' 分）；'+
+    '逆着书写方向描一条道叫<b>倒描</b>（'+EU_BACK+' 分，但连击断了）。<br>'+
+    '🎯 <b>起笔那个头值钱</b>：连着奇数条道的叫<b>单头</b>（红圈），偶数条的叫<b>双头</b>（蓝圈）。'+
+    '单头 k 个 ⇒ 最少 k/2 条迹走完，从单头起正好用满（抬 k/2−1 次），从双头起多抬一次。<br>'+
+    '📐 <b>案上的数都不骗你</b>：「最省 N 分」是一只手反向填 mask×头 的表算的，'+
+    '配字时另有正向逐头账、自顶向下账互核，再加一只不动脑的手 —— 不动脑必须真比精确账贵，这一算才有肉吃。<br>'+
+    '🧭 <b>割边留到最后</b>：走完就把字劈成两半的那条道，能不碰就不碰。<br>'+
+    '🎭 <b>两道帘子</b>：第 '+EU_TELL_LV+' 场起案上的头不再标「从这儿起几分」，第 '+EU_DIM_LV+
+    ' 场起连单双头的红蓝圈也收走 —— 那时候 ✨ 数头那一眼就是唯一的凭据。<br>'+
+    '<code>←→</code> 挑头 · <code>回车</code> 落笔 · <code>1～6</code> 走那一条 · <code>X</code> 抬笔 · '+
+    '<code>P</code> ✨数头 · <code>V</code> 🧭指道 · <code>S</code> 🔁换字 · <code>H</code> 📖说明 · <code>F</code> 🏁结算';
+}
+
+/* ================= 这一趟的手：上字、挑头、走道、抬笔、封字、三件家什 ================= */
+/* 一个字段数不多，但每一段都要当场从表里读出「走到底还要几分」——
+   案上那三行数（已花 / 最省 / 差几分）全由 euSettle 一次更新，别处不许自己再算一遍：
+   孩子照着手上的数走，走出来的账必须正好落在那个「最省」上，这一坊才有得算。 */
+function euMask(){
+  const g=eu.g;if(!g)return 0;
+  let m=0;
+  for(let k=0;k<g.edges.length;k++)if(eu.ink[k])m|=(1<<k);
+  return m;
+}
+function euLiveAt(n){
+  const g=eu.g;if(!g||n<0)return false;
+  const a=g.adj[n];
+  for(let i=0;i<a.length;i++)if(!eu.ink[a[i]])return true;
+  return false;
+}
+function euLiveNodes(){
+  /* 落点表：还活着、而且不是眼下这一头（抬回原地纯属白抬，那只反向表也不许这么走）*/
+  const g=eu.g,out=[];
+  for(let n=0;n<g.nodes.length;n++)if(n!==eu.at&&euLiveAt(n))out.push(n);
+  return out;
+}
+function euRestOf(n){
+  /* 抬笔落到 n 号头之后、这一段还要几分（掩码就是眼下已染绿的那些道）*/
+  if(!eu.tb||n<0)return 0;
+  return eu.tb.full[euMask()*eu.tb.V+n];
+}
+function euRefreshOpts(){
+  eu.opts=[];
+  const g=eu.g;
+  if(!g||eu.at<0)return;
+  const a=g.adj[eu.at];
+  for(let i=0;i<a.length;i++){
+    const e=a[i];
+    if(eu.ink[e])continue;
+    eu.opts.push({e:e,fwd:g.edges[e].a===eu.at});
+  }
+}
+/* 站定：把这一趟的三行数与下一步的钟一次摆好。
+   headMin = 已花 + 从眼下这个头照表走到底 = 「这一趟最终会花几分」；
+   mar = headMin − 这个字的最省 = 已经来不及省下的那几分（≥0，见 euSealNow 的注）*/
+function euSettle(){
+  const rec=eu.rec;
+  if(!rec)return;
+  euRefreshOpts();
+  eu.headMin=eu.cost+euRestOf(eu.at);
+  eu.mar=eu.headMin-rec.cost;
+  if(eu.inkN>=rec.E){euSealNow();return}
+  if(eu.opts.length){
+    eu.phase='walk';eu.placeKind='step';eu.place0=eu.placeMs=euStepMs(eu.lv);
+  }else{
+    eu.phase='lift';eu.placeKind='lift';eu.place0=eu.placeMs=euLiftMs(eu.lv);
+    eu.cand=euLiveNodes();eu.sel=0;eu.candKeys=0;
+    if(eu.cand.length>1)euTag('✋ 眼前这个头接不到没走的道了：非抬不可（'+eu.cand.length+' 个头可落）','warn');
+  }
+  eu.nagMs=0;
+  euSync();euDraw();
+}
+/* ---- 挑头：起笔与抬笔共用一只手 ---- */
+function euCandMove(dir){
+  if(eu.phase!=='start'&&eu.phase!=='lift')return;
+  if(eu.locked||eu.pen)return;
+  if(eu.cand.length<2){euTag('🖊 可挑的头只有这一个：按 <code>回车</code> 落笔');return}
+  eu.sel=(eu.sel+dir+eu.cand.length)%eu.cand.length;
+  eu.candKeys++;
+  eu.nagMs=0;
+  euSync();euDraw();
+}
+/* 犹豫：挑头那一步上 ←→ 敲过 EU_HES_KEY 回还没落笔 —— 这一坊要的是算一次定一次，不是来回试 */
+function euHesitation(){
+  if(eu.candKeys<EU_HES_KEY||eu.placeMs<=0)return false;
+  eu.hes++;eu.cleanWord=0;
+  eu.score-=EU_P_HES;eu.penSum+=EU_P_HES;
+  eu.hitOk=2;eu.hitTxt='🌀 犹豫 · −'+EU_P_HES;
+  euTag('🌀 这个头你来回挑了 '+eu.candKeys+' 回：倒扣 '+EU_P_HES+' 文 —— 数单头、算 k/2，一次定下来','warn');
+  euTone(210,200);
+  return true;
+}
+function euChoose(){
+  if(eu.phase!=='start'||eu.locked||eu.pen||!eu.cand.length)return;
+  const n=eu.cand[eu.sel];
+  euHesitation();
+  eu.start=n;eu.at=n;eu.ch=eu.rec.ch;
+  eu.candKeys=0;
+  euTone(760,80);
+  euSettle();
+}
+function euLand(){
+  if(eu.phase!=='lift'||eu.locked||eu.pen||!eu.cand.length)return;
+  const n=eu.cand[eu.sel];
+  euHesitation();
+  eu.steps.push({e:-1,from:eu.at,to:n,lift:1});
+  eu.at=n;eu.candKeys=0;
+  eu.lifts++;eu.cost+=EU_LIFT;eu.liftTotal++;
+  eu.combo=0;
+  euTone(300,150);
+  euSettle();
+}
+/* ---- 走道：1~6 号、点那一条、或顺着 🧭 指的那一条 ---- */
+function euWalk(i){
+  if(eu.phase!=='walk'||eu.locked||eu.pen)return;
+  const o=eu.opts[i];
+  if(!o){euTag('🖊 这一号没道：<code>1~'+eu.opts.length+'</code> 里挑一条（牌钉在道当中）');return}
+  const g=eu.g,e=o.e,ed=g.edges[e],from=eu.at;
+  eu.ink[e]=1;eu.inkN++;eu.segs++;
+  eu.cost+=o.fwd?0:EU_BACK;
+  if(o.fwd){eu.combo++;if(eu.combo>eu.maxCombo)eu.maxCombo=eu.combo}
+  else{eu.backs++;eu.backTotal++;eu.combo=0}
+  eu.at=o.fwd?ed.b:ed.a;
+  eu.steps.push({e:e,from:from,to:eu.at,fwd:o.fwd?1:0,lift:0});
+  /* 这一段的赏：这一步的钟已经尽了就不给钱，但路照样让你走 —— 断了钟不断路 */
+  const pts=eu.placeMs>0?Math.round(EU_M0*(1+EU_CB*eu.combo)*(1+EU_LVW*(eu.lv-1))):0;
+  eu.score+=pts;eu.gain+=pts;
+  eu.pen={e:e,fwd:o.fwd?1:0,t0:eu.t};
+  eu.opts=[];
+  eu.hitOk=1;eu.hitTxt=(o.fwd?'✔ 顺写 +':'↺ 倒描 +')+pts;
+  euTone(o.fwd?980:640,90);
+  euTag((o.fwd?'🖊 顺写下去':'↺ 倒描（逆着笔顺描，'+EU_BACK+' 分 · 连击断了）')+'：这一道在「'+
+    euKnOf(ed.pts)+'」那一笔上 · +'+pts+' 文 · 已花 '+eu.cost+' 分 · 还剩 '+(eu.rec.E-eu.inkN)+' 段',
+    (o.fwd?'gold':'warn'));
+  euSync();euDraw();
+}
+/* ---- ✋ 抬笔：非抬不可时由 euSettle 开门；这条路也允许主动走（眼前明明有道，偏要挪窝）---- */
+function euLiftOpen(){
+  if(!eu.rec||eu.over||eu.locked||eu.pen)return;
+  if(eu.phase==='lift'){
+    if(eu.opts.length){
+      eu.phase='walk';eu.placeKind='step';eu.place0=eu.placeMs=euStepMs(eu.lv);
+      euTag('🖊 收回来了：眼前还有 '+eu.opts.length+' 条道，不用抬');
+      euSync();euDraw();
+      return;
+    }
+    euTag('✋ 非抬不可：这个头一条没走的道也不接了（按 <code>←→</code> 挑落点）');
+    return;
+  }
+  if(eu.phase!=='walk')return;
+  eu.phase='lift';eu.placeKind='lift';eu.place0=eu.placeMs=euLiftMs(eu.lv);
+  eu.cand=euLiveNodes();eu.sel=0;eu.candKeys=0;
+  euTag('✋ 主动抬笔：抬一次 '+EU_LIFT+' 分 · '+eu.cand.length+' 个头还有道可走 —— 落在单头上最省','gold');
+  euSync();euDraw();
+}
+/* ================= 三件家什 ================= */
+/* ✨ 数头：把单双头的红蓝圈请回来这么多秒（第 EU_DIM_LV 场起案上本来不标）*/
+function euProbe(){
+  if(!eu.rec||eu.over||eu.locked||eu.phase==='seal')return;
+  if(eu.probeN<=0){euTag('✨ 数头用完了：这一趟只剩脑子里那条 k/2');return}
+  if(eu.probeMs>eu.t){euTag('✨ 圈正标着：还写 '+Math.ceil((eu.probeMs-eu.t)/1000)+' 秒（等它自己收走）');return}
+  eu.probeN--;eu.probeUse++;eu.tools++;eu.wordTools++;
+  eu.score-=EU_P_HELP;eu.penSum+=EU_P_HELP;eu.cleanWord=0;
+  eu.probeMs=eu.t+EU_PROBE_MS;
+  const odd=euOdd(eu.g).length;
+  euTone(880,90);
+  euTag('✨ 数头：这个字单头 '+odd+' 个 ⇒ 最少 '+Math.max(1,odd/2)+' 条迹走完 · 圈标 '+
+    Math.round(EU_PROBE_MS/1000)+' 秒（还剩 '+eu.probeN+' 眼）· 倒扣 '+EU_P_HELP+' 文','cyan');
+  euSync();euDraw();
+}
+/* 🧭 指道：只亮「照表走到底最不亏」的那一条，不报后面怎么走 —— 报了整条就等于替孩子走完了 */
+function euGuide(){
+  if(!eu.rec||eu.over||eu.locked||eu.phase==='seal')return;
+  if(eu.guideN<=0){euTag('🧭 指道用完了：割边留到最后，这一句自己念');return}
+  if(eu.guideMs>eu.t){euTag('🧭 那一条正亮着：还写 '+Math.ceil((eu.guideMs-eu.t)/1000)+' 秒');return}
+  const g=eu.g,V=eu.tb.V,m=euMask();
+  let best=-1,bestC=1e9,bestF=0;
+  if(eu.phase==='walk'){
+    if(!eu.opts.length){euTag('🧭 眼前一条道也没有了：这一眼该问的是 <code>✋ 抬笔</code>');return}
+    for(let i=0;i<eu.opts.length;i++){
+      const o=eu.opts[i],ed=g.edges[o.e],to=o.fwd?ed.b:ed.a;
+      const c=(o.fwd?0:EU_BACK)+eu.tb.full[((m|(1<<o.e))*V)+to];
+      if(c<bestC||c===bestC&&!bestF&&o.fwd){bestC=c;best=o.e;bestF=o.fwd?1:0}
+    }
+    eu.guideE=best;eu.guideLift=0;
+  }else if(eu.phase==='start'||eu.phase==='lift'){
+    for(let i=0;i<eu.cand.length;i++){
+      const c=euRestOf(eu.cand[i]);
+      if(c<bestC){bestC=c;best=i}
+    }
+    eu.sel=best;eu.guideLift=1;
+    eu.guideE=-1;
+  }else return;
+  eu.guideN--;eu.guideUse++;eu.tools++;eu.wordTools++;
+  eu.score-=EU_P_HELP;eu.penSum+=EU_P_HELP;eu.cleanWord=0;
+  eu.guideMs=eu.t+EU_GUIDE_MS;
+  euTone(560,120);
+  euTag((eu.guideLift?'🧭 挑头：落到 '+(eu.sel+1)+' 号头，抬过去之后还要 '+bestC+' 分':
+    '🧭 指道：走那条粉红色的 —— 从这一头照表走到底还要 '+bestC+' 分')+
+    ' · 倒扣 '+EU_P_HELP+' 文（还剩 '+eu.guideN+' 条）','cyan');
+  euSync();euDraw();
+}
+/* 🔁 换字：这个字退回库里再上一个（倒扣 EU_P_SWAP 文，进错字本）*/
+function euSwapWord(){
+  if(!eu.rec||eu.over||eu.locked||eu.pen)return;
+  if(eu.swapN<=0){euTag('🔁 换字用完了：这一场的字是配出来的，硬看也要看完');return}
+  eu.swapN--;eu.swapUse++;eu.swaps++;eu.tools++;eu.wordTools++;
+  eu.score-=EU_P_SWAP;eu.penSum+=EU_P_SWAP;
+  eu.cleanWord=0;eu.neatWord=0;
+  euTone(280,140);
+  euTag('🔁 换字：倒扣 '+EU_P_SWAP+' 文，这个字进了错字本（还剩 '+eu.swapN+' 回）','warn');
+  euWordOut(false);
+}
+/* ================= 封字 ================= */
+function euSealNow(){
+  const rec=eu.rec;
+  if(!rec)return;
+  eu.phase='seal';eu.placeKind='';eu.placeMs=0;eu.sealMs=EU_SEAL_MS;
+  eu.headMin=eu.cost;
+  /* 差：这一趟比全字最省多花了几分。表是全图最优 ⇒ 从任何一个头走完都不会比它省，
+     这个数天生 ≥0；万一负了，就是那只反向表算歪了，当场夹平（自检脚本另有断言）*/
+  eu.marAll=Math.max(0,eu.cost-rec.cost);
+  eu.marSum+=eu.marAll;
+  let add=EU_PTS_SEAL;
+  let txt='🏁 封字：'+rec.E+' 段走完 · 花 '+eu.cost+' 分（最省 '+rec.cost+'）';
+  const tier=eu.marAll<EU_PTS_MAR.length?EU_PTS_MAR[eu.marAll]:0;
+  if(tier){add+=tier;txt+=(eu.marAll?' · 比最省多花 '+eu.marAll+' 分 +'+tier:' · 一步不差 +'+tier)}
+  if(eu.tb.full[eu.start]===rec.cost){add+=EU_PTS_START;txt+=' · 起笔挑的就是最省那一头 +'+EU_PTS_START;eu.bestN++}
+  if(!eu.backs){add+=EU_PTS_FWD;txt+=' · 一段也没倒描 +'+EU_PTS_FWD;eu.fwdN++;auxAdd('hz_eu_fwd',1)}
+  if(!eu.lifts){add+=EU_PTS_NOLIFT;txt+=' · 一趟到底没抬笔 +'+EU_PTS_NOLIFT;eu.noliftN++;auxAdd('hz_eu_nolift',1)}
+  if(eu.fresh){add+=EU_PTS_FRESH;txt+=' · 头一回收这个字 +'+EU_PTS_FRESH}
+  if(!eu.wordTools){add+=EU_PTS_NOTOOL;txt+=' · 家什一回没借 +'+EU_PTS_NOTOOL}
+  if(eu.cleanWord){
+    add+=EU_PTS_CLEAN;txt+=' · 这一趟零罚 +'+EU_PTS_CLEAN;
+    eu.cleanRun++;
+    /* 连三趟零罚：家什架白补一回 —— 干净不是运气，是一路算出来的 */
+    if(eu.cleanRun>=EU_PER){
+      eu.cleanRun=0;eu.toolRun++;
+      eu.probeN=EU_P0.probe;eu.guideN=EU_P0.guide;eu.swapN=EU_P0.swap;
+      add+=EU_PTS_TOOLRUN;txt+=' · 连三趟零罚：家什补满 +'+EU_PTS_TOOLRUN;
+      auxAdd('hz_eu_toolrun',1);
+    }
+  }else eu.cleanRun=0;
+  eu.score+=add;eu.gain+=add;
+  eu.words++;eu.perfect+=(eu.marAll===0?1:0);
+  if(eu.marAll===0)auxAdd('hz_eu_perfect',1);
+  if(eu.marAll===0&&eu.hearts<EU_HEART_MAX){eu.hearts++;txt+=' · 一步不差补一颗心'}
+  if(eu.marAll>=EU_MAR_LINE){
+    eu.hearts--;txt+=' · 多花 '+eu.marAll+' 分（到 '+EU_MAR_LINE+' 分就掉一颗心）';
+    euTone(170,260);
+  }else euTone(1040,220);
+  eu.hitOk=1;eu.hitTxt='🏁 封字 · +'+add;
+  euTag(txt,'gold');
+  euSay('🏁 这个字走完：'+rec.E+' 段、抬 '+eu.lifts+' 次、倒描 '+eu.backs+' 段');
+  euBookPut(rec.ch);
+  if(typeof spawnConfetti==='function'){try{spawnConfetti()}catch(e){}}
+  euSync();euDraw();
+  if(eu.hearts<=0)euT(function(){euEnd('hearts')},EU_SEAL_MS);
+}
+/* ---- 这个字散了：字钟尽、换字都走这一条道（进错字本，下一场优先挑回来）---- */
+function euWordOut(heart){
+  const rec=eu.rec;
+  if(rec)euMissPut(rec.ch);
+  eu.wordOuts++;
+  if(heart){eu.hearts--;eu.lates++}
+  eu.combo=0;eu.cleanWord=0;eu.neatWord=0;eu.wordTools=0;eu.cleanRun=0;
+  eu.locked=1;
+  eu.phase='load';eu.opts=[];eu.cand=[];eu.pen=null;eu.placeMs=0;eu.placeKind='';
+  eu.guideE=-1;
+  euSync();euDraw();
+  euT(euNextWord,1000);
+}
+/* ---- 下一个字：一场三字收满就换场（换一串字、换一盏灯）---- */
+async function euNextWord(){
+  if(!eu.run||eu.over)return;
+  if(eu.hearts<=0){euEnd('hearts');return}
+  eu.wi++;
+  let flash='';
+  if(eu.wi>=EU_PER){
+    /* 清白票：这一场三字、每趟多花都不过 EU_MAR_CLEAN 分 —— 收场那一息结，别等结算屏补记 */
+    if(eu.marSum<=EU_MAR_CLEAN*EU_PER){auxAdd('hz_eu_neat',1);euSay('🧾 这一场三字共多花 '+eu.marSum+' 分：清白票一张')}
+    eu.wi=0;eu.lv=Math.min(9,eu.lv+1);
+    eu.lamp0=euLamp(eu.lv);eu.lamp=eu.lamp0;
+    eu.marSum=0;eu.cleanRun=0;
+    eu.pool=[];eu.seen=[];eu.poolLv=-1;
+    flash='💡 第 '+eu.lv+' 场上案：'+(euNoTell(eu.lv)?'案上的头不标「从这儿起几分」':'头还标着分数')+
+      (euDim(eu.lv)?' · 单双头的圈也收走了':'')+' · ';
+    euSay('第 '+eu.lv+' 场：换一串字，'+(euDim(eu.lv)?'红蓝圈也不标了，只剩你自己数':'账还在案上写着'));
+  }
+  if(!eu.pool.length){
+    eu.rec=null;eu.g=null;eu.tb=null;eu.load=true;eu.phase='load';
+    euSync();euDraw();
+    const ok=await euBuildPool(true,EU_NMIN,EU_NMAX);
+    eu.load=false;
+    if(!eu.run||eu.over)return;
+    if(!ok){euEnd('pool');return}
+  }
+  const rec=euTake();
+  if(!rec){euEnd('pool');return}
+  euSetWord(rec,flash);
+}
+/* ---- 挑下一个字：错字本上的字优先挑回来，其次这一场没上过案的 ---- */
+function euTake(){
+  const pool=eu.pool;
+  if(!pool.length)return null;
+  for(let i=0;i<eu.miss.length;i++){
+    for(let k=0;k<pool.length;k++)if(pool[k].ch===eu.miss[i]&&eu.seen.indexOf(pool[k].ch)<0)return pool[k];
+  }
+  const fresh=[];
+  for(let k=0;k<pool.length;k++)if(eu.seen.indexOf(pool[k].ch)<0)fresh.push(pool[k]);
+  const list=fresh.length?fresh:pool;
+  return list[Math.floor(Math.random()*list.length)];
+}
+/* ---- 一个字上台：图、表、钟、账一次摆好 ---- */
+function euSetWord(rec,flash){
+  const L=eu.lv,g=rec.g;
+  eu.rec=rec;eu.g=g;eu.ch=rec.ch;
+  eu.tb=euPlanTable(g);
+  if(!eu.tb){euWordOut(false);return}
+  eu.ink=new Uint8Array(rec.E);
+  eu.inkN=0;eu.at=-1;eu.start=-1;eu.lifts=0;eu.backs=0;eu.cost=0;
+  eu.steps=[];eu.opts=[];eu.pen=null;
+  eu.headMin=rec.cost;eu.mar=0;eu.marAll=-1;
+  eu.fresh=euFresh(rec.ch);
+  eu.place0=euStartMs(L);eu.placeMs=eu.place0;eu.placeKind='start';
+  eu.wordMs0=euWordMs(L,rec.E);eu.wordMs=eu.wordMs0;
+  eu.cleanWord=1;eu.neatWord=1;eu.wordTools=0;
+  eu.probeMs=0;eu.guideMs=0;eu.guideE=-1;eu.guideLift=0;
+  eu.locked=0;eu.hitOk=0;eu.hitTxt='';
+  eu.phase='start';
+  eu.cand=[];
+  for(let n=0;n<g.nodes.length;n++)if(g.deg[n])eu.cand.push(n);
+  eu.sel=0;eu.candKeys=0;
+  eu.seen.push(rec.ch);
+  eu.nagMs=0;
+  euTone(600,70);
+  euTag((flash||'')+'🈶 上案：'+rec.n+' 笔切成 '+rec.E+' 段 · '+rec.V+' 个头（单头 '+rec.odd+' 个）· '+
+    '这个字最省 '+rec.cost+' 分（不动脑要 '+rec.gr+' 分）','gold');
+  euSync();euDraw();
+}
+/* ================= 三支钟：场灯 · 这一字 · 下手的钟 ================= */
+function euTick(dt){
+  if(!eu.run||eu.over)return;
+  eu.t+=dt;eu.playMs+=dt;
+  if(eu.helpMs>0){eu.helpMs-=dt;if(eu.helpMs<=0){eu.helpMs=0;euSync()}return}
+  if(!eu.rec||eu.locked)return;
+  /* 笔尖还在道上滑：这一段还没落地，三道钟都停一停（EU_ANIM_MS 毫秒，一口气都不到）*/
+  if(eu.pen){
+    if(eu.t-eu.pen.t0>=EU_ANIM_MS){eu.pen=null;euSettle()}
+    return;
+  }
+  /* 场灯：一盏灯照一场的三个字 */
+  if(eu.lamp>0){
+    eu.lamp-=dt;
+    if(eu.lamp<=0){eu.lamp=0;euEnd('lamp');return}
+  }
+  if(eu.phase==='seal'){
+    if(eu.sealMs>0){eu.sealMs-=dt;if(eu.sealMs<=0){eu.sealMs=0;euNextWord()}}
+    return;
+  }
+  /* 字钟：从上台收到齐（挑头、走道、抬笔都吃这一支）*/
+  if(eu.wordMs>0){
+    eu.wordMs-=dt;
+    if(eu.wordMs<=0){
+      eu.wordMs=0;
+      eu.score-=EU_P_WORD;eu.penSum+=EU_P_WORD;
+      eu.cleanWord=0;eu.neatWord=0;
+      eu.hitOk=2;eu.hitTxt='⌛ 字钟尽 · −'+EU_P_WORD;
+      euTag('🈶 这个字的钟尽了：还剩 '+(eu.rec.E-eu.inkN)+' 段没走，倒扣 '+EU_P_WORD+' 文 · 掉一颗心 · 进错字本','warn');
+      euTone(150,300);euSay('🈶 字钟尽了');
+      euWordOut(true);
+      return;
+    }
+  }
+  /* 下手的钟：挑头 · 走道 · 抬笔 各一息；尽了这一口只罚这一次，且这一段不给赏 */
+  if(eu.phase==='start'||eu.phase==='walk'||eu.phase==='lift'){
+    if(eu.placeMs>0){
+      eu.placeMs-=dt;
+      if(eu.placeMs<=0){
+        eu.placeMs=0;eu.lates++;eu.cleanWord=0;eu.combo=0;
+        eu.score-=EU_P_LATE;eu.penSum+=EU_P_LATE;
+        eu.hitOk=2;eu.hitTxt='⌛ 钟尽 · −'+EU_P_LATE;
+        euTag('⌛ 这一口的钟尽了：'+(eu.phase==='walk'?'这一段还是走，只是不给赏了':'落哪个头还是你挑')+
+          ' · 倒扣 '+EU_P_LATE+' 文','warn');
+        euTone(160,260);
+        euSync();euDraw();
+        return;
+      }
+    }
+    eu.nagMs+=dt;
+    /* 提醒按「这一支钟走了一半」与 EU_NAG_MS 里短的那一个算：下手钟收到第 9 场只有 2.2 秒，
+       拿 11 秒当门槛的话这一句永远说不出口 —— 钟先尽、提醒后到 */
+    if(eu.nagMs>Math.min(EU_NAG_MS,eu.place0/2)){
+      eu.nagMs=0;eu.nags++;
+      euSay(eu.phase==='start'?'🖊 数单头：红圈的头连着奇数条道，起笔挑它':
+        eu.phase==='lift'?'✋ 落在还活着的那个单头上（'+eu.cand.length+' 个头可挑）':
+        '🖊 割边留到最后：走它会把字劈成两半的那条别碰');
+    }
+    return;
+  }
+}
+
+/* ================= 开工 · 一根 rAF 管三段钟 · 键盘与真指针 ================= */
+/* 画布就在 <body> 里、这段脚本之前（屏面 8349 行、脚本 16354 行），所以这一眼取得到。
+   取不到就是屏面 HTML 没插在脚本前头：euDraw 第一行会直接 return，画面永远空白 —— 自检脚本读像素，红得掉牙 */
+const euCv=document.getElementById('euCanvas');
+if(!euCv)console.warn('✒️ 抬笔坊找不到画布 euCanvas');
+
+/* 这一坊吃的字要「起笔头真分高下、不动脑必多花钱、三只手算出同一个数」，
+   开场先去字库里过一遍闸（euBuildPool 当场重算，与离线字表不一样就不上台）*/
+async function euBoot(){
+  const g=eu.gen;
+  eu.load=true;eu.phase='load';
+  euSync();euDraw();
+  const ok=await euBuildPool(true,EU_NMIN,EU_NMAX);
+  if(g!==eu.gen||!eu.run||eu.over)return;
+  eu.load=false;
+  if(!ok){euEnd('pool');euSync();return}
+  const rec=euTake();
+  if(!rec){euEnd('pool');euSync();return}
+  euSetWord(rec);
+  euSync();euDraw();
+}
+function euStart(){
+  eu.run=true;eu.over=false;eu.gen++;
+  euBind();
+  euKill();
+  eu.t=0;eu.playMs=0;eu.last=0;
+  eu.pool=[];eu.poolLv=-1;eu.miss=[];eu.seen=[];eu.fresh=0;
+  eu.lv=euLvOf(auxInt('hz_eu_words'));
+  eu.wi=0;eu.score=0;eu.hearts=EU_HEARTS;eu.combo=0;eu.maxCombo=0;
+  eu.load=true;eu.locked=0;
+  eu.rec=null;eu.g=null;eu.tb=null;eu.ink=null;eu.inkN=0;
+  eu.ch='';eu.at=-1;eu.start=-1;eu.lifts=0;eu.backs=0;eu.cost=0;
+  eu.steps=[];eu.opts=[];eu.cand=[];eu.sel=0;eu.candKeys=0;eu.pen=null;
+  eu.headMin=0;eu.mar=-1;eu.marAll=-1;
+  eu.probeN=EU_P0.probe;eu.guideN=EU_P0.guide;eu.swapN=EU_P0.swap;
+  eu.probeUse=0;eu.guideUse=0;eu.swapUse=0;eu.probeMs=0;eu.guideMs=0;eu.guideE=-1;eu.guideLift=0;
+  eu.place0=euStartMs(eu.lv);eu.placeMs=0;eu.placeKind='';
+  eu.wordMs0=0;eu.wordMs=0;
+  eu.lamp0=euLamp(eu.lv);eu.lamp=eu.lamp0;eu.sealMs=0;
+  eu.words=0;eu.segs=0;eu.liftTotal=0;eu.backTotal=0;eu.perfect=0;
+  eu.fwdN=0;eu.noliftN=0;eu.bestN=0;eu.wrongs=0;eu.lates=0;eu.hes=0;eu.swaps=0;eu.wordOuts=0;eu.eyeballs=0;
+  eu.cleanWord=1;eu.neatWord=1;eu.tools=0;eu.wordTools=0;eu.cleanRun=0;eu.toolRun=0;eu.marSum=0;
+  eu.gain=0;eu.penSum=0;eu.hitOk=0;eu.hitTxt='';
+  eu.nags=0;eu.nagMs=0;eu.newBest=false;eu.helpMs=0;
+  euClearTag();
+  if(typeof stopBGM==='function')stopBGM();
+  showScreen('eu');
+  euSync();euDraw();
+  euBoot();
+  euStartLoop();
+}
+/* 主循环的起停各只有一处：结算要冻画面就掐这一根，别在别处再挂第二条 rAF */
+function euLoop(ts){
+  if(!eu.run||eu.over){eu.rafId=0;return}
+  const dt=eu.last?Math.min(120,ts-eu.last):16;
+  eu.last=ts;
+  euTick(dt);
+  euSync();euDraw();
+  eu.rafId=requestAnimationFrame(euLoop);
+}
+function euStartLoop(){if(!eu.run||eu.over||eu.rafId)return;eu.last=0;eu.rafId=requestAnimationFrame(euLoop)}
+function euStopLoop(){if(eu.rafId){cancelAnimationFrame(eu.rafId);eu.rafId=0}}
+function euRestart(){euStart()}
+function euLeave(where){
+  eu.run=false;eu.over=false;
+  euKill();euStopLoop();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function euHelp(){
+  if(!eu.run||eu.over)return;
+  if(eu.rec&&eu.phase!=='seal'&&!eu.load){
+    eu.eyeballs++;eu.tools++;eu.wordTools++;
+    eu.score-=EU_P_EYEBALL;eu.penSum+=EU_P_EYEBALL;eu.cleanWord=0;
+    eu.hitOk=2;eu.hitTxt='📖 翻说明 · −'+EU_P_EYEBALL;
+  }
+  eu.helpMs=EU_HELP_MS;
+  euMsg(euHelpText(),'#FFE0B2');
+  euSync();
+}
+/* ---- 主钮那一下：三段场面各走各的手 ---- */
+function euAct(){
+  if(!eu.rec||eu.over||eu.locked||eu.pen)return;
+  if(eu.phase==='start'){euChoose();return}
+  if(eu.phase==='lift'){euLand();return}
+  if(eu.phase==='seal'){if(eu.sealMs>0){eu.sealMs=0;euNextWord()}return}
+  if(eu.phase==='walk'){
+    if(eu.guideE>=0&&eu.guideMs>eu.t){
+      for(let i=0;i<eu.opts.length;i++)if(eu.opts[i].e===eu.guideE){euWalk(i);return}
+    }
+    euTag('🖊 走哪一条？按 <code>1~'+eu.opts.length+'</code>，或直接点案上那一条青色的道');
+    return;
+  }
+}
+/* ================= 案面上的落点：把指头那一点换成「哪一个头 / 哪一条道」 ================= */
+/* 中线与笔形都在 1024 空间、y 向上，所以先把屏幕点倒回 1024，再按 1024 里的半径量：
+   半径写成屏幕像素（EU_HIT），除以缩放才是 1024 里的那一把尺 —— 字大字小点起来一样准 */
+function euPt(e){
+  const cv=euCv,out={x:-1,y:-1,node:-1,edge:-1};
+  if(!cv||!cv.getBoundingClientRect)return out;
+  const r=cv.getBoundingClientRect();
+  if(!r.width||!r.height)return out;
+  out.x=Math.round((e.clientX-r.left)*(EU_W/r.width)*10)/10;
+  out.y=Math.round((e.clientY-r.top)*(EU_CVH/r.height)*10)/10;
+  return out;
+}
+function euSegDist(px,py,ax,ay,bx,by){
+  const dx=bx-ax,dy=by-ay,l2=dx*dx+dy*dy;
+  let t=l2?((px-ax)*dx+(py-ay)*dy)/l2:0;
+  if(t<0)t=0;else if(t>1)t=1;
+  const x=ax+dx*t-px,y=ay+dy*t-py;
+  return Math.sqrt(x*x+y*y);
+}
+function euHitTest(p){
+  const g=eu.g;
+  if(!g||p.x<0||p.y>EU_BY+EU_BH)return p;
+  const v=euView();
+  const ux=(p.x-v.ox)/v.sc,uy=EU_BOX-(p.y-v.oy)/v.sc;
+  const R=EU_HIT/v.sc;
+  if(eu.phase==='start'||eu.phase==='lift'){
+    let best=-1,bd=R;
+    for(let i=0;i<eu.cand.length;i++){
+      const n=eu.cand[i],dx=g.nodes[n].x-ux,dy=g.nodes[n].y-uy,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<bd){bd=d;best=i}
+    }
+    if(best>=0)p.node=best;
+    return p;
+  }
+  if(eu.phase==='walk'){
+    let best=-1,bd=R;
+    for(let i=0;i<eu.opts.length;i++){
+      const pts=g.edges[eu.opts[i].e].pts;
+      for(let k=1;k<pts.length;k++){
+        const d=euSegDist(ux,uy,pts[k-1][0],pts[k-1][1],pts[k][0],pts[k][1]);
+        if(d<bd){bd=d;best=i}
+      }
+    }
+    if(best>=0)p.edge=best;
+    return p;
+  }
+  return p;
+}
+function euTap(p){
+  if(eu.phase==='seal'){if(eu.sealMs>0){eu.sealMs=0;euNextWord()}return}
+  if(eu.phase==='start'||eu.phase==='lift'){
+    if(p.node>=0){eu.sel=p.node;euCandCommit();return}
+    eu.wrongs++;eu.hitOk=2;eu.hitTxt='✖ 没点到头';
+    euTag('🖊 点的是<b>头</b>（道上那两个圈）：'+(eu.phase==='start'?'挑起笔':'落笔')+'那一下红圈蓝圈都算数，'+
+      '也可以按 <code>←→</code> 换头、<code>回车</code> 落笔');
+    euSync();euDraw();
+    return;
+  }
+  if(eu.phase==='walk'){
+    if(p.edge>=0){euWalk(p.edge);return}
+    eu.wrongs++;eu.hitOk=2;eu.hitTxt='✖ 没点到道';
+    euTag('🖊 点的是<b>青色的那一条道</b>（号牌 1~'+eu.opts.length+' 钉在道当中）：点空处不走路，也不扣钱');
+    euSync();euDraw();
+    return;
+  }
+}
+/* 点一下就落笔：与「←→ 挑到这一个再按回车」是同一只手，谁也不许多罚一次 */
+function euCandCommit(){
+  if(eu.phase==='start')euChoose();
+  else if(eu.phase==='lift')euLand();
+}
+/* ================= 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子 ================= */
+function euBind(){
+  if(eu.bound)return;
+  eu.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!eu.run||eu.over)return;
+    if(eu.helpMs>0){eu.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){euLeave();return}
+    if(k==='arrowleft'||k==='a'){euCandMove(-1);e.preventDefault();return}
+    if(k==='arrowright'||k==='d'){euCandMove(1);e.preventDefault();return}
+    if(k==='enter'||k===' '){euAct();e.preventDefault();return}
+    if(k>='1'&&k<='6'){
+      if(eu.phase==='walk')euWalk(+k-1);
+      else euTag('🖊 <code>1~6</code> 是「走哪一条道」的号：挑起笔头与抬笔落点用 <code>←→</code> 与 <code>回车</code>');
+      e.preventDefault();return;
+    }
+    if(k==='x'){euLiftOpen();e.preventDefault();return}
+    if(k==='p'){euProbe();e.preventDefault();return}
+    if(k==='v'){euGuide();e.preventDefault();return}
+    if(k==='s'){euSwapWord();e.preventDefault();return}
+    if(k==='h'||k==='?'){euHelp();e.preventDefault();return}
+    if(k==='f'){euEnd('quit');e.preventDefault();return}
+  });
+  if(euCv){
+    euCv.addEventListener('pointerdown',function(e){
+      if(!eu.run||eu.over)return;
+      if(eu.helpMs>0){eu.helpMs=0;return}
+      if(eu.locked||eu.pen)return;
+      const p=euHitTest(euPt(e));
+      euTap(p);
+      e.preventDefault();
+    });
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){
+      if(!eu.run||eu.over)return;
+      if(eu.helpMs>0){eu.helpMs=0;return}
+      on();ev.preventDefault();
+    });
+  };
+  tap('euActBtn',function(){euAct()});
+  tap('euLiftBtn',function(){euLiftOpen()});
+  tap('euProbeBtn',function(){euProbe()});
+  tap('euGuideBtn',function(){euGuide()});
+  tap('euSwapBtn',function(){euSwapWord()});
+  tap('euHelpBtn',function(){euHelp()});
+  tap('euNextBtn',function(){euEnd('quit')});
+  const tapFree=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){on();ev.preventDefault()});
+  };
+  /* 散场之后那三颗钮不许按 run/over 拦：孩子站在结算屏上，「再来一趟」「回实验室」「回书桌」
+     必须点得动 —— 拦在前面就等于把结算屏变成一堵墙 */
+  tapFree('euReBtn',function(){euRestart()});
+  tapFree('euLabBtn',function(){euLeave('lab')});
+  tapFree('euHomeBtn',function(){euLeave()});
+}
+
+/* ================= 散场：结算、落盘、图鉴与家什架、把这一趟的账再独立核一遍 ================= */
+function euPut(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt}
+function euPutH(id,html,color){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML=html;
+  if(color)el.style.color=color;
+}
+function euEnd(why){
+  if(!eu.run||eu.over)return;
+  eu.over=true;eu.run=false;
+  euKill();euClearTag();
+  const stars=Math.max(1,Math.round(eu.score/14)+eu.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  euPut('euRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['✒️','收笔了','自己按的结算'],
+    hearts:['💔','心都磨完了','多花太多分、字钟也尽了'],
+    lamp:['🕯️','场灯灭了','这一场的灯烧完了'],
+    pool:['✒️','配不出这一场的字','字库里挑不出「起笔头真分高下、不动脑必多花钱、五只手算得一样」的字']}[why]||
+    ['✒️','散场',''];
+  euPut('euRsEmoji',head[0]);
+  euPut('euRsTitle',head[1]);
+  euPut('euRsSub','第 '+eu.lv+' 场 · '+head[2]+' · 收齐 '+eu.words+' 字');
+  euPut('euRsScore','✒ '+eu.score+' 文（赏 +'+eu.gain+' · 罚 −'+eu.penSum+'）');
+  euPut('euRsWords','🈶 收字 '+eu.words+' 个 · 染绿 '+eu.segs+' 段 · 散了 '+eu.wordOuts+' 个字');
+  euPut('euRsWalk','✋ 抬笔 '+eu.liftTotal+' 次 · ↺ 倒描 '+eu.backTotal+' 段 · 最长连击 '+eu.maxCombo);
+  euPut('euRsAward','🏅 一步不差 '+eu.perfect+' 趟 · 起笔挑中最省那头 '+eu.bestN+' 趟 · 零倒描 '+eu.fwdN+' 趟 · 一趟不抬笔 '+eu.noliftN+' 趟');
+  euPut('euRsWipe','⚖ 这一场共多花 '+eu.marSum+' 分 · 下手钟尽 '+eu.lates+' 次 · 犹豫 '+eu.hes+' 回 · 点空 '+eu.wrongs+' 次');
+  euPut('euRsTools','🧰 借家什 '+eu.tools+' 回 · ✨数头 '+eu.probeUse+' · 🧭指道 '+eu.guideUse+' · 🔁换字 '+eu.swaps+' · 📖说明 '+eu.eyeballs);
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账 */
+  euSave(why);
+  euPut('euRsBest','🏅 历史最高 '+auxInt('hz_eu_best')+' 文 · 累计收字 '+auxInt('hz_eu_words')+' 字');
+  euPut('euRsStars','⭐ +'+stars+(why==='pool'?'':'（已上星）'));
+  const rk=euRankOf(auxInt('hz_eu_words'));
+  euPut('euRsRank',rk.e+' '+rk.t);
+  const bk=euBookCount();
+  euPutH('euRsBook','📖 <b>藏书阁 '+bk.book+' 张</b> · 家什架 <b>'+bk.shelf+'/'+EU_SHELF.length+
+    '</b> 件 · 错字本 <b>'+bk.miss+'</b> 个字<br><small>最远走到第 '+auxInt('hz_eu_lvmax')+' 场 · 累计染绿 '+
+    auxInt('hz_eu_segs')+' 段 · 一步不差 '+auxInt('hz_eu_perfect')+' 趟 · 零倒描 '+auxInt('hz_eu_fwd')+
+    ' 趟 · 一趟不抬笔 '+auxInt('hz_eu_nolift')+' 趟 · 清白场 '+auxInt('hz_eu_neat')+' 场</small>');
+  euPutH('euRsWhy','✒️ 这一坊的道理：<b>一个字被交叉点切成一段一段「道」，走道只能从站着的头出发</b>。'+
+    '两种代价一贵一贱：<b>抬笔 '+EU_LIFT+' 分</b>（眼前接不到没走的道，挪到别处落）、<b>倒描 '+EU_BACK+
+    ' 分</b>（逆着笔顺描一条，便宜但连击断了）。<br>🎯 <b>起笔那个头值钱</b>：连着奇数条道的叫<b>单头</b>，'+
+    'k 个单头 ⇒ 最少 k/2 条迹走完，从单头起正好用满（抬 k/2−1 次），从双头起多抬一次 —— '+
+    '配字时当场验过<b>最好的头与最差的头账不一样</b>，一样的字不收。<br>📐 <b>案上的数不骗你</b>：'+
+    '「最省 N 分」是一只手反向填 mask×头 的表算的，另有正向逐头账、自顶向下账、会算的手与不动脑的手 —— '+
+    '五只手同一个数才准上台，而且<b>不动脑的那只必须真比精确账贵</b>（案上写的「不动脑要 N 分」就是它）。<br>'+
+    '🧭 <b>割边留到最后</b>：走完就把字劈成两半的那条道能不碰就不碰。<br>第 '+EU_TELL_LV+' 场起案上不再标'+
+    '「从这儿起几分」，第 '+EU_DIM_LV+' 场起连单双头的红蓝圈也收走 —— 剩下的凭据只有 ✨ 那一眼与脑子里那条 k/2。<br>'+
+    '战绩落盘 <code>hz_eu_*</code>：场档按<b>收齐的字数</b>走，称号按<b>累计收字数</b>走，错字本里的字'+
+    '<b>下一场优先挑回来</b>','#C8E6C9');
+  euNudge();
+  showScreen('eu-result');
+}
+/* ---- 落盘 ---- */
+function euSave(why){
+  auxAdd('hz_eu_games',1);
+  auxAdd('hz_eu_words',eu.words);
+  auxAdd('hz_eu_segs',eu.segs);
+  auxAdd('hz_eu_lift',eu.liftTotal);
+  auxAdd('hz_eu_back',eu.backTotal);
+  auxAdd('hz_eu_swap',eu.swaps);
+  auxAdd('hz_eu_late',eu.lates);
+  auxAdd('hz_eu_hes',eu.hes);
+  auxAdd('hz_eu_wrong',eu.wrongs);
+  auxAdd('hz_eu_wordout',eu.wordOuts);
+  auxAdd('hz_eu_tools',eu.tools);
+  auxAdd('hz_eu_probe',eu.probeUse);
+  auxAdd('hz_eu_guide',eu.guideUse);
+  if(eu.maxCombo>auxInt('hz_eu_combo'))auxPut('hz_eu_combo',eu.maxCombo);
+  if(eu.lv>auxInt('hz_eu_lvmax'))auxPut('hz_eu_lvmax',eu.lv);
+  if(eu.score>auxInt('hz_eu_best')){auxPut('hz_eu_best',eu.score);eu.newBest=true}
+  euShelfCheck();
+}
+/* ---- 图鉴：一个字一张墨道卡（记的是首回收齐那个字的场号与段数）---- */
+function euBookCount(){
+  const book=(localStorage.getItem('hz_eu_book')||'').split(',').filter(function(s){return s}).length;
+  const shelf=(localStorage.getItem('hz_eu_shelf')||'').split(',').filter(function(s){return s}).length;
+  const miss=(localStorage.getItem('hz_eu_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0}).length;
+  return {book:book,shelf:shelf,miss:miss};
+}
+function euBookPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  const bk=localStorage.getItem('hz_eu_book')||'';
+  if(bk.indexOf(ch+':')>=0)return;
+  const list=bk.split(',').filter(function(s){return s});
+  list.unshift(ch+':'+eu.lv+':'+(eu.rec?eu.rec.E:0));
+  auxPut('hz_eu_book',list.slice(0,EU_BOOK_MAX).join(','));
+}
+/* 散场的字进错字本：下一场优先挑回来 */
+function euMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_eu_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  auxPut('hz_eu_miss',miss.slice(0,EU_BOOK_MAX).join(','));
+}
+/* 家什架：八件各认一件实事，其中「名刺」认的是别处的章节徽章 */
+function euShelfCheck(){
+  const have=(localStorage.getItem('hz_eu_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    auxInt('hz_eu_words')+eu.words>=1,
+    auxInt('hz_eu_neat')>=1,
+    auxInt('hz_eu_perfect')>=5,
+    auxInt('hz_eu_nolift')>=1,
+    auxInt('hz_eu_lvmax')>=EU_SHELF_LV||eu.lv>=EU_SHELF_LV,
+    auxInt('hz_eu_toolrun')+eu.toolRun>=1,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    auxInt('hz_eu_segs')+eu.segs>=120
+  ];
+  for(let i=0;i<EU_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(EU_SHELF[i].k)<0){have.push(EU_SHELF[i].k);got.push(EU_SHELF[i].k)}
+  }
+  auxPut('hz_eu_shelf',have.join(','));
+  auxPut('hz_eu_trophy',have.length);
+  auxPut('hz_eu_trophy_n',auxInt('hz_eu_trophy_n')+got.length);
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一坊走到第几场了 ---- */
+function euNudge(){
+  const dot=document.getElementById('euCardDot'),tip=document.getElementById('euCardTip');
+  const tot=auxInt('hz_eu_words'),segs=auxInt('hz_eu_segs'),lv=auxInt('hz_eu_lvmax');
+  const rk=euRankOf(tot),shelf=auxInt('hz_eu_trophy'),pf=auxInt('hz_eu_perfect'),nl=auxInt('hz_eu_nolift');
+  if(tip)tip.innerHTML=segs?('🔔 '+rk.e+' '+rk.t+' · 收字 '+tot+' 个 · 染绿 '+segs+' 段 · 最远第 '+lv+
+    ' 场 · 一步不差 '+pf+' 趟 · 零倒描 '+auxInt('hz_eu_fwd')+' 趟 · 一趟不抬笔 '+nl+
+    ' 趟 · 家什架 '+shelf+' 件'):
+    '一个字被交叉点切成一段一段「道」，头与头之间一条道。<b>走完所有的道</b>，只有两种代价：'+
+    '<b>抬笔 '+EU_LIFT+' 分</b>（眼前接不到没走的道，挪起来在别处落）、<b>倒描 '+EU_BACK+
+    ' 分</b>（逆着笔顺描一条，便宜但连击断了）—— 一贵一贱两条路，同一个字走得好不好差的就是这几分。<br>'+
+    '🎯 <b>起笔那个头值钱</b>：连着奇数条道的叫<b>单头</b>，k 个单头 ⇒ 最少 k/2 条迹走完，'+
+    '从单头起正好用满，从双头起多抬一次。配字时当场验过<b>最好的头与最差的头账必须不一样</b>，'+
+    '一样的字不收；「不动脑那只手」还必须<b>真比精确账贵</b>，孩子这一算才有肉吃。<br>'+
+    '📐 案上那个「最省 N 分」不是一把手算的：反向填 mask×头 的表、正向逐头账、自顶向下账、'+
+    '会算的手与不动脑的手<b>五只手同一个数</b>才准上台。第 '+EU_TELL_LV+' 场起不再标逐个头的分数，'+
+    '第 '+EU_DIM_LV+' 场起连红蓝圈也收走';
+  if(dot){dot.classList.toggle('on',!segs);dot.textContent=(segs?'':'🆕')}
+}
+/* ================= 段 W 的另一条路：只读，不许碰场上任何东西 =================
+   五只手 + 一把重洗的几何，各算各的：
+   ① 图：拿案上留着的中线重洗一遍（证明这一趟跑下来图没被动画改脏）
+   ② 表：反向 mask×头 的精确账，逐个头与正向逐头 DP 必须一字不差
+   ③ 会算的手（Fleury）与不动脑的手（贪心）：都不得比精确账省，贪心必须真贵
+   ④ 两条赏的凭据：只顺写抬笔的那条路走得完（零倒描）；odd≤2 的字下限与 Fleury 都得是 0 抬
+   ⑤ 口径闸门当场再走一遍：段数、笔数、单头、最密的头（数字键 1~6 盖得住）*/
+function euAudWord(rec,L){
+  const out={ok:0,why:'',n:0,E:0,V:0,odd:0,cost:0,gr:0,fl:0,floor:0,fwd:0,one:0,mar:0,bestN:0,
+    geoBad:0,tbBad:0,dpBad:0,grBad:0,flBad:0,bandBad:0,reachBad:0,info:[]};
+  const say=function(t){out.why=t};
+  if(!rec||!rec.ok){say('不是过闸的字');return out}
+  const g=rec.g,E=rec.E,V=rec.V;
+  /* ① 几何重洗：头数、道数、每条道的两头与所属那一笔，都得与案上这张图一模一样 */
+  const meds=rec.meds,st=rec.strokes;
+  if(!meds||!st||meds.length!==rec.n||st.length!==rec.n)say('字料与账对不上'),out.geoBad++;
+  const g2=euGraphOf(meds);
+  if(!g2){say('重洗不出图');out.geoBad++;return out}
+  if(g2.nodes.length!==V||g2.edges.length!==E){say('重洗完头数或道数变了');out.geoBad++}
+  for(let k=0;k<E;k++){
+    const a=g2.edges[k],b=g.edges[k];
+    if(!a||a.a!==b.a||a.b!==b.b||a.s!==b.s){out.geoBad++;continue}
+    if(b.a===b.b){out.geoBad++;continue}            /* 不许有回头道：抬笔落点表与号牌都靠这一条 */
+    if(!b.pts||b.pts.length<2||b.pts[0][0]!==g.nodes[b.a].x||b.pts[b.pts.length-1][1]!==g.nodes[b.b].y)out.geoBad++;
+  }
+  /* ② 度数、奇点、连通：全部从道堆独立数一遍 */
+  const deg=[];
+  for(let n=0;n<V;n++)deg[n]=0;
+  for(let k=0;k<E;k++){deg[g.edges[k].a]++;deg[g.edges[k].b]++}
+  let odd=0,maxDeg=0,sum=0,live=0;
+  for(let n=0;n<V;n++){
+    if(deg[n]%2)odd++;
+    if(deg[n]>maxDeg)maxDeg=deg[n];
+    sum+=deg[n];
+    if(deg[n]!==g.deg[n])out.geoBad++;
+    if(deg[n])live++;
+  }
+  if(sum!==2*E)out.geoBad++;
+  if(odd!==rec.odd||maxDeg!==rec.maxDeg||live!==rec.V)say('奇点/最密/头数与账不合'),out.geoBad++;
+  if(!euConnected(g))say('案上这张图不连通'),out.geoBad++;
+  /* ③ 口径：段数与笔数在带内、单头不超上限、最密的头数字键盖得住 */
+  if(E<EU_EMIN||E>EU_EMAX)out.bandBad++;
+  if(rec.n<EU_NMIN||rec.n>EU_NMAX)out.bandBad++;
+  if(odd>EU_ODDMAX||maxDeg>EU_DEGMAX)out.bandBad++;
+  if(!odd)out.bandBad++;
+  /* ④ 两只精确的手：反向表 vs 正向逐头 DP，逐个头都要合 */
+  const tb=euPlanTable(g);
+  if(!tb){say('反向表算不出');return out}
+  let best=1e9,worst=-1,bestN=0;
+  for(let n=0;n<V;n++){
+    if(!deg[n]){if(tb.full[n]<30000)out.tbBad++;continue}   /* 孤头在掩码 0 不许抬 ⇒ 必然是算不出的那一个 */
+    const c=tb.full[n];
+    if(c!==rec.headAt[n])out.tbBad++;
+    if(c<best)best=c;
+    if(c>worst)worst=c;
+    if(c===rec.cost)bestN++;
+    const d=euPlanDp(g,n);
+    if(d===null||d!==c)out.dpBad++;
+  }
+  if(best!==rec.cost)say('全字最省与账不合'),out.tbBad++;
+  if(worst<=best)say('起笔头不分高下，这一坊没得算'),out.bandBad++;
+  out.bestN=bestN;
+  /* ⑤ 两只手算的手：会算的不许比精确账省，不动脑的必须真贵 —— 案上写的「省几分」就是这个差价 */
+  const fl=euPlanFleury(g,rec.start),gr=euPlanGreedy(g,rec.start);
+  if(!fl||!gr){say('有一只手走不完这个字');return out}
+  if(fl.cost<rec.cost||fl.lifts.length!==rec.lifts||fl.backs!==rec.backs)say('会算的手与账不合'),out.flBad++;
+  if(gr.cost<=rec.cost||gr.cost!==rec.gr)say('不动脑的手不比精确账贵'),out.grBad++;
+  if(gr.cost-rec.cost!==rec.margin)out.grBad++;
+  /* ⑥ 两条赏的凭据：这只手交回来的步子，从外头一条一条数一遍（不许信它自报的 done/cost）*/
+  const fw=euFwdWalk(g,rec.start);
+  if(!fw){say('一段不倒描这条路走不完（赏是空的）'),out.reachBad++}
+  if(fw){
+    const seenF={};
+    let fwdOnly=0,liftCost=0;
+    for(let i=0;i<fw.steps.length;i++){
+      const st=fw.steps[i];
+      if(seenF[st.e])break;                 /* 同一条道描了两遍：下面那句「数出来的道数」自会报 */
+      seenF[st.e]=1;
+      if(!st.fwd)liftCost++;                 /* 掺了倒描 —— 那这一趟就不是「零倒描」的凭据 */
+      if(st.fwd)fwdOnly++;
+    }
+    if(fwdOnly!==E)say('不倒描那趟没走完全部道（真数出 '+fwdOnly+' 段，账上是 '+fw.done+'）'),out.reachBad++;
+    if(fw.done!==fwdOnly)say('不倒描那趟自报走完 '+fw.done+' 段，道堆里真数出来只有 '+fwdOnly+' 段'),out.reachBad++;
+    if(liftCost)say('「零倒描」那趟里掺了 '+liftCost+' 段倒描'),out.reachBad++;
+    if(fw.cost!==fw.lifts.length*EU_LIFT)say('不倒描那趟的账不合：花 '+fw.cost+' 分，抬 '+fw.lifts.length+' 次 × '+EU_LIFT+' 分'),out.reachBad++;
+    if(fw.cost<rec.cost)say('不倒描那趟比精确账还省（表算错了）'),out.reachBad++;
+    if(fw.lifts.length<rec.fwd)say('不倒描那趟比下限还省（下限是假的）'),out.reachBad++;
+  }
+  const floor=euLiftFloor(g,rec.start);
+  if(floor!==rec.floor||floor*EU_LIFT>rec.cost)say('抬笔下限与账不合'),out.reachBad++;
+  if(rec.one&&(floor!==0||rec.lifts!==0))say('亮着「不抬笔」却办不到'),out.reachBad++;
+  if(!rec.one&&floor!==0&&floor>rec.lifts+1)out.reachBad++;
+  /* ⑦ 屏上那句「不动脑要 N 分」：差价必须为正，孩子才有肉吃 */
+  out.mar=rec.margin;
+  if(out.geoBad||out.tbBad||out.dpBad||out.grBad||out.flBad||out.bandBad||out.reachBad){
+    if(!out.why)out.why='几把尺不合(几何'+out.geoBad+' 表'+out.tbBad+' 正向'+out.dpBad+
+      ' 贪心'+out.grBad+' 割边'+out.flBad+' 口径'+out.bandBad+' 赏'+out.reachBad+')';
+    return out;
+  }
+  out.n=rec.n;out.E=E;out.V=V;out.odd=odd;out.cost=rec.cost;
+  out.gr=rec.gr;out.fl=rec.fl;out.floor=rec.floor;out.fwd=rec.fwd;out.one=rec.one;
+  out.ok=1;
+  out.info.push({ch:rec.ch,L:L,E:E,V:V,odd:odd,cost:rec.cost,gr:rec.gr,margin:rec.margin,one:rec.one});
+  return out;
+}
+/* ---- 眼下案面的账：三行数、一步一路、四条钟当场互核（只读）---- */
+function euAudState(){
+  const s={has:0,lv:eu.lv,phase:eu.phase,ch:eu.ch,n:0,E:0,V:0,odd:0,
+    inkN:eu.inkN,cost:eu.cost,lifts:eu.lifts,backs:eu.backs,steps:eu.steps.length,
+    at:eu.at,start:eu.start,opts:eu.opts.length,cand:eu.cand.length,sel:eu.sel,
+    headMin:eu.headMin,mar:eu.mar,marAll:eu.marAll,recCost:eu.rec?eu.rec.cost:-1,
+    hearts:eu.hearts,words:eu.words,segs:eu.segs,combo:eu.combo,score:eu.score,
+    gain:eu.gain,penSum:eu.penSum,tools:eu.tools,borrow:eu.probeUse+eu.guideUse+eu.swapUse+eu.eyeballs,
+    liftFromSteps:0,backFromSteps:0,costFromSteps:0,inkedFromSteps:0,chainBad:0,dupBad:0,
+    placeMs:eu.placeMs,wordMs:eu.wordMs,lamp:eu.lamp,bad:0,note:[]};
+  const why=function(t){s.bad++;s.note.push(t)};
+  const rec=eu.rec;
+  if(!rec)return s;
+  const g=eu.g;
+  s.has=1;s.E=rec.E;s.V=rec.V;s.n=rec.n;s.odd=rec.odd;
+  /* ① 染绿的道：数量、去重、每一步连得上 —— 孩子这一趟走的必须是一条真路 */
+  let cnt=0;
+  const seenE={};
+  for(let k=0;k<rec.E;k++)if(eu.ink[k]){cnt++;if(seenE[k])s.dupBad++;seenE[k]=1}
+  if(cnt!==eu.inkN)why('墨迹 '+cnt+' 条与账上 '+eu.inkN+' 条不合');
+  if(cnt>rec.E)why('染绿比这个字的道还多');
+  let prev=eu.start;
+  const doneSo={};let walkedSo=0;
+  for(let i=0;i<eu.steps.length;i++){
+    const st=eu.steps[i];
+    if(st.from!==prev)why('第 '+(i+1)+' 步从 '+(st.from+1)+' 号头起，可上一步停在 '+(prev+1)+' 号头');
+    if(st.lift){
+      s.liftFromSteps++;
+      /* 抬过去那一刻（只算这一步之前走完的道）那个头必须还有道可接，否则这一抬纯属白抬。
+         拿「眼下」的 ink 判历史是判不了的：抬过去走完的字，回头看那个头当然一条道也不接 */
+      if(st.from===st.to)why('第 '+(i+1)+' 步抬笔抬回自己站着的那个头');
+      let live=0;
+      for(let k=0;k<rec.E;k++){
+        if(doneSo[k])continue;
+        const ed=g.edges[k];
+        if(ed.a===st.to||ed.b===st.to)live++;
+      }
+      if(!live)why('抬到 '+(st.to+1)+' 号头，可抬过去那一刻它已经一条道也不接（白抬）');
+      prev=st.to;
+      continue;
+    }
+    const ed=g.edges[st.e];
+    if(!ed){why('第 '+(i+1)+' 步指的是不存在的道');break}
+    if(doneSo[st.e])why('第 '+(i+1)+' 步走的是第 '+(st.e+1)+' 号道，可它第 '+(i+1)+' 步以前就走过');
+    doneSo[st.e]=1;walkedSo++;
+    if(st.from!==ed.a&&st.from!==ed.b)why('第 '+(i+1)+' 步的头根本不接这条道');
+    if(st.to!==(st.from===ed.a?ed.b:ed.a))why('第 '+(i+1)+' 步落错了彼岸');
+    if((!!st.fwd)!==(st.from===ed.a))why('第 '+(i+1)+' 步的方向牌与两头不合（顺写/倒描）');
+    if(!st.fwd)s.backFromSteps++;
+    s.inkedFromSteps++;
+    prev=st.to;
+  }
+  if(walkedSo!==eu.steps.length-s.liftFromSteps)why('步子里数出的道 '+walkedSo+' 与走道步数不合');
+  if(prev!==eu.at&&eu.phase!=='seal')why('账上停在 '+(prev+1)+' 号头，屏上站着 '+(eu.at+1)+' 号头');
+  if(s.inkedFromSteps>rec.E)why('走的道比这字还多');
+  if(s.inkedFromSteps!==eu.inkN)why('步子里的道 '+s.inkedFromSteps+' ≠ 染绿 '+eu.inkN);
+  if(s.liftFromSteps!==eu.lifts)why('步子里抬笔 '+s.liftFromSteps+' ≠ 账上 '+eu.lifts);
+  if(s.backFromSteps!==eu.backs)why('步子里倒描 '+s.backFromSteps+' ≠ 账上 '+eu.backs);
+  for(let i=0;i<eu.steps.length;i++){
+    const st=eu.steps[i];
+    s.costFromSteps+=st.lift?EU_LIFT:(st.fwd?0:EU_BACK);
+  }
+  if(s.costFromSteps!==eu.cost)why('步子累计 '+s.costFromSteps+' 分 ≠ 案上 '+eu.cost+' 分');
+  /* ② 三行数：已花 + 从这儿起的表 = 这一趟会花几分；它不得比全字最省还省。
+     起笔那一头还没站定时（at<0），案上那个「照最省走到底」说的是全字最省 ——
+     此刻孩子挑的正是「哪一个头起笔」，所以这一支必须与表里各头的最小值三方对上 */
+  if(s.cost>rec.E*(EU_LIFT+EU_BACK))why('已花 '+s.cost+' 分工钱高得离谱');
+  if(eu.phase==='seal'){
+    if(eu.headMin!==eu.cost)why('封字了案上还挂着「照最省走到底 '+eu.headMin+'」，已花却是 '+eu.cost);
+    if(eu.marAll!==Math.max(0,eu.cost-rec.cost))why('这一趟多花 '+eu.marAll+' ≠ 已花 '+eu.cost+' − 最省 '+rec.cost);
+    if(eu.placeKind)why('封字了下手钟还挂着场面（'+eu.placeKind+'）');
+    if(s.placeMs!==0)why('封字了下手钟还在走（'+Math.round(s.placeMs)+'）');
+  }else if(eu.at<0){
+    if(eu.phase!=='start')why('眼下没站头，场面却不是起笔（'+eu.phase+'）');
+    if(eu.cost!==0||s.inkN!==0)why('起笔前就已花 '+eu.cost+' 分、染绿 '+s.inkN+' 段');
+    if(eu.headMin!==rec.cost)why('起笔案上写 '+eu.headMin+'，可这个字最省是 '+rec.cost);
+    if(eu.mar!==0)why('起笔前就说自己多花了 '+eu.mar+' 分');
+    let mn=2e9;
+    for(let i=0;i<eu.cand.length;i++){const c=eu.tb.full[eu.cand[i]];if(c<mn)mn=c}
+    if(mn!==rec.cost)why('表里最好的起笔头要 '+mn+' 分，全字最省却写着 '+rec.cost);
+    if(rec.start>=0&&eu.tb.full[rec.start]!==rec.cost)why('账上那个起笔头 '+rec.start+' 照表走不到最省');
+  }else if(!eu.pen){
+    /* 笔尖压着那 210 毫秒里这两行问的格还没人重算：headMin 与 mar 是 euSettle 抬笔那一拍才挂上去的
+       新数（euWalk 只改 cost/at/ink，不动 headMin），所以那一格里「已花+还差」比案上那个数大是设计 ——
+       孩子看见的那一行要等笔尖抬起才更新。反证在脚本那边（M1e4：针抬着、把 headMin 挪一分，必须喊不合）*/
+    const rest=euRestOf(eu.at);
+    if(eu.cost+rest!==eu.headMin)why('照最省走到底 '+eu.headMin+' ≠ 已花 '+eu.cost+' + 还差 '+rest);
+    if(eu.headMin-rec.cost!==eu.mar)why('多花 '+eu.mar+' 与头账不合');
+  }
+  if(eu.headMin<rec.cost)why('照眼下走到底比全字最省还省（表有病）');
+  if(eu.mar<0)why('多花几分是负的（表有病）');
+  if(eu.phase==='seal'&&eu.cost<rec.cost)why('这一趟比最省还省');
+  /* ③ 场面与手：可走的道必须正好是「接着眼下这个头且没染过」的那几条。
+     笔尖还压在纸上那 EU_ANIM_MS 毫秒不算这一眼：euWalk 当场把菜单收了（eu.opts=[]），
+     等笔尖抬起 euSettle 重新数一遍才再问 —— 那一格里案上没菜单是设计，不是账错。
+     （这段里的账目核对——染绿、步子、工钱——不受这一眼影响，笔尖压着时照样一笔一笔对）*/
+  if(!eu.pen){
+  const want=[];
+  if(eu.at>=0)for(let i=0;i<g.adj[eu.at].length;i++){const e=g.adj[eu.at][i];if(!eu.ink[e])want.push(e)}
+  if(want.length!==eu.opts.length)why('案上亮着 '+eu.opts.length+' 条道，可这个头明明接得通 '+want.length+' 条');
+  for(let i=0;i<eu.opts.length;i++){
+    const o=eu.opts[i];
+    if(want.indexOf(o.e)<0)why('亮着的 '+o.e+' 号道不接这个头或早已染过');
+    if((!!o.fwd)!==(g.edges[o.e].a===eu.at))why('第 '+(i+1)+' 号牌的顺写/倒描与两头不合');
+  }
+  if(eu.opts.length>EU_DEGMAX)why('可走的道 '+eu.opts.length+' 条，数字键 1~'+EU_DEGMAX+' 盖不住');
+  if(eu.phase==='walk'&&!eu.opts.length)why('站着走道却一条道也没有');
+  }
+  if(eu.phase==='lift'){
+    const live=[];
+    for(let n=0;n<rec.V;n++)if(n!==eu.at&&euLiveAt(n))live.push(n);
+    if(live.length!==eu.cand.length)why('抬笔落点 '+eu.cand.length+' 个，可还有道可走的头是 '+live.length+' 个');
+    for(let i=0;i<eu.cand.length;i++)if(eu.cand[i]===eu.at||!euLiveAt(eu.cand[i]))why((eu.cand[i]+1)+' 号头落不得');
+    if(eu.opts.length&&eu.placeKind==='lift')why('眼前还有道却标成非抬不可');
+  }
+  if(eu.sel<0||eu.sel>=eu.cand.length)why('挑中的头 '+(eu.sel+1)+' 号出了候选表');
+  if(eu.start>=0&&(!g.deg[eu.start]))why('起笔头 '+eu.start+' 不接任何道');
+  /* ④ 赏与罚：屏上那串文必须正好等于累计的赏减累计的罚 */
+  if(eu.gain-eu.penSum!==eu.score)why('赏 '+eu.gain+' − 罚 '+eu.penSum+' ≠ 屏上 '+eu.score);
+  if(s.tools!==s.borrow)why('借家什 '+s.borrow+' 回，账上记的却是 '+s.tools+' 回');
+  if(eu.probeN<0||eu.guideN<0||eu.swapN<0)why('家什余量成了负的');
+  if(eu.probeN>EU_P0.probe||eu.guideN>EU_P0.guide||eu.swapN>EU_P0.swap)why('家什余量超了起手（补过却要写清）');
+  if(eu.hearts<0||eu.hearts>EU_HEART_MAX)why('心 '+eu.hearts+' 颗出了格');
+  if(s.lv<1||s.lv>9)why('场号 '+s.lv+' 出了 1~9');
+  if(eu.perfect>eu.words)why('一步不差 '+eu.perfect+' 趟比收字 '+eu.words+' 还多');
+  if(eu.noliftN>eu.words)why('不抬笔 '+eu.noliftN+' 趟比收字还多');
+  /* ⑤ 四条钟不许倒挂；下手钟只在真要下手的场面走 */
+  if(eu.placeKind){
+    /* 整支钟必须跟着场面重挂：起笔 / 走道 / 抬笔三支各有各的长，孩子看的是同一根条 */
+    if(eu.place0!==(eu.placeKind==='start'?euStartMs(s.lv):eu.placeKind==='lift'?euLiftMs(s.lv):euStepMs(s.lv)))
+      why('下手的钟整支 '+eu.place0+' 与场面「'+eu.placeKind+'」那一支不合');
+    if(s.placeMs>eu.place0)why('下手的钟 '+s.placeMs+' 比整支 '+eu.place0+' 还长');
+    /* 钟尽了下手照旧允许（这一段还是走，只是不给赏）—— 所以钟到 0 必须与「罚过」同账 */
+    if(s.placeMs===0&&!eu.lates)why('下手钟已经尽了，账上却一次没罚');
+  }else if(s.placeMs!==0)why('场面没在等下手，下手的钟却在走（'+Math.round(s.placeMs)+'）');
+  if(s.wordMs>eu.wordMs0)why('字钟 '+s.wordMs+' 比整支 '+eu.wordMs0+' 还长');
+  if(s.lamp>eu.lamp0)why('场灯 '+s.lamp+' 比整支 '+eu.lamp0+' 还长');
+  if(eu.wordMs0!==euWordMs(eu.lv,rec.E))why('字钟与「段数×每段几秒」那张式子不合');
+  if(eu.lamp0!==euLamp(s.lv))why('场灯与场号不合');
+  /* ⑥ 帘子只认场号，不许偷偷改成认字数 —— 改了屏上写的「第 4 场起不标分」就成了谎话 */
+  if(euNoTell(s.lv)!==(s.lv>=EU_TELL_LV))why('第 '+s.lv+' 场的「不标逐个头」帘子与常量 EU_TELL_LV 不合');
+  if(euDim(s.lv)!==(s.lv>=EU_DIM_LV))why('第 '+s.lv+' 场的红蓝圈帘子与常量 EU_DIM_LV 不合');
+  if(eu.segs<eu.inkN)why('一辈子记的染绿 '+eu.segs+' 段，比眼下这一字 '+eu.inkN+' 段还少（账倒退了）');
+  return s;
 }
 
 
