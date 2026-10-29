@@ -7554,6 +7554,97 @@ button:active{transform:scale(.95)}
   #screen-eu .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-eu .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.109 📻 笔顺电报坊 ================= */
+/* HUD 占死三行（76 像素就是它满三行那一个高度）：字没上台那两息它只折两行，
+   不留这一格的话整张电报桌会被往上抬 —— 米字格与纸带都在它下头，一行也不许裁 */
+.tp-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.tp-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.tp-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死六行（块级排版，只是垫高、不改排版）：三副题面里最宽的那一副（抢答那一句带「缺的是哪几个」）就是六行 */
+.tp-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*6)}
+.tp-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.tp-ask b{color:#FFE082}
+.tp-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 电报桌：一块磨旧的铜壳（米字格、淡墨的字底、一笔一笔亮起来、右边那条纸带全画在这张桌上；canvas 透明，底色由这里给）*/
+.tp-field{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#1D2733,#131A22 58%,#080C11);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8)}
+.tp-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.tp-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(10,14,18,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.tp-tag.on{opacity:1}
+.tp-tag.warn{background:rgba(88,24,24,.94);color:#FFCCBC}
+.tp-tag.gold{background:rgba(74,58,14,.96);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.tp-tag.cyan{background:rgba(6,58,74,.94);color:#84FFFF;box-shadow:0 0 14px rgba(0,229,255,.4)}
+/* 码表：一个方向一张牌，牌上是这一位的方向、它在这个字里有几笔、还有滴答的格子与三只手 */
+.tp-tbl{width:calc(100% - 28px);max-width:520px;margin:6px auto 2px;display:flex;flex-direction:column;gap:4px}
+.tp-row{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:11px;padding:4px 6px;cursor:pointer;transition:background .12s,border-color .12s}
+.tp-row.sel{background:rgba(255,224,130,.13);border-color:rgba(255,224,130,.7)}
+.tp-row.bad{background:rgba(120,26,26,.42);border-color:#FF5252;animation:tpShake .42s linear 2}
+.tp-row.hit{border-color:#A5D6A7;background:rgba(102,187,106,.22)}
+.tp-row.dim{opacity:.42}
+@keyframes tpShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.tp-nm{flex:0 0 26px;text-align:center;font-size:15px;font-weight:800;color:#ECEFF1}
+.tp-w{flex:0 0 42px;font-size:11px;color:#90A4AE;white-space:nowrap}
+.tp-w b{color:#FFD54F;font-size:12px}
+.tp-code{flex:1;min-width:0;display:flex;gap:3px;align-items:center}
+.tp-bit{width:17px;height:20px;border-radius:5px;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;cursor:pointer;user-select:none}
+.tp-bit.hollow{cursor:default}
+.tp-bit.d{background:linear-gradient(180deg,#4FC3F7,#0288D1);color:#01121C}
+.tp-bit.a{background:linear-gradient(180deg,#FFB74D,#F57C00);color:#231200}
+.tp-bit.hollow{background:rgba(255,255,255,.07);color:#546E7A;border:1px dashed rgba(255,255,255,.14)}
+.tp-cost{flex:0 0 auto;font-size:11px;color:#B0BEC5;font-weight:700}
+.tp-row button{flex:0 0 auto;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.12);color:#ECEFF1;border-radius:8px;font-size:11px;font-weight:800;padding:3px 5px;cursor:pointer}
+.tp-row button:disabled{opacity:.35;cursor:default}
+.tp-row button.cut{color:#FFCCBC}
+.tp-mark{flex:0 0 14px;font-size:11px;font-weight:800;color:#FF5252}
+/* 四条量表：编钟（青）· 这一趟的抢答（金）· 这一场的灯（冷绿）· 这一趟的账（橙，多花到那一格就一路变红）*/
+.tp-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.tp-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.tp-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#37474F,#78909C);transition:width .15s linear}
+.tp-tl.place i{background:linear-gradient(90deg,#4DD0E1,#B2EBF2)}
+.tp-tl.word i{background:linear-gradient(90deg,#C8A46A,#FFE082)}
+.tp-tl.lamp i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.tp-tl.costw i{background:linear-gradient(90deg,#FFB300,#FFD54F)}
+.tp-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.tp-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.tp-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.tp-take button.pass{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#263238;background:linear-gradient(180deg,#CFD8DC,#90A4AE)}
+.tp-take button.pass small{display:block;font-size:10px;font-weight:400;color:rgba(38,50,56,.7)}
+.tp-take button.pass:active{transform:translateY(1px)}
+.tp-take button.pass:disabled{opacity:.42;cursor:default}
+.tp-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1A1206;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.tp-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(26,18,6,.72)}
+.tp-take button.big.ready{background:linear-gradient(180deg,#A5D6A7,#66BB6A);box-shadow:0 0 20px rgba(102,187,106,.55);color:#10260F}
+.tp-take button.big:active{transform:translateY(1px)}
+.tp-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.tp-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.tp-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.tp-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.tp-tool b{display:block;font-size:10px;color:#FFD54F;font-weight:700}
+.tp-tool:disabled{opacity:.4;cursor:default}
+.tp-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.tp-hintline b{color:#FFD54F}
+.tp-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.tp-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.tp-msg b{color:#CFD8DC}
+.tp-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.tp-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.tp-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.tp-rs-book b{color:#FFD54F}
+.tp-rs-book small{color:#78909C}
+.tp-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,179,0,.92);color:#1A1206;border-radius:9px;padding:1px 6px;z-index:4}
+.tp-cdot.on{display:block}
+#screen-tele .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：四条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是六行半，就垫死八行 */
+@media(max-width:460px){
+  .tp-tl{flex:1 1 100%}
+  .tp-ask{min-height:calc(1.35em*8)}
+  .tp-take button.pass{flex:0 0 84px}
+  .tp-take button.big{font-size:17px}
+  .tp-row{padding:3px 4px;gap:4px}
+  .tp-bit{width:15px;height:18px}
+  #screen-tele .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-tele .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-tele .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7610,8 +7701,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 107 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">107</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 108 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">108</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7622,12 +7713,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>107 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>49</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>108 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>50</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="teleCard" onclick="enterMode('tele')">
+      <div class="icon">📻</div>
+      <div class="info"><h3>笔顺电报坊</h3><p id="teleCardTip">这个字笔顺里出现的<b>方向</b>就是字母表（横竖撇捺折里的三到五种），每种有几笔就是它的<b>报数</b>。给每个方向编一条电码（一位位「滴」「答」，最长五位），按 📻 发报：一笔一笔变成电码、一笔一笔在米字格上亮起来。<b>谁也不许是别人的开头</b> —— 撞了车整行闪红、发报按不下去（两把尺各数各的撞车，当场互核）。案上三个数：这一趟 <b>N 声</b>（Σ 报数×码长）· 最省 <b>M 声</b>（哈夫曼反复合并两个最小的报数，另有枚举长度多重集第二只手互核）· 定长 <b>Y 声</b>（不动脑那只笨手）。<b>报数多的贴短码</b>，多花=Y−M 起算。🎧 发报时杂音要吞 k 笔：不出声、不亮格，发完电报机问「第 j 笔是什么方向」—— 数纸带倒推、笔顺记在脑子里。🌳 克拉夫特把坑数清了：满树零浪费才不发一声虚的。第 4 场起不写最省与定长，第 6 场起连「这一趟要几声」也收走</p></div>
+      <span class="tp-cdot" id="teleCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="euCard" onclick="enterMode('eu')">
       <div class="icon">✒️</div>
       <div class="info"><h3>笔顺抬笔坊</h3><p id="euCardTip">一个字被交叉点切成一段一段「道」，头与头之间一条道。<b>走完所有的道</b>只有两种代价：<b>抬笔 3 分</b>（眼前接不到没走的道，挪起来在别处落）、<b>倒描 1 分</b>（逆着笔顺描一条，便宜但连击断了）—— 一贵一贱两条路，同一个字走得好不好差的就是这几分。🎯 <b>起笔那个头值钱</b>：连着奇数条道的叫<b>单头</b>，k 个单头 ⇒ 最少 k/2 条迹走完，从单头起正好用满（抬 k/2−1 次），从双头起多抬一次 —— 配字时当场验过<b>最好的头与最差的头账不一样</b>，一样的字不收。📐 案上那个「最省 N 分」是反向填 mask×头 的表算的，另有正向逐头账、会算的手与不动脑的手 —— <b>五只手同一个数</b>才准上台，而且不动脑那只必须<b>真比精确账贵</b>，孩子这一算才有肉吃。🧭 <b>割边留到最后</b>：走完就把字劈成两半的道能不碰就不碰。第 4 场起不再标逐个头的分数，第 6 场起连红蓝圈也收走</p></div>
@@ -8416,6 +8512,77 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-tele">
+  <div class="top-bar">
+    <button class="back-btn" onclick="tpLeave()">← 返回</button>
+    <div class="stats"><span id="tpScoreTxt">📻 0 文</span><span id="tpLvTxt">第 1 场 · 收 0 字</span><span id="tpQTxt">⏳ 编电码 20 秒</span></div>
+    <button class="icon-btn" onclick="tpHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="tp-hud">
+    <span id="tpRankTxt" title="称号">📻 头一趟</span>
+    <span id="tpHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="tpComboTxt" title="连击">🔥 连 0</span>
+    <span id="tpLotTxt" title="这一场第几字、发到哪里">🈶 1/3 字 · 0/0 笔</span>
+    <span id="tpCostTxt" title="这一趟的账">📡 0 声 · 最省 0 · 定长 0</span>
+    <span class="light" id="tpHitLight">💡 编电码</span>
+  </div>
+  <div class="tp-ask" id="tpAsk">📥 正在挑字……<br><small>在字库里找「定长必比最省贵、吞一笔还倒推得回来」的字</small></div>
+  <div class="tp-stage">
+    <div class="tp-field" id="tpField">
+      <canvas class="tp-canvas" id="tpCanvas" width="420" height="340"></canvas>
+      <div class="tp-tag" id="tpTag">📻 电键还没按</div>
+    </div>
+  </div>
+  <div class="tp-tbl" id="tpTbl"></div>
+  <div class="tp-meter">
+    <div class="tp-tl place"><i id="tpPlaceBar"></i><b id="tpPlaceTxt">⚡ 编电码 20.4 秒</b></div>
+    <div class="tp-tl word"><i id="tpQuickBar"></i><b id="tpQuickTxt">🎧 抢答 5 秒</b></div>
+    <div class="tp-tl lamp"><i id="tpLampBar"></i><b id="tpLampTxt">💡 这一场 78 秒</b></div>
+    <div class="tp-tl costw"><i id="tpCostBar"></i><b id="tpCostBig">📡 0 声 / 最省 0 声</b></div>
+  </div>
+  <div class="tp-take">
+    <button class="pass" id="tpResetBtn">🧹 恢复定长<small>Q</small></button>
+    <button class="big" id="tpActBtn">📥 正在挑字……<small>↑↓ 挑牌 · J 滴 · K 答 · L 退</small></button>
+    <button class="pass" id="tpNextBtn">🏁 结算<small>F</small></button>
+  </div>
+  <div class="tp-tools">
+    <button class="tp-tool" id="tpProbeBtn" disabled>✨ 点坑<span>P</span><b>剩 2</b></button>
+    <button class="tp-tool" id="tpTreeBtn" disabled>🧭 看树<span>V</span><b>剩 2</b></button>
+    <button class="tp-tool" id="tpSwapBtn" disabled>🔁 换字<span>S</span><b>剩 1</b></button>
+    <button class="tp-tool" id="tpHelpBtn">📖 说明<span>H</span></button>
+  </div>
+  <div class="tp-hintline" id="tpHintTxt">⚡ <b>报数多的方向贴短码</b>：一声一声都是笔数乘出来的，重头多一位，整句话就长一截</div>
+  <div class="tp-msg" id="tpMsg">📻 <b>这个字的笔顺里有哪几种方向，字母表就是哪几种</b>：横竖撇捺折各是一张牌，牌上写着它在这个字里有几笔（它的<b>报数</b>）<br>⚡ <b>编一条前缀码</b>：每一位只有「滴」「答」两种声音，谁也不许是别人的开头 —— 撞了车电报机根本没法收，整行闪红、<b>发报按不下去</b><br>🎧 <b>杂音会吞笔</b>：发报时有几笔不出声也不亮格，纸带上只剩一块黑。发完电报机就问「第 j 笔是什么方向」—— 数纸带上各方向响几回、对案上的报数倒推，笔顺记在脑子里就答得更准 · <code>↑↓</code> 挑牌 · <code>J</code> 滴 · <code>K</code> 答 · <code>L</code> 退一位 · <code>回车</code> 发报 · ✨ <code>P</code> 点坑 · 🧭 <code>V</code> 看树 · 🔁 <code>S</code> 换字 · <code>H</code> 📖 说明 · <code>F</code> 🏁 结算</div>
+</div>
+<div class="screen" id="screen-tele-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="tpLeave()">← 返回</button>
+    <div class="stats"><span id="tpRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="tpRsEmoji">📻</div>
+    <div style="font-size:26px;font-weight:800" id="tpRsTitle">收报机歇了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="tpRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="tp-pk" id="tpRsScore">📻 0 文</span>
+      <span class="tp-pk" id="tpRsWords">🈶 收字 0 个 · 发出 0 声 · 吞了 0 笔</span>
+      <span class="tp-pk" id="tpRsWalk">🎧 抢答 0 题 · 答对 0 · 最长连击 0</span>
+      <span class="tp-pk" id="tpRsAward">🏅 一声不差 0 趟 · 短码给对 0 趟 · 满树 0 趟</span>
+      <span class="tp-pk" id="tpRsWipe">⚖ 这一场共多花 0 声 · 编钟尽 0 次 · 犹豫 0 回</span>
+      <span class="tp-pk" id="tpRsTools">🧰 借家什 0 回 · ✨点坑 0 · 🧭看树 0 · 🔁换字 0</span>
+      <span class="tp-pk" id="tpRsBest">🏅 历史最高 0 文</span>
+      <span class="tp-pk" id="tpRsRank">📻 头一趟</span>
+    </div>
+    <div class="tp-rs-book" id="tpRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="tpRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="tpRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="tpReBtn">📻 再发一趟</button>
+      <button class="tool-btn" id="tpLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="tpHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -16315,6 +16482,7 @@ function updateHomeStats(){
   if(typeof hsNudge==='function')hsNudge();
   if(typeof pkNudge==='function')pkNudge();
   if(typeof euNudge==='function')euNudge();
+  if(typeof tpNudge==='function')tpNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -16368,6 +16536,7 @@ function enterMode(mode){
   if(mode==='hyst'){hsStart();return}
   if(mode==='pack'){pkStart();return}
   if(mode==='eu'){euStart();return}
+  if(mode==='tele'){tpStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -118391,6 +118560,1971 @@ function euAudState(){
   if(euNoTell(s.lv)!==(s.lv>=EU_TELL_LV))why('第 '+s.lv+' 场的「不标逐个头」帘子与常量 EU_TELL_LV 不合');
   if(euDim(s.lv)!==(s.lv>=EU_DIM_LV))why('第 '+s.lv+' 场的红蓝圈帘子与常量 EU_DIM_LV 不合');
   if(eu.segs<eu.inkN)why('一辈子记的染绿 '+eu.segs+' 段，比眼下这一字 '+eu.inkN+' 段还少（账倒退了）');
+  return s;
+}
+
+
+/* ================= v1.109.0 📻 笔顺电报坊（一句话要多长才说得清 · 最优前缀码 / 哈夫曼 / 克拉夫特 ================= */
+/* 场：420×340 的一张电报桌。左边是米字格（字就在格子里一笔一笔亮起来），右边是一条纸带（响一声打一行）。
+   这一坊吃的不是「怎么走笔」，是「怎么编码」：
+   ① 这个字的笔顺里出现过的**笔形方向**就是字母表（横竖撇捺折里的三到五种），
+      每一种方向在一句话里出现几次，就是它的**报数**（权重）。
+   ② 孩子给每一个方向编一条电码：一位、两位……最多五位，每一位只有「滴」「答」两种声音。
+      编完按 📻 发报：笔顺一笔一笔变成电码，一笔一笔在米字格上亮起来，纸带一路打下去。
+   ③ **前缀码规矩**：任何一个方向的码，不许是另一个方向的码的开头。
+      破了的电报机根本没法收 —— 听见「滴」就不知道是「横」还是「横竖」那一半，整句话成一串杂音。
+      所以桌上一撞车就整行闪红、📻 发报按不下去，直到孩子把它解开（两只独立的手核撞车，谁也不许替谁）。
+   ④ **克拉夫特等式**把「坑」数清楚了：码长 d 位就占掉 2^-d 棵树，一棵树得长满（Σ = 1）才算没浪费坑。
+      桌上一句「满树零浪费」给 8 文 —— 长不满的树就是白留了坑，多花的声全在那儿。
+   ⑤ 这一趟到底要几声？= Σ（报数 × 码长）。案上三个数一目了然：
+      **这一趟 N 声** · **最省 M 声**（哈夫曼：反复合并两个最小的报数；另有枚举长度多重集的第二只手互核）·
+      **定长 Y 声**（不动脑的那只手：给每个方向一样长的码，⌈log₂ 字母数⌉ × 笔数）。
+      **多花 = N − M**。定长必须真比最省贵（配字时验过，贵不出声的字不上台），孩子这一算才有肉吃。
+      道理只有一句：**报数多的方向贴短码**（重排不等式），差一个字，整句话就长一声。
+   ⑥ 杂音吞笔：发报时有 k 笔被杂音吞掉 —— 不出声、不亮格、纸带上只有一块黑 blotter。
+      发完了电报机问：「第 j 笔是什么方向？」答得上来靠两条路：
+      数纸带上各方向响了几回、对一案上的报数（倒推）；笔顺本身记在脑子里（第 6 场起两笔三笔一起吞，
+      倒推只剩「缺哪几个」，哪一个落在第几笔就得靠真认得这个字）。
+   教学点：短码给重头 —— 一句话的长短不是命，是编出来的。
+   第 `TP_TELL_LV` 场起案上不写「最省 / 定长贵几声」，第 `TP_DIM_LV` 场起连「这一趟要几声」也收走，
+   这时候桌上的账全靠孩子自己拿报数乘码长，一笔一笔加。*/
+const TP_W=420,TP_CVH=340;
+/* 桌面两块：左边米字格（字），右边纸带（发出去的一句话），底下两行回话 */
+const TP_TX=8,TP_TY=6,TP_TS=250;                      /* 米字格 8..258 × 6..256 */
+const TP_PAD=12;                                      /* 格内留白：整张 1024 方格等比缩进来 */
+const TP_RX=268,TP_RY=6,TP_RW=144,TP_RH=250;          /* 纸带 268..412 × 6..256 */
+const TP_L1=284,TP_L2=312;                            /* 回话两行的基线，340 以内 */
+/* ---- ① 口径：与离线扫描 _tpgeo.cjs 一字一样。改任何一个数都得重生成 TP_LEV ---- */
+const TP_NMIN=3,TP_NMAX=8;    /* 收几笔的字 */
+const TP_MMIN=2,TP_MMAX=5;    /* 几种方向字母：一种没得编，六种以上一屏牌排不下 */
+const TP_DMAX=5;              /* 码最长五位（案上一张牌只有五个格子，2^5=32 个坑刚好整数算克拉夫特）*/
+const TP_KRAFT=1<<TP_DMAX;    /* 满树的整数尺度：Σ (TP_KRAFT>>len) == TP_KRAFT */
+const TP_MARGIN_MIN=2;        /* 定长比最省至少贵这些声，孩子才有肉吃 */
+const TP_KMAX=3;              /* 一场最多吞三笔 */
+/* ---- ② 四支钟：编钟（码表那一手）· 拍子（发报一声几毫秒）· 抢答钟 · 场灯 ---- */
+const TP_CODE0=6800,TP_CODE_CUT=380,TP_CODE_MIN=18000;  /* 编钟 = 字母数 × 每字母几秒 − 场号折扣 */
+const TP_BEAT0=170,TP_BEAT_CUT=12,TP_BEAT_MIN=104;      /* 一声几毫秒：码越长发得越久，真听见「省钱」 */
+const TP_QUICK0=5000,TP_QUICK_CUT=300,TP_QUICK_MIN=2600;
+/* 场灯＝一场三字的墙钟：离线拿全站过闸字按四只钟的公式数过（_tplamp.cjs）——
+   每一场都要「死得了」（低于最轻三字坐到编钟尽的墙钟，最紧的一场也余 7 秒以上），
+   又要「经得住」（高于一心做事的三字，最松的一场也有 1.2 倍）：
+   灯比三趟磨洋工短，熄灯这一条收场才真走得到；屏上「💡 这一场 N 秒」才不是空话 */
+const TP_LAMP0=78000,TP_LAMP_MIN=68000,TP_LAMP_STEP=1500;
+const TP_SEAL_MS=3000,TP_GAP_BEATS=2,TP_TAG_MS=2600,TP_NAG_MS=11000,TP_HELP_MS=16000;
+function tpCodeMs(L,m){return Math.max(TP_CODE_MIN,m*(TP_CODE0-(L-1)*TP_CODE_CUT))}
+function tpBeatMs(L){return Math.max(TP_BEAT_MIN,TP_BEAT0-(L-1)*TP_BEAT_CUT)}
+function tpQuickMs(L){return Math.max(TP_QUICK_MIN,TP_QUICK0-(L-1)*TP_QUICK_CUT)}
+function tpLamp(L){return Math.max(TP_LAMP_MIN,TP_LAMP0-(L-1)*TP_LAMP_STEP)}
+function tpMaskN(L){return L>=9?3:(L>=6?2:1)}
+/* ---- 罚：一律从「文」里扣（孩子口袋里的赏）；案上那本账（声）只记多花 ----
+   编钟尽 · 犹豫 · 抢答错 · 抢答迟 · 半路收场 · 换字 · 家什 · 翻说明 */
+const TP_P_LATE=3,TP_P_HES=4,TP_P_WRONG=8,TP_P_SLOW=4,TP_P_QUIT=5,TP_P_SWAP=6,TP_P_TOOL=4,TP_P_HELP=3;
+const TP_HES_KEY=6;                 /* 同一张牌加了又退满六回还不定稿，算犹豫 —— 离线 _tpreach.cjs 拿全站 228 个过闸字逐字数过：
+                                       从起手那张定长牌改到最省那一桌，最难的一张牌也只要动 3 回（翻一格算一回），
+                                       六回这一条线冤枉不着巧手，只罚挨张试的 */
+/* ---- 赏：每响一笔的底文（连击与场号加成）与封字那一整包 ---- */
+const TP_M0=7,TP_CB=.14,TP_LVW=.07;
+const TP_PTS_SEND=12;               /* 一句话发到底 */
+const TP_PTS_MAR=[30,18,11,6];      /* 与最省之比：多花 0/1/2/3 声各给几文，多花 ≥4 声不给 */
+const TP_PTS_MONO=10;               /* 短码给了报数大的方向（码长按报数单调）*/
+const TP_PTS_FULL=8;                /* 满树零浪费（克拉夫特正好长满）*/
+const TP_PTS_GUESS=12;              /* 吞掉的那几笔全猜对 */
+const TP_PTS_FRESH=6;               /* 头一回收这个字 */
+const TP_PTS_NOTOOL=8,TP_PTS_TOOLRUN=14;
+const TP_MAR_LINE=5;                /* 多花到这一格就掉一颗心：这一趟编得太糙了 */
+const TP_MAR_CLEAN=2;               /* 一场三字「每趟多花 ≤2 声」才算清白 ---- 藏书阁那条票 ---- */
+/* ---- ③ 配字口径：一场一串字，串外的字在这一场就是过不了闸的字 ---- */
+const TP_PER=3;                     /* 一场三字 */
+const TP_POOL_MIN=4,TP_POOL_WANT=14,TP_POOL_SCAN=320;
+const TP_HEARTS=3,TP_HEART_MAX=5,TP_BOOK_MAX=300;
+const TP_TELL_LV=4,TP_DIM_LV=6;     /* 第 4 场起不写最省与定长，第 6 场起连「这一趟要几声」也收走 */
+function tpNoTell(L){return L>=TP_TELL_LV}
+function tpDim(L){return L>=TP_DIM_LV}
+const TP_P0={probe:2,tree:2,swap:1}; /* ✨ 点坑 / 🧭 看树 / 🔁 换字
+   两件看账的家什各起手两回：都带一口气的挡话（点坑标 TP_PROBE_MS 秒、看树画 TP_TREE_MS 秒），
+   余量只给一张的话，第二回按下去撞上「用光了」，「等它自己收走」这一句就永远说不出口 */
+const TP_PROBE_MS=5200,TP_TREE_MS=4200;
+/* 场档：开局那一场按「一辈子收齐的字数」走（每两个字进一场），局内每收满 TP_PER 字自己往上进一场 */
+function tpLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+const TP_KN=['横','竖','撇','捺','折'];
+function tpKn(d){return TP_KN[d<0?4:d]}      /* -1（折不了直线的）并入第 5 类，与离线扫描同一口径 */
+function tpRankOf(w){
+  let r=TP_RANKS[0];
+  for(let i=0;i<TP_RANKS.length;i++)if(w>=TP_RANKS[i].n)r=TP_RANKS[i];
+  return r;
+}
+const TP_RANKS=[
+  {n:0,e:'📻',t:'头一趟'},    {n:2,e:'🔡',t:'认得前缀'},  {n:5,e:'🌳',t:'会挖坑'},
+  {n:9,e:'⚡',t:'短码给重头'}, {n:14,e:'📡',t:'一句话最短'}, {n:21,e:'🎧',t:'耳听杂音'},
+  {n:30,e:'🧰',t:'全套家什'},  {n:42,e:'🎯',t:'一声不差'},   {n:58,e:'👑',t:'从没浪费过'}
+];
+const TP_SHELF_LV=4;
+const TP_SHELF=[
+  {k:'分线树',d:'收齐一个字'},        {k:'清白票',d:'一场三字每趟多花 ≤'+TP_MAR_CLEAN+' 声'},
+  {k:'神来之笔',d:'一趟一声不差，满 5 趟'}, {k:'满树章',d:'一趟把树长满（克拉夫特零浪费）'},
+  {k:'戥子',d:'走到第 '+TP_SHELF_LV+' 场还在走'}, {k:'空手趟',d:'一趟家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'}, {k:'金电键',d:'累计发出 400 声'}
+];
+const tp={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  /* 场：一场三字；lv 就是场号 */
+  lv:1,wi:0,score:0,hearts:TP_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一趟：字 · 字母表 · 牌 · 已发 · 吞掉的那几笔 */
+  ch:'',rec:null,code:null,sel:0,keysTouched:[],clashBad:0,
+  /* 发报：时间线 · 眼下第几拍 · 米字格亮到第几笔 · 纸带 */
+  tl:null,tlI:0,sendT0:0,beat:0,tlEnd:0,rang:0,snd:0,rows:[],lit:null,spark:[],
+  /* 抢答：被吞的笔 · 眼下第几个 · 答对几个（All 是一辈子这一把累计，用来核账有没有倒退）*/
+  mask:[],mi:0,guessOk:0,guessBad:0,guessOkAll:0,quickMs:0,quick0:0,missFlag:0,skipNote:'',
+  /* 这一趟的账：要几声 · 最省 · 定长 · 多花 */
+  n:0,best:0,fixed:0,mar:-1,marAll:-1,
+  /* 家什 */
+  probeN:TP_P0.probe,treeN:TP_P0.tree,swapN:TP_P0.swap,
+  probeUse:0,treeUse:0,swapUse:0,probeMs:0,treeMs:0,
+  /* 钟 */
+  placeMs:0,place0:0,placeKind:'',lamp:0,lamp0:0,sealMs:0,
+  /* 账：收字 · 发出的声 · 吞掉的笔 · 一声不差趟 · 短码给对趟 · 满树趟 · 抢答全对趟 */
+  words:0,sndTotal:0,gpicks:0,perfect:0,monoN:0,fullN:0,quickN:0,bestN:0,
+  wrongs:0,lates:0,hes:0,swaps:0,wordOuts:0,eyeballs:0,
+  /* 清白账：一场三字每趟多花 ≤TP_MAR_CLEAN · 一趟不借家什 */
+  cleanWord:1,neatWord:1,tools:0,wordTools:0,cleanRun:0,toolRun:0,marSum:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',nags:0,nagMs:0,newBest:false,
+  helpMs:0,tagTimer:0
+};
+
+/* ---- 小工具：本坊自己的发声、回话、清定时器 ----
+   这几只不许抄公共那几只：公共的 auxSay 往别人家的消息条里写字、auxTone 揣的是别人那块声卡、
+   auxT/auxKill 管的是别人那一串定时器 —— 借来用，孩子的话就落在别人家的栏里。 */
+function tpTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!tp.ac)tp.ac=new AC();
+    const c=tp.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='square';
+    n.gain.value=g===undefined?.045:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+/* 回话条就是电报桌上那一条 .tp-msg：写错了栏，孩子的话一个字也看不见 */
+function tpSay(msg,color){tpMsg(msg,color||'#FFE082')}
+function tpT(fn,ms){const id=setTimeout(function(){
+  const i=tp.timers.indexOf(id);if(i>=0)tp.timers.splice(i,1);
+  if(!tp.run||tp.over)return;
+  try{fn()}catch(e){}
+},ms);tp.timers.push(id);return id}
+function tpKill(){
+  for(let i=0;i<tp.timers.length;i++)clearTimeout(tp.timers[i]);
+  tp.timers=[];
+  if(tp.rafId){cancelAnimationFrame(tp.rafId);tp.rafId=0}
+}
+
+/* ---------- ① 字母表：把一笔折成一个方向 ----------
+   归类用的是全站那一只 jtDirOf（index.html 里小战机认弹道的那把尺），一个数都不许改：
+   离线扫描 _tpgeo.cjs 拿它数出 TP_LEV 那九串字，产品这边换了口径，字表当场作废。 */
+function tpSymOf(m){const d=jtDirOf(m);return d<0?4:d}
+/* ---------- ② 两本精确的账：哈夫曼与枚举 ----------
+   手一（哈夫曼）：把报数从小到大排队，反复合并最小的两个，每次合并的代价累起来就是最省声数；
+   手二（枚举）：一棵树各层能有多少个坑是克拉夫特等式说了算的 ——
+                 把「每一位码长各有几个字母」的所有长法列一遍，报数大的贴短码（重排不等式），
+                 取最小的那一个。两只手天生两行路，配字时必须一字不差。*/
+function tpHuff(w){
+  const q=w.slice().sort(function(a,b){return a-b});
+  let cost=0;
+  while(q.length>1){
+    const a=q.shift(),b=q.shift();
+    cost+=a+b;
+    let i=0;while(i<q.length&&q[i]<a+b)i++;
+    q.splice(i,0,a+b);
+  }
+  return cost;
+}
+function tpEnumBest(w){
+  const ws=w.slice().sort(function(a,b){return b-a});
+  const m=ws.length;
+  let best=null,bestVec=null;
+  const c=new Array(TP_DMAX+1).fill(0);
+  function walk(d,slots,left){
+    if(d>TP_DMAX){
+      if(!left){
+        /* 长度多重集定下来了：报数大的贴短码 */
+        let k=0,cost=0;
+        for(let len=1;len<=TP_DMAX;len++)for(let i=0;i<c[len];i++)cost+=ws[k++]*len;
+        if(best===null||cost<best){best=cost;bestVec=c.slice()}
+      }
+      return;
+    }
+    const maxTake=Math.min(slots,left);
+    for(let t=maxTake;t>=0;t--){
+      c[d]=t;
+      walk(d+1,(slots-t)*2,left-t);
+    }
+    c[d]=0;
+  }
+  walk(1,2,m);   /* 根是第 0 层的一个坑 ⇒ 第 1 层天生两个坑（滴 / 答）*/
+  return {cost:best===null?null:best,vec:bestVec};
+}
+/* 不动脑的那只手：给每个方向一样长的码（孩子的第一反应），⌈log₂ 字母数⌉ × 笔数 */
+function tpFixed(w){
+  const m=w.length,n=w.reduce(function(a,b){return a+b},0);
+  let len=0,cap=1;
+  while(cap<m){cap*=2;len++}
+  return len*n;
+}
+/* ---------- ③ 前缀码规矩：两只独立的手核撞车 ----------
+   手一（两两比）：任何两条码，短的那一条不许正好是长的那一条的开头；
+   手二（走树）：一条一条往一棵深度 TP_DMAX 的二叉树里插，路上撞见已落子的节点就是撞车。
+   两只手各数各的，产品当场比 —— 不合就是电报机有病，这一趟不许发。 */
+function tpClashPair(code){
+  const bad=[];
+  const isBad={};
+  for(let i=0;i<code.length;i++)for(let j=i+1;j<code.length;j++){
+    const a=code[i],b=code[j];
+    const L=Math.min(a.length,b.length);
+    let pre=1;
+    for(let d=0;d<L;d++)if(a[d]!==b[d]){pre=0;break}
+    if(pre){isBad[i]=1;isBad[j]=1}
+  }
+  for(let i=0;i<code.length;i++)if(isBad[i])bad.push(i);
+  return bad;
+}
+/* 一棵二叉树：先插的码住在自己的节点上；后来的码要么从它身上踩过去（它是别人的开头），
+   要么落在它家里（别人是它的开头）—— 两种都是撞车，两头的号一起标红。
+   注意「短的后插」这一头必须往 subtree 里数：长码住在下面几层，光看终点节点是看不见的。 */
+function tpSubOwners(nd,acc){
+  if(!nd)return acc;
+  if(nd.own>=0)acc.push(nd.own);
+  tpSubOwners(nd.l,acc);
+  tpSubOwners(nd.r,acc);
+  return acc;
+}
+function tpClashTree(code){
+  const root={l:0,r:0,own:-1},isBad={},bad=[];
+  for(let i=0;i<code.length;i++){
+    let nd=root;
+    const c=code[i];
+    for(let d=0;d<c.length;d++){
+      const key=c[d]?'r':'l';
+      if(!nd[key])nd[key]={l:0,r:0,own:-1};
+      nd=nd[key];
+      if(nd.own>=0){isBad[i]=1;isBad[nd.own]=1}
+    }
+    if(nd.own>=0||nd.l||nd.r){
+      const under=tpSubOwners(nd,[]);
+      isBad[i]=1;
+      for(let k=0;k<under.length;k++)isBad[under[k]]=1;
+    }
+    nd.own=i;
+  }
+  for(let i=0;i<code.length;i++)if(isBad[i])bad.push(i);
+  return bad;
+}
+/* 两只独立的手当场比：数出来的撞车牌必须一模一样。
+   不合就是电报机有病 —— 返回两方的并集（宁可多标红），且把 tp.clashBad 记上一笔（自检脚本读它，非零就红）*/
+function tpClash(){
+  if(!tp.code||!tp.rec)return [];
+  const a=tpClashPair(tp.code),b=tpClashTree(tp.code);
+  if(a.join(',')!==b.join(',')){
+    tp.clashBad++;
+    const u={},out=[];
+    for(let i=0;i<a.length;i++)u[a[i]]=1;
+    for(let i=0;i<b.length;i++)u[b[i]]=1;
+    for(let i=0;i<tp.code.length;i++)if(u[i])out.push(i);
+    return out;
+  }
+  return a;
+}
+/* 克拉夫特：码长 d 位占掉 2^-d 棵树。用 TP_KRAFT 的整数尺度算，满树正好等于它 */
+function tpKraftOf(code){
+  let s=0;
+  for(let i=0;i<code.length;i++)s+=(TP_KRAFT>>code[i].length);
+  return s;
+}
+/* 这一趟要几声 = Σ（报数 × 码长）*/
+function tpCostOf(code,w){
+  let s=0;
+  for(let i=0;i<code.length;i++)s+=w[i]*code[i].length;
+  return s;
+}
+/* 短码给对了吗：报数大的方向码长不许比报数小的长（重排不等式的样子）*/
+function tpMonoOf(code,w){
+  for(let i=0;i<w.length;i++)for(let j=0;j<w.length;j++){
+    if(w[i]>w[j]&&code[i].length>code[j].length)return 0;
+  }
+  return 1;
+}
+function tpLensOf(code){const o=[];for(let i=0;i<code.length;i++)o.push(code[i].length);return o}
+/* 报数从大到小排好的名次 ⇒ 最优码长该贴在谁身上（✨ 点坑只报这一个数，不替孩子按按钮）*/
+function tpOptLens(rec){
+  const m=rec.m,ord=[];
+  for(let i=0;i<m;i++)ord.push(i);
+  ord.sort(function(a,b){return rec.w[b]-rec.w[a]||(rec.keys[a]-rec.keys[b])});
+  const lens=[],vec=rec.vec;
+  for(let d=1;d<=TP_DMAX;d++)for(let i=0;i<vec[d];i++)lens.push(d);
+  const out=new Array(m).fill(0);
+  for(let k=0;k<m;k++)out[ord[k]]=lens[k];
+  return out;
+}
+/* ---------- ④ 口径闸门：这一个字配不配上台 ----------
+   定长那只笨手必须真比哈夫曼贵（贵不出声的字，案上没得算）；
+   两本精确的账必须一字不差；还得留得下一笔「吞了还能倒推」的 —— 那一笔的方向不许是独一份。 */
+function tpAuditWord(ch,j){
+  const out={ok:0,why:''};
+  const meds=j.medians,sp=j.strokes;
+  if(!meds||!sp||meds.length!==sp.length)return {ok:0,why:'笔数不合'};
+  const n=meds.length;
+  if(n<TP_NMIN||n>TP_NMAX)return {ok:0,why:'笔数带外'};
+  const syms=[];
+  for(let i=0;i<n;i++)syms.push(tpSymOf(meds[i]));
+  const cnt={};
+  for(let i=0;i<n;i++)cnt[syms[i]]=(cnt[syms[i]]||0)+1;
+  const keys=Object.keys(cnt).map(Number).sort(function(a,b){return a-b});
+  const m=keys.length;
+  if(m<TP_MMIN||m>TP_MMAX)return {ok:0,why:'字母 '+m+' 种带外'};
+  const w=keys.map(function(k){return cnt[k]});
+  const idx=syms.map(function(s){return keys.indexOf(s)});
+  const best=tpHuff(w),en=tpEnumBest(w),fixed=tpFixed(w);
+  if(en.cost===null)return {ok:0,why:'长度枚举算不出'};
+  if(en.cost!==best)return {ok:0,why:'两本账不合（哈夫曼 '+best+' ≠ 枚举 '+en.cost+'）'};
+  if(fixed<=best)return {ok:0,why:'定长不比最省贵（'+fixed+'≤'+best+'），省不出声'};
+  if(fixed-best<TP_MARGIN_MIN)return {ok:0,why:'差价 '+(fixed-best)+' 声太薄'};
+  let dmax=0;
+  for(let d=1;d<=TP_DMAX;d++)if(en.vec[d])dmax=d;
+  if(dmax>TP_DMAX)return {ok:0,why:'最优码长过格'};
+  /* 吞一笔：那一笔的方向得至少有两笔，吞掉一种字母就没牌面了 */
+  let maskable=0;
+  for(let i=0;i<n;i++)if(cnt[syms[i]]>=2)maskable++;
+  if(!maskable)return {ok:0,why:'没有可吞的那一笔'};
+  out.ok=1;out.ch=ch;out.n=n;out.m=m;out.keys=keys;out.w=w;out.idx=idx;
+  out.syms=syms;out.medis=meds;out.strokes=sp;
+  out.best=best;out.fixed=fixed;out.margin=fixed-best;
+  out.vec=en.vec;out.dmax=dmax;out.maskable=maskable;
+  /* 起手那张牌面就是「不动脑」那一只笨手：定长码。孩子从这儿改起，改一声省一声 */
+  out.init=tpInitCode(m);
+  return out;
+}
+/* 定长码：每个方向一样长，按名次排成 0,1,2,… 的二进制 —— 前缀码规矩天生不破 */
+function tpInitCode(m){
+  let len=0,cap=1;
+  while(cap<m){cap*=2;len++}
+  if(len<1)len=1;
+  const out=[];
+  for(let i=0;i<m;i++){
+    const c=[];
+    for(let d=len-1;d>=0;d--)c.push((i>>d)&1);
+    out.push(c);
+  }
+  return out;
+}
+/* ---------- ⑤ 字池：一场一套字 ----------
+   TP_LEV 那九串由 _tpgeo.cjs 拿这一模一样的闸门离线数过（两本精确账互核、定长必贵），
+   上台前当场再核一遍 —— 数据换了、口径变了，这一眼就把它挡在池外。
+   池子只准从本串里挑：场号那一档说的是「这一趟要几声」的难度，串外的字一旦上台，
+   屏上那句「第 4 场起不写最省」就成了空话（段 S 逐场盯着池内每一个字的声数）。
+   本串过闸的字凑不齐 TP_POOL_MIN 个（数据换了、字库缩了），才往全表九串补 ——
+   补的仍然是这张表里的字，绝不是字库里随便一个字。 */
+function tpMake(ch,j){const r=tpAuditWord(ch,j);return r.ok?r:null}
+async function tpBuildPool(keep,lo,hi){
+  const g=tp.gen,stale=function(){return g!==tp.gen||!tp.run||tp.over};
+  const lv=tp.lv||1;
+  const enough=function(){
+    if(!isFinite(lo))return tp.pool.length>=TP_POOL_WANT;
+    let c=0;
+    for(let i=0;i<tp.pool.length;i++)if(tp.pool[i].n>=lo&&tp.pool[i].n<=hi)c++;
+    return c>=6||tp.pool.length>=40;
+  };
+  tp.miss=(localStorage.getItem('hz_tp_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<TP_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  const rest=[];                                   /* 全表里本串之外的字：只在本串不齐时上台 */
+  for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,TP_LEV[L].split(''));
+  const scan=async function(list){
+    for(let k=0;k<list.length&&!enough();k+=12){
+      const rs=await Promise.all(list.slice(k,k+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(stale())return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[k+i];
+        if(!rs[i]||!rs[i].medians)continue;
+        const rec=tpMake(ch,rs[i]);
+        if(!rec)continue;
+        if(isFinite(lo)&&(rec.n<lo||rec.n>hi))continue;
+        if(!tp.pool.some(function(p){return p.ch===rec.ch}))tp.pool.push(rec);
+      }
+    }
+  };
+  push(auxShuf(tp.miss.slice(0,6).filter(function(c){return (TP_LEV[lv]||'').indexOf(c)>=0})));
+  push(auxShuf(tpLetters(lv).split('')));
+  if(!keep)tp.pool=[];
+  await scan(want);
+  if(tp.pool.length<TP_POOL_MIN){
+    const rescue=[];
+    for(let i=0;i<rest.length&&rescue.length<TP_POOL_SCAN;i++){
+      const c=rest[i];
+      if(c&&want.indexOf(c)<0)rescue.push(c);
+    }
+    await scan(auxShuf(rescue));
+  }
+  tp.poolLv=lv;
+  return tp.pool.length>=TP_POOL_MIN;
+}
+function tpFresh(ch){
+  const bk=localStorage.getItem('hz_tp_book')||'';
+  return bk.indexOf(ch+':')<0?1:0;
+}
+
+/* 下面九串字（一场一串）由 _tpgeo.cjs 离线数出来：全站 1372 字过闸 228 字，
+   按「最省声」从低到高排，平手再看差价、再看笔数，然后均分九场 ——
+   这一个数把字母几种、每几种报数一起称出来了：第 1 场的字三五个声就发完，第 9 场的字要十六声往上。
+   串外的字在这一场就是过不了闸的字（当场 tpAuditWord 再核一遍才准上台）。*/
+const TP_LEV={
+  1:"专书云什仇以勾厅历幻开斗斤方欠歹片牛瓦见计丝主他仞兰",
+  2:"冬匆民汉生白石议记辽丘仪兄去对市犯穴饥争吃妇有迅亥",
+  3:"价伙刑匠华后在好妈存尽异忙托扬灰纤纪而至色芒虫设访",
+  4:"达迈驰君乒庆欢约级亩坛声忌护时纵肠花证诊豆迟事明盲乱",
+  5:"估伸何听宏庐批抖狂矣社究返国妻姐居屈岳拘择玩码者肢",
+  6:"肯陌鱼冷吞均坑块寿层岗扶投抗更违驴佩佳刮卑卧姓宝实",
+  7:"屉岩忽昆武郎凭官宜所狐狗线组苔迫侧其制参咆坪备委审庙",
+  8:"录怜或抬抱拌拐拔斧服柜沮泣泪浅炊的知矿育胀虎诣钓驶",
+  9:"驾冰协芍苍冶冻初吩扮芬苏刺怖命径枝枪沫泡泥泻经诚鸣"
+};
+function tpLetters(L){return TP_LEV[L]||''}
+
+/* ---------- 案面：把米字格与纸带画出来，再把屏上每一个数从常量与表里读出来 ----------
+   笔形路径都在 1024 空间、y 向上（与全站一致，jtDirOf 那句注释就是出处），
+   所以换上屏幕坐标要翻一次 y：X=x·sc+ox，Y=(1024−y)·sc+oy。
+   整张 1024 方格等比缩进米字格 —— 不按笔画外接框缩放，字才不会被拉扁。*/
+const TP_BOX=1024;
+function tpView(){
+  const sc=Math.min((TP_TS-2*TP_PAD)/TP_BOX,(TP_TS-2*TP_PAD)/TP_BOX);
+  return {sc:sc,ox:TP_TX+(TP_TS-TP_BOX*sc)/2,oy:TP_TY+(TP_TS-TP_BOX*sc)/2};
+}
+function tpX(x,v){return v.ox+x*v.sc}
+function tpY(y,v){return v.oy+(TP_BOX-y)*v.sc}
+function tpBadge(x,y,txt,bg,fg){
+  const c=tpCv.getContext('2d');
+  c.font='bold 11px system-ui';
+  const w=Math.max(15,c.measureText(txt).width+7);
+  c.fillStyle=bg;c.strokeStyle='rgba(0,0,0,.55)';c.lineWidth=1;
+  c.beginPath();
+  if(c.roundRect)c.roundRect(x-w/2,y-8,w,16,7);else c.rect(x-w/2,y-8,w,16);
+  c.fill();c.stroke();
+  c.fillStyle=fg;c.textAlign='center';c.textBaseline='middle';
+  c.fillText(txt,x,y+.5);
+  c.textAlign='left';c.textBaseline='alphabetic';
+}
+/* 案面底下那两行回话：横竖都是「整行居中」，所以只有行高 y 需要传进来 ——
+   调用处一律 tpLine(行, 话, 颜色, 字号[, 字重])，别再摆一个用不上的 x */
+function tpLine(y,txt,fg,size,weight){
+  const c=tpCv.getContext('2d');
+  c.font=(weight||'bold')+' '+(size||13)+'px system-ui';
+  c.textAlign='center';c.fillStyle=fg;
+  c.fillText(txt,TP_TX+TP_TS/2+(TP_RX+TP_RW/2-TP_TX-TP_TS/2)/2,y);
+  c.textAlign='left';
+}
+function tpStrokeMid(rec,i){
+  /* 亮一笔时火花落点：这一笔中线的中点（1024 空间 → 屏幕）*/
+  const m=rec.medis[i];
+  const v=tpView();
+  const p=m[Math.floor(m.length/2)];
+  return [tpX(p[0],v),tpY(p[1],v)];
+}
+/* 一棵前缀树画在米字格上（🧭 看树）：第 d 层 2^d 个坑横向均分，
+   住人的坑亮黄、撞了车的坑发红、空坑淡白 —— 一眼就看见哪一层还空着，不报谁该长谁该短。*/
+function tpDrawTree(c){
+  const code=tp.code;
+  const g=TP_TS-2*TP_PAD,x0=TP_TX+TP_PAD,y0=TP_TY+TP_PAD+8;
+  const root={};
+  for(let i=0;i<code.length;i++){
+    let nd=root;
+    for(let d=0;d<code[i].length;d++){
+      const k=code[i][d]?'r':'l';
+      if(!nd[k])nd[k]={};
+      nd=nd[k];
+    }
+    if(nd.own===undefined)nd.own=i;else nd.dup=1;
+    /* 短的后插这一头：终点以下还住着人，两边一起算撞车（与 tpClashTree 同一判法，各数各的）*/
+    if(nd.l||nd.r)nd.dup=1;
+  }
+  const layerH=g/(TP_DMAX+1.4);
+  function pos(d,ord){
+    const n=1<<d;
+    return [x0+(ord+0.5)*(g/n),y0+d*layerH];
+  }
+  c.save();
+  c.strokeStyle='rgba(120,144,156,.6)';c.lineWidth=1.1;
+  function links(nd,d,ord){
+    const p=pos(d,ord);
+    if(nd.l){const q=pos(d+1,ord*2);c.beginPath();c.moveTo(p[0],p[1]);c.lineTo(q[0],q[1]);c.stroke();links(nd.l,d+1,ord*2)}
+    if(nd.r){const q=pos(d+1,ord*2+1);c.beginPath();c.moveTo(p[0],p[1]);c.lineTo(q[0],q[1]);c.stroke();links(nd.r,d+1,ord*2+1)}
+  }
+  links(root,0,0);
+  function paint(nd,d,ord){
+    const p=pos(d,ord);
+    const bad=!!nd.dup||((nd.own!==undefined)&&(nd.l||nd.r));
+    const has=nd.own!==undefined;
+    c.beginPath();c.arc(p[0],p[1],has?6.6:4.4,0,6.2832);
+    c.fillStyle=bad?'rgba(255,82,82,.95)':(has?'rgba(255,224,130,.95)':'rgba(255,255,255,.16)');
+    c.fill();
+    if(has){
+      c.font='bold 9px system-ui';c.textAlign='center';
+      c.fillStyle=bad?'#FFCDD2':'#1A1206';
+      c.fillText(tpKn(tp.rec.keys[nd.own]),p[0],p[1]-9);
+      c.textAlign='left';
+    }
+    if(nd.l)paint(nd.l,d+1,ord*2);
+    if(nd.r)paint(nd.r,d+1,ord*2+1);
+  }
+  paint(root,0,0);
+  /* 每一层旁边写清这一层几个坑、住了几个 */
+  const used=[];
+  for(let d=1;d<=TP_DMAX;d++)used[d]=0;
+  for(let i=0;i<code.length;i++)used[code[i].length]++;
+  c.font='bold 9px system-ui';c.fillStyle='#78909C';
+  for(let d=1;d<=TP_DMAX;d++){
+    const p=pos(d,0);
+    c.fillText((1<<d)+'坑/'+used[d]+'住',TP_TX+2,p[1]+3);
+  }
+  c.restore();
+}
+function tpDraw(){
+  const cv=tpCv;if(!cv)return;
+  const c=cv.getContext('2d');
+  c.clearRect(0,0,TP_W,TP_CVH);
+  if(!tp.rec){
+    tpLine(TP_L1,'📻 正在挑字……','#B0BEC5',15);
+    tpLine(TP_L2,'在字库里找「定长必比最省贵、吞一笔还倒推得回来」的字','#78909C',12,'normal');
+    return;
+  }
+  const rec=tp.rec,v=tpView();
+  /* 米字格 */
+  c.save();
+  c.strokeStyle='rgba(255,255,255,.09)';c.lineWidth=1;
+  c.strokeRect(tpX(0,v),tpY(TP_BOX,v),TP_BOX*v.sc,TP_BOX*v.sc);
+  c.setLineDash([4,5]);c.strokeStyle='rgba(255,255,255,.07)';
+  c.beginPath();
+  c.moveTo(tpX(512,v),tpY(TP_BOX,v));c.lineTo(tpX(512,v),tpY(0,v));
+  c.moveTo(tpX(0,v),tpY(512,v));c.lineTo(tpX(TP_BOX,v),tpY(512,v));
+  c.moveTo(tpX(0,v),tpY(TP_BOX,v));c.lineTo(tpX(TP_BOX,v),tpY(0,v));
+  c.moveTo(tpX(0,v),tpY(0,v));c.lineTo(tpX(TP_BOX,v),tpY(TP_BOX,v));
+  c.stroke();c.restore();
+  /* 🧭 看树：把米字格让给那棵树（一息就收，不许留一辈子）*/
+  if(tp.treeMs>tp.t&&tp.phase!=='load'){
+    tpDrawTree(c);
+    tpLine(TP_L1,'🧭 这棵树有 '+TP_KRAFT+' 个坑：亮黄的是住人的，红的是撞了车的','#FFE082',12);
+    tpLine(TP_L2,'长不满就是白留坑 —— 克拉夫特 Σ(坑÷满树)=1 才算一句话不浪费','#90A4AE',12,'normal');
+    return;
+  }
+  /* 一笔一笔亮起来：只有收着的笔会亮，被杂音吞掉的那一笔一个字也不露（露了就等于把答案写在案上）*/
+  c.save();
+  c.translate(v.ox,v.oy+TP_BOX*v.sc);c.scale(v.sc,-v.sc);
+  c.lineCap='round';c.lineJoin='round';
+  for(let i=0;i<rec.n;i++){
+    if(!tp.lit[i])continue;
+    try{
+      c.fillStyle='rgba(255,213,79,.92)';
+      c.fill(new Path2D(rec.strokes[i]));
+    }catch(e){}
+  }
+  if(tp.phase==='seal'){
+    /* 答完了才把这个字 whole 亮出来：这一段是「原来它长这样」，不是答案 */
+    c.fillStyle='rgba(171,178,176,.5)';
+    for(let i=0;i<rec.n;i++){
+      if(tp.lit[i])continue;
+      try{c.fill(new Path2D(rec.strokes[i]))}catch(e){}
+    }
+  }
+  c.restore();
+  /* 火花：刚亮起的那一笔上撒三颗，一息就散 */
+  for(let i=tp.spark.length-1;i>=0;i--){
+    const s=tp.spark[i],age=(tp.t-s.t0)/620;
+    if(age>=1){tp.spark.splice(i,1);continue}
+    c.beginPath();c.arc(s.x+(s.dx*age*13),s.y+(s.dy*age*13)-age*7,3.1*(1-age),0,6.2832);
+    c.fillStyle='rgba(255,245,200,'+(0.85*(1-age))+')';c.fill();
+  }
+  /* 纸带：响一声打一行，从下往上滚（眼下这一行钉在带上头）*/
+  c.save();
+  c.fillStyle='rgba(255,255,255,.045)';
+  c.fillRect(TP_RX,TP_RY,TP_RW,TP_RH);
+  c.strokeStyle='rgba(255,255,255,.14)';c.lineWidth=1;
+  c.strokeRect(TP_RX+.5,TP_RY+.5,TP_RW-1,TP_RH-1);
+  const rowH=17;
+  const nRows=tp.rows.length;
+  const maxRows=Math.floor((TP_RH-16)/rowH);
+  const from=Math.max(0,nRows-maxRows);
+  c.font='bold 10px system-ui';c.textBaseline='middle';
+  for(let k=from;k<nRows;k++){
+    const r=tp.rows[k],y=TP_RY+10+(k-from)*rowH;
+    if(r.mask){
+      c.fillStyle='rgba(183,28,28,.55)';
+      c.fillRect(TP_RX+22,y-6,TP_RW-58,11);
+      c.fillStyle='#FFCDD2';c.textAlign='left';
+      c.fillText((r.i+1)+'',TP_RX+6,y);
+      c.textAlign='right';c.fillStyle='#EF9A9A';
+      c.fillText('杂音',TP_RX+TP_RW-6,y);
+      c.textAlign='left';
+    }else{
+      c.fillStyle=r.done?'#B0BEC5':'#84FFFF';c.textAlign='left';
+      c.fillText((r.i+1)+'',TP_RX+6,y);
+      let x=TP_RX+22;
+      for(let d=0;d<r.bits.length;d++){
+        const b=r.bits[d];
+        c.fillStyle=b?'#FFB74D':'#4FC3F7';
+        c.fillRect(x,y-5,10,10);x+=12;
+      }
+      c.fillStyle=r.done?'#ECEFF1':'#78909C';
+      c.fillText(r.kn,x+3,y);
+      c.textAlign='left';
+    }
+    c.strokeStyle='rgba(255,255,255,.07)';
+    c.beginPath();c.moveTo(TP_RX+4,y+7.5);c.lineTo(TP_RX+TP_RW-4,y+7.5);c.stroke();
+  }
+  if(!nRows){
+    c.fillStyle='#546E7A';c.textAlign='center';c.font='bold 11px system-ui';
+    c.fillText('纸带还没动',TP_RX+TP_RW/2,TP_RY+TP_RH/2);
+    c.textAlign='left';
+  }
+  c.restore();
+  /* 两行回话：全部从常量与表里读，不许自己再算一遍 */
+  const clash=tpClash();
+  if(tp.phase==='send'){
+    tpLine(TP_L1,'📻 正在发：第 '+(tp.tlI+1)+'/'+rec.n+' 笔 · 已经响出 '+tp.snd+' 声','#FFE082',13);
+    tpLine(TP_L2,'一声 '+tpBeatMs(tp.lv)+' 毫秒 · 纸带上每一块颜色是一位电码','#90A4AE',12,'normal');
+  }else if(tp.phase==='guess'){
+    tpLine(TP_L1,'🎧 第 '+(tp.mask[tp.mi]+1)+' 笔被杂音吞了：它是哪个方向？',tp.quickMs>0?'#84FFFF':'#FFCCBC',13);
+    tpLine(TP_L2,'纸带上 '+tp.snd+' 声响过 · 案上报数一共 '+rec.n+' 笔 · 缺的就是吞掉的那几笔','#90A4AE',12,'normal');
+  }else if(tp.phase==='seal'){
+    tpLine(TP_L1,'🏁 '+tp.ch+' 发完：这一趟 '+tp.n+' 声 · 最省 '+rec.best+' 声 · 多花 '+tp.marAll+' 声',tp.marAll?'#FFCCBC':'#FFE082',13);
+    tpLine(TP_L2,'定长码要 '+rec.fixed+' 声 · 短码给对 '+tpMonoOf(tp.code,rec.w)+' · 树长满 '+
+      (tpKraftOf(tp.code)===TP_KRAFT?'是':'否'),'#90A4AE',12,'normal');
+  }else{
+    tpLine(TP_L1,tpDim(tp.lv)?'⚡ 这一趟几声自己乘：报数 × 码长，一张牌一张牌加':
+      (tpNoTell(tp.lv)?'⚡ 这一趟要 '+tp.n+' 声（案上两本账已经收了）':
+      '⚡ 这一趟要 '+tp.n+' 声 ｜ 最省 '+rec.best+' 声 ｜ 定长 '+rec.fixed+' 声'),
+      clash.length?'#FF8A80':(tp.n>rec.best?'#FFCCBC':'#FFE082'),13);
+    tpLine(TP_L2,clash.length?('💥 '+clash.length+' 张牌撞了车：谁也不许是别人的开头，发报按不下去'):
+      ('🌳 克拉夫特 '+tpKraftOf(tp.code)+'/'+TP_KRAFT+(tpKraftOf(tp.code)===TP_KRAFT?'（满树，一个坑没浪费）':
+      (tpKraftOf(tp.code)<TP_KRAFT?'（还空着 '+ (TP_KRAFT-tpKraftOf(tp.code))+' 个坑）':'（超了，必撞车）'))+' ｜ 报数大的贴短码'),
+      '#90A4AE',12,'normal');
+  }
+}
+/* ---------- 案上的牌：一张牌一行，编到第几位、几笔乘出几声都写在这一行上 ----------
+   这张表是 DOM 不是 canvas：孩子按的是「＋滴」「＋答」「退」三只真按钮，牌上那几格点一下就换一声；
+   撞车的行自己闪红 —— 屏面与账都由 tpSyncTbl 一次刷出来，别处不许偷偷改格子 */
+function tpBuildTbl(){
+  const box=document.getElementById('tpTbl');
+  if(!box)return;
+  const rec=tp.rec;
+  box.innerHTML='';
+  if(!rec)return;
+  for(let i=0;i<rec.m;i++){
+    const row=document.createElement('div');
+    row.className='tp-row';
+    row.id='tpRow'+i;
+    row.innerHTML='<span class="tp-mark" id="tpMark'+i+'">'+(i+1)+'</span>'+
+      '<span class="tp-nm">'+tpKn(rec.keys[i])+'</span>'+
+      '<span class="tp-w">报 <b>'+rec.w[i]+'</b> 笔</span>'+
+      '<span class="tp-code" id="tpCode'+i+'"></span>'+
+      '<span class="tp-cost" id="tpCost'+i+'"></span>'+
+      '<button id="tpAddD'+i+'">＋滴</button>'+
+      '<button id="tpAddA'+i+'">＋答</button>'+
+      '<button class="cut" id="tpCut'+i+'">退</button>';
+    box.appendChild(row);
+    (function(i){
+      row.addEventListener('click',function(ev){
+        const t=ev.target;
+        if(t&&t.tagName==='BUTTON')return;
+        /* 牌上那一格点一下就换一声（滴 ↔ 答）：只有加退两只手时头一位定了就改不回来。
+           这一支只在「编电码那一段、没散场、没锁」时才接管这一指 —— 抢答那一段点的还是这一格，
+           那时它得把这一指让给 tpRowTap（那一指是答案），不许按下去什么也不发生。 */
+        if(t&&t.classList&&t.classList.contains('tp-bit')&&t.hasAttribute('data-flip')&&
+          tp.run&&!tp.over&&!tp.locked&&tp.phase==='code'){
+          tpFlipBit(i,+t.getAttribute('data-flip'));
+          ev.preventDefault();
+          ev.stopPropagation();
+          return;
+        }
+        tpRowTap(i);
+        ev.preventDefault();
+      });
+      const b=function(id,on){
+        const el=document.getElementById(id);
+        if(!el)return;
+        el.addEventListener('click',function(ev){on(i);ev.preventDefault();ev.stopPropagation()});
+      };
+      b('tpAddD'+i,tpAddBitD);
+      b('tpAddA'+i,tpAddBitA);
+      b('tpCut'+i,tpCutBit);
+    })(i);
+  }
+}
+function tpSyncTbl(){
+  const rec=tp.rec;
+  if(!rec)return;
+  const clash=tpClash();
+  const isBad={};
+  for(let i=0;i<clash.length;i++)isBad[clash[i]]=1;
+  const opt=tp.probeMs>tp.t?tpOptLens(rec):null;
+  const lock=tp.phase!=='code';
+  for(let i=0;i<rec.m;i++){
+    const row=document.getElementById('tpRow'+i);
+    if(!row)continue;
+    const cd=document.getElementById('tpCode'+i);
+    if(cd){
+      let h='';
+      /* data-flip 是「点这一格换一声」的那只手唯一的落点：少了这个属性，下面那只按牌的手
+         就永远走不进 tpFlipBit 那一支 —— 屏上那句「或点一下那几格换个声」成了空头票（孩子照着点只挑中牌）。 */
+      for(let d=0;d<tp.code[i].length;d++)h+='<i class="tp-bit '+(tp.code[i][d]?'a':'d')+'" data-flip="'+d+'">'+(tp.code[i][d]?'答':'滴')+'</i>';
+      if(opt&&opt[i]>tp.code[i].length){
+        for(let d=tp.code[i].length;d<opt[i];d++)h+='<i class="tp-bit hollow">'+(d+1)+'</i>';
+      }
+      cd.innerHTML=h;
+    }
+    const ct=document.getElementById('tpCost'+i);
+    if(ct)ct.textContent=opt?('该 '+opt[i]+' 位'):
+      (tpDim(tp.lv)?(tp.code[i].length+' 位'):(rec.w[i]+'×'+tp.code[i].length+'='+rec.w[i]*tp.code[i].length+' 声'));
+    const mk=document.getElementById('tpMark'+i);
+    if(mk){
+      mk.textContent=isBad[i]?'💥':(tp.phase==='guess'?(i+1):(i===tp.sel?'▲':(i+1)));
+      mk.style.color=isBad[i]?'#FF5252':(tp.phase==='guess'?'#84FFFF':'#FFD54F');
+    }
+    row.classList.toggle('bad',!!isBad[i]);
+    row.classList.toggle('sel',i===tp.sel&&!isBad[i]);
+    row.classList.toggle('dim',lock&&tp.phase!=='guess');
+    const A=document.getElementById('tpAddD'+i),B=document.getElementById('tpAddA'+i),C=document.getElementById('tpCut'+i);
+    if(A)A.disabled=lock||tp.code[i].length>=TP_DMAX;
+    if(B)B.disabled=lock||tp.code[i].length>=TP_DMAX;
+    if(C)C.disabled=lock||tp.code[i].length<=1;
+  }
+}
+/* ---------- 屏上的字：HUD / 题头 / 回话条 / 标签 ---------- */
+function tpSync(){
+  const q=document.getElementById('tpQTxt');
+  if(q)q.textContent=tp.phase==='seal'?'🏁 封字':tp.phase==='send'?'📻 发报中':
+    tp.phase==='guess'?'⏳ 抢答 '+Math.ceil(tp.quickMs/1000)+' 秒':
+    (tp.phase==='load'||tp.locked?'📥 换字':'⏳ 编电码 '+Math.ceil(tp.placeMs/1000)+' 秒');
+  const s=document.getElementById('tpScoreTxt');
+  if(s)s.textContent='📻 '+(tp.score|0)+' 文';
+  const l=document.getElementById('tpLvTxt');
+  if(l)l.textContent='第 '+tp.lv+' 场 · 收 '+tp.words+' 字';
+  const r=document.getElementById('tpRankTxt');
+  if(r){const rk=tpRankOf(tp.words);r.textContent=rk.e+' '+rk.t}
+  const h=document.getElementById('tpHeartTxt');
+  if(h)h.textContent='❤️'.repeat(Math.max(0,tp.hearts));
+  const cb=document.getElementById('tpComboTxt');
+  if(cb)cb.textContent='🔥 连 '+tp.combo;
+  const lot=document.getElementById('tpLotTxt');
+  if(lot)lot.textContent=tp.rec?('🈶 '+(tp.wi+1)+'/'+TP_PER+' 字 · '+tp.rang+'/'+tp.rec.n+' 笔'):'🈶 正在挑字';
+  const ct=document.getElementById('tpCostTxt');
+  if(ct)ct.textContent=tp.rec?(tpDim(tp.lv)?'📡 账自己算':
+    (tpNoTell(tp.lv)?'📡 '+tp.n+' 声 · 案上不写两本账':'📡 '+tp.n+' 声 · 最省 '+tp.rec.best+' · 定长 '+tp.rec.fixed)):'📡 键还没按';
+  const ht=document.getElementById('tpHitLight');
+  if(ht){
+    const t=tp.hitTxt||(tp.phase==='guess'?'💡 哪一张牌？':(tpClash().length?'💡 先把撞车的解开':'💡 编电码'));
+    ht.textContent=t;
+    ht.style.color=tp.hitOk===2?'#FF8A80':tp.hitOk===1?'#A5D6A7':tp.hitOk===3?'#84FFFF':'#FFE082';
+  }
+  /* 四条量表：编钟 · 抢答 · 场灯 · 这一趟的账（多花到那一格就一路变红）*/
+  const pb=document.getElementById('tpPlaceBar'),pt=document.getElementById('tpPlaceTxt');
+  if(pb)pb.style.width=Math.max(0,Math.min(100,tp.placeMs/Math.max(1,tp.place0)*100))+'%';
+  if(pt)pt.textContent='⚡ 编电码 '+(tp.placeMs/1000).toFixed(1)+' 秒';
+  const pl=pb?pb.parentNode:null;
+  if(pl)pl.classList.toggle('low',tp.placeMs<Math.min(1500,tp.place0*.22));
+  const qb=document.getElementById('tpQuickBar'),qt=document.getElementById('tpQuickTxt');
+  if(qb)qb.style.width=Math.max(0,Math.min(100,tp.quickMs/Math.max(1,tp.quick0)*100))+'%';
+  if(qt)qt.textContent='🎧 抢答 '+(tp.quickMs/1000).toFixed(1)+' 秒';
+  const ql=qb?qb.parentNode:null;
+  if(ql)ql.classList.toggle('low',tp.quickMs>0&&tp.quickMs<Math.min(1200,tp.quick0*.28));
+  const lb=document.getElementById('tpLampBar'),lt=document.getElementById('tpLampTxt');
+  if(lb)lb.style.width=Math.max(0,Math.min(100,tp.lamp/Math.max(1,tp.lamp0)*100))+'%';
+  if(lt)lt.textContent='💡 这一场 '+(tp.lamp/1000).toFixed(0)+' 秒';
+  const kb=document.getElementById('tpCostBar'),kt=document.getElementById('tpCostBig');
+  const rec=tp.rec;
+  const over=rec?Math.max(0,tp.n-rec.best):0;
+  if(kb)kb.style.width=Math.max(0,Math.min(100,rec?tp.n/Math.max(1,rec.best+TP_MAR_LINE)*100:0))+'%';
+  if(kt)kt.textContent=rec?(tpDim(tp.lv)?('📡 多花 ? 声'):(tpNoTell(tp.lv)?('📡 '+tp.n+' 声 / 案上不写'):'📡 '+tp.n+' 声 / 最省 '+rec.best+' 声')):'📡 账还没开';
+  const kl=kb?kb.parentNode:null;
+  if(kl)kl.classList.toggle('low',over>=TP_MAR_LINE);
+  /* 家什的余量与挡话 */
+  const P=document.getElementById('tpProbeBtn'),G=document.getElementById('tpTreeBtn'),S=document.getElementById('tpSwapBtn');
+  if(P){P.disabled=!(tp.run&&!tp.over&&tp.probeN>0&&tp.phase==='code');P.querySelector('b').textContent=tp.probeMs>tp.t?'正标着':'剩 '+tp.probeN}
+  if(G){G.disabled=!(tp.run&&!tp.over&&tp.treeN>0&&tp.phase==='code');G.querySelector('b').textContent=tp.treeMs>tp.t?'正画着':'剩 '+tp.treeN}
+  if(S){S.disabled=!(tp.run&&!tp.over&&tp.swapN>0&&tp.phase==='code');S.querySelector('b').textContent='剩 '+tp.swapN}
+  const rs=document.getElementById('tpResetBtn');
+  if(rs){
+    rs.disabled=!(tp.run&&!tp.over&&tp.phase==='code');
+    if(rs.firstChild)rs.firstChild.nodeValue='🧹 恢复定长';
+  }
+  const act=document.getElementById('tpActBtn');
+  if(act){
+    const lab={load:'📥 正在挑字……',code:'📻 发报（回车）',send:'📻 正在发报……',guess:'🎧 答不上（回车）',seal:'⏎ 下一个字'}[tp.phase]||'📻';
+    act.firstChild.nodeValue=lab;
+    const sm=act.querySelector('small');
+    if(sm)sm.textContent=tp.phase==='code'?(tpClash().length?'💥 有 '+tpClash().length+' 张牌撞车，解不开发不出去':
+      '↑↓ 挑牌 · J 滴 · K 答 · L 退 · 点格换一声'):
+      tp.phase==='guess'?('第 '+(tp.mi+1)+'/'+tp.mask.length+' 题 · 按 1~'+tp.rec.m+' 或点那张牌'):
+      tp.phase==='send'?'一声 '+tpBeatMs(tp.lv)+' 毫秒':'';
+    act.disabled=(!tp.run||tp.over||tp.phase==='load'||tp.phase==='send'||tp.locked>0||
+      (tp.phase==='code'&&tpClash().length>0));
+    act.classList.toggle('ready',tp.phase==='seal'||(tp.phase==='code'&&!tpClash().length));
+  }
+  const nk=document.getElementById('tpNextBtn');
+  if(nk)nk.disabled=!(tp.run&&!tp.over);
+  tpSyncTbl();
+  const ask=document.getElementById('tpAsk');
+  if(ask)ask.innerHTML=tpAskTxt();
+  const hl=document.getElementById('tpHintTxt');
+  if(hl)hl.innerHTML=tpHintTxt();
+}
+function tpAskTxt(){
+  if(tp.phase==='load')return '📥 正在挑字……<br><small>在字库里找「定长必比最省贵、吞一笔还倒推得回来」的字</small>';
+  const rec=tp.rec;
+  if(!rec)return '📻 键还没按';
+  if(tp.phase==='code')return '⚡ <b>'+tp.ch+'</b>：'+rec.m+' 种方向，各编一条电码<br><small>报数（这个方向有几笔）大的贴短码 · '+
+    (tpDim(tp.lv)?'这一趟几声自己乘（第 '+TP_DIM_LV+' 场起案上不写了）':
+      (tpNoTell(tp.lv)?'这一趟 '+tp.n+' 声 · 两本账收了（第 '+TP_TELL_LV+' 场起不写最省与定长）'
+        :'这一趟 '+tp.n+' 声 · 最省 '+rec.best+' 声 · 定长 '+rec.fixed+' 声'))+
+    ' · 撞了车发不出去</small>';
+  if(tp.phase==='send')return '📻 <b>'+tp.ch+'</b> 正在发：'+rec.n+' 笔 · '+tp.n+' 声<br><small>一笔一笔亮，纸带一条一条打 · 杂音随时会吞掉 '+tp.mask.length+' 笔（吞掉的不出声也不亮）</small>';
+  if(tp.phase==='guess')return '🎧 <b>第 '+(tp.mask[tp.mi]+1)+' 笔</b>被杂音吞了：它是哪个方向？<br><small>一共 '+tp.mask.length+' 题，眼下第 '+(tp.mi+1)+' 题 · 按 <code>1~'+tp.rec.m+'</code> 或点案上那张牌 · 数纸带上各方向响几回，对报数就知道缺了谁</small>';
+  if(tp.phase==='seal')return '🏁 <b>'+tp.ch+'</b> 发完：'+tp.n+' 声 · 最省 '+rec.best+' 声 · 多花 '+tp.marAll+
+    '<br><small>'+rec.m+' 种方向（'+rec.keys.map(function(k,i){return tpKn(k)+rec.w[i]+'笔'}).join(' ')+'）· 抢答 '+(tp.guessOk+tp.guessBad)+' 题 · 对 '+tp.guessOk+' 题</small>';
+  return '📻';
+}
+function tpHintTxt(){
+  if(tp.phase==='send')return '🎧 <b>杂音吞掉的不出声</b>：纸带上只剩一块黑，米字格上也不亮 —— 发完电报机要问它是哪个方向';
+  if(tp.phase==='guess')return '🎧 <b>倒推</b>：案上报数一共几笔、纸带上各方向响几回，少的那一个就是被吞的那一笔';
+  if(tp.phase==='seal')return '🏁 <b>多花 0 声</b>就是这一趟编得和哈夫曼一样短（补一颗心）';
+  if(tpClash().length)return '💥 <b>谁也不许是别人的开头</b>：撞车的牌闪红了 —— 把长的那一条往后退一位、把短的这一条加一位，或点一下那几格换个声';
+  return '⚡ <b>报数多的方向贴短码</b>：一声一声都是笔数乘出来的，重头多一位，整句话就长一截';
+}
+function tpMsg(msg,color){
+  const el=document.getElementById('tpMsg');
+  if(!el)return;
+  el.innerHTML=msg;
+  el.style.color=color||'#90A4AE';
+}
+function tpClearTag(){
+  if(tp.tagTimer){clearTimeout(tp.tagTimer);tp.tagTimer=0}
+  const el=document.getElementById('tpTag');
+  if(el)el.className='tp-tag'
+}
+function tpTag(txt,cls){
+  const el=document.getElementById('tpTag');
+  if(!el)return;
+  /* 这一行是给孩子的正文：调用处一路写的是 <b>/<code> 那一种强调（与 euTag、chnTag 同一口径），
+     用 textContent 落下去孩子就读到一对尖括号。此处只许 innerHTML，且调用处只喂自家模板串。 */
+  el.innerHTML=txt;
+  el.className='tp-tag on'+(cls?' '+cls:'');
+  if(tp.tagTimer)clearTimeout(tp.tagTimer);
+  tp.tagTimer=setTimeout(function(){el.className='tp-tag'},TP_TAG_MS);
+}
+function tpHelpText(){
+  return '📻 <b>笔顺电报坊</b> —— 这个字笔顺里出现的方向就是字母表，每种方向有几笔就是它的<b>报数</b>。<br>'+
+    '⚡ <b>编一条前缀码</b>：每一位只有「滴」「答」两种声音，最长五位。'+
+    '<b>谁也不许是别人的开头</b> —— 听见「滴」还不知道是「横」还是「横」的一半，整句话就成一串杂音。撞了车整行闪红、发报按不下去。<br>'+
+    '📡 <b>这一趟要几声</b> = Σ（报数 × 码长）。案上另有两只准绳：<b>最省</b>（哈夫曼：反复合并两个最小的报数）与'+
+    '<b>定长</b>（不动脑：每个方向一样长）。配字时验过<b>定长必比最省贵</b>，一样的字不收。<br>'+
+    '🌳 <b>克拉夫特等式</b>数清了坑：码长 d 位占掉 2^-d 棵树，Σ=1 才算树长满、没浪费坑 —— 满树给 8 文。<br>'+
+    '⚖ <b>报数多的贴短码</b>（重排不等式）：码长与报数反着排，多花就来了。案上「短码给对」验的就是这一个样子，给对 10 文。<br>'+
+    '🎧 <b>杂音吞笔</b>：发报时 k 笔不出声也不亮格，发完问「第 j 笔是哪个方向」—— '+
+    '数纸带上各方向响几回、对案上报数倒推；第 6 场起两笔三笔一起吞，缺的哪几个数得出来，落在第几笔就得靠认得这个字。<br>'+
+    '🎭 <b>两道帘子</b>：第 '+TP_TELL_LV+' 场起案上不写最省与定长，第 '+TP_DIM_LV+' 场起连「这一趟要几声」也收走。<br>'+
+    '<code>↑↓</code> 挑牌 · <code>J</code> 滴 · <code>K</code> 答 · <code>L</code> 退一位 · <code>T</code> 翻头一位（点牌上那一格也换一声）· <code>Q</code> 恢复定长 · <code>回车</code> 发报 · '+
+    '<code>1~'+TP_MMAX+'</code> 抢答那一张牌 · <code>P</code> ✨点坑 · <code>V</code> 🧭看树 · <code>S</code> 🔁换字 · <code>H</code> 📖说明 · <code>F</code> 🏁结算';
+}
+
+/* ================= 这一趟的手：编电码、发报、抢答、封字、三件家什 ================= */
+/* 案上那三个数（这一趟 N 声 · 最省 M 声 · 定长 Y 声）全由 tpRecost 一次更新，别处不许自己再算一遍：
+   孩子照着手上的数编，编出来的那一句必须正好发那么多声 —— 这一坊才有得算。 */
+function tpRecost(){
+  const rec=tp.rec;
+  if(!rec)return;
+  tp.n=tpCostOf(tp.code,rec.w);
+  tp.best=rec.best;tp.fixed=rec.fixed;
+  tp.mar=Math.max(0,tp.n-rec.best);
+}
+/* ---- ① 编电码：加一位、退一位、点一格换一声、挑一张牌 ---- */
+function tpTouch(i){
+  if(!tp.keysTouched[i])tp.keysTouched[i]=0;
+  tp.keysTouched[i]++;
+}
+function tpAddBit(i,bit){
+  if(tp.phase!=='code'||tp.locked||!tp.rec)return;
+  if(tp.code[i].length>=TP_DMAX){
+    tpTag('⚡ 这张牌只有 '+TP_DMAX+' 位格子：想再短就得把别家的码往后退一位');
+    return;
+  }
+  tp.sel=i;
+  tp.code[i].push(bit);
+  tpTouch(i);
+  tpRecost();
+  tpTone(bit?560:1180,70);
+  tpSync();tpDraw();
+}
+function tpAddBitD(i){tpAddBit(i,0)}
+function tpAddBitA(i){tpAddBit(i,1)}
+function tpCutBit(i){
+  if(tp.phase!=='code'||tp.locked||!tp.rec)return;
+  if(tp.code[i].length<=1){
+    tpTag('⚡ 至少要留一位：一位也不留就没法收这一家的电');
+    return;
+  }
+  tp.sel=i;
+  tp.code[i].pop();
+  tpTouch(i);
+  tpRecost();
+  tpTone(420,60);
+  tpSync();tpDraw();
+}
+function tpSelMove(dir){
+  if(tp.phase!=='code'||tp.locked||!tp.rec)return;
+  tp.sel=(tp.sel+dir+tp.rec.m)%tp.rec.m;
+  tp.nagMs=0;
+  tpSync();tpDraw();
+}
+/* ---- 点一格 / 按 T：把那一位从「滴」换成「答」，反过来也一样 ----
+   只有「加一位、退一位」两只手时，一张牌的头一位定了就再也改不回来（退到一位不许再退，
+   加只在尾巴上加）。而最省那一桌码常常正卡在改不回来的那一位上：起手定长 00/01/10，
+   要把中间那张改成 10 就得动头一位 —— 不动这一只手，一声不差 +30 在很多字上是笔拿不到的赏。
+   离线 _tpreach.cjs 拿全站 228 个过闸字逐字验了这两句：每一桌最省码都搭得出来（不撞车、正好最省、
+   短码给对、树长满），而且从起手那张牌改过去，最难的一张牌也只动 3 回 —— 这一只手不是装饰。 */
+function tpFlipBit(i,d){
+  if(tp.phase!=='code'||tp.locked||!tp.rec)return;
+  if(i<0||i>=tp.rec.m)return;
+  if(d<0||d>=tp.code[i].length){
+    tpTag('⚡ 点的是牌上那几格（滴 ↔ 答）：右边空着的是 ✨ 虚格子，还没编上');
+    return;
+  }
+  tp.sel=i;
+  tp.code[i][d]=tp.code[i][d]?0:1;
+  tpTouch(i);
+  tpRecost();
+  tpTone(tp.code[i][d]?560:1180,70);
+  tpSync();tpDraw();
+}
+function tpFlipHead(){
+  if(tp.phase!=='code'||tp.locked||!tp.rec)return;
+  tpFlipBit(tp.sel,0);
+}
+/* 犹豫：同一张牌敲过 TP_HES_KEY 回才定稿 —— 这一坊要的是看一眼报数就定，不是挨张试 */
+function tpHesitation(){
+  let mx=0;
+  for(let i=0;i<tp.keysTouched.length;i++)if(tp.keysTouched[i]>mx)mx=tp.keysTouched[i];
+  if(mx<TP_HES_KEY||tp.placeMs<=0)return 0;
+  tp.hes++;tp.cleanWord=0;
+  tp.score-=TP_P_HES;tp.penSum+=TP_P_HES;
+  tp.hitOk=2;tp.hitTxt='🌀 犹豫 · −'+TP_P_HES;
+  tpTone(210,200);
+  return mx;
+}
+/* 🧹 恢复定长：把整张牌退回「每个方向一样长」那一种笨编法（不罚钱，但省不出一声）*/
+function tpResetFixed(){
+  if(tp.phase!=='code'||tp.locked||!tp.rec)return;
+  tp.code=tp.rec.init.map(function(c){return c.slice()});
+  tpRecost();
+  tpTone(330,120);
+  tpTag('🧹 恢复定长：'+tp.rec.m+' 种方向各 '+tp.code[0].length+' 位 ⇒ '+tp.n+' 声'+
+    (tpNoTell(tp.lv)?'（第 '+TP_TELL_LV+' 场起案上不写最省与定长）':
+      '（最省 '+tp.rec.best+' 声，多花 '+tp.mar+' 声）'),'cyan');
+  tpSync();tpDraw();
+}
+/* ---- ② 发报：把笔顺折成电码，一拍一拍放 ---- */
+function tpPickMask(rec){
+  /* 吞掉的那几笔：方向至少有两笔（吞掉一种字母，牌面上就少一家，孩子会以为印错了）*/
+  const can=[];
+  for(let i=0;i<rec.n;i++)if(rec.w[rec.idx[i]]>=2)can.push(i);
+  const k=Math.min(TP_KMAX,tpMaskN(tp.lv),can.length);
+  const out=[];
+  const pool=can.slice();
+  for(let t=0;t<k&&pool.length;t++){
+    const j=Math.floor(Math.random()*pool.length);
+    out.push(pool[j]);pool.splice(j,1);
+  }
+  out.sort(function(a,b){return a-b});
+  return out;
+}
+function tpBuildTimeline(){
+  const rec=tp.rec,beat=tpBeatMs(tp.lv);
+  const isM={};
+  for(let i=0;i<tp.mask.length;i++)isM[tp.mask[i]]=1;
+  const ev=[];
+  let acc=0;
+  for(let i=0;i<rec.n;i++){
+    if(isM[i]){
+      /* 吞掉的这一笔：不动声、不亮格，纸带上只落一块黑 —— 拍数一律 TP_GAP_BEATS，
+         不许按码长出静默（静默长短就把这一笔的码长漏出去了）*/
+      ev.push({t:acc*beat+Math.floor(beat/2),k:'noise',i:i});
+      acc+=TP_GAP_BEATS;
+      continue;
+    }
+    const bits=tp.code[rec.idx[i]];
+    for(let d=0;d<bits.length;d++)ev.push({t:(acc+d)*beat,k:'bit',b:bits[d]});
+    ev.push({t:(acc+bits.length)*beat-1,k:'ring',i:i,bits:bits.slice()});
+    acc+=bits.length;
+  }
+  ev.sort(function(a,b){return a.t-b.t});
+  tp.tl=ev;tp.tlI=0;tp.sendT0=tp.t;tp.beat=beat;
+  tp.tlEnd=acc*beat;
+}
+function tpSend(){
+  if(tp.phase!=='code'||tp.locked||!tp.rec)return;
+  const clash=tpClash();
+  if(clash.length){
+    tp.wrongs++;tp.hitOk=2;tp.hitTxt='💥 撞车没解开';
+    tpTag('💥 有 '+clash.length+' 张牌撞了车，电报机发不出去：谁也不许是别人的开头 —— 闪红的那几行自己看','warn');
+    tpSync();tpDraw();
+    return;
+  }
+  const hz=tpHesitation();
+  tp.mask=tpPickMask(tp.rec);
+  for(let i=0;i<tp.rec.n;i++)tp.lit[i]=0;
+  tp.rang=0;tp.snd=0;tp.rows=[];tp.spark=[];
+  tpBuildTimeline();
+  tp.phase='send';tp.placeKind='';tp.placeMs=0;
+  tp.combo=0;
+  tpTone(880,70);
+  /* 犹豫那一句要紧挂在发报这一句前面：tpHesitation 自己 tpTag 会被这一句盖掉，
+     孩子只见扣了 4 文、不见为什么扣 —— 扣的理由必须写在屏面上那句话里 */
+  tpTag((hz?'🌀 有一张牌你敲了 '+hz+' 回：倒扣 '+TP_P_HES+' 文 —— 报数大的贴短码，看一眼就定下来 · ':'')+
+    '📻 发报：'+tp.rec.n+' 笔 · '+tp.n+' 声 · 一声 '+tp.beat+' 毫秒 · 杂音要吞 '+tp.mask.length+' 笔','gold');
+  tpSync();tpDraw();
+}
+function tpFire(e){
+  const rec=tp.rec;
+  if(e.k==='bit'){
+    /* 「声」就是电码的一位：账上累计的声数与屏上那句「发出 N 声」说的都得跟纸带上响过的一一对得上 ——
+       记在 ring 那一头就成了「一笔一声」，孩子编得再短，累计声数也不动，金电键与称号那条账全是空的 */
+    tp.snd++;tp.sndTotal++;
+    tpTone(e.b?700:1240,e.b?110:62);
+    return;
+  }
+  if(e.k==='noise'){
+    tp.rows.push({i:e.i,mask:1});
+    tpTone(180,120,.03);
+    return;
+  }
+  /* ring：这一笔收着了 —— 亮格、打纸带、给赏（连击一路加上去）*/
+  tp.lit[e.i]=1;tp.rang++;
+  const key=rec.keys[rec.idx[e.i]];
+  tp.rows.push({i:e.i,bits:e.bits,kn:tpKn(key),done:1});
+  tp.combo++;
+  if(tp.combo>tp.maxCombo)tp.maxCombo=tp.combo;
+  const pts=Math.round(TP_M0*(1+TP_CB*tp.combo)*(1+TP_LVW*(tp.lv-1)));
+  tp.score+=pts;tp.gain+=pts;
+  const p=tpStrokeMid(rec,e.i);
+  for(let s=0;s<3;s++)tp.spark.push({x:p[0],y:p[1],t0:tp.t,dx:(s-1)*1.4,dy:-1-Math.random()});
+  tp.hitOk=1;tp.hitTxt='✔ 第 '+(e.i+1)+' 笔 '+tpKn(key)+' +'+pts;
+  if(e.i===rec.n-1)tpTone(1320,150);
+  tpSync();tpDraw();
+}
+function tpSendDone(){
+  tp.tl=null;
+  if(!tp.mask.length){tpSealNow();return}
+  tp.phase='guess';tp.mi=0;tp.guessOk=0;tp.guessBad=0;tp.gpicks+=tp.mask.length;
+  tp.quick0=tpQuickMs(tp.lv);tp.quickMs=tp.quick0;
+  tpTone(520,120);
+  tpTag('🎧 收报：'+tp.snd+' 声响过，纸带上 '+tp.rows.length+' 行 —— 有 '+tp.mask.length+' 笔被杂音吞了，电报机要问它是什么方向','cyan');
+  tpSync();tpDraw();
+}
+/* ---- ③ 抢答：那一笔是哪个方向 ---- */
+function tpAnswer(i){
+  if(tp.phase!=='guess'||tp.locked||!tp.rec)return;
+  const rec=tp.rec,q=tp.mask[tp.mi];
+  if(i<0||i>=rec.m)return;
+  const right=rec.idx[q]===i;
+  if(right){
+    const pts=Math.round(TP_M0*2*(1+TP_CB*tp.combo)*(1+TP_LVW*(tp.lv-1)));
+    tp.score+=pts;tp.gain+=pts;tp.guessOk++;tp.guessOkAll++;
+    tp.combo++;
+    if(tp.combo>tp.maxCombo)tp.maxCombo=tp.combo;
+    tp.hitOk=1;tp.hitTxt='✔ 猜对了 +'+pts;
+    tpTone(1040,150);
+    tpTag('✔ 第 '+(q+1)+' 笔就是<b>'+tpKn(rec.keys[i])+'</b>：+'+pts+' 文 · 连击 '+tp.combo,'gold');
+    const p=tpStrokeMid(rec,q);
+    for(let s=0;s<4;s++)tp.spark.push({x:p[0],y:p[1],t0:tp.t,dx:(s-1.5),dy:-1.4-Math.random()});
+  }else{
+    tp.score-=TP_P_WRONG;tp.penSum+=TP_P_WRONG;
+    tp.hearts--;
+    /* 心磨完了就是完，不许磨成负的：第 6 场起一题吞两笔三笔，剩一颗心时连错两题就出格 ——
+       屏上那串 ❤️ 是 max(0,hearts) 画的看不出来，账上却一路往下走（产品自检那条「心出了格」当场红）*/
+    if(tp.hearts<0)tp.hearts=0;
+    tp.guessBad++;tp.combo=0;tp.cleanWord=0;tp.neatWord=0;
+    tp.hitOk=2;tp.hitTxt='✖ 猜错 · −'+TP_P_WRONG;
+    tpTone(180,240);
+    tpTag('✖ 第 '+(q+1)+' 笔不是<b>'+tpKn(rec.keys[i])+'</b>，是<b>'+tpKn(rec.keys[rec.idx[q]])+
+      '</b>：倒扣 '+TP_P_WRONG+' 文、掉一颗心，这个字进错字本','warn');
+    tp.missFlag=1;
+  }
+  tpNextGuess();
+}
+function tpSkipGuess(){
+  if(tp.phase!=='guess'||tp.locked||!tp.rec)return;
+  const q=tp.mask[tp.mi],nm=tpKn(tp.rec.keys[tp.rec.idx[q]]);
+  tp.lates++;tp.combo=0;tp.cleanWord=0;
+  tp.score-=TP_P_SLOW;tp.penSum+=TP_P_SLOW;
+  tp.guessBad++;
+  /* 没答与答错是同一件事：那笔的方向没记住 ⇒ 这个字要回错字本（产品自检那一本按 guessBad 追 missFlag）*/
+  tp.missFlag=1;
+  tp.skipNote+=(tp.skipNote?'、':'')+'第 '+(q+1)+' 笔「'+nm+'」';
+  tp.hitOk=2;tp.hitTxt='⌛ 没答 · −'+TP_P_SLOW;
+  tpTag('⌛ 这一题没答：是<b>'+nm+'</b> · 倒扣 '+TP_P_SLOW+' 文（不掉心，可连击断了）','warn');
+  tpNextGuess();
+}
+function tpNextGuess(){
+  tp.mi++;
+  if(tp.mi>=tp.mask.length){tpSealNow();return}
+  tp.quickMs=tp.quick0;
+  tp.nagMs=0;
+  tpSync();tpDraw();
+}
+/* ================= 三件家什 ================= */
+/* ✨ 点坑：只把「这一家的码该长到几位」虚格子标出来，不替孩子按那两只按钮 */
+function tpProbe(){
+  if(!tp.rec||tp.over||tp.locked||tp.phase!=='code')return;
+  if(tp.probeN<=0){tpTag('✨ 点坑用完了：这一局只剩报数与码长自己乘');return}
+  if(tp.probeMs>tp.t){tpTag('✨ 虚格子正标着：还写 '+Math.ceil((tp.probeMs-tp.t)/1000)+' 秒（等它自己收走）');return}
+  tp.probeN--;tp.probeUse++;tp.tools++;tp.wordTools++;
+  tp.score-=TP_P_TOOL;tp.penSum+=TP_P_TOOL;tp.cleanWord=0;
+  tp.probeMs=tp.t+TP_PROBE_MS;
+  const lens=tpOptLens(tp.rec);
+  let hd=0;
+  for(let i=1;i<tp.rec.m;i++)if(tp.rec.w[i]>tp.rec.w[hd])hd=i;
+  tpTone(880,90);
+  tpTag('✨ 点坑：报数最大的「'+tpKn(tp.rec.keys[hd])+'」（'+tp.rec.w[hd]+' 笔）该用 '+lens[hd]+
+    ' 位 —— 每行右边那几颗空格就是它该补的位数 · 倒扣 '+TP_P_TOOL+' 文（还剩 '+tp.probeN+' 眼）','cyan');
+  tpSync();tpDraw();
+}
+/* 🧭 看树：把这桌电码画成一棵二叉树，谁住在哪一个节点、谁踩了谁一目了然 —— 不报谁该长谁该短 */
+function tpTree(){
+  if(!tp.rec||tp.over||tp.locked||tp.phase!=='code')return;
+  if(tp.treeN<=0){tpTag('🧭 看树用完了：坑得自己在脑子里挖');return}
+  if(tp.treeMs>tp.t){tpTag('🧭 那棵树正画着：还写 '+Math.ceil((tp.treeMs-tp.t)/1000)+' 秒');return}
+  tp.treeN--;tp.treeUse++;tp.tools++;tp.wordTools++;
+  tp.score-=TP_P_TOOL;tp.penSum+=TP_P_TOOL;tp.cleanWord=0;
+  tp.treeMs=tp.t+TP_TREE_MS;
+  const cl=tpClash();
+  tpTone(560,120);
+  tpTag('🧭 看树：'+tp.rec.m+' 家各住一个节点 · 克拉夫特 '+tpKraftOf(tp.code)+'/'+TP_KRAFT+
+    (cl.length?(' · 踩在一起的 '+cl.length+' 张牌标了红'):(' · 一家一个节点，没踩着'))+
+    ' · 倒扣 '+TP_P_TOOL+' 文（还剩 '+tp.treeN+' 眼）','cyan');
+  tpSync();tpDraw();
+}
+/* 🔁 换字：这个字退回库里再上一个（倒扣 TP_P_SWAP 文，进错字本）*/
+function tpSwapWord(){
+  if(!tp.rec||tp.over||tp.locked)return;
+  if(tp.phase!=='code'){tpTag('🔁 电报已经发出去了：这一趟的话收不回来');return}
+  if(tp.swapN<=0){tpTag('🔁 换字用完了：这一场的字是配出来的，硬编也要编完');return}
+  tp.swapN--;tp.swapUse++;tp.swaps++;tp.tools++;tp.wordTools++;
+  tp.score-=TP_P_SWAP;tp.penSum+=TP_P_SWAP;
+  tp.cleanWord=0;tp.neatWord=0;
+  tpTone(280,140);
+  tpTag('🔁 换字：倒扣 '+TP_P_SWAP+' 文，这个字进了错字本（还剩 '+tp.swapN+' 回）','warn');
+  tpWordOut();
+}
+/* ================= 封字 ================= */
+function tpSealNow(){
+  const rec=tp.rec;
+  if(!rec)return;
+  tp.phase='seal';tp.placeKind='';tp.placeMs=0;tp.quickMs=0;tp.sealMs=TP_SEAL_MS;
+  /* 多花：这一趟比哈夫曼多几声。表是全表最优 ⇒ 任何一桌码长都不会比它省，
+     这个数天生 ≥0；万一负了，就是那两本账算歪了，当场夹平（自检脚本另有断言）*/
+  tp.marAll=Math.max(0,tp.n-rec.best);
+  tp.marSum+=tp.marAll;
+  let add=TP_PTS_SEND;
+  let txt='🏁 发完：'+rec.n+' 笔 · '+tp.n+' 声（最省 '+rec.best+' 声）';
+  /* 最后一题的「⌛ 这一题没答」会被这一句盖掉（同一拍里 tpNextGuess 就封字）：
+     没答的那几笔是什么方向，孩子在这一句里也看得见 */
+  if(tp.skipNote)txt+=' · ⌛ 没答：'+tp.skipNote;
+  const tier=tp.marAll<TP_PTS_MAR.length?TP_PTS_MAR[tp.marAll]:0;
+  if(tier){add+=tier;txt+=(tp.marAll?' · 比最省多花 '+tp.marAll+' 声 +'+tier:' · 一声不差 +'+tier)}
+  const mono=tpMonoOf(tp.code,rec.w);
+  if(mono){add+=TP_PTS_MONO;txt+=' · 短码给了报数大的方向 +'+TP_PTS_MONO;tp.monoN++}
+  if(tpKraftOf(tp.code)===TP_KRAFT){
+    add+=TP_PTS_FULL;txt+=' · 树长满一个坑没浪费 +'+TP_PTS_FULL;
+    tp.fullN++;auxAdd('hz_tp_full',1);
+  }
+  if(tp.mask.length&&tp.guessBad===0&&tp.guessOk===tp.mask.length){
+    add+=TP_PTS_GUESS;txt+=' · 杂音吞的 '+tp.mask.length+' 笔全猜回 +'+TP_PTS_GUESS;
+    tp.quickN++;auxAdd('hz_tp_quick',1);
+  }
+  if(tp.n<rec.fixed){add+=2;txt+=' · 比定长省了 '+(rec.fixed-tp.n)+' 声';tp.bestN++}
+  if(tp.fresh){add+=TP_PTS_FRESH;txt+=' · 头一回收这个字 +'+TP_PTS_FRESH}
+  if(!tp.wordTools){add+=TP_PTS_NOTOOL;txt+=' · 家什一回没借 +'+TP_PTS_NOTOOL;auxAdd('hz_tp_notool',1)}
+  if(tp.cleanWord){
+    tp.cleanRun++;
+    /* 连三趟零罚：家什白补一遍 —— 干净不是运气，是一眼一眼算出来的 */
+    if(tp.cleanRun>=TP_PER){
+      tp.cleanRun=0;tp.toolRun++;
+      tp.probeN=TP_P0.probe;tp.treeN=TP_P0.tree;tp.swapN=TP_P0.swap;
+      add+=TP_PTS_TOOLRUN;txt+=' · 连三趟零罚：家什补满 +'+TP_PTS_TOOLRUN;
+      auxAdd('hz_tp_toolrun',1);
+    }
+  }else tp.cleanRun=0;
+  tp.score+=add;tp.gain+=add;
+  tp.words++;
+  if(tp.marAll===0){tp.perfect++;auxAdd('hz_tp_perfect',1)}
+  if(tp.marAll===0&&tp.hearts<TP_HEART_MAX){tp.hearts++;txt+=' · 一声不差补一颗心'}
+  if(tp.marAll>=TP_MAR_LINE){
+    tp.hearts--;
+    if(tp.hearts<0)tp.hearts=0;   /* 同上：心不许为负 —— 抢答已经把它磨到零的这一趟，封字不能再往下扣 */
+    txt+=' · 多花 '+tp.marAll+' 声（到 '+TP_MAR_LINE+' 声就掉一颗心）';
+    tpTone(170,260);
+  }else tpTone(1040,220);
+  tp.hitOk=1;tp.hitTxt='🏁 封字 · +'+add;
+  tpTag(txt,'gold');
+  tpSay('🏁 这一句话发完：'+rec.n+' 笔、'+tp.n+' 声、抢答 '+tp.guessOk+'/'+tp.mask.length+' 题');
+  tpBookPut(rec.ch);
+  /* 抢答错过的字也回错字本：字是收齐了，那几笔的方向还没记住 */
+  if(tp.missFlag)tpMissPut(rec.ch);
+  if(typeof spawnConfetti==='function'){try{spawnConfetti()}catch(e){}}
+  tpSync();tpDraw();
+  if(tp.hearts<=0)tpT(function(){tpEnd('hearts')},TP_SEAL_MS);
+}
+/* ---- 这个字散了：换字走的这一条（半路收场那一下在 tpEnd 里结，别在这里重复罚）---- */
+function tpWordOut(){
+  const rec=tp.rec;
+  if(rec)tpMissPut(rec.ch);
+  tp.wordOuts++;
+  tp.combo=0;tp.cleanWord=0;tp.neatWord=0;tp.wordTools=0;tp.cleanRun=0;
+  tp.locked=1;
+  tp.phase='load';tp.tl=null;tp.tlI=0;tp.mask=[];tp.mi=0;
+  tp.placeKind='';tp.placeMs=0;tp.quickMs=0;
+  tpSync();tpDraw();
+  tpT(tpNextWord,1000);
+}
+/* ---- 下一个字：一场三字收满就换场（换一串字、换一盏灯）---- */
+async function tpNextWord(){
+  if(!tp.run||tp.over)return;
+  if(tp.hearts<=0){tpEnd('hearts');return}
+  tp.wi++;
+  let flash='';
+  if(tp.wi>=TP_PER){
+    /* 清白票：这一场三字、每趟多花都不过 TP_MAR_CLEAN 声 —— 收场那一息结，别等结算屏补记 */
+    if(tp.marSum<=TP_MAR_CLEAN*TP_PER){auxAdd('hz_tp_neat',1);tpSay('🧾 这一场三字共多花 '+tp.marSum+' 声：清白票一张')}
+    tp.wi=0;tp.lv=Math.min(9,tp.lv+1);
+    tp.lamp0=tpLamp(tp.lv);tp.lamp=tp.lamp0;
+    tp.marSum=0;tp.cleanRun=0;
+    tp.pool=[];tp.seen=[];tp.poolLv=-1;
+    flash='💡 第 '+tp.lv+' 场上案：'+(tpNoTell(tp.lv)?'案上不写最省与定长':'两本账还在案上写着')+
+      (tpDim(tp.lv)?' · 连「这一趟要几声」也收走了':'')+' · ';
+    tpSay('第 '+tp.lv+' 场：'+(tpDim(tp.lv)?'几声自己乘，报数 × 码长一张牌一张牌加':'账还在案上写着'));
+  }
+  if(!tp.pool.length){
+    tp.rec=null;tp.code=null;tp.load=true;tp.phase='load';
+    tpSync();tpDraw();
+    const ok=await tpBuildPool(true,TP_NMIN,TP_NMAX);
+    tp.load=false;
+    if(!tp.run||tp.over)return;
+    if(!ok){tpEnd('pool');return}
+  }
+  const rec=tpTake();
+  if(!rec){tpEnd('pool');return}
+  tpSetWord(rec,flash);
+}
+/* ---- 挑下一个字：错字本上的字优先挑回来，其次这一场没上过案的 ---- */
+function tpTake(){
+  const pool=tp.pool;
+  if(!pool.length)return null;
+  for(let i=0;i<tp.miss.length;i++){
+    for(let k=0;k<pool.length;k++)if(pool[k].ch===tp.miss[i]&&tp.seen.indexOf(pool[k].ch)<0)return pool[k];
+  }
+  const fresh=[];
+  for(let k=0;k<pool.length;k++)if(tp.seen.indexOf(pool[k].ch)<0)fresh.push(pool[k]);
+  const list=fresh.length?fresh:pool;
+  return list[Math.floor(Math.random()*list.length)];
+}
+/* ---- 一个字上台：牌面、钟、账一次摆好 ---- */
+function tpSetWord(rec,flash){
+  const L=tp.lv;
+  tp.rec=rec;tp.ch=rec.ch;
+  tp.code=rec.init.map(function(c){return c.slice()});
+  tp.sel=0;tp.keysTouched=[];tp.clashBad=0;
+  tp.lit=new Uint8Array(rec.n);
+  tp.rang=0;tp.snd=0;tp.rows=[];tp.spark=[];tp.tl=null;tp.tlI=0;
+  tp.mask=[];tp.mi=0;tp.guessOk=0;tp.guessBad=0;tp.missFlag=0;tp.skipNote='';
+  tpRecost();
+  tp.marAll=-1;
+  tp.fresh=tpFresh(rec.ch);
+  tp.place0=tpCodeMs(L,rec.m);tp.placeMs=tp.place0;tp.placeKind='code';
+  tp.quick0=0;tp.quickMs=0;
+  tp.cleanWord=1;tp.neatWord=1;tp.wordTools=0;
+  tp.probeMs=0;tp.treeMs=0;
+  tp.locked=0;tp.hitOk=0;tp.hitTxt='';
+  tp.phase='code';
+  tp.seen.push(rec.ch);
+  tp.nagMs=0;
+  tpTone(600,70);
+  tpBuildTbl();
+  tpTag((flash||'')+'🈶 上案：'+rec.n+' 笔 · '+rec.m+' 种方向（'+rec.keys.map(function(k,i){return tpKn(k)+rec.w[i]+'笔'}).join(' ')+
+    '）'+(tpNoTell(tp.lv)?' · 两本账收了，自己乘':' · 定长 '+rec.fixed+' 声，最省 '+rec.best+' 声 —— 从定长改起，改一声省一声'),'gold');
+  tpSync();tpDraw();
+}
+/* ================= 三支钟 + 一条时间线：场灯 · 编电码 · 抢答 ================= */
+function tpTick(dt){
+  if(!tp.run||tp.over)return;
+  tp.t+=dt;tp.playMs+=dt;
+  if(tp.helpMs>0){tp.helpMs-=dt;if(tp.helpMs<=0){tp.helpMs=0;tpSync()}return}
+  if(!tp.rec||tp.locked)return;
+  /* 场灯：一盏灯照一场的三个字 */
+  if(tp.lamp>0){
+    tp.lamp-=dt;
+    if(tp.lamp<=0){tp.lamp=0;tpEnd('lamp');return}
+  }
+  /* 发报：时间线一拍一拍放，这一段不吃钟（孩子只管听，杂音来了才考）*/
+  if(tp.phase==='send'){
+    const el=(tp.t-tp.sendT0);
+    while(tp.tlI<tp.tl.length&&tp.tl[tp.tlI].t<=el){tpFire(tp.tl[tp.tlI]);tp.tlI++}
+    if(tp.tlI>=tp.tl.length){tpSendDone();return}
+    return;
+  }
+  if(tp.phase==='seal'){
+    if(tp.sealMs>0){tp.sealMs-=dt;if(tp.sealMs<=0){tp.sealMs=0;tpNextWord()}}
+    return;
+  }
+  /* 抢答钟：尽了这一题算「没答」—— 扣钱、断连击，但不掉心（答不上不等于答错）*/
+  if(tp.phase==='guess'){
+    if(tp.quickMs>0){
+      tp.quickMs-=dt;
+      if(tp.quickMs<=0){tp.quickMs=0;tpSkipGuess();return}
+    }
+    tp.nagMs+=dt;
+    if(tp.nagMs>Math.min(TP_NAG_MS,tp.quick0/2)){
+      tp.nagMs=0;tp.nags++;
+      tpSay('🎧 数纸带：案上报数是这一共几笔，纸带上各方向响了几回 —— 少的那个就是它');
+    }
+    tpSync();tpDraw();
+    return;
+  }
+  /* 编钟：整桌牌面只给这一口气；尽了就罚、退回定长、当场替孩子发报 */
+  if(tp.phase==='code'){
+    if(tp.placeMs>0){
+      tp.placeMs-=dt;
+      if(tp.placeMs<=0){
+        tp.placeMs=0;tp.lates++;tp.cleanWord=0;tp.combo=0;
+        tp.score-=TP_P_LATE;tp.penSum+=TP_P_LATE;
+        tp.hitOk=2;tp.hitTxt='⌛ 编钟尽 · −'+TP_P_LATE;
+        tp.code=tp.rec.init.map(function(c){return c.slice()});
+        tpRecost();
+        tpTag('⌛ 编电码的钟尽了：桌上一张牌没敢定，退回<b>定长码</b>（'+tp.n+' 声'+
+          (tpNoTell(tp.lv)?'）':'，比最省多 '+tp.mar+' 声）')+
+          ' · 倒扣 '+TP_P_LATE+' 文 · 电报机替你发出去','warn');
+        tpTone(150,300);tpSay('⌛ 编钟尽了，按定长发报');
+        tpSync();tpDraw();
+        tpSend();
+        return;
+      }
+    }
+    tp.nagMs+=dt;
+    if(tp.nagMs>Math.min(TP_NAG_MS,tp.place0/2)){
+      tp.nagMs=0;tp.nags++;
+      tpSay(tpClash().length?'💥 撞车了：把长的那一条往后退一位，或把短的这一头加一位':
+        '⚡ 报数最大的那一家，码最短；每一位只有滴、答两种声音');
+    }
+    return;
+  }
+}
+
+/* ================= 开工 · 一根 rAF 管三支钟与一条时间线 · 键盘与真指针 ================= */
+/* 画布就在 <body> 里、这段脚本之前，所以这一眼取得到。
+   取不到就是屏面 HTML 没插在脚本前头：tpDraw 第一行会直接 return，画面永远空白 —— 自检脚本读像素，红得掉牙 */
+const tpCv=document.getElementById('tpCanvas');
+if(!tpCv)console.warn('📻 电报坊找不到画布 tpCanvas');
+
+/* 这一坊吃的字要「定长必比最省贵、两本账合得上、吞一笔还倒推得回来」，
+   开场先去字库里过一遍闸（tpBuildPool 当场重算，与离线字表不一样就不上台）*/
+async function tpBoot(){
+  const g=tp.gen;
+  tp.load=true;tp.phase='load';
+  tpSync();tpDraw();
+  const ok=await tpBuildPool(true,TP_NMIN,TP_NMAX);
+  if(g!==tp.gen||!tp.run||tp.over)return;
+  tp.load=false;
+  if(!ok){tpEnd('pool');tpSync();return}
+  const rec=tpTake();
+  if(!rec){tpEnd('pool');tpSync();return}
+  tpSetWord(rec);
+  tpSync();tpDraw();
+}
+function tpStart(){
+  tp.run=true;tp.over=false;tp.gen++;
+  tpBind();
+  tpKill();
+  tp.t=0;tp.playMs=0;tp.last=0;
+  tp.pool=[];tp.poolLv=-1;tp.miss=[];tp.seen=[];tp.fresh=0;
+  tp.lv=tpLvOf(auxInt('hz_tp_words'));
+  tp.wi=0;tp.score=0;tp.hearts=TP_HEARTS;tp.combo=0;tp.maxCombo=0;
+  /* 场相必须先归到「挑字」：tpSync 里那句「按 1~rec.m」看的是上一局的场相，
+     而 rec 此刻已经清空 —— 从抢答那一格直接重开（散场屏上的 ✒️ 重开）会当场崩在半路 */
+  tp.phase='load';tp.load=true;tp.locked=0;
+  tp.ch='';tp.rec=null;tp.code=null;tp.sel=0;tp.keysTouched=[];tp.clashBad=0;
+  tp.lit=null;tp.rang=0;tp.snd=0;tp.rows=[];tp.spark=[];
+  tp.tl=null;tp.tlI=0;tp.sendT0=0;tp.beat=0;tp.tlEnd=0;
+  tp.mask=[];tp.mi=0;tp.guessOk=0;tp.guessBad=0;tp.guessOkAll=0;tp.missFlag=0;tp.skipNote='';
+  tp.n=0;tp.best=0;tp.fixed=0;tp.mar=-1;tp.marAll=-1;
+  tp.probeN=TP_P0.probe;tp.treeN=TP_P0.tree;tp.swapN=TP_P0.swap;
+  tp.probeUse=0;tp.treeUse=0;tp.swapUse=0;tp.probeMs=0;tp.treeMs=0;
+  tp.place0=0;tp.placeMs=0;tp.placeKind='';
+  tp.quick0=0;tp.quickMs=0;
+  tp.lamp0=tpLamp(tp.lv);tp.lamp=tp.lamp0;tp.sealMs=0;
+  tp.words=0;tp.sndTotal=0;tp.gpicks=0;tp.perfect=0;
+  tp.monoN=0;tp.fullN=0;tp.quickN=0;tp.bestN=0;
+  tp.wrongs=0;tp.lates=0;tp.hes=0;tp.swaps=0;tp.wordOuts=0;tp.eyeballs=0;
+  tp.cleanWord=1;tp.neatWord=1;tp.tools=0;tp.wordTools=0;tp.cleanRun=0;tp.toolRun=0;tp.marSum=0;
+  tp.gain=0;tp.penSum=0;tp.hitOk=0;tp.hitTxt='';
+  tp.nags=0;tp.nagMs=0;tp.newBest=false;tp.helpMs=0;
+  tpClearTag();
+  const box=document.getElementById('tpTbl');
+  if(box)box.innerHTML='';
+  if(typeof stopBGM==='function')stopBGM();
+  showScreen('tele');
+  tpSync();tpDraw();
+  tpBoot();
+  tpStartLoop();
+}
+/* 主循环的起停各只有一处：结算要冻画面就掐这一根，别在别处再挂第二条 rAF */
+function tpLoop(ts){
+  if(!tp.run||tp.over){tp.rafId=0;return}
+  const dt=tp.last?Math.min(120,ts-tp.last):16;
+  tp.last=ts;
+  tpTick(dt);
+  tpSync();tpDraw();
+  tp.rafId=requestAnimationFrame(tpLoop);
+}
+function tpStartLoop(){if(!tp.run||tp.over||tp.rafId)return;tp.last=0;tp.rafId=requestAnimationFrame(tpLoop)}
+function tpStopLoop(){if(tp.rafId){cancelAnimationFrame(tp.rafId);tp.rafId=0}}
+function tpRestart(){tpStart()}
+function tpLeave(where){
+  tp.run=false;tp.over=false;
+  tpKill();tpStopLoop();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function tpHelp(){
+  if(!tp.run||tp.over)return;
+  if(tp.rec&&tp.phase!=='seal'&&!tp.load){
+    tp.eyeballs++;tp.tools++;tp.wordTools++;
+    tp.score-=TP_P_HELP;tp.penSum+=TP_P_HELP;tp.cleanWord=0;
+    tp.hitOk=2;tp.hitTxt='📖 翻说明 · −'+TP_P_HELP;
+  }
+  tp.helpMs=TP_HELP_MS;
+  tpMsg(tpHelpText(),'#FFE0B2');
+  tpSync();
+}
+/* ---- 主钮那一下：四个场面各走各的手 ---- */
+function tpAct(){
+  if(!tp.rec||tp.over||tp.locked)return;
+  if(tp.phase==='code'){tpSend();return}
+  if(tp.phase==='guess'){tpSkipGuess();return}
+  if(tp.phase==='seal'){if(tp.sealMs>0){tp.sealMs=0;tpNextWord()}return}
+  if(tp.phase==='send'){
+    tpTag('📻 正在发报：一声一声等着，杂音吞掉的那几笔发完才问');
+    return;
+  }
+}
+/* 案上的牌：点一行就是挑中它；抢答那一段点一行就是答这一家 */
+function tpRowTap(i){
+  if(!tp.rec||tp.over||tp.locked)return;
+  if(tp.phase==='code'){
+    tp.sel=i;tp.nagMs=0;
+    tpSync();tpDraw();
+    return;
+  }
+  if(tp.phase==='guess'){tpAnswer(i);return}
+  tpTag(tp.phase==='send'?'📻 电报还在发：吞掉的那几笔等发完才问':
+    '⚡ 编电码那一段才按牌：这一趟已经发完了');
+}
+/* ================= 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子 ================= */
+function tpBind(){
+  if(tp.bound)return;
+  tp.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!tp.run||tp.over)return;
+    if(tp.helpMs>0){tp.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){tpLeave();return}
+    if(k==='arrowup'||k==='arrowleft'){tpSelMove(-1);e.preventDefault();return}
+    if(k==='arrowdown'||k==='arrowright'){tpSelMove(1);e.preventDefault();return}
+    if(k==='enter'||k===' '){tpAct();e.preventDefault();return}
+    if(k==='j'){tpAddBitD(tp.sel);e.preventDefault();return}
+    if(k==='k'){tpAddBitA(tp.sel);e.preventDefault();return}
+    if(k==='l'){tpCutBit(tp.sel);e.preventDefault();return}
+    if(k==='t'){tpFlipHead();e.preventDefault();return}
+    if(k==='q'){tpResetFixed();e.preventDefault();return}
+    if(k>='1'&&k<='5'){
+      if(tp.phase==='guess')tpAnswer(+k-1);
+      else tpTag('<code>1~'+(tp.rec?tp.rec.m:'?')+'</code> 是抢答那一段的答案号：编电码用 <code>↑↓</code> 挑牌、<code>J</code> 滴 <code>K</code> 答');
+      e.preventDefault();return;
+    }
+    if(k==='p'){tpProbe();e.preventDefault();return}
+    if(k==='v'){tpTree();e.preventDefault();return}
+    if(k==='s'){tpSwapWord();e.preventDefault();return}
+    if(k==='h'||k==='?'){tpHelp();e.preventDefault();return}
+    if(k==='f'){tpEnd('quit');e.preventDefault();return}
+  });
+  if(tpCv){
+    tpCv.addEventListener('pointerdown',function(e){
+      if(!tp.run||tp.over)return;
+      if(tp.helpMs>0){tp.helpMs=0;return}
+      if(tp.locked)return;
+      if(tp.phase==='seal'){if(tp.sealMs>0){tp.sealMs=0;tpNextWord()}e.preventDefault();return}
+      if(tp.phase==='guess'){
+        /* 米字格上点那一笔也算答：把它折成「第几个吞掉的笔」不用——题只问眼下这一笔，
+           所以格子上点哪一笔都不改变答案，只把这一题的提示再说一遍 */
+        tpTag('🎧 这一题的答案在案上那几行牌里：按 <code>1~'+(tp.rec?tp.rec.m:'?')+'</code> 或点那张牌');
+        return;
+      }
+      if(tp.phase==='send'){
+        tpTag('📻 正在发报：纸带一行就是一笔，米字格亮到第 '+tp.rang+' 笔');
+        return;
+      }
+      tpTag('⚡ 牌在案上那一排（不是格子里）：<code>↑↓</code> 挑一张、<code>J</code> 滴 <code>K</code> 答、<code>L</code> 退一位');
+      e.preventDefault();
+    });
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){
+      if(!tp.run||tp.over)return;
+      if(tp.helpMs>0){tp.helpMs=0;return}
+      on();ev.preventDefault();
+    });
+  };
+  tap('tpActBtn',function(){tpAct()});
+  tap('tpResetBtn',function(){tpResetFixed()});
+  tap('tpProbeBtn',function(){tpProbe()});
+  tap('tpTreeBtn',function(){tpTree()});
+  tap('tpSwapBtn',function(){tpSwapWord()});
+  tap('tpHelpBtn',function(){tpHelp()});
+  tap('tpNextBtn',function(){tpEnd('quit')});
+  const tapFree=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){on();ev.preventDefault()});
+  };
+  /* 散场之后那三颗钮不许按 run/over 拦：孩子站在结算屏上，「再发一趟」「回实验室」「回书桌」
+     必须点得动 —— 拦在前面就等于把结算屏变成一堵墙 */
+  tapFree('tpReBtn',function(){tpRestart()});
+  tapFree('tpLabBtn',function(){tpLeave('lab')});
+  tapFree('tpHomeBtn',function(){tpLeave()});
+}
+
+/* ================= 散场：结算、落盘、图鉴与家什架、把这一趟的账再独立核一遍 ================= */
+function tpPut(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt}
+function tpPutH(id,html,color){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML=html;
+  if(color)el.style.color=color;
+}
+/* ---- 半路收场：编到一半、发到一半、抢到一半就按结算 —— 这一趟的话没说完，扣一次 ---- */
+function tpQuitTally(){
+  if(!tp.rec||tp.over)return;
+  if(tp.phase==='seal'||tp.locked)return;
+  tp.score-=TP_P_QUIT;tp.penSum+=TP_P_QUIT;
+  tp.wrongs++;tp.wordOuts++;
+  tpMissPut(tp.rec.ch);
+}
+function tpEnd(why){
+  if(!tp.run||tp.over)return;
+  /* 半路那一扣得在「散了」立起来之前结：tpQuitTally 自己认的就是「还没散场」——
+     先立 over 再叫它，扣文、硬发那一笔、错字本全落不下去（孩子白按了一次结算）*/
+  tpQuitTally();
+  tp.over=true;tp.run=false;
+  tpKill();tpClearTag();
+  const stars=Math.max(1,Math.round(tp.score/14)+tp.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  tpPut('tpRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['✒️','收机了','自己按的结算'],
+    hearts:['💔','心都磨完了','抢答错太多、编得太糙'],
+    lamp:['🕯️','电房熄灯了','这一场的电烧完了'],
+    pool:['✒️','配不出这一场的字','字库里挑不出「定长真比最省贵、两本账合得上、吞一笔还倒推得回」的字']}[why]||
+    ['✒️','散场',''];
+  tpPut('tpRsEmoji',head[0]);
+  tpPut('tpRsTitle',head[1]);
+  tpPut('tpRsSub','第 '+tp.lv+' 场 · '+head[2]+' · 收齐 '+tp.words+' 字');
+  tpPut('tpRsScore','📻 '+tp.score+' 文（赏 +'+tp.gain+' · 罚 −'+tp.penSum+'）');
+  tpPut('tpRsWords','🈶 收字 '+tp.words+' 个 · 发出 '+tp.sndTotal+' 声 · 吞了 '+tp.gpicks+' 笔');
+  tpPut('tpRsWalk','🎧 抢答 '+tp.gpicks+' 题 · 答对 '+tp.guessOkAll+' · 最长连击 '+tp.maxCombo);
+  tpPut('tpRsAward','🏅 一声不差 '+tp.perfect+' 趟 · 短码给对 '+tp.monoN+' 趟 · 满树 '+tp.fullN+' 趟 · 比定长省 '+tp.bestN+' 趟');
+  tpPut('tpRsWipe','⚖ 这一场共多花 '+tp.marSum+' 声 · 编钟尽 '+tp.lates+' 次 · 犹豫 '+tp.hes+' 回 · 撞车硬发 '+tp.wrongs+' 次');
+  tpPut('tpRsTools','🧰 借家什 '+tp.tools+' 回 · ✨点坑 '+tp.probeUse+' · 🧭看树 '+tp.treeUse+' · 🔁换字 '+tp.swaps+' · 📖说明 '+tp.eyeballs);
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账 */
+  tpSave(why);
+  tpPut('tpRsBest','🏅 历史最高 '+auxInt('hz_tp_best')+' 文 · 累计收字 '+auxInt('hz_tp_words')+' 字 · 累计 '+
+    auxInt('hz_tp_snd')+' 声');
+  tpPut('tpRsStars','⭐ +'+stars+(why==='pool'?'':'（已上星）'));
+  const rk=tpRankOf(auxInt('hz_tp_words'));
+  tpPut('tpRsRank',rk.e+' '+rk.t);
+  const bk=tpBookCount();
+  tpPutH('tpRsBook','📖 <b>藏书阁 '+bk.book+' 张</b> · 家什架 <b>'+bk.shelf+'/'+TP_SHELF.length+
+    '</b> 件 · 错字本 <b>'+bk.miss+'</b> 个字<br><small>最远走到第 '+auxInt('hz_tp_lvmax')+' 场 · 累计发出 '+
+    auxInt('hz_tp_snd')+' 声 · 一声不差 '+auxInt('hz_tp_perfect')+' 趟 · 满树 '+auxInt('hz_tp_full')+
+    ' 趟 · 抢答全对 '+auxInt('hz_tp_quick')+' 趟 · 清白场 '+auxInt('hz_tp_neat')+' 场</small>');
+  tpPutH('tpRsWhy','📻 这一坊的道理：<b>一句话要多长，不是命，是编出来的</b>。'+
+    '这个字笔顺里出现的方向就是字母表，每个方向有几笔就是它的<b>报数</b>；每一位电码只有「滴」「答」两种声音。<br>'+
+    '⚡ <b>谁也不许是别人的开头</b>（前缀码）：听见「滴」还不知道是「横」还是「横」的一半，收报机就切不开这句话 —— '+
+    '桌上一撞车整行闪红、<b>发报按不下去</b>（两只独立的手各数各的撞车牌，不合就当场作废）。<br>'+
+    '🌳 <b>克拉夫特等式</b>数坑：码长 d 位占掉 2^-d 棵树，Σ=1 才算树长满、一个坑没浪费；'+
+    '长不满就是白留坑，多花的声全在那儿。<br>'+
+    '📐 <b>案上那三个数</b>：这一趟 = Σ（报数 × 码长）；<b>最省</b>由哈夫曼算（反复合并两个最小的报数），'+
+    '另有枚举长度多重集的第二只手互核，两本账一字不差才准上台；<b>定长</b>是不动脑那只手（每个方向一样长），'+
+    '配字时验过<b>定长必比最省贵</b>（贵不出声的字不收），孩子这一算才有肉吃。<br>'+
+    '🎯 <b>报数大的贴短码</b>（重排不等式）：短码给对 10 文 —— 差一个字的位置，整句话就长一声。<br>'+
+    '🎧 <b>杂音吞笔</b>：被吞的那几笔不出声也不亮格，纸带上只剩一块黑，静默一律 '+TP_GAP_BEATS+
+    ' 拍（长短一变就把码长漏出去了）；发完问「第 j 笔是哪个方向」—— 数纸带上各方向响几回、对案上报数倒推。<br>'+
+    '第 '+TP_TELL_LV+' 场起案上不写最省与定长，第 '+TP_DIM_LV+' 场起连「这一趟要几声」也收走 —— '+
+    '剩下的凭据只有 ✨ 那一眼与脑子里那句「报数 × 码长」。<br>'+
+    '战绩落盘 <code>hz_tp_*</code>：场档按<b>收齐的字数</b>走，称号按<b>累计收字数</b>走，错字本里的字'+
+    '<b>下一场优先挑回来</b>','#C8E6C9');
+  tpNudge();
+  /* 屏面也要跟着散场：家什四件、恢复定长、下一字与发报那颗钮当场摘掉 ——
+     只挡账不挡屏，孩子看得见的那一颗钮还是亮着的 */
+  tpSync();
+  showScreen('tele-result');
+}
+/* ---- 落盘 ---- */
+function tpSave(why){
+  auxAdd('hz_tp_games',1);
+  auxAdd('hz_tp_words',tp.words);
+  auxAdd('hz_tp_snd',tp.sndTotal);
+  auxAdd('hz_tp_gpick',tp.gpicks);
+  auxAdd('hz_tp_swap',tp.swaps);
+  auxAdd('hz_tp_late',tp.lates);
+  auxAdd('hz_tp_hes',tp.hes);
+  auxAdd('hz_tp_wrong',tp.wrongs);
+  auxAdd('hz_tp_wordout',tp.wordOuts);
+  auxAdd('hz_tp_tools',tp.tools);
+  auxAdd('hz_tp_probe',tp.probeUse);
+  auxAdd('hz_tp_tree',tp.treeUse);
+  if(tp.maxCombo>auxInt('hz_tp_combo'))auxPut('hz_tp_combo',tp.maxCombo);
+  if(tp.lv>auxInt('hz_tp_lvmax'))auxPut('hz_tp_lvmax',tp.lv);
+  if(tp.score>auxInt('hz_tp_best')){auxPut('hz_tp_best',tp.score);tp.newBest=true}
+  tpShelfCheck();
+}
+/* ---- 图鉴：一个字一张电码卡（记的是首回收齐那个字的场号与声数）---- */
+function tpBookCount(){
+  const book=(localStorage.getItem('hz_tp_book')||'').split(',').filter(function(s){return s}).length;
+  const shelf=(localStorage.getItem('hz_tp_shelf')||'').split(',').filter(function(s){return s}).length;
+  const miss=(localStorage.getItem('hz_tp_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0}).length;
+  return {book:book,shelf:shelf,miss:miss};
+}
+function tpBookPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  const bk=localStorage.getItem('hz_tp_book')||'';
+  if(bk.indexOf(ch+':')>=0)return;
+  const list=bk.split(',').filter(function(s){return s});
+  list.unshift(ch+':'+tp.lv+':'+(tp.rec?tp.rec.n:0));
+  auxPut('hz_tp_book',list.slice(0,TP_BOOK_MAX).join(','));
+}
+/* 散场与抢答错的字进错字本：下一场优先挑回来 */
+function tpMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_tp_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  auxPut('hz_tp_miss',miss.slice(0,TP_BOOK_MAX).join(','));
+}
+/* 家什架：八件各认一件实事，其中「名刺」认的是别处的章节徽章 */
+function tpShelfCheck(){
+  const have=(localStorage.getItem('hz_tp_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    auxInt('hz_tp_words')+tp.words>=1,
+    auxInt('hz_tp_neat')>=1,
+    auxInt('hz_tp_perfect')>=5,
+    auxInt('hz_tp_full')>=1,
+    auxInt('hz_tp_lvmax')>=TP_SHELF_LV||tp.lv>=TP_SHELF_LV,
+    auxInt('hz_tp_notool')>=1,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    auxInt('hz_tp_snd')+tp.sndTotal>=400
+  ];
+  for(let i=0;i<TP_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(TP_SHELF[i].k)<0){have.push(TP_SHELF[i].k);got.push(TP_SHELF[i].k)}
+  }
+  auxPut('hz_tp_shelf',have.join(','));
+  auxPut('hz_tp_trophy',have.length);
+  auxPut('hz_tp_trophy_n',auxInt('hz_tp_trophy_n')+got.length);
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一坊走到第几场了 ---- */
+function tpNudge(){
+  const dot=document.getElementById('teleCardDot'),tip=document.getElementById('teleCardTip');
+  const tot=auxInt('hz_tp_words'),snd=auxInt('hz_tp_snd'),lv=auxInt('hz_tp_lvmax');
+  const rk=tpRankOf(tot),shelf=auxInt('hz_tp_trophy'),pf=auxInt('hz_tp_perfect'),fu=auxInt('hz_tp_full');
+  if(tip)tip.innerHTML=snd?('🔔 '+rk.e+' '+rk.t+' · 收字 '+tot+' 个 · 发出 '+snd+' 声 · 最远第 '+lv+
+    ' 场 · 一声不差 '+pf+' 趟 · 满树 '+fu+' 趟 · 抢答全对 '+auxInt('hz_tp_quick')+
+    ' 趟 · 家什架 '+shelf+' 件'):
+    '这个字的笔顺里有哪几种方向，字母表就是哪几种；每种方向有几笔，就是它的<b>报数</b>。'+
+    '给每种方向编一条电码（每位只有「滴」「答」两种声音），<b>谁也不许是别人的开头</b> —— 撞了车电报机切不开这句话。<br>'+
+    '⚡ <b>这一趟要几声 = Σ（报数 × 码长）</b>。案上另有两只准绳：<b>最省</b>（哈夫曼）与<b>定长</b>（不动脑）。'+
+    '配字时当场验过<b>定长必比最省贵</b>，贵不出声的字不上台；两本精确账（哈夫曼 / 枚举长度多重集）必须一字不差。<br>'+
+    '🌳 <b>克拉夫特</b>数坑：码长 d 位占 2^-d 棵树，Σ=1 才算长满 —— 满树 8 文、短码给对 10 文、一声不差 30 文。<br>'+
+    '🎧 <b>杂音吞笔</b>：发报时几笔不出声也不亮格，发完问「第 j 笔是哪个方向」—— 数纸带上各方向响几回、对报数倒推。<br>'+
+    '🎭 第 '+TP_TELL_LV+' 场起案上不写最省与定长，第 '+TP_DIM_LV+' 场起连「这一趟要几声」也收走';
+  if(dot){dot.classList.toggle('on',!snd);dot.textContent=(snd?'':'🆕')}
+}
+/* ================= 段 W 的另一条路：只读，不许碰场上任何东西 =================
+   五只手 + 一把重洗的几何，各算各的：
+   ① 字母表：拿案上留下的中线重数一遍方向，报数、名次、每笔归属都得与账上这张图一模一样
+   ② 两本精确账：哈夫曼 vs 枚举长度多重集，再看枚举那一本的 vec 自己乘回去 —— 三只同数才算最省
+   ③ 克拉夫特：最优长度多重集必须正好长满一棵树（Σ=1）；不满的树天生还能更短，不配当最省
+   ④ 赏的凭据：照 vec 现搭一桌正则前缀码，必须①不撞车②正好最省③短码给对④树长满 ——
+      「一声不差 / 短码给对 / 满树」这三笔赏才不是空头票
+   ⑤ 起手那张牌就是定长：长度一律、不撞车、Σ 报数×码长 == 定长；差价必须为正
+   ⑥ 吞笔的凭据：被吞那一笔的方向不许是独一份（否则牌面少一家，倒推无从下手）*/
+function tpAudWord(rec){
+  const out={ok:0,why:'',n:0,m:0,best:0,fixed:0,margin:0,reachBad:0,alphaBad:0,huffBad:0,
+    kraftBad:0,initBad:0,maskBad:0,info:[]};
+  const say=function(t){out.why=t};
+  if(!rec||!rec.ok){say('不是过闸的字');return out}
+  const meds=rec.medis,st=rec.strokes;
+  if(!meds||!st||meds.length!==st.length){say('字料与账对不上');out.alphaBad++;return out}
+  /* ① 字母表：方向、计数、名次、每笔归属，全部重数一遍 */
+  const syms=[];
+  for(let i=0;i<meds.length;i++)syms.push(tpSymOf(meds[i]));
+  const cnt={};
+  for(let i=0;i<syms.length;i++)cnt[syms[i]]=(cnt[syms[i]]||0)+1;
+  const keys=Object.keys(cnt).map(Number).sort(function(a,b){return a-b});
+  for(let i=0;i<keys.length;i++){
+    if(keys[i]<0||keys[i]>4){say('方向字母出了横竖撇捺折');out.alphaBad++}
+  }
+  if(keys.length!==rec.m||syms.length!==rec.n){say('字母种数或笔数与账不合');out.alphaBad++}
+  let sumW=0;
+  for(let i=0;i<rec.m;i++){
+    if(rec.keys[i]!==keys[i]||rec.w[i]!==cnt[keys[i]]){out.alphaBad++;continue}
+    sumW+=rec.w[i];
+  }
+  if(sumW!==rec.n){say('报数加起来不是笔数');out.alphaBad++}
+  for(let i=0;i<rec.n;i++)if(rec.idx[i]<0||rec.idx[i]>=rec.m||rec.keys[rec.idx[i]]!==syms[i]){out.alphaBad++}
+  /* ② 两本精确账 + 枚举那一本自己乘回去 */
+  const best=tpHuff(rec.w),en=tpEnumBest(rec.w),fixed=tpFixed(rec.w);
+  if(en.cost===null||best!==rec.best||en.cost!==rec.best){say('最省与账不合');out.huffBad++}
+  let vecCost=0,vecN=0;
+  for(let d=1;d<=TP_DMAX;d++){vecN+=(en.vec?en.vec[d]:0);vecCost+=(en.vec?en.vec[d]:0)*d}
+  if(vecN!==rec.m){say('最优长度多重集装不下这些字母');out.kraftBad++}
+  /* ③ 克拉夫特：拿「报数从大到小贴短码」的那本重算一遍代价，必须等于最省 */
+  if(en.vec){
+    const ws=rec.w.slice().sort(function(a,b){return b-a});
+    let k=0,c2=0;
+    for(let d=1;d<=TP_DMAX;d++)for(let i=0;i<en.vec[d];i++)c2+=ws[k++]*d;
+    if(k!==rec.m||c2!==rec.best){say('枚举那本自己乘回去不是最省');out.huffBad++}
+    let kf=0;
+    for(let d=1;d<=TP_DMAX;d++)kf+=en.vec[d]*(TP_KRAFT>>d);
+    if(kf!==TP_KRAFT){say('最优码长没长满一棵树（还空着坑，天生还能更短）'),out.kraftBad++}
+    for(let d=1;d<=TP_DMAX;d++)if(en.vec[d]>(TP_KRAFT>>1)&&(d===1?en.vec[d]>2:false)){out.kraftBad++}
+    if(rec.dmax>TP_DMAX){say('最优码长过格');out.kraftBad++}
+  }else out.kraftBad++;
+  /* ④ 赏的凭据：照 vec 搭一桌正则前缀码 —— 撞不撞、省不省、单调不单调、满不满树，一次数清 */
+  const lens=tpOptLens(rec);
+  const ord=[];
+  for(let i=0;i<rec.m;i++)ord.push(i);
+  ord.sort(function(a,b){return lens[a]-lens[b]||a-b});
+  const code=new Array(rec.m);
+  let cur=0,prev=1;
+  for(let t=0;t<ord.length;t++){
+    const i=ord[t],L=lens[i];
+    if(L<prev){say('正则码搭不出来（码长不是从短到长排）');out.reachBad++;break}
+    cur*=Math.pow(2,L-prev);prev=L;
+    const bits=[];
+    for(let d=L-1;d>=0;d--)bits.push((cur>>d)&1);
+    code[i]=bits;
+    cur++;
+  }
+  if(!out.reachBad&&code[0]){
+    const cl=tpClashPair(code);
+    if(cl.length){say('照最省搭出来的码撞了车（前缀码规矩是假的）');out.reachBad++}
+    const cst=tpCostOf(code,rec.w);
+    if(cst!==rec.best){say('「一声不差」拿不到：最省码要 '+cst+' 声，账上写 '+rec.best);out.reachBad++}
+    if(tpKraftOf(code)!==TP_KRAFT){say('「满树」拿不到：最省码没长满');out.reachBad++}
+    if(!tpMonoOf(code,rec.w)){say('「短码给对」拿不到：最省那桌码不单调');out.reachBad++}
+  }
+  /* ⑤ 起手那张牌 = 定长：长度一律、不撞、Σ 就是定长；差价必须为正 */
+  const init=rec.init;
+  if(!init||init.length!==rec.m){say('起手牌面不齐');out.initBad++}
+  else{
+    let L0=init[0].length;
+    for(let i=0;i<init.length;i++){
+      if(init[i].length!==L0||init[i].length<1||init[i].length>TP_DMAX)out.initBad++;
+      for(let d=0;d<init[i].length;d++)if(init[i][d]!==0&&init[i][d]!==1)out.initBad++;
+    }
+    if(tpClashPair(init).length){say('起手定长码自己就撞车');out.initBad++}
+    if(tpCostOf(init,rec.w)!==rec.fixed){say('起手牌面不是定长那个数（'+tpCostOf(init,rec.w)+'≠'+rec.fixed+'）');out.initBad++}
+    let len2=0,cap=1;
+    while(cap<rec.m){cap*=2;len2++}
+    if(len2<1)len2=1;
+    if(L0!==len2){say('定长码的位数不是 ⌈log₂ 字母数⌉');out.initBad++}
+  }
+  if(rec.fixed<=rec.best){say('定长不比最省贵，这一坊没得算');out.kraftBad++}
+  if(rec.fixed-rec.best<TP_MARGIN_MIN||rec.margin!==rec.fixed-rec.best){say('差价太薄或与账不合');out.kraftBad++}
+  if(rec.n<TP_NMIN||rec.n>TP_NMAX||rec.m<TP_MMIN||rec.m>TP_MMAX){say('笔数或字母数出带');out.kraftBad++}
+  /* ⑥ 吞笔的凭据：被吞那一笔的方向不许是独一份，否则牌面少一家 */
+  let maskable=0;
+  for(let i=0;i<rec.n;i++)if(rec.w[rec.idx[i]]>=2)maskable++;
+  if(maskable!==rec.maskable||maskable<1){say('可吞的那一笔数不回来');out.maskBad++}
+  if(rec.n<2){say('只剩一笔，问谁去');out.maskBad++}
+  /* ⑦ 口径：案上一张牌五个格子，深度必须盖得住 */
+  if(TP_KRAFT!==(1<<TP_DMAX))out.kraftBad++;
+  if(out.alphaBad||out.huffBad||out.kraftBad||out.reachBad||out.initBad||out.maskBad){
+    if(!out.why)out.why='几把尺不合(字母'+out.alphaBad+' 账'+out.huffBad+' 树'+out.kraftBad+
+      ' 赏'+out.reachBad+' 起手'+out.initBad+' 吞'+out.maskBad+')';
+    return out;
+  }
+  out.n=rec.n;out.m=rec.m;out.best=rec.best;out.fixed=rec.fixed;out.margin=rec.margin;
+  out.ok=1;
+  out.info.push({ch:rec.ch,n:rec.n,m:rec.m,best:rec.best,fixed:rec.fixed,margin:rec.margin,maskable:rec.maskable});
+  return out;
+}
+/* ---- 眼下案面的账：三行数、一桌牌、一条时间线当场互核（只读）---- */
+function tpAudState(){
+  const s={has:0,lv:tp.lv,phase:tp.phase,ch:tp.ch,n:0,m:0,best:0,fixed:0,
+    cost:tp.n,mar:tp.mar,marAll:tp.marAll,snd:tp.snd,rang:tp.rang,rows:tp.rows.length,
+    tlN:tp.tl?tp.tl.length:0,tlI:tp.tlI,mask:tp.mask.length,mi:tp.mi,
+    guessOk:tp.guessOk,guessBad:tp.guessBad,clash:tpClash().length,clashBad:tp.clashBad,
+    placeMs:tp.placeMs,place0:tp.place0,quickMs:tp.quickMs,quick0:tp.quick0,lamp:tp.lamp,lamp0:tp.lamp0,
+    hearts:tp.hearts,words:tp.words,combo:tp.combo,score:tp.score,gain:tp.gain,penSum:tp.penSum,
+    tools:tp.tools,borrow:tp.probeUse+tp.treeUse+tp.swapUse+tp.eyeballs,
+    litN:0,bad:0,note:[]};
+  const why=function(t){s.bad++;s.note.push(t)};
+  const rec=tp.rec;
+  if(!rec)return s;
+  s.has=1;s.n=rec.n;s.m=rec.m;s.best=rec.best;s.fixed=rec.fixed;
+  /* ① 三行数：这一趟必须正好是「报数 × 码长」，多花不许是负的，也不许比定长还贵 */
+  if(s.cost!==tpCostOf(tp.code,rec.w))why('案上写 '+s.cost+' 声，可报数乘码长是 '+tpCostOf(tp.code,rec.w)+' 声');
+  if(s.mar!==Math.max(0,s.cost-rec.best))why('多花 '+s.mar+' 与头账不合');
+  if(s.cost<rec.best)why('这一趟比哈夫曼还省（那本账算歪了）');
+  if(s.cost>rec.n*TP_DMAX)why('这一趟的声数高得离谱（'+s.cost+' 声，最多也就 '+rec.n*TP_DMAX+'）');
+  if(tp.best!==rec.best||tp.fixed!==rec.fixed)why('案上那两个准绳与字料不合');
+  if(s.lv<1||s.lv>9)why('场号 '+s.lv+' 出了 1~9');
+  /* ② 一桌牌：每张 1~TP_DMAX 位，每位只能是 0/1；两张不许互为开头以外的形式（撞车另算）*/
+  for(let i=0;i<tp.code.length;i++){
+    const c=tp.code[i];
+    if(!c||c.length<1||c.length>TP_DMAX){why('第 '+(i+1)+' 张牌的位数出了格');continue}
+    for(let d=0;d<c.length;d++)if(c[d]!==0&&c[d]!==1)why('第 '+(i+1)+' 张牌第 '+(d+1)+' 位不是滴也不是答');
+  }
+  if(tp.code.length!==rec.m)why('牌数与字母种数不合');
+  if(s.clashBad)why('两只核撞车的手数出来的不一样（'+s.clashBad+' 回）');
+  /* 撞车还挂着 ⇒ 电报机必须发不出去：主钮当场是 disabled（屏面自己的输出，不读内部量）*/
+  if(s.clash&&tp.phase==='code'){
+    const act=document.getElementById('tpActBtn');
+    if(act&&!act.disabled)why('案上明明撞了车，发报那颗钮还按得下去');
+  }
+  if(tp.phase!=='code'&&s.clash)why('撞着车的电报居然发出去了（'+s.clash+' 张牌）');
+  /* ③ 起手那张牌没被人碰过 ⇒ 案上必须正好是定长（孩子的第一反应就是账上的准绳）*/
+  let touched=0;
+  for(let i=0;i<tp.keysTouched.length;i++)if(tp.keysTouched[i])touched++;
+  if(!touched&&tp.code.length===rec.m&&s.cost!==rec.fixed)why('一张牌没动过，案上却不是定长 '+rec.fixed+' 声（写 '+s.cost+'）');
+  /* ④ 发报：时间线必须是「这一桌码」的一条重放 —— 独立重建，逐事件对 */
+  const isM={};
+  for(let i=0;i<tp.mask.length;i++)isM[tp.mask[i]]=1;
+  let wantSnd=0,wantRang=0;
+  for(let i=0;i<rec.n;i++)if(!isM[i]){wantSnd+=tp.code[rec.idx[i]].length;wantRang++}
+  if(tp.phase==='send'||tp.phase==='guess'||tp.phase==='seal'){
+    if(s.rang>wantRang)why('亮起的笔比该响的多（'+s.rang+'/'+wantRang+'）');
+    let fired=0,firedBits=0,firedRows=0,uniq={};
+    for(let k=0;k<tp.rows.length;k++){
+      const r=tp.rows[k];
+      if(uniq[r.i])why('纸带上第 '+(r.i+1)+' 笔打了两行');
+      uniq[r.i]=1;firedRows++;
+      if(r.mask)fired++;
+      else{firedBits+=(r.bits?r.bits.length:0)}
+    }
+    if(firedRows>rec.n)why('纸带比这个字还长');
+    if(tp.phase!=='send'){
+      if(s.rang!==wantRang)why('发完了只亮 '+s.rang+' 笔，这一桌码该响 '+wantRang+' 笔');
+      if(s.snd!==wantSnd)why('发完只响 '+s.snd+' 声，这一桌码该响 '+wantSnd+' 声');
+      if(firedBits!==wantSnd)why('纸带上数出来的声 '+firedBits+' ≠ 该响的 '+wantSnd);
+      if(fired!==tp.mask.length)why('纸带上的黑块 '+fired+' 块，吞掉的笔是 '+tp.mask.length+' 笔');
+      if(firedRows!==rec.n)why('纸带打了 '+firedRows+' 行，这个字有 '+rec.n+' 笔');
+    }
+    if(tp.lit){
+      let ln=0;
+      for(let i=0;i<rec.n;i++){if(tp.lit[i])ln++;if(tp.lit[i]===1&&isM[i])why('第 '+(i+1)+' 笔被吞了却亮了格')}
+      if(ln!==s.rang)why('格上亮 '+ln+' 笔，账上 rang 是 '+s.rang);
+      s.litN=ln;
+    }
+  }
+  /* ⑤ 吞笔：静默一律 TP_GAP_BEATS（漏了码长这一题就没得猜），而且不许吞掉独一份的方向 */
+  for(let i=0;i<tp.mask.length;i++){
+    const q=tp.mask[i];
+    if(q<0||q>=rec.n){why('吞笔号 '+q+' 出了这个字');continue}
+    if(rec.w[rec.idx[q]]<2)why('第 '+(q+1)+' 笔那个方向只有一笔：吞掉就没这张牌了');
+    for(let j=i+1;j<tp.mask.length;j++)if(tp.mask[j]===q)why('第 '+(q+1)+' 笔被吞了两回');
+  }
+  let canN=0;
+  for(let i=0;i<rec.n;i++)if(rec.w[rec.idx[i]]>=2)canN++;
+  if(tp.phase!=='code'&&tp.phase!=='load'&&tp.mask.length!==Math.min(TP_KMAX,tpMaskN(s.lv),canN))
+    why('这一场该吞 '+Math.min(TP_KMAX,tpMaskN(s.lv),canN)+' 笔（场号那张表），实际吞了 '+tp.mask.length+' 笔');
+  if(tp.phase==='send'&&tp.tl){
+    for(let k=1;k<tp.tl.length;k++)if(tp.tl[k].t<tp.tl[k-1].t){why('时间线倒着走');break}
+    let noise=0,gapBad=0;
+    for(let k=0;k<tp.tl.length;k++)if(tp.tl[k].k==='noise')noise++;
+    if(noise!==tp.mask.length)why('时间线里 '+noise+' 块杂音，吞掉的是 '+tp.mask.length+' 笔');
+    for(let k=0;k<tp.tl.length;k++){
+      const e=tp.tl[k];
+      if(e.k!=='noise')continue;
+      for(let j=k+1;j<tp.tl.length;j++){
+        if(tp.tl[j].k==='noise'){if(tp.tl[j].t-e.t!==TP_GAP_BEATS*tp.beat)gapBad++;break}
+        if(tp.tl[j].t-e.t>=TP_GAP_BEATS*tp.beat)break;
+      }
+    }
+    if(gapBad)why('有 '+gapBad+' 块杂音的静默不是 '+TP_GAP_BEATS+' 拍（漏码长）');
+  }
+  /* ⑥ 抢答：题数=吞掉的笔，一题一问不重复，答过的不许再答 */
+  if(tp.phase==='guess'||tp.phase==='seal'){
+    if(s.guessOk+s.guessBad>tp.mask.length)why('答的题比吞掉的笔还多');
+    if(tp.phase==='guess'&&s.mi>=tp.mask.length)why('题答完了场面还挂着抢答');
+    if(tp.phase==='guess'&&s.mi<0)why('抢答号是负的');
+    if(tp.guessOkAll<tp.guessOk)why('一辈子答对 '+tp.guessOkAll+' 题，比眼下这一字 '+tp.guessOk+' 还少（账倒退了）');
+    if(s.guessBad&&tp.missFlag!==1)why('抢答错过却没把这个字记进错字本');
+  }
+  /* ⑦ 赏与罚：屏上那串文必须正好等于累计的赏减累计的罚 */
+  if(tp.gain-tp.penSum!==tp.score)why('赏 '+tp.gain+' − 罚 '+tp.penSum+' ≠ 屏上 '+tp.score);
+  if(s.tools!==s.borrow)why('借家什 '+s.borrow+' 回，账上记的却是 '+s.tools+' 回');
+  if(tp.probeN<0||tp.treeN<0||tp.swapN<0)why('家什余量成了负的');
+  if(tp.probeN>TP_P0.probe||tp.treeN>TP_P0.tree||tp.swapN>TP_P0.swap)why('家什余量超了起手（补过却要写清）');
+  if(tp.hearts<0||tp.hearts>TP_HEART_MAX)why('心 '+tp.hearts+' 颗出了格');
+  if(tp.perfect>tp.words)why('一声不差 '+tp.perfect+' 趟比收字 '+tp.words+' 还多');
+  if(tp.fullN>tp.words)why('满树 '+tp.fullN+' 趟比收字还多');
+  if(tp.monoN>tp.words)why('短码给对 '+tp.monoN+' 趟比收字还多');
+  if(tp.quickN>tp.words)why('抢答全对 '+tp.quickN+' 趟比收字还多');
+  if(tp.marAll>=0&&tp.marSum<tp.marAll)why('这一场累计多花 '+tp.marSum+' 声，比眼下这一趟 '+tp.marAll+' 还少（账倒退了）');
+  /* ⑧ 三支钟不许倒挂；编钟只在编电码那一段走 */
+  if(tp.phase==='code'){
+    if(s.place0!==tpCodeMs(s.lv,rec.m))why('编钟整支 '+s.place0+' 与「字母数×每字母几秒−场号折扣」不合');
+    if(s.placeMs>s.place0)why('编钟 '+s.placeMs+' 比整支 '+s.place0+' 还长');
+    if(s.placeMs===0&&!tp.lates)why('编钟已经尽了，账上却一次没罚');
+  }else if(s.placeMs!==0&&tp.phase!=='code')why('不在编电码，编钟却在走（'+Math.round(s.placeMs)+'）');
+  if(tp.phase==='guess'){
+    if(s.quick0!==tpQuickMs(s.lv))why('抢答钟整支 '+s.quick0+' 与场号不合');
+    if(s.quickMs>s.quick0)why('抢答钟比整支还长');
+  }else if(s.quickMs!==0&&tp.phase!=='guess')why('没在抢答，抢答钟却在走');
+  if(s.lamp>tp.lamp0)why('场灯 '+s.lamp+' 比整支 '+tp.lamp0+' 还长');
+  if(tp.lamp0!==tpLamp(s.lv))why('场灯与场号不合');
+  /* ⑨ 帘子只认场号，不许偷偷改成认字数 —— 改了屏上写的「第 4 场起不写最省」就成了谎话 */
+  if(tpNoTell(s.lv)!==(s.lv>=TP_TELL_LV))why('第 '+s.lv+' 场的「不写最省与定长」帘子与常量 TP_TELL_LV 不合');
+  if(tpDim(s.lv)!==(s.lv>=TP_DIM_LV))why('第 '+s.lv+' 场的「连这一趟几声也不写」帘子与常量 TP_DIM_LV 不合');
+  /* ⑩ 屏上那两个数与牌面：帘子收走时不许露出来（读屏面写的字，不读内部量）*/
+  const ct=document.getElementById('tpCostTxt'),cb=document.getElementById('tpCostBig');
+  const tell=!tpNoTell(s.lv);
+  if(ct){
+    const shows=ct.textContent.indexOf('最省')>=0;
+    if(shows!==tell)why(tell?'第 '+s.lv+' 场该写最省，'+ct.textContent+' 里却没有':'第 '+s.lv+
+      ' 场帘子已收，'+ct.textContent+' 还写着最省');
+    if(tpDim(s.lv)&&ct.textContent.indexOf(s.cost+' 声')>=0)why('第 '+s.lv+' 场连「这一趟几声」都该收走，'+ct.textContent);
+  }
+  if(cb){
+    const shows=cb.textContent.indexOf('最省')>=0;
+    if(shows!==tell)why(tell?'案上那根账条该写最省，'+cb.textContent+' 里没有':'帘子已收，账条 '+cb.textContent+' 还写着最省');
+    if(tpDim(s.lv)&&/\d+ 声 \/ 最省/.test(cb.textContent))why('第 '+s.lv+' 场连几声都不该写，'+cb.textContent);
+  }
+  if(tp.words>0&&tp.phase==='load'&&!tp.locked&&!tp.over)why('还在收字，场上却是空的');
   return s;
 }
 
