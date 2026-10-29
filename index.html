@@ -7645,6 +7645,91 @@ button:active{transform:scale(.95)}
   #screen-tele .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-tele .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.110 🧮 笔顺算珠坊 ================= */
+/* HUD 占死三行（76 像素就是它满三行那一个高度）：字没上台那两息它只折两行，
+   不留这一格的话整张算桌会被往上抬 —— 米字格与算纸都在它下头，一行也不许裁 */
+.rd-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.rd-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.rd-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死六行（块级排版，只是垫高、不改排版）：三副题面里最宽的那一副（倒读那一句带「第 j 笔＝倒数第 j 颗珠」）就是六行 */
+.rd-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*6)}
+.rd-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.rd-ask b{color:#FFE082}
+.rd-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 算桌：一块磨旧的墨绿石版（米字格、淡墨的字底、一笔一笔亮起来、右边那张竖式算纸与珠串全画在这张桌上；canvas 透明，底色由这里给）*/
+.rd-field{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#16242B,#0E181E 58%,#060C10);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8)}
+.rd-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.rd-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(10,14,18,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.rd-tag.on{opacity:1}
+.rd-tag.warn{background:rgba(88,24,24,.94);color:#FFCCBC}
+.rd-tag.gold{background:rgba(74,58,14,.96);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.rd-tag.cyan{background:rgba(6,58,74,.94);color:#84FFFF;box-shadow:0 0 14px rgba(0,229,255,.4)}
+/* 案上的牌：一箱两用 —— 剥位那一段是三张候选（余几 · 商几 · 验算式子），倒读那一段换成 k 家方向牌 */
+.rd-tbl{width:calc(100% - 28px);max-width:520px;margin:6px auto 2px;display:flex;flex-direction:column;gap:4px;min-height:104px}
+.rd-opt{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:11px;padding:5px 8px;cursor:pointer;transition:background .12s,border-color .12s}
+.rd-opt.sel{background:rgba(255,224,130,.13);border-color:rgba(255,224,130,.7)}
+.rd-opt.bad{background:rgba(120,26,26,.42);border-color:#FF5252;animation:rdShake .42s linear 2}
+.rd-opt.dim{opacity:.42;cursor:default}
+@keyframes rdShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.rd-mark{flex:0 0 16px;font-size:12px;font-weight:800;color:#FF5252}
+.rd-opt:not(.bad) .rd-mark{color:#FFD54F}
+.rd-r{flex:0 0 52px;font-size:13px;color:#B0BEC5;white-space:nowrap}
+.rd-q{flex:0 0 58px;font-size:13px;color:#B0BEC5;white-space:nowrap}
+.rd-r b,.rd-q b{color:#ECEFF1;font-size:15px}
+.rd-chk{flex:1;min-width:0;text-align:right;font-size:13px;font-weight:800;color:#84FFFF;font-family:ui-monospace,Consolas,monospace;letter-spacing:.5px}
+/* 倒读那一段：牌上是方向名与「这一家几笔」，孩子数珠子的依据就写在同一行 */
+.rd-opt.q .rd-nm{flex:1;min-width:0;font-size:16px;font-weight:800;color:#ECEFF1}
+.rd-opt.q .rd-chk{flex:0 0 auto;color:#FFD54F;font-weight:700}
+/* 四条量表：剥位钟（青）· 这一趟的倒读（金）· 这一场的灯（冷绿）· 这一趟的错处（橙，错到那一格就一路变红）*/
+.rd-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.rd-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.rd-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#37474F,#78909C);transition:width .15s linear}
+.rd-tl.place i{background:linear-gradient(90deg,#4DD0E1,#B2EBF2)}
+.rd-tl.word i{background:linear-gradient(90deg,#C8A46A,#FFE082)}
+.rd-tl.lamp i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.rd-tl.costw i{background:linear-gradient(90deg,#FFB300,#FFD54F)}
+.rd-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.rd-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.rd-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.rd-take button.pass{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#263238;background:linear-gradient(180deg,#CFD8DC,#90A4AE)}
+.rd-take button.pass small{display:block;font-size:10px;font-weight:400;color:rgba(38,50,56,.7)}
+.rd-take button.pass:active{transform:translateY(1px)}
+.rd-take button.pass:disabled{opacity:.42;cursor:default}
+.rd-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1A1206;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.rd-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(26,18,6,.72)}
+.rd-take button.big.ready{background:linear-gradient(180deg,#A5D6A7,#66BB6A);box-shadow:0 0 20px rgba(102,187,106,.55);color:#10260F}
+.rd-take button.big:active{transform:translateY(1px)}
+.rd-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.rd-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.rd-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.rd-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.rd-tool b{display:block;font-size:10px;color:#FFD54F;font-weight:700}
+.rd-tool:disabled{opacity:.4;cursor:default}
+.rd-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.rd-hintline b{color:#FFD54F}
+.rd-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.rd-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.rd-msg b{color:#CFD8DC}
+.rd-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.rd-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.rd-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.rd-rs-book b{color:#FFD54F}
+.rd-rs-book small{color:#78909C}
+.rd-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,179,0,.92);color:#1A1206;border-radius:9px;padding:1px 6px;z-index:4}
+.rd-cdot.on{display:block}
+#screen-radix .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：四条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是六行半，就垫死八行 */
+@media(max-width:460px){
+  .rd-tl{flex:1 1 100%}
+  .rd-ask{min-height:calc(1.35em*8)}
+  .rd-take button.pass{flex:0 0 84px}
+  .rd-take button.big{font-size:17px}
+  .rd-opt{padding:4px 6px;gap:6px}
+  .rd-r{flex:0 0 46px}.rd-q{flex:0 0 50px}
+  #screen-radix .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-radix .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-radix .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7701,8 +7786,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 108 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">108</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 109 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">109</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7713,12 +7798,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>108 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>50</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>109 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>51</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="radixCard" onclick="enterMode('radix')">
+      <div class="icon">🧮</div>
+      <div class="info"><h3>笔顺算珠坊</h3><p id="radixCardTip">这个字笔顺里出现的<b>方向</b>按名次排成字母表（横竖撇捺折里的两到五家），<b>名次就是数码</b>（1~5，<b>天生没有 0 号牌</b>），第一笔是最高位 —— 整个字读成一个数 <b>N = d₁·k^(n−1)+…+dₙ</b>。🧮 往回剥就是<b>除基取余、带借位</b>：r = N mod k，<b>r==0 ⇒ 余数记满 k、商还要减一</b>。案上每一步摆三张候选，规矩只有两条：<b>甲</b> 余数得是字母表里的牌、<b>乙</b> 余数+基数×商要正好除回这一行 —— 得数不写，孩子自己乘。🪤 <b>笨手</b>（余 0 就写 0、商不借位）就明摆在案上：配字时验过它必错 ≥2 处、还常多剥一位，跟着它选那颗红珠就真落进算纸里，珠串对不回笔顺。↔️ <b>倒读抢答</b>：珠子从末位往前剥，笔顺从第一笔往后写，第 j 笔＝倒数第 j 颗珠。📏 三只手互核（除基取余 · 层界换算 · Horner 乘回去）+ 结算时第四只手把 <code>1~k</code> 的排法穷举一遍。第 4 场起案上不写笨手那本账，第 6 场起连「方向↔数码」对照表也收走</p></div>
+      <span class="rd-cdot" id="radixCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="teleCard" onclick="enterMode('tele')">
       <div class="icon">📻</div>
       <div class="info"><h3>笔顺电报坊</h3><p id="teleCardTip">这个字笔顺里出现的<b>方向</b>就是字母表（横竖撇捺折里的三到五种），每种有几笔就是它的<b>报数</b>。给每个方向编一条电码（一位位「滴」「答」，最长五位），按 📻 发报：一笔一笔变成电码、一笔一笔在米字格上亮起来。<b>谁也不许是别人的开头</b> —— 撞了车整行闪红、发报按不下去（两把尺各数各的撞车，当场互核）。案上三个数：这一趟 <b>N 声</b>（Σ 报数×码长）· 最省 <b>M 声</b>（哈夫曼反复合并两个最小的报数，另有枚举长度多重集第二只手互核）· 定长 <b>Y 声</b>（不动脑那只笨手）。<b>报数多的贴短码</b>，多花=Y−M 起算。🎧 发报时杂音要吞 k 笔：不出声、不亮格，发完电报机问「第 j 笔是什么方向」—— 数纸带倒推、笔顺记在脑子里。🌳 克拉夫特把坑数清了：满树零浪费才不发一声虚的。第 4 场起不写最省与定长，第 6 场起连「这一趟要几声」也收走</p></div>
@@ -8512,6 +8602,76 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-radix">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rdLeave()">← 返回</button>
+    <div class="stats"><span id="rdScoreTxt">🧮 0 文</span><span id="rdLvTxt">第 1 场 · 收 0 字</span><span id="rdQTxt">⏳ 剥位 7 秒</span></div>
+    <button class="icon-btn" onclick="rdHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="rd-hud">
+    <span id="rdRankTxt" title="称号">🧮 头一趟</span>
+    <span id="rdHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="rdComboTxt" title="连击">🔥 连 0</span>
+    <span id="rdLotTxt" title="这一场第几字、剥到第几颗">🈶 1/3 字 · 0/0 颗珠</span>
+    <span id="rdNumTxt" title="这一趟的编号与笨手那本账">🧮 编号 ? · 笨手错 ? 处</span>
+    <span class="light" id="rdHitLight">💡 剥位</span>
+  </div>
+  <div class="rd-ask" id="rdAsk">📥 正在挑字……<br><small>在字库里找「三只手同数、笨手必错两处以上、借与不借都露过面」的字</small></div>
+  <div class="rd-stage">
+    <div class="rd-field">
+      <canvas class="rd-canvas" id="rdCanvas" width="420" height="340"></canvas>
+      <div class="rd-tag" id="rdTag">🧮 算锤还没落</div>
+    </div>
+  </div>
+  <div class="rd-tbl" id="rdOpts"></div>
+  <div class="rd-meter">
+    <div class="rd-tl place"><i id="rdStepBar"></i><b id="rdStepTxt">🧮 剥位 7.0 秒</b></div>
+    <div class="rd-tl word"><i id="rdQuickBar"></i><b id="rdQuickTxt">↔️ 倒读 5 秒</b></div>
+    <div class="rd-tl lamp"><i id="rdLampBar"></i><b id="rdLampTxt">💡 这一场 78 秒</b></div>
+    <div class="rd-tl costw"><i id="rdErrBar"></i><b id="rdErrBig">🧮 错 0 处 / 笨手错 ? 处</b></div>
+  </div>
+  <div class="rd-take">
+    <button class="big" id="rdActBtn">🧮 就按这一张（回车）<small>1~3 选一张 · ↑↓ 挑 · 回车落子</small></button>
+    <button class="pass" id="rdNextBtn">🏁 结算<small>F</small></button>
+  </div>
+  <div class="rd-tools">
+    <button class="rd-tool" id="rdProbeBtn" disabled>✨ 该不该借<span>P</span><b>剩 2</b></button>
+    <button class="rd-tool" id="rdRuleBtn" disabled>🧭 数位尺<span>V</span><b>剩 2</b></button>
+    <button class="rd-tool" id="rdSwapBtn" disabled>🔁 换字<span>S</span><b>剩 1</b></button>
+    <button class="rd-tool" id="rdHelpBtn">📖 说明<span>H</span></button>
+  </div>
+  <div class="rd-hintline" id="rdHintTxt">⚡ <b>除尽了不等于剥对了</b>：余数是 0 时，这一行要把一位借给后面 —— 余数记满 k、商再减 1</div>
+  <div class="rd-msg" id="rdMsg">🧮 <b>这个字的笔顺就是一个数</b>：笔顺里出现的方向按名次排成字母表（横竖撇捺折里的两到五家），<b>名次就是数码</b>，第一笔是最高位 —— 整个字读成 N = d₁·k^(n−1)+…+dₙ<br>⚡ <b>往回剥 = 除基取余、带借位</b>：余数为 0 就得<b>把一位借给后面</b>（余数记满 k、商再减一）—— 字母表里没有第 0 号牌，不借这一位，珠串就比笔数多一颗<br>🪤 <b>笨手</b>（余 0 就写 0）就摆在案上：它错几处、剥歪在哪一位都写着，跟着它选，那颗红珠就真落进算纸里<br>↔️ <b>倒读</b>：珠子从末位往前剥，笔顺从第一笔往后写，第 j 笔＝倒数第 j 颗珠 · <code>1~3</code> 选候选 · <code>↑↓</code> 挑 · <code>回车</code> 落子 · <code>1~5</code> 倒读那一家 · ✨ <code>P</code> 该不该借 · 🧭 <code>V</code> 数位尺 · 🔁 <code>S</code> 换字 · <code>H</code> 📖 说明 · <code>F</code> 🏁 结算</div>
+</div>
+<div class="screen" id="screen-radix-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="rdLeave()">← 返回</button>
+    <div class="stats"><span id="rdRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="rdRsEmoji">🧮</div>
+    <div style="font-size:26px;font-weight:800" id="rdRsTitle">算桌歇了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="rdRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="rd-pk" id="rdRsScore">🧮 0 文</span>
+      <span class="rd-pk" id="rdRsWords">🈶 收字 0 个 · 除 0 步 · 落 0 颗珠</span>
+      <span class="rd-pk" id="rdRsWalk">↔️ 倒读 0 题 · 答对 0 · 最长连击 0</span>
+      <span class="rd-pk" id="rdRsAward">🏅 一次没错 0 趟 · 珠子数对 0 趟</span>
+      <span class="rd-pk" id="rdRsWipe">🪤 跟着笨手 0 回 · 剥错 0 次 · 钟尽代落 0 次</span>
+      <span class="rd-pk" id="rdRsTools">🧰 借家什 0 回 · ✨ 0 · 🧭 0 · 🔁 0</span>
+      <span class="rd-pk" id="rdRsBest">🏅 历史最高 0 文</span>
+      <span class="rd-pk" id="rdRsRank">🧮 头一趟</span>
+    </div>
+    <div class="rd-rs-book" id="rdRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="rdRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="rdRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="rdReBtn">🧮 再除一趟</button>
+      <button class="tool-btn" id="rdLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="rdHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -16483,6 +16643,7 @@ function updateHomeStats(){
   if(typeof pkNudge==='function')pkNudge();
   if(typeof euNudge==='function')euNudge();
   if(typeof tpNudge==='function')tpNudge();
+  if(typeof rdNudge==='function')rdNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -16537,6 +16698,7 @@ function enterMode(mode){
   if(mode==='pack'){pkStart();return}
   if(mode==='eu'){euStart();return}
   if(mode==='tele'){tpStart();return}
+  if(mode==='radix'){rdStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -120525,6 +120687,1861 @@ function tpAudState(){
     if(tpDim(s.lv)&&/\d+ 声 \/ 最省/.test(cb.textContent))why('第 '+s.lv+' 场连几声都不该写，'+cb.textContent);
   }
   if(tp.words>0&&tp.phase==='load'&&!tp.locked&&!tp.over)why('还在收字，场上却是空的');
+  return s;
+}
+
+
+/* ================= v1.110.0 🧮 笔顺算珠坊（一句话数到第几位 · 双射计数法 / 除基取余借位 / 位权 ================= */
+/* 场：420×340 的一张算桌。左边是米字格（字一笔一笔亮起来），右边是一张竖式算纸（一行一步：被除数 ÷ 基数 → 余几、商几）。
+   这一坊吃的不是「怎么编短」，是「怎么除尽」：
+   ① 这个字的笔顺里出现过的**笔形方向**按名次排成一张字母表（横竖撇捺折里的两到五家），
+      名次就是**数码**：第一家记 1，第二家记 2 …… 第 k 家记 k —— <b>这里没有 0 号牌</b>（双射计数法）。
+   ② 笔顺就是一句话：第一笔是最高位。把这个字读成一个数
+      **N = d₁·k^(n−1) + d₂·k^(n−2) + … + dₙ**（Horner：从高位一路「乘 k 加一位」）。
+   ③ 反过来把这个数剥回笔顺，就是这一坊的主手：**除基取余、带借位**
+      r = N mod k；若 r==0 ⇒ **余数记 k，商还要再减一**（借一位）；否则商 = (N−r)/k。
+      孩子在这一句上必撞一次墙：「除尽了，余数是 0，可字母表里没有第 0 张牌」——
+      那一步不往前借一位，剥出来的珠子数目就比这个字的笔数多一位，还多出一张不存在的牌。
+   ④ 案上三只手互核（配字时与结算时都要合）：
+      手一 = 除基取余带借位（孩子正在用的这一只）；
+      手二 = 先数**层界**（第 n 层管 [loₙ, hiₙ] = [(kⁿ−1)/(k−1), k·loₙ]），把 N−loₙ 写成普通 k 进制再每位加一；
+      手三 = Horner 把珠子乘回去，必须正好是 N。
+      三只手同一个数，这一趟才准上台（离线 _rdnum.cjs 拿同一把尺数出 RD_LEV 那九串字）。
+   ⑤ 案上还摆着那只**笨手**：普通取余、余 0 就写 0、商不借位。它剥出的串与真串逐位对不上的地方叫**错处**，
+      它还常常**多剥一位**。过闸的字必须笨手错处 ≥ RD_DIFF_MIN 处 —— 差价薄得看不出的字不上台。
+      孩子若一路跟着笨手选，那张「第 0 号牌」就真落进算纸里：珠子数与笔数不合，倒读无从读起（封字时当场看得见）。
+   ⑥ 倒读抢答：珠子是**从末位往前**剥出来的，笔顺是**从第一笔往后**写的 —— 两头相反。
+      封字前电报……算桌要问「第 j 笔是几号数码」，孩子得把算序翻回笔序（第 j 笔 = 倒数第 j 颗珠）。
+   教学点：**一个数该写几位，不是命，是「层界」定的；除到余 0 不是除尽，是要往前借一位。**
+   第 `RD_TELL_LV` 场起案上不写错处与层界，第 `RD_DIM_LV` 场起连「方向↔数码」那张对照表也收走，
+   这时候谁排第几都得孩子自己按笔顺数出来。*/
+const RD_W=420,RD_CVH=340;
+/* 桌面两块：左边米字格（字），右边竖式算纸（这一趟除的账），底下两行回话 */
+const RD_TX=6,RD_TY=6,RD_TS=230;                      /* 米字格 6..236 × 6..236 */
+const RD_PAD=12;                                      /* 格内留白：整张 1024 方格等比缩进来 */
+const RD_RX=244,RD_RY=6,RD_RW=170,RD_RH=250;         /* 算纸 244..414 × 6..256 */
+const RD_L1=284,RD_L2=312;                            /* 回话两行的基线，340 以内 */
+/* ---- ① 口径：与离线扫描 _rdnum.cjs 一字一样。改任何一个数都得重生成 RD_LEV ---- */
+const RD_NMIN=3,RD_NMAX=7;      /* 收几笔的字：位数就是笔数，八位往上这一趟除不完 */
+const RD_KMIN=2,RD_KMAX=5;      /* 基数就是方向种数：一种没得数，六种一屏候选排不下 */
+const RD_VALMAX=9999;           /* 编号不越万：一万以内的除法才是三四年级算得动的 */
+const RD_BORROW_MIN=1;          /* 借位至少撞上一回：这一坊的杀招得露过面 */
+const RD_DIFF_MIN=2;            /* 笨手逐位对不上的错处至少两处：一回是巧合，两回才成规则 */
+/* ---- ② 三支钟：剥位钟（每一步的口气）· 抢答钟（倒读那一眼）· 场灯（一场三字的墙） ---- */
+const RD_STEP0=7000,RD_STEP_CUT=400,RD_STEP_MIN=4200;   /* 每一步剥位 */
+const RD_QUICK0=5000,RD_QUICK_CUT=300,RD_QUICK_MIN=2600;
+/* 场灯＝一场三字的墙钟：离线拿全站过闸字按三支钟的公式数过（_rdlamp.cjs）——
+   每一场都要「死得了」（低于最轻三字每步都坐到剥位钟尽的墙钟），
+   又要「经得住」（高于一心做事的三字，最紧的一场也余 1.2 倍）：
+   灯比三趟磨洋工短，熄灯这一条收场才真走得到；屏上「💡 这一场 N 秒」才不是空话 */
+const RD_LAMP0=78000,RD_LAMP_MIN=68000,RD_LAMP_STEP=1500;
+const RD_SEAL_MS=3000,RD_TAG_MS=2600,RD_NAG_MS=11000,RD_HELP_MS=16000,RD_BEAT=120;
+function rdStepMs(L){return Math.max(RD_STEP_MIN,RD_STEP0-(L-1)*RD_STEP_CUT)}
+function rdQuickMs(L){return Math.max(RD_QUICK_MIN,RD_QUICK0-(L-1)*RD_QUICK_CUT)}
+function rdLamp(L){return Math.max(RD_LAMP_MIN,RD_LAMP0-(L-1)*RD_LAMP_STEP)}
+function rdQN(L){return L>=7?3:(L>=4?2:1)}           /* 倒读抢答几题（场号越高题越多，也越多笔可问）*/
+const RD_QMAX=3;
+/* ---- 罚：一律从「文」里扣（孩子口袋里的赏）；案上那本账（珠）只记多剥 ----
+   剥错 · 跟着笨手选（本坊的靶子）· 剥位钟尽 · 抢答错 · 抢答迟 · 半路收场 · 换字 · 家什 · 翻说明 · 犹豫 */
+const RD_P_MISS=6,RD_P_NAIVE=8,RD_P_LATE=3,RD_P_WRONG=8,RD_P_SLOW=4,RD_P_QUIT=5;
+const RD_P_SWAP=6,RD_P_TOOL=4,RD_P_HELP=3,RD_P_HES=4;
+const RD_HES_KEY=5;             /* 同一行候选来回挑满五回还不定手，算犹豫 —— 离线 _rdreach.cjs 数过：
+                                       候选一共三张，正解一张、笨手一张、验算不通过的一张，
+                                       从这头看到那头最多挑两回；五回这一条线冤枉不着巧手，只罚挨张试的 */
+const RD_ERR_LINE=3;            /* 一趟错到这一格就掉一颗心：这一趟除得太糙了 */
+const RD_LATE_MAX=3;            /* 一个字剥位钟尽满三回，这一字判废（进错字本、掉一颗心）*/
+/* ---- 赏：每落一颗珠的底文（连击与场号加成）与封字那一整包 ---- */
+const RD_M0=7,RD_CB=.14,RD_LVW=.07;
+const RD_PTS_WORD=12;           /* 一个字剥到底 */
+const RD_PTS_BORROW=14;         /* 借位不失误：该借的那几步一次选对，一处没错 */
+const RD_PTS_LEN=8;             /* 位数剥对：剥出的珠子正好和笔数一样多（没多剥那一位）*/
+const RD_PTS_QUICK=12;          /* 倒读全对：算序翻回笔序，一题不落 */
+const RD_PTS_FRESH=6;           /* 头一回收这个字 */
+const RD_PTS_NOTOOL=8,RD_PTS_TOOLRUN=14;
+const RD_PTS_LEAN=2;            /* 比笨手少剥一位（珠子没多）*/
+const RD_ERR_CLEAN=1;           /* 一场三字「每趟错处 ≤1」才算清白 ---- 藏书阁那条票 ---- */
+/* ---- ③ 配字口径：一场一串字，串外的字在这一场就是过不了闸的字 ---- */
+const RD_PER=3;
+const RD_POOL_MIN=4,RD_POOL_WANT=14,RD_POOL_SCAN=320;
+const RD_HEARTS=3,RD_HEART_MAX=5,RD_BOOK_MAX=300;
+const RD_TELL_LV=4,RD_DIM_LV=6; /* 第 4 场起不写错处与层界，第 6 场起连数码对照表也收走 */
+function rdNoTell(L){return L>=RD_TELL_LV}
+function rdDim(L){return L>=RD_DIM_LV}
+const RD_P0={probe:2,rule:2,swap:1};   /* ✨ 该不该借 / 🧭 数位尺 / 🔁 换字
+   两件看账的家什各起手两回：都带一口气的挡话（点破挂 RD_PROBE_MS 秒、数尺画 RD_RULE_MS 秒），
+   余量只给一张的话，第二回按下去撞上「用光了」，「等它自己收走」这一句就永远说不出口 */
+const RD_PROBE_MS=5200,RD_RULE_MS=4200;
+/* 场档：开局那一场按「一辈子收齐的字数」走（每两个字进一场），局内每收满 RD_PER 字自己往上进一场 */
+function rdLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+const RD_KN=['横','竖','撇','捺','折'];
+function rdKn(d){return RD_KN[d<0?4:d]}      /* -1（折不了直线的）并入第 5 类，与离线扫描同一口径 */
+function rdRankOf(w){
+  let r=RD_RANKS[0];
+  for(let i=0;i<RD_RANKS.length;i++)if(w>=RD_RANKS[i].n)r=RD_RANKS[i];
+  return r;
+}
+const RD_RANKS=[
+  {n:0,e:'🧮',t:'头一趟'},      {n:2,e:'🔢',t:'认得余数'},  {n:5,e:'🪙',t:'会借位'},
+  {n:9,e:'↔️',t:'倒读得回'},     {n:14,e:'📏',t:'数得清层界'}, {n:21,e:'🧭',t:'一眼定数码'},
+  {n:30,e:'🧰',t:'全套家什'},    {n:42,e:'🎯',t:'借位不失误'}, {n:58,e:'👑',t:'从没剥错过'}
+];
+const RD_SHELF_LV=4;
+const RD_SHELF=[
+  {k:'算珠图',d:'收齐一个字'},            {k:'清白票',d:'一场三字每趟错处 ≤'+RD_ERR_CLEAN+' 处'},
+  {k:'神来之笔',d:'一趟一次没错，满 5 趟'}, {k:'满架章',d:'一趟珠子数正好等于笔数'},
+  {k:'戥子',d:'走到第 '+RD_SHELF_LV+' 场还在走'}, {k:'空手趟',d:'一趟家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},  {k:'金算锤',d:'累计剥位 400 步'}
+];
+const rd={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  /* 场：一场三字；lv 就是场号 */
+  lv:1,wi:0,score:0,hearts:RD_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一趟：字 · 字母表 · 竖式（lad 一行一步 · digs 珠串末位在前 · borrowSet 记哪几步借了位）*/
+  ch:'',rec:null,cur:0,step:0,digs:[],lad:[],borrowSet:{},wrongOpt:[],
+  opts:null,sel:0,touched:[],borrowHit:0,
+  /* 倒读抢答：要问的那几笔 · 眼下第几题 · 答对几个（All 是一辈子这一把累计，用来核账有没有倒退）*/
+  qs:[],qi:0,guessOk:0,guessBad:0,guessOkAll:0,gpicks:0,quickMs:0,quick0:0,missFlag:0,skipNote:'',
+  /* 这一趟的账：编号 · 位数 · 笨手错处 · 笨手多剥几位 */
+  n:0,best:0,naiveErr:0,naiveGap:0,
+  /* 手：错处 · 跟着笨手选（naiveHit 是这一趟的，naiveAll 是这一把的 —— 结算与落盘读那一把的）
+     · 钟尽代剥 · 判废 */
+  err:0,naiveHit:0,autoLate:0,broken:0,brokenWhy:'',
+  /* 家什 */
+  probeN:RD_P0.probe,ruleN:RD_P0.rule,swapN:RD_P0.swap,
+  probeUse:0,ruleUse:0,swapUse:0,probeMs:0,ruleMs:0,
+  /* 钟 */
+  step0:0,stepMs:0,lamp:0,lamp0:0,sealMs:0,
+  /* 账：收字 · 剥位步数 · 落珠 · 借位次数 · 一次没错趟 · 位数剥对趟 · 倒读全对趟 · 比笨手少一位趟 */
+  words:0,divTotal:0,beads:0,borrowAll:0,perfect:0,lenN:0,quickN:0,leanN:0,
+  wrongs:0,lates:0,hes:0,swaps:0,wordOuts:0,eyeballs:0,naiveAll:0,
+  /* 清白账：一场三字每趟错处 ≤RD_ERR_CLEAN · 一趟不借家什 */
+  cleanWord:1,neatWord:1,tools:0,wordTools:0,cleanRun:0,toolRun:0,errSum:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',nags:0,nagMs:0,newBest:false,
+  helpMs:0,tagTimer:0,lit:null,spark:[]
+};
+
+/* ---- 小工具：本坊自己的发声、回话、清定时器 ----
+   这几只不许抄公共那几只：公共的 auxSay 往别人家的消息条里写字、auxTone 揣的是别人那块声卡、
+   auxT/auxKill 管的是别人那一串定时器 —— 借来用，孩子的话就落在别人家的栏里。 */
+function rdTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!rd.ac)rd.ac=new AC();
+    const c=rd.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='square';
+    n.gain.value=g===undefined?.045:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+/* 回话条就是算桌下那一条 .rd-msg：写错了栏，孩子的话一个字也看不见 */
+function rdSay(msg,color){rdMsg(msg,color||'#FFE082')}
+function rdT(fn,ms){const id=setTimeout(function(){
+  const i=rd.timers.indexOf(id);if(i>=0)rd.timers.splice(i,1);
+  if(!rd.run||rd.over)return;
+  try{fn()}catch(e){}
+},ms);rd.timers.push(id);return id}
+function rdKill(){
+  for(let i=0;i<rd.timers.length;i++)clearTimeout(rd.timers[i]);
+  rd.timers=[];
+  if(rd.rafId){cancelAnimationFrame(rd.rafId);rd.rafId=0}
+}
+
+/* ---------- ① 字母表：把一笔折成一个方向，名次就是数码 ----------
+   归类用的是全站那一只 jtDirOf（index.html 里小战机认弹道的那把尺），一个数都不许改：
+   离线扫描 _rdnum.cjs 拿它数出 RD_LEV 那九串字，产品这边换了口径，字表当场作废。 */
+function rdSymOf(m){const d=jtDirOf(m);return d<0?4:d}
+/* ---------- ② 三只手：除基取余带借位 · 层界与普通进制 · Horner 乘回去 ----------
+   手一（剥）：r = N mod k；r==0 ⇒ r=k 且商还要减一（借一位）—— 这一坊的杀招就这一句。
+   手二（层）：第 n 层管 [loₙ,hiₙ]=[(kⁿ−1)/(k−1), k·loₙ]，层里的数天生就是 n 位；
+              把 N−loₙ 写成普通 k 进制、每一位加一，就把 n 颗珠子数出来了（一只也不借）。
+   手三（乘）：从高位一路 v=v·k+d 乘回去，必须正好是 N。
+   三只手天生三条路，配字与封账时必须一字不差。 */
+function rdStepOf(nv,k){
+  if(!(nv>0))return null;
+  const r0=nv%k;
+  if(r0===0)return {r:k,q:nv/k-1,borrow:1};
+  return {r:r0,q:(nv-r0)/k,borrow:0};
+}
+/* 一张牌上了算纸该不该挂「借」：余数记满 k、且这一行行首本来除得尽（商要退一格）。
+   与 rdAudState 核的那一条同一个口径 —— 牌上的借与账上的借只有一处算法。 */
+function rdBorrowOf(nv,k,r){return (r===k&&nv%k===0)?1:0}
+function rdDiv(N,k){
+  const digs=[],borrow=[];
+  let n=N,step=0;
+  while(n>0){
+    const s=rdStepOf(n,k);
+    if(!s||step>16)return null;         /* 除不尽在双射计数法里不可能，留这一眼挡死循环 */
+    digs.push(s.r);if(s.borrow)borrow.push(step);
+    n=s.q;step++;
+  }
+  return {digs:digs,borrow:borrow,len:digs.length};
+}
+function rdNaive(N,k){                   /* 笨手：普通取余，余 0 就写 0，商永不借位 */
+  const digs=[];
+  let n=N,step=0;
+  while(n>0&&step<24){digs.push(n%k);n=Math.floor(n/k);step++}
+  return digs;
+}
+function rdLo(n,k){return (Math.pow(k,n)-1)/(k-1)}      /* 第 n 层最小那个数 */
+function rdHi(n,k){return k*rdLo(n,k)}                   /* 第 n 层最大那个数 */
+function rdLayer(N,k){                     /* 手二上半：数出这个数几位 */
+  let n=1,lo=1,hi=k;
+  while(N>hi){lo=hi+1;n++;hi=k*rdLo(n,k)}
+  return {n:n,lo:lo,hi:hi};
+}
+function rdLayerWays(N,k){                 /* 手二：层界 + 普通进制 + 每位加一 */
+  const L=rdLayer(N,k);
+  let v=N-L.lo;                            /* 这一层里的第几个（从 0 数） */
+  const digs=new Array(L.n);
+  for(let i=L.n-1;i>=0;i--){digs[i]=v%k+1;v=Math.floor(v/k)}
+  if(v!==0)return null;
+  return {digs:digs.reverse(),len:L.n,lo:L.lo,hi:L.hi};   /* digs 末位在前 */
+}
+function rdVal(digs,k){                    /* 手三：Horner 乘回去（digs 末位在前）*/
+  let v=0;
+  for(let i=digs.length-1;i>=0;i--)v=v*k+digs[i];
+  return v;
+}
+/* 两本串逐位对表（都末位在前）：笨手多剥出来的那几位天生没有对手，全算错处 */
+function rdDiffPos(nv,dv){
+  const out=[];
+  const L=Math.max(nv.length,dv.length);
+  for(let i=0;i<L;i++)if(nv[i]!==dv[i])out.push(i);
+  return out;
+}
+/* ---------- ③ 每一步那三张候选：一张正解 · 一张笨手 · 一张验算不通过 ----------
+   规矩只有两条，孩子自己数得出：
+     甲 余数必须是字母表里的一张牌 ⇒ 1 ≤ r ≤ k（余 0 就是那张不存在的第 0 号牌）；
+     乙 这一行必须除得回去 ⇒ r + k×q 正好等于行首那个数。
+   甲乙都过的只有正解（构造上唯一）。案上把 r+k×q 那串式子写出来，得数留给孩子自己算。 */
+function rdOpts(nv,k){
+  const s=rdStepOf(nv,k);
+  if(!s)return null;
+  const cand=[{r:s.r,q:s.q,kind:'right'}];
+  const push=function(o){
+    if(o.q<0||o.r<0||o.r>k)return;
+    for(let i=0;i<cand.length;i++)if(cand[i].r===o.r&&cand[i].q===o.q)return;
+    cand.push(o);
+  };
+  push({r:nv%k,q:Math.floor(nv/k),kind:'naive'});      /* 笨手：余 0 就写 0，商不借位 */
+  push({r:k,q:Math.floor(nv/k),kind:'over'});           /* 借过头：余数记满 k，商忘了减一 */
+  push({r:s.r,q:s.q+1,kind:'plus'});                     /* 商多一位（验算当场多出一整个基数）*/
+  push({r:s.r,q:s.q-1,kind:'minus'});                    /* 商少一位 */
+  if(cand.length<3)return null;
+  const list=cand.slice(0,3);
+  for(let i=list.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    const t=list[i];list[i]=list[j];list[j]=t;
+  }
+  for(let i=0;i<list.length;i++){list[i].pos=i;list[i].borrow=rdBorrowOf(nv,k,list[i].r)}
+  const right=list.findIndex(function(o){return o.kind==='right'});
+  return {list:list,right:right,borrow:s.borrow};
+}
+/* ---------- ④ 口径闸门：这一个字配不配上台 ----------
+   三只手必须同一个数；笨手必须真剥错（错处 ≥ RD_DIFF_MIN 处）；
+   借位那一面与不借那一面都得露过 —— 全程借位的字，「借」就成了唯一答案，没得挑。 */
+function rdAuditWord(ch,j){
+  const out={ok:0,why:''};
+  const meds=j.medians,sp=j.strokes;
+  if(!meds||!sp||meds.length!==sp.length)return {ok:0,why:'笔数不合'};
+  const n=meds.length;
+  if(n<RD_NMIN||n>RD_NMAX)return {ok:0,why:'笔数带外'};
+  const syms=[];
+  for(let i=0;i<n;i++)syms.push(rdSymOf(meds[i]));
+  const cnt={};
+  for(let i=0;i<n;i++)cnt[syms[i]]=(cnt[syms[i]]||0)+1;
+  const keys=Object.keys(cnt).map(Number).sort(function(a,b){return a-b});
+  const k=keys.length;
+  if(k<RD_KMIN||k>RD_KMAX)return {ok:0,why:'基数 '+k+' 种带外'};
+  const idx=syms.map(function(s){return keys.indexOf(s)});   /* 名次 0..k−1 */
+  const digs=idx.map(function(x){return x+1});                /* 数码 1..k，第一笔是最高位 */
+  const N=rdVal(digs.slice().reverse(),k);
+  if(!(N>0)||N>RD_VALMAX)return {ok:0,why:'数越万（'+N+'）'};
+  const dv=rdDiv(N,k),lw=rdLayerWays(N,k);
+  if(!dv)return {ok:0,why:'除不尽'};
+  if(!lw)return {ok:0,why:'层界算不出'};
+  if(dv.len!==lw.len||dv.len!==n)return {ok:0,why:'三只手数出的位数不合（剥'+dv.len+' 层'+lw.len+' 笔'+n+'）'};
+  for(let i=0;i<n;i++)if(dv.digs[i]!==lw.digs[i]||dv.digs[i]!==digs[n-1-i])return {ok:0,why:'两本剥位账不合'};
+  if(rdVal(dv.digs,k)!==N)return {ok:0,why:'乘回去不是原数'};
+  const nv=rdNaive(N,k);
+  if(nv.indexOf(0)<0)return {ok:0,why:'笨手没剥出「第 0 号牌」（杀招没露过面）'};
+  const diff=rdDiffPos(nv,dv.digs);
+  if(diff.length<RD_DIFF_MIN)return {ok:0,why:'错处 '+diff.length+' 处太薄（一回是巧合，两回才成规则）'};
+  if(dv.borrow.length<RD_BORROW_MIN)return {ok:0,why:'借位 '+dv.borrow.length+' 回太少'};
+  const noBorrow=dv.len-dv.borrow.length;
+  if(noBorrow<1)return {ok:0,why:'全程借位（不借那一面没露过）'};
+  /* 每一步都得凑齐三张候选（正解唯一）；该借那一步，笨手那一解必须摆得上桌 ——
+     不借那一步「余 0 就写 0」与正解是同一个数，天生摆不出第二张，那一步就只考验算。*/
+  const bset={};
+  for(let i=0;i<dv.borrow.length;i++)bset[dv.borrow[i]]=1;
+  let curN=N;
+  for(let i=0;i<dv.len;i++){
+    const o=rdOpts(curN,k);
+    if(!o)return {ok:0,why:'第 '+(i+1)+' 步凑不齐三张候选'};
+    const hasNaive=o.list.filter(function(x){return x.kind==='naive'}).length;
+    if(bset[i]&&!hasNaive)return {ok:0,why:'第 '+(i+1)+' 步该借位，笨手那一解却没摆上桌'};
+    if(!bset[i]&&hasNaive)return {ok:0,why:'第 '+(i+1)+' 步不该借位，桌上却多出一张同数的牌'};
+    if(!!o.borrow!==!!bset[i])return {ok:0,why:'第 '+(i+1)+' 步该不该借与账不合'};
+    curN=o.list[o.right].q;
+  }
+  if(curN!==0)return {ok:0,why:'照正解剥完商不归零'};
+  out.ok=1;out.ch=ch;out.n=n;out.k=k;out.keys=keys;out.digs=digs;out.idx=idx;
+  out.N=N;out.syms=syms;out.medis=meds;out.strokes=sp;out.cnt=cnt;
+  out.borrow=dv.borrow;out.nborrow=dv.borrow.length;out.noborrow=noBorrow;
+  out.naive=nv;out.naiveErr=diff.length;out.naiveGap=nv.length-dv.len;
+  out.lo=rdLo(n,k);out.hi=rdHi(n,k);
+  out.w=keys.map(function(x){return cnt[x]});       /* 报数：这一坊只拿来数名次，账在数码上 */
+  return out;
+}
+/* ---------- ⑤ 字池：一场一套字 ----------
+   RD_LEV 那九串由 _rdnum.cjs 拿这一模一样的闸门离线数过（三只手同数、笨手必错两处以上），
+   上台前当场再核一遍 —— 数据换了、口径变了，这一眼就把它挡在池外。
+   池子只准从本串里挑：场号那一档说的是「这一趟除几步」的难度，串外的字一旦上台，
+   屏上那句「第 4 场起不写错处与层界」就成了空话（段 S 逐场盯着池内每一个字的编号）。
+   本串过闸的字凑不齐 RD_POOL_MIN 个（数据换了、字库缩了），才往全表九串补 ——
+   补的仍然是这张表里的字，绝不是字库里随便一个字。 */
+function rdMake(ch,j){const r=rdAuditWord(ch,j);return r.ok?r:null}
+async function rdBuildPool(keep,lo,hi){
+  const g=rd.gen,stale=function(){return g!==rd.gen||!rd.run||rd.over};
+  const lv=rd.lv||1;
+  const enough=function(){
+    if(!isFinite(lo))return rd.pool.length>=RD_POOL_WANT;
+    let c=0;
+    for(let i=0;i<rd.pool.length;i++)if(rd.pool[i].n>=lo&&rd.pool[i].n<=hi)c++;
+    return c>=6||rd.pool.length>=40;
+  };
+  rd.miss=(localStorage.getItem('hz_rd_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<RD_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  const rest=[];                                   /* 全表里本串之外的字：只在本串不齐时上台 */
+  for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,RD_LEV[L].split(''));
+  const scan=async function(list){
+    for(let kk=0;kk<list.length&&!enough();kk+=12){
+      const rs=await Promise.all(list.slice(kk,kk+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(stale())return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[kk+i];
+        if(!rs[i]||!rs[i].medians)continue;
+        const rec=rdMake(ch,rs[i]);
+        if(!rec)continue;
+        if(isFinite(lo)&&(rec.n<lo||rec.n>hi))continue;
+        if(!rd.pool.some(function(p){return p.ch===rec.ch}))rd.pool.push(rec);
+      }
+    }
+  };
+  push(auxShuf(rd.miss.slice(0,6).filter(function(c){return (RD_LEV[lv]||'').indexOf(c)>=0})));
+  push(auxShuf(rdLetters(lv).split('')));
+  if(!keep)rd.pool=[];
+  await scan(want);
+  if(rd.pool.length<RD_POOL_MIN){
+    const rescue=[];
+    for(let i=0;i<rest.length&&rescue.length<RD_POOL_SCAN;i++){
+      const c=rest[i];
+      if(c&&want.indexOf(c)<0)rescue.push(c);
+    }
+    await scan(auxShuf(rescue));
+  }
+  rd.poolLv=lv;
+  return rd.pool.length>=RD_POOL_MIN;
+}
+function rdFresh(ch){
+  const bk=localStorage.getItem('hz_rd_book')||'';
+  return bk.indexOf(ch+':')<0?1:0;
+}
+
+/* 下面九串字（一场一串）由 _rdnum.cjs 离线数出来：全站 1372 字过闸 286 字，
+   按「编号 N」从低到高排，平手再看基数、再看借位回数，然后均分九场 ——
+   这一个数把位数、基数一起称出来了：第 1 场的字三五步就剥到底，第 9 场的字要除到几千几万。
+   串外的字在这一场就是过不了闸的字（当场 rdAuditWord 再核一遍才准上台）。*/
+const RD_LEV={
+  1:"么于亏子马叉上口川丰巨王丈下大小飞互双扎父万勺日曰月气中火凡个卫",
+  2:"女门司击巧专书幻且仙云开甩甲写田叫册占歹瓦历厅以勾欠见扫羽臣再众",
+  3:"牛计曲方回片什仇木斗斤切不尤区民去拒内冈水贝风匣吾扭辽阿址阻匆对",
+  4:"石乏吨邮兄犯他长仞仪冬仅汉丝记主生市饥议兰白丘穴未示异迅尽刑本扬",
+  5:"托驰芒灰达矛有在存匠而欢迈至叨虫吃价伙妇好妈忙争色设禾庆访亥付",
+  6:"仗印代乒约级华纪后汇纤乎君它宁圣迟召忌坛声批护抖花豆动执场芝亚朴",
+  7:"时肠成听列夺纵返矣吸吆帆则刚证鸟亩乱庐社诊屹宏何估究伸会狂创朱杂",
+  8:"危迁闯伟乓休优汛杀冲庄刘芍安羊字米宅协即寿层改戒吞违块扶更找束技",
+  9:"驱贡走抄拟投攻均赤陈扳抡驴坑抗克劳芳严附杆材村杖巫医来男困吻伶"
+};
+function rdLetters(L){return RD_LEV[L]||''}
+/* 笨手那本账怎么说：多剥一位是那一种，一位也不多的那一种要说清它剥出几张第 0 号牌 ——
+   两样都是「对不回笔顺」，可屏上不能写「多剥 0 位」这种孩子读不通的话（全站只这一处措辞，别处都从这里取）*/
+function rdNaiveSay(rec){
+  if(!rec)return '';
+  if(rec.naiveGap>0)return '错 '+rec.naiveErr+' 处 · 多剥 '+rec.naiveGap+' 位';
+  let z=0;
+  for(let i=0;i<rec.naive.length;i++)if(rec.naive[i]===0)z++;
+  return '错 '+rec.naiveErr+' 处 · 剥出 '+z+' 张第 0 号牌';
+}
+
+/* ---------- 案面：把米字格与竖式算纸画出来，再把屏上每一个数从常量与表里读出来 ----------
+   笔形路径都在 1024 空间、y 向上（与全站一致，jtDirOf 那句注释就是出处），
+   所以换上屏幕坐标要翻一次 y：X=x·sc+ox，Y=(1024−y)·sc+oy。
+   整张 1024 方格等比缩进米字格 —— 不按笔画外接框缩放，字才不会被拉扁。*/
+const RD_BOX=1024;
+function rdView(){
+  const sc=(RD_TS-2*RD_PAD)/RD_BOX;
+  return {sc:sc,ox:RD_TX+(RD_TS-RD_BOX*sc)/2,oy:RD_TY+(RD_TS-RD_BOX*sc)/2};
+}
+function rdX(x,v){return v.ox+x*v.sc}
+function rdY(y,v){return v.oy+(RD_BOX-y)*v.sc}
+function rdBadge(x,y,txt,bg,fg){
+  const c=rdCv.getContext('2d');
+  c.font='bold 10px system-ui';
+  const w=Math.max(14,c.measureText(txt).width+6);
+  c.fillStyle=bg;c.strokeStyle='rgba(0,0,0,.55)';c.lineWidth=1;
+  c.beginPath();
+  if(c.roundRect)c.roundRect(x-w/2,y-8,w,15,7);else c.rect(x-w/2,y-8,w,15);
+  c.fill();c.stroke();
+  c.fillStyle=fg;c.textAlign='center';c.textBaseline='middle';
+  c.fillText(txt,x,y+.5);
+  c.textAlign='left';c.textBaseline='alphabetic';
+}
+/* 案面底下那两行回话：横竖都是「整行居中」，所以只有行高 y 需要传进来 ——
+   调用处一律 rdLine(行, 话, 颜色, 字号[, 字重])，别再摆一个用不上的 x */
+function rdLine(y,txt,fg,size,weight){
+  const c=rdCv.getContext('2d');
+  c.font=(weight||'bold')+' '+(size||13)+'px system-ui';
+  c.textAlign='center';c.fillStyle=fg;
+  c.fillText(txt,RD_TX+RD_TS/2+(RD_RX+RD_RW/2-RD_TX-RD_TS/2)/2,y);
+  c.textAlign='left';
+}
+function rdStrokeMid(rec,i){
+  /* 亮起一笔时火花落点：这一笔中线的中点（1024 空间 → 屏幕）*/
+  const m=rec.medis[i];
+  const v=rdView();
+  const p=m[Math.floor(m.length/2)];
+  return [rdX(p[0],v),rdY(p[1],v)];
+}
+/* 一张数位尺画在米字格上（🧭 家什）：第 j 位的位权 k^(n−j) 一行一行排好，
+   旁边写清这一层管到哪个数（层界 loₙ..hiₙ）—— 只摆尺子，不报这一步该借不该借。*/
+function rdDrawRule(c){
+  const rec=rd.rec,n=rec.n,k=rec.k;
+  const x0=RD_TX+10,y0=RD_TY+22,rowH=Math.min(26,(RD_TS-34)/Math.max(1,n+2));
+  c.save();
+  c.font='bold 11px system-ui';
+  c.fillStyle='#80CBC4';
+  c.fillText('位权尺（基数 '+k+'）',x0,RD_TY+10);
+  for(let j=0;j<n;j++){
+    const pw=Math.pow(k,n-1-j);
+    const y=y0+j*rowH;
+    c.fillStyle='rgba(255,255,255,.06)';
+    c.fillRect(x0,y-11,RD_TS-20,rowH-3);
+    c.fillStyle='#B0BEC5';c.textAlign='left';
+    c.fillText('第 '+(j+1)+' 位（'+rdKn(rec.keys[rec.idx[j]])+'）',x0+4,y);
+    c.fillStyle='#FFD54F';c.textAlign='right';
+    c.fillText('×'+pw,x0+RD_TS-24,y);
+    if(!rdDim(rd.lv)){
+      c.fillStyle='#84FFFF';c.textAlign='right';
+      c.fillText(k+'^'+(n-1-j),x0+RD_TS-4,y);
+    }
+  }
+  c.textAlign='left';
+  const yb=y0+n*rowH+2;
+  c.fillStyle='#78909C';c.font='bold 10px system-ui';
+  if(rdDim(rd.lv))c.fillText('这一层的门牌号自己数：'+k+' 进制、没有 0 号牌',x0,yb);
+  else c.fillText('第 '+n+' 层的数从 '+rdLo(n,k)+' 到 '+rdHi(n,k)+' ⇒ 天生 '+n+' 位',x0,yb);
+  c.restore();
+}
+function rdDraw(){
+  const cv=rdCv;if(!cv)return;
+  const c=cv.getContext('2d');
+  c.clearRect(0,0,RD_W,RD_CVH);
+  if(!rd.rec){
+    rdLine(RD_L1,'🧮 正在挑字……','#B0BEC5',15);
+    rdLine(RD_L2,'在字库里找「三只手同数、笨手必错两处以上、借与不借都露过面」的字','#78909C',12,'normal');
+    return;
+  }
+  const rec=rd.rec,v=rdView();
+  /* 米字格 */
+  c.save();
+  c.strokeStyle='rgba(255,255,255,.09)';c.lineWidth=1;
+  c.strokeRect(rdX(0,v),rdY(RD_BOX,v),RD_BOX*v.sc,RD_BOX*v.sc);
+  c.setLineDash([4,5]);c.strokeStyle='rgba(255,255,255,.07)';
+  c.beginPath();
+  c.moveTo(rdX(512,v),rdY(RD_BOX,v));c.lineTo(rdX(512,v),rdY(0,v));
+  c.moveTo(rdX(0,v),rdY(512,v));c.lineTo(rdX(RD_BOX,v),rdY(512,v));
+  c.moveTo(rdX(0,v),rdY(RD_BOX,v));c.lineTo(rdX(RD_BOX,v),rdY(0,v));
+  c.moveTo(rdX(0,v),rdY(0,v));c.lineTo(rdX(RD_BOX,v),rdY(RD_BOX,v));
+  c.stroke();c.restore();
+  /* 🧭 数位尺：把米字格让给那把尺（一息就收，不许留一辈子）*/
+  if(rd.ruleMs>rd.t&&rd.phase!=='load'){
+    rdDrawRule(c);
+    rdLine(RD_L1,'🧭 位权尺：第 j 位的位权是 '+rec.k+'^(' + rec.n + '−1−j)，笔顺就是高位到低位','#FFE082',12);
+    rdLine(RD_L2,'剥一位就是除一个基数；'+(rdDim(rd.lv)?'这一层的门牌号自己数':'第 '+rec.n+' 层从 '+rdLo(rec.n,rec.k)+' 管到 '+rdHi(rec.n,rec.k)),'#90A4AE',12,'normal');
+    return;
+  }
+  /* 一笔一笔亮起来：珠子剥到第几颗，米字格上就亮第几笔（末位在前 ⇒ 从最后一笔往回亮）*/
+  c.save();
+  c.translate(v.ox,v.oy+RD_BOX*v.sc);c.scale(v.sc,-v.sc);
+  c.lineCap='round';c.lineJoin='round';
+  for(let i=0;i<rec.n;i++){
+    if(!rd.lit||!rd.lit[i])continue;
+    try{
+      c.fillStyle='rgba(255,213,79,.92)';
+      c.fill(new Path2D(rec.strokes[i]));
+    }catch(e){}
+  }
+  if(rd.phase==='seal'){
+    /* 封了字才把这个字 whole 亮出来：这一段是「原来它长这样」，不是答案 */
+    c.fillStyle='rgba(171,178,176,.5)';
+    for(let i=0;i<rec.n;i++){
+      if(rd.lit[i])continue;
+      try{c.fill(new Path2D(rec.strokes[i]))}catch(e){}
+    }
+  }
+  c.restore();
+  /* 火花：刚亮起的那一笔上撒三颗，一息就散 */
+  for(let i=rd.spark.length-1;i>=0;i--){
+    const s=rd.spark[i],age=(rd.t-s.t0)/620;
+    if(age>=1){rd.spark.splice(i,1);continue}
+    c.beginPath();c.arc(s.x+(s.dx*age*13),s.y+(s.dy*age*13)-age*7,3.1*(1-age),0,6.2832);
+    c.fillStyle='rgba(255,245,200,'+(0.85*(1-age))+')';c.fill();
+  }
+  /* 竖式算纸：一行一步，被除数 ÷ 基数 → 余几、商几；该借的那一行钉一个「借」牌 */
+  c.save();
+  c.fillStyle='rgba(255,255,255,.045)';
+  c.fillRect(RD_RX,RD_RY,RD_RW,RD_RH);
+  c.strokeStyle='rgba(255,255,255,.14)';c.lineWidth=1;
+  c.strokeRect(RD_RX+.5,RD_RY+.5,RD_RW-1,RD_RH-1);
+  c.font='bold 11px system-ui';c.textBaseline='middle';
+  c.fillStyle='#FFE082';
+  c.fillText('🧮 '+rec.N+' ÷ '+rec.k,RD_RX+6,RD_RY+12);
+  if(!rdDim(rd.lv)){
+    c.fillStyle='#78909C';c.font='9px system-ui';c.textAlign='right';
+    c.fillText(rec.k+' 家：'+rec.keys.map(function(x,j){return rdKn(x)+(j+1)}).join(' '),RD_RX+RD_RW-6,RD_RY+12);
+    c.textAlign='left';
+  }
+  const rowH=24,yTop=RD_RY+26,maxRows=Math.floor((RD_RH-26-30)/rowH);
+  const from=Math.max(0,rd.lad.length-maxRows);
+  c.font='bold 10px system-ui';
+  for(let kk=from;kk<rd.lad.length;kk++){
+    const r=rd.lad[kk],y=yTop+(kk-from)*rowH+8;
+    const bad=r.bad;
+    c.fillStyle='rgba(255,255,255,.05)';
+    c.fillRect(RD_RX+3,y-9,RD_RW-8,rowH-3);
+    c.fillStyle=bad?'#FFCDD2':'#B0BEC5';
+    c.fillText((kk+1)+'·'+r.nv+'÷'+rec.k,RD_RX+6,y);
+    c.fillStyle=bad?'#FF5252':(r.zero?'#FF8A80':'#84FFFF');
+    c.fillText('余'+r.r,RD_RX+80,y);
+    c.fillStyle=bad?'#FF8A80':'#ECEFF1';
+    c.fillText('商'+r.q,RD_RX+112,y);
+    if(r.borrow)rdBadge(RD_RX+RD_RW-16,y,'借','rgba(255,152,0,.9)','#1A1206');
+    else if(r.zero)rdBadge(RD_RX+RD_RW-16,y,'0!','rgba(183,28,28,.9)','#FFCDD2');
+    c.strokeStyle='rgba(255,255,255,.07)';
+    c.beginPath();c.moveTo(RD_RX+4,y+rowH/2-2);c.lineTo(RD_RX+RD_RW-4,y+rowH/2-2);c.stroke();
+  }
+  if(!rd.lad.length){
+    c.fillStyle='#546E7A';c.textAlign='center';c.font='bold 10px system-ui';
+    c.fillText('这一趟还没除',RD_RX+RD_RW/2,RD_RY+RD_RH/2);
+    c.textAlign='left';
+  }
+  /* 珠串：剥出来的数码一颗一颗排在这里。剥序（左→右 = 末位→高位）写在珠下，
+     笔序（第几笔）只在能倒读得回来时写 —— 多剥一位的那一串对不上笔，正是这一坊要说的那件事 */
+  const by=RD_RY+RD_RH-16,bx=RD_RX+8;
+  c.font='bold 11px system-ui';
+  c.fillStyle='#78909C';
+  c.fillText('珠',RD_RX+3,by-13);
+  for(let i=0;i<rd.digs.length;i++){
+    const x=bx+i*19;
+    if(x>RD_RX+RD_RW-14)break;
+    const zero=rd.digs[i]===0;
+    c.beginPath();c.arc(x+7,by,8,0,6.2832);
+    c.fillStyle=zero?'rgba(183,28,28,.85)':(rd.borrowSet[i]?'rgba(255,152,0,.85)':'rgba(79,195,247,.85)');
+    c.fill();
+    c.strokeStyle='rgba(0,0,0,.5)';c.lineWidth=1;c.stroke();
+    c.fillStyle='#0B1418';c.textAlign='center';
+    c.fillText(zero?'0':rd.digs[i]+'',x+7,by+4);
+    if(rd.broken){c.fillStyle='#FF5252';c.fillText('×',x+7,by-13)}
+    c.textAlign='left';
+  }
+  c.font='9px system-ui';c.fillStyle='#78909C';
+  c.fillText(rd.digs.length+'/'+rec.n+' 颗 · 剥序末位在前',bx,by+16);
+  c.restore();
+  /* 两行回话：全部从常量与表里读，不许自己再算一遍 */
+  if(rd.phase==='seal'){
+    rdLine(RD_L1,'🏁 '+rd.ch+' 剥完：'+rd.digs.length+' 颗珠 · '+rec.n+' 笔 · 除到商 0 共 '+rd.lad.length+' 步',
+      rd.broken?'#FF8A80':'#FFE082',13);
+    rdLine(RD_L2,rd.broken?('这一串对不上笔顺：'+rd.brokenWhy):
+      ('倒读 '+rd.guessOk+'/'+rd.qs.length+' 题 · 一次没错 '+(rd.err||rd.naiveHit||rd.autoLate?'否':'是')),
+      '#90A4AE',12,'normal');
+  }else if(rd.phase==='check'){
+    rdLine(RD_L1,'↔️ 第 '+(rd.qs[rd.qi]+1)+' 笔是几号数码？（'+rd.qs.length+' 题里的第 '+(rd.qi+1)+' 题）',
+      rd.quickMs>0?'#84FFFF':'#FFCCBC',13);
+    rdLine(RD_L2,'珠子从末位往前剥，笔顺从第一笔往后写 —— 两头数到中间就对上','#90A4AE',12,'normal');
+  }else if(rd.phase==='div'){
+    const back=rd.digs.length?rdVal(rd.digs.slice(),rec.k):0;
+    rdLine(RD_L1,rdDim(rd.lv)?'⚡ 第 '+(rd.step+1)+' 步：'+rd.cur+' ÷ '+rec.k+' 余几、商几，自己除':
+      (rdNoTell(rd.lv)?'⚡ 第 '+(rd.step+1)+'/'+rec.n+' 步：'+rd.cur+' ÷ '+rec.k+'（笨手那本账已经收了）':
+      '⚡ 第 '+(rd.step+1)+'/'+rec.n+' 步：'+rd.cur+' ÷ '+rec.k+' ｜ 已剥 '+rd.digs.length+' 颗珠 = '+back+'，真数 '+rec.N),
+      '#FFE082',13);
+    rdLine(RD_L2,rdNoTell(rd.lv)?'甲 余数得是字母表里的牌（1~'+rec.k+'）｜ 乙 余+基数×商 要正好除回这一行':
+      ('甲 余数 1~'+rec.k+' ｜ 乙 除得回去 ｜ 笨手'+rdNaiveSay(rec)),
+      '#90A4AE',12,'normal');
+  }else{
+    rdLine(RD_L1,'🧮 正在除……','#B0BEC5',13);
+    rdLine(RD_L2,'上案：'+rec.n+' 笔 · '+rec.k+' 家方向 · 编号 '+rec.N,'#78909C',12,'normal');
+  }
+}
+/* ---------- 案上的牌：一箱两用 ----------
+   剥位那一段：箱里是三张候选（余几、商几、验算式子），点一行或按 1~3 就落子；
+   倒读那一段：同一只箱子换成 k 家方向（数码 1~k · 这一家几笔），点一行或按 1~k 就是答案。
+   牌是 DOM 不是 canvas：孩子按的得是真按钮，牌上那串 r+k×q 只摆式子不摆得数 ——
+   算得过算不过，得孩子自己乘一遍。错过的那一张当场划红，下一息还摆在原处（不许藏起来当没发生过）。*/
+function rdBuildOpts(){
+  const box=document.getElementById('rdOpts');
+  if(!box)return;
+  box.innerHTML='';
+  const rec=rd.rec;
+  if(rd.phase==='check'){
+    if(!rec)return;
+    for(let i=0;i<rec.k;i++){
+      const row=document.createElement('div');
+      row.className='rd-opt q';
+      row.id='rdOpt'+i;
+      row.innerHTML='<span class="rd-mark">'+(i+1)+'</span>'+
+        '<span class="rd-nm">'+rdKn(rec.keys[i])+'</span>'+
+        '<span class="rd-chk">'+(rec.cnt[rec.keys[i]]||0)+' 笔</span>';
+      row.addEventListener('click',(function(i){return function(ev){
+        /* 说明正挂着那一眼：真指针与键盘同一条规矩 —— 这一下先收说明，不许隔着帘子答题 */
+        if(rd.helpMs>0){rd.helpMs=0;rdSync();ev.preventDefault();return}
+        rdAnswer(i);ev.preventDefault();
+      }})(i));
+      box.appendChild(row);
+    }
+    return;
+  }
+  if(rd.phase!=='div')return;
+  const list=rd.opts?rd.opts.list:null;
+  if(!list)return;
+  for(let i=0;i<list.length;i++){
+    const o=list[i];
+    const row=document.createElement('div');
+    row.className='rd-opt';
+    row.id='rdOpt'+i;
+    row.innerHTML='<span class="rd-mark">'+(i+1)+'</span>'+
+      '<span class="rd-r">余 <b>'+o.r+'</b></span>'+
+      '<span class="rd-q">商 <b>'+o.q+'</b></span>'+
+      '<span class="rd-chk">'+o.r+(o.q>0?'+'+rd.rec.k+'×'+o.q:'')+'</span>';
+    row.addEventListener('click',(function(i){return function(ev){
+      if(rd.helpMs>0){rd.helpMs=0;rdSync();ev.preventDefault();return}
+      rdPick(i);ev.preventDefault();
+    }})(i));
+    box.appendChild(row);
+  }
+}
+function rdSyncOpts(){
+  const box=document.getElementById('rdOpts');
+  if(!box)return;
+  /* 行数由这一箱现在的身份决定（剥位三张 · 倒读 k 家），所以下标越界那一眼不许省 */
+  const rows=box.querySelectorAll('.rd-opt');
+  const live=rd.phase==='div'||rd.phase==='check';
+  for(let i=0;i<rows.length;i++){
+    rows[i].classList.toggle('sel',rd.phase==='div'&&i===rd.sel);
+    rows[i].classList.toggle('bad',rd.phase==='div'&&!!rd.wrongOpt[i]);
+    rows[i].classList.toggle('dim',!live);
+  }
+}
+/* ---------- 屏上的字：HUD / 题头 / 回话条 / 标签 ---------- */
+function rdSync(){
+  const q=document.getElementById('rdQTxt');
+  if(q)q.textContent=rd.phase==='seal'?'🏁 封字':rd.phase==='check'?'⏳ 倒读 '+Math.ceil(rd.quickMs/1000)+' 秒':
+    rd.phase==='load'||rd.locked?'📥 换字':'⏳ 剥位 '+Math.ceil(rd.stepMs/1000)+' 秒';
+  const s=document.getElementById('rdScoreTxt');
+  if(s)s.textContent='🧮 '+(rd.score|0)+' 文';
+  const l=document.getElementById('rdLvTxt');
+  if(l)l.textContent='第 '+rd.lv+' 场 · 收 '+rd.words+' 字';
+  const r=document.getElementById('rdRankTxt');
+  if(r){const rk=rdRankOf(rd.words);r.textContent=rk.e+' '+rk.t}
+  const h=document.getElementById('rdHeartTxt');
+  if(h)h.textContent='❤️'.repeat(Math.max(0,rd.hearts));
+  const cb=document.getElementById('rdComboTxt');
+  if(cb)cb.textContent='🔥 连 '+rd.combo;
+  const lot=document.getElementById('rdLotTxt');
+  if(lot)lot.textContent=rd.rec?('🈶 '+(rd.wi+1)+'/'+RD_PER+' 字 · '+rd.digs.length+'/'+rd.rec.n+' 颗珠'):'🈶 正在挑字';
+  const ct=document.getElementById('rdNumTxt');
+  if(ct)ct.textContent=rd.rec?(rdDim(rd.lv)?'🧮 编号 ?':
+    (rdNoTell(rd.lv)?'🧮 '+rd.rec.N+' · 案上不写笨手那本账':'🧮 '+rd.rec.N+' · 笨手'+rdNaiveSay(rd.rec))):'🧮 算锤还没落';
+  const ht=document.getElementById('rdHitLight');
+  if(ht){
+    const t=rd.hitTxt||(rd.phase==='check'?'💡 第几颗珠？':(rd.err?'💡 再除一遍':'💡 剥位'));
+    ht.textContent=t;
+    ht.style.color=rd.hitOk===2?'#FF8A80':rd.hitOk===1?'#A5D6A7':rd.hitOk===3?'#84FFFF':'#FFE082';
+  }
+  /* 三条量表：剥位钟（青）· 倒读抢答（金）· 场灯（冷绿）· 这一趟的错处（橙，错到那一格就一路变红）*/
+  const pb=document.getElementById('rdStepBar'),pt=document.getElementById('rdStepTxt');
+  if(pb)pb.style.width=Math.max(0,Math.min(100,rd.stepMs/Math.max(1,rd.step0)*100))+'%';
+  if(pt)pt.textContent='🧮 剥位 '+(rd.stepMs/1000).toFixed(1)+' 秒';
+  const pl=pb?pb.parentNode:null;
+  if(pl)pl.classList.toggle('low',rd.stepMs<Math.min(1500,rd.step0*.22));
+  const qb=document.getElementById('rdQuickBar'),qt=document.getElementById('rdQuickTxt');
+  if(qb)qb.style.width=Math.max(0,Math.min(100,rd.quickMs/Math.max(1,rd.quick0)*100))+'%';
+  if(qt)qt.textContent='↔️ 倒读 '+(rd.quickMs/1000).toFixed(1)+' 秒';
+  const ql=qb?qb.parentNode:null;
+  if(ql)ql.classList.toggle('low',rd.quickMs>0&&rd.quickMs<Math.min(1200,rd.quick0*.28));
+  const lb=document.getElementById('rdLampBar'),lt=document.getElementById('rdLampTxt');
+  if(lb)lb.style.width=Math.max(0,Math.min(100,rd.lamp/Math.max(1,rd.lamp0)*100))+'%';
+  if(lt)lt.textContent='💡 这一场 '+(rd.lamp/1000).toFixed(0)+' 秒';
+  const kb=document.getElementById('rdErrBar'),kt=document.getElementById('rdErrBig');
+  const rec=rd.rec;
+  const errs=rd.err+rd.naiveHit;  if(kb)kb.style.width=Math.max(0,Math.min(100,rec?errs/Math.max(1,RD_ERR_LINE)*100:0))+'%';
+  if(kt)kt.textContent=rec?(rdNoTell(rd.lv)?('🧮 错 '+errs+' 处 / 案上不写差价'):
+    ('🧮 错 '+errs+' 处 / 笨手错 '+rec.naiveErr+' 处')):'🧮 账还没开';
+  const kl=kb?kb.parentNode:null;
+  if(kl)kl.classList.toggle('low',errs>=RD_ERR_LINE);
+  /* 家什的余量与挡话 */
+  const P=document.getElementById('rdProbeBtn'),G=document.getElementById('rdRuleBtn'),S=document.getElementById('rdSwapBtn');
+  if(P){P.disabled=!(rd.run&&!rd.over&&rd.probeN>0&&rd.phase==='div');P.querySelector('b').textContent=rd.probeMs>rd.t?'正说着':'剩 '+rd.probeN}
+  if(G){G.disabled=!(rd.run&&!rd.over&&rd.ruleN>0&&rd.phase==='div');G.querySelector('b').textContent=rd.ruleMs>rd.t?'正画着':'剩 '+rd.ruleN}
+  if(S){S.disabled=!(rd.run&&!rd.over&&rd.swapN>0&&rd.phase==='div');S.querySelector('b').textContent='剩 '+rd.swapN}
+  const act=document.getElementById('rdActBtn');
+  if(act){
+    const lab={load:'📥 正在挑字……',div:'🧮 就按这一张（回车）',check:'↔️ 答不上（回车）',seal:'⏎ 下一个字'}[rd.phase]||'🧮';
+    if(act.firstChild)act.firstChild.nodeValue=lab;
+    const sm=act.querySelector('small');
+    if(sm)sm.textContent=rd.phase==='div'?(rd.probeMs>rd.t?rdProbeSay():'1~3 选一张 · ↑↓ 挑 · 回车落子'):
+      rd.phase==='check'?('第 '+(rd.qi+1)+'/'+rd.qs.length+' 题 · 按 1~'+(rd.rec?rd.rec.k:'?')+' 或点那一家'):
+      rd.phase==='seal'?'🏁 封字':'';
+    act.disabled=(!rd.run||rd.over||rd.phase==='load'||rd.locked>0);
+    act.classList.toggle('ready',rd.phase==='seal'||rd.phase==='div');
+  }
+  const nk=document.getElementById('rdNextBtn');
+  if(nk)nk.disabled=!(rd.run&&!rd.over);
+  rdSyncOpts();
+  const ask=document.getElementById('rdAsk');
+  if(ask)ask.innerHTML=rdAskTxt();
+  const hl=document.getElementById('rdHintTxt');
+  if(hl)hl.innerHTML=rdHintTxt();
+}
+function rdProbeSay(){
+  const o=rd.opts;
+  if(!o)return '';
+  return o.borrow?'✨ 这一行该借位':'✨ 这一行不借位';
+}
+function rdAskTxt(){
+  if(rd.phase==='load')return '📥 正在挑字……<br><small>在字库里找「三只手同数、笨手必错两处以上、借与不借都露过面」的字</small>';
+  const rec=rd.rec;
+  if(!rec)return '🧮 算锤还没落';
+  if(rd.phase==='div')return '⚡ <b>'+rd.ch+'</b>：'+rec.n+' 笔就是 '+rec.n+' 位，基数 '+rec.k+'（'+
+    rec.keys.map(function(x,i){return rdKn(x)+'='+(i+1)}).join(' ')+'）<br><small>'+
+    (rdDim(rd.lv)?'谁排第几自己按笔顺数（第 '+RD_DIM_LV+' 场起对照表也收了）':
+      (rdNoTell(rd.lv)?'编号 '+rec.N+' · 笨手那本账收了（第 '+RD_TELL_LV+' 场起不写错处与层界）':
+      '编号 '+rec.N+' = 除 '+rec.n+' 步剥到底 · 笨手（余 0 就写 0）'+rdNaiveSay(rec)))+
+    ' · 眼下 '+rd.digs.length+' 颗珠</small>';
+  if(rd.phase==='check')return '↔️ <b>'+rd.ch+'</b>：珠串 '+rd.digs.join(' ')+'（剥序：末位在前）<br><small>一共 '+rd.qs.length+' 题，眼下第 '+(rd.qi+1)+' 题 · 按 <code>1~'+rec.k+'</code> 或点案上那一家 · 第 j 笔 = 倒数第 j 颗珠</small>';
+  if(rd.phase==='seal')return '🏁 <b>'+rd.ch+'</b> 封字：'+rd.digs.length+' 颗珠 · '+rec.n+' 笔 · 除 '+(rd.lad.length-1)+' 步到商 0'+
+    (rd.broken?'<br><small>⚠ 这一串对不上笔顺：'+rd.brokenWhy+'</small>':'<br><small>'+rec.k+' 家（'+rec.keys.map(function(x){return rdKn(x)+'='+(rec.keys.indexOf(x)+1)+'·'+rec.cnt[x]+'笔'}).join(' ')+'）· 倒读 '+(rd.guessOk+rd.guessBad)+' 题 · 对 '+rd.guessOk+' 题</small>');
+  return '🧮';
+}
+function rdHintTxt(){
+  if(rd.phase==='seal')return '🏁 <b>一次没错</b>就是这一趟每一颗珠都当场落对（补一颗心）';
+  if(rd.phase==='check')return '↔️ <b>倒读</b>：剥位是从末位往前除的，笔顺是从第一笔往后写的 —— 第 j 笔就在倒数第 j 颗珠上';
+  if(rd.broken)return '⚠ <b>多出来的那一张</b>：跟着「余 0 就写 0」走，算纸上就多出一张字母表里没有的第 0 号牌（多剥一位的那些字还长过笔数）';
+  return '⚡ <b>除尽了不等于剥对了</b>：余数是 0 时，这一行要把一位借给后面 —— 余数记满 '+ (rd.rec?rd.rec.k:'k') +'、商再减 1';
+}
+function rdMsg(msg,color){
+  const el=document.getElementById('rdMsg');
+  if(!el)return;
+  el.innerHTML=msg;
+  el.style.color=color||'#90A4AE';
+}
+function rdClearTag(){
+  if(rd.tagTimer){clearTimeout(rd.tagTimer);rd.tagTimer=0}
+  const el=document.getElementById('rdTag');
+  if(el)el.className='rd-tag'
+}
+function rdTag(txt,cls){
+  const el=document.getElementById('rdTag');
+  if(!el)return;
+  /* 这一行是给孩子的正文：调用处一路写的是 <b>/<code> 那一种强调（与 tpTag、euTag 同一口径），
+     用 textContent 落下去孩子就读到一对尖括号。此处只许 innerHTML，且调用处只喂自家模板串。 */
+  el.innerHTML=txt;
+  el.className='rd-tag on'+(cls?' '+cls:'');
+  if(rd.tagTimer)clearTimeout(rd.tagTimer);
+  rd.tagTimer=setTimeout(function(){el.className='rd-tag'},RD_TAG_MS);
+}
+function rdHelpText(){
+  return '🧮 <b>笔顺算珠坊</b> —— 这个字笔顺里出现的方向按名次排成字母表，<b>名次就是数码</b>（1 到 '+RD_KMAX+'，'+
+    '<b>没有 0 号牌</b>），第一笔是最高位。整个字读成一个数 <b>N = d₁·k^(n−1)+…+dₙ</b>。<br>'+
+    '⚡ <b>剥回笔顺 = 除基取余、带借位</b>：r = N mod k；<b>r==0 ⇒ 余数记 k、商还要减一</b>。'+
+    '「除尽了余数是 0，可字母表里没有第 0 张牌」—— 不往前借一位，珠串就比笔数多一位。<br>'+
+    '📏 <b>层界</b>定几位：第 n 层管 ['+RD_KMIN+'… 通式 (kⁿ−1)/(k−1) 到 k×它]，层里的数天生 n 位。'+
+    '案上的 🧭 数位尺就是这一把。<br>'+
+    '🖐 <b>三只手互核</b>：除基取余（你正在用的）· 层界+普通进制+每位加一 · Horner 乘回去。'+
+    '配字时三本账一字不差才准上台（离线 _rdnum.cjs 同一把尺）。<br>'+
+    '🪤 <b>笨手</b>：普通取余、余 0 就写 0、商永不借位。过闸的字笨手必错 ≥'+RD_DIFF_MIN+' 处，'+
+    '案上写着它错几处、剥歪在哪一位 —— 你跟着它选，那张第 0 号牌就真落进算纸里。<br>'+
+    '↔️ <b>倒读抢答</b>：珠子从末位往前剥，笔顺从第一笔往后写，第 j 笔=倒数第 j 颗珠。<br>'+
+    '🎭 <b>两道帘子</b>：第 '+RD_TELL_LV+' 场起案上不写错处与层界，第 '+RD_DIM_LV+' 场起连「方向↔数码」对照表也收走。<br>'+
+    '<code>1~3</code> 选候选 · <code>↑↓</code> 挑 · <code>回车</code> 落子 · <code>1~'+RD_KMAX+'</code> 倒读那一家 · '+
+    '<code>P</code> ✨该不该借 · <code>V</code> 🧭数位尺 · <code>S</code> 🔁换字 · <code>H</code> 📖说明 · <code>F</code> 🏁结算';
+}
+
+/* ================= 这一趟的手：剥位、倒读、封字、三件家什 ================= */
+/* 案上那几个数（编号 N · 位数 n · 笨手错 X 处 · 多剥 Y 位）全由字料一次算死，别处不许自己再算一遍：
+   孩子照着手上的数除，除到底那一串珠子必须正好等于笔数 —— 这一坊才有得比。 */
+function rdRecost(){
+  const rec=rd.rec;
+  if(!rec)return;
+  rd.n=rec.n;rd.best=rec.N;
+  rd.naiveErr=rec.naiveErr;rd.naiveGap=rec.naiveGap;
+}
+/* ---- ① 剥位：一行三步（摆候选 → 挑一张 → 落一颗珠）---- */
+function rdNewStep(){
+  const rec=rd.rec;
+  if(!rec)return;
+  rd.opts=rdOpts(rd.cur,rec.k);
+  if(!rd.opts){rdWordOut('opts');return}          /* 理论上过闸的字必有三张候选；真撞上就把这个字退回库里 */
+  rd.sel=0;rd.wrongOpt=[];
+  rd.touched[rd.step]=0;
+  rd.step0=rdStepMs(rd.lv);rd.stepMs=rd.step0;
+  rdBuildOpts();
+}
+function rdMoveSel(dir){
+  if(rd.phase!=='div'||rd.locked||!rd.opts)return;
+  rd.sel=(rd.sel+dir+rd.opts.list.length)%rd.opts.list.length;
+  rd.touched[rd.step]=(rd.touched[rd.step]||0)+1;
+  rd.nagMs=0;
+  rdSync();rdDraw();
+}
+/* 犹豫：同一行候选来回挑满 RD_HES_KEY 回 —— 这一坊要的是看一眼就除得出，不是挨张试 */
+function rdHesitation(){
+  const t=rd.touched[rd.step]||0;
+  if(t<RD_HES_KEY||rd.stepMs<=0)return 0;
+  rd.hes++;rd.cleanWord=0;
+  rd.score-=RD_P_HES;rd.penSum+=RD_P_HES;
+  rd.hitOk=2;rd.hitTxt='🌀 犹豫 · −'+RD_P_HES;
+  rdTone(210,200);
+  return t;
+}
+/* 落一颗珠：这一行写进算纸，米字格上对应的这一笔亮起来 */
+function rdDrop(o,auto){
+  const rec=rd.rec,i=rd.step;
+  rd.lad.push({nv:rd.cur,r:o.r,q:o.q,borrow:o.borrow?1:0,bad:0,zero:0,auto:auto?1:0});
+  rd.digs.push(o.r);
+  rd.beads++;rd.divTotal++;
+  if(o.borrow){rd.borrowSet[i]=1;rd.borrowHit++;rd.borrowAll++}
+  rd.cur=o.q;rd.step=i+1;
+  /* 剥序与笔序是反的：第 i 步剥出来的这一颗，正是倒数第 i+1 笔 */
+  const stroke=rec.n-1-i;
+  if(stroke>=0&&rd.lit){
+    rd.lit[stroke]=1;
+    const p=rdStrokeMid(rec,stroke);
+    for(let s=0;s<3;s++)rd.spark.push({x:p[0],y:p[1],t0:rd.t,dx:(s-1)*1.4,dy:-1-Math.random()});
+  }
+}
+function rdPick(i){
+  if(rd.phase!=='div'||rd.locked||!rd.rec||!rd.opts)return;
+  const rec=rd.rec;
+  if(i<0||i>=rd.opts.list.length)return;
+  const o=rd.opts.list[i];
+  if(o.kind==='right'){
+    /* 这一支只有孩子亲手落子那一条路：钟尽代剥走的是 rdTick 里 rdDrop(o,1)，不吃赏、不进这一道 */
+    const hz=rdHesitation();
+    const pts=Math.round(RD_M0*(1+RD_CB*(rd.combo+1))*(1+RD_LVW*(rd.lv-1)));
+    rd.score+=pts;rd.gain+=pts;rd.combo++;
+    if(rd.combo>rd.maxCombo)rd.maxCombo=rd.combo;
+    rd.hitOk=1;rd.hitTxt='✔ 第 '+(rd.step+1)+' 步 +'+pts;
+    rdTone(o.borrow?980:1240,o.borrow?150:80);
+    rdDrop(o,0);
+    rdTag((hz?'🌀 这一行你来回挑了 '+hz+' 回：倒扣 '+RD_P_HES+' 文 —— 甲乙两条规矩一眼就定得下来 · ':'')+
+      '🧮 第 '+rd.lad.length+' 步：'+rd.lad[rd.lad.length-1].nv+' ÷ '+rec.k+' 余 <b>'+o.r+'</b> 商 <b>'+o.q+'</b>'+
+      (o.borrow?'（该借位：余数记满 '+rec.k+'，商减一）':'')+' · +'+pts+' 文','gold');
+    if(rd.cur<=0){rdFinishDiv();rdSync();rdDraw();return}
+    rdNewStep();
+    rdSync();rdDraw();
+    return;
+  }
+  if(o.kind==='naive'){
+    /* 本坊的靶子：余 0 就写 0 —— 数除得回去（乙过），可字母表里没有第 0 张牌（甲不过）。
+       这一张照样落子：孩子得亲眼看见算纸上多出一颗红珠 —— 那颗 0 对不上字母表里的任何一家。 */
+    rdHesitation();
+    /* 错处只记在 naiveHit 一头（案上那本账 errs = err + naiveHit，两处各记一遍就把一颗心提前磨掉了）
+       naiveAll 是这一把的累计：结算那一行与落盘那一笔说的是整场，不是眼下这一趟 */
+    rd.naiveHit++;rd.naiveAll++;rd.broken=1;
+    /* 判废那一句只说得住的那件事：算纸上躺着一张字母表里没有的牌，这一串就读不回笔顺。
+       颗数能不能长过笔数得看这个字（借位那一行后面还有没有得剥），拿「对不上 n 笔」套每个字就说瞎话了 */
+    rd.brokenWhy='第 '+(rd.step+1)+' 步落了一张<b>第 0 号牌</b>（字母表只有 1~'+rec.k+'），算纸上多出一颗'+
+      '对不上任何一笔的珠'+(rd.digs.length+1!==rec.n?'：珠串 '+(rd.digs.length+1)+' 颗、这个字 '+rec.n+' 笔':'');
+    rd.score-=RD_P_NAIVE;rd.penSum+=RD_P_NAIVE;
+    rd.combo=0;rd.cleanWord=0;rd.neatWord=0;
+    rd.hitOk=2;rd.hitTxt='🪤 跟着笨手 · −'+RD_P_NAIVE;
+    rdTone(170,260);
+    rdDrop({r:o.r,q:o.q,borrow:0},false);
+    rd.lad[rd.lad.length-1].bad=1;
+    rd.lad[rd.lad.length-1].zero=1;
+    rdTag('🪤 这一张是<b>笨手</b>那一解：余 0 就写 0、商不借位。除得回去（'+o.r+'+'+rec.k+'×'+o.q+'）'+
+      '，可字母表里<b>没有第 0 张牌</b> —— 倒扣 '+RD_P_NAIVE+' 文，这一趟的珠串对不回笔顺了（进错字本）','warn');
+    rdHeartCheck();
+    if(rd.cur<=0){rdFinishDiv();rdSync();rdDraw();return}
+    rdNewStep();
+    rdSync();rdDraw();
+    return;
+  }
+  /* 另外两张：验算除不回去（乙不过）—— 当场划红，候选留在原处，这一行重除 */
+  rdHesitation();
+  rd.err++;
+  rd.score-=RD_P_MISS;rd.penSum+=RD_P_MISS;
+  rd.combo=0;rd.cleanWord=0;rd.neatWord=0;
+  rd.wrongOpt[i]=1;
+  rd.hitOk=2;rd.hitTxt='✖ 除不回去 · −'+RD_P_MISS;
+  rdTone(200,180);
+  rdTag('✖ 第 '+(i+1)+' 张除不回去：'+o.r+'+'+rec.k+'×'+o.q+' = '+(o.r+rec.k*o.q)+'，这一行行首是 '+rd.cur+
+    ' —— 倒扣 '+RD_P_MISS+' 文，这一行重除','warn');
+  rdHeartCheck();
+  rdSync();rdDraw();
+}
+/* 心只在这一格上掉一次：错处（剥错 + 跟着笨手）累计到 RD_ERR_LINE 那一格 */
+function rdHeartCheck(){
+  const errs=rd.err+rd.naiveHit;
+  if(errs!==RD_ERR_LINE)return;
+  rd.hearts--;
+  if(rd.hearts<0)rd.hearts=0;      /* 心不许为负：屏上那串 ❤️ 是 max(0,hearts) 画的，账上却一路往下走 */
+  rdTone(150,300);
+  rdTag('💔 这一趟错满 '+RD_ERR_LINE+' 处：掉一颗心（'+RD_ERR_LINE+' 处就到手了，甲乙两条规矩各看一遍再落子）','warn');
+}
+function rdFinishDiv(){
+  const rec=rd.rec;
+  if(rd.broken){
+    rdTag('🪤 这一串珠子对不回笔顺了：'+rd.brokenWhy+' —— 不倒读了，封字','warn');
+    rdSealNow();
+    return;
+  }
+  if(rd.digs.length!==rec.n){
+    rd.broken=1;
+    rd.brokenWhy='剥出 '+rd.digs.length+' 颗珠，这个字只有 '+rec.n+' 笔（'+rd.lad.length+' 步没除到商 0？）';
+    rdSealNow();
+    return;
+  }
+  const qn=Math.min(rdQN(rd.lv),RD_QMAX,rec.n);
+  if(qn<1){rdSealNow();return}
+  const pool=[];
+  for(let i=0;i<rec.n;i++)pool.push(i);
+  rd.qs=[];
+  for(let t=0;t<qn&&pool.length;t++){
+    const j=Math.floor(Math.random()*pool.length);
+    rd.qs.push(pool[j]);pool.splice(j,1);
+  }
+  rd.qi=0;rd.guessOk=0;rd.guessBad=0;rd.gpicks+=rd.qs.length;
+  rd.quick0=rdQuickMs(rd.lv);rd.quickMs=rd.quick0;
+  rd.phase='check';rd.stepMs=0;
+  rdBuildOpts();                       /* 同一只箱子换成 k 家方向牌：倒读那一眼按的是这一排 */
+  rdTone(520,120);
+  rdTag('↔️ 倒读：珠子是从末位往前剥的（'+rd.digs.join(' ')+'），笔顺是从第一笔往后写的 —— 算桌要问 '+rd.qs.length+' 笔','cyan');
+}
+/* ---- ② 倒读抢答：第 j 笔是几号数码（把算序翻回笔序）---- */
+function rdAnswer(i){
+  if(rd.phase!=='check'||rd.locked||!rd.rec)return;
+  const rec=rd.rec,q=rd.qs[rd.qi];
+  if(i<0||i>=rec.k)return;
+  if(rec.idx[q]===i){
+    const pts=Math.round(RD_M0*2*(1+RD_CB*rd.combo)*(1+RD_LVW*(rd.lv-1)));
+    rd.score+=pts;rd.gain+=pts;rd.guessOk++;rd.guessOkAll++;
+    rd.combo++;
+    if(rd.combo>rd.maxCombo)rd.maxCombo=rd.combo;
+    rd.hitOk=1;rd.hitTxt='✔ 倒读对了 +'+pts;
+    rdTone(1040,150);
+    rdTag('✔ 第 '+(q+1)+' 笔的数码就是 <b>'+(i+1)+'</b>（'+rdKn(rec.keys[i])+'）：+'+pts+' 文 · 连击 '+rd.combo,'gold');
+    const p=rdStrokeMid(rec,q);
+    for(let s=0;s<4;s++)rd.spark.push({x:p[0],y:p[1],t0:rd.t,dx:(s-1.5),dy:-1.4-Math.random()});
+  }else{
+    rd.score-=RD_P_WRONG;rd.penSum+=RD_P_WRONG;
+    rd.hearts--;
+    if(rd.hearts<0)rd.hearts=0;
+    rd.guessBad++;rd.err++;rd.combo=0;rd.cleanWord=0;rd.neatWord=0;
+    rd.hitOk=2;rd.hitTxt='✖ 倒读错 · −'+RD_P_WRONG;
+    rdTone(180,240);
+    rdTag('✖ 第 '+(q+1)+' 笔不是 <b>'+(i+1)+'</b>，是 <b>'+(rec.idx[q]+1)+'</b>（'+rdKn(rec.keys[rec.idx[q]])+
+      '）：倒扣 '+RD_P_WRONG+' 文、掉一颗心，这个字进错字本','warn');
+    rd.missFlag=1;
+  }
+  rdNextQ();
+}
+function rdSlowQ(){
+  if(rd.phase!=='check'||rd.locked||!rd.rec)return;
+  const q=rd.qs[rd.qi],nm=rdKn(rd.rec.keys[rd.rec.idx[q]])+'='+(rd.rec.idx[q]+1);
+  rd.lates++;rd.combo=0;rd.cleanWord=0;
+  rd.score-=RD_P_SLOW;rd.penSum+=RD_P_SLOW;
+  rd.guessBad++;rd.err++;
+  /* 没答与答错是同一件事：那一笔的数码没记住 ⇒ 这个字要回错字本 */
+  rd.missFlag=1;
+  rd.skipNote+=(rd.skipNote?'、':'')+'第 '+(q+1)+' 笔「'+nm+'」';
+  rd.hitOk=2;rd.hitTxt='⌛ 没答 · −'+RD_P_SLOW;
+  rdTag('⌛ 这一题没答：第 '+(q+1)+' 笔是 <b>'+nm+'</b> · 倒扣 '+RD_P_SLOW+' 文（不掉心，可连击断了）','warn');
+  rdNextQ();
+}
+function rdNextQ(){
+  rd.qi++;
+  if(rd.qi>=rd.qs.length){rdSealNow();return}
+  rd.quickMs=rd.quick0;
+  rd.nagMs=0;
+  rdSync();rdDraw();
+}
+/* ================= 三件家什 ================= */
+/* ✨ 该不该借：只说这一行「该借 / 不该借」那一句判断，不替孩子算出余几商几 */
+function rdProbe(){
+  if(!rd.rec||rd.over||rd.locked||rd.phase!=='div')return;
+  if(rd.probeN<=0){rdTag('✨ 这一眼用完了：借不借得自己看余数');return}
+  if(rd.probeMs>rd.t){rdTag('✨ 那句话正挂着：还写 '+Math.ceil((rd.probeMs-rd.t)/1000)+' 秒（等它自己收走）');return}
+  rd.probeN--;rd.probeUse++;rd.tools++;rd.wordTools++;
+  rd.score-=RD_P_TOOL;rd.penSum+=RD_P_TOOL;rd.cleanWord=0;
+  rd.probeMs=rd.t+RD_PROBE_MS;
+  const b=rd.opts&&rd.opts.borrow;
+  rdTone(880,90);
+  rdTag('✨ 这一行'+(b?'<b>该借位</b>：除得尽（余 0），就把一位借给后面 —— 余数记满 '+rd.rec.k+'、商再减 1':
+    '<b>不借位</b>：除不尽，余数就是它自己，商往下取整')+
+    ' · 倒扣 '+RD_P_TOOL+' 文（还剩 '+rd.probeN+' 眼）','cyan');
+  rdSync();rdDraw();
+}
+/* 🧭 数位尺：把每一位的位权与这一层的层界画在米字格上 —— 只摆尺子，不报这一步该落几 */
+function rdRule(){
+  if(!rd.rec||rd.over||rd.locked||rd.phase!=='div')return;
+  if(rd.ruleN<=0){rdTag('🧭 数位尺收起来了：层界得自己在脑子里排');return}
+  if(rd.ruleMs>rd.t){rdTag('🧭 那把尺正画着：还写 '+Math.ceil((rd.ruleMs-rd.t)/1000)+' 秒');return}
+  rd.ruleN--;rd.ruleUse++;rd.tools++;rd.wordTools++;
+  rd.score-=RD_P_TOOL;rd.penSum+=RD_P_TOOL;rd.cleanWord=0;
+  rd.ruleMs=rd.t+RD_RULE_MS;
+  rdTone(560,120);
+  rdTag('🧭 数位尺：'+rd.rec.n+' 位，位权从 '+Math.pow(rd.rec.k,rd.rec.n-1)+' 到 1'+
+    (rdDim(rd.lv)?'（这一层的门牌号自己数）':'（第 '+rd.rec.n+' 层管 '+rdLo(rd.rec.n,rd.rec.k)+' 到 '+rdHi(rd.rec.n,rd.rec.k)+'）')+
+    ' · 倒扣 '+RD_P_TOOL+' 文（还剩 '+rd.ruleN+' 眼）','cyan');
+  rdSync();rdDraw();
+}
+/* 🔁 换字：这个字退回库里再上一个（倒扣 RD_P_SWAP 文，进错字本）*/
+function rdSwapWord(){
+  if(!rd.rec||rd.over||rd.locked)return;
+  if(rd.phase!=='div'){rdTag('🔁 已经在倒读了：这一趟的珠子落下去了，收不回来');return}
+  if(rd.swapN<=0){rdTag('🔁 换字用完了：这一场的字是配出来的，硬除也要除完');return}
+  rd.swapN--;rd.swapUse++;rd.swaps++;rd.tools++;rd.wordTools++;
+  rd.score-=RD_P_SWAP;rd.penSum+=RD_P_SWAP;
+  rd.cleanWord=0;rd.neatWord=0;
+  rdTone(280,140);
+  rdTag('🔁 换字：倒扣 '+RD_P_SWAP+' 文，这个字进了错字本（还剩 '+rd.swapN+' 回）','warn');
+  rdWordOut('swap');
+}
+/* ================= 封字 ================= */
+function rdSealNow(){
+  const rec=rd.rec;
+  if(!rec)return;
+  rd.phase='seal';rd.stepMs=0;rd.quickMs=0;rd.sealMs=RD_SEAL_MS;
+  rdBuildOpts();                       /* 箱子里那些牌收走：封字这一息不许再按落子 */
+  /* 这一趟的错处：剥错 + 跟着笨手 + 倒读答错/没答（钟尽代剥另记一笔，那是手慢了不是算错了）*/
+  rd.errSum+=rd.err+rd.naiveHit;
+  let add=RD_PTS_WORD;
+  let txt='🏁 剥完：'+rec.n+' 笔 · '+rd.digs.length+' 颗珠 · 除 '+rd.lad.length+' 步到商 0';
+  if(rd.skipNote)txt+=' · ⌛ 没答：'+rd.skipNote;
+  const lensOk=!rd.broken&&rd.digs.length===rec.n;
+  if(lensOk){add+=RD_PTS_LEN;txt+=' · 珠子数正好等于笔数 +'+RD_PTS_LEN;rd.lenN++;auxAdd('hz_rd_full',1)}
+  const clean=rd.err===0&&rd.naiveHit===0&&rd.autoLate===0;
+  /* 「一次没错」的趟数要落盘：算架那件「神来之笔」认的就是这本账（满 5 趟），
+     结算与卡片点名也读它 —— 只记在 rd.perfect 一头，孩子永远凑不齐那一件 */
+  if(clean){add+=RD_PTS_BORROW;txt+=' · 借位不失误（'+rec.nborrow+' 步该借，一次就对）+'+RD_PTS_BORROW;rd.perfect++;auxAdd('hz_rd_perfect',1)}
+  if(rd.qs.length&&rd.guessBad===0&&rd.guessOk===rd.qs.length){
+    add+=RD_PTS_QUICK;txt+=' · 倒读 '+rd.qs.length+' 题全对 +'+RD_PTS_QUICK;
+    rd.quickN++;auxAdd('hz_rd_quick',1);
+  }
+  if(lensOk&&rec.naiveGap>0){add+=RD_PTS_LEAN;txt+=' · 比笨手少剥一位（它多 '+rec.naiveGap+' 位）+'+RD_PTS_LEAN;rd.leanN++}
+  if(rd.fresh){add+=RD_PTS_FRESH;txt+=' · 头一回收这个字 +'+RD_PTS_FRESH}
+  if(!rd.wordTools){add+=RD_PTS_NOTOOL;txt+=' · 家什一回没借 +'+RD_PTS_NOTOOL;auxAdd('hz_rd_notool',1)}
+  if(rd.cleanWord){
+    rd.cleanRun++;
+    /* 连三趟零罚：家什白补一遍 —— 干净不是运气，是一步一步除出来的 */
+    if(rd.cleanRun>=RD_PER){
+      rd.cleanRun=0;rd.toolRun++;
+      rd.probeN=RD_P0.probe;rd.ruleN=RD_P0.rule;rd.swapN=RD_P0.swap;
+      add+=RD_PTS_TOOLRUN;txt+=' · 连三趟零罚：家什补满 +'+RD_PTS_TOOLRUN;
+      auxAdd('hz_rd_toolrun',1);
+    }
+  }else rd.cleanRun=0;
+  rd.score+=add;rd.gain+=add;
+  rd.words++;
+  if(clean&&lensOk&&rd.hearts<RD_HEART_MAX){rd.hearts++;txt+=' · 一次没错补一颗心'}
+  if(rd.broken){txt+=' · 🪤 笨手那一位多剥下去了（这一字进错字本）';rdTone(190,260)}
+  else rdTone(1040,220);
+  rd.hitOk=1;rd.hitTxt='🏁 封字 · +'+add;
+  rdTag(txt,'gold');
+  rdSay('🏁 这一趟剥完：'+rec.n+' 笔、'+rd.digs.length+' 颗珠、倒读 '+rd.guessOk+'/'+rd.qs.length+' 题');
+  rdBookPut(rec.ch);
+  /* 倒读错过的、跟着笨手剥歪的字都回错字本：下一场优先挑回来 */
+  if(rd.missFlag||rd.broken||rd.naiveHit)rdMissPut(rec.ch);
+  if(typeof spawnConfetti==='function'){try{spawnConfetti()}catch(e){}}
+  rdSync();rdDraw();
+  if(rd.hearts<=0)rdT(function(){rdEnd('hearts')},RD_SEAL_MS);
+}
+/* ---- 这个字散了：换字、钟尽三回、凑不齐候选都走这一条（半路收场那一下在 rdEnd 里结）---- */
+function rdWordOut(why){
+  const rec=rd.rec;
+  if(rec)rdMissPut(rec.ch);
+  rd.wordOuts++;
+  rd.combo=0;rd.cleanWord=0;rd.neatWord=0;rd.wordTools=0;rd.cleanRun=0;
+  rd.locked=1;
+  rd.phase='load';rd.opts=null;rd.stepMs=0;rd.quickMs=0;
+  rdBuildOpts();
+  if(why==='opts'||why==='late')rdSay(why==='late'?'⌛ 这个字连尽 '+RD_LATE_MAX+' 回剥位钟，先退回库里换一张':
+    '🧮 这个字的候选配不齐（口径撞上了），退回库里');
+  rdSync();rdDraw();
+  rdT(rdNextWord,1000);
+}
+/* ---- 下一个字：一场三字收满就换场（换一串字、换一盏灯）---- */
+async function rdNextWord(){
+  if(!rd.run||rd.over)return;
+  if(rd.hearts<=0){rdEnd('hearts');return}
+  rd.wi++;
+  let flash='';
+  if(rd.wi>=RD_PER){
+    /* 清白票：这一场三字、每趟错处都不过 RD_ERR_CLEAN 处 —— 收场那一息结，别等结算屏补记 */
+    if(rd.errSum<=RD_ERR_CLEAN*RD_PER){auxAdd('hz_rd_neat',1);rdSay('🧾 这一场三字共错 '+rd.errSum+' 处：清白票一张')}
+    rd.wi=0;rd.lv=Math.min(9,rd.lv+1);
+    rd.lamp0=rdLamp(rd.lv);rd.lamp=rd.lamp0;
+    rd.errSum=0;rd.cleanRun=0;
+    rd.pool=[];rd.seen=[];rd.poolLv=-1;
+    flash='💡 第 '+rd.lv+' 场上案：'+(rdNoTell(rd.lv)?'案上不写错处与层界':'笨手那本账还在案上写着')+
+      (rdDim(rd.lv)?' · 连「方向↔数码」对照表也收走了':'')+' · ';
+    rdSay('第 '+rd.lv+' 场：'+(rdDim(rd.lv)?'谁排第几自己按笔顺数':'账还在案上写着'));
+  }
+  if(!rd.pool.length){
+    rd.rec=null;rd.opts=null;rd.load=true;rd.phase='load';
+    rdSync();rdDraw();
+    const ok=await rdBuildPool(true,RD_NMIN,RD_NMAX);
+    rd.load=false;
+    if(!rd.run||rd.over)return;
+    if(!ok){rdEnd('pool');return}
+  }
+  const rec=rdTake();
+  if(!rec){rdEnd('pool');return}
+  rdSetWord(rec,flash);
+}
+/* ---- 挑下一个字：错字本上的字优先挑回来，其次这一场没上过案的 ---- */
+function rdTake(){
+  const pool=rd.pool;
+  if(!pool.length)return null;
+  for(let i=0;i<rd.miss.length;i++){
+    for(let k=0;k<pool.length;k++)if(pool[k].ch===rd.miss[i]&&rd.seen.indexOf(pool[k].ch)<0)return pool[k];
+  }
+  const fresh=[];
+  for(let k=0;k<pool.length;k++)if(rd.seen.indexOf(pool[k].ch)<0)fresh.push(pool[k]);
+  const list=fresh.length?fresh:pool;
+  return list[Math.floor(Math.random()*list.length)];
+}
+/* ---- 一个字上台：候选、珠串、钟、账一次摆好 ---- */
+function rdSetWord(rec,flash){
+  const L=rd.lv;
+  rd.rec=rec;rd.ch=rec.ch;
+  rd.cur=rec.N;rd.step=0;rd.digs=[];rd.lad=[];rd.borrowSet={};rd.wrongOpt=[];
+  rd.opts=null;rd.sel=0;rd.touched=[];rd.borrowHit=0;
+  rd.lit=new Uint8Array(rec.n);
+  rd.spark=[];
+  rd.qs=[];rd.qi=0;rd.guessOk=0;rd.guessBad=0;rd.missFlag=0;rd.skipNote='';
+  rd.err=0;rd.naiveHit=0;rd.autoLate=0;rd.broken=0;rd.brokenWhy='';
+  rdRecost();
+  rd.fresh=rdFresh(rec.ch);
+  rd.quick0=0;rd.quickMs=0;
+  rd.cleanWord=1;rd.neatWord=1;rd.wordTools=0;
+  rd.probeMs=0;rd.ruleMs=0;
+  rd.locked=0;rd.hitOk=0;rd.hitTxt='';
+  rd.nagMs=0;
+  rd.phase='div';
+  rd.seen.push(rec.ch);
+  rdTone(600,70);
+  rdNewStep();
+  if(rd.phase!=='div')return;                       /* rdNewStep 撞上口径不合就把这个字退回库里了 */
+  rdTag((flash||'')+'🈶 上案：'+rec.n+' 笔 · 基数 '+rec.k+'（'+rec.keys.map(function(x,i){return rdKn(x)+'='+(i+1)}).join(' ')+
+    '）· 编号 <b>'+rec.N+'</b>'+(rdNoTell(rd.lv)?' · 笨手那本账收了，甲乙两条自己守':
+      ' · 笨手'+rdNaiveSay(rec)+' —— 从个位往前除'),'gold');
+  rdSync();rdDraw();
+}
+/* ================= 三支钟 + 一条节奏：场灯 · 剥位 · 倒读 ================= */
+function rdTick(dt){
+  if(!rd.run||rd.over)return;
+  rd.t+=dt;rd.playMs+=dt;
+  if(rd.helpMs>0){rd.helpMs-=dt;if(rd.helpMs<=0){rd.helpMs=0;rdSync()}return}
+  if(!rd.rec||rd.locked)return;
+  /* 场灯：一盏灯照一场的三个字 */
+  if(rd.lamp>0){
+    rd.lamp-=dt;
+    if(rd.lamp<=0){rd.lamp=0;rdEnd('lamp');return}
+  }
+  if(rd.phase==='seal'){
+    if(rd.sealMs>0){rd.sealMs-=dt;if(rd.sealMs<=0){rd.sealMs=0;rdNextWord()}}
+    return;
+  }
+  /* 倒读钟：尽了这一题算「没答」—— 扣钱、断连击，但不掉心（答不上不等于答错）*/
+  if(rd.phase==='check'){
+    if(rd.quickMs>0){
+      rd.quickMs-=dt;
+      if(rd.quickMs<=0){rd.quickMs=0;rdSlowQ();return}
+    }
+    rd.nagMs+=dt;
+    if(rd.nagMs>Math.min(RD_NAG_MS,rd.quick0/2)){
+      rd.nagMs=0;rd.nags++;
+      /* 倒读那一眼的提示要报得出数：问的是第 q+1 笔，就得从珠串右边往回数 q+1 颗 */
+      const back=rd.qs[rd.qi]+1;
+      rdSay('↔️ 第 j 笔＝倒数第 j 颗珠：这一题问第 '+back+' 笔，就从珠串右边往回数 '+back+' 颗');
+    }
+    rdSync();rdDraw();
+    return;
+  }
+  /* 剥位钟：一步一口气；尽了当场替孩子落正解（手慢不是算错，但这一颗珠不给赏）*/
+  if(rd.phase==='div'){
+    if(rd.stepMs>0){
+      rd.stepMs-=dt;
+      if(rd.stepMs<=0){
+        rd.stepMs=0;rd.lates++;rd.autoLate++;rd.cleanWord=0;rd.combo=0;
+        rd.score-=RD_P_LATE;rd.penSum+=RD_P_LATE;
+        rd.hitOk=2;rd.hitTxt='⌛ 剥位钟尽 · −'+RD_P_LATE;
+        const o=rd.opts?rd.opts.list[rd.opts.right]:null;
+        rdTone(150,300);
+        if(!o){rdWordOut('opts');return}
+        rdDrop(o,1);
+        rdTag('⌛ 这一步的钟尽了：'+rd.lad[rd.lad.length-1].nv+' ÷ '+rd.rec.k+' 算锤替你落子（余 <b>'+o.r+'</b> 商 <b>'+o.q+'</b>'+
+          (o.borrow?'，该借位':'')+'）· 倒扣 '+RD_P_LATE+' 文 · 钟尽 '+rd.autoLate+'/'+RD_LATE_MAX+' 回','warn');
+        rdSync();rdDraw();
+        if(rd.autoLate>=RD_LATE_MAX){rdWordOut('late');return}
+        if(rd.cur<=0){rdFinishDiv();rdSync();rdDraw();return}
+        rdNewStep();
+        rdSync();rdDraw();
+        return;
+      }
+    }
+    rd.nagMs+=dt;
+    if(rd.nagMs>Math.min(RD_NAG_MS,rd.step0/2)){
+      rd.nagMs=0;rd.nags++;
+      rdSay(rd.digs.length&&rd.digs.indexOf(0)>=0?'🪤 算纸上已经躺着一张第 0 号牌了：甲这条规矩先守住':
+        '⚡ 除到余 0 不是剥对了 —— 把一位借给后面：余数记满 '+ (rd.rec?rd.rec.k:'k') +'、商减 1');
+    }
+    return;
+  }
+}
+
+/* ================= 开工 · 一根 rAF 管三支钟 · 键盘与真指针 ================= */
+/* 画布就在 <body> 里、这段脚本之前，所以这一眼取得到。
+   取不到就是屏面 HTML 没插在脚本前头：rdDraw 第一行会直接 return，画面永远空白 —— 自检脚本读像素，红得掉牙 */
+const rdCv=document.getElementById('rdCanvas');
+if(!rdCv)console.warn('🧮 算珠坊找不到画布 rdCanvas');
+
+/* 这一坊吃的字要「三只手同一个数、笨手必错两处以上、借与不借都露过面、每一步凑得齐三张候选」，
+   开场先去字库里过一遍闸（rdBuildPool 当场重算，与离线字表不一样就不上台）*/
+async function rdBoot(){
+  const g=rd.gen;
+  rd.load=true;rd.phase='load';
+  rdSync();rdDraw();
+  const ok=await rdBuildPool(true,RD_NMIN,RD_NMAX);
+  if(g!==rd.gen||!rd.run||rd.over)return;
+  rd.load=false;
+  if(!ok){rdEnd('pool');rdSync();return}
+  const rec=rdTake();
+  if(!rec){rdEnd('pool');rdSync();return}
+  rdSetWord(rec);
+  rdSync();rdDraw();
+}
+function rdStart(){
+  rd.run=true;rd.over=false;rd.gen++;
+  rdBind();
+  rdKill();
+  rd.t=0;rd.playMs=0;rd.last=0;
+  rd.pool=[];rd.poolLv=-1;rd.miss=[];rd.seen=[];rd.fresh=0;
+  rd.lv=rdLvOf(auxInt('hz_rd_words'));
+  rd.wi=0;rd.score=0;rd.hearts=RD_HEARTS;rd.combo=0;rd.maxCombo=0;
+  /* 场相必须先归到「挑字」：rdSync 里那句「按 1~k 答」看的是上一局的场相，
+     而 rec 此刻已经清空 —— 从结算屏上那一颗「🧮 再除一趟」直接重开会当场崩在半路 */
+  rd.phase='load';rd.load=true;rd.locked=0;
+  rd.ch='';rd.rec=null;rd.cur=0;rd.step=0;rd.digs=[];rd.lad=[];rd.borrowSet={};
+  rd.wrongOpt=[];rd.opts=null;rd.sel=0;rd.touched=[];rd.borrowHit=0;
+  rd.qs=[];rd.qi=0;rd.guessOk=0;rd.guessBad=0;rd.guessOkAll=0;rd.gpicks=0;
+  rd.quickMs=0;rd.quick0=0;rd.missFlag=0;rd.skipNote='';
+  rd.lit=null;rd.spark=[];
+  rd.n=0;rd.best=0;rd.naiveErr=0;rd.naiveGap=0;
+  rd.err=0;rd.naiveHit=0;rd.autoLate=0;rd.broken=0;rd.brokenWhy='';
+  rd.probeN=RD_P0.probe;rd.ruleN=RD_P0.rule;rd.swapN=RD_P0.swap;
+  rd.probeUse=0;rd.ruleUse=0;rd.swapUse=0;rd.probeMs=0;rd.ruleMs=0;
+  rd.step0=0;rd.stepMs=0;rd.sealMs=0;
+  rd.lamp0=rdLamp(rd.lv);rd.lamp=rd.lamp0;
+  rd.words=0;rd.divTotal=0;rd.beads=0;rd.borrowAll=0;rd.perfect=0;
+  rd.lenN=0;rd.quickN=0;rd.leanN=0;
+  rd.wrongs=0;rd.lates=0;rd.hes=0;rd.swaps=0;rd.wordOuts=0;rd.eyeballs=0;rd.naiveAll=0;
+  rd.cleanWord=1;rd.neatWord=1;rd.tools=0;rd.wordTools=0;rd.cleanRun=0;rd.toolRun=0;rd.errSum=0;
+  rd.gain=0;rd.penSum=0;rd.hitOk=0;rd.hitTxt='';
+  rd.nags=0;rd.nagMs=0;rd.newBest=false;rd.helpMs=0;
+  rdClearTag();
+  const box=document.getElementById('rdOpts');
+  if(box)box.innerHTML='';
+  if(typeof stopBGM==='function')stopBGM();
+  showScreen('radix');
+  rdSync();rdDraw();
+  rdBoot();
+  rdStartLoop();
+}
+/* 主循环的起停各只有一处：结算要冻画面就掐这一根，别在别处再挂第二条 rAF */
+function rdLoop(ts){
+  if(!rd.run||rd.over){rd.rafId=0;return}
+  const dt=rd.last?Math.min(120,ts-rd.last):16;
+  rd.last=ts;
+  rdTick(dt);
+  rdSync();rdDraw();
+  rd.rafId=requestAnimationFrame(rdLoop);
+}
+function rdStartLoop(){if(!rd.run||rd.over||rd.rafId)return;rd.last=0;rd.rafId=requestAnimationFrame(rdLoop)}
+function rdStopLoop(){if(rd.rafId){cancelAnimationFrame(rd.rafId);rd.rafId=0}}
+function rdRestart(){rdStart()}
+function rdLeave(where){
+  rd.run=false;rd.over=false;
+  rdKill();rdStopLoop();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function rdHelp(){
+  if(!rd.run||rd.over)return;
+  if(rd.rec&&rd.phase!=='seal'&&!rd.load){
+    rd.eyeballs++;rd.tools++;rd.wordTools++;
+    rd.score-=RD_P_HELP;rd.penSum+=RD_P_HELP;rd.cleanWord=0;
+    rd.hitOk=2;rd.hitTxt='📖 翻说明 · −'+RD_P_HELP;
+  }
+  rd.helpMs=RD_HELP_MS;
+  rdMsg(rdHelpText(),'#FFE0B2');
+  rdSync();
+}
+/* ---- 主钮那一下：三个场面各走各的手 ---- */
+function rdAct(){
+  if(!rd.rec||rd.over||rd.locked)return;
+  if(rd.phase==='div'){rdPick(rd.sel);return}
+  if(rd.phase==='check'){rdSlowQ();return}
+  if(rd.phase==='seal'){if(rd.sealMs>0){rd.sealMs=0;rdNextWord()}return}
+  rdTag('📥 正在挑字：这一场的字还在闸口数着');
+}
+/* ================= 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子 ================= */
+function rdBind(){
+  if(rd.bound)return;
+  rd.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!rd.run||rd.over)return;
+    if(rd.helpMs>0){rd.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){rdLeave();return}
+    if(k==='arrowup'||k==='arrowleft'){rdMoveSel(-1);e.preventDefault();return}
+    if(k==='arrowdown'||k==='arrowright'){rdMoveSel(1);e.preventDefault();return}
+    if(k==='enter'||k===' '){rdAct();e.preventDefault();return}
+    if(k>='1'&&k<='9'){
+      const idx=+k-1;
+      if(rd.phase==='check'){
+        if(idx<(rd.rec?rd.rec.k:0))rdAnswer(idx);
+        else rdTag('🎧 这一场只有 '+(rd.rec?rd.rec.k:'?')+' 家方向：答案在 <code>1~'+(rd.rec?rd.rec.k:'?')+'</code> 里');
+        e.preventDefault();return;
+      }
+      if(rd.phase==='div'){
+        if(rd.opts&&idx<rd.opts.list.length)rdPick(idx);
+        e.preventDefault();return;
+      }
+      rdTag('⚡ <code>1~3</code> 是剥位那一段选候选，<code>1~'+(rd.rec?rd.rec.k:'?')+'</code> 是倒读那一段答方向');
+      e.preventDefault();return;
+    }
+    if(k==='p'){rdProbe();e.preventDefault();return}
+    if(k==='v'){rdRule();e.preventDefault();return}
+    if(k==='s'){rdSwapWord();e.preventDefault();return}
+    if(k==='h'||k==='?'){rdHelp();e.preventDefault();return}
+    if(k==='f'){rdEnd('quit');e.preventDefault();return}
+  });
+  if(rdCv){
+    rdCv.addEventListener('pointerdown',function(e){
+      if(!rd.run||rd.over)return;
+      if(rd.helpMs>0){rd.helpMs=0;return}
+      if(rd.locked)return;
+      if(rd.phase==='seal'){if(rd.sealMs>0){rd.sealMs=0;rdNextWord()}e.preventDefault();return}
+      if(rd.phase==='check'){
+        /* 米字格与算纸上点哪一格都不改变答案：题只问那一笔，答案在案上那 k 张家牌里 */
+        rdTag('🧮 这一题的答案在案上那排方向牌里：按 <code>1~'+(rd.rec?rd.rec.k:'?')+'</code> 或点那一家');
+        e.preventDefault();return;
+      }
+      if(rd.phase==='div'){
+        rdTag('🧮 '+(rd.opts?'这一行 '+rd.cur+' ÷ '+(rd.rec?rd.rec.k:'?')+'：候选在案上那三张牌里（点一行或按 1~3）':
+          '📥 算纸还没铺开'));
+        e.preventDefault();return;
+      }
+      rdTag('📥 正在挑字：这一场的字还在闸口数着');
+      e.preventDefault();
+    });
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){
+      if(!rd.run||rd.over)return;
+      if(rd.helpMs>0){rd.helpMs=0;return}
+      on();ev.preventDefault();
+    });
+  };
+  tap('rdActBtn',function(){rdAct()});
+  tap('rdProbeBtn',function(){rdProbe()});
+  tap('rdRuleBtn',function(){rdRule()});
+  tap('rdSwapBtn',function(){rdSwapWord()});
+  tap('rdHelpBtn',function(){rdHelp()});
+  tap('rdNextBtn',function(){rdEnd('quit')});
+  const tapFree=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){on();ev.preventDefault()});
+  };
+  /* 散场之后那三颗钮不许按 run/over 拦：孩子站在结算屏上，「再除一趟」「回实验室」「回书桌」
+     必须点得动 —— 拦在前面就等于把结算屏变成一堵墙 */
+  tapFree('rdReBtn',function(){rdRestart()});
+  tapFree('rdLabBtn',function(){rdLeave('lab')});
+  tapFree('rdHomeBtn',function(){rdLeave()});
+}
+
+/* ================= 散场：结算、落盘、图鉴与算架、把这一趟的账再独立核一遍 ================= */
+function rdPut(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt}
+function rdPutH(id,html,color){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML=html;
+  if(color)el.style.color=color;
+}
+/* ---- 半路收场：除到一半、读到一半就按结算 —— 这一趟的话没说完，扣一次 ---- */
+function rdQuitTally(){
+  if(!rd.rec||rd.over)return;
+  if(rd.phase==='seal'||rd.locked)return;
+  rd.score-=RD_P_QUIT;rd.penSum+=RD_P_QUIT;
+  rd.wrongs++;rd.wordOuts++;
+  rdMissPut(rd.rec.ch);
+}
+function rdEnd(why){
+  if(!rd.run||rd.over)return;
+  /* 半路那一扣得在「散了」立起来之前结：rdQuitTally 自己认的就是「还没散场」——
+     先立 over 再叫它，扣文与错字本全落不下去（孩子白按了一次结算）*/
+  rdQuitTally();
+  rd.over=true;rd.run=false;
+  rdKill();rdClearTag();
+  const stars=Math.max(1,Math.round(rd.score/14)+rd.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  rdPut('rdRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['🧮','收摊了','自己按的结算'],
+    hearts:['💔','心都磨完了','倒读错太多、除得太糙'],
+    lamp:['🕯️','算桌熄灯了','这一场的灯烧完了'],
+    pool:['🧮','配不出这一场的字','字库里挑不出「三只手同数、笨手必错两处以上、借与不借都露过面」的字']}[why]||
+    ['🧮','散场',''];
+  rdPut('rdRsEmoji',head[0]);
+  rdPut('rdRsTitle',head[1]);
+  rdPut('rdRsSub','第 '+rd.lv+' 场 · '+head[2]+' · 收齐 '+rd.words+' 字');
+  rdPut('rdRsScore','🧮 '+rd.score+' 文（赏 +'+rd.gain+' · 罚 −'+rd.penSum+'）');
+  rdPut('rdRsWords','🈶 收字 '+rd.words+' 个 · 除 '+rd.divTotal+' 步 · 落 '+rd.beads+' 颗珠');
+  rdPut('rdRsWalk','↔️ 倒读 '+rd.gpicks+' 题 · 答对 '+rd.guessOkAll+' · 最长连击 '+rd.maxCombo);
+  rdPut('rdRsAward','🏅 一次没错 '+rd.perfect+' 趟 · 珠子数对 '+rd.lenN+' 趟 · 借位 '+rd.borrowAll+
+    ' 回 · 比笨手省 '+rd.leanN+' 趟');
+  /* 结算说的是这一把的账：跟着笨手落子得数 naiveAll（naiveHit 是眼下那一趟的，换一个字就归零 ——
+     拿它印在结算上，孩子剥歪三回屏幕上只写着最后一回）*/
+  rdPut('rdRsWipe','🪤 跟着笨手落子 '+rd.naiveAll+' 回 · 剥错 '+rd.wrongs+' 次 · 钟尽代落 '+rd.lates+
+    ' 次 · 犹豫 '+rd.hes+' 回');
+  rdPut('rdRsTools','🧰 借家什 '+rd.tools+' 回 · ✨该不该借 '+rd.probeUse+' · 🧭数位尺 '+rd.ruleUse+
+    ' · 🔁换字 '+rd.swaps+' · 📖说明 '+rd.eyeballs);
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账 */
+  rdSave(why);
+  rdPut('rdRsBest','🏅 历史最高 '+auxInt('hz_rd_best')+' 文 · 累计收字 '+auxInt('hz_rd_words')+
+    ' 字 · 累计除 '+auxInt('hz_rd_divs')+' 步');
+  rdPut('rdRsStars','⭐ +'+stars+(why==='pool'?'':'（已上星）'));
+  const rk=rdRankOf(auxInt('hz_rd_words'));
+  rdPut('rdRsRank',rk.e+' '+rk.t);
+  const bk=rdBookCount();
+  rdPutH('rdRsBook','📖 <b>藏书阁 '+bk.book+' 张</b> · 算架 <b>'+bk.shelf+'/'+RD_SHELF.length+
+    '</b> 件 · 错字本 <b>'+bk.miss+'</b> 个字<br><small>最远走到第 '+auxInt('hz_rd_lvmax')+' 场 · 累计除 '+
+    auxInt('hz_rd_divs')+' 步 · 一次没错 '+auxInt('hz_rd_perfect')+' 趟 · 珠子数对 '+auxInt('hz_rd_full')+
+    ' 趟 · 倒读全对 '+auxInt('hz_rd_quick')+' 趟 · 清白场 '+auxInt('hz_rd_neat')+' 场</small>');
+  rdPutH('rdRsWhy','🧮 这一坊的道理：<b>一个数该写几位，不是命，是「层界」定的</b>。'+
+    '这个字笔顺里出现的方向按名次排成字母表，<b>名次就是数码</b>（1 到 '+RD_KMAX+'，天生<b>没有 0 号牌</b>），'+
+    '第一笔是最高位 —— 整个字就读成了一个数 <b>N = d₁·k^(n−1)+…+dₙ</b>。<br>'+
+    '🪙 <b>除尽了不等于剥对了</b>：往回剥就是除基取余，r = N mod k；<b>r==0 时余数要记满 k、商还要减一</b>。'+
+    '「余数是 0，可字母表里没有第 0 张牌」—— 这一坊的墙就砌在这一句上：不往前借一位，'+
+    '珠串就比笔数多一位，还多出一张不存在的牌。<br>'+
+    '📏 <b>层界</b>：第 n 层管 ['+(function(){return '(kⁿ−1)/(k−1) 到 k×它'})()+']，层里的数天生 '+
+    'n 位；案上 🧭 数位尺画的就是这一把。<br>'+
+    '🖐 <b>三只手互核</b>（段 W 另有第四只手：把 '+RD_KMAX+' 颗珠的所有排法穷举一遍）：'+
+    '除基取余带借位 · 层界+普通进制+每位加一 · Horner 乘回去。三本账一字不差才准上台。<br>'+
+    '🪤 <b>笨手</b>：普通取余、余 0 就写 0、商永不借位。过闸的字笨手必错 ≥'+RD_DIFF_MIN+' 处（配字时逐位对表数出来的），'+
+    '案上写着它错几处、剥歪在哪一位 —— 跟着它选，那颗红珠就真落进算纸里，珠串对不回笔顺。<br>'+
+    '↔️ <b>倒读</b>：珠子从末位往前剥，笔顺从第一笔往后写，第 j 笔＝倒数第 j 颗珠；'+
+    '两头数到中间才对得上。<br>'+
+    '第 '+RD_TELL_LV+' 场起案上不写错处与层界，第 '+RD_DIM_LV+' 场起连「方向↔数码」对照表也收走 —— '+
+    '谁排第几都得孩子自己按笔顺数。<br>'+
+    '战绩落盘 <code>hz_rd_*</code>：场档按<b>收齐的字数</b>走，称号按<b>累计收字数</b>走，错字本里的字'+
+    '<b>下一场优先挑回来</b>','#C8E6C9');
+  rdNudge();
+  /* 屏面也要跟着散场：家什三件、下一字与落子那颗钮当场摘掉 ——
+     只挡账不挡屏，孩子看得见的那一颗钮还是亮着的 */
+  rdSync();
+  showScreen('radix-result');
+}
+/* ---- 落盘 ---- */
+function rdSave(why){
+  auxAdd('hz_rd_games',1);
+  auxAdd('hz_rd_words',rd.words);
+  auxAdd('hz_rd_divs',rd.divTotal);
+  auxAdd('hz_rd_beads',rd.beads);
+  auxAdd('hz_rd_borrow',rd.borrowAll);
+  auxAdd('hz_rd_gpick',rd.gpicks);
+  auxAdd('hz_rd_swap',rd.swaps);
+  auxAdd('hz_rd_late',rd.lates);
+  auxAdd('hz_rd_hes',rd.hes);
+  auxAdd('hz_rd_wrong',rd.wrongs);
+  auxAdd('hz_rd_wordout',rd.wordOuts);
+  auxAdd('hz_rd_tools',rd.tools);
+  auxAdd('hz_rd_probe',rd.probeUse);
+  auxAdd('hz_rd_rule',rd.ruleUse);
+  auxAdd('hz_rd_naive',rd.naiveAll);
+  if(rd.maxCombo>auxInt('hz_rd_combo'))auxPut('hz_rd_combo',rd.maxCombo);
+  if(rd.lv>auxInt('hz_rd_lvmax'))auxPut('hz_rd_lvmax',rd.lv);
+  if(rd.score>auxInt('hz_rd_best')){auxPut('hz_rd_best',rd.score);rd.newBest=true}
+  rdShelfCheck();
+}
+/* ---- 图鉴：一个字一张算珠卡（记的是首回收齐那个字的场号与位数）---- */
+function rdBookCount(){
+  const book=(localStorage.getItem('hz_rd_book')||'').split(',').filter(function(s){return s}).length;
+  const shelf=(localStorage.getItem('hz_rd_shelf')||'').split(',').filter(function(s){return s}).length;
+  const miss=(localStorage.getItem('hz_rd_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0}).length;
+  return {book:book,shelf:shelf,miss:miss};
+}
+function rdBookPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  const bk=localStorage.getItem('hz_rd_book')||'';
+  if(bk.indexOf(ch+':')>=0)return;
+  const list=bk.split(',').filter(function(s){return s});
+  list.unshift(ch+':'+rd.lv+':'+(rd.rec?rd.rec.n:0));
+  auxPut('hz_rd_book',list.slice(0,RD_BOOK_MAX).join(','));
+}
+/* 散场、换字、倒读错的字进错字本：下一场优先挑回来 */
+function rdMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_rd_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  auxPut('hz_rd_miss',miss.slice(0,RD_BOOK_MAX).join(','));
+}
+/* 算架：八件各认一件实事，其中「名刺」认的是别处的章节徽章 */
+function rdShelfCheck(){
+  const have=(localStorage.getItem('hz_rd_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    auxInt('hz_rd_words')+rd.words>=1,
+    auxInt('hz_rd_neat')>=1,
+    auxInt('hz_rd_perfect')>=5,
+    auxInt('hz_rd_full')>=1,
+    auxInt('hz_rd_lvmax')>=RD_SHELF_LV||rd.lv>=RD_SHELF_LV,
+    auxInt('hz_rd_notool')>=1,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    auxInt('hz_rd_divs')+rd.divTotal>=400
+  ];
+  for(let i=0;i<RD_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(RD_SHELF[i].k)<0){have.push(RD_SHELF[i].k);got.push(RD_SHELF[i].k)}
+  }
+  auxPut('hz_rd_shelf',have.join(','));
+  auxPut('hz_rd_trophy',have.length);
+  auxPut('hz_rd_trophy_n',auxInt('hz_rd_trophy_n')+got.length);
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一坊走到第几场了 ---- */
+function rdNudge(){
+  const dot=document.getElementById('radixCardDot'),tip=document.getElementById('radixCardTip');
+  const tot=auxInt('hz_rd_words'),divs=auxInt('hz_rd_divs'),lv=auxInt('hz_rd_lvmax');
+  const rk=rdRankOf(tot),shelf=auxInt('hz_rd_trophy'),pf=auxInt('hz_rd_perfect'),fu=auxInt('hz_rd_full');
+  if(tip)tip.innerHTML=divs?('🔔 '+rk.e+' '+rk.t+' · 收字 '+tot+' 个 · 除 '+divs+' 步 · 落 '+
+    auxInt('hz_rd_beads')+' 颗珠 · 最远第 '+lv+' 场 · 一次没错 '+pf+' 趟 · 珠子数对 '+fu+
+    ' 趟 · 倒读全对 '+auxInt('hz_rd_quick')+' 趟 · 算架 '+shelf+' 件'):
+    '这个字笔顺里出现的方向按名次排成字母表，<b>名次就是数码</b>（1~'+RD_KMAX+'，<b>天生没有 0 号牌</b>），'+
+    '第一笔是最高位 —— 整个字读成一个数 <b>N = d₁·k^(n−1)+…+dₙ</b>（横竖撇捺折里的两到五家，几笔就是几家进制）。<br>'+
+    '🧮 <b>剥回笔顺 = 除基取余、带借位</b>：r = N mod k；<b>r==0 ⇒ 余数记满 k、商还要减一</b>。'+
+    '「除尽了余数是 0，可字母表里没有第 0 张牌」—— 不往前借一位，珠串就比笔数多一位。<br>'+
+    '📏 <b>层界</b>定几位：第 n 层管 [(kⁿ−1)/(k−1), k×它]，层里的数天生 n 位。'+
+    '案上三只手互核（除基取余 · 层界换算 · Horner 乘回去），配字时三本账一字不差才准上台。<br>'+
+    '🪤 <b>笨手</b>就摆在案上：普通取余、余 0 就写 0。过闸的字笨手必错 ≥'+RD_DIFF_MIN+' 处、还常多剥一位 —— '+
+    '跟着它选，那颗红珠就真落进算纸里，珠子对不回笔顺（当场看得见）。<br>'+
+    '↔️ <b>倒读抢答</b>：珠子从末位往前剥，笔顺从第一笔往后写，第 j 笔＝倒数第 j 颗珠。<br>'+
+    '🎭 第 '+RD_TELL_LV+' 场起案上不写错处与层界，第 '+RD_DIM_LV+' 场起连「方向↔数码」对照表也收走';
+  if(dot){dot.classList.toggle('on',!divs);dot.textContent=(divs?'':'🆕')}
+}
+/* ================= 段 W 的另一条路：只读，不许碰场上任何东西 =================
+   这一坊的账全是「数」，所以复核的手也全是数：
+   ① 字母表：拿案上留下的中线重数一遍方向，名次、数码、每笔归属都得与账上这张图一模一样
+   ② 第四只手（穷举）：把 n 位、每位 1..k 的排法一个一个数出来（n≤7、k≤5 ⇒ ≤78125 种），
+      数到与 rec.N 同值的那一串 —— 全表只准出现一次，且必须正好是账上那串珠
+   ③ 层界：lo=1+k+…+k^(n−1)（等比求和逐项加，不拿闭式公式）、hi=k·lo，N 必须落在门牌里
+   ④ 除基取余带借位：一剥一剥除到 0，剥出的串必须与账上珠子同序；借位回数 ≥1 且 < 位数
+   ⑤ 笨手：普通取余必须剥出「第 0 号牌」，逐位对表的错处 ≥RD_DIFF_MIN
+   ⑥ 候选：每一步三张牌必须互不相同、正解唯一（甲 1≤r≤k、乙 r+k·q=nv 两条一起筛）、
+      该借那一步笨手那一解必须在桌上，不该借那一步桌上不许有同数的牌；照正解剥完商归零 */
+function rdAudWord(ch,j){
+  const out={ok:0,why:'',n:0,k:0,N:0,nborrow:0,noborrow:0,naiveErr:0,naiveGap:0,
+    alphaBad:0,enumBad:0,layerBad:0,divBad:0,naiveBad:0,reachBad:0,info:[]};
+  const say=function(t){out.why=t};
+  const meds=j&&j.medians,st=j&&j.strokes;
+  if(!meds||!st||meds.length!==st.length){say('字料与账对不上');out.alphaBad++;return out}
+  const n=meds.length;
+  if(n<RD_NMIN||n>RD_NMAX){say('笔数出带');out.alphaBad++;return out}
+  const syms=[];
+  for(let i=0;i<n;i++)syms.push(rdSymOf(meds[i]));
+  const cnt={};
+  for(let i=0;i<n;i++)cnt[syms[i]]=(cnt[syms[i]]||0)+1;
+  const keys=Object.keys(cnt).map(Number).sort(function(a,b){return a-b});
+  const k=keys.length;
+  if(k<RD_KMIN||k>RD_KMAX){say('基数出带（'+k+' 家）');out.alphaBad++;return out}
+  for(let i=0;i<k;i++){
+    if(keys[i]<0||keys[i]>4){say('方向字母出了横竖撇捺折');out.alphaBad++}
+    if(keys.indexOf(keys[i])!==i){say('名次数重了');out.alphaBad++}
+  }
+  const idx=syms.map(function(s){return keys.indexOf(s)});
+  const digs=idx.map(function(x){return x+1});
+  for(let i=0;i<n;i++)if(digs[i]<1||digs[i]>k){say('数码出了 1~k');out.alphaBad++}
+  let sumCnt=0;
+  for(let i=0;i<k;i++)sumCnt+=cnt[keys[i]];
+  if(sumCnt!==n){say('各家笔数加起来不是笔数');out.alphaBad++}
+  /* ② 编号：位权逐项乘加（不借 Horner 那一只手）*/
+  let N=0;
+  for(let i=0;i<n;i++){
+    let pw=1;
+    for(let t=0;t<n-1-i;t++)pw*=k;
+    N+=digs[i]*pw;
+  }
+  if(!(N>0)||N>RD_VALMAX){say('编号出带（'+N+'）');out.layerBad++;return out}
+  /* ③ 第四只手：穷举 n 位、每位 1..k 的全部排法，数同值的那一串 */
+  let hits=0,hitStr=null;
+  (function(){
+    const d=new Array(n);
+    for(let i=0;i<n;i++)d[i]=1;
+    let guard=0;
+    while(guard<=78125){
+      guard++;
+      let v=0;
+      for(let i=0;i<n;i++){
+        let pw=1;for(let t=0;t<n-1-i;t++)pw*=k;
+        v+=d[i]*pw;
+      }
+      if(v===N){hits++;hitStr=d.slice()}
+      let i=n-1;
+      while(i>=0){d[i]++;if(d[i]<=k)break;d[i]=1;i--}
+      if(i<0)break;
+    }
+  })();
+  if(hits!==1){say('穷举数到同值的排法是 '+hits+' 串（双射必须唯一）');out.enumBad++;return out}
+  for(let i=0;i<n;i++)if(hitStr[i]!==digs[i]){say('穷举那一串与账上数码不合');out.enumBad++;break}
+  /* ④ 层界：等比求和逐项加，不许用闭式 */
+  let lo=1,pw=1;
+  for(let i=1;i<n;i++){pw*=k;lo+=pw}
+  const hi=k*lo;
+  if(!(N>=lo&&N<=hi)){say('编号不在第 '+n+' 层的门牌里（'+lo+'..'+hi+'）');out.layerBad++}
+  if(n>1){
+    let p2=1,l2=1;
+    for(let i=1;i<n-1;i++){p2*=k;l2+=p2}
+    if(N<=k*l2){say('这个数其实属于上一层，位数天生多写了一位');out.layerBad++}
+  }
+  /* ⑤ 除基取余带借位：剥到 0，剥序必须与账上珠串反序同值 */
+  const bv=[],br=[];
+  let cur=N,steps=0;
+  while(cur>0&&steps<=16){
+    const r0=cur%k;
+    let r,q;
+    if(r0===0){r=k;q=cur/k-1;br.push(steps)}else{r=r0;q=(cur-r0)/k}
+    if(q<0){say('借位把商借成负的');out.divBad++;break}
+    bv.push(r);cur=q;steps++;
+  }
+  if(cur!==0){say('除不到 0');out.divBad++}
+  if(steps!==n){say('除基取余剥出 '+steps+' 位，这个字只有 '+n+' 笔');out.divBad++}
+  for(let i=0;i<n;i++)if(bv[i]!==digs[n-1-i]){say('剥出的第 '+(i+1)+' 颗与账上第 '+(n-i)+' 位不合');out.divBad++;break}
+  if(rdVal(bv,k)!==N){say('Horner 乘回去不是原数');out.divBad++}
+  const nb=br.length,noB=steps-nb;
+  if(nb<RD_BORROW_MIN){say('借位 '+nb+' 回太少');out.divBad++}
+  if(noB<1){say('全程借位（不借那一面没露过）');out.divBad++}
+  for(let i=0;i<br.length;i++){
+    if(br[i]<0||br[i]>=steps){say('借位号出了这一步数');out.divBad++}
+    if(digs[n-1-br[i]]!==k){say('第 '+(br[i]+1)+' 步记着借位，那一位却不是满 '+k);out.divBad++}
+  }
+  /* ⑥ 笨手：普通取余必须剥出 0，逐位对表必须错 ≥RD_DIFF_MIN 处 */
+  const nv=[];
+  let c2=N,g2=0;
+  while(c2>0&&g2<24){nv.push(c2%k);c2=Math.floor(c2/k);g2++}
+  if(nv.indexOf(0)<0){say('笨手没剥出第 0 号牌（杀招没露过面）');out.naiveBad++}
+  const diff=rdDiffPos(nv,bv);
+  if(diff.length<RD_DIFF_MIN){say('笨手错处 '+diff.length+' 处太薄');out.naiveBad++}
+  /* ⑦ 候选：三张牌互不相同、正解唯一、该借的那一步笨手在桌上 */
+  let curN=N;
+  for(let i=0;i<n;i++){
+    const o=rdOpts(curN,k);
+    if(!o){say('第 '+(i+1)+' 步凑不齐三张候选');out.reachBad++;break}
+    if(o.list.length!==3){say('第 '+(i+1)+' 步的候选不是三张');out.reachBad++;break}
+    const seen={};
+    let uniq=0,pass=0,naive=0;
+    for(let t=0;t<3;t++){
+      const x=o.list[t],key=x.r+'/'+x.q;
+      if(seen[key]){say('第 '+(i+1)+' 步有两张牌一模一样');out.reachBad++;break}
+      seen[key]=1;uniq++;
+      if(x.r>=1&&x.r<=k&&x.r+k*x.q===curN)pass++;
+      if(x.kind==='naive')naive++;
+      if(x.kind==='right'&&(x.r!==bv[i]||x.q!==(curN-x.r)/k)){
+        say('第 '+(i+1)+' 步的 right 与第 ⑤ 只手剥出的那颗不合');out.reachBad++;break
+      }
+    }
+    if(out.reachBad)break;
+    if(uniq!==3){out.reachBad++;break}
+    if(pass!==1){say('第 '+(i+1)+' 步甲乙两条筛出的正解不是唯一一张（'+pass+' 张）');out.reachBad++;break}
+    const bStep=br.indexOf(i)>=0;
+    if(bStep&&!naive){say('第 '+(i+1)+' 步该借位，笨手那一解却没摆上桌');out.reachBad++;break}
+    if(!bStep&&naive){say('第 '+(i+1)+' 步不该借位，桌上却多出一张同数的牌');out.reachBad++;break}
+    curN=o.list[o.right].q;
+    if(curN<0){say('照正解剥到负商');out.reachBad++;break}
+  }
+  if(!out.reachBad&&curN!==0){say('照正解剥完商不归零');out.reachBad++}
+  if(out.alphaBad||out.enumBad||out.layerBad||out.divBad||out.naiveBad||out.reachBad){
+    if(!out.why)out.why='几把尺不合(字母'+out.alphaBad+' 穷举'+out.enumBad+' 层'+out.layerBad+
+      ' 剥'+out.divBad+' 笨手'+out.naiveBad+' 候选'+out.reachBad+')';
+    return out;
+  }
+  out.ok=1;out.n=n;out.k=k;out.N=N;out.nborrow=nb;out.noborrow=noB;
+  out.naiveErr=diff.length;out.naiveGap=nv.length-bv.length;
+  out.lo=lo;out.hi=hi;
+  out.info.push({ch:ch,n:n,k:k,N:N,nb:nb,err:out.naiveErr,gap:out.naiveGap,lo:lo,hi:hi});
+  return out;
+}
+/* ---- 眼下案面的账：一串珠、一张算纸、三张候选当场互核（只读）---- */
+function rdAudState(){
+  const s={has:0,lv:rd.lv,phase:rd.phase,ch:rd.ch,n:0,k:0,N:0,
+    beads:rd.digs.length,rows:rd.lad.length,step:rd.step,cur:rd.cur,err:rd.err,naiveHit:rd.naiveHit,
+    broken:rd.broken,borrowHit:rd.borrowHit,autoLate:rd.autoLate,
+    qi:rd.qi,qs:rd.qs.length,guessOk:rd.guessOk,guessBad:rd.guessBad,
+    stepMs:rd.stepMs,step0:rd.step0,quickMs:rd.quickMs,quick0:rd.quick0,lamp:rd.lamp,lamp0:rd.lamp0,
+    hearts:rd.hearts,words:rd.words,combo:rd.combo,score:rd.score,gain:rd.gain,penSum:rd.penSum,
+    tools:rd.tools,borrow:rd.probeUse+rd.ruleUse+rd.swapUse+rd.eyeballs,
+    litN:0,optN:rd.opts?rd.opts.list.length:0,bad:0,note:[]};
+  const why=function(t){s.bad++;s.note.push(t)};
+  const rec=rd.rec;
+  if(!rec)return s;
+  s.has=1;s.n=rec.n;s.k=rec.k;s.N=rec.N;
+  /* ① 算纸：一行一行的账必须首尾相接 —— 上一行的商就是下一行的行首，
+        且每一行「余 + 基数×商」必须除得回行首（笨手那一行例外：它记的是 0 号牌，天生不许合）*/
+  let chain=rec.N;
+  for(let i=0;i<rd.lad.length;i++){
+    const r=rd.lad[i];
+    if(r.nv!==chain)why('第 '+(i+1)+' 行行首写 '+r.nv+'，上一行的商是 '+chain);
+    if(r.bad){
+      if(r.r!==0)why('划红的那一行余数不是 0（'+r.r+'）');
+    }else{
+      if(r.r<1||r.r>rec.k)why('第 '+(i+1)+' 行的余数 '+r.r+' 出了字母表（甲规矩）');
+      if(r.r+rec.k*r.q!==r.nv)why('第 '+(i+1)+' 行除不回去：'+r.r+'+'+rec.k+'×'+r.q+'≠'+r.nv+'（乙规矩）');
+      if((r.borrow?1:0)!==(r.r===rec.k&&r.nv%rec.k===0?1:0))why('第 '+(i+1)+' 行的「借」牌与余数不合');
+    }
+    if(r.q<0)why('第 '+(i+1)+' 行的商是负的');
+    chain=r.q;
+  }
+  if(rd.phase==='div'&&s.cur!==chain)why('案上行首 '+s.cur+' 与算纸剥到的 '+chain+' 不合');
+  if(rd.phase!=='div'&&rd.phase!=='load'&&!rd.locked&&chain!==0&&!rd.broken&&s.rows>0)
+    why('除到底了商不归零（还剩 '+chain+'）');
+  /* ② 珠串：与算纸逐行同序；不 broken 时必须正好 n 颗、且 Horner 乘回原编号 */
+  for(let i=0;i<rd.lad.length;i++)if(rd.digs[i]!==rd.lad[i].r)why('第 '+(i+1)+' 颗珠与算纸第 '+(i+1)+' 行不合');
+  const zeroAt=rd.digs.indexOf(0);
+  if(!rd.broken&&zeroAt>=0)why('账上没判废，珠串里却躺着第 0 号牌（第 '+(zeroAt+1)+' 颗）');
+  if(rd.broken&&zeroAt<0&&s.beads===rec.n)why('判了废，可珠串既没有第 0 号牌、颗数又正好等于笔数');
+  if(rd.broken&&!rd.brokenWhy)why('判了废却没写清为什么（屏上那一句是空的）');
+  if(!rd.broken&&rd.phase!=='load'&&rd.phase!=='div'&&s.beads!==rec.n)
+    why('没判废的封字珠串是 '+s.beads+' 颗，这个字有 '+rec.n+' 笔');
+  if(!rd.broken&&s.beads===rec.n&&rdVal(rd.digs.slice(),rec.k)!==rec.N)
+    why('珠子乘回去是 '+rdVal(rd.digs.slice(),rec.k)+'，案上编号写 '+rec.N);
+  /* 倒读那一问认的就是「第 j 笔 = 倒数第 j 颗珠」：剥序与笔序必须真的反着对上 */
+  if(!rd.broken&&s.beads===rec.n){
+    for(let i=0;i<rec.n;i++)if(rd.digs[rec.n-1-i]!==rec.idx[i]+1){why('倒数第 '+(i+1)+' 颗珠对不上第 '+(i+1)+' 笔的数码');break}
+  }
+  /* ③ 米字格：亮了第几笔必须正好是剥到第几颗（剥序末位在前 ⇒ 从最后一笔往回亮）*/
+  if(rd.lit){
+    let ln=0;
+    for(let i=0;i<rec.n;i++)if(rd.lit[i])ln++;
+    s.litN=ln;
+    if(ln!==s.beads&&s.beads<=rec.n)why('格上亮 '+ln+' 笔，珠串却有 '+s.beads+' 颗');
+    for(let i=0;i<s.beads&&i<rec.n;i++)if(!rd.lit[rec.n-1-i])why('剥了第 '+(i+1)+' 颗珠，第 '+(rec.n-i)+' 笔却没亮');
+  }
+  /* ④ 候选：三张互不相同、正解唯一；倒读那一段箱里换的是 k 家方向牌 */
+  if(rd.phase==='div'){
+    if(s.optN!==3)why('案上候选不是三张（'+s.optN+' 张）');
+    else{
+      const seen={},list=rd.opts.list;
+      let pass=0;
+      for(let i=0;i<3;i++){
+        const x=list[i],key=x.r+'/'+x.q;
+        if(seen[key])why('两张候选一模一样（'+key+'）');
+        seen[key]=1;
+        if(x.r>=1&&x.r<=rec.k&&x.r+rec.k*x.q===rd.cur)pass++;
+      }
+      if(pass!==1)why('甲乙两条筛出的正解不是唯一一张（'+pass+' 张）');
+      if(list[rd.opts.right].kind!=='right')why('right 那个下标指向的不是正解');
+      if(!!rd.opts.borrow!==(list.some(function(x){return x.kind==='naive'})))
+        why('该不该借与桌上有没有笨手那张不合');
+    }
+    if(s.sel<0||s.sel>=s.optN)why('挑中的那张出了候选范围');
+  }
+  if(rd.phase==='check'){
+    if(s.qs>Math.min(rdQN(s.lv),RD_QMAX,rec.n))why('倒读了 '+s.qs+' 题，这一场只该问 '+Math.min(rdQN(s.lv),RD_QMAX,rec.n)+' 题');
+    const seenQ={};
+    for(let i=0;i<rd.qs.length;i++){
+      const q=rd.qs[i];
+      if(q<0||q>=rec.n){why('题号 '+q+' 出了这个字');continue}
+      if(seenQ[q])why('第 '+(q+1)+' 笔问了两回');
+      seenQ[q]=1;
+    }
+    if(s.guessOk+s.guessBad>s.qs)why('答的题比问的还多');
+    if(rd.phase==='check'&&s.qi>=s.qs)why('题问完了场面还挂着倒读');
+    if(rd.guessOkAll<rd.guessOk)why('一辈子答对 '+rd.guessOkAll+' 题，比眼下这一字 '+rd.guessOk+' 还少（账倒退了）');
+    if(s.guessBad&&rd.missFlag!==1)why('倒读错过却没把这个字记进错字本');
+  }
+  /* ⑤ 错处与赏罚：屏上那串文必须正好等于累计的赏减累计的罚 */
+  if(rd.gain-rd.penSum!==rd.score)why('赏 '+rd.gain+' − 罚 '+rd.penSum+' ≠ 屏上 '+rd.score);
+  if(s.err<0||s.naiveHit<0)why('错处成了负的');
+  if(rd.tools!==s.borrow)why('借家什 '+s.borrow+' 回，账上记的却是 '+rd.tools+' 回');
+  if(rd.probeN<0||rd.ruleN<0||rd.swapN<0)why('家什余量成了负的');
+  if(rd.probeN>RD_P0.probe||rd.ruleN>RD_P0.rule||rd.swapN>RD_P0.swap)why('家什余量超了起手（补过却要写清）');
+  if(rd.hearts<0||rd.hearts>RD_HEART_MAX)why('心 '+rd.hearts+' 颗出了格');
+  if(rd.perfect>rd.words)why('一次没错 '+rd.perfect+' 趟比收字 '+rd.words+' 还多');
+  if(rd.lenN>rd.words)why('珠子数对 '+rd.lenN+' 趟比收字还多');
+  if(rd.quickN>rd.words)why('倒读全对 '+rd.quickN+' 趟比收字还多');
+  if(rd.leanN>rd.lenN)why('比笨手省 '+rd.leanN+' 趟，多过珠子数对的 '+rd.lenN+' 趟（省这一笔得先剥对）');
+  if(rd.beads<rd.digs.length)why('累计落珠少了于眼下这一串');
+  if(rd.borrowAll<rd.borrowHit)why('累计借位 '+rd.borrowAll+' 回，比眼下这一字 '+rd.borrowHit+' 还少（账倒退了）');
+  if(rd.divTotal<s.rows)why('累计除位 '+rd.divTotal+' 步，比眼下这一张算纸 '+s.rows+' 行还少');
+  /* ⑥ 三支钟不许倒挂；剥位钟只在剥位那一段走 */
+  if(rd.phase==='div'){
+    if(s.step0!==rdStepMs(s.lv))why('剥位钟整支 '+s.step0+' 与「起手秒数−场号折扣」不合');
+    if(s.stepMs>s.step0)why('剥位钟 '+s.stepMs+' 比整支 '+s.step0+' 还长');
+    if(s.stepMs===0&&!s.autoLate&&s.rows>0)why('剥位钟已经尽了，账上却一次没罚');
+    /* 正解那条路上剥满 n 位就该商归零、进倒读；判废那一路不算 —— 笨手把商抬大了一，
+       n 颗珠之后还得再剥（那多出来的一颗正是这一坊要给孩子看的那件事）*/
+    if(!rd.broken&&s.step>=rec.n&&rd.digs.length>=rec.n)why('剥满 '+rec.n+' 位了还在挂剥位这一场');
+  }else if(s.stepMs!==0&&rd.phase!=='div')why('不在剥位，剥位钟却在走（'+Math.round(s.stepMs)+'）');
+  if(rd.phase==='check'){
+    if(s.quick0!==rdQuickMs(s.lv))why('倒读钟整支 '+s.quick0+' 与场号不合');
+    if(s.quickMs>s.quick0)why('倒读钟比整支还长');
+  }else if(s.quickMs!==0&&rd.phase!=='check')why('没在倒读，倒读钟却在走');
+  if(s.lamp>rd.lamp0)why('场灯 '+s.lamp+' 比整支 '+rd.lamp0+' 还长');
+  if(rd.lamp0!==rdLamp(s.lv))why('场灯与场号不合');
+  /* ⑦ 帘子只认场号，不许偷偷改成认字数 —— 改了屏上写的「第 4 场起不写错处与层界」就成了谎话 */
+  if(rdNoTell(s.lv)!==(s.lv>=RD_TELL_LV))why('第 '+s.lv+' 场的「不写错处与层界」帘子与常量 RD_TELL_LV 不合');
+  if(rdDim(s.lv)!==(s.lv>=RD_DIM_LV))why('第 '+s.lv+' 场的「连对照表也收走」帘子与常量 RD_DIM_LV 不合');
+  /* ⑧ 屏上那两处字：帘子收走时不许露出来（读屏面写的字，不读内部量）*/
+  const ct=document.getElementById('rdNumTxt'),eb=document.getElementById('rdErrBig');
+  const tell=!rdNoTell(s.lv);
+  if(ct){
+    /* 帘子收走时不许露出那本账：「笨手错 X 处」是账，「案上不写笨手那本账」只是交代帘子 ——
+       所以拿「笨手错」三字作凭据，帘子内必须看见、帘子外必须看不见 */
+    const shows=ct.textContent.indexOf('笨手错')>=0;
+    if(shows!==tell)why(tell?'第 '+s.lv+' 场该写笨手那本账，'+ct.textContent+' 里却没有':'第 '+s.lv+
+      ' 场帘子已收，'+ct.textContent+' 还写着笨手的账');
+    if(rdDim(s.lv)&&ct.textContent.indexOf('编号')<0&&ct.textContent.indexOf(rec.N)>=0)
+      why('第 '+s.lv+' 场连编号都该收走，'+ct.textContent);
+  }
+  if(eb){
+    const shows=eb.textContent.indexOf('笨手')>=0;
+    if(shows!==tell)why(tell?'账条该写笨手那本账，'+eb.textContent+' 里没有':'帘子已收，账条 '+eb.textContent+' 还写着笨手');
+  }
+  if(rd.words>0&&rd.phase==='load'&&!rd.locked&&!rd.over)why('还在收字，案上却是空的');
   return s;
 }
 
