@@ -7730,6 +7730,88 @@ button:active{transform:scale(.95)}
   #screen-radix .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-radix .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.111 🌳 笔顺扶树坊 ================= */
+/* HUD 占死三行（76 像素就是它满三行那一个高度）：字没上台那两息它只折两行，
+   不留这一格的话整张树架会被往上抬 —— 苗圃格与账面都在它下头，一行也不许裁 */
+.av-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.av-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.av-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死六行（块级排版，只是垫高、不改排版）：三副题面里最宽的那一副（扶正那一句带「先扶左支再右旋」）就是六行 */
+.av-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#F1F8E9;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*6)}
+.av-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.av-ask b{color:#FFE082}
+.av-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 苗圃：一块压实的苗床土（左边米字格里挂珠成树、右边那本账记着扶直几层与笨链几层；canvas 透明，底色由这里给）*/
+.av-field{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#15251C,#0C1815 58%,#06100C);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8)}
+.av-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.av-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(8,14,11,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.av-tag.on{opacity:1}
+.av-tag.warn{background:rgba(88,24,24,.94);color:#FFCCBC}
+.av-tag.gold{background:rgba(74,58,14,.96);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.av-tag.cyan{background:rgba(6,58,74,.94);color:#84FFFF;box-shadow:0 0 14px rgba(0,229,255,.4)}
+/* 案上的牌：一箱四用 —— 挂枝两张（左边 / 右边）、指歪四张（三颗珠 + 「都站得住」）、扶正四张转法、抢答四张珠 */
+.av-tbl{width:calc(100% - 28px);max-width:520px;margin:6px auto 2px;display:flex;flex-direction:column;gap:4px;min-height:104px}
+.av-opt{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:11px;padding:5px 8px;cursor:pointer;transition:background .12s,border-color .12s}
+.av-opt.sel{background:rgba(197,255,166,.12);border-color:rgba(174,242,122,.7)}
+.av-opt.bad{background:rgba(120,26,26,.42);border-color:#FF5252;animation:avShake .42s linear 2}
+.av-opt.dim{opacity:.42;cursor:default}
+@keyframes avShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.av-mark{flex:0 0 16px;font-size:12px;font-weight:800;color:#FF5252}
+.av-opt:not(.bad) .av-mark{color:#FFD54F}
+.av-nm{flex:1;min-width:0;font-size:16px;font-weight:800;color:#ECEFF1}
+.av-opt.q .av-nm{flex:0 0 74px;font-size:15px;color:#C5E1A5}
+.av-chk{flex:0 0 auto;text-align:right;font-size:13px;font-weight:800;color:#84FFFF;font-family:ui-monospace,Consolas,monospace;letter-spacing:.5px}
+.av-opt.q .av-chk{color:#FFD54F}
+/* 四条量表：挂枝钟（青）· 中序抢答（金）· 这一场的灯（冷绿）· 这一趟的错处（橙，错到那一格就一路变红）*/
+.av-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.av-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.av-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#37474F,#78909C);transition:width .15s linear}
+.av-tl.place i{background:linear-gradient(90deg,#4DD0E1,#B2EBF2)}
+.av-tl.word i{background:linear-gradient(90deg,#9CCC65,#DCEDC8)}
+.av-tl.lamp i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.av-tl.costw i{background:linear-gradient(90deg,#FFB300,#FFD54F)}
+.av-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.av-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.av-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.av-take button.pass{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#263238;background:linear-gradient(180deg,#CFD8DC,#90A4AE)}
+.av-take button.pass small{display:block;font-size:10px;font-weight:400;color:rgba(38,50,56,.7)}
+.av-take button.pass:active{transform:translateY(1px)}
+.av-take button.pass:disabled{opacity:.42;cursor:default}
+.av-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1A1206;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.av-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(26,18,6,.72)}
+.av-take button.big.ready{background:linear-gradient(180deg,#A5D6A7,#66BB6A);box-shadow:0 0 20px rgba(102,187,106,.55);color:#10260F}
+.av-take button.big:active{transform:translateY(1px)}
+.av-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.av-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.av-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.av-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.av-tool b{display:block;font-size:10px;color:#FFD54F;font-weight:700}
+.av-tool:disabled{opacity:.4;cursor:default}
+.av-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.av-hintline b{color:#FFD54F}
+.av-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.av-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.av-msg b{color:#CFD8DC}
+.av-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.av-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.av-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.av-rs-book b{color:#FFD54F}
+.av-rs-book small{color:#78909C}
+.av-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,179,0,.92);color:#1A1206;border-radius:9px;padding:1px 6px;z-index:4}
+.av-cdot.on{display:block}
+#screen-avl .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：四条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是六行半，就垫死八行 */
+@media(max-width:460px){
+  .av-tl{flex:1 1 100%}
+  .av-ask{min-height:calc(1.35em*8)}
+  .av-take button.pass{flex:0 0 84px}
+  .av-take button.big{font-size:17px}
+  .av-opt{padding:4px 6px;gap:6px}
+  .av-nm{font-size:14px}
+  #screen-avl .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-avl .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-avl .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7786,8 +7868,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 109 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">109</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 110 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">110</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7798,12 +7880,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>109 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>51</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>110 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>52</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="avlCard" onclick="enterMode('avl')">
+      <div class="icon">🌳</div>
+      <div class="info"><h3>笔顺扶树坊</h3><p id="avlCardTip">一笔一颗珠，珠子的<b>号</b>就是这一笔的<b>起笔横坐标</b>（谁更靠左谁小）。按<b>笔顺</b>一颗颗往树上挂，从根往下每一层只问一句「挂它的<b>左边还是右边</b>」—— 比的是两个起笔点，不是整笔的长短。⚖️ 挂上就有珠子<b>站不住</b>：平衡因子 <b>BF = 左支层数 − 右支层数</b>，|BF|≥2 算歪，沿刚走过的那条路<b>从下往上</b>数，第一个站不住的就是要扶的那一颗（常常不是刚挂上那颗）。🔄 怎么扶只有四张牌：右旋 / 左旋 / 先左后右 / 先右后左，<b>同边单旋、对面双旋</b>，判对错只有一把尺 —— <b>转完再看一遍，还歪着的就是没扶住</b>。🌲 <b>定海神针：旋转天生不打乱中序</b>，从左数过去永远是「起笔从左边排到右边」，所以封字前抢答的就是这一眼「第 k 颗是第几笔」。🪵 <b>笨链</b>（同一条笔顺、一颗也不转）就画在右下：过闸的字笨链至少高 2 层，跟着「都站得住」选就是在跟它走，差价全落进眼睛里。第 4 场起珠旁不写 BF 数字，第 6 场起连准线与笨链那本账也收走</p></div>
+      <span class="av-cdot" id="avlCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="radixCard" onclick="enterMode('radix')">
       <div class="icon">🧮</div>
       <div class="info"><h3>笔顺算珠坊</h3><p id="radixCardTip">这个字笔顺里出现的<b>方向</b>按名次排成字母表（横竖撇捺折里的两到五家），<b>名次就是数码</b>（1~5，<b>天生没有 0 号牌</b>），第一笔是最高位 —— 整个字读成一个数 <b>N = d₁·k^(n−1)+…+dₙ</b>。🧮 往回剥就是<b>除基取余、带借位</b>：r = N mod k，<b>r==0 ⇒ 余数记满 k、商还要减一</b>。案上每一步摆三张候选，规矩只有两条：<b>甲</b> 余数得是字母表里的牌、<b>乙</b> 余数+基数×商要正好除回这一行 —— 得数不写，孩子自己乘。🪤 <b>笨手</b>（余 0 就写 0、商不借位）就明摆在案上：配字时验过它必错 ≥2 处、还常多剥一位，跟着它选那颗红珠就真落进算纸里，珠串对不回笔顺。↔️ <b>倒读抢答</b>：珠子从末位往前剥，笔顺从第一笔往后写，第 j 笔＝倒数第 j 颗珠。📏 三只手互核（除基取余 · 层界换算 · Horner 乘回去）+ 结算时第四只手把 <code>1~k</code> 的排法穷举一遍。第 4 场起案上不写笨手那本账，第 6 场起连「方向↔数码」对照表也收走</p></div>
@@ -8602,6 +8689,77 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="soakReBtn">🖌 再洇一场</button>
       <button class="tool-btn" id="soakLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="soakHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-avl">
+  <div class="top-bar">
+    <button class="back-btn" onclick="avLeave()">← 返回</button>
+    <div class="stats"><span id="avScoreTxt">🌳 0 文</span><span id="avLvTxt">第 1 场 · 收 0 字</span><span id="avQTxt">⏳ 挂枝 7 秒</span></div>
+    <button class="icon-btn" onclick="avHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="av-hud">
+    <span id="avRankTxt" title="称号">🌳 头一趟</span>
+    <span id="avHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="avComboTxt" title="连击">🔥 连 0</span>
+    <span id="avLotTxt" title="这一场第几字、挂到第几颗">🈶 1/3 字 · 挂 0/0 颗</span>
+    <span id="avNumTxt" title="这一趟的笔数与笨链那本账">🌳 树苗还没上土</span>
+    <span class="light" id="avHitLight">💡 挂枝</span>
+  </div>
+  <div class="av-ask" id="avAsk">📥 正在挑字……<br><small>在字库里找「真会歪、每一步转法唯一、比笨链矮两层以上」的字</small></div>
+  <div class="av-stage">
+    <div class="av-field">
+      <canvas class="av-canvas" id="avCanvas" width="420" height="340"></canvas>
+      <div class="av-tag" id="avTag">🌳 树苗还没上土</div>
+    </div>
+  </div>
+  <div class="av-tbl" id="avOpts"></div>
+  <div class="av-meter">
+    <div class="av-tl place"><i id="avStepBar"></i><b id="avStepTxt">🌳 挂枝 7.6 秒</b></div>
+    <div class="av-tl word"><i id="avQuickBar"></i><b id="avQuickTxt">🌲 中序 5.2 秒</b></div>
+    <div class="av-tl lamp"><i id="avLampBar"></i><b id="avLampTxt">💡 这一场 84 秒</b></div>
+    <div class="av-tl costw"><i id="avErrBar"></i><b id="avErrBig">🌳 错 0 处 / 账还没开</b></div>
+  </div>
+  <div class="av-take">
+    <button class="big" id="avActBtn">🌳 就按这一张（回车）<small>1~2 选一边 · ←→ 挑 · 回车落子</small></button>
+    <button class="pass" id="avNextBtn">🏁 结算<small>F</small></button>
+  </div>
+  <div class="av-tools">
+    <button class="av-tool" id="avProbeBtn" disabled>✨ 看层<span>P</span><b>剩 2</b></button>
+    <button class="av-tool" id="avRuleBtn" disabled>🧭 准线<span>V</span><b>剩 2</b></button>
+    <button class="av-tool" id="avSwapBtn" disabled>🔁 换字<span>S</span><b>剩 1</b></button>
+    <button class="av-tool" id="avHelpBtn">📖 说明<span>H</span></button>
+  </div>
+  <div class="av-hintline" id="avHintTxt">🌱 <b>比的是起笔</b>：这一笔的第一点落在参照那一颗的准线哪一边，就挂哪一边 —— 不是比整笔的长短</div>
+  <div class="av-msg" id="avMsg">🌳 <b>一笔一颗珠，珠子的号就是这一笔的起笔横坐标</b>：按笔顺往树上挂，从根往下每一层只问一句「挂它的左边还是右边」—— 第一笔是根，后面的都从根上走<br>⚖️ <b>挂上就有珠子站不住</b>：平衡因子 <code>BF = 左支层数 − 右支层数</code>，|BF|≥2 算歪。沿刚走过的那条路<b>从下往上</b>数，第一个站不住的就是要扶的那一颗（常常不是刚挂上那颗）<br>🔄 <b>怎么扶只有四种转法</b>：同边单旋、对面双旋 —— 判对错只有一把尺：转完再看一遍，还歪着的就是没扶住<br>🌲 <b>定海神针</b>：旋转天生不打乱中序，从左数过去永远是「起笔从左边排到右边」，所以封字前抢答的就是这一眼<br>🪵 <b>笨链</b>就摆在右下角：同一条笔顺、一颗也不转，它天生比这棵扶直的树高 —— 指歪时跟着它选「都站得住」，差价作废、这一趟记一处错 · <code>1~2</code> 挂枝 · <code>1~4</code> 指歪与转法 · <code>↑↓←→</code> 挑 · <code>回车</code> 落子 · ✨ <code>P</code> 看层 · 🧭 <code>V</code> 准线 · 🔁 <code>S</code> 换字 · <code>H</code> 📖 说明 · <code>F</code> 🏁 结算</div>
+</div>
+<div class="screen" id="screen-avl-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="avLeave()">← 返回</button>
+    <div class="stats"><span id="avRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="avRsEmoji">🌳</div>
+    <div style="font-size:26px;font-weight:800" id="avRsTitle">苗圃歇了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="avRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="av-pk" id="avRsScore">🌳 0 文</span>
+      <span class="av-pk" id="avRsWords">🈶 收字 0 个 · 往下走 0 层 · 落 0 颗珠</span>
+      <span class="av-pk" id="avRsWalk">🌲 中序抢答 0 题 · 答对 0 · 最长连击 0</span>
+      <span class="av-pk" id="avRsAward">🏅 一次没错 0 趟 · 一颗不落 0 趟</span>
+      <span class="av-pk" id="avRsWipe">🪵 跟着笨链 0 回 · 看错 0 次 · 钟尽代挂 0 次</span>
+      <span class="av-pk" id="avRsTools">🧰 借家什 0 回 · ✨ 0 · 🧭 0 · 🔁 0</span>
+      <span class="av-pk" id="avRsRot">🔄 扶正 0 回 · 指对 0 回</span>
+      <span class="av-pk" id="avRsBest">🏅 历史最高 0 文</span>
+      <span class="av-pk" id="avRsRank">🌳 头一趟</span>
+    </div>
+    <div class="av-rs-book" id="avRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="avRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="avRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="avReBtn">🌳 再扶一趟</button>
+      <button class="tool-btn" id="avLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="avHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -16644,6 +16802,7 @@ function updateHomeStats(){
   if(typeof euNudge==='function')euNudge();
   if(typeof tpNudge==='function')tpNudge();
   if(typeof rdNudge==='function')rdNudge();
+  if(typeof avNudge==='function')avNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -16699,6 +16858,7 @@ function enterMode(mode){
   if(mode==='eu'){euStart();return}
   if(mode==='tele'){tpStart();return}
   if(mode==='radix'){rdStart();return}
+  if(mode==='avl'){avStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -122542,6 +122702,2321 @@ function rdAudState(){
     if(shows!==tell)why(tell?'账条该写笨手那本账，'+eb.textContent+' 里没有':'帘子已收，账条 '+eb.textContent+' 还写着笨手');
   }
   if(rd.words>0&&rd.phase==='load'&&!rd.locked&&!rd.over)why('还在收字，案上却是空的');
+  return s;
+}
+
+
+/* ================= v1.111.0 🌳 笔顺扶树坊（一笔挂一颗珠 · 自平衡旋转 / 平衡因子 / 旋转不乱中序 ================= */
+/* 场：420×340 的一张育苗桌。上半是一棵树（一颗珠就是一笔，珠子左右的位置由「起笔谁更左」定死），
+   左下是米字格（这一笔落在哪个起笔点上，画一条准线让孩子比左右），右下是那一根不扶的笨链与层数账。
+   这一坊吃的不是「怎么除尽」，是「怎么扶直」：
+   ① 一笔一颗珠。珠子的**号**是这一笔的**起笔横坐标**（谁更靠左谁小）。
+      按笔顺一颗颗往树上挂：从根往下，每一层问一句「这一笔挂它的左边还是右边」——
+      这一问靠眼睛比两个起笔点，画一条准线，左半是左、右半是右。
+   ② 挂上就有珠子站不住。**平衡因子 BF = 左支层数 − 右支层数**，|BF|≥2 就算歪。
+      沿刚走过的那条路从下往上找，**第一个站不住的**就是要扶的那一颗（AVL 天生只有一颗）。
+   ③ 怎么扶：只有四种转法（右旋 / 左旋 / 先左后右 / 先右后左）。
+      **同边单旋、对面双旋** —— 歪在左支的左子转右边，歪在左支的右子先扶左支再转整颗。
+      判对错只有一把尺：转完再看一遍，树上还有 |BF|≥2 的，就是没扶住。
+      转错了会不会「把队伍搞乱」？不会 —— **旋转天生不打乱中序**，
+      所以「中序被搞乱」这一条根本判不出错，别拿它当错处。
+   ④ 定海神针：**中序（从左数过去）永远等于「起笔从左边排到右边」**。
+      珠子横着的位置一辈子只由起笔左右定，转来转去只有上下动 —— 这一条看得见，就教这一条。
+      封字前的抢答就问这个：转了这么多回，从左数第 j 颗是哪一笔？
+   ⑤ 案上还摆着那条**笨链**：同一条笔顺，一颗也不转。它高几层、这棵树高几层，
+      差价几层就是这一坊扶与不扶的账（过闸的字笨链至少高 AV_DIFF_MIN 层，差价薄得看不出的字不上台）。
+   教学点：**一棵树自己会长歪，扶直它只要转一下；转一下不挪任何人的左右邻居。**
+   第 `AV_TELL_LV` 场起珠旁不写 BF 数字（自己数层），第 `AV_DIM_LV` 场起连准线与笨链那本账也收走。*/
+const AV_W=420,AV_CVH=340;
+/* ---- 桌面三块：上半那棵树 · 左下米字格 · 右下笨链与账 ---- */
+const AV_TX0=12,AV_TX1=408;            /* 树的横向范围，珠子的左右位置就在这条带子里按中序分格 */
+const AV_TY=30,AV_ROW=33,AV_NR=15;     /* 第一行珠心中轴、每往下一层挪 33、珠半径 15 —— 珠顶上留 15 像素给 BF 数字（第一排那颗的号写在珠子之上，压在 18 就出画布了）*/
+const AV_GX=6,AV_GY=182,AV_GS=152;     /* 米字格 6..158 × 182..334 */
+const AV_PAD=10;                       /* 格内留白：整张 1024 方格等比缩进来 */
+const AV_LX=166,AV_LY=182,AV_LW=248,AV_LH=152;   /* 笨链与层数账那一栏 */
+/* ---- ① 口径：与离线扫描 _avnum.cjs 一字一样。改任何一个数都得重生成 AV_LEV ---- */
+const AV_NMIN=5,AV_NMAX=10;    /* 一笔一颗珠：五笔起头，十笔的树正好长到第四层（AVL 十颗珠最多四层）*/
+const AV_READ=12;              /* 挂枝那一句「挂左边还是右边」：真被问到的两个起笔点至少隔这么多（1024 一格）*/
+const AV_DEEP=4;               /* 一次挂枝连问不许超过四层 */
+const AV_KIND_MIN=2;           /* 这一个字里「怎么转」至少出现两种答法：全是左旋，转就成了白捡 */
+const AV_DIFF_MIN=2;           /* 笨链至少比扶直的树高两层：差一层是巧合，差两层才成规则 */
+const AV_Q_MIN=6;              /* 一个字挂枝的总问数：太少一局没几步 */
+/* ---- ② 三支钟：挂枝钟（每一笔的口气）· 抢答钟（中序那一眼）· 场灯（一场三字的墙） ---- */
+const AV_STEP0=7600,AV_STEP_CUT=420,AV_STEP_MIN=4600;
+const AV_QUICK0=5200,AV_QUICK_CUT=320,AV_QUICK_MIN=2800;
+/* 场灯＝一场三字的墙钟：离线拿全站过闸字按三支钟的公式数过（_avlamp.cjs）——
+   每一场都要「死得了」（低于最轻三字每步都坐到挂枝钟尽的墙钟），
+   又要「经得住」（高于一心做事的三字，最紧的一场也余 1.2 倍）：
+   灯比三趟磨洋工短，熄灯这一条收场才真走得到；屏上「💡 这一场 N 秒」才不是空话 */
+const AV_LAMP0=84000,AV_LAMP_MIN=72000,AV_LAMP_STEP=1600;
+const AV_SEAL_MS=3000,AV_TAG_MS=2600,AV_NAG_MS=11000,AV_HELP_MS=16000,AV_BEAT=120;
+const AV_AN_MS=560;               /* 扶正那一下的动画：珠子只往上下挪，横着一格不许动（一息走完）*/
+function avStepMs(L){return Math.max(AV_STEP_MIN,AV_STEP0-(L-1)*AV_STEP_CUT)}
+function avQuickMs(L){return Math.max(AV_QUICK_MIN,AV_QUICK0-(L-1)*AV_QUICK_CUT)}
+function avLamp(L){return Math.max(AV_LAMP_MIN,AV_LAMP0-(L-1)*AV_LAMP_STEP)}
+function avQN(L){return L>=7?3:(L>=4?2:1)}           /* 中序抢答几题（场号越高题越多，也越多珠可问）*/
+const AV_QMAX=3;
+/* ---- 罚：一律从「文」里扣（孩子口袋里的赏）；案上那本账只记扶歪的 ----
+   指错歪珠 · 转错方向 · 挂错左右 · 跟着笨链挂（本坊的靶子）· 挂枝钟尽 · 抢答错 · 抢答迟 ·
+   半路收场 · 换字 · 家什 · 翻说明 · 犹豫 */
+const AV_P_PICK=8,AV_P_TURN=8,AV_P_HANG=6,AV_P_NAIVE=8,AV_P_LATE=3;
+const AV_P_WRONG=8,AV_P_SLOW=4,AV_P_QUIT=5,AV_P_SWAP=6,AV_P_TOOL=4,AV_P_HELP=3,AV_P_HES=4;
+const AV_HES_KEY=6;           /* 同一问候选来回挑满六回还不定手，算犹豫 —— 离线 _avreach.cjs 数过：
+                                     牌一共四张（歪的那颗、两颗站得住的、一张「都站得住」），
+                                     转法四张挨个看两回就够；六回这一条线冤枉不着巧手，只罚挨张试的 */
+const AV_ERR_LINE=3;          /* 一笔错到这一格就掉一颗心：这一笔扶得太糙了 */
+const AV_LATE_MAX=3;          /* 一个字挂枝钟尽满三回，这一字判废（进错字本、掉一颗心）*/
+/* ---- 赏：每挂一颗的底文（连击与场号加成）与封字那一整包 ---- */
+const AV_M0=7,AV_CB=.14,AV_LVW=.07;
+const AV_PTS_WORD=12;         /* 一个字挂到底 */
+const AV_PTS_PICK=14;         /* 一歪不指错：该指的那几回一次指对，一处没错 */
+const AV_PTS_TURN=12;         /* 转法全对：四种转法一回没转错 */
+const AV_PTS_SEQ=8;           /* 一颗不落：n 笔全挂上（没判废、没半路退回）—— 中序不乱是树的性质，不是孩子的赏 */
+const AV_PTS_QUICK=12;        /* 中序全对：从左数第几颗，一题不落 */
+const AV_PTS_FRESH=6;         /* 头一回收这个字 */
+const AV_PTS_NOTOOL=8,AV_PTS_TOOLRUN=14;
+const AV_PTS_LEAN=2;          /* 比笨链矮两层以上（真扶住了）*/
+const AV_ERR_CLEAN=1;         /* 一场三字「每笔错处 ≤1」才算清白 ---- 藏书阁那条票 ---- */
+/* ---- ③ 配字口径：一场一串字，串外的字在这一场就是过不了闸的字 ---- */
+const AV_PER=3;
+const AV_POOL_MIN=4,AV_POOL_WANT=12,AV_POOL_SCAN=320;
+const AV_HEARTS=3,AV_HEART_MAX=5,AV_BOOK_MAX=300;
+const AV_TELL_LV=4,AV_DIM_LV=6; /* 第 4 场起珠旁不写 BF 数字，第 6 场起连准线与笨链那本账也收走 */
+function avNoTell(L){return L>=AV_TELL_LV}
+function avDim(L){return L>=AV_DIM_LV}
+const AV_P0={probe:2,rule:2,swap:1};   /* ✨ 看层 / 🧭 准线 / 🔁 换字
+   两件看账的家什各起手两回：都带一口气的挡话（点破挂 AV_PROBE_MS 秒、准线画 AV_RULE_MS 秒），
+   余量只给一张的话，第二回按下去撞上「用光了」，「等它自己收走」这一句就永远说不出口 */
+const AV_PROBE_MS=5200,AV_RULE_MS=4200;
+/* 场档：开局那一场按「一辈子收齐的字数」走（每两个字进一场），局内每收满 AV_PER 字自己往上进一场 */
+function avLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+/* 池子的笔数窗口一律用全局那一条带（AV_NMIN~AV_NMAX），与离线字表同一个口径：
+   AV_LEV 那一串本身已按「笔数→旋转回数→差价」排过，场号就藏在串的次序里，
+   再套一层每场自己的笔数带，串里的字就会被凭空滤掉（屏上「这一场的字」与池子当场对不上）。 */
+function avRankOf(w){
+  let r=AV_RANKS[0];
+  for(let i=0;i<AV_RANKS.length;i++)if(w>=AV_RANKS[i].n)r=AV_RANKS[i];
+  return r;
+}
+const AV_RANKS=[
+  {n:0,e:'🌳',t:'头一棵'},      {n:2,e:'🌱',t:'分得清左右'},  {n:5,e:'⚖️',t:'认得平衡'},
+  {n:9,e:'🔄',t:'转得对边'},     {n:14,e:'🪵',t:'数得出层'},    {n:21,e:'🌲',t:'一眼定歪珠'},
+  {n:30,e:'🧰',t:'全套家什'},    {n:42,e:'🎯',t:'一歪不指错'},  {n:58,e:'👑',t:'从没扶歪过'}
+];
+const AV_SHELF_LV=4;
+const AV_SHELF=[
+  {k:'树形图',d:'收齐一个字'},            {k:'清白票',d:'一场三字每笔错处 ≤'+AV_ERR_CLEAN+' 格'},
+  {k:'神来之笔',d:'一趟一次没错，满 5 趟'}, {k:'满架章',d:'一颗不落封完一个字'},
+  {k:'戥子',d:'走到第 '+AV_SHELF_LV+' 场还在走'}, {k:'空手趟',d:'一笔家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},  {k:'修枝剪',d:'累计往下走 400 层'}
+];
+const av={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  /* 场：一场三字；lv 就是场号 */
+  lv:1,wi:0,score:0,hearts:AV_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一趟：字 · 挂到第几笔（cur）· 已经落上树的颗数（hung）· 眼下那棵树 */
+  ch:'',rec:null,cur:0,n:0,root:null,hung:0,
+  /* 眼下这一问：挂枝（走到哪几层、每一层比的是哪一颗、该挂哪边）· 牌桌 · 选中 · 错过的那几张 */
+  path:[],sides:[],qi:0,z:null,zDepth:0,kind:'none',opts:null,sel:0,
+  touched:{},wrongOpt:[],
+  /* 旋转演示：只记「从哪一层挪到哪一层」，动画在层数之间插值 —— 左右一格不许动 */
+  anim:null,
+  /* 这一笔的账：挂错 · 指错 · 转错 · 跟着笨链 · 钟尽代挂 · 判废 */
+  err:0,badHang:0,pickWrong:0,turnWrong:0,naiveHit:0,autoLate:0,broken:0,brokenWhy:'',
+  /* 这一笔的指对 / 转对，与这一把（局）的扶正回数、挂枝层数 */
+  pickOk:0,turnOk:0,rotWord:0,rotAll:0,picksAll:0,
+  /* 中序抢答：要问的那几格 · 眼下第几题 · 答对几个 */
+  qns:[],qi2:0,guessOk:0,guessBad:0,guessOkAll:0,gpicks:0,quickMs:0,quick0:0,missFlag:0,skipNote:'',
+  /* 笨链对照：扶直几层 · 笨链几层 · 差价 */
+  hA:0,hN:0,gap:0,naive:null,
+  /* 家什 */
+  probeN:AV_P0.probe,ruleN:AV_P0.rule,swapN:AV_P0.swap,
+  probeUse:0,ruleUse:0,swapUse:0,probeMs:0,ruleMs:0,
+  /* 钟 */
+  step0:0,stepMs:0,lamp:0,lamp0:0,sealMs:0,
+  /* 账：收字 · 挂枝层数 · 落珠 · 一次没错趟 · 一颗不落趟 · 中序逐格合趟 · 一歪不指错趟 ·
+        转法全对趟 · 中序全对趟 · 比笨链矮两层趟 —— 封字时那一场「中序逐格不合」的格数只留作证人 */
+  words:0,hangTotal:0,beads:0,rootN:0,perfect:0,seqN:0,tagSeqBad:0,
+  pickN:0,turnN:0,quickN:0,leanN:0,
+  wrongs:0,lates:0,hes:0,swaps:0,wordOuts:0,eyeballs:0,naiveAll:0,
+  /* 清白账：一场三字每笔错处 ≤AV_ERR_CLEAN · 一笔不借家什 */
+  cleanWord:1,neatWord:1,tools:0,wordTools:0,cleanRun:0,toolRun:0,errSum:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',nags:0,nagMs:0,newBest:false,
+  helpMs:0,tagTimer:0,lit:null,spark:[]
+};
+
+/* ---- 小工具：本坊自己的发声、回话、清定时器 ----
+   这几只不许抄公共那几只：公共的 auxSay 往别人家的消息条里写字、auxTone 揣的是别人那块声卡、
+   auxT/auxKill 管的是别人那一串定时器 —— 借来用，孩子的话就落在别人家的栏里。 */
+function avTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!av.ac)av.ac=new AC();
+    const c=av.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='square';
+    n.gain.value=g===undefined?.045:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+/* 回话条就是育苗桌下那一条 .av-msg：写错了栏，孩子的话一个字也看不见 */
+function avSay(msg,color){avMsg(msg,color||'#FFE082')}
+function avT(fn,ms){const id=setTimeout(function(){
+  const i=av.timers.indexOf(id);if(i>=0)av.timers.splice(i,1);
+  if(!av.run||av.over)return;
+  try{fn()}catch(e){}
+},ms);av.timers.push(id);return id}
+function avKill(){
+  for(let i=0;i<av.timers.length;i++)clearTimeout(av.timers[i]);
+  av.timers=[];
+  if(av.rafId){cancelAnimationFrame(av.rafId);av.rafId=0}
+}
+
+/* ---------- ① 一棵会自己扶直的小树（与离线 _avnum.cjs 同一把尺，一个数都不许改）----------
+   珠子的号 = 这一笔的**起笔横坐标**；BF = 左支层数 − 右支层数；|BF|≥2 就是站不住了。
+   挂枝走的路与笨链（普通二叉树）天生是同一条 —— 这一坊吃的不是「往哪挂」，是「挂完谁来扶」。 */
+function avMk(i,key){return {i:i,key:key,L:null,R:null,h:1}}
+function avHh(t){return t?t.h:0}
+function avUp(t){t.h=1+Math.max(avHh(t.L),avHh(t.R));return t.h}
+function avBf(t){return avHh(t.L)-avHh(t.R)}
+function avRotL(x){const y=x.R;x.R=y.L;y.L=x;avUp(x);avUp(y);return y}
+function avRotR(y){const x=y.L;y.L=x.R;x.R=y;avUp(y);avUp(x);return x}
+/* 中序 = 从左数过去那一排珠子的笔号 —— 这一坊的定海神针：转来转去这一排一个字不变 */
+function avMid(t,out){if(!t)return out;avMid(t.L,out);out.push(t.i);avMid(t.R,out);return out}
+function avHgt(t){return t?1+Math.max(avHgt(t.L),avHgt(t.R)):0}
+function avFind(t,i){if(!t)return null;if(t.i===i)return t;const a=avFind(t.L,i);return a||avFind(t.R,i)}
+function avFix(t){if(!t)return null;avFix(t.L);avFix(t.R);avUp(t);return t}
+function avBal(t){if(!t)return true;if(Math.abs(avBf(t))>1)return false;return avBal(t.L)&&avBal(t.R)}
+function avRep(t,old,neu){
+  if(t===old)return neu;
+  if(t.L){if(t.L===old){t.L=neu;return t}t.L=avRep(t.L,old,neu)}
+  if(t.R){if(t.R===old){t.R=neu;return t}t.R=avRep(t.R,old,neu)}
+  return t;
+}
+/* 对某一颗做「该做的转法」，祖先指针接回去，层数自底向上重算。
+   转法用不上（该支没人）就原样不动 —— 树还歪着，孩子那一答就当场记成错处，不许替他擦干净。 */
+function avReRot(root,zNode,kind){
+  let r=root;
+  if(kind==='R'){if(!zNode.L)return r;r=avRep(r,zNode,avRotR(zNode))}
+  else if(kind==='L'){if(!zNode.R)return r;r=avRep(r,zNode,avRotL(zNode))}
+  else if(kind==='LR'){if(!zNode.L||!zNode.L.R)return r;zNode.L=avRotL(zNode.L);r=avRep(r,zNode,avRotR(zNode))}
+  else{if(!zNode.R||!zNode.R.L)return r;zNode.R=avRotR(zNode.R);r=avRep(r,zNode,avRotL(zNode))}
+  return avFix(r);
+}
+/* 手一：按笔顺挂进会自己扶直的树。ov={i,kind} 是「第 i 笔那一回孩子选的转法」——
+   试答只走到这一步就停：往后挂还有别的旋转替它擦屁股，账就白了（离线扫描就靠这一眼定唯一正解）。*/
+function avIns(keys,ov){
+  const steps=[];let root=null;
+  for(let i=0;i<keys.length;i++){
+    const key=keys[i],nd=avMk(i,key);
+    const path=[],side=[];
+    if(!root){root=nd;steps.push({i:i,path:[],side:[],z:null,zDepth:0,kind:'none',cand:[]});continue}
+    let cur=root,par=null,go=0;
+    while(cur){
+      path.push(cur.i);
+      go=key<cur.key?-1:1;
+      side.push(go);
+      if(go<0){par=cur;cur=cur.L}else{par=cur;cur=cur.R}
+    }
+    if(side[side.length-1]<0)par.L=nd;else par.R=nd;
+    avUp(nd);
+    for(let j=path.length-1;j>=0;j--)avUp(avFind(root,path[j]));
+    /* 沿刚走过的那条路从下往上数，第一个站不住的就是要扶的那一颗 */
+    let z=null,zChild=null;
+    for(let j=path.length-1;j>=0;j--){
+      const node=avFind(root,path[j]);
+      if(Math.abs(avBf(node))>=2){z=node.i;zChild=node;break}
+    }
+    let kind='none';
+    if(z!==null){
+      if(avBf(zChild)>0){const c=zChild.L;kind=avBf(c)>=0?'R':'LR'}
+      else{const c=zChild.R;kind=avBf(c)<=0?'L':'RL'}
+      if(ov&&ov.i===i)kind=ov.kind;
+      if(kind!=='none')root=avReRot(root,zChild,kind);
+    }else if(ov&&ov.i===i&&ov.kind!=='none')kind=ov.kind;
+    steps.push({i:i,path:path.slice(),side:side,z:z,
+      zDepth:z===null?0:(path.lastIndexOf(z)+1),kind:kind,cand:path.slice()});
+    if(ov&&ov.i===i)break;
+  }
+  return {root:root,steps:steps};
+}
+/* 手二：笨链 —— 同一条笔顺，一颗也不转。depth[i] 记下每一颗歪到第几层，右下的影子就照这本账画 */
+function avBsIns(keys){
+  let root=null;
+  for(let i=0;i<keys.length;i++){
+    const nd=avMk(i,keys[i]);
+    if(!root){root=nd;continue}
+    let cur=root;
+    while(true){
+      if(keys[i]<cur.key){if(cur.L)cur=cur.L;else{cur.L=nd;break}}
+      else{if(cur.R)cur=cur.R;else{cur.R=nd;break}}
+    }
+  }
+  return root;
+}
+function avDepths(root){
+  const out=new Array(avNall(root));
+  (function walk(t,d){if(!t)return;out[t.i]=d;walk(t.L,d+1);walk(t.R,d+1)})(root,1);
+  return out;
+}
+function avNall(t){let c=0;(function w(x){if(!x)return;c++;w(x.L);w(x.R)})(t);return c}
+/* 站不住的那些颗（笨链的账本，也是「指歪」那一问的靶子）：逐颗量 |BF| */
+function avBfAll(root){
+  const out={};
+  (function w(t){if(!t)return;out[t.i]=avBf(t);w(t.L);w(t.R)})(root);
+  return out;
+}
+/* ---------- ② 五种答法：四种转法 + 「不用转」，只有一张真把树扶住 ----------
+   旋转天生不打乱中序（邻居一个不变），所以「转完还歪着」是唯一的判据 ——
+   不能拿「队伍被搞乱」当错处，那一条永远不会红（离线扫描就是拿这一把尺定「唯一正解」的）。*/
+const AV_KINDS=['R','L','LR','RL','none'];
+function avFixes(xs,i,kind){return avBal(avIns(xs,{i:i,kind:kind}).root)}
+function avTurnOpts(xs,i,trueKind){
+  let good=0;const list=[];
+  for(let t=0;t<AV_KINDS.length;t++){
+    const k=AV_KINDS[t],ok=avFixes(xs,i,k);
+    if(ok)good++;
+    list.push({kind:k,ok:ok});
+  }
+  if(good!==1)return null;                      /* 五种里不止一张扶得住：这一问不摆上桌 */
+  const four=list.filter(function(o){return o.kind!=='none'});   /* 桌上只放四种转法（树已当场歪着，「不用转」那一张白给）*/
+  for(let i2=four.length-1;i2>0;i2--){
+    const j2=Math.floor(Math.random()*(i2+1));
+    const tmp=four[i2];four[i2]=four[j2];four[j2]=tmp;
+  }
+  for(let i2=0;i2<four.length;i2++)four[i2].pos=i2;
+  const right=four.findIndex(function(o){return o.kind===trueKind});
+  if(right<0)return null;                        /* 正解是「不用转」：这一趟根本不该问转法 */
+  return {list:four,right:right,good:good,ph:'turn'};
+}
+/* 「挂左边还是右边」：一层的比法，两张牌。比的是两个起笔点的左右 —— 准线画在参照那颗上 */
+function avHangOpts(ref,mine){
+  const list=[{side:-1,ref:ref,pos:0},{side:1,ref:ref,pos:1}];
+  return {list:list,right:mine<0?0:1,ref:ref,ph:'hang'};
+}
+/* ---------- ③' 中序抢答那四张牌：从左数第 k 颗是第几笔 ----------
+   正解是那一站的珠子，三张幌子全从孩子最容易混的那几颗里挑：
+   左边邻座、右边邻座、以及「把第 k 格当成第 k 笔」那一记（这一坊问的就是这两套序会不会混）。*/
+function avQuickOpts(rec,slot){
+  const right=rec.order[slot];
+  const out=[right];
+  const push=function(x){
+    if(x===undefined||x===null)return;
+    if(x===right||out.indexOf(x)>=0)return;
+    if(out.length<4)out.push(x);
+  };
+  push(rec.order[slot-1]);
+  push(rec.order[slot+1]);
+  push(slot);                       /* 「第 k 笔」本身：两套序里最容易抓错的那一张 */
+  for(let k=0;k<rec.n&&out.length<4;k++)push(k);
+  if(out.length<4)return null;
+  const list=[];
+  for(let t=0;t<out.length;t++)list.push({bead:out[t]});
+  for(let t=list.length-1;t>0;t--){
+    const j=Math.floor(Math.random()*(t+1));
+    const tmp=list[t];list[t]=list[j];list[j]=tmp;
+  }
+  for(let t=0;t<list.length;t++)list[t].pos=t;
+  const right2=list.findIndex(function(o){return o.bead===right});
+  return {list:list,right:right2,bead:right,ph:'quick'};
+}
+/* ---------- ③ 「歪的是哪一颗」四张牌：正解一颗 · 两颗站得住的 · 一张「都站得住」 ----------
+   那两张幌子必须真站得住（孩子数层数时一眼看过去像歪的就是它们）：
+   刚挂上那颗、它的爹、歪那颗的另一边支 —— 挨着取两颗，凑不齐才往根上找。
+   「都站得住」是笨链那一头的立场：笨链一辈子不转，在它眼里没有珠子站不住。跟着它选就是本坊的靶子。
+   幌子还要再过一道「这颗真站得住」：一次插入能让路上两三颗同时差到两层（AVL 天生如此），
+   除了最深那颗（要扶的）以外，其余一起站不住的也不许摆上桌 —— 否则桌上两颗都歪，
+   孩子从下往上数对了层级却指错张，这一问就没了唯一正解。*/
+function avPickOpts(rec,i,path,z,zChild,root){
+  const out=[z];
+  const lean=function(x){const nd=avFind(root,x);return !!nd&&Math.abs(avBf(nd))>=2};
+  const push=function(x){
+    if(x===null||x===undefined)return;
+    if(x!==z&&lean(x))return;                     /* 歪着的珠子只能当答案，不能当幌子 */
+    if(out.indexOf(x)<0&&out.length<3)out.push(x);
+  };
+  push(i);                                       /* 刚挂上的这一颗（最深，看着最刺眼）*/
+  push(path[path.length-1]);                     /* 它的爹（跟歪的那颗常常是同一颗，就跳过）*/
+  if(zChild){push(avBf(zChild)>0?(zChild.R?zChild.R.i:null):(zChild.L?zChild.L.i:null))}
+  push(0);                                       /* 最早挂上的那一颗（转来转去它常常还在顶上）*/
+  /* 幌子只准从**已经挂上树**的那几颗里找（还没上台的笔号摆上桌，孩子一眼就划掉了）*/
+  if(out.length<3)for(let k=0;k<=i&&out.length<3;k++)push(k);
+  if(out.length<3)return null;
+  const list=[];
+  for(let t=0;t<out.length;t++)list.push({kind:'bead',bead:out[t]});
+  list.push({kind:'none'});                      /* 「都站得住」—— 笨链的立场 */
+  for(let t=list.length-1;t>0;t--){
+    const j=Math.floor(Math.random()*(t+1));
+    const tmp=list[t];list[t]=list[j];list[j]=tmp;
+  }
+  for(let t=0;t<list.length;t++)list[t].pos=t;
+  const right=list.findIndex(function(o){return o.kind==='bead'&&o.bead===z});
+  return {list:list,right:right,ph:'pick'};
+}
+/* ---------- ④ 口径闸门：这一个字配不配上育苗桌（与 _avnum.cjs 逐条一样）---------- */
+function avAuditWord(ch,j){
+  const out={ok:0,why:''};
+  const meds=j.medians,sp=j.strokes;
+  if(!meds||!sp||meds.length!==sp.length)return {ok:0,why:'笔数不合'};
+  const n=meds.length;
+  if(n<AV_NMIN||n>AV_NMAX)return {ok:0,why:'笔数带外'};
+  const xs=[];
+  for(let i=0;i<n;i++){
+    const m=meds[i];
+    if(!m||m.length<2||!isFinite(m[0][0]))return {ok:0,why:'起笔读不出'};
+    xs.push(Math.round(m[0][0]));
+  }
+  const sorted=xs.slice().sort(function(a,b){return a-b});
+  for(let i=1;i<n;i++)if(sorted[i]===sorted[i-1])return {ok:0,why:'两颗起笔正正重合'};
+  const R=avIns(xs);
+  /* 读得清闸门：孩子这一局真被问到的那几次左右比较，每一回两点至少隔 AV_READ ——
+     挨在一起的两笔只要没在同一问里比过，就不碍事（挂在树的别支上）*/
+  for(let si=0;si<R.steps.length;si++){
+    const s=R.steps[si];
+    for(let q=0;q<s.path.length;q++){
+      const d=Math.abs(xs[s.i]-xs[s.path[q]]);
+      if(d<AV_READ)return {ok:0,why:'挂枝里有一回左右差不到 '+AV_READ+'，眼睛分不出'};
+    }
+  }
+  let rot=0,dbl=0,sgl=0,norot=0,qs=0,deep=0,sideL=0,sideR=0;
+  const kd={};
+  for(let si=0;si<R.steps.length;si++){
+    const s=R.steps[si];
+    /* 根那一颗是字上台那一眼自己落下的（avSetWord→avAttach），孩子从没被问过它转不转：
+       把它算进「不用转那一面」，这道闸门就永远靠一颗没人玩过的珠子放行 */
+    if(s.kind==='none'){if(si>0)norot++}else{rot++;kd[s.kind]=1}
+    if(s.kind==='LR'||s.kind==='RL')dbl++;
+    if(s.kind==='L'||s.kind==='R')sgl++;
+    qs+=s.side.length;
+    if(s.side.length>deep)deep=s.side.length;
+    for(let q=0;q<s.side.length;q++){if(s.side[q]<0)sideL++;else sideR++}
+  }
+  const kinds=Object.keys(kd).length;
+  if(rot<1)return {ok:0,why:'全程一颗不歪（要转那一面没露过）'};
+  if(norot<1)return {ok:0,why:'每挂一颗都要转（不转那一面没露过）'};
+  if(deep>AV_DEEP)return {ok:0,why:'挂枝问到第 '+deep+' 层太深'};
+  if(sideL<1||sideR<1)return {ok:0,why:'挂枝只往一边挂（另一边没露过）'};
+  if(kinds<AV_KIND_MIN)return {ok:0,why:'转法只有 '+kinds+' 种（「怎么转」成了白捡）'};
+  /* 每一回旋转的「怎么转」都得有唯一正解：五种答法挨个转一遍，扶住树的只准一张 */
+  for(let si=0;si<R.steps.length;si++){
+    const s=R.steps[si];
+    if(s.kind==='none')continue;
+    let good=0,mine=0;
+    for(let t=0;t<AV_KINDS.length;t++){
+      const ok2=avFixes(xs,s.i,AV_KINDS[t]);
+      if(ok2)good++;
+      if(AV_KINDS[t]===s.kind)mine=ok2?1:0;
+    }
+    if(good!==1||!mine)return {ok:0,why:'第 '+(s.i+1)+' 步的转法凑不出唯一正解'};
+  }
+  /* 每挂一颗：路上一起差到两层的也许有好几颗，但「从下往上第一个」（最深那颗）必须正好是账上要扶的那一颗 ——
+     指歪那一问的正解由它定，桌上那两张幌子也只能从站得住的珠子里挑（见 avPickOpts 与本段抬头）。 */
+  for(let si=0;si<R.steps.length;si++){
+    const s=R.steps[si];
+    if(s.kind==='none')continue;
+    const t=avIns(xs.slice(0,s.i+1),{i:s.i,kind:'none'}).root;
+    let deep=-1,unD=-1;
+    (function w(nd,d){if(!nd)return;
+      if(Math.abs(avBf(nd))>=2&&d>unD){unD=d;deep=nd.i}
+      w(nd.L,d+1);w(nd.R,d+1)})(t,1);
+    if(deep!==s.z)return {ok:0,why:'第 '+(s.i+1)+' 笔挂下去，从下往上第一个站不住的不是账上那颗'};
+  }
+  if(qs<AV_Q_MIN)return {ok:0,why:'挂枝问 '+qs+' 局太短'};
+  const naive=avBsIns(xs);
+  const hA=avHgt(R.root),hN=avHgt(naive);
+  if(hN-hA<AV_DIFF_MIN)return {ok:0,why:'笨链只高 '+(hN-hA)+' 层太薄（扶与不扶差价要数得出）'};
+  /* 旋转保中序：这一坊的定海神针 —— 转完之后左右邻居一个不许变 */
+  const inA=avMid(R.root,[]);
+  const order=[];
+  for(let i=0;i<n;i++)order.push(i);
+  order.sort(function(a,b){return xs[a]-xs[b]});
+  for(let i=0;i<n;i++)if(inA[i]!==order[i])return {ok:0,why:'中序对不上起笔排队（树写歪了）'};
+  out.ok=1;out.ch=ch;out.n=n;out.xs=xs;out.order=order;
+  out.steps=R.steps;out.rot=rot;out.sgl=sgl;out.dbl=dbl;out.norot=norot;
+  out.qs=qs;out.deep=deep;out.kinds=kinds;out.sideL=sideL;out.sideR=sideR;
+  out.hA=hA;out.hN=hN;out.gap=hN-hA;
+  out.naive=naive;out.ndepth=avDepths(naive);out.bfA=avBfAll(R.root);
+  out.medis=meds;out.strokes=sp;
+  return out;
+}
+/* ---------- ⑤ 字池：一场一套字 ----------
+   AV_LEV 那九串由 _avnum.cjs 拿这一模一样的闸门离线数过（1372 字过闸 120 字，
+   每一步转法唯一、笨链至少高两层），上台前当场再核一遍 —— 数据换了、口径变了，这一眼就把它挡在池外。
+   池子只准从本串里挑：场号那一档说的是「这一趟挂几层、转几回」的难度，串外的字一旦上台，
+   屏上那句「第 4 场起珠旁不写 BF 数字」就成了空话（段 S 逐场盯着池内每一个字的步数）。
+   本串过闸的字凑不齐 AV_POOL_MIN 个（数据换了、字库缩了），才往全表九串补 ——
+   补的仍然是这张表里的字，绝不是字库里随便一个字。 */
+function avMake(ch,j){const r=avAuditWord(ch,j);return r.ok?r:null}
+async function avBuildPool(keep,lo,hi){
+  const g=av.gen,stale=function(){return g!==av.gen||!av.run||av.over};
+  const lv=av.lv||1;
+  const enough=function(){
+    if(!isFinite(lo))return av.pool.length>=AV_POOL_WANT;
+    let c=0;
+    for(let i=0;i<av.pool.length;i++)if(av.pool[i].n>=lo&&av.pool[i].n<=hi)c++;
+    return c>=6||av.pool.length>=40;
+  };
+  av.miss=(localStorage.getItem('hz_av_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<AV_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  const rest=[];                                 /* 全表里本串之外的字：只在本串不齐时上台 */
+  for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,AV_LEV[L].split(''));
+  const scan=async function(list){
+    for(let kk=0;kk<list.length&&!enough();kk+=12){
+      const rs=await Promise.all(list.slice(kk,kk+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(stale())return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[kk+i];
+        if(!rs[i]||!rs[i].medians)continue;
+        const rec=avMake(ch,rs[i]);
+        if(!rec)continue;
+        if(isFinite(lo)&&(rec.n<lo||rec.n>hi))continue;
+        if(!av.pool.some(function(p){return p.ch===rec.ch}))av.pool.push(rec);
+      }
+    }
+  };
+  push(auxShuf(av.miss.slice(0,6).filter(function(c){return (AV_LEV[lv]||'').indexOf(c)>=0})));
+  push(auxShuf(avLetters(lv).split('')));
+  if(!keep)av.pool=[];
+  await scan(want);
+  if(av.pool.length<AV_POOL_MIN){
+    const rescue=[];
+    for(let i=0;i<rest.length&&rescue.length<AV_POOL_SCAN;i++){
+      const c=rest[i];
+      if(c&&want.indexOf(c)<0)rescue.push(c);
+    }
+    await scan(auxShuf(rescue));
+  }
+  av.poolLv=lv;
+  return av.pool.length>=AV_POOL_MIN;
+}
+function avFresh(ch){
+  const bk=localStorage.getItem('hz_av_book')||'';
+  return bk.indexOf(ch+':')<0?1:0;
+}
+
+/* 下面九串字（一场一串）由 _avnum.cjs 离线数出来：全站 1372 字过闸 120 字，
+   按「笔数 → 旋转回数（双旋加权）→ 笨链差价」从易到难排，然后均分九场 ——
+   这一个次序把挂几层、转几回、差价几层一起称出来了：第 1 场的树三五颗就挂完，
+   第 9 场的字要挂到十颗、扶直三四回。
+   串外的字在这一场就是过不了闸的字（当场 avAuditWord 再核一遍才准上台）。*/
+const AV_LEV={
+  1:"对召伙再妇托扫米纤协回曲匠吃",
+  2:"忙灰芬芳附找诉邮吩块坛扶村",
+  3:"角犹估抗乱亩妙妨批抄纯纱苍",
+  4:"听吨沃苦拨或牧知姆抬拌拥线绊",
+  5:"杭呻咐孤抱抵拘质岭鸣刮怯泡",
+  6:"狐狗竖趴徊施绞统挠拭拱是括",
+  7:"顺虹蚁浊哑洲骄城拯院绒挑挪残",
+  8:"络狮重莺益埋烟烤盏唤捡热铃",
+  9:"验倾哦哲站挨砸唉栖诺俺继鸳"
+};
+function avLetters(L){return AV_LEV[L]||''}
+/* 笨链那本账怎么说（全站只这一处措辞，别处都从这里取）：
+   过闸的字差价天生 ≥AV_DIFF_MIN 层（闸门里 hN−hA<AV_DIFF_MIN 就退回库外），
+   所以这一句只会说「多几层」，不会说出一句「多 0 层」的空话 */
+function avNaiveSay(rec){
+  if(!rec)return '';
+  return '笨链 '+rec.hN+' 层 · 比这棵树多 '+rec.gap+' 层';
+}
+
+/* ---------- 桌面：上半那棵树 · 左下米字格（准线比左右）· 右下笨链与层数账 ----------
+   笔形路径都在 1024 空间、y 向上（与全站一致，jtDirOf 那句注释就是出处），
+   所以换上屏幕坐标要翻一次 y：X=x·sc+ox，Y=(1024−y)·sc+oy。
+   整张 1024 方格等比缩进米字格 —— 不按笔画外接框缩放，字才不会被拉扁。
+   珠子只有两处会动：**横着的位置由中序（起笔谁更左）定死，竖着的层数由树形定**：
+   挂一颗珠只让珠子往左右挪一格（后面的人让位），转一下只让珠子往上下挪一层 —— 这一坊的全部道理就在这两句里。*/
+const AV_BOX=1024;
+function avView(){
+  const sc=(AV_GS-2*AV_PAD)/AV_BOX;
+  return {sc:sc,ox:AV_GX+(AV_GS-AV_BOX*sc)/2,oy:AV_GY+(AV_GS-AV_BOX*sc)/2};
+}
+function avX(x,v){return v.ox+x*v.sc}
+function avY(y,v){return v.oy+(AV_BOX-y)*v.sc}
+/* 树带里的一颗珠摆在哪：横 = 中序第 slot 格（一辈子由起笔左右定），竖 = 第 depth 层 */
+function avSlotX(slot,n){return AV_TX0+(AV_TX1-AV_TX0)*((slot+0.5)/n)}
+function avDepthY(d){return AV_TY+(d-1)*AV_ROW}
+function avBadge(x,y,txt,bg,fg){
+  const c=avCv.getContext('2d');
+  c.font='bold 10px system-ui';
+  const w=Math.max(14,c.measureText(txt).width+6);
+  c.fillStyle=bg;c.strokeStyle='rgba(0,0,0,.55)';c.lineWidth=1;
+  c.beginPath();
+  if(c.roundRect)c.roundRect(x-w/2,y-8,w,15,7);else c.rect(x-w/2,y-8,w,15);
+  c.fill();c.stroke();
+  c.fillStyle=fg;c.textAlign='center';c.textBaseline='middle';
+  c.fillText(txt,x,y+.5);
+  c.textAlign='left';c.textBaseline='alphabetic';
+}
+function avStrokeMid(rec,i){
+  /* 挂上一颗时火花落点：这一笔中线的中点（1024 空间 → 屏幕）*/
+  const m=rec.medis[i];
+  const v=avView();
+  const p=m[Math.floor(m.length/2)];
+  return [avX(p[0],v),avY(p[1],v)];
+}
+/* 眼下树里每一颗的（中序格, 层数）：动画那一段把层数插值，中序格一个都不许变 */
+function avPlace(root,n,anim){
+  const put={};
+  (function walk(t,slot,d){
+    if(!t)return slot;
+    slot=walk(t.L,slot,d+1);
+    let dd=d;
+    if(anim){
+      const p=Math.min(1,Math.max(0,(av.t-anim.t0)/anim.dur));
+      const a=anim.pre[t.i],b=anim.post[t.i];
+      dd=(a===undefined||b===undefined)?d:(a+(b-a)*p);
+    }
+    put[t.i]={slot:slot,y:avDepthY(dd),d:d};
+    slot=walk(t.R,slot+1,d+1);
+    return slot;
+  })(root,0,1);
+  return put;
+}
+/* ---------- 上半：那棵树 ---------- */
+function avDrawTree(c){
+  const rec=av.rec,n=rec.n;
+  const root=av.root;
+  const anim=(av.anim&&av.anim.t1>av.t)?av.anim:null;
+  const put=avPlace(root,n,anim);
+  /* 中序队伍：底下一条横轴，格子里写「从左数第几颗」—— 这一排珠子一辈子只按起笔左右排 */
+  c.save();
+  c.strokeStyle='rgba(255,255,255,.16)';c.lineWidth=1;
+  const ay=AV_TY+3*AV_ROW+22;
+  c.beginPath();c.moveTo(AV_TX0-2,ay);c.lineTo(AV_TX1+2,ay);c.stroke();
+  c.font='9px system-ui';c.fillStyle='#607D8B';c.textAlign='center';
+  for(let j=0;j<n;j++){
+    const x=avSlotX(j,n);
+    c.fillText(''+(j+1),x,ay+11);
+  }
+  c.textAlign='left';c.font='9px system-ui';c.fillStyle='#546E7A';
+  c.fillText('中序（从左数）· 起笔谁更靠左谁在左边',AV_TX0,ay+22);
+  c.restore();
+  if(!root)return;
+  /* 枝：一根一条，歪的那一颗身上那两根描红。
+     歪的那一颗只在「还等着人扶」的那几段算数：av.z 要到下一颗挂上才改写、av.anim 也只有换字才清空，
+     拿它们自己当证人，就把扶住那颗一路描红到底（树明明站直了，屏上还当没人扶）。 */
+  const z=(av.phase==='pick'||av.phase==='turn'||anim)?av.z:null;
+  (function edges(t){
+    if(!t)return;
+    const p=put[t.i];
+    for(const kid of [t.L,t.R]){
+      if(!kid)continue;
+      const q=put[kid.i];
+      c.strokeStyle=(t.i===z||kid.i===z)?'rgba(255,82,82,.85)':'rgba(160,190,205,.5)';
+      c.lineWidth=(t.i===z||kid.i===z)?2.4:1.6;
+      c.beginPath();c.moveTo(p.x||avSlotX(p.slot,n),p.y);c.lineTo(q.x||avSlotX(q.slot,n),q.y);c.stroke();
+      edges(kid);
+    }
+  })(root);
+  /* 珠：一颗一笔。刚挂上的那颗发金光，歪的那颗描红圈，眼下正比着的那颗描青圈 */
+  for(const id in put){
+    const i=+id,p=put[i];
+    const x=avSlotX(p.slot,n);p.x=x;
+    const isNew=(av.hung>0&&i===av.hung-1);
+    const isZ=(z===i);
+    const beat=1+.06*Math.sin(av.t/170);
+    c.beginPath();c.arc(x,p.y,AV_NR*(isZ?beat:1),0,6.2832);
+    c.fillStyle=isZ?'rgba(255,82,82,.92)':(isNew?'rgba(255,213,79,.95)':'rgba(79,195,247,.86)');
+    c.fill();
+    c.strokeStyle='rgba(0,0,0,.5)';c.lineWidth=1;c.stroke();
+    c.fillStyle=isZ||isNew?'#10161A':'#0B1418';
+    c.font='bold 12px system-ui';c.textAlign='center';c.textBaseline='middle';
+    c.fillText(''+(i+1),x,p.y+.5);
+    c.textAlign='left';c.textBaseline='alphabetic';
+    /* BF 数字：第 4 场起帘子收了，✨ 看层那一口气里还写 */
+    if(!avNoTell(av.lv)||av.probeMs>av.t){
+      const b=avBf(avFind(root,i));
+      c.font='bold 9px system-ui';c.textAlign='center';
+      c.fillStyle=Math.abs(b)>=2?'#FF5252':(b!==0?'#FFD54F':'#80CBC4');
+      c.fillText((b>0?'+':'')+b,x,p.y-AV_NR-5);
+      c.textAlign='left';
+    }
+  }
+  /* 眼下这一颗还没上台：悬在自己那一格顶上，虚线垂到比它左右的那一颗 */
+  if(av.phase==='hang'&&av.opts){
+    const slot=avSlotOf(rec,av.cur);
+    /* 悬着的那一颗：它那一格是空的（中序格一人一格），所以压在第一排的高度上也不与谁撞车；
+       一律夹进画布之内 —— 珠子裁一半，孩子就看不出「这一颗还没上台」*/
+    const gx=avSlotX(slot,n),gy=Math.max(AV_NR+2,AV_TY-AV_ROW+8);
+    c.save();
+    c.setLineDash([3,3]);c.strokeStyle='rgba(255,255,255,.3)';c.lineWidth=1.4;
+    c.beginPath();c.arc(gx,gy,AV_NR,0,6.2832);c.stroke();
+    c.setLineDash([]);
+    c.fillStyle='rgba(255,255,255,.1)';c.fill();
+    c.font='bold 11px system-ui';c.textAlign='center';c.fillStyle='#CFD8DC';
+    c.fillText(''+(av.cur+1),gx,gy+4);
+    const ref=av.opts.ref;
+    if(ref!==null&&ref!==undefined&&put[ref]){
+      c.setLineDash([4,4]);c.strokeStyle='rgba(0,229,255,.5)';
+      c.beginPath();c.moveTo(gx,gy+AV_NR);c.lineTo(put[ref].x,put[ref].y-AV_NR);c.stroke();
+    }
+    c.textAlign='left';c.restore();
+  }
+}
+/* 这一颗挂上去会站在中序第几格（起笔排在第几位）：影子上台的位置，不是答案 */
+function avSlotOf(rec,i){
+  let s=0;
+  for(let t=0;t<rec.n;t++)if(t!==i&&rec.xs[t]<rec.xs[i])s++;
+  return s;
+}
+/* ---------- 左下：米字格与那一条准线 ---------- */
+function avDrawGrid(c){
+  const rec=av.rec,v=avView();
+  c.save();
+  c.strokeStyle='rgba(255,255,255,.09)';c.lineWidth=1;
+  c.strokeRect(avX(0,v),avY(AV_BOX,v),AV_BOX*v.sc,AV_BOX*v.sc);
+  c.setLineDash([4,5]);c.strokeStyle='rgba(255,255,255,.07)';
+  c.beginPath();
+  c.moveTo(avX(512,v),avY(AV_BOX,v));c.lineTo(avX(512,v),avY(0,v));
+  c.moveTo(avX(0,v),avY(512,v));c.lineTo(avX(AV_BOX,v),avY(512,v));
+  c.moveTo(avX(0,v),avY(AV_BOX,v));c.lineTo(avX(AV_BOX,v),avY(0,v));
+  c.moveTo(avX(0,v),avY(0,v));c.lineTo(avX(AV_BOX,v),avY(AV_BOX,v));
+  c.stroke();c.setLineDash([]);
+  /* 一笔一颗珠：挂到第几颗，格上就亮第几笔（挂序 = 笔序，第一笔就是根 —— 与算珠坊那头相反）*/
+  c.save();
+  c.translate(v.ox,v.oy+AV_BOX*v.sc);c.scale(v.sc,-v.sc);
+  c.lineCap='round';c.lineJoin='round';
+  for(let i=0;i<rec.n;i++){
+    if(!av.lit||!av.lit[i])continue;
+    try{
+      c.fillStyle=i===av.hung-1?'rgba(255,240,170,.96)':'rgba(255,213,79,.8)';
+      c.fill(new Path2D(rec.strokes[i]));
+    }catch(e){}
+  }
+  if(av.phase==='seal'){
+    c.fillStyle='rgba(171,178,176,.42)';
+    for(let i=0;i<rec.n;i++){
+      if(av.lit[i])continue;
+      try{c.fill(new Path2D(rec.strokes[i]))}catch(e){}
+    }
+  }
+  c.restore();
+  /* 起笔点：挂上去的每颗都留一个点；眼下这一颗大红点，比它左右的那一颗青点 */
+  for(let i=0;i<rec.n;i++){
+    if(!av.lit||!av.lit[i])continue;
+    const m=rec.medis[i],p=m[0];
+    const x=avX(p[0],v),y=avY(p[1],v);
+    c.beginPath();c.arc(x,y,i===av.hung-1?4.6:2.6,0,6.2832);
+    c.fillStyle=i===av.hung-1?'rgba(255,82,82,.95)':'rgba(255,255,255,.6)';c.fill();
+  }
+  if(av.cur<rec.n&&av.phase==='hang'){
+    const m=rec.medis[av.cur],p=m[0];
+    const x=avX(p[0],v),y=avY(p[1],v);
+    c.beginPath();c.arc(x,y,5.6,0,6.2832);
+    c.fillStyle='rgba(255,245,157,.98)';c.fill();
+    c.strokeStyle='rgba(0,0,0,.6)';c.lineWidth=1;c.stroke();
+    c.font='bold 9px system-ui';c.fillStyle='#FFF59D';
+    c.fillText(''+(av.cur+1),x+7,y-6);
+    const ref=av.opts?av.opts.ref:null;
+    if(ref!==null&&ref!==undefined){
+      const q=rec.medis[ref][0],qx=avX(q[0],v);
+      c.beginPath();c.arc(qx,avY(q[1],v),5,0,6.2832);
+      c.fillStyle='rgba(0,229,255,.9)';c.fill();
+      c.font='bold 9px system-ui';c.fillStyle='#84FFFF';
+      c.fillText(''+(ref+1),qx+7,avY(q[1],v)-6);
+      /* 准线：第 6 场起收走，🧭 那一眼还画（画在参照那一颗的起笔横坐标上）*/
+      if(!avDim(av.lv)||av.ruleMs>av.t){
+        c.setLineDash([3,4]);c.strokeStyle='rgba(0,229,255,.55)';c.lineWidth=1.2;
+        c.beginPath();c.moveTo(qx,AV_GY+2);c.lineTo(qx,AV_GY+AV_GS-2);c.stroke();
+        c.setLineDash([]);
+      }
+    }
+  }
+  c.restore();
+}
+/* ---------- 右下：笨链的影子与层数账 ---------- */
+function avDrawLedger(c){
+  const rec=av.rec;
+  c.save();
+  c.fillStyle='rgba(255,255,255,.045)';
+  c.fillRect(AV_LX,AV_LY,AV_LW,AV_LH);
+  c.strokeStyle='rgba(255,255,255,.14)';c.lineWidth=1;
+  c.strokeRect(AV_LX+.5,AV_LY+.5,AV_LW-1,AV_LH-1);
+  c.font='bold 11px system-ui';c.fillStyle='#FFE082';
+  c.fillText(avDim(av.lv)?'🪵 账收起来了':'🪵 层数账',AV_LX+6,AV_LY+13);
+  /* 影子：那一颗也不转的笨链 —— 照它自己的枝画，一行一层，高几层一眼数得出 */
+  const sx=AV_LX+16,sh=Math.min(12,(AV_LH-34)/Math.max(1,rec.hN));
+  if(!avDim(av.lv)){
+    const pts={};
+    (function walk(t,d,xo){
+      if(!t)return;
+      pts[t.i]={x:sx+xo,y:AV_LY+24+(d-1)*sh+4};
+      walk(t.L,d+1,xo-7);walk(t.R,d+1,xo+7);
+    })(rec.naive,1,0);
+    c.strokeStyle='rgba(183,28,28,.55)';c.lineWidth=1.1;
+    (function edges(t){
+      if(!t||t.i>=av.hung)return;
+      for(const kid of [t.L,t.R]){
+        if(!kid||kid.i>=av.hung)continue;        /* 还没挂上的那颗不许先出线：影子也只长到眼下这一颗 */
+        c.beginPath();c.moveTo(pts[t.i].x,pts[t.i].y);c.lineTo(pts[kid.i].x,pts[kid.i].y);c.stroke();
+        edges(kid);
+      }
+    })(rec.naive);
+    for(let i=0;i<av.hung;i++){
+      const p=pts[i];
+      if(!p)continue;
+      c.beginPath();c.arc(p.x,p.y,i===av.hung-1?3.4:2.6,0,6.2832);
+      c.fillStyle=i===av.hung-1?'rgba(255,138,101,.95)':'rgba(183,28,28,.75)';c.fill();
+    }
+    c.font='9px system-ui';c.fillStyle='#B71C1C';
+    c.fillText('笨链 '+rec.hN+' 层',AV_LX+2,AV_LY+AV_LH-4);
+  }
+  /* 一本一行：第几笔 · 挂哪边 · 歪在第几笔 · 怎么转 */
+  const x0=AV_LX+(avDim(av.lv)?6:62),yTop=AV_LY+24,rowH=15;
+  const rows=rec.steps.slice(0,av.hung);
+  const from=Math.max(0,rows.length-Math.floor((AV_LH-34)/rowH));
+  c.font='bold 9px system-ui';
+  for(let kk=from;kk<rows.length;kk++){
+    const s=rows[kk],y=yTop+(kk-from)*rowH+6;
+    c.fillStyle='rgba(255,255,255,.05)';
+    c.fillRect(x0,y-7,AV_LX+AV_LW-x0-6,rowH-2);
+    c.fillStyle='#B0BEC5';
+    c.fillText((kk+1)+'·'+s.side.map(function(x){return x<0?'左':'右'}).join(''),x0+3,y);
+    if(avDim(av.lv)){c.fillStyle='#546E7A';c.fillText('账收了',x0+72,y);continue}
+    if(s.kind==='none'){c.fillStyle='#78909C';c.fillText('站得住',x0+72,y)}
+    else{
+      c.fillStyle='#FF8A80';c.fillText('歪@'+(s.z+1),x0+66,y);
+      c.fillStyle='#FFD54F';c.fillText(avKindSay(s.kind),x0+112,y);
+    }
+  }
+  if(!rows.length){
+    c.fillStyle='#546E7A';c.font='bold 10px system-ui';c.textAlign='center';
+    c.fillText('这一趟还没挂',AV_LX+AV_LW/2,AV_LY+AV_LH/2);
+    c.textAlign='left';
+  }
+  c.restore();
+}
+/* 转法的名字（屏上、牌上、账上只这一处措辞）*/
+const AV_KNM={R:['右旋','把左边那颗提上来'],L:['左旋','把右边那颗提上来'],
+  LR:['先左后右','先扶左支再转整颗'],RL:['先右后左','先扶右支再转整颗'],none:['不用转','谁都站得住']};
+function avKindSay(k){return (AV_KNM[k]||AV_KNM.none)[0]}
+function avKindHow(k){return (AV_KNM[k]||AV_KNM.none)[1]}
+function avDraw(){
+  const cv=avCv;if(!cv)return;
+  const c=cv.getContext('2d');
+  c.clearRect(0,0,AV_W,AV_CVH);
+  if(!av.rec){
+    c.save();
+    c.font='bold 15px system-ui';c.textAlign='center';c.fillStyle='#B0BEC5';
+    c.fillText('🌳 正在挑字……',AV_W/2,AV_TY+AV_ROW*2);
+    c.font='12px system-ui';c.fillStyle='#78909C';
+    c.fillText('在字库里找「真会歪、扶得直、与笨链的差价数得出」的字',AV_W/2,AV_TY+AV_ROW*2+22);
+    c.textAlign='left';c.restore();
+    return;
+  }
+  /* 🧭 准线那一眼：把米字格拉满一息（画完自己收走，不许留一辈子）*/
+  avDrawTree(c);
+  avDrawGrid(c);
+  avDrawLedger(c);
+  /* 火花：刚挂上的那一笔上撒三颗，一息就散 */
+  for(let i=av.spark.length-1;i>=0;i--){
+    const s=av.spark[i],age=(av.t-s.t0)/620;
+    if(age>=1){av.spark.splice(i,1);continue}
+    c.beginPath();c.arc(s.x+(s.dx*age*13),s.y+(s.dy*age*13)-age*7,3.1*(1-age),0,6.2832);
+    c.fillStyle='rgba(255,245,200,'+(0.85*(1-age))+')';c.fill();
+  }
+}
+
+/* ---------- 案上的牌：一箱四用 ----------
+   挂枝（两张：左边 / 右边）· 指歪（四张：三颗珠 + 「都站得住」）· 扶正（四张转法）·
+   中序抢答（四张：哪一笔站在那一格）。牌是 DOM 不是 canvas：孩子按的得是真按钮，
+   错过的那一张当场划红，下一息还摆在原处（不许藏起来当没发生过）。*/
+function avBuildOpts(){
+  const box=document.getElementById('avOpts');
+  if(!box)return;
+  box.innerHTML='';
+  const rec=av.rec;
+  if(!rec)return;
+  if(av.phase==='quick'){
+    for(let i=0;i<av.opts.list.length;i++){
+      const o=av.opts.list[i];
+      const row=document.createElement('div');
+      row.className='av-opt q';row.id='avOpt'+i;
+      row.innerHTML='<span class="av-mark">'+(i+1)+'</span>'+
+        '<span class="av-nm">第 '+(o.bead+1)+' 笔</span>'+
+        '<span class="av-chk">'+(avNoTell(av.lv)?'起笔 ?':'起笔 '+rec.xs[o.bead])+'</span>';
+      row.addEventListener('click',(function(i){return function(ev){
+        if(av.helpMs>0){av.helpMs=0;avSync();ev.preventDefault();return}
+        avAnswer(i);ev.preventDefault();
+      }})(i));
+      box.appendChild(row);
+    }
+    return;
+  }
+  const list=av.opts?av.opts.list:null;
+  if(!list)return;
+  for(let i=0;i<list.length;i++){
+    const o=list[i];
+    const row=document.createElement('div');
+    row.className='av-opt';row.id='avOpt'+i;
+    let nm='',chk='';
+    if(av.phase==='hang'){
+      nm='挂在第 '+(o.ref+1)+' 笔的'+(o.side<0?'左边':'右边');
+      chk=o.side<0?'起笔更靠左':'起笔更靠右';
+    }else if(av.phase==='pick'){
+      if(o.kind==='none'){nm='都站得住';chk='笨链一辈子不转'}
+      else{nm='第 '+(o.bead+1)+' 笔那一颗';chk=avNoTell(av.lv)?'层数自己数':avBfSay(o.bead)}
+    }else if(av.phase==='turn'){
+      nm=avKindSay(o.kind);chk=avKindHow(o.kind);
+    }
+    row.innerHTML='<span class="av-mark">'+(i+1)+'</span>'+
+      '<span class="av-nm">'+nm+'</span><span class="av-chk">'+chk+'</span>';
+    row.addEventListener('click',(function(i){return function(ev){
+      if(av.helpMs>0){av.helpMs=0;avSync();ev.preventDefault();return}
+      avPick(i);ev.preventDefault();
+    }})(i));
+    box.appendChild(row);
+  }
+}
+/* 牌上那颗珠的 BF：从账上的树现读（帘子收了这一句就空着，孩子自己数层）*/
+function avBfSay(i){
+  const t=av.root?avFind(av.root,i):null;
+  if(!t)return '';
+  const b=avBf(t);
+  return '左 '+avHh(t.L)+' · 右 '+avHh(t.R)+(Math.abs(b)>=2?' 差'+Math.abs(b):'');
+}
+function avSyncOpts(){
+  const box=document.getElementById('avOpts');
+  if(!box)return;
+  const rows=box.querySelectorAll('.av-opt');
+  const live=av.phase==='hang'||av.phase==='pick'||av.phase==='turn'||av.phase==='quick';
+  for(let i=0;i<rows.length;i++){
+    rows[i].classList.toggle('sel',live&&i===av.sel);
+    rows[i].classList.toggle('bad',!!av.wrongOpt[i]);
+    rows[i].classList.toggle('dim',!live);
+  }
+}
+
+/* ---------- 屏上的字：HUD / 题头 / 回话条 / 标签 ---------- */
+function avSync(){
+  const q=document.getElementById('avQTxt');
+  if(q)q.textContent=av.phase==='seal'?'🏁 封字':av.phase==='quick'?'⏳ 中序 '+Math.ceil(av.quickMs/1000)+' 秒':
+    av.phase==='load'||av.locked?'📥 换字':'⏳ '+(av.phase==='hang'?'挂枝 ':'扶树 ')+Math.ceil(av.stepMs/1000)+' 秒';
+  const s=document.getElementById('avScoreTxt');
+  if(s)s.textContent='🌳 '+(av.score|0)+' 文';
+  const l=document.getElementById('avLvTxt');
+  if(l)l.textContent='第 '+av.lv+' 场 · 收 '+av.words+' 字';
+  const r=document.getElementById('avRankTxt');
+  if(r){const rk=avRankOf(av.words);r.textContent=rk.e+' '+rk.t}
+  const h=document.getElementById('avHeartTxt');
+  if(h)h.textContent='❤️'.repeat(Math.max(0,av.hearts));
+  const cb=document.getElementById('avComboTxt');
+  if(cb)cb.textContent='🔥 连 '+av.combo;
+  const lot=document.getElementById('avLotTxt');
+  if(lot)lot.textContent=av.rec?('🈶 '+(av.wi+1)+'/'+AV_PER+' 字 · 挂 '+av.hung+'/'+av.rec.n+' 颗'):'🈶 正在挑字';
+  const ct=document.getElementById('avNumTxt');
+  if(ct)ct.textContent=av.rec?(avDim(av.lv)?'🌳 第 '+AV_DIM_LV+' 场：准线与账都收了':
+    (avNoTell(av.lv)?'🌳 '+av.rec.n+' 笔 · BF 数字案上不写':'🌳 '+av.rec.n+' 笔 · '+avNaiveSay(av.rec))):'🌳 树苗还没上土';
+  const ht=document.getElementById('avHitLight');
+  if(ht){
+    const t=av.hitTxt||(av.phase==='quick'?'💡 第几颗？':(av.err?'💡 再扶一回':'💡 挂枝'));
+    ht.textContent=t;
+    ht.style.color=av.hitOk===2?'#FF8A80':av.hitOk===1?'#A5D6A7':av.hitOk===3?'#84FFFF':'#FFE082';
+  }
+  /* 四条量表：挂枝钟（青）· 中序抢答（金）· 场灯（冷绿）· 这一趟的错处（橙，错到那一格就一路变红）*/
+  const pb=document.getElementById('avStepBar'),pt=document.getElementById('avStepTxt');
+  if(pb)pb.style.width=Math.max(0,Math.min(100,av.stepMs/Math.max(1,av.step0)*100))+'%';
+  if(pt)pt.textContent='🌳 挂枝 '+(av.stepMs/1000).toFixed(1)+' 秒';
+  const pl=pb?pb.parentNode:null;
+  if(pl)pl.classList.toggle('low',av.stepMs<Math.min(1500,av.step0*.22));
+  const qb=document.getElementById('avQuickBar'),qt=document.getElementById('avQuickTxt');
+  if(qb)qb.style.width=Math.max(0,Math.min(100,av.quickMs/Math.max(1,av.quick0)*100))+'%';
+  if(qt)qt.textContent='🌲 中序 '+(av.quickMs/1000).toFixed(1)+' 秒';
+  const ql=qb?qb.parentNode:null;
+  if(ql)ql.classList.toggle('low',av.quickMs>0&&av.quickMs<Math.min(1200,av.quick0*.28));
+  const lb=document.getElementById('avLampBar'),lt=document.getElementById('avLampTxt');
+  if(lb)lb.style.width=Math.max(0,Math.min(100,av.lamp/Math.max(1,av.lamp0)*100))+'%';
+  if(lt)lt.textContent='💡 这一场 '+(av.lamp/1000).toFixed(0)+' 秒';
+  const kb=document.getElementById('avErrBar'),kt=document.getElementById('avErrBig');
+  const rec=av.rec;
+  const errs=av.err+av.naiveHit;
+  if(kb)kb.style.width=Math.max(0,Math.min(100,rec?errs/Math.max(1,AV_ERR_LINE)*100:0))+'%';
+  if(kt)kt.textContent=rec?(avNoTell(av.lv)?('🌳 错 '+errs+' 处 / BF 数字案上不写'):
+    ('🌳 错 '+errs+' 处 / 扶直 '+rec.hA+' 层 · 笨链 '+rec.hN+' 层')):'🌳 账还没开';
+  const kl=kb?kb.parentNode:null;
+  if(kl)kl.classList.toggle('low',errs>=AV_ERR_LINE);
+  /* 家什的余量与挡话：✨ 只在指歪与扶正那两段有用，🧭 只在挂枝那一段有用 */
+  const P=document.getElementById('avProbeBtn'),G=document.getElementById('avRuleBtn'),S=document.getElementById('avSwapBtn');
+  if(P){P.disabled=!(av.run&&!av.over&&av.probeN>0&&(av.phase==='pick'||av.phase==='turn'));
+    P.querySelector('b').textContent=av.probeMs>av.t?'正写着':'剩 '+av.probeN}
+  if(G){G.disabled=!(av.run&&!av.over&&av.ruleN>0&&av.phase==='hang');
+    G.querySelector('b').textContent=av.ruleMs>av.t?'正画着':'剩 '+av.ruleN}
+  if(S){S.disabled=!(av.run&&!av.over&&av.swapN>0&&av.phase!=='load');S.querySelector('b').textContent='剩 '+av.swapN}
+  const act=document.getElementById('avActBtn');
+  if(act){
+    const lab={load:'📥 正在挑字……',hang:'🌱 就按这一张（回车）',pick:'⚖️ 就指这一颗（回车）',
+      turn:'🔄 就转这一回（回车）',quick:'🌲 答不上（回车）',seal:'⏎ 下一个字'}[av.phase]||'🌳';
+    if(act.firstChild)act.firstChild.nodeValue=lab;
+    const sm=act.querySelector('small');
+    if(sm)sm.textContent=av.phase==='hang'?'1~2 选一边 · ←→ 挑 · 回车落子':
+      av.phase==='turn'||av.phase==='pick'?'1~4 选一张 · ↑↓ 挑 · 回车落子':
+      av.phase==='quick'?('第 '+(av.qi2+1)+'/'+av.qns.length+' 题 · 按 1~4 或点那一颗'):
+      av.phase==='seal'?'🏁 封字':'';
+    act.disabled=(!av.run||av.over||av.phase==='load'||av.locked>0);
+    act.classList.toggle('ready',av.phase==='seal'||av.phase==='hang'||av.phase==='pick'||av.phase==='turn');
+  }
+  const nk=document.getElementById('avNextBtn');
+  if(nk)nk.disabled=!(av.run&&!av.over);
+  avSyncOpts();
+  const ask=document.getElementById('avAsk');
+  if(ask)ask.innerHTML=avAskTxt();
+  const hl=document.getElementById('avHintTxt');
+  if(hl)hl.innerHTML=avHintTxt();
+}
+function avAskTxt(){
+  if(av.phase==='load')return '📥 正在挑字……<br><small>在字库里找「真会歪、每一步转法唯一、比笨链矮两层以上」的字</small>';
+  const rec=av.rec;
+  if(!rec)return '🌳 树苗还没上土';
+  const walk=rec.steps[av.cur]||rec.steps[rec.n-1];
+  if(av.phase==='hang')return '🌱 <b>'+av.ch+'</b> 第 '+(av.cur+1)+'/'+rec.n+' 笔：从根往下走，每一层比一比两个<b>起笔</b>谁更靠左'+
+    '<br><small>这一趟要走 '+walk.side.length+' 层 · 眼下第 '+(av.qi+1)+' 层（拿第 '+(av.opts?av.opts.ref+1:'?')+
+    ' 笔的起笔当参照）'+(avDim(av.lv)?' · 准线已收，自己比':'')+'</small>';
+  if(av.phase==='pick')return '⚖️ <b>'+av.ch+'</b>：第 '+(av.cur+1)+' 笔挂上去了，谁站不住？'+
+    '<br><small>平衡因子 = 左支层数 − 右支层数 · |BF|≥2 算歪'+(avNoTell(av.lv)?'（第 '+AV_TELL_LV+' 场起珠旁不写数字，自己数层）':'')+'</small>';
+  if(av.phase==='turn')return '🔄 <b>'+av.ch+'</b>：歪的是第 '+(rec.steps[av.hung-1].z+1)+' 笔那一颗 —— 怎么转才扶得住？'+
+    '<br><small>同边单旋 · 对面双旋｜四种转法挨个转一遍，还歪着的就是转错了</small>';
+  if(av.phase==='quick')return '🌲 <b>'+av.ch+'</b>：扶了 '+av.rotWord+' 回，从左数第 <b>'+(av.qns[av.qi2]+1)+'</b> 颗是第几笔？'+
+    '<br><small>一共 '+av.qns.length+' 题，眼下第 '+(av.qi2+1)+' 题 · 按 <code>1~4</code> 或点那一颗 · 珠子只上下动，左右一格没动</small>';
+  if(av.phase==='seal')return '🏁 <b>'+av.ch+'</b> 封字：'+rec.n+' 笔全挂上了 · 扶正 '+av.rotWord+' 回 · 树高 '+av.hA+' 层（笨链 '+av.hN+' 层）'+
+    (av.broken?'<br><small>⚠ 这一趟没走完：'+av.brokenWhy+'</small>':'<br><small>中序 '+avMid(av.root,[]).map(function(x){return x+1}).join(' ')+
+    ' · 抢答 '+(av.guessOk+av.guessBad)+' 题 · 对 '+av.guessOk+' 题</small>');
+  return '🌳';
+}
+function avHintTxt(){
+  if(av.phase==='seal')return '🏁 <b>一次没错</b>就是这一趟每一颗都挂对、每一回都扶对（补一颗心）';
+  if(av.phase==='quick')return '🌲 <b>旋转不打乱中序</b>：从左数过去永远是「起笔从左边排到右边」—— 第 k 颗就是起笔排第 k 的那一笔';
+  if(av.broken)return '⚠ <b>没扶住的那一回</b>：'+av.brokenWhy;
+  if(av.phase==='hang')return '🌱 <b>比的是起笔</b>：这一笔的第一点落在参照那一颗的准线哪一边，就挂哪一边 —— 不是比整笔的长短';
+  if(av.phase==='pick')return '⚖️ <b>沿刚走过的那条路从下往上数</b>，第一个 |左层−右层|≥2 的就是它 —— 站不住的常常不是刚挂上那一颗';
+  return '🔄 <b>歪在左支的左子就右旋，歪在左支的右子就先扶左支再右旋</b>：转完还歪着，就是这一回没扶住';
+}
+function avMsg(msg,color){
+  const el=document.getElementById('avMsg');
+  if(!el)return;
+  el.innerHTML=msg;
+  el.style.color=color||'#90A4AE';
+}
+function avClearTag(){
+  if(av.tagTimer){clearTimeout(av.tagTimer);av.tagTimer=0}
+  const el=document.getElementById('avTag');
+  if(el)el.className='av-tag'
+}
+function avTag(txt,cls){
+  const el=document.getElementById('avTag');
+  if(!el)return;
+  /* 这一行是给孩子的正文：调用处一路写的是 <b>/<code> 那一种强调（与 rdTag 同一口径），
+     用 textContent 落下去孩子就读到一对尖括号。此处只许 innerHTML，且调用处只喂自家模板串。 */
+  el.innerHTML=txt;
+  el.className='av-tag on'+(cls?' '+cls:'');
+  if(av.tagTimer)clearTimeout(av.tagTimer);
+  av.tagTimer=setTimeout(function(){el.className='av-tag'},AV_TAG_MS);
+}
+function avHelpText(){
+  return '🌳 <b>笔顺扶树坊</b> —— 一笔一颗珠，珠子的<b>号</b>就是这一笔的<b>起笔横坐标</b>（谁更靠左谁小）。'+
+    '按笔顺一颗颗往树上挂，每一层只问一句「挂它的左边还是右边」。<br>'+
+    '⚖️ <b>挂上就有珠子站不住</b>：平衡因子 <b>BF = 左支层数 − 右支层数</b>，|BF|≥2 就算歪。'+
+    '沿刚走过的那条路<b>从下往上</b>数，第一个站不住的就是要扶的那一颗。<br>'+
+    '🔄 <b>怎么扶只有四种转法</b>：右旋 / 左旋 / 先左后右 / 先右后左 —— <b>同边单旋、对面双旋</b>。'+
+    '判对错只有一把尺：转完再看一遍，树上还有 |BF|≥2 的，就是没扶住。<br>'+
+    '🌲 <b>定海神针：旋转天生不打乱中序</b> —— 转来转去，每个人的左右邻居一个不变。'+
+    '所以「中序被搞乱」这一条根本判不出错，别拿它当错处；封字前抢答的就是这一眼：从左数第 k 颗是第几笔？'+
+    '<br>🪵 <b>笨链</b>就摆在右下：同一条笔顺、一颗也不转。过闸的字笨链至少高 '+AV_DIFF_MIN+
+    ' 层 —— 跟着「都站得住」选，就是在跟它走，差价全落进你眼睛里。<br>'+
+    '🎭 <b>两道帘子</b>：第 '+AV_TELL_LV+' 场起珠旁不写 BF 数字，第 '+AV_DIM_LV+' 场起连准线与笨链那本账也收走。<br>'+
+    '<code>1~2</code> 挂枝选边 · <code>1~4</code> 指歪与转法 · <code>↑↓←→</code> 挑 · <code>回车</code> 落子 · '+
+    '<code>P</code> ✨看层 · <code>V</code> 🧭准线 · <code>S</code> 🔁换字 · <code>H</code> 📖说明 · <code>F</code> 🏁结算';
+}
+
+/* ================= 这一趟的手：挂枝、指歪、扶正、中序抢答、三件家什 ================= */
+/* 案上那几个数（笔数 n · 扶直几层 · 笨链几层 · 每一步挂哪边、歪在哪颗、该怎么转）全由字料一次算死，
+   别处不许自己再算一遍：树上的每一步都照这本账走，孩子按对按错只改「账」，不改「树」。
+   为什么不让孩子的错答改变树形？—— 转错了方向还歪着，下一步「歪的那颗」就变成两处，
+   指歪那一问的「从下往上第一个」就说不清了（闸门里 avFixes 数的正是「转完这一颗，整棵树复位」）。*/
+function avRecost(){
+  const rec=av.rec;
+  if(!rec)return;
+  av.n=rec.n;av.hA=rec.hA;av.hN=rec.hN;av.gap=rec.gap;av.naive=rec.naive;
+}
+/* ---- ① 一颗珠子上台：挂枝（一层一问）→ 指歪 → 扶正 ---- */
+function avNewBead(){
+  const rec=av.rec;
+  if(!rec)return;
+  if(av.cur>=rec.n){avFinishHang();return}
+  const s=rec.steps[av.cur];
+  av.path=s.path.slice();av.sides=s.side.slice();av.qi=0;
+  av.wrongOpt=[];av.sel=0;
+  if(!av.path.length){avAttach();return}           /* 第一颗直接落根：没得比，也就不问 */
+  avNewHangQ();
+}
+function avNewHangQ(){
+  const rec=av.rec;
+  /* 场相就在这一句里归位：上一颗扶完（phase 还停在 'turn'）到下一颗的第一问之间，
+     案上的牌已经换成左右两张了 —— 不归位就是「牌是挂枝的、场相是扶正的」那一颗死循环 */
+  av.phase='hang';
+  av.opts=avHangOpts(av.path[av.qi],av.sides[av.qi]);
+  av.step0=avStepMs(av.lv);av.stepMs=av.step0;
+  av.nagMs=0;
+  avBuildOpts();
+}
+/* 挂上去：照账上的位置落子（孩子刚才比错边也只记错处，不改这一颗该站的那一支）*/
+function avAttach(){
+  /* 挂哪一边、挂完歪在哪颗、该怎么转 —— 全照账上那一步走，不吃孩子的答（错答只记错处，见本段抬头）*/
+  const rec=av.rec,i=av.cur,s=rec.steps[i];
+  /* 这一颗挂上去的那一棵必须是「还没扶」的那一棵：前面几颗各自扶过（avIns 走到第 i 笔之前照账转），
+     第 i 笔这一颗插进去以后那一转留给孩子在案上做。kind 按 'none' 走一遍就是「只插不转」——
+     拿默认的 avIns(xs) 会连这一颗一起转掉，孩子眼前的树永远是扶正的，指歪与扶正就成了哑剧
+     （产品自己的那只只读手在 pick/turn 那两段当场报「案上有 0 颗站不住」）*/
+  av.root=avIns(rec.xs.slice(0,i+1),{i:i,kind:'none'}).root;
+  av.hung=i+1;av.cur=i+1;av.beads++;av.hangTotal+=s.side.length;
+  if(i===0)av.rootN++;   /* 每一趟那一颗根挂在半空，脚下没有路可走：落珠与走层差的那一颗就是它 */
+  av.lit[i]=1;
+  const p=avStrokeMid(rec,i);
+  for(let t=0;t<3;t++)av.spark.push({x:p[0],y:p[1],t0:av.t,dx:(t-1)*1.4,dy:-1-Math.random()});
+  /* 挂上就有珠子站不住：账上的 kind!=='none' 就是这一颗引出来的 */
+  av.z=s.z;av.zDepth=s.zDepth;av.kind=s.kind;
+  if(s.kind==='none'){                              /* 谁都站得住：不指歪、不转，直接下一颗 */
+    avTone(760,60);
+    if(av.hung>1)avTag('🌱 第 '+(i+1)+' 笔挂上了 · 这一颗落下去谁都站得住（左支与右支一样高），不用转','cyan');
+    avNextBead();
+    return;
+  }
+  avStartPick();
+}
+function avNextBead(){avNewBead()}
+/* ---- ② 指歪：四张牌（三颗珠 + 「都站得住」）---- */
+function avStartPick(){
+  const rec=av.rec,s=rec.steps[av.hung-1];
+  const zNode=avFind(av.root,s.z);
+  av.opts=avPickOpts(rec,s.i,s.path,s.z,zNode,av.root);
+  if(!av.opts){avWordOut('opts');return}
+  av.sel=0;av.wrongOpt=[];
+  av.step0=avStepMs(av.lv);av.stepMs=av.step0;
+  av.nagMs=0;av.phase='pick';
+  avBuildOpts();
+}
+/* ---- ③ 扶正：四张转法，判据只有「转完还歪不歪」---- */
+function avStartTurn(){
+  const rec=av.rec,s=rec.steps[av.hung-1];
+  av.opts=avTurnOpts(rec.xs,s.i,s.kind);
+  if(!av.opts){avWordOut('opts');return}
+  av.sel=0;av.wrongOpt=[];
+  av.step0=avStepMs(av.lv);av.stepMs=av.step0;
+  av.nagMs=0;av.phase='turn';
+  avBuildOpts();
+}
+/* 转下去：中序一格不许动，只许有珠子往上下挪 —— 动画就在层数之间插值 */
+function avApplyTurn(kind){
+  const rec=av.rec,i=av.hung-1;
+  const pre={},post={};
+  (function w(t,d){if(!t)return;pre[t.i]=d;w(t.L,d+1);w(t.R,d+1)})(av.root,1);
+  const R=avIns(rec.xs.slice(0,i+1),{i:i,kind:kind});
+  const neu=R.root;
+  (function w(t,d){if(!t)return;post[t.i]=d;w(t.L,d+1);w(t.R,d+1)})(neu,1);
+  av.root=neu;
+  av.anim={t0:av.t,t1:av.t+AV_AN_MS,dur:AV_AN_MS,pre:pre,post:post};
+  av.rotAll++;av.rotWord++;
+}
+/* ---- ④ 案上挑牌：←→↑↓ 挑、回车落、1~4 直接按 ---- */
+function avKey(){return av.phase+':'+av.hung+':'+av.qi}
+function avMoveSel(dir){
+  if(!av.opts||av.locked||av.phase==='load'||av.phase==='seal'||av.phase==='quick')return;
+  if(av.phase!=='hang'&&av.phase!=='pick'&&av.phase!=='turn')return;
+  av.sel=(av.sel+dir+av.opts.list.length)%av.opts.list.length;
+  av.touched[avKey()]=(av.touched[avKey()]||0)+1;
+  av.nagMs=0;
+  avSync();avDraw();
+}
+/* 犹豫：同一问候选来回挑满 AV_HES_KEY 回 —— 这一坊要的是看一眼就定手，不是挨张试 */
+function avHesitation(){
+  const t=av.touched[avKey()]||0;
+  if(t<AV_HES_KEY||av.stepMs<=0)return 0;
+  av.hes++;av.cleanWord=0;
+  av.score-=AV_P_HES;av.penSum+=AV_P_HES;
+  av.hitOk=2;av.hitTxt='🌀 犹豫 · −'+AV_P_HES;
+  avTone(210,200);
+  return t;
+}
+function avBeadPts(){
+  return Math.round(AV_M0*(1+AV_CB*(av.combo+1))*(1+AV_LVW*(av.lv-1)));
+}
+/* ---- ⑤ 那一下按下去：三段各走各的手 ---- */
+function avPick(i){
+  if(av.locked||!av.rec||!av.opts)return;
+  if(av.phase!=='hang'&&av.phase!=='pick'&&av.phase!=='turn')return;
+  /* 牌与场相必须是一对：牌是左右两张、场相却在扶正 —— 按下去就会把「 undefined===undefined 」当正解，转个没完 */
+  if(av.opts.ph!==av.phase)return;
+  if(i<0||i>=av.opts.list.length)return;
+  const rec=av.rec,o=av.opts.list[i],right=av.opts.list[av.opts.right];
+  /* —— 挂枝：比的是两个起笔点 —— */
+  if(av.phase==='hang'){
+    const hz=avHesitation();
+    if(o.side===right.side){
+      const pts=avBeadPts();
+      av.score+=pts;av.gain+=pts;av.combo++;
+      if(av.combo>av.maxCombo)av.maxCombo=av.combo;
+      av.hitOk=1;av.hitTxt='✔ 挂对一边 +'+pts;
+      avTone(1180,60);
+      av.qi++;av.sel=0;
+      if(av.qi>=av.path.length){avAttach();avTag((hz?'🌀 这一问来回挑了 '+hz+' 回：倒扣 '+AV_P_HES+' 文 · ':'')+
+        '🌱 第 '+(av.hung)+' 笔挂到底了 · 一路'+rec.steps[av.hung-1].side.map(function(x){return x<0?'左':'右'}).join('')+
+        ' · +'+pts+' 文','gold');}
+      else{avNewHangQ();avTag((hz?'🌀 这一问来回挑了 '+hz+' 回：倒扣 '+AV_P_HES+' 文 · ':'')+
+        '🌱 这一层挂在第 '+(o.ref+1)+' 笔的'+(o.side<0?'左边':'右边')+' · 下一层，接着往下走','cyan')}
+      avSync();avDraw();return;
+    }
+    /* 比错一边：这一颗该站的支是定死的，不许孩子替它挪 —— 记一处错，苗床把它领回那一边 */
+    avHesitation();
+    av.err++;av.badHang++;av.wrongs++;
+    /* 这一行的错处一路记到 wrongs：结算那一句「看错 N 回」说的是整场，不是眼下这一颗 */
+    av.score-=AV_P_HANG;av.penSum+=AV_P_HANG;
+    av.combo=0;av.cleanWord=0;av.neatWord=0;
+    av.wrongOpt[i]=1;
+    av.hitOk=2;av.hitTxt='✖ 挂错一边 · −'+AV_P_HANG;
+    avTone(200,180);
+    avTag('✖ 第 '+(av.cur+1)+' 笔的起笔在第 '+(o.ref+1)+' 笔的'+(o.side<0?'左':'右')+'边？看准了：'+
+      '账上它挂在第 '+(right.ref+1)+' 笔的<b>'+(right.side<0?'左边':'右边')+'</b>（起笔横坐标 '+rec.xs[av.cur]+' 对 '+rec.xs[right.ref]+
+      '）· 倒扣 '+AV_P_HANG+' 文，这一层重走','warn');
+    av.qi++;av.sel=0;
+    if(av.qi>=av.path.length){avAttach();avSync();avDraw();return}
+    avNewHangQ();
+    avHeartCheck();
+    avSync();avDraw();return;
+  }
+  /* —— 指歪：正解一颗 · 两颗幌子 · 一张「都站得住」 —— */
+  if(av.phase==='pick'){
+    const hz=avHesitation();
+    const s=rec.steps[av.hung-1];
+    if(o.kind==='none'){
+      /* 本坊的靶子：笨链一辈子不转，在它眼里没有珠子站不住。跟着它选 —— 树仍由苗床扶住，
+         可这一趟的差价赏就此作废：扶与不扶的账，孩子得亲眼看见自己站在哪一头。 */
+      av.naiveHit++;av.naiveAll++;av.wrongs++;
+      av.score-=AV_P_NAIVE;av.penSum+=AV_P_NAIVE;
+      av.combo=0;av.cleanWord=0;av.neatWord=0;
+      av.hitOk=2;av.hitTxt='🪵 跟着笨链 · −'+AV_P_NAIVE;
+      avTone(170,260);
+      avTag('🪵 「都站得住」是<b>笨链</b>那一头的立场：它一辈子不转，所以一路挂到第 '+rec.hN+
+        ' 层也不觉得歪。这一颗站不住的其实是<b>第 '+(s.z+1)+' 笔</b>（左 '+avHh((avFind(av.root,s.z)||{}).L)+
+        ' 层 · 右 '+avHh((avFind(av.root,s.z)||{}).R)+' 层）· 倒扣 '+AV_P_NAIVE+' 文、这一趟扶与不扶的差价作废','warn');
+      avStartTurn();
+      avHeartCheck();
+      avSync();avDraw();return;
+    }
+    if(o.bead===s.z){
+      av.pickOk++;av.picksAll++;
+      av.hitOk=1;av.hitTxt='✔ 就是它';
+      avTone(920,70);
+      avTag((hz?'🌀 这一问来回挑了 '+hz+' 回：倒扣 '+AV_P_HES+' 文 · ':'')+
+        '⚖️ 站不住的是<b>第 '+(o.bead+1)+' 笔</b>：沿刚走过的那条路从下往上数，第一个 |左−右|≥2 的就是它 · 下一步问怎么转','cyan');
+      avStartTurn();
+      avSync();avDraw();return;
+    }
+    av.err++;av.pickWrong++;av.wrongs++;
+    av.score-=AV_P_PICK;av.penSum+=AV_P_PICK;
+    av.combo=0;av.cleanWord=0;av.neatWord=0;
+    av.wrongOpt[i]=1;
+    av.hitOk=2;av.hitTxt='✖ 指错了颗 · −'+AV_P_PICK;
+    avTone(205,190);
+    avTag('✖ 第 '+(o.bead+1)+' 笔那一颗站得住（它左 '+avHh((avFind(av.root,o.bead)||{}).L)+
+      ' 层、右 '+avHh((avFind(av.root,o.bead)||{}).R)+' 层）—— 歪的不是它。从下往上数，第一个差到 2 层以上的那一颗才算歪：重指',
+      'warn');
+    avHeartCheck();
+    avSync();avDraw();return;
+  }
+  /* —— 扶正：四种转法，转完还歪着就是转错 —— */
+  if(av.phase==='turn'){
+    const hz=avHesitation();
+    const s=rec.steps[av.hung-1];
+    if(o.kind===right.kind){
+      const pts=avBeadPts();
+      av.score+=pts;av.gain+=pts;av.combo++;av.turnOk++;
+      if(av.combo>av.maxCombo)av.maxCombo=av.combo;
+      av.hitOk=1;av.hitTxt='🔄 扶住了 +'+pts;
+      avTone(1040,110);
+      avApplyTurn(o.kind);
+      avTag((hz?'🌀 这一问来回挑了 '+hz+' 回：倒扣 '+AV_P_HES+' 文 · ':'')+
+        '🔄 '+avKindSay(o.kind)+'（'+avKindHow(o.kind)+'）：树高回到 '+avHgt(av.root)+' 层，'+
+        '谁都没挪左右 —— 中序还是那一排 · +'+pts+' 文','gold');
+      av.locked=1;
+      avT(function(){av.locked=0;avNextBead();avSync();avDraw()},AV_AN_MS);
+      avSync();avDraw();return;
+    }
+    av.err++;av.turnWrong++;av.wrongs++;
+    av.score-=AV_P_TURN;av.penSum+=AV_P_TURN;
+    av.combo=0;av.cleanWord=0;av.neatWord=0;
+    av.wrongOpt[i]=1;
+    av.hitOk=2;av.hitTxt='✖ 转错方向 · −'+AV_P_TURN;
+    avTone(185,240);
+    avApplyTurn(right.kind);                          /* 苗床替你扶住：树歪着下一颗就没法挂了，账上记实 */
+    avTag('✖ <b>'+avKindSay(o.kind)+'</b> 转完还歪着（第 '+(s.z+1)+' 笔那一支还是差 2 层）—— 这一回没扶住，倒扣 '+
+      AV_P_TURN+' 文。正解是<b>'+avKindSay(right.kind)+'</b>（'+avKindHow(right.kind)+'），苗床替你扶住了：'+
+      '<b>同边单旋、对面双旋</b>','warn');
+    av.locked=1;
+    avT(function(){av.locked=0;avNextBead();avSync();avDraw()},AV_AN_MS);
+    avHeartCheck();
+    avSync();avDraw();return;
+  }
+}
+/* 心只在这一格上掉一次：错处（挂错 + 指错 + 转错 + 跟着笨链）累计到 AV_ERR_LINE 那一格 */
+function avHeartCheck(){
+  const errs=av.err+av.naiveHit;
+  if(errs!==AV_ERR_LINE)return;
+  av.hearts--;
+  if(av.hearts<0)av.hearts=0;      /* 心不许为负：屏上那串 ❤️ 是 max(0,hearts) 画的，账上却一路往下走 */
+  avTone(150,300);
+  avTag('💔 这一趟错满 '+AV_ERR_LINE+' 处：掉一颗心（'+AV_ERR_LINE+' 处就到手了，比起点、数层、看边各数一遍再落手）','warn');
+}
+/* ---- ⑥ 九颗挂完：中序抢答 ---- */
+function avFinishHang(){
+  const rec=av.rec;
+  if(av.broken){avSealNow();return}
+  const qn=Math.min(avQN(av.lv),AV_QMAX,rec.n);
+  if(qn<1){avSealNow();return}
+  const pool=[];
+  for(let i=0;i<rec.n;i++)pool.push(i);
+  av.qns=[];
+  for(let t=0;t<qn&&pool.length;t++){
+    const j=Math.floor(Math.random()*pool.length);
+    av.qns.push(pool[j]);pool.splice(j,1);
+  }
+  av.qi2=0;av.guessOk=0;av.guessBad=0;av.gpicks+=av.qns.length;
+  av.quick0=avQuickMs(av.lv);av.quickMs=av.quick0;
+  av.phase='quick';av.stepMs=0;av.opts=null;
+  avNewQ();
+  avTone(520,120);
+  avTag('🌲 转了 '+av.rotWord+' 回：珠子只上下动，左右一格没动 —— 从左数第几颗是第几笔，苗床要问 '+av.qns.length+' 题','cyan');
+  avSync();avDraw();
+}
+function avNewQ(){
+  av.opts=avQuickOpts(av.rec,av.qns[av.qi2]);
+  if(!av.opts){avWordOut('opts');return}
+  av.sel=0;av.wrongOpt=[];
+  avBuildOpts();
+}
+function avAnswer(i){
+  if(av.phase!=='quick'||av.locked||!av.rec)return;
+  if(!av.opts||av.opts.ph!==av.phase)return;
+  const rec=av.rec,slot=av.qns[av.qi2];
+  if(i<0||i>=av.opts.list.length)return;
+  const o=av.opts.list[i];
+  if(o.bead===rec.order[slot]){
+    const pts=Math.round(AV_M0*2*(1+AV_CB*av.combo)*(1+AV_LVW*(av.lv-1)));
+    av.score+=pts;av.gain+=pts;av.guessOk++;av.guessOkAll++;
+    av.combo++;
+    if(av.combo>av.maxCombo)av.maxCombo=av.combo;
+    av.hitOk=1;av.hitTxt='✔ 中序对了 +'+pts;
+    avTone(1040,150);
+    avTag('✔ 从左数第 '+(slot+1)+' 颗就是<b>第 '+(o.bead+1)+' 笔</b>：它的起笔横坐标 '+rec.xs[o.bead]+
+      '，在'+rec.n+' 笔里排第 '+(slot+1)+' · +'+pts+' 文 · 连击 '+av.combo,'gold');
+    const p=avStrokeMid(rec,o.bead);
+    for(let t=0;t<4;t++)av.spark.push({x:p[0],y:p[1],t0:av.t,dx:(t-1.5),dy:-1.4-Math.random()});
+  }else{
+    av.score-=AV_P_WRONG;av.penSum+=AV_P_WRONG;
+    av.hearts--;
+    if(av.hearts<0)av.hearts=0;
+    av.guessBad++;av.err++;av.wrongs++;av.combo=0;av.cleanWord=0;av.neatWord=0;
+    av.hitOk=2;av.hitTxt='✖ 中序错 · −'+AV_P_WRONG;
+    avTone(180,240);
+    avTag('✖ 从左数第 '+(slot+1)+' 颗不是<b>第 '+(o.bead+1)+' 笔</b>，是<b>第 '+(rec.order[slot]+1)+' 笔</b>'+
+      '（起笔 '+rec.xs[rec.order[slot]]+' 对 '+rec.xs[o.bead]+'）：倒扣 '+AV_P_WRONG+' 文、掉一颗心，这个字进错字本','warn');
+    av.missFlag=1;
+  }
+  avNextQ();
+}
+function avSlowQ(){
+  if(av.phase!=='quick'||av.locked||!av.rec)return;
+  const slot=av.qns[av.qi2],nm='第 '+(av.rec.order[slot]+1)+' 笔';
+  av.lates++;av.combo=0;av.cleanWord=0;
+  av.score-=AV_P_SLOW;av.penSum+=AV_P_SLOW;
+  av.guessBad++;av.err++;
+  /* 没答与答错是同一件事：那一格的珠子没认出来 ⇒ 这个字要回错字本 */
+  av.missFlag=1;
+  av.skipNote+=(av.skipNote?'、':'')+'第 '+(slot+1)+' 格「'+nm+'」';
+  av.hitOk=2;av.hitTxt='⌛ 没答 · −'+AV_P_SLOW;
+  avTag('⌛ 这一题没答：从左数第 '+(slot+1)+' 颗是 <b>'+nm+'</b> · 倒扣 '+AV_P_SLOW+' 文（不掉心，可连击断了）','warn');
+  avNextQ();
+}
+function avNextQ(){
+  av.qi2++;
+  if(av.qi2>=av.qns.length){avSealNow();return}
+  av.quickMs=av.quick0;
+  av.nagMs=0;
+  avNewQ();
+  avSync();avDraw();
+}
+/* ================= 三件家什 ================= */
+/* ✨ 看层：把每一颗珠的 BF 数字写一息（第 4 场起的帘子也照写）—— 只给尺子，不报哪一颗歪 */
+function avProbe(){
+  if(!av.rec||av.over||av.locked)return;
+  if(av.phase!=='pick'&&av.phase!=='turn'){avTag('✨ 这一眼是数层的：指歪与扶正那两段才有层可数');return}
+  if(av.probeN<=0){avTag('✨ 这一眼用完了：层数得自己数');return}
+  if(av.probeMs>av.t){avTag('✨ 那句话正挂着：还写 '+Math.ceil((av.probeMs-av.t)/1000)+' 秒（等它自己收走）');return}
+  av.probeN--;av.probeUse++;av.tools++;av.wordTools++;
+  av.score-=AV_P_TOOL;av.penSum+=AV_P_TOOL;av.cleanWord=0;
+  av.probeMs=av.t+AV_PROBE_MS;
+  const s=av.rec.steps[av.hung-1];
+  avTone(880,90);
+  avTag('✨ 满树的 BF 写 '+Math.round(AV_PROBE_MS/1000)+' 秒：站不住的那一颗在这一趟走过的路上、'+
+    '从下往上数第 '+(s.path.length-av.zDepth+1)+' 个（哪个歪、怎么转，还是你自己定）· 倒扣 '+AV_P_TOOL+' 文（还剩 '+av.probeN+' 眼）','cyan');
+  avSync();avDraw();
+}
+/* 🧭 准线：把第 6 场起收走的那一条竖线画一息（画在参照那一颗的起笔横坐标上）*/
+function avRule(){
+  if(!av.rec||av.over||av.locked)return;
+  if(av.phase!=='hang'){avTag('🧭 准线是挂枝那一段用的：现在不缺尺子');return}
+  if(av.ruleN<=0){avTag('🧭 准线收起来了：左右得自己比');return}
+  if(av.ruleMs>av.t){avTag('🧭 那条线正画着：还写 '+Math.ceil((av.ruleMs-av.t)/1000)+' 秒');return}
+  av.ruleN--;av.ruleUse++;av.tools++;av.wordTools++;
+  av.score-=AV_P_TOOL;av.penSum+=AV_P_TOOL;av.cleanWord=0;
+  av.ruleMs=av.t+AV_RULE_MS;
+  avTone(560,120);
+  const ref=av.opts?av.opts.ref:null;
+  avTag('🧭 准线立在第 '+(ref+1)+' 笔的起笔上（横坐标 '+(ref!==null&&ref!==undefined?av.rec.xs[ref]:'?')+
+    '）：这一笔的起笔落在它左边就挂左枝 · 倒扣 '+AV_P_TOOL+' 文（还剩 '+av.ruleN+' 眼）','cyan');
+  avSync();avDraw();
+}
+/* 🔁 换字：这个字退回库里再上一个（倒扣 AV_P_SWAP 文，进错字本）*/
+function avSwapWord(){
+  if(!av.rec||av.over||av.locked)return;
+  if(av.phase==='quick'){avTag('🔁 已经在数中序了：这一趟的珠子挂下去了，收不回来');return}
+  if(av.swapN<=0){avTag('🔁 换字用完了：这一场的字是配出来的，硬挂也要挂完');return}
+  av.swapN--;av.swapUse++;av.swaps++;av.tools++;av.wordTools++;
+  av.score-=AV_P_SWAP;av.penSum+=AV_P_SWAP;
+  av.cleanWord=0;av.neatWord=0;
+  avTone(280,140);
+  avTag('🔁 换字：倒扣 '+AV_P_SWAP+' 文，这个字进了错字本（还剩 '+av.swapN+' 回）','warn');
+  avWordOut('swap');
+}
+/* ================= 封字 ================= */
+function avSealNow(){
+  const rec=av.rec;
+  if(!rec)return;
+  av.phase='seal';av.stepMs=0;av.quickMs=0;av.sealMs=AV_SEAL_MS;av.opts=null;
+  avBuildOpts();
+  /* 这一趟的错处：挂错 + 指错 + 转错 + 跟着笨链 + 抢答答错/没答（钟尽代挂另记一笔，那是手慢了不是看错了）*/
+  av.errSum+=av.err+av.naiveHit;
+  let add=AV_PTS_WORD;
+  let txt='🏁 挂完：'+rec.n+' 笔 · 扶正 '+av.rotWord+' 回 · 树高 '+avHgt(av.root)+' 层（笨链 '+rec.hN+' 层）';
+  if(av.skipNote)txt+=' · ⌛ 没答：'+av.skipNote;
+  const allHung=!av.broken&&av.hung===rec.n;
+  if(allHung){
+    add+=AV_PTS_SEQ;txt+=' · 一颗不落 +'+AV_PTS_SEQ;av.seqN++;auxAdd('hz_av_full',1);
+    /* 定海神针当场核一遍（不是赏，是账）：中序必须逐格等于起笔排队 */
+    const mid=avMid(av.root,[]);
+    let bad=0;
+    for(let i=0;i<rec.n;i++)if(mid[i]!==rec.order[i])bad++;
+    /* 这一眼是「证人」不是「赏」：中序不乱是树的性质，谁也没法把它弄乱 ——
+       所以只把不合的格数留成一个数（bad），段 A 的账本一眼盯着它，绝不一格发一文 */
+    if(bad)av.tagSeqBad=bad;
+  }
+  if(av.pickWrong===0&&av.rotWord>0){
+    add+=AV_PTS_PICK;txt+=' · 一歪不指错（'+av.rotWord+' 回，一回没指错）+'+AV_PTS_PICK;av.pickN++;auxAdd('hz_av_pick',1);
+  }
+  if(av.turnWrong===0&&av.rotWord>0&&av.naiveHit===0){
+    add+=AV_PTS_TURN;txt+=' · 转法全对 +'+AV_PTS_TURN;av.turnN++;auxAdd('hz_av_turn',1);
+  }
+  if(av.qns.length&&av.guessBad===0&&av.guessOk===av.qns.length){
+    add+=AV_PTS_QUICK;txt+=' · 中序 '+av.qns.length+' 题全对 +'+AV_PTS_QUICK;
+    av.quickN++;auxAdd('hz_av_quick',1);
+  }
+  if(allHung&&av.naiveHit===0&&rec.gap>0){
+    add+=AV_PTS_LEAN;txt+=' · 比笨链矮 '+rec.gap+' 层（一回没跟它走）+'+AV_PTS_LEAN;av.leanN++;
+  }
+  if(av.fresh){add+=AV_PTS_FRESH;txt+=' · 头一回收这个字 +'+AV_PTS_FRESH}
+  if(!av.wordTools){add+=AV_PTS_NOTOOL;txt+=' · 家什一回没借 +'+AV_PTS_NOTOOL;auxAdd('hz_av_notool',1)}
+  const clean=av.err===0&&av.naiveHit===0&&av.autoLate===0;
+  if(clean){av.perfect++;auxAdd('hz_av_perfect',1);txt+=' · 这一趟一次没错'}
+  if(av.cleanWord){
+    av.cleanRun++;
+    /* 连三趟零罚：家什白补一遍 —— 干净不是运气，是一颗一颗挂出来的 */
+    if(av.cleanRun>=AV_PER){
+      av.cleanRun=0;av.toolRun++;
+      av.probeN=AV_P0.probe;av.ruleN=AV_P0.rule;av.swapN=AV_P0.swap;
+      add+=AV_PTS_TOOLRUN;txt+=' · 连三趟零罚：家什补满 +'+AV_PTS_TOOLRUN;
+      auxAdd('hz_av_toolrun',1);
+    }
+  }else av.cleanRun=0;
+  av.score+=add;av.gain+=add;
+  av.words++;
+  if(clean&&allHung&&av.hearts<AV_HEART_MAX){av.hearts++;txt+=' · 一次没错补一颗心'}
+  if(av.broken){txt+=' · 🪵 这一趟没挂完（这一字进错字本）';avTone(190,260)}
+  else avTone(1040,220);
+  av.hitOk=1;av.hitTxt='🏁 封字 · +'+add;
+  avTag(txt,'gold');
+  avSay('🏁 这一趟挂完：'+rec.n+' 笔、扶正 '+av.rotWord+' 回、中序 '+av.guessOk+'/'+av.qns.length+' 题');
+  avBookPut(rec.ch);
+  /* 抢答错过的、跟着笨链选的、挂到钟尽的字都回错字本：下一场优先挑回来 */
+  if(av.missFlag||av.broken||av.naiveHit)avMissPut(rec.ch);
+  if(typeof spawnConfetti==='function'){try{spawnConfetti()}catch(e){}}
+  avSync();avDraw();
+  if(av.hearts<=0)avT(function(){avEnd('hearts')},AV_SEAL_MS);
+}
+/* ---- 这个字散了：换字、钟尽三回、凑不齐牌都走这一条（半路收场那一下在 avEnd 里结）---- */
+function avWordOut(why){
+  const rec=av.rec;
+  if(rec)avMissPut(rec.ch);
+  av.wordOuts++;
+  av.combo=0;av.cleanWord=0;av.neatWord=0;av.wordTools=0;av.cleanRun=0;
+  av.locked=1;
+  av.phase='load';av.opts=null;av.stepMs=0;av.quickMs=0;
+  avBuildOpts();
+  if(why==='opts'||why==='late')avSay(why==='late'?'⌛ 这个字连尽 '+AV_LATE_MAX+' 回挂枝钟，先退回库里换一张':
+    '🌳 这个字的牌配不齐（口径撞上了），退回库里');
+  avSync();avDraw();
+  avT(avNextWord,1000);
+}
+/* ---- 下一个字：一场三字收满就换场（换一串字、换一盏灯）---- */
+async function avNextWord(){
+  if(!av.run||av.over)return;
+  if(av.hearts<=0){avEnd('hearts');return}
+  av.wi++;
+  let flash='';
+  if(av.wi>=AV_PER){
+    /* 清白票：这一场三字、每趟错处都不过 AV_ERR_CLEAN 处 —— 收场那一息结，别等结算屏补记 */
+    if(av.errSum<=AV_ERR_CLEAN*AV_PER){auxAdd('hz_av_neat',1);avSay('🧾 这一场三字共错 '+av.errSum+' 处：清白票一张')}
+    av.wi=0;av.lv=Math.min(9,av.lv+1);
+    av.lamp0=avLamp(av.lv);av.lamp=av.lamp0;
+    av.errSum=0;av.cleanRun=0;
+    av.pool=[];av.seen=[];av.poolLv=-1;
+    flash='💡 第 '+av.lv+' 场上案：'+(avNoTell(av.lv)?'珠旁不写 BF 数字':'BF 数字还写在每一颗上')+
+      (avDim(av.lv)?' · 连准线与笨链那本账也收走了':'')+' · ';
+    avSay('第 '+av.lv+' 场：'+(avDim(av.lv)?'准线与账都收了，自己比、自己数':'尺子还在案上摆着'));
+  }
+  if(!av.pool.length){
+    av.rec=null;av.opts=null;av.load=true;av.phase='load';
+    avSync();avDraw();
+    const ok=await avBuildPool(true,AV_NMIN,AV_NMAX);
+    av.load=false;
+    if(!av.run||av.over)return;
+    if(!ok){avEnd('pool');return}
+  }
+  const rec=avTake();
+  if(!rec){avEnd('pool');return}
+  avSetWord(rec,flash);
+}
+/* ---- 挑下一个字：错字本上的字优先挑回来，其次这一场没上过案的 ---- */
+function avTake(){
+  const pool=av.pool;
+  if(!pool.length)return null;
+  for(let i=0;i<av.miss.length;i++){
+    for(let k=0;k<pool.length;k++)if(pool[k].ch===av.miss[i]&&av.seen.indexOf(pool[k].ch)<0)return pool[k];
+  }
+  const fresh=[];
+  for(let k=0;k<pool.length;k++)if(av.seen.indexOf(pool[k].ch)<0)fresh.push(pool[k]);
+  const list=fresh.length?fresh:pool;
+  return list[Math.floor(Math.random()*list.length)];
+}
+/* ---- 一个字上台：树、牌、钟、账一次摆好 ---- */
+function avSetWord(rec,flash){
+  av.rec=rec;av.ch=rec.ch;
+  av.cur=0;av.hung=0;av.root=null;av.z=null;av.zDepth=0;av.kind='none';
+  av.path=[];av.sides=[];av.qi=0;
+  av.lit=new Uint8Array(rec.n);
+  av.spark=[];av.anim=null;
+  av.opts=null;av.sel=0;av.touched={};av.wrongOpt=[];
+  av.qns=[];av.qi2=0;av.guessOk=0;av.guessBad=0;av.missFlag=0;av.skipNote='';
+  av.err=0;av.badHang=0;av.pickWrong=0;av.turnWrong=0;av.naiveHit=0;av.autoLate=0;
+  av.broken=0;av.brokenWhy='';
+  av.pickOk=0;av.turnOk=0;av.rotWord=0;av.tagSeqBad=0;
+  avRecost();
+  av.fresh=avFresh(rec.ch);
+  av.quick0=0;av.quickMs=0;
+  av.cleanWord=1;av.neatWord=1;av.wordTools=0;
+  av.probeMs=0;av.ruleMs=0;
+  av.locked=0;av.hitOk=0;av.hitTxt='';
+  av.nagMs=0;
+  av.phase='hang';
+  av.seen.push(rec.ch);
+  avTone(600,70);
+  avNewBead();
+  if(av.phase!=='hang'&&av.phase!=='pick')return;    /* avNewBead 撞上口径不合就把这个字退回库里了 */
+  avTag((flash||'')+'🈶 上案：'+rec.n+' 笔 · 一笔一颗珠 · 号就是<b>起笔横坐标</b>（'+rec.xs.slice().sort(function(a,b){return a-b}).join(' ')+
+    '）· 扶直 '+rec.hA+' 层 / '+avNaiveSay(rec)+(avNoTell(av.lv)?' · BF 数字案上不写':''),'gold');
+  avSync();avDraw();
+}
+/* ================= 三支钟 + 一条节奏：场灯 · 挂枝 · 中序抢答 ================= */
+function avTick(dt){
+  if(!av.run||av.over)return;
+  av.t+=dt;av.playMs+=dt;
+  if(av.helpMs>0){av.helpMs-=dt;if(av.helpMs<=0){av.helpMs=0;avSync()}return}
+  if(!av.rec||av.locked)return;
+  /* 场灯：一盏灯照一场的三个字 */
+  if(av.lamp>0){
+    av.lamp-=dt;
+    if(av.lamp<=0){av.lamp=0;avEnd('lamp');return}
+  }
+  if(av.phase==='seal'){
+    if(av.sealMs>0){av.sealMs-=dt;if(av.sealMs<=0){av.sealMs=0;avNextWord()}}
+    return;
+  }
+  /* 中序抢答钟：尽了这一题算「没答」—— 扣钱、断连击，但不掉心（答不上不等于答错）*/
+  if(av.phase==='quick'){
+    if(av.quickMs>0){
+      av.quickMs-=dt;
+      if(av.quickMs<=0){av.quickMs=0;avSlowQ();return}
+    }
+    av.nagMs+=dt;
+    if(av.nagMs>Math.min(AV_NAG_MS,av.quick0/2)){
+      av.nagMs=0;av.nags++;
+      /* 中序那一眼的提示要报得出数：问第几格，就把起笔从左边排过去数第几颗 */
+      const slot=av.qns[av.qi2]+1;
+      avSay('🌲 从左数第 '+slot+' 颗：把起笔从最左边一颗一颗往右排，排到第 '+slot+' 个就是答案');
+    }
+    avSync();avDraw();
+    return;
+  }
+  /* 挂枝钟：一问一口气；尽了当场替孩子落正解（手慢不是看错，但这一问不给赏）*/
+  if(av.phase==='hang'||av.phase==='pick'||av.phase==='turn'){
+    if(av.stepMs>0){
+      av.stepMs-=dt;
+      if(av.stepMs<=0){
+        av.stepMs=0;av.lates++;av.autoLate++;av.cleanWord=0;av.combo=0;
+        av.score-=AV_P_LATE;av.penSum+=AV_P_LATE;
+        av.hitOk=2;av.hitTxt='⌛ 挂枝钟尽 · −'+AV_P_LATE;
+        const o=av.opts?av.opts.list[av.opts.right]:null;
+        avTone(150,300);
+        if(!o){avWordOut('opts');return}
+        if(av.phase==='hang'){
+          avTag('⌛ 这一问的钟尽了：第 '+(av.cur+1)+' 笔该挂在第 '+(o.ref+1)+' 笔的<b>'+(o.side<0?'左边':'右边')+
+            '</b>（起笔 '+av.rec.xs[av.cur]+' 对 '+av.rec.xs[o.ref]+'）· 苗床替你走这一层 · 倒扣 '+AV_P_LATE+' 文 · 钟尽 '+
+            av.autoLate+'/'+AV_LATE_MAX+' 回','warn');
+          av.qi++;
+          avAutoNext();
+        }else if(av.phase==='pick'){
+          avTag('⌛ 这一问的钟尽了：站不住的是<b>第 '+(o.bead+1)+' 笔</b>那一颗 · 苗床替你指了（不给赏）· 倒扣 '+
+            AV_P_LATE+' 文 · 钟尽 '+av.autoLate+'/'+AV_LATE_MAX+' 回','warn');
+          av.phase='turn';avStartTurn();
+        }else{
+          avTag('⌛ 这一问的钟尽了：该转的是<b>'+avKindSay(o.kind)+'</b>（'+avKindHow(o.kind)+
+            '）· 苗床替你扶住了 · 倒扣 '+AV_P_LATE+' 文 · 钟尽 '+av.autoLate+'/'+AV_LATE_MAX+' 回','warn');
+          avApplyTurn(o.kind);
+          av.locked=1;
+          avT(function(){av.locked=0;avNextBead();avSync();avDraw()},AV_AN_MS);
+        }
+        if(av.autoLate>=AV_LATE_MAX){
+          av.broken=1;
+          av.brokenWhy='挂枝钟尽 '+AV_LATE_MAX+' 回，第 '+(av.hung+1)+' 笔没能挂上去';
+          avWordOut('late');return;
+        }
+        avSync();avDraw();
+        return;
+      }
+    }
+    av.nagMs+=dt;
+    if(av.nagMs>Math.min(AV_NAG_MS,av.step0/2)){
+      av.nagMs=0;av.nags++;
+      if(av.phase==='hang')avSay('🌱 比的是<b>起笔那一点</b>：这一笔的第一点落在参照那颗的准线哪一边，就挂哪一边');
+      else if(av.phase==='pick')avSay('⚖️ 沿刚走过的那条路<b>从下往上</b>数：第一个 |左层−右层|≥2 的就是歪的那一颗');
+      else avSay('🔄 <b>同边单旋、对面双旋</b>：歪在左支的右子就得先扶左支 —— 转完还歪着就是转错了');
+    }
+    return;
+  }
+}
+/* 钟尽代走的那一层走完后接上账：这一颗还是要照账落到底 */
+function avAutoNext(){
+  if(av.qi>=av.path.length){avAttach();return}
+  avNewHangQ();
+}
+
+/* ================= 开工 · 一根 rAF 管三支钟 · 键盘与真指针 ================= */
+/* 画布就在 <body> 里、这段脚本之前，所以这一眼取得到。
+   取不到就是屏面 HTML 没插在脚本前头：avDraw 第一行会直接 return，画面永远空白 —— 自检脚本读像素，红得掉牙 */
+const avCv=document.getElementById('avCanvas');
+if(!avCv)console.warn('🌳 笔顺扶树坊找不到画布 avCanvas');
+
+/* 这一坊吃的字要「真会歪、每一步只有一颗站不住、转法唯一正解且至少两种、比笨链矮两层以上」，
+   开场先去字库里过一遍闸（avBuildPool 当场重算，与离线字表不一样就不上台）*/
+async function avBoot(){
+  const g=av.gen;
+  av.load=true;av.phase='load';
+  avSync();avDraw();
+  const ok=await avBuildPool(true,AV_NMIN,AV_NMAX);
+  if(g!==av.gen||!av.run||av.over)return;
+  av.load=false;
+  if(!ok){avEnd('pool');avSync();return}
+  const rec=avTake();
+  if(!rec){avEnd('pool');avSync();return}
+  avSetWord(rec);
+  avSync();avDraw();
+}
+function avStart(){
+  av.run=true;av.over=false;av.gen++;
+  avBind();
+  avKill();
+  av.t=0;av.playMs=0;av.last=0;
+  av.pool=[];av.poolLv=-1;av.miss=[];av.seen=[];av.fresh=0;
+  av.lv=avLvOf(auxInt('hz_av_words'));
+  av.wi=0;av.score=0;av.hearts=AV_HEARTS;av.combo=0;av.maxCombo=0;
+  /* 场相必须先归到「挑字」：avSync 里那一句「按 1~4 选一颗」看的是上一局的场相，
+     而 rec 此刻已经清空 —— 从结算屏上那一颗「🌳 再扶一趟」直接重开会当场崩在半路 */
+  av.phase='load';av.load=true;av.locked=0;
+  av.ch='';av.rec=null;av.cur=0;av.n=0;av.hung=0;av.root=null;
+  av.path=[];av.sides=[];av.qi=0;av.z=null;av.zDepth=0;av.kind='none';
+  av.opts=null;av.sel=0;av.touched={};av.wrongOpt=[];av.anim=null;
+  av.err=0;av.badHang=0;av.pickWrong=0;av.turnWrong=0;av.naiveHit=0;av.autoLate=0;
+  av.broken=0;av.brokenWhy='';
+  av.pickOk=0;av.turnOk=0;av.rotWord=0;av.rotAll=0;av.picksAll=0;
+  av.qns=[];av.qi2=0;av.guessOk=0;av.guessBad=0;av.guessOkAll=0;av.gpicks=0;
+  av.quickMs=0;av.quick0=0;av.missFlag=0;av.skipNote='';
+  av.hA=0;av.hN=0;av.gap=0;av.naive=null;
+  av.lit=null;av.spark=[];
+  av.probeN=AV_P0.probe;av.ruleN=AV_P0.rule;av.swapN=AV_P0.swap;
+  av.probeUse=0;av.ruleUse=0;av.swapUse=0;av.probeMs=0;av.ruleMs=0;
+  av.step0=0;av.stepMs=0;av.sealMs=0;
+  av.lamp0=avLamp(av.lv);av.lamp=av.lamp0;
+  av.words=0;av.hangTotal=0;av.beads=0;av.rootN=0;av.perfect=0;av.seqN=0;av.tagSeqBad=0;
+  av.pickN=0;av.turnN=0;av.quickN=0;av.leanN=0;
+  av.wrongs=0;av.lates=0;av.hes=0;av.swaps=0;av.wordOuts=0;av.eyeballs=0;av.naiveAll=0;
+  av.cleanWord=1;av.neatWord=1;av.tools=0;av.wordTools=0;av.cleanRun=0;av.toolRun=0;av.errSum=0;
+  av.gain=0;av.penSum=0;av.hitOk=0;av.hitTxt='';
+  av.nags=0;av.nagMs=0;av.newBest=false;av.helpMs=0;
+  avClearTag();
+  const box=document.getElementById('avOpts');
+  if(box)box.innerHTML='';
+  if(typeof stopBGM==='function')stopBGM();
+  showScreen('avl');
+  avSync();avDraw();
+  avBoot();
+  avStartLoop();
+}
+/* 主循环的起停各只有一处：结算要冻画面就掐这一根，别在别处再挂第二条 rAF */
+function avLoop(ts){
+  if(!av.run||av.over){av.rafId=0;return}
+  const dt=av.last?Math.min(120,ts-av.last):16;
+  av.last=ts;
+  avTick(dt);
+  avSync();avDraw();
+  av.rafId=requestAnimationFrame(avLoop);
+}
+function avStartLoop(){if(!av.run||av.over||av.rafId)return;av.last=0;av.rafId=requestAnimationFrame(avLoop)}
+function avStopLoop(){if(av.rafId){cancelAnimationFrame(av.rafId);av.rafId=0}}
+function avRestart(){avStart()}
+function avLeave(where){
+  av.run=false;av.over=false;
+  avKill();avStopLoop();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function avHelp(){
+  if(!av.run||av.over)return;
+  if(av.rec&&av.phase!=='seal'&&!av.load){
+    av.eyeballs++;av.tools++;av.wordTools++;
+    av.score-=AV_P_HELP;av.penSum+=AV_P_HELP;av.cleanWord=0;
+    av.hitOk=2;av.hitTxt='📖 翻说明 · −'+AV_P_HELP;
+  }
+  av.helpMs=AV_HELP_MS;
+  avMsg(avHelpText(),'#FFE0B2');
+  avSync();
+}
+/* ---- 主钮那一下：四个场面各走各的手 ---- */
+function avAct(){
+  if(!av.rec||av.over||av.locked)return;
+  if(av.phase==='hang'||av.phase==='pick'||av.phase==='turn'){avPick(av.sel);return}
+  if(av.phase==='quick'){avSlowQ();return}
+  if(av.phase==='seal'){if(av.sealMs>0){av.sealMs=0;avNextWord()}return}
+  avTag('📥 正在挑字：这一场的字还在闸口数着');
+}
+/* ================= 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子 ================= */
+function avBind(){
+  if(av.bound)return;
+  av.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!av.run||av.over)return;
+    if(av.helpMs>0){av.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){avLeave();return}
+    if(k==='arrowup'||k==='arrowleft'){avMoveSel(-1);e.preventDefault();return}
+    if(k==='arrowdown'||k==='arrowright'){avMoveSel(1);e.preventDefault();return}
+    if(k==='enter'||k===' '){avAct();e.preventDefault();return}
+    if(k>='1'&&k<='9'){
+      const idx=+k-1;
+      /* 挂枝那一段只有两张牌（左边 / 右边），其余三段各四张 */
+      const max=av.opts?av.opts.list.length:0;
+      if(idx<max){
+        if(av.phase==='quick')avAnswer(idx);
+        else avPick(idx);
+      }else if(av.phase==='hang')avTag('🌱 这一问只比左右：<code>1</code> 挂左边 · <code>2</code> 挂右边');
+      else avTag('🌳 案上只有 '+max+' 张牌：答案在 <code>1~'+max+'</code> 里');
+      e.preventDefault();return;
+    }
+    if(k==='p'){avProbe();e.preventDefault();return}
+    if(k==='v'){avRule();e.preventDefault();return}
+    if(k==='s'){avSwapWord();e.preventDefault();return}
+    if(k==='h'||k==='?'){avHelp();e.preventDefault();return}
+    if(k==='f'){avEnd('quit');e.preventDefault();return}
+  });
+  if(avCv){
+    avCv.addEventListener('pointerdown',function(e){
+      if(!av.run||av.over)return;
+      if(av.helpMs>0){av.helpMs=0;return}
+      if(av.locked)return;
+      if(av.phase==='seal'){if(av.sealMs>0){av.sealMs=0;avNextWord()}e.preventDefault();return}
+      if(av.phase==='quick'){
+        /* 树上点哪一颗都不改变答案：题问的是「从左数第几格」，答案在案上那四张牌里 */
+        avTag('🌳 这一题的答案在案上那排牌里：按 <code>1~4</code> 或点那一张');
+        e.preventDefault();return;
+      }
+      if(av.phase==='hang'||av.phase==='pick'||av.phase==='turn'){
+        avTag('🌳 '+(av.opts?'眼下这一问的牌在案上那'+av.opts.list.length+'张里（点一行或按 1~'+av.opts.list.length+'）':
+          '🌳 牌还没摆上来'));
+        e.preventDefault();return;
+      }
+      avTag('📥 正在挑字：这一场的字还在闸口数着');
+      e.preventDefault();
+    });
+  }
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){
+      if(!av.run||av.over)return;
+      if(av.helpMs>0){av.helpMs=0;return}
+      on();ev.preventDefault();
+    });
+  };
+  tap('avActBtn',function(){avAct()});
+  tap('avProbeBtn',function(){avProbe()});
+  tap('avRuleBtn',function(){avRule()});
+  tap('avSwapBtn',function(){avSwapWord()});
+  tap('avHelpBtn',function(){avHelp()});
+  tap('avNextBtn',function(){avEnd('quit')});
+  const tapFree=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){on();ev.preventDefault()});
+  };
+  /* 散场之后那三颗钮不许按 run/over 拦：孩子站在结算屏上，「再扶一趟」「回实验室」「回书桌」
+     必须点得动 —— 拦在前面就等于把结算屏变成一堵墙 */
+  tapFree('avReBtn',function(){avRestart()});
+  tapFree('avLabBtn',function(){avLeave('lab')});
+  tapFree('avHomeBtn',function(){avLeave()});
+}
+
+/* ================= 散场：结算、落盘、图鉴与苗架、把这一趟的账再独立核一遍 ================= */
+function avPut(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt}
+function avPutH(id,html,color){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML=html;
+  if(color)el.style.color=color;
+}
+/* ---- 半路收场：挂到一半、转到一半就按结算 —— 这一趟的话没说完，扣一次 ---- */
+function avQuitTally(){
+  if(!av.rec||av.over)return;
+  if(av.phase==='seal'||av.locked)return;
+  av.score-=AV_P_QUIT;av.penSum+=AV_P_QUIT;
+  av.wrongs++;av.wordOuts++;
+  avMissPut(av.rec.ch);
+}
+function avEnd(why){
+  if(!av.run||av.over)return;
+  /* 半路那一扣得在「散了」立起来之前结：avQuitTally 自己认的就是「还没散场」——
+     先立 over 再叫它，扣文与错字本全落不下去（孩子白按了一次结算）*/
+  avQuitTally();
+  av.over=true;av.run=false;
+  avKill();avClearTag();
+  const stars=Math.max(1,Math.round(av.score/14)+av.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  avPut('avRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['🌳','收摊了','自己按的结算'],
+    hearts:['💔','心都磨完了','挂错、指错、转错攒到一处'],
+    lamp:['🕯️','苗圃熄灯了','这一场的灯烧完了'],
+    pool:['🌳','配不出这一场的字','字库里挑不出「真会歪、每一步转法唯一、比笨链矮两层以上」的字']}[why]||
+    ['🌳','散场',''];
+  avPut('avRsEmoji',head[0]);
+  avPut('avRsTitle',head[1]);
+  avPut('avRsSub','第 '+av.lv+' 场 · '+head[2]+' · 收齐 '+av.words+' 字');
+  avPut('avRsScore','🌳 '+av.score+' 文（赏 +'+av.gain+' · 罚 −'+av.penSum+'）');
+  avPut('avRsWords','🈶 收字 '+av.words+' 个 · 往下走 '+av.hangTotal+' 层 · 落 '+av.beads+' 颗珠');
+  avPut('avRsWalk','🌲 中序抢答 '+av.gpicks+' 题 · 答对 '+av.guessOkAll+' · 最长连击 '+av.maxCombo);
+  avPut('avRsAward','🏅 一次没错 '+av.perfect+' 趟 · 一颗不落 '+av.seqN+' 趟 · 一歪不指错 '+av.pickN+
+    ' 趟 · 转法全对 '+av.turnN+' 趟');
+  avPut('avRsWipe','🪵 跟着笨链 '+av.naiveAll+' 回 · 看错 '+av.wrongs+' 次 · 钟尽代挂 '+av.lates+' 次 · 犹豫 '+av.hes+' 回');
+  avPut('avRsTools','🧰 借家什 '+av.tools+' 回 · ✨看层 '+av.probeUse+' · 🧭准线 '+av.ruleUse+
+    ' · 🔁换字 '+av.swaps+' · 📖说明 '+av.eyeballs);
+  avPut('avRsRot','🔄 扶正 '+av.rotAll+' 回 · 指对 '+av.picksAll+' 回 · 这一趟 '+av.rotWord+' 回');
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账 */
+  avSave(why);
+  avPut('avRsBest','🏅 历史最高 '+auxInt('hz_av_best')+' 文 · 累计收字 '+auxInt('hz_av_words')+
+    ' 字 · 累计走 '+auxInt('hz_av_hang')+' 层');
+  avPut('avRsStars','⭐ +'+stars+(why==='pool'?'':'（已上星）'));
+  const rk=avRankOf(auxInt('hz_av_words'));
+  avPut('avRsRank',rk.e+' '+rk.t);
+  const bk=avBookCount();
+  avPutH('avRsBook','📖 <b>藏书阁 '+bk.book+' 张</b> · 苗架 <b>'+bk.shelf+'/'+AV_SHELF.length+
+    '</b> 件 · 错字本 <b>'+bk.miss+'</b> 个字<br><small>最远走到第 '+auxInt('hz_av_lvmax')+' 场 · 累计扶正 '+
+    auxInt('hz_av_rot')+' 回 · 一次没错 '+auxInt('hz_av_perfect')+' 趟 · 一颗不落 '+auxInt('hz_av_full')+
+    ' 趟 · 中序全对 '+auxInt('hz_av_quick')+' 趟 · 清白场 '+auxInt('hz_av_neat')+' 场</small>');
+  avPutH('avRsWhy','🌳 这一坊的道理：<b>一棵树自己会长歪，扶直它只要转一下；转一下不挪任何人的左右邻居</b>。'+
+    '一笔一颗珠，珠子的<b>号就是这一笔的起笔横坐标</b>（谁更靠左谁小），按笔顺一颗颗往下挂 —— '+
+    '从根起每一层问一句「挂它左边还是右边」。<br>'+
+    '⚖️ <b>平衡因子 BF = 左支层数 − 右支层数</b>，|BF|≥2 就算站不住。沿刚走过的那条路<b>从下往上</b>找，'+
+    '<b>第一个站不住的</b>就是要扶的那一颗 —— 一颗挂下去，路上也许两三颗一起差到两层（AVL 天生如此），'+
+    '但<b>只有最下面那一颗要转</b>：转它一颗，整条路一起复位。<br>'+
+    '🔄 <b>只有四种转法</b>：右旋 · 左旋 · 先左后右 · 先右后左。<b>同边单旋、对面双旋</b>：'+
+    '歪在左支的左子就右旋，歪在左支的右子先扶左支再转整颗。判对错只有一把尺 —— <b>转完再看一遍，还歪着就是没扶住</b>。<br>'+
+    '🌲 <b>定海神针：旋转天生不打乱中序</b>。珠子横着的位置一辈子只由起笔左右定，转来转去只有上下动，'+
+    '所以<b>中序永远等于「起笔从左边排到右边」</b> —— 这条不是赏，是账：段 A 逐格对表，谁也没法把它弄乱。<br>'+
+    '🪵 <b>笨链</b>：同一条笔顺挂进一棵一颗也不转的树。过闸的字笨链至少高 '+AV_DIFF_MIN+' 层（配字时数出来的），'+
+    '右下角写着它几层、这棵树几层 —— 差价就是扶与不扶的账。跟着它选「都站得住」，差价作废、这一趟记一处错。<br>'+
+    '🎭 第 '+AV_TELL_LV+' 场起珠旁不写 BF 数字（自己数层），第 '+AV_DIM_LV+' 场起连准线与笨链那本账也收走。<br>'+
+    '战绩落盘 <code>hz_av_*</code>：场档按<b>收齐的字数</b>走，称号按<b>累计收字数</b>走，错字本里的字'+
+    '<b>下一场优先挑回来</b>','#C8E6C9');
+  avNudge();
+  /* 屏面也要跟着散场：家什三件、下一颗与落子那颗钮当场摘掉 ——
+     只挡账不挡屏，孩子看得见的那一颗钮还是亮着的 */
+  avSync();
+  showScreen('avl-result');
+}
+/* ---- 落盘 ---- */
+function avSave(why){
+  auxAdd('hz_av_games',1);
+  auxAdd('hz_av_words',av.words);
+  auxAdd('hz_av_hang',av.hangTotal);
+  auxAdd('hz_av_beads',av.beads);
+  auxAdd('hz_av_rot',av.rotAll);
+  auxAdd('hz_av_gpick',av.gpicks);
+  auxAdd('hz_av_swap',av.swaps);
+  auxAdd('hz_av_late',av.lates);
+  auxAdd('hz_av_hes',av.hes);
+  auxAdd('hz_av_wrong',av.wrongs);
+  auxAdd('hz_av_wordout',av.wordOuts);
+  auxAdd('hz_av_tools',av.tools);
+  auxAdd('hz_av_probe',av.probeUse);
+  auxAdd('hz_av_rule',av.ruleUse);
+  auxAdd('hz_av_naive',av.naiveAll);
+  if(av.maxCombo>auxInt('hz_av_combo'))auxPut('hz_av_combo',av.maxCombo);
+  if(av.lv>auxInt('hz_av_lvmax'))auxPut('hz_av_lvmax',av.lv);
+  if(av.score>auxInt('hz_av_best')){auxPut('hz_av_best',av.score);av.newBest=true}
+  avShelfCheck();
+}
+/* ---- 图鉴：一个字一张育苗卡（记的是首回收齐那个字的场号与笔数）---- */
+function avBookCount(){
+  const book=(localStorage.getItem('hz_av_book')||'').split(',').filter(function(s){return s}).length;
+  const shelf=(localStorage.getItem('hz_av_shelf')||'').split(',').filter(function(s){return s}).length;
+  const miss=(localStorage.getItem('hz_av_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0}).length;
+  return {book:book,shelf:shelf,miss:miss};
+}
+function avBookPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  const bk=localStorage.getItem('hz_av_book')||'';
+  if(bk.indexOf(ch+':')>=0)return;
+  const list=bk.split(',').filter(function(s){return s});
+  list.unshift(ch+':'+av.lv+':'+(av.rec?av.rec.n:0));
+  auxPut('hz_av_book',list.slice(0,AV_BOOK_MAX).join(','));
+}
+/* 散场、换字、抢答错的字进错字本：下一场优先挑回来 */
+function avMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_av_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  auxPut('hz_av_miss',miss.slice(0,AV_BOOK_MAX).join(','));
+  /* 眼下这一场的 avTake 读的是 av.miss（那一本账只在起案时从盘上回读一次）：
+     只写盘不写这本活账，屏上那句「下一场优先挑回来」在同一场里就成了空话 */
+  if(av.miss&&av.miss.indexOf(ch)<0){av.miss.unshift(ch);if(av.miss.length>AV_BOOK_MAX)av.miss.length=AV_BOOK_MAX}
+}
+/* 苗架：八件各认一件实事，其中「名刺」认的是别处的章节徽章 */
+function avShelfCheck(){
+  const have=(localStorage.getItem('hz_av_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    auxInt('hz_av_words')+av.words>=1,
+    auxInt('hz_av_neat')>=1,
+    auxInt('hz_av_perfect')>=5,
+    auxInt('hz_av_full')>=1,
+    auxInt('hz_av_lvmax')>=AV_SHELF_LV||av.lv>=AV_SHELF_LV,
+    auxInt('hz_av_notool')>=1,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    auxInt('hz_av_hang')+av.hangTotal>=400
+  ];
+  for(let i=0;i<AV_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(AV_SHELF[i].k)<0){have.push(AV_SHELF[i].k);got.push(AV_SHELF[i].k)}
+  }
+  auxPut('hz_av_shelf',have.join(','));
+  auxPut('hz_av_trophy',have.length);
+  auxPut('hz_av_trophy_n',auxInt('hz_av_trophy_n')+got.length);
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一坊走到第几场了 ---- */
+function avNudge(){
+  const dot=document.getElementById('avlCardDot'),tip=document.getElementById('avlCardTip');
+  const tot=auxInt('hz_av_words'),hang=auxInt('hz_av_hang'),lv=auxInt('hz_av_lvmax');
+  const rk=avRankOf(tot),shelf=auxInt('hz_av_trophy'),pf=auxInt('hz_av_perfect'),fu=auxInt('hz_av_full');
+  if(tip)tip.innerHTML=hang?('🔔 '+rk.e+' '+rk.t+' · 收字 '+tot+' 个 · 往下走 '+hang+' 层 · 落 '+
+    auxInt('hz_av_beads')+' 颗珠 · 最远第 '+lv+' 场 · 扶正 '+auxInt('hz_av_rot')+
+    ' 回 · 一次没错 '+pf+' 趟 · 一颗不落 '+fu+' 趟 · 中序全对 '+auxInt('hz_av_quick')+
+    ' 趟 · 苗架 '+shelf+' 件'):
+    '一笔一颗珠，珠子的<b>号就是这一笔的起笔横坐标</b>（谁更靠左谁小）。按笔顺一颗颗往下挂：'+
+    '从根往下每一层问一句「挂它左边还是右边」—— 比的是两个起笔点，画一条准线。<br>'+
+    '⚖️ <b>平衡因子 BF = 左支层数 − 右支层数</b>，|BF|≥2 就算歪。沿刚走过的那条路<b>从下往上</b>数，'+
+    '第一个站不住的那一颗就是要扶的（一起差到两层的也许有两三颗，<b>最下面那一颗</b>才是答案 —— 转它一颗，上面几颗跟着复位）。<br>'+
+    '🔄 <b>四种转法</b>：右旋 · 左旋 · 先左后右 · 先右后左。<b>同边单旋、对面双旋</b>，'+
+    '判对错只有一把尺 —— 转完再看一遍，还歪着就是没扶住（这一坊不拿「中序乱了」当错处，因为<b>旋转天生不打乱中序</b>）。<br>'+
+    '🌲 <b>定海神针</b>：中序永远等于「起笔从左边排到右边」。珠子只有上下动，左右一格不许动 —— 封字前就问「从左数第 j 颗是哪一笔」。<br>'+
+    '🪵 <b>笨链</b>就摆在右下角：同一条笔顺、一颗也不转。过闸的字笨链至少高 '+AV_DIFF_MIN+
+    ' 层，差价就是扶与不扶的账；跟着它选「都站得住」，差价作废、这一趟记一处错。<br>'+
+    '🎭 第 '+AV_TELL_LV+' 场起珠旁不写 BF 数字，第 '+AV_DIM_LV+' 场起连准线与笨链那本账也收走';
+  if(dot){dot.classList.toggle('on',!hang);dot.textContent=(hang?'':'🆕')}
+}
+/* ================= 段 W 的另一条路：只读，不许碰场上任何东西 =================
+   这一坊的账全是「树」，所以复核的手换三条与闸门不同的路子：
+   ① 排队：拿起笔横坐标用一个一个往前插的插入排序排成队伍（不走 Array.sort 那一只手），
+      与账上的 order 逐格对表 —— 中序那一本账的「另一头」
+   ② 层数：不递推 h，而是一层一层把号收集进桶里数（桶排那一只手），
+      树上每一颗的 h 必须等于 1+max(两支)，笨链的层数必须等于桶里非空的那几格
+   ③ AVL 上界：h ≤ 1.45·log2(n+2)（离线扫描数过：全站过闸字最矮的那一棵也在这条线以下）
+   ④ 转法穷举：每一个要转的那一步，五种答法挨个转一遍数一数值 —— 扶住树的只准一张，且必须就是账上那一种
+   ⑤ 中序不变：当场拿树上任意一颗做一次左旋，中序必须一字不差（旋转不打乱中序，这一眼看得见）
+   ⑥ 牌桌：挂枝两张（左右互斥）· 指歪四张（三颗珠互不相同、恰好一颗是歪的那颗、含一张「都站得住」）·
+      转法四张（互不相同、唯一一张转完站得住）· 中序四张（互不相同、正解就是起笔排第 slot 的那一笔）*/
+function avAudWord(ch,j){
+  const out={ok:0,why:'',n:0,hA:0,hN:0,gap:0,rot:0,norot:0,kinds:0,qs:0,bad:0,info:[]};
+  const say=function(t){out.why=t};
+  const meds=j&&j.medians,sp=j&&j.strokes;
+  if(!meds||!sp||meds.length!==sp.length){say('字料与账对不上');out.bad++;return out}
+  const n=meds.length;
+  if(n<AV_NMIN||n>AV_NMAX){say('笔数出带');out.bad++;return out}
+  const xs=[];
+  for(let i=0;i<n;i++){
+    const m=meds[i];
+    if(!m||m.length<2||!isFinite(m[0][0])){say('起笔读不出');out.bad++;return out}
+    xs.push(Math.round(m[0][0]));
+  }
+  /* ① 插入排序：一个一个往前放，与闸门那一句 sort() 是两只不同的手 */
+  const seq=[];
+  for(let i=0;i<n;i++){
+    let p=seq.length;
+    while(p>0&&xs[seq[p-1]]>xs[i])p--;
+    seq.splice(p,0,i);
+  }
+  for(let i=1;i<n;i++)if(xs[seq[i]]<=xs[seq[i-1]]){say('起笔排不开（有两点同一条竖线）');out.bad++;break}
+  /* ② 桶里数层：不递推 h */
+  const R=avIns(xs);
+  const buckets=[];
+  (function w(t,d){if(!t)return;
+    if(!buckets[d])buckets[d]=[];
+    buckets[d].push(t.i);w(t.L,d+1);w(t.R,d+1)})(R.root,1);
+  const hs=[];
+  for(let i=0;i<n;i++)hs.push(0);
+  for(let d=1;d<buckets.length;d++){
+    if(!buckets[d])continue;
+    for(let k=0;k<buckets[d].length;k++)hs[buckets[d][k]]=d;
+  }
+  (function w(t){if(!t)return;
+    const g=Math.max(t.L?t.L.h:0,t.R?t.R.h:0);
+    if(t.h!==g+1)say('第 '+(t.i+1)+' 笔那一颗记的层数 '+t.h+' 与两支的 max+1（'+(g+1)+'）不合');
+    if(hs[t.i]!==t.h)say('第 '+(t.i+1)+' 笔的层数：桶里数到 '+hs[t.i]+'，账上写 '+t.h);
+    w(t.L);w(t.R)})(R.root);
+  const hA=buckets.length-1;
+  /* ③ AVL 上界 */
+  const bound=Math.floor(1.45*Math.log(n+2)/Math.LN2);
+  if(hA>bound+1){say('扶直的树高 '+hA+' 层，越过 AVL 上界 '+bound);out.bad++}
+  /* ④ 逐颗：|BF|≤1；每一步只准一颗站不住；转法穷举唯一 */
+  let rot=0,norot=0,kinds=0,qs=0;
+  const kd={};
+  for(let si=0;si<R.steps.length;si++){
+    const s=R.steps[si];
+    qs+=s.path.length;
+    if(s.kind==='none')norot++;else{rot++;kd[s.kind]=1;kinds=Object.keys(kd).length}
+    if(s.side.length!==s.path.length){say('第 '+(s.i+1)+' 笔：问的层数与走的层数不合');out.bad++}
+    /* 要扶的那一颗必须是刚走过那条路上的某一层 —— 挂枝时从下往上数，第一个站不住的当然在脚下 */
+    const zp=s.path.lastIndexOf(s.z);
+    if(s.kind!=='none'&&zp<0){say('第 '+(s.i+1)+' 笔要扶的第 '+(s.z+1)+' 笔不在这条路上');out.bad++}
+    if(s.zDepth!==(zp<0?0:zp+1)){say('第 '+(s.i+1)+' 笔：歪的那颗走在第 '+(zp+1)+' 问，账上写的是第 '+s.zDepth+' 问');out.bad++}
+    for(let q=0;q<s.path.length;q++){
+      const at=s.path[q];
+      if(Math.abs(xs[s.i]-xs[at])<AV_READ)say('第 '+(s.i+1)+' 笔第 '+(q+1)+' 问两点隔不到 '+AV_READ);
+      /* 这一问报的是「挂这一颗时走过的那一条路」：每一层往哪一支走，天生由两个起笔的左右定死 */
+      if((s.side[q]<0)!==(xs[s.i]<xs[at])){say('第 '+(s.i+1)+' 笔第 '+(q+1)+' 问：起笔在第 '+(at+1)+' 笔的'+(xs[s.i]<xs[at]?'左':'右')+'边，账上却说挂'+(s.side[q]<0?'左':'右')+'');out.bad++}
+    }
+    if(s.kind==='none'){
+      /* 落下去谁都站得住：那一棵树（含这一颗）每一颗的 |BF| 都得 ≤1 */
+      const all=avIns(xs.slice(0,s.i+1));
+      let c0=0;
+      (function w(t){if(!t)return;if(Math.abs(avBf(t))>=2)c0++;w(t.L);w(t.R)})(all.root);
+      if(c0) say('账上第 '+(s.i+1)+' 笔「谁都不歪」，可这一棵树上还有 '+c0+' 颗站不住');
+      continue;
+    }
+    /* 转之前那一棵必须站得住（上一颗扶过了），挂上这一颗才第一次歪 ——
+       挂上去的这一棵必须是「只插不转」的那一棵（与 avAttach 同一只手）：
+       拿默认的 avIns 会把这一颗一起转掉，数出来永远是 0 颗歪，这一条就成了空转 */
+    const pre=avIns(xs.slice(0,s.i));
+    let cPre=0;
+    (function w(t){if(!t)return;if(Math.abs(avBf(t))>=2)cPre++;w(t.L);w(t.R)})(pre.root);
+    if(cPre){say('挂第 '+(s.i+1)+' 笔之前树上还歪着 '+cPre+' 颗（上一颗没扶住，闸门配的字不该这样）');out.bad++}
+    const after=avIns(xs.slice(0,s.i+1),{i:s.i,kind:'none'}).root;
+    let un=0,deep=-1,unD=-1;
+    (function w(t,d){if(!t)return;
+      if(Math.abs(avBf(t))>=2){un++;if(d>unD){unD=d;deep=t.i}}
+      w(t.L,d+1);w(t.R,d+1)})(after,1);
+    /* 一次插入能让路上好几颗一起差到两层（AVL 天生如此），所以这里核的不是颗数，
+       而是「从下往上第一个站不住的 = 账上 z」—— 指歪那一问的正解就是它，转它一颗全路复位 */
+    if(!un)say('挂上第 '+(s.i+1)+' 笔后一颗都不歪，账上却写着要转 '+s.kind);
+    if(deep!==s.z){say('挂上第 '+(s.i+1)+' 笔后从下往上第一个站不住的是第 '+(deep+1)+' 笔，账上写的却是第 '+(s.z+1)+' 笔');out.bad++}
+    let good=0,mine=0;
+    for(let t=0;t<AV_KINDS.length;t++){
+      const ok2=avFixes(xs,s.i,AV_KINDS[t]);
+      if(ok2)good++;
+      if(AV_KINDS[t]===s.kind)mine=ok2?1:0;
+    }
+    if(good!==1){say('第 '+(s.i+1)+' 笔的转法有 '+good+' 张扶得住（唯一正解破了）');out.bad++}
+    if(!mine){say('账上那一种转法（'+s.kind+'）转完还歪着');out.bad++}
+  }
+  if(rot<1){say('全程一颗不歪');out.bad++}
+  if(norot<1){say('每挂一颗都要转');out.bad++}
+  if(kinds<AV_KIND_MIN){say('转法只有 '+kinds+' 种');out.bad++}
+  if(qs<AV_Q_MIN){say('挂枝问 '+qs+' 层太短');out.bad++}
+  /* 笨链：桶里数层，与闸门那一只递推的手不一样 */
+  const naive=avBsIns(xs);
+  const nb=[];
+  (function w(t,d){if(!t)return;
+    if(!nb[d])nb[d]=0;
+    nb[d]++;w(t.L,d+1);w(t.R,d+1)})(naive,1);
+  let hN=0;
+  for(let d=1;d<nb.length;d++)if(nb[d])hN=d;
+  if(hN!==avHgt(naive)){say('笨链层数：桶里数到 '+hN+'，递推数到 '+avHgt(naive));out.bad++}
+  if(hN-hA<AV_DIFF_MIN){say('笨链只高 '+(hN-hA)+' 层太薄');out.bad++}
+  /* 中序：账上那一串 + 当场左旋一次再数一遍（旋转不打乱中序）*/
+  const mid=avMid(R.root,[]);
+  for(let i=0;i<n;i++)if(mid[i]!==seq[i]){say('中序第 '+(i+1)+' 格是第 '+(mid[i]+1)+' 笔，起笔排队那一格却是第 '+(seq[i]+1)+' 笔');out.bad++;break}
+  (function(){
+    /* 找一颗有两支的珠子当场左旋，中序必须一字不差 */
+    let z=null;
+    (function w(t){if(!t||z)return;if(t.L&&t.R){z=t;return}w(t.L);if(!z)w(t.R)})(R.root);
+    if(!z)return;
+    const before=avMid(R.root,[]).slice();
+    const cp=(function copy(t){return t?{i:t.i,key:t.key,h:t.h,L:copy(t.L),R:copy(t.R)}:null})(R.root);
+    avRotL(cp);
+    const after=avMid(cp,[]);
+    if(after.length!==before.length){say('左旋一次珠子少了一颗');out.bad++;return}
+    for(let i=0;i<before.length;i++)if(before[i]!==after[i]){say('左旋把中序打乱了（第 '+(i+1)+' 格）');out.bad++;break}
+  })();
+  /* ⑥ 牌桌四张：四段各摆一次，逐张数给孩子的到底齐不齐 */
+  for(let si=0;si<R.steps.length;si++){
+    const s=R.steps[si];
+    if(s.path.length){
+      const H=avHangOpts(s.path[0],s.side[0]);
+      if(!H||H.list.length!==2||H.list[0].side===H.list[1].side){say('挂枝那两张凑不出左右各一张');out.bad++;break}
+      if(H.list[H.right].side!==s.side[0]){say('挂枝那一张正解与孩子要按的那一边不合');out.bad++;break}
+    }
+    if(s.kind==='none')continue;
+    const T=avTurnOpts(xs,s.i,s.kind);
+    if(!T){say('第 '+(s.i+1)+' 笔的转法牌桌配不出四张');out.bad++;break}
+    if(T.list.length!==4){say('第 '+(s.i+1)+' 笔的转法牌桌是 '+T.list.length+' 张');out.bad++;break}
+    let seen={},u=0,good=0;
+    for(let t=0;t<4;t++){
+      const x=T.list[t];
+      if(seen[x.kind]){say('第 '+(s.i+1)+' 笔的转法牌桌有两张同名');out.bad++;break}
+      seen[x.kind]=1;u++;
+      if(avFixes(xs,s.i,x.kind))good++;
+    }
+    if(out.bad)break;
+    if(u!==4||good!==1||T.list[T.right].kind!==s.kind){say('第 '+(s.i+1)+' 笔的牌桌：唯一正解那条尺过了闸，案上却对不上');out.bad++;break}
+  }
+  if(out.bad){return out}
+  out.ok=1;out.n=n;out.hA=hA;out.hN=hN;out.gap=hN-hA;
+  out.rot=rot;out.norot=norot;out.kinds=kinds;out.qs=qs;out.bound=bound;
+  out.info.push({ch:ch,n:n,hA:hA,hN:hN,gap:hN-hA,rot:rot,norot:norot,kinds:kinds,qs:qs});
+  return out;
+}
+/* ---- 眼下案面的账：一棵树、一张牌桌、一支钟，当场互核（只读）---- */
+function avAudState(){
+  const s={has:0,lv:av.lv,phase:av.phase,ch:av.ch,n:0,hA:0,hN:0,gap:0,
+    hung:av.hung,cur:av.cur,beads:av.beads,rotWord:av.rotWord,step:av.qi,
+    err:av.err,badHang:av.badHang,pickWrong:av.pickWrong,turnWrong:av.turnWrong,naiveHit:av.naiveHit,
+    broken:av.broken,brokenWhy:av.brokenWhy,autoLate:av.autoLate,
+    qi2:av.qi2,qns:av.qns.length,guessOk:av.guessOk,guessBad:av.guessBad,
+    stepMs:av.stepMs,step0:av.step0,quickMs:av.quickMs,quick0:av.quick0,lamp:av.lamp,lamp0:av.lamp0,
+    hearts:av.hearts,words:av.words,combo:av.combo,score:av.score,gain:av.gain,penSum:av.penSum,
+    tools:av.tools,borrow:av.probeUse+av.ruleUse+av.swapUse+av.eyeballs,
+    litN:0,optN:av.opts?av.opts.list.length:0,bad:0,note:[]};
+  const why=function(t){s.bad++;s.note.push(t)};
+  const rec=av.rec;
+  if(!rec)return s;
+  s.has=1;s.n=rec.n;s.hA=rec.hA;s.hN=rec.hN;s.gap=rec.gap;
+  /* ① 树上那一棵：颗数必须等于挂上的笔数，每一颗都还在该在的号上 */
+  let cnt=0;
+  (function w(t){if(!t)return;cnt++;
+    if(t.i>=av.hung)why('树上站着第 '+(t.i+1)+' 笔，可这一趟只挂到第 '+av.hung+' 笔');
+    if(t.key!==rec.xs[t.i])why('第 '+(t.i+1)+' 笔的号写 '+t.key+'，字料里它的起笔是 '+rec.xs[t.i]);
+    const g=Math.max(t.L?t.L.h:0,t.R?t.R.h:0);
+    if(t.h!==g+1)why('第 '+(t.i+1)+' 笔的层数 '+t.h+' 与两支的 max+1 不合');
+    w(t.L);w(t.R)})(av.root);
+  if(cnt!==av.hung)why('树上有 '+cnt+' 颗，账上挂到第 '+av.hung+' 笔');
+  if(av.hung!==av.cur)why('挂上树 '+av.hung+' 颗，可案上走到第 '+(av.cur+1)+' 笔');
+  /* ② 中序（定海神针）：只由起笔左右定，转来转去不许乱 */
+  const mid=avMid(av.root,[]);
+  const part=rec.xs.slice(0,av.hung).map(function(x,i){return i});
+  part.sort(function(a,b){return rec.xs[a]-rec.xs[b]});
+  for(let i=0;i<mid.length;i++)if(mid[i]!==part[i]){why('中序第 '+(i+1)+' 格是第 '+(mid[i]+1)+' 笔，起笔排队排到的是第 '+(part[i]+1)+' 笔');break}
+  /* ③ 歪的颗数：指歪与扶正那两段天生只准一颗，其余段落一颗也不许剩 */
+  /* ③ 歪的颗：挂上一颗之后，沿路往上「本来就差一层」的那几颗会一起差到两层 —— AVL 天生如此
+        （全站 1372 字过闸的 120 字里 113 字至少撞上一回，量过：最多三颗一起站着不稳）。
+        所以要扶的那一颗从来不是「唯一歪的那一颗」，而是「沿刚走过的那条路从下往上数第一个」，
+        也就是最深的那一颗：转它一颗，整条路一起复位（闸门里 avFixes 数的就是这一眼）。
+        判据因此钉在「最深那颗 = 账上那颗」，不钉在颗数上 —— 颗数放宽，最深那颗一处不许挪。*/
+  let un=0,unAt=-1,unD=-1;
+  (function w(t,d){if(!t)return;
+    if(Math.abs(avBf(t))>=2){un++;if(d>unD){unD=d;unAt=t.i}}
+    w(t.L,d+1);w(t.R,d+1)})(av.root,1);
+  s.un=un;s.unAt=unAt;
+  /* 扶正那一下的动画正在走：树已经转过、场相与颗数还没挪窝（avApplyTurn 立刻换树，avNextBead 等动画收）——
+     这一段是过渡态，只核静态账（①②⑤⑥⑦⑧），动态那两条等它落定再核 */
+  if(av.locked){
+    /* no-op */
+  }else if(av.phase==='pick'||av.phase==='turn'){
+    if(!un)why('这一问要指的那一颗：案上一颗都不歪（树在上案时就已经扶过了）');
+    else if(unAt!==rec.steps[av.hung-1].z)why('从下往上第一个站不住的是第 '+(unAt+1)+' 笔，题头写的却是第 '+(rec.steps[av.hung-1].z+1)+' 笔');
+  }else if(un&&!(av.broken||av.locked)){
+    why('场相是 '+av.phase+'，树上却还挂着第 '+(unAt+1)+' 笔那颗没扶住');
+  }
+  /* ④ 挂过的账：每一颗挂上去都正好走账上那一条路，问的层数与挂的层数一字一样 */
+  if(av.hung){
+    let sum=0;
+    for(let i=0;i<av.hung;i++)sum+=rec.steps[i].side.length;
+    if(av.hangTotal<sum)why('累计往下走了 '+av.hangTotal+' 层，可前 '+av.hung+' 笔的账上就有 '+sum+' 层');
+    const s2=rec.steps[av.hung-1];
+    if(av.z!==s2.z)why('案上歪的那颗是第 '+(av.z+1)+' 笔，账上这一步写的却是第 '+(s2.z+1)+' 笔');
+    if(av.kind!==s2.kind)why('案上这一步的转法是 '+av.kind+'，账上写着 '+s2.kind);
+  }
+  let need=0;
+  for(let i=0;i<(av.phase==='pick'||av.phase==='turn'?av.hung-1:av.hung);i++)if(rec.steps[i].kind!=='none')need++;
+  if(!av.locked&&av.rotWord!==need)why('账上扶正 '+av.rotWord+' 回，可按段数该扶 '+need+' 回');
+  /* ⑤ 米字格：亮了几笔必须正好等于挂上树的颗数，且亮的是前 hung 笔 */
+  if(av.lit){
+    let ln=0;
+    for(let i=0;i<rec.n;i++)if(av.lit[i]){ln++;if(i>=av.hung)why('第 '+(i+1)+' 笔还没挂上树，格上却已经亮了')}
+    s.litN=ln;
+    if(ln!==av.hung)why('格上亮 '+ln+' 笔，树上是 '+av.hung+' 颗');
+  }
+  /* ⑥ 牌桌：四段各是一箱，张数、互不相同、正解唯一 */
+  if(av.phase==='hang'||av.phase==='pick'||av.phase==='turn'||av.phase==='quick'){
+    if(!av.opts)why('场相是 '+av.phase+'，案上却没有牌');
+    else{
+      if(av.phase==='hang'&&s.optN!==2)why('挂枝那一段只该摆两张（左 · 右），案上 '+s.optN+' 张');
+      if((av.phase==='pick'||av.phase==='turn'||av.phase==='quick')&&s.optN!==4)why(av.phase+' 那一段该摆四张，案上 '+s.optN+' 张');
+      const seen={},list=av.opts.list;
+      for(let i=0;i<list.length;i++){
+        const x=list[i];
+        const key=av.phase==='hang'?('s'+x.side):av.phase==='pick'?(x.kind==='none'?'none':'b'+x.bead):
+          av.phase==='turn'?x.kind:('k'+x.bead);
+        if(seen[key])why('第 '+(i+1)+' 张与前面某一张一模一样（'+key+'）');
+        seen[key]=1;
+      }
+      if(s.sel<0||s.sel>=s.optN)why('挑中的那张出了牌桌范围');
+      if(av.opts.right<0||av.opts.right>=s.optN)why('right 那个下标出了牌桌范围');
+      else if(list[av.opts.right]==null)why('right 指向的那一张是空的');
+      if(av.phase==='pick'){
+        const z=rec.steps[av.hung-1].z;
+        let hasZ=0,hasNone=0;
+        for(let i=0;i<list.length;i++){
+          if(list[i].kind==='none')hasNone++;
+          else{
+            if(list[i].bead===z)hasZ++;
+            if(list[i].bead>=av.hung)why('幌子那颗（第 '+(list[i].bead+1)+' 笔）还没挂上树');
+            /* 桌上不许有两颗都站不住的牌：那一张幌子自己歪着，「从下往上第一个」就白问了 */
+            const nd=avFind(av.root,list[i].bead);
+            if(nd&&list[i].bead!==z&&Math.abs(avBf(nd))>=2)why('幌子那颗（第 '+(list[i].bead+1)+' 笔）自己也站不住（这一问就有两张都对）');
+          }
+        }
+        if(hasZ!==1)why('指歪那一张正解在案上出现 '+hasZ+' 回（只准一次）');
+        if(hasNone!==1)why('「都站得住」那一张在案上出现 '+hasNone+' 回（笨链的立场只准一张）');
+      }
+      if(av.phase==='turn'){
+        const s2=rec.steps[av.hung-1];
+        let good=0;
+        for(let i=0;i<list.length;i++)if(avFixes(rec.xs,s2.i,list[i].kind))good++;
+        if(good!==1)why('转法四张里有 '+good+' 张转完站得住（判据得只认一张）');
+        if(list[av.opts.right].kind!==s2.kind)why('案上那张正解是 '+list[av.opts.right].kind+'，账上这一步该转 '+s2.kind);
+      }
+      if(av.phase==='quick'){
+        const want=rec.order[av.qns[av.qi2]];
+        let has=0;
+        for(let i=0;i<list.length;i++){
+          if(list[i].bead>=av.hung)why('中序那张幌子（第 '+(list[i].bead+1)+' 笔）还没挂上树');
+          if(list[i].bead===want)has++;
+        }
+        if(has!==1)why('从左数第 '+(av.qns[av.qi2]+1)+' 颗是第 '+(want+1)+' 笔，案上那张牌出现 '+has+' 回');
+      }
+    }
+    if(av.wrongOpt.length)for(let i=0;i<av.wrongOpt.length;i++)if(av.wrongOpt[i]&&i>=s.optN)why('划红的那一张已经不在案上了');
+  }
+  /* ⑦ 赏罚与家什：屏上那串文必须正好等于累计的赏减累计的罚 */
+  if(av.gain-av.penSum!==av.score)why('赏 '+av.gain+' − 罚 '+av.penSum+' ≠ 屏上 '+av.score);
+  if(av.err!==av.badHang+av.pickWrong+av.turnWrong+av.guessBad)
+    why('错处 '+av.err+' 与三段各自记的（挂 '+av.badHang+' 指 '+av.pickWrong+' 转 '+av.turnWrong+' 抢答 '+av.guessBad+'）对不上');
+  if(av.tools!==s.borrow)why('借家什 '+s.borrow+' 回，账上记的却是 '+av.tools+' 回');
+  if(av.probeN<0||av.ruleN<0||av.swapN<0)why('家什余量成了负的');
+  if(av.probeN>AV_P0.probe||av.ruleN>AV_P0.rule||av.swapN>AV_P0.swap)why('家什余量超了起手（补过却要写清）');
+  if(av.hearts<0||av.hearts>AV_HEART_MAX)why('心 '+av.hearts+' 颗出了格');
+  if(av.perfect>av.words)why('一次没错 '+av.perfect+' 趟比收字 '+av.words+' 还多');
+  if(av.seqN>av.words)why('一颗不落 '+av.seqN+' 趟比收字还多');
+  if(av.pickN>av.seqN)why('一歪不指错 '+av.pickN+' 趟，多过一颗不落的 '+av.seqN+' 趟（指对也得先挂完）');
+  if(av.turnN>av.seqN)why('转法全对 '+av.turnN+' 趟，多过一颗不落的 '+av.seqN+' 趟');
+  if(av.quickN>av.words)why('中序全对 '+av.quickN+' 趟比收字还多');
+  if(av.leanN>av.seqN)why('比笨链矮两层 '+av.leanN+' 趟，多过一颗不落的 '+av.seqN+' 趟（差价要真挂完才数得出）');
+  if(av.tagSeqBad)why('封字那一眼看回来：中序有 '+av.tagSeqBad+' 格与起笔排队不合（这一坊的定海神针破了）');
+  if(av.beads<av.hung)why('累计落珠 '+av.beads+' 颗，比眼下这一棵 '+av.hung+' 颗还少');
+  if(av.rotAll<av.rotWord)why('累计扶正 '+av.rotAll+' 回，比眼下这一趟 '+av.rotWord+' 回还少（账倒退了）');
+  /* 每一颗挂上去的珠子至少往下走一层 —— 除了每一趟的头一颗：根挂在半空，脚下没有路可走。
+     这一颗不落层的根由 avAttach 当场数进 av.rootN（一趟一颗，与收字/换字无关）：
+     拿「收字数 + 眼下这一趟」去推根数，遇上没挂完就退回库里的字就少算一颗，账就成了假账 */
+  if(av.hangTotal<av.beads-av.rootN)why('累计走了 '+av.hangTotal+' 层，比落珠 '+(av.beads-av.rootN)+
+    ' 颗（摘掉每趟那一颗不落层的根，一辈子落了 '+av.rootN+' 颗根）还少');
+  if(av.rootN<av.words)why('一辈子落下 '+av.rootN+' 颗根，却收了 '+av.words+' 个字（收字比上案还多）');
+  if(av.naiveAll<av.naiveHit)why('累计跟着笨链 '+av.naiveAll+' 回，比眼下这一趟 '+av.naiveHit+' 回还少');
+  if(av.wrongs<av.err)why('看错 '+av.wrongs+' 次，比眼下这一趟的错处 '+av.err+' 还少');
+  if(av.gpicks<av.qns.length)why('一辈子抢答 '+av.gpicks+' 题，比眼下这一字 '+av.qns.length+' 题还少');
+  if(av.guessOkAll<av.guessOk)why('一辈子答对 '+av.guessOkAll+' 题，比眼下这一字 '+av.guessOk+' 还少');
+  /* ⑧ 三支钟不许倒挂；挂枝钟只在挂枝/指歪/扶正那三段走，抢答钟只在中序那一段走 */
+  if(av.phase==='hang'||av.phase==='pick'||av.phase==='turn'){
+    if(s.step0!==avStepMs(s.lv))why('挂枝钟整支 '+s.step0+' 与「起手秒数−场号折扣」不合');
+    if(s.stepMs>s.step0)why('挂枝钟 '+s.stepMs+' 比整支 '+s.step0+' 还长');
+    if(s.stepMs===0&&!s.autoLate&&av.hung>0)why('挂枝钟已经尽了，账上却一次没罚');
+  }else if(s.stepMs!==0)why('不在挂枝，挂枝钟却在走（'+Math.round(s.stepMs)+'）');
+  if(av.phase==='quick'){
+    if(s.quick0!==avQuickMs(s.lv))why('中序抢答钟整支 '+s.quick0+' 与场号不合');
+    if(s.quickMs>s.quick0)why('抢答钟比整支还长');
+    if(s.qns>Math.min(avQN(s.lv),AV_QMAX,rec.n))why('抢答了 '+s.qns+' 题，这一场只该问 '+Math.min(avQN(s.lv),AV_QMAX,rec.n)+' 题');
+    const seenQ={};
+    for(let i=0;i<av.qns.length;i++){
+      const q=av.qns[i];
+      if(q<0||q>=rec.n){why('题号 '+q+' 出了这个字');continue}
+      if(seenQ[q])why('从左数第 '+(q+1)+' 格问了两回');
+      seenQ[q]=1;
+    }
+    if(s.guessOk+s.guessBad>s.qns)why('答的题比问的还多');
+    if(s.qi2>=s.qns)why('题问完了场面还挂着抢答');
+    if(av.guessBad&&av.missFlag!==1)why('抢答错过却没把这个字记进错字本');
+  }else if(s.quickMs!==0)why('没在抢答，抢答钟却在走');
+  if(s.lamp>av.lamp0)why('场灯 '+s.lamp+' 比整支 '+av.lamp0+' 还长');
+  if(av.lamp0!==avLamp(s.lv))why('场灯与场号不合');
+  /* ⑨ 帘子只认场号，不许偷偷改成认字数 —— 改了屏上写的「第 4 场起不写 BF 数字」就成了谎话 */
+  if(avNoTell(s.lv)!==(s.lv>=AV_TELL_LV))why('第 '+s.lv+' 场的「不写 BF 数字」帘子与常量 AV_TELL_LV 不合');
+  if(avDim(s.lv)!==(s.lv>=AV_DIM_LV))why('第 '+s.lv+' 场的「连准线与笨链账也收走」帘子与常量 AV_DIM_LV 不合');
+  /* ⑩ 屏上那两处字：帘子收了不许露出笨链那本账（读屏面写的字，不读内部量）*/
+  const ct=document.getElementById('avNumTxt'),eb=document.getElementById('avErrBig');
+  const leak=function(t){return t&&(t.indexOf('笨链')>=0||t.indexOf('扶直')>=0||t.indexOf('比这棵树多')>=0)};
+  if(ct){
+    if(avNoTell(s.lv)&&leak(ct.textContent))why('帘子收了，🈶 那一栏却还写着笨链那本账：'+ct.textContent);
+    if(!avNoTell(s.lv)&&!leak(ct.textContent))why('帘子还没收，🈶 那一栏却不写笨链那本账：'+ct.textContent);
+  }
+  if(eb){
+    if(avNoTell(s.lv)&&leak(eb.textContent))why('帘子收了，错处那一栏却还写着层数账：'+eb.textContent);
+    if(!avNoTell(s.lv)&&!leak(eb.textContent))why('帘子还没收，错处那一栏却不写层数账：'+eb.textContent);
+  }
+  /* ⑪ 判废要说清为什么，且不许带着「没挂完」进下一段 */
+  if(av.broken&&!av.brokenWhy)why('判了废却没写清为什么（屏上那一句是空的）');
+  if(av.broken&&av.phase!=='load'&&av.phase!=='seal'&&!av.locked)why('判了废场相却还挂在 '+av.phase);
+  if(av.autoLate>AV_LATE_MAX)why('钟尽代挂 '+av.autoLate+' 回，越过判废那一格 '+AV_LATE_MAX);
   return s;
 }
 
