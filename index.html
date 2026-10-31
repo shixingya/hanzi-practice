@@ -7812,6 +7812,88 @@ button:active{transform:scale(.95)}
   #screen-avl .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-avl .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.112 ⛰️ 笔顺摇珠坊 ================= */
+/* HUD 占死三行（76 像素就是它满三行那一个高度）：字没上台那两息它只折两行，
+   不留这一格的话整张案会被往上抬 —— 山谷、米字格与账都在它下头，一行也不许裁 */
+.vl-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.vl-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.vl-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死六行（块级排版，只是垫高、不改排版）：三副题面里最宽的那一副（试摇那一句带「四颗虚珠」）就是六行 */
+.vl-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#F1F8E9;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*6)}
+.vl-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.vl-ask b{color:#FFE082}
+.vl-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 案：一块磨出包浆的青石案（左边山谷刻在案面上、右边米字格与账；canvas 透明，底色由这里给）*/
+.vl-field{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#161F2B,#0B131C 58%,#060C12);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8)}
+.vl-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.vl-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(8,14,11,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:normal;line-height:1.4;text-align:center;max-width:94%;z-index:6}
+.vl-tag.on{opacity:1}
+.vl-tag.warn{background:rgba(88,24,24,.94);color:#FFCCBC}
+.vl-tag.gold{background:rgba(74,58,14,.96);color:#FFE082;box-shadow:0 0 14px rgba(255,193,7,.45)}
+.vl-tag.cyan{background:rgba(6,58,74,.94);color:#84FFFF;box-shadow:0 0 14px rgba(0,229,255,.4)}
+/* 案边的牌：挑方向两张（往左 / 往右）、挑力气四张（1~4 步）、抢答三~四张坑 */
+.vl-tbl{width:calc(100% - 28px);max-width:520px;margin:6px auto 2px;display:flex;flex-direction:column;gap:4px;min-height:104px}
+.vl-opt{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:11px;padding:5px 8px;cursor:pointer;transition:background .12s,border-color .12s}
+.vl-opt.sel{background:rgba(197,255,166,.12);border-color:rgba(174,242,122,.7)}
+.vl-opt.bad{background:rgba(120,26,26,.42);border-color:#FF5252;animation:vlShake .42s linear 2}
+.vl-opt.dim{opacity:.42;cursor:default}
+@keyframes vlShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.vl-mark{flex:0 0 16px;font-size:12px;font-weight:800;color:#FF5252}
+.vl-opt:not(.bad) .vl-mark{color:#FFD54F}
+.vl-nm{flex:1;min-width:0;font-size:16px;font-weight:800;color:#ECEFF1}
+.vl-opt.q .vl-nm{flex:0 0 74px;font-size:15px;color:#C5E1A5}
+.vl-chk{flex:0 0 auto;text-align:right;font-size:13px;font-weight:800;color:#84FFFF;font-family:ui-monospace,Consolas,monospace;letter-spacing:.5px}
+.vl-opt.q .vl-chk{color:#FFD54F}
+/* 四条量表：摇珠钟（青）· 深浅抢答（金）· 这一场的灯（冷绿）· 这一趟的白摇（橙，错到那一格就一路变红）*/
+.vl-meter{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.vl-tl{position:relative;flex:1 1 150px;min-width:0;height:24px;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.vl-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#37474F,#78909C);transition:width .15s linear}
+.vl-tl.place i{background:linear-gradient(90deg,#4DD0E1,#B2EBF2)}
+.vl-tl.word i{background:linear-gradient(90deg,#9CCC65,#DCEDC8)}
+.vl-tl.lamp i{background:linear-gradient(90deg,#26A69A,#80CBC4)}
+.vl-tl.costw i{background:linear-gradient(90deg,#FFB300,#FFD54F)}
+.vl-tl.low i{background:linear-gradient(90deg,#FF5252,#FF8A65);box-shadow:0 0 12px rgba(255,82,82,.55)}
+.vl-tl b{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85);white-space:nowrap;overflow:hidden;z-index:3}
+.vl-take{display:flex;gap:8px;align-items:stretch;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:6px auto 2px}
+.vl-take button.pass{flex:0 0 96px;padding:10px 2px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.26);color:#263238;background:linear-gradient(180deg,#CFD8DC,#90A4AE)}
+.vl-take button.pass small{display:block;font-size:10px;font-weight:400;color:rgba(38,50,56,.7)}
+.vl-take button.pass:active{transform:translateY(1px)}
+.vl-take button.pass:disabled{opacity:.42;cursor:default}
+.vl-take button.big{flex:1 1 0;padding:13px 6px;border-radius:14px;font-size:19px;font-weight:800;line-height:1.2;cursor:pointer;border:1px solid rgba(255,255,255,.28);color:#1A1206;background:linear-gradient(180deg,#FFE082,#FFB300);box-shadow:0 0 16px rgba(255,179,0,.3);touch-action:none;user-select:none}
+.vl-take button.big small{display:block;font-size:11px;font-weight:400;color:rgba(26,18,6,.72)}
+.vl-take button.big.ready{background:linear-gradient(180deg,#A5D6A7,#66BB6A);box-shadow:0 0 20px rgba(102,187,106,.55);color:#10260F}
+.vl-take button.big:active{transform:translateY(1px)}
+.vl-take button.big:disabled{opacity:.42;cursor:default;box-shadow:none}
+.vl-tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:calc(100% - 28px);max-width:520px;margin:5px auto 2px}
+.vl-tool{position:relative;min-width:74px;padding:7px 9px 5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:11px;color:#ECEFF1;font-size:13px;font-weight:700;cursor:pointer;line-height:1.15}
+.vl-tool span{display:block;font-size:9px;color:#90A4AE;font-weight:400}
+.vl-tool b{display:block;font-size:10px;color:#FFD54F;font-weight:700}
+.vl-tool:disabled{opacity:.4;cursor:default}
+.vl-hintline{width:calc(100% - 28px);max-width:520px;margin:5px auto;font-size:12px;color:#B0BEC5;text-align:center;line-height:1.5;min-height:34px}
+.vl-hintline b{color:#FFD54F}
+.vl-hintline code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.vl-msg{width:calc(100% - 28px);max-width:520px;margin:4px auto 12px;font-size:12px;color:#90A4AE;line-height:1.6;text-align:center}
+.vl-msg b{color:#CFD8DC}
+.vl-msg code{background:rgba(255,255,255,.12);padding:0 4px;border-radius:4px;color:#FFCCBC}
+.vl-pk{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:5px 11px;font-size:13px;color:#ECEFF1;margin:3px}
+.vl-rs-book{font-size:12px;color:#B0BEC5;line-height:1.7;max-width:440px;margin:0 auto 12px}
+.vl-rs-book b{color:#FFD54F}
+.vl-rs-book small{color:#78909C}
+.vl-cdot{display:none;position:absolute;right:8px;top:8px;font-size:11px;background:rgba(255,179,0,.92);color:#1A1206;border-radius:9px;padding:1px 6px;z-index:4}
+.vl-cdot.on{display:block}
+#screen-vl .top-bar .back-btn{white-space:nowrap;flex:0 0 auto}
+/* 窄屏（手机）：四条量表折成一丸一行（字不许被药丸右沿裁掉）；题头最宽一副是六行半，就垫死八行 */
+@media(max-width:460px){
+  .vl-tl{flex:1 1 100%}
+  .vl-ask{min-height:calc(1.35em*8)}
+  .vl-take button.pass{flex:0 0 84px}
+  .vl-take button.big{font-size:17px}
+  .vl-opt{padding:4px 6px;gap:6px}
+  .vl-nm{font-size:14px}
+  #screen-vl .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-vl .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
+  #screen-vl .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -7868,8 +7950,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 110 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">110</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 111 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">111</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7880,12 +7962,17 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>110 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>52</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>111 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>53</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="vlCard" onclick="enterMode('vl')">
+      <div class="icon">⛰️</div>
+      <div class="info"><h3>笔顺摇珠坊</h3><p id="vlCardTip">一张青石案上刻着一条<b>山谷</b>：横轴不是字里的左右，而是<b>第几笔</b> —— 一口笔一口坑，坑底就是这一笔写到的最低处，两笔之间「收笔 / 起笔」较高那一处就是山口。⛰️ <b>珠子进门自带力气</b>：这一笔的个子（最高处比坑底高多少）换算成步，收笔往哪边偏就往哪边滚，于是矮矮一横一落就定在自己家，长竖长撇一路吃到案头。🎯 <b>你只会一个动作：摇</b> —— 挑一颗不在家的珠、挑往哪边、挑<b>几步</b>；案面糙，翻一道口要花这道口的步数（<b>平口一步、高口两步、高坎三步</b>），<b>上坡吃力气、下坡不补力气</b>，力气花光就停在当下那一口。💥 <b>用力要刚好</b>：少了连第一步都迈不出，多了<b>越过自己家</b>接着往那头跑 —— 摇错不算输，珠子弹回原位，可这一把力气全白花、连也断了。🕳 封字前抢答的就是这一眼「这几口坑里<b>哪一口最深</b>」：深浅序跟笔顺序天生对不上，数到头的坑往往不是最深那个。🪨 <b>笨手账</b>（每一颗都朝家的方向猛摇到最大步）就画在右下：过闸的字这么摇至少还剩两颗回不了家，<b>猛摇赢不了的案，刚刚好才赢</b>。第 4 场起山口上不再写步数，第 6 场起连深浅名次与笨手那本账也收走</p></div>
+      <span class="vl-cdot" id="vlCardDot">🆕</span>
+    </div>
 <div class="mode-card" id="avlCard" onclick="enterMode('avl')">
       <div class="icon">🌳</div>
       <div class="info"><h3>笔顺扶树坊</h3><p id="avlCardTip">一笔一颗珠，珠子的<b>号</b>就是这一笔的<b>起笔横坐标</b>（谁更靠左谁小）。按<b>笔顺</b>一颗颗往树上挂，从根往下每一层只问一句「挂它的<b>左边还是右边</b>」—— 比的是两个起笔点，不是整笔的长短。⚖️ 挂上就有珠子<b>站不住</b>：平衡因子 <b>BF = 左支层数 − 右支层数</b>，|BF|≥2 算歪，沿刚走过的那条路<b>从下往上</b>数，第一个站不住的就是要扶的那一颗（常常不是刚挂上那颗）。🔄 怎么扶只有四张牌：右旋 / 左旋 / 先左后右 / 先右后左，<b>同边单旋、对面双旋</b>，判对错只有一把尺 —— <b>转完再看一遍，还歪着的就是没扶住</b>。🌲 <b>定海神针：旋转天生不打乱中序</b>，从左数过去永远是「起笔从左边排到右边」，所以封字前抢答的就是这一眼「第 k 颗是第几笔」。🪵 <b>笨链</b>（同一条笔顺、一颗也不转）就画在右下：过闸的字笨链至少高 2 层，跟着「都站得住」选就是在跟它走，差价全落进眼睛里。第 4 场起珠旁不写 BF 数字，第 6 场起连准线与笨链那本账也收走</p></div>
@@ -8760,6 +8847,77 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="avReBtn">🌳 再扶一趟</button>
       <button class="tool-btn" id="avLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="avHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-vl">
+  <div class="top-bar">
+    <button class="back-btn" onclick="vlLeave()">← 返回</button>
+    <div class="stats"><span id="vlScoreTxt">⛰️ 0 文</span><span id="vlLvTxt">第 1 场 · 收 0 字</span><span id="vlQTxt">⏳ 摇珠 9 秒</span></div>
+    <button class="icon-btn" onclick="vlHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="vl-hud">
+    <span id="vlRankTxt" title="称号">⛰️ 头一趟</span>
+    <span id="vlHeartTxt" title="生命">❤️❤️❤️</span>
+    <span id="vlComboTxt" title="连击">🔥 连 0</span>
+    <span id="vlLotTxt" title="这一场第几字、回了几颗珠">🀫 1/3 字 · 回 0/0 颗</span>
+    <span id="vlNumTxt" title="这一案的笔数与笨手那本账">⛰️ 案还没摆</span>
+    <span class="light" id="vlHitLight">💡 摇珠</span>
+  </div>
+  <div class="vl-ask" id="vlAsk">📥 正在挑字……<br><small>在字库里找「一落真会错位、每一步都有唯一答法、猛摇到底也赢不了」的字</small></div>
+  <div class="vl-stage">
+    <div class="vl-field">
+      <canvas class="vl-canvas" id="vlCanvas" width="420" height="340"></canvas>
+      <div class="vl-tag" id="vlTag">⛰️ 案还没摆</div>
+    </div>
+  </div>
+  <div class="vl-tbl" id="vlOpts"></div>
+  <div class="vl-meter">
+    <div class="vl-tl place"><i id="vlStepBar"></i><b id="vlStepTxt">⛰️ 摇珠 9.0 秒</b></div>
+    <div class="vl-tl word"><i id="vlQuickBar"></i><b id="vlQuickTxt">🕳 深浅 5.2 秒</b></div>
+    <div class="vl-tl lamp"><i id="vlLampBar"></i><b id="vlLampTxt">💡 这一场 84 秒</b></div>
+    <div class="vl-tl costw"><i id="vlErrBar"></i><b id="vlErrBig">⛰️ 白摇 0 次 / 账还没开</b></div>
+  </div>
+  <div class="vl-take">
+    <button class="big" id="vlActBtn">⛰️ 就摇这一颗（回车）<small>1~2 挑一颗珠 · ←→ 挪手 · 回车定珠</small></button>
+    <button class="pass" id="vlNextBtn">🏁 结算<small>F</small></button>
+  </div>
+  <div class="vl-tools">
+    <button class="vl-tool" id="vlPeekBtn" disabled>✨ 看坡<span>P</span><b>剩 2</b></button>
+    <button class="vl-tool" id="vlTryBtn" disabled>🧭 试摇<span>V</span><b>剩 2</b></button>
+    <button class="vl-tool" id="vlSwapBtn" disabled>🔁 换字<span>S</span><b>剩 1</b></button>
+    <button class="vl-tool" id="vlHelpBtn">📖 说明<span>H</span></button>
+  </div>
+  <div class="vl-hintline" id="vlHintTxt">⛰️ <b>案上有摩擦</b>：翻一道口要花这道口的步数 —— <b>平口一步、高口两步、高坎三步</b>，力气花光就停在当下那一口<br>🎯 <b>少了迈不出、多了越过去</b>：摇错不算输，珠子弹回原位，可这一把力气全白花</div>
+  <div class="vl-msg" id="vlMsg">⛰️ <b>一口笔一口坑</b>：这一笔写到的最低处就是坑底，两笔之间「收笔 / 起笔」较高那一处就是山口 —— 横轴是<b>第几笔</b>，不是字里的左右<br>🎯 <b>珠子进门自带力气</b>：这一笔的个子（最高处比坑底高多少）换算成步，收笔往哪边偏就往哪边滚；矮矮一横一落就定在自己家，长竖长撇一路吃到案头<br>💥 <b>用力要刚好</b>：挑一颗不在家的珠、挑往哪边、挑几步 —— 翻过山口花力气，力气花光就停在当下这口坑；少了迈不出第一步，多了越过自己家接着往那头跑<br>🕳 <b>封字前抢答</b>的就是这一眼「这几口坑里哪一口最深」—— 深浅序天生跟笔顺序对不上，数到头的坑往往不是最深那个<br>🪨 <b>笨手账</b>就摆在右下角：每一颗都朝家的方向猛摇到最大步，过闸的字这么摇至少还剩两颗回不了家 · <code>1~2</code> 挑珠与方向 · <code>1~4</code> 步数 · <code>↑↓←→</code> 挪手 · <code>回车</code> 摇 · ✨ <code>P</code> 看坡 · 🧭 <code>V</code> 试摇 · 🔁 <code>S</code> 换字 · <code>H</code> 📖 说明 · <code>F</code> 🏁 结算</div>
+</div>
+<div class="screen" id="screen-vl-result">
+  <div class="top-bar">
+    <button class="back-btn" onclick="vlLeave()">← 返回</button>
+    <div class="stats"><span id="vlRsStarsTop">⭐ 结算</span></div>
+  </div>
+  <div class="result-box">
+    <div style="font-size:62px;margin-bottom:8px" id="vlRsEmoji">⛰️</div>
+    <div style="font-size:26px;font-weight:800" id="vlRsTitle">石案歇了</div>
+    <div style="font-size:14px;color:#B0BEC5;margin-top:6px" id="vlRsSub">第 1 场</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px">
+      <span class="vl-pk" id="vlRsScore">⛰️ 0 文</span>
+      <span class="vl-pk" id="vlRsWords">🀫 收字 0 个 · 摇 0 把 · 回 0 颗珠</span>
+      <span class="vl-pk" id="vlRsWalk">🕳 深浅抢答 0 题 · 答对 0 · 最长连击 0</span>
+      <span class="vl-pk" id="vlRsAward">🏅 一把没错 0 案 · 一步不费 0 案</span>
+      <span class="vl-pk" id="vlRsWipe">🪨 猛摇到底 0 回 · 看错 0 次 · 钟尽白等 0 次</span>
+      <span class="vl-pk" id="vlRsTools">🧰 借家什 0 回 · ✨ 0 · 🧭 0 · 🔁 0</span>
+      <span class="vl-pk" id="vlRsRoll">🎯 回珠 0 颗 · 白摇 0 把 · 花 0 步（刚好 0 步）</span>
+      <span class="vl-pk" id="vlRsBest">🏅 历史最高 0 文</span>
+      <span class="vl-pk" id="vlRsRank">⛰️ 头一趟</span>
+    </div>
+    <div class="vl-rs-book" id="vlRsBook"></div>
+    <div style="font-size:13px;color:#B0BEC5;margin:8px 0 14px;line-height:1.6" id="vlRsWhy"></div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px" id="vlRsStars">⭐ 0</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="tool-btn" id="vlReBtn">⛰️ 再摇一案</button>
+      <button class="tool-btn" id="vlLabBtn">🧪 玩法实验室</button>
+      <button class="tool-btn" id="vlHomeBtn">🏠 回书桌</button>
     </div>
   </div>
 </div>
@@ -16803,6 +16961,7 @@ function updateHomeStats(){
   if(typeof tpNudge==='function')tpNudge();
   if(typeof rdNudge==='function')rdNudge();
   if(typeof avNudge==='function')avNudge();
+  if(typeof vlNudge==='function')vlNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -16859,6 +17018,7 @@ function enterMode(mode){
   if(mode==='tele'){tpStart();return}
   if(mode==='radix'){rdStart();return}
   if(mode==='avl'){avStart();return}
+  if(mode==='vl'){vlStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -125017,6 +125177,2169 @@ function avAudState(){
   if(av.broken&&!av.brokenWhy)why('判了废却没写清为什么（屏上那一句是空的）');
   if(av.broken&&av.phase!=='load'&&av.phase!=='seal'&&!av.locked)why('判了废场相却还挂在 '+av.phase);
   if(av.autoLate>AV_LATE_MAX)why('钟尽代挂 '+av.autoLate+' 回，越过判废那一格 '+AV_LATE_MAX);
+  return s;
+}
+
+
+/* ================= v1.112.0 ⛰️ 笔顺摇珠坊（第几笔就是第几口坑 · 离散步数的摩擦账 / 用力刚好 ================= */
+/* 案：420×340 的一张青石案。上半刻着一条山谷（一口笔一口坑，横轴是第几笔，不是字里的左右），
+   左下是米字格（这一颗珠是哪一笔写的、它个子多高），右下是笨手那本账（每一颗都猛摇到最大步还剩几颗）。
+   这一坊吃的不是「往哪边」，是「用几分力」：
+   ① 一口笔一口坑。坑底 fl = 这一笔写到的最低处；山口 rg = 两笔之间「收笔 / 起笔」较高那一处。
+      山口天生比两边坑底高，所以每一列都是一口真坑 —— 横轴按笔顺分格，天生等距、永不重叠。
+   ② 案上有摩擦：**上坡吃力气，下坡不补力气**（力气变成热，散了）。翻一道口要花**这道口的步数**，
+      力气花光就停在当下那一口。步数是离散的：**平口一步、高口两步、高坎三步**（按这一案自己
+      上坡高的中位数与 3/4 分位分档）—— 整数步的窗口宽度天生 ≥1，每一列都停得住，「刚好」才立得起来。
+   ③ 珠子进门自带力气：这一笔的个子（最高处比坑底高多少）换算成步，至多案沿 VL_RIM 步；
+      方向 = 这一笔收笔的走向。于是矮矮一横一落就定在自己家，长竖长撇一路吃到案头。
+   ④ 孩子唯一的动作：**摇** —— 挑一颗不在家的珠、挑往哪边、挑几步。
+      少了连第一步都迈不出，多了**越过自己家**接着往那头跑。摇错不算输：珠子弹回原位，
+      可这一把力气全白花、连也断了 —— 案面永远比开局更整齐，所以一局不会因为摇错而解不开。
+   ⑤ 家 = 自己那一列。全案回齐 ⟺ 每口坑恰好坐着自家那颗。
+      封字前抢答那一眼是**深浅**：这几口坑里哪一口最深 —— 深浅序与笔顺序天生对不上（闸里就要求对不上）。
+   ⑥ 案上还摆着那本**笨手账**：每一颗都朝家的方向猛摇到最大步，还剩几颗回不了家。
+      过闸的字至少剩两颗 —— 猛摇赢不了的案，刚刚好才赢。
+   教学点：**同一颗珠、同一个方向，力气差一步结果就差一格；「最多」不是「最好」**。
+   第 `VL_TELL_LV` 场起山口上不再写步数（自己数口），第 `VL_DIM_LV` 场起连深浅名次与笨手那本账也收走。*/
+const VL_W=420,VL_CVH=340;
+/* ---- 案面三块：上半那条谷 · 左下米字格 · 右下笨手账 ---- */
+const VL_VX0=14,VL_VX1=406;            /* 山谷的横向范围：n 口坑就在这条带子里按笔顺等距分格 */
+const VL_VY_HI=52,VL_VY_LO=170;        /* 全案最高的山口画在 52、最低的坑底画在 170（中间按真实高低等比压进来）*/
+const VL_BR=13;                        /* 珠半径；一口坑叠珠时往上每颗挪 15 */
+const VL_STACK=15;
+const VL_GX=6,VL_GY=182,VL_GS=152;     /* 米字格 6..158 × 182..334 */
+const VL_PAD=10;                       /* 格内留白：整张 1024 方格等比缩进来 */
+const VL_LX=166,VL_LY=182,VL_LW=248;   /* 笨手账那一栏 */
+/* ---- ① 口径：与离线扫描 _vlgeo.cjs 一字一样。改任何一个数都得重生成 VL_LEV ---- */
+const VL_NMIN=5,VL_NMAX=10;    /* 一笔一颗坑：五笔起头，十笔的案子刚好排满案面 */
+const VL_AMAX=4;               /* 一次摇最多四步（孩子四以内算得动，四步也够翻到案头）*/
+const VL_RIM=3;                /* 案沿：落珠最多带进来三步力气 —— 错位最远也就三列 */
+const VL_RELIEF=120;           /* 最深坑比最浅坑至少低这么多，否则整案没山没谷 */
+const VL_DEAD=20;              /* 收笔横移不到这个数 = 这一笔不带珠子跑 */
+const VL_MISS=2,VL_MMR=.7;     /* 一落至少错位两颗才有的摇；最多错到七成，别一落全滚成一锅粥 */
+const VL_KIND=2;               /* 一个案子里「要几步」至少两种答法：全是 1 步，摇就成了白捡 */
+const VL_NAIVE=2;              /* 笨手（颗颗猛摇到底）至少还剩两颗回不了家 —— 刚好这一课才有账 */
+const VL_TIER=3;               /* 道口步数分几档：3 = 平口一步 / 高口两步 / 高坎三步 */
+/* ---- ② 三支钟：摇珠钟（每一把摇的口气）· 抢答钟（深浅那一眼）· 场灯（一场三字的墙） ---- */
+const VL_STEP0=9000,VL_STEP_CUT=420,VL_STEP_MIN=5600;
+const VL_QUICK0=5200,VL_QUICK_CUT=320,VL_QUICK_MIN=2800;
+/* 场灯＝一场三字的墙钟：沿用家族那条数过的带 —— 每一场都要「死得了」，也要「经得住」 */
+const VL_LAMP0=84000,VL_LAMP_MIN=72000,VL_LAMP_STEP=1600;
+const VL_SEAL_MS=3000,VL_TAG_MS=2600,VL_NAG_MS=11000,VL_HELP_MS=16000;
+const VL_ROLL_MS=300,VL_BACK_MS=520,VL_DROP_MS=520;   /* 一步一响 · 弹回原位 · 落珠进坑 */
+function vlStepMs(L){return Math.max(VL_STEP_MIN,VL_STEP0-(L-1)*VL_STEP_CUT)}
+function vlQuickMs(L){return Math.max(VL_QUICK_MIN,VL_QUICK0-(L-1)*VL_QUICK_CUT)}
+function vlLamp(L){return Math.max(VL_LAMP_MIN,VL_LAMP0-(L-1)*VL_LAMP_STEP)}
+function vlQN(L){return L>=7?3:(L>=4?2:1)}            /* 深浅抢答几题（场号越高题越多，坑也越多可问）*/
+const VL_QMAX=3;
+/* ---- 罚：一律从「文」里扣（孩子口袋里的赏）；案上那本账只记白花出去的力气 ----
+   白摇（没落进自家坑）· 猛摇到底（本坊的靶子）· 钟尽白等 · 抢答错 · 抢答迟 ·
+   半路收场 · 换字 · 家什 · 翻说明 */
+const VL_P_WASTE=8,VL_P_NAIVE=6,VL_P_LATE=3;
+const VL_P_WRONG=8,VL_P_SLOW=4,VL_P_QUIT=5,VL_P_SWAP=6,VL_P_TOOL=4,VL_P_HELP=3;
+const VL_ERR_LINE=3;          /* 一案白摇到这一格就掉一颗心：这一案摇得太糙了 */
+const VL_ERR_CLEAN=1;         /* 一场三字「每案白摇 ≤1 把」才算清白 ---- 藏书阁那条票 ---- */
+const VL_LATE_MAX=3;          /* 一案摇珠钟尽满三回，这一案判废（进错字本、退回库里换一张）*/
+/* ---- 赏：每回一颗珠的底文（连击与场号加成）与封字那一整包 ---- */
+const VL_M0=7,VL_CB=.14,VL_LVW=.07;
+const VL_PTS_WORD=12;         /* 一个案全案回齐 */
+const VL_PTS_CLEAN=14;        /* 一把没错：从头到尾每一摇都落进自家坑 */
+const VL_PTS_ECON=8;          /* 一步不费：花掉的总步数正好等于离线数出的最小步数 */
+const VL_PTS_SEQ=8;           /* 一颗不落：n 颗全回齐（没判废、没半路退回）*/
+const VL_PTS_QUICK=12;        /* 深浅全对：哪一口最深，一题不落 */
+const VL_PTS_FRESH=6;         /* 头一回收这个字 */
+const VL_PTS_NOTOOL=8,VL_PTS_TOOLRUN=14;
+/* ---- ③ 配字口径：一场一串字，串外的字在这一场就是过不了闸的字 ---- */
+const VL_PER=3;
+const VL_POOL_MIN=4,VL_POOL_WANT=12,VL_POOL_SCAN=320;
+const VL_HEARTS=3,VL_HEART_MAX=5,VL_BOOK_MAX=300;
+const VL_TELL_LV=4,VL_DIM_LV=6; /* 第 4 场起山口上不再写步数，第 6 场起连深浅名次与笨手那本账也收走 */
+function vlNoTell(L){return L>=VL_TELL_LV}
+function vlDim(L){return L>=VL_DIM_LV}
+const VL_P0={peek:2,try:2,swap:1};   /* ✨ 看坡 / 🧭 试摇 / 🔁 换字
+   两件看账的家什各起手两回：都带一口气的挡话（看坡点破 VL_PEEK_MS 秒、试摇画影 VL_TRY_MS 秒），
+   余量只给一张的话，第二回按下去撞上「用光了」，「等它自己收走」这一句就永远说不出口 */
+const VL_PEEK_MS=5200,VL_TRY_MS=4200;
+/* 场档：开局那一场按「一辈子收齐的字数」走（每两个字进一场），局内每收满 VL_PER 字自己往上进一场 */
+function vlLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function vlRankOf(w){
+  let r=VL_RANKS[0];
+  for(let i=0;i<VL_RANKS.length;i++)if(w>=VL_RANKS[i].n)r=VL_RANKS[i];
+  return r;
+}
+const VL_RANKS=[
+  {n:0,e:'⛰️',t:'头一趟'},      {n:2,e:'🕳',t:'认得坑'},      {n:5,e:'🎯',t:'摇得刚好'},
+  {n:9,e:'💥',t:'不费一步'},     {n:14,e:'🪨',t:'看得深坑'},    {n:21,e:'⛰️',t:'一眼定步'},
+  {n:30,e:'🧰',t:'全套家什'},    {n:42,e:'🔥',t:'一把没白摇'},  {n:58,e:'👑',t:'从没乱摇过'}
+];
+const VL_SHELF_LV=4;
+const VL_SHELF=[
+  {k:'山形图',d:'收齐一个字'},              {k:'清白票',d:'一场三字每案白摇 ≤'+VL_ERR_CLEAN+' 把'},
+  {k:'神来之笔',d:'一案一把没错，满 5 案'},  {k:'满架章',d:'一颗不落封完一个字'},
+  {k:'戥子',d:'走到第 '+VL_SHELF_LV+' 场还在走'}, {k:'空手趟',d:'一案家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},    {k:'量坡尺',d:'累计把珠子摇回 400 颗'}
+];
+const vly={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  /* 场：一场三字；lv 就是场号 */
+  lv:1,wi:0,score:0,hearts:VL_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一案：字 · 珠子们 · 已经回齐几颗 */
+  ch:'',rec:null,n:0,beads:[],homeN:0,sel:0,opts:null,wrongOpt:[],touched:{},
+  /* 眼下这一摇：选中哪颗 · 往哪边 · 几步 · 正在走的动画 */
+  cur:null,dir:0,pow:0,anim:null,
+  /* 这一案的账：白摇 · 猛摇到底 · 钟尽白等（摇珠那一段）· 判废 */
+  err:0,waste:0,naiveHit:0,lates:0,lateStep:0,lateQuick:0,broken:0,brokenWhy:'',
+  stepsUsed:0,stepsNeed:0,rollOk:0,shakeAll:0,homeStart:0,
+  /* 深浅抢答：要问的那几窗 · 眼下第几题 · 答对几个 */
+  qns:[],qi:0,guessOk:0,guessBad:0,guessOkAll:0,qpicks:0,quickMs:0,quick0:0,missFlag:0,skipNote:'',
+  /* 这一案的证人：封案时那一眼「案上有几颗还没回自己家」只留作数（段 A 盯着它，绝不一格发一文）*/
+  tagSeqBad:0,
+  /* 家什 */
+  peekN:VL_P0.peek,tryN:VL_P0.try,swapN:VL_P0.swap,
+  peekUse:0,tryUse:0,swapUse:0,peekMs:0,tryMs:0,tryBead:-1,
+  /* 钟 */
+  step0:0,stepMs:0,lamp:0,lamp0:0,sealMs:0,
+  /* 账：收字 · 摇把数 · 回珠 · 一把没错案 · 一步不费案 · 一颗不落案 · 深浅全对案 */
+  words:0,shakes:0,beadsHome:0,perfect:0,econN:0,seqN:0,quickN:0,
+  /* 局级力气账：一案的 shakeAll/stepsUsed/waste 只记这一案，上面那三行记这一把 */
+  stepsAll:0,wasteAll:0,
+  wrongs:0,swaps:0,wordOuts:0,eyeballs:0,naiveAll:0,
+  /* 清白账：一场三字每案白摇 ≤VL_ERR_CLEAN · 一案不借家什 */
+  cleanWord:1,neatWord:1,tools:0,wordTools:0,cleanRun:0,toolRun:0,errSum:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',nags:0,nagMs:0,newBest:false,
+  helpMs:0,tagTimer:0,lit:null,spark:[]
+};
+
+/* ---- 小工具：本坊自己的发声、回话、清定时器 ----
+   这几只不许抄公共那几只：公共的 auxSay 往别人家的消息条里写字、auxTone 揣的是别人那块声卡、
+   auxT/auxKill 管的是别人那一串定时器 —— 借来用，孩子的话就落在别人家的栏里。 */
+function vlTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!vly.ac)vly.ac=new AC();
+    const c=vly.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='square';
+    n.gain.value=g===undefined?.045:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+/* 回话条就是石案下那一条 .vl-msg：写错了栏，孩子的话一个字也看不见 */
+function vlSay(msg,color){vlMsg(msg,color||'#FFE082')}
+function vlT(fn,ms){const id=setTimeout(function(){
+  const i=vly.timers.indexOf(id);if(i>=0)vly.timers.splice(i,1);
+  if(!vly.run||vly.over)return;
+  try{fn()}catch(e){}
+},ms);vly.timers.push(id);return id}
+function vlKill(){
+  for(let i=0;i<vly.timers.length;i++)clearTimeout(vly.timers[i]);
+  vly.timers=[];
+  if(vly.rafId){cancelAnimationFrame(vly.rafId);vly.rafId=0}
+}
+
+/* ================= 案面的账：地形、落珠、每一颗要几步（离线 _vlgeo.cjs 的原样搬进来，一个字都不许改口径）================= */
+/* 这里算出来的就是闸口认的：过不了闸的字不上台。产品与扫描器共用同一套数，
+   所以无头脚本可以在页外把同一个字重算一遍，逐颗珠与页内对账（段 W）。*/
+
+/* ---- 一笔 → 坑底 / 个子 / 收笔走向 ---- */
+function vlGeo(st){
+  let miny=1e9,maxy=-1e9;
+  for(let i=0;i<st.length;i++){const p=st[i];if(p[1]<miny)miny=p[1];if(p[1]>maxy)maxy=p[1]}
+  return {floor:miny,top:maxy,start:st[0][1],end:st[st.length-1][1],
+    dx:st[st.length-1][0]-st[0][0]};
+}
+function vlSweep(g){return g.dx>VL_DEAD?1:(g.dx<-VL_DEAD?-1:0)}
+/* 拿着 A 步力气从 s 往 dir 走：翻一道口花掉那道口的步数，不够翻就停在当下这口。案两端是墙。 */
+function vlRoll(s,dir,A,kw,ke,n){
+  let cur=s,rem=A;
+  for(;;){
+    const nx=cur+dir;
+    if(nx<0||nx>=n)return cur;
+    const c=dir>0?kw[cur]:ke[cur-1];
+    if(c>rem)return cur;
+    rem-=c;cur=nx;
+  }
+}
+function vlMedian(a){const x=a.slice().sort((p,q)=>p-q);const m=x.length>>1;return x.length%2?x[m]:(x[m-1]+x[m])/2}
+function vlQuant(a,q){const x=a.slice().sort((p,r)=>p-r);return x[Math.min(x.length-1,Math.floor(q*(x.length-1)))]}
+
+/* ---- 一案的账（与 _vlgeo.cjs 的 vlAudit 一字一样的判据）---- */
+function vlAuditWord(ch,j){
+  const st=j&&j.medians;
+  if(!Array.isArray(st)||st.length<VL_NMIN||st.length>VL_NMAX)return null;
+  for(let i=0;i<st.length;i++)if(!Array.isArray(st[i])||st[i].length<2)return null;
+  const n=st.length;
+  const g=st.map(vlGeo);
+  const fl=g.map(b=>b.floor);
+  const rg=[];
+  for(let i=0;i<n-1;i++)rg[i]=Math.max(g[i].end,g[i+1].start);
+  for(let i=0;i<n-1;i++)if(rg[i]<fl[i]||rg[i]<fl[i+1])return null;   /* 账算错了：山口不会比坑底还低 */
+  const cw=[],ce=[],lips=[];
+  for(let i=0;i<n-1;i++){
+    cw[i]=Math.max(0,rg[i]-fl[i]);ce[i]=Math.max(0,rg[i]-fl[i+1]);
+    if(cw[i]>0)lips.push(cw[i]);
+    if(ce[i]>0)lips.push(ce[i]);
+  }
+  if(!lips.length)return null;                    /* 全案齐平，一道坎都没有 */
+  let fmin=1e9,fmax=0;
+  for(let i=0;i<n;i++){if(fl[i]<fmin)fmin=fl[i];if(fl[i]>fmax)fmax=fl[i]}
+  if(fmax-fmin<VL_RELIEF)return null;             /* 坑底全一般深，没山没谷 */
+  const unit=vlMedian(lips),t2=vlQuant(lips,.75);
+  const step=x=>(x>unit?(VL_TIER>=3&&x>t2?3:2):1);
+  const kw=[],ke=[];let tall=0,great=0;
+  for(let i=0;i<n-1;i++){
+    kw[i]=step(cw[i]);ke[i]=step(ce[i]);
+    if(kw[i]>=2||ke[i]>=2)tall++;
+    if(kw[i]===3||ke[i]===3)great++;
+  }
+  if(!tall)return null;                           /* 山口全一般高，一步到底没起伏 */
+  if(VL_TIER>=3&&!great)return null;              /* 连一道三步的高坎都没有，刻度就白分了 */
+
+  /* 落珠：自带的力气 = 这一笔的个子换算成步（至多案沿 VL_RIM 步），方向 = 这一笔收笔的走向 */
+  const beads=[];
+  for(let i=0;i<n;i++){
+    const d0=vlSweep(g[i]);
+    const D=Math.min(VL_RIM,Math.max(0,Math.round((g[i].top-fl[i])/unit)));
+    const rest=(d0===0||D===0)?i:vlRoll(i,d0,D,kw,ke,n);
+    beads.push({i:i,home:i,col:rest,rest:rest,dir0:d0,dv:D,tall:g[i].top-fl[i],locked:rest===i});
+  }
+  let miss=0;for(let i=0;i<n;i++)if(beads[i].rest!==i)miss++;
+  if(miss<VL_MISS)return null;                    /* 一落就全对上，没得摇 */
+  if(miss>Math.floor(n*VL_MMR))return null;       /* 一落全滚成一锅粥 */
+
+  /* 每颗错珠：往哪边、几步才正好停在自己家（整数步 → 能落家的步数天生是一段连续窗口）*/
+  const need=[];let over=0,both=0;
+  for(let i=0;i<n;i++){
+    const b=beads[i];
+    if(b.rest===b.home){b.need=0;b.over=0;b.wdir=0;b.win=[];continue}
+    const good=[];
+    for(let k=0;k<2;k++){
+      const dir=k?-1:1,win=[];
+      for(let A=1;A<=VL_AMAX;A++)if(vlRoll(b.rest,dir,A,kw,ke,n)===b.home)win.push(A);
+      if(win.length)good.push({dir:dir,win:win});
+    }
+    if(!good.length)return null;                  /* 有一颗珠两头四步也回不了家 */
+    if(good.length>1)both++;
+    good.sort((a,c)=>a.win[0]-c.win[0]);
+    const q=good[0];
+    b.wdir=q.dir;b.win=q.win.slice();b.need=q.win[0];
+    const hi=q.win[q.win.length-1];
+    b.over=hi<VL_AMAX?hi+1:0;
+    if(b.over)over++;
+    need.push(b.need);
+  }
+  if(!over)return null;                           /* 谁也不会过头，摇太狠没代价 */
+  const kind={};for(let i=0;i<need.length;i++)kind[need[i]]=1;
+  if(Object.keys(kind).length<VL_KIND)return null;/* 要几步只有一种答法 */
+
+  /* 最大步大地震：已经坐对家的珠会被颠跑几颗（这一条在产品里由「摇错弹回」兜住，只做闸口的地形体检）*/
+  let esc=0;
+  for(let i=0;i<n;i++){
+    const b=beads[i];
+    if(b.rest!==b.home)continue;
+    for(let k=0;k<2;k++)if(vlRoll(b.home,k?-1:1,VL_AMAX,kw,ke,n)!==b.home){esc++;break}
+  }
+  if(!esc)return null;                            /* 最大摇力也颠不动谁 */
+
+  /* 笨手账：每颗错珠朝自己家的方向猛摇到最大步，还剩几颗回不了家 */
+  let naiveWrong=0,naiveCost=0;
+  for(let i=0;i<n;i++){
+    const b=beads[i];
+    if(b.rest===b.home)continue;
+    naiveCost+=VL_AMAX;
+    const dir=b.home>b.rest?1:-1;
+    if(vlRoll(b.rest,dir,VL_AMAX,kw,ke,n)!==b.home)naiveWrong++;
+  }
+  if(naiveWrong<VL_NAIVE)return null;             /* 一把摇到底也能赢，刚好没账 */
+
+  /* 抢答有题：深浅序与左右序对不上 */
+  let dq=0;
+  for(let i=0;i<n;i++){
+    let rank=0;
+    for(let k=0;k<n;k++)if(fl[k]<fl[i])rank++;
+    if(rank!==i){dq=1;break}
+  }
+  if(!dq)return null;                             /* 深浅序就是左右序，抢答没题 */
+
+  let cost=0,maxA=0;
+  for(let i=0;i<need.length;i++){cost+=need[i];if(need[i]>maxA)maxA=need[i]}
+  /* 深浅名次：1 = 最深（坑底最低）*/
+  const deepRank=[];
+  for(let i=0;i<n;i++){let r=1;for(let k=0;k<n;k++)if(fl[k]<fl[i])r++;deepRank[i]=r}
+  return {ch:ch,n:n,unit:unit,tall:tall,great:great,miss:miss,over:over,both:both,esc:esc,
+    need:need,maxA:maxA,cost:cost,naiveCost:naiveCost,naiveWrong:naiveWrong,
+    beads:beads,fl:fl,rg:rg,cw:cw,ce:ce,kw:kw,ke:ke,g:g,st:st,deepRank:deepRank};
+}
+function vlMake(ch,j){return vlAuditWord(ch,j)}
+
+/* ---- 抢答那一眼：从某一口坑起连着数的这几口里，哪一口最深（深浅序与左右序对不上，才值得问）----
+   题面永远只问「哪一口最深」，所以候选必须是一个**连续窗口**里的坑：窗口里最浅的那些不会赢、
+   最深的就是答案 —— 问「第 2 深」那种题面要孩子先排名次再回头，本坊不问那个。*/
+const VL_MARGIN=60;      /* 候选的坑底至少隔这么多（1024 一格）：隔得太近「一样深」就成了抬杠 */
+const VL_WIN=4;          /* 一个窗口最多四口坑（牌就四张，孩子的眼一次数得过来）*/
+function vlQuickOpts(rec,start){
+  if(!rec)return [];
+  const n=rec.n,fl=rec.fl;
+  if(n<3)return [];
+  /* 起笔那一头最多到第 n−3 口：再往右就连不出三口坑。
+     窗口是「从 start 起最多四口」，越界的列会读成 undefined —— 深浅比较全 NaN、并列判据失效，
+     配出一张写着不存在的坑的牌。vlQuickWindows 派出来的 start 天生 ≤ n−4，这一条只是把口径写死。*/
+  if(!(start>=0&&start<=n-3))return [];
+  let wl=Math.min(VL_WIN,n-start);
+  for(;;){
+    const cols=[];
+    for(let i=start;i<start+wl;i++)cols.push(i);
+    /* 最深 = 坑底最低（fl 最小）；并列（差不到 VL_MARGIN）就不出这一题 */
+    let ans=cols[0];
+    for(let k=1;k<cols.length;k++)if(fl[cols[k]]<fl[ans])ans=cols[k];
+    let tie=0;
+    for(let k=0;k<cols.length;k++)if(cols[k]!==ans&&Math.abs(fl[cols[k]]-fl[ans])<VL_MARGIN)tie++;
+    if(!tie&&cols.length>=3){
+      const list=[];
+      for(let k=0;k<cols.length;k++)list.push({col:cols[k],ok:cols[k]===ans?1:0,win:ans});
+      return list;
+    }
+    if(wl>=Math.min(VL_WIN,n-start))return [];   /* 窗口已经顶到「这一头到案尾」还是不行：这一题作废（往右没有坑可以再宽）*/
+    wl++;
+  }
+}
+/* 一场里那几题问哪几个窗口：从案头到案尾均匀铺开（每回上台重挑，别来回问同一口）*/
+function vlQuickWindows(rec,qn){
+  const n=rec.n,wl=Math.min(VL_WIN,n),hi=Math.max(0,n-wl);
+  const starts=[];
+  for(let q=0;q<qn;q++){
+    let got=null;
+    for(let t=0;t<6;t++){
+      const s=qn<2?Math.floor(Math.random()*(hi+1)):
+        Math.round(hi*(qn===1?Math.random():q/(qn-1))+Math.floor(Math.random()*3)-1);
+      const st=Math.max(0,Math.min(hi,s));
+      if(starts.indexOf(st)>=0)continue;
+      if(vlQuickOpts(rec,st).length){got=st;break}
+    }
+    if(got===null){                          /* 均匀铺开那一头配不出题：整案挨个找一遍 */
+      const shuf=auxShuf(function(){const a=[];for(let i=0;i<=hi;i++)a.push(i);return a})();
+      for(let k=0;k<shuf.length;k++){
+        if(starts.indexOf(shuf[k])>=0)continue;
+        if(vlQuickOpts(rec,shuf[k]).length){got=shuf[k];break}
+      }
+    }
+    if(got===null)break;
+    starts.push(got);
+  }
+  return starts;
+}
+/* ---- 挑珠 / 挑方向 / 挑步数那三排牌 ---- */
+function vlPickOpts(rec){
+  if(!rec)return [];
+  const list=[];
+  for(let i=0;i<rec.n;i++)if(rec.beads[i].col!==i)list.push({i:i});
+  return list;
+}
+/* 挑方向两张、挑步数四张：牌面一律不预告哪一张是对的 ——
+   「往哪边」要看珠子上的号与它脚下那一列，「几步」要一口一口数山口的步数，
+   这两眼就是本坊的功课；摇错了由「弹回原位」收账，不在牌上替孩子挡掉。*/
+function vlDirOpts(b){
+  if(!b)return [];
+  return [{dir:-1},{dir:1}];
+}
+function vlPowOpts(){
+  const list=[];
+  for(let A=1;A<=VL_AMAX;A++)list.push({pow:A});
+  return list;
+}
+
+/* ---- 配字：一场一串（下面九串由 _vlgeo.cjs 离线数出来，串外的字当场再过一遍闸）---- */
+async function vlBuildPool(keep,lo,hi){
+  const g=vly.gen,stale=function(){return g!==vly.gen||!vly.run||vly.over};
+  const lv=vly.lv||1;
+  const enough=function(){
+    if(!isFinite(lo))return vly.pool.length>=VL_POOL_WANT;
+    let c=0;
+    for(let i=0;i<vly.pool.length;i++)if(vly.pool[i].n>=lo&&vly.pool[i].n<=hi)c++;
+    return c>=6||vly.pool.length>=40;
+  };
+  vly.miss=(localStorage.getItem('hz_vl_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  const want=[];
+  const push=function(list){
+    list=list||[];
+    for(let i=0;i<list.length&&want.length<VL_POOL_SCAN;i++){
+      const c=list[i];
+      if(c&&want.indexOf(c)<0)want.push(c);
+    }
+  };
+  const rest=[];                                 /* 全表里本串之外的字：只在本串不齐时上台 */
+  for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,vlLetters(L).split(''));
+  const scan=async function(list){
+    for(let kk=0;kk<list.length&&!enough();kk+=12){
+      const rs=await Promise.all(list.slice(kk,kk+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(stale())return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[kk+i];
+        if(!rs[i]||!rs[i].medians)continue;
+        const rec=vlMake(ch,rs[i]);
+        if(!rec)continue;
+        if(isFinite(lo)&&(rec.n<lo||rec.n>hi))continue;
+        if(!vly.pool.some(function(p){return p.ch===rec.ch}))vly.pool.push(rec);
+      }
+    }
+  };
+  push(auxShuf(vly.miss.slice(0,6).filter(function(c){return (vlLetters(lv)||'').indexOf(c)>=0})));
+  push(auxShuf(vlLetters(lv).split('')));
+  if(!keep)vly.pool=[];
+  await scan(want);
+  if(vly.pool.length<VL_POOL_MIN){
+    const rescue=[];
+    for(let i=0;i<rest.length&&rescue.length<VL_POOL_SCAN;i++){
+      const c=rest[i];
+      if(c&&want.indexOf(c)<0)rescue.push(c);
+    }
+    await scan(auxShuf(rescue));
+  }
+  vly.poolLv=lv;
+  return vly.pool.length>=VL_POOL_MIN;
+}
+function vlFresh(ch){
+  const bk=localStorage.getItem('hz_vl_book')||'';
+  return bk.indexOf(ch+':')<0?1:0;
+}
+
+/* 下面九串字（一场一串）由 _vlgeo.cjs 离线数出来：全站 1372 字过闸 291 字，
+   按「笔数 → 最难那颗要几步 → 全案合计最少几步」从易到难排，然后均分九场 ——
+   这一个次序把坑有几口、最远那颗隔几列、这一案一共要花几步一起称出来了：
+   第 1 场的案三五口坑、合计三四步就回齐，第 9 场的字十口坑、要摇到十二步以上。
+   串外的字在这一场就是过不了闸的字（当场 vlAuditWord 再核一遍才准上台）。*/
+const VL_LEV={
+  1:"仙丝犯冰刚存扬朱至色杀吃妈灰场宅托而设乒争乓回字吆坐弃拟沙罕赤何吞",
+  2:"听我戒抡护灶肠迟闲冶困抄宏劳角块扶投更良芬花饮余含吻庐苍谷邮陈巫驴",
+  3:"你穷纱系侧拌拔胀使刺屈枣油狐狗的者肿英诚咆枪炉饱或尚拐宜审泡卧受委",
+  4:"庙径怜泥苔降呵学昆码驼驾武泻爸诣丧抱抵拙育虎官拘参肯录绊鸣抬驶弈拭",
+  5:"疯相耍便保哉威总拼狠独种鬼亲幽挠挥昼胎趴阁饼侵哀盈送顺剑厚狮砍耐荆",
+  6:"荐误贺适院险临俗养宣庭恰括染眨骂室挡络骄客徊挣挺盼秒罚蚁追骆宫拯首",
+  7:"鸦炼诱退逊咽宴捡请陵俺哲涧涩牺盏秘站调党哨悄捕栽烧瓶症逐哦挽紧蚊宵",
+  8:"继借旅殷浆浪疾笑剖烈获谈唐挨桅案烟益袍递陷验倘凉剔剥哮唇舱艳读途阅",
+  9:"骏倦宾爹皱载逗饿乘拳捣桑浸速弱粉热资陶称轿套恩哥鸯素索"
+};
+function vlLetters(L){return VL_LEV[L]||''}
+/* 笨手那本账怎么说（全站只这一处措辞，别处都从这里取）：
+   过闸的字笨手天生至少剩 VL_NAIVE 颗回不了家（闸门里 naiveWrong<VL_NAIVE 就退回库外），
+   所以这一句只会说「还剩几颗」，不会说出一句「也全回家」的空话 */
+function vlNaiveSay(rec){
+  if(!rec)return '';
+  return '笨手 '+rec.naiveWrong+' 颗回不了家 · 刚好只要 '+rec.cost+' 步';
+}
+
+/* ================= 案面：一条山谷 + 米字格 + 笨手账（canvas 只画，牌是 DOM）================= */
+const VL_BOX=1024;
+const VL_PAL=['#FF8A65','#FFD54F','#AED581','#4DD0E1','#B39DDB','#F48FB1','#81C784','#FFB74D','#7986CB','#4DB6AC'];
+function vlView(){
+  return {ox:VL_GX+VL_PAD,oy:VL_GY+VL_PAD,sc:(VL_GS-VL_PAD*2)/VL_BOX};
+}
+function vlX(x,v){return v.ox+x*v.sc}
+function vlY(y,v){return v.oy+(VL_BOX-y)*v.sc}
+/* 山谷的横轴就是第几笔：n 口坑在 VL_VX0..VL_VX1 这条带子里等距分格 */
+function vlColW(rec){return (VL_VX1-VL_VX0)/rec.n}
+function vlColX(rec,i){return VL_VX0+vlColW(rec)*(i+0.5)}
+function vlPassX(rec,i){return VL_VX0+vlColW(rec)*(i+1)}
+/* 把这一案的真实高低等比压进 52..170 那条带子：最高的山口在 52，最低的坑底在 170 */
+function vlRange(rec){
+  if(rec._lo!==undefined)return rec._lo;
+  let lo=1e9,hi=-1e9;
+  for(let i=0;i<rec.n;i++){if(rec.fl[i]<lo)lo=rec.fl[i];if(rec.fl[i]>hi)hi=rec.fl[i]}
+  for(let i=0;i<rec.n-1;i++){if(rec.rg[i]<lo)lo=rec.rg[i];if(rec.rg[i]>hi)hi=rec.rg[i]}
+  rec._lo={lo:lo,hi:hi,span:Math.max(1,hi-lo)};
+  return rec._lo;
+}
+function vlHeiY(rec,h){const r=vlRange(rec);return VL_VY_LO-(h-r.lo)/r.span*(VL_VY_LO-VL_VY_HI)}
+/* 一口坑可以叠珠：坐在第 k 层就往上挪 k×VL_STACK */
+function vlBeadY(rec,b){
+  const below=[];
+  for(let i=0;i<rec.n;i++)if(rec.beads[i]!==b&&rec.beads[i].col===b.col&&rec.beads[i].i<b.i)below.push(i);
+  return vlHeiY(rec,rec.fl[b.col])-below.length*VL_STACK;
+}
+function vlBadge(c,x,y,txt,bg,fg){
+  c.save();
+  c.font='bold 10px system-ui';c.textAlign='center';c.textBaseline='middle';
+  const w=c.measureText(txt).width+8;
+  c.fillStyle=bg;c.beginPath();
+  if(c.roundRect)c.roundRect(x-w/2,y-8,w,16,7);else c.rect(x-w/2,y-8,w,16);
+  c.fill();
+  c.fillStyle=fg;c.fillText(txt,x,y+0.5);
+  c.restore();
+}
+
+/* ---------- 那条谷：案面石、坑、山口上的步数 ---------- */
+function vlDrawValley(c){
+  const rec=vly.rec;if(!rec)return;
+  const n=rec.n;
+  c.save();
+  /* 石体：沿「坑底 → 山口 → 坑底」描一条剖面，下面填成石头 */
+  c.beginPath();
+  c.moveTo(VL_VX0,VL_VY_LO+26);
+  c.lineTo(VL_VX0,vlHeiY(rec,rec.fl[0]));
+  for(let i=0;i<n;i++){
+    c.lineTo(vlColX(rec,i),vlHeiY(rec,rec.fl[i]));
+    if(i<n-1){
+      c.lineTo(vlPassX(rec,i),vlHeiY(rec,rec.rg[i]));
+      c.lineTo(vlColX(rec,i+1),vlHeiY(rec,rec.fl[i+1]));
+    }
+  }
+  c.lineTo(VL_VX1,vlHeiY(rec,rec.fl[n-1]));
+  c.lineTo(VL_VX1,VL_VY_LO+26);
+  c.closePath();
+  const gr=c.createLinearGradient(0,VL_VY_HI,0,VL_VY_LO+26);
+  gr.addColorStop(0,'#2B4560');gr.addColorStop(.55,'#1B2C3E');gr.addColorStop(1,'#101A26');
+  c.fillStyle=gr;c.fill();
+  c.lineWidth=2;c.strokeStyle='#5C8CB8';c.stroke();
+  /* 案两头的墙：珠子甩不出去 */
+  c.strokeStyle='#7EA6CE';c.lineWidth=3;
+  c.beginPath();c.moveTo(VL_VX0,VL_VY_HI-16);c.lineTo(VL_VX0,VL_VY_LO+26);c.stroke();
+  c.beginPath();c.moveTo(VL_VX1,VL_VY_HI-16);c.lineTo(VL_VX1,VL_VY_LO+26);c.stroke();
+  /* 每一口坑：自家那颗珠的颜色画一圈浅杯 + 坑号（第几笔）*/
+  for(let i=0;i<n;i++){
+    const x=vlColX(rec,i),y=vlHeiY(rec,rec.fl[i]);
+    c.beginPath();c.arc(x,y+2,VL_BR+3,3.55,5.83);
+    c.strokeStyle=VL_PAL[i%10]+'66';c.lineWidth=2;c.stroke();
+    c.font='bold 10px system-ui';c.textAlign='center';
+    c.fillStyle='rgba(190,215,235,.62)';
+    c.fillText('第'+(i+1)+'笔',x,y+VL_BR+16);
+  }
+  /* ✨ 看坡：把每一口坑的深浅名次写一息（只给尺子，不报哪一颗该往哪摇）
+     名次贴在案头那一行、不贴在坑沿：坑沿上站着珠子与那支回家的小箭头，压不得 */
+  if(vly.peekMs>vly.t){
+    for(let i=0;i<n;i++){
+      const x=vlColX(rec,i);
+      c.save();c.font='bold 9px system-ui';c.textAlign='center';
+      c.fillStyle=rec.deepRank[i]===1?'#FFD54F':'#80CBC4';
+      c.fillText('深'+rec.deepRank[i],Math.max(VL_VX0+8,Math.min(VL_VX1-8,x)),44);
+      c.restore();
+    }
+  }
+  /* 山口上的步数：第 VL_TELL_LV 场起收走（自己一口一口数）*/
+  if(!vlNoTell(vly.lv)){
+    for(let i=0;i<n-1;i++){
+      const x=vlPassX(rec,i),y=vlHeiY(rec,rec.rg[i]);
+      const st=Math.max(rec.kw[i],rec.ke[i]);
+      c.save();c.font='bold 10px system-ui';c.textAlign='center';
+      c.fillStyle=st>=3?'#FFB74D':(st===2?'#80DEEA':'#AED581');
+      c.fillText(st+'步',x,y+13);
+      c.restore();
+    }
+  }
+  c.restore();
+}
+
+/* ---------- 珠子：案上的主角 ---------- */
+function vlDrawBeads(c){
+  const rec=vly.rec;if(!rec)return;
+  for(let k=0;k<rec.n;k++){
+    const b=rec.beads[k];
+    if(b===vly.cur&&vly.anim){continue}                    /* 正在走的那颗最后单独画（压在最上）*/
+    vlDrawOneBead(c,b,vlBeadY(rec,b));
+  }
+  if(vly.cur&&vly.anim)vlDrawOneBead(c,vly.cur,vly.anim.y);
+  /* 🧭 试摇：这一颗往这一边摇 1~4 步各停在哪儿，画四颗虚珠（一息就收）*/
+  if(vly.tryMs>vly.t&&vly.cur&&vly.dir){
+    const b=vly.cur;
+    for(let A=1;A<=VL_AMAX;A++){
+      const at=vlRoll(b.col,vly.dir,A,rec.kw,rec.ke,rec.n);
+      if(at===b.col&&A>1)continue;
+      const x=vlColX(rec,at),y=vlHeiY(rec,rec.fl[at])-4-A*VL_STACK;
+      c.save();c.globalAlpha=.5;
+      c.beginPath();c.arc(x,y,VL_BR-2,0,6.2832);
+      c.fillStyle='#FFFFFF';c.fill();
+      c.globalAlpha=1;c.font='bold 11px system-ui';c.textAlign='center';
+      c.fillStyle='#263238';c.fillText(A+'',x,y+4);
+      c.restore();
+    }
+  }
+}
+function vlDrawOneBead(c,b,y){
+  const rec=vly.rec;
+  const x=vly.anim&&vly.anim.b===b?vly.anim.x:vlColX(rec,b.col);
+  const atHome=b.col===b.home;
+  const sel=b===vly.cur;
+  c.save();
+  if(atHome){
+    c.beginPath();c.arc(x,y,VL_BR+4,0,6.2832);
+    c.fillStyle='rgba(134,240,172,.18)';c.fill();
+  }
+  c.beginPath();c.arc(x,y,VL_BR,0,6.2832);
+  c.fillStyle=VL_PAL[b.i%10];c.fill();
+  c.lineWidth=sel?3:1.6;c.strokeStyle=sel?'#FFFFFF':(atHome?'#86EFAC':'#0D1B2A');c.stroke();
+  c.font='bold 12px system-ui';c.textAlign='center';c.textBaseline='middle';
+  c.fillStyle='#10202B';c.fillText(b.i+1,x,y+0.5);
+  c.restore();
+  /* 还没回家的：头顶一支小箭头指着家的方向（往哪边不用猜，几步才是要想的）*/
+  if(!atHome){
+    const dir=b.home>b.col?1:-1;
+    c.save();c.fillStyle='#FFE082';c.font='bold 12px system-ui';c.textAlign='center';
+    c.fillText(dir>0?'→':'←',x,y-VL_BR-5);
+    c.restore();
+  }
+}
+
+/* ---------- 左下米字格：这一颗珠是哪一笔写的 ---------- */
+function vlDrawGrid(c){
+  const rec=vly.rec;if(!rec)return;
+  const v=vlView();
+  c.save();
+  c.strokeStyle='rgba(120,150,180,.28)';c.lineWidth=1;
+  c.strokeRect(VL_GX,VL_GY,VL_GS,VL_GS);
+  c.setLineDash([4,4]);
+  c.beginPath();c.moveTo(VL_GX+VL_GS/2,VL_GY);c.lineTo(VL_GX+VL_GS/2,VL_GY+VL_GS);c.stroke();
+  c.beginPath();c.moveTo(VL_GX,VL_GY+VL_GS/2);c.lineTo(VL_GX+VL_GS,VL_GY+VL_GS/2);c.stroke();
+  c.beginPath();c.moveTo(VL_GX,VL_GY);c.lineTo(VL_GX+VL_GS,VL_GY+VL_GS);c.stroke();
+  c.beginPath();c.moveTo(VL_GX+VL_GS,VL_GY);c.lineTo(VL_GX,VL_GY+VL_GS);c.stroke();
+  c.setLineDash([]);
+  for(let i=0;i<rec.n;i++){
+    const st=rec.st[i];
+    const lit=(vly.cur&&vly.cur.i===i)||vly.phase==='seal';
+    c.beginPath();
+    for(let k=0;k<st.length;k++){
+      const X=vlX(st[k][0],v),Y=vlY(st[k][1],v);
+      if(k)c.lineTo(X,Y);else c.moveTo(X,Y);
+    }
+    c.lineWidth=lit?4:2.4;
+    c.strokeStyle=lit?VL_PAL[i%10]:'rgba(176,196,210,.42)';
+    c.lineCap='round';c.stroke();
+  }
+  c.font='10px system-ui';c.textAlign='left';c.fillStyle='#78909C';
+  c.fillText(vly.ch+' 共 '+rec.n+' 笔',VL_GX+2,VL_GY+VL_GS+12>VL_GY+VL_GS?VL_GY+VL_GS-2:VL_GY+VL_GS-2);
+  c.restore();
+}
+
+/* ---------- 右下笨手账：猛摇到底还剩几颗 + 这一案的花费 ---------- */
+function vlDrawLedger(c){
+  const rec=vly.rec;if(!rec)return;
+  c.save();
+  c.font='bold 12px system-ui';c.textAlign='left';
+  c.fillStyle='#B3E5FC';
+  c.fillText('⛰️ 第 '+(vly.wi+1)+' 案 · '+rec.n+' 口坑',VL_LX,VL_LY+14);
+  c.font='11px system-ui';c.fillStyle='#CFD8DC';
+  c.fillText('回齐 '+vlHomeCount()+' / '+rec.n+' 颗',VL_LX,VL_LY+31);
+  /* 进度条 */
+  c.fillStyle='rgba(255,255,255,.12)';c.fillRect(VL_LX,VL_LY+37,VL_LW,7);
+  c.fillStyle='#86EFAC';c.fillRect(VL_LX,VL_LY+37,VL_LW*vlHomeCount()/rec.n,7);
+  let y=VL_LY+58;
+  if(!vlDim(vly.lv)){
+    c.fillStyle='#FFCCBC';
+    c.fillText('🪨 笨手：'+rec.naiveWrong+' 颗回不了家',VL_LX,y);y+=15;
+    c.fillStyle='#FFE082';
+    c.fillText('🎯 刚好：'+rec.cost+' 步就全回齐',VL_LX,y);y+=15;
+    /* 笨手的落点画成小槽：每一颗错珠猛摇到底停在哪一列 */
+    const cw2=VL_LW/rec.n;
+    c.strokeStyle='rgba(255,138,101,.5)';c.lineWidth=1;
+    c.strokeRect(VL_LX,y,cw2*rec.n,18);
+    for(let i=0;i<rec.n;i++){
+      const b=rec.beads[i];
+      if(b.rest===b.home)continue;
+      const dir=b.home>b.rest?1:-1;
+      const at=vlRoll(b.rest,dir,VL_AMAX,rec.kw,rec.ke,rec.n);
+      const X=VL_LX+cw2*(i+.5);
+      c.beginPath();c.arc(X,y+9,4.4,0,6.2832);
+      c.fillStyle=at===b.home?'rgba(174,213,129,.9)':'rgba(255,138,101,.92)';c.fill();
+    }
+    y+=26;
+  }
+  c.fillStyle=vly.waste?'#FF8A65':'#AED581';
+  c.fillText('白摇 '+vly.waste+' 把 · 已花 '+vly.stepsUsed+' 步',VL_LX,y);y+=15;
+  c.fillStyle='#90A4AE';
+  c.fillText(vly.dir?('👉 往'+(vly.dir>0?'右':'左')+' · '+(vly.pow||'?')+' 步'):'👉 先挑一颗不在家的珠',VL_LX,y);
+  c.restore();
+}
+function vlHomeCount(){
+  const rec=vly.rec;if(!rec)return 0;
+  let k=0;for(let i=0;i<rec.n;i++)if(rec.beads[i].col===rec.beads[i].home)k++;
+  return k;
+}
+/* 抢答那一眼的题面范围：窗口从第几口坑起、到第几口坑止（牌上的号是「往左数第几口」，一律从 1 数起）*/
+function vlQRange(){
+  if(vly.phase!=='quick'||!vly.rec)return [1,1];
+  const st=vly.qns[vly.qi]|0;
+  const list=vly.opts?vly.opts.list:null;
+  const en=list&&list.length?list[list.length-1].col:st;
+  return [st+1,en+1];
+}
+
+function vlDraw(){
+  const cv=vlCv;if(!cv)return;
+  const c=cv.getContext('2d');
+  c.clearRect(0,0,VL_W,VL_CVH);
+  if(!vly.rec){
+    c.save();
+    c.font='bold 15px system-ui';c.textAlign='center';c.fillStyle='#B0BEC5';
+    c.fillText('⛰️ 正在挑字……',VL_W/2,110);
+    c.font='12px system-ui';c.fillStyle='#78909C';
+    c.fillText('在字库里找「一落真会错位、每一步都有唯一答法、猛摇到底也赢不了」的字',VL_W/2,132);
+    c.textAlign='left';c.restore();
+    return;
+  }
+  /* 案头一行：字与坑数画在谷上方 */
+  c.save();
+  c.font='bold 13px system-ui';c.textAlign='center';c.fillStyle='#B3E5FC';
+  c.fillText('⛰️ '+vly.ch+' 案 · '+vly.rec.n+' 口坑 · 把每颗珠摇回自己那一列',VL_W/2,30);
+  c.restore();
+  vlDrawValley(c);
+  vlDrawBeads(c);
+  vlDrawGrid(c);
+  vlDrawLedger(c);
+  /* 火花：落进自家坑的那一响撒六颗，一息就散 */
+  for(let i=vly.spark.length-1;i>=0;i--){
+    const s=vly.spark[i],age=(vly.t-s.t0)/620;
+    if(age>=1){vly.spark.splice(i,1);continue}
+    c.beginPath();c.arc(s.x+(s.dx*age*13),s.y+(s.dy*age*13)-age*7,3.1*(1-age),0,6.2832);
+    c.fillStyle='rgba(255,245,200,'+(0.85*(1-age))+')';c.fill();
+  }
+}
+
+/* ---------- 案上的牌：一箱四用 ----------
+   挑珠（几张：不在家的那几颗）· 挑方向（两张）· 挑步数（四张）· 深浅抢答（三张坑）。
+   牌是 DOM 不是 canvas：孩子按的得是真按钮，错过的那一张当场划红，下一息还摆在原处。*/
+function vlBuildOpts(){
+  const box=document.getElementById('vlOpts');
+  if(!box)return;
+  box.innerHTML='';
+  const rec=vly.rec;
+  if(!rec)return;
+  const list=vly.opts?vly.opts.list:null;
+  if(!list)return;
+  for(let i=0;i<list.length;i++){
+    const o=list[i];
+    const row=document.createElement('div');
+    row.className='vl-opt';row.id='vlOpt'+i;
+    let nm='',chk='';
+    if(vly.phase==='pick'){
+      nm='第 '+(o.i+1)+' 笔那颗珠';
+      chk='在坑 '+(rec.beads[o.i].col+1)+' · 家在 '+(o.i+1);
+    }else if(vly.phase==='dir'){
+      nm=o.dir<0?'◀ 往左摇':'往右摇 ▶';
+      chk=vlNoTell(vly.lv)?'自己数口':'口上写着几步';
+    }else if(vly.phase==='pow'){
+      nm=(o.pow)+' 步';
+      chk=o.pow===1?'轻轻一下':(o.pow===VL_AMAX?'猛摇到底':'不多不少');
+    }else if(vly.phase==='quick'){
+      nm='往左数第 '+(o.col+1)+' 口';
+      chk=vlDim(vly.lv)?' ?':'坑底 '+(vlRange(rec).hi-rec.fl[o.col]|0);
+      row.className='vl-opt q';
+    }
+    row.innerHTML='<span class="vl-mark">'+(i+1)+'</span>'+
+      '<span class="vl-nm">'+nm+'</span><span class="vl-chk">'+chk+'</span>';
+    row.addEventListener('click',(function(i){return function(ev){
+      if(vly.helpMs>0){vly.helpMs=0;vlSync();ev.preventDefault();return}
+      vlPick(i);ev.preventDefault();
+    }})(i));
+    box.appendChild(row);
+  }
+  if(vly.phase==='quick'){
+    for(let i=0;i<list.length;i++){
+      const r=document.getElementById('vlOpt'+i);
+      if(r)r.className='vl-opt q';
+    }
+  }
+}
+function vlSyncOpts(){
+  const box=document.getElementById('vlOpts');
+  if(!box)return;
+  const rows=box.querySelectorAll('.vl-opt');
+  const live=vly.phase==='pick'||vly.phase==='dir'||vly.phase==='pow'||vly.phase==='quick';
+  for(let i=0;i<rows.length;i++){
+    rows[i].classList.toggle('sel',live&&i===vly.sel);
+    rows[i].classList.toggle('bad',!!vly.wrongOpt[i]);
+    rows[i].classList.toggle('dim',!live);
+  }
+}
+
+/* ---------- 屏上的字：HUD / 题头 / 回话条 / 标签 / 四条量表 ---------- */
+function vlAskTxt(){
+  if(!vly.rec)return '📥 正在挑字……<br><small>在字库里找「一落真会错位、每一步都有唯一答法、猛摇到底也赢不了」的字</small>';
+  if(vly.phase==='drop')return '⛰️ <b>落珠</b>：一颗珠就是一笔，个子越高的那颗滚得越远……<br><small>收笔往哪边偏，进门就往哪边滚</small>';
+  if(vly.phase==='pick')return '🎯 挑<b>一颗不在家的珠</b>（'+vlHomeCount()+'/'+vly.rec.n+' 已回齐）<br><small>点案上那颗 · <code>←→</code> 挪手 · <code>1~'+((vly.opts?vly.opts.list.length:1))+'</code> 直接点 · <code>回车</code> 定</small>';
+  if(vly.phase==='dir')return '🧭 第 <b>'+(vly.cur?((vly.cur.i|0)+1):'?')+' 笔</b>那颗珠在坑 '+((vly.cur?vly.cur.col:0)+1)+' —— 往<b>哪边</b>摇？<br><small>它在自家坑的哪一头，就朝哪一头摇</small>';
+  if(vly.phase==='pow')return '💥 往<b>'+(vly.dir>0?'右':'左')+'</b>摇，要<b>几步</b>？<br><small>一路上每一道口各要几步，加起来才是这一摇的花费</small>';
+  if(vly.phase==='roll')return '⛰️ 珠子在翻山口……<br><small>上坡吃力气，下坡不补力气</small>';
+  if(vly.phase==='quick')return '🕳 往左数第 <b>'+vlQRange()[0]+'</b> 口到第 <b>'+vlQRange()[1]+'</b> 口，<b>哪一口最深</b>？<br><small>坑底越低越深 —— 深浅序跟笔顺序不一样（第 '+(vly.qi+1)+' / '+vly.qns.length+' 题）</small>';
+  if(vly.phase==='seal')return '🏁 <b>封字</b>：'+vly.ch+' 全案回齐<br><small>回车接着摇下一案</small>';
+  return '⛰️ 案上这一把……<br><small>用力刚好</small>';
+}
+function vlHintTxt(){
+  if(!vly.rec)return '⛰️ <b>案上有摩擦</b>：翻一道口要花这道口的步数 —— 平口一步、高口两步、高坎三步';
+  if(vly.phase==='pow')return '💥 <b>数口</b>：从坑 '+((vly.cur?vly.cur.col:0)+1)+' 到坑 '+((vly.cur?vly.cur.home+1:0))+' 要翻 '+
+    (vly.cur?Math.abs(vly.cur.home-vly.cur.col):0)+' 道口，每道口各要几步 —— <b>加起来</b>才够，多一步就<b>越过去</b>';
+  if(vly.phase==='quick')return '🕳 <b>深 = 坑底低</b>：别看它在第几笔，看它那一口坑底压到多低';
+  if(vly.phase==='pick')return '🎯 <b>少了迈不出、多了越过去</b>：摇错不算输，珠子弹回原位，可这一把力气全白花';
+  return '⛰️ <b>一口笔一口坑</b>：坑底就是这一笔写到的最低处，山口就是两笔之间较高那一处';
+}
+function vlSync(){
+  const q=document.getElementById('vlQTxt');
+  if(q)q.textContent=vly.phase==='seal'?'🏁 封字':vly.phase==='quick'?'⏳ 深浅 '+Math.ceil(vly.quickMs/1000)+' 秒':
+    vly.phase==='load'||vly.locked?'📥 换案':'⏳ 摇珠 '+Math.ceil(vly.stepMs/1000)+' 秒';
+  const s=document.getElementById('vlScoreTxt');
+  if(s)s.textContent='⛰️ '+(vly.score|0)+' 文';
+  const l=document.getElementById('vlLvTxt');
+  if(l)l.textContent='第 '+vly.lv+' 场 · 收 '+vly.words+' 字';
+  const r=document.getElementById('vlRankTxt');
+  if(r){const rk=vlRankOf(vly.words);r.textContent=rk.e+' '+rk.t}
+  const h=document.getElementById('vlHeartTxt');
+  if(h)h.textContent='❤️'.repeat(Math.max(0,vly.hearts));
+  const cb=document.getElementById('vlComboTxt');
+  if(cb)cb.textContent='🔥 连 '+vly.combo;
+  const lot=document.getElementById('vlLotTxt');
+  if(lot)lot.textContent='🀫 '+(vly.wi+1)+'/'+VL_PER+' 案 · 回 '+vlHomeCount()+'/'+(vly.rec?vly.rec.n:0)+' 颗';
+  const num=document.getElementById('vlNumTxt');
+  if(num)num.textContent=vly.rec?('⛰️ '+vly.ch+' '+vly.rec.n+' 口坑 · 错位 '+vly.rec.miss+' 颗 · '+vlNaiveSay(vly.rec)):'⛰️ 案还没摆';
+  const lit=document.getElementById('vlHitLight');
+  if(lit){
+    lit.textContent=vly.hitOk===1?'✅ '+vly.hitTxt:(vly.hitOk===2?'⚠️ '+vly.hitTxt:
+      (vly.hitOk===3?'🔥 连 '+vly.combo+' · '+vly.hitTxt:'💡 摇珠'));
+    lit.style.color=vly.hitOk===2?'#FF8A65':(vly.hitOk===1?'#A5D6A7':'#CFD8DC');
+  }
+  const ask=document.getElementById('vlAsk');
+  if(ask)ask.innerHTML=vlAskTxt();
+  const hl=document.getElementById('vlHintTxt');
+  if(hl)hl.innerHTML=vlHintTxt();
+  /* 四条量表 */
+  const sb=document.getElementById('vlStepBar'),st=document.getElementById('vlStepTxt');
+  if(sb){const p=vly.step0?Math.max(0,vly.stepMs)/vly.step0:0;sb.style.width=(p*100)+'%';
+    if(st)st.textContent='⛰️ 摇珠 '+(vly.stepMs/1000).toFixed(1)+' 秒';
+    sb.parentNode.classList.toggle('low',p<.25&&vly.step0>0)}
+  const qb=document.getElementById('vlQuickBar'),qt=document.getElementById('vlQuickTxt');
+  if(qb){const p=vly.quick0?Math.max(0,vly.quickMs)/vly.quick0:0;qb.style.width=(p*100)+'%';
+    if(qt)qt.textContent='🕳 深浅 '+(vly.quickMs/1000).toFixed(1)+' 秒';
+    qb.parentNode.classList.toggle('low',p<.25&&vly.quick0>0)}
+  const lb=document.getElementById('vlLampBar'),lt=document.getElementById('vlLampTxt');
+  if(lb){const p=vly.lamp0?Math.max(0,vly.lamp)/vly.lamp0:0;lb.style.width=(p*100)+'%';
+    if(lt)lt.textContent='💡 这一场 '+Math.ceil(vly.lamp/1000)+' 秒';
+    lb.parentNode.classList.toggle('low',p<.2)}
+  const eb=document.getElementById('vlErrBar'),ebig=document.getElementById('vlErrBig');
+  if(eb){const p=1-Math.min(1,vly.waste/VL_ERR_LINE);eb.style.width=(p*100)+'%';
+    if(ebig)ebig.textContent='⛰️ 白摇 '+vly.waste+' 把 / 已花 '+vly.stepsUsed+' 步（刚好 '+((vly.rec?vly.rec.cost:0)|0)+' 步）';
+    eb.parentNode.classList.toggle('low',vly.waste>=VL_ERR_LINE-1)}
+  const act=document.getElementById('vlActBtn');
+  if(act){
+    if(vly.phase==='pick'){act.disabled=false;act.className='big';
+      act.innerHTML='🎯 就摇这一颗（回车）<small>1~'+(vly.opts?vly.opts.list.length:'2')+' 挑一颗珠 · ←→ 挪手 · 回车定珠</small>'}
+    else if(vly.phase==='dir'){act.disabled=false;act.className='big';
+      act.innerHTML='🧭 定方向（回车）<small>1 往左 · 2 往右</small>'}
+    else if(vly.phase==='pow'){act.disabled=false;act.className='big ready';
+      act.innerHTML='⛰️ 摇！（回车）<small>1~4 步 · 回车就按牌上这一张</small>'}
+    else if(vly.phase==='quick'){act.disabled=false;act.className='big';
+      /* 窗口是「从这一口起最多四口坑」（VL_WIN），牌也就跟着三张或四张：
+         主钮上那句「按 1~几」得跟着牌桌走，写死 3 就在四张牌那一眼骗了孩子（键按 4 是分明的，牌面上却不许他按）*/
+      act.innerHTML='🕳 不等了，就这一口（回车）<small>1~'+(vly.opts?vly.opts.list.length:3)+' 抢答</small>'}
+    else if(vly.phase==='seal'){act.disabled=false;act.className='big';
+      act.innerHTML='⛰️ 接着摇下一案（回车）<small>F 结算</small>'}
+    else{act.disabled=true;act.className='big';
+      act.innerHTML='⛰️ 案还没摆<small>正在挑字</small>'}
+  }
+  const tap=function(id,on){const b=document.getElementById(id);if(!b)return;
+    b.disabled=!on;
+    if(on)b.textContent=on;};
+  tap('vlPeekBtn',vly.phase!=='load'&&vly.phase!=='drop'&&vly.peekN>0?('✨ 看坡 · 剩 '+vly.peekN):'✨ 看坡');
+  tap('vlTryBtn',(vly.phase==='pow'||vly.phase==='dir')&&vly.tryN>0?('🧭 试摇 · 剩 '+vly.tryN):'🧭 试摇');
+  tap('vlSwapBtn',vly.phase!=='load'&&vly.swapN>0?('🔁 换案 · 剩 '+vly.swapN):'🔁 换案');
+  vlSyncOpts();
+}
+function vlMsg(html,color){
+  const m=document.getElementById('vlMsg');
+  if(!m)return;
+  m.innerHTML=html;
+  m.style.color=color||'#90A4AE';
+}
+function vlClearTag(){
+  vly.tagTimer=0;
+  const t=document.getElementById('vlTag');
+  if(t)t.classList.remove('on','warn','gold','cyan');
+}
+function vlTag(txt,cls){
+  const t=document.getElementById('vlTag');
+  if(!t)return;
+  t.innerHTML=txt;
+  t.classList.remove('warn','gold','cyan');
+  if(cls)t.classList.add(cls);
+  t.classList.add('on');
+  vly.tagTimer=VL_TAG_MS;
+}
+function vlHelpText(){
+  return '⛰️ <b>一口笔一口坑</b>：横轴就是第几笔 —— 第 1 笔的坑在最左、第 n 笔的坑在最右。坑底是这一笔写到的<b>最低处</b>，山口是两笔之间「收笔 / 起笔」<b>较高</b>那一处<br>'+
+    '🎯 <b>珠子进门自带力气</b>：这一笔的个子（最高处比坑底高多少）换算成步，收笔往哪边偏就往哪边滚 —— 矮矮一横一落就定在自己家，长竖长撇一路吃到案头<br>'+
+    '💥 <b>案上有摩擦</b>：<b>上坡吃力气、下坡不补力气</b>（力气变成热就散了）。翻一道口要花这道口的步数：平口一步、高口两步、高坎三步，力气花光就停在当下那一口<br>'+
+    '👋 <b>你只会一个动作：摇</b> —— 挑一颗不在家的珠、挑往哪边、挑几步。少了连第一步都迈不出，多了<b>越过自己家</b>接着往那头跑；摇错<b>不算输</b>，珠子弹回原位，可这一把力气全白花、连也断了<br>'+
+    '🕳 <b>封字前抢答</b>：这几口坑里哪一口最深 —— 深浅序跟笔顺序天生对不上，<b>数到头的坑往往不是最深那个</b><br>'+
+    '🪨 <b>笨手账</b>（右下角）：每一颗都朝家的方向猛摇到最大步还剩几颗。过闸的字至少剩两颗 —— <b>猛摇赢不了的案，刚刚好才赢</b><br>'+
+    '<code>1~'+VL_AMAX+'</code> 挑牌 · <code>←→</code> 挪手 · <code>回车</code> 摇 · ✨ <code>P</code> 看坡（点破深浅名次）· 🧭 <code>V</code> 试摇（画影不许动真格）· 🔁 <code>S</code> 换案 · <code>H</code> 📖 说明 · <code>F</code> 🏁 结算';
+}
+
+/* ================= 这一把的手：落珠、挑珠、挑方向、挑步数、摇、深浅抢答、三件家什 ================= */
+/* 案上那本账（几口坑、每一口的坑底与山口、每一道口要几步、哪一颗落在哪、哪一颗要几步才回家）
+   全由字料一次算死，别处不许自己再算一遍：珠子走的每一步都照 vlRoll 那一只手算，
+   孩子按对按错只改「账」（白摇几把、花了几步），不改「物理」。
+   为什么摇错的珠子要弹回原位？—— 本坊的靶子是「用几分力」，不是「案面能不能收拾干净」：
+   错了就留在案上，下一问「不在家的那几颗」就多了几颗、方向也乱了，
+   「刚好」这一课会被一堆自己制造的乱账埋掉。弹回去，案面一辈子只往整齐走，
+   白花掉的力气照样记在账上 —— 惩罚是「力气没了」，不是「案子更难了」。*/
+function vlRecost(){
+  const rec=vly.rec;
+  if(!rec)return;
+  vly.n=rec.n;vly.stepsNeed=rec.cost;
+  vly.beads=rec.beads;
+}
+/* 珠子沿石面走：把「第几口坑」这个整数换算成连续的位置，坑与口之间走一条帐篷形（先上山口再下坑）*/
+function vlSurfaceY(rec,cf){
+  const n=rec.n;
+  let i=Math.floor(cf),f=cf-i;
+  if(i<0){i=0;f=0}
+  if(i>n-1){i=n-1;f=0}
+  let h;
+  if(f<.5&&i<n-1)h=rec.fl[i]+(rec.rg[i]-rec.fl[i])*(f/.5);
+  else if(i<n-1)h=rec.rg[i]+(rec.fl[i+1]-rec.rg[i])*((f-.5)/.5);
+  else h=rec.fl[i];
+  return vlHeiY(rec,h)-4;
+}
+function vlBeadPts(){
+  return Math.round(VL_M0*(1+VL_CB*(vly.combo+1))*(1+VL_LVW*(vly.lv-1)));
+}
+
+/* ---- ① 落珠：一落定盘，几颗不在家就看这一眼 ---- */
+function vlDropIn(){
+  const rec=vly.rec;
+  if(!rec)return;
+  vly.phase='drop';vly.locked=1;vly.opts=null;vly.stepMs=0;
+  vlBuildOpts();
+  vly.homeStart=vlHomeCount();
+  vlTone(520,120);
+  let roll='';
+  for(let i=0;i<rec.n;i++){
+    const b=rec.beads[i];
+    if(b.rest===i)continue;
+    roll+=(roll?' · ':'')+'第 '+(i+1)+' 笔滚到坑 '+(b.rest+1)+'（带 '+b.dv+' 步）';
+  }
+  vlTag('⛰️ 一落珠：'+rec.miss+' 颗没落在自家坑里 —— '+roll,'gold');
+  vlT(function(){
+    vly.locked=0;
+    if(!vly.run||vly.over)return;
+    if(vlHomeCount()>=rec.n){vlFinishCase();return}
+    vlNewPick();
+    vlSync();vlDraw();
+  },VL_DROP_MS);
+}
+
+/* ---- ② 挑珠 / 挑方向 / 挑步数：三段牌桌 ---- */
+function vlNewPick(){
+  const rec=vly.rec;
+  if(!rec)return;
+  const list=vlPickOpts(rec);
+  if(!list.length){vlFinishCase();return}
+  vly.cur=null;vly.dir=0;vly.pow=0;
+  vly.opts={list:list,ph:'pick',right:0};
+  vly.sel=0;vly.wrongOpt=[];
+  vly.step0=vlStepMs(vly.lv);vly.stepMs=vly.step0;
+  vly.nagMs=0;vly.phase='pick';
+  vlBuildOpts();
+}
+function vlNewDir(b){
+  vly.cur=b;vly.dir=0;vly.pow=0;
+  const list=vlDirOpts(b);
+  if(!list.length){vlWordOut('opts');return}
+  /* right 不是「唯一正解」：两头都可能回得了家。它只是钟尽时苗床替你挑的那一张 */
+  const ri=b.wdir<0?0:1;
+  vly.opts={list:list,ph:'dir',right:ri};
+  vly.sel=0;vly.wrongOpt=[];
+  vly.step0=vlStepMs(vly.lv);vly.stepMs=vly.step0;
+  vly.nagMs=0;vly.phase='dir';
+  vlBuildOpts();
+}
+function vlNewPow(b){
+  const list=vlPowOpts();
+  if(!list.length){vlWordOut('opts');return}
+  /* right = 离线数出的最小步数那一张：两头都能到家时它是较省的那一头，钟尽时苗床就按这一张替孩子摇 */
+  let ri=0;
+  for(let i=0;i<list.length;i++)if(list[i].pow===b.need){ri=i;break}
+  vly.opts={list:list,ph:'pow',right:ri};
+  vly.sel=0;vly.wrongOpt=[];
+  vly.step0=vlStepMs(vly.lv);vly.stepMs=vly.step0;
+  vly.nagMs=0;vly.phase='pow';
+  vlBuildOpts();
+}
+/* 同一颗珠来回挑了几回：不罚（本坊的罚是白花力气），只在第三回劝他用一次 🧭 试摇 */
+function vlTouched(b){
+  const k='p'+(vly.shakeAll)+':'+b.i;
+  vly.touched[k]=(vly.touched[k]||0)+1;
+  return vly.touched[k];
+}
+
+/* ---- ③ 那一下按下去：四段各走各的手 ---- */
+function vlKey(){return vly.phase+':'+(vly.cur?vly.cur.i:'x')+':'+vly.shakeAll}
+function vlMoveSel(dir){
+  if(!vly.opts||vly.locked)return;
+  if(vly.phase!=='pick'&&vly.phase!=='dir'&&vly.phase!=='pow'&&vly.phase!=='quick')return;
+  vly.sel=(vly.sel+dir+vly.opts.list.length)%vly.opts.list.length;
+  vly.nagMs=0;
+  vlSync();vlDraw();
+}
+function vlPick(i){
+  if(vly.locked||!vly.rec||!vly.opts)return;
+  if(vly.phase!=='pick'&&vly.phase!=='dir'&&vly.phase!=='pow'&&vly.phase!=='quick')return;
+  /* 牌与场相必须是一对：牌是方向两张、场相却在挑步数 —— 按下去就会把「undefined 步」当真摇出去 */
+  if(vly.opts.ph!==vly.phase)return;
+  if(i<0||i>=vly.opts.list.length)return;
+  if(vly.phase==='quick'){vlAnswer(i);return}
+  const rec=vly.rec,o=vly.opts.list[i];
+  if(vly.phase==='pick'){
+    const b=rec.beads[o.i];
+    if(b.col===b.home){                      /* 牌桌是当场现算的，理论上不会有这一张；兜住它，别把归位的珠再摇跑 */
+      vlNewPick();vlSync();vlDraw();return;
+    }
+    const th=vlTouched(b);
+    if(th>=3&&vly.tryN>0){
+      vlTag('🧭 这颗珠来回挑了 '+th+' 回了：按 <code>V</code> 试摇一回，四步各停在哪儿当场画给你看（家什要扣文）','cyan');
+    }
+    vlNewDir(b);
+    vlSync();vlDraw();return;
+  }
+  if(vly.phase==='dir'){
+    vly.dir=o.dir;
+    vlNewPow(vly.cur);
+    vlSync();vlDraw();return;
+  }
+  if(vly.phase==='pow'){
+    vly.pow=o.pow;
+    vlShake(vly.cur,vly.dir,vly.pow);
+    return;
+  }
+}
+/* 摇出去：物理只有一把尺 —— vlRoll 落在哪一口，哪一口就是答案 */
+function vlShake(b,dir,pow){
+  const rec=vly.rec;
+  if(!rec||!b)return;
+  const at=vlRoll(b.col,dir,pow,rec.kw,rec.ke,rec.n);
+  const ok=at===b.home;
+  vly.shakeAll++;vly.shakes++;
+  vly.stepsUsed+=pow;vly.stepsAll+=pow;
+  vly.phase='roll';vly.locked=1;
+  vly.opts=null;vlBuildOpts();
+  vly.anim={b:b,from:b.col,to:at,orig:b.col,ok:ok,pow:pow,dir:dir,
+    t0:vly.t,t1:vly.t+Math.max(300,pow*VL_ROLL_MS),back:false};
+  vlTone(ok?880:300,90);
+  vlSync();vlDraw();
+}
+/* 飞行途中：每一帧把连续位置换算成案上的坐标（动画收住才结账）*/
+function vlStepAnim(){
+  const a=vly.anim;
+  if(!a)return;
+  const rec=vly.rec;
+  const p=Math.min(1,(vly.t-a.t0)/Math.max(1,a.t1-a.t0));
+  const cf=a.from+(a.to-a.from)*p;
+  a.x=vlColX(rec,Math.max(0,Math.min(rec.n-1,cf)));
+  a.y=vlSurfaceY(rec,cf);
+  if(p<1)return;
+  if(!a.back&&!a.ok){                        /* 摇错：翻到哪儿算哪儿，然后原路弹回（力气白花，案面不添乱）*/
+    a.back=true;a.from=a.to;a.to=a.orig;a.t0=vly.t;a.t1=vly.t+VL_BACK_MS;
+    vlTone(220,150);
+    return;
+  }
+  vlFinishShake();
+}
+function vlFinishShake(){
+  const a=vly.anim;
+  vly.anim=null;vly.locked=0;
+  const rec=vly.rec,b=a.b;
+  if(!rec){vlSync();vlDraw();return}
+  if(a.ok){
+    b.col=b.home;
+    vly.homeN=vlHomeCount();
+    const pts=vlBeadPts();
+    vly.score+=pts;vly.gain+=pts;vly.rollOk++;vly.beadsHome++;
+    vly.combo++;
+    if(vly.combo>vly.maxCombo)vly.maxCombo=vly.combo;
+    vly.hitOk=1;vly.hitTxt='✔ 归位 +'+pts;
+    vlTone(1120,120);
+    const gx=vlColX(rec,b.home),gy=vlHeiY(rec,rec.fl[b.home]);
+    for(let t=0;t<6;t++)vly.spark.push({x:gx,y:gy,t0:vly.t,dx:(t-2.5)*1.1,dy:-1.2-Math.random()});
+    vlTag('✔ 第 '+(b.i+1)+' 笔那颗<b>摇回自家坑</b>了：往'+(a.dir>0?'右':'左')+' '+a.pow+' 步，一路翻过 '+
+      Math.abs(a.to-a.from)+' 道口，力气刚好花完 · +'+pts+' 文 · 连击 '+vly.combo,'gold');
+    if(vlHomeCount()>=rec.n){vlFinishCase();return}
+    vlNewPick();
+    vlSync();vlDraw();return;
+  }
+  /* —— 白摇：力气真花出去了，珠子回到原位 —— */
+  vly.waste++;vly.wasteAll++;vly.err++;vly.wrongs++;
+  vly.score-=VL_P_WASTE;vly.penSum+=VL_P_WASTE;
+  vly.combo=0;vly.cleanWord=0;vly.neatWord=0;
+  vly.hitOk=2;vly.hitTxt='✖ 白摇 · −'+VL_P_WASTE;
+  vlTone(190,240);
+  let why='';
+  const toTheRight=b.home>a.orig;
+  if((a.dir>0)!==toTheRight){
+    why='方向整个反了：家在坑 '+(b.home+1)+'，它在坑 '+(a.orig+1)+' 的'+(toTheRight?'右边':'左边')+
+      ' —— 往'+(a.dir>0?'右':'左')+'摇永远摇不到';
+  }else if((toTheRight?a.to>b.home:a.to<b.home)){
+    why='多了：从自家坑（第 '+(b.home+1)+' 口）上头<b>骑过去</b>，停在坑 '+(a.to+1)+' —— 翻山口是要吃力气的，最后那一步力气没处花';
+  }else{
+    why='少了：力气花光在坑 '+(a.to+1)+'，离自家坑（第 '+(b.home+1)+' 口）还差着道';
+  }
+  let naive='';
+  if(a.pow===VL_AMAX){
+    vly.naiveHit++;vly.naiveAll++;
+    vly.score-=VL_P_NAIVE;vly.penSum+=VL_P_NAIVE;
+    vly.neatWord=0;vly.cleanWord=0;
+    naive=' · 这一把还是<b>猛摇到底</b>（笨手账上那一类），再扣 '+VL_P_NAIVE+' 文';
+    vly.hitTxt='🪨 猛摇白摇 · −'+(VL_P_WASTE+VL_P_NAIVE);
+  }
+  vlTag('✖ 第 '+(b.i+1)+' 笔那颗往'+(a.dir>0?'右':'左')+'摇 '+a.pow+' 步：'+why+
+    naive+' · 珠子弹回坑 '+(a.orig+1)+'，倒扣 '+(VL_P_WASTE+(naive?VL_P_NAIVE:0))+' 文（白摇 '+vly.waste+' 把）','warn');
+  vlHeartCheck();
+  vlNewPick();
+  /* 错过的那一张不许抹掉：本坊换的是「问」（牌桌从挑步数翻回挑珠），能留在原处的只有那颗珠 ——
+     下一问的牌桌上，刚才白花力气的那一颗还给它留着红 */
+  if(vly.opts)for(let q=0;q<vly.opts.list.length;q++)if(vly.opts.list[q].i===b.i){vly.wrongOpt[q]=1;break}
+  vlSync();vlDraw();
+}
+/* 心只在这一格上掉一次：一案白摇累计到 VL_ERR_LINE 那一格 */
+function vlHeartCheck(){
+  if(vly.waste!==VL_ERR_LINE)return;
+  vly.hearts--;
+  if(vly.hearts<0)vly.hearts=0;      /* 心不许为负：屏上那串 ❤️ 是 max(0,hearts) 画的，账上却一路往下走 */
+  vlTone(150,300);
+  vlTag('💔 这一案白摇满 '+VL_ERR_LINE+' 把：掉一颗心（每一把的力气都记在右下那本账上 —— 数口，别挨张试）','warn');
+}
+
+/* ---- ④ 全案回齐：深浅抢答 ---- */
+function vlFinishCase(){
+  const rec=vly.rec;
+  if(!rec)return;
+  if(vly.broken){vlSealNow();return}
+  const qn=Math.min(vlQN(vly.lv),VL_QMAX,Math.max(1,Math.floor(rec.n/VL_WIN)));
+  if(qn<1){vlSealNow();return}
+  vly.qns=vlQuickWindows(rec,qn);
+  if(!vly.qns.length){                       /* 这一案的坑底全隔不开（口径撞上了）：没题就不硬凑 */
+    vly.skipNote='这一案配不出深浅题';
+    vlSealNow();return;
+  }
+  vly.qi=0;vly.guessOk=0;vly.guessBad=0;vly.qpicks+=vly.qns.length;
+  vly.quick0=vlQuickMs(vly.lv);vly.quickMs=vly.quick0;
+  vly.phase='quick';vly.stepMs=0;vly.opts=null;
+  vlTone(560,120);
+  vlTag('🕳 全案回齐（'+rec.n+' 颗）。封字前问 '+vly.qns.length+' 眼：<b>这几口坑里哪一口最深</b> —— 别按第几笔想，看坑底压到多低','cyan');
+  vlNewQ();
+  vlSync();vlDraw();
+}
+function vlNewQ(){
+  vly.opts={list:vlQuickOpts(vly.rec,vly.qns[vly.qi]),ph:'quick',right:-1};
+  const list=vly.opts.list;
+  if(!list.length){vlWordOut('opts');return}
+  let r=-1;
+  for(let i=0;i<list.length;i++)if(list[i].ok)r=i;
+  vly.opts.right=r;
+  vly.sel=0;vly.wrongOpt=[];
+  vlBuildOpts();
+}
+function vlAnswer(i){
+  if(vly.phase!=='quick'||vly.locked||!vly.rec)return;
+  if(!vly.opts||vly.opts.ph!=='quick')return;
+  if(i<0||i>=vly.opts.list.length)return;
+  const rec=vly.rec,o=vly.opts.list[i],rng=vlQRange();
+  if(o.ok){
+    const pts=Math.round(VL_M0*2*(1+VL_CB*vly.combo)*(1+VL_LVW*(vly.lv-1)));
+    vly.score+=pts;vly.gain+=pts;vly.guessOk++;vly.guessOkAll++;
+    vly.combo++;
+    if(vly.combo>vly.maxCombo)vly.maxCombo=vly.combo;
+    vly.hitOk=1;vly.hitTxt='✔ 看深了 +'+pts;
+    vlTone(1040,150);
+    const gx=vlColX(rec,o.col),gy=vlHeiY(rec,rec.fl[o.col]);
+    for(let t=0;t<4;t++)vly.spark.push({x:gx,y:gy,t0:vly.t,dx:(t-1.5),dy:-1.4-Math.random()});
+    vlTag('✔ 第 '+(rng[0])+' 口到第 '+(rng[1])+' 口里，最深的就是<b>往左数第 '+(o.col+1)+' 口</b>：'+
+      '它的坑底比最浅那口低 '+Math.round(vlDeepPct(rec,o.col))+' —— 它却是第 '+(o.col+1)+' 笔写的 · +'+pts+' 文','gold');
+  }else{
+    const ans=vly.opts.right>=0?vly.opts.list[vly.opts.right]:null;
+    vly.score-=VL_P_WRONG;vly.penSum+=VL_P_WRONG;
+    vly.hearts--;
+    if(vly.hearts<0)vly.hearts=0;
+    vly.guessBad++;vly.err++;vly.wrongs++;vly.combo=0;vly.cleanWord=0;vly.neatWord=0;
+    vly.hitOk=2;vly.hitTxt='✖ 看深浅 · −'+VL_P_WRONG;
+    vlTone(180,240);
+    vlTag('✖ 第 '+(o.col+1)+' 口不是这一窗里最深的'+
+      (ans?'，是<b>往左数第 '+(ans.col+1)+' 口</b>（坑底低 '+Math.round(vlDeepPct(rec,ans.col))+' 对 '+Math.round(vlDeepPct(rec,o.col))+'）':'')+
+      '：倒扣 '+VL_P_WRONG+' 文、掉一颗心，这个字回错字本','warn');
+    vly.missFlag=1;
+  }
+  /* 答错的那一口坑：下一题的窗口里若还带着它，红的那一张就还摆在原处（孩子指错的那一眼得留得住）*/
+  vlNextQ(o.ok?-1:o.col);
+}
+/* 一口坑「深」到什么程度：从全案最高的那处量到它的坑底（1024 一格，只给眼看不给数）*/
+function vlDeepPct(rec,col){
+  const r=vlRange(rec);
+  return (r.hi-rec.fl[col])/Math.max(1,r.span)*100;
+}
+function vlSlowQ(){
+  if(vly.phase!=='quick'||vly.locked||!vly.rec)return;
+  const rng=vlQRange(),ans=vly.opts&&vly.opts.right>=0?vly.opts.list[vly.opts.right]:null;
+  vly.lates++;vly.lateQuick++;vly.combo=0;vly.cleanWord=0;
+  vly.score-=VL_P_SLOW;vly.penSum+=VL_P_SLOW;
+  vly.guessBad++;vly.err++;
+  /* 没答与答错是同一件事：那一眼没看出来 ⇒ 这个字要回错字本 */
+  vly.missFlag=1;
+  vly.skipNote+=(vly.skipNote?'、':'')+'第 '+rng[0]+'~'+rng[1]+' 口那一窗';
+  vly.hitOk=2;vly.hitTxt='⌛ 没答 · −'+VL_P_SLOW;
+  vlTag('⌛ 这一题没答：第 '+rng[0]+'~'+rng[1]+' 口里最深的是<b>第 '+((ans?ans.col+1:'?'))+' 口</b> · 倒扣 '+VL_P_SLOW+' 文（不掉心，可连击断了）','warn');
+  vlNextQ();
+}
+function vlNextQ(keepCol){
+  vly.qi++;
+  if(vly.qi>=vly.qns.length){vlSealNow();return}
+  vly.quickMs=vly.quick0;
+  vly.nagMs=0;
+  vlNewQ();
+  if(keepCol>=0&&vly.opts)for(let q=0;q<vly.opts.list.length;q++)if(vly.opts.list[q].col===keepCol){
+    vly.wrongOpt[q]=1;break
+  }
+  vlSync();vlDraw();
+}
+
+/* ================= 三件家什 ================= */
+/* ✨ 看坡：把每一口坑的深浅名次写一息（第 4 场起的帘子也照写）—— 只给尺子，不说哪一颗该往哪摇 */
+function vlPeek(){
+  if(!vly.rec||vly.over||vly.locked)return;
+  if(vly.phase!=='pick'&&vly.phase!=='dir'&&vly.phase!=='pow'){vlTag('✨ 这一眼是看坑的：挑珠、挑方向、挑步数那三段才有坡可看');return}
+  if(vly.peekN<=0){vlTag('✨ 这一眼用完了：深浅得自己比坑底');return}
+  if(vly.peekMs>vly.t){vlTag('✨ 那串名次正挂着：还写 '+Math.ceil((vly.peekMs-vly.t)/1000)+' 秒（等它自己收走）');return}
+  vly.peekN--;vly.peekUse++;vly.tools++;vly.wordTools++;
+  vly.score-=VL_P_TOOL;vly.penSum+=VL_P_TOOL;vly.cleanWord=0;
+  vly.peekMs=vly.t+VL_PEEK_MS;
+  vlTone(880,90);
+  vlTag('✨ 每一口坑头顶上写 '+Math.round(VL_PEEK_MS/1000)+' 秒「深几」：最深那口是第几笔写的、家在哪一口，还是你自己定 · 倒扣 '+
+    VL_P_TOOL+' 文（还剩 '+vly.peekN+' 眼）','cyan');
+  vlSync();vlDraw();
+}
+/* 🧭 试摇：把这一颗往这一边摇 1~4 步各停在哪儿，画四颗虚珠（一息就收，不许动真格）*/
+function vlTry(){
+  if(!vly.rec||vly.over||vly.locked)return;
+  if(vly.phase==='dir'&&vly.opts&&vly.opts.list[vly.sel])vly.dir=vly.opts.list[vly.sel].dir;
+  if(vly.phase!=='pow'&&vly.phase!=='dir'){vlTag('🧭 试摇是数口用的：先把那颗珠与那一头定下来');return}
+  if(!vly.cur){vlTag('🧭 还没挑珠：先点一颗不在家的');return}
+  if(!vly.dir){vlTag('🧭 先把方向定下来（牌上那两张挑一张）');return}
+  if(vly.tryN<=0){vlTag('🧭 试摇用完了：口数得自己一口一口数');return}
+  if(vly.tryMs>vly.t){vlTag('🧭 那四颗影还画着：还写 '+Math.ceil((vly.tryMs-vly.t)/1000)+' 秒');return}
+  vly.tryN--;vly.tryUse++;vly.tools++;vly.wordTools++;
+  vly.score-=VL_P_TOOL;vly.penSum+=VL_P_TOOL;vly.cleanWord=0;
+  vly.tryMs=vly.t+VL_TRY_MS;
+  vly.tryBead=vly.cur.i;
+  vlTone(560,120);
+  const b=vly.cur;
+  const at1=vlRoll(b.col,vly.dir,1,vly.rec.kw,vly.rec.ke,vly.rec.n);
+  const at4=vlRoll(b.col,vly.dir,VL_AMAX,vly.rec.kw,vly.rec.ke,vly.rec.n);
+  vlTag('🧭 第 '+(b.i+1)+' 笔那颗往'+(vly.dir>0?'右':'左')+'：1 步停在坑 '+(at1+1)+'，'+VL_AMAX+
+    ' 步最远到坑 '+(at4+1)+'（中间那两颗画在案上）· 它家在坑 '+(b.home+1)+' —— 哪一颗是它，自己看 · 倒扣 '+
+    VL_P_TOOL+' 文（还剩 '+vly.tryN+' 回）','cyan');
+  vlSync();vlDraw();
+}
+/* 🔁 换案：这一案退回库里再上一案（倒扣 VL_P_SWAP 文，进错字本）*/
+function vlSwapWord(){
+  if(!vly.rec||vly.over||vly.locked)return;
+  if(vly.phase==='quick'){vlTag('🔁 已经在数深浅了：这一案的珠子摇回来了，收不回来');return}
+  if(vly.swapN<=0){vlTag('🔁 换案用完了：这一场的字是配出来的，硬摇也要摇完');return}
+  vly.swapN--;vly.swapUse++;vly.swaps++;vly.tools++;vly.wordTools++;
+  vly.score-=VL_P_SWAP;vly.penSum+=VL_P_SWAP;
+  vly.cleanWord=0;vly.neatWord=0;
+  vlTone(280,140);
+  vlTag('🔁 换案：倒扣 '+VL_P_SWAP+' 文，这个字进了错字本（还剩 '+vly.swapN+' 回）','warn');
+  vlWordOut('swap');
+}
+
+/* ================= 封字 ================= */
+function vlSealNow(){
+  const rec=vly.rec;
+  if(!rec)return;
+  vly.homeN=vlHomeCount();
+  vly.phase='seal';vly.stepMs=0;vly.quickMs=0;vly.sealMs=VL_SEAL_MS;vly.opts=null;
+  vlBuildOpts();
+  /* 这一案的错处：白摇（含猛摇到底那一类）+ 摇珠钟尽 + 抢答答错/没答 */
+  vly.errSum+=vly.waste+vly.naiveHit+vly.lateStep;
+  let add=VL_PTS_WORD;
+  let txt='🏁 封案：'+rec.n+' 口坑 · 摇 '+vly.shakeAll+' 把 · 归位 '+vly.rollOk+' 颗 · 花 '+vly.stepsUsed+' 步（刚好 '+rec.cost+' 步）';
+  if(vly.skipNote)txt+=' · ⌛ 没答：'+vly.skipNote;
+  const allHome=!vly.broken&&vlHomeCount()===rec.n;
+  if(allHome){
+    add+=VL_PTS_SEQ;txt+=' · 一颗不落 +'+VL_PTS_SEQ;vly.seqN++;auxAdd('hz_vl_full',1);
+    /* 定海神针当场核一遍（不是赏，是账）：每一口坑恰好坐着自家那颗 */
+    let bad=0;
+    for(let i=0;i<rec.n;i++)if(rec.beads[i].col!==i)bad++;
+    if(bad)vly.tagSeqBad=bad;
+  }
+  if(allHome&&vly.waste===0&&vly.shakeAll>0){
+    add+=VL_PTS_CLEAN;txt+=' · 一把没错（'+vly.shakeAll+' 把全归位）+'+VL_PTS_CLEAN;
+    vly.perfect++;auxAdd('hz_vl_perfect',1);
+  }
+  if(allHome&&vly.stepsUsed===rec.cost){
+    add+=VL_PTS_ECON;txt+=' · 一步不费（花的步数正好是离线数出的最小值）+'+VL_PTS_ECON;
+    vly.econN++;auxAdd('hz_vl_econ',1);
+  }
+  if(vly.qns.length&&vly.guessBad===0&&vly.guessOk===vly.qns.length){
+    add+=VL_PTS_QUICK;txt+=' · 深浅 '+vly.qns.length+' 题全对 +'+VL_PTS_QUICK;
+    vly.quickN++;auxAdd('hz_vl_quick',1);
+  }
+  if(vly.fresh){add+=VL_PTS_FRESH;txt+=' · 头一回收这个字 +'+VL_PTS_FRESH}
+  if(!vly.wordTools){add+=VL_PTS_NOTOOL;txt+=' · 家什一回没借 +'+VL_PTS_NOTOOL;auxAdd('hz_vl_notool',1)}
+  const clean=vly.waste===0&&vly.naiveHit===0&&vly.lateStep===0;
+  if(vly.cleanWord){
+    vly.cleanRun++;
+    /* 连三案零白摇：家什白补一遍 —— 干净不是运气，是一把一把数口数出来的 */
+    if(vly.cleanRun>=VL_PER){
+      vly.cleanRun=0;vly.toolRun++;
+      vly.peekN=VL_P0.peek;vly.tryN=VL_P0.try;vly.swapN=VL_P0.swap;
+      add+=VL_PTS_TOOLRUN;txt+=' · 连三案零白摇：家什补满 +'+VL_PTS_TOOLRUN;
+      auxAdd('hz_vl_toolrun',1);
+    }
+  }else vly.cleanRun=0;
+  vly.score+=add;vly.gain+=add;
+  vly.words++;
+  if(clean&&allHome&&vly.hearts<VL_HEART_MAX){vly.hearts++;txt+=' · 一把没白摇补一颗心'}
+  if(vly.broken){txt+=' · 🪨 这一案没摇完（这个字进错字本）';vlTone(190,260)}
+  else vlTone(1040,220);
+  vly.hitOk=1;vly.hitTxt='🏁 封案 · +'+add;
+  vlTag(txt,'gold');
+  vlSay('🏁 这一案封了：'+rec.n+' 口坑、摇 '+vly.shakeAll+' 把（白摇 '+vly.waste+' 把）、深浅 '+
+    vly.guessOk+'/'+vly.qns.length+' 题');
+  vlBookPut(rec.ch);
+  /* 抢答错过的、猛摇到底的、钟尽判废的都回错字本：下一场优先挑回来 */
+  if(vly.missFlag||vly.broken||vly.naiveHit)vlMissPut(rec.ch);
+  if(typeof spawnConfetti==='function'){try{spawnConfetti()}catch(e){}}
+  vlSync();vlDraw();
+  if(vly.hearts<=0)vlT(function(){vlEnd('hearts')},VL_SEAL_MS);
+}
+/* ---- 这一案散了：换案、钟尽三回、凑不齐牌都走这一条（半路收场那一下在 vlEnd 里结）---- */
+function vlWordOut(why){
+  const rec=vly.rec;
+  if(rec)vlMissPut(rec.ch);
+  /* 判废那一路是在同一拍里把「苗床替你摇的那一把」砍掉的：动画刚起头就被 anim=null+locked 收走，
+     那一把既没归位也没白摇 —— 摇把的账得跟着退一格，不然屏上「摇 N 把」多数了一把
+     （花掉的力气不退：珠子确实翻过道口，那一步就是白花的，本坊的罚本来就写在力气上）*/
+  if(vly.anim){vly.shakeAll--;vly.shakes--}
+  vly.wordOuts++;
+  vly.combo=0;vly.cleanWord=0;vly.neatWord=0;vly.wordTools=0;vly.cleanRun=0;
+  vly.locked=1;
+  vly.phase='load';vly.opts=null;vly.stepMs=0;vly.quickMs=0;vly.anim=null;
+  vlBuildOpts();
+  if(why==='opts'||why==='late')vlSay(why==='late'?'⌛ 这一案连尽 '+VL_LATE_MAX+' 回摇珠钟，先退回库里换一张':
+    '⛰️ 这一案的牌配不齐（口径撞上了），退回库里');
+  vlSync();vlDraw();
+  vlT(vlNextWord,1000);
+}
+/* ---- 下一案：一场三案收满就换场（换一串字、换一盏灯）---- */
+async function vlNextWord(){
+  if(!vly.run||vly.over)return;
+  if(vly.hearts<=0){vlEnd('hearts');return}
+  vly.wi++;
+  let flash='';
+  if(vly.wi>=VL_PER){
+    /* 清白票：这一场三案、每案白摇都不过 VL_ERR_CLEAN 把 —— 收场那一息结，别等结算屏补记 */
+    if(vly.errSum<=VL_ERR_CLEAN*VL_PER){auxAdd('hz_vl_neat',1);vlSay('🧾 这一场三案共错 '+vly.errSum+' 处：清白票一张')}
+    vly.wi=0;vly.lv=Math.min(9,vly.lv+1);
+    vly.lamp0=vlLamp(vly.lv);vly.lamp=vly.lamp0;
+    vly.errSum=0;vly.cleanRun=0;
+    vly.pool=[];vly.seen=[];vly.poolLv=-1;
+    flash='💡 第 '+vly.lv+' 场上案：'+(vlNoTell(vly.lv)?'山口上不再写步数':'步数还写在每一道口')+
+      (vlDim(vly.lv)?' · 连深浅名次与笨手那本账也收走了':'')+' · ';
+    vlSay('第 '+vly.lv+' 场：'+(vlDim(vly.lv)?'账都收了，自己数口、自己比深浅':'尺子还在案上摆着'));
+  }
+  if(!vly.pool.length){
+    vly.rec=null;vly.opts=null;vly.load=true;vly.phase='load';
+    vlSync();vlDraw();
+    const ok=await vlBuildPool(true,VL_NMIN,VL_NMAX);
+    vly.load=false;
+    if(!vly.run||vly.over)return;
+    if(!ok){vlEnd('pool');return}
+  }
+  const rec=vlTake();
+  if(!rec){vlEnd('pool');return}
+  vlSetWord(rec,flash);
+}
+/* ---- 挑下一案：错字本上的字优先挑回来，其次这一场没上过案的 ---- */
+function vlTake(){
+  const pool=vly.pool;
+  if(!pool.length)return null;
+  for(let i=0;i<vly.miss.length;i++){
+    for(let k=0;k<pool.length;k++)if(pool[k].ch===vly.miss[i]&&vly.seen.indexOf(pool[k].ch)<0)return pool[k];
+  }
+  const fresh=[];
+  for(let k=0;k<pool.length;k++)if(vly.seen.indexOf(pool[k].ch)<0)fresh.push(pool[k]);
+  const list=fresh.length?fresh:pool;
+  return list[Math.floor(Math.random()*list.length)];
+}
+/* ---- 一案上台：珠子、牌、钟、账一次摆好 ---- */
+function vlSetWord(rec,flash){
+  vly.rec=rec;vly.ch=rec.ch;
+  /* 落点死在字料那一本账上（rest），可「此刻站在哪一口坑」是活的：错字本的字下一场再回来、
+     换案退库再转回来，读的都是池子里同一个 rec 对象。不把 col 拨回一落定盘那一眼，
+     案上就摆着上一回摇齐的那副样子 ——「一落珠：N 颗没落在自家坑里」成了空话，
+     孩子一上来就看见一个已经封好的案。*/
+  for(let i=0;i<rec.n;i++)rec.beads[i].col=rec.beads[i].rest;
+  vly.cur=null;vly.dir=0;vly.pow=0;vly.anim=null;
+  vly.opts=null;vly.sel=0;vly.touched={};vly.wrongOpt=[];
+  vly.qns=[];vly.qi=0;vly.guessOk=0;vly.guessBad=0;vly.missFlag=0;vly.skipNote='';
+  vly.err=0;vly.waste=0;vly.naiveHit=0;vly.lateStep=0;vly.lateQuick=0;
+  vly.broken=0;vly.brokenWhy='';
+  vly.rollOk=0;vly.shakeAll=0;vly.stepsUsed=0;vly.tagSeqBad=0;
+  vlRecost();
+  vly.homeN=vlHomeCount();vly.homeStart=vly.homeN;
+  vly.fresh=vlFresh(rec.ch);
+  vly.quick0=0;vly.quickMs=0;
+  vly.cleanWord=1;vly.neatWord=1;vly.wordTools=0;
+  vly.peekMs=0;vly.tryMs=0;vly.tryBead=-1;
+  vly.locked=0;vly.hitOk=0;vly.hitTxt='';
+  vly.nagMs=0;vly.spark=[];
+  vly.seen.push(rec.ch);
+  vlTone(600,70);
+  vlDropIn();
+  if(vly.phase!=='drop'&&vly.phase!=='pick')return;      /* 落珠撞上口径不合就把这一案退回库里了 */
+  vlTag((flash||'')+'🈶 上案：'+rec.n+' 口坑 · 一口笔一口坑 · 坑底就是这一笔的最低处（'+
+    rec.fl.map(function(x){return Math.round(x)}).join(' ')+
+    '）· '+vlNaiveSay(rec)+(vlNoTell(vly.lv)?' · 道口上案上不写步数':''),'gold');
+  vlSync();vlDraw();
+}
+/* ================= 三支钟 + 一条节奏：场灯 · 摇珠 · 深浅抢答 ================= */
+function vlTick(dt){
+  if(!vly.run||vly.over)return;
+  vly.t+=dt;vly.playMs+=dt;
+  if(vly.anim)vlStepAnim();
+  if(vly.tagTimer>0){vly.tagTimer-=dt;if(vly.tagTimer<=0)vlClearTag()}
+  if(vly.helpMs>0){vly.helpMs-=dt;if(vly.helpMs<=0){vly.helpMs=0;vlSync()}return}
+  if(!vly.rec||vly.locked)return;
+  /* 场灯：一盏灯照一场的三案 */
+  if(vly.lamp>0){
+    vly.lamp-=dt;
+    if(vly.lamp<=0){vly.lamp=0;vlEnd('lamp');return}
+  }
+  if(vly.phase==='seal'){
+    if(vly.sealMs>0){vly.sealMs-=dt;if(vly.sealMs<=0){vly.sealMs=0;vlNextWord()}}
+    return;
+  }
+  /* 深浅抢答钟：尽了这一题算「没答」—— 扣钱、断连击，但不掉心（答不上不等于答错）*/
+  if(vly.phase==='quick'){
+    if(vly.quickMs>0){
+      vly.quickMs-=dt;
+      if(vly.quickMs<=0){vly.quickMs=0;vlSlowQ();return}
+    }
+    vly.nagMs+=dt;
+    if(vly.nagMs>Math.min(VL_NAG_MS,vly.quick0/2)){
+      vly.nagMs=0;vly.nags++;
+      const rng=vlQRange();
+      vlSay('🕳 深浅看的是<b>坑底压到多低</b>：把第 '+rng[0]+' 口到第 '+rng[1]+' 口的坑底各看一眼，最低的那一口最深');
+    }
+    vlSync();vlDraw();
+    return;
+  }
+  /* 摇珠钟：一问一口气；尽了苗床替你挑那张牌、替你摇（手慢不是看错，但这一问不给赏）*/
+  if(vly.phase==='pick'||vly.phase==='dir'||vly.phase==='pow'){
+    if(vly.stepMs>0){
+      vly.stepMs-=dt;
+      if(vly.stepMs<=0){
+        vly.stepMs=0;vly.lates++;vly.lateStep++;vly.cleanWord=0;vly.combo=0;
+        vly.score-=VL_P_LATE;vly.penSum+=VL_P_LATE;
+        vly.hitOk=2;vly.hitTxt='⌛ 摇珠钟尽 · −'+VL_P_LATE;
+        vlTone(150,300);
+        if(vly.phase==='pick'){
+          const list=vly.opts?vly.opts.list:null;
+          if(!list||!list.length){vlWordOut('opts');return}
+          const o=list[vly.opts.right>=0?vly.opts.right:0];
+          vlTag('⌛ 这一问的钟尽了：苗床替你挑了<b>第 '+(o.i+1)+' 笔</b>那颗（它在坑 '+(vly.rec.beads[o.i].col+1)+
+            '，家在坑 '+(o.i+1)+'）· 倒扣 '+VL_P_LATE+' 文 · 钟尽 '+vly.lateStep+'/'+VL_LATE_MAX+' 回','warn');
+          vlNewDir(vly.rec.beads[o.i]);
+        }else if(vly.phase==='dir'){
+          const b=vly.cur,o=vly.opts.list[vly.opts.right>=0?vly.opts.right:0];
+          vlTag('⌛ 这一问的钟尽了：替你挑了往'+(o.dir>0?'右':'左')+'这一头（两头都可能回得了家，苗床挑省步的那一头）· 倒扣 '+
+            VL_P_LATE+' 文 · 钟尽 '+vly.lateStep+'/'+VL_LATE_MAX+' 回','warn');
+          vly.dir=o.dir;
+          vlNewPow(b);
+        }else{
+          const b=vly.cur;
+          if(!b){vlWordOut('opts');return}
+          const o=vly.opts.list[vly.opts.right>=0?vly.opts.right:0];
+          vlTag('⌛ 这一问的钟尽了：该摇的是<b>'+o.pow+' 步</b>（从坑 '+(b.col+1)+' 到坑 '+(b.home+1)+
+            '，一路道口的步数加起来刚好）· 苗床替你摇（不给赏）· 倒扣 '+VL_P_LATE+' 文 · 钟尽 '+
+            vly.lateStep+'/'+VL_LATE_MAX+' 回','warn');
+          vlShake(b,vly.dir,o.pow);
+        }
+        if(vly.lateStep>=VL_LATE_MAX){
+          vly.broken=1;
+          vly.brokenWhy='摇珠钟尽 '+VL_LATE_MAX+' 回，第 '+(vly.cur?(vly.cur.i+1):'?')+' 笔那颗没能自己摇';
+          vlWordOut('late');return;
+        }
+        vlSync();vlDraw();
+        return;
+      }
+    }
+    vly.nagMs+=dt;
+    if(vly.nagMs>Math.min(VL_NAG_MS,vly.step0/2)){
+      vly.nagMs=0;vly.nags++;
+      if(vly.phase==='pick')vlSay('🎯 不在家的珠子头顶都画着那支<b>回家的小箭头</b>：挑一颗，先定往哪头摇');
+      else if(vly.phase==='dir')vlSay('🧭 家在它<b>哪一头</b>就往哪一头摇：往反头摇，翻多少步都离家家更远');
+      else vlSay('💥 <b>数口</b>：从它脚下这一口到自家那一口，中间每一道口各要几步 —— 平口 1、高口 2、高坎 3，<b>加起来</b>才够');
+    }
+    return;
+  }
+}
+
+/* ================= 开工 · 一根 rAF 管三支钟 · 键盘与真指针 ================= */
+/* 画布就在 <body> 里、这段脚本之前，所以这一眼取得到。
+   取不到就是屏面 HTML 没插在脚本前头：vlDraw 第一行会直接 return，画面永远空白 —— 自检脚本读像素，红得掉牙 */
+const vlCv=document.getElementById('vlCanvas');
+if(!vlCv)console.warn('⛰️ 笔顺摇珠坊找不到画布 vlCanvas');
+
+/* 这一坊吃的字要「一落真会错位、每一颗都有能回家的整数步、猛摇到底也赢不了、深浅序跟笔顺序对不上」，
+   开场先去字库里过一遍闸（vlBuildPool 当场重算，与离线字表不一样就不上台）*/
+async function vlBoot(){
+  const g=vly.gen;
+  vly.load=true;vly.phase='load';
+  vlSync();vlDraw();
+  const ok=await vlBuildPool(true,VL_NMIN,VL_NMAX);
+  if(g!==vly.gen||!vly.run||vly.over)return;
+  vly.load=false;
+  if(!ok){vlEnd('pool');vlSync();return}
+  const rec=vlTake();
+  if(!rec){vlEnd('pool');vlSync();return}
+  vlSetWord(rec);
+  vlSync();vlDraw();
+}
+function vlStart(){
+  vly.run=true;vly.over=false;vly.gen++;
+  vlBind();
+  vlKill();
+  vly.t=0;vly.playMs=0;vly.last=0;
+  vly.pool=[];vly.poolLv=-1;vly.miss=[];vly.seen=[];vly.fresh=0;
+  vly.lv=vlLvOf(auxInt('hz_vl_words'));
+  vly.wi=0;vly.score=0;vly.hearts=VL_HEARTS;vly.combo=0;vly.maxCombo=0;
+  /* 场相必须先归到「挑字」：vlSync 里那一句「按 1~4 挑一颗」看的是上一局的场相，
+     而 rec 此刻已经清空 —— 从结算屏上那一颗「⛰️ 再摇一案」直接重开会当场崩在半路 */
+  vly.phase='load';vly.load=true;vly.locked=0;
+  vly.ch='';vly.rec=null;vly.n=0;vly.beads=[];vly.homeN=0;vly.homeStart=0;
+  vly.cur=null;vly.dir=0;vly.pow=0;vly.anim=null;
+  vly.opts=null;vly.sel=0;vly.touched={};vly.wrongOpt=[];
+  vly.err=0;vly.waste=0;vly.naiveHit=0;vly.lates=0;vly.lateStep=0;vly.lateQuick=0;
+  vly.broken=0;vly.brokenWhy='';
+  vly.stepsUsed=0;vly.stepsNeed=0;vly.rollOk=0;vly.shakeAll=0;
+  vly.qns=[];vly.qi=0;vly.guessOk=0;vly.guessBad=0;vly.guessOkAll=0;vly.qpicks=0;
+  vly.quickMs=0;vly.quick0=0;vly.missFlag=0;vly.skipNote='';vly.tagSeqBad=0;
+  vly.peekN=VL_P0.peek;vly.tryN=VL_P0.try;vly.swapN=VL_P0.swap;
+  vly.peekUse=0;vly.tryUse=0;vly.swapUse=0;vly.peekMs=0;vly.tryMs=0;vly.tryBead=-1;
+  vly.step0=0;vly.stepMs=0;vly.sealMs=0;
+  vly.lamp0=vlLamp(vly.lv);vly.lamp=vly.lamp0;
+  vly.words=0;vly.shakes=0;vly.beadsHome=0;vly.stepsAll=0;vly.wasteAll=0;vly.perfect=0;vly.econN=0;vly.seqN=0;vly.quickN=0;
+  vly.wrongs=0;vly.swaps=0;vly.wordOuts=0;vly.eyeballs=0;vly.naiveAll=0;
+  vly.cleanWord=1;vly.neatWord=1;vly.tools=0;vly.wordTools=0;vly.cleanRun=0;vly.toolRun=0;vly.errSum=0;
+  vly.gain=0;vly.penSum=0;vly.hitOk=0;vly.hitTxt='';
+  vly.nags=0;vly.nagMs=0;vly.newBest=false;vly.helpMs=0;
+  vly.spark=[];vly.lit=null;
+  vlClearTag();
+  const box=document.getElementById('vlOpts');
+  if(box)box.innerHTML='';
+  if(typeof stopBGM==='function')stopBGM();
+  showScreen('vl');
+  vlSync();vlDraw();
+  vlBoot();
+  vlStartLoop();
+}
+/* 主循环的起停各只有一处：结算要冻画面就掐这一根，别在别处再挂第二条 rAF */
+function vlLoop(ts){
+  if(!vly.run||vly.over){vly.rafId=0;return}
+  const dt=vly.last?Math.min(120,ts-vly.last):16;
+  vly.last=ts;
+  vlTick(dt);
+  vlSync();vlDraw();
+  vly.rafId=requestAnimationFrame(vlLoop);
+}
+function vlStartLoop(){if(!vly.run||vly.over||vly.rafId)return;vly.last=0;vly.rafId=requestAnimationFrame(vlLoop)}
+function vlStopLoop(){if(vly.rafId){cancelAnimationFrame(vly.rafId);vly.rafId=0}}
+function vlRestart(){vlStart()}
+function vlLeave(where){
+  vly.run=false;vly.over=false;
+  vlKill();vlStopLoop();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function vlHelp(){
+  if(!vly.run||vly.over)return;
+  if(vly.rec&&vly.phase!=='seal'&&!vly.load){
+    vly.eyeballs++;vly.tools++;vly.wordTools++;
+    vly.score-=VL_P_HELP;vly.penSum+=VL_P_HELP;vly.cleanWord=0;
+    vly.hitOk=2;vly.hitTxt='📖 翻说明 · −'+VL_P_HELP;
+  }
+  vly.helpMs=VL_HELP_MS;
+  vlMsg(vlHelpText(),'#FFE0B2');
+  vlSync();
+}
+/* ---- 主钮那一下：五个场面各走各的手 ---- */
+function vlAct(){
+  if(vly.over)return;
+  if(vly.rec&&vly.phase==='quick'){vlSlowQ();return}
+  if(vly.rec&&vly.phase==='seal'){if(vly.sealMs>0){vly.sealMs=0;vlNextWord()}return}
+  if(!vly.rec||vly.locked){
+    if(vly.phase==='drop'||vly.phase==='roll')vlTag('⛰️ 珠子还在走：这一把的账要等它落定（弹回原位也算落定）');
+    else vlTag('📥 正在挑案：这一场的字还在闸口数着');
+    return;
+  }
+  if(vly.phase==='pick'||vly.phase==='dir'||vly.phase==='pow'){vlPick(vly.sel);return}
+  vlTag('📥 正在挑案：这一场的字还在闸口数着');
+}
+/* ---- 案上那一眼：真指针点珠子（挑珠那一段点得动，其余段落只回话）---- */
+function vlCanvasPt(e){
+  if(!vlCv)return null;
+  const r=vlCv.getBoundingClientRect();
+  if(!r.width||!r.height)return null;
+  return {x:(e.clientX-r.left)*VL_W/r.width,y:(e.clientY-r.top)*VL_CVH/r.height};
+}
+function vlHitBead(p){
+  const rec=vly.rec;
+  if(!rec||!p)return null;
+  let best=null,bd=1e9;
+  for(let i=0;i<rec.n;i++){
+    const b=rec.beads[i];
+    if(vly.anim&&vly.anim.b===b)continue;
+    const x=vlColX(rec,b.col),y=vlBeadY(rec,b);
+    const d=Math.sqrt((p.x-x)*(p.x-x)+(p.y-y)*(p.y-y));
+    if(d<=VL_BR+5&&d<bd){bd=d;best=b}
+  }
+  return best;
+}
+function vlCanvasTap(e){
+  if(!vly.run||vly.over)return;
+  if(vly.helpMs>0){vly.helpMs=0;return}
+  if(vly.phase==='seal'){if(vly.sealMs>0){vly.sealMs=0;vlNextWord()}return}
+  if(vly.locked||!vly.rec){vlTag('📥 正在挑案：这一场的字还在闸口数着');return}
+  if(vly.phase!=='pick'){
+    vlTag('⛰️ '+({drop:'珠子正一落定盘：等它落定',roll:'珠子正翻山口：等它落定',
+      dir:'这一问的答案在案上那两张里（点那一张或按 1~2）',
+      pow:'这一问的答案在案上那四张里（点那一张或按 1~'+VL_AMAX+'）',
+      quick:'这一题问的是「哪一口最深」，答案在案上那排牌里'})[vly.phase]||'这一问的牌在案上那排牌里');
+    return;
+  }
+  const b=vlHitBead(vlCanvasPt(e));
+  if(!b){vlTag('⛰️ 点珠子：那一颗<b>不在家</b>的（头顶画着小箭头的那几颗）');return}
+  if(b.col===b.home){vlTag('⛰️ 第 '+(b.i+1)+' 笔那颗已经在<b>自家坑</b>（坑 '+(b.home+1)+'）里了 —— 挑一颗头顶带箭头的','cyan');return}
+  const list=vly.opts?vly.opts.list:null;
+  if(!list){vlTag('⛰️ 牌还没摆上来');return}
+  for(let i=0;i<list.length;i++)if(list[i].i===b.i){vlPick(i);return}
+  vlTag('⛰️ 第 '+(b.i+1)+' 笔那颗不在这一排的牌上（案面刚挪过手）','cyan');
+}
+/* ================= 事件绑定：只绑一次；键盘与真指针走的都是上面那几个动作口子 ================= */
+function vlBind(){
+  if(vly.bound)return;
+  vly.bound=true;
+  window.addEventListener('keydown',function(e){
+    if(!vly.run||vly.over)return;
+    if(vly.helpMs>0){vly.helpMs=0;e.preventDefault();return}
+    const k=e.key.toLowerCase();
+    if(k==='escape'){vlLeave();return}
+    if(k==='arrowup'||k==='arrowleft'){vlMoveSel(-1);e.preventDefault();return}
+    if(k==='arrowdown'||k==='arrowright'){vlMoveSel(1);e.preventDefault();return}
+    if(k==='enter'||k===' '){vlAct();e.preventDefault();return}
+    if(k>='1'&&k<='9'){
+      const idx=+k-1;
+      /* 挑珠与挑方向各按当下几张，挑步数四张，抢答三~四张 */
+      const max=vly.opts?vly.opts.list.length:0;
+      if(max&&idx<max){vlPick(idx);}
+      else if(vly.phase==='dir')vlTag('🧭 这一问只比两头：按 <code>1</code> 往左 · <code>2</code> 往右');
+      else if(vly.phase==='pick')vlTag('⛰️ 不在家的珠有 '+max+' 颗：答案在 <code>1~'+max+'</code> 里');
+      else vlTag('⛰️ 案上只有 '+max+' 张牌：答案在 <code>1~'+Math.max(1,max)+'</code> 里');
+      e.preventDefault();return;
+    }
+    if(k==='p'){vlPeek();e.preventDefault();return}
+    if(k==='v'){vlTry();e.preventDefault();return}
+    if(k==='s'){vlSwapWord();e.preventDefault();return}
+    if(k==='h'||k==='?'){vlHelp();e.preventDefault();return}
+    if(k==='f'){vlEnd('quit');e.preventDefault();return}
+  });
+  if(vlCv)vlCv.addEventListener('pointerdown',function(e){vlCanvasTap(e);e.preventDefault()});
+  const tap=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){
+      if(!vly.run||vly.over)return;
+      if(vly.helpMs>0){vly.helpMs=0;return}
+      on();ev.preventDefault();
+    });
+  };
+  tap('vlActBtn',function(){vlAct()});
+  tap('vlPeekBtn',function(){vlPeek()});
+  tap('vlTryBtn',function(){vlTry()});
+  tap('vlSwapBtn',function(){vlSwapWord()});
+  tap('vlHelpBtn',function(){vlHelp()});
+  tap('vlNextBtn',function(){vlEnd('quit')});
+  const tapFree=function(id,on){
+    const b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(ev){on();ev.preventDefault()});
+  };
+  /* 散场之后那三颗钮不许按 run/over 拦：孩子站在结算屏上，「再摇一案」「回实验室」「回书桌」
+     必须点得动 —— 拦在前面就等于把结算屏变成一堵墙 */
+  tapFree('vlReBtn',function(){vlRestart()});
+  tapFree('vlLabBtn',function(){vlLeave('lab')});
+  tapFree('vlHomeBtn',function(){vlLeave()});
+}
+
+/* ================= 散场：结算、落盘、图鉴与山架、把这一案的账再独立核一遍 ================= */
+function vlPut(id,txt){const el=document.getElementById(id);if(el)el.textContent=txt}
+function vlPutH(id,html,color){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML=html;
+  if(color)el.style.color=color;
+}
+/* ---- 半路收场：摇到一半、答到一半就按结算 —— 这一案的话没说完，扣一次 ---- */
+function vlQuitTally(){
+  if(!vly.rec||vly.over)return;
+  if(vly.phase==='seal'||vly.locked)return;
+  vly.score-=VL_P_QUIT;vly.penSum+=VL_P_QUIT;
+  vly.wrongs++;vly.wordOuts++;
+  vlMissPut(vly.rec.ch);
+}
+function vlEnd(why){
+  if(!vly.run||vly.over)return;
+  /* 半路那一扣得在「散了」立起来之前结：vlQuitTally 自己认的就是「还没散场」——
+     先立 over 再叫它，扣文与错字本全落不下去（孩子白按了一次结算）*/
+  vlQuitTally();
+  vly.over=true;vly.run=false;
+  vlKill();vlClearTag();
+  const stars=Math.max(1,Math.round(vly.score/14)+vly.words*2);
+  if(why!=='pool'&&typeof addStars==='function')addStars(stars);
+  vlPut('vlRsStarsTop','⭐ 结算 +'+stars);
+  const head={quit:['⛰️','石案歇了','自己按的结算'],
+    hearts:['💔','心都摇完了','白摇、猛摇、看错深浅攒到一处'],
+    lamp:['🕯️','案灯熄了','这一场的灯烧完了'],
+    pool:['⛰️','配不出这一场的字','字库里挑不出「一落真会错位、每一步有唯一落点、猛摇到底也赢不了」的字']}[why]||
+    ['⛰️','散场',''];
+  vlPut('vlRsEmoji',head[0]);
+  vlPut('vlRsTitle',head[1]);
+  vlPut('vlRsSub','第 '+vly.lv+' 场 · '+head[2]+' · 封案 '+vly.words+' 字');
+  vlPut('vlRsScore','⛰️ '+vly.score+' 文（赏 +'+vly.gain+' · 罚 −'+vly.penSum+'）');
+  vlPut('vlRsWords','🀫 封案 '+vly.words+' 个 · 摇 '+vly.shakes+' 把 · 归位 '+vly.beadsHome+' 颗珠');
+  vlPut('vlRsWalk','🕳 深浅抢答 '+vly.qpicks+' 题 · 答对 '+vly.guessOkAll+' · 最长连击 '+vly.maxCombo);
+  vlPut('vlRsAward','🏅 一把没错 '+vly.perfect+' 案 · 一步不费 '+vly.econN+' 案 · 一颗不落 '+vly.seqN+
+    ' 案 · 深浅全对 '+vly.quickN+' 案');
+  vlPut('vlRsWipe','🪨 猛摇到底 '+vly.naiveAll+' 回 · 看错 '+vly.wrongs+' 次 · 钟尽白等 '+vly.lates+' 次（这一案摇珠 '+
+    vly.lateStep+' · 抢答 '+vly.lateQuick+'）');
+  vlPut('vlRsTools','🧰 借家什 '+vly.tools+' 回 · ✨看坡 '+vly.peekUse+' · 🧭试摇 '+vly.tryUse+
+    ' · 🔁换案 '+vly.swaps+' · 📖说明 '+vly.eyeballs);
+  vlPut('vlRsRoll','🎯 归位 '+vly.beadsHome+' 颗 · 白摇 '+vly.wasteAll+' 把 · 花 '+vly.stepsAll+' 步（最后一案刚好 '+
+    ((vly.rec?vly.rec.cost:vly.stepsNeed)|0)+' 步）');
+  /* 落盘要在读账之前：结算屏上「历史最高 / 累计 / 称号」说的是这一把之后的那本总账 */
+  vlSave(why);
+  vlPut('vlRsBest','🏅 历史最高 '+auxInt('hz_vl_best')+' 文 · 累计封案 '+auxInt('hz_vl_words')+
+    ' 字 · 累计摇回 '+auxInt('hz_vl_beads')+' 颗珠');
+  vlPut('vlRsStars','⭐ +'+stars+(why==='pool'?'':'（已上星）'));
+  const rk=vlRankOf(auxInt('hz_vl_words'));
+  vlPut('vlRsRank',rk.e+' '+rk.t);
+  const bk=vlBookCount();
+  vlPutH('vlRsBook','📖 <b>藏书阁 '+bk.book+' 张</b> · 山架 <b>'+bk.shelf+'/'+VL_SHELF.length+
+    '</b> 件 · 错字本 <b>'+bk.miss+'</b> 个字<br><small>最远走到第 '+auxInt('hz_vl_lvmax')+' 场 · 累计摇 '+
+    auxInt('hz_vl_shakes')+' 把 · 花 '+auxInt('hz_vl_steps')+' 步 · 一把没错 '+auxInt('hz_vl_perfect')+
+    ' 案 · 一步不费 '+auxInt('hz_vl_econ')+' 案 · 深浅全对 '+auxInt('hz_vl_quick')+' 案 · 清白场 '+
+    auxInt('hz_vl_neat')+' 场</small>');
+  vlPutH('vlRsWhy','⛰️ 这一坊的道理：<b>同一颗珠、同一个方向，力气差一步结果就差一格 ——「最多」不是「最好」</b>。'+
+    '一口笔一口坑，横轴就是第几笔；坑底是这一笔写到的最低处，山口是两笔之间「收笔 / 起笔」较高那一处。<br>'+
+    '🎯 <b>珠子进门自带力气</b>：这一笔的个子（最高处比坑底高多少）换算成步（至多案沿 '+VL_RIM+
+    ' 步），收笔往哪边偏就往哪边滚 —— 矮矮一横一落就定在自己家，长竖长撇一路吃到案头。<br>'+
+    '💥 <b>案上有摩擦</b>：<b>上坡吃力气、下坡不补力气</b>（力气变成热就散了）。翻一道口要花<b>这道口的步数</b>：'+
+    '平口一步、高口两步、高坎三步。整数步的意思就是：<b>能停住的每一列都停得住</b>，「刚好」才立得起来。<br>'+
+    '👋 你只会一个动作：<b>摇</b>。少了连第一步都迈不出，多了<b>越过自己家</b>接着往那头跑；摇错<b>不算输</b> —— '+
+    '珠子弹回原位，可这一把力气全白花、连也断了。案面一辈子只往整齐走，所以一案不会因为摇错而解不开。<br>'+
+    '🕳 <b>深浅序跟笔顺序天生对不上</b>：封案前那一眼问「这几口坑里哪一口最深」—— 数到头的坑往往不是最深那个（闸门里就要求对不上）。<br>'+
+    '🪨 <b>笨手账</b>：每一颗都朝家的方向猛摇到最大步 '+VL_AMAX+'。过闸的字这么摇至少还剩 '+VL_NAIVE+
+    ' 颗回不了家 —— <b>猛摇赢不了的案，刚刚好才赢</b>。右下角那本账当场记着它剩几颗、这一案刚好要几步。<br>'+
+    '🎭 第 '+VL_TELL_LV+' 场起山口上不再写步数（自己一口一口数），第 '+VL_DIM_LV+' 场起连深浅名次与笨手那本账也收走。<br>'+
+    '战绩落盘 <code>hz_vl_*</code>：场档按<b>封齐的字数</b>走，称号按<b>累计封字数</b>走，错字本里的字'+
+    '<b>下一场优先挑回来</b>','#B3E5FC');
+  vlNudge();
+  /* 屏面也要跟着散场：家什三件、主钮与落子那颗钮当场摘掉 ——
+     只挡账不挡屏，孩子看得见的那一颗钮还是亮着的 */
+  vlSync();
+  showScreen('vl-result');
+}
+/* ---- 落盘 ---- */
+function vlSave(why){
+  auxAdd('hz_vl_games',1);
+  auxAdd('hz_vl_words',vly.words);
+  auxAdd('hz_vl_shakes',vly.shakes);
+  auxAdd('hz_vl_beads',vly.beadsHome);
+  auxAdd('hz_vl_steps',vly.stepsAll);
+  auxAdd('hz_vl_waste',vly.wasteAll);
+  auxAdd('hz_vl_naive',vly.naiveAll);
+  auxAdd('hz_vl_swap',vly.swaps);
+  auxAdd('hz_vl_late',vly.lates);
+  auxAdd('hz_vl_wrong',vly.wrongs);
+  auxAdd('hz_vl_wordout',vly.wordOuts);
+  auxAdd('hz_vl_tools',vly.tools);
+  auxAdd('hz_vl_peek',vly.peekUse);
+  auxAdd('hz_vl_try',vly.tryUse);
+  if(vly.maxCombo>auxInt('hz_vl_combo'))auxPut('hz_vl_combo',vly.maxCombo);
+  if(vly.lv>auxInt('hz_vl_lvmax'))auxPut('hz_vl_lvmax',vly.lv);
+  if(vly.score>auxInt('hz_vl_best')){auxPut('hz_vl_best',vly.score);vly.newBest=true}
+  vlShelfCheck();
+}
+/* ---- 图鉴：一个字一张山案卡（记的是首回封齐那个字的场号与坑数）---- */
+function vlBookCount(){
+  const book=(localStorage.getItem('hz_vl_book')||'').split(',').filter(function(s){return s}).length;
+  const shelf=(localStorage.getItem('hz_vl_shelf')||'').split(',').filter(function(s){return s}).length;
+  const miss=(localStorage.getItem('hz_vl_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0}).length;
+  return {book:book,shelf:shelf,miss:miss};
+}
+function vlBookPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  const bk=localStorage.getItem('hz_vl_book')||'';
+  if(bk.indexOf(ch+':')>=0)return;
+  const list=bk.split(',').filter(function(s){return s});
+  list.unshift(ch+':'+vly.lv+':'+(vly.rec?vly.rec.n:0));
+  auxPut('hz_vl_book',list.slice(0,VL_BOOK_MAX).join(','));
+}
+/* 散场、换案、抢答错的字进错字本：下一场优先挑回来 */
+function vlMissPut(ch){
+  if(!ch||CHARS.indexOf(ch)<0)return;
+  let miss=(localStorage.getItem('hz_vl_miss')||'').split(',').filter(function(c){return c.length===1&&CHARS.indexOf(c)>=0});
+  if(miss.indexOf(ch)<0)miss.unshift(ch);
+  auxPut('hz_vl_miss',miss.slice(0,VL_BOOK_MAX).join(','));
+  /* 眼下这一场的 vlTake 读的是 vly.miss（那一本账只在起案时从盘上回读一次）：
+     只写盘不写这本活账，屏上那句「下一场优先挑回来」在同一场里就成了空话 */
+  if(vly.miss&&vly.miss.indexOf(ch)<0){vly.miss.unshift(ch);if(vly.miss.length>VL_BOOK_MAX)vly.miss.length=VL_BOOK_MAX}
+}
+/* 山架：八件各认一件实事，其中「名刺」认的是别处的章节徽章 */
+function vlShelfCheck(){
+  const have=(localStorage.getItem('hz_vl_shelf')||'').split(',').filter(function(s){return s});
+  const got=[];
+  const cond=[
+    auxInt('hz_vl_words')+vly.words>=1,
+    auxInt('hz_vl_neat')>=1,
+    auxInt('hz_vl_perfect')>=5,
+    auxInt('hz_vl_full')>=1,
+    auxInt('hz_vl_lvmax')>=VL_SHELF_LV||vly.lv>=VL_SHELF_LV,
+    auxInt('hz_vl_notool')>=1,
+    (function(){try{return JSON.parse(localStorage.getItem('hz_badges')||'[]').length>=3}catch(e){return false}})(),
+    auxInt('hz_vl_beads')+vly.beadsHome>=400
+  ];
+  for(let i=0;i<VL_SHELF.length;i++){
+    if(cond[i]&&have.indexOf(VL_SHELF[i].k)<0){have.push(VL_SHELF[i].k);got.push(VL_SHELF[i].k)}
+  }
+  auxPut('hz_vl_shelf',have.join(','));
+  auxPut('hz_vl_trophy',have.length);
+  auxPut('hz_vl_trophy_n',auxInt('hz_vl_trophy_n')+got.length);
+}
+/* ---- 卡片上的点名：不玩也告诉孩子这一坊走到第几场了 ---- */
+function vlNudge(){
+  const dot=document.getElementById('vlCardDot'),tip=document.getElementById('vlCardTip');
+  const tot=auxInt('hz_vl_words'),shake=auxInt('hz_vl_shakes'),lv=auxInt('hz_vl_lvmax');
+  const rk=vlRankOf(tot),shelf=auxInt('hz_vl_trophy'),pf=auxInt('hz_vl_perfect'),ec=auxInt('hz_vl_econ');
+  if(tip)tip.innerHTML=shake?('🔔 '+rk.e+' '+rk.t+' · 封案 '+tot+' 字 · 摇 '+shake+' 把 · 花 '+
+    auxInt('hz_vl_steps')+' 步 · 摇回 '+auxInt('hz_vl_beads')+' 颗珠 · 最远第 '+lv+' 场 · 白摇 '+
+    auxInt('hz_vl_waste')+' 把 · 猛摇到底 '+auxInt('hz_vl_naive')+' 回 · 一把没错 '+pf+' 案 · 一步不费 '+ec+
+    ' 案 · 深浅全对 '+auxInt('hz_vl_quick')+' 案 · 山架 '+shelf+' 件'):
+    '一张青石案上刻着一条<b>山谷</b>：横轴不是字里的左右，而是<b>第几笔</b> —— 一口笔一口坑，坑底就是这一笔写到的最低处，'+
+    '两笔之间「收笔 / 起笔」较高那一处就是山口。<br>'+
+    '🎯 <b>珠子进门自带力气</b>：这一笔的个子（最高处比坑底高多少）换算成步，收笔往哪边偏就往哪边滚 —— '+
+    '矮矮一横一落就定在自己家，长竖长撇一路吃到案头。于是案一摆好就有几颗不在自家坑里。<br>'+
+    '💥 <b>案上有摩擦</b>：<b>上坡吃力气、下坡不补力气</b>。翻一道口要花<b>这道口的步数</b>（平口一步、高口两步、高坎三步），'+
+    '力气花光就停在当下那一口。<b>步数是整数</b>：能停住的每一列都停得住，「刚好」才立得起来。<br>'+
+    '👋 你只会一个动作：<b>摇</b> —— 挑一颗不在家的珠、挑往哪边、挑<b>几步</b>。少了连第一步都迈不出，'+
+    '多了<b>越过自己家</b>；摇错<b>不算输</b>，珠子弹回原位，可这一把力气全白花、连也断了。<br>'+
+    '🕳 封案前抢答那一眼：<b>这几口坑里哪一口最深</b> —— 深浅序跟笔顺序天生对不上，数到头的坑往往不是最深那个。<br>'+
+    '🪨 <b>笨手账</b>就摆在右下角：每一颗都朝家的方向猛摇到最大步 '+VL_AMAX+'，过闸的字这么摇至少还剩 '+VL_NAIVE+
+    ' 颗回不了家 —— 猛摇赢不了的案，刚刚好才赢。<br>'+
+    '🎭 第 '+VL_TELL_LV+' 场起山口上不再写步数，第 '+VL_DIM_LV+' 场起连深浅名次与笨手那本账也收走';
+  if(dot){dot.classList.toggle('on',!shake);dot.textContent=(shake?'':'🆕')}
+}
+/* ================= 段 W 的另一条路：只读，不许碰场上任何东西 =================
+   这一坊的账全是「一条山谷上的离散步数」，所以复核的手换五条与闸门不同的路子：
+   ① 坑底：把这一笔的所有 y 值<b>排一遍序取第一个</b>（不是一格一格比大小），与账上的 fl 对表
+   ② 山口：两笔之间取较高那一处，用「先求和再减半」的写法算 max（a+b+|a−b|)/2，不写 if
+   ③ 步数档位：中位数与 3/4 分位都用<b>数人数</b>（比它小的有几个）而不是排序下标
+   ④ 走路：把道口步数<b>逐段累加成前缀和</b>，回家门就是「前缀和 ≤ 力气」的最远那一列（不是 while 循环一口一口翻）
+   ⑤ 蛮力：每一颗错珠两头 × 1~VL_AMAX 步共八种摇法全试一遍，能停在家里的步数集合必须与账上的 win 一字一样
+   ⑥ 深浅：窗口里「最深」用挨个比较找出来，与牌上那一张 ok 对表；并列（差不到 VL_MARGIN）就是配题失手
+   闸门口径一个字都不许改：这一条路只是<b>另一只手</b>，不是另一把尺。*/
+function vlPrefix(cost,n){
+  const pre=[0];
+  for(let i=0;i<n;i++)pre[i+1]=pre[i]+cost[i];
+  return pre;
+}
+/* 从 s 往 dir 走、力气 A：用前缀和找「花得起的最远那一列」 */
+function vlRollPre(s,dir,A,kw,ke,n){
+  if(dir>0){
+    const pre=vlPrefix(kw,n);
+    let at=s;
+    for(let j=s+1;j<=n;j++)if(pre[j]-pre[s]<=A)at=j;
+    return Math.min(at,n-1);
+  }
+  const pre=vlPrefix(ke,n);
+  let at=s;
+  /* 往左那一路要从最近的列往回挨个试，「花得起」的最后一眼才是花得起的最远那一列
+     （倒着写会一路覆盖到 j=s−1，量出来的就成了「只能挪一步」）*/
+  for(let j=s-1;j>=0;j--)if(pre[s]-pre[j]<=A)at=j;
+  return at;
+}
+function vlMaxAb(a,b){return (a+b+Math.abs(a-b))/2}
+function vlRankOf2(arr,v){let k=0;for(let i=0;i<arr.length;i++)if(arr[i]<v)k++;return k}
+/* 数人数找「排好队第 k 个」：把每个数的「比它小的有几个」与「和它相等的有几个」数出来，
+   k 落在那一段的就是第 k 个 —— 一趟排序也不做，与闸门那只「排序取下标」的手是两条路 */
+function vlNth(arr,k){
+  const n=arr.length;
+  for(let i=0;i<n;i++){
+    const lo=vlRankOf2(arr,arr[i]);
+    let eq=0;
+    for(let j=0;j<n;j++)if(arr[j]===arr[i])eq++;
+    if(lo<=k&&k<lo+eq)return arr[i];
+  }
+  return arr[0];
+}
+function vlMedianC(arr){
+  const n=arr.length;
+  return n%2?vlNth(arr,(n-1)/2):(vlNth(arr,n/2-1)+vlNth(arr,n/2))/2;
+}
+function vlQuantC(arr,q){return vlNth(arr,Math.min(arr.length-1,Math.floor(q*(arr.length-1))))}
+function vlAudWord(ch,j){
+  const out={ok:0,why:'',n:0,unit:0,miss:0,cost:0,maxA:0,naiveWrong:0,kinds:0,both:0,over:0,esc:0,
+    deepOK:0,qs:0,info:[]};
+  const say=function(t){out.why=t};
+  const meds=j&&j.medians;
+  if(!Array.isArray(meds)||meds.length<VL_NMIN||meds.length>VL_NMAX){say('笔数带外');return out}
+  const n=meds.length;
+  for(let i=0;i<n;i++)if(!Array.isArray(meds[i])||meds[i].length<2){say('笔形残缺');return out}
+  /* ① 坑底：排序取第一个 y */
+  const fl=[];
+  for(let i=0;i<n;i++){
+    const ys=[];
+    for(let k=0;k<meds[i].length;k++)ys.push(meds[i][k][1]);
+    ys.sort(function(a,b){return a-b});
+    fl[i]=ys[0];
+  }
+  /* 个子：同样换一只手 —— 排序取最后一个 */
+  const ht=[],st=[],en=[],dx=[];
+  for(let i=0;i<n;i++){
+    const ys=[],xs=[];
+    for(let k=0;k<meds[i].length;k++){ys.push(meds[i][k][1]);xs.push(meds[i][k][0])}
+    ys.sort(function(a,b){return a-b});
+    ht[i]=ys[ys.length-1]-ys[0];
+    st[i]=xs[0];en[i]=xs[xs.length-1];
+    dx[i]=meds[i][meds[i].length-1][0]-meds[i][0][0];
+  }
+  /* ② 山口 */
+  const rg=[],cw=[],ce=[],lips=[];
+  for(let i=0;i<n-1;i++)rg[i]=vlMaxAb(en[i],st[i+1]);
+  for(let i=0;i<n-1;i++){
+    if(rg[i]<fl[i]||rg[i]<fl[i+1]){say('山口比坑底还低（账算歪了）');return out}
+    cw[i]=Math.max(0,rg[i]-fl[i]);ce[i]=Math.max(0,rg[i]-fl[i+1]);
+    if(cw[i]>0)lips.push(cw[i]);
+    if(ce[i]>0)lips.push(ce[i]);
+  }
+  if(!lips.length){say('全案齐平');return out}
+  let lo=1e9,hi=-1e9;
+  for(let i=0;i<n;i++){if(fl[i]<lo)lo=fl[i];if(fl[i]>hi)hi=fl[i]}
+  if(hi-lo<VL_RELIEF){say('坑底全一般深');return out}
+  /* ③ 档位：数人数出来的中位数与 3/4 分位 */
+  const unit=vlMedianC(lips),q3=vlQuantC(lips,.75);
+  /* 档位那一把尺与闸门一字一样（平口 1、高口 2、高坎 3），换的只是量尺的手：数人数出来的 unit 与 q3 */
+  const stepC=function(x){return x>unit?(VL_TIER>=3&&x>q3?3:2):1};
+  const kw=[],ke=[];let tall=0,great=0;
+  for(let i=0;i<n-1;i++){
+    kw[i]=stepC(cw[i]);
+    ke[i]=stepC(ce[i]);
+    if(kw[i]>=2||ke[i]>=2)tall++;
+    if(kw[i]===3||ke[i]===3)great++;
+  }
+  if(!tall){say('山口全一般高');return out}
+  if(VL_TIER>=3&&!great){say('没有一道三步的高坎');return out}
+  /* ④ 落珠：力气 = 个子换算成步（案沿封顶），方向 = 收笔走向 */
+  let miss=0;
+  const rest=[],dvn=[];
+  for(let i=0;i<n;i++){
+    const d0=dx[i]>VL_DEAD?1:(dx[i]<-VL_DEAD?-1:0);
+    const D=Math.min(VL_RIM,Math.max(0,Math.round(ht[i]/unit)));
+    const r=(d0===0||D===0)?i:vlRollPre(i,d0,D,kw,ke,n);
+    rest[i]=r;dvn[i]=D;
+    if(r!==i)miss++;
+  }
+  if(miss<VL_MISS){say('一落就全对上');return out}
+  if(miss>Math.floor(n*VL_MMR)){say('一落全滚成一锅粥');return out}
+  /* ⑤ 蛮力十六种摇法：每一颗错珠能停在家里的步数集合 */
+  let over=0,both=0,cost=0,maxA=0,naiveWrong=0;
+  const needOne=[],wins=[];
+  for(let i=0;i<n;i++){
+    if(rest[i]===i){needOne[i]=0;wins[i]=[];continue}
+    const good=[];
+    for(let k=0;k<2;k++){
+      const dir=k?-1:1,win=[];
+      for(let A=1;A<=VL_AMAX;A++)if(vlRollPre(rest[i],dir,A,kw,ke,n)===i)win.push(A);
+      if(win.length)good.push({dir:dir,win:win});
+    }
+    if(!good.length){say('有一颗珠两头四步也回不了家');return out}
+    if(good.length>1)both++;
+    let best=good[0];
+    for(let k=1;k<good.length;k++)if(good[k].win[0]<best.win[0])best=good[k];
+    needOne[i]=best.win[0];wins[i]=best.win.slice();
+    cost+=best.win[0];
+    if(best.win[0]>maxA)maxA=best.win[0];
+    const hh=best.win[best.win.length-1];
+    if(hh<VL_AMAX)over++;
+    const nd=i>rest[i]?1:-1;
+    if(vlRollPre(rest[i],nd,VL_AMAX,kw,ke,n)!==i)naiveWrong++;
+  }
+  if(!over){say('谁也不会过头');return out}
+  if(naiveWrong<VL_NAIVE){say('一把摇到底也能赢');return out}
+  const kd={};for(let i=0;i<n;i++)if(needOne[i])kd[needOne[i]]=1;
+  if(Object.keys(kd).length<VL_KIND){say('要几步只有一种答法');return out}
+  let esc=0;
+  for(let i=0;i<n;i++){
+    if(rest[i]!==i)continue;
+    for(let k=0;k<2;k++)if(vlRollPre(i,k?-1:1,VL_AMAX,kw,ke,n)!==i){esc++;break}
+  }
+  if(!esc){say('最大摇力也颠不动谁');return out}
+  /* ⑥ 深浅序与左右序对不上（抢答有题可问）*/
+  let dq=0;
+  for(let i=0;i<n;i++){
+    let rank=0;
+    for(let k=0;k<n;k++)if(fl[k]<fl[i])rank++;
+    if(rank!==i){dq=1;break}
+  }
+  if(!dq){say('深浅序就是左右序');return out}
+  out.ok=1;out.n=n;out.unit=unit;out.miss=miss;out.cost=cost;out.maxA=maxA;
+  out.naiveWrong=naiveWrong;out.kinds=Object.keys(kd).length;out.both=both;out.over=over;out.esc=esc;
+  out.deepOK=1;out.tall=tall;out.great=great;
+  out.info.push({ch:ch,n:n,miss:miss,cost:cost,maxA:maxA,naiveWrong:naiveWrong,
+    need:needOne.slice(),rest:rest.slice(),kw:kw.slice(),ke:ke.slice(),fl:fl.slice(),wins:wins});
+  return out;
+}
+/* ---- 眼下案面的账：一条谷、一张牌桌、一支钟，当场互核（只读）---- */
+function vlAudState(){
+  const s={has:0,lv:vly.lv,phase:vly.phase,ch:vly.ch,n:0,unit:0,cost:0,naiveWrong:0,
+    homeN:0,homeStart:vly.homeStart,rollOk:vly.rollOk,waste:vly.waste,shakeAll:vly.shakeAll,
+    stepsUsed:vly.stepsUsed,naiveHit:vly.naiveHit,lateStep:vly.lateStep,lateQuick:vly.lateQuick,
+    err:vly.err,broken:vly.broken,brokenWhy:vly.brokenWhy,
+    qi:vly.qi,qn:vly.qns.length,guessOk:vly.guessOk,guessBad:vly.guessBad,
+    stepMs:vly.stepMs,step0:vly.step0,quickMs:vly.quickMs,quick0:vly.quick0,lamp:vly.lamp,lamp0:vly.lamp0,
+    hearts:vly.hearts,words:vly.words,combo:vly.combo,score:vly.score,gain:vly.gain,penSum:vly.penSum,
+    tools:vly.tools,borrow:vly.peekUse+vly.tryUse+vly.swapUse+vly.eyeballs,
+    optN:vly.opts?vly.opts.list.length:0,bad:0,note:[],info:[]};
+  const why=function(t){s.bad++;s.note.push(t)};
+  const rec=vly.rec;
+  if(!rec)return s;
+  s.has=1;s.n=rec.n;s.unit=rec.unit;s.cost=rec.cost;s.naiveWrong=rec.naiveWrong;
+  /* ① 珠子：每一颗都还在某一口坑里，号就是第几笔，家永远是自己那一列 */
+  let cnt=0,hn=0;
+  for(let i=0;i<rec.n;i++){
+    const b=rec.beads[i];
+    cnt++;
+    if(b.i!==i)why('第 '+(i+1)+' 号珠上写着它是第 '+(b.i+1)+' 笔');
+    if(b.home!==i)why('第 '+(i+1)+' 颗的家不在第 '+(i+1)+' 口坑');
+    if(!(b.col>=0&&b.col<rec.n))why('第 '+(i+1)+' 笔那颗站在坑 '+(b.col+1)+'，案上只有 '+rec.n+' 口坑');
+    if(b.col===b.home)hn++;
+  }
+  if(cnt!==s.n)why('案上 '+cnt+' 颗，账上 '+s.n+' 口坑');
+  s.homeN=hn;
+  if(!vly.anim&&hn!==vly.homeN)why('屏上的账写着回齐 '+vly.homeN+' 颗，案上是 '+hn+' 颗');
+  /* ② 案面只往整齐走：摇错弹回原位，所以回齐的颗数一辈子不许倒退 */
+  if(hn<vly.homeStart)why('案面比落珠那天还乱了（开局回齐 '+vly.homeStart+' 颗，现在只有 '+hn+' 颗）');
+  /* ③ 落珠账：每一颗的落点必须等于「从自家出发、带 dv 步、照收笔走向」独立走一遍的结果 */
+  for(let i=0;i<rec.n;i++){
+    const b=rec.beads[i];
+    const r=b.dir0===0||b.dv===0?i:vlRollPre(i,b.dir0,b.dv,rec.kw,rec.ke,rec.n);
+    if(r!==b.rest)why('第 '+(i+1)+' 笔那颗该落在坑 '+(r+1)+'（前缀和数出来的），账上写的是坑 '+(b.rest+1));
+  }
+  /* ④ 正在飞的那一颗：用前缀和那只手重算落点，必须与动画那一个 to 一字一样；弹回去的那一颗必须回得着原位 */
+  const a=vly.anim;
+  if(a){
+    /* 弹回那一路的起点已经是「摇到的那一坑」，这一把的力气花在原位上：
+       要重数就得从原位数起，从弹回的中点数出来的是「再摇一把」，一辈子对不上动画 */
+    const at=vlRollPre(a.back?a.orig:a.from,a.dir,a.pow,rec.kw,rec.ke,rec.n);
+    if(a.back){
+      if(at!==a.from)why('这一把往'+(a.dir>0?'右':'左')+'摇 '+a.pow+' 步：从原位数出来停在坑 '+(at+1)+'，弹回却从坑 '+(a.from+1)+' 起脚');
+      if(a.to!==a.orig)why('弹回去的那一颗终点是坑 '+(a.to+1)+'，它出发那一坑是 '+(a.orig+1));
+    }
+    else if(at!==a.to)why('这一把往'+(a.dir>0?'右':'左')+'摇 '+a.pow+' 步：前缀和数出来停在坑 '+(at+1)+'，动画却往坑 '+(a.to+1)+' 走');
+    if(a.to!==a.orig&&a.to===a.b.home&&!a.ok)why('落点已经是它家了，动画却没标 ok');
+    if(!a.ok&&a.to!==a.orig){
+      if(a.back&&a.to!==a.b.col)why('弹回去的那一颗终点是坑 '+(a.to+1)+'，可它原位是坑 '+(a.b.col+1));
+      if(!a.back&&a.to===a.b.home)why('弹回的落点恰好是它家 —— 那一把就该算归位，不该弹');
+    }
+  }
+  /* ⑤ 把数与账：每一把要么归位、要么白摇（正在飞的那一颗还没记账）*/
+  const fly=a?1:0;
+  if(vly.rollOk+vly.waste+fly!==vly.shakeAll)why('摇把 '+vly.shakeAll+' 把，可归位 '+vly.rollOk+' + 白摇 '+
+    vly.waste+' + 在飞 '+fly+' 对不上');
+  if(vly.naiveHit>vly.waste)why('猛摇到底 '+vly.naiveHit+' 回比白摇 '+vly.waste+' 把还多（猛摇到底就是摇错的一种）');
+  if(vly.beadsHome<vly.rollOk)why('累计归位 '+vly.beadsHome+' 颗，比这一案的 '+vly.rollOk+' 回还少');
+  /* ⑥ 力气账：花掉的步数不许少于「已经回齐的那些颗各自的最小步数」之和 */
+  let minSum=0;
+  for(let i=0;i<rec.n;i++)if(rec.beads[i].col===i)minSum+=rec.beads[i].need;
+  if(a&&a.ok&&a.to===a.b.home)minSum+=rec.beads[a.b.i].need;
+  if(vly.stepsUsed<minSum)why('花掉 '+vly.stepsUsed+' 步，可回齐的这 '+
+    (hn+(a&&a.ok?1:0))+' 颗按最小步数算就要 '+minSum+' 步');
+  if(hn===rec.n&&vly.stepsUsed<rec.cost)why('全案回齐只花 '+vly.stepsUsed+' 步，离线数出的最小值是 '+rec.cost+' 步');
+  /* ⑦ 钱账：赏与罚必须各归各的，屏上那个「文」就是 gain − penSum */
+  if(vly.score!==vly.gain-vly.penSum)why('屏上 '+vly.score+' 文，可赏 '+vly.gain+' 减罚 '+vly.penSum+' 不等');
+  if(vly.hearts<0||vly.hearts>VL_HEART_MAX)why('心数 '+vly.hearts+' 出了 0~'+VL_HEART_MAX+' 那一格');
+  /* ⑧ 三支钟：场灯是墙，摇珠钟与抢答钟各只在自己的那一段走 */
+  if(vly.lamp0!==vlLamp(vly.lv))why('场灯长 '+vly.lamp0+' 与第 '+vly.lv+' 场的数 '+vlLamp(vly.lv)+' 不合');
+  if(vly.lamp>vly.lamp0)why('场灯还能往上长？');
+  if(vly.stepMs>vly.step0||vly.stepMs<0)why('摇珠钟 '+vly.stepMs+' 出了 0~'+vly.step0);
+  if(vly.quickMs>vly.quick0||vly.quickMs<0)why('抢答钟 '+vly.quickMs+' 出了 0~'+vly.quick0);
+  if(vly.phase==='quick'&&vly.quick0!==vlQuickMs(vly.lv))why('抢答钟长 '+vly.quick0+' 与第 '+vly.lv+' 场的数不合');
+  if((vly.phase==='pick'||vly.phase==='dir'||vly.phase==='pow')&&!vly.locked&&vly.stepMs<=0)why('场相是 '+
+    vly.phase+'，摇珠钟却已经停了（钟尽要么替孩子走、要么判废，不许僵着）');
+  /* ⑨ 牌桌：四段各是一箱，张数、互不相同、当下那一问牌与场相一对 */
+  if(vly.phase==='pick'||vly.phase==='dir'||vly.phase==='pow'||vly.phase==='quick'){
+    if(!vly.opts)why('场相是 '+vly.phase+'，案上却没有牌');
+    else{
+      if(vly.opts.ph!==vly.phase)why('牌是给 '+vly.opts.ph+' 那一段摆的，场相却是 '+vly.phase);
+      const list=vly.opts.list;
+      if(vly.phase==='pick'){
+        let mis=0;
+        for(let i=0;i<rec.n;i++)if(rec.beads[i].col!==i)mis++;
+        if(list.length!==mis)why('不在家的珠有 '+mis+' 颗，牌却摆了 '+list.length+' 张');
+      }
+      if(vly.phase==='dir'&&list.length!==2)why('挑方向只该两张（左 · 右），案上 '+list.length+' 张');
+      if(vly.phase==='pow'&&list.length!==VL_AMAX)why('挑步数该摆 '+VL_AMAX+' 张，案上 '+list.length+' 张');
+      if(vly.phase==='quick'&&(list.length<3||list.length>VL_WIN))why('抢答那一张窗里 '+list.length+' 口坑（该 3~'+VL_WIN+'）');
+      const seen={},pk=function(x){
+        return vly.phase==='pick'?('b'+x.i):vly.phase==='dir'?('d'+x.dir):vly.phase==='pow'?('p'+x.pow):('c'+x.col);
+      };
+      let okN=0;
+      for(let i=0;i<list.length;i++){
+        const key=pk(list[i]);
+        if(seen[key])why('第 '+(i+1)+' 张与前面某一张一模一样（'+key+'）');
+        seen[key]=1;
+        if(list[i].ok)okN++;
+      }
+      if(vly.phase==='quick'&&okN!==1)why('抢答那一张里有 '+okN+' 张写着对（只准一张）');
+      if(vly.sel<0||vly.sel>=list.length)why('挑中的那张出了牌桌范围');
+      if(vly.opts.right<-1||vly.opts.right>=list.length)why('right 那个下标出了牌桌范围');
+      if(vly.phase==='pick')for(let i=0;i<list.length;i++)if(rec.beads[list[i].i].col===list[i].i)why(
+        '牌上第 '+(i+1)+' 张（第 '+(list[i].i+1)+' 笔那颗）已经在自家坑里');
+      if(vly.phase==='quick'){
+        const st=vly.qns[vly.qi],en=list[list.length-1].col;
+        if(!(st>=0&&st<rec.n&&en<rec.n&&en>=st))why('这一题的窗口第 '+(st+1)+'~'+(en+1)+' 口出了案面');
+        /* 独立比一遍：窗口里最深的那一口，必须就是牌上唯一 ok 那一张 */
+        let deep=st;
+        for(let i=st+1;i<=en;i++)if(rec.fl[i]<rec.fl[deep])deep=i;
+        let tie=0;
+        for(let i=st;i<=en;i++)if(i!==deep&&Math.abs(rec.fl[i]-rec.fl[deep])<VL_MARGIN)tie++;
+        if(tie)why('窗口第 '+(st+1)+'~'+(en+1)+' 口里有 '+tie+' 口与最深那一口差不到 '+VL_MARGIN+'：这题抬杠');
+        const ans=list[vly.opts.right];
+        if(!ans||ans.col!==deep)why('窗口里最深的是坑 '+(deep+1)+'，牌上那张对的却是'+(ans?('坑 '+(ans.col+1)):' 没有'));
+      }
+    }
+  }else if(vly.opts&&vly.phase!=='load')why('场相是 '+vly.phase+'，案上还摆着牌');
+  /* ⑩ 抢答那几题：窗口下标不许出案，问过的题数与账对得上 */
+  for(let i=0;i<vly.qns.length;i++){
+    const st=vly.qns[i];
+    if(!(st>=0&&st<rec.n))why('第 '+(i+1)+' 题的窗口起点 '+st+' 出了案面');
+  }
+  if(vly.phase==='quick'&&vly.qi>=vly.qns.length)why('问到第 '+(vly.qi+1)+' 题，可这一案只配了 '+vly.qns.length+' 题');
+  if(vly.guessOk+vly.guessBad>vly.qns.length&&vly.phase==='quick')why('答对 '+vly.guessOk+' + 答错 '+vly.guessBad+
+    ' 比这一案的题数 '+vly.qns.length+' 还多');
+  /* ⑪ 帘子：第 4 场起山口不写步数、第 6 场起笨手那本账也收走 —— 场号要真的在往上涨 */
+  if(vly.lv<1||vly.lv>9)why('场号 '+vly.lv+' 出了 1~9');
+  if(vly.phase!=='load'&&!vly.rec.beads.length)why('案上没珠子却有场相');
+  s.info.push({ch:rec.ch,n:rec.n,home:hn,rest:rec.beads.map(function(b){return b.rest}),
+    col:rec.beads.map(function(b){return b.col})});
   return s;
 }
 
