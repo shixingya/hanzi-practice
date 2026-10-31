@@ -7894,6 +7894,55 @@ button:active{transform:scale(.95)}
   #screen-vl .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center}
   #screen-vl .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.113 🔺 笔顺围篱坊 ================= */
+/* HUD 占死三行：字没上台那两息它只折两行，不留这一格整张案会被往上抬 */
+.hu-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.hu-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.hu-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死四行：三副题面里最宽那副（收口那一问带「圈还差收口这一根」）*/
+.hu-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*4)}
+.hu-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.hu-ask b{color:#FFE082}
+.hu-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 案：一块翻过的earth色田（canvas 给底，界外留一道木框）*/
+.hu-field{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#241A12,#160F09 58%,#0B0705);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8)}
+.hu-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.hu-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(14,9,5,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;opacity:1;transition:opacity .25s;pointer-events:none;white-space:nowrap;line-height:1.4;max-width:94%;z-index:6}
+.hu-msg{width:calc(100% - 28px);max-width:520px;margin:6px auto 0;background:rgba(14,9,5,.72);border:1px solid #4E342E;border-radius:12px;color:#FFD54F;font-size:13px;font-weight:700;line-height:1.5;padding:7px 12px;text-align:center;min-height:calc(13px*1.5*2);max-height:168px;overflow-y:auto;opacity:1;transition:opacity .25s}
+.hu-msg b{color:#FFCC80}
+.hu-msg code{background:rgba(255,255,255,.12);border-radius:4px;padding:0 4px;color:#FFE082}
+.hu-tbl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:calc(100% - 24px);max-width:520px;margin:8px auto 4px}.hu-opt{flex:1 1 40%;min-width:0;min-height:48px;background:linear-gradient(180deg,#4E342E,#33211C);color:#FFE0B2;border:2px solid #6D4C41;border-radius:12px;font-size:14px;font-weight:800;line-height:1.25;padding:5px 6px;cursor:pointer}
+.hu-opt:hover{border-color:#FFB74D}
+.hu-opt.wrong{background:linear-gradient(180deg,#5D1F1B,#3A120F);border-color:#EF5350;color:#FFCDD2;animation:huShake .32s}
+.hu-opt.right{background:linear-gradient(180deg,#1F4A25,#123018);border-color:#81C784;color:#DCEDC8}
+@keyframes huShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.hu-meter{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;width:calc(100% - 28px);max-width:520px;margin:4px auto}
+.hu-tl{position:relative;height:16px;background:rgba(0,0,0,.42);border-radius:8px;overflow:hidden}
+.hu-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:8px;transition:width .1s linear}
+.hu-tl.step i{background:linear-gradient(90deg,#FFB74D,#FF7043)}
+.hu-tl.lap i{background:linear-gradient(90deg,#4DB6AC,#00897B)}
+.hu-tl.lamp i{background:linear-gradient(90deg,#FFF176,#FBC02D)}
+.hu-tl.errw i{background:linear-gradient(90deg,#E57373,#B71C1C)}
+.hu-tl b{position:absolute;inset:0;font-size:11px;font-weight:800;color:#20150C;text-align:center;line-height:16px;text-shadow:0 1px 0 rgba(255,255,255,.28)}
+.hu-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px auto 2px;max-width:520px}
+.hu-tool{background:#2B1B13;color:#D7CCC8;border:1px solid #5D4037;border-radius:10px;font-size:12px;font-weight:700;padding:5px 9px;cursor:pointer}
+.hu-tool.pass{margin-left:auto;background:linear-gradient(180deg,#4E342E,#2B1B13);border-color:#FFB74D;color:#FFE0B2}
+.hu-tool span{display:inline-block;background:rgba(255,255,255,.14);border-radius:5px;padding:0 4px;margin-left:5px;font-size:10px}
+.hu-tool b{color:#FFE082;margin-left:4px}
+.hu-tool:disabled{opacity:.4;cursor:default}
+.hu-hintline{font-size:11.5px;color:#A1887F;text-align:center;margin:4px auto 0;max-width:520px;line-height:1.5;padding:0 10px}
+.hu-hintline b{color:#D7CCC8}
+.hu-hintline code{background:rgba(255,255,255,.1);border-radius:4px;padding:0 4px}
+.hu-cdot{position:absolute;right:8px;top:8px;font-size:11px;background:#FF7043;color:#20150C;border-radius:8px;padding:1px 6px;font-weight:900}
+.mode-card{position:relative}
+/* 结算：盖在案上的一层布 */
+.hu-over{position:absolute;inset:0;background:rgba(6,4,2,.9);z-index:20;display:flex;align-items:center;justify-content:center;border-radius:16px}
+#screen-hu{position:relative}
+.hu-overbox{width:88%;max-width:420px;background:linear-gradient(180deg,#33211C,#1B1009);border:2px solid #6D4C41;border-radius:14px;padding:12px 14px;text-align:center;color:#FFE0B2}
+.hu-overbox h3{margin:0 0 6px;font-size:20px;color:#FFD54F}
+.hu-overbox p{margin:3px 0;font-size:13px}
+.hu-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.hu-overbtns button{background:#4E342E;color:#FFE0B2;border:1px solid #8D6E63;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
 </style>
 
 </head>
@@ -7950,8 +7999,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 111 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">111</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 112 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">112</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -7962,12 +8011,18 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>111 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>53</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>112 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>54</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="huCard" onclick="enterMode('hu')">
+      <div class="icon">🔺</div>
+      <div class="info"><h3>笔顺围篱坊</h3><p id="huCardTip">这个字的每一笔在案上落成一枚<b>木桩</b>：皮筋从最左那根出发，一路往同一侧拧，<b>收口那一圈</b>把所有桩围住 —— 圈上的桩要你一根根绷，圈里的桩一根也碰不得</p>
+      <span class="hu-cdot" id="huCardDot">🆕</span>
+    </div>
+</div>
 <div class="mode-card" id="vlCard" onclick="enterMode('vl')">
       <div class="icon">⛰️</div>
       <div class="info"><h3>笔顺摇珠坊</h3><p id="vlCardTip">一张青石案上刻着一条<b>山谷</b>：横轴不是字里的左右，而是<b>第几笔</b> —— 一口笔一口坑，坑底就是这一笔写到的最低处，两笔之间「收笔 / 起笔」较高那一处就是山口。⛰️ <b>珠子进门自带力气</b>：这一笔的个子（最高处比坑底高多少）换算成步，收笔往哪边偏就往哪边滚，于是矮矮一横一落就定在自己家，长竖长撇一路吃到案头。🎯 <b>你只会一个动作：摇</b> —— 挑一颗不在家的珠、挑往哪边、挑<b>几步</b>；案面糙，翻一道口要花这道口的步数（<b>平口一步、高口两步、高坎三步</b>），<b>上坡吃力气、下坡不补力气</b>，力气花光就停在当下那一口。💥 <b>用力要刚好</b>：少了连第一步都迈不出，多了<b>越过自己家</b>接着往那头跑 —— 摇错不算输，珠子弹回原位，可这一把力气全白花、连也断了。🕳 封字前抢答的就是这一眼「这几口坑里<b>哪一口最深</b>」：深浅序跟笔顺序天生对不上，数到头的坑往往不是最深那个。🪨 <b>笨手账</b>（每一颗都朝家的方向猛摇到最大步）就画在右下：过闸的字这么摇至少还剩两颗回不了家，<b>猛摇赢不了的案，刚刚好才赢</b>。第 4 场起山口上不再写步数，第 6 场起连深浅名次与笨手那本账也收走</p></div>
@@ -8918,6 +8973,66 @@ button:active{transform:scale(.95)}
       <button class="tool-btn" id="vlReBtn">⛰️ 再摇一案</button>
       <button class="tool-btn" id="vlLabBtn">🧪 玩法实验室</button>
       <button class="tool-btn" id="vlHomeBtn">🏠 回书桌</button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-hu">
+  <div class="top-bar">
+    <button class="back-btn" onclick="huLeave()">← 返回</button>
+    <div class="stats"><span id="huScoreTxt">🔺 <b id="huScore">0</b> 文</span><span id="huLv">第 1 场</span><span id="huTime">这一步 9.0 秒 · 这一圈 56 秒 · 这一场 84 秒</span></div>
+    <button class="icon-btn" onclick="huHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="hu-hud">
+    <span id="huRank" title="称号">🌱 头一根桩</span>
+    <span id="huHearts" title="生命">❤️❤️❤️</span>
+    <span id="huLedCombo" title="连击">🔥 连击 0 · 本场最长 0</span>
+    <span id="huLedWord" title="第几案">🔺 第 1/3 案 · 已收 0 字</span>
+    <span id="huLedPeg" title="圈上圈下">🪵 案还没摆</span>
+    <span class="light" id="huHitLight">💡 绷桩</span>
+  </div>
+  <div class="hu-ask" id="huAsk">🌱 正在挑字……<br><small>在字库里找「桩分得开、圈上有拐、随手挑最近的会围错」的字</small></div>
+  <div class="hu-stage">
+    <div class="hu-field">
+      <canvas class="hu-canvas" id="huCv" width="420" height="340"></canvas>
+      <div class="hu-tag" id="huTag">🔺 案还没摆</div>
+    </div>
+  </div>
+  <div class="hu-msg" id="huMsg">🔺 一根笔就是一枚木桩：皮筋从最左那根出发，一路往同一侧拧</div>
+  <div class="hu-tbl" id="huOpts">
+    <button class="hu-opt" id="huOpt0">1</button>
+    <button class="hu-opt" id="huOpt1">2</button>
+    <button class="hu-opt" id="huOpt2">3</button>
+    <button class="hu-opt" id="huOpt3">4</button>
+  </div>
+  <div class="hu-meter">
+    <div class="hu-tl step"><i id="huBarStep"></i><b>⏳ 这一步</b></div>
+    <div class="hu-tl lap"><i id="huBarLap"></i><b>⭕ 这一圈</b></div>
+    <div class="hu-tl lamp"><i id="huBarLamp"></i><b>💡 这一场</b></div>
+    <div class="hu-tl errw"><i id="huBarErr"></i><b id="huLedSnap">🪢 已绷 0/0 根</b></div>
+  </div>
+  <div class="hu-tools">
+    <button class="hu-tool" id="huPeek">✨ 看圈<span>P</span><b>剩 2</b></button>
+    <button class="hu-tool" id="huTry">🧭 试绷<span>V</span><b>剩 2</b></button>
+    <button class="hu-tool" id="huSwap">🔁 换字<span>S</span><b>剩 1</b></button>
+    <button class="hu-tool" id="huHelpBtn">📖 说明<span>H</span></button>
+    <button class="hu-tool pass" id="huQuitBtn">🏁 结算<span>F</span></button>
+  </div>
+  <div class="hu-hintline" id="huLedNaive">🪨 <b>笨手账</b>：每一问都「随手挑离这根最近的那根」—— 过闸的字这么围至少走错 2 步<br>🧭 <b>圈上的桩只往同一侧拧</b>：绕回来的那根一定在圈里 · <code>1~4</code> 挑牌 · ✨ <code>P</code> 看圈 · 🧭 <code>V</code> 试绷 · 🔁 <code>S</code> 换字 · <code>H</code> 📖 说明 · <code>F</code> 🏁 结算</div>
+
+  <div class="hu-over" id="huOver" style="display:none">
+    <div class="hu-overbox">
+      <h3>🔺 收工</h3>
+      <p id="huRsWhy">⏺ 这一场的钟走完了</p>
+      <p id="huRsScore">🧾 0 文</p>
+      <p id="huRsWords">🔺 收字 0 · 场号 1 · 连击 0</p>
+      <p id="huRsStars">⭐ +0</p>
+      <p id="huRsErr">✗ 拧错 0 把</p>
+      <p id="huRsShelf">🗄 圈架：（这一把一件没添）</p>
+      <p id="huRsRank">🌱 头一根桩</p>
+      <div class="hu-overbtns">
+        <button id="huReBtn">🔁 再围一圈</button>
+        <button id="huReHome">🏠 回实验室</button>
+      </div>
     </div>
   </div>
 </div>
@@ -16962,6 +17077,7 @@ function updateHomeStats(){
   if(typeof rdNudge==='function')rdNudge();
   if(typeof avNudge==='function')avNudge();
   if(typeof vlNudge==='function')vlNudge();
+  if(typeof huNudge==='function')huNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -17019,6 +17135,7 @@ function enterMode(mode){
   if(mode==='radix'){rdStart();return}
   if(mode==='avl'){avStart();return}
   if(mode==='vl'){vlStart();return}
+  if(mode==='hu'){huStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -127341,6 +127458,948 @@ function vlAudState(){
   s.info.push({ch:rec.ch,n:rec.n,home:hn,rest:rec.beads.map(function(b){return b.rest}),
     col:rec.beads.map(function(b){return b.col})});
   return s;
+}
+
+
+/* ==== 🔺 笔顺围篱坊 v1（v1.113.0）====
+   一根笔 = 一枚木桩，皮筋从最左那根出发、一路往同一侧拧，收口那一圈就是凸包。
+   孩子在每一根桩上只答一件事：下一根绷到哪根桩。判据是叉积，画布 y 向下 ⇒ 叉积 > 0 就是往右拧。
+   本节：口径 · 九串字表 · 状态 · 落盘 · 配字闸门 */
+
+/* ---- 口径（与 _hlgeo.cjs 一字一样）---- */
+const HU_NMIN=5,HU_NMAX=10;         /* 一子的桩数 = 笔数 */
+const HU_SEP=12;                    /* 两桩至少隔这么多像素：眼睛分不出就不上台 */
+const HU_TURN=8;                    /* 最钝那道拧也要看得出：最小转角（度） */
+const HU_VMIN=4,HU_VMAX=8;          /* 圈上几根桩 */
+const HU_INMIN=1;                   /* 至少一根桩被围在圈里 */
+const HU_NAIVE=2;                   /* 随手挑最近的那根（笨手）至少走错这么几步 */
+const HU_KIND=2;                    /* 转角至少分得出两档 */
+const HU_X0MIN=8;                   /* 起手桩唯一：最左那根比第二名靠左这么多 */
+/* ---- 罚 ---- */
+const HU_P_WRONG=8,HU_P_SLOW=4,HU_P_QUIT=5,HU_P_SWAP=6,HU_P_TOOL=4,HU_P_HELP=3;
+const HU_ERR_LINE=3;                /* 一案拧错到这一格就掉一颗心 */
+const HU_ERR_CLEAN=1;               /* 一场三字「每案拧错 ≤1 把」才算清白 */
+const HU_LATE_MAX=3;                /* 一案钟尽满三回，这一案判废 */
+/* ---- 赏 ---- */
+const HU_M0=7,HU_CB=.14,HU_LVW=.07;
+const HU_PTS_WORD=12;               /* 一圈收齐 */
+const HU_PTS_CLEAN=14;              /* 一把没拧错 */
+const HU_PTS_ECON=8;                /* 一根不绕：拧的步数正好等于圈上根数 */
+const HU_PTS_SEQ=8;                 /* 一根不落：k 根全绷上（没判废、没退回） */
+const HU_PTS_QUICK=12;              /* 眼快手快：每一步都在门槛内 */
+const HU_PTS_FRESH=6;               /* 头一回收这个字 */
+const HU_PTS_NOTOOL=8,HU_PTS_TOOLRUN=14;
+/* ---- 场 · 池 · 心 ---- */
+const HU_PER=3;
+const HU_POOL_MIN=4,HU_POOL_WANT=12,HU_POOL_SCAN=320;
+const HU_HEARTS=3,HU_HEART_MAX=5,HU_BOOK_MAX=300;
+const HU_TELL_LV=4,HU_DIM_LV=6;     /* 第 4 场起牌上不再写「隔几号」，第 6 场起笨手账与圈里几根也收走 */
+function huNoTell(L){return L>=HU_TELL_LV}
+function huDim(L){return L>=HU_DIM_LV}
+const HU_P0={peek:2,try:2,swap:1};  /* ✨ 看圈 / 🧭 试绷 / 🔁 换字 */
+const HU_PEEK_MS=5200,HU_TRY_MS=4200;
+/* ---- 三支钟 ---- */
+function huStepMs(L){return Math.max(5600,9000-420*(L-1))}   /* 这一步 */
+function huLapMs(L){return Math.max(30000,56000-3000*(L-1))} /* 这一圈 */
+function huLampMs(L){return Math.max(72000,84000-1600*(L-1))}/* 这一场 */
+const HU_SEAL_MS=3000,HU_NAG_MS=5200,HU_HELP_MS=8200,HU_QUICK_MS=2600;
+const HU_SNAP_MS=520,HU_POP_MS=300,HU_BACK_MS=420;
+/* ---- 案面：420×340，圈场就是扫描那四至 ---- */
+const HU_W=420,HU_H=340;
+const HU_FX0=40,HU_FX1=380,HU_FY0=46,HU_FY1=300;
+const HU_PR=9;                      /* 桩帽半径 */
+/* ---- 称号：一辈子收齐的字数 ---- */
+const HU_RANKS=[
+  {n:0,e:'🌱',t:'头一根桩'},  {n:2,e:'🪵',t:'认得圈'},   {n:5,e:'🧭',t:'拧得对边'},
+  {n:9,e:'🔺',t:'一圈不落'},  {n:14,e:'👀',t:'一眼定桩'}, {n:21,e:'🪢',t:'围得干净'},
+  {n:30,e:'🧰',t:'全套家什'}, {n:42,e:'🔥',t:'一把没拧错'}, {n:58,e:'👑',t:'从没绕远路'}
+];
+function huLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function huRankOf(w){
+  let r=HU_RANKS[0];
+  for(let i=0;i<HU_RANKS.length;i++)if(w>=HU_RANKS[i].n)r=HU_RANKS[i];
+  return r;
+}
+/* ---- 圈架 8 件 ---- */
+const HU_SHELF_LV=4;
+const HU_SHELF=[
+  {k:'篱样图',d:'收齐一个字'},              {k:'清白票',d:'一场三字每案拧错 ≤'+HU_ERR_CLEAN+' 把'},
+  {k:'神来之笔',d:'一圈一把没拧错，满 5 圈'}, {k:'满圈章',d:'一根不落收完一个字'},
+  {k:'戥子',d:'走到第 '+HU_SHELF_LV+' 场还在走'}, {k:'空手趟',d:'一圈家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},    {k:'量圈尺',d:'累计绷过 400 根桩'}
+];
+/* ---- 九串字表（一场一串，串外的字这一场过不了闸）----
+   由 _hlgeo.cjs 离线数出来：全站 1372 字过闸 416 字，按「桩数 + 圈上根数 + 最钝那道拧」
+   并成一个难度分再切九串（每串 47 字，末串 40）—— 第 1 场的案四根桩、最钝的拧有 66°，
+   第 9 场六根桩、只剩 13°；笨手走错从 2.7 步涨到 4.7 步。*/
+const HU_LEV={
+  1:"白犯乎巧写扫扬访付级饥冰虫亚匆印杂何纪巫设叨约伟休尽杖阻冲我投吸村批层犹扶创冷线肠闯忌好更和伸",
+  2:"杀而妇叫宅再拢妈诊拨扮坐拔相林妨攻卑屹荒阿有且绒肿册汛罚误劳忽附芝谷识俐华罕挥绊种钱庞角争乱盲",
+  3:"废杭陈侯臣吨寿冻证鸣牧没危迟服吩诣宋执则欢存羽纵盾拙纤总幽即青改抖抱陌咐安吃纯厚乓饱的沃苍戒沙",
+  4:"武拥枚走经妙胆便坛穷拐驴怨茵拒妒使块弈护拘差刮闲委材初诲泪卵迫狮沮虎沫其参听狐屉晒秩沸拭科显诚",
+  5:"降姐医郊咽杆君定金岭炉狗剑油首束驾找浅送学孤弃泣邮拱良灶昆栖抡豆柜知疾染纱刺伶时爸诱究府药宜钓",
+  6:"牺怯沟泻审哄英居独卧所技屈绞或套录阁弦规呻按顺盼配洞苦典事脂恐悔径奈呵恩症骂饺莺统构柔挽者勇徊",
+  7:"说庙阅息客明借凄陵挑看哑峰郑矿律咆洁架宾眨草荷盈鸯实案泥尚闻恰脉政饼官柴肢钝前命挣研院拯继贷昼",
+  8:"荆陡耽养春宫除顿亲贺哉拼栏莫码浊柄胶鬼咱陶绘耍狠荐标悦响酒烟衍桅唉病宣哗括笔费砖凉骄剔耘剖虾样",
+  9:"胖绝恃砍毡唇涧殷桑匪狼骆烈诺笑络泰拳栽验涩浪站夏哲哦剥获徐唐捡轿皱俯盏毙宵捣资悄"
+};
+function huInLev(ch,L){const s=HU_LEV[L]||'';return s.indexOf(ch)>=0}
+function huFresh(ch){return huBookHas2(ch)?0:1}
+/* 图鉴（hz_hull_dex）里有没有这个字：头一回收才算新 */
+function huBookHas2(ch){
+  return (huGet('dex','')||'').split('|').some(function(x){return x.indexOf(ch+':')===0});
+}
+
+/* ---- 状态 ---- */
+const huy={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  lv:1,wi:0,score:0,hearts:HU_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一案：字 · 桩 · 圈序 · 拧到第几根 */
+  ch:'',rec:null,P:[],seq:[],turns:[],inS:[],n:0,k:0,si:0,done:0,
+  /* 眼下这一问 */
+  opts:null,ans:-1,wrongOpt:[],touched:{},sel:0,
+  /* 这一案的账 */
+  err:0,naiveHit:0,lates:0,lateStep:0,broken:0,brokenWhy:'',snaps:0,picks:0,
+  step0:0,stepMs:0,lamp:0,lamp0:0,lap:0,lap0:0,sealMs:0,
+  /* 帘子下的读数 */
+  quick0:0,quickOk:1,missFlag:0,skipNote:'',
+  peekN:HU_P0.peek,tryN:HU_P0.try,swapN:HU_P0.swap,
+  peekUse:0,tryUse:0,swapUse:0,peekMs:0,tryMs:0,tryPeg:-1,
+  /* 局账 */
+  words:0,snapsAll:0,perfect:0,econN:0,seqN:0,quickN:0,wrongs:0,swaps:0,naiveAll:0,
+  cleanWord:1,neatWord:1,tools:0,wordTools:0,cleanRun:0,toolRun:0,errSum:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',nags:0,nagMs:0,newBest:false,helpMs:0,
+  lit:null,spark:[],fence:[],anim:null,
+  /* 这一问的场面 */
+  nn:-1,tellOff:0,dim:0,nagDo:0,helpDo:0,seed:1
+};
+
+/* ---- 本坊自己的发声 · 回话 · 定时器（不借别人家的栏）---- */
+function huTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!huy.ac)huy.ac=new AC();
+    const c=huy.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='square';
+    n.gain.value=g===undefined?.045:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+function huSay(msg,color){const el=document.getElementById('huMsg');if(!el)return;
+  el.textContent=msg||'';el.style.color=color||'#FFE082';el.style.opacity=msg?'1':'0'}
+function huT(fn,ms){const id=setTimeout(function(){
+  const i=huy.timers.indexOf(id);if(i>=0)huy.timers.splice(i,1);
+  if(!huy.run||huy.over)return;
+  try{fn()}catch(e){}
+},ms);huy.timers.push(id);return id}
+function huKill(){
+  for(let i=0;i<huy.timers.length;i++)clearTimeout(huy.timers[i]);
+  huy.timers=[];
+  if(huy.rafId){cancelAnimationFrame(huy.rafId);huy.rafId=0}
+}
+/* ---- 落盘：hz_hull_* 共 19 本 ---- */
+function huPut(k,v){try{localStorage.setItem('hz_hull_'+k,''+v)}catch(e){}}
+function huGet(k,d){try{const v=localStorage.getItem('hz_hull_'+k);return v===null?d:v}catch(e){return d}}
+function huNum(k){return Number(huGet(k,0))||0}
+function huInc(k,n){const v=huNum(k)+(n||1);huPut(k,v);return v}
+function huBookPush(ch,why){
+  const bk=(huGet('book','')||'').split('|').filter(x=>x);
+  const i=bk.findIndex(x=>x.indexOf(ch+':')===0);
+  const e=ch+':'+(why||'绕');
+  if(i>=0)bk[i]=e;else bk.unshift(e);
+  while(bk.length>HU_BOOK_MAX)bk.pop();
+  huPut('book',bk.join('|'));
+}
+function huBookHas(ch){return (huGet('book','')||'').split('|').some(x=>x.indexOf(ch+':')===0)}
+function huLedgerPut(){
+  /* 一辈子账只加不减：这一把为 0 的那几本一个字也不写，免得把总账冲成 0 */
+  if(huy.words)huPut('words',huNum('words')+huy.words);
+  if(huy.wrongs)huPut('wrongs',huNum('wrongs')+huy.wrongs);
+  if(huy.perfect)huPut('perfect',huNum('perfect')+huy.perfect);
+  if(huy.econN)huPut('econ',huNum('econ')+huy.econN);
+  if(huy.seqN)huPut('seq',huNum('seq')+huy.seqN);
+  if(huy.quickN)huPut('quick',huNum('quick')+huy.quickN);
+  if(huy.swaps)huPut('swaps',huNum('swaps')+huy.swaps);
+  if(huy.tools)huPut('tools',huNum('tools')+huy.tools);
+  if(huy.maxCombo>huNum('combo'))huPut('combo',huy.maxCombo);
+}
+
+/* ==== 围篱坊 ②：几何（凸包 / 叉积 / 转角）· 闸门 · 配字池 · 出题 ====
+   这一段与 _hlgeo.cjs 是同一本账：桩位 = 中位线等距中点 → 等比缩放进圈场 → Andrew 单调链。
+   三只手互核（段 W）：手一单调链 · 手二最笨的暴力找圈（O(n³) 每条边两侧无点）· 手三核「圈里桩
+   一定在每条边的同一侧」—— 三本账对上了这个字才准上台。*/
+
+/* ---- 一笔 → 等距中点 ---- */
+function huMid(st){
+  let tot=0;const seg=[];
+  for(let i=1;i<st.length;i++){const d=Math.hypot(st[i][0]-st[i-1][0],st[i][1]-st[i-1][1]);seg.push(d);tot+=d}
+  if(!tot)return[st[0][0],st[0][1]];
+  let want=tot/2;
+  for(let i=0;i<seg.length;i++){
+    if(want>seg[i]){want-=seg[i];continue}
+    const a=st[i],b=st[i+1],t=seg[i]?want/seg[i]:0;
+    return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
+  }
+  return[st[st.length-1][0],st[st.length-1][1]];
+}
+/* ---- 字的包围盒 → 圈场（等比、居中，y 沿用画布向下）---- */
+function huFit(pts){
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(const p of pts){x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1])}
+  const s=Math.min((HU_FX1-HU_FX0)/Math.max(1,x1-x0),(HU_FY1-HU_FY0)/Math.max(1,y1-y0));
+  const ox=HU_FX0+((HU_FX1-HU_FX0)-(x1-x0)*s)/2,oy=HU_FY0+((HU_FY1-HU_FY0)-(y1-y0)*s)/2;
+  return pts.map(p=>[Math.round((p[0]-x0)*s+ox),Math.round((p[1]-y0)*s+oy)]);
+}
+function huCross(o,a,b){return (a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0])}
+function huTurn(prev,cur,nxt){
+  const a1=Math.atan2(cur[1]-prev[1],cur[0]-prev[0]);
+  const a2=Math.atan2(nxt[1]-cur[1],nxt[0]-cur[0]);
+  let d=(a2-a1)*180/Math.PI;
+  while(d>180)d-=360;while(d<-180)d+=360;
+  return d;
+}
+/* 手一：Andrew 单调链（<=0 弹出 ⇒ 共线不认桩，圈上的桩之间一定有真转角）*/
+function huHull(P){
+  const idx=P.map((p,i)=>i).sort((a,b)=>P[a][0]-P[b][0]||P[a][1]-P[b][1]);
+  const build=ord=>{const H=[];for(const i of ord){
+    while(H.length>1&&huCross(P[H[H.length-2]],P[H[H.length-1]],P[i])<=0)H.pop();
+    H.push(i)}return H};
+  const lo=build(idx),up=build(idx.slice().reverse());
+  return lo.slice(0,-1).concat(up.slice(0,-1));
+}
+/* 手二（暴力圈边判据 huBvHull2）与手三（圈里桩必须在每条边同侧 huBvInside）住在 ⑥，
+   段 W 里与这一段逐字对账；这里只留手一。*/
+
+/* ---- 闸门：这个字能不能上台（与 _hlgeo.cjs 同口径）---- */
+function huAudit(ch,j){
+  const st=j&&j.medians;
+  if(!Array.isArray(st)||st.length<HU_NMIN||st.length>HU_NMAX)return null;
+  for(let i=0;i<st.length;i++)if(!Array.isArray(st[i])||st[i].length<2)return null;
+  const n=st.length;
+  const P=huFit(st.map(huMid));
+  for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)
+    if(Math.hypot(P[a][0]-P[b][0],P[a][1]-P[b][1])<HU_SEP)return null;
+  const H=huHull(P);
+  if(H.length<HU_VMIN||H.length>HU_VMAX)return null;
+  if(n-H.length<HU_INMIN)return null;
+  const xs=P.map(p=>p[0]).sort((a,b)=>a-b);
+  if(xs[1]-xs[0]<HU_X0MIN)return null;
+  const inS=[];for(let i=0;i<n;i++)if(H.indexOf(i)<0)inS.push(i);
+  /* 起手桩 = 最左那根，把圈序轮转到它起 */
+  let first=0;for(let i=1;i<H.length;i++)if(P[H[i]][0]<P[H[first]][0])first=i;
+  const seq=H.map((_,i)=>H[(i+first)%H.length]);
+  /* 桩不许压在篱上：圈里每一根都得在每一条篱的同一边 —— 压线的字孩子按「同一边」的规矩核不出来 */
+  for(let i=0;i<n;i++){
+    if(H.indexOf(i)>=0)continue;
+    for(let t=0;t<seq.length;t++){
+      if(huCross(P[seq[t]],P[seq[(t+1)%seq.length]],P[i])<=0)return null;
+    }
+  }
+  const turns=seq.map((_,i)=>huTurn(P[seq[(i+seq.length-1)%seq.length]],P[seq[i]],P[seq[(i+1)%seq.length]]));
+  const minTurn=Math.min.apply(null,turns.map(t=>Math.abs(t)));
+  if(minTurn<HU_TURN)return null;
+  for(let i=0;i<turns.length;i++)if(turns[i]*turns[0]<=0)return null;
+  const kinds={};for(let i=0;i<turns.length;i++)kinds[Math.round(Math.abs(turns[i])/30)]=1;
+  if(Object.keys(kinds).length<HU_KIND)return null;
+  /* 笨手：每一问随手挑最近的那根，数它把 k-1 根问错几个（第一步不算：桩就在自家）*/
+  let cur=seq[0],wrong=0;const used={};used[cur]=1;
+  for(let s=1;s<seq.length;s++){
+    let best=-1,bd=1e9;
+    for(let i=0;i<n;i++){if(used[i])continue;const d=Math.hypot(P[i][0]-P[cur][0],P[i][1]-P[cur][1]);if(d<bd){bd=d;best=i}}
+    if(best!==seq[s])wrong++;
+    cur=best;used[cur]=1;
+  }
+  if(wrong<HU_NAIVE)return null;
+  return{ch:ch,n:n,P:P,seq:seq,turns:turns,inS:inS,k:H.length,minTurn:minTurn,naive:wrong,
+    start:seq[0],med:st}
+}
+function huMake(ch,j){const r=huAudit(ch,j);if(!r)return null;r.j=j;return r}
+function huLetters(L){return HU_LEV[L]||''}
+/* ---- 出题：这一问摆哪几张牌，正确那张是第几张 ----
+   牌 = 未收的桩（内部桩永远未收，是最好的诱饵）+ 收口那一张（只在最后一问出现）。
+   笨手陷阱（离当前桩最近的那根）一定上桌：孩子的本能就是它。*/
+function huDeal(rec,si,rnd){
+  const k=rec.k,P=rec.P;
+  const cur=rec.seq[si];
+  const visited={};for(let i=0;i<=si;i++)visited[rec.seq[i]]=1;
+  const want=rec.seq[(si+1)%k];
+  const close=(si===k-1);
+  const free=[];for(let i=0;i<rec.n;i++)if(!visited[i])free.push(i);
+  free.sort((a,b)=>Math.hypot(P[a][0]-P[cur][0],P[a][1]-P[cur][1])-Math.hypot(P[b][0]-P[cur][0],P[b][1]-P[cur][1]));
+  const nn=free[0];                      /* 笨手会挑的那根 */
+  const pool=[];
+  if(!close)pool.push(want);
+  for(let i=0;i<free.length&&pool.length<4;i++){const c=free[i];if(pool.indexOf(c)<0)pool.push(c)}
+  if(close){                             /* 收口这一问：正确那张是「回 1 号桩」*/
+    const keep=[];for(let i=0;i<rec.inS.length&&keep.length<3;i++)keep.push(rec.inS[i]);
+    pool.length=0;pool.push(-1);for(let i=0;i<keep.length&&pool.length<4;i++)pool.push(keep[i]);
+  }
+  while(pool.length>4)pool.pop();
+  for(let i=pool.length-1;i>0;i--){const s=Math.floor(rnd()*(i+1));const t=pool[i];pool[i]=pool[s];pool[s]=t}
+  if(pool.indexOf(nn)<0&&pool.length<4&&!close)pool.push(nn);
+  const ans=pool.indexOf(close?-1:want);
+  return{opts:pool,ans:ans,cur:cur,close:close,nn:nn}
+}
+
+/* ==== 围篱坊 ③：开工 · 三支钟 · 画案 ==== */
+function huEl(id){return document.getElementById(id)}
+function huTxt(id,s){const e=huEl(id);if(e)e.textContent=s}
+function huTag(s){const e=huEl('huTag');if(e)e.textContent=s}
+let huCtx=null,huCv=null,huGen=0;
+
+function huBind(){
+  if(huy.bound)return;huy.bound=true;
+  huCv=huEl('huCv');if(huCv&&huCv.getContext)huCtx=huCv.getContext('2d');
+  const tap=function(id,fn){const e=huEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();if(!huy.run||huy.over||huy.locked)return;fn()})};
+  for(let i=0;i<4;i++)(function(i){tap('huOpt'+i,function(){huPick(i)})})(i);
+  tap('huPeek',function(){huPeek()});
+  tap('huTry',function(){huTry()});
+  tap('huSwap',function(){huSwap()});
+  tap('huQuitBtn',function(){huQuit('quit')});
+  tap('huHelpBtn',function(){huHelp()});
+  /* 散场那两颗钮不能叫 run/over 拦着：孩子站在结算屏上，「再围一圈」「回实验室」点不动就等于一堵墙 */
+  const tapFree=function(id,fn){const e=huEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();fn()})};
+  tapFree('huReBtn',function(){huStart(true)});
+  tapFree('huReHome',function(){huLeave('lab')});
+  window.addEventListener('keydown',function(e){
+    if(!huy.run||huy.over)return;
+    const sc=document.getElementById('screen-hu');
+    if(!sc||!sc.classList.contains('active'))return;
+    const k=e.key;
+    if(k>='1'&&k<='4'){e.preventDefault();huPick(Number(k)-1)}
+    else if(k==='p'||k==='P'){e.preventDefault();huPeek()}
+    else if(k==='v'||k==='V'){e.preventDefault();huTry()}
+    else if(k==='s'||k==='S'){e.preventDefault();huSwap()}
+    else if(k==='h'||k==='H'){e.preventDefault();huHelp()}
+    else if(k==='f'||k==='F'){e.preventDefault();huQuit('quit')}
+    else if(k==='Escape'){e.preventDefault();huQuit('quit')}
+    else if(k==='r'||k==='R'){e.preventDefault();huStart(true)}
+  });
+}
+function huStart(again){
+  huBind();huKill();
+  if(again){/* 再来一局：局账清零，一辈子账留着 */}
+  huy.gen++;huGen=huy.gen;
+  const w=huNum('words');
+  huy.run=true;huy.over=false;huy.phase='load';huy.load=true;huy.locked=0;
+  huy.lv=huLvOf(w);huy.wi=0;huy.score=0;huy.hearts=HU_HEARTS;huy.combo=0;huy.maxCombo=0;huy.words=0;
+  huy.snapsAll=0;huy.perfect=0;huy.econN=0;huy.seqN=0;huy.quickN=0;huy.wrongs=0;huy.swaps=0;
+  huy.naiveAll=0;huy.tools=0;huy.cleanRun=0;huy.toolRun=0;huy.errSum=0;huy.gain=0;huy.penSum=0;
+  huy.hitOk=0;huy.nags=0;huy.newBest=false;huy.fresh=0;huy.seen=[];
+  huy.peekN=HU_P0.peek;huy.tryN=HU_P0.try;huy.swapN=HU_P0.swap;
+  huy.peekUse=0;huy.tryUse=0;huy.swapUse=0;
+  huy.miss=[];const bk=(huGet('book','')||'').split('|');
+  for(let i=0;i<bk.length&&huy.miss.length<8;i++){const s=bk[i];if(s&&s.indexOf(':')>0)huy.miss.push(s.split(':')[0])}
+  huy.pool=[];huy.poolLv=-1;
+  const sc=huEl('screen-hu');if(sc){document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});sc.classList.add('active')}
+  const ov=huEl('huOver');if(ov)ov.style.display='none';
+  huy.playMs=0;huy.lamp0=huLampMs(huy.lv);huy.lamp=huy.lamp0;
+  huTxt('huLv','第 '+huy.lv+' 场');huRender();
+  huSay('');
+  huFillPool().then(function(){
+    if(huy.gen!==huGen||!huy.run)return;
+    huy.load=false;huNextCase();
+    huy.last=0;huy.rafId=requestAnimationFrame(huLoop);
+  });
+}
+function huNudge(){/* 别的坊收了字：称号条跟着走 */
+  const e=huEl('huRank');if(e){const r=huRankOf(huNum('words'));e.textContent=r.e+' '+r.t}}
+/* ---- 画案主循环 ---- */
+function huLoop(ts){
+  if(!huy.run||huy.over)return;
+  huy.rafId=requestAnimationFrame(huLoop);
+  const dt=huy.last?Math.min(64,ts-huy.last):16;huy.last=ts;
+  if(huy.phase==='play'||huy.phase==='snap'){huy.playMs+=dt}
+  /* 三支钟 */
+  if(huy.phase==='play'){
+    huy.stepMs-=dt;if(huy.stepMs<0)huy.stepMs=0;
+    if(huy.stepMs===0)huLate();
+  }
+  if(huy.phase==='play'||huy.phase==='snap'){
+    huy.lap-=dt;if(huy.lap<=0){huy.lap=0;huLapOut()}
+    huy.lamp-=dt;if(huy.lamp<=0){huy.lamp=0;huLampOut()}
+  }
+  if(huy.peekMs>0){huy.peekMs-=dt;if(huy.peekMs<0)huy.peekMs=0}
+  if(huy.tryMs>0){huy.tryMs-=dt;if(huy.tryMs<=0){huy.tryMs=0;huy.tryPeg=-1}}
+  if(huy.sealMs>0){huy.sealMs-=dt;if(huy.sealMs<=0){huy.sealMs=0;huSealDone()}}
+  if(huy.nagMs>0){huy.nagMs-=dt;if(huy.nagMs<=0){huy.nagMs=0;huNag()}}
+  if(huy.helpMs>0){huy.helpMs-=dt;if(huy.helpMs<=0){huy.helpMs=0;huHelpSay()}}
+  if(huy.anim){huy.anim.t+=dt;if(huy.anim.t>=huy.anim.dur)huAnimDone()}
+  for(let i=huy.spark.length-1;i>=0;i--){const s=huy.spark[i];
+    s.x+=s.vx*dt/16;s.y+=s.vy*dt/16;s.vy+=.06*dt/16;s.life-=dt;if(s.life<=0)huy.spark.splice(i,1)}
+  huDraw();huRender();
+}
+/* ---- 画：圈场 · 字的骨架 · 已绷的篱 · 桩 · 虚影 · 火花 ---- */
+function huDraw(){
+  const c=huCtx;if(!c)return;
+  c.clearRect(0,0,HU_W,HU_H);
+  c.fillStyle='#241A12';c.fillRect(0,0,HU_W,HU_H);
+  /* 圈场：一块犁过的地 */
+  c.strokeStyle='rgba(255,214,150,.10)';c.lineWidth=1;
+  for(let x=HU_FX0;x<=HU_FX1;x+=28){c.beginPath();c.moveTo(x,HU_FY0-8);c.lineTo(x,HU_FY1+6);c.stroke()}
+  for(let y=HU_FY0;y<=HU_FY1;y+=26){c.beginPath();c.moveTo(HU_FX0-8,y);c.lineTo(HU_FX1+6,y);c.stroke()}
+  c.strokeStyle='rgba(255,214,150,.30)';c.lineWidth=2;
+  c.strokeRect(HU_FX0-10,HU_FY0-10,HU_FX1-HU_FX0+20,HU_FY1-HU_FY0+20);
+  /* 这个字的骨架（中位线）浅浅垫在地下：桩就是这根线的中点 */
+  if(huy.rec&&huy.rec.med){
+    c.save();c.translate(0,0);
+    const f=huFitBox(huy.rec.med);
+    c.strokeStyle='rgba(255,235,200,.14)';c.lineWidth=5;c.lineCap='round';
+    for(let i=0;i<huy.rec.med.length;i++){
+      const st=huy.rec.med[i];c.beginPath();
+      for(let k=0;k<st.length;k++){const p=huMapPt(st[k],f);if(k)c.lineTo(p[0],p[1]);else c.moveTo(p[0],p[1])}
+      c.stroke();
+    }
+    c.restore();
+  }
+  const P=huy.P||[];
+  /* 已绷的篱：一圈收口就整圈描金 */
+  const fc=huy.fence||[];
+  if(fc.length){
+    c.strokeStyle=huy.phase==='seal'?'#FFD54F':'#C8A063';c.lineWidth=huy.phase==='seal'?5:4;
+    c.lineJoin='round';c.beginPath();
+    for(let i=0;i<fc.length;i++){const p=P[fc[i]];if(!p)continue;if(i)c.lineTo(p[0],p[1]);else c.moveTo(p[0],p[1])}
+    if(huy.done>=huy.k&&P.length){const p0=P[fc[0]];if(p0)c.lineTo(p0[0],p0[1])}
+    c.stroke();
+  }
+  /* 正在绷的那一段（动画）*/
+  if(huy.anim){const a=huy.anim,p=P[a.from],q=P[a.to];
+    if(p&&q){const t=Math.min(1,a.t/a.dur);
+      c.strokeStyle='#FFE082';c.lineWidth=5;c.beginPath();
+      c.moveTo(p[0],p[1]);c.lineTo(p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t);c.stroke()}
+  }
+  /* 看圈 / 试绷 的虚影 */
+  if(huy.peekMs>0&&huy.opts){const p=P[huy.cur],q=P[huy.opts[huy.ans]];
+    if(p&&q&&huy.ans>=0){c.setLineDash([6,6]);c.strokeStyle='rgba(124,252,180,.85)';c.lineWidth=3;
+      c.beginPath();c.moveTo(p[0],p[1]);c.lineTo(q[0],q[1]);c.stroke();c.setLineDash([])}}
+  if(huy.tryMs>0&&huy.tryPeg>=0){const p=P[huy.cur],q=P[huy.tryPeg];
+    if(p&&q){c.setLineDash([3,7]);c.strokeStyle='rgba(125,211,252,.9)';c.lineWidth=3;
+      c.beginPath();c.moveTo(p[0],p[1]);c.lineTo(q[0],q[1]);c.stroke();c.setLineDash([])}}
+  /* 桩 */
+  for(let i=0;i<P.length;i++){
+    const p=P[i],on=(huy.fence||[]).indexOf(i)>=0,now=(i===huy.cur);
+    c.beginPath();c.arc(p[0],p[1],on?HU_PR:HU_PR-2,0,7);
+    c.fillStyle=on?(now?'#FFD54F':'#A1887F'):(huy.dim?'#5D4037':'#3E2723');
+    c.fill();
+    c.lineWidth=now?3:2;c.strokeStyle=now?'#FFF59D':(on?'#FFE0B2':'#8D6E63');c.stroke();
+    if(!huy.tellOff||on){
+      c.fillStyle=on?'#FFF8E1':'#BCAAA4';c.font='bold 11px sans-serif';c.textAlign='center';
+      c.fillText(''+(i+1),p[0],p[1]-HU_PR-4);
+    }
+    if(!huy.tellOff&&!on){                       /* 桩脚下写这一笔的笔形号码（第 4 场起收走）*/
+      c.fillStyle='#8D6E63';c.font='9px sans-serif';c.textAlign='center';
+      c.fillText(huShapeOf(huy.rec,i),p[0],p[1]+HU_PR+11);
+    }
+  }
+  /* 笨手陷阱：最近那根描一圈红（第 6 场起收走）*/
+  if(!huy.dim&&huy.nn!=null&&huy.nn>=0&&huy.phase==='play'){const p=P[huy.nn];
+    if(p){c.strokeStyle='rgba(239,83,80,.75)';c.lineWidth=2;c.beginPath();c.arc(p[0],p[1],HU_PR+5,0,7);c.stroke()}}
+  /* 火花 */
+  for(let i=0;i<huy.spark.length;i++){const s=huy.spark[i];
+    c.globalAlpha=Math.max(0,s.life/s.dur);c.fillStyle=s.col;
+    c.fillRect(s.x-s.r,s.y-s.r,s.r*2,s.r*2);c.globalAlpha=1}
+}
+function huFitBox(med){
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(const st of med)for(const p of st){x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1])}
+  return{x0:x0,y0:y0,sx:(HU_FX1-HU_FX0)/Math.max(1,x1-x0),sy:(HU_FY1-HU_FY0)/Math.max(1,y1-y0),ox:HU_FX0,oy:HU_FY0};
+}
+function huMapPt(p,f){return[Math.round(f.ox+(p[0]-f.x0)*f.sx),Math.round(f.oy+(p[1]-f.y0)*f.sy)]}
+const HU_SHAPE=['一','丨','丿','丶'];
+function huShapeOf(rec,i){
+  if(!rec||!rec.med||!rec.med[i])return'';
+  const st=rec.med[i],a=st[0],b=st[st.length-1];
+  const dx=b[0]-a[0],dy=b[1]-a[1];
+  if(Math.abs(dx)>=Math.abs(dy))return dx>=0?HU_SHAPE[0]:HU_SHAPE[2];
+  return dy>=0?HU_SHAPE[1]:HU_SHAPE[3];
+}
+
+/* ==== 围篱坊 ④：一案 · 一问 · 一拧 ==== */
+function huRnd(){huy.seed=(huy.seed*1103515245+12345)&0x7fffffff;return huy.seed/0x7fffffff}
+/* ---- 配字池：本串的字当场再过一遍闸 ---- */
+function huFillPool(){
+  const lv=huy.lv,gen=huy.gen;
+  const letters=(huLetters(lv)||'').split('');
+  const want=[];
+  for(let i=0;i<huy.miss.length;i++){const c=huy.miss[i];if(letters.indexOf(c)>=0&&want.indexOf(c)<0)want.push(c)}
+  for(let i=letters.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=letters[i];letters[i]=letters[j];letters[j]=t}
+  for(let i=0;i<letters.length;i++)if(want.indexOf(letters[i])<0)want.push(letters[i]);
+  const rest=[];for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,(huLetters(L)||'').split(''));
+  const need=function(){return huy.pool.length>=HU_POOL_WANT};
+  const scan=async function(list){
+    for(let kk=0;kk<list.length&&!need();kk+=12){
+      const rs=await Promise.all(list.slice(kk,kk+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(huy.gen!==gen||!huy.run)return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[kk+i];if(!rs[i]||!rs[i].medians)continue;
+        const rec=huMake(ch,rs[i]);if(!rec)continue;
+        if(!huy.pool.some(function(p){return p.ch===ch}))huy.pool.push(rec);
+      }
+    }
+  };
+  return scan(want.concat(rest.slice(0,HU_POOL_SCAN))).then(function(){
+    if(huy.pool.length<HU_POOL_MIN&&lv!==huy.poolLv){huy.poolLv=lv;return huFillPool()}
+    return huy.pool;
+  });
+}
+/* ---- 开一案：从池里挑一个还没收齐的字 ---- */
+function huNextCase(){
+  if(!huy.pool.length){huOver('pool');return}
+  let pick=-1;
+  for(let i=0;i<huy.pool.length;i++){if(!huy.seen.some(function(s){return s===huy.pool[i].ch})){pick=i;break}}
+  if(pick<0)pick=Math.floor(huy.pool.length*huRnd());
+  const rec=huy.pool.splice(pick,1)[0];
+  huy.rec=rec;huy.ch=rec.ch;huy.P=rec.P;huy.seq=rec.seq;huy.turns=rec.turns;huy.inS=rec.inS;
+  huy.n=rec.n;huy.k=rec.k;huy.si=0;huy.done=0;huy.fence=[rec.seq[0]];
+  huy.err=0;huy.naiveHit=0;huy.lates=0;huy.lateStep=0;huy.broken=0;huy.brokenWhy='';
+  huy.picks=0;huy.snaps=0;huy.cleanWord=1;huy.neatWord=1;huy.wordTools=0;huy.quickOk=1;
+  huy.missFlag=0;huy.skipNote='';huy.seed=(rec.ch.charCodeAt(0)+huy.lv*7919+huy.gen)&0x7fffffff;
+  huy.tellOff=huNoTell(huy.lv);huy.dim=huDim(huy.lv);
+  huy.phase='play';huy.lap0=huLapMs(huy.lv);huy.lap=huy.lap0;
+  huSetTitle();
+  huAsk();
+  huSay('🔺 上案：'+rec.ch+' · '+rec.n+' 根桩 · 圈上 '+rec.k+' 根 · 圈里 '+(rec.n-rec.k)+' 根');
+}
+function huSetTitle(){
+  const r=huy.rec;if(!r)return;
+  huTxt('huLv','第 '+huy.lv+' 场');
+  const e=huEl('huAsk');
+  if(e)e.textContent='🧭 围篱：'+r.ch+'（'+r.n+' 笔 = '+r.n+' 根桩）';
+  huTag('🔺 '+r.ch+' · '+r.n+' 根桩 · 圈上 '+r.k+' 根');
+}
+/* ---- 出一问 ---- */
+function huAsk(){
+  const d=huDeal(huy.rec,huy.si,huRnd);
+  huy.opts=d.opts;huy.ans=d.ans;huy.cur=d.cur;huy.nn=huy.dim?-1:d.nn;
+  huy.wrongOpt=[];huy.touched={};
+  huy.step0=huStepMs(huy.lv);huy.stepMs=huy.step0;
+  huy.quick0=huy.playMs;
+  huy.nagMs=HU_NAG_MS;huy.helpMs=HU_HELP_MS;huy.nagDo=0;huy.helpDo=0;
+  huy.phase='play';huy.locked=0;huy.anim=null;
+  const last=(huy.si===huy.k-1);
+  const e=huEl('huAsk');
+  if(e)e.textContent='🪢 皮筋勾在 '+((huy.cur|0)+1)+' 号桩上：下一根绷到哪根？'
+    +(last?'（圈还差收口这一根）':'');
+  for(let i=0;i<4;i++){
+    const b=huEl('huOpt'+i);if(!b)continue;
+    const p=huy.opts[i];
+    if(p===undefined){b.style.display='none';continue}
+    b.style.display='';b.className='hu-opt';
+    b.textContent=(p<0)?('⭕ 收口 · 回 '+((huy.rec.seq[0])+1)+' 号桩')
+      :('第 '+(p+1)+' 笔'+(huy.tellOff?'':' · '+huShapeOf(huy.rec,p))
+        +(huy.tellOff?'':' · 离这根 '+Math.round(Math.hypot(huy.P[p][0]-huy.P[huy.cur][0],huy.P[p][1]-huy.P[huy.cur][1]))+' 步'));
+    b.setAttribute('data-i',i);
+  }
+  huTag('🪢 皮筋在第 '+((huy.cur|0)+1)+' 号桩 · 已绷 '+huy.snaps+'/'+huy.k+' 根');
+  huRender();
+}
+/* ---- 孩子按牌 ---- */
+function huPick(i){
+  if(huy.phase!=='play'||huy.locked)return;
+  const p=huy.opts[i];if(p===undefined)return;
+  if(huy.touched[i])return;
+  huy.touched[i]=1;huy.picks++;
+  if(i===huy.ans){huGood();return}
+  huBad(i);
+}
+function huGood(){
+  if(huy.playMs-huy.quick0>HU_QUICK_MS)huy.quickOk=0;
+  const pts=Math.round(HU_M0*(1+HU_CB*(huy.combo+1))*(1+HU_LVW*(huy.lv-1)));
+  huy.score+=pts;huy.gain+=pts;huy.combo++;
+  if(huy.combo>huy.maxCombo)huy.maxCombo=huy.combo;
+  huy.hitOk=1;huy.hitTxt='✅ 绷上了 +'+pts;
+  huTone(660+huy.combo*40,70);
+  huy.locked=1;
+  const to=huy.si===huy.k-1?huy.rec.seq[0]:huy.seq[huy.si+1];
+  if(huy.si>0&&huy.nn===to){huy.naiveHit++;huy.naiveAll++}
+  huy.anim={from:huy.cur,to:to,t:0,dur:HU_SNAP_MS,good:true};
+  huy.phase='snap';
+  huBurst(huy.P[to],'#FFE082');
+  huSay(huy.hitTxt);
+}
+function huAnimDone(){
+  const a=huy.anim;huy.anim=null;
+  if(!a)return;
+  if(a.good){
+    if(huy.si===huy.k-1){                       /* 收口 */
+      huy.fence.push(-1);                        /* 圈合上：-1 记「回到起手桩」*/
+      huy.snaps++;huy.snapsAll++;huy.done=huy.k;
+      huy.phase='seal';huy.sealMs=HU_SEAL_MS;
+      huTone(880,120);huTone(1320,180);
+      for(let i=0;i<huy.inS.length;i++)huBurst(huy.P[huy.inS[i]],'#81D4FA');
+      huTag('⭕ 整圈收齐 · 已绷 '+huy.k+'/'+huy.k+' 根');
+      huSay('⭕ 收口！圈里 '+huy.inS.length+' 根桩一起圈进来');
+    }else{
+      huy.fence.push(huy.seq[huy.si+1]);huy.si++;huy.snaps++;huy.snapsAll++;
+      huy.locked=0;huAsk();
+    }
+  }else{
+    huy.locked=0;
+    if(huy.broken)huNextCase();else huAsk();
+  }
+}
+function huBad(i){
+  huy.err++;huy.errSum++;huy.wrongs++;huy.cleanWord=0;huy.neatWord=0;
+  huy.combo=0;huy.wrongOpt.push(i);
+  huy.score=Math.max(0,huy.score-HU_P_WRONG);huy.penSum+=HU_P_WRONG;
+  huy.hitOk=0;huy.hitTxt='✗ 这根不在圈上 −'+HU_P_WRONG;
+  huTone(180,140);
+  const b=huEl('huOpt'+i);if(b)b.className='hu-opt wrong';
+  huSay(huy.hitTxt+'（这一案已拧错 '+huy.err+'/'+HU_ERR_LINE+' 把）');
+  if(huy.stepMs>huy.step0*.5){const e=huEl('huOpt'+huy.ans);if(e){e.classList.add('right');huT(function(){e.classList.remove('right')},1400)}}
+  if(huy.err>=HU_ERR_LINE){huErrLine();return}
+  if(huy.opts[i]===huy.nn)huSay('🪨 这根就是「随手挑最近」会挑中的：皮筋会割在圈里');
+}
+function huErrLine(){
+  huy.err=0;huy.hearts--;
+  huTone(120,220,.07);
+  huSay('💔 一案拧错满 '+HU_ERR_LINE+' 把：掉一颗心（剩 '+huy.hearts+'）');
+  if(huy.hearts<=0){huOver('heart');return}
+  huy.broken=1;huy.brokenWhy='拧错满 '+HU_ERR_LINE+' 把';
+  huy.missFlag=1;huBookPush(huy.ch,'绕');
+  huy.anim={from:huy.cur,to:huy.cur,t:0,dur:HU_BACK_MS,good:false};
+  huy.phase='snap';huy.locked=1;
+}
+/* ---- 三支钟到点 ---- */
+function huLate(){
+  huy.lates++;huy.lateStep++;huy.combo=0;huy.cleanWord=0;
+  huy.score=Math.max(0,huy.score-HU_P_SLOW);huy.penSum+=HU_P_SLOW;
+  huSay('🐢 这一步钟尽 −'+HU_P_SLOW+'（第 '+huy.lates+'/'+HU_LATE_MAX+' 回）');
+  huTone(220,120);
+  if(huy.lates>=HU_LATE_MAX){
+    huy.broken=1;huy.brokenWhy='钟尽三回';huy.missFlag=1;
+    huBookPush(huy.ch,'慢');
+    huSay('⌛ 这一案判废：'+huy.ch+' 进错字本');
+    huy.anim={from:huy.cur,to:huy.cur,t:0,dur:HU_BACK_MS,good:false};
+    huy.phase='snap';huy.locked=1;return;
+  }
+  huy.step0=huStepMs(huy.lv);huy.stepMs=huy.step0;
+}
+function huLapOut(){
+  huy.combo=0;huy.missFlag=1;
+  huy.score=Math.max(0,huy.score-HU_P_QUIT);huy.penSum+=HU_P_QUIT;
+  huy.broken=1;huy.brokenWhy='这一圈钟走完没收口';
+  huBookPush(huy.ch,'散');
+  huSay('⏺ 这一圈的钟走完了 −'+HU_P_QUIT);
+  huNextCase();
+}
+function huLampOut(){huOver('lamp')}
+/* ---- 一圈收齐 ---- */
+function huSealDone(){
+  const r=huy.rec;if(!r)return;
+  huTag('⭕ '+r.ch+' 圈齐 · 圈里 '+r.inS.length+' 根');
+  huy.words++;huy.seen.push(r.ch);
+  const fresh=huFresh(r.ch);if(fresh)huy.fresh++;
+  let pts=HU_PTS_WORD;
+  const why=[];
+  if(huy.neatWord)pts+=HU_PTS_CLEAN,why.push('一把没拧错');
+  if(huy.snaps===r.k)pts+=HU_PTS_ECON,why.push('一根不绕');
+  if(huy.done===r.k&&!huy.broken)pts+=HU_PTS_SEQ,why.push('一根不落');
+  if(huy.quickOk)pts+=HU_PTS_QUICK,why.push('眼快手快');
+  if(fresh)pts+=HU_PTS_FRESH,why.push('头一回');
+  if(huy.wordTools===0){pts+=HU_PTS_NOTOOL;huy.toolRun++;why.push('空手趟')}
+  else huy.toolRun=0;
+  huy.score+=pts;huy.gain+=pts;
+  if(huy.neatWord)huy.perfect++;
+  if(why.indexOf('一根不绕')>=0)huy.econN++;
+  if(why.indexOf('一根不落')>=0)huy.seqN++;
+  if(why.indexOf('眼快手快')>=0)huy.quickN++;
+  if(huy.hearts<HU_HEART_MAX&&huy.neatWord)huy.hearts++;
+  huTone(1046,180,.06);
+  huSay('🎊 圈齐：'+r.ch+' +'+pts+'（'+why.join(' · ')+'）');
+  huBookDel(r.ch);
+  huy.wi++;
+  if(huy.wi>=HU_PER){huy.wi=0;huy.lv=Math.min(9,huy.lv+1);huy.lamp0=huLampMs(huy.lv);huy.lamp=huy.lamp0;
+    huSay('🔺 进第 '+huy.lv+' 场'+(huy.tellOff?'':''));huy.poolLv=-1;
+    huFillPool().then(function(){if(huy.run&&!huy.over)huNextCase()});
+    huLedgerAdd(r);
+    return;
+  }
+  huLedgerAdd(r);
+  huy.phase='play';
+  huNextCase();
+}
+function huBookDel(ch){
+  const bk=(huGet('book','')||'').split('|').filter(function(x){return x&&x.indexOf(ch+':')!==0});
+  huPut('book',bk.join('|'));
+}
+/* ---- 家什 ---- */
+function huPeek(){
+  if(huy.peekN<=0||huy.phase!=='play'){huSay('✨ 看圈用光了');return}
+  huy.peekN--;huy.peekUse++;huy.wordTools++;huy.tools++;
+  huy.score=Math.max(0,huy.score-HU_P_TOOL);huy.penSum+=HU_P_TOOL;
+  huy.cleanWord=0;huy.peekMs=HU_PEEK_MS;
+  huSay('✨ 看圈：绿虚线就是下一根（−'+HU_P_TOOL+'，'+(HU_PEEK_MS/1000)+' 秒后自己收走）');
+  huTone(520,90);
+}
+function huTry(){
+  if(huy.tryN<=0||huy.phase!=='play'){huSay('🧭 试绷用光了');return}
+  huy.tryN--;huy.tryUse++;huy.wordTools++;huy.tools++;
+  huy.score=Math.max(0,huy.score-HU_P_TOOL);huy.penSum+=HU_P_TOOL;
+  huy.cleanWord=0;
+  const cands=[];for(let i=0;i<huy.opts.length;i++)if(i!==huy.ans&&huy.opts[i]>=0)cands.push(huy.opts[i]);
+  huy.tryPeg=cands.length?cands[Math.floor(huRnd()*cands.length)]:-1;
+  huy.tryMs=HU_TRY_MS;
+  huSay('🧭 试绷：画的是勾到 '+((huy.tryPeg|0)+1)+' 号桩那一根（−'+HU_P_TOOL+'）· 对不对自己看');
+  huTone(430,90);
+}
+function huSwap(){
+  if(huy.swapN<=0){huSay('🔁 换字用光了');return}
+  huy.swapN--;huy.swapUse++;huy.swaps++;huy.wordTools++;huy.tools++;
+  huy.score=Math.max(0,huy.score-HU_P_SWAP);huy.penSum+=HU_P_SWAP;
+  huy.cleanWord=0;huy.missFlag=1;
+  huBookPush(huy.ch,'换');
+  huSay('🔁 换字 −'+HU_P_SWAP+'：'+huy.ch+' 进错字本');
+  huy.broken=1;huy.brokenWhy='换走了';
+  huy.locked=1;huy.anim={from:huy.cur,to:huy.cur,t:0,dur:HU_BACK_MS,good:false};huy.phase='snap';
+}
+/* ---- 闲话 / 催 ---- */
+function huNag(){
+  if(huy.phase!=='play')return;
+  huy.nags++;
+  huSay(['🌾 皮筋不会自己走过去 —— 挑一根按下去','🪵 圈上的桩一个方向拧，绕回来的那根就在圈里','🧭 分不清就按 ✨ 看一圈'][huy.nags%3]);
+}
+function huHelpSay(){if(huy.phase==='play')huSay('🧰 三件家什：✨ 看圈 · 🧭 试绷 · 🔁 换字（用一次扣 '+HU_P_TOOL+' 文）')}
+
+/* ==== 围篱坊 ⑤：读数 · 火花 · 收账 · 落盘 ==== */
+function huBurst(p,col){
+  if(!p)return;
+  for(let i=0;i<12;i++){
+    const a=Math.PI*2*i/12+Math.random()*.4;
+    huy.spark.push({x:p[0],y:p[1],vx:Math.cos(a)*(1.2+Math.random()*1.6),vy:Math.sin(a)*(1.2+Math.random()*1.6)-.6,
+      r:1.6+Math.random()*2.2,col:col,life:420+Math.random()*260,dur:640});
+  }
+}
+function huBar(id,v){const e=huEl(id);if(e)e.style.width=Math.max(0,Math.min(100,v*100)).toFixed(1)+'%'}
+function huRender(){
+  huTxt('huScore',''+huy.score);
+  const r=huRankOf(Math.max(huNum('words'),huy.words));
+  huTxt('huRank',r.e+' '+r.t);
+  const hs=huEl('huHearts');if(hs)hs.textContent='❤️'.repeat(Math.max(0,huy.hearts))+'🖤'.repeat(Math.max(0,HU_HEARTS-huy.hearts));
+  huBar('huBarStep',huy.phase==='play'?huy.stepMs/Math.max(1,huy.step0):1);
+  huBar('huBarLap',huy.lap/Math.max(1,huy.lap0));
+  huBar('huBarLamp',huy.lamp/Math.max(1,huy.lamp0));
+  huTxt('huTime','这一步 '+(huy.stepMs/1000).toFixed(1)+' 秒 · 这一圈 '+(huy.lap/1000).toFixed(0)+' 秒 · 这一场 '+(huy.lamp/1000).toFixed(0)+' 秒');
+  const pk=huEl('huPeek'),tr=huEl('huTry'),sw=huEl('huSwap');
+  if(pk)pk.textContent='✨ 看圈 '+huy.peekN;if(tr)tr.textContent='🧭 试绷 '+huy.tryN;if(sw)sw.textContent='🔁 换字 '+huy.swapN;
+  huTxt('huLedWord','🔺 第 '+(huy.wi+1)+'/'+HU_PER+' 案 · 已收 '+huy.words+' 字');
+  huTxt('huLedPeg',huy.dim?'':'🪵 圈上 '+huy.k+' 根 · 圈里 '+(huy.n-huy.k)+' 根');
+  huTxt('huLedSnap','🪢 已绷 '+huy.snaps+'/'+huy.k+' 根（这一案拧错 '+huy.err+'/'+HU_ERR_LINE+'）');
+  huTxt('huLedNaive',huy.dim?'':'🪨 笨手（随手挑最近）在这一案蒙对 '+huy.naiveHit+' 回');
+  huTxt('huLedCombo','🔥 连击 '+huy.combo+' · 本场最长 '+huy.maxCombo);
+}
+/* ---- 圈架 8 件 ---- */
+function huShelfNow(){
+  const snaps=huNum('snaps')+huy.snapsAll;
+  let badges=0;try{badges=JSON.parse(localStorage.getItem('hz_badges')||'[]').length}catch(e){}
+  return[
+    huNum('words')>0||huy.words>0,
+    huy.cleanRun>=1,
+    huNum('perfect')>=5||huy.perfect>=5,
+    huNum('seq')>0||huy.seqN>0,
+    huNum('lvmax')>=HU_SHELF_LV||huy.lv>=HU_SHELF_LV,
+    huNum('notool')>0||huy.toolRun>=1,
+    badges>=3,
+    snaps>=400
+  ];
+}
+function huLedgerAdd(rec){
+  const bk=(huGet('dex','')||'').split('|').filter(x=>x);
+  if(!bk.some(x=>x.indexOf(rec.ch+':')===0)){
+    bk.unshift(rec.ch+':'+huy.lv+':'+rec.k);
+    while(bk.length>HU_BOOK_MAX)bk.pop();
+    huPut('dex',bk.join('|'));
+  }
+}
+/* ---- 收场 ---- */
+function huQuit(why){huOver(why||'quit')}
+function huLeave(where){
+  huy.run=false;huy.over=true;huKill();
+  if(typeof stopBGM==='function')stopBGM();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function huOver(why){
+  if(huy.over)return;
+  huy.over=true;huy.run=false;huy.phase='over';
+  huKill();
+  if(why!=='pool'&&typeof addStars==='function')addStars(Math.max(1,Math.round(huy.score/14)+huy.words*2));
+  const best=huNum('best');
+  if(huy.score>best){huPut('best',huy.score);huy.newBest=true}
+  if(huy.words>huNum('wordout'))huPut('wordout',huy.words);
+  huPut('lvmax',Math.max(huNum('lvmax'),huy.lv));
+  if(huy.toolRun>=1)huPut('notool',huNum('notool')+1);
+  if(huy.snapsAll)huPut('snaps',huNum('snaps')+huy.snapsAll);
+  if(huy.naiveAll)huPut('naive',huNum('naive')+huy.naiveAll);
+  huPut('games',huNum('games')+1);
+  huLedgerPut();
+  const sh=huShelfNow();let m='';for(let i=0;i<sh.length;i++)m+=sh[i]?'1':'0';
+  huPut('shelf',m);
+  const e=huEl('huOver');if(e)e.style.display='';
+  huTxt('huRsWhy',why==='lamp'?'⏺ 这一场的钟走完了':why==='heart'?'💔 心用完了':why==='pool'?'🪵 这一串的字都收齐了':'🏠 收工');
+  huTxt('huRsScore','🧾 '+huy.score+' 文'+(huy.newBest?'（新纪录）':''));
+  huTxt('huRsWords','🔺 收字 '+huy.words+' · 场号 '+huy.lv+' · 连击 '+huy.maxCombo);
+  huTxt('huRsStars','⭐ +'+Math.max(1,Math.round(huy.score/14)+huy.words*2)+(why==='pool'?'':'（已上星）'));
+  huTxt('huRsErr','✗ 拧错 '+huy.wrongs+' 把 · 钟尽 '+huy.lateStep+' 回 · 换字 '+huy.swaps+' 次 · 借家什 '+huy.tools+' 回');
+  const nm=[];for(let i=0;i<HU_SHELF.length;i++)if(sh[i])nm.push(HU_SHELF[i].k);
+  huTxt('huRsShelf','🗄 圈架：'+(nm.join(' · ')||'（这一把一件没添）'));
+  const r=huRankOf(huNum('words'));
+  huTxt('huRsRank',r.e+' '+r.t+'（一辈子收 '+huNum('words')+' 字）');
+  huTone(392,200);huTone(523,320,.05);
+}
+
+/* ==== 围篱坊 ⑥：说明 · 第二第三双手 · 把这一案的账再独立核一遍 ====
+   手一（_hl_b.js 单调链）说的是「圈怎么串」；这里的手二最笨：对每一对桩验「别的桩是不是一
+   边儿上」，笨到 O(n³) 也不会错；手三管圈里的桩：一根桩要在圈上每一条边的同一侧才算围住。
+   段 W 拿这三只手逐字对同一张案 —— 对不上的字根本不该上台。*/
+
+/* ---- 说明：话写在石案下那一条，翻一次扣一次 ---- */
+function huHelpText(){
+  return '🔺 <b>一根笔就是一枚木桩</b>：这一笔的中点落在案上，第几笔就写几号桩 —— 横竖撇捺全成点，'+
+    '笔顺只剩桩号。<br>'+
+    '🪢 <b>皮筋从最左那根出发，一路往同一侧拧</b>：每一问只答「下一根绷到哪根」—— 圈上的桩要一根根绷，'+
+    '圈里的桩一根也碰不得；收口那一下，圈里的桩一起被围进来。<br>'+
+    '🧭 <b>怎么认圈上的桩</b>：勾住两根桩弹皮筋，<b>所有别的桩都在同一边</b>的那一对才准绷 —— '+
+    '有一根桩在另一边，皮筋就把圈割破了（这就是叉积定左右）。<br>'+
+    '🪨 <b>笨手会输</b>：随手挑「离这根最近的那根」是天生的本能 —— 过闸的字这么围至少走错 '+HU_NAIVE+
+    ' 步，皮筋会割进圈里。<br>'+
+    '💡 <b>这一案判得掉</b>：一案拧错满 '+HU_ERR_LINE+' 把掉一颗心；同一案钟尽 '+HU_LATE_MAX+
+    ' 回就判废、进错字本，下一场优先挑回来。<br>'+
+    '🕐 <b>三支钟</b>：这一步（'+(huStepMs(1)/1000).toFixed(1)+' 秒起，一场比一场短）· 这一圈 · 这一场。<br>'+
+    '🧰 <b>三件家什</b>：✨ <code>P</code> 看圈（绿虚线亮一下正确答案）· 🧭 <code>V</code> 试绷'+
+    '（蓝虚线画一根「不是它」的）· 🔁 <code>S</code> 换字（这一案进错字本）· 用一次扣 '+HU_P_TOOL+
+    ' 文。<br>'+
+    '🎯 <code>1~4</code> 挑牌 · <code>H</code> 说明 · <code>F</code> 结算 · <code>R</code> 再来一局 · 案上共 '+
+    HU_LEV[1].length+'+ 串字，一场一串。';
+}
+function huHelp(){
+  if(!huy.run||huy.over)return;
+  if(huy.rec&&huy.phase!=='seal'&&!huy.load){
+    huy.score=Math.max(0,huy.score-HU_P_HELP);huy.penSum+=HU_P_HELP;
+    huy.cleanWord=0;huy.neatWord=0;huy.tools++;huy.wordTools++;
+    huy.hitOk=2;huy.hitTxt='📖 翻说明 −'+HU_P_HELP;
+    huSay(huy.hitTxt,'#FFE0B2');
+  }
+  huy.helpDo=1;
+  const el=huEl('huMsg');
+  if(el){el.innerHTML=huHelpText();el.style.color='#FFE0B2';el.style.opacity='1'}
+}
+
+/* ---- 手二：笨到不会错的找圈（每一条边都要「别的桩全在同一边」）---- */
+function huBvEdge(P,i,j){
+  for(let k=0;k<P.length;k++){
+    if(k===i||k===j)continue;
+    if(huCross(P[i],P[j],P[k])<=0)return false;     /* 有一根压在边上或在另一边：割破了圈 */
+  }
+  return true;
+}
+function huBvHull2(P){
+  const n=P.length;let first=0;
+  for(let i=1;i<n;i++)if(P[i][0]<P[first][0])first=i;
+  const seq=[first];const used={};used[first]=1;
+  for(let step=1;step<=n;step++){
+    const cur=seq[seq.length-1];
+    /* 能拉回起手桩 = 这根就是收口那根：圈合上了 */
+    if(seq.length>=3&&huBvEdge(P,cur,first))return seq;
+    let best=-1;
+    for(let j=0;j<n;j++){
+      if(used[j]||j===first)continue;
+      if(huBvEdge(P,cur,j)){best=j;break}        /* 圈里的桩永远当不了边：两头都有别的桩 */
+    }
+    if(best<0)return null;                        /* 走不下去：桩里有共线的，圈串不成 */
+    seq.push(best);used[best]=1;
+  }
+  return null;
+}
+/* ---- 手三：圈里桩 = 每一条边的同一侧 ---- */
+function huBvInside(P,seq){
+  const inS=[];
+  for(let i=0;i<P.length;i++){
+    if(seq.indexOf(i)>=0)continue;
+    let ok=true;
+    for(let e=0;e<seq.length;e++){
+      const a=seq[e],b=seq[(e+1)%seq.length];
+      if(huCross(P[a],P[b],P[i])<=0){ok=false;break}
+    }
+    if(ok)inS.push(i);
+  }
+  return inS;
+}
+/* ---- 笨手独立走一遍：随手挑最近，数它走错几步 ---- */
+function huBvNaive(P,seq){
+  const n=P.length,used={};let cur=seq[0],wrong=0;used[cur]=1;
+  for(let s=1;s<seq.length;s++){
+    let best=-1,bd=1e9;
+    for(let i=0;i<n;i++){
+      if(used[i])continue;
+      const d=Math.hypot(P[i][0]-P[cur][0],P[i][1]-P[cur][1]);
+      if(d<bd){bd=d;best=i}
+    }
+    if(best!==seq[s])wrong++;
+    cur=best;used[cur]=1;
+  }
+  return wrong;
+}
+/* ---- 独立重走一遍闸门：与 huAudit 同一口径，另一套算法 ---- */
+function huAudWord(ch,j){
+  const st=j&&j.medians;
+  if(!Array.isArray(st)||st.length<HU_NMIN||st.length>HU_NMAX)return{ok:0,why:'笔数带外'};
+  const P=huFit(st.map(huMid));
+  const n=P.length;
+  let sep=1e9;
+  for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)sep=Math.min(sep,Math.hypot(P[a][0]-P[b][0],P[a][1]-P[b][1]));
+  if(sep<HU_SEP)return{ok:0,why:'两桩隔不到 '+HU_SEP};
+  const seq=huBvHull2(P);
+  if(!seq)return{ok:0,why:'桩共线串不成圈'};
+  const k=seq.length;
+  if(k<HU_VMIN||k>HU_VMAX)return{ok:0,why:'顶点数出带'};
+  const inS=huBvInside(P,seq);
+  if(inS.length!==n-k)return{ok:0,why:'有桩压在篱上'};
+  if(inS.length<HU_INMIN)return{ok:0,why:'一根桩都没围住'};
+  const xs=P.map(p=>p[0]).sort((a,b)=>a-b);
+  if(xs[1]-xs[0]<HU_X0MIN)return{ok:0,why:'起手桩并排'};
+  const turns=seq.map((_,i)=>huTurn(P[seq[(i+k-1)%k]],P[seq[i]],P[seq[(i+1)%k]]));
+  const minTurn=Math.min.apply(null,turns.map(t=>Math.abs(t)));
+  if(minTurn<HU_TURN)return{ok:0,why:'最钝那道拧不出'};
+  for(let i=0;i<k;i++)if(turns[i]*turns[0]<=0)return{ok:0,why:'圈上拧了两边'};
+  const kinds={};for(let i=0;i<k;i++)kinds[Math.round(Math.abs(turns[i])/30)]=1;
+  if(Object.keys(kinds).length<HU_KIND)return{ok:0,why:'转角只一档'};
+  const wrong=huBvNaive(P,seq);
+  if(wrong<HU_NAIVE)return{ok:0,why:'随手挑最近的也能围对'};
+  return{ok:1,ch:ch,n:n,k:k,inN:inS.length,minTurn:minTurn,naive:wrong,
+    seq:seq.slice(),inS:inS.slice(),P:P};
+}
+/* ---- 当场把这一案的账再核一遍：段 Z 收账用 ---- */
+function huAudState(){
+  const r=huy.rec;
+  if(!r)return{ok:0,why:'案还没摆'};
+  const a=huAudWord(r.ch,r.j);
+  if(!a.ok)return{ok:0,why:'独立账没过闸：'+a.why};
+  let sameSeq=(a.seq.length===r.seq.length);
+  for(let i=0;i<a.seq.length&&sameSeq;i++)if(a.seq[i]!==r.seq[i])sameSeq=false;
+  let sameIn=(a.inS.length===r.inS.length);
+  for(let i=0;i<a.inS.length&&sameIn;i++)if(a.inS[i]!==r.inS[i])sameIn=false;
+  return{ok:sameSeq&&sameIn?1:0,ch:r.ch,
+    why:sameSeq?(sameIn?'':'圈里桩数对不上'):'串圈顺序对不上',
+    n:r.n,k:r.k,n2:a.k,inN:r.inS.length,inN2:a.inN,
+    minTurn:r.minTurn,minTurn2:a.minTurn,naive:r.naive,naive2:a.naive};
+}
+/* ---- 眼下这一问的正确答案是哪一张牌（独立重算，不看 huy.ans）---- */
+function huBvAns(si){
+  const r=huy.rec;if(!r||!huy.opts)return-2;
+  if(si===r.k-1)return huy.opts.indexOf(-1);           /* 收口那一张 */
+  const d=huBvHull2(r.P);if(!d)return-2;
+  let first=0;for(let i=1;i<d.length;i++)if(r.P[d[i]][0]<r.P[d[first]][0])first=i;
+  const seq=d.map((_,i)=>d[(i+first)%d.length]);
+  const want=seq[(si+1)%seq.length];
+  const at=huy.opts.indexOf(want);
+  return at<0?-2:at;                                  /* -2 = 出题漏了正确答案 */
 }
 
 
