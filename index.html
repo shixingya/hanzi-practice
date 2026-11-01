@@ -7943,6 +7943,58 @@ button:active{transform:scale(.95)}
 .hu-overbox p{margin:3px 0;font-size:13px}
 .hu-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
 .hu-overbtns button{background:#4E342E;color:#FFE0B2;border:1px solid #8D6E63;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
+/* ================= v1.114 🪓 笔顺断路坊 ================= */
+/* HUD 占死三行：字没上台那两息它只折两行，不留这一格整张案会被往上抬 */
+.mc-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.mc-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.mc-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死四行：三副题面里最宽那副（收口那一问带「还差一道就断干净」）*/
+.mc-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*4)}
+.mc-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.mc-ask b{color:#FFE082}
+.mc-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 案：一片夜里的山口（canvas 给底，界外留一道石框）*/
+.mc-field{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#161D24,#0D1319 58%,#060A0D);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8)}
+.mc-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.mc-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(6,10,13,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;transition:opacity .25s;pointer-events:none;white-space:nowrap;line-height:1.4;max-width:94%;z-index:6}
+.mc-msg{width:calc(100% - 28px);max-width:520px;margin:6px auto 0;background:rgba(6,10,13,.72);border:1px solid #37474F;border-radius:12px;color:#FFD54F;font-size:13px;font-weight:700;line-height:1.5;padding:7px 12px;text-align:center;min-height:calc(13px*1.5*2);max-height:168px;overflow-y:auto;transition:opacity .25s}
+.mc-msg b{color:#FFCC80}
+.mc-msg code{background:rgba(255,255,255,.12);border-radius:4px;padding:0 4px;color:#FFE082}
+/* 栅位牌：六张备选道（数字键 1~6 一张一手），案面上点道也算 */
+.mc-tbl{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:calc(100% - 24px);max-width:520px;margin:8px auto 4px}
+.mc-opt{flex:1 1 30%;min-width:0;min-height:44px;background:linear-gradient(180deg,#2E3F4C,#1B2830);color:#CFD8DC;border:2px solid #455A64;border-radius:12px;font-size:12.5px;font-weight:800;line-height:1.2;padding:4px 4px;cursor:pointer}
+.mc-opt:hover{border-color:#FFB74D}
+.mc-opt.on{background:linear-gradient(180deg,#4A3418,#2A1C0B);border-color:#FFB74D;color:#FFE0B2}
+.mc-opt.good{background:linear-gradient(180deg,#1F4A25,#123018);border-color:#81C784;color:#DCEDC8}
+.mc-opt.wrong{background:linear-gradient(180deg,#5D1F1B,#3A120F);border-color:#EF5350;color:#FFCDD2;animation:mcShake .32s}
+@keyframes mcShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.mc-meter{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;width:calc(100% - 28px);max-width:520px;margin:4px auto}
+.mc-tl{position:relative;height:16px;background:rgba(0,0,0,.42);border-radius:8px;overflow:hidden}
+.mc-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:8px;transition:width .1s linear}
+.mc-tl.case i{background:linear-gradient(90deg,#FFB74D,#FF7043)}
+.mc-tl.tide i{background:linear-gradient(90deg,#4FC3F7,#0277BD)}
+.mc-tl.lamp i{background:linear-gradient(90deg,#FFF176,#FBC02D)}
+.mc-tl.led i{background:linear-gradient(90deg,#B0BEC5,#546E7A)}
+.mc-tl b{position:absolute;inset:0;font-size:11px;font-weight:800;color:#0E1417;text-align:center;line-height:16px;text-shadow:0 1px 0 rgba(255,255,255,.28)}
+.mc-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px auto 2px;max-width:520px}
+.mc-tool{background:#18222A;color:#B0BEC5;border:1px solid #37474F;border-radius:10px;font-size:12px;font-weight:700;padding:5px 9px;cursor:pointer}
+.mc-tool.go{background:linear-gradient(180deg,#3E5260,#18222A);border-color:#FFB74D;color:#FFE0B2}
+.mc-tool span{display:inline-block;background:rgba(255,255,255,.14);border-radius:5px;padding:0 4px;margin-left:5px;font-size:10px}
+.mc-tool b{color:#FFE082;margin-left:4px}
+.mc-tool:disabled{opacity:.4;cursor:default}
+.mc-hintline{font-size:11.5px;color:#78909C;text-align:center;margin:4px auto 0;max-width:520px;line-height:1.5;padding:0 10px}
+.mc-hintline b{color:#B0BEC5}
+.mc-hintline code{background:rgba(255,255,255,.1);border-radius:4px;padding:0 4px}
+.mc-cdot{position:absolute;right:8px;top:8px;font-size:11px;background:#FF7043;color:#20150C;border-radius:8px;padding:1px 6px;font-weight:900}
+.mode-card{position:relative}
+/* 结算：盖在案上的一层布 */
+.mc-over{position:absolute;inset:0;background:rgba(3,6,8,.9);z-index:20;display:flex;align-items:center;justify-content:center;border-radius:16px}
+#screen-mc{position:relative}
+.mc-overbox{width:88%;max-width:420px;background:linear-gradient(180deg,#1E2B33,#0B1114);border:2px solid #455A64;border-radius:14px;padding:12px 14px;text-align:center;color:#CFD8DC}
+.mc-overbox h3{margin:0 0 6px;font-size:20px;color:#FFD54F}
+.mc-overbox p{margin:3px 0;font-size:13px}
+.mc-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.mc-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
 </style>
 
 </head>
@@ -7999,8 +8051,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 112 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">112</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 113 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">113</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -8011,12 +8063,18 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>112 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>54</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>113 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>55</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="mcCard" onclick="enterMode('mc')">
+      <div class="icon">🪓</div>
+      <div class="info"><h3>笔顺断路坊</h3><p id="mcCardTip">字妖顺着<b>笔序</b>从行军口往大营赶：一根笔是一枚山寨，笔与笔之间修成一道，<b>道越粗过得来的妖越多</b>。你手里只有这些工班 —— 堵哪几道、花最少的班让一个妖也进不了大营，<b>能过来多少妖就得堵多少班</b></p>
+      <span class="mc-cdot" id="mcCardDot">🆕</span>
+    </div>
+</div>
 <div class="mode-card" id="huCard" onclick="enterMode('hu')">
       <div class="icon">🔺</div>
       <div class="info"><h3>笔顺围篱坊</h3><p id="huCardTip">这个字的每一笔在案上落成一枚<b>木桩</b>：皮筋从最左那根出发，一路往同一侧拧，<b>收口那一圈</b>把所有桩围住 —— 圈上的桩要你一根根绷，圈里的桩一根也碰不得</p>
@@ -9032,6 +9090,69 @@ button:active{transform:scale(.95)}
       <div class="hu-overbtns">
         <button id="huReBtn">🔁 再围一圈</button>
         <button id="huReHome">🏠 回实验室</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-mc">
+  <div class="top-bar">
+    <button class="back-btn" onclick="mcLeave()">← 返回</button>
+    <div class="stats"><span id="mcScoreTxt">🪓 <b id="mcScore">0</b> 文</span><span id="mcLv">第 1 场</span><span id="mcTime">这一案 17.0 秒 · 这一场 84 秒</span></div>
+    <button class="icon-btn" onclick="mcHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="mc-hud">
+    <span id="mcRank" title="称号">🌱 头一道栅</span>
+    <span id="mcHearts" title="生命">❤️❤️❤️</span>
+    <span id="mcLedCombo" title="连击">🔥 连击 0 · 本场最长 0</span>
+    <span id="mcLedWord" title="第几案">🪓 第 1/3 案 · 已收 0 字</span>
+    <span id="mcLedGate" title="工班与栅">🧱 案还没摆</span>
+    <span class="light" id="mcHitLight">💡 落栅</span>
+  </div>
+  <div class="mc-ask" id="mcAsk">🌱 正在挑字……<br><small>在字库里找「堵行军口太贵、堵中间最省、随手堵最粗的会漏」的字</small></div>
+  <div class="mc-stage">
+    <div class="mc-field">
+      <canvas class="mc-canvas" id="mcCv" width="420" height="340"></canvas>
+      <div class="mc-tag" id="mcTag">🪓 案还没摆</div>
+    </div>
+  </div>
+  <div class="mc-msg" id="mcMsg">🪓 一根笔落成一枚山寨，笔与笔之间有道：道越粗，一拍过得来的妖越多</div>
+  <div class="mc-tbl" id="mcOpts">
+    <button class="mc-opt" id="mcOpt0">—</button>
+    <button class="mc-opt" id="mcOpt1">—</button>
+    <button class="mc-opt" id="mcOpt2">—</button>
+    <button class="mc-opt" id="mcOpt3">—</button>
+    <button class="mc-opt" id="mcOpt4">—</button>
+    <button class="mc-opt" id="mcOpt5">—</button>
+  </div>
+  <div class="mc-meter">
+    <div class="mc-tl case"><i id="mcBarCase"></i><b>⏳ 这一案</b></div>
+    <div class="mc-tl tide"><i id="mcBarTide"></i><b>🌊 这一潮</b></div>
+    <div class="mc-tl lamp"><i id="mcBarLamp"></i><b>💡 这一场</b></div>
+    <div class="mc-tl led"><i id="mcBarLed"></i><b id="mcLedSnap">🪵 栅 0 道 · 班 0/0</b></div>
+  </div>
+  <div class="mc-tools">
+    <button class="mc-tool" id="mcPeek">🔍 探流<span>P</span><b>剩 2</b></button>
+    <button class="mc-tool" id="mcTry">✂️ 试刀<span>V</span><b>剩 2</b></button>
+    <button class="mc-tool" id="mcSwap">🔁 换字<span>S</span><b>剩 1</b></button>
+    <button class="mc-tool" id="mcHelpBtn">📖 说明<span>H</span></button>
+    <button class="mc-tool" id="mcQuitBtn">🏳 弃案<span>G</span></button>
+    <button class="mc-tool go" id="mcCheckBtn">✅ 验闸<span>F</span></button>
+  </div>
+  <div class="mc-hintline" id="mcLedNaive">🪨 <b>笨手账</b>：哪道最粗就堵哪道 —— 过闸的字这么堵至少多花 2 班<br>🧱 <b>能过来多少妖，就得堵多少班</b>（最大流 = 最小割）· 点案面上的道或 <code>1~6</code> 落栅 · <code>退格</code> 拆最后一道 · ✅ <code>F</code> 验闸 · 🔍 <code>P</code> 探流 · ✂️ <code>V</code> 试刀 · 🔁 <code>S</code> 换字 · <code>H</code> 📖 说明 · <code>G</code> 🏳 弃案</div>
+
+  <div class="mc-over" id="mcOver" style="display:none">
+    <div class="mc-overbox">
+      <h3>🪓 收工</h3>
+      <p id="mcRsWhy">⏺ 这一场的钟走完了</p>
+      <p id="mcRsScore">🧾 0 文</p>
+      <p id="mcRsWords">🪓 收字 0 · 场号 1 · 连击 0</p>
+      <p id="mcRsStars">⭐ +0</p>
+      <p id="mcRsErr">✗ 漏妖 0 回 · 多花 0 班</p>
+      <p id="mcRsShelf">🗄 栅架：（这一把一件没添）</p>
+      <p id="mcRsRank">🌱 头一道栅</p>
+      <div class="mc-overbtns">
+        <button id="mcReBtn">🔁 再断一回</button>
+        <button id="mcReHome">🏠 回实验室</button>
       </div>
     </div>
   </div>
@@ -17078,6 +17199,7 @@ function updateHomeStats(){
   if(typeof avNudge==='function')avNudge();
   if(typeof vlNudge==='function')vlNudge();
   if(typeof huNudge==='function')huNudge();
+  if(typeof mcNudge==='function')mcNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -17136,6 +17258,7 @@ function enterMode(mode){
   if(mode==='avl'){avStart();return}
   if(mode==='vl'){vlStart();return}
   if(mode==='hu'){huStart();return}
+  if(mode==='mc'){mcStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -128400,6 +128523,1260 @@ function huBvAns(si){
   const want=seq[(si+1)%seq.length];
   const at=huy.opts.indexOf(want);
   return at<0?-2:at;                                  /* -2 = 出题漏了正确答案 */
+}
+
+
+/* ==== 🪓 笔顺断路坊 v1（v1.114.0）====
+   一根笔落成一枚山寨，笔与笔之间修成一道单向的道（妖顺笔序行军，不许倒着走）。
+   道越粗，一拍过得来的妖越多。孩子是断路匠：手里一钱包工班，堵道按道的宽度扣班。
+   账是本坊自己的两双手算的 —— 手一算「最多能过来多少妖」（Edmonds-Karp 带反向弧），
+   手二把 2^道 个砍法全试过去找最省的（暴力最小割）。两笔账对上，这一案才准上台。
+   过闸还多一道：最省的那一圈必须真在图中间 —— 堵行军口、堵大营门口都得比它贵。
+   本节：口径 · 九串字表 · 状态 · 落盘 · 发声 */
+
+/* ---- 口径（与 _mcgeo.cjs 一字一样）---- */
+const MC_NMIN=5,MC_NMAX=12;          /* 一子的寨数 = 笔数 */
+const MC_DMAX=200;                   /* 两寨隔这么远就连不成道 */
+const MC_SEP=14;                     /* 任意两寨至少隔这么多：眼睛分不出不上台 */
+const MC_DEGMAX=4;                   /* 一寨最多几条道 */
+const MC_EMIN=6,MC_EMAX=16;          /* 道数带 */
+const MC_WMIN=1,MC_WMAX=8;           /* 道宽档 = 一拍过几列妖 = 堵它要几班 */
+const MC_WKIND=2;                    /* 宽度至少分得出这么几档 */
+const MC_HOPMIN=2;                   /* 行军口到大营至少走这么几道 */
+const MC_CUTMIN=2;                   /* 最小割至少两道（有桥就没取舍） */
+const MC_FLOWMIN=2;                  /* 最大流至少这么几列妖 */
+const MC_CUTMAX=24;                  /* 最少工班不得超过这个：孩子算得动 */
+const MC_GAPMIN=2;                   /* 笨手（哪道粗堵哪道）至少比最省贵这么多班 */
+const MC_LSTEP=85;                   /* 两笔长度之和每这么多像素算一列宽 */
+const MC_MAIN=1;                     /* 笔序主干道一定修通：妖非走不可 */
+/* ---- 场 · 池 · 心 ---- */
+const MC_PER=3;                      /* 一场三案 */
+const MC_POOL_MIN=3,MC_POOL_WANT=12;
+const MC_HEARTS=3,MC_HEART_MAX=5,MC_BOOK_MAX=300;
+const MC_TELL_LV=4,MC_DIM_LV=6;      /* 第 4 场起道上不写宽度数字，第 6 场起寨号也收走 */
+function mcNoTell(L){return L>=MC_TELL_LV}
+function mcDim(L){return L>=MC_DIM_LV}
+/* ---- 工班钱包：最省的班数 + 这么多余量（等级越高余量越薄）---- */
+function mcSlack(L){return L<=3?4:(L<=6?3:2)}
+/* ---- 赏 ---- */
+const MC_M0=7,MC_CB=.14,MC_LVW=.07;
+const MC_PTS_BLOCK=12;               /* 一个妖也进不了大营 */
+const MC_PTS_BEST=16;                /* 一刀中的：花的班正好等于最省 */
+const MC_PTS_CLEAN=12;               /* 一把过：一次验闸就挡住 */
+const MC_PTS_ECON=8;                 /* 一根不拆：没退过工班 */
+const MC_PTS_SEQ=8;                  /* 栅数正好：落栅的手数正好等于最小割的道数，一根不多 */
+const MC_PTS_QUICK=12;               /* 眼快手快：每一案都在门槛内验闸 */
+const MC_PTS_FRESH=6;                /* 头一回收这个字 */
+const MC_PTS_NOTOOL=8,MC_PTS_TOOLRUN=14;
+/* ---- 罚 ---- */
+const MC_P_LEAK=10;                  /* 潮头打进大营 */
+const MC_P_WRONG=8;                  /* 验闸时还有流通 */
+const MC_P_SLOW=4;                   /* 案钟走尽 */
+const MC_P_QUIT=5;                   /* 弃案 */
+const MC_P_UNDO=2;                   /* 拆一道栅（工班退回来，但这一案不再算「一根不拆」）*/
+const MC_P_TOOL=4,MC_P_HELP=3;
+const MC_ERR_LINE=2;                 /* 一案验闸空验到这一回就提示「妖还在走」并记一笔 */
+const MC_ERR_CLEAN=1;                /* 一场三字「每案空验 ≤1 回」才算清白 */
+/* ---- 家什 ---- */
+const MC_P0={peek:2,try:2,swap:1};   /* 🔍 探流 / ✂️ 试刀 / 🔁 换字 */
+const MC_PEEK_MS=5200,MC_TRY_MS=4200;
+/* ---- 钟 ---- */
+function mcCaseMs(L){return Math.max(9000,18000-900*(L-1))}   /* 这一案 */
+function mcLampMs(L){return Math.max(56000,84000-2800*(L-1))} /* 这一场 */
+function mcTideMs(L){return Math.max(1100,1500-50*(L-1))}     /* 妖潮一拍（走一枚山寨）*/
+const MC_SEAL_MS=3000,MC_NAG_MS=6200,MC_HELP_MS=8200,MC_WRONG_MS=620; /* 空验之后那几张牌抖多久 */
+function mcQuickMs(L){return Math.floor(mcCaseMs(L)*0.5)} /* 眼快手快的门槛：这一案只用掉一半钟 */
+const MC_SNAP_MS=520,MC_POP_MS=300,MC_BACK_MS=420;
+/* ---- 案面：420×340，山口图就铺在这四至里 ---- */
+const MC_W=420,MC_H=340;
+const MC_FX0=40,MC_FX1=380,MC_FY0=40,MC_FY1=250;
+const MC_PR=13;                      /* 寨帽半径 */
+const MC_HIT=11;                     /* 指尖离道中心这么多像素就算点中这道 */
+/* ---- 称号：一辈子挡住的字 ---- */
+const MC_RANKS=[
+  {n:0,e:'🌱',t:'头一道栅'},  {n:2,e:'🪓',t:'认得粗细'},  {n:5,e:'✂️',t:'掐得住咽喉'},
+  {n:9,e:'🧱',t:'一案不漏'},  {n:14,e:'👀',t:'一眼定闸'}, {n:21,e:'🏔',t:'堵得干净'},
+  {n:30,e:'🧰',t:'全套家什'}, {n:42,e:'🔥',t:'一刀中的'}, {n:58,e:'👑',t:'从没多花一班'}
+];
+function mcLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function mcRankOf(w){
+  let r=MC_RANKS[0];
+  for(let i=0;i<MC_RANKS.length;i++)if(w>=MC_RANKS[i].n)r=MC_RANKS[i];
+  return r;
+}
+/* ---- 栅架 8 件 ---- */
+const MC_SHELF_LV=4;
+const MC_SHELF=[
+  {k:'栅样图',d:'挡住一个字'},              {k:'清白票',d:'一场三字每案空验 ≤'+MC_ERR_CLEAN+' 回'},
+  {k:'神来之笔',d:'一刀中的，满 5 案'},     {k:'满闸章',d:'一案落栅手数正好等于最割道数'},
+  {k:'戥子',d:'走到第 '+MC_SHELF_LV+' 场还在走'}, {k:'空手趟',d:'一场家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},   {k:'量路尺',d:'累计堵过 300 道'}
+];
+/* ---- 九串字表（一场一串，串外的字这一场过不了闸）----
+   由 _mcgeo.cjs 离线数出来（口径与上面的 MC_* 常量一一对应，改常量就得重扫重写这九串）：
+   全站 1372 字过闸 110 字（笔数带外 356 · 一刀就断有桥 335 · 最省就是堵行军口 229 ·
+   两寨隔不到 14 184 · 最省就是堵大营门 96 · 一跳到大营 47 · 笨手只贵 1 班 7 · 流只有 1 妖 5 ·
+   道数不足 6 3），按「寨数 + 道数 + 最小割班数 + 笨手多花的班 + 绕几道」并成一个难度分切九串
+   （每串 13 字，末串 6）—— 每一串里最大流与最小割逐字相等（这是定理，也是这道题的题面）：
+   第 1 串最省 8 班上下、见粗就堵多花 6 班；第 9 串最少 8 班、见粗就堵要多花 32 班。*/
+const MC_LEV={
+  1:"召匠泥纱阻吩没昆追耽创庐金",
+  2:"退哲匙好奈总陷慨揪屹罚险杭",
+  3:"缸眨盈射纪村苔选络莫材巫矿",
+  4:"俺控坪荷检岭明鬼砖政虚聊探",
+  5:"徊蚁借肠时虹哨枪茵茶独钝毙",
+  6:"符盼途架捡悄林盏粒笛批陡抖",
+  7:"刺狮挨超拯除绊肿拌标狼呻胖",
+  8:"银线律胀狗诲保脉构荐眺柄狠",
+  9:"掷钩烤的粉残"
+};
+function mcLetters(L){return MC_LEV[L]||''}
+function mcInLev(ch,L){return (mcLetters(L)||'').indexOf(ch)>=0}
+
+/* ---- 状态 ---- */
+const mcy={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  lv:1,wi:0,score:0,hearts:MC_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一案：字 · 寨 · 道 · 账 */
+  ch:'',rec:null,P:[],E:[],n:0,m:0,cut:0,flow0:0,wallet:0,slack:0,
+  cutSet:[],cost:0,cuts:0,undos:0,checks:0,leaks:0,
+  /* 妖潮 */
+  tide:0,tideMs:0,tideHops:0,tide0:0,tidePath:[],tideBad:0,
+  /* 眼下的场面 */
+  opts:null,sel:0,peekMs:0,tryMs:0,tryRoad:-1,tryOut:'',lit:null,wrongMs:0,spark:[],dots:[],anim:null,
+  mf:null,ink:null,inkCh:'',aff:null,pick:-1,
+  peekUse:0,tryUse:0,swapUse:0,
+  /* 这一案的钟 */
+  case0:0,caseMs:0,lamp:0,lamp0:0,sealMs:0,quickOk:1,quickMs:0,err:0,errSum:0,fieldTools:0,
+  /* 局账 */
+  words:0,blocks:0,bestN:0,perfect:0,econN:0,seqN:0,quickN:0,wrongs:0,leaksAll:0,
+  undoAll:0,cutsAll:0,swaps:0,tools:0,wordTools:0,cleanRun:0,toolRun:0,costSum:0,overSum:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',nags:0,nagMs:0,newBest:false,helpMs:0,
+  tellOff:0,dim:0,seed:1
+};
+
+/* ---- 本坊自己的发声 · 回话 · 定时器（不借别人家的栏）---- */
+function mcTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!mcy.ac)mcy.ac=new AC();
+    const c=mcy.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='square';
+    n.gain.value=g===undefined?.045:g;
+    o.connect(n);n.connect(c.destination);
+    o.start();o.stop(c.currentTime+(d||90)/1000);
+  }catch(e){}
+}
+function mcSay(msg,color){const el=document.getElementById('mcMsg');if(!el)return;
+  el.textContent=msg||'';el.style.color=color||'#FFE082';el.style.opacity=msg?'1':'0'}
+function mcT(fn,ms){const id=setTimeout(function(){
+  const i=mcy.timers.indexOf(id);if(i>=0)mcy.timers.splice(i,1);
+  if(!mcy.run||mcy.over)return;
+  try{fn()}catch(e){}
+},ms);mcy.timers.push(id);return id}
+function mcKill(){
+  for(let i=0;i<mcy.timers.length;i++)clearTimeout(mcy.timers[i]);
+  mcy.timers=[];
+  if(mcy.rafId){cancelAnimationFrame(mcy.rafId);mcy.rafId=0}
+}
+/* ---- 落盘：hz_minc_* 共 19 本 ---- */
+function mcPut(k,v){try{localStorage.setItem('hz_minc_'+k,''+v)}catch(e){}}
+function mcGet(k,d){try{const v=localStorage.getItem('hz_minc_'+k);return v===null?d:v}catch(e){return d}}
+function mcNum(k){return Number(mcGet(k,0))||0}
+function mcInc(k,n){const v=mcNum(k)+(n||1);mcPut(k,v);return v}
+function mcBookPush(ch,why){
+  const bk=(mcGet('book','')||'').split('|').filter(x=>x);
+  const i=bk.findIndex(x=>x.indexOf(ch+':')===0);
+  const e=ch+':'+(why||'漏');
+  if(i>=0)bk[i]=e;else bk.unshift(e);
+  while(bk.length>MC_BOOK_MAX)bk.pop();
+  mcPut('book',bk.join('|'));
+}
+function mcBookHas(ch){return (mcGet('book','')||'').split('|').some(x=>x.indexOf(ch+':')===0)}
+/* 这一回挡住了就把这一笔从漏妖簿上划掉：簿上只留还没补回来的字 */
+function mcBookDel(ch){
+  const bk=(mcGet('book','')||'').split('|').filter(x=>x&&x.indexOf(ch+':')!==0);
+  mcPut('book',bk.join('|'));
+}
+function mcLedgerPut(){
+  /* 一辈子账只加不减：这一把为 0 的那几本一个字也不写，免得把总账冲成 0 */
+  if(mcy.words)mcPut('words',mcNum('words')+mcy.words);
+  if(mcy.blocks)mcPut('blocks',mcNum('blocks')+mcy.blocks);
+  if(mcy.bestN)mcPut('best',mcNum('best')+mcy.bestN);
+  if(mcy.wrongs)mcPut('wrongs',mcNum('wrongs')+mcy.wrongs);
+  if(mcy.leaksAll)mcPut('leaks',mcNum('leaks')+mcy.leaksAll);
+  if(mcy.cutsAll)mcPut('cuts',mcNum('cuts')+mcy.cutsAll);
+  if(mcy.undoAll)mcPut('undos',mcNum('undos')+mcy.undoAll);
+  if(mcy.econN)mcPut('econ',mcNum('econ')+mcy.econN);
+  if(mcy.seqN)mcPut('seq',mcNum('seq')+mcy.seqN);
+  if(mcy.quickN)mcPut('quick',mcNum('quick')+mcy.quickN);
+  if(mcy.swaps)mcPut('swaps',mcNum('swaps')+mcy.swaps);
+  if(mcy.tools)mcPut('tools',mcNum('tools')+mcy.tools);
+  if(mcy.perfect)mcPut('perfect',mcNum('perfect')+mcy.perfect);
+  if(mcy.maxCombo>mcNum('combo'))mcPut('combo',mcy.maxCombo);
+}
+
+/* ==== 断路坊 ②：几何（建道 · 最大流 · 最小割）· 闸门 · 配字池 · 发栅位牌 ====
+   这一段与 _mcgeo.cjs 是同一本账：一笔 → 中位线等距中点 → 等比缩进山口 → 主干道 + 抄近道。
+   三只手互核（段 W）：手一 Edmonds-Karp（带反向弧，不带走回头就堵的死账）·
+   手二 2^道 暴力枚举切断法 · 手三核「最大流那一圈道一定真能断干净」。*/
+
+function mcMid(st){
+  let tot=0;const seg=[];
+  for(let i=1;i<st.length;i++){const d=Math.hypot(st[i][0]-st[i-1][0],st[i][1]-st[i-1][1]);seg.push(d);tot+=d}
+  if(!tot)return[st[0][0],st[0][1]];
+  let want=tot/2;
+  for(let i=0;i<seg.length;i++){
+    if(want>seg[i]){want-=seg[i];continue}
+    const a=st[i],b=st[i+1],t=seg[i]?want/seg[i]:0;
+    return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
+  }
+  return[st[st.length-1][0],st[st.length-1][1]];
+}
+function mcLen(st){
+  let tot=0;
+  for(let i=1;i<st.length;i++)tot+=Math.hypot(st[i][0]-st[i-1][0],st[i][1]-st[i-1][1]);
+  return tot;
+}
+/* 字的包围盒 → 山口（等比、居中）*/
+function mcBox(pts){
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(const p of pts){x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1])}
+  return{x0:x0,x1:x1,y0:y0,y1:y1,s:Math.min((MC_FX1-MC_FX0)/Math.max(1,x1-x0),(MC_FY1-MC_FY0)/Math.max(1,y1-y0))};
+}
+function mcFit(pts){
+  const b=mcBox(pts);
+  const ox=MC_FX0+((MC_FX1-MC_FX0)-(b.x1-b.x0)*b.s)/2,oy=MC_FY0+((MC_FY1-MC_FY0)-(b.y1-b.y0)*b.s)/2;
+  return pts.map(p=>[Math.round((p[0]-b.x0)*b.s+ox),Math.round((p[1]-b.y0)*b.s+oy)]);
+}
+/* ---- 建道：主干道（笔顺相邻，一定修）+ 抄近道（两寨挨得近才有一条）---- */
+function mcRoadW(len,a,b){return Math.max(MC_WMIN,Math.min(MC_WMAX,1+Math.floor((len[a]+len[b])/MC_LSTEP)))}
+function mcBuild(P,len){
+  const n=P.length,deg=new Array(n).fill(0),E=[];
+  const push=function(a,b){
+    E.push({a:a,b:b,d:Math.round(Math.hypot(P[a][0]-P[b][0],P[a][1]-P[b][1])),
+      w:mcRoadW(len,a,b),main:(b===a+1)?1:0});
+    deg[a]++;deg[b]++};
+  if(MC_MAIN){for(let i=0;i<n-1;i++)push(i,i+1)}          /* 妖顺笔序行军，一路走得到大营 */
+  const cand=[];
+  for(let a=0;a<n;a++)for(let b=a+2;b<n;b++)
+    cand.push({a:a,b:b,d:Math.hypot(P[a][0]-P[b][0],P[a][1]-P[b][1])});
+  cand.sort(function(x,y){return x.d-y.d||x.a-y.a||x.b-y.b});
+  for(let i=0;i<cand.length;i++){
+    const c=cand[i];
+    if(E.length>=MC_EMAX)break;
+    if(c.d>MC_DMAX)break;
+    if(deg[c.a]>=MC_DEGMAX||deg[c.b]>=MC_DEGMAX)continue;
+    push(c.a,c.b);
+  }
+  return{E:E,deg:deg};
+}
+/* ---- 手三：从行军口顺着没堵的道能走到哪些寨（BFS 淹没）---- */
+function mcReach(E,open,n,src){
+  const seen=new Array(n).fill(0);seen[src]=1;const q=[src];
+  for(let h=0;h<q.length;h++){
+    const u=q[h];
+    for(let i=0;i<E.length;i++)if(open[i]&&E[i].a===u&&!seen[E[i].b]){seen[E[i].b]=1;q.push(E[i].b)}
+  }
+  return seen;
+}
+function mcHops(E,open,n){
+  const d=new Array(n).fill(-1);d[0]=0;const q=[0];
+  for(let h=0;h<q.length;h++){
+    const u=q[h];
+    for(let i=0;i<E.length;i++)if(open[i]&&E[i].a===u&&d[E[i].b]<0){d[E[i].b]=d[u]+1;q.push(E[i].b)}
+  }
+  return d[n-1];
+}
+/* ---- 把道上的流量拆成一条一条行军队列（案上的妖就按这个画）---- */
+function mcDecomp(E,n,f){
+  const out=[],res=f.slice(),adj={};
+  for(let i=0;i<E.length;i++)if(res[i]>0)(adj[E[i].a]=adj[E[i].a]||[]).push(i);
+  for(let t=0;t<64&&out.length<32;t++){
+    let u=0;const path=[];
+    while(u!==n-1){
+      const list=adj[u]||[];let pick=-1;
+      for(let k=0;k<list.length;k++)if(res[list[k]]>0){pick=list[k];break}
+      if(pick<0)break;
+      path.push(pick);u=E[pick].b;
+    }
+    if(!path.length||u!==n-1)break;
+    let add=1e9;for(let k=0;k<path.length;k++)add=Math.min(add,res[path[k]]);
+    for(let k=0;k<path.length;k++)res[path[k]]-=add;
+    out.push({e:path,f:add});
+  }
+  return out;
+}
+/* ---- 手一：Edmonds-Karp，弧是 2×道（正向 + 反向），退得回去才算得出真账 ---- */
+function mcFlow(E,n,open,cutSet){
+  const m=E.length,cap=new Array(2*m);
+  for(let i=0;i<m;i++){cap[2*i]=(open[i]&&!cutSet[i])?E[i].w:0;cap[2*i+1]=0}
+  const to=function(a){return (a&1)?E[a>>1].a:E[a>>1].b};
+  const fr=function(a){return (a&1)?E[a>>1].b:E[a>>1].a};
+  let flow=0;
+  for(;;){
+    const pre=new Array(n).fill(-1);pre[0]=-2;const q=[0];
+    for(let h=0;h<q.length&&pre[n-1]<0;h++){
+      const u=q[h];
+      for(let a=0;a<2*m;a++)if(cap[a]>0&&fr(a)===u&&pre[to(a)]<0){pre[to(a)]=a;q.push(to(a))}
+    }
+    if(pre[n-1]<0)break;
+    let add=1e9,v=n-1;
+    while(v!==0){const a=pre[v];add=Math.min(add,cap[a]);v=fr(a)}
+    v=n-1;
+    while(v!==0){const a=pre[v];cap[a]-=add;cap[a^1]+=add;v=fr(a)}
+    flow+=add;
+    if(flow>999)return{flow:-1,f:[],paths:[]};
+  }
+  const f=E.map(function(e,i){return cap[2*i+1]});
+  return{flow:flow,f:f,paths:mcDecomp(E,n,f)};
+}
+/* ---- 手二：把 2^道 个砍法全试过去，找宽度之和最小的切断法 ---- */
+function mcBrute(E,n,open){
+  const m=E.length;
+  let best=-1,bestCost=1e9,bestSize=99;
+  const cut=new Array(m).fill(0);
+  for(let msk=0;msk<(1<<m);msk++){
+    let cost=0,size=0,ok=true;
+    for(let i=0;i<m;i++){
+      cut[i]=(msk&(1<<i))?1:0;
+      if(cut[i]){if(!open[i]){ok=false;break}cost+=E[i].w;size++}
+    }
+    if(!ok||cost>=bestCost)continue;
+    const seen=mcReach(E,open.map(function(v,i){return v&&!cut[i]}),n,0);
+    if(seen[n-1])continue;                                 /* 还连着，没切断 */
+    bestCost=cost;bestSize=size;best=msk;
+  }
+  return{cost:bestCost===1e9?-1:bestCost,size:bestSize,mask:best};
+}
+/* ---- 哪些道还挂在妖路上：从行军口赶得到，且再接得下去大营 ---- */
+function mcOnPaths(E,n,open,cut){
+  const on=open.map(function(v,i){return v&&!(cut&&cut[i])});
+  const Er=E.map(function(e){return{a:e.b,b:e.a,w:e.w}});
+  const F=mcReach(E,on,n,0),B=mcReach(Er,on,n,n-1);
+  const out=[];
+  for(let i=0;i<E.length;i++)if(on[i]&&F[E[i].a]&&B[E[i].b])out.push(i);
+  return out;
+}
+/* ---- 笨手：案面上哪条道还挂在妖路上就挑最粗的那条堵，直到断干净 ----
+   笨手不懂流量，眼里只有粗细 —— 这就是孩子下栅位的本能，也正是这一坊要拧过来的地方。*/
+function mcNaive(E,n,open){
+  const cut=new Array(E.length).fill(0);
+  let cost=0,steps=0;
+  for(;steps<24;steps++){
+    const on=mcOnPaths(E,n,open,cut);
+    let pick=-1;
+    for(let k=0;k<on.length;k++)if(pick<0||E[on[k]].w>E[pick].w)pick=on[k];
+    if(pick<0)break;                                        /* 一条都不通了：断干净了 */
+    cut[pick]=1;cost+=E[pick].w;
+  }
+  if(steps>=24)return{cost:-1,steps:steps};
+  if(mcReach(E,open.map(function(v,i){return v&&!cut[i]}),n,0)[n-1])return{cost:-1,steps:steps};
+  return{cost:cost,steps:steps};
+}
+/* ---- 闸门：这个字能不能上台（与 _mcgeo.cjs 同口径）---- */
+function mcAudit(ch,j){
+  const st=j&&j.medians;
+  if(!Array.isArray(st)||st.length<MC_NMIN||st.length>MC_NMAX)return null;
+  for(let i=0;i<st.length;i++)if(!Array.isArray(st[i])||st[i].length<2)return null;
+  const n=st.length;
+  const P=mcFit(st.map(mcMid)),sc=mcBox(st.map(mcMid)).s,len=st.map(function(s){return mcLen(s)*sc});
+  for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)
+    if(Math.hypot(P[a][0]-P[b][0],P[a][1]-P[b][1])<MC_SEP)return null;
+  const g=mcBuild(P,len),E=g.E,open=E.map(function(){return 1});
+  if(E.length<MC_EMIN)return null;
+  if(!mcReach(E,open,n,0)[n-1])return null;
+  const hp=mcHops(E,open,n);
+  if(hp<MC_HOPMIN)return null;
+  const kinds={};for(let i=0;i<E.length;i++)kinds[E[i].w]=1;
+  if(Object.keys(kinds).length<MC_WKIND)return null;
+  const zero=E.map(function(){return 0});
+  const mf=mcFlow(E,n,open,zero);
+  if(mf.flow<MC_FLOWMIN)return null;
+  const bc=mcBrute(E,n,open);
+  if(bc.cost!==mf.flow)return null;                      /* 两笔账对不上：这个字不上台 */
+  if(bc.size<MC_CUTMIN)return null;
+  let starS=0,starT=0;
+  for(let i=0;i<E.length;i++){if(E[i].a===0)starS+=E[i].w;if(E[i].b===n-1)starT+=E[i].w}
+  if(bc.cost>=starS)return null;                         /* 最省就是堵行军口：这案只有一条规则 */
+  if(bc.cost>=starT)return null;                         /* 最省就是堵大营门：同上 */
+  if(bc.cost>MC_CUTMAX)return null;
+  const nv=mcNaive(E,n,open);
+  if(nv.cost<0)return null;
+  if(nv.cost-bc.cost<MC_GAPMIN)return null;
+  const mask=[];for(let i=0;i<E.length;i++)mask.push((bc.mask&(1<<i))?1:0);
+  const rec={ch:ch,n:n,P:P,E:E,flow:mf.flow,cut:bc.cost,cutSize:bc.size,mask:mask,
+    naive:nv.cost,naiveSteps:nv.steps,hop:hp,paths:mf.paths,starS:starS,starT:starT,med:st};
+  rec.j=j;return rec;
+}
+/* ---- 发栅位牌：6 张 —— 最省那一圈全上桌 + 笨手会先下的那一刀 + 近邻诱饵 ---- */
+function mcDeal(rec,rnd){
+  const E=rec.E,n=rec.n,open=rec.E.map(function(){return 1});
+  const inCut=[];for(let i=0;i<E.length;i++)if(rec.mask[i])inCut.push(i);
+  /* 笨手第一刀落的那道：还挂着妖路的道里最粗的一条 —— 它多半不在最省那一圈上，是来勾人的 */
+  let trap=-1;
+  const on=mcOnPaths(E,n,open,null);
+  for(let k=0;k<on.length;k++)if(trap<0||E[on[k]].w>E[trap].w)trap=on[k];
+  const pool=[];
+  const add=function(i){if(i>=0&&i<E.length&&pool.indexOf(i)<0&&pool.length<6)pool.push(i)};
+  for(let i=0;i<inCut.length;i++)add(inCut[i]);
+  add(trap);
+  /* 诱饵：最省那一圈左右的邻道（孩子最容易在这里多花班）*/
+  const nb=[];
+  for(let i=0;i<E.length;i++){
+    if(rec.mask[i])continue;
+    for(let k=0;k<inCut.length;k++)if(E[i].a===E[inCut[k]].a||E[i].b===E[inCut[k]].b||E[i].b===E[inCut[k]].a){nb.push(i);break}
+  }
+  nb.sort(function(a,b){return E[b].w-E[a].w||a-b});
+  for(let i=0;i<nb.length&&pool.length<6;i++)add(nb[i]);
+  for(let i=0;i<E.length&&pool.length<6;i++)add(i);
+  for(let i=pool.length-1;i>0;i--){const s=Math.floor(rnd()*(i+1));const t=pool[i];pool[i]=pool[s];pool[s]=t}
+  return pool;
+}
+
+/* ==== 断路坊 ③：开工 · 钟 · 画山口 ==== */
+function mcEl(id){return document.getElementById(id)}
+function mcTxt(id,s){const e=mcEl(id);if(e)e.textContent=s}
+function mcTag(s){const e=mcEl('mcTag');if(e)e.textContent=s}
+let mcCtx=null,mcCv=null,mcGen=0;
+
+function mcBind(){
+  if(mcy.bound)return;mcy.bound=true;
+  mcCv=mcEl('mcCv');if(mcCv&&mcCv.getContext)mcCtx=mcCv.getContext('2d');
+  const tap=function(id,fn){const e=mcEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();if(!mcy.run||mcy.over||mcy.locked)return;fn()})};
+  for(let i=0;i<6;i++)(function(i){tap('mcOpt'+i,function(){mcPick(i)})})(i);
+  tap('mcPeek',function(){mcPeek()});
+  tap('mcTry',function(){mcTry()});
+  tap('mcSwap',function(){mcSwap()});
+  tap('mcCheckBtn',function(){mcCheck()});
+  tap('mcQuitBtn',function(){mcQuit('quit')});
+  tap('mcHelpBtn',function(){mcHelp()});
+  /* 案面上点道：指尖落在哪一道就动哪一道（牌只是快捷键）*/
+  if(mcCv){
+    mcCv.addEventListener('pointerdown',function(ev){
+      if(!mcy.run||mcy.over||mcy.locked||mcy.phase!=='play')return;
+      const r=mcCv.getBoundingClientRect();
+      if(!r.width||!r.height)return;
+      const x=(ev.clientX-r.left)*MC_W/r.width,y=(ev.clientY-r.top)*MC_H/r.height;
+      const i=mcRoadAt(x,y);
+      if(i>=0){ev.preventDefault();mcToggle(i)}else mcTag('🪓 没点着道 —— 照着粗的那条线点');
+    });
+  }
+  /* 散场那两颗钮不能叫 run/over 拦着：孩子站在结算屏上点不动就等于一堵墙 */
+  const tapFree=function(id,fn){const e=mcEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();fn()})};
+  tapFree('mcReBtn',function(){mcStart(true)});
+  tapFree('mcReHome',function(){mcLeave('lab')});
+  window.addEventListener('keydown',function(e){
+    if(!mcy.run||mcy.over)return;
+    const sc=document.getElementById('screen-mc');
+    if(!sc||!sc.classList.contains('active'))return;
+    const k=e.key;
+    if(k>='1'&&k<='6'){e.preventDefault();mcPick(Number(k)-1)}
+    else if(k==='Backspace'){e.preventDefault();mcUndo()}
+    else if(k==='f'||k==='F'||k==='Enter'){e.preventDefault();mcCheck()}
+    else if(k==='p'||k==='P'){e.preventDefault();mcPeek()}
+    else if(k==='v'||k==='V'){e.preventDefault();mcTry()}
+    else if(k==='s'||k==='S'){e.preventDefault();mcSwap()}
+    else if(k==='h'||k==='H'){e.preventDefault();mcHelp()}
+    else if(k==='g'||k==='G'){e.preventDefault();mcQuit('quit')}
+    else if(k==='Escape'){e.preventDefault();mcQuit('quit')}
+    else if(k==='r'||k==='R'){e.preventDefault();mcStart(true)}
+  });
+}
+function mcStart(again){
+  mcBind();mcKill();
+  mcy.gen++;mcGen=mcy.gen;
+  const w=mcNum('words');
+  mcy.run=true;mcy.over=false;mcy.phase='load';mcy.load=true;mcy.locked=0;
+  mcy.lv=mcLvOf(w);mcy.wi=0;mcy.score=0;mcy.hearts=MC_HEARTS;mcy.combo=0;mcy.maxCombo=0;mcy.words=0;
+  mcy.blocks=0;mcy.bestN=0;mcy.perfect=0;mcy.econN=0;mcy.seqN=0;mcy.quickN=0;mcy.wrongs=0;
+  mcy.leaksAll=0;mcy.cutsAll=0;mcy.undoAll=0;mcy.swaps=0;mcy.tools=0;mcy.cleanRun=0;mcy.toolRun=0;
+  mcy.costSum=0;mcy.overSum=0;mcy.gain=0;mcy.penSum=0;mcy.hitOk=0;mcy.nags=0;mcy.newBest=false;mcy.fresh=0;mcy.seen=[];
+  mcy.peekN=MC_P0.peek;mcy.tryN=MC_P0.try;mcy.swapN=MC_P0.swap;
+  mcy.peekUse=0;mcy.tryUse=0;mcy.swapUse=0;
+  mcy.miss=[];const bk=(mcGet('book','')||'').split('|');
+  for(let i=0;i<bk.length&&mcy.miss.length<8;i++){const s=bk[i];if(s&&s.indexOf(':')>0)mcy.miss.push(s.split(':')[0])}
+  mcy.pool=[];mcy.poolLv=-1;
+  const sc=mcEl('screen-mc');
+  if(sc){document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});sc.classList.add('active')}
+  const ov=mcEl('mcOver');if(ov)ov.style.display='none';
+  mcy.playMs=0;mcy.lamp0=mcLampMs(mcy.lv);mcy.lamp=mcy.lamp0;
+  mcTxt('mcLv','第 '+mcy.lv+' 场');mcRender();
+  mcSay('');
+  mcFillPool().then(function(){
+    if(mcy.gen!==mcGen||!mcy.run)return;
+    mcy.load=false;mcNextCase();
+    mcy.last=0;mcy.rafId=requestAnimationFrame(mcLoop);
+  });
+}
+function mcNudge(){/* 别的坊收了字：称号条跟着走 */
+  const e=mcEl('mcRank');if(e){const r=mcRankOf(mcNum('words'));e.textContent=r.e+' '+r.t}}
+/* ---- 主循环：三支钟 + 妖潮 ---- */
+function mcLoop(ts){
+  if(!mcy.run||mcy.over)return;
+  mcy.rafId=requestAnimationFrame(mcLoop);
+  const dt=mcy.last?Math.min(64,ts-mcy.last):16;mcy.last=ts;
+  if(mcy.phase==='play'||mcy.phase==='seal'){mcy.playMs+=dt}
+  if(mcy.phase==='play'){
+    mcy.caseMs-=dt;if(mcy.caseMs<0)mcy.caseMs=0;
+    mcy.tideMs+=dt;
+    const per=mcTideMs(mcy.lv);
+    while(mcy.tideMs>=per&&mcy.phase==='play'){mcy.tideMs-=per;mcTideStep()}
+    if(mcy.caseMs===0)mcCaseOut();
+  }
+  if(mcy.phase==='play'||mcy.phase==='seal'){
+    mcy.lamp-=dt;if(mcy.lamp<=0){mcy.lamp=0;mcLampOut()}
+  }
+  if(mcy.peekMs>0){mcy.peekMs-=dt;if(mcy.peekMs<0)mcy.peekMs=0}
+  if(mcy.tryMs>0){mcy.tryMs-=dt;if(mcy.tryMs<=0){mcy.tryMs=0;mcy.tryRoad=-1;mcy.tryOut=''}}
+  if(mcy.wrongMs>0){mcy.wrongMs-=dt;if(mcy.wrongMs<=0){mcy.wrongMs=0;mcRenderOpts()}}   /* 抖完了把红边收回去 */
+  if(mcy.sealMs>0){mcy.sealMs-=dt;if(mcy.sealMs<=0){mcy.sealMs=0;mcSealDone()}}
+  if(mcy.nagMs>0){mcy.nagMs-=dt;if(mcy.nagMs<=0){mcy.nagMs=0;mcNag()}}
+  if(mcy.helpMs>0){mcy.helpMs-=dt;if(mcy.helpMs<=0){mcy.helpMs=0;mcHelpSay()}}
+  mcy.t+=dt;
+  for(let i=mcy.spark.length-1;i>=0;i--){const s=mcy.spark[i];
+    s.x+=s.vx*dt/16;s.y+=s.vy*dt/16;s.vy+=.06*dt/16;s.life-=dt;if(s.life<=0)mcy.spark.splice(i,1)}
+  mcDraw();mcRender();
+}
+/* ---- 指尖落点 → 第几道（到线段的最短距离）---- */
+function mcRoadAt(x,y){
+  const E=mcy.E;let best=-1,bd=MC_HIT+1;
+  for(let i=0;i<E.length;i++){
+    const a=mcy.P[E[i].a],b=mcy.P[E[i].b];
+    const dx=b[0]-a[0],dy=b[1]-a[1],L2=dx*dx+dy*dy;
+    let t=L2?((x-a[0])*dx+(y-a[1])*dy)/L2:0;
+    t=Math.max(0,Math.min(1,t));
+    const d=Math.hypot(x-(a[0]+dx*t),y-(a[1]+dy*t));
+    if(d<bd){bd=d;best=i}
+  }
+  return bd<=MC_HIT?best:-1;
+}
+
+/* ==== 断路坊 ④：一案 · 落栅 · 妖潮 · 验闸 ==== */
+function mcRnd(){mcy.seed=(mcy.seed*1103515245+12345)&0x7fffffff;return mcy.seed/0x7fffffff}
+const mcCache={};
+/* ---- 配字池：本串的字当场再过一遍闸 ---- */
+function mcFillPool(){
+  const lv=mcy.lv,gen=mcy.gen;
+  const letters=(mcLetters(lv)||'').split('');
+  const want=[];
+  for(let i=0;i<mcy.miss.length;i++){const c=mcy.miss[i];if(letters.indexOf(c)>=0&&want.indexOf(c)<0)want.push(c)}
+  for(let i=letters.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=letters[i];letters[i]=letters[j];letters[j]=t}
+  for(let i=0;i<letters.length;i++)if(want.indexOf(letters[i])<0)want.push(letters[i]);
+  const rest=[];for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,(mcLetters(L)||'').split(''));
+  const need=function(){return mcy.pool.length>=MC_POOL_WANT};
+  const scan=async function(list){
+    for(let kk=0;kk<list.length&&!need();kk+=12){
+      const rs=await Promise.all(list.slice(kk,kk+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(mcy.gen!==gen||!mcy.run)return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[kk+i];if(!rs[i]||!rs[i].medians)continue;
+        let rec=mcCache[ch];
+        if(rec===undefined){rec=mcAudit(ch,rs[i])||null;mcCache[ch]=rec}
+        if(!rec)continue;
+        if(!mcy.pool.some(function(p){return p.ch===ch}))mcy.pool.push(rec);
+      }
+    }
+  };
+  return scan(want.concat(rest)).then(function(){
+    if(mcy.pool.length<MC_POOL_MIN&&lv!==mcy.poolLv){mcy.poolLv=lv;return mcFillPool()}
+    return mcy.pool;
+  });
+}
+/* ---- 开一案：从池里挑一个还没收齐的字 ---- */
+function mcNextCase(){
+  if(!mcy.pool.length){mcOver('pool');return}
+  let pick=-1;
+  for(let i=0;i<mcy.pool.length;i++){
+    const c=mcy.pool[i].ch;
+    if(!mcy.seen.some(function(s){return s===c})&&mcy.miss.indexOf(c)<0){pick=i;break}
+  }
+  if(pick<0)pick=Math.floor(mcy.pool.length*mcRnd());
+  const rec=mcy.pool.splice(pick,1)[0];
+  mcy.rec=rec;mcy.ch=rec.ch;mcy.P=rec.P;mcy.E=rec.E;mcy.n=rec.n;mcy.m=rec.E.length;
+  mcy.cut=rec.cut;mcy.flow0=rec.flow;mcy.slack=mcSlack(mcy.lv);mcy.wallet=rec.cut+mcy.slack;
+  mcy.cutSet=rec.E.map(function(){return 0});
+  mcy.cost=0;mcy.cuts=0;mcy.undos=0;mcy.checks=0;mcy.leaks=0;mcy.pick=-1;
+  mcy.err=0;mcy.wordTools=0;mcy.quickOk=1;mcy.broken=0;mcy.brokenWhy='';
+  mcy.seed=(rec.ch.charCodeAt(0)+mcy.lv*7919+mcy.gen)&0x7fffffff;
+  mcy.opts=mcDeal(rec,mcRnd);
+  mcy.tellOff=mcNoTell(mcy.lv);mcy.dim=mcDim(mcy.lv);
+  mcy.case0=mcCaseMs(mcy.lv);mcy.caseMs=mcy.case0;
+  mcy.tide=0;mcy.tideMs=0;mcy.tideHops=rec.hop;mcy.tide0=rec.hop;mcy.tideBad=0;
+  mcy.lit=null;mcy.peekMs=0;mcy.tryMs=0;mcy.tryRoad=-1;mcy.tryOut='';mcy.wrongMs=0;
+  mcy.nagMs=MC_NAG_MS;mcy.helpMs=0;
+  mcReFlow();
+  mcy.phase='play';mcy.locked=0;
+  mcSetTitle();mcAsk();mcRenderOpts();
+  mcSay('🪓 上案：'+rec.ch+' · '+rec.n+' 枚山寨 · '+rec.E.length+' 道 · 手上有 '+mcy.wallet+' 班'+
+    (mcy.tellOff?'':' · 一拍最多过 '+rec.flow+' 列妖'));
+}
+function mcSetTitle(){
+  const r=mcy.rec;
+  mcTxt('mcTime','这一案 '+(mcy.case0/1000).toFixed(1)+' 秒 · 这一场 '+(mcy.lamp0/1000).toFixed(0)+' 秒');
+  mcTag('🪓 '+r.ch+' · 工班 '+mcy.wallet+(mcy.tellOff?'':' · 一拍 '+r.flow+' 列妖'));
+}
+function mcAsk(){
+  const el=mcEl('mcAsk');if(!el)return;
+  const r=mcy.rec;
+  el.innerHTML='🧱 妖顺<b>笔序</b>从 <b>行军口</b> 赶向 <b>大营</b>：点道落栅，堵到'+
+    (mcy.tellOff?'一个妖也过不来':'一拍 <b>'+r.flow+'</b> 列妖都过不来')+'<br>'+
+    '<small>堵一道按它的<b>粗细</b>扣工班 · 手上的班花完就没了，拆栅退班要扣文 · ✅ 验闸收案</small>';
+}
+/* ---- 重算这一案的流（手一）：栅动一下就得重算，案上的妖才会改道 ---- */
+function mcReFlow(){
+  const open=mcy.E.map(function(){return 1});
+  mcy.mf=mcFlow(mcy.E,mcy.n,open,mcy.cutSet);
+}
+/* ---- 妖潮：一拍往前挪一枚山寨；眼前无路就停在山口改道 ---- */
+function mcTideStep(){
+  if(mcy.phase!=='play')return;
+  const E=mcy.E,n=mcy.n,open=E.map(function(x,i){return mcy.cutSet[i]?0:1});
+  /* 从潮头往大营找最近的一条活路（BFS 记前驱）*/
+  const pre=new Array(n).fill(-1),seen=new Array(n).fill(0);
+  seen[mcy.tide]=1;const q=[mcy.tide];
+  for(let h=0;h<q.length&&seen[n-1]===0;h++){
+    const u=q[h];
+    for(let i=0;i<E.length;i++)if(open[i]&&E[i].a===u&&!seen[E[i].b]){seen[E[i].b]=1;pre[E[i].b]=i;q.push(E[i].b)}
+  }
+  if(!seen[n-1]||mcy.mf.flow===0){
+    mcy.tideBad++;
+    if(mcy.tideBad===3)mcSay('🌊 妖在山口踟蹰：这一条路断了 —— 按 ✅ 验闸收这案');
+    return;
+  }
+  /* 从大营沿前驱摸回潮头，倒过来就是行军队列；一拍只挪头一枚，别让它一步跨进大营 */
+  const roads=[],hops=[];let v=n-1;
+  while(v!==mcy.tide){roads.push(pre[v]);hops.push(v);v=E[pre[v]].a}
+  const road=roads[roads.length-1],next=hops[hops.length-1];
+  const a=mcy.P[mcy.tide],b=mcy.P[next];
+  mcy.spark.push({x:(a[0]+b[0])/2,y:(a[1]+b[1])/2,vx:0,vy:0,life:220,col:'rgba(79,195,247,.5)'});
+  mcy.tide=next;mcy.tideHops--;
+  if(mcy.tide===n-1){mcLeak('tide');return}
+  if(mcy.tideHops<=1)mcTag('🌊 潮头只差一道就进大营！');
+}
+/* ---- 落栅 / 拆栅 ---- */
+function mcToggle(i){
+  if(mcy.phase!=='play')return;
+  const e=mcy.E[i];if(!e)return;
+  mcy.pick=i;mcy.nagMs=MC_NAG_MS;
+  if(mcy.cutSet[i]){
+    mcy.cutSet[i]=0;mcy.cost-=e.w;mcy.undos++;mcy.undoAll++;
+    mcy.score=Math.max(0,mcy.score-MC_P_UNDO);mcy.penSum+=MC_P_UNDO;
+    mcReFlow();mcBurst(mcy.P[e.a],mcy.P[e.b],'rgba(176,190,197,.9)');
+    mcTone(300,90);
+    mcSay('🔁 拆掉 笔'+(e.a+1)+'→笔'+(e.b+1)+'，退回 '+e.w+' 班（拆一道扣 '+MC_P_UNDO+' 文）· 手上 '+(mcy.wallet-mcy.cost)+' 班');
+    mcRenderOpts();return;
+  }
+  const left=mcy.wallet-mcy.cost;
+  if(e.w>left){
+    mcTone(180,140);
+    mcSay('🧱 手上只剩 '+left+' 班，这一道要 '+e.w+' 班 —— 要么换一道，要么拆了重排');
+    mcy.hitTxt='工班不够';mcy.hitOk=0;return;
+  }
+  mcy.cutSet[i]=1;mcy.cost+=e.w;mcy.cuts++;mcy.cutsAll++;
+  mcReFlow();mcBurst(mcy.P[e.a],mcy.P[e.b],'rgba(255,183,77,.95)');
+  mcy.hitTxt='落栅';
+  if(mcy.mf.flow===0){
+    mcy.hitOk=1;mcTone(880,150,.06);mcTone(1320,180,.05);
+    mcTag('🧱 断了！一个妖也进不了大营 —— 按 ✅ 验闸');
+    mcSay('🧱 落栅 '+mcy.cuts+' 道 · 花 '+mcy.cost+' 班，妖在前山转圈 —— 按 ✅ 验闸收这案');
+  }else{
+    mcy.hitOk=0;mcTone(660,110);
+    mcTag('✂️ 堵了它，妖还剩 '+mcy.mf.flow+' 列能过');
+    mcSay('✂️ 堵了 笔'+(e.a+1)+'→笔'+(e.b+1)+'（'+e.w+' 班）：改道之后还有 '+mcy.mf.flow+' 列妖走得通');
+  }
+  mcRenderOpts();
+}
+function mcPick(k){
+  if(k>=mcy.opts.length){mcSay('这一张牌还没发');return}
+  mcToggle(mcy.opts[k]);
+}
+function mcUndo(){
+  for(let i=mcy.E.length-1;i>=0;i--)if(mcy.cutSet[i]){mcToggle(i);return}
+  mcSay('案上一道栅也没有，拆什么？');
+}
+/* ---- 验闸：这一案的账在这里结 ---- */
+function mcCheck(){
+  if(mcy.phase!=='play')return;
+  mcy.nagMs=MC_NAG_MS;
+  if(mcy.mf.flow>0){
+    mcy.checks++;mcy.err++;mcy.wrongs++;mcy.combo=0;mcy.quickOk=0;
+    mcy.score=Math.max(0,mcy.score-MC_P_WRONG);mcy.penSum+=MC_P_WRONG;
+    const p=mcy.mf.paths&&mcy.mf.paths[0];
+    mcy.lit={e:p?p.e:[],t:1200};
+    mcy.wrongMs=MC_WRONG_MS;                              /* 压上去的那几张牌抖一抖：这一套没堵住 */
+    mcy.tide=0;mcy.tideMs=0;mcy.tideHops=mcy.rec.hop;       /* 妖重新起潮：验漏一回，潮头退回行军口 */
+    mcTone(200,160);mcTone(150,200);
+    mcTag('🌪 漏了 '+mcy.mf.flow+' 列妖');
+    mcSay('🌪 验闸没过：还有 '+mcy.mf.flow+' 列妖能从 '+mcPathTxt(p)+' 进大营（−'+MC_P_WRONG+' 文）');
+    if(mcy.checks>=MC_ERR_LINE)mcSay('🪨 空验 '+mcy.checks+' 回了 —— 别只堵最粗的那道，堵在中间那道才省');
+    mcRenderOpts();
+    return;
+  }
+  if(mcy.cost>mcy.wallet)return;                 /* 工班不可能超支：落栅那一手就拦住了 */
+  mcy.phase='seal';mcy.locked=1;mcy.sealMs=MC_SEAL_MS;
+  const used=mcy.case0-mcy.caseMs;mcy.quickMs=used;
+  mcy.quickOk=mcy.quickOk&&used<=mcQuickMs(mcy.lv)?1:0;
+  mcTone(1046,150,.06);mcTone(1568,220,.05);
+  mcTag('✅ 闸落定 · '+mcy.ch+' 挡住');
+  mcSay('✅ 验闸过了：'+mcy.ch+' 花 '+mcy.cost+' 班（最省 '+mcy.cut+' 班）');
+}
+function mcPathTxt(p){
+  if(!p||!p.e||!p.e.length)return '行军口';
+  const E=mcy.E,a=E[p.e[0]],z=E[p.e[p.e.length-1]];
+  return '笔'+(a.a+1)+'→笔'+(a.b+1)+' 起，一路走到笔'+(z.b+1)+'（大营）';
+}
+/* ---- 三件家什 ---- */
+function mcToolCost(){
+  mcy.tools++;mcy.wordTools++;mcy.fieldTools++;
+  mcy.score=Math.max(0,mcy.score-MC_P_TOOL);mcy.penSum+=MC_P_TOOL;
+}
+function mcPeek(){
+  if(mcy.phase!=='play')return;
+  if(mcy.peekN<=0){mcSay('🔍 探流用光了');return}
+  if(!mcy.mf||!mcy.mf.paths||!mcy.mf.paths.length){mcSay('🔍 眼下没有一支妖过得去 —— 直接按 ✅ 验闸');return}
+  mcy.peekN--;mcy.peekUse++;mcToolCost();
+  mcy.peekMs=MC_PEEK_MS;
+  const pa=mcy.mf.paths[0],E=mcy.E;
+  const s=pa.e.map(function(i){return '笔'+(E[i].a+1)}).join('→')+'→笔'+(E[pa.e[pa.e.length-1]].b+1);
+  mcTag('🔍 最挤的一队 '+pa.f+' 列：'+s);
+  mcSay('🔍 探流 −'+MC_P_TOOL+' 文：最挤的一队 '+pa.f+' 列妖走 '+s);
+}
+function mcTry(){
+  if(mcy.phase!=='play')return;
+  if(mcy.tryN<=0){mcSay('✂️ 试刀用光了');return}
+  let k=mcy.pick;
+  if(k<0||mcy.cutSet[k])k=-1;
+  if(k<0)for(let i=0;i<mcy.opts.length;i++)if(!mcy.cutSet[mcy.opts[i]]){k=mcy.opts[i];break}
+  if(k<0){mcSay('✂️ 案上的道全堵死了，按 ✅ 验闸');return}
+  mcy.tryN--;mcy.tryUse++;mcToolCost();
+  mcy.tryRoad=k;mcy.tryMs=MC_TRY_MS;
+  const cut=mcy.cutSet.slice();cut[k]=1;
+  const open=mcy.E.map(function(){return 1});
+  const t=mcFlow(mcy.E,mcy.n,open,cut);
+  mcy.tryOut=t.flow===0?'一刀就断':'还剩 '+t.flow+' 列妖能过';
+  const e=mcy.E[k];
+  mcTag('✂️ 试刀 笔'+(e.a+1)+'→笔'+(e.b+1)+'（'+e.w+' 班）：'+mcy.tryOut);
+  mcSay('✂️ 试刀 −'+MC_P_TOOL+' 文：若堵 笔'+(e.a+1)+'→笔'+(e.b+1)+' 花 '+e.w+' 班 → '+mcy.tryOut);
+}
+function mcSwap(){
+  if(mcy.phase!=='play')return;
+  if(mcy.swapN<=0){mcSay('🔁 换字用光了');return}
+  mcy.swapN--;mcy.swapUse++;mcy.swaps++;mcToolCost();
+  mcy.miss.push(mcy.ch);
+  if(mcy.rec)mcy.pool.push(mcy.rec);
+  mcSay('🔁 换字 −'+MC_P_TOOL+' 文：这一案先撂下');
+  mcNextCase();
+}
+function mcNag(){
+  if(mcy.phase!=='play')return;
+  mcy.nags++;
+  if(mcy.mf&&mcy.mf.flow>0)mcSay('🐢 妖还在走：还漏 '+mcy.mf.flow+' 列 · 已花 '+mcy.cost+' 班 / 手上 '+mcy.wallet+' 班');
+  else mcSay('🧱 已经断干净了 —— 按 ✅ 验闸收这一案');
+  mcy.nagMs=MC_NAG_MS;
+}
+
+/* ==== 断路坊 ⑤：画山口 · 读数 · 收账 · 落盘 ==== */
+function mcBurst(a,b,col){
+  const x=(a[0]+b[0])/2,y=(a[1]+b[1])/2;
+  for(let i=0;i<12;i++){
+    const ang=Math.random()*Math.PI*2,sp=.9+Math.random()*2.1;
+    mcy.spark.push({x:x,y:y,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp-.6,life:380+Math.random()*260,col:col||'#FFB74D'});
+  }
+}
+function mcMul(){return Math.max(1,Math.round(MC_M0+MC_CB*mcy.combo+MC_LVW*(mcy.lv-1)))}
+/* ---- 画：山口 · 字骨 · 道（粗细=宽度）· 栅 · 寨 · 妖潮 ---- */
+function mcDraw(){
+  const c=mcCtx;if(!c)return;
+  const r=mcy.rec;
+  c.clearRect(0,0,MC_W,MC_H);
+  c.fillStyle='#10161B';c.fillRect(0,0,MC_W,MC_H);
+  /* 山口：几道山脊 */
+  c.strokeStyle='rgba(144,164,174,.10)';c.lineWidth=1;
+  for(let y=MC_FY0-14;y<=MC_FY1+30;y+=22){
+    c.beginPath();
+    for(let x=MC_FX0-10;x<=MC_FX1+10;x+=14)c.lineTo(x,y+Math.sin((x+y)/46)*7);
+    c.stroke();
+  }
+  /* 字的骨架（笔顺本体，淡墨）*/
+  if(r&&r.med){
+    if(mcy.inkCh!==mcy.ch){
+      const b=mcBox(r.med.map(mcMid));
+      const ox=MC_FX0+((MC_FX1-MC_FX0)-(b.x1-b.x0)*b.s)/2,oy=MC_FY0+((MC_FY1-MC_FY0)-(b.y1-b.y0)*b.s)/2;
+      mcy.aff={x0:b.x0,y0:b.y0,ox:ox,oy:oy,s:b.s};
+      mcy.ink=r.med.map(function(st){return st.map(function(p){return mcMapPt(p,mcy.aff)})});
+      mcy.inkCh=mcy.ch;
+    }
+    c.strokeStyle='rgba(207,216,220,.16)';c.lineWidth=3;c.lineCap='round';
+    for(let i=0;i<mcy.ink.length;i++){
+      const st=mcy.ink[i];c.beginPath();
+      for(let k=0;k<st.length;k++)c.lineTo(st[k][0],st[k][1]);
+      c.stroke();
+    }
+  }
+  const P=mcy.P,E=mcy.E;
+  /* 道：粗细 = 宽度 = 一拍过几列妖 = 堵它要几班 */
+  for(let i=0;i<E.length;i++){
+    const a=P[E[i].a],b=P[E[i].b],cut=mcy.cutSet[i];
+    c.strokeStyle=cut?'rgba(93,64,55,.55)':'rgba(120,144,156,.9)';
+    c.lineWidth=2+2*E[i].w;c.lineCap='butt';
+    c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();
+    if(!cut){                                   /* 流向记号：顺笔序，不许倒着走 */
+      const mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;
+      const ang=Math.atan2(b[1]-a[1],b[0]-a[0]);
+      c.save();c.translate(mx,my);c.rotate(ang);
+      c.strokeStyle='rgba(255,236,179,.75)';c.lineWidth=2;
+      c.beginPath();c.moveTo(-4,-5);c.lineTo(4,0);c.lineTo(-4,5);c.stroke();
+      c.restore();
+      if(!mcy.tellOff){
+        c.fillStyle='#0E1417';c.font='bold 10px sans-serif';c.textAlign='center';
+        c.fillText(E[i].w+'',mx,my+3);
+      }
+    }else{                                      /* 木栅：两道横木 + 斜撑 */
+      const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1;
+      const nx=-dy/L,ny=dx/L,mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,h=6+E[i].w;
+      c.strokeStyle='#C8863A';c.lineWidth=3;
+      for(let k=-1;k<=1;k++){
+        const px=mx+dx/L*k*7,py=my+dy/L*k*7;
+        c.beginPath();c.moveTo(px-nx*h,py-ny*h);c.lineTo(px+nx*h,py+ny*h);c.stroke();
+      }
+    }
+  }
+  /* 妖：按当前最大流的行军队列画点 */
+  if(mcy.mf&&mcy.mf.paths&&mcy.phase==='play'){
+    const per=mcTideMs(mcy.lv),ph=(mcy.t%per)/per;
+    for(let pi=0;pi<mcy.mf.paths.length&&pi<6;pi++){
+      const pa=mcy.mf.paths[pi],cnt=Math.max(1,Math.min(4,pa.f));
+      for(let k=0;k<cnt;k++){
+        const t=(ph+k/cnt)%1;
+        const lens=pa.e.map(function(i){return Math.hypot(P[E[i].b][0]-P[E[i].a][0],P[E[i].b][1]-P[E[i].a][1])});
+        let tot=0;for(let j=0;j<lens.length;j++)tot+=lens[j];
+        let want=t*tot,seg=lens.length-1;
+        for(let j=0;j<lens.length;j++){if(want>lens[j]){want-=lens[j];continue}seg=j;break}
+        const i=pa.e[seg],a=P[E[i].a],b=P[E[i].b],tt=lens[seg]?want/lens[seg]:0;
+        const x=a[0]+(b[0]-a[0])*tt,y=a[1]+(b[1]-a[1])*tt;
+        c.fillStyle='rgba(255,82,82,.92)';
+        c.beginPath();c.arc(x,y,3.4,0,7);c.fill();
+        c.fillStyle='rgba(255,183,175,.5)';
+        c.beginPath();c.arc(x,y,5.6,0,7);c.fill();
+      }
+    }
+  }
+  /* 验漏的那一条：红亮 */
+  if(mcy.lit){
+    mcy.lit.t-=16;
+    if(mcy.lit.t<=0)mcy.lit=null;
+    else if(mcy.lit.e.length){
+      c.strokeStyle='rgba(255,82,82,'+(0.35+0.5*Math.abs(Math.sin(mcy.t/220))).toFixed(2)+')';
+      c.lineWidth=6;c.beginPath();
+      for(let j=0;j<mcy.lit.e.length;j++){const i=mcy.lit.e[j];c.moveTo(P[E[i].a][0],P[E[i].a][1]);c.lineTo(P[E[i].b][0],P[E[i].b][1])}
+      c.stroke();
+    }
+  }
+  /* 🔍 探流：最挤的那一队亮出来 */
+  if(mcy.peekMs>0&&mcy.mf&&mcy.mf.paths&&mcy.mf.paths[0]){
+    const pa=mcy.mf.paths[0];
+    c.strokeStyle='rgba(79,195,247,.85)';c.lineWidth=5;c.beginPath();
+    for(let j=0;j<pa.e.length;j++){const i=pa.e[j];c.moveTo(P[E[i].a][0],P[E[i].a][1]);c.lineTo(P[E[i].b][0],P[E[i].b][1])}
+    c.stroke();
+  }
+  /* ✂️ 试刀：虚影 */
+  if(mcy.tryRoad>=0){
+    const i=mcy.tryRoad,a=P[E[i].a],b=P[E[i].b];
+    c.setLineDash([5,5]);c.strokeStyle='#FFD54F';c.lineWidth=3;
+    c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();c.setLineDash([]);
+  }
+  /* 寨 */
+  for(let i=0;i<P.length;i++){
+    const isS=(i===0),isT=(i===P.length-1),head=(mcy.tide===i&&mcy.phase==='play');
+    c.fillStyle=isS?'#EF6C00':isT?'#C62828':'#37474F';
+    c.strokeStyle=head?'#4FC3F7':'#B0BEC5';c.lineWidth=head?3:2;
+    c.beginPath();c.arc(P[i][0],P[i][1],MC_PR,0,7);c.fill();c.stroke();
+    if(head){
+      const per=mcTideMs(mcy.lv),k=Math.min(1,mcy.tideMs/per);
+      c.strokeStyle='rgba(79,195,247,.9)';c.lineWidth=2;
+      c.beginPath();c.arc(P[i][0],P[i][1],MC_PR+5,-Math.PI/2,-Math.PI/2+k*6.283);c.stroke();
+    }
+    c.fillStyle='#FFF8E1';c.textAlign='center';c.font='bold 12px sans-serif';
+    c.fillText(isS?'🚩':isT?'⛺':(mcy.dim?'':String(i+1)),P[i][0],P[i][1]+(isS||isT?4:4));
+  }
+  /* 火花 */
+  for(let i=0;i<mcy.spark.length;i++){
+    const s=mcy.spark[i];
+    c.globalAlpha=Math.max(0,Math.min(1,s.life/420));
+    c.fillStyle=s.col;c.fillRect(s.x-1.6,s.y-1.6,3.2,3.2);
+  }
+  c.globalAlpha=1;
+}
+function mcMapPt(p,f){return[Math.round(f.ox+(p[0]-f.x0)*f.s),Math.round(f.oy+(p[1]-f.y0)*f.s)]}
+/* ---- 读数 ---- */
+function mcBar(id,v){const e=mcEl(id);if(e)e.style.width=Math.max(0,Math.min(100,v*100)).toFixed(1)+'%'}
+function mcRender(){
+  mcTxt('mcScore',''+mcy.score);
+  const r=mcRankOf(Math.max(mcNum('words'),mcy.words));
+  mcTxt('mcRank',r.e+' '+r.t);
+  const hs=mcEl('mcHearts');
+  if(hs)hs.textContent='❤️'.repeat(Math.max(0,mcy.hearts))+'🖤'.repeat(Math.max(0,MC_HEARTS-mcy.hearts));
+  mcBar('mcBarCase',mcy.phase==='play'?mcy.caseMs/Math.max(1,mcy.case0):1);
+  mcBar('mcBarTide',mcy.tide0?1-mcy.tideHops/mcy.tide0:0);
+  mcBar('mcBarLamp',mcy.lamp/Math.max(1,mcy.lamp0));
+  mcBar('mcBarLed',mcy.wallet?mcy.cost/mcy.wallet:0);
+  if(mcy.phase==='play')mcTxt('mcTime','这一案 '+(mcy.caseMs/1000).toFixed(1)+' 秒 · 这一场 '+(mcy.lamp/1000).toFixed(0)+' 秒');
+  const pk=mcEl('mcPeek'),tr=mcEl('mcTry'),sw=mcEl('mcSwap');
+  if(pk)pk.innerHTML='🔍 探流<span>P</span><b>剩 '+mcy.peekN+'</b>';
+  if(tr)tr.innerHTML='✂️ 试刀<span>V</span><b>剩 '+mcy.tryN+'</b>';
+  if(sw)sw.innerHTML='🔁 换字<span>S</span><b>剩 '+mcy.swapN+'</b>';
+  mcTxt('mcLedWord','🪓 第 '+(mcy.wi+1)+'/'+MC_PER+' 案 · 已收 '+mcy.words+' 字');
+  mcTxt('mcLedGate','🧱 栅 '+mcy.cuts+' 道 · 漏妖 '+mcy.leaks+' 回');
+  mcTxt('mcLedSnap','🪵 班 '+mcy.cost+'/'+mcy.wallet+'（最省 '+(mcy.dim?'?':mcy.cut)+' 班）· 空验 '+mcy.err+'/'+MC_ERR_LINE);
+  if(!mcy.rec)return;
+  mcTxt('mcLedNaive',mcy.dim?'':'🪨 笨手账：哪道粗堵哪道，这一案要 '+mcy.rec.naive+' 班（最省 '+mcy.cut+' 班 · 差 '+(mcy.rec.naive-mcy.cut)+' 班）· 点案面上的道或 1~6 落栅，退格 拆栅，F 验闸 · P 探流 · V 试刀 · S 换字 · H 说明 · G 弃案');
+  mcTxt('mcLedCombo','🔥 连击 '+mcy.combo+' · 本场最长 '+mcy.maxCombo);
+  const hl=mcEl('mcHitLight');if(hl)hl.textContent=(mcy.phase==='play'?'💡 ':'')+((mcy.phase==='play'?mcy.hitTxt:mcy.hitOk?'挡住':'')||'落栅');
+}
+function mcRenderOpts(){
+  const E=mcy.E;
+  for(let i=0;i<6;i++){
+    const el=mcEl('mcOpt'+i);if(!el)continue;
+    if(i>=mcy.opts.length){el.textContent='—';el.className='mc-opt';continue}
+    const k=mcy.opts[i],e=E[k];
+    el.textContent='笔'+(e.a+1)+'→笔'+(e.b+1)+' · '+(mcy.tellOff?'粗'+e.w:e.w+'班');
+    el.className='mc-opt'+(mcy.cutSet[k]?(mcy.wrongMs>0?' on wrong':' on'):'');
+  }
+}
+/* ---- 一案挡住：结赏 ---- */
+function mcSealDone(){
+  const r=mcy.rec;if(!r)return;
+  const fresh=mcBookHas(r.ch)?0:1;if(fresh)mcy.fresh++;
+  let pts=MC_PTS_BLOCK;const why=['挡住'];
+  mcy.blocks++;
+  const best=(mcy.cost===r.cut);
+  if(best){pts+=MC_PTS_BEST;why.push('一刀中的');mcy.bestN++;mcy.perfect++}
+  else why.push('多花 '+(mcy.cost-r.cut)+' 班');
+  if(mcy.checks===0){pts+=MC_PTS_CLEAN;why.push('一把过');mcy.econN++}
+  if(mcy.undos===0){pts+=MC_PTS_ECON;why.push('一根不拆')}
+  if(mcy.cuts===r.cutSize){pts+=MC_PTS_SEQ;why.push('栅数正好');mcy.seqN++}
+  if(mcy.quickOk){pts+=MC_PTS_QUICK;why.push('眼快手快');mcy.quickN++}
+  if(fresh){pts+=MC_PTS_FRESH;why.push('头一回')}
+  if(mcy.wordTools===0){pts+=MC_PTS_NOTOOL;why.push('空手趟');mcy.toolRun=0}
+  else{mcy.toolRun++;if(mcy.toolRun>=3){pts+=MC_PTS_TOOLRUN;mcy.toolRun=0;why.push('借家什也挡得住')}}
+  const wage=mcMul();
+  mcy.score+=pts+wage;mcy.gain+=pts+wage;mcy.costSum+=mcy.cost;mcy.overSum+=r.cut;
+  mcy.combo++;if(mcy.combo>mcy.maxCombo)mcy.maxCombo=mcy.combo;
+  if(best&&mcy.checks===0&&mcy.hearts<MC_HEART_MAX)mcy.hearts++;
+  mcy.words++;mcy.seen.push(r.ch);
+  mcTone(1046,180,.06);
+  mcSay('🎊 挡住：'+r.ch+' +'+(pts+wage)+' 文（'+why.join(' · ')+' · 工钱 '+wage+'）· 花 '+mcy.cost+' 班 / 最省 '+r.cut+' 班');
+  mcLedgerAdd(r);
+  mcBookDel(r.ch);
+  mcy.errSum+=mcy.err;
+  mcy.wi++;
+  mcy.phase='play';mcy.locked=0;
+  if(mcy.wi>=MC_PER){
+    mcy.wi=0;mcy.lv=Math.min(9,mcy.lv+1);mcy.lamp0=mcLampMs(mcy.lv);mcy.lamp=mcy.lamp0;
+    mcTxt('mcLv','第 '+mcy.lv+' 场');mcy.poolLv=-1;
+    if(mcy.fieldTools===0)mcy.cleanRun++;
+    mcy.fieldTools=0;
+    mcSay('🪓 进第 '+mcy.lv+' 场：妖更沉，道更绕');
+    mcFillPool().then(function(){if(mcy.run&&!mcy.over)mcNextCase()});
+    return;
+  }
+  mcNextCase();
+}
+/* ---- 漏妖 / 案钟尽 ---- */
+function mcLeak(why){
+  mcy.leaks++;mcy.leaksAll++;mcy.hearts--;mcy.combo=0;mcy.quickOk=0;
+  const pen=MC_P_LEAK+(why==='slow'?MC_P_SLOW:0);
+  mcy.score=Math.max(0,mcy.score-pen);mcy.penSum+=pen;
+  mcy.broken=1;mcy.brokenWhy=(why==='slow'?'案钟走尽':'妖潮破门');
+  mcBookPush(mcy.ch,'漏');
+  mcy.errSum+=mcy.err+1;
+  mcTone(160,240,.07);mcBurst(mcy.P[mcy.n-1],mcy.P[mcy.n-1],'rgba(255,82,82,.95)');
+  mcTag('🌪 妖进大营 · 掉一颗心');
+  mcSay('🌪 '+(why==='slow'?'案钟走尽 −'+pen:'潮头打进大营 −'+MC_P_LEAK)+'：'+mcy.ch+' 进错字本 · 心 '+mcy.hearts);
+  if(mcy.hearts<=0){mcOver('heart');return}
+  mcy.phase='play';mcy.locked=0;
+  mcNextCase();
+}
+function mcCaseOut(){if(mcy.phase==='play')mcLeak('slow')}
+function mcLampOut(){mcOver('lamp')}
+/* ---- 弃案 / 散场 ---- */
+function mcQuit(why){
+  if(mcy.phase!=='play'){mcOver('quit');return}
+  mcy.combo=0;mcy.quickOk=0;
+  mcy.score=Math.max(0,mcy.score-MC_P_QUIT);mcy.penSum+=MC_P_QUIT;
+  mcy.broken=1;mcy.brokenWhy='弃案';
+  mcBookPush(mcy.ch,'弃');
+  mcy.errSum+=mcy.err+1;
+  mcSay('🏳 弃了 '+mcy.ch+' −'+MC_P_QUIT+'：这一案的图先记下');
+  mcNextCase();
+}
+function mcLeave(where){
+  if(mcy.run&&!mcy.over)mcOver('leave');
+  mcy.run=false;mcy.over=true;mcKill();
+  if(typeof stopBGM==='function')stopBGM();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function mcOver(why){
+  if(mcy.over)return;
+  mcy.over=true;mcy.phase='over';mcKill();
+  mcLedgerPut();
+  const shelf=mcShelfNow(),got=[];
+  for(let i=0;i<MC_SHELF.length;i++)if(shelf[i])got.push(MC_SHELF[i].k);
+  if(got.length)mcPut('shelf',got.join('|'));
+  if(mcy.lv>mcNum('lvmax'))mcPut('lvmax',mcy.lv);
+  if(mcy.cleanRun)mcPut('notool',mcNum('notool')+mcy.cleanRun);
+  if(mcy.cleanRun>=1)mcPut('clean',mcNum('clean')+1);
+  if(mcy.score>mcNum('hi')){mcPut('hi',mcy.score);mcy.newBest=true}
+  const W={lamp:'⏺ 这一场的钟走完了',heart:'❤️ 心掉光了：大营失守',pool:'🌱 串里的字都收齐了，换个场再练',
+    leave:'🏳 你现在要走，账先结在这里',quit:'🏁 你自己按了结算'};
+  mcTxt('mcRsWhy',W[why]||'⏺ 收工');
+  mcTxt('mcRsScore','🧾 '+mcy.score+' 文'+(mcy.newBest?'（新纪录）':''));
+  mcTxt('mcRsWords','🪓 收字 '+mcy.words+' · 场号 '+mcy.lv+' · 连击 '+mcy.maxCombo);
+  const stars=Math.max(0,Math.min(3,Math.round((mcy.gain-MC_PTS_BLOCK)/22)));
+  mcTxt('mcRsStars','⭐ +'+stars+' · 挡住 '+mcy.blocks+' 案 · 一刀中的 '+mcy.bestN+' 案');
+  mcTxt('mcRsErr','✗ 漏妖 '+mcy.leaksAll+' 回 · 空验 '+mcy.wrongs+' 回 · 多花 '+(mcy.costSum-mcy.overSum)+' 班');
+  mcTxt('mcRsShelf','🗄 栅架：'+(got.length?got.join(' · '):'（这一把一件没添）'));
+  const rk=mcRankOf(mcNum('words'));
+  mcTxt('mcRsRank',rk.e+' '+rk.t+' · 一辈子挡住 '+mcNum('words')+' 字');
+  const ov=mcEl('mcOver');if(ov)ov.style.display='flex';
+  mcSay('🪓 收工：'+mcy.score+' 文 · 收字 '+mcy.words);
+}
+/* ---- 栅架 8 件 ---- */
+function mcShelfNow(){
+  const cuts=mcNum('cuts')+mcy.cutsAll;
+  let badges=0;try{badges=JSON.parse(localStorage.getItem('hz_badges')||'[]').length}catch(e){}
+  return[
+    mcNum('words')>0||mcy.words>0,
+    mcNum('clean')>0||(mcy.words>=MC_PER&&mcy.errSum<=MC_ERR_CLEAN*mcy.words),
+    mcNum('best')>=5||mcy.bestN>=5,
+    mcNum('seq')>0||mcy.seqN>0,
+    mcNum('lvmax')>=MC_SHELF_LV||mcy.lv>=MC_SHELF_LV,
+    mcNum('notool')>0||mcy.cleanRun>0,
+    badges>=3,
+    cuts>=300
+  ];
+}
+function mcLedgerAdd(rec){
+  const bk=(mcGet('dex','')||'').split('|').filter(x=>x);
+  if(!bk.some(x=>x.indexOf(rec.ch+':')===0)){
+    bk.unshift(rec.ch+':'+mcy.lv+':'+rec.cut);
+    while(bk.length>MC_BOOK_MAX)bk.pop();
+    mcPut('dex',bk.join('|'));
+  }
+}
+function mcHelpSay(){if(mcy.phase==='play')mcSay('🧰 三件家什：🔍 探流 · ✂️ 试刀 · 🔁 换字（用一次扣 '+MC_P_TOOL+' 文）')}
+
+/* ==== 断路坊 ⑥：说明 · 第二第三双手 · 把这一案的账再独立核一遍 ====
+   产品里的手（_mc_b.js）：Edmonds-Karp 走 2×道 的弧表 + 2^道 全枚举砍法。
+   这里的手故意换算法：流量用「容量矩阵 + 递归增广」，最小割用「2^寨 的点集枚举」，
+   可达用「递归 DFS」。算法不同而账目必须一致 —— 段 W 拿这几只手逐字对同一张案。*/
+
+/* ---- 说明：话写在案下那一条，翻一次扣一次 ---- */
+function mcHelpText(){
+  return '🪓 <b>一根笔是一枚山寨</b>：这一笔的中点落在山口上，第几笔就写几号寨。'+
+    '<br>👣 <b>妖顺着笔序行军</b>：寨与寨之间有道，道能并排走几列妖，看它有多粗（粗细就是宽度）。'+
+    '妖从 <b>🚩 行军口</b> 一路赶到 <b>⛺ 大营</b>，一道上一个寨。<br>'+
+    '🧱 <b>落栅要花工班</b>：堵一道按它的粗细扣几班；手上一共 <b>最省 + 松手 '+mcSlack(mcy.lv)+
+    ' 班</b>（越往后松手越少），花完就没了，拆栅退班还要扣 '+MC_P_UNDO+' 文。<br>'+
+    '✂️ <b>最大流 = 最小割</b>：一拍能过来几列妖，就得花几班才堵得住 —— 这是定理，不是运气。'+
+    '所以案上写着「一拍 N 列妖」时，N 就是这一案的底价。<br>'+
+    '🪨 <b>笨手会输</b>：见粗就堵是本能，可这一案这么堵要多花 '+
+    (mcy.rec?(mcy.rec.naive-mcy.cut):'两三')+' 班 —— 真正的瓶颈常在细道上。<br>'+
+    '🌊 <b>妖潮不停</b>：一拍潮头往大营挪一个寨，进了大营就是漏妖（−1 心）；✅ 验闸时还有妖能过 = 空验，罚 '+
+    MC_P_WRONG+' 文、潮头退回行军口。<br>'+
+    '🧰 <b>三件家什</b>：🔍 <code>P</code> 探流（照亮眼下最粗的一条行军队列）· ✂️ <code>V</code> 试刀'+
+    '（虚画一张牌，看堵了它还剩几列妖）· 🔁 <code>S</code> 换字（这一案记进漏妖簿）· 用一次扣 '+MC_P_TOOL+' 文。<br>'+
+    '🕐 <b>两支钟</b>：这一案（第 1 场 '+(mcCaseMs(1)/1000).toFixed(1)+' 秒，一场比一场短）· 这一场。'+
+    '<br>🎯 点案面上的道或 <code>1~6</code> 落栅 · <code>退格</code> 拆最近一道 · ✅ <code>F</code> 验闸 · '+
+    '<code>H</code> 说明 · <code>G</code> 🏳 弃案 · <code>R</code> 再来一局。';
+}
+function mcHelp(){
+  if(!mcy.run||mcy.over)return;
+  if(mcy.rec&&mcy.phase==='play'&&!mcy.load){
+    mcy.score=Math.max(0,mcy.score-MC_P_HELP);mcy.penSum+=MC_P_HELP;
+    mcy.tools++;mcy.wordTools++;mcy.fieldTools++;
+    mcy.hitOk=2;mcy.hitTxt='📖 翻说明 −'+MC_P_HELP;
+    mcSay(mcy.hitTxt,'#FFE0B2');
+  }
+  mcy.helpMs=MC_HELP_MS;
+  const el=mcEl('mcMsg');
+  if(el){el.innerHTML=mcHelpText();el.style.color='#FFE0B2';el.style.opacity='1'}
+}
+
+/* ---- 手四：容量矩阵 + 递归增广（不看弧表，不走 BFS）---- */
+function mcBvFlow(E,n,cutSet){
+  const C=[];for(let i=0;i<n;i++)C.push(new Array(n).fill(0));
+  for(let i=0;i<E.length;i++)if(!cutSet[i])C[E[i].a][E[i].b]+=E[i].w;
+  function dfs(u,need,seen){
+    if(u===n-1)return need;
+    for(let v=0;v<n;v++){
+      if(seen[v]||C[u][v]<=0)continue;
+      seen[v]=1;
+      const got=dfs(v,Math.min(need,C[u][v]),seen);
+      if(got>0){C[u][v]-=got;C[v][u]+=got;return got}
+    }
+    return 0;
+  }
+  let flow=0;
+  for(let t=0;t<4096;t++){
+    const seen=new Array(n).fill(0);seen[0]=1;
+    const add=dfs(0,1e9,seen);
+    if(add<=0)return flow;
+    flow+=add;
+    if(flow>999)return -2;
+  }
+  return -2;                                       /* 增广没个完：这一案不该上台 */
+}
+/* ---- 手五：最小割换一条路数 —— 枚举「哪些寨还在行军口这一边」（2^寨，不是 2^道）---- */
+function mcBvCut(E,n,cutSet){
+  const inner=n-2;
+  let best=1e9,bestSets=-1;
+  for(let msk=0;msk<(1<<inner);msk++){
+    const inS=new Array(n).fill(0);inS[0]=1;
+    for(let i=0;i<inner;i++)if(msk&(1<<i))inS[i+1]=1;
+    let cost=0;
+    for(let i=0;i<E.length;i++)
+      if(!cutSet[i]&&inS[E[i].a]&&!inS[E[i].b])cost+=E[i].w;
+    if(cost<best){best=cost;bestSets=msk}
+  }
+  return{cost:best===1e9?-1:best,sets:bestSets};
+}
+/* ---- 手六：能走到大营吗（递归 DFS，不是淹没队列）---- */
+function mcBvReach(E,n,cutSet){
+  const seen=new Array(n).fill(0);
+  function go(u){
+    if(u===n-1)return true;
+    seen[u]=1;
+    for(let i=0;i<E.length;i++)
+      if(!cutSet[i]&&E[i].a===u&&!seen[E[i].b]&&go(E[i].b))return true;
+    return false;
+  }
+  return go(0);
+}
+/* ---- 眼下案面上：哪些道还挂在某条行军队列上（正向可达 ∩ 反向可达）---- */
+function mcBvFlowing(E,n,cut){
+  const F=new Array(n).fill(0),B=new Array(n).fill(0);
+  (function f(u){F[u]=1;for(let i=0;i<E.length;i++)if(!cut[i]&&E[i].a===u&&!F[E[i].b])f(E[i].b)})(0);
+  (function b(u){B[u]=1;for(let i=0;i<E.length;i++)if(!cut[i]&&E[i].b===u&&!B[E[i].a])b(E[i].a)})(n-1);
+  const on=[];
+  for(let i=0;i<E.length;i++)if(!cut[i]&&F[E[i].a]&&B[E[i].b])on.push(i);
+  return on;
+}
+/* ---- 笨手独立走一遍：每一刀挑「还在队列上」的最粗那道 ---- */
+function mcBvNaive(E,n){
+  const cut=new Array(E.length).fill(0);
+  let cost=0,steps=0;
+  for(;steps<24;steps++){
+    const on=mcBvFlowing(E,n,cut);
+    if(!on.length)return{cost:cost,steps:steps};
+    let pick=on[0];
+    for(let k=0;k<on.length;k++)if(E[on[k]].w>E[pick].w)pick=on[k];
+    cut[pick]=1;cost+=E[pick].w;
+  }
+  return{cost:-1,steps:steps};
+}
+
+/* ---- 独立重走一遍闸门：图还是那张图（mcBuild 就是这道题的题面），账换三只手算 ---- */
+function mcAudWord(ch,j){
+  const st=j&&j.medians;
+  if(!Array.isArray(st)||st.length<MC_NMIN||st.length>MC_NMAX)return{ok:0,why:'笔数带外'};
+  for(let i=0;i<st.length;i++)if(!Array.isArray(st[i])||st[i].length<2)return{ok:0,why:'有一笔没点'};
+  const n=st.length;
+  const P=mcFit(st.map(mcMid)),sc=mcBox(st.map(mcMid)).s,
+        len=st.map(function(s){return mcLen(s)*sc});
+  for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)
+    if(Math.hypot(P[a][0]-P[b][0],P[a][1]-P[b][1])<MC_SEP)return{ok:0,why:'两寨隔不到 '+MC_SEP};
+  const E=mcBuild(P,len).E;
+  if(E.length<MC_EMIN)return{ok:0,why:'道数不足'};
+  const zero=E.map(function(){return 0});
+  if(!mcBvReach(E,n,zero))return{ok:0,why:'行军口走不到大营'};
+  const hp=mcHops(E,E.map(function(){return 1}),n);
+  if(hp<MC_HOPMIN)return{ok:0,why:'一跳到大营'};
+  const kinds={};for(let i=0;i<E.length;i++)kinds[E[i].w]=1;
+  if(Object.keys(kinds).length<MC_WKIND)return{ok:0,why:'粗细只一档'};
+  const fl=mcBvFlow(E,n,zero);
+  if(fl<MC_FLOWMIN)return{ok:0,why:fl<0?'流量算不完':'流只有 '+fl+' 妖'};
+  const bc=mcBvCut(E,n,zero);
+  if(bc.cost!==fl)return{ok:0,why:'两笔账对不上('+fl+'/'+bc.cost+')'};   /* 最大流 = 最小割 */
+  let size=0;
+  for(let i=0;i<E.length;i++){
+    const c2=zero.slice();c2[i]=1;
+    if(!mcBvReach(E,n,c2)&&E[i].w===bc.cost){size=1;break}   /* 一刀就断：最省的砍法只有一道 */
+  }
+  if(!size){const pick=mcBvCutRoads(E,n,zero);size=pick.length}
+  if(size<MC_CUTMIN)return{ok:0,why:'一刀就断（有桥）'};
+  let starS=0,starT=0;
+  for(let i=0;i<E.length;i++){if(E[i].a===0)starS+=E[i].w;if(E[i].b===n-1)starT+=E[i].w}
+  if(bc.cost>=starS)return{ok:0,why:'最省就是堵行军口'};
+  if(bc.cost>=starT)return{ok:0,why:'最省就是堵大营门'};
+  if(bc.cost>MC_CUTMAX)return{ok:0,why:'最省超 '+MC_CUTMAX+' 班'};
+  const nv=mcBvNaive(E,n);
+  if(nv.cost<0)return{ok:0,why:'笨手堵不干净'};
+  if(nv.cost-bc.cost<MC_GAPMIN)return{ok:0,why:'笨手只贵 '+(nv.cost-bc.cost)+' 班'};
+  return{ok:1,ch:ch,n:n,m:E.length,flow:fl,cut:bc.cost,cutSize:size,
+    naive:nv.cost,naiveSteps:nv.steps,hop:hp,starS:starS,starT:starT,P:P,E:E};
+}
+/* ---- 手七：最省那一圈到底是哪几道（按点集割回读道，不回头砍边）---- */
+function mcBvCutRoads(E,n,cutSet){
+  const r=mcBvCut(E,n,cutSet),inner=n-2,sel=[];
+  if(r.cost<0||r.sets<0)return sel;
+  const inS=new Array(n).fill(0);inS[0]=1;
+  for(let i=0;i<inner;i++)if(r.sets&(1<<i))inS[i+1]=1;
+  for(let i=0;i<E.length;i++)if(!cutSet[i]&&inS[E[i].a]&&!inS[E[i].b])sel.push(i);
+  return sel;
+}
+/* ---- 出题的账：只许用桌上这 6 张牌，最便宜的断干净法必须还是最省 ---- */
+function mcBvDeck(rec,opts){
+  const E=rec.E,n=rec.n;
+  let best=1e9,bestSet=null;
+  for(let msk=0;msk<(1<<opts.length);msk++){
+    const cut=E.map(function(){return 0});
+    let cost=0;
+    for(let i=0;i<opts.length;i++)if(msk&(1<<i)){cut[opts[i]]=1;cost+=E[opts[i]].w}
+    if(cost>=best)continue;
+    if(mcBvReach(E,n,cut))continue;                   /* 还连着：这副牌没断干净 */
+    best=cost;bestSet=msk;
+  }
+  return{cost:best===1e9?-1:best,mask:bestSet};
+}
+/* ---- 当场把这一案的账再核一遍：段 W/Z 收账用 ---- */
+function mcAudState(){
+  const r=mcy.rec;
+  if(!r)return{ok:0,why:'案还没摆'};
+  const zero=r.E.map(function(){return 0});
+  const fl=mcBvFlow(r.E,r.n,zero),bc=mcBvCut(r.E,r.n,zero),nv=mcBvNaive(r.E,r.n);
+  const bad=[];
+  if(fl!==r.flow)bad.push('流 '+r.flow+'/'+fl);
+  if(bc.cost!==r.cut)bad.push('割 '+r.cut+'/'+bc.cost);
+  if(nv.cost!==r.naive)bad.push('笨手 '+r.naive+'/'+nv.cost);
+  let maskCost=0;
+  for(let i=0;i<r.E.length;i++)if(r.mask[i])maskCost+=r.E[i].w;
+  if(maskCost!==bc.cost)bad.push('最省那圈的账 '+maskCost+'/'+bc.cost);
+  if(mcBvReach(r.E,r.n,r.mask))bad.push('最省那圈砍不断');
+  const dk=mcBvDeck(r,mcy.opts||[]);
+  if(dk.cost>=0&&dk.cost!==r.cut)bad.push('牌桌上最省是 '+dk.cost+' 不是 '+r.cut);
+  if(dk.cost<0)bad.push('这副牌断不干净');
+  return{ok:bad.length?0:1,ch:r.ch,n:r.n,m:r.E.length,
+    flow:r.flow,flow2:fl,cut:r.cut,cut2:bc.cost,naive:r.naive,naive2:nv.cost,
+    cutSize:r.cutSize,maskCost:maskCost,deck:dk.cost,why:bad.join(' · ')};
+}
+/* ---- 眼下案面的独立读数：段 M 拿它对产品自己的账 ---- */
+function mcBvNow(){
+  const c=mcy.cutSet.slice();
+  return{ch:mcy.ch,flow:mcy.mf?mcy.mf.flow:-9,cut:mcy.cost,cuts:mcy.cuts,
+    wallet:mcy.wallet,left:mcy.wallet-mcy.cost,
+    flowBv:mcBvFlow(mcy.E,mcy.n,c),
+    bestBv:mcBvCut(mcy.E,mcy.n,c).cost,
+    reach:mcBvReach(mcy.E,mcy.n,c)?1:0,
+    flowing:mcBvFlowing(mcy.E,mcy.n,c).length,
+    phase:mcy.phase,lv:mcy.lv,wave:mcy.tideHops};
 }
 
 
