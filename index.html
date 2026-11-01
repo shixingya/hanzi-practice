@@ -7995,6 +7995,59 @@ button:active{transform:scale(.95)}
 .mc-overbox p{margin:3px 0;font-size:13px}
 .mc-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
 .mc-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
+/* ================= v1.115 🪺 笔顺归巢坊 ================= */
+/* HUD 占死三行：字没上台那两息它只折两行，不留这一格整张案会被往上抬 */
+.nc-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.nc-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.nc-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死四行：三副题面里最宽那副（抢巢那一问带着整条链的走向）*/
+.nc-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*4)}
+.nc-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.nc-ask b{color:#FFE082}
+.nc-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 案：夜里的林梢（canvas 给底，界外留一道木框）*/
+.nc-field{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#161D24,#0D1319 58%,#060A0D);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8)}
+.nc-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.nc-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(6,10,13,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;transition:opacity .25s;pointer-events:none;white-space:nowrap;line-height:1.4;max-width:94%;z-index:6}
+.nc-msg{width:calc(100% - 28px);max-width:520px;margin:6px auto 0;background:rgba(6,10,13,.72);border:1px solid #37474F;border-radius:12px;color:#FFD54F;font-size:13px;font-weight:700;line-height:1.5;padding:7px 12px;text-align:center;min-height:calc(13px*1.5*2);max-height:168px;overflow-y:auto;transition:opacity .25s}
+.nc-msg b{color:#FFCC80}
+.nc-msg code{background:rgba(255,255,255,.12);border-radius:4px;padding:0 4px;color:#FFE082}
+/* 去处牌：这只鸟的两个窝 + 架下铺位（数字键 1~3 一张一手），案面上点格也算 */
+.nc-tbl{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:calc(100% - 24px);max-width:520px;margin:8px auto 4px}
+.nc-opt{flex:1 1 30%;min-width:0;min-height:44px;background:linear-gradient(180deg,#2E3F4C,#1B2830);color:#CFD8DC;border:2px solid #455A64;border-radius:12px;font-size:12.5px;font-weight:800;line-height:1.2;padding:4px 4px;cursor:pointer}
+.nc-opt:hover{border-color:#FFB74D}
+.nc-opt.on{background:linear-gradient(180deg,#4A3418,#2A1C0B);border-color:#FFB74D;color:#FFE0B2}
+.nc-opt.good{background:linear-gradient(180deg,#1F4A25,#123018);border-color:#81C784;color:#DCEDC8}
+.nc-opt.wrong{background:linear-gradient(180deg,#5D1F1B,#3A120F);border-color:#EF5350;color:#FFCDD2;animation:ncShake .32s}
+.nc-opt.bed{flex-basis:22%;background:linear-gradient(180deg,#2A2F3C,#171B24);border-color:#5C6B7A}
+@keyframes ncShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.nc-meter{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;width:calc(100% - 28px);max-width:520px;margin:4px auto}
+.nc-tl{position:relative;height:16px;background:rgba(0,0,0,.42);border-radius:8px;overflow:hidden}
+.nc-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:8px;transition:width .1s linear}
+.nc-tl.case i{background:linear-gradient(90deg,#FFB74D,#FF7043)}
+.nc-tl.fly i{background:linear-gradient(90deg,#4FC3F7,#0277BD)}
+.nc-tl.lamp i{background:linear-gradient(90deg,#FFF176,#FBC02D)}
+.nc-tl.led i{background:linear-gradient(90deg,#B0BEC5,#546E7A)}
+.nc-tl b{position:absolute;inset:0;font-size:11px;font-weight:800;color:#0E1417;text-align:center;line-height:16px;text-shadow:0 1px 0 rgba(255,255,255,.28)}
+.nc-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px auto 2px;max-width:520px}
+.nc-tool{background:#18222A;color:#B0BEC5;border:1px solid #37474F;border-radius:10px;font-size:12px;font-weight:700;padding:5px 9px;cursor:pointer}
+.nc-tool.go{background:linear-gradient(180deg,#3E5260,#18222A);border-color:#FFB74D;color:#FFE0B2}
+.nc-tool span{display:inline-block;background:rgba(255,255,255,.14);border-radius:5px;padding:0 4px;margin-left:5px;font-size:10px}
+.nc-tool b{color:#FFE082;margin-left:4px}
+.nc-tool:disabled{opacity:.4;cursor:default}
+.nc-hintline{font-size:11.5px;color:#78909C;text-align:center;margin:4px auto 0;max-width:520px;line-height:1.5;padding:0 10px}
+.nc-hintline b{color:#B0BEC5}
+.nc-hintline code{background:rgba(255,255,255,.1);border-radius:4px;padding:0 4px}
+.nc-cdot{position:absolute;right:8px;top:8px;font-size:11px;background:#FF7043;color:#20150C;border-radius:8px;padding:1px 6px;font-weight:900}
+.mode-card{position:relative}
+/* 结算：盖在案上的一层布 */
+.nc-over{position:absolute;inset:0;background:rgba(3,6,8,.9);z-index:20;display:flex;align-items:center;justify-content:center;border-radius:16px}
+#screen-nc{position:relative}
+.nc-overbox{width:88%;max-width:420px;background:linear-gradient(180deg,#1E2B33,#0B1114);border:2px solid #455A64;border-radius:14px;padding:12px 14px;text-align:center;color:#CFD8DC}
+.nc-overbox h3{margin:0 0 6px;font-size:20px;color:#FFD54F}
+.nc-overbox p{margin:3px 0;font-size:13px}
+.nc-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.nc-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
 </style>
 
 </head>
@@ -8051,8 +8104,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 113 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">113</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 114 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">114</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -8063,12 +8116,18 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>113 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>55</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>114 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>56</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="ncCard" onclick="enterMode('nc')">
+      <div class="icon">🪺</div>
+      <div class="info"><h3>笔顺归巢坊</h3><p id="ncCardTip">一根笔落成一只雏鸟，鸟只有两个去处：<b>起笔那一格</b>和<b>收笔那一格</b>。九宫巢架比鸟少，多出来的注定睡地下 —— 你要的是<b>每一格都住满</b>。空窝随便放，<b>抢窝就得让原主搬家</b>，它搬走那格若也有主就接着搬；<b>想清楚整条链再下手</b>，抢砸了一窝鸟惊散</p>
+      <span class="nc-cdot" id="ncCardDot">🆕</span>
+    </div>
+</div>
 <div class="mode-card" id="mcCard" onclick="enterMode('mc')">
       <div class="icon">🪓</div>
       <div class="info"><h3>笔顺断路坊</h3><p id="mcCardTip">字妖顺着<b>笔序</b>从行军口往大营赶：一根笔是一枚山寨，笔与笔之间修成一道，<b>道越粗过得来的妖越多</b>。你手里只有这些工班 —— 堵哪几道、花最少的班让一个妖也进不了大营，<b>能过来多少妖就得堵多少班</b></p>
@@ -9153,6 +9212,66 @@ button:active{transform:scale(.95)}
       <div class="mc-overbtns">
         <button id="mcReBtn">🔁 再断一回</button>
         <button id="mcReHome">🏠 回实验室</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-nc">
+  <div class="top-bar">
+    <button class="back-btn" onclick="ncLeave()">← 返回</button>
+    <div class="stats"><span id="ncScoreTxt">🪺 <b id="ncScore">0</b> 文</span><span id="ncLv">第 1 场</span><span id="ncTime">这一案 20.0 秒 · 这一场 86 秒</span></div>
+    <button class="icon-btn" onclick="ncHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="nc-hud">
+    <span id="ncRank" title="称号">🐣 头一只安家</span>
+    <span id="ncHearts" title="生命">❤️❤️❤️</span>
+    <span id="ncLedCombo" title="连击">🔥 连击 0 · 本场最长 0</span>
+    <span id="ncLedWord" title="第几案">🪺 第 1/3 案 · 已收 0 字</span>
+    <span id="ncLedGate" title="架上账">🐣 案还没摆</span>
+    <span class="light" id="ncHitLight">💡 安家</span>
+  </div>
+  <div class="nc-ask" id="ncAsk">🌱 正在挑字……<br><small>在字库里找「一路只挑空窝必定留空、肯抢窝才住得满、搬家链长得看得见」的字</small></div>
+  <div class="nc-stage">
+    <div class="nc-field">
+      <canvas class="nc-canvas" id="ncCv" width="420" height="340"></canvas>
+      <div class="nc-tag" id="ncTag">🪺 案还没摆</div>
+    </div>
+  </div>
+  <div class="nc-msg" id="ncMsg">🪺 一根笔落成一只雏鸟，鸟有两个去处：起笔那一格、收笔那一格</div>
+  <div class="nc-tbl" id="ncOpts">
+    <button class="nc-opt" id="ncOpt0">—</button>
+    <button class="nc-opt" id="ncOpt1">—</button>
+    <button class="nc-opt" id="ncOpt2">—</button>
+  </div>
+  <div class="nc-meter">
+    <div class="nc-tl case"><i id="ncBarCase"></i><b>⏳ 这一案</b></div>
+    <div class="nc-tl fly"><i id="ncBarFly"></i><b>🪶 这一只</b></div>
+    <div class="nc-tl lamp"><i id="ncBarLamp"></i><b>💡 这一场</b></div>
+    <div class="nc-tl led"><i id="ncBarLed"></i><b id="ncLedSnap">🪺 架 0/0 · 铺 0</b></div>
+  </div>
+  <div class="nc-tools">
+    <button class="nc-tool" id="ncPeek">✨ 看链<span>P</span><b>剩 2</b></button>
+    <button class="nc-tool" id="ncAuto">🪶 神助<span>V</span><b>剩 2</b></button>
+    <button class="nc-tool" id="ncSwap">🔁 换字<span>S</span><b>剩 1</b></button>
+    <button class="nc-tool" id="ncHelpBtn">📖 说明<span>H</span></button>
+    <button class="nc-tool" id="ncQuitBtn">🏳 弃案<span>G</span></button>
+    <button class="nc-tool go" id="ncSealBtn">🪺 封架<span>F</span></button>
+  </div>
+  <div class="nc-hintline" id="ncLedNaive">🪨 <b>笨手账</b>：一路只往空窝里放、一次不抢 —— 过闸的字这么摆至少空 1 格，非抢不可<br>🪺 <b>能住满几格，就得有几只鸟肯搬家</b>（最大匹配 = 最小点覆盖）· 点案面上的格或 <code>1~3</code> 出手 · ✨ <code>P</code> 看链 · 🪶 <code>V</code> 神助 · 🔁 <code>S</code> 换字 · <code>H</code> 📖 说明 · <code>G</code> 🏳 弃案</div>
+
+  <div class="nc-over" id="ncOver" style="display:none">
+    <div class="nc-overbox">
+      <h3>🪺 收工</h3>
+      <p id="ncRsWhy">⏺ 这一场的钟走完了</p>
+      <p id="ncRsScore">🧾 0 文</p>
+      <p id="ncRsWords">🪺 收字 0 · 场号 1 · 连击 0</p>
+      <p id="ncRsStars">⭐ +0</p>
+      <p id="ncRsErr">✗ 抢砸 0 回 · 空架 0 格</p>
+      <p id="ncRsShelf">🗄 巢架：（这一把一件没添）</p>
+      <p id="ncRsRank">🐣 头一只安家</p>
+      <div class="nc-overbtns">
+        <button id="ncReBtn">🔁 再归一回</button>
+        <button id="ncReHome">🏠 回实验室</button>
       </div>
     </div>
   </div>
@@ -17200,6 +17319,7 @@ function updateHomeStats(){
   if(typeof vlNudge==='function')vlNudge();
   if(typeof huNudge==='function')huNudge();
   if(typeof mcNudge==='function')mcNudge();
+  if(typeof ncNudge==='function')ncNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -17259,6 +17379,7 @@ function enterMode(mode){
   if(mode==='vl'){vlStart();return}
   if(mode==='hu'){huStart();return}
   if(mode==='mc'){mcStart();return}
+  if(mode==='nc'){ncStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -129777,6 +129898,1175 @@ function mcBvNow(){
     reach:mcBvReach(mcy.E,mcy.n,c)?1:0,
     flowing:mcBvFlowing(mcy.E,mcy.n,c).length,
     phase:mcy.phase,lv:mcy.lv,wave:mcy.tideHops};
+}
+
+
+/* ==== 🪺 笔顺归巢坊 v1（v1.115.0）====
+   一根笔落成一只雏鸟，鸟只有两个去处：起笔点那一格、收笔点那一格。案上是一枚九宫巢架，
+   一格只住一只 —— 这一坊的鸟比格多（鸽子洞），所以题面不是「全住下」，是「每一格都住满」，
+   多出来的那几只注定在架下打地铺。空窝随便放；点已经住了鸟的窝就是**抢**：原主必须搬去
+   它另一个窝，那窝若也有主就接着搬 —— 这就是增广路（搬家链）。链走到空窝才算抢动，
+   撞上「只认一个窝的死心眼鸟」或绕回已经动过的窝就断，这一窝鸟惊散。
+   账是本坊自己的两双手算的 —— 手一按只序逐只增广，数最多能住满几格（最大匹配）；
+   手二把 2^鸟 个「盯梢」组合全试过去，数盖住所有鸟最少要盯几格（最小点覆盖，Kőnig 对偶）。
+   两笔账对上、而且等于格数（架住得满），这一案才准上台。
+   过闸还多两道：一路只挑空窝的笨手必须至少留 NC_GAPMIN 格空（不抢就没解）、
+   最长搬家链不得短过 NC_CHAINMIN 只（链太短就看不出「想清楚再下手」）。
+   本节：口径 · 九串字表 · 状态 · 落盘 · 发声 */
+
+/* ---- 口径（与 _ncgeo.cjs 一字一样）---- */
+const NC_NMIN=6,NC_NMAX=13;          /* 一子的鸟数 = 笔数 */
+const NC_GC=3,NC_GR=3;               /* 九宫巢架：3 列 3 行，一格一只 */
+const NC_CELLS=NC_GC*NC_GR;          /* 9 格 */
+const NC_DIFFMIN=1,NC_DIFFMAX=5;     /* 鸟比亮格多这么多只（地铺数） */
+const NC_SOLOMAX=4;                  /* 只认一个窝的死心眼鸟最多这么多只 */
+const NC_GAPMIN=1;                   /* 笨手（一路只挑空窝）至少留这么多格空 */
+const NC_CHAINMIN=2;                 /* 最长搬家链至少这么多只 */
+const NC_CHAIN_SHOW=4;               /* 一条链搬满这么多只算神来之笔 */
+/* ---- 场 · 池 · 心 ---- */
+const NC_PER=3;                      /* 一场三案 */
+const NC_POOL_MIN=4,NC_POOL_WANT=12,NC_POOL_SCAN=320;
+const NC_HEARTS=3,NC_HEART_MAX=5,NC_BOOK_MAX=300;
+const NC_TELL_LV=4,NC_DIM_LV=6;      /* 第 4 场起鸟身上那两条去处引线收走，第 6 场起亮格的高亮也收走 */
+function ncNoTell(L){return L>=NC_TELL_LV}
+function ncDim(L){return L>=NC_DIM_LV}
+/* ---- 赏 ---- */
+const NC_M0=7,NC_CB=.14,NC_LVW=.07;
+const NC_PTS_FULL=14;                /* 满架：每一格都住满了 */
+const NC_PTS_CLEAN=12;               /* 一把过：整案一次没抢砸 */
+const NC_PTS_CHAIN=12;               /* 神来之笔：一条链搬满 NC_CHAIN_SHOW 只 */
+const NC_PTS_SEQ=8;                  /* 连击满 n：每一只都一手安置，没借神助也没抢砸 */
+const NC_PTS_QUICK=12;               /* 眼快手快：每一案都在门槛内封架 */
+const NC_PTS_FRESH=6;                /* 头一回收这个字 */
+const NC_PTS_NOTOOL=8,NC_PTS_TOOLRUN=14;
+/* ---- 罚 ---- */
+const NC_P_GRAB=8;                   /* 抢砸：链断了，这一窝鸟惊散 */
+const NC_P_SCARE=4;                  /* 惊走：明明搬得动却让它睡地下 */
+const NC_P_HOLE=5;                   /* 封架时空着的那一格：一格扣这么多文 */
+const NC_P_SLOW=4;                   /* 案钟走尽 */
+const NC_P_QUIT=5;                   /* 弃案 */
+const NC_P_TOOL=4,NC_P_HELP=3;
+const NC_ERR_LINE=3;                 /* 一案抢砸到这一回就掉心 */
+const NC_ERR_CLEAN=1;                /* 一场三字「每案抢砸 ≤1 回」才算清白票 */
+/* ---- 家什 ---- */
+const NC_P0={peek:2,auto:2,swap:1};  /* ✨ 看链 / 🪶 神助 / 🔁 换字 */
+const NC_PEEK_MS=5200,NC_AUTO_MS=4200,NC_SWAP_PEN=6;
+/* ---- 钟 ---- */
+function ncCaseMs(L){return Math.max(10000,20000-1200*(L-1))}    /* 这一案 */
+function ncFlyMs(L){return Math.max(3600,6000-260*(L-1))}        /* 这一只鸟 */
+function ncLampMs(L){return Math.max(72000,86000-1600*(L-1))}    /* 这一场 */
+const NC_SEAL_MS=3000,NC_NAG_MS=5600,NC_HELP_MS=8200,NC_WRONG_MS=620;
+function ncQuickMs(L){return Math.floor(ncCaseMs(L)*0.5)}        /* 眼快手快的门槛：这一案只用掉一半钟 */
+const NC_FLY_MS=380,NC_CHAIN_MS=260,NC_POP_MS=300,NC_BACK_MS=420;
+/* ---- 案面：420×340，九宫巢架铺在 40~380 / 40~300 这四至里（与 _ncgeo.cjs 一格不差）---- */
+const NC_W=420,NC_H=340;
+const NC_FX0=40,NC_FX1=380,NC_FY0=40,NC_FY1=300;
+const NC_CW=(NC_FX1-NC_FX0)/NC_GC,NC_CH=(NC_FY1-NC_FY0)/NC_GR;   /* 一格 113.3×86.7 */
+const NC_NR=17;                      /* 窝口半径 */
+const NC_BED_Y=322;                  /* 架下打地铺那一排 */
+/* ---- 称号：一辈子住满收齐的字 ---- */
+const NC_RANKS=[
+  {n:0,e:'🐣',t:'头一只安家'},  {n:2,e:'🪶',t:'认得远近'},  {n:5,e:'🧭',t:'看得见链'},
+  {n:9,e:'🏹',t:'一路不抢错'},  {n:14,e:'👀',t:'一眼定窝'}, {n:21,e:'🌳',t:'满架生香'},
+  {n:30,e:'🪺',t:'巢巢有着'},    {n:42,e:'🕊',t:'一只不落'}, {n:58,e:'👑',t:'从没惊过窝'}
+];
+function ncLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function ncRankOf(w){
+  let r=NC_RANKS[0];
+  for(let i=0;i<NC_RANKS.length;i++)if(w>=NC_RANKS[i].n)r=NC_RANKS[i];
+  return r;
+}
+/* ---- 巢架 8 件 ---- */
+const NC_SHELF_LV=4;
+const NC_SHELF=[
+  {k:'窝样图',d:'住满一个字'},                 {k:'清白票',d:'一场三字每案抢砸 ≤'+NC_ERR_CLEAN+' 回'},
+  {k:'神来之笔',d:'一条链搬满 '+NC_CHAIN_SHOW+' 只'}, {k:'满架章',d:'一案一手安置满全架'},
+  {k:'戥子',d:'走到第 '+NC_SHELF_LV+' 场还在走'},   {k:'空手趟',d:'一场家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},       {k:'量巢尺',d:'累计搬过 400 只鸟'}
+];
+/* ---- 九串字表（一场一串，串外的字这一场过不了闸）----
+   由 _ncgeo.cjs 离线数出来（口径与上面的 NC_* 常量一一对应，改常量就得重扫重写这九串）：
+   全站 1372 字过闸 145 字（鸟不比格多 341 · 笔数过多 187 · 笔数不足 134 · 住不满这一架 109 ·
+   死心眼的鸟太多 53 · 地铺数出带 11），按「鸟数 + 地铺 + 链长 + 笨手留的空格 + 死心眼」并成
+   一个难度分切九串（每串 17 字，末串 9）—— 每一串里最大匹配与最小点覆盖逐字相等（这是 Kőnig
+   定理，也是这道题的题面），且都等于这一架的亮格数：
+   第 1 串 8 只鸟 7 格窝、最长链 2 只；第 9 串 13 只鸟 8 格窝、地铺 5 只、难度中位 31。*/
+const NC_LEV={
+  1:"良匣更尚佩钓府威弈持研缸贺和狗知养",
+  2:"响是荒院临便咆相耐荐贷趴柄种虾诲哮",
+  3:"病速咱独须恃狠徊唉案毙皱脑莲娲咧茶",
+  4:"润莹凄准栖栽获药恍拳陵狸耕捷鬼盼科",
+  5:"盏羞酒匙距勇春验舶跃麻猜倘戚梁绽据",
+  6:"氧倾烈爹晒牺偎基祷谋副袭描猎猫哥读",
+  7:"控票躯媚惨银逼阅曹嫂植剪释愤帽硬萝",
+  8:"偷惜琴葬雇棕椅腰猬葫缠番嫌碑艄蓬蜂",
+  9:"摊满蒙跨筷缚筹塌寞"
+};
+function ncLetters(L){return NC_LEV[L]||''}
+function ncInLev(ch,L){return (ncLetters(L)||'').indexOf(ch)>=0}
+
+/* ---- 状态 ---- */
+const ncy={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  lv:1,wi:0,score:0,hearts:NC_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一案：字 · 鸟 · 格 · 账 */
+  ch:'',rec:null,P:[],B:[],n:0,live:[],solo:0,bed:0,mfull:0,cover:0,
+  /* 架上：at[格]=住着的鸟号（-1 空），bird 状态，铺地簿 */
+  at:null,done:null,beds:[],cur:0,housed:0,
+  /* 眼下这只鸟 */
+  opts:null,sel:0,lit:null,peekMs:0,autoMs:0,chainProbe:null,anim:null,animCell:null,wrongCell:-1,spark:[],wrongMs:0,
+  peekUse:0,autoUse:0,swapUse:0,holes:0,chicks:0,fly0:0,autoUsed:0,autoCell:-1,
+  grabCase:0,scaredCase:0,fumbleCase:0,bestChain:0,
+  /* 这一案 / 这一只的钟 */
+  case0:0,caseMs:0,caseUsed:0,flyMs:0,lamp:0,lamp0:0,sealMs:0,quickOk:1,quickMs:0,err:0,errSum:0,fieldTools:0,
+  /* 局账 */
+  words:0,fulls:0,bestN:0,perfect:0,chainN:0,quickN:0,wrongs:0,scared:0,
+  bedAll:0,houseAll:0,flies:0,grabs:0,swaps:0,tools:0,wordTools:0,cleanRun:0,toolRun:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',nags:0,nagMs:0,newBest:false,helpMs:0,
+  tellOff:0,dim:0,seed:1
+};
+
+/* ---- 落盘：hz_nest_* 共 20 本 ---- */
+function ncPut(k,v){try{localStorage.setItem('hz_nest_'+k,''+v)}catch(e){}}
+function ncGet(k,d){try{const v=localStorage.getItem('hz_nest_'+k);return v===null?d:v}catch(e){return d}}
+function ncNum(k){return Number(ncGet(k,0))||0}
+function ncInc(k,n){const v=ncNum(k)+(n||1);ncPut(k,v);return v}
+function ncBookPush(ch,why){
+  const bk=(ncGet('book','')||'').split('|').filter(x=>x);
+  const i=bk.findIndex(x=>x.indexOf(ch+':')===0);
+  const e=ch+':'+(why||'空');
+  if(i>=0)bk[i]=e;else bk.unshift(e);
+  while(bk.length>NC_BOOK_MAX)bk.pop();
+  ncPut('book',bk.join('|'));
+}
+function ncBookHas(ch){return (ncGet('book','')||'').split('|').some(x=>x.indexOf(ch+':')===0)}
+/* 这一回收满了就把这一笔从空架簿上划掉：簿上只留还没住满的字 */
+function ncBookDel(ch){
+  const bk=(ncGet('book','')||'').split('|').filter(x=>x&&x.indexOf(ch+':')!==0);
+  ncPut('book',bk.join('|'));
+}
+function ncDexHas(ch){return (ncGet('dex','')||'').split('|').indexOf(ch)>=0}
+function ncDexAdd(ch){
+  const d=(ncGet('dex','')||'').split('|').filter(x=>x);
+  if(d.indexOf(ch)<0){d.push(ch);ncPut('dex',d.join('|'));return 1}
+  return 0;
+}
+
+/* ---- 本坊自己的发声 · 回话 · 定时器（不借别人家的栏）---- */
+function ncTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!ncy.ac)ncy.ac=new AC();
+    const c=ncy.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.setValueAtTime(g||.11,c.currentTime);
+    n.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);
+    o.connect(n);n.connect(c.destination);o.start();o.stop(c.currentTime+d);
+  }catch(e){}
+}
+function ncDing(i){ncTone(523*Math.pow(1.0595,Math.min(24,(i||0)*2)),.16,.10)}
+function ncBad(){ncTone(150,.26,.13);setTimeout(()=>ncTone(112,.3,.12),110)}
+function ncPop(){ncTone(880,.07,.07)}
+function ncFly(){ncTone(659,.09,.07);setTimeout(()=>ncTone(784,.09,.06),70)}
+function ncSeal(){[0,4,7,12].forEach((s,i)=>setTimeout(()=>ncTone(523*Math.pow(1.0595,s),.2,.09),i*90))}
+function ncSay(t){const e=document.getElementById('ncMsg');if(e)e.innerHTML=t}
+function ncAfter(ms,fn){const id=setTimeout(fn,ms);ncy.timers.push(id);return id}
+function ncClearTimers(){ncy.timers.forEach(id=>clearTimeout(id));ncy.timers.length=0}
+
+
+/* ==== 归巢坊 ②：几何 · 两双手 · 闸门 ==== */
+/* ---- 整字等比塞进案面：与 _ncgeo.cjs 的 fitAll 一字一样 ---- */
+function ncFitAll(M){
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(const st of M)for(const q of st){x0=Math.min(x0,q[0]);x1=Math.max(x1,q[0]);y0=Math.min(y0,q[1]);y1=Math.max(y1,q[1])}
+  const s=Math.min((NC_FX1-NC_FX0)/Math.max(1,x1-x0),(NC_FY1-NC_FY0)/Math.max(1,y1-y0));
+  const ox=NC_FX0+((NC_FX1-NC_FX0)-(x1-x0)*s)/2,oy=NC_FY0+((NC_FY1-NC_FY0)-(y1-y0)*s)/2;
+  return M.map(st=>st.map(q=>[(q[0]-x0)*s+ox,(q[1]-y0)*s+oy]));
+}
+function ncCellOf(p){
+  const c=Math.min(NC_GC-1,Math.max(0,Math.floor((p[0]-NC_FX0)/NC_CW)));
+  const r=Math.min(NC_GR-1,Math.max(0,Math.floor((p[1]-NC_FY0)/NC_CH)));
+  return r*NC_GC+c;
+}
+function ncCellXY(c){return {x:NC_FX0+(c%NC_GC)*NC_CW+NC_CW/2,y:NC_FY0+Math.floor(c/NC_GC)*NC_CH+NC_CH/2}}
+/* 一根笔 → 一只鸟：起笔那一格、收笔那一格（同格就只认这一个窝）*/
+function ncBirdOf(st){
+  const a=ncCellOf(st[0]),b=ncCellOf(st[st.length-1]);
+  return a===b?[a]:[a,b];
+}
+function ncOther(B,occ,c){for(let k=0;k<B[occ].length;k++)if(B[occ][k]!==c)return B[occ][k];return -1}
+/* ---- 搬家链：把第 i 只鸟塞进 cell，原主往外搬，一路走到底
+       撞上「只认这一个窝」的死心眼鸟、或绕回已经动过的格 ⇒ 链断，抢不动 ---- */
+function ncChain(B,at,i,cell){
+  const path=[],seen=[];let c=cell,b=i;
+  for(let k=0;k<=NC_CELLS;k++){
+    if(seen.indexOf(c)>=0)return null;
+    seen.push(c);
+    if(at[c]<0){path.push({b:b,to:c,evict:-1});return {path:path,len:path.length}}
+    const occ=at[c],oth=ncOther(B,occ,c);
+    if(oth<0)return null;
+    path.push({b:b,to:c,evict:occ});
+    b=occ;c=oth;
+  }
+  return null;
+}
+/* ---- 手一：按只序逐只增广（两条去处挨个试），数最多住满几格 + 最长搬家链 ---- */
+function ncKuhn(B){
+  const at=new Array(NC_CELLS).fill(-1);
+  let m=0,chain=0;
+  const walk=(i,seen)=>{
+    for(const c of B[i]){
+      if(seen[c])continue;seen[c]=1;
+      if(at[c]<0){at[c]=i;return 1}
+      const r=walk(at[c],seen);
+      if(r){at[c]=i;return r+1}
+    }
+    return 0;
+  };
+  for(let i=0;i<B.length;i++){const seen=new Array(NC_CELLS).fill(0);const r=walk(i,seen);if(r){m++;chain=Math.max(chain,r)}}
+  return {m:m,chain:chain,at:at};
+}
+/* ---- 手二（Kőnig 的另一双手）：点覆盖 = 挑一批鸟 A + 把没进 A 的鸟的去处全收进 B
+       定了 A 之后 B 没有第二个选择 ⇒ 枚举 2^鸟 取 |A|+|B| 最小 ---- */
+function ncCover(B){
+  const n=B.length;let best=n+NC_CELLS;
+  for(let s=0;s<(1<<n);s++){
+    let a=0;const C=[];
+    for(let i=0;i<n;i++){
+      if(s&(1<<i)){a++;continue}
+      for(const c of B[i])if(C.indexOf(c)<0)C.push(c);
+    }
+    if(a+C.length<best)best=a+C.length;
+  }
+  return best;
+}
+/* ---- 笨手：按只序一路只往空格里放（先起笔格后收笔格），一次不抢 ---- */
+function ncNaive(B){
+  const at=new Array(NC_CELLS).fill(-1);let placed=0;
+  for(let i=0;i<B.length;i++){
+    for(const c of B[i])if(at[c]<0){at[c]=i;placed++;break}
+  }
+  return {placed:placed,at:at};
+}
+/* ---- 闸门：这个字能不能上台（与 _ncgeo.cjs 同口径）---- */
+function ncAudit(ch,j){
+  const M=j&&j.medians;
+  if(!Array.isArray(M)||M.length<NC_NMIN||M.length>NC_NMAX)return null;
+  for(let i=0;i<M.length;i++)if(!Array.isArray(M[i])||M[i].length<2)return null;
+  const P=ncFitAll(M),n=P.length,B=[];
+  for(let i=0;i<n;i++){const o=ncBirdOf(P[i]);if(!o||!o.length)return null;B.push(o)}
+  const live=[];for(let i=0;i<n;i++)for(const c of B[i])if(live.indexOf(c)<0)live.push(c);
+  live.sort((a,b)=>a-b);
+  if(live.length>=n)return null;                                  /* 鸟不比格多：没有鸽子洞这一说 */
+  const bed=n-live.length;
+  if(bed<NC_DIFFMIN||bed>NC_DIFFMAX)return null;
+  let solo=0;for(let i=0;i<n;i++)if(B[i].length<2)solo++;
+  if(solo>NC_SOLOMAX)return null;
+  const K=ncKuhn(B),C=ncCover(B);
+  if(K.m!==live.length)return null;                               /* 住不满这一架 */
+  if(C!==K.m)return null;                                         /* 对偶不等：定理自检没过 */
+  const gap=live.length-ncNaive(B).placed;
+  if(gap<NC_GAPMIN)return null;                                   /* 不抢也住得满：这一坊没意义 */
+  if(K.chain<NC_CHAINMIN)return null;                             /* 链太短：看不出想清楚再下手 */
+  return {ch:ch,n:n,B:B,P:P,live:live,solo:solo,bed:bed,mfull:K.m,cover:C,gap:gap,chain:K.chain};
+}
+
+/* ==== 归巢坊 ③：开工 · 三支钟 · 指尖落格 ==== */
+function ncEl(id){return document.getElementById(id)}
+function ncTxt(id,s){const e=ncEl(id);if(e)e.textContent=s}
+function ncTag(s){const e=ncEl('ncTag');if(e)e.textContent=s}
+let ncCtx=null,ncCv=null,ncGen=0;
+
+function ncBind(){
+  if(ncy.bound)return;ncy.bound=true;
+  ncCv=ncEl('ncCv');if(ncCv&&ncCv.getContext)ncCtx=ncCv.getContext('2d');
+  const tap=function(id,fn){const e=ncEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();if(!ncy.run||ncy.over||ncy.locked)return;fn()})};
+  for(let i=0;i<3;i++)(function(i){tap('ncOpt'+i,function(){ncPick(i)})})(i);
+  tap('ncPeek',function(){ncPeek()});
+  tap('ncAuto',function(){ncAuto()});
+  tap('ncSwap',function(){ncSwap()});
+  tap('ncSealBtn',function(){ncSealAsk()});
+  tap('ncQuitBtn',function(){ncQuit('quit')});
+  tap('ncHelpBtn',function(){ncHelp()});
+  /* 案面上点格：指尖落在哪一格就动哪一格（牌只是快捷键）*/
+  if(ncCv){
+    ncCv.addEventListener('pointerdown',function(ev){
+      if(!ncy.run||ncy.over||ncy.locked||ncy.phase!=='play')return;
+      const r=ncCv.getBoundingClientRect();
+      if(!r.width||!r.height)return;
+      const x=(ev.clientX-r.left)*NC_W/r.width,y=(ev.clientY-r.top)*NC_H/r.height;
+      const c=ncCellAt(x,y);
+      if(c<0){
+        if(y>=NC_BED_Y-14)ncBed();
+        else ncTag('🪺 没点着格 —— 照着亮的那一格点');
+        return;
+      }
+      ev.preventDefault();ncTapCell(c);
+    });
+  }
+  /* 散场那两颗钮不能叫 run/over 拦着：孩子站在结算屏上点不动就等于一堵墙 */
+  const tapFree=function(id,fn){const e=ncEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();fn()})};
+  tapFree('ncReBtn',function(){ncStart(true)});
+  tapFree('ncReHome',function(){ncLeave('lab')});
+  window.addEventListener('keydown',function(e){
+    if(!ncy.run||ncy.over)return;
+    const sc=document.getElementById('screen-nc');
+    if(!sc||!sc.classList.contains('active'))return;
+    const k=e.key;
+    if(k>='1'&&k<='3'){e.preventDefault();ncPick(Number(k)-1)}
+    else if(k==='f'||k==='F'||k==='Enter'){e.preventDefault();ncSealAsk()}
+    else if(k==='p'||k==='P'){e.preventDefault();ncPeek()}
+    else if(k==='v'||k==='V'){e.preventDefault();ncAuto()}
+    else if(k==='s'||k==='S'){e.preventDefault();ncSwap()}
+    else if(k==='h'||k==='H'){e.preventDefault();ncHelp()}
+    else if(k==='g'||k==='G'){e.preventDefault();ncQuit('quit')}
+    else if(k==='Escape'){e.preventDefault();ncQuit('quit')}
+    else if(k==='r'||k==='R'){e.preventDefault();ncStart(true)}
+  });
+}
+function ncStart(again){
+  ncBind();ncKill();
+  ncy.gen++;ncGen=ncy.gen;
+  const w=ncNum('words');
+  ncy.run=true;ncy.over=false;ncy.phase='load';ncy.load=true;ncy.locked=0;
+  ncy.lv=ncLvOf(w);ncy.wi=0;ncy.score=0;ncy.hearts=NC_HEARTS;ncy.combo=0;ncy.maxCombo=0;ncy.words=0;
+  ncy.fulls=0;ncy.bestN=0;ncy.perfect=0;ncy.chainN=0;ncy.quickN=0;ncy.wrongs=0;
+  ncy.scared=0;ncy.bedAll=0;ncy.houseAll=0;ncy.flies=0;ncy.grabs=0;ncy.swaps=0;ncy.tools=0;
+  ncy.wordTools=0;ncy.cleanRun=0;ncy.toolRun=0;ncy.gain=0;ncy.penSum=0;ncy.hitOk=0;
+  ncy.nags=0;ncy.newBest=false;ncy.fresh=0;ncy.seen=[];
+  ncy.peekN=NC_P0.peek;ncy.autoN=NC_P0.auto;ncy.swapN=NC_P0.swap;
+  ncy.peekUse=0;ncy.autoUse=0;ncy.swapUse=0;
+  ncy.miss=[];const bk=(ncGet('book','')||'').split('|');
+  for(let i=0;i<bk.length&&ncy.miss.length<8;i++){const s=bk[i];if(s&&s.indexOf(':')>0)ncy.miss.push(s.split(':')[0])}
+  ncy.pool=[];ncy.poolLv=-1;
+  const sc=ncEl('screen-nc');
+  if(sc){document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});sc.classList.add('active')}
+  const ov=ncEl('ncOver');if(ov)ov.style.display='none';
+  ncy.playMs=0;ncy.lamp0=ncLampMs(ncy.lv);ncy.lamp=ncy.lamp0;
+  ncTxt('ncLv','第 '+ncy.lv+' 场');ncRender();
+  ncSay('');
+  ncFillPool().then(function(){
+    if(ncy.gen!==ncGen||!ncy.run)return;
+    ncy.load=false;ncNextCase();
+    ncy.last=0;ncy.rafId=requestAnimationFrame(ncLoop);
+  });
+}
+function ncNudge(){/* 别的坊收了字：称号条跟着走 */
+  const e=ncEl('ncRank');if(e){const r=ncRankOf(ncNum('words'));e.textContent=r.e+' '+r.t}}
+/* ---- 主循环：三支钟（这一案 · 这一只 · 这一场）---- */
+function ncLoop(ts){
+  if(!ncy.run||ncy.over)return;
+  ncy.rafId=requestAnimationFrame(ncLoop);
+  const dt=ncy.last?Math.min(64,ts-ncy.last):16;ncy.last=ts;
+  if(ncy.phase==='play'||ncy.phase==='anim'||ncy.phase==='seal'){ncy.playMs+=dt;ncy.lamp-=dt;if(ncy.lamp<=0){ncy.lamp=0;ncLampOut()}}
+  if(ncy.phase==='play'||ncy.phase==='anim')ncy.caseUsed+=dt;
+  if(ncy.phase==='play'){
+    ncy.caseMs-=dt;if(ncy.caseMs<0)ncy.caseMs=0;
+    if(ncy.caseMs===0){ncCaseOut();return}
+    if(ncy.cur<ncy.n){                      /* 这一只的钟：犹豫久了雏鸟自己落地睡 */
+      ncy.flyMs-=dt;if(ncy.flyMs<=0){ncy.flyMs=0;ncBed();}
+    }
+  }
+  if(ncy.phase==='anim'&&ncy.anim){ncy.anim.ms+=dt;ncAnimStep()}
+  if(ncy.peekMs>0){ncy.peekMs-=dt;if(ncy.peekMs<0)ncy.peekMs=0}
+  if(ncy.autoMs>0){ncy.autoMs-=dt;if(ncy.autoMs<=0){ncy.autoMs=0;ncy.autoCell=-1}}
+  if(ncy.wrongMs>0){ncy.wrongMs-=dt;if(ncy.wrongMs<=0){ncy.wrongMs=0;ncRenderOpts()}}
+  if(ncy.sealMs>0){ncy.sealMs-=dt;if(ncy.sealMs<=0){ncy.sealMs=0;ncSealDone()}}
+  if(ncy.nagMs>0){ncy.nagMs-=dt;if(ncy.nagMs<=0){ncy.nagMs=0;ncNag()}}
+  if(ncy.helpMs>0){ncy.helpMs-=dt;if(ncy.helpMs<=0){ncy.helpMs=0;ncHelpSay()}}
+  ncy.t+=dt;
+  for(let i=ncy.spark.length-1;i>=0;i--){const s=ncy.spark[i];
+    s.x+=s.vx*dt/16;s.y+=s.vy*dt/16;s.vy+=.06*dt/16;s.life-=dt;if(s.life<=0)ncy.spark.splice(i,1)}
+  ncDraw();ncRender();
+}
+/* ---- 指尖落点 → 第几格（架外一律 -1，架下那一条留给铺地）---- */
+function ncCellAt(x,y){
+  if(x<NC_FX0||x>=NC_FX1||y<NC_FY0||y>=NC_FY1)return -1;
+  return Math.floor((y-NC_FY0)/NC_CH)*NC_GC+Math.floor((x-NC_FX0)/NC_CW);
+}
+function ncKill(){if(ncy.rafId)cancelAnimationFrame(ncy.rafId);ncy.rafId=0;ncClearTimers()}
+
+/* ==== 归巢坊 ④：一案 · 出手 · 搬家链 · 铺地 ==== */
+function ncRnd(){ncy.seed=(ncy.seed*1103515245+12345)&0x7fffffff;return ncy.seed/0x7fffffff}
+const ncCache={};
+/* ---- 配字池：本串的字当场再过一遍闸 ---- */
+function ncFillPool(){
+  const lv=ncy.lv,gen=ncy.gen;
+  const letters=(ncLetters(lv)||'').split('');
+  const want=[];
+  for(let i=0;i<ncy.miss.length;i++){const c=ncy.miss[i];if(letters.indexOf(c)>=0&&want.indexOf(c)<0)want.push(c)}
+  for(let i=letters.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=letters[i];letters[i]=letters[j];letters[j]=t}
+  for(let i=0;i<letters.length;i++)if(want.indexOf(letters[i])<0)want.push(letters[i]);
+  const rest=[];for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,(ncLetters(L)||'').split(''));
+  const need=function(){return ncy.pool.length>=NC_POOL_WANT};
+  const scan=async function(list){
+    for(let kk=0;kk<list.length&&!need();kk+=12){
+      const rs=await Promise.all(list.slice(kk,kk+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(ncy.gen!==gen||!ncy.run)return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[kk+i];if(!rs[i]||!rs[i].medians)continue;
+        let rec=ncCache[ch];
+        if(rec===undefined){rec=ncAudit(ch,rs[i])||null;ncCache[ch]=rec}
+        if(!rec)continue;
+        if(!ncy.pool.some(function(p){return p.ch===ch}))ncy.pool.push(rec);
+      }
+    }
+  };
+  return scan(want.concat(rest)).then(function(){
+    if(ncy.pool.length<NC_POOL_MIN&&lv!==ncy.poolLv){ncy.poolLv=lv;return ncFillPool()}
+    return ncy.pool;
+  });
+}
+/* ---- 开一案：从池里挑一个还没住满过的字 ---- */
+function ncNextCase(){
+  if(!ncy.pool.length){ncOver('pool');return}
+  let pick=-1;
+  for(let i=0;i<ncy.pool.length;i++){
+    const r=ncy.pool[i];
+    if(!ncDexHas(r.ch)&&ncy.seen.indexOf(r.ch)<0&&ncy.miss.indexOf(r.ch)<0){pick=i;break}
+  }
+  if(pick<0)for(let i=0;i<ncy.pool.length;i++)if(ncy.seen.indexOf(ncy.pool[i].ch)<0){pick=i;break}
+  if(pick<0)for(let i=0;i<ncy.miss.length&&pick<0;i++)for(let k=0;k<ncy.pool.length;k++)if(ncy.pool[k].ch===ncy.miss[i]){pick=k;break}
+  if(pick<0)pick=Math.floor(ncRnd()*ncy.pool.length);
+  const r=ncy.pool[pick];ncy.pool.splice(pick,1);
+  ncOpenCase(r);
+}
+function ncOpenCase(r){
+  ncy.rec=r;ncy.ch=r.ch;ncy.n=r.n;ncy.B=r.B;ncy.P=r.P;ncy.live=r.live;
+  ncy.at=new Array(NC_CELLS).fill(-1);
+  ncy.done=new Array(r.n).fill(0);
+  ncy.beds=[];ncy.cur=0;ncy.housed=0;
+  ncy.err=0;ncy.grabCase=0;ncy.bestChain=0;ncy.scaredCase=0;ncy.fumbleCase=0;
+  ncy.caseMs=ncCaseMs(ncy.lv);ncy.case0=ncy.caseMs;ncy.caseUsed=0;
+  ncy.quickMs=ncQuickMs(ncy.lv);ncy.quickOk=1;
+  ncy.tellOff=ncNoTell(ncy.lv);ncy.dim=ncDim(ncy.lv);
+  ncy.peekMs=0;ncy.autoMs=0;ncy.wrongMs=0;ncy.wrongCell=-1;ncy.anim=null;ncy.animCell=null;ncy.autoCell=-1;ncy.lit=null;ncy.locked=0;ncy.phase='play';
+  ncDeal();
+  ncTag('🪺 '+r.ch+' · '+r.n+' 只鸟 '+r.live.length+' 格窝 · 架下要睡 '+r.bed+' 只');
+  ncSay('🪺 第 1 只鸟来了：它只认 '+ncCellName(r.B[0][0])+'、'+ncCellName(r.B[0][r.B[0].length-1])+' 这两格');
+}
+/* ---- 发这只鸟：两处去处各探一条链（内部账，只有 ✨ 看链 与「惊走」判据读它）---- */
+function ncDeal(){
+  const i=ncy.cur;
+  if(i>=ncy.n){ncy.opts=null;ncy.chainProbe=null;ncy.sel=-1;ncRenderOpts();ncAskSeal();return}
+  ncy.opts=ncy.B[i].slice();
+  ncy.flyMs=ncFlyMs(ncy.lv);ncy.fly0=ncy.flyMs;
+  ncy.chainProbe=ncy.opts.map(function(c){return ncChain(ncy.B,ncy.at,i,c)});
+  ncy.sel=0;
+  ncRenderOpts();ncAsk();
+}
+function ncCellName(c){return c+1+' 号格'}
+function ncAsk(){
+  const i=ncy.cur,B=ncy.B[i];
+  const e=ncEl('ncAsk');if(!e)return;
+  const from=ncNoTell(ncy.lv)?'':(' · 起笔在 '+ncCellName(B[0])+(B.length>1?'、收笔在 '+ncCellName(B[1]):'、起收同一格'));
+  e.innerHTML='🐣 第 '+(i+1)+'/'+ncy.n+' 只鸟住哪一格<small>空窝直接住 · 已住的窝一抢，原主就搬去它另一格'+from+'</small>';
+}
+function ncAskSeal(){
+  const e=ncEl('ncAsk');if(!e)return;
+  e.innerHTML='🪺 架上一只不落 · 封不封<small>还住得满吗 —— 按 🪺 封架（F）收这一案</small>';
+}
+/* ---- 出手：牌 i（最后一张是架下铺地）/ 案面上点格 ---- */
+function ncPick(k){
+  if(ncy.phase!=='play')return;
+  if(ncy.cur>=ncy.n){ncSealAsk();return}
+  if(k<ncy.opts.length)ncTry(ncy.opts[k]);
+  else if(k===ncy.opts.length)ncBed();
+  else ncTag('🪺 这一只鸟没有第三个去处');
+}
+function ncTapCell(c){
+  if(ncy.phase!=='play')return;
+  if(ncy.cur>=ncy.n){ncSealAsk();return}
+  if(ncy.opts.indexOf(c)>=0){ncTry(c);return}
+  ncTag('🪺 这只鸟去不了 '+ncCellName(c)+' —— 它只认起笔、收笔那两格');
+}
+/* ---- 往一格里放：空窝直接住，有主就抢（链通了逐只飞，链断了惊一窝）---- */
+function ncTry(c){
+  const i=ncy.cur;
+  if(ncy.at[c]<0){ncHouse(i,c);return}
+  const ch=ncChain(ncy.B,ncy.at,i,c);
+  if(!ch){ncFumble(c);return}
+  ncy.grabs++;ncy.grabCase++;
+  for(let k=0;k<ch.path.length;k++)ncy.at[ch.path[k].to]=ch.path[k].b;
+  ncy.anim={path:ch.path,len:ch.len,k:0,ms:0,cell:c,bird:i};
+  ncy.locked=1;ncy.phase='anim';
+  ncFly();
+}
+function ncHouse(i,c){
+  ncy.at[c]=i;ncy.done[i]=1;ncy.housed++;
+  ncy.combo++;if(ncy.combo>ncy.maxCombo)ncy.maxCombo=ncy.combo;
+  ncy.chicks++;
+  const p=ncCellXY(c);ncBurst(p.x,p.y,'rgba(129,199,132,.9)');
+  ncDing(ncy.combo);
+  ncy.cur++;ncDeal();
+}
+function ncChainDone(len){
+  const A=ncy.anim;
+  for(let k=0;k<len;k++)ncy.done[A.path[k].b]=1;
+  ncy.housed++;ncy.combo++;if(ncy.combo>ncy.maxCombo)ncy.maxCombo=ncy.combo;
+  ncy.flies+=len-1;                           /* 量巢尺：真正跟着搬家的才计数 */
+  if(len>ncy.bestChain)ncy.bestChain=len;
+  if(len>=NC_CHAIN_SHOW){ncy.chainN++;ncSeal()}
+  ncy.chicks++;
+  const p=ncCellXY(ncy.opts[0]);
+  ncBurst(ncy.animCell?ncy.animCell.x:p.x,ncy.animCell?ncy.animCell.y:p.y,'rgba(255,183,77,.92)');
+  ncy.animCell=null;
+  ncy.cur++;ncDeal();
+}
+/* ---- 逐只接力：动画只负责飞，架上账在抢通那一息已经落定 ---- */
+function ncAnimStep(){
+  const A=ncy.anim;if(!A)return;
+  if(A.ms<NC_CHAIN_MS)return;
+  A.ms-=NC_CHAIN_MS;A.k++;
+  if(A.k<=A.path.length){
+    const p=A.path[A.k-1];ncTone(620+90*A.k,.09,.07);
+    const q=ncCellXY(p.to);ncy.animCell=q;ncBurst(q.x,q.y,'rgba(255,213,79,.85)');
+    return;
+  }
+  ncy.locked=0;ncy.phase='play';
+  ncChainDone(A.len);
+  ncy.anim=null;
+}
+/* ---- 抢砸：链断了，这一案记一笔，鸟还在手上 ---- */
+function ncFumble(c){
+  ncy.err++;ncy.wrongs++;ncy.fumbleCase++;
+  ncy.wrongCell=c;
+  ncy.combo=0;ncy.score=Math.max(0,ncy.score-NC_P_GRAB);ncy.penSum+=NC_P_GRAB;
+  ncy.wrongMs=NC_WRONG_MS;
+  ncBad();
+  const e=ncEl('ncAsk');
+  if(e)e.innerHTML='🌪 抢不动 · '+ncCellName(c)+'<small>那窝的主人也只认这一个窝 —— 它搬不走，链就断了</small>';
+  ncTag('🌪 抢砸一窝 · −'+NC_P_GRAB+' 文（这一案第 '+ncy.err+'/'+NC_ERR_LINE+' 回）');
+  if(ncy.err>=NC_ERR_LINE){ncy.err=0;ncLoseHeart('连抢砸 '+NC_ERR_LINE+' 回')}
+  ncRenderOpts();
+}
+/* ---- 铺地：架下那一排 —— 搬得动却铺下去算惊走 ---- */
+function ncBed(){
+  const i=ncy.cur;
+  if(i>=ncy.n){ncSealAsk();return}
+  let could=false;
+  for(let k=0;k<ncy.opts.length;k++)if(ncy.chainProbe&&ncy.chainProbe[k])could=true;
+  ncy.done[i]=2;ncy.beds.push(i);ncy.bedAll++;
+  if(could){
+    ncy.scared++;ncy.scaredCase++;ncy.combo=0;
+    ncy.score=Math.max(0,ncy.score-NC_P_SCARE);ncy.penSum+=NC_P_SCARE;
+    ncBad();ncSay('🪺 惊走：'+ncCellName(ncy.opts[0])+' 其实搬得动 —— 少住一只，架就注定空一格');
+    ncy.err++;if(ncy.err>=NC_ERR_LINE){ncy.err=0;ncLoseHeart('连惊走带抢砸 '+NC_ERR_LINE+' 回')}
+  }else{
+    ncPop();ncSay('🛏 无处可去：'+(i+1)+' 号鸟落进架下（本来就该它睡地下）');
+  }
+  ncy.cur++;ncDeal();
+}
+/* ---- 封架：一只鸟也不许再动了，就看这一架住满没有 ---- */
+function ncSealAsk(){
+  if(ncy.phase!=='play')return;
+  if(ncy.cur<ncy.n){ncTag('🪺 还有 '+(ncy.n-ncy.cur)+' 只鸟没安置');return}
+  ncy.phase='seal';ncy.sealMs=NC_SEAL_MS;ncy.locked=1;
+  ncy.holes=0;for(let k=0;k<ncy.live.length;k++)if(ncy.at[ncy.live[k]]<0)ncy.holes++;
+  ncSeal();
+  ncTag(ncy.holes?'🪺 空 '+ncy.holes+' 格':'🪺 满架');
+}
+/* ---- 三件家什 ---- */
+function ncToolCost(){
+  ncy.tools++;ncy.wordTools++;ncy.fieldTools++;
+  ncy.score=Math.max(0,ncy.score-NC_P_TOOL);ncy.penSum+=NC_P_TOOL;
+}
+function ncPeek(){
+  if(ncy.phase!=='play')return;
+  if(ncy.cur>=ncy.n){ncSay('✨ 鸟都安置完了，按 🪺 封架');return}
+  if(ncy.peekN<=0){ncSay('✨ 看链用光了');return}
+  ncy.peekN--;ncy.peekUse++;ncToolCost();
+  ncy.peekMs=NC_PEEK_MS;
+  const bits=[];
+  for(let k=0;k<ncy.opts.length;k++){
+    const ch=ncy.chainProbe[k];
+    bits.push(ncCellName(ncy.opts[k])+'：'+(ncy.at[ncy.opts[k]]<0?'空窝，直接住':(ch?('抢得动 · 搬 '+ch.len+' 只'):'抢不动 · 链断')));
+  }
+  ncTag('✨ '+bits.join(' / '));
+  ncSay('✨ 看链 −'+NC_P_TOOL+' 文：'+bits.join(' · '));
+}
+function ncAuto(){
+  if(ncy.phase!=='play')return;
+  if(ncy.cur>=ncy.n){ncSay('🪶 鸟都安置完了，按 🪺 封架');return}
+  if(ncy.autoN<=0){ncSay('🪶 神助用光了');return}
+  let best=-1;
+  for(let k=0;k<ncy.opts.length;k++){
+    const ch=ncy.chainProbe[k];
+    if(!ch)continue;
+    if(ncy.at[ncy.opts[k]]<0){best=k;break}
+    if(best<0||ch.len<ncy.chainProbe[best].len)best=k;
+  }
+  if(best<0){ncSay('🪶 神助也搬不动 —— 这一只注定睡地下，不扣文');return}
+  ncy.autoN--;ncy.autoUse++;ncy.autoUsed=1;ncToolCost();
+  ncy.autoMs=NC_AUTO_MS;ncy.autoCell=ncy.opts[best];
+  ncTry(ncy.opts[best]);
+  ncSay('🪶 神助 −'+NC_P_TOOL+' 文：替你抢了 '+ncCellName(ncy.opts[best]));
+}
+function ncSwap(){
+  if(ncy.phase!=='play')return;
+  if(ncy.swapN<=0){ncSay('🔁 换字用光了');return}
+  ncy.swapN--;ncy.swapUse++;ncy.swaps++;ncToolCost();
+  ncy.miss.push(ncy.ch);
+  if(ncy.rec)ncy.pool.push(ncy.rec);
+  ncSay('🔁 换字 −'+NC_P_TOOL+' 文：这一案先撂下');
+  ncNextCase();
+}
+function ncNag(){
+  if(ncy.phase!=='play')return;
+  ncy.nags++;
+  if(ncy.cur>=ncy.n)ncSay('🪺 一只不落了 —— 按 🪺 封架（F）看这一架空了几格');
+  else ncSay('🐣 '+(ncy.cur+1)+' 号鸟还候在架下：空窝直接住，抢窝就得让原主搬家');
+  ncy.nagMs=NC_NAG_MS;
+}
+
+/* ==== 归巢坊 ⑤：画巢架 · 读数 · 结赏 · 落盘 ==== */
+function ncBurst(x,y,col){
+  for(let i=0;i<12;i++){
+    const ang=Math.random()*Math.PI*2,sp=.8+Math.random()*2.0;
+    ncy.spark.push({x:x,y:y,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp-.7,life:360+Math.random()*260,col:col||'rgba(255,213,79,.9)'});
+  }
+}
+function ncMul(){return Math.max(1,Math.round(NC_M0+NC_CB*ncy.combo+NC_LVW*(ncy.lv-1)))}
+function ncRR(c,x,y,w,h,r){
+  c.beginPath();
+  c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);
+  c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);
+  c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);
+  c.closePath();
+}
+/* ---- 画鸟的小料：起笔点 · 架下铺 · 一只雏鸟的圆片（笔顺就写在鸟身上）---- */
+function ncStrokeStart(i){
+  const st=ncy.P[i];if(!st||!st.length)return {x:NC_FX0,y:NC_FY1};
+  return {x:st[0][0],y:st[0][1]-2};
+}
+function ncBedDot(c,x,y,num){
+  c.fillStyle='rgba(78,52,46,.9)';c.strokeStyle='#8D6E63';c.lineWidth=1.5;
+  c.beginPath();c.arc(x,y,11,0,7);c.fill();c.stroke();
+  c.fillStyle='#FFCCBC';c.textAlign='center';c.font='bold 10px sans-serif';
+  c.fillText(num+'',x,y+4);
+}
+function ncChip(c,x,y,num,kind,ring){
+  c.fillStyle=kind==='bed'?'#4E342E':kind==='fly'?'#F9A825':kind==='new'?'#2E7D32':'#37474F';
+  c.strokeStyle=ring||'#B0BEC5';c.lineWidth=ring?3:2;
+  c.beginPath();c.arc(x,y,NC_NR,0,7);c.fill();c.stroke();
+  c.fillStyle='#FFF8E1';c.textAlign='center';c.font='bold 13px sans-serif';
+  c.fillText(num+'',x,y+5);
+}
+/* ---- 画：九宫巢架 · 字骨 · 鸟 · 搬家链 · 架下的铺 ---- */
+function ncDraw(){
+  const c=ncCtx;if(!c)return;
+  c.clearRect(0,0,NC_W,NC_H);
+  c.fillStyle='#10161B';c.fillRect(0,0,NC_W,NC_H);
+  /* 木架底纹 */
+  c.strokeStyle='rgba(144,164,174,.07)';c.lineWidth=1;
+  for(let y=NC_FY0-16;y<=NC_FY1+30;y+=20){
+    c.beginPath();
+    for(let x=NC_FX0-12;x<=NC_FX1+12;x+=16)c.lineTo(x,y+Math.sin((x+y)/52)*5);
+    c.stroke();
+  }
+  /* 九宫：亮格（有鸟认的）是窝，暗格是钉死的隔板 */
+  for(let k=0;k<NC_CELLS;k++){
+    const p=ncCellXY(k),x0=p.x-NC_CW/2+5,y0=p.y-NC_CH/2+5,w=NC_CW-10,h=NC_CH-10;
+    const live=ncy.live.indexOf(k)>=0;
+    c.fillStyle=live?'rgba(200,134,58,.10)':'rgba(120,144,156,.05)';
+    ncRR(c,x0,y0,w,h,10);c.fill();
+    c.strokeStyle=live?'rgba(200,134,58,.5)':'rgba(96,125,139,.25)';c.lineWidth=live?2:1;
+    ncRR(c,x0,y0,w,h,10);c.stroke();
+    if(!ncy.dim&&live){
+      c.fillStyle='rgba(255,213,79,.38)';c.font='bold 11px sans-serif';c.textAlign='left';
+      c.fillText(k+1+'',x0+7,y0+14);
+    }
+    if(live&&ncy.at&&ncy.at[k]<0&&ncy.phase!=='load'){        /* 空窝：一圈草窝口 */
+      c.strokeStyle='rgba(200,134,58,.35)';c.lineWidth=2;c.setLineDash([4,4]);
+      c.beginPath();c.arc(p.x,p.y,NC_NR-2,0,7);c.stroke();c.setLineDash([]);
+    }
+  }
+  /* 字骨：住下的鸟把这一笔落墨，铺地的鸟这一笔空着 */
+  if(ncy.rec){
+    for(let i=0;i<ncy.n;i++){
+      const st=ncy.P[i];if(!st||st.length<2)continue;
+      const d=ncy.done[i];
+      if(d===1){c.strokeStyle='rgba(207,216,220,.55)';c.lineWidth=3}
+      else if(d===2){c.strokeStyle='rgba(239,83,80,.22)';c.lineWidth=2;c.setLineDash([4,5])}
+      else if(i===ncy.cur&&ncy.phase==='play'){c.strokeStyle='rgba(255,213,79,'+(0.30+0.22*Math.sin(ncy.t/230)).toFixed(3)+')';c.lineWidth=3;c.setLineDash([7,5])}
+      else{c.strokeStyle='rgba(207,216,220,.09)';c.lineWidth=2}
+      c.lineCap='round';c.beginPath();
+      for(let k=0;k<st.length;k++)c.lineTo(st[k][0],st[k][1]);
+      c.stroke();c.setLineDash([]);
+    }
+  }
+  /* 眼下这只鸟：两处去处亮一圈，牌上的鸟还在架上候着 */
+  if(ncy.phase==='play'&&ncy.cur<ncy.n&&ncy.opts){
+    const pulse=(0.42+0.30*Math.sin(ncy.t/200)).toFixed(3);
+    for(let k=0;k<ncy.opts.length;k++){
+      const p=ncCellXY(ncy.opts[k]);
+      c.strokeStyle='rgba(255,236,179,'+pulse+')';c.lineWidth=3;
+      c.beginPath();c.arc(p.x,p.y,NC_NR+8,0,7);c.stroke();
+    }
+  }
+  /* 架上的鸟：搬家链在飞时，没轮到的还蹲在老格里 */
+  const A=ncy.anim;let jidx=null;
+  if(A){jidx={};for(let j=0;j<A.path.length;j++)jidx[A.path[j].b]=j}
+  for(let k=0;k<NC_CELLS;k++){
+    const b=ncy.at?ncy.at[k]:-1;if(b<0)continue;
+    const j=jidx===null?undefined:jidx[b];
+    if(A&&j!==undefined&&j>=A.k-1)continue;
+    const p=ncCellXY(k);
+    ncChip(c,p.x,p.y,b+1,'old',ncy.phase==='seal'&&!ncy.holes?'rgba(255,213,79,.7)':null);
+  }
+  if(A){
+    for(let j=A.k;j<A.path.length;j++){
+      const from=j===0?ncStrokeStart(A.path[0].b):ncCellXY(A.path[j-1].to);
+      c.globalAlpha=.5;ncChip(c,from.x,from.y,A.path[j].b+1,'old','rgba(255,138,101,.85)');c.globalAlpha=1;
+    }
+    const j=A.k-1;
+    if(j>=0&&j<A.path.length){
+      const p=A.path[j],dest=ncCellXY(p.to);
+      const from=j===0?ncStrokeStart(p.b):ncCellXY(A.path[j-1].to);
+      const t=Math.max(0,Math.min(1,A.ms/NC_CHAIN_MS));
+      const x=from.x+(dest.x-from.x)*t,y=from.y+(dest.y-from.y)*t-Math.sin(t*Math.PI)*20;
+      c.strokeStyle='rgba(255,213,79,.32)';c.lineWidth=3;c.setLineDash([6,5]);
+      c.beginPath();c.moveTo(from.x,from.y);c.lineTo(dest.x,dest.y);c.stroke();c.setLineDash([]);
+      ncChip(c,x,y,p.b+1,'fly','#FFE082');
+    }
+  }
+  /* ✨ 看链：两处去处各标一句（这一眼是花文买来的）*/
+  if(ncy.peekMs>0&&ncy.chainProbe&&ncy.phase==='play'){
+    for(let k=0;k<ncy.opts.length;k++){
+      const g=ncy.opts[k],p=ncCellXY(g),ch=ncy.chainProbe[k],empty=ncy.at[g]<0;
+      const col=empty?'#81C784':(ch?'#4FC3F7':'#EF5350');
+      c.strokeStyle=col;c.lineWidth=3;
+      ncRR(c,p.x-NC_CW/2+8,p.y-NC_CH/2+8,NC_CW-16,NC_CH-16,9);c.stroke();
+      c.fillStyle=col;c.font='bold 11px sans-serif';c.textAlign='center';
+      c.fillText(empty?'空窝':(ch?'搬'+ch.len+'只':'抢不动'),p.x,p.y+NC_CH/2-13);
+    }
+  }
+  /* 🪶 神助：替你抢的那一格亮一圈 */
+  if(ncy.autoMs>0&&ncy.autoCell>=0){
+    const p=ncCellXY(ncy.autoCell);
+    c.strokeStyle='rgba(255,241,118,'+(0.35+0.4*Math.abs(Math.sin(ncy.t/180))).toFixed(3)+')';
+    c.lineWidth=4;c.beginPath();c.arc(p.x,p.y,NC_NR+11,0,7);c.stroke();
+    c.fillStyle='#FFF176';c.font='bold 12px sans-serif';c.textAlign='center';
+    c.fillText('🪶',p.x,p.y-NC_NR-13);
+  }
+  /* 🌪 抢砸：那一格红叉，抖一下就收 */
+  if(ncy.wrongMs>0&&ncy.wrongCell>=0){
+    const p=ncCellXY(ncy.wrongCell);
+    c.strokeStyle='rgba(239,83,80,.9)';c.lineWidth=4;
+    c.beginPath();c.moveTo(p.x-13,p.y-13);c.lineTo(p.x+13,p.y+13);
+    c.moveTo(p.x+13,p.y-13);c.lineTo(p.x-13,p.y+13);c.stroke();
+  }
+  /* 封架：空着的亮格打红叉，住满了描一道金 */
+  if(ncy.phase==='seal'){
+    for(let k=0;k<ncy.live.length;k++){
+      const g=ncy.live[k];if(ncy.at[g]>=0)continue;
+      const p=ncCellXY(g);
+      c.strokeStyle='rgba(239,83,80,.88)';c.lineWidth=4;
+      c.beginPath();c.moveTo(p.x-12,p.y-12);c.lineTo(p.x+12,p.y+12);
+      c.moveTo(p.x+12,p.y-12);c.lineTo(p.x-12,p.y+12);c.stroke();
+    }
+    if(!ncy.holes){
+      c.strokeStyle='rgba(255,213,79,'+(0.35+0.4*Math.abs(Math.sin(ncy.t/150))).toFixed(3)+')';
+      c.lineWidth=5;ncRR(c,NC_FX0+2,NC_FY0+2,NC_FX1-NC_FX0-4,NC_FY1-NC_FY0-4,14);c.stroke();
+    }
+  }
+  /* 架下：地铺那一排 + 还在候着的鸟（按笔序排，谁在前谁在后一目了然）*/
+  c.strokeStyle='rgba(141,110,99,.5)';c.lineWidth=2;
+  c.beginPath();c.moveTo(NC_FX0-8,NC_BED_Y-15);c.lineTo(NC_FX1+8,NC_BED_Y-15);c.stroke();
+  c.fillStyle='rgba(161,136,127,.8)';c.font='bold 10px sans-serif';c.textAlign='left';
+  c.fillText('架下',NC_FX0-8,NC_BED_Y+9);
+  let bx=NC_FX0+24;
+  for(let k=0;k<ncy.beds.length;k++){ncBedDot(c,bx,NC_BED_Y,ncy.beds[k]+1);bx+=24}
+  for(let i=ncy.cur;i<ncy.n;i++){
+    if(bx>NC_FX1-4)break;
+    const wait=(i===ncy.cur&&ncy.phase==='play');
+    c.fillStyle=wait?'rgba(255,213,79,.18)':'rgba(207,216,220,.07)';
+    c.strokeStyle=wait?'rgba(255,213,79,.65)':'rgba(144,164,174,.3)';c.lineWidth=1.5;
+    c.beginPath();c.arc(bx,NC_BED_Y,11,0,7);c.fill();c.stroke();
+    c.fillStyle=wait?'#FFE082':'rgba(207,216,220,.55)';c.textAlign='center';c.font='bold 10px sans-serif';
+    c.fillText(i+1+'',bx,NC_BED_Y+4);bx+=24;
+  }
+  /* 火花 */
+  for(let i=0;i<ncy.spark.length;i++){
+    const s=ncy.spark[i];
+    c.globalAlpha=Math.max(0,Math.min(1,s.life/420));
+    c.fillStyle=s.col;c.fillRect(s.x-1.6,s.y-1.6,3.2,3.2);
+  }
+  c.globalAlpha=1;
+}
+/* ---- 读数 ---- */
+function ncBar(id,v){const e=ncEl(id);if(e)e.style.width=Math.max(0,Math.min(100,v*100)).toFixed(1)+'%'}
+function ncOcc(){let k=0;for(let i=0;i<NC_CELLS;i++)if(ncy.at&&ncy.at[i]>=0)k++;return k}
+function ncLightTxt(){
+  if(ncy.phase==='anim')return '搬家中';
+  if(ncy.phase==='seal')return ncy.holes?'空 '+ncy.holes+' 格':'满架';
+  if(ncy.wrongMs>0)return '抢砸';
+  if(ncy.cur>=ncy.n)return '按封架';
+  return '落窝';
+}
+function ncRender(){
+  ncTxt('ncScore',''+ncy.score);
+  const rk=ncRankOf(Math.max(ncNum('words'),ncy.words));
+  ncTxt('ncRank',rk.e+' '+rk.t);
+  const hs=ncEl('ncHearts');
+  if(hs)hs.textContent='❤️'.repeat(Math.max(0,ncy.hearts))+'🖤'.repeat(Math.max(0,NC_HEARTS-ncy.hearts));
+  ncBar('ncBarCase',ncy.phase==='play'?ncy.caseMs/Math.max(1,ncy.case0):1);
+  ncBar('ncBarFly',ncy.cur<ncy.n&&ncy.fly0?ncy.flyMs/Math.max(1,ncy.fly0):1);
+  ncBar('ncBarLamp',ncy.lamp/Math.max(1,ncy.lamp0));
+  ncBar('ncBarLed',ncy.live.length?ncOcc()/ncy.live.length:0);
+  if(ncy.phase==='play'||ncy.phase==='anim')
+    ncTxt('ncTime','这一案 '+(ncy.caseMs/1000).toFixed(1)+' 秒 · 这一只 '+(ncy.flyMs/1000).toFixed(1)+' 秒 · 这一场 '+(ncy.lamp/1000).toFixed(0)+' 秒');
+  const pk=ncEl('ncPeek'),au=ncEl('ncAuto'),sw=ncEl('ncSwap');
+  if(pk)pk.innerHTML='✨ 看链<span>P</span><b>剩 '+ncy.peekN+'</b>';
+  if(au)au.innerHTML='🪶 神助<span>V</span><b>剩 '+ncy.autoN+'</b>';
+  if(sw)sw.innerHTML='🔁 换字<span>S</span><b>剩 '+ncy.swapN+'</b>';
+  ncTxt('ncLedWord','🪺 第 '+(ncy.wi+1)+'/'+NC_PER+' 案 · 已收 '+ncy.words+' 字');
+  ncTxt('ncLedGate','🐣 架上 '+ncOcc()+'/'+ncy.live.length+' 格 · 候着 '+(ncy.n-ncy.cur)+' 只');
+  ncTxt('ncLedSnap','🛏 架下 '+ncy.beds.length+' 只 · 搬过 '+ncy.flies+' 只 · 抢砸 '+ncy.err+'/'+NC_ERR_LINE);
+  if(!ncy.rec)return;
+  ncTxt('ncLedNaive',ncy.dim?'':'🪺 笨手账：一路只挑空窝，这一案要空出 '+ncy.rec.gap+' 格 —— 住满 '+ncy.live.length+' 格非抢不可（最长一条链能搬 '+ncy.rec.chain+' 只）· 点案面上的格或 ①② 放鸟，最后一张牌 = 架下铺地 · 🪺 F 封架 · ✨ P 看链 · 🪶 V 神助 · 🔁 S 换字 · H 说明 · G 弃案');
+  ncTxt('ncLedCombo','🔥 连击 '+ncy.combo+' · 本场最长 '+ncy.maxCombo);
+  const hl=ncEl('ncHitLight');
+  if(hl)hl.textContent=(ncy.phase==='play'||ncy.phase==='anim'?'💡 ':'')+ncLightTxt();
+}
+function ncRenderOpts(){
+  for(let i=0;i<3;i++){
+    const el=ncEl('ncOpt'+i);if(!el)continue;
+    const mark='①②③'.charAt(i)+' ';
+    if(!ncy.opts||ncy.cur>=ncy.n){
+      el.textContent=i===0?'🪺 封架这一案':'—';
+      el.className='nc-opt'+(i===0&&ncy.cur>=ncy.n?' on':'');
+      continue;
+    }
+    if(i<ncy.opts.length){
+      const g=ncy.opts[i],busy=ncy.at[g]>=0;
+      el.textContent=mark+ncCellName(g)+(busy?' · 抢':' · 空');
+      el.className='nc-opt'+(busy?'':' good')+(ncy.wrongMs>0&&ncy.wrongCell===g?' on wrong':'');
+    }else if(i===ncy.opts.length){
+      el.textContent=mark+'🛏 架下铺地';el.className='nc-opt bed';
+    }else{el.textContent='—';el.className='nc-opt'}
+  }
+}
+/* ---- 封架结赏 ---- */
+function ncSealDone(){
+  const r=ncy.rec;if(!r){ncy.phase='play';ncy.locked=0;ncNextCase();return}
+  const full=ncy.holes===0;
+  const fresh=ncDexHas(r.ch)?0:1;if(fresh)ncy.fresh++;
+  let pts=0;const why=[];
+  if(full){pts+=NC_PTS_FULL;why.push('满架 '+r.live.length+' 格住满');ncy.fulls++;ncy.bestN++}
+  else{const pen=NC_P_HOLE*ncy.holes;pts-=pen;why.push('空 '+ncy.holes+' 格 −'+pen)}
+  if(ncy.fumbleCase===0){pts+=NC_PTS_CLEAN;why.push('一把过')}
+  if(full&&ncy.err===0&&ncy.scaredCase===0&&ncy.wordTools===0){pts+=NC_PTS_SEQ;why.push('一路清楚');ncy.perfect++}
+  if(ncy.bestChain>=NC_CHAIN_SHOW){pts+=NC_PTS_CHAIN;why.push('神来之笔·一条链搬 '+ncy.bestChain+' 只');ncy.chainN++}
+  const quick=ncy.caseUsed<=ncy.quickMs;
+  if(quick){pts+=NC_PTS_QUICK;why.push('眼快手快');ncy.quickN++}else ncy.quickOk=0;
+  if(fresh){pts+=NC_PTS_FRESH;why.push('头一回住满')}
+  if(ncy.wordTools===0){pts+=NC_PTS_NOTOOL;why.push('空手趟');ncy.toolRun=0}
+  else{ncy.toolRun++;if(ncy.toolRun>=3){pts+=NC_PTS_TOOLRUN;ncy.toolRun=0;why.push('借家什也住得满')}}
+  const wage=full?ncMul():0;pts+=wage;
+  ncy.score=Math.max(0,ncy.score+pts);
+  if(pts>0)ncy.gain+=pts;else ncy.penSum+=-pts;
+  ncy.errSum+=ncy.err;ncy.houseAll+=ncy.housed;
+  const mid=ncCellXY(ncy.live[Math.floor(ncy.live.length/2)]);
+  if(full){
+    ncy.combo++;if(ncy.combo>ncy.maxCombo)ncy.maxCombo=ncy.combo;
+    if(quick&&ncy.hearts<NC_HEART_MAX)ncy.hearts++;
+    ncy.words++;ncy.seen.push(r.ch);
+    ncLedgerAdd(r);ncBookDel(r.ch);
+    ncTone(1046,.2,.06);ncBurst(mid.x,mid.y,'rgba(129,199,132,.92)');
+    ncSay('🎊 满架：'+r.ch+' +'+pts+' 文（'+why.join(' · ')+' · 工钱 '+wage+'）· 架上 '+r.live.length+' 格一只不落');
+  }else{
+    ncy.combo=0;ncy.seen.push(r.ch);
+    ncBookPush(r.ch,'空');
+    ncTone(196,.24,.08);
+    ncSay('🪺 空着 '+ncy.holes+' 格：'+r.ch+' '+why.join(' · ')+' —— 住不满这一架不收字，先进空架簿');
+  }
+  ncy.wi++;ncy.phase='play';ncy.locked=0;
+  if(ncy.wi>=NC_PER){
+    ncy.wi=0;ncy.lv=Math.min(9,ncy.lv+1);ncy.lamp0=ncLampMs(ncy.lv);ncy.lamp=ncy.lamp0;
+    ncTxt('ncLv','第 '+ncy.lv+' 场');ncy.poolLv=-1;
+    if(ncy.fieldTools===0)ncy.cleanRun++;
+    ncy.fieldTools=0;
+    ncSay('🪺 进第 '+ncy.lv+' 场：鸟更多，链更长');
+    ncFillPool().then(function(){if(ncy.run&&!ncy.over)ncNextCase()});
+    return;
+  }
+  ncNextCase();
+}
+/* ---- 散场：账落盘，巢架摆出来 ---- */
+function ncOver(why){
+  if(ncy.over)return;
+  ncy.over=true;ncy.phase='over';ncKill();
+  ncLedgerPut();
+  const shelf=ncShelfNow(),got=[];
+  for(let i=0;i<NC_SHELF.length;i++)if(shelf[i])got.push(NC_SHELF[i].k);
+  if(got.length)ncPut('shelf',got.join('|'));
+  if(ncy.lv>ncNum('lvmax'))ncPut('lvmax',ncy.lv);
+  if(ncy.cleanRun)ncPut('notool',ncNum('notool')+ncy.cleanRun);
+  if(ncy.cleanRun>=1)ncPut('clean',ncNum('clean')+1);
+  if(ncy.score>ncNum('hi')){ncPut('hi',ncy.score);ncy.newBest=true}
+  const W={lamp:'⏺ 这一场的钟走完了',heart:'❤️ 心掉光了：鸟散架空',pool:'🌱 串里的字都住满了，换个场再练',
+    leave:'🏳 你现在要走，账先结在这里',quit:'🏁 你自己按了结算'};
+  ncTxt('ncRsWhy',W[why]||'⏺ 收工');
+  ncTxt('ncRsScore','🧾 '+ncy.score+' 文'+(ncy.newBest?'（新纪录）':''));
+  ncTxt('ncRsWords','🪺 收字 '+ncy.words+' · 场号 '+ncy.lv+' · 连击 '+ncy.maxCombo);
+  const stars=Math.max(0,Math.min(3,Math.round((ncy.gain-NC_PTS_FULL)/24)));
+  ncTxt('ncRsStars','⭐ +'+stars+' · 满架 '+ncy.fulls+' 案 · 一路清楚 '+ncy.perfect+' 案');
+  ncTxt('ncRsErr','✗ 抢砸 '+ncy.wrongs+' 回 · 惊走 '+ncy.scared+' 回 · 架下铺 '+ncy.bedAll+' 只 · 搬过 '+ncy.flies+' 只');
+  ncTxt('ncRsShelf','🪺 巢架：'+(got.length?got.join(' · '):'（这一把一件没添）'));
+  const rk=ncRankOf(ncNum('words'));
+  ncTxt('ncRsRank',rk.e+' '+rk.t+' · 一辈子住满 '+ncNum('words')+' 字');
+  const ov=ncEl('ncOver');if(ov)ov.style.display='flex';
+  ncSay('🪺 收工：'+ncy.score+' 文 · 收字 '+ncy.words);
+}
+/* ---- 巢架 8 件 ---- */
+function ncShelfNow(){
+  const flies=ncNum('flies')+ncy.flies;
+  let badges=0;try{badges=JSON.parse(localStorage.getItem('hz_badges')||'[]').length}catch(e){}
+  return[
+    ncNum('words')>0||ncy.words>0,
+    ncNum('clean')>0||(ncy.words>=NC_PER&&ncy.errSum<=NC_ERR_CLEAN*ncy.words),
+    ncNum('chain')>0||ncy.chainN>0,
+    ncNum('perfect')>0||ncy.perfect>0,
+    ncNum('lvmax')>=NC_SHELF_LV||ncy.lv>=NC_SHELF_LV,
+    ncNum('notool')>0||ncy.cleanRun>0,
+    badges>=3,
+    flies>=400
+  ];
+}
+/* ---- 一辈子账：只加不减，这一把为 0 的那本一个字也不写 ---- */
+function ncLedgerPut(){
+  if(ncy.words)ncPut('words',ncNum('words')+ncy.words);
+  if(ncy.fulls)ncPut('fulls',ncNum('fulls')+ncy.fulls);
+  if(ncy.bestN)ncPut('best',ncNum('best')+ncy.bestN);
+  if(ncy.perfect)ncPut('perfect',ncNum('perfect')+ncy.perfect);
+  if(ncy.chainN)ncPut('chain',ncNum('chain')+ncy.chainN);
+  if(ncy.quickN)ncPut('quick',ncNum('quick')+ncy.quickN);
+  if(ncy.flies)ncPut('flies',ncNum('flies')+ncy.flies);
+  if(ncy.grabs)ncPut('grabs',ncNum('grabs')+ncy.grabs);
+  if(ncy.wrongs)ncPut('wrongs',ncNum('wrongs')+ncy.wrongs);
+  if(ncy.scared)ncPut('scared',ncNum('scared')+ncy.scared);
+  if(ncy.bedAll)ncPut('beds',ncNum('beds')+ncy.bedAll);
+  if(ncy.houseAll)ncPut('housed',ncNum('housed')+ncy.houseAll);
+  if(ncy.swaps)ncPut('swaps',ncNum('swaps')+ncy.swaps);
+  if(ncy.tools)ncPut('tools',ncNum('tools')+ncy.tools);
+  if(ncy.maxCombo>ncNum('combo'))ncPut('combo',ncy.maxCombo);
+}
+function ncLedgerAdd(rec){
+  if(ncDexAdd(rec.ch)){
+    const d=(ncGet('dex','')||'').split('|').filter(x=>x);
+    while(d.length>NC_BOOK_MAX)d.pop();
+    ncPut('dex',d.join('|'));
+  }
+}
+function ncHelpSay(){if(ncy.phase==='play')ncSay('🪺 三件家什：✨ 看链 · 🪶 神助 · 🔁 换字（用一次扣 '+NC_P_TOOL+' 文）· 空手一趟 +'+NC_PTS_NOTOOL+' 文')}
+function ncLoseHeart(why){
+  ncy.hearts--;ncy.combo=0;
+  ncBad();
+  ncTag('❤️ 掉一颗心 · '+why);
+  if(ncy.hearts<=0)ncOver('heart');
+}
+function ncCaseOut(){
+  if(ncy.phase!=='play')return;
+  ncy.errSum+=ncy.err+1;ncy.quickOk=0;
+  ncy.score=Math.max(0,ncy.score-NC_P_SLOW);ncy.penSum+=NC_P_SLOW;
+  ncBookPush(ncy.ch,'空');
+  const r=ncy.rec;if(r)ncy.seen.push(r.ch);
+  ncSay('⏳ 案钟走尽 −'+NC_P_SLOW+'：'+ncy.ch+' 还没住满，进空架簿');
+  ncLoseHeart('案钟走尽');
+  if(ncy.over)return;
+  ncNextCase();
+}
+function ncLampOut(){ncOver('lamp')}
+function ncQuit(why){
+  if(ncy.phase==='over')return;
+  if(ncy.phase!=='play'&&ncy.phase!=='anim'){ncOver('quit');return}
+  ncy.combo=0;ncy.quickOk=0;
+  ncy.score=Math.max(0,ncy.score-NC_P_QUIT);ncy.penSum+=NC_P_QUIT;
+  ncy.errSum+=ncy.err;
+  ncBookPush(ncy.ch,'弃');
+  ncSay('🏳 弃了 '+ncy.ch+' −'+NC_P_QUIT+'：这一案的鸟先记下');
+  ncNextCase();
+}
+function ncLeave(where){
+  if(ncy.run&&!ncy.over)ncOver('leave');
+  ncy.run=false;ncy.over=true;ncKill();
+  if(typeof stopBGM==='function')stopBGM();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+/* __TAIL__ */
+
+/* ==== 归巢坊 ⑥：说明 · 另外三双手 · 把这一案的账独立核一遍 ====
+   产品里的手（_nc_b.js）：匹配用递归增广（Kuhn），点覆盖用 2^鸟 枚举，搬家链用递归直走。
+   这里的手故意换路数：匹配用「逐只回溯全枚举」，点覆盖用「2^格 枚举」（枚举的是另一头），
+   搬家链用「显式栈迭代」。算法不同而账目必须一致 —— 段 S/W 拿这几只手逐字对同一张案。
+   另外这里还走一遍「明白人」：每一只都挑搬得动的那格，看这一架到底住得住满（玩得成的证明）。*/
+
+/* ---- 说明：话写在案下那一条，翻一次扣一次 ---- */
+function ncHelpText(){
+  return '🪺 <b>一根笔是一只雏鸟</b>：这一笔的起笔落在哪一格、收笔落在哪一格，它这辈子就认这两个窝。'+
+    '<br>🐣 <b>鸟按笔序上台</b>：第 1 笔的鸟先来，一只只排着上。'+
+    '<br>🪶 <b>空窝随便住</b>；点已经住了鸟的窝就是<b>抢</b> —— 原主必须搬去它另一格，'+
+    '那格若也有主就接着搬，这条路就是<b>搬家链</b>（增广路）。链走到空窝才算抢动，'+
+    '撞上「只认一个窝的死心眼鸟」或绕回已经动过的格就<b>抢砸</b>（−'+NC_P_GRAB+' 文，鸟还在手上，换一格重来）。'+
+    '<br>🛏 <b>架下打地铺</b>：这一坊的鸟比格多（鸽子洞），多出来的那几只注定睡地下；'+
+    '可要是它明明搬得动你却让它铺地，那叫<b>惊走</b>（−'+NC_P_SCARE+' 文）。'+
+    '<br>🧭 <b>Kőnig 对偶</b>：最多能住满几格 ＝ 最少要盯住几格才盖得住所有鸟 —— '+
+    '这是定理不是运气，所以「住满 '+((ncy.rec&&ncy.rec.live.length)||'几')+' 格」这一问一定有解，也一定卡得住。'+
+    '<br>🪨 <b>笨手会输</b>：一路只挑空窝，这一案要空出 '+((ncy.rec&&ncy.rec.gap)||'一两')+' 格 —— 住满非抢不可。'+
+    '<br>🕐 <b>三支钟</b>：这一案（第 1 场 '+(ncCaseMs(1)/1000).toFixed(1)+' 秒）· 这一只鸟（'
+    +(ncFlyMs(1)/1000).toFixed(1)+' 秒不走就自己落地睡）· 这一场。'+
+    '<br>🎯 点案面上的格或 <code>1~2</code> 放鸟 · 最后一张牌 / <code>3</code> = 架下铺地 · '+
+    '🪺 <code>F</code> 封架 · ✨ <code>P</code> 看链 · 🪶 <code>V</code> 神助 · 🔁 <code>S</code> 换字 · '+
+    '<code>H</code> 说明 · <code>G</code> 🏳 弃案 · <code>R</code> 再来一局。';
+}
+function ncHelp(){
+  if(!ncy.run||ncy.over)return;
+  if(ncy.rec&&(ncy.phase==='play'||ncy.phase==='anim')&&!ncy.load){
+    ncy.score=Math.max(0,ncy.score-NC_P_HELP);ncy.penSum+=NC_P_HELP;
+    ncy.tools++;ncy.wordTools++;ncy.fieldTools++;
+    ncy.hitOk=2;ncy.hitTxt='📖 翻说明 −'+NC_P_HELP;
+    ncSay(ncy.hitTxt);
+  }
+  ncy.helpMs=NC_HELP_MS;
+  const el=ncEl('ncMsg');
+  if(el){el.innerHTML=ncHelpText();el.style.color='#FFE0B2';el.style.opacity='1'}
+}
+
+/* ---- 手三：最大匹配换一条路 —— 逐只回溯，一只鸟两个去处全试到底（不是 Kuhn 的 seen 递归）---- */
+function ncBvMatch(B){
+  const at=new Array(NC_CELLS).fill(-1);
+  let best=0;
+  const go=(i)=>{
+    if(i>=B.length){let k=0;for(let c=0;c<NC_CELLS;c++)if(at[c]>=0)k++;if(k>best)best=k;return}
+    go(i+1);                                          /* 这只不安置（睡地下）*/
+    for(let k=0;k<B[i].length;k++){
+      const c=B[i][k];if(at[c]>=0)continue;
+      at[c]=i;go(i+1);at[c]=-1;
+    }
+  };
+  go(0);return best;
+}
+/* ---- 手四：最小点覆盖枚举的是另一头（2^格，不是 2^鸟）---- */
+function ncBvCover(B){
+  let best=NC_CELLS+1;
+  for(let msk=0;msk<(1<<NC_CELLS);msk++){
+    let k=0;for(let c=0;c<NC_CELLS;c++)if(msk&(1<<c))k++;
+    if(k>=best)continue;
+    let ok=1;
+    for(let i=0;i<B.length;i++){
+      let hit=false;
+      for(let c=0;c<B[i].length;c++)if(msk&(1<<B[i][c])){hit=true;break}
+      if(!hit){ok=0;break}
+    }
+    if(ok)best=k;
+  }
+  return best;
+}
+/* ---- 手五：搬家链换一条腿 —— 显式栈迭代（产品那一手是递归直走）---- */
+function ncBvChain(B,at,i,cell){
+  const stack=[],seen=[],path=[];let b=i,c=cell;
+  for(let guard=0;guard<=NC_CELLS;guard++){
+    if(seen.indexOf(c)>=0)return null;
+    seen.push(c);stack.push(c);
+    if(at[c]<0){path.push({b:b,to:c,evict:-1});return{path:path,len:path.length,cells:stack}}
+    const occ=at[c];
+    let oth=-1;
+    for(let k=0;k<B[occ].length;k++)if(B[occ][k]!==c){oth=B[occ][k];break}
+    if(oth<0)return null;
+    path.push({b:b,to:c,evict:occ});
+    b=occ;c=oth;
+  }
+  return null;
+}
+/* ---- 明白人：一只只按笔序上台，每一只都挑搬得动的那格（链最短的先走）---- */
+function ncBvPlay(B){
+  const at=new Array(NC_CELLS).fill(-1);
+  let housed=0,beds=0,grabbed=0,best=0;
+  for(let i=0;i<B.length;i++){
+    let pick=null;
+    for(let k=0;k<B[i].length;k++){
+      const ch=ncBvChain(B,at,i,B[i][k]);
+      if(ch&&(!pick||ch.len<pick.len))pick=ch;
+    }
+    if(!pick){beds++;continue}
+    for(let j=0;j<pick.path.length;j++)at[pick.path[j].to]=pick.path[j].b;
+    housed++;if(pick.len>1)grabbed++;
+    if(pick.len>best)best=pick.len;
+  }
+  let occ=0;for(let c=0;c<NC_CELLS;c++)if(at[c]>=0)occ++;
+  return{housed:housed,occ:occ,beds:beds,grabbed:grabbed,best:best};
+}
+/* ---- 独立重走一遍闸门：图还是那张图（题面就是 ncFitAll 的九宫），账换三只手算 ---- */
+function ncAudWord(ch,j){
+  const M=j&&j.medians;
+  if(!Array.isArray(M)||M.length<NC_NMIN||M.length>NC_NMAX)return{ok:0,why:'笔数带外'};
+  for(let i=0;i<M.length;i++)if(!Array.isArray(M[i])||M[i].length<2)return{ok:0,why:'有一笔没点'};
+  const P=ncFitAll(M),n=P.length,B=[];
+  for(let i=0;i<n;i++)B.push(ncBirdOf(P[i]));
+  const set={};
+  for(let i=0;i<n;i++)for(let k=0;k<B[i].length;k++)set[B[i][k]]=1;
+  const live=Object.keys(set).map(Number).sort((a,b)=>a-b);
+  if(live.length>=n)return{ok:0,why:'鸟不比格多'};
+  const bed=n-live.length;
+  if(bed<NC_DIFFMIN||bed>NC_DIFFMAX)return{ok:0,why:'地铺 '+bed+' 只出带'};
+  let solo=0;for(let i=0;i<n;i++)if(B[i].length<2)solo++;
+  if(solo>NC_SOLOMAX)return{ok:0,why:'死心眼的鸟 '+solo+' 只'};
+  const m=ncBvMatch(B),cv=ncBvCover(B),nv=ncNaive(B),pl=ncBvPlay(B);
+  if(m!==live.length)return{ok:0,why:'住不满('+m+'/'+live.length+')'};
+  if(cv!==m)return{ok:0,why:'对偶不等('+m+'/'+cv+')'};
+  const gap=live.length-nv.placed;
+  if(gap<NC_GAPMIN)return{ok:0,why:'一路挑空窝也住得满'};
+  if(pl.occ!==live.length)return{ok:0,why:'明白人也住不满('+pl.occ+')'};
+  if(pl.best<NC_CHAINMIN)return{ok:0,why:'最长链 '+pl.best+' 只'};
+  return{ok:1,ch:ch,n:n,live:live.length,bed:bed,solo:solo,m:m,cov:cv,gap:gap,
+    chain:pl.best,play:pl.occ,grabs:pl.grabbed,B:B,P:P};
+}
+/* ---- 当场把这一案的账独立核一遍：段 W 收账用 ---- */
+function ncAudState(){
+  const r=ncy.rec;if(!r)return{ok:0,why:'案还没摆'};
+  const m=ncBvMatch(r.B),cv=ncBvCover(r.B),pl=ncBvPlay(r.B),nv=ncNaive(r.B);
+  const bad=[];
+  if(m!==r.mfull)bad.push('匹配 '+r.mfull+'/'+m);
+  if(cv!==r.cover)bad.push('覆盖 '+r.cover+'/'+cv);
+  if(m!==cv)bad.push('Kőnig 不等 '+m+'/'+cv);
+  if(m!==r.live.length)bad.push('住不满 '+m+'/'+r.live.length);
+  if(pl.occ!==r.live.length)bad.push('明白人只住满 '+pl.occ);
+  if(r.live.length-nv.placed!==r.gap)bad.push('笨手空 '+r.gap+'/'+(r.live.length-nv.placed));
+  return{ok:bad.length?0:1,ch:r.ch,n:r.n,live:r.live.length,bed:r.bed,cover:r.cover,
+    m:m,cov:cv,gap:r.gap,chain:r.chain,playBest:pl.best,why:bad.join(' · ')};
+}
+/* ---- 眼下案面的独立读数：段 M 拿它对产品自己的账 ---- */
+function ncBvNow(){
+  const r=ncy.rec;if(!r)return{ok:0,why:'案还没摆'};
+  const at=ncy.at.slice(),soft=(ncy.phase==='anim');
+  const bad=[];let occ=0;const cnt={};
+  for(let c=0;c<NC_CELLS;c++){
+    if(at[c]<0)continue;occ++;
+    if(cnt[at[c]])bad.push('一只鸟住了两格');
+    cnt[at[c]]=1;
+    if(r.B[at[c]].indexOf(c)<0)bad.push((at[c]+1)+' 号住在不认的格');
+  }
+  if(!soft){
+    for(let i=0;i<r.n;i++){
+      const d=ncy.done[i];
+      if(d===1&&cnt[i]===undefined)bad.push((i+1)+' 号说住下了却不在架上');
+      if(d===2&&cnt[i]!==undefined)bad.push((i+1)+' 号说铺地还在架上');
+      if(!d&&cnt[i]!==undefined)bad.push((i+1)+' 号没出手就已在架上');
+    }
+    if(ncy.housed!==occ)bad.push('安置账 '+ncy.housed+'/'+occ);
+    if(ncy.beds.length+occ!==ncy.cur)bad.push('只数账 '+ncy.cur);
+  }
+  return{ok:bad.length?0:1,ch:r.ch,occ:occ,housed:ncy.housed,beds:ncy.beds.length,
+    cur:ncy.cur,n:r.n,live:r.live.length,holes:ncy.holes,phase:ncy.phase,lv:ncy.lv,
+    why:bad.join(' · ')};
 }
 
 
