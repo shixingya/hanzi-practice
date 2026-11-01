@@ -8048,6 +8048,71 @@ button:active{transform:scale(.95)}
 .nc-overbox p{margin:3px 0;font-size:13px}
 .nc-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
 .nc-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
+/* ================= v1.116 🥤 笔顺汽水铺 ================= */
+/* HUD 占死三行：摊没开那两息它只折两行，不留这一格整张案会被往上抬 */
+.sd-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.sd-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.sd-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死四行：三副题面里最宽那副（对账那一条带着整张流水账）*/
+.sd-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*4)}
+.sd-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.sd-ask b{color:#FFE082}
+.sd-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 28px);max-width:520px;margin:0 auto}
+/* 案：日头下的摊子（canvas 给底，界外留一道木框）*/
+.sd-field{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#1B2230,#101822 58%,#080C12);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8)}
+.sd-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.sd-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(8,12,18,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;transition:opacity .25s;pointer-events:none;white-space:nowrap;line-height:1.4;max-width:94%;z-index:6}
+.sd-msg{width:calc(100% - 28px);max-width:520px;margin:6px auto 0;background:rgba(8,12,18,.72);border:1px solid #37474F;border-radius:12px;color:#FFD54F;font-size:13px;font-weight:700;line-height:1.5;padding:7px 12px;text-align:center;min-height:calc(13px*1.5*2);max-height:168px;overflow-y:auto;transition:opacity .25s}
+.sd-msg b{color:#FFCC80}
+.sd-msg code{background:rgba(255,255,255,.12);border-radius:4px;padding:0 4px;color:#FFE082}
+/* 口味账：五味各几笔（第 6 场起整行收走，得自己认笔形）*/
+.sd-tally{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;width:calc(100% - 24px);max-width:520px;margin:6px auto 0;font-size:12px;font-weight:800;color:#B0BEC5}
+.sd-tally i{font-style:normal;background:rgba(255,255,255,.07);border-radius:9px;padding:2px 7px;white-space:nowrap}
+.sd-tally i.zero{opacity:.34}
+/* 客流条：一档一根（条高 = 概率），数字键 1~4 点瓶数牌 */
+.sd-bars{display:flex;align-items:flex-end;gap:6px;justify-content:center;width:calc(100% - 24px);max-width:520px;height:74px;margin:6px auto 0;padding:0 6px;box-sizing:border-box}
+.sd-bar{flex:1 1 0;min-width:0;max-width:64px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.sd-bar .fill{width:100%;background:linear-gradient(180deg,#4FC3F7,#1565C0);border-radius:6px 6px 2px 2px;min-height:3px;transition:height .2s}
+.sd-bar .fill.hot{background:linear-gradient(180deg,#FFD54F,#F57F17)}
+.sd-bar .num{font-size:11px;font-weight:800;color:#B3E5FC;margin-top:2px;line-height:1.1;text-align:center;white-space:nowrap}
+.sd-bar .pc{font-size:10.5px;color:#78909C;line-height:1.1;text-align:center;white-space:nowrap}
+.sd-bars-cap{width:calc(100% - 24px);max-width:520px;margin:0 auto 2px;text-align:center;font-size:11px;color:#607D8B}
+/* 进货牌：四个瓶数（最赚的那档 + 三种笨手），数字键 1~4 一手一张 */
+.sd-tbl{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:calc(100% - 24px);max-width:520px;margin:8px auto 4px}
+.sd-opt{flex:1 1 22%;min-width:0;min-height:44px;background:linear-gradient(180deg,#2E3F4C,#1B2830);color:#CFD8DC;border:2px solid #455A64;border-radius:12px;font-size:12.5px;font-weight:800;line-height:1.2;padding:4px 4px;cursor:pointer}
+.sd-opt:hover{border-color:#FFB74D}
+.sd-opt.on{background:linear-gradient(180deg,#4A3418,#2A1C0B);border-color:#FFB74D;color:#FFE0B2}
+.sd-opt.good{background:linear-gradient(180deg,#1F4A25,#123018);border-color:#81C784;color:#DCEDC8}
+.sd-opt.wrong{background:linear-gradient(180deg,#5D1F1B,#3A120F);border-color:#EF5350;color:#FFCDD2;animation:sdShake .32s}
+.sd-opt .exp{display:block;font-size:10px;font-weight:700;color:#80CBC4;line-height:1.2}
+@keyframes sdShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.sd-meter{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;width:calc(100% - 28px);max-width:520px;margin:4px auto}
+.sd-tl{position:relative;height:16px;background:rgba(0,0,0,.42);border-radius:8px;overflow:hidden}
+.sd-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:8px;transition:width .1s linear}
+.sd-tl.case i{background:linear-gradient(90deg,#FFB74D,#FF7043)}
+.sd-tl.day i{background:linear-gradient(90deg,#4FC3F7,#0277BD)}
+.sd-tl.lamp i{background:linear-gradient(90deg,#FFF176,#FBC02D)}
+.sd-tl.led i{background:linear-gradient(90deg,#B0BEC5,#546E7A)}
+.sd-tl b{position:absolute;inset:0;font-size:11px;font-weight:800;color:#0E1417;text-align:center;line-height:16px;text-shadow:0 1px 0 rgba(255,255,255,.28)}
+.sd-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px auto 2px;max-width:520px}
+.sd-tool{background:#18222A;color:#B0BEC5;border:1px solid #37474F;border-radius:10px;font-size:12px;font-weight:700;padding:5px 9px;cursor:pointer}
+.sd-tool.go{background:linear-gradient(180deg,#3E5260,#18222A);border-color:#FFB74D;color:#FFE0B2}
+.sd-tool span{display:inline-block;background:rgba(255,255,255,.14);border-radius:5px;padding:0 4px;margin-left:5px;font-size:10px}
+.sd-tool b{color:#FFE082;margin-left:4px}
+.sd-tool:disabled{opacity:.4;cursor:default}
+.sd-hintline{font-size:11.5px;color:#78909C;text-align:center;margin:4px auto 0;max-width:520px;line-height:1.5;padding:0 10px}
+.sd-hintline b{color:#B0BEC5}
+.sd-hintline code{background:rgba(255,255,255,.1);border-radius:4px;padding:0 4px}
+.sd-cdot{position:absolute;right:8px;top:8px;font-size:11px;background:#FF7043;color:#20150C;border-radius:8px;padding:1px 6px;font-weight:900}
+.mode-card{position:relative}
+/* 结算：盖在摊上的一层布 */
+.sd-over{position:absolute;inset:0;background:rgba(3,6,8,.9);z-index:20;display:flex;align-items:center;justify-content:center;border-radius:16px}
+#screen-sd{position:relative}
+.sd-overbox{width:88%;max-width:420px;background:linear-gradient(180deg,#1E2B33,#0B1114);border:2px solid #455A64;border-radius:14px;padding:12px 14px;text-align:center;color:#CFD8DC}
+.sd-overbox h3{margin:0 0 6px;font-size:20px;color:#FFD54F}
+.sd-overbox p{margin:3px 0;font-size:13px}
+.sd-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.sd-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
 </style>
 
 </head>
@@ -8104,8 +8169,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 114 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">114</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 115 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">115</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -8116,12 +8181,18 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>114 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>56</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>115 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>57</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="sdCard" onclick="enterMode('sd')">
+      <div class="icon">🥤</div>
+      <div class="info"><h3>笔顺汽水铺</h3><p id="sdCardTip">一瓶汽水一根笔：这一子的<b>笔数</b>是客流的中位，<b>五种笔形</b>各占几笔就是各口味的人气。一天进多少瓶？进 4 文、卖 9 文、卖不掉<b>回炉只值 1 文</b>、让人扑空<b>赔笑 1 文</b>。最像的那档<b>不是</b>最赚的那档 —— 你要的是<b>多进一瓶还赚不赚</b>（临界比 1/3）：卖一瓶赚的少、赔一笑的多，就该在<b>最可能那档右边一点</b>收手</p>
+      <span class="sd-cdot" id="sdCardDot">🆕</span>
+    </div>
+</div>
 <div class="mode-card" id="ncCard" onclick="enterMode('nc')">
       <div class="icon">🪺</div>
       <div class="info"><h3>笔顺归巢坊</h3><p id="ncCardTip">一根笔落成一只雏鸟，鸟只有两个去处：<b>起笔那一格</b>和<b>收笔那一格</b>。九宫巢架比鸟少，多出来的注定睡地下 —— 你要的是<b>每一格都住满</b>。空窝随便放，<b>抢窝就得让原主搬家</b>，它搬走那格若也有主就接着搬；<b>想清楚整条链再下手</b>，抢砸了一窝鸟惊散</p>
@@ -9272,6 +9343,70 @@ button:active{transform:scale(.95)}
       <div class="nc-overbtns">
         <button id="ncReBtn">🔁 再归一回</button>
         <button id="ncReHome">🏠 回实验室</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-sd">
+  <div class="top-bar">
+    <button class="back-btn" onclick="sdLeave()">← 返回</button>
+    <div class="stats"><span id="sdScoreTxt">🥤 <b id="sdScore">0</b> 文</span><span id="sdLv">第 1 场</span><span id="sdTime">这一案 17.0 秒 · 这一场 86 秒</span></div>
+    <button class="icon-btn" onclick="sdHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="sd-hud">
+    <span id="sdRank" title="称号">🐣 头一摊开张</span>
+    <span id="sdHearts" title="生命">❤️❤️❤️</span>
+    <span id="sdLedCombo" title="连击">🔥 连击 0 · 最长 0</span>
+    <span id="sdLedWord" title="第几案">🥤 第 1/3 案 · 已开张 0 摊</span>
+    <span id="sdLedGate" title="摊上账">🌱 摊还没摆</span>
+    <span class="light" id="sdHitLight">💡 妙算</span>
+  </div>
+  <div class="sd-ask" id="sdAsk">🌱 正在挑字……<br><small>在字库里找「一瓶汽水一根笔、客流分布从笔形里读得出来、最赚的档不是最像的那档」的字</small></div>
+  <div class="sd-stage">
+    <div class="sd-field">
+      <canvas class="sd-canvas" id="sdCv" width="420" height="340"></canvas>
+      <div class="sd-tag" id="sdTag">🥤 摊还没摆</div>
+    </div>
+  </div>
+  <div class="sd-msg" id="sdMsg">🥤 一瓶汽水一根笔：进 4 文、卖 9 文、卖不掉回炉 1 文、让人扑空赔笑 1 文</div>
+  <div class="sd-tally" id="sdTally"></div>
+  <div class="sd-bars" id="sdBars"></div>
+  <div class="sd-bars-cap" id="sdBarsCap">条高 = 这一档来多少人的把握</div>
+  <div class="sd-tbl" id="sdOpts">
+    <button class="sd-opt" id="sdOpt0">—</button>
+    <button class="sd-opt" id="sdOpt1">—</button>
+    <button class="sd-opt" id="sdOpt2">—</button>
+    <button class="sd-opt" id="sdOpt3">—</button>
+  </div>
+  <div class="sd-meter">
+    <div class="sd-tl case"><i id="sdBarCase"></i><b>⏳ 这一案</b></div>
+    <div class="sd-tl day"><i id="sdBarDay"></i><b>🥤 这一天</b></div>
+    <div class="sd-tl lamp"><i id="sdBarLamp"></i><b>💡 这一场</b></div>
+    <div class="sd-tl led"><i id="sdBarLed"></i><b id="sdLedSnap">🧾 妙算 0/3 · 少赚 0 文</b></div>
+  </div>
+  <div class="sd-tools">
+    <button class="sd-tool" id="sdPeek">🔎 看期望<span>P</span><b>剩 2</b></button>
+    <button class="sd-tool" id="sdCalc">🧮 账房代算<span>V</span><b>剩 2</b></button>
+    <button class="sd-tool" id="sdSwap">🔁 换字<span>S</span><b>剩 1</b></button>
+    <button class="sd-tool" id="sdHelpBtn">📖 说明<span>H</span></button>
+    <button class="sd-tool" id="sdQuitBtn">🏳 弃摊<span>G</span></button>
+    <button class="sd-tool go" id="sdGoBtn">🥤 <b>开摊</b><span>F</span></button>
+  </div>
+  <div class="sd-hintline" id="sdLedNaive">🪨 <b>笨手账</b>：贪大（进最多那档）、随大流（最可能那档）、胆小（进最少那档）—— 过闸的字这三种进法都<b>实打实少赚</b><br>🥤 <b>最赚的档不是最像的那档</b>（临界比 1/3）· 点进货牌或 <code>1~4</code> 出手 · 🔎 <code>P</code> 看期望 · 🧮 <code>V</code> 代算 · 🔁 <code>S</code> 换字 · <code>H</code> 📖 说明 · <code>G</code> 🏳 弃摊 · <code>F</code> 🥤 开摊</div>
+
+  <div class="sd-over" id="sdOver" style="display:none">
+    <div class="sd-overbox">
+      <h3>🥤 收摊</h3>
+      <p id="sdRsWhy">⏺ 这一场的钟走完了</p>
+      <p id="sdRsScore">🧾 0 文</p>
+      <p id="sdRsWords">🥤 开张 0 摊 · 场号 1 · 连击 0</p>
+      <p id="sdRsStars">⭐ +0</p>
+      <p id="sdRsErr">✗ 进错 0 回 · 流水 0 文 · 卖出 0 瓶</p>
+      <p id="sdRsShelf">🍶 瓶架：（这一把一件没添）</p>
+      <p id="sdRsRank">🐣 头一摊开张</p>
+      <div class="sd-overbtns">
+        <button id="sdReBtn">🔁 再开一回</button>
+        <button id="sdReHome">🏠 回实验室</button>
       </div>
     </div>
   </div>
@@ -17320,6 +17455,7 @@ function updateHomeStats(){
   if(typeof huNudge==='function')huNudge();
   if(typeof mcNudge==='function')mcNudge();
   if(typeof ncNudge==='function')ncNudge();
+  if(typeof sdNudge==='function')sdNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -17380,6 +17516,7 @@ function enterMode(mode){
   if(mode==='hu'){huStart();return}
   if(mode==='mc'){mcStart();return}
   if(mode==='nc'){ncStart();return}
+  if(mode==='sd'){sdStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -131068,6 +131205,1147 @@ function ncBvNow(){
     cur:ncy.cur,n:r.n,live:r.live.length,holes:ncy.holes,phase:ncy.phase,lv:ncy.lv,
     why:bad.join(' · ')};
 }
+
+
+/* ==== 🥤 笔顺汽水铺 v1（v1.116.0）====
+   一瓶汽水落成一根笔：这一子有几笔，摊上就有几瓶的客流中位；一笔属一种口味（横竖撇捺折），
+   五种口味各占几笔，就是这一子带出来的五种人气。客人一天来多少人是随机的 —— 你只看得到
+   分布，看不到今天。进货价 4 文、卖出 9 文、卖不掉回炉 1 文、让人扑空赔笑 1 文：
+   卖一瓶赚 6 文（含赔笑），剩一瓶亏 3 文 ⇒ 只要「还卖得动」的把握高过 1/3 就该多进一瓶
+   —— 这就是报童模型的临界分位数。最可能那档（客流中位 n）恰恰不是最赚那档，
+   它总在 n 右边一点：这道题考的不是猜最像的，是算边际。
+   账是本摊自己的两双手算的 —— 手一逐档枚举加权期望取最大；手二用边际停止规则，
+   再把「一瓶一瓶加上去的边际」逐段求和回推总账（telescoping），两手必须一档不差地对上，
+   这一摊才准开。过闸还多三道：贪大（进最多那档）至少少赚 SD_GAPMIN 文、
+   随大流与胆小至少各少赚 SD_GAPSOFT 文、且最赚档与最像档至少差 SD_MODOFF 瓶（不然题面就废了）。
+   本节：口径 · 九串字表 · 状态 · 落盘 · 发声 */
+
+/* ---- 口径（与 _sdgeo.cjs 一字一样）---- */
+const SD_C=4,SD_S=9,SD_R=1,SD_G=1;   /* 进货 · 卖出 · 回炉 · 赔笑 */
+const SD_NMIN=4,SD_NMAX=12;          /* 一子的瓶数 = 笔数 */
+const SD_KINDMIN=3;                   /* 口味至少这么多种（全是横就没得算）*/
+const SD_KMIN=5,SD_KMAX=7;            /* 客流档数 = 口味种数 + 2 */
+const SD_PMIN=.02;                    /* 概率低于这一成的档，牌面上直接抹掉 */
+const SD_LOWSP=1;                     /* 档从 n−1 起（往下一档，让胆小也有肉）*/
+const SD_GAPMIN=4,SD_GAPSOFT=1;       /* 贪大 / 随大流、胆小 至少要少赚这些文 */
+const SD_MODOFF=1;                    /* 最赚档与最像档至少差这么多瓶 */
+const SD_CRIT=(SD_C-SD_R)/((SD_S-SD_C+SD_G)+(SD_C-SD_R)); /* 临界分位数 = 1/3：多进一瓶只要「卖得掉」的把握过这个数就划算 */
+/* ---- 场 · 池 · 心 ---- */
+const SD_PER=3;                       /* 一场三案 */
+const SD_POOL_MIN=4,SD_POOL_WANT=12;
+const SD_HEARTS=3,SD_HEART_MAX=5,SD_BOOK_MAX=300;
+const SD_TELL_LV=4,SD_DIM_LV=6;       /* 第 4 场起客流条上的百分数收走，第 6 场起瓶数标签与口味账也收走 */
+function sdNoTell(L){return L>=SD_TELL_LV}
+function sdDim(L){return L>=SD_DIM_LV}
+/* ---- 赏 ---- */
+const SD_M0=7,SD_CB=.14,SD_LVW=.07;
+const SD_PTS_RIGHT=14;                /* 妙算：这一案进的正是最赚那档 */
+const SD_PTS_TRIO=14;                 /* 三连妙算：一场三案全进对 */
+const SD_PTS_QUICK=12;                /* 眼快手快：每一案都在门槛内拍板 */
+const SD_PTS_FRESH=6;                 /* 头一回开这个字的摊 */
+const SD_PTS_TIGHT=8;                 /* 不差分毫：实收流水离期望值不到 3 文 */
+const SD_PTS_NOTOOL=8,SD_PTS_TOOLRUN=14;
+/* ---- 罚 ---- */
+const SD_P_WRONG=8;                   /* 进错档：一手拍在少赚 3 文以上的瓶数上 */
+const SD_P_SLOW=4;                    /* 案钟走尽 */
+const SD_P_QUIT=5;                    /* 弃摊 */
+const SD_P_TOOL=4,SD_P_HELP=3;
+const SD_ERR_LINE=2;                  /* 一场错到这一回就掉一颗心 */
+const SD_ERR_CLEAN=0;                 /* 一场三字「每案都进对」才算清白票 */
+const SD_TIGHT_WEN=3;                 /* 实收离期望不到这些文 ⇒ 不差分毫 */
+/* ---- 家什 ---- */
+const SD_P0={peek:2,calc:2,swap:1};   /* 🔎 看期望 / 🧮 账房代算 / 🔁 换字 */
+const SD_PEEK_MS=5200,SD_CALC_MS=4200,SD_SWAP_PEN=6;
+/* ---- 钟 ---- */
+function sdCaseMs(L){return Math.max(9000,17000-900*(L-1))}     /* 这一案 */
+function sdDayMs(L){return Math.max(3800,6000-240*(L-1))}       /* 这一天：客人走完 */
+function sdLampMs(L){return Math.max(72000,86000-1600*(L-1))}   /* 这一场 */
+const SD_AUDIT_MS=9000,SD_NAG_MS=5600,SD_HELP_MS=8200,SD_WRONG_MS=620;
+function sdQuickMs(L){return Math.floor(sdCaseMs(L)*0.5)}       /* 眼快手快的门槛：这一案只用掉一半钟 */
+const SD_WALK_MS=520,SD_POP_MS=300,SD_BACK_MS=420;
+/* ---- 案面：420×340，汽水瓶排在 44~376 / 34~148，客人在 250 那一条走（与 _sdgeo.cjs 一格不差）---- */
+const SD_W=420,SD_H=340;
+const SD_FX0=44,SD_FX1=376,SD_FY0=34,SD_FY1=148;
+const SD_ROW_Y=250;                    /* 客人走的那一条 */
+const SD_BOTTLE_R=13;                  /* 瓶身半径 */
+/* ---- 五种口味（笔形）：色与名 ---- */
+const SD_TASTE=['横','竖','撇','捺','折'];
+const SD_TC=['#FFD54F','#4FC3F7','#A5D6A7','#F48FB1','#B39DDB'];
+/* ---- 称号：一辈子开满收齐的字 ---- */
+const SD_RANKS=[
+  {n:0,e:'🐣',t:'头一摊开张'},{n:2,e:'🪶',t:'认得口味'},{n:5,e:'🧭',t:'看得懂条'},
+  {n:9,e:'🏹',t:'一路不进错'},{n:14,e:'👀',t:'一眼定档'},{n:21,e:'🌳',t:'满街生香'},
+  {n:30,e:'🥤',t:'摊摊有着'},{n:42,e:'🕊',t:'不被运气骗'},{n:58,e:'👑',t:'从没被运气骗'}
+];
+function sdRankOf(w){
+  let r=SD_RANKS[0];
+  for(let i=0;i<SD_RANKS.length;i++)if(w>=SD_RANKS[i].n)r=SD_RANKS[i];
+  return r;
+}
+/* ---- 瓶架 8 件 ---- */
+const SD_SHELF_LV=4;
+const SD_SHELF=[
+  {k:'瓶样图',d:'开满一个字'},              {k:'清白票',d:'一场三字每案错 ≤'+SD_ERR_CLEAN+' 回'},
+  {k:'铁算盘',d:'一场三案全进对'},            {k:'现金钱罐',d:'一案不差分毫（离期望 3 文内）'},
+  {k:'戥瓶秤',d:'走到第 '+SD_SHELF_LV+' 场还在走'},{k:'空手趟',d:'一场家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},        {k:'量街尺',d:'累计进过 400 瓶'}
+];
+/* ---- 九串字表（一场一串，串外的字这一场过不了闸）----
+   由 _sdgeo.cjs 离线数出来（口径与上面的 SD_* 常量一一对应，改常量就得重扫重写这九串）：
+   全站 1372 字过闸 186 字（随大流也差不了多少 374 · 贪大没肉吃 337 · 笔数过多 276 · 口味太少 97 ·
+   最优并列 35 · 笔数不足 33 · 最可能就是答案 20 · 随大流撞了胆小那一档 14 ·
+   档数出带 · 两双手对不上 · 最优瓶数不成话都为零），
+   按「档数 + 最赚档与最像档之差 + 笔数 + 口味种数」并成一个难度分切成九串（每串 21 字，末串 18）：
+   第 1 串 5 档、难度中位 7；第 9 串 6 档、难度中位 15。每一档的加权期望与边际停止点逐字相等
+   （这是 telescoping，也是这道题的题面）：最赚的档总在最像那档的右边一点。*/
+const SD_LEV={
+  1:"保哄型律恰恼柄脉说追骂鬼俯俱借凄宵峰弱徐旅",
+  2:"柴栖殷烈烟烤爹狸秘租秩粉素索耽袖调谈轿递通",
+  3:"配阅陵骏鸯崖猜绰凿剩喷嫂彭循愉欺粥舒跑冶冷",
+  4:"冻坑扮扳扶批找抄投抗抡护拟没纵坦坪孤抬抱抵",
+  5:"拌拐拔拘拙拢拥拨择泥牧玩疙线组经城括拭拯拱",
+  6:"拼挂按挑挠挡挣挥挪挺洁洞浇珀绒绘络绞统衍逊",
+  7:"倾剥哦捕浆涕牺病翅饿匙啦啪婆据捷掀掐探接控",
+  8:"推措掷描梁淘淡混渔渗睁续绳维绷绸综绽骑慨揉",
+  9:"提揪揭揽搁搂搅搭温湿缕缘羡翘落装阔鹅"
+};
+function sdLetters(L){return SD_LEV[L]||''}
+function sdInLev(ch,L){return (sdLetters(L)||'').indexOf(ch)>=0}
+
+/* ---- 状态 ---- */
+const sdy={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  lv:1,wi:0,score:0,hearts:SD_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一案：字 · 瓶 · 档 · 账 */
+  ch:'',rec:null,P:[],n:0,done:[],kinds:0,cnt:[],tastes:[],d:[],p:[],q:0,e:0,mode:0,mean:0,
+  lo1:0,lo2:0,lo3:0,opts:[],sel:-1,
+  /* 这一天：走到的档、卖出的瓶、剩下的瓶 */
+  dayD:0,sold:0,left:0,walked:0,walkIdx:0,custMs:0,rush:0,
+  /* 拍板之后：进了几瓶、期望与实收 */
+  stock:0,qPicked:0,exp:0,cash:0,missed:0,auditMs:0,rollTo:-1,hesitated:0,
+  /* 眼下这一手 */
+  peekMs:0,calcMs:0,anim:null,animCell:-1,wrongMs:0,wrongIdx:-1,spark:[],lit:null,
+  peekUse:0,calcUse:0,swapUse:0,peekN:SD_P0.peek,calcN:SD_P0.calc,swapN:SD_P0.swap,
+  caseErr:0,autoUsed:0,
+  /* 这一案 / 这一场的钟 */
+  case0:0,caseMs:0,caseUsed:0,day0:0,dayMs:0,lamp:0,lamp0:0,quickOk:1,quickMs:0,
+  err:0,errSum:0,fieldTools:0,fieldErr:0,opened:0,
+  /* 局账 */
+  words:0,rights:0,trio:0,cleanN:0,tightN:0,quickN:0,
+  wrongs:0,bottles:0,soldAll:0,taken:0,revenue:0,swaps:0,tools:0,wordTools:0,cleanRun:0,toolRun:0,
+  lostSum:0,fieldRights:0,sealGood:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',nags:0,nagMs:0,newBest:false,helpMs:0,
+  tellOff:0,dim:0,seed:1
+};
+
+/* ---- 落盘：hz_soda_* 共 22 本 ---- */
+function sdPut(k,v){try{localStorage.setItem('hz_soda_'+k,''+v)}catch(e){}}
+function sdGet(k,d){try{const v=localStorage.getItem('hz_soda_'+k);return v===null?d:v}catch(e){return d}}
+function sdNum(k){return Number(sdGet(k,0))||0}
+function sdInc(k,n){const v=sdNum(k)+(n||1);sdPut(k,v);return v}
+function sdBookPush(ch,why){
+  const bk=(sdGet('book','')||'').split('|').filter(x=>x);
+  const i=bk.findIndex(x=>x.indexOf(ch+':')===0);
+  const e=ch+':'+(why||'错');
+  if(i>=0)bk[i]=e;else bk.unshift(e);
+  while(bk.length>SD_BOOK_MAX)bk.pop();
+  sdPut('book',bk.join('|'));
+}
+function sdBookHas(ch){return (sdGet('book','')||'').split('|').some(x=>x.indexOf(ch+':')===0)}
+/* 这一开就进对了就把这一笔从错摊簿上划掉：簿上只留还没算对的摊 */
+function sdBookDel(ch){
+  const bk=(sdGet('book','')||'').split('|').filter(x=>x&&x.indexOf(ch+':')!==0);
+  sdPut('book',bk.join('|'));
+}
+function sdDexHas(ch){return (sdGet('dex','')||'').split('|').indexOf(ch)>=0}
+function sdDexAdd(ch){
+  const d=(sdGet('dex','')||'').split('|').filter(x=>x);
+  if(d.indexOf(ch)<0){d.push(ch);sdPut('dex',d.join('|'));return 1}
+  return 0;
+}
+
+/* ---- 本摊自己的发声 · 回话 · 定时器（不借别人家的栏）---- */
+function sdTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!sdy.ac)sdy.ac=new AC();
+    const c=sdy.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.setValueAtTime(g||.11,c.currentTime);
+    n.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);
+    o.connect(n);n.connect(c.destination);o.start();o.stop(c.currentTime+d);
+  }catch(e){}
+}
+function sdDing(i){sdTone(523*Math.pow(1.0595,Math.min(24,(i||0)*2)),.16,.10)}
+function sdBad(){sdTone(150,.26,.13);setTimeout(()=>sdTone(112,.3,.12),110)}
+function sdPop(){sdTone(880,.07,.07)}
+function sdPourSnd(){sdTone(392,.10,.07);setTimeout(()=>sdTone(587,.12,.07),80)}
+function sdSeal(){[0,4,7,12].forEach((s,i)=>setTimeout(()=>sdTone(523*Math.pow(1.0595,s),.2,.09),i*90))}
+function sdCash(){[0,5,9].forEach((s,i)=>setTimeout(()=>sdTone(784*Math.pow(1.0595,s),.14,.08),i*70))}
+function sdSay(t){const e=document.getElementById('sdMsg');if(e)e.innerHTML=t}
+function sdAfter(ms,fn){const id=setTimeout(fn,ms);sdy.timers.push(id);return id}
+function sdClearTimers(){sdy.timers.forEach(id=>clearTimeout(id));sdy.timers.length=0}
+
+/* ==== 归巢坊之外的新坊：汽水铺 ②：几何 · 口味 · 客流分布 · 两双手 · 闸门 ==== */
+/* ---- 整字等比塞进案面（等比 ⇒ 夹角不变，口味与 _sdgeo.cjs 一字一样）---- */
+function sdFitAll(M){
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  for(const st of M)for(const q of st){x0=Math.min(x0,q[0]);x1=Math.max(x1,q[0]);y0=Math.min(y0,q[1]);y1=Math.max(y1,q[1])}
+  const s=Math.min((SD_FX1-SD_FX0)/Math.max(1,x1-x0),(SD_FY1-SD_FY0)/Math.max(1,y1-y0));
+  const ox=SD_FX0+((SD_FX1-SD_FX0)-(x1-x0)*s)/2,oy=SD_FY0+((SD_FY1-SD_FY0)-(y1-y0)*s)/2;
+  return M.map(st=>st.map(q=>[(q[0]-x0)*s+ox,(q[1]-y0)*s+oy]));
+}
+/* ---- 一根笔算一种口味（与 _sdgeo.cjs 的 taste 一个口径）---- */
+function sdTaste(st){
+  const n=st.length;
+  if(n<2)return '横';
+  let len=0;
+  for(let i=1;i<n;i++)len+=Math.hypot(st[i][0]-st[i-1][0],st[i][1]-st[i-1][1]);
+  const mid=(n-1)/2,seg=(a,b)=>[st[b][0]-st[a][0],st[b][1]-st[a][1]];
+  const h=Math.max(1,Math.floor(mid));
+  const u=seg(0,h),w=seg(h,n-1);
+  const lu=Math.hypot(u[0],u[1]),lw=Math.hypot(w[0],w[1]);
+  if(lu>6&&lw>6){                                       /* 前后两半都走了一段 ⇒ 看有没有急转弯 */
+    const cs=(u[0]*w[0]+u[1]*w[1])/(lu*lw);
+    if(cs<0.60&&len>22)return '折';                      /* 夹角 >53° 叫折 */
+  }
+  const d=seg(0,n-1),dx=d[0],dy=d[1];
+  if(Math.abs(dy)<=.38*Math.abs(dx))return '横';
+  if(Math.abs(dx)<=.34*Math.abs(dy))return '竖';
+  return dx>0?(dy>=0?'捺':'横'):(dy>=0?'撇':'竖');
+}
+function sdTally(tastes){
+  const cnt=new Array(SD_TASTE.length).fill(0);
+  for(const t of tastes)cnt[SD_TASTE.indexOf(t)]++;
+  return cnt;
+}
+/* ---- 客流分布：档值铺在 n−1 … n+口味种数，概率由口味构成 add-1 平滑（牌面即分布，Σp 恰为 1）---- */
+function sdDistOf(n,cnt,kinds){
+  const lo=Math.max(1,n-SD_LOWSP),hi=n+kinds,ds=[];
+  for(let d=lo;d<=hi;d++)ds.push(d);
+  /* 档按「离笔画数 n 的远近」排：最近的档吃最多的口味数 ⇒ 客流中间高两头低，贪大贪小都是坑 */
+  const byNear=ds.slice().sort((a,b)=>Math.abs(a-n)-Math.abs(b-n)||b-a);
+  const w=cnt.slice().sort((a,b)=>b-a);
+  const raw=ds.map(()=>0);
+  for(let j=0;j<byNear.length;j++)raw[ds.indexOf(byNear[j])]=(w[j]||0)+1;
+  const tot=raw.reduce((a,b)=>a+b,0);
+  /* 概率小过 SD_PMIN 的档不上牌（孩子照牌面读不出来）；留下的档重摊成整摊 */
+  const keep=[],kp=[];
+  for(let j=0;j<ds.length;j++)if(raw[j]/tot>=SD_PMIN){keep.push(ds[j]);kp.push(raw[j]/tot)}
+  const s=kp.reduce((a,b)=>a+b,0);
+  return {d:keep,p:kp.map(x=>x/s)};
+}
+/* ---- 手一：一瓶一瓶都算一遍（逐档枚举加权期望）---- */
+function sdProfit(q,d){return SD_S*Math.min(q,d)+SD_R*Math.max(0,q-d)-SD_C*q-SD_G*Math.max(0,d-q)}
+function sdEnumExp(q,D){let t=0;for(let j=0;j<D.d.length;j++)t+=D.p[j]*sdProfit(q,D.d[j]);return t}
+function sdByEnum(D){
+  const hi=D.d[D.d.length-1];
+  let best=-1e9,bq=-1,ties=0;
+  for(let q=0;q<=hi;q++){const e=sdEnumExp(q,D);if(e>best+1e-12){best=e;bq=q;ties=1}else if(Math.abs(e-best)<=1e-12)ties++}
+  return {q:bq,e:best,ties:ties};
+}
+/* ---- 手二：边际停止规则 + 分段回推总账（telescoping）---- */
+function sdMarg(k,Pge){const p=Pge(k);return (SD_S-SD_C+SD_G)*p-(SD_C-SD_R)*(1-p)}
+function sdByMarginal(D){
+  const hi=D.d[D.d.length-1];
+  const Pge=k=>{let t=0;for(let j=0;j<D.d.length;j++)if(D.d[j]>=k)t+=D.p[j];return t};
+  let q=0;
+  for(let k=0;k<=hi;k++)if(sdMarg(k,Pge)>1e-12)q=k;
+  let tele=sdEnumExp(0,D),ok=true;
+  for(let k=1;k<=hi;k++){tele+=sdMarg(k,Pge);if(Math.abs(tele-sdEnumExp(k,D))>1e-9)ok=false}
+  return {q:q,e:sdEnumExp(q,D),tele:ok,pge:Pge};
+}
+/* ---- 闸门：这个字能不能开摊（与 _sdgeo.cjs 同口径）---- */
+function sdAudit(ch,j){
+  const M=j&&j.medians;
+  if(!Array.isArray(M)||M.length<SD_NMIN||M.length>SD_NMAX)return null;
+  const n=M.length;
+  const tastes=[];
+  for(const st of M){
+    if(!Array.isArray(st)||st.length<2)return null;
+    tastes.push(sdTaste(st));
+  }
+  const cnt=sdTally(tastes);
+  const kinds=cnt.filter(x=>x>0).length;
+  if(kinds<SD_KINDMIN)return null;
+  const D=sdDistOf(n,cnt,kinds);
+  if(D.d.length<SD_KMIN||D.d.length>SD_KMAX)return null;
+  const E1=sdByEnum(D),E2=sdByMarginal(D);
+  if(!E2.tele)return null;                                   /* 分段回推对不上：这一摊不上 */
+  if(E1.ties>1)return null;                                  /* 最优并列：一眼看不死就废题 */
+  if(E2.q!==E1.q)return null;                                /* 两双手对不上 */
+  const mean=D.d.reduce((t,d,k)=>t+d*D.p[k],0);
+  const mode=D.d[D.p.indexOf(Math.max.apply(null,D.p))];
+  const lo1=E1.e-sdEnumExp(D.d[D.d.length-1],D);              /* 贪大 */
+  const lo2=E1.e-sdEnumExp(mode,D);                          /* 随大流 */
+  const lo3=E1.e-sdEnumExp(D.d[0],D);                        /* 胆小 */
+  if(lo1<SD_GAPMIN)return null;
+  if(Math.abs(E1.q-mode)<SD_MODOFF)return null;               /* 最可能就等于最赚：题面废了 */
+  if(lo2<SD_GAPSOFT||lo3<SD_GAPSOFT)return null;
+  if(mode===D.d[0])return null;                           /* 随大流撞了胆小：四张牌少一张，三笨手成两笨手 */
+  if(E1.q<1||E1.q>D.d[D.d.length-1])return null;
+  return {ch:ch,n:n,kinds:kinds,cnt:cnt,tastes:tastes,d:D.d,p:D.p,q:E1.q,e:E1.e,
+    lo1:lo1,lo2:lo2,lo3:lo3,mean:mean,mode:mode,P:sdFitAll(M)};
+}
+
+/* ==== 汽水铺 ③：开工 · 三支钟 · 指尖落瓶 ==== */
+function sdEl(id){return document.getElementById(id)}
+function sdTxt(id,s){const e=sdEl(id);if(e)e.textContent=s}
+function sdTag(s){const e=sdEl('sdTag');if(e)e.textContent=s}
+let sdCtx=null,sdCv=null,sdGen=0;
+
+function sdBind(){
+  if(sdy.bound)return;sdy.bound=true;
+  sdCv=sdEl('sdCv');if(sdCv&&sdCv.getContext)sdCtx=sdCv.getContext('2d');
+  const tap=function(id,fn){const e=sdEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();if(!sdy.run||sdy.over||sdy.locked)return;fn()})};
+  for(let i=0;i<4;i++)(function(i){tap('sdOpt'+i,function(){sdPick(i)})})(i);
+  tap('sdPeek',function(){sdPeek()});
+  tap('sdCalc',function(){sdCalc()});
+  tap('sdSwap',function(){sdSwap()});
+  tap('sdGoBtn',function(){sdGoAsk()});
+  tap('sdQuitBtn',function(){sdQuit('quit')});
+  tap('sdHelpBtn',function(){sdHelp()});
+  /* 案面上点瓶：点到哪一瓶就报它是第几笔、什么口味（牌才是进货的手，这里只认字）*/
+  if(sdCv){
+    sdCv.addEventListener('pointerdown',function(ev){
+      if(!sdy.run||sdy.over||sdy.locked)return;
+      const r=sdCv.getBoundingClientRect();
+      if(!r.width||!r.height)return;
+      const x=(ev.clientX-r.left)*SD_W/r.width,y=(ev.clientY-r.top)*SD_H/r.height;
+      const k=sdBottleAt(x,y);
+      if(k<0){sdTag('🥤 没点着瓶 —— 点案面上那一排瓶子');return}
+      ev.preventDefault();sdLit=k;sdTag('🍾 第 '+(k+1)+' 瓶是「'+sdy.tastes[k]+'」味 · 这一子共 '+sdy.n+' 笔');
+    });
+  }
+  /* 客流条也是手：点哪一档就把那档搬上进货牌（牌上没有就照实说）*/
+  const bars=sdEl('sdBars');
+  if(bars)bars.addEventListener('click',function(ev){
+    if(!sdy.run||sdy.over||sdy.locked||sdy.phase!=='ask')return;
+    const t=ev.target.closest('.sd-bar');
+    if(!t)return;
+    ev.preventDefault();
+    const q=Number(t.getAttribute('data-q'));
+    const i=sdy.opts.indexOf(q);
+    if(i<0){sdTag('🥤 牌上没这一档 —— 进货只能四张牌里挑');return}
+    sdy.sel=i;sdRenderOpts();
+  });
+  /* 散场那两颗钮不能叫 run/over 拦着：孩子站在结算屏上点不动就等于一堵墙 */
+  const tapFree=function(id,fn){const e=sdEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();fn()})};
+  tapFree('sdReBtn',function(){sdStart(true)});
+  tapFree('sdReHome',function(){sdLeave('lab')});
+  window.addEventListener('keydown',function(e){
+    if(!sdy.run||sdy.over)return;
+    const sc=document.getElementById('screen-sd');
+    if(!sc||!sc.classList.contains('active'))return;
+    const k=e.key;
+    if(k>='1'&&k<='4'){e.preventDefault();sdPick(Number(k)-1)}
+    else if(k==='f'||k==='F'||k==='Enter'){e.preventDefault();sdGoAsk()}
+    else if(k==='p'||k==='P'){e.preventDefault();sdPeek()}
+    else if(k==='v'||k==='V'){e.preventDefault();sdCalc()}
+    else if(k==='s'||k==='S'){e.preventDefault();sdSwap()}
+    else if(k==='h'||k==='H'){e.preventDefault();sdHelp()}
+    else if(k==='g'||k==='G'){e.preventDefault();sdQuit('quit')}
+    else if(k==='Escape'){e.preventDefault();sdQuit('quit')}
+    else if(k==='r'||k==='R'){e.preventDefault();sdStart(true)}
+  });
+}
+function sdStart(again){
+  sdBind();sdKill();
+  sdy.gen++;sdGen=sdy.gen;
+  const w=sdNum('words');
+  sdy.run=true;sdy.over=false;sdy.phase='load';sdy.load=true;sdy.locked=0;
+  sdy.lv=sdLvOf(w);sdy.wi=0;sdy.score=0;sdy.hearts=SD_HEARTS;sdy.combo=0;sdy.maxCombo=0;sdy.words=0;
+  sdy.rights=0;sdy.trio=0;sdy.cleanN=0;sdy.tightN=0;sdy.quickN=0;sdy.wrongs=0;sdy.opened=0;
+  sdy.bottles=0;sdy.soldAll=0;sdy.taken=0;sdy.revenue=0;sdy.swaps=0;sdy.tools=0;
+  sdy.wordTools=0;sdy.cleanRun=0;sdy.toolRun=0;sdy.gain=0;sdy.penSum=0;sdy.hitOk=0;
+  sdy.lostSum=0;sdy.fieldRights=0;sdy.fieldErr=0;sdy.sealGood=0;sdy.stock=0;sdy.sold=0;sdy.left=0;sdy.missed=0;
+  sdy.nags=0;sdy.newBest=false;sdy.fresh=0;sdy.seen=[];sdy.err=0;sdy.errSum=0;
+  sdy.peekN=SD_P0.peek;sdy.calcN=SD_P0.calc;sdy.swapN=SD_P0.swap;
+  sdy.peekUse=0;sdy.calcUse=0;sdy.swapUse=0;
+  sdy.miss=[];const bk=(sdGet('book','')||'').split('|');
+  for(let i=0;i<bk.length&&sdy.miss.length<8;i++){const s=bk[i];if(s&&s.indexOf(':')>0)sdy.miss.push(s.split(':')[0])}
+  sdy.pool=[];sdy.poolLv=-1;
+  const sc=sdEl('screen-sd');
+  if(sc){document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});sc.classList.add('active')}
+  const ov=sdEl('sdOver');if(ov)ov.style.display='none';
+  sdy.playMs=0;sdy.lamp0=sdLampMs(sdy.lv);sdy.lamp=sdy.lamp0;
+  sdTxt('sdLv','第 '+sdy.lv+' 场');sdRender();
+  sdSay('');
+  sdFillPool().then(function(){
+    if(sdy.gen!==sdGen||!sdy.run)return;
+    sdy.load=false;sdNextCase();
+    sdy.last=0;sdy.rafId=requestAnimationFrame(sdLoop);
+  });
+}
+function sdNudge(){/* 别的坊开了摊：称号条跟着走 */
+  const e=sdEl('sdRank');if(e){const r=sdRankOf(sdNum('words'));e.textContent=r.e+' '+r.t}}
+/* ---- 主循环：三支钟（这一案 · 这一天 · 这一场）---- */
+function sdLoop(ts){
+  if(!sdy.run||sdy.over)return;
+  sdy.rafId=requestAnimationFrame(sdLoop);
+  const dt=sdy.last?Math.min(64,ts-sdy.last):16;sdy.last=ts;
+  if(sdy.phase==='ask'||sdy.phase==='day'||sdy.phase==='audit'){sdy.playMs+=dt;sdy.lamp-=dt;if(sdy.lamp<=0){sdy.lamp=0;sdLampOut()}}
+  if(sdy.phase==='ask'){
+    sdy.caseUsed+=dt;sdy.caseMs-=dt;if(sdy.caseMs<0)sdy.caseMs=0;
+    if(sdy.caseMs===0){sdCaseOut();return}
+    if(sdy.nagMs>0){sdy.nagMs-=dt;if(sdy.nagMs<=0){sdy.nagMs=0;sdNag()}}
+  }
+  if(sdy.phase==='day'){
+    sdy.dayMs-=dt;if(sdy.dayMs<0)sdy.dayMs=0;
+    if(sdy.walkIdx<sdy.dayD){                      /* 客人一个一个走到摊前 */
+      sdy.custMs-=dt;
+      if(sdy.custMs<=0){sdy.custMs=sdCustGap();sdWalkOne()}
+    }else if(sdy.dayMs<=0)sdDayEnd();
+  }
+  if(sdy.auditMs>0){sdy.auditMs-=dt;if(sdy.auditMs<=0){sdy.auditMs=0;sdSealDone()}}
+  if(sdy.peekMs>0){sdy.peekMs-=dt;if(sdy.peekMs<0)sdy.peekMs=0}
+  if(sdy.calcMs>0){sdy.calcMs-=dt;if(sdy.calcMs<=0){sdy.calcMs=0;sdy.lit=null;sdRenderBars()}}
+  if(sdy.wrongMs>0){sdy.wrongMs-=dt;if(sdy.wrongMs<=0){sdy.wrongMs=0;sdRenderOpts()}}
+  if(sdy.helpMs>0){sdy.helpMs-=dt;if(sdy.helpMs<=0){sdy.helpMs=0;sdHelpSay()}}
+  sdy.t+=dt;
+  for(let i=sdy.spark.length-1;i>=0;i--){const s=sdy.spark[i];
+    s.x+=s.vx*dt/16;s.y+=s.vy*dt/16;s.vy+=.06*dt/16;s.life-=dt;if(s.life<=0)sdy.spark.splice(i,1)}
+  sdDraw();sdRender();
+}
+/* ---- 指尖落点 → 第几瓶（架外一律 -1）：一笔一瓶就摆在各自的笔上，两瓶挨得近时按「离谁的心近算谁的」---- */
+function sdBottleAt(x,y){
+  let best=-1,bd=SD_BOTTLE_R+4;
+  for(let k=0;k<sdy.n;k++){
+    if(sdy.done[k])continue;
+    const c=sdBottleXY(k),dd=Math.hypot(x-c.x,y-c.y);
+    if(dd<bd){bd=dd;best=k}
+  }
+  return best;
+}
+function sdBottleXY(k){
+  const st=sdy.P[k];
+  if(!st||!st.length)return {x:SD_FX0,y:SD_FY0};
+  let x=0,y=0;
+  for(const q of st){x+=q[0];y+=q[1]}
+  return {x:x/st.length,y:y/st.length};
+}
+function sdLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function sdKill(){if(sdy.rafId)cancelAnimationFrame(sdy.rafId);sdy.rafId=0;sdClearTimers()}
+
+/* ==== 汽水铺 ④：一摊 · 拍板 · 这一天 · 对账 ==== */
+function sdRnd(){sdy.seed=(sdy.seed*1103515245+12345)&0x7fffffff;return sdy.seed/0x7fffffff}
+const sdCache={};
+/* ---- 进货池：本串的字当场再过一遍闸 ---- */
+function sdFillPool(){
+  const lv=sdy.lv,gen=sdy.gen;
+  const letters=(sdLetters(lv)||'').split('');
+  const want=[];
+  for(let i=0;i<sdy.miss.length;i++){const c=sdy.miss[i];if(letters.indexOf(c)>=0&&want.indexOf(c)<0)want.push(c)}
+  for(let i=letters.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=letters[i];letters[i]=letters[j];letters[j]=t}
+  for(let i=0;i<letters.length;i++)if(want.indexOf(letters[i])<0)want.push(letters[i]);
+  const rest=[];for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,(sdLetters(L)||'').split(''));
+  const need=function(){return sdy.pool.length>=SD_POOL_WANT};
+  const scan=async function(list){
+    for(let kk=0;kk<list.length&&!need();kk+=12){
+      const rs=await Promise.all(list.slice(kk,kk+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(sdy.gen!==gen||!sdy.run)return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[kk+i];if(!rs[i]||!rs[i].medians)continue;
+        let rec=sdCache[ch];
+        if(rec===undefined){rec=sdAudit(ch,rs[i])||null;sdCache[ch]=rec}
+        if(!rec)continue;
+        if(!sdy.pool.some(function(p){return p.ch===ch}))sdy.pool.push(rec);
+      }
+    }
+  };
+  return scan(want.concat(rest)).then(function(){
+    if(sdy.pool.length<SD_POOL_MIN&&lv!==sdy.poolLv){sdy.poolLv=lv;return sdFillPool()}
+    return sdy.pool;
+  });
+}
+/* ---- 开一摊：从池里挑一个还没算对过的字 ---- */
+function sdNextCase(){
+  if(!sdy.pool.length){sdOver('pool');return}
+  let pick=-1;
+  for(let i=0;i<sdy.pool.length;i++){
+    const r=sdy.pool[i];
+    if(!sdDexHas(r.ch)&&sdy.seen.indexOf(r.ch)<0&&sdy.miss.indexOf(r.ch)<0){pick=i;break}
+  }
+  if(pick<0)for(let i=0;i<sdy.pool.length;i++)if(sdy.seen.indexOf(sdy.pool[i].ch)<0){pick=i;break}
+  if(pick<0)for(let i=0;i<sdy.miss.length&&pick<0;i++)for(let k=0;k<sdy.pool.length;k++)if(sdy.pool[k].ch===sdy.miss[i]){pick=k;break}
+  if(pick<0)pick=Math.floor(sdRnd()*sdy.pool.length);
+  const r=sdy.pool[pick];sdy.pool.splice(pick,1);
+  sdOpenCase(r);
+}
+/* ---- 四张进货牌：最赚那档 + 三种笨手（最多/最可能/最少），按字序定死摆放（同一字牌面同一次序）---- */
+function sdOptsOf(r){
+  const hi=r.d[r.d.length-1],lo=r.d[0];
+  const four=[r.q,hi,r.mode,lo];
+  const rot=r.ch.charCodeAt(0)%4;
+  const o=[];
+  for(let i=0;i<4;i++)o.push(four[(i+rot)%4]);
+  return o;
+}
+function sdOpenCase(r){
+  sdy.rec=r;sdy.ch=r.ch;sdy.n=r.n;sdy.kinds=r.kinds;sdy.cnt=r.cnt;sdy.tastes=r.tastes;
+  sdy.d=r.d;sdy.p=r.p;sdy.q=r.q;sdy.e=r.e;sdy.mode=r.mode;sdy.mean=r.mean;
+  sdy.lo1=r.lo1;sdy.lo2=r.lo2;sdy.lo3=r.lo3;sdy.P=r.P;
+  sdy.opts=sdOptsOf(r);
+  sdy.done=new Array(r.n).fill(0);
+  sdy.sel=-1;sdy.lit=null;sdy.peekMs=0;sdy.calcMs=0;sdy.wrongMs=0;sdy.wrongIdx=-1;sdy.rollTo=-1;
+  sdy.dayD=0;sdy.sold=0;sdy.left=0;sdy.walked=0;sdy.walkIdx=0;sdy.missed=0;
+  sdy.stock=0;sdy.hesitated=0;sdy.qPicked=0;sdy.cash=0;sdy.exp=0;
+  sdy.caseMs=sdCaseMs(sdy.lv);sdy.case0=sdy.caseMs;sdy.caseUsed=0;
+  sdy.quickMs=sdQuickMs(sdy.lv);sdy.quickOk=1;
+  sdy.tellOff=sdNoTell(sdy.lv);sdy.dim=sdDim(sdy.lv);
+  sdy.caseErr=0;sdy.wordTools=0;sdy.phase='ask';sdy.locked=0;
+  sdRenderTally();sdRenderBars();sdRenderOpts();
+  sdTag('🥤 '+r.ch+' · '+r.n+' 笔 '+r.n+' 瓶的客流中位 · 最可能来 '+r.mode+' 人');
+  sdSay('🥤 这一天进几瓶？牌上四档：<b>进 '+sdy.opts.join(' 瓶 / 进 ')+' 瓶</b> —— 条越高来越多的人越可能来');
+  sdAskLine();
+}
+function sdAskLine(){
+  const el=sdEl('sdAsk');if(!el)return;
+  el.innerHTML='🧾 进货价 <b>'+SD_C+' 文</b> · 卖出 <b>'+SD_S+' 文</b> · 剩的回炉 <b>'+SD_R+' 文</b> · 让人扑空赔笑 <b>'+SD_G+' 文</b><br><small>多进一瓶：卖得掉赚 '+(SD_S-SD_C+SD_G)+' 文，卖不掉亏 '+(SD_C-SD_R)+' 文 —— 机会高过 <b>1/3</b> 就值得进</small>';
+}
+/* ---- 挑牌：选中不等于拍板（拍板要按 🥤 开摊）---- */
+function sdPick(i){
+  if(sdy.phase!=='ask'||sdy.locked)return;
+  if(i<0||i>=4)return;
+  sdy.sel=i;sdy.nagMs=SD_NAG_MS;
+  sdRenderOpts();
+  sdTag('🥤 牌上写的是进 '+sdy.opts[i]+' 瓶 —— 按 F 或 🥤 开摊才拍板');
+}
+function sdGoAsk(){
+  if(sdy.phase==='audit'){sdSealDone();return}
+  if(sdy.phase!=='ask'||sdy.locked)return;
+  if(sdy.sel<0){sdSay('🥤 先点一张进货牌（<code>1~4</code>），再按 <code>F</code> 开摊');return}
+  sdGo();
+}
+/* ---- 这一天：照牌面掷一次客流，客人一个一个走到摊前 ---- */
+function sdRoll(D){
+  if(sdy.rollTo>=0){const k=sdy.d.indexOf(sdy.rollTo);sdy.rollTo=-1;if(k>=0)return sdy.d[k]}
+  const r=sdRnd();let acc=0;
+  for(let j=0;j<D.d.length;j++){acc+=D.p[j];if(r<acc)return D.d[j]}
+  return D.d[D.d.length-1];
+}
+function sdGo(){
+  const q=sdy.opts[sdy.sel];
+  sdy.locked=1;sdy.qPicked=q;sdy.dayD=sdRoll({d:sdy.d,p:sdy.p});
+  sdy.exp=sdEnumExp(q,{d:sdy.d,p:sdy.p});
+  sdy.sold=0;sdy.missed=0;sdy.walked=0;sdy.walkIdx=0;sdy.custMs=0;
+  sdy.dayMs=sdDayMs(sdy.lv);sdy.day0=sdy.dayMs;
+  sdy.phase='day';sdy.peekMs=0;sdy.lit=null;
+  sdPour(q);
+  sdTag('🥤 拍板：进 '+q+' 瓶 —— 看看今天来多少人');
+  sdSay('🥤 进 '+q+' 瓶 · 摊支起来了（这一档的期望 <b>'+sdy.exp.toFixed(1)+' 文</b>，真来多少人得看今天）');
+}
+function sdPour(q){                     /* 支摊：把 q 只瓶子摆上案（案面上原本亮着的是这一子的全部瓶样）*/
+  sdy.stock=q;
+  sdPourSnd();
+}
+function sdCustGap(){return Math.max(160,sdy.dayMs/Math.max(1,sdy.dayD-sdy.walkIdx))}
+function sdWalkOne(){
+  if(sdy.walkIdx>=sdy.dayD)return;
+  sdy.walkIdx++;
+  const i=sdy.walkIdx-1;
+  if(i<sdy.stock){                      /* 还有瓶：卖出去一瓶 */
+    sdy.sold++;
+    const k=i%sdy.n;
+    sdy.done[k]=1;
+    const c=sdBottleXY(k);
+    sdSpark(c.x,c.y,'#81C784');
+    sdDing(sdy.sold);
+  }else{                                /* 扑空：赔一笑 */
+    sdy.missed++;
+    sdSpark(SD_FX1-10,SD_ROW_Y-24,'#FF8A65');
+    sdTone(330,.09,.06);
+  }
+  sdy.walked=sdy.walkIdx;
+}
+function sdDayEnd(){
+  sdy.left=sdy.stock-sdy.sold;
+  sdy.cash=SD_S*sdy.sold+SD_R*sdy.left-SD_C*sdy.stock-SD_G*sdy.missed;
+  sdy.phase='audit';sdy.auditMs=SD_AUDIT_MS;
+  sdy.locked=0;
+  sdCash();
+  const gap=sdy.e-sdy.exp;
+  sdSay('🧾 今天来 <b>'+sdy.dayD+'</b> 人：卖出 '+sdy.sold+' 瓶 · 剩 '+sdy.left+' 瓶回炉 · 扑空 '+sdy.missed+' 人 → 实收 <b>'+sdy.cash.toFixed(0)+' 文</b>'
+    +(gap>0.05?'（这一手比最赚那档少赚 <b>'+gap.toFixed(1)+' 文</b>）':'（这一手就是最赚那一档）'));
+  sdTag('🧾 对账：按 F 接着走');
+}
+/* ---- 案钟走尽：不拍板就等于随大流（这一手的账照随大流算）---- */
+function sdCaseOut(){
+  if(sdy.phase!=='ask')return;
+  const i=sdy.opts.indexOf(sdy.mode);
+  sdy.sel=i<0?0:i;sdy.quickOk=0;sdy.hesitated=1;
+  sdSay('⏳ 案钟走尽 −'+SD_P_SLOW+'：没人拍板，伙计照「最可能那档」进了 '+sdy.mode+' 瓶');
+  sdGo();
+}
+/* ---- 家什：🔎 看期望 / 🧮 账房代算 / 🔁 换字 ---- */
+function sdToolCost(){
+  sdy.score=Math.max(0,sdy.score-SD_P_TOOL);sdy.penSum+=SD_P_TOOL;
+  sdy.tools++;sdy.fieldTools++;sdy.wordTools++;
+}
+function sdPeek(){
+  if(sdy.phase!=='ask')return;
+  if(sdy.peekN<=0){sdSay('🔎 看期望用光了');return}
+  sdy.peekN--;sdy.peekUse++;sdToolCost();
+  sdy.peekMs=SD_PEEK_MS;
+  sdRenderOpts();
+  const bits=sdy.opts.map(function(q){return '进 '+q+' 瓶 → '+sdEnumExp(q,{d:sdy.d,p:sdy.p}).toFixed(1)+' 文'});
+  sdTag('🔎 四档期望：'+bits.join(' / '));
+  sdSay('🔎 看期望 −'+SD_P_TOOL+' 文：'+bits.join(' · ')+' —— 期望最高那档就是最赚的档');
+}
+function sdCalc(){
+  if(sdy.phase!=='ask')return;
+  if(sdy.calcN<=0){sdSay('🧮 账房代算用光了');return}
+  sdy.calcN--;sdy.calcUse++;sdToolCost();
+  sdy.calcMs=SD_CALC_MS;sdy.lit=sdy.q;
+  sdy.sel=sdy.opts.indexOf(sdy.q);
+  sdy.autoUsed=1;
+  sdRenderBars();sdRenderOpts();
+  sdSay('🧮 账房代算 −'+SD_P_TOOL+' 文：他把「多进一瓶还赚不赚」逐档过了一遍，牌翻在进 '+sdy.q+' 瓶 —— 按 <code>F</code> 开摊');
+}
+function sdSwap(){
+  if(sdy.phase!=='ask')return;
+  if(sdy.swapN<=0){sdSay('🔁 换字用光了');return}
+  sdy.swapN--;sdy.swapUse++;sdy.swaps++;
+  sdy.score=Math.max(0,sdy.score-SD_SWAP_PEN);sdy.penSum+=SD_SWAP_PEN;
+  sdy.tools++;sdy.fieldTools++;sdy.wordTools++;
+  sdy.miss.push(sdy.ch);
+  if(sdy.rec)sdy.pool.push(sdy.rec);
+  sdSay('🔁 换字 −'+SD_SWAP_PEN+' 文：这一摊先撂下');
+  sdNextCase();
+}
+function sdNag(){
+  if(sdy.phase!=='ask')return;
+  sdy.nags++;
+  if(sdy.sel<0)sdSay('🥤 还没挑牌：点一张进货牌（<code>1~4</code>），再按 <code>F</code> 开摊');
+  else sdSay('🥤 挑的是进 '+sdy.opts[sdy.sel]+' 瓶 —— 按 <code>F</code> 拍板，别拖到案钟走尽');
+  sdy.nagMs=SD_NAG_MS;
+}
+function sdHelpSay(){if(sdy.phase==='ask')sdSay('🪙 三件家什：🔎 看期望 · 🧮 代算 · 🔁 换字（用一次扣 '+SD_P_TOOL+' 文）· 空手一趟 +'+SD_PTS_NOTOOL+' 文')}
+function sdLampOut(){sdOver('lamp')}
+function sdQuit(why){
+  if(sdy.phase==='over')return;
+  if(sdy.phase!=='ask'&&sdy.phase!=='day'&&sdy.phase!=='audit'){sdOver('quit');return}
+  sdy.combo=0;sdy.quickOk=0;
+  sdy.score=Math.max(0,sdy.score-SD_P_QUIT);sdy.penSum+=SD_P_QUIT;
+  sdy.errSum+=sdy.caseErr;
+  sdBookPush(sdy.ch,'弃');
+  sdSay('🏳 弃了 '+sdy.ch+' −'+SD_P_QUIT+'：这一摊的账先记下');
+  if(sdy.rec)sdy.seen.push(sdy.ch);
+  sdNextCase();
+}
+function sdLeave(where){
+  if(sdy.run&&!sdy.over)sdOver('leave');
+  sdy.run=false;sdy.over=true;sdKill();
+  if(typeof stopBGM==='function')stopBGM();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function sdLoseHeart(why){
+  sdy.hearts--;sdy.combo=0;sdy.err=0;
+  sdBad();
+  sdSay('💔 '+why+'：心掉一颗（剩 '+sdy.hearts+'）');
+  if(sdy.hearts<=0)sdOver('heart');
+}
+
+/* ==== 汽水铺 ⑤：画摊 · 读数 · 帘子 ==== */
+function sdRenderTally(){
+  const el=sdEl('sdTally');if(!el)return;
+  if(sdy.dim){el.style.display='none';el.innerHTML='';return}
+  el.style.display='';
+  let h='';
+  for(let i=0;i<SD_TASTE.length;i++){
+    const c=sdy.cnt[i];
+    h+='<i'+(c?'':' class="zero"')+' style="border-bottom:2px solid '+SD_TC[i]+'">'+SD_TASTE[i]+' × '+c+'</i>';
+  }
+  el.innerHTML=h;
+}
+function sdRenderBars(){
+  const el=sdEl('sdBars');if(!el)return;
+  let h='',max=0;
+  for(let j=0;j<sdy.p.length;j++)if(sdy.p[j]>max)max=sdy.p[j];
+  for(let j=0;j<sdy.d.length;j++){
+    const d=sdy.d[j],pc=sdy.p[j],hot=d===sdy.mode;
+    const hp=max?Math.max(4,Math.round(pc/max*52)):4;
+    const lit=sdy.lit===d;
+    h+='<div class="sd-bar" data-q="'+d+'"'+(lit?' style="outline:2px solid #FFE082"':'')+'>';
+    if(!sdy.dim&&!(sdy.tellOff&&!sdy.lit))h+='<div class="pc">'+Math.round(pc*100)+'%</div>';
+    h+='<div class="fill'+(hot?' hot':'')+'" style="height:'+hp+'px"></div>';
+    if(!sdy.dim)h+='<div class="num">'+d+' 人</div>';
+    h+='</div>';
+  }
+  el.innerHTML=h;
+  const cap=sdEl('sdBarsCap');
+  if(cap)cap.textContent=sdy.dim?'条高还是那个把握，只是瓶数与百分比收走了':
+    (sdy.tellOff?'条高 = 把握（这一场起不再写百分比）· 黄条 = 最可能来的那档':'条高 = 今天来这么多人的把握 · 黄条 = 最可能那档（它往往不是最赚那档）');
+}
+function sdRenderOpts(){
+  for(let i=0;i<4;i++){
+    const e=sdEl('sdOpt'+i);if(!e)continue;
+    if(i>=sdy.opts.length){e.style.display='none';continue}
+    e.style.display='';
+    const q=sdy.opts[i];
+    let cls='sd-opt';
+    if(i===sdy.sel)cls+=' on';
+    if(sdy.wrongMs>0&&i===sdy.wrongIdx)cls+=' wrong';
+    if(sdy.sealGood&&i===sdy.sel)cls+=' good';
+    e.className=cls;
+    let t='进 '+q+' 瓶';
+    if(sdy.peekMs>0)t+='<span class="exp">期望 '+sdEnumExp(q,{d:sdy.d,p:sdy.p}).toFixed(1)+' 文</span>';
+    e.innerHTML=t;
+  }
+}
+function sdRender(){
+  sdTxt('sdScore',sdy.score);
+  sdTxt('sdLv','第 '+sdy.lv+' 场');
+  sdTxt('sdRank',(function(){const r=sdRankOf(sdNum('words'));return r.e+' '+r.t})());
+  let hs='';for(let i=0;i<sdy.hearts;i++)hs+='❤️';
+  sdTxt('sdHearts',hs||'💔');
+  sdTxt('sdLedCombo','🔥 连击 '+sdy.combo+' · 最长 '+sdy.maxCombo);
+  sdTxt('sdLedWord','🥤 第 '+(sdy.wi+1)+'/'+SD_PER+' 案 · 已开张 '+sdy.opened+' 摊');
+  const rk=sdNum('words');
+  sdTxt('sdLedGate',sdy.load?'🌱 正在挑字':'🍾 '+sdy.ch+' · 中位 '+sdy.n+' 人 · 最可能 '+sdy.mode+' 人');
+  sdTxt('sdHitLight',sdy.combo>=3?'💡 手热 ×'+sdy.combo:'💡 妙算');
+  sdTxt('sdTime','这一案 '+(sdy.caseMs/1000).toFixed(1)+' 秒 · 这一天 '+(sdy.dayMs/1000).toFixed(1)+' 秒 · 这一场 '+Math.ceil(sdy.lamp/1000)+' 秒');
+  const f1=sdy.case0?Math.max(0,sdy.caseMs/sdy.case0):0;
+  const f2=sdy.day0?Math.max(0,sdy.dayMs/sdy.day0):0;
+  const f3=sdy.lamp0?Math.max(0,sdy.lamp/sdy.lamp0):0;
+  const w=function(id,f){const e=sdEl(id);if(e)e.style.width=(f*100).toFixed(1)+'%'};
+  w('sdBarCase',sdy.phase==='ask'?f1:1);
+  w('sdBarDay',sdy.phase==='day'?f2:(sdy.phase==='ask'?0:1));
+  w('sdBarLamp',f3);
+  w('sdBarLed',1);
+  sdTxt('sdLedSnap','🧾 妙算 '+sdy.rights+'/'+SD_PER+' · 少赚 '+sdy.lostSum.toFixed(1)+' 文');
+  const tl=function(id,n,left){const e=sdEl(id);if(!e)return;
+    const b=e.querySelector('b');if(b)b.textContent='剩 '+left;
+    e.disabled=n<=0||sdy.phase!=='ask'};
+  tl('sdPeek',sdy.peekN,sdy.peekN);
+  tl('sdCalc',sdy.calcN,sdy.calcN);
+  tl('sdSwap',sdy.swapN,sdy.swapN);
+  const gb=sdEl('sdGoBtn');
+  if(gb){const t=gb.querySelector('b');if(t&&sdy.phase==='audit')t.textContent='接着走';else if(t)t.textContent='开摊'}
+}
+function sdMul(){return Math.round(SD_M0*(1+sdy.combo*SD_CB)*(1+(sdy.lv-1)*SD_LVW))}
+/* ---- 画摊：案面 = 字的瓶样 + 柜台那排进到的瓶 + 街上来走的客人 ---- */
+function sdSpark(x,y,col){
+  for(let i=0;i<9;i++){
+    const a=Math.random()*6.283,sp=1.1+Math.random()*2.2;
+    sdy.spark.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1.4,life:420+Math.random()*260,col:col});
+  }
+}
+function sdBottle(x,y,col,how){
+  const c=sdCtx,R=SD_BOTTLE_R;
+  c.save();
+  if(how==='out'){
+    c.strokeStyle='rgba(255,255,255,.22)';c.lineWidth=1.5;c.setLineDash([3,3]);
+    c.beginPath();c.arc(x,y,R-3,0,6.283);c.stroke();c.setLineDash([]);
+    c.fillStyle='rgba(129,199,132,.9)';c.font='bold 11px system-ui';c.textAlign='center';
+    c.fillText('✓',x,y+4);c.restore();return;
+  }
+  const g=c.createLinearGradient(x,y-R,x,y+R);
+  g.addColorStop(0,col);g.addColorStop(1,'rgba(0,0,0,.55)');
+  c.fillStyle=how==='left'?'rgba(120,144,156,.5)':g;
+  c.beginPath();c.arc(x,y,how==='left'?R-4:R,0,6.283);c.fill();
+  c.strokeStyle=how==='left'?'rgba(176,190,197,.5)':'rgba(255,255,255,.6)';c.lineWidth=1.6;c.stroke();
+  c.strokeStyle='rgba(255,255,255,.5)';c.lineWidth=2;
+  c.beginPath();c.moveTo(x,y-R-(how==='left'?2:5));c.lineTo(x,y-R+(how==='left'?0:1));c.stroke();
+  c.restore();
+}
+function sdPerson(x,y,col,sad){
+  const c=sdCtx;
+  c.save();
+  c.fillStyle=col;
+  c.beginPath();c.arc(x,y-13,5.4,0,6.283);c.fill();
+  c.fillRect(x-4.5,y-7,9,15);
+  if(sad){c.strokeStyle='#EF5350';c.lineWidth=1.8;
+    c.beginPath();c.moveTo(x-4,y-15);c.lineTo(x+4,y-12);c.stroke()}
+  c.restore();
+}
+function sdDraw(){
+  const c=sdCtx;if(!c)return;
+  c.clearRect(0,0,SD_W,SD_H);
+  /* 摊布：一条柜台把瓶样区与街道分开 */
+  c.fillStyle='rgba(255,255,255,.05)';
+  c.fillRect(SD_FX0-8,162,SD_FX1-SD_FX0+16,4);
+  c.strokeStyle='rgba(255,213,79,.28)';c.lineWidth=1;
+  c.strokeRect(SD_FX0-8,SD_FY0-8,SD_FX1-SD_FX0+16,SD_FY1-SD_FY0+16);
+  /* 字：淡墨描一遍，每一笔的肚子里坐一只瓶 */
+  c.save();c.globalAlpha=sdy.dim?.5:.32;c.strokeStyle='#ECEFF1';c.lineWidth=2.4;c.lineCap='round';
+  for(const st of sdy.P){
+    if(!st||st.length<2)continue;
+    c.beginPath();c.moveTo(st[0][0],st[0][1]);
+    for(let i=1;i<st.length;i++)c.lineTo(st[i][0],st[i][1]);
+    c.stroke();
+  }
+  c.restore();
+  for(let k=0;k<sdy.n;k++){
+    const p=sdBottleXY(k);
+    sdBottle(p.x,p.y,sdy.dim?'rgba(176,190,197,.85)':SD_TC[SD_TASTE.indexOf(sdy.tastes[k])],sdy.done[k]?'out':'on');
+  }
+  /* 柜台：今天进到的 q 只瓶（卖出 ✓ · 剩下灰瓶等回炉）*/
+  if(sdy.phase==='day'||sdy.phase==='audit'){
+    for(let i=0;i<sdy.stock;i++){
+      const x=SD_FX0+14+i*26;
+      sdBottle(x,188,'#FFD54F',i<sdy.sold?'out':'left');
+    }
+    c.fillStyle='#FFE082';c.font='bold 12px system-ui';c.textAlign='left';
+    c.fillText('进了 '+sdy.stock+' 瓶',SD_FX0+4,172);
+  }
+  /* 街道：客人一个一个走到摊前 */
+  const step=Math.min(24,(SD_FX1-SD_FX0-16)/Math.max(1,sdy.dayD));
+  for(let i=0;i<sdy.walkIdx;i++){
+    const x=SD_FX0+10+i*step;
+    sdPerson(x,SD_ROW_Y,i<sdy.stock?'rgba(129,199,132,.92)':'rgba(239,83,80,.9)',i>=sdy.stock);
+  }
+  if(sdy.phase==='ask'&&sdy.n){
+    c.fillStyle='rgba(176,190,197,.75)';c.font='bold 12px system-ui';c.textAlign='center';
+    c.fillText('这一子 '+sdy.n+' 笔 = '+sdy.n+' 只瓶样 · 中位客流 '+sdy.n+' 人',SD_W/2,SD_ROW_Y-6);
+  }
+  /* 火星子 */
+  for(const s of sdy.spark){
+    c.globalAlpha=Math.max(0,s.life/560);
+    c.fillStyle=s.col;
+    c.fillRect(s.x-2,s.y-2,4,4);
+    c.globalAlpha=1;
+  }
+}
+/* ---- 对账落定：期望是期望，今天是今天 ---- */
+function sdSealDone(){
+  if(sdy.phase!=='audit'||!sdy.rec)return;
+  const r=sdy.rec;
+  sdy.sealGood=0;sdy.locked=1;
+  const q=sdy.stock,gap=sdy.e-sdy.exp;
+  const right=gap<=1e-9;
+  const fresh=sdDexHas(r.ch)?0:1;if(fresh)sdy.fresh++;
+  let pts=0;const why=[];
+  if(right){pts+=SD_PTS_RIGHT;why.push('进的就是最赚那档 '+q+' 瓶');sdy.rights++;sdy.fieldRights++}
+  else{const pen=Math.min(SD_P_WRONG,Math.max(1,Math.round(gap)));pts-=pen;why.push('这一手少赚 '+gap.toFixed(1)+' 文 −'+pen)}
+  const near=Math.abs(sdy.cash-sdy.exp);
+  if(near<=SD_TIGHT_WEN){pts+=SD_PTS_TIGHT;why.push('实收离期望不差分毫');sdy.tightN++}
+  if(sdy.quickOk&&sdy.caseUsed<=sdy.quickMs){pts+=SD_PTS_QUICK;why.push('眼快手快');sdy.quickN++}else sdy.quickOk=0;
+  if(sdy.hesitated){pts-=SD_P_SLOW;why.push('案钟走尽 −'+SD_P_SLOW)}
+  if(fresh){pts+=SD_PTS_FRESH;why.push('头一回开这个摊')}
+  if(sdy.wordTools===0){pts+=SD_PTS_NOTOOL;why.push('空手趟');sdy.toolRun=0}
+  else{sdy.toolRun++;if(sdy.toolRun>=3){pts+=SD_PTS_TOOLRUN;sdy.toolRun=0;why.push('借家什也算得满')}}
+  const wage=right?sdMul():0;pts+=wage;
+  sdy.score=Math.max(0,sdy.score+pts);
+  if(pts>0)sdy.gain+=pts;else sdy.penSum+=-pts;
+  sdy.bottles+=q;sdy.soldAll+=sdy.sold;sdy.taken+=sdy.dayD;sdy.revenue+=sdy.cash;sdy.lostSum+=gap;
+  sdy.opened++;
+  if(!right&&gap>=2)sdy.caseErr++;
+  if(sdy.hesitated)sdy.caseErr++;
+  if(sdy.caseErr){sdy.err+=sdy.caseErr;sdy.fieldErr+=sdy.caseErr;sdy.errSum+=sdy.caseErr}
+  const mid={x:SD_FX0+30+Math.min(9,q)*26,y:188};
+  if(right){
+    sdy.combo++;if(sdy.combo>sdy.maxCombo)sdy.maxCombo=sdy.combo;
+    if(sdy.quickOk&&sdy.hearts<SD_HEART_MAX)sdy.hearts++;
+    sdy.words++;sdy.seen.push(r.ch);
+    sdy.sealGood=1;
+    sdLedgerAdd(r);sdBookDel(r.ch);
+    sdSeal();sdSpark(mid.x,mid.y,'rgba(255,213,79,.92)');
+    sdSay('🎊 妙算：'+r.ch+' +'+pts+' 文（'+why.join(' · ')+' · 工钱 '+wage+'）· 这一档期望 '+sdy.exp.toFixed(1)+' 文，今天实收 '+sdy.cash.toFixed(0)+' 文');
+  }else{
+    sdy.combo=0;sdy.seen.push(r.ch);sdy.wrongs++;
+    sdBookPush(r.ch,'少赚'+Math.round(gap));
+    sdBad();
+    sdSay('🪙 这一手 '+r.ch+'：'+why.join(' · ')+' —— 期望本来能到 '+sdy.e.toFixed(1)+' 文，你停在 '+sdy.exp.toFixed(1)+' 文');
+  }
+  if(sdy.err>=SD_ERR_LINE){sdLoseHeart('一场错账满 '+SD_ERR_LINE+' 回');if(sdy.over)return}
+  sdy.wi++;sdy.locked=0;sdy.phase='ask';
+  if(sdy.wi>=SD_PER){sdFieldOut();return}
+  sdRenderOpts();
+  sdNextCase();
+}
+/* ---- 一场三案走完：三连妙算、清白场、空手场 ---- */
+function sdFieldOut(){
+  const bits=[];
+  if(sdy.fieldRights>=SD_PER){
+    sdy.score+=SD_PTS_TRIO;sdy.gain+=SD_PTS_TRIO;sdy.trio++;
+    bits.push('三连妙算 +'+SD_PTS_TRIO);
+  }
+  if(sdy.fieldErr===0){sdy.cleanN++;bits.push('这一场一笔错账没有')}
+  if(sdy.fieldTools===0){sdy.cleanRun++;bits.push('一件家什没借')}
+  sdy.wi=0;sdy.lv=Math.min(9,sdy.lv+1);
+  sdy.lamp0=sdLampMs(sdy.lv);sdy.lamp=sdy.lamp0;
+  sdy.fieldRights=0;sdy.fieldErr=0;sdy.fieldTools=0;sdy.err=0;
+  sdTxt('sdLv','第 '+sdy.lv+' 场');sdy.poolLv=-1;
+  sdSay('🥤 进第 '+sdy.lv+' 场：档更多、钟更短'+(bits.length?' —— '+bits.join(' · '):''));
+  sdFillPool().then(function(){if(sdy.run&&!sdy.over)sdNextCase()});
+}
+/* ---- 散场：账落盘，瓶架摆出来 ---- */
+function sdOver(why){
+  if(sdy.over)return;
+  sdy.over=true;sdy.phase='over';sdKill();
+  sdLedgerPut();
+  const shelf=sdShelfNow(),got=[];
+  for(let i=0;i<SD_SHELF.length;i++)if(shelf[i])got.push(SD_SHELF[i].k);
+  if(got.length)sdPut('shelf',got.join('|'));
+  if(sdy.lv>sdNum('lvmax'))sdPut('lvmax',sdy.lv);
+  if(sdy.cleanRun)sdPut('notool',sdNum('notool')+sdy.cleanRun);
+  if(sdy.cleanN)sdPut('clean',sdNum('clean')+sdy.cleanN);
+  if(sdy.score>sdNum('hi')){sdPut('hi',sdy.score);sdy.newBest=true}
+  const W={lamp:'⏺ 这一场的钟走完了',heart:'💔 心掉光了：账房收摊',pool:'🌱 串里的字都算完了，换个场再练',
+    leave:'🏳 你现在要走，账先结在这里',quit:'🏁 你自己按了结算'};
+  sdTxt('sdRsWhy',W[why]||'⏺ 收工');
+  sdTxt('sdRsScore','🧾 '+sdy.score+' 文'+(sdy.newBest?'（新纪录）':''));
+  sdTxt('sdRsWords','🥤 妙算 '+sdy.words+' 摊 · 场号 '+sdy.lv+' · 连击 '+sdy.maxCombo);
+  const stars=Math.max(0,Math.min(3,Math.round((sdy.gain-SD_PTS_RIGHT)/24)));
+  sdTxt('sdRsStars','⭐ +'+stars+' · 妙算 '+sdy.rights+' 案 · 不差分毫 '+sdy.tightN+' 案');
+  sdTxt('sdRsErr','✗ 进错 '+sdy.wrongs+' 回 · 少赚 '+sdy.lostSum.toFixed(1)+' 文 · 走进 '+sdy.taken+' 人 · 卖出 '+sdy.soldAll+' 瓶');
+  sdTxt('sdRsShelf','🍶 瓶架：'+(got.length?got.join(' · '):'（这一把一件没添）'));
+  const rk=sdRankOf(sdNum('words'));
+  sdTxt('sdRsRank',rk.e+' '+rk.t+' · 一辈子算对 '+sdNum('words')+' 字');
+  const ov=sdEl('sdOver');if(ov)ov.style.display='flex';
+  sdSay('🥤 收摊：'+sdy.score+' 文 · 妙算 '+sdy.words+' 摊');
+  sdRender();
+}
+/* ---- 瓶架 8 件 ---- */
+function sdShelfNow(){
+  const bottles=sdNum('bottles')+sdy.bottles;
+  let badges=0;try{badges=JSON.parse(localStorage.getItem('hz_badges')||'[]').length}catch(e){}
+  return[
+    sdNum('words')>0||sdy.words>0,
+    sdNum('clean')>0||(sdy.opened>=SD_PER&&sdy.fieldErr===0),
+    sdNum('trio')>0||sdy.trio>0,
+    sdNum('tight')>0||sdy.tightN>0,
+    sdNum('lvmax')>=SD_SHELF_LV||sdy.lv>=SD_SHELF_LV,
+    sdNum('notool')>0||sdy.cleanRun>0,
+    badges>=3,
+    bottles>=400
+  ];
+}
+/* ---- 一辈子账：只加不减，这一把为 0 的那本一个字也不写 ---- */
+function sdLedgerPut(){
+  if(sdy.words)sdPut('words',sdNum('words')+sdy.words);
+  if(sdy.opened)sdPut('opened',sdNum('opened')+sdy.opened);
+  if(sdy.rights)sdPut('rights',sdNum('rights')+sdy.rights);
+  if(sdy.trio)sdPut('trio',sdNum('trio')+sdy.trio);
+  if(sdy.tightN)sdPut('tight',sdNum('tight')+sdy.tightN);
+  if(sdy.quickN)sdPut('quick',sdNum('quick')+sdy.quickN);
+  if(sdy.bottles)sdPut('bottles',sdNum('bottles')+sdy.bottles);
+  if(sdy.soldAll)sdPut('sold',sdNum('sold')+sdy.soldAll);
+  if(sdy.taken)sdPut('taken',sdNum('taken')+sdy.taken);
+  if(sdy.wrongs)sdPut('wrongs',sdNum('wrongs')+sdy.wrongs);
+  if(sdy.swaps)sdPut('swaps',sdNum('swaps')+sdy.swaps);
+  if(sdy.tools)sdPut('tools',sdNum('tools')+sdy.tools);
+  const lost=Math.round(sdy.lostSum*10)/10;
+  if(lost)sdPut('lost',(sdNum('lost')+lost).toFixed(1));
+  if(sdy.revenue)sdPut('revenue',sdNum('revenue')+sdy.revenue);
+  if(sdy.maxCombo>sdNum('combo'))sdPut('combo',sdy.maxCombo);
+}
+function sdLedgerAdd(rec){
+  if(sdDexAdd(rec.ch)){
+    const d=(sdGet('dex','')||'').split('|').filter(x=>x);
+    while(d.length>SD_BOOK_MAX)d.pop();
+    sdPut('dex',d.join('|'));
+  }
+}
+
+/* ==== 汽水铺 ⑥：说明 · 另外几双手 · 把这一摊的账独立核一遍 ====
+   产品里的手（_sd_b.js）：期望用「逐档枚举 Σp·π」，最优用「argmax 扫一遍」，边际用小数 P(D≥k) 从 0 往上加。
+   这里的手故意换路数：利润走恒等式 π(q)=(S−C)q−(S−R)E[(q−D)⁺]−G·E[(D−q)⁺]（过剩与缺货两头算账）；
+   最优走「整数权重」（概率先摊成百万分之一的整数，全程只做整数乘加）；
+   边际走「从顶往下退」（少进一瓶的账），方向与手二相反。算法不同而账目必须一致 —— 段 S/W 拿这几只手逐字对同一摊。*/
+
+/* ---- 说明：话写在摊下那一条，翻一次扣一次 ---- */
+function sdHelpText(){
+  const r=sdy.rec;
+  const crit=SD_CRIT.toFixed(3);
+  return '🥤 <b>一瓶汽水一根笔</b>：这一子共 '+((r&&r.n)||sdy.n)+' 笔 ⇒ 客流的<b>中位</b>就压在这个数上；'+
+    '<br>🍶 <b>五种口味决定分布</b>：横竖撇捺折各占几笔，摊上就把客流摊成几条 —— 味越杂，档越多、越摸不准。'+
+    '<br>💰 <b>价目</b>：进一瓶 '+SD_C+' 文 · 卖一瓶 '+SD_S+' 文 · 当天卖不掉回炉 '+SD_R+' 文 · 客人扑空赔笑 '+SD_G+' 文。'+
+    '<br>⚖️ <b>多进一瓶只算这一瓶的账</b>：卖得掉赚 '+(SD_S-SD_C+SD_G)+' 文（差价 + 省下那一笑），卖不掉亏 '+(SD_C-SD_R)+' 文（进价 − 回炉）'+
+    ' ⇒ 只要「卖得掉」的把握高过 <b>'+crit+'</b>（临界分位数）就值得多进这一瓶。'+
+    '<br>🎯 <b>最像的那档不是最赚的那档</b>：这一摊最可能来 '+((r&&r.mode)||sdy.mode)+' 人，账房算下来该进 '+((r&&r.q)||sdy.q)+' 瓶（期望 '+(((r&&r.e)||sdy.e)||0).toFixed(1)+' 文）。'+
+    '<br>🪨 <b>三种笨手</b>：贪大（进最多那档）少赚 '+((r&&r.lo1)||0).toFixed(1)+' 文 · 随大流（进最可能那档）少赚 '+((r&&r.lo2)||0).toFixed(1)+' 文 · 胆小（进最少那档）少赚 '+((r&&r.lo3)||0).toFixed(1)+' 文。'+
+    '<br>🎲 <b>好决策不等于好结果</b>：拍板之后还要走一遍今天来多少人 —— 账上写「期望」与「实收」两条，别拿一天的运气改手上的算盘。'+
+    '<br>🕐 <b>三支钟</b>：这一案（第 1 场 '+(sdCaseMs(1)/1000).toFixed(1)+' 秒，走尽就替你随大流）· 这一天（'+(sdDayMs(1)/1000).toFixed(1)+' 秒走完客人）· 这一场。'+
+    '<br>🎮 点进货牌或 <code>1~4</code> 挑档 · <code>F</code> 拍板 / 对账后接着走 · 🔎 <code>P</code> 看期望 · 🧮 <code>V</code> 代算 · 🔁 <code>S</code> 换字 · '+
+    '<code>H</code> 说明 · <code>G</code> 🏳 弃摊 · <code>R</code> 再来一局。';
+}
+function sdHelp(){
+  if(!sdy.run||sdy.over)return;
+  if(sdy.rec&&(sdy.phase==='ask'||sdy.phase==='day'||sdy.phase==='audit')&&!sdy.load){
+    sdy.score=Math.max(0,sdy.score-SD_P_HELP);sdy.penSum+=SD_P_HELP;
+    sdy.tools++;sdy.wordTools++;sdy.fieldTools++;
+    sdy.hitOk=2;sdy.hitTxt='📖 翻说明 −'+SD_P_HELP;
+    sdSay(sdy.hitTxt);
+  }
+  sdy.helpMs=SD_HELP_MS;
+  const el=sdEl('sdMsg');
+  if(el){el.innerHTML=sdHelpText();el.style.color='#FFE0B2';el.style.opacity='1'}
+}
+
+/* ---- 手三：利润恒等式（过剩 + 缺货两头算），与产品那条 min/余量式子不是一条路 ---- */
+function sdBvProfit(q,D){
+  let ex=0,eu=0;
+  for(let j=0;j<D.d.length;j++){
+    const d=D.d[j],w=D.p[j];
+    ex+=w*Math.max(0,q-d);
+    eu+=w*Math.max(0,d-q);
+  }
+  return (SD_S-SD_C)*q-(SD_S-SD_R)*ex-SD_G*eu;
+}
+/* ---- 手四：整数权重 argmax（不靠归一化后的浮点，也不靠 1e-12 比大小）---- */
+function sdBvExact(D){
+  const SC=1e6,hi=D.d[D.d.length-1];
+  const W=D.p.map(function(x){return Math.round(x*SC)});
+  const T=W.reduce(function(a,b){return a+b},0);
+  let bq=0,best=-1,acc=0;
+  for(let q=0;q<=hi;q++){
+    let s=0;
+    for(let j=0;j<D.d.length;j++)s+=W[j]*sdProfit(q,D.d[j]);
+    if(s>best){best=s;bq=q}
+  }
+  return {q:bq,e:best/T,wsum:T};
+}
+/* ---- 手五：从顶往下退的边际（与手二「从 0 往上加」方向相反）---- */
+function sdBvTopDown(D){
+  const hi=D.d[D.d.length-1];
+  const Ple=k=>{let t=0;for(let j=0;j<D.d.length;j++)if(D.d[j]<=k)t+=D.p[j];return t};
+  for(let q=hi;q>=1;q--){
+    const back=(SD_S-SD_C+SD_G)*(1-Ple(q-1))-(SD_C-SD_R)*Ple(q-1);
+    if(back>1e-12)return {q:q,e:sdBvProfit(q,D)};
+  }
+  return {q:0,e:sdBvProfit(0,D)};
+}
+/* ---- 独立重走一遍闸门：图还是那张图（题面就是 sdFitAll 的瓶样），账换几双手算 ---- */
+function sdAudWord(ch,j){
+  const M=j&&j.medians;
+  if(!Array.isArray(M)||M.length<SD_NMIN||M.length>SD_NMAX)return {ok:0,why:'笔数带外'};
+  const n=M.length;
+  for(let i=0;i<n;i++)if(!Array.isArray(M[i])||M[i].length<2)return {ok:0,why:'有一笔没点'};
+  const tastes=M.map(function(st){return sdTaste(st)});
+  const cnt=sdTally(tastes),kinds=cnt.filter(function(x){return x>0}).length;
+  if(kinds<SD_KINDMIN)return {ok:0,why:'口味 '+kinds+' 种太少'};
+  const D=sdDistOf(n,cnt,kinds);
+  if(D.d.length<SD_KMIN||D.d.length>SD_KMAX)return {ok:0,why:'档数 '+D.d.length+' 出带'};
+  let sum=0;for(let i=0;i<D.p.length;i++)sum+=D.p[i];
+  if(Math.abs(sum-1)>1e-9)return {ok:0,why:'牌面不是整摊（Σp='+sum.toFixed(6)+'）'};
+  const E1=sdByEnum(D),bv=sdBvExact(D),td=sdBvTopDown(D);
+  if(bv.q!==E1.q)return {ok:0,why:'整数权重的手挑了 '+bv.q+'，枚举的手挑 '+E1.q};
+  if(td.q!==E1.q)return {ok:0,why:'从顶退的手挑了 '+td.q+'，枚举的手挑 '+E1.q};
+  for(let q=0;q<=D.d[D.d.length-1];q++){
+    if(Math.abs(sdBvProfit(q,D)-sdEnumExp(q,D))>1e-9)return {ok:0,why:'利润恒等式在 '+q+' 瓶上对不上'};
+  }
+  if(E1.ties>1)return {ok:0,why:'最优并列'};
+  const hi=D.d[D.d.length-1],lo=D.d[0];
+  const mode=D.d[D.p.indexOf(Math.max.apply(null,D.p))];
+  const g1=E1.e-sdEnumExp(hi,D),g2=E1.e-sdEnumExp(mode,D),g3=E1.e-sdEnumExp(lo,D);
+  if(g1<SD_GAPMIN)return {ok:0,why:'贪大只少赚 '+g1.toFixed(1)};
+  if(Math.abs(E1.q-mode)<SD_MODOFF)return {ok:0,why:'最可能就是答案'};
+  if(g2<SD_GAPSOFT||g3<SD_GAPSOFT)return {ok:0,why:'随大流/胆小没代价'};
+  if(mode===lo)return {ok:0,why:'随大流撞了胆小那一档'};
+  return {ok:1,ch:ch,n:n,kinds:kinds,buckets:D.d.length,q:E1.q,e:E1.e,mode:mode,
+    hi:hi,lo:lo,lo1:g1,lo2:g2,lo3:g3,exact:bv.q,top:td.q,tastes:tastes};
+}
+/* ---- 当场把这一摊的账独立核一遍：段 W 收账用 ---- */
+function sdAudState(){
+  const r=sdy.rec;if(!r)return {ok:0,why:'摊还没摆'};
+  const D={d:r.d,p:r.p};
+  const bad=[];
+  let sum=0;for(let i=0;i<r.p.length;i++)sum+=r.p[i];
+  if(Math.abs(sum-1)>1e-9)bad.push('Σp='+sum.toFixed(6));
+  const bv=sdBvExact(D),td=sdBvTopDown(D);
+  if(bv.q!==r.q)bad.push('整数权重 '+bv.q+'/'+r.q);
+  if(td.q!==r.q)bad.push('从顶退 '+td.q+'/'+r.q);
+  if(Math.abs(sdBvProfit(r.q,D)-r.e)>1e-9)bad.push('恒等式不平 '+sdBvProfit(r.q,D).toFixed(3)+'/'+r.e.toFixed(3));
+  if(Math.abs(r.e-sdEnumExp(r.q,D))>1e-12)bad.push('期望换了算法');
+  if(r.d.indexOf(r.mode)<0)bad.push('最可能档不在牌上');
+  if(Math.abs(r.q-r.mode)<SD_MODOFF)bad.push('最可能就是答案');
+  if(r.mode===r.d[0])bad.push('随大流撞了胆小那一档');
+  return {ok:bad.length?0:1,ch:r.ch,n:r.n,kinds:r.kinds,buckets:r.d.length,q:r.q,e:r.e,
+    mode:r.mode,mean:r.mean,lo1:r.lo1,lo2:r.lo2,lo3:r.lo3,exact:bv.q,top:td.q,why:bad.join(' · ')};
+}
+/* ---- 眼下摊面的独立读数：段 M 拿它对产品自己的账 ---- */
+function sdBvNow(){
+  const r=sdy.rec;if(!r)return {ok:0,why:'摊还没摆'};
+  const bad=[];
+  const hi=r.d[r.d.length-1],lo=r.d[0];
+  const uniq={};
+  for(let i=0;i<sdy.opts.length;i++){
+    if(uniq[sdy.opts[i]])bad.push('牌上 '+sdy.opts[i]+' 瓶出现两回');
+    uniq[sdy.opts[i]]=1;
+    if(r.d.indexOf(sdy.opts[i])<0&&sdy.opts[i]!==0)bad.push('牌上有档外瓶数 '+sdy.opts[i]);
+  }
+  if(sdy.opts.indexOf(r.q)<0)bad.push('最赚那档不在牌上');
+  if(sdy.opts.indexOf(r.mode)<0)bad.push('最可能那档不在牌上');
+  if(sdy.opts.indexOf(hi)<0||sdy.opts.indexOf(lo)<0)bad.push('贪大/胆小两档不在牌上');
+  if(sdy.done.length!==r.n)bad.push('瓶样数 '+sdy.done.length+'/'+r.n);
+  let faded=0;for(let k=0;k<r.n;k++)if(sdy.done[k])faded++;
+  if(sdy.phase==='ask'){
+    if(faded)bad.push('还没拍板就有瓶空了');
+    if(sdy.stock)bad.push('还没拍板就有存货');
+  }
+  if(sdy.phase==='day'||sdy.phase==='audit'){
+    if(sdy.sold!==Math.min(sdy.walkIdx,Math.min(sdy.stock,sdy.dayD)))bad.push('卖出账 '+sdy.sold+'/'+Math.min(sdy.walkIdx,sdy.stock));
+    if(sdy.missed!==Math.max(0,sdy.walkIdx-sdy.stock))bad.push('扑空账 '+sdy.missed);
+    if(sdy.sold>sdy.stock)bad.push('卖超了');
+    if(sdy.phase==='audit'){
+      if(sdy.walkIdx!==sdy.dayD)bad.push('客人没走完就对账 '+sdy.walkIdx+'/'+sdy.dayD);
+      const want=SD_S*sdy.sold+SD_R*(sdy.stock-sdy.sold)-SD_C*sdy.stock-SD_G*sdy.missed;
+      if(Math.abs(sdy.cash-want)>1e-9)bad.push('流水账 '+sdy.cash+'/'+want);
+    }
+    if(faded!==Math.min(sdy.sold,r.n))bad.push('案上空瓶 '+faded+'/卖出 '+sdy.sold+'（瓶样 '+r.n+' 只，卖到第 '+(r.n+1)+' 个人就回头点同一只瓶）');
+  }
+  if(sdy.score<0)bad.push('分数成负');
+  if(sdy.hearts<0)bad.push('心成负');
+  if(sdy.wi<0||sdy.wi>SD_PER)bad.push('案号出格 '+sdy.wi);
+  return {ok:bad.length?0:1,ch:r.ch,phase:sdy.phase,lv:sdy.lv,wi:sdy.wi,q:r.q,mode:r.mode,
+    opts:sdy.opts.slice(),stock:sdy.stock,sold:sdy.sold,left:sdy.stock-sdy.sold,missed:sdy.missed,
+    dayD:sdy.dayD,cash:sdy.cash,exp:sdy.exp,e:r.e,score:sdy.score,hearts:sdy.hearts,
+    rights:sdy.rights,opened:sdy.opened,why:bad.join(' · ')};
+}
+/* ---- 探针桥：验证脚本只借这双手摆场面、读数，不改口径 ---- */
+function sdBvInfo(){
+  return {ok:1,run:sdy.run,over:sdy.over,phase:sdy.phase,lv:sdy.lv,wi:sdy.wi,score:sdy.score,
+    hearts:sdy.hearts,words:sdy.words,rights:sdy.rights,opened:sdy.opened,trio:sdy.trio,
+    tightN:sdy.tightN,quickN:sdy.quickN,wrongs:sdy.wrongs,bottles:sdy.bottles,taken:sdy.taken,
+    lostSum:sdy.lostSum,fieldTools:sdy.fieldTools,cleanRun:sdy.cleanRun,seed:sdy.seed,
+    tellOff:sdy.tellOff,dim:sdy.dim,ch:sdy.ch,n:sdy.n,pool:sdy.pool.length};
+}
+function sdBvTap(i){if(sdy.phase!=='ask')return {ok:0,why:'不在拍板这一手（phase='+sdy.phase+'）'};sdPick(i);return {ok:1,sel:sdy.sel,q:sdy.opts[sdy.sel]}}
+function sdBvGo(){if(sdy.phase!=='ask')return {ok:0,why:'不在拍板这一手'};sdGoAsk();return {ok:1,phase:sdy.phase,stock:sdy.stock,dayD:sdy.dayD,exp:sdy.exp}}
+function sdBvSetD(v){sdy.rollTo=v;return {ok:1,rollTo:sdy.rollTo}}
+function sdBvSeal(){if(sdy.phase!=='audit')return {ok:0,why:'还没到对账（phase='+sdy.phase+'）'};sdy.auditMs=1;return {ok:1}}
+function sdBvCaseMs(v){sdy.caseMs=v;return {ok:1,caseMs:sdy.caseMs}}
+function sdBvDayMs(v){sdy.dayMs=v;return {ok:1,dayMs:sdy.dayMs}}
+function sdBvLamp(v){sdy.lamp=v;sdy.lamp0=Math.max(sdy.lamp0,v);return {ok:1,lamp:sdy.lamp}}
+function sdBvSeed(s){sdy.seed=s|0;return {ok:1,seed:sdy.seed}}
+function sdBvTool(k,n){if(SD_P0[k]===undefined)return {ok:0,why:'没这件家什 '+k};sdy[k+'N']=n;return {ok:1,k:k,n:sdy[k+'N']}}
+function sdBvLv(L){
+  if(L<1||L>9)return {ok:0,why:'场号出格'};
+  sdy.lv=L;sdy.wi=0;sdy.lamp0=sdLampMs(L);sdy.lamp=sdy.lamp0;sdy.poolLv=-1;
+  sdy.tellOff=sdNoTell(L);sdy.dim=sdDim(L);
+  if(sdy.rec){sdy.caseMs=sdCaseMs(L);sdy.case0=sdy.caseMs;sdy.quickMs=sdQuickMs(L);sdy.dayMs=sdDayMs(L);sdy.day0=sdy.dayMs;sdRenderTally();sdRenderBars()}
+  return {ok:1,lv:sdy.lv,tellOff:sdy.tellOff,dim:sdy.dim,case0:sdy.case0};
+}
+function sdBvOpen(ch){
+  if(!sdInLev(ch,sdy.lv))return Promise.resolve({ok:0,why:ch+' 不在第 '+sdy.lv+' 串'});
+  return ctTO(loadCharData(ch),8000).then(function(j){
+    if(!j||!j.medians)return {ok:0,why:ch+' 没数据'};
+    let rec=sdCache[ch];
+    if(rec===undefined){rec=sdAudit(ch,j)||null;sdCache[ch]=rec}
+    if(!rec)return {ok:0,why:ch+' 没过闸'};
+    if(sdy.rec)sdy.pool.push(sdy.rec);
+    sdy.load=false;sdy.locked=0;sdy.hesitated=0;
+    sdOpenCase(rec);
+    return {ok:1,ch:ch,q:rec.q,mode:rec.mode,opts:sdy.opts.slice(),e:rec.e};
+  });
+}
+function sdBvNext(){sdNextCase();return {ok:1,ch:sdy.ch}}
+function sdBvOver(why){sdOver(why||'quit');return {ok:1,over:sdy.over}}
+function sdBvQuit(){sdQuit('quit');return {ok:1,ch:sdy.ch}}
+function sdBvHelp(){sdHelp();return {ok:1}}
+function sdBvPeek(){sdPeek();return {ok:1,peekMs:sdy.peekMs}}
+function sdBvCalc(){sdCalc();return {ok:1,sel:sdy.sel,lit:sdy.lit}}
+function sdBvSwap(){sdSwap();return {ok:1,ch:sdy.ch}}
+function sdBvStart(){sdStart(true);return {ok:1}}
+function sdBvShelf(){const a=sdShelfNow(),got=[];for(let i=0;i<SD_SHELF.length;i++)if(a[i])got.push(SD_SHELF[i].k);return {ok:1,got:got}}
 
 
 window.addEventListener('DOMContentLoaded',boot);
