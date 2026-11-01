@@ -8113,6 +8113,63 @@ button:active{transform:scale(.95)}
 .sd-overbox p{margin:3px 0;font-size:13px}
 .sd-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
 .sd-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
+/* ================= v1.117 🧭 笔顺问路坊 ================= */
+/* HUD 占死三行：街没挑开那两息它只折两行，不留这一格整张案会被往上抬 */
+.wl-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.wl-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.wl-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+/* 题头占死四行：三副题面里最宽那副（对账那一条带着整张步数账）*/
+.wl-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*4)}
+.wl-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.wl-ask b{color:#FFE082}
+.wl-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 10px);max-width:520px;margin:0 auto}
+/* 案：夜色下的那一条街（canvas 给底，界外留一道木框）*/
+.wl-field{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#1B2230,#101822 58%,#080C12);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8)}
+.wl-canvas{display:block;width:100%;height:auto;cursor:pointer;touch-action:none}
+.wl-tag{position:absolute;left:50%;top:6px;transform:translateX(-50%);background:rgba(8,12,18,.9);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;transition:opacity .25s;pointer-events:none;white-space:nowrap;line-height:1.4;max-width:94%;z-index:6}
+.wl-msg{width:calc(100% - 28px);max-width:520px;margin:6px auto 0;background:rgba(8,12,18,.72);border:1px solid #37474F;border-radius:12px;color:#FFD54F;font-size:13px;font-weight:700;line-height:1.5;padding:7px 12px;text-align:center;min-height:calc(13px*1.5*2);max-height:168px;overflow-y:auto;transition:opacity .25s}
+.wl-msg b{color:#FFCC80}
+.wl-msg code{background:rgba(255,255,255,.12);border-radius:4px;padding:0 4px;color:#FFE082}
+/* 里程账：一盏灯一格（第 6 场起绿字蒙上，得自己算）*/
+.wl-tally{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;width:calc(100% - 24px);max-width:520px;margin:6px auto 0;font-size:12px;font-weight:800;color:#B0BEC5}
+.wl-tally i{font-style:normal;background:rgba(255,255,255,.07);border-radius:9px;padding:2px 7px;white-space:nowrap}
+.wl-tally i.on{background:rgba(255,183,77,.22);color:#FFE0B2}
+/* 道牌：往前 1~3 条道，一张一条（数字键 1~3 一手一张）*/
+.wl-tbl{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:calc(100% - 24px);max-width:520px;margin:8px auto 4px}
+.wl-opt{flex:1 1 30%;min-width:0;min-height:48px;background:linear-gradient(180deg,#2E3F4C,#1B2830);color:#CFD8DC;border:2px solid #455A64;border-radius:12px;font-size:12.5px;font-weight:800;line-height:1.25;padding:5px 4px;cursor:pointer}
+.wl-opt:hover{border-color:#FFB74D}
+.wl-opt.on{background:linear-gradient(180deg,#4A3418,#2A1C0B);border-color:#FFB74D;color:#FFE0B2}
+.wl-opt.good{background:linear-gradient(180deg,#1F4A25,#123018);border-color:#81C784;color:#DCEDC8}
+.wl-opt.wrong{background:linear-gradient(180deg,#5D1F1B,#3A120F);border-color:#EF5350;color:#FFCDD2;animation:wlShake .32s}
+.wl-opt b{color:#FFF3E0;font-size:15px}
+.wl-opt .st{display:block;font-size:10px;font-weight:700;color:#80CBC4;line-height:1.25;margin-top:2px}
+@keyframes wlShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.wl-meter{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;width:calc(100% - 28px);max-width:520px;margin:4px auto}
+.wl-tl{position:relative;height:16px;background:rgba(0,0,0,.42);border-radius:8px;overflow:hidden}
+.wl-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:8px;transition:width .1s linear}
+.wl-tl.case i{background:linear-gradient(90deg,#FFB74D,#FF7043)}
+.wl-tl.idle i{background:linear-gradient(90deg,#BA68C8,#6A1B9A)}
+.wl-tl.lamp i{background:linear-gradient(90deg,#FFF176,#FBC02D)}
+.wl-tl.led i{background:linear-gradient(90deg,#4FC3F7,#0277BD)}
+.wl-tl b{position:absolute;inset:0;font-size:11px;font-weight:800;color:#0E1417;text-align:center;line-height:16px;text-shadow:0 1px 0 rgba(255,255,255,.28)}
+.wl-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px auto 2px;max-width:520px}
+.wl-tool{background:#18222A;color:#B0BEC5;border:1px solid #37474F;border-radius:10px;font-size:12px;font-weight:700;padding:5px 9px;cursor:pointer}
+.wl-tool span{display:inline-block;background:rgba(255,255,255,.14);border-radius:5px;padding:0 4px;margin-left:5px;font-size:10px}
+.wl-tool b{color:#FFE082;margin-left:4px}
+.wl-tool:disabled{opacity:.4;cursor:default}
+.wl-hintline{font-size:11.5px;color:#78909C;text-align:center;margin:4px auto 0;max-width:520px;line-height:1.5;padding:0 10px}
+.wl-hintline b{color:#B0BEC5}
+.wl-hintline code{background:rgba(255,255,255,.1);border-radius:4px;padding:0 4px}
+.wl-cdot{position:absolute;right:8px;top:8px;font-size:11px;background:#FF7043;color:#20150C;border-radius:8px;padding:1px 6px;font-weight:900}
+.mode-card{position:relative}
+/* 结算：盖在街上的一层布 */
+.wl-over{position:absolute;inset:0;background:rgba(3,6,8,.9);z-index:20;display:flex;align-items:center;justify-content:center;border-radius:16px}
+#screen-wl{position:relative}
+.wl-overbox{width:88%;max-width:420px;background:linear-gradient(180deg,#1E2B33,#0B1114);border:2px solid #455A64;border-radius:14px;padding:12px 14px;text-align:center;color:#CFD8DC}
+.wl-overbox h3{margin:0 0 6px;font-size:20px;color:#FFD54F}
+.wl-overbox p{margin:3px 0;font-size:13px}
+.wl-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.wl-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
 </style>
 
 </head>
@@ -8169,8 +8226,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 115 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">115</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 116 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">116</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -8181,12 +8238,18 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>115 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>57</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>116 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>58</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="wlCard" onclick="enterMode('wl')">
+      <div class="icon">🧭</div>
+      <div class="info"><h3>笔顺问路坊</h3><p id="wlCardTip">一条街就是这一子的骨架：每笔的<b>起笔处</b>亮一盏灯，第 k 笔就是 k 号站。道只往前修（最多连 3 站），道牌上的数＝两灯直线距离<b>折成的步数</b>。从 🚶 1 号灯走到 ⛺：预算＝<b>最短路 + 8 步</b>，省一步就是一文，站着不落脚每满一息<b>白磨一步</b>。这张图上<b>没有直达终点</b>的道 —— 最短路得一段一段接出来算；<b>看着最近的那一站，往往不是最省的那一跳</b></p>
+      <span class="wl-cdot" id="wlCardDot">🆕</span>
+    </div>
+</div>
 <div class="mode-card" id="sdCard" onclick="enterMode('sd')">
       <div class="icon">🥤</div>
       <div class="info"><h3>笔顺汽水铺</h3><p id="sdCardTip">一瓶汽水一根笔：这一子的<b>笔数</b>是客流的中位，<b>五种笔形</b>各占几笔就是各口味的人气。一天进多少瓶？进 4 文、卖 9 文、卖不掉<b>回炉只值 1 文</b>、让人扑空<b>赔笑 1 文</b>。最像的那档<b>不是</b>最赚的那档 —— 你要的是<b>多进一瓶还赚不赚</b>（临界比 1/3）：卖一瓶赚的少、赔一笑的多，就该在<b>最可能那档右边一点</b>收手</p>
@@ -9343,6 +9406,66 @@ button:active{transform:scale(.95)}
       <div class="nc-overbtns">
         <button id="ncReBtn">🔁 再归一回</button>
         <button id="ncReHome">🏠 回实验室</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-wl">
+  <div class="top-bar">
+    <button class="back-btn" onclick="wlLeave()">← 返回</button>
+    <div class="stats"><span id="wlScoreTxt">🧭 <b id="wlScore">0</b> 文</span><span id="wlLv">第 1 场</span><span id="wlTime">这一条街 24.0 秒 · 这一场 86 秒</span></div>
+    <button class="icon-btn" onclick="wlHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="wl-hud">
+    <span id="wlRank" title="称号">🐣 头一条街</span>
+    <span id="wlHearts" title="生命">❤️❤️❤️</span>
+    <span id="wlLedCombo" title="连跳">🔥 连击 0 · 最长 0</span>
+    <span id="wlLedWord">🧭 第 1/3 条街 · 已走过 0 条</span>
+    <span id="wlLedGate" title="预算账">🌱 街还没挑开</span>
+    <span class="light" id="wlHitLight">💡 妙算</span>
+  </div>
+  <div class="wl-ask" id="wlAsk">🌱 正在挑街……<br><small>在字库里找「最短路要一段一段接出来才算得出、看着最近的那一站不是最省的那一跳、老实顺笔要多走一大截」的字</small></div>
+  <div class="wl-stage">
+    <div class="wl-field">
+      <canvas class="wl-canvas" id="wlCv" width="420" height="340"></canvas>
+      <div class="wl-tag" id="wlTag">🧭 街还没挑开</div>
+    </div>
+  </div>
+  <div class="wl-msg" id="wlMsg">🧭 一条街就是这一子的骨架：每笔的起笔处亮一盏灯 · 道牌上写「几步」· 预算 = 最短路 + 8 步，<b>省一步就是一文</b>，站着不落脚每满一息<b>白磨一步</b></div>
+  <div class="wl-tally" id="wlTally"></div>
+  <div class="wl-tbl" id="wlOpts">
+    <button class="wl-opt" id="wlOpt0">—</button>
+    <button class="wl-opt" id="wlOpt1">—</button>
+    <button class="wl-opt" id="wlOpt2">—</button>
+  </div>
+  <div class="wl-meter">
+    <div class="wl-tl case"><i id="wlBarCase"></i><b>⏳ 这一条街</b></div>
+    <div class="wl-tl idle"><i id="wlBarIdle"></i><b>🥾 这一双脚</b></div>
+    <div class="wl-tl lamp"><i id="wlBarLamp"></i><b>💡 这一场</b></div>
+    <div class="wl-tl led"><i id="wlBarLed"></i><b id="wlLedSnap">🧾 省 0/0 步</b></div>
+  </div>
+  <div class="wl-tools">
+    <button class="wl-tool" id="wlPeek">🔎 看里程<span>P</span><b>剩 2</b></button>
+    <button class="wl-tool" id="wlCalc">🧮 代算一跳<span>V</span><b>剩 2</b></button>
+    <button class="wl-tool" id="wlSwap">🔁 换街<span>S</span><b>剩 1</b></button>
+    <button class="wl-tool" id="wlHelpBtn">📖 说明<span>H</span></button>
+    <button class="wl-tool" id="wlQuitBtn">🏳 弃街<span>G</span></button>
+  </div>
+  <div class="wl-hintline" id="wlLedNaive">🪨 <b>笨手对照</b>：一站一站往前挪（顺笔）在这条街上<b>实打实多走一大截</b> —— 过闸的字每一串都如此<br>🧭 <b>看着最近的那一站不是最省的那一跳</b>（要的是「落下之后总共还剩几步」）· 点道牌或 <code>1~3</code> 落脚 · 🔎 <code>P</code> 看里程 · 🧮 <code>V</code> 代算 · 🔁 <code>S</code> 换街 · <code>H</code> 📖 说明 · <code>G</code> 🏳 弃街 · <code>R</code> 再来一局</div>
+
+  <div class="wl-over" id="wlOver" style="display:none">
+    <div class="wl-overbox">
+      <h3>🧭 收摊</h3>
+      <p id="wlRsWhy">⏺ 这一场的钟走完了</p>
+      <p id="wlRsScore">🧾 0 文</p>
+      <p id="wlRsWords">🧭 一路不落 0 条 · 场号 1 · 连跳 0</p>
+      <p id="wlRsStars">⭐ +0</p>
+      <p id="wlRsErr">✗ 跳偏 0 跳 · 走路 0 步 · 白磨 0 步</p>
+      <p id="wlRsShelf">🎒 路囊：（这一把一件没添）</p>
+      <p id="wlRsRank">🐣 头一条街 · 一辈子走过 0 条街</p>
+      <div class="wl-overbtns">
+        <button id="wlReBtn">🔁 再走一回</button>
+        <button id="wlReHome">🏠 回实验室</button>
       </div>
     </div>
   </div>
@@ -17456,6 +17579,7 @@ function updateHomeStats(){
   if(typeof mcNudge==='function')mcNudge();
   if(typeof ncNudge==='function')ncNudge();
   if(typeof sdNudge==='function')sdNudge();
+  if(typeof wlNudge==='function')wlNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -17517,6 +17641,7 @@ function enterMode(mode){
   if(mode==='mc'){mcStart();return}
   if(mode==='nc'){ncStart();return}
   if(mode==='sd'){sdStart();return}
+  if(mode==='wl'){wlStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -132346,6 +132471,1220 @@ function sdBvCalc(){sdCalc();return {ok:1,sel:sdy.sel,lit:sdy.lit}}
 function sdBvSwap(){sdSwap();return {ok:1,ch:sdy.ch}}
 function sdBvStart(){sdStart(true);return {ok:1}}
 function sdBvShelf(){const a=sdShelfNow(),got=[];for(let i=0;i<SD_SHELF.length;i++)if(a[i])got.push(SD_SHELF[i].k);return {ok:1,got:got}}
+
+
+/* ==== 🧭 笔顺问路坊 v1（v1.117.0）====
+   一条街就是这一子的骨架：每一笔的起笔处亮一盏灯，第 k 笔 = k 号灯站。从 🚶 1 号灯走到
+   ⛺ n 号灯，站与站只往前修路（一灯最多往前连 3 站），道上挂牌写的「几步」= 两灯直线距离
+   折成的步数（WL_SCALE）。这张图上根本没有「直达终点」那条道 ⇒ 最短路要一段一段接出来算。
+   预算 = 最短路步数 + WL_SLACK，省一步就是一文；站在灯下犹豫不花钱，花的是步数
+   （每满 WL_IDLE_MS 白磨一步）—— 这条街考的不是手快，是「先看远，再落脚」。
+   眼睛在这儿专门骗人：看着最近的那一站，往往不是最省的那一跳；老老实实一站一站往前挪，
+   比最短路多走一大截（闸门里 GAPSOFT 就是这条）。
+   账是本坊自己的两双手算的 —— 手一把终点当源在反向图上跑 Dijkstra（优先队列逐边松弛），
+   手二从 n 号灯倒着往回推 d[i]=min(w(i,j)+d[j])（逆拓扑递推），两双手必须逐站一字不差，
+   这条街才准上台。过闸还四道：最优那一跳全站不并列、顺笔至少多走 WL_GAPSOFT 步、
+   至少 WL_GOODMIN 站「该跳就跳」且至少 WL_NNMIN 站骗眼、全程最短步数在 WL_DMIN~WL_DMAX 之间。
+   本节：口径 · 九串字表 · 状态 · 落盘 · 发声 */
+
+/* ---- 口径（与 _wlgeo.cjs 一字一样）---- */
+const WL_BAND=3,WL_SCALE=26;          /* 一盏灯往前连几条道 / 多少像素折一步 */
+const WL_NMIN=5,WL_NMAX=12;           /* 一条街的灯数 = 这一子的笔数 */
+const WL_DMIN=14,WL_DMAX=70;          /* 最短路步数带：太短没得走，太长走不完 */
+const WL_GAPSOFT=6;                   /* 一路顺笔至少比最短路多走这些步 */
+const WL_GOODMIN=3,WL_NNMIN=2;        /* 该跳就跳的站数 / 看着最近却不是最省的站数 */
+const WL_HARDMIN=24;                  /* 难度分 = 顺笔多走 + 4×骗眼站 */
+/* ---- 场 · 池 · 心 · 预算 ---- */
+const WL_PER=3;                       /* 一场三条街 */
+const WL_POOL_MIN=4,WL_POOL_WANT=12;
+const WL_HEARTS=3,WL_HEART_MAX=5,WL_BOOK_MAX=300;
+const WL_SLACK=8;                     /* 预算 = 最短路 + 这些步（走错一跳就啃这块肉）*/
+const WL_TELL_LV=4,WL_DIM_LV=6;       /* 第 4 场起收场话说清「该跳几号灯」，第 6 场起脚下里程牌整块蒙上 */
+function wlNoTell(L){return L>=WL_TELL_LV}
+function wlDim(L){return L>=WL_DIM_LV}
+/* ---- 赏 ---- */
+const WL_HOP_WEN=2;                   /* 每一跳踩在最省那一条道上 */
+const WL_LEFT_WEN=1;                  /* 走到终点，剩下的预算一步一文 */
+const WL_PTS_RIGHT=14;                /* 一路不落：这条街每一跳都是最省那一跳 */
+const WL_PTS_TRIO=14;                 /* 三连：一场三条街全不落 */
+const WL_PTS_QUICK=12;                /* 眼快手快：每条街都在街钟一半内走完 */
+const WL_PTS_FRESH=6;                 /* 头一回走这条街 */
+const WL_PTS_TIGHT=8;                 /* 分毫不磨：这一条街一步没磨（没让犹豫钟啃掉预算）*/
+const WL_PTS_NOTOOL=8,WL_PTS_TOOLRUN=14;
+/* ---- 罚 ---- */
+const WL_P_OUT=8;                     /* 预算磨穿：这条街没走到头 */
+const WL_P_SLOW=4;                    /* 街钟走尽 */
+const WL_P_QUIT=5;                    /* 弃街 */
+const WL_P_TOOL=4,WL_P_HELP=3;
+const WL_ERR_LINE=2;                  /* 一场废到这一回就掉一颗心 */
+const WL_WORN_LINE=3;                 /* 一条街磨到这三步就算「犹豫账」上表 */
+/* ---- 家什 ---- */
+const WL_P0={peek:2,calc:2,swap:1};   /* 🔎 看里程 / 🧮 代算一跳 / 🔁 换街 */
+const WL_PEEK_MS=5200,WL_CALC_MS=4200,WL_SWAP_PEN=6;
+/* ---- 钟 ---- */
+function wlCaseMs(L){return Math.max(12000,24000-1300*(L-1))}      /* 这一条街 */
+function wlIdleMs(L){return Math.max(1900,2800-100*(L-1))}         /* 站着不动磨一步 */
+function wlLampMs(L){return Math.max(72000,86000-1600*(L-1))}      /* 这一场 */
+const WL_AUDIT_MS=9000,WL_HAND_MS=1200,WL_NAG_MS=5600,WL_HELP_MS=8200,WL_WRONG_MS=620;
+function wlQuickMs(L){return Math.floor(wlCaseMs(L)*0.5)}          /* 眼快手快的门槛 */
+const WL_WALK_MS=560,WL_POP_MS=300,WL_BACK_MS=420;
+/* ---- 案面：420×340，灯位取自这一子起笔点（0~1000 折进 WL_FX0~WL_FX1 / WL_FY0~WL_FY1）---- */
+const WL_W=420,WL_H=340;
+const WL_FX0=48,WL_FX1=372,WL_FY0=44,WL_FY1=296;
+const WL_R=15;                        /* 灯罩半径 */
+/* ---- 称号：一辈子走过的街 ---- */
+const WL_RANKS=[
+  {n:0,e:'🐣',t:'头一条街'},{n:2,e:'🪶',t:'认得灯位'},{n:5,e:'🧭',t:'看得懂牌'},
+  {n:9,e:'🏹',t:'一路不落'},{n:14,e:'👀',t:'一眼挑道'},{n:21,e:'🌳',t:'街街描全'},
+  {n:30,e:'🧭',t:'路路有着'},{n:42,e:'🕊',t:'不被眼骗'},{n:58,e:'👑',t:'从没被眼骗'}
+];
+function wlRankOf(w){
+  let r=WL_RANKS[0];
+  for(let i=0;i<WL_RANKS.length;i++)if(w>=WL_RANKS[i].n)r=WL_RANKS[i];
+  return r;
+}
+/* ---- 路囊 8 件 ---- */
+const WL_SHELF_LV=4;
+const WL_SHELF=[
+  {k:'街样图',d:'走完一条街'},            {k:'清白票',d:'一场三条街每街废 ≤0 回'},
+  {k:'铁脚力',d:'一场三街全不落'},        {k:'分毫囊',d:'一条街一步没磨'},
+  {k:'夜行灯',d:'走到第 '+WL_SHELF_LV+' 场还在走'},{k:'空手囊',d:'一场家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},  {k:'量街尺',d:'累计跳过 400 站'}
+];
+/* ---- 九串字表（一场一串，串外的字这一场过不了闸）----
+   由 _wlgeo.cjs 离线数出来（口径与上面的 WL_* 常量一一对应，改常量就得重扫重写这九串）：
+   全站 1372 字过闸 218 字（最优那一跳并列 716 · 笔数过多 276 · 笔数不足 80 · 骗眼的站太少 51 ·
+   全程长短不合规 13 · 该跳的站太少 11 · 总分太轻 6 · 顺笔不吃亏 1 · 两双手对不上为零），
+   难度分 =「顺笔多走的步数 + 4×骗眼站」，切成九串（每串 25 字，末串 18）：
+   第 1 串 6 盏灯、最短 24 步、顺笔多走 47 步；第 9 串 9 盏灯、最短 33 步、顺笔多走 92 步。
+   每一盏灯的最短剩余步数两双手逐站相等（这是松弛，也是这条街的题面）。*/
+const WL_LEV={
+  1:"庆困创吸定再吆角代争色迈安丘辽降层克刘亭庐设虎伟庄",
+  2:"吩弦杂即迁改实鸣皇祖臣育青初医证呻废疙矿犹芬知杀听",
+  3:"误索汉协奈曲耍饺宝径武盼悦砸匠灰庞所苔罚陡在成杆神",
+  4:"锄郑伴社附卧俺射学柜苦险饼皎没花施种徐祭亲缸症杖赤",
+  5:"建或恍脉荐猛虫拟苏邮其养奏拜秒唤唬抡卑枝胶扮驱冻棍",
+  6:"坛玩虾晓配猫亚诚差称批泡砖耕袍泻炉残炼挽咐智英绝衍",
+  7:"诱萎挪浆纯独胀粥泣泥按挣浇晒斜灶绞涌烟袭益袋统秩拒",
+  8:"洁袱块液幽拭哲较琥虹盏拨缀载救扶混盛绳坪浅挑谈城毯",
+  9:"拌挺释跃棒料粉番崭浊淡继凿渐球湃准推"
+};
+function wlLetters(L){return WL_LEV[L]||''}
+function wlInLev(ch,L){return (wlLetters(L)||'').indexOf(ch)>=0}
+
+/* ---- 状态 ---- */
+const wly={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  lv:1,wi:0,score:0,hearts:WL_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一条街：字 · 图 · 账 */
+  ch:'',rec:null,n:0,pt:[],w:[],d:[],nx:[],alt:[],best:0,bud:0,spent:0,left:WL_SLACK,
+  at:0,hops:0,missHops:0,worn:0,litStrokes:0,opts:[],sel:-1,hist:[],stepsWalk:0,
+  /* 眼下这一手 */
+  peekMs:0,calcMs:0,anim:null,landFn:null,wrongMs:0,wrongIdx:-1,wrongTo:-1,wrongFrom:-1,spark:[],lit:null,
+  peekN:WL_P0.peek,calcN:WL_P0.calc,swapN:WL_P0.swap,
+  peekUse:0,calcUse:0,swapUse:0,caseErr:0,autoUsed:0,
+  /* 这一案 / 这一场的钟 */
+  case0:0,caseMs:0,caseUsed:0,idle:0,idleMs:0,idle0:0,lamp:0,lamp0:0,quickOk:1,quickMs:0,
+  sealMs:0,
+  err:0,errSum:0,fieldTools:0,fieldErr:0,walked:0,
+  /* 局账 */
+  streets:0,perfects:0,rights:0,trio:0,cleanN:0,tightN:0,quickN:0,
+  wrongs:0,jumps:0,stepsAll:0,taken:0,revenue:0,swaps:0,tools:0,wordTools:0,cleanRun:0,toolRun:0,
+  wornSum:0,fieldRights:0,sealGood:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',nags:0,nagMs:0,newBest:false,helpMs:0,
+  tellOff:0,dim:0,seed:1
+};
+
+/* ---- 落盘：hz_wl_* 共 21 本 ---- */
+function wlPut(k,v){try{localStorage.setItem('hz_wl_'+k,''+v)}catch(e){}}
+function wlGet(k,d){try{const v=localStorage.getItem('hz_wl_'+k);return v===null?d:v}catch(e){return d}}
+function wlNum(k){return Number(wlGet(k,0))||0}
+function wlInc(k,n){const v=wlNum(k)+(n||1);wlPut(k,v);return v}
+function wlBookPush(ch,why){
+  const bk=(wlGet('book','')||'').split('|').filter(x=>x);
+  const i=bk.findIndex(x=>x.indexOf(ch+':')===0);
+  const e=ch+':'+(why||'没走到头');
+  if(i>=0)bk[i]=e;else bk.unshift(e);
+  while(bk.length>WL_BOOK_MAX)bk.pop();
+  wlPut('book',bk.join('|'));
+}
+function wlBookHas(ch){return (wlGet('book','')||'').split('|').some(x=>x.indexOf(ch+':')===0)}
+/* 这一开就一路走到头，就把这一笔从废街簿上划掉：簿上只留还没走通的街 */
+function wlBookDel(ch){
+  const bk=(wlGet('book','')||'').split('|').filter(x=>x&&x.indexOf(ch+':')!==0);
+  wlPut('book',bk.join('|'));
+}
+function wlDexHas(ch){return (wlGet('dex','')||'').split('|').indexOf(ch)>=0}
+function wlDexAdd(ch){
+  const d=(wlGet('dex','')||'').split('|').filter(x=>x);
+  if(d.indexOf(ch)<0){d.push(ch);wlPut('dex',d.join('|'));return 1}
+  return 0;
+}
+
+/* ---- 本坊自己的发声 · 回话 · 定时器（不借别人家的栏）---- */
+function wlTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!wly.ac)wly.ac=new AC();
+    const c=wly.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.setValueAtTime(g||.11,c.currentTime);
+    n.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);
+    o.connect(n);n.connect(c.destination);o.start();o.stop(c.currentTime+d);
+  }catch(e){}
+}
+function wlDing(i){wlTone(523*Math.pow(1.0595,Math.min(24,(i||0)*2)),.16,.10)}
+function wlBad(){wlTone(150,.26,.13);setTimeout(()=>wlTone(112,.3,.12),110)}
+function wlPop(){wlTone(880,.07,.07)}
+function wlStepSnd(){wlTone(330,.09,.06);setTimeout(()=>wlTone(494,.11,.06),70)}
+function wlWorn(){wlTone(196,.12,.07);wlRender()}/* 磨一步就得把账牌重画：不然「磨掉 N」停在上一息 */
+function wlSeal(){[0,4,7,12].forEach((s,i)=>setTimeout(()=>wlTone(523*Math.pow(1.0595,s),.2,.09),i*90))}
+function wlClearTimers(){wly.timers.forEach(t=>clearTimeout(t));wly.timers=[]}
+function wlLater(ms,fn){const id=setTimeout(fn,ms);wly.timers.push(id);return id}
+function wlSay(t){const e=document.getElementById('wlMsg');if(e)e.innerHTML=t}
+
+/* ==== 问路坊 ②：这张图怎么长出来的 · 两双手对表 · 过闸 ====
+   口径与 _wlgeo.cjs 一字一样：站 = 第 k 笔的起笔点，只往前 1~WL_BAND 站修道，
+   道上的步数 = 两站直线距离 / WL_SCALE 四舍五入、至少 1 步。 */
+function wlBuild(M){
+  const n=M.length;
+  if(n<WL_NMIN||n>WL_NMAX)return null;
+  const pt=[];
+  for(let i=0;i<n;i++){
+    const st=M[i];
+    if(!Array.isArray(st)||st.length<2)return null;
+    pt.push([st[0][0],st[0][1]]);
+  }
+  const w=[];
+  for(let i=0;i<n;i++){
+    w.push([]);
+    for(let j=0;j<n;j++){
+      if(j<=i||j>i+WL_BAND){w[i].push(0);continue}
+      const dd=Math.hypot(pt[i][0]-pt[j][0],pt[i][1]-pt[j][1]);
+      w[i].push(Math.max(1,Math.round(dd/WL_SCALE)));
+    }
+  }
+  return {n:n,pt:pt,w:w};
+}
+/* 手二：逆拓扑递推（从终点倒着往回推），顺带记下最省那一跳与并列数 */
+function wlBackward(g){
+  const n=g.n,d=new Array(n).fill(0),nx=new Array(n).fill(-1),alt=new Array(n).fill(0);
+  for(let i=n-2;i>=0;i--){
+    let best=1e9,who=-1,ties=0;
+    for(let j=i+1;j<n;j++){
+      if(!g.w[i][j])continue;                    /* 这条道没修 */
+      const v=g.w[i][j]+d[j];
+      if(v<best-1e-12){best=v;who=j;ties=1}
+      else if(Math.abs(v-best)<=1e-12)ties++;
+    }
+    d[i]=best;nx[i]=who;alt[i]=ties;
+  }
+  return {d:d,nx:nx,alt:alt};
+}
+/* 手一：把终点当源，在反向图上跑 Dijkstra（小顶堆 + 逐边松弛） */
+function wlDijkstra(g){
+  const n=g.n,d=new Array(n).fill(Infinity),done=new Array(n).fill(0),rev=[];
+  for(let i=0;i<n;i++)for(let j=i+1;j<=i+WL_BAND&&j<n;j++){
+    if(g.w[i][j])(rev[j]=rev[j]||[]).push([i,g.w[i][j]]);
+  }
+  for(let i=0;i<n;i++)if(!rev[i])rev[i]=[];
+  d[n-1]=0;
+  const pq=[[0,n-1]];
+  const push=e=>{pq.push(e);let i=pq.length-1;while(i>0){const p=(i-1)>>1;if(pq[p][0]<=pq[i][0])break;const t=pq[p];pq[p]=pq[i];pq[i]=t;i=p}};
+  const pop=()=>{const top=pq[0],last=pq.pop();if(pq.length){pq[0]=last;let i=0;for(;;){const l=2*i+1,r=l+1;let m=i;if(l<pq.length&&pq[l][0]<pq[m][0])m=l;if(r<pq.length&&pq[r][0]<pq[m][0])m=r;if(m===i)break;const t=pq[m];pq[m]=pq[i];pq[i]=t;i=m}}return top};
+  let relax=0,settled=0;
+  while(pq.length){
+    const e=pop(),dd=e[0],u=e[1];
+    if(done[u])continue;
+    done[u]=1;settled++;
+    if(dd>d[u]+1e-12)continue;
+    for(let x=0;x<rev[u].length;x++){
+      const v=rev[u][x][0],wv=rev[u][x][1];
+      relax++;
+      if(d[v]>d[u]+wv+1e-12){d[v]=d[u]+wv;push([d[v],v])}
+    }
+  }
+  return {d:d,settled:settled,relax:relax,unreached:d.filter(x=>x===Infinity).length};
+}
+/* 一路顺笔：只往前挪一站，一站一站挪到终点 */
+function wlSeqLen(g,k){
+  let sum=0;
+  for(let i=k;i<g.n-1;i++){if(!g.w[i][i+1])return 1e9;sum+=g.w[i][i+1]}
+  return sum;
+}
+/* 这条街的三本账：最优 / 顺笔 / 该跳的站 / 骗眼的站 / 并列 */
+function wlCards(g,P){
+  const n=g.n;
+  let choices=0,tie=0,nnMiss=0;
+  for(let k=0;k<n-1;k++){
+    if(P.alt[k]>1)tie++;
+    if(P.nx[k]>=0&&P.nx[k]!==k+1)choices++;
+    let near=-1,amb=0;
+    for(let j=k+1;j<n;j++){
+      if(!g.w[k][j])continue;
+      if(near<0||g.w[k][j]<g.w[k][near]){near=j;amb=0}
+      else if(g.w[k][j]===g.w[k][near])amb++;
+    }
+    if(near<0||amb)continue;
+    if(near!==P.nx[k])nnMiss++;
+  }
+  return {best:P.d[0],seq:wlSeqLen(g,0),choices:choices,tie:tie,nnMiss:nnMiss};
+}
+/* ---- 过闸：两双手一字不差 + 四道闸门；过了才准上台，返回这一条街的整本账 ---- */
+const wlCache={};
+function wlAudit(ch,j){
+  if(wlCache[ch]!==undefined)return wlCache[ch];
+  const M=j&&j.medians;
+  let rec=null;
+  if(Array.isArray(M)&&M.length>=WL_NMIN&&M.length<=WL_NMAX){
+    const g=wlBuild(M);
+    if(g){
+      const P=wlBackward(g),D=wlDijkstra(g);
+      let same=D.unreached===0&&D.settled===g.n;
+      if(same)for(let i=0;i<g.n;i++)if(Math.abs(P.d[i]-D.d[i])>1e-9)same=false;
+      if(same){
+        const cs=wlCards(g,P);
+        const hard=(cs.seq-cs.best)+4*cs.nnMiss;
+        if(cs.best>=WL_DMIN&&cs.best<=WL_DMAX&&!cs.tie&&cs.seq<1e8&&
+           cs.seq-cs.best>=WL_GAPSOFT&&cs.choices>=WL_GOODMIN&&
+           cs.nnMiss>=WL_NNMIN&&hard>=WL_HARDMIN){
+          rec={ch:ch,n:g.n,pt:g.pt,w:g.w,d:P.d,nx:P.nx,alt:P.alt,M:M,best:cs.best,
+               seq:cs.seq,choices:cs.choices,nnMiss:cs.nnMiss,hard:hard,relax:D.relax};
+        }
+      }
+    }
+  }
+  wlCache[ch]=rec;
+  return rec;
+}
+
+/* ==== 问路坊 ③：开工 · 三支钟 · 落脚跳站 ==== */
+function wlEl(id){return document.getElementById(id)}
+function wlTxt(id,s){const e=wlEl(id);if(e)e.textContent=s}
+function wlTag(s){const e=wlEl('wlTag');if(e)e.textContent=s}
+let wlCtx=null,wlCv=null,wlGen=0;
+
+function wlBind(){
+  if(wly.bound)return;wly.bound=true;
+  wlCv=wlEl('wlCv');if(wlCv&&wlCv.getContext)wlCtx=wlCv.getContext('2d');
+  const tap=function(id,fn){const e=wlEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();if(!wly.run||wly.over||wly.locked)return;fn()})};
+  for(let i=0;i<WL_BAND;i++)(function(i){tap('wlOpt'+i,function(){wlHop(i)})})(i);
+  tap('wlPeek',function(){wlPeek()});
+  tap('wlCalc',function(){wlCalc()});
+  tap('wlSwap',function(){wlSwap()});
+  tap('wlQuitBtn',function(){wlQuit('quit')});
+  tap('wlHelpBtn',function(){wlHelp()});
+  /* 案面上点灯：点着哪盏就报它是第几笔、离终点最少几步（道牌才是落脚的手）*/
+  if(wlCv){
+    wlCv.addEventListener('pointerdown',function(ev){
+      if(!wly.run||wly.over||wly.locked)return;
+      const r=wlCv.getBoundingClientRect();
+      if(!r.width||!r.height)return;
+      const x=(ev.clientX-r.left)*WL_W/r.width,y=(ev.clientY-r.top)*WL_H/r.height;
+      const k=wlLampAt(x,y);
+      if(k<0){wlTag('🧭 没点着灯 —— 点街上那一排灯');return}
+      ev.preventDefault();wly.lit=k;
+      wlTag('💡 '+(k+1)+' 号灯是这一子第 '+(k+1)+' 笔的起笔处 · 离终点最少 '+wly.d[k]+' 步');
+    });
+  }
+  /* 散场那两颗钮不能叫 run/over 拦着：孩子站在结算屏上点不动就等于一堵墙 */
+  const tapFree=function(id,fn){const e=wlEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();fn()})};
+  tapFree('wlReBtn',function(){wlStart(true)});
+  tapFree('wlReHome',function(){wlLeave('lab')});
+  window.addEventListener('keydown',function(e){
+    if(!wly.run||wly.over)return;
+    const sc=document.getElementById('screen-wl');
+    if(!sc||!sc.classList.contains('active'))return;
+    const k=e.key;
+    if(k>='1'&&k<=String(WL_BAND)){e.preventDefault();wlHop(Number(k)-1)}
+    else if(k==='p'||k==='P'){e.preventDefault();wlPeek()}
+    else if(k==='v'||k==='V'){e.preventDefault();wlCalc()}
+    else if(k==='s'||k==='S'){e.preventDefault();wlSwap()}
+    else if(k==='h'||k==='H'){e.preventDefault();wlHelp()}
+    else if(k==='g'||k==='G'){e.preventDefault();wlQuit('quit')}
+    else if(k==='Escape'){e.preventDefault();wlQuit('quit')}
+    else if(k==='r'||k==='R'){e.preventDefault();wlStart(true)}
+  });
+}
+function wlLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function wlKill(){if(wly.rafId)cancelAnimationFrame(wly.rafId);wly.rafId=0;wlClearTimers()}
+function wlStart(again){
+  wlBind();wlKill();
+  wly.gen++;wlGen=wly.gen;
+  const w=wlNum('streets');
+  wly.run=true;wly.over=false;wly.phase='load';wly.load=true;wly.locked=0;
+  wly.lv=wlLvOf(w);wly.wi=0;wly.score=0;wly.hearts=WL_HEARTS;wly.combo=0;wly.maxCombo=0;wly.streets=0;
+  wly.perfects=0;wly.rights=0;wly.trio=0;wly.cleanN=0;wly.tightN=0;wly.quickN=0;wly.wrongs=0;wly.walked=0;
+  wly.jumps=0;wly.stepsAll=0;wly.taken=0;wly.revenue=0;wly.swaps=0;wly.tools=0;
+  wly.wordTools=0;wly.cleanRun=0;wly.toolRun=0;wly.gain=0;wly.penSum=0;wly.hitOk=0;
+  wly.wornSum=0;wly.fieldRights=0;wly.fieldErr=0;wly.sealGood=0;wly.spent=0;wly.worn=0;wly.hops=0;
+  wly.nags=0;wly.newBest=false;wly.fresh=0;wly.seen=[];wly.err=0;wly.errSum=0;
+  wly.peekN=WL_P0.peek;wly.calcN=WL_P0.calc;wly.swapN=WL_P0.swap;
+  wly.peekUse=0;wly.calcUse=0;wly.swapUse=0;wly.autoUsed=0;
+  wly.miss=[];const bk=(wlGet('book','')||'').split('|');
+  for(let i=0;i<bk.length&&wly.miss.length<8;i++){const s=bk[i];if(s&&s.indexOf(':')>0)wly.miss.push(s.split(':')[0])}
+  wly.pool=[];wly.poolLv=-1;wly.lit=null;wly.spark=[];wly.anim=null;
+  wly.hist=[];wly.stepsWalk=0;wly.landFn=null;wly.litStrokes=0;
+  const sc=wlEl('screen-wl');
+  if(sc){document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});sc.classList.add('active')}
+  const ov=wlEl('wlOver');if(ov)ov.style.display='none';
+  wly.playMs=0;wly.lamp0=wlLampMs(wly.lv);wly.lamp=wly.lamp0;
+  wly.tellOff=wlNoTell(wly.lv);wly.dim=wlDim(wly.lv);
+  wlTxt('wlLv','第 '+wly.lv+' 场');wlRender();
+  wlSay('');
+  wlFillPool().then(function(){
+    if(wly.gen!==wlGen||!wly.run)return;
+    wly.load=false;wlNextStreet();
+    wly.last=0;wly.rafId=requestAnimationFrame(wlLoop);
+  });
+}
+function wlNudge(){/* 别的坊开了摊：称号条跟着走 */
+  const e=wlEl('wlRank');if(e){const r=wlRankOf(wlNum('streets'));e.textContent=r.e+' '+r.t}}
+/* ---- 主循环：三支钟（这一条街 · 这一盏灯的脚力 · 这一场）---- */
+function wlLoop(ts){
+  if(!wly.run||wly.over)return;
+  wly.rafId=0;/* 这一帧的约已经花掉：中途散掉的（街钟尽 / 预算穿）靠 wlRevive 续上 */
+  const dt=wly.last?Math.min(120,ts-wly.last):16;
+  wly.last=ts;wly.t+=dt;wly.playMs+=dt;
+  if(wly.phase==='walk'){
+    wly.caseMs-=dt;wly.caseUsed+=dt;
+    /* 站在灯下不落脚：每满一息白磨一步，磨的是预算 */
+    wly.idle+=dt;
+    while(wly.idle>=wly.idle0){
+      wly.idle-=wly.idle0;
+      wly.worn++;wly.spent++;
+      wlWorn();
+      if(wly.spent>=wly.bud){wlCaseOut('out');return}
+    }
+    if(wly.caseMs<=0){wlCaseOut('slow');return}
+  }
+  /* 走到 ⛺ 之后：对账账目摊开这一息，落墨描字 */
+  if(wly.phase==='seal'){
+    wly.sealMs-=dt;
+    if(wly.sealMs<=0){wly.sealMs=0;wlSealDone();if(!wly.run||wly.over)return}
+  }
+  if(wly.phase!=='load'&&wly.lamp>0){
+    wly.lamp-=dt;
+    if(wly.lamp<=0){wlOver('lamp');return}
+  }
+  /* 催促钟：站着不动到点就喊一声 */
+  if(wly.phase==='walk'){
+    wly.nagMs+=dt;
+    if(wly.nagMs>=WL_NAG_MS){wly.nagMs=0;wly.nags++;wlNag()}
+    wly.helpMs+=dt;
+    if(wly.helpMs>=WL_HELP_MS){wly.helpMs=0;wlTag('🧭 站着不落脚是要磨步的 —— 挑一条道按 1~'+WL_BAND)}
+  }
+  /* 掀帘的那一息过了得当场把帘子放下：只重画道牌不重画里程牌，账就永远亮在蒙上之前 */
+  if(wly.peekMs>0){wly.peekMs-=dt;if(wly.peekMs<=0){wly.peekMs=0;wlRenderOpts();wlRenderTally()}}
+  if(wly.calcMs>0){wly.calcMs-=dt;if(wly.calcMs<=0){wly.calcMs=0;wlRenderOpts();wlRenderTally()}}
+  if(wly.wrongMs>0){wly.wrongMs-=dt;if(wly.wrongMs<=0){wly.wrongMs=0;wly.wrongIdx=-1}}
+  wlStepAnim(dt);
+  wlDraw();
+  wlMeters();
+  wly.rafId=requestAnimationFrame(wlLoop);
+}
+function wlRevive(){/* 这一条街没走到头之后：钟、脚力、画面都得接着走 */
+  if(wly.run&&!wly.over&&!wly.rafId){wly.last=0;wly.rafId=requestAnimationFrame(wlLoop)}
+}
+/* ---- 灯位：0~1000 的起笔点折进案面（与 _wlgeo.cjs 的 pt 一格不差）---- */
+function wlPP(p){return [WL_FX0+p[0]/1000*(WL_FX1-WL_FX0),WL_FY0+p[1]/1000*(WL_FY1-WL_FY0)]}
+function wlXY(i){return wlPP(wly.pt[i])}
+function wlLampAt(x,y){
+  for(let i=0;i<wly.n;i++){
+    const q=wlXY(i);
+    if(Math.hypot(q[0]-x,q[1]-y)<=WL_R+5)return i;
+  }
+  return -1;
+}
+/* ---- 道牌：眼下这一盏灯往前修了哪几条道（1~3 张，数字键 1~3 一手一张）---- */
+function wlRoads(k){
+  const a=[];
+  for(let j=k+1;j<wly.n&&j<=k+WL_BAND;j++)if(wly.w[k][j])a.push(j);
+  return a;
+}
+function wlRenderOpts(){
+  const showPeek=wly.peekMs>0;
+  for(let i=0;i<WL_BAND;i++){
+    const b=wlEl('wlOpt'+i);if(!b)continue;
+    const j=wly.opts[i];
+    if(j===undefined){b.style.display='none';continue}
+    b.style.display='';
+    const step=wly.w[wly.at][j],sur=wly.d[j];
+    const blind=wly.dim&&!showPeek&&!wly.calcMs;
+    b.innerHTML='→ <b>'+(j+1)+'</b> 号灯<span class="st">'+step+' 步'+
+      (blind?'':' · 到终点还少 <b>'+(step+sur)+'</b> 步')+'</span>';
+    b.className='wl-opt'+(wly.wrongIdx===i?' wrong':'')+(wly.calcMs>0&&j===wly.nx[wly.at]?' good':'');
+  }
+}
+function wlRender(){
+  wlTxt('wlScore',wly.score);
+  wlTxt('wlLv','第 '+wly.lv+' 场');
+  const h=[];for(let i=0;i<wly.hearts;i++)h.push('❤️');
+  wlTxt('wlHearts',h.join('')||'—');
+  wlTxt('wlLedCombo','🔥 连击 '+wly.combo+' · 最长 '+wly.maxCombo);
+  wlTxt('wlLedWord','🧭 第 '+(wly.wi+1)+'/'+WL_PER+' 条街 · 已走过 '+wlNum('streets')+' 条');
+  wlTxt('wlLedGate',wly.n?('🥾 预算 '+wly.bud+' 步 · 已花 '+wly.spent+'（走路 '+(wly.spent-wly.worn)+' · 磨掉 '+wly.worn+'）· 还剩 '+Math.max(0,wly.bud-wly.spent)):'🌱 街还没挑开');
+  wlTxt('wlRank',(function(){const r=wlRankOf(wlNum('streets'));return r.e+' '+r.t})());
+  wlTxt('wlHitLight',wly.hitOk?'💡 妙算':'💡 还没算着');
+  wlTxt('wlTime','这一条街 '+(Math.max(0,wly.caseMs)/1000).toFixed(1)+' 秒 · 这一场 '+Math.ceil(wly.lamp/1000)+' 秒');
+  const tl=function(id,n){const e=wlEl(id);if(!e)return;
+    const b=e.querySelector('b');if(b)b.textContent='剩 '+n;
+    e.disabled=n<=0||wly.phase!=='walk'};
+  tl('wlPeek',wly.peekN);tl('wlCalc',wly.calcN);tl('wlSwap',wly.swapN);
+}
+function wlMeters(){
+  const set=function(id,v){const e=wlEl(id);if(e)e.style.width=Math.max(0,Math.min(100,v*100))+'%'};
+  set('wlBarCase',wly.case0?wly.caseMs/wly.case0:0);
+  set('wlBarIdle',wly.idle0?1-wly.idle/wly.idle0:0);
+  set('wlBarLamp',wly.lamp0?wly.lamp/wly.lamp0:0);
+  set('wlBarLed',wly.bud?Math.max(0,wly.bud-wly.spent)/wly.bud:0);
+  wlTxt('wlLedSnap','🧾 省 '+(wly.bud-wly.spent)+'/'+wly.bud+' 步 · 连跳 '+(wly.hops-wly.missHops)+'/'+wly.hops);
+  const t=wlEl('wlTime');if(t)t.textContent='这一条街 '+(Math.max(0,wly.caseMs)/1000).toFixed(1)+' 秒 · 这一场 '+Math.ceil(wly.lamp/1000)+' 秒';
+}
+/* ---- 火星子：落脚炸一把，走到头炸一大把 ---- */
+function wlSpark(x,y,n,c){
+  for(let i=0;i<n;i++){
+    const a=Math.random()*6.2832,sp=.35+Math.random()*1.15;
+    wly.spark.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-.55,t:0,
+      ms:420+Math.random()*380,c:c||'#FFE082',r:1.6+Math.random()*2.2});
+  }
+  if(wly.spark.length>150)wly.spark=wly.spark.slice(-150);
+}
+/* ---- 脚程：这一跳正在走（走的时候两支街钟都按住，脚落地才算步数与犹豫）---- */
+function wlStepAnim(dt){
+  const a=wly.anim;
+  if(a){
+    a.t+=dt;
+    if(a.t>=a.ms){
+      wly.anim=null;wly.at=a.to;
+      const q=wlXY(a.to);
+      wlSpark(q[0],q[1],a.to>=wly.n-1?26:12,a.bad?'#EF9A9A':'#FFE082');
+      const f=wly.landFn;wly.landFn=null;
+      if(f)f();
+    }
+  }
+  if(wly.spark.length){
+    const keep=[];
+    for(let i=0;i<wly.spark.length;i++){
+      const s=wly.spark[i];s.t+=dt;
+      if(s.t<s.ms){
+        const k=dt/16;s.x+=s.vx*k;s.y+=s.vy*k;s.vy+=.03*k;keep.push(s);
+      }
+    }
+    wly.spark=keep;
+  }
+}
+/* ---- 案面：这一子的笔画当街底，每笔的起笔处亮一盏灯，往前修路 ---- */
+function wlDraw(){
+  const c=wlCtx;if(!c)return;
+  c.clearRect(0,0,WL_W,WL_H);
+  const bg=c.createLinearGradient(0,0,WL_W,WL_H);
+  bg.addColorStop(0,'#161F2B');bg.addColorStop(.55,'#0C1420');bg.addColorStop(1,'#070B11');
+  c.fillStyle=bg;c.fillRect(0,0,WL_W,WL_H);
+  if(wly.load||!wly.n){
+    c.fillStyle='rgba(207,216,220,.55)';c.font='700 15px system-ui';c.textAlign='center';
+    c.fillText(wly.load?'🌱 正在字库里挑一条街……':'🧭 街还没挑开',WL_W/2,WL_H/2);
+    return;
+  }
+  const M=wly.rec.M,n=wly.n,cur=wly.anim?wly.anim.from:wly.at;
+  const showD=!wly.dim||wly.peekMs>0||wly.calcMs>0;
+  c.lineCap='round';c.lineJoin='round';
+  /* 街底：走到第 k 号灯就把前 k 笔描上墨 —— 走完一条街 = 描完这个字 */
+  for(let k=0;k<M.length;k++){
+    const st=M[k];if(!Array.isArray(st)||st.length<2)continue;
+    const done=k<wly.litStrokes;
+    c.beginPath();
+    const p=wlPP(st[0]);c.moveTo(p[0],p[1]);
+    for(let x=1;x<st.length;x++){const q=wlPP(st[x]);c.lineTo(q[0],q[1])}
+    c.lineWidth=done?5.5:3;c.strokeStyle=done?'rgba(255,213,79,.9)':'rgba(120,144,156,.16)';c.stroke();
+  }
+  /* 走出来的那一串金 */
+  c.lineWidth=4;c.strokeStyle='rgba(255,183,77,.8)';
+  for(let k=0;k+1<wly.hist.length;k++){
+    const a=wlXY(wly.hist[k]),b=wlXY(wly.hist[k+1]);
+    c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();
+  }
+  /* 道：往前 1~3 站，牌上写「几步」；脚下这盏灯往前的那几条点亮 */
+  for(let i=0;i<n;i++){
+    const a=wlXY(i);
+    for(let j=i+1;j<n&&j<=i+WL_BAND;j++){
+      const wv=wly.w[i][j];if(!wv)continue;
+      const b=wlXY(j),live=(i===cur&&wly.phase==='walk');
+      c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);
+      c.lineWidth=live?2.8:1.5;c.strokeStyle=live?'rgba(179,229,252,.9)':'rgba(84,110,126,.4)';c.stroke();
+      const mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;
+      c.beginPath();c.arc(mx,my,live?9:7.5,0,6.2832);
+      c.fillStyle=live?'rgba(8,12,18,.92)':'rgba(8,12,18,.62)';c.fill();
+      c.fillStyle=live?'#B3E5FC':'rgba(144,164,174,.7)';
+      c.font=(live?'800 10px':'700 8.5px')+' system-ui';c.textAlign='center';c.textBaseline='middle';
+      c.fillText(String(wv),mx,my+.5);
+    }
+  }
+  /* 灯：1~n 号，脚下这盏喘着气；里程牌写「离终点最少几步」（第 6 场起蒙上）*/
+  for(let i=0;i<n;i++){
+    const p=wlXY(i),vis=wly.hist.indexOf(i)>=0,now=(i===cur);
+    c.beginPath();c.arc(p[0],p[1],WL_R+(now?Math.sin(wly.t/220)*2:0),0,6.2832);
+    c.fillStyle=vis?'rgba(255,213,79,.24)':'rgba(8,12,18,.78)';c.fill();
+    c.lineWidth=now?3:2;c.strokeStyle=vis?'#FFB74D':(i===n-1?'#81C784':'#4FC3F7');c.stroke();
+    c.fillStyle=vis?'#FFF3E0':'#B3E5FC';c.font='800 12px system-ui';
+    c.textAlign='center';c.textBaseline='middle';c.fillText(String(i+1),p[0],p[1]+.5);
+    if(showD){
+      c.fillStyle=i===n-1?'rgba(129,199,132,.95)':'rgba(129,199,132,.8)';c.font='700 9px system-ui';
+      c.fillText(wly.d[i]+' 步到',p[0],p[1]+WL_R+8);
+    }
+  }
+  const e=wlXY(n-1);
+  c.font='13px system-ui';c.textAlign='center';c.textBaseline='middle';
+  c.fillText('⛺',e[0]+WL_R+10,e[1]);
+  /* 脚：🚶 沿道挪，落地前一直飘在半空 */
+  let wx,wy;
+  if(wly.anim){
+    const u=Math.min(1,wly.anim.t/wly.anim.ms),p=wlXY(wly.anim.from),q=wlXY(wly.anim.to);
+    wx=p[0]+(q[0]-p[0])*u;wy=p[1]+(q[1]-p[1])*u-Math.sin(u*3.1416)*13;
+  }else{const p=wlXY(cur);wx=p[0];wy=p[1]-WL_R-9}
+  c.font='19px system-ui';c.textBaseline='alphabetic';
+  c.fillText(wly.phase==='seal'?'🎉':'🚶',wx,wy+8);
+  /* 火星子 */
+  for(let i=0;i<wly.spark.length;i++){
+    const s2=wly.spark[i],u=s2.t/s2.ms;
+    c.globalAlpha=Math.max(0,1-u);c.fillStyle=s2.c;
+    c.beginPath();c.arc(s2.x,s2.y,s2.r*(1-u*.5),0,6.2832);c.fill();
+  }
+  c.globalAlpha=1;
+  /* 走错那一跳：那条道上抹一道红 */
+  if(wly.wrongMs>0&&wly.wrongIdx>=0){
+    const j=wly.wrongTo;
+    if(j!==undefined&&j>=0){
+      const a=wlXY(wly.wrongFrom<0?cur:wly.wrongFrom),b=wlXY(j);
+      c.strokeStyle='rgba(239,83,80,.85)';c.lineWidth=5;
+      c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke();
+    }
+  }
+}
+
+/* ==== 问路坊 ④：挑街 · 落脚 · 跳站 · 家什 ==== */
+function wlRnd(){wly.seed=(wly.seed*1103515245+12345)&0x7fffffff;return wly.seed/0x7fffffff}
+/* ---- 街池：本串的字当场再过一遍闸（两双手对不上表就不上台）---- */
+function wlFillPool(){
+  const lv=wly.lv,gen=wly.gen;
+  const letters=(wlLetters(lv)||'').split('');
+  const want=[];
+  for(let i=0;i<wly.miss.length;i++){const c=wly.miss[i];if(letters.indexOf(c)>=0&&want.indexOf(c)<0)want.push(c)}
+  for(let i=letters.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=letters[i];letters[i]=letters[j];letters[j]=t}
+  for(let i=0;i<letters.length;i++)if(want.indexOf(letters[i])<0)want.push(letters[i]);
+  const rest=[];for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,(wlLetters(L)||'').split(''));
+  const need=function(){return wly.pool.length>=WL_POOL_WANT};
+  const scan=async function(list){
+    for(let kk=0;kk<list.length&&!need();kk+=12){
+      const rs=await Promise.all(list.slice(kk,kk+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(wly.gen!==gen||!wly.run)return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[kk+i];if(!rs[i]||!rs[i].medians)continue;
+        let rec=wlCache[ch];
+        if(rec===undefined){rec=wlAudit(ch,rs[i])||null;wlCache[ch]=rec}
+        if(!rec)continue;
+        if(!wly.pool.some(function(p){return p.ch===ch}))wly.pool.push(rec);
+      }
+    }
+  };
+  return scan(want.concat(rest)).then(function(){
+    if(wly.pool.length<WL_POOL_MIN&&lv!==wly.poolLv){wly.poolLv=lv;return wlFillPool()}
+    return wly.pool;
+  });
+}
+/* ---- 挑一条街：先挑没走全的与错过的，再挑本串没见过的 ---- */
+function wlNextStreet(){
+  if(!wly.pool.length){wlOver('pool');return}
+  let pick=-1;
+  for(let i=0;i<wly.pool.length;i++){
+    const r=wly.pool[i];
+    if(!wlDexHas(r.ch)&&wly.seen.indexOf(r.ch)<0&&wly.miss.indexOf(r.ch)<0){pick=i;break}
+  }
+  if(pick<0)for(let i=0;i<wly.pool.length;i++)if(wly.seen.indexOf(wly.pool[i].ch)<0){pick=i;break}
+  if(pick<0)for(let i=0;i<wly.miss.length&&pick<0;i++)for(let k=0;k<wly.pool.length;k++)if(wly.pool[k].ch===wly.miss[i]){pick=k;break}
+  if(pick<0)pick=Math.floor(wlRnd()*wly.pool.length);
+  const r=wly.pool[pick];wly.pool.splice(pick,1);
+  wlOpenStreet(r);
+}
+/* ---- 开一条街：灯点亮、预算钉死、脚站在 1 号灯下 ---- */
+function wlOpenStreet(r){
+  wly.rec=r;wly.ch=r.ch;wly.n=r.n;wly.pt=r.pt;wly.w=r.w;wly.d=r.d;wly.nx=r.nx;wly.alt=r.alt;
+  wly.best=r.best;wly.bud=r.best+WL_SLACK;wly.spent=0;wly.worn=0;wly.hops=0;wly.missHops=0;
+  wly.at=0;wly.hist=[0];wly.stepsWalk=0;wly.litStrokes=0;
+  wly.peekMs=0;wly.calcMs=0;wly.wrongMs=0;wly.wrongIdx=-1;wly.wrongTo=-1;wly.wrongFrom=-1;
+  wly.anim=null;wly.landFn=null;wly.spark=[];wly.lit=null;
+  wly.caseMs=wlCaseMs(wly.lv);wly.case0=wly.caseMs;wly.caseUsed=0;wly.caseErr=0;
+  wly.quickMs=wlQuickMs(wly.lv);wly.quickOk=1;
+  wly.idle=0;wly.idleMs=0;wly.idle0=wlIdleMs(wly.lv);
+  wly.nagMs=0;wly.helpMs=0;wly.wordTools=0;wly.err=0;
+  wly.tellOff=wlNoTell(wly.lv);wly.dim=wlDim(wly.lv);
+  wly.seen.push(r.ch);
+  wly.phase='walk';wly.locked=0;
+  wlStand();
+  wlTag('🧭 '+r.ch+' · 这一子 '+r.n+' 笔 = '+r.n+' 盏灯 · 走法不止一条');
+  wlSay('🚶 从 <b>1 号灯</b>走到 <b>'+r.n+' 号灯</b>（⛺）：道牌上的数＝这一条道几步 · 灯下的绿数＝这盏灯到终点最少几步<br>🥾 预算 <b>'+wly.bud+' 步</b>（最短路 '+r.best+' 步 + '+WL_SLACK+' 步的余地）—— <b>省一步就是一文</b>，站着不落脚每 '+Math.round(wly.idle0/100)/10+' 秒<b>白磨一步</b>');
+  wlAskLine();
+  wlRender();
+}
+function wlAskLine(){
+  const el=wlEl('wlAsk');if(!el)return;
+  el.innerHTML='🥤 走一步花道牌上那些步 · 预算 <b>'+wly.bud+' 步</b> 用完还没到 ⛺ 就算这条街没走到头<br><small>🪨 看着最近的那一站，往往<b>不是</b>最省的那一跳 —— 要的是「这一跳落下之后，总共还剩几步」</small>';
+}
+/* ---- 站定：脚下这一盏灯往前修了几条道，就摆几张道牌 ---- */
+function wlStand(){
+  wly.opts=wlRoads(wly.at);
+  wly.sel=-1;wly.idle=0;wly.nagMs=0;wly.helpMs=0;
+  wly.phase='walk';wly.locked=0;
+  wly.litStrokes=Math.max(wly.litStrokes,wly.at);
+  wlRenderOpts();wlRenderTally();wlRender();
+  wlTag('🚶 站在 '+(wly.at+1)+' 号灯下 · 往前 '+wly.opts.length+' 条道 · 已花 '+wly.spent+'/'+wly.bud+' 步');
+}
+/* ---- 落脚跳站：道牌按下去就把脚挪过去，步数当场扣 ---- */
+function wlHop(i){
+  if(wly.phase!=='walk'||wly.locked)return;
+  const j=wly.opts[i];
+  if(j===undefined){wlTag('🧭 '+(wly.at+1)+' 号灯往前没修第 '+(i+1)+' 条道');return}
+  const wv=wly.w[wly.at][j],good=(wly.nx[wly.at]===j);
+  wly.hops++;wly.spent+=wv;wly.stepsWalk+=wv;
+  if(good){wly.combo++;if(wly.combo>wly.maxCombo)wly.maxCombo=wly.combo;wlStepSnd()}
+  else{
+    wly.missHops++;wly.combo=0;wly.wrongs++;
+    wly.wrongMs=WL_WRONG_MS;wly.wrongIdx=i;wly.wrongTo=j;wly.wrongFrom=wly.at;wlBad();
+  }
+  const from=wly.at;
+  wly.phase='step';wly.locked=1;wly.opts=[];
+  wly.anim={from:from,to:j,t:0,ms:WL_WALK_MS,bad:!good};
+  wly.landFn=function(){
+    wly.hist.push(j);
+    if(j>=wly.n-1){wlArrive();return}
+    if(wly.spent>wly.bud){wlCaseOut('out');return}
+    wlStand();
+  };
+  wlRenderOpts();wlRender();wlMeters();
+}
+/* ---- 账牌：把脚下这一盏灯往前几条道的「落下之后总共还剩几步」摊开写 ---- */
+function wlRenderTally(){
+  const el=wlEl('wlTally');if(!el)return;
+  if(!wly.n){el.innerHTML='';return}
+  const showD=!wly.dim||wly.peekMs>0||wly.calcMs>0;
+  const bits=[];
+  for(let i=0;i<wly.n;i++){
+    const vis=wly.hist.indexOf(i)>=0;
+    bits.push('<i'+(vis?' class="on"':'')+'>'+(i+1)+' 号 '+(showD?wly.d[i]+' 步':'?')+'</i>');
+  }
+  el.innerHTML=bits.join('');
+}
+/* ---- 家什：🔎 看里程 / 🧮 代算一跳 / 🔁 换街 ---- */
+function wlToolCost(){
+  wly.score=Math.max(0,wly.score-WL_P_TOOL);wly.penSum+=WL_P_TOOL;
+  wly.tools++;wly.fieldTools++;wly.wordTools++;
+}
+function wlPeek(){
+  if(wly.phase!=='walk')return;
+  if(wly.peekN<=0){wlSay('🔎 看里程用光了');return}
+  wly.peekN--;wly.peekUse++;wlToolCost();
+  wly.peekMs=WL_PEEK_MS;
+  const bits=wly.opts.map(function(j){return '跳 '+(j+1)+' 号 → '+(wly.w[wly.at][j]+wly.d[j])+' 步'});
+  wlTag('🔎 这一盏往前：'+(bits.join(' / ')||'没道'));
+  wlSay('🔎 看里程 −'+WL_P_TOOL+' 文：'+(bits.join(' · ')||'脚边没道')+' —— 落下之后总共还剩最少的那一盏，才是该跳的');
+  wlRenderOpts();wlRenderTally();wlRender();
+}
+function wlCalc(){
+  if(wly.phase!=='walk')return;
+  if(wly.calcN<=0){wlSay('🧮 代算用光了');return}
+  if(!wly.opts.length)return;
+  wly.calcN--;wly.calcUse++;wlToolCost();
+  wly.calcMs=WL_CALC_MS;wly.autoUsed=1;wly.lit=wly.nx[wly.at];
+  wlSay('🧮 账房代算 −'+WL_P_TOOL+' 文：他把这一盏往前的道逐条松弛了一遍，绿牌那条是「'+(wly.nx[wly.at]+1)+' 号灯」—— 按 <b>1~'+wly.opts.length+'</b> 落脚');
+  wlRenderOpts();wlRenderTally();wlRender();
+}
+function wlSwap(){
+  if(wly.phase!=='walk'&&wly.phase!=='step')return;
+  if(wly.swapN<=0){wlSay('🔁 换街用光了');return}
+  wly.swapN--;wly.swapUse++;wly.swaps++;
+  wly.score=Math.max(0,wly.score-WL_SWAP_PEN);wly.penSum+=WL_SWAP_PEN;
+  wly.tools++;wly.fieldTools++;wly.wordTools++;
+  wly.miss.push(wly.ch);
+  if(wly.rec)wly.pool.push(wly.rec);
+  const old=wly.ch;
+  wlNextStreet();
+  /* 罚话得站在新街的介绍之后：先说就被 wlOpenStreet 那句开场话一帧盖掉，孩子看不见扣了哪笔文 */
+  if(!wly.over&&wly.ch!==old)wlSay('🔁 换街 −'+WL_SWAP_PEN+' 文：'+old+' 这条街先撂下 —— 新街 '+wly.ch+' 已挑开');
+}
+function wlNag(){
+  if(wly.phase!=='walk')return;
+  wly.nags++;
+  /* 前三场催促话白送「最省那一跳是几号灯」，第 WL_TELL_LV 场起这话收走 */
+  const tip=wly.tellOff?'这一盏该跳几号灯，得自己把道牌上的数往下接':'最省那一跳是 <b>'+(wly.nx[wly.at]+1)+'</b> 号灯（第 '+WL_TELL_LV+' 场起这话就收走了）';
+  wlSay('🚶 站在 '+(wly.at+1)+' 号灯下已经 '+Math.round(wly.idle/100)/10+' 秒 —— 犹豫满 '+Math.round(wly.idle0/100)/10+' 秒就白磨一步 · 点道牌或按 <b>1~'+wly.opts.length+'</b> —— '+tip);
+}
+function wlHelpSay(){if(wly.phase==='walk')wlSay('🪙 三件家什：🔎 看里程 · 🧮 代算一跳 · 🔁 换街（用一次扣 '+WL_P_TOOL+' 文）· 一条街空手走完 +'+WL_PTS_NOTOOL+' 文')}
+function wlQuit(why){
+  if(wly.phase==='over')return;
+  if(wly.phase!=='walk'&&wly.phase!=='step'&&wly.phase!=='seal'){wlOver('quit');return}
+  wly.combo=0;wly.quickOk=0;
+  wly.score=Math.max(0,wly.score-WL_P_QUIT);wly.penSum+=WL_P_QUIT;
+  wly.errSum+=wly.caseErr;
+  wlBookPush(wly.ch,'弃');
+  wlSay('🏳 弃了 '+wly.ch+' −'+WL_P_QUIT+'：这条街的账先记下');
+  wlNextStreet();
+}
+function wlLeave(where){
+  if(wly.run&&!wly.over)wlOver('leave');
+  wly.run=false;wly.over=true;wlKill();
+  if(typeof stopBGM==='function')stopBGM();
+  if(where==='lab'){if(typeof goLab==='function')goLab();return}
+  if(typeof goHome==='function')goHome();else showScreen('home');
+}
+function wlLoseHeart(why){
+  wly.hearts--;wly.combo=0;wly.err=0;
+  wlBad();
+  wlSay('💔 '+why+'：心掉一颗（剩 '+wly.hearts+'）');
+  if(wly.hearts<=0)wlOver('heart');
+}
+
+/* ==== 问路坊 ⑤：走到 ⛺ · 对账 · 没走到头 · 散场落盘 ==== */
+/* ---- 走到终点：这一子描全，账摊开一息 ---- */
+function wlArrive(){
+  wly.phase='seal';wly.locked=1;wly.opts=[];
+  wly.litStrokes=wly.n;
+  wly.sealMs=WL_AUDIT_MS;
+  wly.walked++;wly.jumps+=wly.hops;
+  const left=Math.max(0,wly.bud-wly.spent);
+  const p=wlXY(wly.n-1);
+  wlSpark(p[0],p[1],30,'rgba(255,213,79,.92)');
+  wlDing(12);
+  wlRenderOpts();wlRenderTally();wlRender();
+  wlTag('🎉 走到 ⛺ 了 · '+wly.ch+' 描全 · 花 '+wly.spent+' 步（预算 '+wly.bud+'）');
+  wlSay('🧾 对账：这一条街最短路 <b>'+wly.best+' 步</b> · 你走了 <b>'+wly.spent+' 步</b>（走路 '+(wly.spent-wly.worn)+' · 白磨 '+wly.worn+'）· 省 <b>'+left+'</b> 步<br>🪨 老老实实一站一站往前挪要 '+wly.rec.seq+' 步 —— 你比顺笔少走 <b>'+(wly.rec.seq-wly.spent)+'</b> 步');
+}
+/* ---- 对账落定：赏罚一笔笔记清 ---- */
+function wlSealDone(){
+  if(wly.phase!=='seal'||!wly.rec)return;
+  const r=wly.rec;
+  wly.sealGood=0;wly.locked=1;
+  const left=Math.max(0,wly.bud-wly.spent);
+  const perfect=(wly.missHops===0);
+  const fresh=wlDexHas(r.ch)?0:1;if(fresh)wly.fresh++;
+  let pts=0;const why=[];
+  pts+=(wly.hops-wly.missHops)*WL_HOP_WEN;
+  why.push('踩在最省那道 '+(wly.hops-wly.missHops)+' 跳 ×'+WL_HOP_WEN);
+  if(left){pts+=left*WL_LEFT_WEN;why.push('省 '+left+' 步 ×'+WL_LEFT_WEN)}
+  if(perfect){
+    pts+=WL_PTS_RIGHT;why.push('一路不落');
+    wly.rights++;wly.fieldRights++;wly.perfects++;wly.sealGood=1;
+  }
+  if(wly.worn===0){pts+=WL_PTS_TIGHT;why.push('分毫不磨');wly.tightN++}
+  if(wly.quickOk&&wly.caseUsed<=wly.quickMs){pts+=WL_PTS_QUICK;why.push('眼快手快');wly.quickN++}else wly.quickOk=0;
+  if(fresh){pts+=WL_PTS_FRESH;why.push('头一回走这条街')}
+  if(wly.wordTools===0){pts+=WL_PTS_NOTOOL;why.push('空手趟');wly.toolRun=0}
+  else{wly.toolRun++;if(wly.toolRun>=3){pts+=WL_PTS_TOOLRUN;wly.toolRun=0;why.push('借家什也走全了')}}
+  wly.score=Math.max(0,wly.score+pts);
+  if(pts>0)wly.gain+=pts;else wly.penSum+=-pts;
+  wly.stepsAll+=wly.spent;wly.revenue+=left;wly.taken+=wly.hops;
+  if(!perfect){wly.err+=wly.missHops;wly.fieldErr++;wly.errSum+=wly.missHops;wly.caseErr++}
+  if(wly.worn>=WL_WORN_LINE){wly.caseErr++;wly.errSum++}
+  wly.wornSum+=wly.worn;
+  if(perfect){
+    if(wly.quickOk&&wly.hearts<WL_HEART_MAX)wly.hearts++;
+    wlLedgerAdd(r);wlBookDel(r.ch);
+    wlSeal();
+    wlSay('🎊 一路不落：'+r.ch+' +'+pts+' 文（'+why.join(' · ')+'）· 最短路 '+r.best+' 步，你走了 '+wly.spent+' 步');
+  }else{
+    wlBookPush(r.ch,'多走'+(wly.spent-r.best));
+    wlBad();
+    wlSay('🧭 这一条街 '+r.ch+'：'+why.join(' · ')+' —— 最短路 '+r.best+' 步，你走了 '+wly.spent+' 步（多 '+(wly.spent-r.best)+' 步）');
+  }
+  if(wly.err>=WL_ERR_LINE){wlLoseHeart('一条街多走满 '+WL_ERR_LINE+' 步账');if(wly.over)return}
+  wly.wi++;wly.locked=0;
+  if(wly.wi>=WL_PER){wlRoundOut();return}
+  wlHand();
+}
+/* ---- 这条街没走到头：预算磨穿 / 街钟走尽 ---- */
+function wlCaseOut(why){
+  if(wly.phase!=='walk'&&wly.phase!=='step')return;
+  const pen=why==='out'?WL_P_OUT:WL_P_SLOW;
+  wly.anim=null;wly.landFn=null;wly.opts=[];wly.locked=1;
+  wly.combo=0;wly.quickOk=0;wly.caseErr++;wly.err++;wly.fieldErr++;wly.errSum++;
+  wly.score=Math.max(0,wly.score-pen);wly.penSum+=pen;
+  wlBookPush(wly.ch,why==='out'?'磨穿':'钟尽');
+  wlBad();
+  wlSay((why==='out'?'💥 预算磨穿：'+wly.ch+' 走到一半步数没了（花 '+wly.spent+'/'+wly.bud+' 步）−'+pen:'⌛ 街钟走尽：'+wly.ch+' 还站在 '+(wly.at+1)+' 号灯下 −'+pen)+' —— 最短路 '+wly.best+' 步 · 已跳 '+wly.hops+' 跳');
+  wly.wi++;
+  if(wly.hearts>1&&why==='out'){wly.hearts--;wlTxt('wlHearts','❤️'.repeat(Math.max(0,wly.hearts))||'💔')}
+  if(wly.hearts<=0){wlOver('heart');return}
+  if(wly.wi>=WL_PER){wlRoundOut();wlRevive();return}
+  wlHand();
+  wlRevive();
+}
+/* ---- 收场一息：上一条街的赏罚话得在街下站住，下一条街才挑开 ----
+   立刻换街等于把这句话一帧盖掉，孩子只看见新街的介绍，不知道自己掉了哪笔文 */
+function wlHand(){
+  wly.phase='gap';
+  wlLater(WL_HAND_MS,function(){if(wly.run&&!wly.over)wlNextStreet()})
+}
+/* ---- 一场三条街走完：三连不落、清白场、空手场，进下一场 ---- */
+function wlRoundOut(){
+  const bits=[];
+  if(wly.fieldRights>=WL_PER){
+    wly.score+=WL_PTS_TRIO;wly.gain+=WL_PTS_TRIO;wly.trio++;
+    bits.push('三连不落 +'+WL_PTS_TRIO);
+  }
+  if(wly.fieldErr===0){wly.cleanN++;bits.push('这一场一步没走偏')}
+  if(wly.fieldTools===0){wly.cleanRun++;bits.push('一件家什没借')}
+  wly.wi=0;wly.lv=Math.min(9,wly.lv+1);
+  wly.lamp0=wlLampMs(wly.lv);wly.lamp=wly.lamp0;
+  wly.fieldRights=0;wly.fieldErr=0;wly.fieldTools=0;wly.err=0;
+  wlTxt('wlLv','第 '+wly.lv+' 场');wly.poolLv=-1;
+  wly.tellOff=wlNoTell(wly.lv);wly.dim=wlDim(wly.lv);
+  wlSay('🧭 进第 '+wly.lv+' 场：灯更多、道更绕、钟更短'+(wly.dim?' —— 脚下的里程牌蒙上了，得自己算':'')+(bits.length?' —— '+bits.join(' · '):''));
+  wlFillPool().then(function(){if(wly.run&&!wly.over)wlNextStreet()});
+}
+/* ---- 散场：账落盘，路囊摆出来 ---- */
+function wlOver(why){
+  if(wly.over)return;
+  wly.over=true;wly.phase='over';wlKill();
+  wlLedgerPut();
+  const shelf=wlShelfNow(),got=[];
+  for(let i=0;i<WL_SHELF.length;i++)if(shelf[i])got.push(WL_SHELF[i].k);
+  if(got.length)wlPut('shelf',got.join('|'));
+  if(wly.lv>wlNum('lvmax'))wlPut('lvmax',wly.lv);
+  if(wly.cleanRun)wlPut('notool',wlNum('notool')+wly.cleanRun);
+  if(wly.cleanN)wlPut('clean',wlNum('clean')+wly.cleanN);
+  if(wly.score>wlNum('hi')){wlPut('hi',wly.score);wly.newBest=true}
+  const W={lamp:'⏺ 这一场的钟走完了',heart:'💔 心掉光了：脚走不动了',pool:'🌱 串里的街都走完了，换个场再练',
+    leave:'🏳 你现在要走，账先结在这里',quit:'🏁 你自己按了结算'};
+  wlTxt('wlRsWhy',W[why]||'⏺ 收工');
+  wlTxt('wlRsScore','🧾 '+wly.score+' 文'+(wly.newBest?'（新纪录）':''));
+  wlTxt('wlRsWords','🧭 一路不落 '+wly.perfects+' 条 · 场号 '+wly.lv+' · 连跳 '+wly.maxCombo);
+  const stars=Math.max(0,Math.min(3,Math.round((wly.gain-WL_PTS_RIGHT)/26)));
+  wlTxt('wlRsStars','⭐ +'+stars+' · 走完 '+wly.walked+' 条街 · 分毫不磨 '+wly.tightN+' 条');
+  wlTxt('wlRsErr','✗ 跳偏 '+wly.wrongs+' 跳 · 走路 '+wly.stepsAll+' 步 · 白磨 '+wly.wornSum+' 步 · 一共跳了 '+wly.jumps+' 站');
+  wlTxt('wlRsShelf','🎒 路囊：'+(got.length?got.join(' · '):'（这一把一件没添）'));
+  const rk=wlRankOf(wlNum('streets'));
+  wlTxt('wlRsRank',rk.e+' '+rk.t+' · 一辈子走过 '+wlNum('streets')+' 条街');
+  const ov=wlEl('wlOver');if(ov)ov.style.display='flex';
+  wlSay('🧭 收摊：'+wly.score+' 文 · 走完 '+wly.walked+' 条街');
+  wlRender();
+}
+/* ---- 路囊 8 件 ---- */
+function wlShelfNow(){
+  const hops=wlNum('hops')+wly.jumps;
+  let badges=0;try{badges=JSON.parse(localStorage.getItem('hz_badges')||'[]').length}catch(e){}
+  return[
+    wlNum('streets')>0||wly.walked>0,
+    wlNum('clean')>0||(wly.wi>=WL_PER&&wly.fieldErr===0),
+    wlNum('trio')>0||wly.trio>0,
+    wlNum('tight')>0||wly.tightN>0,
+    wlNum('lvmax')>=WL_SHELF_LV||wly.lv>=WL_SHELF_LV,
+    wlNum('notool')>0||wly.cleanRun>0,
+    badges>=3,
+    hops>=400
+  ];
+}
+/* ---- 一辈子账：只加不减，这一把为 0 的那本一个字也不写 ---- */
+function wlLedgerPut(){
+  if(wly.walked)wlPut('streets',wlNum('streets')+wly.walked);
+  if(wly.perfects)wlPut('perfect',wlNum('perfect')+wly.perfects);
+  if(wly.rights)wlPut('rights',wlNum('rights')+wly.rights);
+  if(wly.trio)wlPut('trio',wlNum('trio')+wly.trio);
+  if(wly.tightN)wlPut('tight',wlNum('tight')+wly.tightN);
+  if(wly.quickN)wlPut('quick',wlNum('quick')+wly.quickN);
+  if(wly.jumps)wlPut('hops',wlNum('hops')+wly.jumps);
+  if(wly.stepsAll)wlPut('steps',wlNum('steps')+wly.stepsAll);
+  if(wly.wornSum)wlPut('worn',wlNum('worn')+wly.wornSum);
+  if(wly.wrongs)wlPut('wrongs',wlNum('wrongs')+wly.wrongs);
+  if(wly.swaps)wlPut('swaps',wlNum('swaps')+wly.swaps);
+  if(wly.tools)wlPut('tools',wlNum('tools')+wly.tools);
+  if(wly.maxCombo>wlNum('combo'))wlPut('combo',wly.maxCombo);
+  if(wly.fresh)wlPut('fresh',wlNum('fresh')+wly.fresh);
+}
+function wlLedgerAdd(rec){
+  if(wlDexAdd(rec.ch)){
+    const d=(wlGet('dex','')||'').split('|').filter(x=>x);
+    while(d.length>WL_BOOK_MAX)d.pop();
+    wlPut('dex',d.join('|'));
+  }
+}
+
+/* ==== 问路坊 ⑥：说明 · 另外几双手 · 把这一条街的账独立核一遍 ====
+   产品里的手（_wl_b.js）：终点当源在反向图上跑 Dijkstra（小顶堆逐边松弛），另有一双从 n-1 倒着往回推的逆拓扑递推。
+   这里的手故意换路数：手三 Bellman-Ford 扫 n−1 轮正向边；手四把 0→n−1 的每一条走法逐条枚举取最小；
+   手五从 1 号灯正着跑 Dijkstra 得「起点到各站」，再验无后效性：任一站两头相接绝不比最优短，取等号的那几盏正是最短链上的站。
+   算法不同而账目必须一致 —— 段 S/W 拿这几双手逐字对同一条街。*/
+
+/* ---- 说明：话写在街下那一条，翻一次扣一次 ---- */
+function wlHelpText(){
+  const r=wly.rec;
+  const n=(r&&r.n)||wly.n||0;
+  const seq=(r&&r.seq)||0,lose=r?(seq-r.best):0;
+  return '🧭 <b>一条街就是这一子的骨架</b>：这一子共 '+n+' 笔 ⇒ 街上有 '+n+' 盏灯 —— 第 <b>k</b> 笔的起笔处就是 <b>k</b> 号灯，'+n+' 号灯那儿挂着 ⛺。'+
+    '<br>🛣 <b>道只往前修</b>：一盏灯最多往前连 '+WL_BAND+' 站 · 道牌上的数 = 两灯直线距离折成的步数（'+WL_SCALE+' 像素折一步）。'+
+    '<br>🥾 <b>预算</b>：这条街最短路 '+((r&&r.best)||wly.best)+' 步 + 余地 '+WL_SLACK+' 步 = <b>'+wly.bud+'</b> 步 —— 省一步就是一文，用完还没走到 ⛺ 就算没走到头。'+
+    '<br>⏳ <b>犹豫也吃步数</b>：站在灯下不落脚，每满 '+(wlIdleMs(wly.lv)/1000).toFixed(1)+' 秒白磨一步（不扣文，直接啃预算）。'+
+    '<br>👀 <b>眼睛在这儿专门骗人</b>：这一条街上「看着最近的那一站」有 '+((r&&r.nnMiss)||0)+' 盏不是最省的那一跳，最省那一跳往往跳得远。'+
+    '<br>🪨 <b>笨手对照</b>：一站一站往前挪（顺笔）要 '+seq+' 步，比最短路多 '+lose+' 步。'+
+    '<br>🎒 <b>三件家什</b>：🔎 看里程（−'+WL_P_TOOL+' 文）· 🧮 代算一跳（−'+WL_P_TOOL+' 文）· 🔁 换街（−'+WL_SWAP_PEN+' 文）—— 一条街一样不借 +'+WL_PTS_NOTOOL+' 文。'+
+    '<br>🕐 <b>三支钟</b>：这一条街（第 1 场 '+(wlCaseMs(1)/1000).toFixed(1)+' 秒）· 站定脚程（'+(wlIdleMs(1)/1000).toFixed(1)+' 秒一步）· 这一场（'+(wlLampMs(1)/1000).toFixed(0)+' 秒走完 '+WL_PER+' 条街）。'+
+    '<br>🎮 点道牌或 <code>1~'+WL_BAND+'</code> 落脚 · 🔎 <code>P</code> 看里程 · 🧮 <code>V</code> 代算 · 🔁 <code>S</code> 换街 · <code>H</code> 说明 · <code>G</code> 🏳 弃街 · <code>R</code> 再来一局。';
+}
+function wlHelp(){
+  if(!wly.run||wly.over)return;
+  if(wly.rec&&(wly.phase==='walk'||wly.phase==='step'||wly.phase==='seal')&&!wly.load){
+    wly.score=Math.max(0,wly.score-WL_P_HELP);wly.penSum+=WL_P_HELP;
+    wly.tools++;wly.wordTools++;wly.fieldTools++;
+    wly.hitOk=2;wly.hitTxt='📖 翻说明 −'+WL_P_HELP;
+    wlSay(wly.hitTxt);
+  }
+  wly.helpMs=WL_HELP_MS;
+  const el=wlEl('wlMsg');
+  if(el){el.innerHTML=wlHelpText();el.style.color='#FFE0B2';el.style.opacity='1'}
+}
+
+/* ---- 手三：Bellman-Ford —— 正向边扫 n−1 轮，不用堆也不用倒推 ---- */
+function wlBF(g){
+  const n=g.n,d=new Array(n).fill(1e9);
+  d[n-1]=0;
+  for(let r=0;r<n-1;r++){
+    let ch=0;
+    for(let i=n-2;i>=0;i--)for(let j=i+1;j<n;j++){
+      if(!g.w[i][j])continue;
+      if(d[j]+g.w[i][j]<d[i]-1e-12){d[i]=d[j]+g.w[i][j];ch=1}
+    }
+    if(!ch)break;
+  }
+  return d;
+}
+/* ---- 手四：把 0→n−1 的每一条走法逐条数出来取最小（题面小，枚举得起）---- */
+function wlBrute(g){
+  const n=g.n;let best=1e9,how=null,cnt=0;
+  const walk=(i,acc,path)=>{
+    if(i===n-1){cnt++;if(acc<best){best=acc;how=path.slice()}return}
+    for(let j=i+1;j<n&&j<=i+WL_BAND;j++){
+      if(!g.w[i][j])continue;
+      path.push(j);walk(j,acc+g.w[i][j],path);path.pop();
+    }
+  };
+  walk(0,0,[0]);
+  return {best:best,how:how,paths:cnt};
+}
+/* ---- 手五：从 1 号灯正着跑 Dijkstra，得起点到各站，再验无后效性 ---- */
+function wlForward(g){
+  const n=g.n,d=new Array(n).fill(1e9),done=new Array(n).fill(0);
+  d[0]=0;
+  const pq=[[0,0]];
+  const push=e=>{pq.push(e);let i=pq.length-1;while(i>0){const p=(i-1)>>1;if(pq[p][0]<=pq[i][0])break;const t=pq[p];pq[p]=pq[i];pq[i]=t;i=p}};
+  const pop=()=>{const top=pq[0],last=pq.pop();if(pq.length){pq[0]=last;let i=0;for(;;){const l=2*i+1,r=l+1;let m=i;if(l<pq.length&&pq[l][0]<pq[m][0])m=l;if(r<pq.length&&pq[r][0]<pq[m][0])m=r;if(m===i)break;const t=pq[m];pq[m]=pq[i];pq[i]=t;i=m}}return top};
+  while(pq.length){
+    const e=pop(),dd=e[0],u=e[1];
+    if(done[u])continue;done[u]=1;
+    if(dd>d[u]+1e-12)continue;
+    for(let j=u+1;j<n&&j<=u+WL_BAND;j++){
+      if(!g.w[u][j])continue;
+      if(d[u]+g.w[u][j]<d[j]-1e-12){d[j]=d[u]+g.w[u][j];push([d[j],j])}
+    }
+  }
+  return d;
+}
+/* ---- 独立重走一遍闸门：图自己建，账用四双手算，闸门口径与 _wlgeo.cjs 一字一样 ---- */
+function wlAudWord(ch,j){
+  const M=j&&j.medians;
+  if(!Array.isArray(M)||M.length<WL_NMIN||M.length>WL_NMAX)return {ok:0,why:'笔数带外'};
+  for(let i=0;i<M.length;i++)if(!Array.isArray(M[i])||M[i].length<2)return {ok:0,why:'有一笔没点'};
+  const n=M.length,w=[];
+  for(let i=0;i<n;i++){
+    const row=[];
+    for(let k=0;k<n;k++){
+      if(k<=i||k>i+WL_BAND){row.push(0);continue}
+      const dd=Math.hypot(M[i][0][0]-M[k][0][0],M[i][0][1]-M[k][0][1]);
+      row.push(Math.max(1,Math.round(dd/WL_SCALE)));
+    }
+    w.push(row);
+  }
+  const g={n:n,w:w};
+  const P=wlBackward(g),D=wlDijkstra(g),bf=wlBF(g),br=wlBrute(g),fw=wlForward(g);
+  const on={};for(let k=0;br.how&&k<br.how.length;k++)on[br.how[k]]=1;
+  const bad=[];
+  for(let i=0;i<n;i++){
+    if(Math.abs(P.d[i]-D.d[i])>1e-9)bad.push('逆推与反向 Dijkstra 在 '+(i+1)+' 号灯上不平');
+    if(Math.abs(P.d[i]-bf[i])>1e-9)bad.push('逆推与 Bellman-Ford 在 '+(i+1)+' 号灯上不平');
+    for(let j=i+1;j<n&&j<=i+WL_BAND;j++)if(g.w[i][j]&&P.d[i]>g.w[i][j]+P.d[j]+1e-9)
+      bad.push('松弛没到不动点：'+(i+1)+'→'+(j+1)+' 还能再短');
+    if(P.nx[i]>=0&&Math.abs(P.d[i]-(g.w[i][P.nx[i]]+P.d[P.nx[i]]))>1e-9)
+      bad.push('最优那一跳 '+(i+1)+' 号灯没踩着等号');
+    if(fw[i]<1e8){
+      if(fw[i]+P.d[i]<P.d[0]-1e-9)bad.push('无后效性破了：'+(i+1)+' 号灯两头接出个比最优还短的');
+      if(on[i]&&Math.abs(fw[i]+P.d[i]-P.d[0])>1e-9)bad.push('枚举那条最短链在 '+(i+1)+' 号灯两头接不齐');
+    }
+  }
+  if(br.best!==P.d[0])bad.push('枚举最短 '+br.best+'，松弛最短 '+P.d[0]);
+  if(D.unreached!==0||D.settled!==n)bad.push('反向图上有灯没点到');
+  const cs=wlCards(g,P),hard=(cs.seq-cs.best)+4*cs.nnMiss;
+  if(bad.length)return {ok:0,why:bad.join(' · '),ch:ch,n:n};
+  if(cs.best<WL_DMIN||cs.best>WL_DMAX)return {ok:0,why:'全程 '+cs.best+' 步出带',ch:ch,n:n};
+  if(cs.tie)return {ok:0,why:'最优那一跳并列',ch:ch,n:n};
+  if(cs.seq>=1e8||cs.seq-cs.best<WL_GAPSOFT)return {ok:0,why:'顺笔不吃亏',ch:ch,n:n,best:cs.best,seq:cs.seq};
+  if(cs.choices<WL_GOODMIN)return {ok:0,why:'该跳的站太少',ch:ch,n:n};
+  if(cs.nnMiss<WL_NNMIN)return {ok:0,why:'骗眼的站太少',ch:ch,n:n};
+  if(hard<WL_HARDMIN)return {ok:0,why:'总分太轻',ch:ch,n:n,hard:hard};
+  return {ok:1,ch:ch,n:n,best:cs.best,seq:cs.seq,choices:cs.choices,nnMiss:cs.nnMiss,
+    hard:hard,paths:br.paths,tie:cs.tie,how:br.how};
+}
+/* ---- 当场把这一条街的账独立核一遍：段 W 收账用 ---- */
+function wlAudState(){
+  const r=wly.rec;if(!r)return {ok:0,why:'街还没挑开'};
+  const bad=[];
+  const g={n:r.n,w:r.w};
+  const bf=wlBF(g),br=wlBrute(g),fw=wlForward(g);
+  const on={};for(let k=0;br.how&&k<br.how.length;k++)on[br.how[k]]=1;
+  for(let i=0;i<r.n;i++){
+    if(Math.abs(bf[i]-r.d[i])>1e-9)bad.push('Bellman-Ford 与在账的里程在 '+(i+1)+' 号灯不平');
+    for(let j=i+1;j<r.n&&j<=i+WL_BAND;j++)if(r.w[i][j]&&r.d[i]>r.w[i][j]+r.d[j]+1e-9)
+      bad.push('在账里程没到不动点：'+(i+1)+'→'+(j+1)+' 还能再短');
+    if(r.nx[i]>=0&&Math.abs(r.d[i]-(r.w[i][r.nx[i]]+r.d[r.nx[i]]))>1e-9)
+      bad.push('在账最优那一跳 '+(i+1)+' 号灯没踩着等号');
+    if(fw[i]<1e8){
+      if(fw[i]+r.d[i]<r.best-1e-9)bad.push('无后效性破了：'+(i+1)+' 号灯两头接出个比最优还短的');
+      if(on[i]&&Math.abs(fw[i]+r.d[i]-r.best)>1e-9)bad.push('枚举那条最短链在 '+(i+1)+' 号灯两头接不齐');
+    }
+  }
+  if(br.best!==r.best)bad.push('枚举最短 '+br.best+' ≠ 在账 '+r.best);
+  for(let i=0;i<r.n;i++)if(r.w[r.n-1][i])bad.push('⛺ 那盏灯还往外修着道');
+  let opt=r.best;
+  for(let i=0;i+1<br.how.length;i++){
+    const a=br.how[i],b=br.how[i+1];
+    if(r.nx[a]!==b)bad.push('枚举那一条走法上 '+(a+1)+' 号灯的最优下一跳不是 '+(b+1));
+    opt-=r.w[a][b];
+  }
+  if(opt!==0)bad.push('最优那一跳串收尾不平 '+opt);
+  return {ok:bad.length?0:1,ch:r.ch,n:r.n,best:r.best,seq:r.seq,paths:br.paths,
+    choices:r.choices,nnMiss:r.nnMiss,hard:r.hard,why:bad.join(' · ')};
+}
+/* ---- 眼下街面的独立读数：段 M 拿它对产品自己的账 ---- */
+function wlBvNow(){
+  const r=wly.rec;if(!r)return {ok:0,why:'街还没挑开'};
+  const bad=[];
+  const roads=[];
+  for(let j=wly.at+1;j<wly.n&&j<=wly.at+WL_BAND;j++)if(r.w[wly.at][j])roads.push(j);
+  if(wly.phase==='walk'){
+    if(roads.length!==wly.opts.length)bad.push('道牌数 '+wly.opts.length+'/'+roads.length);
+    for(let i=0;i<wly.opts.length;i++)if(wly.opts[i]!==roads[i])bad.push('道牌第 '+(i+1)+' 张应是 '+(roads[i]+1)+' 号灯');
+    if(wly.spent>wly.bud)bad.push('预算超了还站着挑道');
+  }
+  let sum=0;
+  for(let k=0;k+1<wly.hist.length;k++)sum+=r.w[wly.hist[k]][wly.hist[k+1]];
+  if(wly.anim)sum+=r.w[wly.anim.from][wly.anim.to];
+  if(sum+wly.worn!==wly.spent)bad.push('步数账 '+wly.spent+' ≠ 走路 '+sum+' + 磨掉 '+wly.worn);
+  for(let k=0;k+1<wly.hist.length;k++){
+    const a=wly.hist[k],b=wly.hist[k+1];
+    if(b<=a||b>a+WL_BAND||!r.w[a][b])bad.push('第 '+(k+1)+' 跳 '+(a+1)+'→'+(b+1)+' 不是修好的道');
+  }
+  if(wly.hist.length&&wly.hist[0]!==0)bad.push('不是从 1 号灯起步');
+  if(!wly.anim&&wly.hist.length&&wly.hist[wly.hist.length-1]!==wly.at)bad.push('脚下灯位与足迹末站不符');
+  if(wly.hops!==wly.hist.length-1+(wly.anim?1:0))bad.push('跳数 '+wly.hops+' ≠ 足迹 '+wly.hist.length);
+  if(wly.missHops>wly.hops)bad.push('跳偏比总跳还多');
+  if(wly.litStrokes>wly.n)bad.push('墨描过头 '+wly.litStrokes+'/'+wly.n);
+  if(wly.phase==='seal'){
+    if(wly.hist[wly.hist.length-1]!==wly.n-1)bad.push('对账了却没站到 ⛺');
+    if(wly.litStrokes!==wly.n)bad.push('走到头却没描全');
+    if(wly.spent<wly.best)bad.push('比最短路还省（'+wly.spent+'<'+wly.best+'）');
+  }
+  if(wly.score<0||wly.hearts<0)bad.push('分数或心成负');
+  if(wly.wi<0||wly.wi>WL_PER)bad.push('街号出格 '+wly.wi);
+  return {ok:bad.length?0:1,ch:r.ch,n:r.n,best:r.best,seq:r.seq,bud:wly.bud,spent:wly.spent,
+    worn:wly.worn,hops:wly.hops,missHops:wly.missHops,at:wly.at,phase:wly.phase,lv:wly.lv,
+    wi:wly.wi,score:wly.score,hearts:wly.hearts,left:Math.max(0,wly.bud-wly.spent),
+    opts:wly.opts.slice(),litStrokes:wly.litStrokes,why:bad.join(' · ')};
+}
+/* ---- 探针桥：验证脚本只借这双手摆场面、读数，不改口径 ---- */
+function wlBvInfo(){
+  return {ok:1,run:wly.run,over:wly.over,phase:wly.phase,lv:wly.lv,wi:wly.wi,score:wly.score,
+    hearts:wly.hearts,walked:wly.walked,perfects:wly.perfects,rights:wly.rights,trio:wly.trio,
+    tightN:wly.tightN,quickN:wly.quickN,wrongs:wly.wrongs,jumps:wly.jumps,stepsAll:wly.stepsAll,
+    wornSum:wly.wornSum,fieldTools:wly.fieldTools,cleanRun:wly.cleanRun,seed:wly.seed,
+    tellOff:wly.tellOff,dim:wly.dim,ch:wly.ch,n:wly.n,bud:wly.bud,spent:wly.spent,worn:wly.worn,
+    at:wly.at,hops:wly.hops,missHops:wly.missHops,pool:wly.pool.length,anim:!!wly.anim,
+    hist:wly.hist.slice(),litStrokes:wly.litStrokes,caseMs:wly.caseMs,idleMs:wly.idle,lamp:wly.lamp,
+    quickOk:wly.quickOk,quickMs:wly.quickMs,caseUsed:wly.caseUsed,wordTools:wly.wordTools,
+    freshCnt:wly.fresh,toolRun:wly.toolRun,gain:wly.gain,penSum:wly.penSum,
+    peekN:wly.peekN,calcN:wly.calcN,swapN:wly.swapN,sealGood:wly.sealGood,
+    fieldErr:wly.fieldErr,fieldRights:wly.fieldRights,stepsWalk:wly.stepsWalk,
+    err:wly.err,errSum:wly.errSum,idle0:wly.idle0,nags:wly.nags,caseErr:wly.caseErr,
+    dexHas:(wly.rec&&wlDexHas(wly.rec.ch))?1:0,revenue:wly.revenue,taken:wly.taken,
+    combo:wly.combo,maxCombo:wly.maxCombo,walkedPrev:wly.walked,
+    peekMs:wly.peekMs,calcMs:wly.calcMs,wrongMs:wly.wrongMs,
+    peekUse:wly.peekUse,calcUse:wly.calcUse,swapUse:wly.swapUse,streets:wly.streets};
+}
+function wlBvTap(i){
+  if(wly.phase!=='walk')return {ok:0,why:'不在落脚这一手（phase='+wly.phase+'）'};
+  const before=wly.spent,at=wly.at;
+  wlHop(i);
+  return {ok:1,spent:wly.spent,delta:wly.spent-before,from:at,to:wly.opts.length?wly.opts[i]:wly.hist[wly.hist.length-1],
+    anim:!!wly.anim,phase:wly.phase,hops:wly.hops,missHops:wly.missHops};
+}
+function wlBvStep(ms){if(!wly.anim)return {ok:0,why:'脚底下没在走'};wlStepAnim(ms||WL_WALK_MS+10);return {ok:1,at:wly.at,phase:wly.phase,hist:wly.hist.slice()}}
+function wlBvOpt(){
+  if(wly.phase!=='walk')return {ok:0,why:'不在落脚这一手'};
+  const best=wly.nx[wly.at],i=wly.opts.indexOf(best);
+  return {ok:1,at:wly.at,best:best,idx:i,opts:wly.opts.slice(),left:wly.bud-wly.spent,
+    exp:wly.opts.map(function(j){return wly.w[wly.at][j]+wly.d[j]})};
+}
+function wlBvSeal(){if(wly.phase!=='seal')return {ok:0,why:'还没到对账（phase='+wly.phase+'）'};wly.sealMs=1;return {ok:1}}
+function wlBvCaseMs(v){wly.caseMs=v;wly.case0=Math.max(wly.case0,v);return {ok:1,caseMs:wly.caseMs}}
+function wlBvLamp(v){wly.lamp=v;wly.lamp0=Math.max(wly.lamp0,v);return {ok:1,lamp:wly.lamp}}
+function wlBvIdle(v){wly.idle=v;return {ok:1,idle:wly.idle}}
+function wlBvIdleMs(v){wly.idle0=v;return {ok:1,idle0:wly.idle0}}
+function wlBvSeed(s){wly.seed=s|0;return {ok:1,seed:wly.seed}}
+function wlBvTool(k,n){if(WL_P0[k]===undefined)return {ok:0,why:'没这件家什 '+k};wly[k+'N']=n;return {ok:1,k:k,n:wly[k+'N']}}
+function wlBvLv(L){
+  if(L<1||L>9)return {ok:0,why:'场号出格'};
+  wly.lv=L;wly.wi=0;wly.lamp0=wlLampMs(L);wly.lamp=wly.lamp0;wly.poolLv=-1;
+  wly.tellOff=wlNoTell(L);wly.dim=wlDim(L);
+  if(wly.rec){wly.caseMs=wlCaseMs(L);wly.case0=wly.caseMs;wly.quickMs=wlQuickMs(L);
+    wly.idle0=wlIdleMs(L);wlRenderOpts();wlRenderTally()}
+  return {ok:1,lv:wly.lv,tellOff:wly.tellOff,dim:wly.dim,bud:wly.bud,idle0:wly.idle0};
+}
+function wlBvOpen(ch){
+  if(!wlInLev(ch,wly.lv))return Promise.resolve({ok:0,why:ch+' 不在第 '+wly.lv+' 串'});
+  return ctTO(loadCharData(ch),8000).then(function(j){
+    if(!j||!j.medians)return {ok:0,why:ch+' 没数据'};
+    let rec=wlCache[ch];
+    if(rec===undefined){rec=wlAudit(ch,j)||null;wlCache[ch]=rec}
+    if(!rec)return {ok:0,why:ch+' 没过闸'};
+    if(wly.rec)wly.pool.push(wly.rec);
+    wly.load=false;wly.locked=0;
+    wlOpenStreet(rec);
+    return {ok:1,ch:ch,n:rec.n,best:rec.best,seq:rec.seq,bud:wly.bud,opts:wly.opts.slice()};
+  });
+}
+function wlBvAud(ch){
+  return ctTO(loadCharData(ch),8000).then(function(j){return wlAudWord(ch,j)});
+}
+function wlBvState(){return wlAudState()}
+function wlBvNext(){wlNextStreet();return {ok:1,ch:wly.ch}}
+function wlBvOver(why){wlOver(why||'quit');return {ok:1,over:wly.over}}
+function wlBvQuit(){wlQuit('quit');return {ok:1,ch:wly.ch}}
+function wlBvHelp(){wlHelp();return {ok:1}}
+function wlBvPeek(){wlPeek();return {ok:1,peekMs:wly.peekMs}}
+function wlBvCalc(){wlCalc();return {ok:1,lit:wly.lit}}
+function wlBvSwap(){wlSwap();return {ok:1,ch:wly.ch}}
+function wlBvStart(){wlStart(true);return {ok:1}}
+function wlBvCaseOut(w){wlCaseOut(w||'out');return {ok:1,phase:wly.phase}}
+function wlBvShelf(){const a=wlShelfNow(),got=[];for(let i=0;i<WL_SHELF.length;i++)if(a[i])got.push(WL_SHELF[i].k);return {ok:1,got:got}}
+/* ---- 段 E 借的两道门：催话自己会看场号收帘；里程牌的时辰只把钟拨快，落不落地仍由产品那一帧判 ---- */
+function wlBvNag(){
+  wlNag();
+  const e=document.getElementById('wlMsg');
+  return {ok:1,tellOff:wly.tellOff,dim:wly.dim,lv:wly.lv,nags:wly.nags,at:wly.at,nx:wly.nx[wly.at],
+    msg:e?e.innerHTML:''}
+}
+function wlBvPeekMs(v){wly.peekMs=v;return {ok:1,peekMs:wly.peekMs}}
+function wlBvCalcMs(v){wly.calcMs=v;return {ok:1,calcMs:wly.calcMs}}
 
 
 window.addEventListener('DOMContentLoaded',boot);
