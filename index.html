@@ -8170,6 +8170,92 @@ button:active{transform:scale(.95)}
 .wl-overbox p{margin:3px 0;font-size:13px}
 .wl-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
 .wl-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
+/* ================= v1.118 🚗 笔顺停车坊 ================= */
+/* HUD 占死三行：夜里数着排数与车数，字串换了也不许把案面往上顶 */
+.pv-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.pv-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.pv-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+.pv-hud #pvHearts i{font-style:normal;font-size:14px;margin:0 1px;color:#EF5350;text-shadow:0 0 6px rgba(239,83,80,.45)}
+.pv-hud #pvHearts i.off{color:#37474F;text-shadow:none}
+/* 题头占死四行：三副题面里最宽那副（对账那一条带着整张排班账）*/
+.pv-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*4)}
+.pv-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.pv-ask b{color:#FFE082}
+.pv-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 10px);max-width:520px;margin:0 auto}
+/* 左：这一子的米字格（停好一笔描金一笔）；右：停车表 */
+.pv-inkwrap{flex:0 0 108px;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:flex-start}
+.pv-ink{width:108px;height:108px;background:linear-gradient(158deg,#20262E,#0D1216);border-radius:12px;box-shadow:inset 0 2px 16px rgba(0,0,0,.75)}
+.pv-inkcap{font-size:11px;font-weight:800;color:#80CBC4;text-align:center;line-height:1.35}
+/* 案：水泥地界上画出来的停车表 */
+.pv-lot{flex:1;min-width:0;position:relative;background:linear-gradient(158deg,#242C33,#151B20 58%,#0A0E12);border-radius:14px;overflow:hidden;box-shadow:inset 0 2px 22px rgba(0,0,0,.8);padding:30px 6px 8px;touch-action:manipulation}
+/* 车位号尺 + 拥挤度柱（第 6 夜起整块蒙上）*/
+.pv-ruler{display:flex;font-size:9.5px;font-weight:800;color:#78909C;padding:0 0 1px 30px}
+.pv-ruler i{flex:1;font-style:normal;text-align:center}
+.pv-bars{display:flex;gap:1px;align-items:flex-end;height:20px;padding:0 0 2px 30px}
+.pv-bars i{flex:1;background:linear-gradient(180deg,#4FC3F7,#01579B);border-radius:2px 2px 0 0;min-height:2px;opacity:.85}
+.pv-bars i.max{background:linear-gradient(180deg,#FFD54F,#FF6F00);opacity:1;box-shadow:0 0 8px rgba(255,213,79,.7)}
+.pv-lot.dim .pv-bars i,.pv-lot.dim .pv-ruler i{background:rgba(255,255,255,.08);color:transparent;text-shadow:none;box-shadow:none}
+/* 一排车位：左边一排号，右边一条道 */
+.pv-row{display:flex;align-items:center;gap:2px;margin:3px 0}
+.pv-lab{flex:0 0 26px;font-size:10.5px;font-weight:900;color:#90A4AE;text-align:center}
+.pv-lane{position:relative;flex:1;height:30px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0,rgba(255,255,255,.06) calc(100% / var(--pvT) - 2px),transparent calc(100% / var(--pvT) - 2px),transparent calc(100% / var(--pvT)));border:1px dashed rgba(255,255,255,.16);border-radius:7px;cursor:pointer}
+.pv-lane.ok{border-color:#81C784;background-color:rgba(129,199,132,.12)}
+.pv-lane:hover{border-color:#FFD54F}
+.pv-lane.sel{border-color:#FFD54F;border-style:solid;background-color:rgba(255,213,79,.14);box-shadow:0 0 0 2px rgba(255,213,79,.45) inset}
+.pv-lane.clash{animation:pvShake .3s;border-color:#EF5350;background-color:rgba(239,83,80,.16)}
+.pv-lane.last{box-shadow:0 0 0 2px rgba(255,213,79,.5) inset}
+/* 一辆车 = 一笔：压在车位号 a 起、占 len 格 */
+.pv-car{position:absolute;top:3px;height:24px;border-radius:6px 9px 9px 6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#0E1417;box-shadow:0 2px 6px rgba(0,0,0,.6),inset 0 -3px 0 rgba(0,0,0,.18);transition:left .26s cubic-bezier(.3,1.4,.5,1),opacity .2s;white-space:nowrap;overflow:hidden}
+.pv-car::before{content:'';position:absolute;left:16%;right:16%;top:-3px;height:6px;border-radius:3px;background:inherit;filter:brightness(1.15)}
+.pv-car span{position:absolute;left:2px;right:2px;text-align:center;letter-spacing:.5px}
+.pv-car.fresh{animation:pvIn .34s}
+.pv-car.R{background:#FFD54F}.pv-car.D{background:#80DEEA}.pv-car.P{background:#A5D6A7}
+.pv-car.N{background:#F48FB1}.pv-car.T{background:#B39DDB}.pv-car.X{background:#BCAAA4}
+.pv-ghost{position:absolute;top:3px;height:24px;border-radius:6px 9px 9px 6px;background:rgba(255,213,79,.28);border:1px dashed #FFD54F;pointer-events:none}
+@keyframes pvIn{0%{transform:translateX(-46px) scale(.8);opacity:.2}70%{transform:translateX(4px)}100%{transform:translateX(0);opacity:1}}
+@keyframes pvShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+/* 进口：还在排队等答题的车 */
+.pv-gate{display:flex;gap:4px;align-items:center;width:calc(100% - 24px);max-width:520px;margin:5px auto 0;min-height:26px;flex-wrap:wrap;justify-content:center}
+.pv-gate b{font-size:11px;color:#78909C;font-weight:800}
+.pv-qcar{font-size:11px;font-weight:900;color:#0E1417;background:#BCAAA4;border-radius:8px;padding:2px 7px}
+.pv-qcar.next{background:#FFD54F;box-shadow:0 0 10px rgba(255,213,79,.6)}
+.pv-qcar.wait{opacity:.5}
+.pv-tag{position:absolute;left:50%;top:4px;transform:translateX(-50%);background:rgba(8,12,18,.92);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;transition:opacity .25s;pointer-events:none;white-space:nowrap;line-height:1.4;max-width:94%;z-index:6}
+.pv-msg{width:calc(100% - 28px);max-width:520px;margin:6px auto 0;background:rgba(8,12,18,.72);border:1px solid #37474F;border-radius:12px;color:#FFD54F;font-size:13px;font-weight:700;line-height:1.5;padding:7px 12px;text-align:center;min-height:calc(13px*1.5*2);max-height:168px;overflow-y:auto;transition:opacity .25s}
+.pv-msg b{color:#FFCC80}
+.pv-msg code{background:rgba(255,255,255,.12);border-radius:4px;padding:0 4px;color:#FFE082}
+/* 排班账：班主不回头要几排 · 下界几排 · 你用到几排 */
+.pv-tally{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;width:calc(100% - 24px);max-width:520px;margin:6px auto 0;font-size:12px;font-weight:800;color:#B0BEC5}
+.pv-tally i{font-style:normal;background:rgba(255,255,255,.07);border-radius:9px;padding:2px 7px;white-space:nowrap}
+.pv-tally i.on{background:rgba(255,183,77,.22);color:#FFE0B2}
+.pv-meter{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;width:calc(100% - 28px);max-width:520px;margin:4px auto}
+.pv-tl{position:relative;height:16px;background:rgba(0,0,0,.42);border-radius:8px;overflow:hidden}
+.pv-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:8px;transition:width .1s linear}
+.pv-tl.case i{background:linear-gradient(90deg,#FFB74D,#FF7043)}
+.pv-tl.idle i{background:linear-gradient(90deg,#BA68C8,#6A1B9A)}
+.pv-tl.lamp i{background:linear-gradient(90deg,#FFF176,#FBC02D)}
+.pv-tl.led i{background:linear-gradient(90deg,#4FC3F7,#0277BD)}
+.pv-tl b{position:absolute;inset:0;font-size:11px;font-weight:800;color:#0E1417;text-align:center;line-height:16px;text-shadow:0 1px 0 rgba(255,255,255,.28)}
+.pv-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px auto 2px;max-width:520px}
+.pv-tool{background:#18222A;color:#B0BEC5;border:1px solid #37474F;border-radius:10px;font-size:12px;font-weight:700;padding:5px 9px;cursor:pointer}
+.pv-tool span{display:inline-block;background:rgba(255,255,255,.14);border-radius:5px;padding:0 4px;margin-left:5px;font-size:10px}
+.pv-tool b{color:#FFE082;margin-left:4px}
+.pv-tool:disabled{opacity:.4;cursor:default}
+.pv-hintline{font-size:11.5px;color:#78909C;text-align:center;margin:4px auto 0;max-width:520px;line-height:1.5;padding:0 10px}
+.pv-hintline b{color:#B0BEC5}
+.pv-hintline code{background:rgba(255,255,255,.1);border-radius:4px;padding:0 4px}
+.pv-cdot{position:absolute;right:8px;top:8px;font-size:11px;background:#FF7043;color:#20150C;border-radius:8px;padding:1px 6px;font-weight:900}
+/* 结算：盖在停车场上的一层布 */
+.pv-over{position:absolute;inset:0;background:rgba(3,6,8,.9);z-index:20;display:flex;align-items:center;justify-content:center;border-radius:16px}
+#screen-pv{position:relative}
+.pv-overbox{width:88%;max-width:420px;background:linear-gradient(180deg,#1E2B33,#0B1114);border:2px solid #455A64;border-radius:14px;padding:12px 14px;text-align:center;color:#CFD8DC}
+.pv-overbox h3{margin:0 0 6px;font-size:20px;color:#FFD54F}
+.pv-overbox p{margin:3px 0;font-size:13px}
+.pv-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.pv-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
+/* 火花：从落点往外溅（停车那一瞬）*/
+.pv-spark{position:absolute;width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:8;animation:pvFly .58s ease-out forwards}
+@keyframes pvFly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.4);opacity:0}}
 </style>
 
 </head>
@@ -8226,8 +8312,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 116 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">116</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 117 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">117</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -8238,12 +8324,18 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>116 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>58</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>117 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>59</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="pvCard" onclick="enterMode('pv')">
+      <div class="icon">🚗</div>
+      <div class="info"><h3>笔顺停车坊</h3><p id="pvCardTip">这一子的<b>每一笔 = 一辆车</b>：它横着压住第几到第几号车位是<b>钉死</b>的，你只能挑<b>停进第几排</b>，同一排两辆车不许压在同一个格上。最挤那一列压了几笔，这张表就<b>最少要几排</b> —— 可车偏是照<b>笔顺</b>一辆辆进场的，班主不回头替它排<b>每张表都要多开一排</b>。答对这一笔往哪写才放行</p>
+      <span class="pv-cdot" id="pvCardDot">🆕</span>
+    </div>
+</div>
 <div class="mode-card" id="wlCard" onclick="enterMode('wl')">
       <div class="icon">🧭</div>
       <div class="info"><h3>笔顺问路坊</h3><p id="wlCardTip">一条街就是这一子的骨架：每笔的<b>起笔处</b>亮一盏灯，第 k 笔就是 k 号站。道只往前修（最多连 3 站），道牌上的数＝两灯直线距离<b>折成的步数</b>。从 🚶 1 号灯走到 ⛺：预算＝<b>最短路 + 8 步</b>，省一步就是一文，站着不落脚每满一息<b>白磨一步</b>。这张图上<b>没有直达终点</b>的道 —— 最短路得一段一段接出来算；<b>看着最近的那一站，往往不是最省的那一跳</b></p>
@@ -9406,6 +9498,74 @@ button:active{transform:scale(.95)}
       <div class="nc-overbtns">
         <button id="ncReBtn">🔁 再归一回</button>
         <button id="ncReHome">🏠 回实验室</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-pv">
+  <div class="top-bar">
+    <button class="back-btn" onclick="pvLeave()">← 返回</button>
+    <div class="stats"><span id="pvScoreTxt">🚗 <b id="pvScore">0</b> 文</span><span id="pvLv">第 1 夜</span><span id="pvTime">这一夜 40.0 秒 · 这一局 96 秒</span></div>
+    <button class="icon-btn" onclick="pvHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="pv-hud">
+    <span id="pvRank" title="称号">🚗 新生司机</span>
+    <span id="pvHearts" title="生命">♥♥♥</span>
+    <span id="pvLedCombo" title="连击">🔥 一把停好 0 · 最长 0</span>
+    <span id="pvLedWord">🌙 第 1 夜 · 一夜停完 0 夜</span>
+    <span id="pvLedGate" title="排数账">🌱 表还没画开</span>
+    <span class="light" id="pvHitLight">💡 妙排</span>
+  </div>
+  <div class="pv-ask" id="pvAsk">🌱 正在挑字……<br><small>在字库里找「不回头替它排要多开一排、最挤那一列真压着好几笔」的字</small></div>
+  <div class="pv-stage">
+    <div class="pv-inkwrap">
+      <canvas class="pv-ink" id="pvInk" width="108" height="108"></canvas>
+      <div class="pv-inkcap" id="pvInkCap">这一子的模样<br><b>停好一笔描金一笔</b></div>
+    </div>
+    <div class="pv-lot" id="pvLot">
+      <div class="pv-ruler" id="pvRuler"></div>
+      <div class="pv-bars" id="pvBars"></div>
+      <div id="pvRows"></div>
+      <div class="pv-tag" id="pvTag">🚗 表还没画开</div>
+    </div>
+  </div>
+  <div class="pv-msg" id="pvMsg">🚗 这一子的每一笔 = 一辆车：它<b>横着压住第几到第几号车位是钉死的</b>，你只能挑<b>停进第几排</b>。同一排里两辆车不许压在同一个格上。最挤那一列压了几笔，这张表就<b>最少要几排</b></div>
+  <div class="pv-gate" id="pvGate"><b>🛬 进口</b></div>
+  <div class="pv-tally" id="pvTally"></div>
+  <div class="wl-tbl" id="pvOpts">
+    <button class="wl-opt" id="pvOpt0">—</button>
+    <button class="wl-opt" id="pvOpt1">—</button>
+    <button class="wl-opt" id="pvOpt2">—</button>
+    <button class="wl-opt" id="pvOpt3">—</button>
+  </div>
+  <div class="pv-meter">
+    <div class="pv-tl case"><i id="pvBarCase"></i><b>⏳ 这一夜</b></div>
+    <div class="pv-tl idle"><i id="pvBarIdle"></i><b>📣 进口按喇叭</b></div>
+    <div class="pv-tl lamp"><i id="pvBarLamp"></i><b>🌙 这一局</b></div>
+    <div class="pv-tl led"><i id="pvBarLed"></i><b id="pvLedSnap">🧾 0/0 辆</b></div>
+  </div>
+  <div class="pv-tools">
+    <button class="pv-tool" id="pvPeek">🔎 看拥挤<span>P</span><b>剩 2</b></button>
+    <button class="pv-tool" id="pvCalc">🧮 代算一位<span>V</span><b>剩 2</b></button>
+    <button class="pv-tool" id="pvSwap">🔁 换一夜<span>S</span><b>剩 1</b></button>
+    <button class="pv-tool" id="pvHelpBtn">📖 说明<span>H</span></button>
+    <button class="pv-tool" id="pvQuitBtn">🏳 弃夜<span>G</span></button>
+  </div>
+  <div class="pv-hintline" id="pvLedNaive">🚌 <b>班主对照</b>：车按笔顺一辆辆进场，他<b>不回头、只挑当前最空的排</b> —— 过闸的字每一张表他都要<b>多开一排</b><br>🅿️ 点一排就把手里这辆车停进去 · <code>↑↓</code> 挑排 <code>空格</code> 停 · 点已停的车 <b>拔出来重停</b> · 🔎 <code>P</code> 看拥挤 · 🧮 <code>V</code> 代算 · 🔁 <code>S</code> 换夜 · <code>H</code> 说明 · <code>G</code> 弃夜 · <code>R</code> 再来一局</div>
+
+  <div class="pv-over" id="pvOver" style="display:none">
+    <div class="pv-overbox">
+      <h3>🚗 收工</h3>
+      <p id="pvRsWhy">⏺ 这一局的钟走完了</p>
+      <p id="pvRsScore">🧾 0 文</p>
+      <p id="pvRsWords">🌙 一夜停完 0 夜 · 局号 1 · 一把停好 0 辆</p>
+      <p id="pvRsStars">⭐ +0</p>
+      <p id="pvRsErr">✗ 撞位 0 次 · 拔车 0 次 · 拖去修理厂 0 辆</p>
+      <p id="pvRsShelf">🎒 车房：（这一把一件没添）</p>
+      <p id="pvRsRank">🚗 新生司机 · 一辈子停完 0 夜</p>
+      <div class="pv-overbtns">
+        <button id="pvReBtn">🔁 再停一回</button>
+        <button id="pvReHome">🏠 回实验室</button>
       </div>
     </div>
   </div>
@@ -17580,6 +17740,7 @@ function updateHomeStats(){
   if(typeof ncNudge==='function')ncNudge();
   if(typeof sdNudge==='function')sdNudge();
   if(typeof wlNudge==='function')wlNudge();
+  if(typeof pvNudge==='function')pvNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -17642,6 +17803,7 @@ function enterMode(mode){
   if(mode==='nc'){ncStart();return}
   if(mode==='sd'){sdStart();return}
   if(mode==='wl'){wlStart();return}
+  if(mode==='pv'){pvStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -133685,6 +133847,1222 @@ function wlBvNag(){
 }
 function wlBvPeekMs(v){wly.peekMs=v;return {ok:1,peekMs:wly.peekMs}}
 function wlBvCalcMs(v){wly.calcMs=v;return {ok:1,calcMs:wly.calcMs}}
+
+
+/* ==== 🚗 笔顺停车坊 v1（v1.118.0）====
+   这一子的每一笔 = 一辆车：车「横着压住第几号到第几号车位」是**钉死**的（横向足迹折成格），
+   孩子只能挑一件事 —— 把这辆车**停进第几排**。同一排里两辆车不许压在同一个格上（压上就是撞车）。
+   最挤的那一竖列同时压着几笔，这张表就**最少要几排**（下界 L = 区间图的色数，眼睛数得出来）。
+   可车偏偏是照**笔顺**一辆辆进场的，笔顺不是按车位号排的 ⇒ 班主「不回头、只挑当前最空的排」
+   替它排，过闸的每张表他都要**多开一排** —— 孩子看得见整张表，就得替后面的长车留位。
+   账是本坊自己的三双手算的：手一按笔顺 first-fit（不回头）数排数，手二扫描线打点数最挤那一列，
+   手三回溯暴力把车往排里试求真能停完的最少排数。手二与手三必须**一字不差**（色数＝最大深度），
+   手一必须**严格亏**（亏 ≥ PV_GAPMIN 排）这张表才准上台。
+   本节：口径 · 九串字表 · 状态 · 落盘 · 发声 */
+
+/* ---- 口径（与 _pvgeo.cjs 一字一样，改这里就得重扫重写九串）---- */
+const PV_TICK=90;                     /* 横向多少像素折一格车位 */
+const PV_NMIN=5,PV_NMAX=12;           /* 车数 = 这一子的笔数 */
+const PV_TMIN=5,PV_TMAX=14;           /* 一张表的车位格数带（太窄没得压，太宽画不下）*/
+const PV_LMIN=2,PV_LMAX=5;            /* 下界排数带：一排没决策，六排挤不下 */
+const PV_LONGMIN=3;                   /* 至少一辆车占这么长（长车才会堵人）*/
+const PV_GAPMIN=1;                    /* 班主不回头至少比下界多开几排（有亏可省）*/
+const PV_CHMIN=2;                     /* 至少几辆车进场时有两排可选（真有岔口）*/
+/* ---- 夜 · 池 · 心 ---- */
+const PV_PER=3;                       /* 一局三张表 */
+const PV_POOL_MIN=4,PV_POOL_WANT=12;
+const PV_HEARTS=3,PV_HEART_MAX=5,PV_BOOK_MAX=300;
+const PV_CLASH_MS=340;                /* 撞位那一排泛红多久 */
+const PV_TELL_LV=4,PV_DIM_LV=6;       /* 第 4 夜起可行排不再描绿边，第 6 夜起车位号尺与拥挤柱整块蒙上 */
+function pvNoTell(L){return L>=PV_TELL_LV}
+function pvDim(L){return L>=PV_DIM_LV}
+/* ---- 赏 ---- */
+const PV_CAR_WEN=6;                   /* 每停进一辆 */
+const PV_SNAP_WEN=4;                  /* 一把停好：这辆车没撞过位、没拔过重停 */
+const PV_SAVE_WEN=10;                 /* 比班主少开一排，一排一文 ×10（每夜结一次）*/
+const PV_PERFECT_WEN=20;              /* 一夜停完：整张表一辆不落 */
+const PV_QUICK_WEN=12;                /* 眼快：这一夜在夜钟一半内停完 */
+const PV_FRESH_WEN=6;                 /* 头一回停这张表 */
+const PV_TIGHT_WEN=8;                 /* 一次没撞：这一夜一回位都没压错 */
+const PV_HORN_WEN=1;                  /* 进口按一次喇叭扣一文（站着不安排）*/
+const PV_PTS_NOTOOL=8,PV_PTS_TOOLRUN=14;
+/* ---- 罚 ---- */
+const PV_P_OUT=8;                     /* 夜钟走完还有车没停：掉一颗心 */
+const PV_P_CLASH=3;                   /* 撞位：这一排这个钟点压着别的车 */
+const PV_P_MOVE=2;                    /* 拔车：把已停的重新挑排 */
+const PV_P_MISS=5;                    /* 答错：这一辆拖去修理厂，今夜少描一笔 */
+const PV_P_QUIT=5;                    /* 弃夜 */
+const PV_P_TOOL=4,PV_P_HELP=3;
+const PV_ERR_LINE=2;                  /* 一夜错到这一回就掉一颗心 */
+/* ---- 家什 ---- */
+const PV_P0={peek:2,calc:2,swap:1};   /* 🔎 看拥挤 / 🧮 代算一位 / 🔁 换一夜 */
+const PV_PEEK_MS=5200,PV_CALC_MS=4200,PV_SWAP_PEN=6;
+/* ---- 钟 ---- */
+function pvNightMs(L){return Math.max(16000,40000-2400*(L-1))}   /* 这一夜的表 */
+function pvHornMs(L){return Math.max(1600,2600-90*(L-1))}        /* 站着不安排：每满一息按一次喇叭 */
+function pvQMs(L){return Math.max(4200,8600-320*(L-1))}          /* 进口这一辆车等你说清的方向 */
+function pvLampMs(L){return Math.max(78000,96000-1800*(L-1))}    /* 这一局 */
+const PV_AUDIT_MS=9000,PV_HAND_MS=1200,PV_NAG_MS=5600,PV_HELP_MS=8200,PV_WRONG_MS=620;
+function pvQuickMs(L){return Math.floor(pvNightMs(L)*0.5)}
+const PV_SLIDE_MS=280,PV_POP_MS=300,PV_BACK_MS=420;
+/* ---- 案面：车位表画在 DOM 上，米字格给这一子的墨 ---- */
+const PV_IW=108,PV_IH=108,PV_IX0=10,PV_IX1=98,PV_IY0=10,PV_IY1=98;
+/* ---- 称号：一辈子停完的夜 ---- */
+const PV_RANKS=[
+  {n:0,e:'🚗',t:'新生司机'},{n:2,e:'🚙',t:'认得车位'},{n:5,e:'🅿️',t:'数得清排'},
+  {n:9,e:'🚌',t:'一把停好'},{n:14,e:'🏁',t:'越排越快'},{n:21,e:'🚚',t:'夜夜描全'},
+  {n:30,e:'🛞',t:'排排有着'},{n:42,e:'🚑',t:'不被眼骗'},{n:58,e:'👑',t:'从没多开排'}
+];
+function pvRankOf(w){
+  let r=PV_RANKS[0];
+  for(let i=0;i<PV_RANKS.length;i++)if(w>=PV_RANKS[i].n)r=PV_RANKS[i];
+  return r;
+}
+/* ---- 车房 8 件 ---- */
+const PV_SHELF_LV=4;
+const PV_SHELF=[
+  {k:'车样图',d:'一夜一辆不落停完'},      {k:'清白票',d:'一夜每辆车零撞位零拔车'},
+  {k:'铁轮子',d:'一夜停完且一辆没拖走'},  {k:'分毫囊',d:'一夜一声喇叭没按'},
+  {k:'夜班灯',d:'走到第 '+PV_SHELF_LV+' 夜还在停'},{k:'空手囊',d:'一夜家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},  {k:'量车尺',d:'累计停进 400 辆'}
+];
+/* ---- 九串字表（一夜一串，串外的字这张表过不了闸）----
+   由 _pvgeo.cjs 离线数出来（口径与上面的 PV_* 常量一一对应，改常量就得重扫重写这九串）：
+   全站 1372 字过闸 90 字（不回头不吃亏 469 · 下界排数出格 451 · 车太多 276 · 车太少 80 ·
+   岔口太少 6 · 三双手对不上为零），难度分 =「班主多开的排 ×10 + 岔口车数 ×2 + 车数 + 最长沙占的格」，
+   切成九串（每串 10 字）：第 1 串 6~7 辆车、下界 3 排；第 9 串 10~12 辆车、下界 4~5 排。
+   每张表的下界与暴力最少排数逐字相等（这是色数＝最大深度，也是这张表的题面）。*/
+const PV_LEV={
+  1:"扫托纪纯纤坑扶轮扭批",
+  2:"抄彼玩码陷吨听汹沙抬",
+  3:"软胎伴抖咐泥鸦涕涧崩",
+  4:"坪拌沸怨拯挡标茶挽站",
+  5:"粉耽骏梭拙拭拼架栏毡",
+  6:"须饼哨挨胶较崭粒跃焰",
+  7:"样秘袖轿斜旋祭距麻揽",
+  8:"衍倘唉淋淡脱哄哑啦排",
+  9:"皎搅晒掐哦艇揪棚翅湃"
+};
+function pvLetters(L){return PV_LEV[L]||''}
+function pvInLev(ch,L){return (pvLetters(L)||'').indexOf(ch)>=0}
+
+/* ---- 状态 ---- */
+const pvy={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  lv:1,ni:0,score:0,hearts:PV_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这张表：字 · 车 · 三双手的账 */
+  ch:'',rec:null,n:0,T:0,cars:[],L:0,on:0,at:[],choices:0,wide:0,hard:0,
+  /* 眼下这一手：停到第几辆 · 每辆停进哪排 */
+  idx:0,lane:new Array(12).fill(-1),parked:0,towed:0,sel:0,rows:0,
+  grid:[],dirCode:[],calcLane:-1,animIn:0,hornNag:0,usedRows:0,
+  opts:[],ans:'',qDir:'',qKind:'',qMs:0,qMs0:0,busy:false,dirty:false,
+  clashN:0,moveN:0,snapN:0,noSnap:false,usedTools:0,err:0,errSum:0,wrongMs:0,holdMs:0,anim:null,
+  peekMs:0,calcMs:0,peekN:PV_P0.peek,calcN:PV_P0.calc,swapN:PV_P0.swap,
+  peekUse:0,calcUse:0,swapUse:0,
+  /* 这一夜 / 这一局的钟 */
+  case0:0,caseMs:0,caseUsed:0,horn:0,hornMs:0,horn0:0,nags:0,nagMs:0,helpMs:0,lamp:0,lamp0:0,
+  sealMs:0,handMs:0,clashMs:PV_CLASH_MS,nightHorn:0,hornAll:0,tools:0,swaps:0,wrong:0,spark:[],lit:null,
+  quickOk:1,quickMs:0,nightMs:0,tellOff:0,dim:0,
+  /* 局账 */
+  nights:0,carsAll:0,saved:0,saves:0,perfN:0,tightN:0,quickN:0,cleanN:0,
+  clashAll:0,moveAll:0,towAll:0,wordTools:0,rounds:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',newBest:false,seed:1,
+  nightWen:0,shelfGet:[]
+};
+
+/* ---- 落盘：hz_park_* 共 10 本（best / nights / rounds / cars / saved / clash / move / shelf / book / dex）---- */
+function pvPut(k,v){try{localStorage.setItem('hz_park_'+k,''+v)}catch(e){}}
+function pvGet(k,d){try{const v=localStorage.getItem('hz_park_'+k);return v===null?d:v}catch(e){return d}}
+function pvNum(k){return Number(pvGet(k,0))||0}
+function pvInc(k,n){const v=pvNum(k)+(typeof n==='number'?n:1);pvPut(k,v);return v}
+function pvBookPush(ch,why){
+  const bk=(pvGet('book','')||'').split('|').filter(x=>x);
+  const i=bk.findIndex(x=>x.indexOf(ch+':')===0);
+  const e=ch+':'+(why||'没停完');
+  if(i>=0)bk[i]=e;else bk.unshift(e);
+  while(bk.length>PV_BOOK_MAX)bk.pop();
+  pvPut('book',bk.join('|'));
+}
+function pvBookHas(ch){return (pvGet('book','')||'').split('|').some(x=>x.indexOf(ch+':')===0)}
+/* 这一开就一路停到底，就把这一笔从修理厂簿上划掉：簿上只留还没停完的表 */
+function pvBookDel(ch){
+  const bk=(pvGet('book','')||'').split('|').filter(x=>x&&x.indexOf(ch+':')!==0);
+  pvPut('book',bk.join('|'));
+}
+function pvDexHas(ch){return (pvGet('dex','')||'').split('|').indexOf(ch)>=0}
+function pvDexAdd(ch){
+  const d=(pvGet('dex','')||'').split('|').filter(x=>x);
+  if(d.indexOf(ch)<0){d.push(ch);pvPut('dex',d.join('|'));return 1}
+  return 0;
+}
+
+/* ---- 本坊自己的发声 · 回话 · 定时器（不借别人家的栏）---- */
+function pvTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!pvy.ac)pvy.ac=new AC();
+    const c=pvy.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.setValueAtTime(g||.11,c.currentTime);
+    n.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);
+    o.connect(n);n.connect(c.destination);o.start();o.stop(c.currentTime+d);
+  }catch(e){}
+}
+function pvDing(i){pvTone(523*Math.pow(1.0595,Math.min(24,(i||0)*2)),.16,.10)}
+function pvBad(){pvTone(150,.26,.13);setTimeout(()=>pvTone(112,.3,.12),110)}
+function pvHorn(){pvTone(392,.1,.08);setTimeout(()=>pvTone(392,.1,.08),150)}/* 进口按喇叭：两声 */
+function pvPop(){pvTone(880,.07,.07)}
+function pvSlide(){pvTone(330,.09,.06);setTimeout(()=>pvTone(494,.11,.06),70)}
+function pvNag(){pvTone(196,.12,.07);pvRenderHud()}/* 按一文就得把文钱牌重画：不然停在上一息 */
+function pvSeal(){[0,4,7,12].forEach((s,i)=>setTimeout(()=>pvTone(523*Math.pow(1.0595,s),.2,.09),i*90))}
+function pvClearTimers(){pvy.timers.forEach(t=>clearTimeout(t));pvy.timers=[]}
+function pvLater(ms,fn){const id=setTimeout(fn,ms);pvy.timers.push(id);return id}
+function pvSay(t){const e=document.getElementById('pvMsg');if(e)e.innerHTML=t}
+
+/* ==== 停车坊 ②：这张表怎么长出来的 · 三双手对表 · 过闸 ====
+   口径与 _pvgeo.cjs 一字一样：车 = 一笔的横向足迹（a=floor(minX/PV_TICK)，
+   b=max(a+1,ceil(maxX/PV_TICK))），同排两辆车的钟点不许相交。
+   手一按笔顺塞「当前最空的那排」（不回头），手二扫描线取最大在场数（下界 L），
+   手三回溯把车往排里试真正最少排数（K_opt）。K_opt 必须等于 L，
+   手一必须比 L 多开排（有亏可省），还得有几辆车进场时站着两排可选。 */
+function pvBuild(M) {
+  const cars = [];
+  for (let i = 0; i < M.length; i++) {
+    const st = M[i];
+    if (!Array.isArray(st) || st.length < 1) return null;
+    let lo = Infinity, hi = -Infinity;
+    for (let p = 0; p < st.length; p++) {
+      const x = st[p][0];
+      if (x < lo) lo = x;
+      if (x > hi) hi = x;
+    }
+    if (!isFinite(lo)) return null;
+    const a = Math.floor(lo / PV_TICK);
+    const b = Math.max(a + 1, Math.ceil(hi / PV_TICK));
+    cars.push({ i: i, a: a, b: b, len: b - a });
+  }
+  let T = 0;
+  for (let p = 0; p < cars.length; p++) if (cars[p].b > T) T = cars[p].b;
+  for (let p = 0; p < cars.length; p++) if (cars[p].a < 0) return null;
+  return { n: cars.length, cars: cars, T: T };
+}
+function pvFits(lane, c) {
+  for (let t = c.a; t < c.b; t++) if (lane[t]) return false;
+  return true;
+}
+/* 手一：按笔顺到车，每辆塞当下最空的那排（塞不进就新开一排），永不回头 */
+function pvOnline(g) {
+  const lanes = [], path = [];
+  let choices = 0, wide = 0;
+  for (let p = 0; p < g.cars.length; p++) {
+    const c = g.cars[p];
+    let best = -1, bestFree = Infinity;
+    const free = [];
+    for (let l = 0; l < lanes.length; l++) {
+      if (!pvFits(lanes[l], c)) continue;
+      free.push(l);
+      let used = 0;
+      for (let t = 0; t < g.T; t++) used += lanes[l][t];
+      if (used < bestFree) { bestFree = used; best = l }
+    }
+    if (free.length >= 2) choices++;
+    if (free.length >= 3) wide++;
+    if (best < 0) { lanes.push(new Array(g.T).fill(0)); best = lanes.length - 1 }
+    for (let t = c.a; t < c.b; t++) lanes[best][t] = 1;
+    path.push(best);
+  }
+  return { k: lanes.length, choices: choices, wide: wide, path: path };
+}
+/* 手二：扫描线打点 —— 每个钟点上同时在场的最多车数就是下界 L */
+function pvSweep(g) {
+  const at = new Array(g.T).fill(0);
+  for (let p = 0; p < g.cars.length; p++) {
+    const c = g.cars[p];
+    for (let t = c.a; t < c.b; t++) at[t]++;
+  }
+  let L = 0;
+  for (let t = 0; t < g.T; t++) if (at[t] > L) L = at[t];
+  return { L: L, at: at };
+}
+/* 手三：回溯求真正停得完的最少排数（先试下界，不行 +1）*/
+function pvBrute(g, cap) {
+  const lanes = [];
+  const order = g.cars.slice().sort((x, y) => (x.a - y.a) || (x.b - y.b));
+  function put(idx) {
+    if (idx >= order.length) return true;
+    const c = order[idx];
+    for (let l = 0; l < lanes.length; l++) {
+      if (!pvFits(lanes[l], c)) continue;
+      for (let t = c.a; t < c.b; t++) lanes[l][t] = 1;
+      if (put(idx + 1)) return true;
+      for (let t = c.a; t < c.b; t++) lanes[l][t] = 0;
+    }
+    if (lanes.length < cap) {
+      const nl = new Array(g.T).fill(0);
+      for (let t = c.a; t < c.b; t++) nl[t] = 1;
+      lanes.push(nl);
+      if (put(idx + 1)) return true;
+      lanes.pop();
+    }
+    return false;
+  }
+  return { ok: put(0) };
+}
+function pvMinLanes(g, lo, hi) {
+  for (let k = lo; k <= hi; k++) if (pvBrute(g, k).ok) return k;
+  return hi + 1;
+}
+/* 一辆车进场时能选几排（1 排没决策，几排就有几条岔口）*/
+function pvCarChoice(g, c, lanes) {
+  let n = 0;
+  for (let l = 0; l < lanes.length; l++) if (pvFits(lanes[l], c)) n++;
+  return n;
+}
+/* ---- 过闸：三双手一字不差 + 六道闸门；过了才准上台，返回这一夜的整张表 ---- */
+const pvCache = {};
+function pvAudit(ch, j) {
+  if (pvCache[ch] !== undefined) return pvCache[ch];
+  const M = j && j.medians;
+  let rec = null;
+  if (Array.isArray(M) && M.length >= PV_NMIN && M.length <= PV_NMAX) {
+    const g = pvBuild(M);
+    if (g && g.T >= PV_TMIN && g.T <= PV_TMAX) {
+      let hasLong = false;
+      for (let p = 0; p < g.cars.length; p++) if (g.cars[p].len >= PV_LONGMIN) hasLong = true;
+      if (hasLong) {
+        const O = pvOnline(g), S = pvSweep(g);
+        if (S.L >= PV_LMIN && S.L <= PV_LMAX) {
+          const K = pvMinLanes(g, S.L, O.k);
+          if (K === S.L && O.k - S.L >= PV_GAPMIN && O.choices >= PV_CHMIN) {
+            let maxlen = 0;
+            for (let p = 0; p < g.cars.length; p++) if (g.cars[p].len > maxlen) maxlen = g.cars[p].len;
+            rec = {
+              ch: ch, n: g.n, T: g.T, cars: g.cars, at: S.at,
+              L: S.L, on: O.k, choices: O.choices, wide: O.wide, path: O.path,
+              hard: (O.k - S.L) * 10 + O.choices * 2 + g.n + maxlen,
+              M: M
+            };
+          }
+        }
+      }
+    }
+  }
+  pvCache[ch] = rec;
+  return rec;
+}
+
+/* ==== 停车坊 ③：开工 · 三支钟 · 一辆辆放行 ==== */
+function pvEl(id){return document.getElementById(id)}
+function pvTxt(id,s){const e=pvEl(id);if(e)e.textContent=s}
+function pvTag(s){const e=pvEl('pvTag');if(e)e.textContent=s}
+let pvInk=null,pvIctx=null,pvGen=0;
+
+function pvBind(){
+  if(pvy.bound)return;pvy.bound=true;
+  pvInk=pvEl('pvInk');if(pvInk&&pvInk.getContext)pvIctx=pvInk.getContext('2d');
+  const tap=function(id,fn){const e=pvEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();if(!pvy.run||pvy.over||pvy.locked)return;fn()})};
+  /* 答案牌：答对才把手里这辆车放进场 */
+  for(let i=0;i<4;i++)(function(i){tap('pvOpt'+i,function(){pvAnswer(i)})})(i);
+  tap('pvPeek',function(){pvPeek()});
+  tap('pvCalc',function(){pvCalc()});
+  tap('pvSwap',function(){pvSwapNight()});
+  tap('pvQuitBtn',function(){pvQuit('quit')});
+  tap('pvHelpBtn',function(){pvHelp()});
+  /* 排就是一双手：点哪一排就把这辆车停哪排；点已停的车就把它拔出来重停 */
+  const rows=pvEl('pvRows');
+  if(rows){
+    rows.addEventListener('click',function(ev){
+      if(!pvy.run||pvy.over||pvy.locked)return;
+      const car=ev.target&&ev.target.closest?ev.target.closest('.pv-car'):null;
+      const lane=ev.target&&ev.target.closest?ev.target.closest('.pv-lane'):null;
+      if(car){
+        const ci=Number(car.getAttribute('data-car'));
+        if(isFinite(ci)){ev.preventDefault();pvPull(ci);return}
+      }
+      if(lane){
+        const l=Number(lane.getAttribute('data-lane'));
+        if(isFinite(l)){ev.preventDefault();pvPick(l);return}
+      }
+    });
+  }
+  /* 散场那两颗钮不能被 run/over 拦着 */
+  const tapFree=function(id,fn){const e=pvEl(id);if(!e)return;
+    e.addEventListener('click',function(ev){ev.preventDefault();fn()})};
+  tapFree('pvReBtn',function(){pvStart(true)});
+  tapFree('pvReHome',function(){pvLeave('lab')});
+  window.addEventListener('keydown',function(e){
+    if(!pvy.run)return;
+    const sc=document.getElementById('screen-pv');
+    if(!sc||!sc.classList.contains('active'))return;
+    const k=e.key;
+    /* 散场帘上写着「按 R 再停一回」：帘子落下时这一颗也得真按得动 */
+    if(pvy.over){if(k==='r'||k==='R'){e.preventDefault();pvStart(true)}return}
+    if(pvy.phase==='ask'&&k>='1'&&k<='4'){e.preventDefault();pvAnswer(Number(k)-1);return}
+    if(pvy.phase==='park'){
+      if(k==='ArrowUp'||k==='ArrowDown'){
+        e.preventDefault();
+        const m=pvy.rows;
+        pvy.sel=(pvy.sel+(k==='ArrowDown'?1:m-1))%m;
+        pvRenderLot();return;
+      }
+      if(k===' '||k==='Enter'){e.preventDefault();pvPick(pvy.sel);return}
+      if(k>='1'&&k<='9'){e.preventDefault();pvPick(Number(k)-1);return}
+    }
+    if(k==='p'||k==='P'){e.preventDefault();pvPeek()}
+    else if(k==='v'||k==='V'){e.preventDefault();pvCalc()}
+    else if(k==='s'||k==='S'){e.preventDefault();pvSwapNight()}
+    else if(k==='h'||k==='H'){e.preventDefault();pvHelp()}
+    else if(k==='g'||k==='G'||k==='Escape'){e.preventDefault();pvQuit('quit')}
+    else if(k==='r'||k==='R'){e.preventDefault();pvStart(true)}
+  });
+}
+function pvLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/2)))}
+function pvKill(){if(pvy.rafId)cancelAnimationFrame(pvy.rafId);pvy.rafId=0;pvClearTimers()}
+function pvStart(again){
+  pvBind();pvKill();
+  pvy.gen++;pvGen=pvy.gen;
+  const w=pvNum('nights');
+  pvy.run=true;pvy.over=false;pvy.phase='load';pvy.load=true;pvy.locked=0;pvy.busy=false;
+  pvy.lv=pvLvOf(w);pvy.ni=0;pvy.score=0;pvy.hearts=PV_HEARTS;pvy.combo=0;pvy.maxCombo=0;pvy.nights=0;
+  pvy.carsAll=0;pvy.saved=0;pvy.saves=0;pvy.perfN=0;pvy.tightN=0;pvy.quickN=0;pvy.cleanN=0;
+  pvy.gain=0;pvy.penSum=0;pvy.hitOk=0;pvy.errSum=0;pvy.tools=0;pvy.swaps=0;pvy.hornAll=0;
+  pvy.clashAll=0;pvy.moveAll=0;pvy.towAll=0;pvy.wordTools=0;pvy.nights=0;
+  pvy.wrong=0;pvy.newBest=false;pvy.fresh=0;pvy.seen=[];pvy.gain=0;
+  pvy.peekN=PV_P0.peek;pvy.calcN=PV_P0.calc;pvy.swapN=PV_P0.swap;
+  pvy.peekUse=0;pvy.calcUse=0;pvy.swapUse=0;pvy.shelfGet=[];
+  pvy.miss=[];const bk=(pvGet('book','')||'').split('|');
+  for(let i=0;i<bk.length&&pvy.miss.length<8;i++){const s=bk[i];if(s&&s.indexOf(':')>0)pvy.miss.push(s.split(':')[0])}
+  pvy.pool=[];pvy.poolLv=-1;pvy.spark=[];pvy.anim=null;
+  const sc=pvEl('screen-pv');
+  if(sc){document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});sc.classList.add('active')}
+  const ov=pvEl('pvOver');if(ov)ov.style.display='none';
+  pvy.playMs=0;pvy.lamp0=pvLampMs(pvy.lv);pvy.lamp=pvy.lamp0;
+  pvy.tellOff=pvNoTell(pvy.lv);pvy.dim=pvDim(pvy.lv);
+  pvTxt('pvLv','第 '+pvy.lv+' 夜');pvRenderHud();pvRenderLot();pvRenderInk();
+  pvSay('');
+  pvFillPool().then(function(){
+    if(pvy.gen!==pvy.gen||!pvy.run)return;
+    pvy.load=false;pvNextNight();
+    pvy.last=0;pvy.rafId=requestAnimationFrame(pvLoop);
+  });
+}
+function pvNudge(){/* 别的坊开了摊：称号条跟着走 */
+  const e=pvEl('pvRank');if(e){const r=pvRankOf(pvNum('nights'));e.textContent=r.e+' '+r.t}
+}
+/* ---- 主循环：三支钟（这一夜的表 · 进口的喇叭 · 这一局）----
+   走一格只有 pvTick 这一份：rAF 喂真帧，探针喂同样的帧 ---- */
+function pvTick(dt){
+  pvy.t+=dt;pvy.playMs+=dt;
+  if(pvy.phase==='park'||pvy.phase==='ask'){
+    pvy.caseMs-=dt;pvy.caseUsed+=dt;
+    if(pvy.phase==='park'){
+      /* 进口站着不安排：每满一息按一声喇叭，一声扣一文 */
+      pvy.horn+=dt;
+      while(pvy.horn>=pvy.horn0){
+        pvy.horn-=pvy.horn0;
+        pvy.hornAll++;pvy.nightHorn++;
+        pvSay('📣 进口按了一声喇叭 —— 车站着不安排是要钱的（一声 <b>'+PV_HORN_WEN+'</b> 文）');
+        pvScore(-PV_HORN_WEN,'horn');
+        pvHorn();
+      }
+      pvy.nagMs+=dt;
+      if(pvy.nagMs>=PV_NAG_MS){pvy.nagMs=0;pvy.nags++;pvNag()}
+      pvy.helpMs+=dt;
+      if(pvy.helpMs>=PV_HELP_MS){pvy.helpMs=0;const c=pvy.cars[pvy.idx];pvTag('🅿️ 这一辆车压住第 '+(c.a+1)+'~'+c.b+' 号车位 · 挑一排没压着的按 1~'+pvy.rows)}
+    }
+    if(pvy.caseMs<=0){pvNightOut('slow');return 0}
+  }
+  if(pvy.phase==='seal'){
+    pvy.sealMs-=dt;
+    if(pvy.sealMs<=0){pvy.sealMs=0;pvSealDone();if(!pvy.run||pvy.over)return 0}
+  }
+  if(pvy.phase==='hand'){
+    pvy.handMs-=dt;
+    if(pvy.handMs<=0){pvy.handMs=0;pvHand();if(!pvy.run||pvy.over)return 0}
+  }
+  if(pvy.phase!=='load'&&pvy.lamp>0){
+    pvy.lamp-=dt;
+    if(pvy.lamp<=0){pvOver('lamp');return 0}
+  }
+  /* 掀帘的那一息过了得当场把帘子放下 */
+  if(pvy.peekMs>0){pvy.peekMs-=dt;if(pvy.peekMs<=0){pvy.peekMs=0;pvRenderLot();pvRenderTally();pvRenderHud()}}
+  if(pvy.calcMs>0){pvy.calcMs-=dt;if(pvy.calcMs<=0){pvy.calcMs=0;pvRenderLot()}}
+  /* 答错的那张牌亮够一息才唤下一辆：这一息里题目不动，进口锁着 */
+  if(pvy.holdMs>0){pvy.holdMs-=dt;if(pvy.holdMs<=0){pvy.holdMs=0;pvy.wrongMs=0;if(pvy.phase==='ask')pvCallCar()}return 1}
+  if(pvy.qMs>0){pvy.qMs-=dt;if(pvy.qMs<=0){pvy.qMs=0;pvAskOut()}}
+  if(pvy.wrongMs>0){pvy.wrongMs-=dt;if(pvy.wrongMs<=0){pvy.wrongMs=0;pvRenderOpts();pvRenderLot()}}
+  pvFx(dt);
+  pvRenderMeters();
+  return 1;
+}
+function pvLoop(ts){
+  if(!pvy.run||pvy.over)return;
+  pvy.rafId=0;
+  const dt=pvy.last?Math.min(120,ts-pvy.last):16;
+  pvy.last=ts;
+  if(!pvTick(dt))return;
+  if(pvy.run&&!pvy.over)pvy.rafId=requestAnimationFrame(pvLoop);
+}
+/* 顶钟：把这一夜/这一局的钟灌满（探针掐帧用，判据一字不动）*/
+function pvTopClock(kind,ms){
+  if(kind==='case'){pvy.caseMs=ms;if(ms>pvy.case0)pvy.case0=ms}
+  else if(kind==='lamp'){pvy.lamp=ms;if(ms>pvy.lamp0)pvy.lamp0=ms}
+  else if(kind==='horn'){pvy.horn0=ms}
+}
+
+/* ==== 停车坊 ④：挑字 · 开一张表 · 进口放行 · 满案重画 ==== */
+function pvRnd(){pvy.seed=(pvy.seed*1103515245+12345)&0x7fffffff;return pvy.seed/0x7fffffff}
+/* ---- 池子：本串的字先过闸，闸门不通的上不了台 ---- */
+function pvFillPool(){
+  const lv=pvy.lv,gen=pvy.gen;
+  const letters=(pvLetters(lv)||'').split('');
+  const want=[];
+  for(let i=0;i<pvy.miss.length;i++){const c=pvy.miss[i];if(letters.indexOf(c)>=0&&want.indexOf(c)<0)want.push(c)}
+  for(let i=letters.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=letters[i];letters[i]=letters[j];letters[j]=t}
+  for(let i=0;i<letters.length;i++)if(want.indexOf(letters[i])<0)want.push(letters[i]);
+  const rest=[];for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,(pvLetters(L)||'').split(''));
+  const need=function(){return pvy.pool.length>=PV_POOL_WANT};
+  const scan=async function(list){
+    for(let kk=0;kk<list.length&&!need();kk+=12){
+      const rs=await Promise.all(list.slice(kk,kk+12).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(pvy.gen!==gen||!pvy.run)return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[kk+i];if(!rs[i]||!rs[i].medians)continue;
+        let rec=pvCache[ch];
+        if(rec===undefined){rec=pvAudit(ch,rs[i])||null;pvCache[ch]=rec}
+        if(!rec)continue;
+        if(!pvy.pool.some(function(p){return p.ch===ch}))pvy.pool.push(rec);
+      }
+    }
+  };
+  return scan(want.concat(rest)).then(function(){
+    if(pvy.pool.length<PV_POOL_MIN&&lv!==pvy.poolLv){pvy.poolLv=lv;return pvFillPool()}
+    return pvy.pool;
+  });
+}
+/* ---- 挑一张表：先挑没停完的与错过的，再挑本串没见过的 ---- */
+function pvNextNight(){
+  if(!pvy.pool.length){pvOver('pool');return}
+  let pick=-1;
+  for(let i=0;i<pvy.pool.length;i++){
+    const r=pvy.pool[i];
+    if(!pvDexHas(r.ch)&&pvy.seen.indexOf(r.ch)<0&&pvy.miss.indexOf(r.ch)<0){pick=i;break}
+  }
+  if(pick<0)for(let i=0;i<pvy.pool.length;i++)if(pvy.seen.indexOf(pvy.pool[i].ch)<0){pick=i;break}
+  if(pick<0)for(let i=0;i<pvy.miss.length&&pick<0;i++)for(let k=0;k<pvy.pool.length;k++)if(pvy.pool[k].ch===pvy.miss[i]){pick=k;break}
+  if(pick<0)pick=Math.floor(pvRnd()*pvy.pool.length);
+  const r=pvy.pool[pick];pvy.pool.splice(pick,1);
+  pvOpenNight(r);
+}
+/* ---- 开一张表：车位钉死、三双手的账先摊开、第一辆车到进口 ---- */
+function pvOpenNight(r){
+  pvy.rec=r;pvy.ch=r.ch;pvy.n=r.n;pvy.T=r.T;pvy.cars=r.cars;pvy.L=r.L;pvy.on=r.on;
+  pvy.at=r.at;pvy.choices=r.choices;pvy.wide=r.wide;pvy.hard=r.hard;pvy.rows=r.on+1;
+  pvy.idx=0;pvy.parked=0;pvy.towed=0;pvy.sel=0;pvy.clashN=0;pvy.moveN=0;pvy.snapN=0;
+  pvy.noSnap=false;pvy.err=0;pvy.usedTools=0;pvy.nightWen=0;pvy.nightHorn=0;pvy.hornNag=0;
+  for(let i=0;i<pvy.lane.length;i++)pvy.lane[i]=-1;
+  pvy.dirCode=[];pvy.grid=[];pvy.usedRows=0;
+  pvy.peekMs=0;pvy.calcMs=0;pvy.wrongMs=0;pvy.holdMs=0;pvy.anim=null;pvy.spark=[];pvy.lit=null;
+  pvy.caseMs=pvNightMs(pvy.lv);pvy.case0=pvy.caseMs;pvy.caseUsed=0;
+  pvy.quickMs=pvQuickMs(pvy.lv);pvy.quickOk=1;
+  pvy.horn=0;pvy.horn0=pvHornMs(pvy.lv);pvy.nagMs=0;pvy.helpMs=0;
+  pvy.fresh=pvBookHas(r.ch)||pvDexHas(r.ch)?0:1;
+  pvy.seen.push(r.ch);
+  pvy.tellOff=pvNoTell(pvy.lv);pvy.dim=pvDim(pvy.lv);
+  pvy.locked=0;pvy.busy=false;
+  pvTag(pvy.quitNote?('🏳 弃了这一夜的表 · 新表 '+r.ch+' · '+r.n+' 笔'):('🚗 这一夜的表：'+r.ch+' · '+r.n+' 笔'));
+  pvy.quitNote=0;
+  pvRenderInk();pvRenderHud();pvRenderTally();
+  pvSay(pvy.dim?
+    ('🚗 <b>'+r.ch+'</b> 一共 '+r.n+' 笔 = '+r.n+' 辆车。<b>最挤的那一列压着几笔，这张表就最少几排</b> —— 这一夜的号尺与柱子蒙着，自己拿眼睛数；班主不回头、每辆只挑当前最空的排，他要用 <b>'+r.on+'</b> 排。<br>🅿️ 车位号（第几号到第几号）是<b>钉死</b>的，你只挑<b>第几排</b> —— 同一排不许两辆车压在同一个格上。'):
+    ('🚗 <b>'+r.ch+'</b> 一共 '+r.n+' 笔 = '+r.n+' 辆车。最挤的那一列同时压着 <b>'+r.L+'</b> 笔 ⇒ 这张表<b>最少 '+r.L+' 排</b>；'+
+     '班主不回头、每辆只挑当前最空的排，他要用 <b>'+r.on+'</b> 排。<br>🅿️ 车位号（第几号到第几号）是<b>钉死</b>的，你只挑<b>第几排</b> —— 同一排不许两辆车压在同一个格上。'+
+     (r.on>r.L?'停进 <b>'+r.L+'</b> 排就把班主比下去了，<b>少开一排 = '+PV_SAVE_WEN+' 文</b>':'')));
+  pvCallCar();
+}
+/* ---- 进口放行：先答这一笔的笔顺题，答对了车才进场 ---- */
+function pvCallCar(){
+  if(pvy.idx<0||pvy.idx>=pvy.n){pvNightDone();return}
+  pvy.opts=[];pvy.ans='';pvy.qKind='';pvy.noSnap=false;pvy.wrongIdx=-1;
+  pvy.sel=0;pvy.dirCode[pvy.idx]=detectDir(pvy.rec.M[pvy.idx]);
+  pvBuildAsk();
+  pvy.qMs=pvQMs(pvy.lv);pvy.qMs0=pvy.qMs;
+  pvy.phase='ask';pvy.locked=0;
+  pvRenderLot();pvRenderOpts();pvRenderGate();
+}
+
+/* ---- 题面：这一笔往哪写 / 这一子一共几笔（答案牌按下去才放行）---- */
+function pvBuildAsk(){
+  const r=pvy.rec,M=r.M,i=pvy.idx;
+  const a=pvRnd();
+  if(a<0.6){
+    const code=detectDir(M[i]);
+    const d=DIRS.filter(function(x){return x.code===code})[0]||DIRS[0];
+    pvy.qKind='dir';pvy.qDir=code;
+    const rest=DIRS.filter(function(x){return x.code!==code});
+    for(let k=rest.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));const t=rest[k];rest[k]=rest[j];rest[j]=t}
+    pvy.opts=[d].concat(rest.slice(0,3));
+    for(let k=pvy.opts.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));const t=pvy.opts[k];pvy.opts[k]=pvy.opts[j];pvy.opts[j]=t}
+    pvy.ans=String(pvy.opts.indexOf(d)+1);
+    pvAsk('🚦 第 <b>'+(i+1)+'/'+r.n+'</b> 辆车到进口：这一笔往哪写？<br><small>答对了才放行 · 答错或让 ⏳ 进口那支钟走完，这一辆就拖去修理厂（扣 '+PV_P_MISS+' 文）</small>');
+  } else {
+    pvy.qKind='cnt';pvy.qDir='';
+    const set={};set[r.n]=1;
+    while(Object.keys(set).length<4){
+      const off=1+Math.floor(Math.random()*3);
+      const v=r.n+(Math.random()<0.5?off:-off);
+      if(v>=1&&v<=16)set[v]=1;
+    }
+    pvy.opts=Object.keys(set).map(function(s){return {icon:'🚌',label:s+' 笔',code:'C',num:Number(s)}});
+    pvy.ans=String(pvy.opts.findIndex(function(o){return o.num===r.n})+1);
+    pvAsk('🚦 第 <b>'+(i+1)+'/'+r.n+'</b> 辆车到进口：「'+r.ch+'」一共几笔？<br><small>数对了才知道要停几辆车 · 答错这一辆拖去修理厂（扣 '+PV_P_MISS+' 文）</small>');
+  }
+}
+function pvAsk(html){const e=pvEl('pvAsk');if(e)e.innerHTML=html}
+function pvAskOut(){/* 进口钟走尽：这一辆就地拖走 */
+  if(pvy.phase!=='ask')return;
+  pvy.qMs=0;pvMissCar('没说清');
+}
+/* ---- 满案重画：车位表（尺 · 拥挤柱 · 一排一道 · 车 · 幽灵位）---- */
+function pvLaneFree(l,c){
+  if(l<0||l>=pvy.rows)return false;
+  for(let t=c.a;t<c.b;t++)if(pvy.grid[l][t])return false;
+  return true;
+}
+function pvGrid(){
+  const g=[];
+  for(let l=0;l<pvy.rows;l++)g.push(new Array(pvy.T).fill(0));
+  for(let i=0;i<pvy.cars.length;i++){
+    const l=pvy.lane[i];if(l<0||l>=pvy.rows)continue;
+    const c=pvy.cars[i];
+    for(let t=c.a;t<c.b;t++)g[l][t]=i+1;
+  }
+  return g;
+}
+function pvRenderLot(){
+  const box=pvEl('pvRows');if(!box)return;
+  pvy.grid=pvGrid();
+  const cur=pvy.phase==='park'?pvy.cars[pvy.idx]:null;
+  let h='';
+  for(let l=0;l<pvy.rows;l++){
+    let cls='pv-lane';
+    if(cur){
+      const ok=pvLaneFree(l,cur);
+      if(!pvy.tellOff&&ok)cls+=' ok';
+      if(l===pvy.sel)cls+=' sel';
+    }
+    if(pvy.calcMs>0&&cur&&l===pvy.calcLane)cls+=' last';
+    h+='<div class="pv-row"><div class="pv-lab">排<br>'+(l+1)+'</div><div class="'+cls+'" data-lane="'+l+'" style="--pvT:'+pvy.T+'">';
+    for(let i=0;i<pvy.cars.length;i++){
+      if(pvy.lane[i]!==l)continue;
+      const c=pvy.cars[i],code=pvy.dirCode[i]||'X';
+      const left=(c.a/pvy.T*100).toFixed(3),width=((c.b-c.a)/pvy.T*100).toFixed(3);
+      const fresh=(i===pvy.idx-1&&pvy.animIn)?' fresh':'';
+      h+='<div class="pv-car '+code+fresh+'" data-car="'+i+'" style="left:'+left+'%;width:'+width+'%" title="第 '+(i+1)+' 笔 · 压住第 '+(c.a+1)+'~'+c.b+' 号车位">'+
+         '<span>'+(i+1)+'</span></div>';
+    }
+    if(cur&&pvLaneFree(l,cur)&&pvy.phase==='park'){
+      const left=(cur.a/pvy.T*100).toFixed(3),width=((cur.b-cur.a)/pvy.T*100).toFixed(3);
+      h+='<div class="pv-ghost" style="left:'+left+'%;width:'+width+'%"></div>';
+    }
+    h+='</div></div>';
+  }
+  box.innerHTML=h;
+  const ru=pvEl('pvRuler'),ba=pvEl('pvBars');
+  if(ru){let s='';for(let t=0;t<pvy.T;t++)s+='<i>'+(t+1)+'</i>';ru.innerHTML=s}
+  const dm=pvy.dim&&pvy.peekMs<=0;
+  if(ba){
+    let s='';
+    for(let t=0;t<pvy.T;t++){
+      s+='<i class="'+(pvy.at[t]===pvy.L?'max':'')+'" style="height:'+(dm?6:Math.max(2,pvy.at[t]*4))+'px" title="'+(dm?'？':'第 '+(t+1)+' 号车位压着 '+pvy.at[t]+' 笔')+'"></i>';
+    }
+    ba.innerHTML=s;
+  }
+  const lot=pvEl('pvLot');
+  if(lot)lot.classList[dm?'add':'remove']('dim');
+}
+/* ---- 墨：这一子的模样，停好一笔描金一笔 ---- */
+function pvPX(x){return PV_IX0+x/1000*(PV_IX1-PV_IX0)}
+function pvPY(y){return PV_IY1-y/1000*(PV_IY1-PV_IY0)}
+function pvRenderInk(){
+  const cv=pvInk,ctx2=pvIctx;if(!cv||!ctx2)return;
+  ctx2.clearRect(0,0,PV_IW,PV_IH);
+  ctx2.strokeStyle='rgba(255,255,255,.10)';ctx2.lineWidth=1;
+  ctx2.strokeRect(6.5,6.5,PV_IW-13,PV_IH-13);
+  ctx2.setLineDash([3,3]);
+  ctx2.beginPath();ctx2.moveTo(PV_IW/2,7);ctx2.lineTo(PV_IW/2,PV_IH-7);
+  ctx2.moveTo(7,PV_IH/2);ctx2.lineTo(PV_IW-7,PV_IH/2);ctx2.stroke();
+  ctx2.setLineDash([]);
+  const M=pvy.rec?pvy.rec.M:null;if(!M)return;
+  for(let i=0;i<M.length;i++){
+    const st=M[i];if(!st||st.length<1)continue;
+    const l=pvy.lane[i];
+    ctx2.strokeStyle=l>=0?'#FFD54F':(l===-2?'rgba(239,83,80,.55)':'rgba(255,255,255,.16)');
+    ctx2.lineWidth=l>=0?3.2:2.2;ctx2.lineCap='round';ctx2.lineJoin='round';
+    ctx2.beginPath();
+    for(let k=0;k<st.length;k++){const p=pvPX(st[k][0]),q=pvPY(st[k][1]);if(k)ctx2.lineTo(p,q);else ctx2.moveTo(p,q)}
+    if(st.length===1){const p=pvPX(st[0][0]),q=pvPY(st[0][1]);ctx2.lineTo(p+0.6,q)}
+    ctx2.stroke();
+    if(i===pvy.idx&&pvy.phase!=='seal'){
+      ctx2.strokeStyle='rgba(255,213,79,.9)';ctx2.lineWidth=1.4;
+      const a=st[0];ctx2.beginPath();ctx2.arc(pvPX(a[0]),pvPY(a[1]),4.5,0,Math.PI*2);ctx2.stroke();
+    }
+  }
+}
+/* ---- 答案牌：四张（进口那一道题）---- */
+function pvRenderOpts(){
+  for(let i=0;i<4;i++){
+    const b=pvEl('pvOpt'+i);if(!b)continue;
+    const o=pvy.opts[i];
+    b.className='wl-opt'+(pvy.wrongMs>0&&pvy.wrongIdx===i?' wrong':'');
+    if(pvy.phase!=='ask'||!o){b.textContent='—';b.disabled=true;continue}
+    b.disabled=false;
+    b.innerHTML='<b>'+(i+1)+'</b> '+(o.icon||'')+' '+(o.label||'')+
+      '<span class="st">'+(pvy.tellOff?'':'进口等着的是第 '+(pvy.idx+1)+' 笔')+'</span>';
+  }
+}
+/* ---- 进口队：一辆辆车排着等放行 ---- */
+function pvRenderGate(){
+  const e=pvEl('pvGate');if(!e)return;
+  let h='<b>🛬 进口</b>';
+  for(let i=0;i<pvy.cars.length;i++){
+    const cls=i===pvy.idx?'pv-qcar next':(i<pvy.idx?'pv-qcar wait':'pv-qcar wait');
+    const l=pvy.lane[i];
+    h+='<span class="'+(l>=0?'pv-qcar wait':cls)+'" title="第 '+(i+1)+' 笔 · 车位 '+(pvy.cars[i].a+1)+'~'+pvy.cars[i].b+'">'+
+       (l===-2?'🔧':(l>=0?'✅':(i+1)))+'</span>';
+  }
+  e.innerHTML=h;
+}
+/* ---- HUD：称号 · 心 · 连击 · 夜账 · 排数账 ---- */
+function pvUsedRows(){
+  let m=-1;
+  for(let i=0;i<pvy.cars.length;i++)if(pvy.lane[i]>m)m=pvy.lane[i];
+  return m<0?0:m+1;
+}
+function pvRenderHud(){
+  const r=pvRankOf(pvNum('nights'));
+  pvTxt('pvRank',r.e+' '+r.t);
+  const hp=pvEl('pvHearts');
+  if(hp){
+    let hs='';
+    for(let i=0;i<PV_HEARTS;i++)hs+='<i'+(i<pvy.hearts?'':' class="off"')+'>♥</i>';
+    hp.innerHTML=hs;
+  }
+  pvTxt('pvLedCombo','🔥 一把停好 '+pvy.combo+' · 最长 '+pvy.maxCombo);
+  pvTxt('pvLedWord','🌙 第 '+(pvy.ni+1)+' 夜 · 一夜停完 '+pvy.perfN+' 夜');
+  pvTxt('pvLv','第 '+pvy.lv+' 夜');
+  const u=pvUsedRows();
+  pvTxt('pvLedGate',pvy.rec?('🅿️ 你开 '+u+' 排 · 下界 '+((pvy.dim&&pvy.peekMs<=0)?'？':pvy.L)+' 排 · 班主 '+pvy.on+' 排'):'🌱 表还没画开');
+  const e=pvEl('pvHitLight');
+  if(e){e.textContent=pvy.hitOk?'💡 妙排':'🌫 没对上';e.style.color=pvy.hitOk?'#FFD54F':'#607D8B'}
+}
+/* ---- 三双手的账（第 6 夜起蒙上，得自己数）---- */
+function pvRenderTally(){
+  const box=pvEl('pvTally');if(!box)return;
+  if(!pvy.rec){box.innerHTML='';return}
+  const u=pvUsedRows(),dim=pvy.dim&&pvy.peekMs<=0;
+  const g=[
+    ['🚌 车','<b>'+pvy.n+'</b> 辆'],
+    ['📏 车位','<b>'+pvy.T+'</b> 格'],
+    ['🔺 最挤那列','<b>'+(dim?'？':pvy.L)+'</b> 笔'],
+    ['🧮 下界 L','<b>'+(dim?'？':pvy.L)+'</b> 排'],
+    ['🚌 班主','<b>'+pvy.on+'</b> 排'],
+    ['🅿️ 你','<b>'+(u||'—')+'</b> 排']
+  ];
+  let h='';
+  for(let i=0;i<g.length;i++)h+='<i class="'+(i===5&&u&&u<=pvy.L?'on':'')+'">'+g[i][0]+' '+g[i][1]+'</i>';
+  box.innerHTML=h;
+}
+/* ---- 四支条：这一夜 · 喇叭 · 这一局 · 排数账 ---- */
+function pvRenderMeters(){
+  const set=function(id,frac,txtId,s){
+    const b=pvEl(id);if(b)b.style.width=Math.max(0,Math.min(100,frac*100))+'%';
+    if(txtId)pvTxt(txtId,s);
+  };
+  set('pvBarCase',pvy.case0?pvy.caseMs/pvy.case0:0,'pvTime',
+    '这一夜 '+(Math.max(0,pvy.caseMs)/1000).toFixed(1)+' 秒 · 这一局 '+(Math.max(0,pvy.lamp)/1000).toFixed(0)+' 秒');
+  const askQ=(pvy.phase==='ask'&&pvy.qMs0>0);
+  set('pvBarIdle',askQ?(pvy.qMs/pvy.qMs0):(pvy.horn0?1-pvy.horn/pvy.horn0:0),'pvLedNaive2','');
+  set('pvBarLamp',pvy.lamp0?pvy.lamp/pvy.lamp0:0,'','');
+  const u=pvUsedRows(),sv=Math.max(0,pvy.on-u);
+  set('pvBarLed',pvy.L?Math.min(1,sv/Math.max(1,pvy.on-pvy.L)):0,'pvLedSnap',
+    '🧾 停 '+pvy.parked+'/'+(pvy.n-pvy.towed)+' 辆 · 省 '+sv+' 排');
+  const t=pvEl('pvBarIdle'),pn=pvEl('pvPeek'),cl=pvEl('pvCalc'),sw=pvEl('pvSwap');
+  if(pn)pn.querySelector('b').textContent='剩 '+pvy.peekN;
+  if(cl)cl.querySelector('b').textContent='剩 '+pvy.calcN;
+  if(sw)sw.querySelector('b').textContent='剩 '+pvy.swapN;
+  if(t&&t.parentElement)t.parentElement.querySelector('b').textContent=
+    askQ?('⏳ 进口等 '+Math.ceil(Math.max(0,pvy.qMs)/1000)+' 秒')
+        :('📣 喇叭 '+pvy.nightHorn+' 声');
+}
+/* ---- 一文一分都记清 ---- */
+function pvScore(n,why){
+  if(!n)return;
+  pvy.score=Math.max(0,pvy.score+n);
+  if(n>0)pvy.gain+=n;else pvy.penSum+=-n;
+  pvy.nightWen+=n;
+  const b=pvEl('pvScore');if(b)b.textContent=pvy.score;
+  pvy.hitOk=n>0;pvy.hitTxt=why||'';
+}
+
+/* ==== 停车坊 ⑥：答题放行 · 停进一排 · 撞位 · 拔车重停 ==== */
+/* 下一辆要停的：编号最小、没停过也没被拖走的那辆 */
+function pvSetIdx(){
+  pvy.idx=-1;
+  for(let i=0;i<pvy.cars.length;i++)if(pvy.lane[i]===-1){pvy.idx=i;break}
+  if(pvy.idx<0){pvNightDone();return 0}
+  pvy.dirCode[pvy.idx]=detectDir(pvy.rec.M[pvy.idx]);
+  return 1;
+}
+/* ---- 答案牌按下：对了放行，错了这辆拖去修理厂 ---- */
+function pvAnswer(i){
+  if(pvy.phase!=='ask'||pvy.locked)return;
+  const want=Number(pvy.ans);
+  if(i+1===want){
+    pvy.hitOk=1;pvDing(6);
+    pvy.phase='park';pvy.horn=0;pvy.nagMs=0;pvy.helpMs=0;pvy.qMs=0;
+    pvAsk('🅿️ 第 <b>'+(pvy.idx+1)+'</b> 辆车进场：它压住第 <b>'+(pvy.cars[pvy.idx].a+1)+'~'+pvy.cars[pvy.idx].b+'</b> 号车位<br><small>挑一排没压着的停进去 · 点排或按 <b>1~'+pvy.rows+'</b> · 点已停的车能拔出来重停</small>');
+    pvRenderLot();pvRenderOpts();pvRenderGate();pvRenderHud();
+    return;
+  }
+  pvy.wrongMs=PV_WRONG_MS;pvy.wrongIdx=i;
+  pvRenderOpts();
+  pvMissCar('答错');
+}
+/* 这一辆在进口没说清（答错 / 钟走尽）：拖去修理厂，今夜这一笔描不上 */
+function pvMissCar(why){
+  pvy.err++;pvy.errSum++;pvy.wrong++;pvy.combo=0;pvy.hitOk=0;
+  pvScore(-PV_P_MISS,why);pvBad();
+  pvy.lane[pvy.idx]=-2;pvy.towed++;pvy.towAll++;
+  pvSay('🔧 '+why+'了：这一辆拖去修理厂（-'+PV_P_MISS+' 文）· 今夜这一笔描不上了');
+  pvTag('🔧 第 '+(pvy.idx+1)+' 笔'+why+' · 拖走');
+  pvRenderInk();pvRenderGate();
+  if(pvy.err>=PV_ERR_LINE){pvLoseHeart('一夜答错满 '+PV_ERR_LINE+' 次');if(pvy.over)return}
+  if(!pvSetIdx())return;
+  /* 错的那张牌要亮够一息：先把进口锁住，亮完了再唤下一辆 */
+  if(pvy.wrongMs>0){pvy.holdMs=pvy.wrongMs;pvy.locked=1;return}
+  pvCallCar();
+}
+/* ---- 停进一排：压着别人的车就是撞位 ---- */
+function pvPick(l){
+  if(pvy.phase!=='park'||pvy.locked)return;
+  if(l<0||l>=pvy.rows){pvTag('🅿️ 没这一排');return}
+  const c=pvy.cars[pvy.idx];
+  if(!pvLaneFree(l,c)){
+    let at=c.a;while(at<c.b&&!pvy.grid[l][at])at++;
+    const who=pvy.grid[l][at];
+    pvy.clashN++;pvy.clashAll++;pvy.noSnap=true;pvy.combo=0;
+    pvScore(-PV_P_CLASH,'撞位');pvBad();
+    pvTag('💥 撞位：这排第 '+(at+1)+' 号车位上停着第 '+who+' 笔的车');
+    pvSay('💥 <b>撞位</b>（-'+PV_P_CLASH+' 文）：同一排里两辆车不许压在同一个车位上。<br>👀 数这一排的车压到第几号车位，再挑一排空着的 —— 或者把谁拔出来重停');
+    const lane=pvEl('pvLot');
+    const row=lane?lane.querySelector('.pv-lane[data-lane="'+l+'"]'):null;
+    if(row){row.classList.add('clash');pvLater(pvy.clashMs,function(){if(row)row.classList.remove('clash')})}
+    pvRenderHud();pvRenderMeters();
+    return;
+  }
+  pvy.lane[pvy.idx]=l;
+  pvy.parked++;pvy.carsAll++;
+  let wen=PV_CAR_WEN;const why=['停进一排 '+PV_CAR_WEN];
+  if(!pvy.noSnap){wen+=PV_SNAP_WEN;why.push('一把停好 +'+PV_SNAP_WEN);pvy.combo++;pvy.snapN++;
+    if(pvy.combo>pvy.maxCombo)pvy.maxCombo=pvy.combo}
+  else pvy.combo=0;
+  pvScore(wen,'停车');pvSlide();
+  pvRenderInk();
+  const fx=((c.a+c.b)/2/pvy.T),fy=(l+0.5)/pvy.rows;
+  pvSpark(fx,fy,14,'rgba(255,213,79,.9)');
+  pvTag('✅ 第 '+(pvy.idx+1)+' 笔停进 '+(l+1)+' 排 · 你开了 '+pvUsedRows()+' 排（下界 '+(pvy.dim?'？':pvy.L)+' · 班主 '+pvy.on+'）');
+  if(!pvSetIdx())return;
+  pvCallCar();
+}
+function pvPull(i){
+  if(pvy.phase!=='park'&&pvy.phase!=='ask')return;
+  if(pvy.locked)return;
+  if(pvy.lane[i]<0){pvTag('🚗 这一辆还没停下');return}
+  pvy.lane[i]=-1;pvy.parked--;pvy.moveN++;pvy.moveAll++;pvy.noSnap=true;pvy.combo=0;
+  pvScore(-PV_P_MOVE,'拔车');pvPop();
+  pvSay('🔁 把第 '+(i+1)+' 笔的车拔出来了（-'+PV_P_MOVE+' 文）· 从它往后重新挑排停');
+  pvRenderInk();
+  if(!pvSetIdx())return;
+  pvCallCar();
+}
+/* ---- 一夜停完：账摊开一息（对账）---- */
+function pvNightDone(){
+  if(pvy.phase==='seal'||pvy.phase==='out')return;
+  pvy.phase='seal';pvy.locked=1;pvy.opts=[];
+  pvy.sealMs=PV_AUDIT_MS;
+  pvy.nights++;pvy.usedRows=pvUsedRows();
+  const u=pvy.usedRows,sv=Math.max(0,pvy.on-u),hit=(u<=pvy.L);
+  pvSeal();pvDing(14);
+  pvRenderLot();pvRenderHud();pvRenderTally();pvRenderGate();pvRenderInk();
+  pvSay('🧾 对账：<b>'+pvy.ch+'</b> 停了 '+pvy.parked+' 辆（拖走 '+pvy.towed+'）· 你开 <b>'+u+'</b> 排 · 下界 <b>'+pvy.L+'</b> 排 · 班主 <b>'+pvy.on+'</b> 排<br>'+
+    (hit?'🎊 <b>数学家就是你</b>：区间图的色数就等于最挤那一列的笔数，'+pvy.L+' 排一辆都不多。':'🚌 班主多开的 '+sv+' 排里你省了 '+sv+' 排，还差 '+(u-pvy.L)+' 排才到下限'));
+  pvTag(hit?'🎊 '+pvy.ch+' · '+u+' 排（下限）':'🅿️ '+pvy.ch+' · '+u+' 排 / 下限 '+pvy.L);
+}
+/* ---- 对账落定：赏罚一笔笔记清，然后下一张表 ---- */
+function pvSealDone(){
+  if(pvy.phase!=='seal'||!pvy.rec)return;
+  const u=pvy.usedRows||pvUsedRows(),sv=Math.max(0,pvy.on-u),hit=(u<=pvy.L);
+  const fresh=pvy.fresh,tight=(pvy.clashN===0&&pvy.moveN===0);
+  let pts=0;const why=[];
+  if(sv){pts+=sv*PV_SAVE_WEN;why.push('比班主少开 '+sv+' 排 ×'+PV_SAVE_WEN);pvy.saved+=sv;pvy.saves++}
+  if(hit){pts+=PV_PERFECT_WEN;why.push('一夜停完 +'+PV_PERFECT_WEN);pvy.perfN++}
+  if(tight){pts+=PV_TIGHT_WEN;why.push('一次没撞 +'+PV_TIGHT_WEN);pvy.tightN++}
+  if(pvy.quickOk&&pvy.caseUsed<=pvy.quickMs){pts+=PV_QUICK_WEN;why.push('眼快 +'+PV_QUICK_WEN);pvy.quickN++}
+  if(fresh){pts+=PV_FRESH_WEN;why.push('头一回停这张表 +'+PV_FRESH_WEN);pvy.fresh++}
+  if(pvy.usedTools===0){pts+=PV_PTS_NOTOOL;why.push('空手停 +'+PV_PTS_NOTOOL)}
+  pvy.score=Math.max(0,pvy.score+pts);
+  if(pts>0)pvy.gain+=pts;
+  if(hit){pvy.cleanN++;pvLedgerAdd(pvy.rec);pvBookDel(pvy.ch)}
+  else pvBookPush(pvy.ch,'开'+u+'排(下限'+pvy.L+')');
+  pvPut('nights',pvNum('nights')+1);
+  pvInc('cars',pvy.parked);pvInc('saved',sv);
+  if(pvy.score>pvNum('best')){pvPut('best',pvy.score);pvy.newBest=true}
+  pvSay(pvSayOf(why,pts,u,hit));
+  pvy.ni++;pvy.locked=0;
+  if(pvy.ni>=PV_PER){pvRoundOut();return}
+  pvy.phase='hand';pvy.handMs=PV_HAND_MS;pvRenderHud();
+}
+function pvSayOf(why,pts,u,hit){
+  if(!why.length)return '🅿️ 这一夜 '+pvy.ch+'：停进 '+u+' 排（下限 '+pvy.L+'）· 没省下排，下一张表先数最挤那一列再落脚';
+  return (hit?'🎊 ':'🧾 ')+pvy.ch+' +'+pts+' 文（'+why.join(' · ')+'）· 你开 '+u+' 排 / 下限 '+pvy.L+' 排 / 班主 '+pvy.on+' 排';
+}
+function pvHand(){/* 三双手报一遍，然后开下一张表 */
+  pvNextNight();
+}
+/* ---- 这一夜的钟走完：还有车没停 ---- */
+function pvNightOut(why){
+  if(pvy.phase!=='park'&&pvy.phase!=='ask')return;
+  pvy.phase='out';pvy.locked=1;
+  pvScore(-PV_P_OUT,why==='slow'?'夜钟走尽':'没停完');pvBad();
+  pvLoseHeart(why==='slow'?'这一夜的钟走尽':'这一夜没停完');
+  if(pvy.over)return;
+  pvBookPush(pvy.ch,'夜钟走尽');
+  pvy.ni++;
+  if(pvy.ni>=PV_PER){pvRoundOut();return}
+  pvHand();
+}
+/* ---- 一局三张表停完 / 心尽 / 局钟走尽 ---- */
+function pvRoundOut(){pvOver('done')}
+function pvOver(why){
+  if(pvy.over)return;
+  pvy.over=true;pvy.phase='over';pvy.locked=1;pvKill();
+  const txt={done:'⏺ 三张表都收了',lamp:'⏺ 这一局的钟走完了',hearts:'💔 心停完了',quit:'🏳 弃夜收工',pool:'🌱 这一串没挑出能停的字'}[why]||'⏺ 收工';
+  const stars=why==='done'?(pvy.perfN?12:6):(why==='lamp'||why==='hearts'?4:2);
+  pvTxt('pvRsWhy',txt);
+  pvTxt('pvRsScore','🧾 '+pvy.score+' 文'+(pvy.newBest?'（新纪录）':'')+' · 一夜停完 '+pvy.perfN+'/'+PV_PER);
+  pvTxt('pvRsWords','🌙 停完 '+pvy.nights+' 张表 · 局号 '+(pvNum('rounds')+1)+' · 一把停好最长 '+pvy.maxCombo+' 辆');
+  pvTxt('pvRsStars','⭐ +'+stars);
+  pvTxt('pvRsErr','✗ 撞位 '+pvy.clashAll+' 次 · 拔车 '+pvy.moveAll+' 次 · 拖去修理厂 '+pvy.towAll+' 辆 · 喇叭 '+pvy.hornAll+' 声');
+  const got=pvShelfNow(),add=[];
+  const shelf=(pvGet('shelf','')||'').split('|').filter(x=>x);
+  for(let i=0;i<PV_SHELF.length;i++)if(got[i]&&shelf.indexOf(PV_SHELF[i].k)<0){shelf.push(PV_SHELF[i].k);add.push(PV_SHELF[i].k)}
+  if(add.length)pvPut('shelf',shelf.join('|'));
+  pvTxt('pvRsShelf','🎒 车房：'+(add.length?'添了 '+add.join(' · '):'（这一把一件没添）')+' · 共 '+shelf.length+'/'+PV_SHELF.length);
+  const r=pvRankOf(pvNum('nights'));
+  pvTxt('pvRsRank',r.e+' '+r.t+' · 一辈子停完 '+pvNum('nights')+' 夜');
+  pvPut('rounds',pvNum('rounds')+1);
+  pvInc('clash',pvy.clashN);pvInc('move',pvy.moveN);
+  const ov=pvEl('pvOver');if(ov)ov.style.display='flex';
+  if(why==='done'&&pvy.score>0){try{spawnConfetti&&spawnConfetti();addStars&&addStars(stars)}catch(e){}}
+  else if(stars){try{addStars&&addStars(stars)}catch(e){}}
+  try{updateHomeStats&&updateHomeStats()}catch(e){}
+  pvSay('🚗 收工：'+txt+' · '+pvy.score+' 文 · 一夜停完 '+pvy.perfN+' 张。按 <b>R</b> 再停一回');
+}
+/* ---- 心 · 弃夜 · 回家 ---- */
+function pvLoseHeart(why){
+  pvy.hearts--;pvBad();
+  pvRenderHud();
+  pvSay('💔 掉一颗心（'+why+'）· 还剩 '+pvy.hearts+' 颗');
+  if(pvy.hearts<=0){pvOver('hearts');return 1}
+  return 0;
+}
+function pvQuit(why){
+  if(!pvy.run||pvy.over)return;
+  if(pvy.phase==='park'||pvy.phase==='ask'){
+    pvScore(-PV_P_QUIT,'弃夜');
+    pvBookPush(pvy.ch,'弃夜');
+    pvy.ni++;
+    pvy.quitNote=1;
+    pvTag('🏳 弃了这一夜的表');
+    if(pvy.ni>=PV_PER){pvRoundOut();return}
+    pvHand();return;
+  }
+  pvOver(why||'quit');
+}
+function pvLeave(where){
+  pvKill();pvy.run=false;pvy.over=false;
+  document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});
+  const t=where==='home'?document.getElementById('screen-home'):document.getElementById('screen-lab');
+  if(t)t.classList.add('active');
+  try{updateHomeStats&&updateHomeStats()}catch(e){}
+}
+/* ---- 三件家什 ---- */
+function pvToolCost(){pvy.usedTools++;pvScore(-PV_P_TOOL,'借家什');pvy.wordTools++}
+function pvPeek(){
+  if(pvy.phase!=='park'&&pvy.phase!=='ask'){pvTag('🔎 这一阵没表可看');return}
+  if(pvy.peekN<=0){pvTag('🔎 看拥挤的用完了');return}
+  pvy.peekN--;pvy.peekUse++;pvToolCost();
+  pvy.peekMs=PV_PEEK_MS;pvPop();
+  pvRenderLot();pvRenderTally();pvRenderHud();
+  pvSay('🔎 帘子掀 '+Math.round(PV_PEEK_MS/1000)+' 息：尺上的号、柱上的数都亮回来 —— 最挤那一列压着 <b>'+pvy.L+'</b> 笔 ⇒ 少于此就停不下');
+}
+function pvCalc(){
+  if(pvy.phase!=='park'){pvTag('🧮 代算要等你答完题、车进场了才使');return}
+  if(pvy.calcN<=0){pvTag('🧮 代算的用完了');return}
+  pvy.calcN--;pvy.calcUse++;pvToolCost();
+  pvy.calcMs=PV_CALC_MS;
+  const c=pvy.cars[pvy.idx];let l=-1;
+  for(let k=0;k<pvy.L&&k<pvy.rows;k++)if(pvLaneFree(k,c)){l=k;break}
+  if(l<0)for(let k=0;k<pvy.rows;k++)if(pvLaneFree(k,c)){l=k;break}
+  pvy.calcLane=l;pvDing(2);
+  pvSay('🧮 代算第 '+(pvy.idx+1)+' 笔：它压第 '+(c.a+1)+'~'+c.b+' 号车位 —— '+(l>=0?'<b>'+(l+1)+' 排</b> 这一段还空着（这条高亮 '+Math.round(PV_CALC_MS/1000)+' 息后灭，只看不替你停）':'这排数里哪一段都压着了，回头拔一辆吧'));
+  pvRenderLot();
+}
+function pvSwapNight(){
+  if(pvy.phase!=='park'&&pvy.phase!=='ask'&&pvy.phase!=='seal'){pvTag('🔁 这会儿没得换');return}
+  if(pvy.swapN<=0){pvTag('🔁 换一夜的用完了');return}
+  pvy.swapN--;pvy.swapUse++;pvy.swaps++;
+  pvScore(-PV_SWAP_PEN,'换夜');
+  pvTag('🔁 换一张表');
+  const old=pvy.ch;if(old)pvBookPush(old,'换走了');
+  pvy.ni++;
+  if(pvy.ni>=PV_PER){pvRoundOut();return}
+  pvHand();
+}
+/* ---- 车房 8 件 ---- */
+function pvShelfNow(){
+  const n=pvNum('nights'),shelf=(pvGet('shelf','')||'').split('|');
+  const g=[];
+  g[0]=pvy.perfN>0||shelf.indexOf(PV_SHELF[0].k)>=0;
+  g[1]=(pvy.clashN===0&&pvy.moveN===0&&pvy.parked>0)||shelf.indexOf(PV_SHELF[1].k)>=0;
+  g[2]=(pvy.perfN>=PV_PER)||shelf.indexOf(PV_SHELF[2].k)>=0;
+  g[3]=(pvy.nightHorn===0&&pvy.parked>0)||shelf.indexOf(PV_SHELF[3].k)>=0;
+  g[4]=(pvy.lv>=PV_SHELF_LV)||shelf.indexOf(PV_SHELF[4].k)>=0;
+  g[5]=(pvy.usedTools===0&&pvy.parked>0)||shelf.indexOf(PV_SHELF[5].k)>=0;
+  let badges=0;try{badges=(localStorage.getItem('hz_badges')||'').split('|').filter(x=>x).length}catch(e){}
+  g[6]=badges>=3||shelf.indexOf(PV_SHELF[6].k)>=0;
+  g[7]=pvNum('cars')>=400||shelf.indexOf(PV_SHELF[7].k)>=0;
+  return g;
+}
+function pvLedgerAdd(r){if(r)pvDexAdd(r.ch)}
+/* ---- 说明 ---- */
+function pvHelpText(){
+  return '🚗 <b>笔顺停车坊</b>：这一子的每一笔 = 一辆车。车压住<b>第几号到第几号车位是钉死的</b>（就按这一笔横着占的宽），你只挑<b>停进第几排</b>。<br>'+
+    '🅿️ <b>同一排里两辆车不许压在同一个车位上</b> ⇒ 最挤的那一列同时压着几笔，这张表就<b>最少要几排</b>（数学上叫区间图的色数 = 最大深度）。<br>'+
+    '🚌 <b>班主对照</b>：车照笔顺一辆辆进场，他不回头、每辆只挑当前最空的排 —— 过闸的字他<b>每张表都要多开一排</b>。你比下限多开一排就一文不省。<br>'+
+    '🧮 <b>三双手</b>：扫描线数最挤那一列（下界 L）· 回溯求真正最少排数（等于 L）· 不回头的贪心（班主的排数）。账对不上这张表就上不了台。<br>'+
+    '🚦 每辆车进场前先答这一笔的<b>笔顺题</b>（往哪写 / 一共几笔），答错就拖去修理厂，今夜少描一笔。<br>'+
+    '⏳ <b>三支钟</b>：这一夜的表（第 1 夜 '+(pvNightMs(1)/1000).toFixed(1)+' 秒）· 进口喇叭（'+(pvHornMs(1)/1000).toFixed(1)+' 秒一声，一声扣 '+PV_HORN_WEN+' 文）· 这一局（'+(pvLampMs(1)/1000).toFixed(0)+' 秒停完 '+PV_PER+' 张表）。<br>'+
+    '🎒 车房 8 件 · 称号看一辈子停完几夜 · 家什：🔎 <code>P</code> 看拥挤 · 🧮 <code>V</code> 代算一位 · 🔁 <code>S</code> 换一夜 · <code>1~'+PV_LMAX+'</code> 挑排 · <code>↑↓</code>+<code>空格</code> · 点已停的车 = 拔出来重停 · <code>G</code> 弃夜 · <code>R</code> 再来一局';
+}
+function pvHelp(){pvSay(pvHelpText());pvScore(-PV_P_HELP,'看说明');pvTag('📖 说明写在下面这栏')}
+/* ---- 粒子 ---- */
+function pvSpark(fx,fy,n,color){
+  const lot=pvEl('pvLot');if(!lot)return;
+  for(let i=0;i<n;i++){
+    const d=document.createElement('i');
+    d.className='pv-spark';
+    d.style.left=(fx*100)+'%';d.style.top=(fy*100)+'%';
+    d.style.background=color;
+    d.style.setProperty('--dx',(Math.random()*72-36).toFixed(1)+'px');
+    d.style.setProperty('--dy',(-Math.random()*54-8).toFixed(1)+'px');
+    d.style.animationDelay=(Math.random()*90).toFixed(0)+'ms';
+    lot.appendChild(d);
+    pvy.spark.push(d);
+    pvLater(620,function(){if(d.parentNode)d.parentNode.removeChild(d)});
+  }
+  if(pvy.spark.length>90)pvy.spark.splice(0,pvy.spark.length-90);
+}
+function pvFx(dt){/* 火花自己会走，这里只管把飘完的摘掉 */
+  if(pvy.spark.length>60)pvy.spark=pvy.spark.filter(function(d){return d.parentNode});
+}
+
+/* ==== 停车坊 ⑦：探针桥（只掐帧、喂帧、读数、摆场面；判据一字不动）==== */
+/* 最优那一套排法：把 n 辆车往 L 排里回溯，求出一条「正好 L 排」的方案 */
+function pvOptPlan(g,L){
+  const lanes=[],plan=new Array(g.cars.length).fill(-1);
+  const idxOf={};
+  for(let i=0;i<g.cars.length;i++)idxOf[g.cars[i].i]=i;
+  const order=[];
+  for(let i=0;i<g.cars.length;i++)order.push(i);
+  order.sort(function(a,b){const x=g.cars[a],y=g.cars[b];return (x.a-y.a)||(x.b-y.b)||(x.i-y.i)});
+  function put(k){
+    if(k>=order.length)return true;
+    const oi=order[k],c=g.cars[oi];
+    for(let l=0;l<L;l++){
+      if(!pvFits(lanes[l]||[],c))continue;
+      if(!lanes[l])lanes[l]=new Array(pvy.T).fill(0);
+      for(let t=c.a;t<c.b;t++)lanes[l][t]=1;
+      plan[oi]=l;
+      if(put(k+1))return true;
+      for(let t=c.a;t<c.b;t++)lanes[l][t]=0;
+      plan[oi]=-1;
+    }
+    if(lanes.length<L){
+      const nl=new Array(pvy.T).fill(0);
+      for(let t=c.a;t<c.b;t++)nl[t]=1;
+      lanes.push(nl);plan[oi]=lanes.length-1;
+      if(put(k+1))return true;
+      lanes.pop();plan[oi]=-1;
+    }
+    return false;
+  }
+  return put(0)?plan:null;
+}
+function pvvState(){
+  return {ok:pvy.rec?1:0,phase:pvy.phase,ch:pvy.ch,idx:pvy.idx,sel:pvy.sel,n:pvy.n,rows:pvy.rows,
+    T:pvy.T,L:pvy.L,on:pvy.on,used:pvUsedRows(),parked:pvy.parked,towed:pvy.towed,
+    lane:pvy.lane.slice(0,pvy.n),at:pvy.at.slice(),cars:pvy.cars.map(c=>[c.a,c.b]),
+    score:pvy.score,hearts:pvy.hearts,combo:pvy.combo,lv:pvy.lv,ni:pvy.ni,nights:pvy.nights,perfN:pvy.perfN,
+    caseMs:pvy.caseMs,case0:pvy.case0,lamp:pvy.lamp,lamp0:pvy.lamp0,horn0:pvy.horn0,horn:pvy.horn,sealMs:pvy.sealMs,handMs:pvy.handMs,clashMs:pvy.clashMs,
+    nightHorn:pvy.nightHorn,clashN:pvy.clashN,moveN:pvy.moveN,peekMs:pvy.peekMs,calcMs:pvy.calcMs,
+    dim:pvy.dim,tellOff:pvy.tellOff,peekN:pvy.peekN,calcN:pvy.calcN,swapN:pvy.swapN,
+    qKind:pvy.qKind,ans:pvy.ans,qMs:pvy.qMs,qMs0:pvy.qMs0,opts:pvy.opts.map(o=>o?(o.code||'')+(o.label||''):''),
+    locked:pvy.locked,holdMs:pvy.holdMs,
+    over:pvy.over,run:pvy.run,load:pvy.load,pool:pvy.pool.length};
+}
+/* 当场把三双手各跑一遍，与在账的表对平（段 W 收账用）*/
+function pvvAud(){
+  const r=pvy.rec;if(!r)return {ok:0,why:'表还没画开'};
+  const g={n:r.n,cars:r.cars,T:r.T};
+  const S=pvSweep(g),O=pvOnline(g);
+  const K=pvMinLanes(g,S.L,O.k);
+  const plan=pvOptPlan(g,r.L);
+  const bad=[];
+  if(S.L!==r.L)bad.push('扫描线下界 '+S.L+' ≠ 在账 '+r.L);
+  if(K!==r.L)bad.push('回溯最少排 '+K+' ≠ 在账 '+r.L);
+  if(O.k!==r.on)bad.push('班主不回头的排数 '+O.k+' ≠ 在账 '+r.on);
+  if(O.k<=S.L)bad.push('不回头没吃亏：'+O.k+' ≤ '+S.L);
+  for(let t=0;t<r.T;t++){
+    let v=0;
+    for(let i=0;i<r.cars.length;i++)if(r.cars[i].a<=t&&t<r.cars[i].b)v++;
+    if(v!==r.at[t])bad.push('第 '+(t+1)+' 号车位的拥挤 '+v+' ≠ 在账 '+r.at[t]);
+  }
+  if(!plan)bad.push('按 L='+r.L+' 排排不出方案（色数不等于深度？）');
+  if(plan){
+    const occ=[];
+    for(let i=0;i<r.cars.length;i++){
+      const c=r.cars[i],l=plan[i];
+      if(l<0){bad.push('方案漏了第 '+(i+1)+' 笔');continue}
+      occ[l]=occ[l]||[];
+      for(const q of occ[l])if(q.a<c.b&&c.a<q.b)bad.push('方案里 '+(q.i+1)+' 与 '+(c.i+1)+' 挤在 '+(l+1)+' 排同一格');
+      occ[l].push(c);
+    }
+    if(occ.length>r.L)bad.push('方案开了 '+occ.length+' 排 > 下界 '+r.L);
+  }
+  return {ok:bad.length?0:1,ch:r.ch,n:r.n,T:r.T,L:r.L,on:r.on,K:K,choices:r.choices,wide:r.wide,
+    hard:r.hard,plan:plan,why:bad.join(' · ')};
+}
+/* ---- 摆场面 ---- */
+async function pvvOpen(ch){
+  const d=await ctTO(loadCharData(ch),8000);
+  if(!d||!d.medians)return {ok:0,why:'取不到 '+ch+' 的笔顺'};
+  const rec=pvAudit(ch,d);pvCache[ch]=rec;
+  if(!rec)return {ok:0,why:ch+' 过不了闸'};
+  if(!pvy.run)return {ok:0,why:'坊还没开（先 pvvStart）'};
+  pvy.load=false;pvy.phase='idle';pvy.seen=[];
+  /* 摆场面只点这一张表，不该把一串待停的表清空：清了就等于探针自己把这一局饿散（pvNextNight 见空池⇒pvOver('pool')） */
+  for(let i=pvy.pool.length-1;i>=0;i--)if(pvy.pool[i]&&pvy.pool[i].ch===ch)pvy.pool.splice(i,1);
+  pvOpenNight(rec);
+  return {ok:1,ch:ch,L:rec.L,on:rec.on,T:rec.T,n:rec.n,phase:pvy.phase};
+}
+function pvvAns(){return {ok:1,ans:pvy.ans,qKind:pvy.qKind,opts:pvy.opts.map(o=>(o.icon||'')+(o.label||''))}}
+/* 摆场面：把这一串待停的表掐到剩 n 张（n=0 就是「这一串停完了」那一幕）*/
+function pvvPool(n){pvy.pool.splice(Math.max(0,n|0));return {ok:1,pool:pvy.pool.length}}
+function pvvSay(){const e=pvEl('pvMsg');return {ok:1,msg:e?e.innerHTML:''}}
+function pvvAsk(){const e=pvEl('pvAsk');return {ok:1,ask:e?e.innerHTML:''}}
+function pvvDom(){
+  const rows=pvEl('pvRows');
+  const lanes=rows?rows.querySelectorAll('.pv-lane'):[];
+  const out=[];
+  lanes.forEach(function(el){
+    const cars=[];
+    el.querySelectorAll('.pv-car').forEach(function(c){cars.push(Number(c.getAttribute('data-car')))});
+    out.push({lane:Number(el.getAttribute('data-lane')),cls:el.className,cars:cars,
+      ghost:!!el.querySelector('.pv-ghost')});
+  });
+  return {ok:1,rows:out,tag:(pvEl('pvTag')||{}).textContent,dim:!!(pvEl('pvLot')||{}).classList?.contains('dim')};
+}
+/* ---- 喂帧：直接走产品自己那双手（等价于点一下 / 按一下）---- */
+function pvvAnswer(i){if(!pvy.run)return {ok:0,why:'没开摊'};pvAnswer(i);return {ok:1,phase:pvy.phase,idx:pvy.idx}}
+function pvvPick(l){if(!pvy.run)return {ok:0,why:'没开摊'};pvPick(l);return {ok:1,phase:pvy.phase,idx:pvy.idx,used:pvUsedRows(),lane:pvy.lane.slice(0,pvy.n)}}
+function pvvPull(i){if(!pvy.run)return {ok:0,why:'没开摊'};pvPull(i);return {ok:1,phase:pvy.phase,idx:pvy.idx,parked:pvy.parked}}
+/* 照最优方案把手里这辆停进第 l 排（l 由 pvvAud 的 plan 给）*/
+function pvvPark(l){return pvvPick(l)}
+function pvvStep(ms){/* 掐帧：把主循环按同样的 dt 往前喂 */
+  if(!pvy.run)return {ok:0,why:'没开摊'};
+  const end=pvy.t+(ms||16),t0=pvy.t;
+  let guard=0;
+  while(pvy.t<end&&guard++<600){
+    const dt=Math.min(20,end-pvy.t);
+    if(!pvTick(dt))break;
+  }
+  return {ok:1,ms:pvy.t-t0,phase:pvy.phase,caseMs:pvy.caseMs,lamp:pvy.lamp,nightHorn:pvy.nightHorn,
+    score:pvy.score,hearts:pvy.hearts,over:pvy.over};
+}
+/* ---- 顶钟 · 换级 · 家什 ---- */
+function pvvClock(kind,v){
+  if(kind==='case'){pvy.caseMs=v;pvy.case0=Math.max(pvy.case0,v)}
+  else if(kind==='lamp'){pvy.lamp=v;pvy.lamp0=Math.max(pvy.lamp0,v)}
+  else if(kind==='horn'){pvy.horn=v}
+  else if(kind==='horn0'){pvy.horn0=v}
+  else if(kind==='q'){pvy.qMs=v;pvy.qMs0=Math.max(pvy.qMs0,v)}
+  else if(kind==='seal'){pvy.sealMs=v}
+  else if(kind==='hand'){pvy.handMs=v}
+  else if(kind==='clash'){pvy.clashMs=v}
+  else return {ok:0,why:'没这支钟 '+kind};
+  return {ok:1,kind:kind,v:v};
+}
+function pvvLv(L){
+  pvy.lv=L;
+  pvy.tellOff=pvNoTell(L);pvy.dim=pvDim(L);
+  pvTxt('pvLv','第 '+L+' 夜');
+  pvRenderLot();pvRenderHud();pvRenderTally();
+  return {ok:1,lv:pvy.lv,tellOff:pvy.tellOff,dim:pvy.dim};
+}
+function pvvTool(k,n){
+  if(PV_P0[k]===undefined)return {ok:0,why:'没这件家什 '+k};
+  pvy[k+'N']=n;
+  return {ok:1,k:k,n:pvy[k+'N']}
+}
+function pvvPeek(){pvPeek();return {ok:1,peekMs:pvy.peekMs,peekN:pvy.peekN}}
+function pvvCalc(){pvCalc();return {ok:1,calcMs:pvy.calcMs,calcLane:pvy.calcLane}}
+function pvvSwap(){pvSwapNight();return {ok:1,ch:pvy.ch,ni:pvy.ni}}
+function pvvHelp(){pvHelp();return {ok:1,score:pvy.score}}
+function pvvQuit(){pvQuit('quit');return {ok:1,ni:pvy.ni,over:pvy.over}}
+function pvvOver(w){pvOver(w||'quit');return {ok:1,over:pvy.over}}
+function pvvNightOut(w){pvNightOut(w||'slow');return {ok:1,phase:pvy.phase,hearts:pvy.hearts}}
+function pvvStart(){pvStart(true);return {ok:1}}
+function pvvHeart(n){pvy.hearts=n;pvRenderHud();return {ok:1,hearts:pvy.hearts}}
+function pvvLetters(L){return {ok:1,letters:pvLetters(L||pvy.lv)}}
+function pvvPlan(){const r=pvy.rec;if(!r)return {ok:0,why:'表还没画开'};return {ok:1,plan:pvOptPlan({n:r.n,cars:r.cars,T:r.T},r.L),L:r.L}}
+function pvvShelf(){const a=pvShelfNow(),got=[];for(let i=0;i<PV_SHELF.length;i++)if(a[i])got.push(PV_SHELF[i].k);return {ok:1,got:got}}
+function pvvStore(){
+  const o={};
+  for(let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i);
+    if(k&&k.indexOf('hz_park_')===0)o[k]=localStorage.getItem(k);
+  }
+  return {ok:1,keys:o};
+}
+function pvvAudit(ch){
+  const rec=pvCache[ch];
+  return {ok:rec?1:0,ch:ch,rec:rec?{n:rec.n,T:rec.T,L:rec.L,on:rec.on,choices:rec.choices,wide:rec.wide,hard:rec.hard,cars:rec.cars.map(c=>[c.a,c.b])}:null};
+}
+/* ---- 段 F 那三双手：掐帧 /  redraw / 量墨（只读数与摆场面，判据一字不动）---- */
+function pvvFreeze(){if(pvy.rafId)cancelAnimationFrame(pvy.rafId);pvy.rafId=0;return {ok:1,raf:pvy.rafId}}
+function pvvDraw(){pvRenderLot();pvRenderHud();pvRenderTally();pvRenderMeters();pvRenderOpts();pvRenderGate();pvRenderInk();return {ok:1,phase:pvy.phase}}
+function pvvInk(){
+  const r=pvy.rec;if(!r)return {ok:0,why:'表还没画开'};
+  return {ok:1,n:r.n,idx:pvy.idx,phase:pvy.phase,lane:pvy.lane.slice(0,r.n),
+    M:r.M.map(function(st){return (st||[]).map(function(p){return [pvPX(p[0]),pvPY(p[1])]})}),
+    W:PV_IW,H:PV_IH};
+}
 
 
 window.addEventListener('DOMContentLoaded',boot);
