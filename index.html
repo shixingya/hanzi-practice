@@ -8364,6 +8364,119 @@ button:active{transform:scale(.95)}
   #screen-fb .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center;flex-wrap:wrap}
   #screen-fb .stats span{font-size:11.5px;padding:3px 8px}
 }
+/* ================= v1.120 ✏️ 笔顺改字坊 ================= */
+/* HUD 占死三行：夜里数着墨与错位，字串换了也不许把案面往上顶 */
+.md-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.md-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.md-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+.md-hud .light.on{background:rgba(255,213,79,.2);color:#FFE082}
+.md-hud #mdHearts{color:#EF5350;text-shadow:0 0 6px rgba(239,83,80,.45);font-weight:900;letter-spacing:1px}
+.md-hud #mdHearts.low{color:#EF5350;animation:mdBeat .8s infinite}
+@keyframes mdBeat{0%,100%{opacity:1}50%{opacity:.4}}
+/* 题头占死四行：三副题面里最宽那副（对不上那一句报的是两条带的位次）*/
+.md-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*4)}
+.md-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.md-ask b{color:#FFE082}
+.md-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 10px);max-width:520px;margin:0 auto;position:relative}
+/* 左：这一子的米字格（帖上第 q 笔描金）；右：两条带子并排摊着 */
+.md-inkwrap{flex:0 0 108px;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:flex-start}
+.md-ink{width:108px;height:108px;background:linear-gradient(158deg,#20262E,#0D1216);border-radius:12px;box-shadow:inset 0 2px 16px rgba(0,0,0,.75)}
+.md-inkcap{font-size:11px;font-weight:800;color:#80CBC4;text-align:center;line-height:1.35}
+.md-desk{flex:1;min-width:0;position:relative;display:flex;flex-direction:column;gap:5px;background:linear-gradient(158deg,#242C33,#151B20 58%,#0A0E12);border-radius:14px;box-shadow:inset 0 2px 22px rgba(0,0,0,.8);padding:26px 7px 8px}
+.md-tag{position:absolute;left:50%;top:4px;transform:translateX(-50%);background:rgba(8,12,18,.92);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;pointer-events:none;white-space:nowrap;line-height:1.4;max-width:94%;z-index:6}
+.md-rowhead{font-size:11px;font-weight:800;color:#78909C;text-align:center;margin:1px 0 0}
+.md-rowhead.wrong{color:#F48FB1}
+.md-rowhead.book{color:#81C784}
+.md-cells{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;min-height:30px}
+/* 一张牌 = 一笔的类目：六类各占一色 */
+.md-cell{position:relative;min-width:26px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#0E1417;background:var(--mdk,#546E7A);box-shadow:0 1px 3px rgba(0,0,0,.5);transition:box-shadow .16s,transform .16s,opacity .16s}
+.md-cell em{position:absolute;right:1px;bottom:-1px;font-style:normal;font-size:8px;font-weight:800;color:rgba(14,20,23,.62)}
+.md-cell.past{opacity:.4}
+.md-cell.now{outline:2px solid #FFF;box-shadow:0 0 12px rgba(255,255,255,.6);transform:translateY(-2px)}
+.md-cell.tie{outline:2px dashed rgba(255,255,255,.55)}
+.md-cell.veil{background:repeating-linear-gradient(135deg,#1B252B,#1B252B 5px,#141C21 5px,#141C21 10px);color:#37474F}
+.md-cell.lit{background:var(--mdk,#546E7A);color:#0E1417;box-shadow:0 0 10px rgba(255,213,79,.6)}
+.md-cell.done{box-shadow:0 0 0 2px #81C784 inset}
+.md-cell.sub{box-shadow:0 0 0 2px #FFB74D inset}
+.md-cell.ins{box-shadow:0 0 0 2px #4FC3F7 inset}
+.md-cell.del{background:#2B2B2B;color:#6D6D6D;text-decoration:line-through;opacity:.55}
+.md-cell.good{animation:mdGoodFlash .52s}
+.md-cell.bad{animation:mdBadFlash .52s}
+.md-cell.doubt{box-shadow:0 0 0 2px #EF5350 inset;animation:mdShake .3s}
+.md-X,.gcard.X{--mdk:#FFD54F}
+.md-S,.gcard.S{--mdk:#80DEEA}
+.md-P,.gcard.P{--mdk:#A5D6A7}
+.md-N,.gcard.N{--mdk:#F48FB1}
+.md-I,.gcard.I{--mdk:#B39DDB}
+.md-Z,.gcard.Z{--mdk:#BCAAA4}
+.md-tie{font-size:11.5px;font-weight:800;color:#80CBC4;text-align:center;line-height:1.4;min-height:calc(11.5px*1.4)}
+/* 四种手：✓ 对上不花墨，🔁 ➖ ⊕ 各一墨 */
+.md-acts{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin:2px 0 0}
+.md-act{position:relative;flex:1;min-width:0;background:rgba(255,255,255,.07);border:1px solid #37474F;border-radius:10px;color:#CFD8DC;font-size:12px;font-weight:800;padding:6px 2px;cursor:pointer;line-height:1.25}
+.md-act kbd{display:inline-block;background:rgba(255,255,255,.16);border-radius:4px;padding:0 4px;font-size:10px;margin-right:3px;color:#FFE082}
+.md-act s{display:block;text-decoration:none;font-size:10px;font-weight:700;color:#78909C}
+.md-act.free{border-color:#81C784}
+.md-act.ink{border-color:#FFB74D}
+.md-act:disabled{opacity:.32;cursor:default}
+.md-act.pick{box-shadow:0 0 0 2px rgba(255,213,79,.55) inset;background:rgba(255,213,79,.12)}
+.md-act.auto{animation:mdGlow .9s ease-in-out infinite alternate;border-color:#80DEEA}
+@keyframes mdGlow{0%{box-shadow:0 0 0 rgba(128,222,234,.2)}100%{box-shadow:0 0 18px rgba(128,222,234,.8)}}
+.md-msg{width:calc(100% - 28px);max-width:520px;margin:6px auto 0;background:rgba(8,12,18,.72);border:1px solid #37474F;border-radius:12px;color:#FFD54F;font-size:13px;font-weight:700;line-height:1.5;padding:7px 12px;text-align:center;min-height:calc(13px*1.5*2);max-height:168px;overflow-y:auto;transition:opacity .25s}
+.md-msg b{color:#FFCC80}
+.md-msg code{background:rgba(255,255,255,.12);border-radius:4px;padding:0 4px;color:#FFE082}
+/* 三双手的牌：龟伯 · 先生 · 我自己的墨 · 题面 */
+.md-tally{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;width:calc(100% - 24px);max-width:520px;margin:6px auto 0;font-size:12px;font-weight:800;color:#B0BEC5}
+.md-tally .tb{background:rgba(255,255,255,.07);border-radius:9px;padding:2px 7px;white-space:nowrap}
+.md-tally .tb.naive b{color:#F48FB1}
+.md-tally .tb.smart b{color:#80DEEA}
+.md-tally .tb.mine b{color:#FFD54F}
+.md-tally .tb.gate{color:#80CBC4}
+/* 笔尖：眼下这一手的两条带子位次 */
+.md-gate{display:flex;gap:6px;align-items:center;width:calc(100% - 24px);max-width:520px;margin:5px auto 0;min-height:30px;flex-wrap:wrap;justify-content:center}
+.md-gate b{font-size:11px;color:#78909C;font-weight:800}
+.md-gate .gcard{font-size:14px;font-weight:900;color:#0E1417;background:var(--mdk,#546E7A);border-radius:9px;padding:3px 10px;box-shadow:0 0 10px rgba(255,255,255,.25)}
+.md-gate .gq{font-size:12px;font-weight:800;color:#B0BEC5}
+/* 亮牌：题钟走尽或答错时产品把正确那一类挂上 .reveal —— 文案许诺了「亮在牌上」，画里就得真亮 */
+#mdOpts .wl-opt.reveal{background:linear-gradient(180deg,#1F4A25,#123018);border-color:#81C784;color:#DCEDC8;box-shadow:0 0 12px rgba(129,199,132,.55)}
+.md-meter{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;width:calc(100% - 28px);max-width:520px;margin:4px auto}
+.md-tl{position:relative;height:16px;background:rgba(0,0,0,.42);border-radius:8px;overflow:hidden}
+.md-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:8px;transition:width .1s linear}
+.md-tl.case i{background:linear-gradient(90deg,#FFB74D,#FF7043)}
+.md-tl.idle i{background:linear-gradient(90deg,#BA68C8,#6A1B9A)}
+.md-tl.lamp i{background:linear-gradient(90deg,#FFF176,#FBC02D)}
+.md-tl.led i{background:linear-gradient(90deg,#4FC3F7,#0277BD)}
+.md-tl b{position:absolute;inset:0;font-size:11px;font-weight:800;color:#0E1417;text-align:center;line-height:16px;text-shadow:0 1px 0 rgba(255,255,255,.28)}
+.md-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px auto 2px;max-width:520px}
+.md-tool{background:#18222A;color:#B0BEC5;border:1px solid #37474F;border-radius:10px;font-size:12px;font-weight:700;padding:5px 9px;cursor:pointer}
+.md-tool span{display:inline-block;background:rgba(255,255,255,.14);border-radius:5px;padding:0 4px;margin-left:5px;font-size:10px}
+.md-tool b{color:#FFE082;margin-left:4px}
+.md-tool:disabled{opacity:.4;cursor:default}
+.md-hintline{font-size:11.5px;color:#78909C;text-align:center;margin:4px auto 0;max-width:520px;line-height:1.5;padding:0 10px}
+.md-hintline b{color:#B0BEC5}
+.md-hintline code{background:rgba(255,255,255,.1);border-radius:4px;padding:0 4px}
+.md-cdot{position:absolute;right:8px;top:8px;font-size:11px;background:#FF7043;color:#20150C;border-radius:8px;padding:1px 6px;font-weight:900}
+/* 结算：盖在案上的一层布 */
+.md-over{position:absolute;inset:0;background:rgba(3,6,8,.9);z-index:20;display:flex;align-items:center;justify-content:center;border-radius:16px}
+#screen-md{position:relative}
+.md-overbox{width:88%;max-width:430px;background:linear-gradient(180deg,#1E2B33,#0B1114);border:2px solid #455A64;border-radius:14px;padding:12px 14px;text-align:center;color:#CFD8DC}
+.md-overbox h3{margin:0 0 6px;font-size:20px;color:#FFD54F}
+.md-overbox p{margin:3px 0;font-size:13px;line-height:1.45}
+.md-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.md-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
+/* 火花：从落笔那一张往外溅 */
+.md-spark{position:absolute;width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:8;animation:mdFly .62s ease-out forwards}
+@keyframes mdFly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.4);opacity:0}}
+@keyframes mdShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes mdGoodFlash{0%{box-shadow:0 0 0 3px #81C784,0 0 16px rgba(129,199,132,.9)}100%{box-shadow:0 0 0 2px #81C784 inset}}
+@keyframes mdBadFlash{0%{box-shadow:0 0 0 3px #EF5350,0 0 16px rgba(239,83,80,.9)}100%{box-shadow:none}}
+/* 窄屏 390：顶栏那一排账（文数 · 夜数 · 两支钟）比屏幕还宽，
+   把它整条折到下面一行、字号收小，别让右边的钮被挤出屏外 */
+@media(max-width:460px){
+  #screen-md .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-md .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center;flex-wrap:wrap}
+  #screen-md .stats span{font-size:11.5px;padding:3px 8px}
+  .md-act{font-size:11px}
+}
 </style>
 
 </head>
@@ -8420,8 +8533,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 118 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">118</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 119 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">119</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -8432,12 +8545,18 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>118 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>60</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>119 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>61</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="mdCard" onclick="enterMode('md')">
+      <div class="icon">✏️</div>
+      <div class="info"><h3>笔顺改字坊</h3><p id="mdCardTip">小书童照着帖抄了一个字，抄错了 ——<b>漏几笔、多几笔、写错类、相邻两笔写反</b>。你执红笔把<b>错本</b>改成<b>帖</b>：<b>✓ 对上</b>不花墨，<b>🔁 换 / ➖ 抽走 / ⊕ 补进</b>各花一墨。🐢 龟伯<b>不许错开对齐</b>，一位一位硬对，过闸的每一摊都<b>多花墨</b>；📐 先生<b>填表递推</b>算出最少墨，🎟️ 穷举把每条对齐走一遍跟他一字不差。落笔前先答这一笔的<b>笔形</b>才改得动</p>
+      <span class="md-cdot" id="mdCardDot">🆕</span>
+    </div>
+</div>
 <div class="mode-card" id="fbCard" onclick="enterMode('fb')">
       <div class="icon">📚</div>
       <div class="info"><h3>笔顺翻书坊</h3><p id="fbCardTip">这一子的<b>每一笔 = 一位客人</b>，他进门只举一张牌：要<b>横竖撇捺点折</b>哪一类。柜台后只有<b>两格常用架</b> —— 架上有就命中，没有你就得挑<b>掀哪一格</b>。摊头把<b>未来摊成一条书带</b>：掀掉那格「以后最晚才再要」的，就少腾一次位。👴 老朝奉<b>绝不看未来</b>，过闸的每一摊他都要<b>多腾位</b>。答对这一笔的笔形才招呼得上客</p>
@@ -9612,6 +9731,82 @@ button:active{transform:scale(.95)}
       <div class="nc-overbtns">
         <button id="ncReBtn">🔁 再归一回</button>
         <button id="ncReHome">🏠 回实验室</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-md">
+  <div class="top-bar">
+    <button class="back-btn" onclick="mdLeave('lab')">← 返回</button>
+    <div class="stats"><span id="mdScoreTxt">✏️ <b id="mdScore">0</b> 文</span><span id="mdLv">第 1 夜</span><span id="mdTime">这一摊 52.0 秒 · 这一局 96 秒</span></div>
+    <button class="icon-btn" onclick="mdHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="md-hud">
+    <span id="mdRank" title="称号">✏️ 新生学徒</span>
+    <span id="mdHearts" title="生命">♥♥♥</span>
+    <span id="mdLedCombo" title="连对">🔥 连对 0 · 最长 0</span>
+    <span id="mdLedWord">🌙 这一夜改到第 1/10 摊 · 一辈子改完 0 摊</span>
+    <span id="mdLedGate" title="三双手的账">🌱 摊还没开</span>
+    <span class="light" id="mdHitLight">💡 等落笔</span>
+  </div>
+  <div class="md-ask" id="mdAsk">✏️ 正在挑字……<br><small>在字库里找「照直觉硬改就得多花墨」的错本</small></div>
+  <div class="md-stage" id="mdStage">
+    <div class="md-inkwrap">
+      <canvas class="md-ink" id="mdInk" width="108" height="108"></canvas>
+      <div class="md-inkcap" id="mdInkCap">这一子的模样<br><b>帖上第几笔就描金第几笔</b></div>
+    </div>
+    <div class="md-desk">
+      <div class="md-tag" id="mdTag">✏️ 摊还没开</div>
+      <div class="md-rowhead wrong" id="mdHeadA">📕 错本 · 小书童抄的，红笔在你手里</div>
+      <div class="md-cells" id="mdRowA"></div>
+      <div class="md-rowhead book" id="mdHeadB">📗 帖 · 这一子的真笔顺，一笔一张牌</div>
+      <div class="md-cells" id="mdRowB"></div>
+      <div class="md-tie" id="mdTie">✏️ 笔尖还没落下</div>
+    </div>
+  </div>
+  <div class="md-acts" id="mdActs">
+    <button class="md-act free" id="mdAct0"><kbd>Q</kbd>✓ 对上<s>不花墨</s></button>
+    <button class="md-act ink" id="mdAct1"><kbd>W</kbd>🔁 换<s>1 墨</s></button>
+    <button class="md-act ink" id="mdAct2"><kbd>E</kbd>➖ 抽走<s>1 墨</s></button>
+    <button class="md-act ink" id="mdAct3"><kbd>T</kbd>⊕ 补进<s>1 墨</s></button>
+  </div>
+  <div class="md-gate" id="mdGate"><b>🖊️ 笔尖还没落下</b></div>
+  <div class="md-tally" id="mdTally"></div>
+  <div class="md-msg" id="mdMsg">✏️ 小书童把这一子抄错了：<b>漏几笔、多几笔、写错类、相邻写反</b>。你把错本改成帖 —— <b>✓ 对上</b>不花墨，<b>🔁 换 / ➖ 抽走 / ⊕ 补进</b>各花一墨。<br>🐢 龟伯<b>一位一位硬对、不一样就换</b>，过闸的每一摊他都要<b>多花墨</b>；📐 先生<b>填表递推</b>算出最少墨。答对那一笔的笔形才落得下红笔</div>
+  <div class="wl-tbl" id="mdOpts">
+    <button class="wl-opt" id="mdOpt0">—</button>
+    <button class="wl-opt" id="mdOpt1">—</button>
+    <button class="wl-opt" id="mdOpt2">—</button>
+    <button class="wl-opt" id="mdOpt3">—</button>
+  </div>
+  <div class="md-meter">
+    <div class="md-tl case"><i id="mdBarCase"></i><b id="mdBarCaseL">⏳ 这一摊</b></div>
+    <div class="md-tl idle"><i id="mdBarIdle"></i><b id="mdBarIdleL">🔔 举牌</b></div>
+    <div class="md-tl lamp"><i id="mdBarLamp"></i><b id="mdBarLampL">🌙 这一局</b></div>
+    <div class="md-tl led"><i id="mdBarLed"></i><b id="mdBarLedL">🧾 0/0 张</b></div>
+  </div>
+  <div class="md-tools">
+    <button class="md-tool" id="mdPeek">🔎 掀帘<span>P</span><b>剩 2</b></button>
+    <button class="md-tool" id="mdCalc">🧮 代改一手<span>V</span><b>剩 2</b></button>
+    <button class="md-tool" id="mdSwap">🔁 换一摊<span>S</span><b>剩 1</b></button>
+    <button class="md-tool" id="mdHelpBtn">📖 说明<span>H</span></button>
+    <button class="md-tool" id="mdQuitBtn">🏳 弃摊<span>G</span></button>
+  </div>
+  <div class="md-hintline" id="mdLedNaive">🐢 <b>龟伯对照</b>：他不许错开对齐，<b>从头一位一位硬对、不一样就换、剩下补齐</b> —— 过闸的每一摊他都要<b>多花墨</b><br>🖊️ 点一种手就落一次红笔 · <code>Q</code>/<code>W</code>/<code>E</code>/<code>T</code> 对上·换·抽走·补进 · <code>1~4</code> 答笔形 · 🔎 <code>P</code> 掀帘 · 🧮 <code>V</code> 代改 · 🔁 <code>S</code> 换摊 · <code>H</code> 说明 · <code>G</code> 弃摊 · <code>R</code> 再来一把</div>
+
+  <div class="md-over" id="mdOver" style="display:none">
+    <div class="md-overbox">
+      <h3>✏️ 收摊</h3>
+      <p id="mdRsWhy">⏺ 这一局的钟走完了</p>
+      <p id="mdRsScore">🧾 0 文</p>
+      <p id="mdRsWords">🌙 改完 0 摊 · 局号 1 · 连对最长 0</p>
+      <p id="mdRsStars">⭐ +0</p>
+      <p id="mdRsErr">✗ 亏墨 0 步 · 白等 0 次 · 省下 0 墨</p>
+      <p id="mdRsShelf">🎒 笔架：（这一把一件没添）</p>
+      <p id="mdRsRank">✏️ 新生学徒 · 一辈子改完 0 摊</p>
+      <div class="md-overbtns">
+        <button id="mdReBtn">🔁 再接一把</button>
+        <button id="mdReHome">🏠 回实验室</button>
       </div>
     </div>
   </div>
@@ -17927,6 +18122,7 @@ function updateHomeStats(){
   if(typeof wlNudge==='function')wlNudge();
   if(typeof pvNudge==='function')pvNudge();
   if(typeof fbNudge==='function')fbNudge();
+  if(typeof mdNudge==='function')mdNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -17991,6 +18187,7 @@ function enterMode(mode){
   if(mode==='wl'){wlStart();return}
   if(mode==='pv'){pvStart();return}
   if(mode==='fb'){fbStart();return}
+  if(mode==='md'){mdStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -136716,6 +136913,1551 @@ async function fbvBatch(list){
 function fbvFreeze(){if(fby.rafId)cancelAnimationFrame(fby.rafId);fby.rafId=0;return {ok:1,raf:fby.rafId}}
 function fbvDraw(){fbRenderShelf();fbRenderStrip();fbRenderTally();fbRenderHud();fbRenderMeters();fbRenderOpts();fbRenderGate();fbRenderInk();return {ok:1,phase:fby.phase}}
 function fbvHelpHtml(){return {ok:1,html:fbHelpText()}}
+
+
+/* ==== ✏️ 笔顺改字坊 v1（v1.120.0）====
+   帖上写着这一子的真笔顺（一笔一张牌：横 / 竖 / 撇 / 捺 / 点 / 折）。
+   一个小书童照着抄了一遍，抄错了 —— 漏几笔、多写几笔、把某笔写成别一类、把相邻两笔写反。
+   你来执红笔改：笔尖停在「错本第 p 张」与「帖第 q 张」之间，四种手只有取舍，没有对错可蒙：
+     ✓ 对上（这两张本来就是同一类 ⇒ 不花墨，笔尖双双往前）
+     🔁 换（把错本这一张改写成帖上那一类 ⇒ 1 墨）
+     ➖ 抽走（错本这一张是多的，划掉 ⇒ 1 墨）
+     ⊕ 补进（帖上这一张漏了，插进错本 ⇒ 1 墨）
+   三条数学死话：
+   ① 最少墨 = 序列比对（Levenshtein）填表递推的结果 M，先生手二算得；
+   ② 把所有对齐方式一条条走到底的穷举手三算得 K，必须 K === M（先生这表真不多花一文）；
+   ③ 手一「龟伯」不理会错开对齐，从头一位一位硬对、不一样就换、剩下补齐 → R，
+      过闸的每一摊 R − M ≥ MD_GAPMIN ⇒ 「看着一样就换」这条直觉真的会多花墨，孩子有得省。
+   每一手除抽走之外都要先答一笔「帖上第 q 笔是哪一类笔形」—— 改错字的手艺长在认笔形的眼上。
+   本节：口径 · 六类笔形 · 九串字表 · 状态 · 落盘 · 发声 */
+
+/* ---- 口径（与 _mdgeo.cjs 一字一样，改这里就得重扫重写九串）---- */
+const MD_NMIN=4,MD_NMAX=9;             /* 帖长 = 这一子的笔数 */
+const MD_DMIN=3,MD_DMAX=6;             /* 这一子里出现的笔形类目数带（种类太少则换哪张都一样）*/
+const MD_MMIN=2,MD_MMAX=4;             /* 最少墨带：一步没得省不上台，五步以上孩子烦 */
+const MD_GAPMIN=2;                     /* 龟伯至少比先生多花这么多墨（有亏可省）*/
+const MD_CHMIN=3;                      /* 至少几处错位摆着决策（硬对要换的位）*/
+const MD_LENMAX=2;                     /* 错本与帖的长短差上限（差太多不像错字）*/
+const MD_MUTMIN=2,MD_MUTMAX=3;         /* 定死错几处：漏 / 多 / 写错类 / 相邻写反 */
+const MD_TURN=40;                      /* 折：一笔里拐过这么大的弯就算「折」这一类 */
+const MD_DIAN=110;                     /* 点：首尾横竖都挪不出这么远就是点 */
+/* ---- 六类基本笔形：横竖撇捺点折 ---- */
+const MD_KINDS=[
+  {c:'X',n:'横',g:'一',i:'➡️',d:'往右写'},
+  {c:'S',n:'竖',g:'丨',i:'⬇️',d:'往下写'},
+  {c:'P',n:'撇',g:'丿',i:'↙️',d:'往左下'},
+  {c:'N',n:'捺',g:'㇏',i:'↘️',d:'往右下'},
+  {c:'I',n:'点',g:'丶',i:'🔸',d:'短短一点'},
+  {c:'Z',n:'折',g:'乛',i:'↪️',d:'拐了个弯'}
+];
+function mdKind(c){for(let i=0;i<MD_KINDS.length;i++)if(MD_KINDS[i].c===c)return MD_KINDS[i];return MD_KINDS[0]}
+/* ---- 夜 · 池 · 心 ---- */
+const MD_LETTERS=10;                   /* 一串十个字，一串打完升一夜 */
+const MD_POOL_WANT=6,MD_POOL_MIN=1;        /* 池子够 6 个就开工：本串缺料就去隔壁串借 */
+const MD_HEARTS=3,MD_HEART_MAX=5,MD_BOOK_MAX=300;
+const MD_HIT_MS=520;                   /* 亏墨那一张泛红多久 */
+const MD_TELL_LV=4,MD_DIM_LV=6;        /* 第 4 夜起帖带盖上布（只看米字格那一笔），第 6 夜起三双手的牌与每手的盈亏一起蒙上 */
+function mdNoTell(L){return L>=MD_TELL_LV}
+function mdDim(L){return L>=MD_DIM_LV}
+/* ---- 赏 ---- */
+const MD_RIGHT_WEN=5;                  /* 每答对这—笔的笔形 */
+const MD_MATCH_WEN=6;                  /* ✓ 对上：不花墨还赏 */
+const MD_STEP_WEN=4;                   /* 🔁 ➖ ⊕ 每一手 */
+const MD_SPAN_WEN=3;                   /* 错位深度 |q−p| 每一位 ×3（带子错开得越远越考眼力）*/
+const MD_DEEP_MIN=2,MD_DEEP_WEN=10;    /* 错开到这一步深，再赏一笔 */
+const MD_GOOD_WEN=8;                   /* 这一步顺先生的表（不多花墨）*/
+const MD_SAVE_WEN=10;                  /* 比龟伯少花一墨，一墨 ×10（每摊结一次）*/
+const MD_PERFECT_WEN=20;               /* 一摊改完：与先生一字不差（== M）*/
+const MD_QUICK_WEN=12;                 /* 眼快：这一摊在夜钟一半内改完 */
+const MD_FRESH_WEN=6;                  /* 头一回摊这一子 */
+const MD_TIGHT_WEN=8;                  /* 一回没亏墨 */
+const MD_PTS_NOTOOL=8,MD_PTS_TOOLRUN=14;
+/* ---- 罚 ---- */
+const MD_P_OUT=8;                      /* 夜钟走完还有牌没改：掉一颗心 */
+const MD_P_WASTE=6;                    /* 亏墨：这一步多花一墨才追得回来 */
+const MD_P_NOFIT=4;                    /* ✓ 对不上：这两张压根不同类 */
+const MD_P_MISS=5;                     /* 答错或让举牌钟走完 */
+const MD_P_QUIT=5;                     /* 弃摊 */
+const MD_P_TOOL=4,MD_P_HELP=3;
+const MD_ERR_LINE=2;                   /* 一摊错到这一回就掉一颗心 */
+/* ---- 家什 ---- */
+const MD_P0={peek:2,calc:2,swap:1};    /* 🔎 掀帘 / 🧮 代改一手 / 🔁 换一摊 */
+const MD_PEEK_MS=5200,MD_CALC_MS=4200,MD_SWAP_PEN=6;
+/* ---- 钟 ---- */
+function mdCaseMs(L){return Math.max(22000,52000-3000*(L-1))}   /* 这一摊的牌 */
+function mdAskMs(L){return Math.max(4200,8600-320*(L-1))}       /* 举牌：等你说清帖上那一笔是哪类 */
+function mdLampMs(L){return Math.max(78000,96000-1800*(L-1))}   /* 这一局 */
+const MD_AUDIT_MS=9000,MD_HELP_MS=8200,MD_WRONG_MS=620;
+function mdQuickMs(L){return Math.floor(mdCaseMs(L)*0.5)}
+const MD_SLIDE_MS=280,MD_POP_MS=300,MD_BACK_MS=420;   /* 搬家一眼（落账到出下一题之间停一拍）*/
+const MD_SEAL_OUT=1500,MD_CALC_HIT=900;
+/* ---- 案面：米字格给这一子的墨 ---- */
+const MD_IW=108,MD_IH=108,MD_IX0=10,MD_IX1=98,MD_IY0=10,MD_IY1=98;
+/* ---- 称号：一辈子改完的摊 ---- */
+const MD_RANKS=[
+  {n:0,e:'✏️',t:'新生学徒'},{n:2,e:'👀',t:'看得出错位'},{n:5,e:'🖊️',t:'省得住墨'},
+  {n:9,e:'📐',t:'顺着表走'},{n:14,e:'✂️',t:'抽得干净'},{n:21,e:'🧷',t:'摊摊改净'},
+  {n:30,e:'🧮',t:'分毫不差'},{n:42,e:'🪞',t:'不被眼骗'},{n:58,e:'👑',t:'从没多花墨'}
+];
+function mdRankOf(w){
+  let r=MD_RANKS[0];
+  for(let i=0;i<MD_RANKS.length;i++)if(w>=MD_RANKS[i].n)r=MD_RANKS[i];
+  return r;
+}
+/* ---- 笔架 8 件 ---- */
+const MD_SHELF_LV=4;
+const MD_SHELF=[
+  {k:'红笔头',d:'一摊每一步都不亏墨'}, {k:'望远镜',d:'一摊里错位深到 '+MD_DEEP_MIN+' 张以上'},
+  {k:'清白单',d:'一摊与先生一字不差（花墨 == M）'}, {k:'分毫囊',d:'一摊一样家什不借'},
+  {k:'夜班灯',d:'走到第 '+MD_SHELF_LV+' 夜还在改'},{k:'空手囊',d:'一夜家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},      {k:'量墨尺',d:'累计改完 400 手'}
+];
+/* ---- 九串字表（一夜一串，串外的字这一摊过不了闸）----
+   由 _mdgeo.cjs 离线数出来（口径与上面的 MD_* 常量一一对应，改常量就得重扫重写这九串）：
+   全站 1372 字过闸 207 字（笔形不成人形 736 · 龟伯不吃亏 241 · 最少墨出格 80 · 类目数出格 71 ·
+   岔口太少 14 · 错本长短差太多 11 · 错本没对错本 12），
+   难度分 =「先生最少墨 ×100 + 帖长 ×8 + 岔口 ×2 + 省下的墨」，
+   按难度在整条带上均匀取 90 字切成九串（每串 10 字）：第 1~5 串多半 2 墨、第 6~8 串 3 墨、第 9 串见 4 墨。
+   每一摊的先生与穷举逐字相等（序列比对这填表递推就是真最少墨，这也是这一摊的题面）。*/
+const MD_LEV={
+  1:"书占本田羊冲驰协严听",
+  2:"纵迟岗初吩君戒驱岳枝",
+  3:"购驾抵犹咐泣坪来拨金",
+  4:"绊姆染虹屉药骆挥枣郊",
+  5:"挪荆勇胎哉恰珀思除石",
+  6:"芍曲朴闯穷杀困花技扮",
+  7:"系附抖姓学拥沫抬余沸",
+  8:"贩侧泥备泻冠贯政竿须",
+  9:"险挑眨保亲医服胀便陡"
+};
+function mdLetters(L){return MD_LEV[L]||''}
+function mdInLev(ch,L){return (mdLetters(L)||'').indexOf(ch)>=0}
+
+/* ---- 状态 ---- */
+const mdy={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],scan:false,fresh:0,seen:[],
+  lv:1,ni:0,score:0,hearts:MD_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,
+  /* 这一摊：字 · 帖 B · 错本 A0 · 三双手的账 */
+  ch:'',rec:null,nA:0,nB:0,B:[],A0:[],D:0,M:0,R:0,K:0,dec:0,deep:0,hard:0,
+  /* 眼下这一手：笔尖停在 (i,j) —— i = 错本吃掉几张，j = 帖吃掉几张（与先生的表同一坐标）*/
+  cur:[],tag:[],ins:{},i:0,j:0,cost:0,steps:0,matched:0,insN:0,delN:0,subN:0,
+  maxSpan:0,deepHit:0,goodSteps:0,badSteps:0,spanSum:0,
+  opts:[],ans:'',qCat:'',qMs:0,qMs0:0,busy:false,pending:'',waited:0,
+  rest:null,goodSet:[],bestAct:'',
+  err:0,
+  /* 帘子与账：闪一下绿/红 · 代改 */
+  reveal:'',flashAt:-1,flashGood:false,flashMs:0,calcMs:0,calcAct:'',
+  comboKeep:0,caseTools:0,quits:0,
+  peekMs:0,peekN:MD_P0.peek,calcN:MD_P0.calc,swapN:MD_P0.swap,
+  peekUse:0,calcUse:0,swapUse:0,
+  /* 这一摊 / 这一局的钟 */
+  case0:0,caseMs:0,helpMs:0,lamp:0,lamp0:0,
+  sealMs:0,handMs:0,tools:0,swaps:0,spark:[],
+  quickOk:1,quickMs:0,
+  /* 局账 */
+  nights:0,stepsAll:0,saved:0,saves:0,perfN:0,tightN:0,quickN:0,cleanN:0,
+  wasteAll:0,doubtAll:0,waitAll:0,inkAll:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',newBest:false,seed:1,
+  caseWen:0,shelfGet:[],
+  overBy:0,costTotal:0,tiersDone:0,cleanRound:0
+};
+
+/* ---- 落盘：hz_md_* 共 10 本（best / nights / rounds / steps / ink / saved / wrong / shelf / book / dex）---- */
+function mdPut(k,v){try{localStorage.setItem('hz_md_'+k,''+v)}catch(e){}}
+function mdGet(k,d){try{const v=localStorage.getItem('hz_md_'+k);return v===null?d:v}catch(e){return d}}
+function mdNum(k){return Number(mdGet(k,0))||0}
+function mdInc(k,n){const v=mdNum(k)+(typeof n==='number'?n:1);mdPut(k,v);return v}
+function mdBookPush(ch,why){
+  const bk=(mdGet('book','')||'').split('|').filter(x=>x);
+  const i=bk.findIndex(x=>x.indexOf(ch+':')===0);
+  const e=ch+':'+(why||'没改完');
+  if(i>=0)bk[i]=e;else bk.unshift(e);
+  while(bk.length>MD_BOOK_MAX)bk.pop();
+  mdPut('book',bk.join('|'));
+}
+function mdBookHas(ch){return (mdGet('book','')||'').split('|').some(x=>x.indexOf(ch+':')===0)}
+/* 这一摊就一路改到底，就把这一子从赊账簿上划掉：簿上只留还没改完的摊 */
+function mdBookDel(ch){
+  const bk=(mdGet('book','')||'').split('|').filter(x=>x&&x.indexOf(ch+':')!==0);
+  mdPut('book',bk.join('|'));
+}
+function mdDexHas(ch){return (mdGet('dex','')||'').split('|').indexOf(ch)>=0}
+function mdDexAdd(ch){
+  const d=(mdGet('dex','')||'').split('|').filter(x=>x);
+  if(d.indexOf(ch)<0){d.push(ch);mdPut('dex',d.join('|'));return 1}
+  return 0;
+}
+
+/* ---- 本坊自己的发声 · 回话 · 定时器（不借别人家的栏）---- */
+function mdTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!mdy.ac)mdy.ac=new AC();
+    const c=mdy.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.setValueAtTime(g||.11,c.currentTime);
+    n.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);
+    o.connect(n);n.connect(c.destination);o.start();o.stop(c.currentTime+d);
+  }catch(e){}
+}
+function mdDing(i){mdTone(523*Math.pow(1.0595,Math.min(24,(i||0)*2)),.16,.10)}
+function mdBad(){mdTone(150,.26,.13);setTimeout(()=>mdTone(112,.3,.12),110)}
+function mdBell(){mdTone(880,.09,.07);setTimeout(()=>mdTone(1175,.12,.07),90)}/* 落下一手 */
+function mdPop(){mdTone(660,.07,.07)}
+function mdSlide(){mdTone(330,.09,.06);setTimeout(()=>mdTone(494,.11,.06),70)}
+function mdSeal(){[0,4,7,12].forEach((s,i)=>setTimeout(()=>mdTone(523*Math.pow(1.0595,s),.2,.09),i*90))}
+function mdClearTimers(){mdy.timers.forEach(t=>clearTimeout(t));mdy.timers=[]}
+function mdLater(ms,fn){const id=setTimeout(fn,ms);mdy.timers.push(id);return id}
+function mdSay(t){const e=document.getElementById('mdMsg');if(e)e.innerHTML=t}
+
+/* ==== ✏️ 笔顺改字坊 · 第二节：两条带子与三双手（分类 · 错本 · 填表 · 穷举 · 一摊的账）====
+   这一节的每一条算式都与 _mdgeo.cjs 一字一样：段 W 会把全站 1372 字逐字拿去对表，
+   页内算出来的笔形串、错本、先生 M、龟伯 R、穷举 K、岔口必须与离线闸门完全相同，一个墨都不许多不许少。 */
+
+/* ---- 六类笔形：屏幕上「往下」为正，故纵差取 m[0][1]-m[n-1][1]（字形数据 y 轴朝上）---- */
+function mdTurn(m){
+  let worst=0;
+  for(let i=1;i+1<m.length;i++){
+    const ax=m[i][0]-m[i-1][0],ay=m[i-1][1]-m[i][1];
+    const bx=m[i+1][0]-m[i][0],by=m[i][1]-m[i+1][1];
+    if(!ax&&!ay)continue;
+    if(!bx&&!by)continue;
+    let d=Math.abs(Math.atan2(ay,ax)-Math.atan2(by,bx))*180/Math.PI;
+    if(d>180)d=360-d;
+    if(d>worst)worst=d;
+  }
+  return worst;
+}
+function mdCat(m){
+  if(!m||m.length<2)return'X';
+  const n=m.length;
+  const dx=m[n-1][0]-m[0][0];
+  const dy=m[0][1]-m[n-1][1];
+  if(Math.abs(dx)<MD_DIAN&&Math.abs(dy)<MD_DIAN)return'I';
+  if(mdTurn(m)>=MD_TURN)return'Z';
+  const a=Math.atan2(dy,dx)*180/Math.PI;
+  if(a>=-70&&a<30)return'X';
+  if(a>=30&&a<70)return'N';
+  if(a>=70&&a<=110)return'S';
+  return'P';
+}
+/* ---- 帖：这一子的笔形类目串（六类都齐不出带就过不了闸）---- */
+function mdBuild(M){
+  if(!Array.isArray(M)||M.length<MD_NMIN||M.length>MD_NMAX)return null;
+  const cats=[];
+  for(let i=0;i<M.length;i++){
+    const st=M[i];
+    if(!Array.isArray(st)||st.length<1)return null;
+    cats.push(mdCat(st));
+  }
+  const seen={};
+  for(let i=0;i<cats.length;i++)seen[cats[i]]=1;
+  return {n:cats.length,cats:cats,D:Object.keys(seen).length};
+}
+const MD_K6=['X','S','P','N','I','Z'];
+/* ---- 错本：拿 charCode 当种子定死地错几处（漏 / 多 / 写错类 / 相邻写反），同一字永远错得一样 ---- */
+function mdRng(seed){let s=seed>>>0;return function(){s=(s*1664525+1013904223)>>>0;return s/4294967296}}
+function mdWrong(cats,seed){
+  const rnd=mdRng(seed||1),a=cats.slice(),mut=[];
+  const times=Math.min(MD_MUTMAX,MD_MUTMIN+(rnd()<0.5?1:0));
+  for(let t=0;t<times;t++){
+    const r=rnd();
+    if(r<0.28){
+      if(a.length<=3)continue;
+      const p=Math.floor(rnd()*a.length);
+      a.splice(p,1);mut.push(['d',p,'']);
+    }else if(r<0.52){
+      const p=Math.floor(rnd()*(a.length+1)),c=MD_K6[Math.floor(rnd()*6)];
+      a.splice(p,0,c);mut.push(['i',p,c]);
+    }else if(r<0.82){
+      if(!a.length)continue;
+      const p=Math.floor(rnd()*a.length);
+      let c=MD_K6[Math.floor(rnd()*6)];
+      if(c===a[p])c=MD_K6[(MD_K6.indexOf(c)+1)%6];
+      a[p]=c;mut.push(['s',p,c]);
+    }else{
+      if(a.length<3)continue;
+      const p=Math.floor(rnd()*(a.length-1)),x=a[p];
+      a[p]=a[p+1];a[p+1]=x;mut.push(['t',p,'']);
+    }
+  }
+  return {a:a,mut:mut};
+}
+/* ---- 手二 · 先生：填表递推（前缀表，右下脚就是最少墨）---- */
+function mdDp(A,B){
+  const m=A.length,n=B.length,d=[];
+  for(let i=0;i<=m;i++){d.push(new Array(n+1).fill(0));d[i][0]=i}
+  for(let j=0;j<=n;j++)d[0][j]=j;
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++){
+    d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(A[i-1]===B[j-1]?0:1));
+  }
+  return {M:d[m][n],tab:d};
+}
+/* ---- 余账：从第 i 张错本与第 j 张帖往后还得花几墨（后缀表，与先生的同一条递推）---- */
+function mdRest(A,B){
+  const m=A.length,n=B.length,d=[];
+  for(let i=0;i<=m;i++)d.push(new Array(n+1).fill(0));
+  /* 底边：帖还剩 j 张而错本空了 ⇒ 只能一路补进；右边：错本还剩而帖走完了 ⇒ 只能一路抽走 */
+  for(let j=0;j<=n;j++)d[m][j]=n-j;
+  for(let i=m-1;i>=0;i--){
+    d[i][n]=m-i;
+    for(let j=n-1;j>=0;j--){
+      d[i][j]=Math.min(d[i+1][j]+1,d[i][j+1]+1,d[i+1][j+1]+(A[i]===B[j]?0:1));
+    }
+  }
+  return d;
+}
+/* ---- 先生的路：从右下脚回溯，每一步动的是哪一手（= 对上 / s 换 / d 抽 / i 补）---- */
+function mdTrace(A,B,tab){
+  let i=A.length,j=B.length;
+  const path=[];
+  while(i>0||j>0){
+    if(i>0&&j>0&&A[i-1]===B[j-1]&&tab[i][j]===tab[i-1][j-1])path.push(['=',i-1,j-1]);
+    else if(i>0&&j>0&&tab[i][j]===tab[i-1][j-1]+1)path.push(['s',i-1,j-1]);
+    else if(i>0&&tab[i][j]===tab[i-1][j]+1)path.push(['d',i-1,j]);
+    else path.push(['i',i,j-1]);
+    const k=path[path.length-1];
+    if(k[0]==='='){i--;j--}else if(k[0]==='s'){i--;j--}else if(k[0]==='d')i--;else j--;
+  }
+  return path.reverse();
+}
+/* ---- 手一 · 龟伯：不理会错开对齐，从头一位一位硬对，不一样就换，剩下补齐 ---- */
+function mdGreedy(A,B){
+  const lim=Math.min(A.length,B.length);
+  let c=0,dec=0;
+  for(let i=0;i<lim;i++)if(A[i]!==B[i]){c++;dec++}
+  c+=(B.length-lim)+(A.length-lim);
+  return {R:c,dec:dec};
+}
+/* ---- 手三 · 穷举：所有对齐方式一条条走到底（绝不借先生的表，一条不落）---- */
+function mdBrute(A,B){
+  const best={v:Infinity};
+  let walked=0;
+  (function go(i,j,cost){
+    if(cost>=best.v)return;
+    if(i>=A.length&&j>=B.length){best.v=cost;return}
+    walked++;
+    if(i<A.length&&j<B.length)go(i+1,j+1,cost+(A[i]===B[j]?0:1));
+    if(i<A.length)go(i+1,j,cost+1);
+    if(j<B.length)go(i,j+1,cost+1);
+  })(0,0,0);
+  return {K:best.v,walked:walked};
+}
+/* ---- 岔口：眼下这一步摆着几手，其中几手不多花墨（真值 = 余账）---- */
+function mdFork(A,B,rest,i,j){
+  const cur=rest[i][j];
+  const can=[];
+  if(i<A.length&&j<B.length){
+    can.push(['Q',A[i]===B[j]?rest[i+1][j+1]:1+rest[i+1][j+1]]);
+    can.push(['W',1+rest[i+1][j+1]]);
+  }
+  if(i<A.length)can.push(['E',1+rest[i+1][j]]);
+  if(j<B.length)can.push(['T',1+rest[i][j+1]]);
+  const good=[];
+  for(let k=0;k<can.length;k++)if(can[k][1]===cur)good.push(can[k][0]);
+  return {cur:cur,can:can,good:good};
+}
+/* ---- 过闸判定：这一摊能不能上台（与 _mdgeo.cjs 同一条一条的闸）---- */
+function mdGate(g,A,dp,G,E,mut){
+  if(g.D<MD_DMIN||g.D>MD_DMAX)return '类目数出格';
+  if(mut.length<MD_MUTMIN)return '错得太少';
+  if(A.join('')===g.cats.join(''))return '错本没对错本';
+  if(Math.abs(A.length-g.n)>MD_LENMAX)return '错本长短差太多';
+  if(dp.M<MD_MMIN||dp.M>MD_MMAX)return '最少墨出格';
+  if(E.K!==dp.M)return '穷举与先生对不上';
+  if(G.R-dp.M<MD_GAPMIN)return '龟伯不吃亏';
+  if(G.dec<MD_CHMIN)return '岔口太少';
+  return '';
+}
+/* ---- 一摊的账（缓存：同一字重复摊不重算）---- */
+const mdCache={};
+function mdAudit(ch,j){
+  if(!ch)return null;
+  if(!mdCache[ch]){
+    const M=Array.isArray(j)?j:((j&&(j.medians||j.M))||null);
+    let r=null;
+    if(M){
+      const g=mdBuild(M);
+      if(g){
+        const w=mdWrong(g.cats,ch.charCodeAt(0));
+        const dp=mdDp(w.a,g.cats),G=mdGreedy(w.a,g.cats),E=mdBrute(w.a,g.cats);
+        const why=mdGate(g,w.a,dp,G,E,w.mut);
+        const rest=mdRest(w.a,g.cats);
+        const F0=mdFork(w.a,g.cats,rest,0,0);
+        const tr=mdTrace(w.a,g.cats,dp.tab),kinds={};
+        for(let k=0;k<tr.length;k++)if(tr[k][0]!=='=')kinds[tr[k][0]]=(kinds[tr[k][0]]||0)+1;
+        r={ch:ch,n:g.n,cats:g.cats.slice(),D:g.D,a:w.a.slice(),mut:w.mut,
+          st:M.map(function(x){return x.map(function(p){return [p[0],p[1]]})}),
+          M:dp.M,R:G.R,K:E.K,dec:G.dec,sd:G.R-dp.M,walked:E.walked,
+          ins:kinds.i||0,del:kinds.d||0,sub:kinds.s||0,path:tr.map(x=>x[0]+''),
+          g0:F0.good.length,hard:dp.M*100+g.n*8+G.dec*2+(G.R-dp.M),why:why};
+      } else r={ch:ch,why:'笔形不成人形'};
+    } else r={ch:ch,why:'没字料'};
+    mdCache[ch]=r;
+  }
+  return mdCache[ch];
+}
+function mdPass(ch){const a=mdCache[ch];return !!(a&&a.why==='')}
+
+/* ==== ✏️ 笔顺改字坊 · 第三节：版面（两条带子 · 笔尖 · 三双手牌 · 米字格墨）与主循环 ==== */
+function mdEl(id){return document.getElementById(id)}
+function mdTxt(id,s){const e=mdEl(id);if(e)e.textContent=s}
+function mdHtml(id,s){const e=mdEl(id);if(e)e.innerHTML=s}
+function mdTag(s){const e=mdEl('mdTag');if(e)e.textContent=s}
+let mdInk=null,mdIctx=null,mdGen=0;
+
+/* ---- 两处帘子的唯一开关：屏上所有派生读数都走这两个谓词（掀帘一起点亮）----
+   帖盖布（第 4 夜起）：帖上第 j 笔之后一律「？」，只留米字格描金那一笔给你认；
+   蒙账（第 6 夜起）：三双手的墨数与每一步的盈亏一起蒙上，只能自己数错位。 */
+function mdTellOn(){return !mdNoTell(mdy.lv)||mdy.peekMs>0}
+function mdDimOn(){return !mdDim(mdy.lv)||mdy.peekMs>0}
+
+/* ---- 绑定：选项 · 四种手 · 家什 · 键位 ---- */
+function mdBind(){
+  if(mdy.bound)return;
+  mdy.bound=true;
+  for(let i=0;i<4;i++){
+    const b=mdEl('mdOpt'+i);
+    if(b)b.addEventListener('click',function(){mdAnswer(i)});
+  }
+  for(let i=0;i<4;i++){
+    const b=mdEl('mdAct'+i);
+    if(b)b.addEventListener('click',function(){mdAct(i)});
+  }
+  const p=mdEl('mdPeek');if(p)p.addEventListener('click',function(){mdPeek()});
+  const v=mdEl('mdCalc');if(v)v.addEventListener('click',function(){mdCalc()});
+  const sw=mdEl('mdSwap');if(sw)sw.addEventListener('click',function(){mdSwapNight()});
+  const hb=mdEl('mdHelpBtn');if(hb)hb.addEventListener('click',function(){mdHelp()});
+  const qb=mdEl('mdQuitBtn');if(qb)qb.addEventListener('click',function(){mdQuit('手动弃摊')});
+  const rb=mdEl('mdReBtn');if(rb)rb.addEventListener('click',function(){mdStart(true)});
+  const rh=mdEl('mdReHome');if(rh)rh.addEventListener('click',function(){mdLeave('home')});
+  window.addEventListener('keydown',function(e){
+    if(!mdy.run||currentMode!=='md')return;
+    const k=e.key;
+    if(k>='1'&&k<='4'){mdAnswer(Number(k)-1);e.preventDefault();return}
+    if(k==='q'||k==='Q'){mdAct(0);e.preventDefault();return}
+    if(k==='w'||k==='W'){mdAct(1);e.preventDefault();return}
+    if(k==='e'||k==='E'){mdAct(2);e.preventDefault();return}
+    if(k==='t'||k==='T'){mdAct(3);e.preventDefault();return}
+    if(k==='p'||k==='P'){mdPeek();e.preventDefault();return}
+    if(k==='v'||k==='V'){mdCalc();e.preventDefault();return}
+    if(k==='s'||k==='S'){mdSwapNight();e.preventDefault();return}
+    if(k==='h'||k==='H'){mdHelp();e.preventDefault();return}
+    if(k==='g'||k==='G'){mdQuit('弃摊');e.preventDefault();return}
+    if(k==='r'||k==='R'){if(mdy.over)mdStart(true);e.preventDefault();return}
+  });
+}
+
+/* ---- 称号档：一辈子改完的摊数决定第几夜 ---- */
+function mdLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/MD_LETTERS)))}
+function mdKill(){if(mdy.rafId)cancelAnimationFrame(mdy.rafId);mdy.rafId=0;mdClearTimers();mdSparkClear()}
+
+/* ---- 开摊 ---- */
+function mdStart(again){
+  mdKill();
+  mdGen++;
+  mdy.gen=mdGen;
+  mdBind();
+  const w=mdNum('nights');
+  mdy.lv=mdLvOf(w);mdy.ni=0;mdy.score=0;mdy.hearts=MD_HEARTS;mdy.combo=0;mdy.maxCombo=0;mdy.nights=0;
+  mdy.stepsAll=0;mdy.saved=0;mdy.saves=0;mdy.perfN=0;mdy.tightN=0;mdy.quickN=0;mdy.cleanN=0;
+  mdy.inkAll=0;mdy.wasteAll=0;mdy.doubtAll=0;mdy.waitAll=0;
+  mdy.peekN=MD_P0.peek;mdy.calcN=MD_P0.calc;mdy.swapN=MD_P0.swap;
+  mdy.peekUse=0;mdy.calcUse=0;mdy.swapUse=0;mdy.quits=0;
+  mdy.peekMs=0;mdy.calcMs=0;mdy.flashMs=0;mdy.helpMs=0;mdy.sealMs=0;mdy.handMs=0;
+  mdy.tools=0;mdy.swaps=0;mdy.overBy=0;mdy.costTotal=0;mdy.tiersDone=0;mdy.cleanRound=0;
+  mdy.gain=0;mdy.penSum=0;
+  mdy.seen=[];mdy.miss=[];mdy.scan=false;mdy.shelfGet=[];mdy.over=false;mdy.run=true;mdy.phase='load';mdy.load=true;
+  mdy.lamp0=mdLampMs(mdy.lv);mdy.lamp=mdy.lamp0;
+  mdy.pool=[];mdy.poolLv=-1;mdy.fresh=0;mdy.seed=1;
+  /* 摊还没开就把上一摊的版面一并收走：两条带子、笔尖、题、钟都不许留着旧账冒充新摊 */
+  mdy.rec=null;mdy.ch='';mdy.nA=0;mdy.nB=0;mdy.B=[];mdy.A0=[];mdy.cur=[];mdy.tag=[];mdy.ins={};
+  mdy.i=0;mdy.j=0;mdy.cost=0;mdy.steps=0;mdy.matched=0;mdy.insN=0;mdy.delN=0;mdy.subN=0;
+  mdy.D=0;mdy.M=0;mdy.R=0;mdy.K=0;mdy.dec=0;mdy.deep=0;mdy.hard=0;
+  mdy.maxSpan=0;mdy.deepHit=0;mdy.goodSteps=0;mdy.badSteps=0;mdy.spanSum=0;
+  mdy.opts=[];mdy.ans='';mdy.qCat='';mdy.reveal='';mdy.qMs=0;mdy.qMs0=0;mdy.pending='';
+  mdy.rest=null;mdy.goodSet=[];mdy.bestAct='';mdy.flashAt=-1;mdy.flashGood=false;mdy.calcAct='';
+  mdy.case0=0;mdy.caseMs=0;mdy.err=0;mdy.caseTools=0;mdy.busy=false;mdy.caseWen=0;
+  mdy.t=0;mdy.playMs=0;mdy.last=0;mdy.spark=[];mdy.hitOk=0;mdy.hitTxt='';
+  /* 门牌：本坊自己点屏（与全站新坊同一套路），并把 currentMode 交给本坊 —— 主循环与键盘都认这块门牌 */
+  currentMode='md';
+  const sc=mdEl('screen-md');
+  if(sc){document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});sc.classList.add('active')}
+  const ov=mdEl('mdOver');if(ov)ov.style.display='none';
+  mdTag('✏️ 正在挑字……');
+  mdSay('✏️ 摊头正在找那种「照直觉一位一位硬改就得多花墨」的错本……');
+  mdRenderHud();mdRenderTally();mdRenderMeters();mdRenderRows();mdRenderActs();mdRenderGate();mdRenderOpts();
+  mdFillPool();
+  mdy.last=performance.now();
+  mdy.rafId=requestAnimationFrame(mdLoop);
+}
+function mdNudge(){/* 别的坊开了摊：称号条跟着走 */
+  const e=mdEl('mdRank');if(e){const r=mdRankOf(mdNum('nights'));e.textContent=r.e+' '+r.t}
+}
+
+/* ---- 主循环：三支钟 + 掀帘 + 搬家一拍 + 火花 ---- */
+function mdTick(dt){
+  if(!mdy.run)return;
+  mdy.playMs+=dt*1000;
+  /* 局灯 */
+  if(mdy.lamp>0){
+    mdy.lamp-=dt*1000;
+    if(mdy.lamp<=0){mdy.lamp=0;mdRenderMeters();mdRoundOut();return}
+  }
+  /* 掀帘：两处一起灭，灭了就得把整屏派生读数重画 */
+  if(mdy.peekMs>0){
+    mdy.peekMs-=dt*1000;
+    if(mdy.peekMs<=0){mdy.peekMs=0;mdRenderRows();mdRenderTally();mdRenderActs();mdRenderHud();mdRenderGate()}
+  }
+  if(mdy.calcMs>0){
+    mdy.calcMs-=dt*1000;
+    if(mdy.calcMs<=0){mdy.calcMs=0;mdy.calcAct='';mdRenderActs()}
+  }
+  if(mdy.flashMs>0){mdy.flashMs-=dt*1000;if(mdy.flashMs<=0){mdy.flashMs=0;mdRenderRows()}}
+  if(mdy.helpMs>0){mdy.helpMs-=dt*1000;if(mdy.helpMs<=0){mdy.helpMs=0;mdSay(mdIdleSay())}}
+  if(mdy.sealMs>0){mdy.sealMs-=dt*1000;if(mdy.sealMs<=0){mdy.sealMs=0;mdRenderTally()}}
+  if(mdy.handMs>0){mdy.handMs-=dt*1000;if(mdy.handMs<=0){mdy.handMs=0;mdNextStep();return}}
+  if(mdy.phase==='load'){if(!mdy.scan)mdFillPool();return}
+  if(mdy.phase==='ask'&&mdy.qMs>0){
+    mdy.qMs-=dt*1000;
+    if(mdy.qMs<=0){mdy.qMs=0;mdAskOut();return}
+  }
+  if(mdy.phase==='pick'){
+    /* 挑手不吃额外的小钟，只吃这一摊的夜钟：孩子得自己数错位 */
+  }
+  if(mdy.phase!=='seal'&&mdy.phase!=='over'&&mdy.phase!=='out'){
+    if(mdy.caseMs>0){
+      mdy.caseMs-=dt*1000;
+      if(mdy.caseMs<=0){mdy.caseMs=0;mdCaseOut();return}
+    }
+  }
+  mdFx(dt);
+}
+function mdLoop(ts){
+  if(!mdy.run||currentMode!=='md')return;
+  mdy.rafId=requestAnimationFrame(mdLoop);
+  const dt=Math.min(.08,Math.max(0,(ts-(mdy.last||ts))/1000));
+  mdy.last=ts;mdy.t+=dt;
+  mdTick(dt);
+  mdRenderMeters();
+}
+/* ---- 顶上那行字：两支钟都报数，屏上=结算=落盘同一本账 ---- */
+function mdTopClock(){
+  const e=mdEl('mdTime');
+  if(!e)return;
+  e.textContent='这一摊 '+(mdy.case0?((Math.max(0,mdy.caseMs))/1000).toFixed(1):'--')+' 秒 · 这一局 '+((Math.max(0,mdy.lamp))/1000).toFixed(0)+' 秒';
+}
+
+/* ---- 两条带子：错本（红笔在你手里）与帖（真笔顺）---- */
+function mdCellCls(c,extra){return 'md-cell md-'+c+(extra?' '+extra:'')}
+function mdRenderRows(){
+  const boxA=mdEl('mdRowA'),boxB=mdEl('mdRowB');
+  if(!boxA||!boxB)return;
+  const tell=mdTellOn(),i=mdy.i,j=mdy.j;
+  let h='';
+  for(let k=0;k<mdy.nA;k++){
+    const got=mdy.ins[k]||[];
+    const fl=(mdy.flashAt===k&&mdy.flashMs>0)?(mdy.tag[k]?'':(mdy.flashGood?' good':' bad')):'';
+    for(let x=0;x<got.length;x++){
+      h+='<span class="'+mdCellCls(got[x],'ins done'+fl)+'" id="mdIns'+k+'-'+x+'">'+mdKind(got[x]).g+'<em>插</em></span>';
+    }
+    const c=mdy.cur[k]||mdy.A0[k];
+    const K=mdKind(c);
+    let cls='';
+    if(k<i)cls='past '+(mdy.tag[k]||'');
+    else if(k===i)cls='now';
+    if(mdy.flashAt===k&&mdy.flashMs>0)cls+=(mdy.flashGood?' good':' bad');
+    h+='<span class="'+mdCellCls(c,cls)+'" id="mdA'+k+'">'+K.g+'<em>'+(k+1)+'</em></span>';
+  }
+  const tail=mdy.ins[mdy.nA]||[];
+  const tf=(mdy.flashAt===mdy.nA&&mdy.flashMs>0)?(mdy.flashGood?' good':' bad'):'';
+  for(let x=0;x<tail.length;x++)h+='<span class="'+mdCellCls(tail[x],'ins done'+tf)+'">'+mdKind(tail[x]).g+'<em>插</em></span>';
+  boxA.innerHTML=h;
+  h='';
+  for(let k=0;k<mdy.nB;k++){
+    const c=mdy.B[k];
+    const K=mdKind(c);
+    let cls='';
+    if(k<j)cls='past done';
+    else if(k===j)cls='now tie';
+    if(!tell&&k>j)cls+=' veil';
+    if(mdy.peekMs>0&&k>j)cls+=' lit';
+    h+='<span class="'+mdCellCls(c,cls)+'" id="mdB'+k+'">'+(tell||k<=j?K.g:'？')+'<em>'+(k+1)+'</em></span>';
+  }
+  boxB.innerHTML=h;
+  const ha=mdEl('mdHeadA'),hb=mdEl('mdHeadB');
+  if(ha)ha.textContent='📕 错本 · '+mdy.nA+' 张（小书童抄的，红笔在你手里）';
+  if(hb)hb.textContent='📗 帖 · '+mdy.nB+' 张（这一子的真笔顺'+(tell?'，一笔一张牌':'，未来的牌摊头收走了')+'）';
+  mdRenderTie();
+}
+/* ---- 笔尖那一行：两条带子的位次与错位 ---- */
+function mdRenderTie(){
+  const e=mdEl('mdTie');
+  if(!e)return;
+  if(!mdy.rec){e.textContent='✏️ 笔尖还没落下';return}
+  if(mdy.phase==='seal'||mdy.phase==='over'){e.textContent='🧾 这一摊改完了：花 '+mdy.cost+' 墨';return}
+  const pa=mdy.i<mdy.nA?'第 '+(mdy.i+1)+' 张':'已经见底',pb=mdy.j<mdy.nB?'第 '+(mdy.j+1)+' 张':'已经见底';
+  const sp=Math.abs(mdy.i-mdy.j);
+  e.textContent='🖊️ 笔尖停在 错本'+pa+' ↔ 帖'+pb+' · 错开 '+sp+' 张'+(sp>=MD_DEEP_MIN?'（这一处错得深）':'');
+}
+
+/* ---- 四种手：能按的按得动，按不得的（带子见底）才 disabled ----
+   ✓ 是否与帖对得上不许写在 disabled 上：那一格就是答案本身（尤其第 4 夜起帖盖了布）*/
+function mdRenderActs(){
+  for(let k=0;k<4;k++){
+    const b=mdEl('mdAct'+k);
+    if(!b)continue;
+    const can=mdActLegal(k);
+    b.disabled=(!can||mdy.phase!=='pick'||mdy.busy);
+    let cls='md-act '+(k===0?'free':'ink');
+    if(mdy.peekMs>0&&can&&mdy.goodSet.indexOf(['Q','W','E','T'][k])>=0)cls+=' pick';
+    if(mdy.calcMs>0&&mdy.calcAct===['Q','W','E','T'][k])cls+=' auto';
+    b.className=cls;
+  }
+}
+function mdActLegal(k){
+  const i=mdy.i,j=mdy.j,nA=mdy.nA,nB=mdy.nB;
+  if(k===0||k===1)return i<nA&&j<nB;
+  if(k===2)return i<nA;
+  return j<nB;
+}
+function mdActName(k){return ['✓ 对上','🔁 换','➖ 抽走','⊕ 补进'][k]||''}
+function mdActKey(k){return ['Q','W','E','T'][k]||''}
+function mdActIdx(key){return ['Q','W','E','T'].indexOf(key)}
+
+/* ---- 三双手的牌：🐢 龟伯 R · 📐 先生 M · 🖊️ 我自己的墨（第 6 夜起蒙上）---- */
+function mdRenderTally(){
+  const box=mdEl('mdTally');
+  if(!box)return;
+  const lit=mdDimOn();
+  const sealed=(mdy.phase==='seal'||mdy.phase==='over'||mdy.phase==='out');
+  const left=mdy.rest?mdy.rest[mdy.i][mdy.j]:0;
+  const est=mdy.cost+left;
+  let h='';
+  h+='<span class="tb naive">'+(lit?'🐢 龟伯硬对要花 <b>'+mdy.R+'</b> 墨':'🐢 龟伯要花 <b>?</b> 墨')+'</span>';
+  h+='<span class="tb smart">'+(lit?'📐 先生填表最少 <b>'+mdy.M+'</b> 墨':'📐 先生最少 <b>?</b> 墨')+'</span>';
+  h+='<span class="tb mine">🖊️ 我已花 <b>'+mdy.cost+'</b> 墨'
+    +(lit&&mdy.rec?(sealed?' · 比龟伯省 <b>'+Math.max(0,mdy.R-mdy.cost)+'</b> 墨':' · 顺表走完共 <b>'+est+'</b> 墨'):'')+'</span>';
+  h+='<span class="tb gate">'+(mdy.rec?('🎟️ 这一摊的题面：最少 '+mdy.K+' 墨'+(lit?'（穷举与先生一字不差）':'（这一夜三双手的账蒙着）')):'🎟️ 摊还没开')+'</span>';
+  box.innerHTML=h;
+}
+
+/* ---- 笔尖：眼下这两张牌的模样 ---- */
+function mdRenderGate(){
+  const e=mdEl('mdGate');
+  if(!e)return;
+  mdAskBoard();
+  if(!mdy.rec){e.innerHTML='<b>🖊️ 摊还没开</b>';return}
+  if(mdy.i>=mdy.nA&&mdy.j>=mdy.nB){e.innerHTML='<b>🪊 两条带子都见底了</b>';return}
+  const a=mdy.A0[mdy.i],b=mdy.B[mdy.j];
+  const ka=a?mdKind(a):null,kb=b?mdKind(b):null;
+  const tell=mdTellOn();
+  let h='<b>🖊️ 笔尖</b>';
+  h+=ka?'<span class="gcard '+a+'">'+ka.g+' '+ka.n+'</span>':'<span class="gq">错本见底</span>';
+  h+='<span class="gq">'+(mdy.phase==='ask'?(tell?'帖上第 '+(mdy.j+1)+' 张就是这一笔 · 你说清它是哪一类笔形':'第 '+(mdy.j+1)+' 笔的模样描在米字格里 · 你说清它是哪一类')
+      :(mdy.i<mdy.nA&&mdy.j<mdy.nB?(tell?(a===b?'两张同一类 ⇒ ✓ 不花墨':'两张不同类 ⇒ 换 / 抽 / 补 都要挑'):'这两张对不对得上，帖盖着布 —— 自己看米字格')
+        :(mdy.i<mdy.nA?'错本只剩多写的 ⇒ 抽走':'帖只剩漏写的 ⇒ 补进')))+'</span>';
+  h+=kb&&tell?'<span class="gcard '+b+'">'+kb.g+' '+kb.n+'</span>':(kb?'<span class="gcard">？</span>':'<span class="gq">帖见底</span>');
+  e.innerHTML=h;
+}
+
+/* ---- 题面板：出题那一刻的问句由 mdBuildAsk 写；落完手、换了摊还挂着它，孩子会当这一摊
+       仍在考那一笔（结「书」的摊时屏上写着「占」的第 2 笔是哪一类）。其余时候由渲染层
+       按当下状态重刷：报的是「下一手若要认，认的是帖第几张」。---- */
+function mdAskBoard(){
+  const e=mdEl('mdAsk');if(!e)return;
+  if(mdy.phase==='ask')return;
+  if(mdy.over){mdAsk('🧾 这一把收笔了 · 账写在散场板上');return}
+  if(!mdy.rec){mdAsk('✏️ 正在挑字……<br><small>在字库里找「照直觉硬改就得多花墨」的错本</small>');return}
+  const tell=mdTellOn();
+  if(mdy.i>=mdy.nA&&mdy.j>=mdy.nB){mdAsk('🧾 这一摊改完了 · 两条带子都见底');return}
+  if(mdy.j>=mdy.nB){mdAsk('🧠 帖见底了 · 错本只剩多写的：<b>➖ 抽走</b> 不吃帖，不用认笔形');return}
+  if(mdy.i>=mdy.nA){mdAsk('🧠 错本见底 · 帖还差 '+(mdy.nB-mdy.j)+' 张：落 <b>⊕ 补进</b> 之前先认它是哪一类笔形');return}
+  mdAsk('🧠 下一手若吃到帖第 '+(mdy.j+1)+' 张，先认这一笔 ——「'+mdy.ch+'」的第 '+(mdy.j+1)+
+    ' 笔是哪一类笔形？'+'<small>'+(tell?'帖上第 '+(mdy.j+1)+' 张就写着它的模样 · 只有 ➖ 抽走 不吃帖，不用认'
+      :'这一笔的名字摊头不写 · 看米字格里描金那一笔 · 只有 ➖ 抽走 不吃帖，不用认')+'</small>');
+}
+
+/* ----  HUD：称号 / 心 / 连击 / 夜账 / 闸门账 / 落笔灯 ---- */
+function mdIdleSay(){
+  return '✏️ 小书童把这一子抄错了：<b>漏几笔、多几笔、写错类、相邻写反</b>。你把<b>错本</b>改成<b>帖</b> ——'+
+    '<b>✓ 对上</b>不花墨，<b>🔁 换 / ➖ 抽走 / ⊕ 补进</b>各花一墨。<br>🐢 龟伯<b>不许错开对齐</b>，一位一位硬对、不一样就换，过闸的每一摊都<b>多花墨</b>；'+
+    '📐 先生<b>填表递推</b>算出最少墨。错开得越远越考眼力，顺先生的表走就省墨';
+}
+function mdRenderHud(){
+  const r=mdRankOf(mdy.nights+mdNum('nights'));
+  mdTxt('mdRank',r.e+' '+r.t);
+  let hs='';for(let i=0;i<mdy.hearts;i++)hs+='♥';
+  const e1=mdEl('mdHearts');if(e1){e1.textContent=hs||'♥♥♥ 没了';e1.className=mdy.hearts<=1?'low':''}
+  mdTxt('mdLv','第 '+mdy.lv+' 夜');
+  mdTxt('mdLedCombo','🔥 连对 '+mdy.combo+' · 最长 '+mdy.maxCombo);
+  mdTxt('mdLedWord','🌙 这一夜改到第 '+(mdy.ni+1)+'/'+(mdLetters(mdy.lv).length||MD_LETTERS)+' 摊 · 一辈子改完 '+mdNum('nights')+' 摊');
+  const g=mdEl('mdLedGate');
+  if(g){
+    if(mdy.rec)g.textContent=(mdDimOn()?'🎟️ 先生 '+mdy.M+' · 龟伯 '+mdy.R+' · 穷举 '+mdy.K:'🌱 闸门账蒙着');
+    else g.textContent='🌱 摊还没开';
+  }
+  const L=mdEl('mdHitLight');
+  if(L){
+    L.className='light'+(mdy.hitOk>0?' on':'');
+    L.textContent=mdy.hitOk?('💡 '+mdy.hitTxt):'💡 等落笔';
+  }
+  mdTxt('mdScore',''+mdy.score);
+  mdTopClock();
+}
+
+/* ---- 四支尺：夜钟 / 举牌钟 / 局灯 / 改账 ---- */
+function mdRenderMeters(){
+  const set=function(id,frac){const e=mdEl(id);if(e)e.style.width=Math.max(0,Math.min(100,frac*100))+'%'};
+  const tot=mdy.nA+mdy.nB;
+  set('mdBarCase',mdy.case0?mdy.caseMs/Math.max(1,mdy.case0):0);
+  set('mdBarIdle',mdy.qMs0?mdy.qMs/Math.max(1,mdy.qMs0):0);
+  set('mdBarLamp',mdy.lamp0?mdy.lamp/Math.max(1,mdy.lamp0):0);
+  set('mdBarLed',tot?(mdy.i+mdy.j)/tot:0);
+  const c=mdEl('mdBarCaseL');if(c)c.textContent='⏳ 这一摊 '+(mdy.case0?(mdy.caseMs/1000).toFixed(1):'--')+' 秒';
+  const i=mdEl('mdBarIdleL');if(i)i.textContent=mdy.phase==='ask'?'🔔 举牌 '+(mdy.qMs/1000).toFixed(1)+' 秒':'🔔 举牌 停';
+  const l=mdEl('mdBarLampL');if(l)l.textContent='🌙 这一局 '+(mdy.lamp/1000).toFixed(0)+' 秒';
+  const d=mdEl('mdBarLedL');if(d)d.textContent='🧾 改到 '+(mdy.i+mdy.j)+'/'+tot+' 张 · 花 '+mdy.cost+' 墨';
+  const b1=mdEl('mdPeek'),b2=mdEl('mdCalc'),b3=mdEl('mdSwap');
+  if(b1&&b1.querySelector('b'))b1.querySelector('b').textContent='剩 '+mdy.peekN;
+  if(b2&&b2.querySelector('b'))b2.querySelector('b').textContent='剩 '+mdy.calcN;
+  if(b3&&b3.querySelector('b'))b3.querySelector('b').textContent='剩 '+mdy.swapN;
+}
+
+/* ---- 选项：帖上第 j 笔是哪一类 ---- */
+function mdRenderOpts(){
+  for(let k=0;k<4;k++){
+    const b=mdEl('mdOpt'+k);
+    if(!b)continue;
+    const o=mdy.opts[k];
+    if(!o){b.textContent='—';b.className='wl-opt';b.dataset.value='';continue}
+    b.textContent=o.g+' '+o.n;
+    b.className='wl-opt'+(mdy.ans&&o.c===mdy.ans?(mdy.phase==='ask'?'':' correct'):'');
+    if(o.c===mdy.reveal)b.classList.add('reveal');
+    b.dataset.value=o.c;
+  }
+}
+
+/* ---- 米字格：这一子的模样，帖上改到第几笔就描金第几笔 ---- */
+function mdPX(x){return MD_IX0+x/1000*(MD_IX1-MD_IX0)}
+function mdPY(y){return MD_IY1-y/1000*(MD_IY1-MD_IY0)}
+function mdRenderInk(){
+  if(!mdInk){const cv=mdEl('mdInk');if(!cv)return;mdInk=cv;mdIctx=cv.getContext('2d')}
+  const ctx=mdIctx,W=mdInk.width,H=mdInk.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='#e8d8b8';ctx.lineWidth=1;
+  ctx.strokeRect(2,2,W-4,H-4);
+  ctx.setLineDash([3,3]);
+  ctx.beginPath();ctx.moveTo(W/2,2);ctx.lineTo(W/2,H-2);ctx.moveTo(2,H/2);ctx.lineTo(W-2,H/2);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(2,2);ctx.lineTo(W-2,H-2);ctx.moveTo(W-2,2);ctx.lineTo(2,H-2);ctx.stroke();
+  ctx.setLineDash([]);
+  const M=mdy.rec&&mdy.rec.st;
+  if(!M){mdHtml('mdInkCap','这一子的模样<br><b>摊开了就看得见</b>');return}
+  for(let s=0;s<M.length;s++){
+    const st=M[s];
+    if(!Array.isArray(st)||st.length<2)continue;
+    const done=s<mdy.j,now=s===mdy.j;
+    ctx.lineWidth=done?3.6:(now?4.2:2.2);
+    ctx.strokeStyle=done?'#2e7d32':(now?'#FF6F00':'rgba(60,60,60,.22)');
+    ctx.lineCap='round';
+    ctx.beginPath();
+    for(let p=0;p<st.length;p++){
+      const x=mdPX(st[p][0]),y=mdPY(st[p][1]);
+      if(p===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+  }
+  mdHtml('mdInkCap','「'+mdy.ch+'」帖 '+mdy.nB+' 笔（'+mdy.D+' 类笔形）· 错本 '+mdy.nA+' 张<br><b>'+
+    (mdy.j<mdy.nB?('正在对帖上第 '+(mdy.j+1)+' 笔'):'帖上的笔全描完了')+'</b>');
+}
+function mdRenderAll(){
+  mdRenderRows();mdRenderActs();mdRenderTally();mdRenderHud();mdRenderMeters();
+  mdRenderOpts();mdRenderGate();mdRenderInk();
+}
+
+/* ---- 火花：飘在案面上，自己会散 ---- */
+function mdSpark(fx,fy,n,color){
+  const box=mdEl('mdStage');if(!box)return;
+  for(let i=0;i<n;i++){
+    const d=document.createElement('i');
+    d.className='md-spark';
+    d.style.left=(fx*100)+'%';d.style.top=(fy*100)+'%';
+    d.style.background=color||'#FFD54F';
+    d.style.setProperty('--dx',(Math.random()*76-38).toFixed(1)+'px');
+    d.style.setProperty('--dy',(-Math.random()*56-8).toFixed(1)+'px');
+    d.style.animationDelay=(Math.random()*90).toFixed(0)+'ms';
+    box.appendChild(d);
+    mdy.spark.push(d);
+    mdLater(640,function(){if(d.parentNode)d.parentNode.removeChild(d)});
+  }
+  if(mdy.spark.length>90)mdy.spark.splice(0,mdy.spark.length-90);
+}
+function mdSparkClear(){
+  const box=mdEl('mdStage');
+  if(box)for(let i=box.children.length-1;i>=0;i--){const d=box.children[i];if(d.classList&&d.classList.contains('md-spark'))box.removeChild(d)}
+  mdy.spark=[];
+}
+function mdFx(dt){
+  if(mdy.spark.length>60)mdy.spark=mdy.spark.filter(function(d){return d.parentNode});
+}
+
+/* ==== ✏️ 笔顺改字坊 · 第四节：挑字池 · 开摊 · 出题 · 四种手（✓ 对上 / 🔁 换 / ➖ 抽走 / ⊕ 补进）==== */
+
+function mdRnd(){mdy.seed=(mdy.seed*1103515245+12345)&0x7fffffff;return mdy.seed/0x7fffffff}
+
+/* ---- 挑字池：只收「这一摊过闸」的字（穷举与先生对不上、龟伯不吃亏的一律不上台）----
+   本串十个字先取料，缺料就去隔壁串借；池子够 MD_POOL_WANT 就开工。 */
+function mdFillPool(){
+  const lv=mdy.lv,gen=mdy.gen;
+  mdy.scan=true;
+  const letters=(mdLetters(lv)||'').split('');
+  if(!letters.length){mdy.poolLv=lv;mdy.pool=[];mdy.miss=[];mdy.scan=false;mdRoundOut('pool');return}
+  const want=[];
+  for(let i=0;i<mdy.miss.length;i++){const c=mdy.miss[i];if(letters.indexOf(c)>=0&&want.indexOf(c)<0)want.push(c)}
+  for(let i=0;i<letters.length;i++)if(want.indexOf(letters[i])<0)want.push(letters[i]);
+  const rest=[];for(let L=1;L<=9;L++)if(L!==lv)rest.push.apply(rest,(mdLetters(L)||'').split(''));
+  const need=function(){return mdy.pool.length>=MD_POOL_WANT};
+  const scan=async function(list){
+    for(let kk=0;kk<list.length&&!need();kk+=10){
+      const rs=await Promise.all(list.slice(kk,kk+10).map(function(c){return ctTO(loadCharData(c),6000)}));
+      if(mdy.gen!==gen||!mdy.run)return;
+      for(let i=0;i<rs.length;i++){
+        const ch=list[kk+i];
+        if(!rs[i]||!rs[i].medians){if(mdy.miss.indexOf(ch)<0)mdy.miss.push(ch);continue}
+        let a=mdCache[ch]?mdCache[ch]:mdAudit(ch,rs[i]);
+        if(!a||a.why!==''){if(mdy.miss.indexOf(ch)<0&&mdInLev(ch,lv))mdy.miss.push(ch);continue}
+        if(!mdy.pool.some(function(p){return p.ch===ch}))mdy.pool.push(a);
+      }
+    }
+  };
+  return scan(want.concat(rest)).then(function(){
+    if(mdy.gen!==gen||!mdy.run)return;
+    mdy.scan=false;
+    if(!mdy.pool.length){
+      mdy.poolLv=lv;mdy.load=true;
+      mdSay('🌱 这一夜的字号还在路上（缺料 '+mdy.miss.length+' 个）……');
+      return;
+    }
+    mdy.poolLv=lv;mdy.load=false;mdy.ni=0;
+    mdStartCase();
+  }).catch(function(){mdy.scan=false});
+}
+function mdAudLoad(ch){
+  const d=charDataCache[ch];
+  if(!d||!d.medians)return null;
+  const a=mdAudit(ch,d.medians);
+  return (a&&a.why==='')?a:null;
+}
+
+/* ---- 眼下这一步的岔口真值（产品口径：✓ 必须两张真同类才许按，改写归 🔁）---- */
+function mdForkNow(){
+  const r=mdy.rest,i=mdy.i,j=mdy.j,A=mdy.A0,B=mdy.B;
+  if(!r)return {cur:0,can:[],good:[]};
+  const cur=r[i][j],can=[],good=[];
+  if(i<A.length&&j<B.length){
+    if(A[i]===B[j])can.push(['Q',r[i+1][j+1]]);
+    can.push(['W',1+r[i+1][j+1]]);
+  }
+  if(i<A.length)can.push(['E',1+r[i+1][j]]);
+  if(j<B.length)can.push(['T',1+r[i][j+1]]);
+  for(let k=0;k<can.length;k++)if(can[k][1]===cur)good.push(can[k][0]);
+  return {cur:cur,can:can,good:good};
+}
+
+/* ---- 开一摊（一夜一串，一摊一字）---- */
+function mdStartCase(){
+  if(!mdy.run)return;
+  const pool=mdy.pool;
+  if(!pool.length){mdRoundOut('pool');return}
+  const r=pool[mdy.ni%pool.length];
+  if(!r||r.why!==''){mdy.ni++;mdStartCase();return}
+  mdy.rec=r;mdy.ch=r.ch;
+  mdy.B=r.cats.slice();mdy.A0=r.a.slice();
+  mdy.nB=r.n;mdy.nA=r.a.length;
+  mdy.D=r.D;mdy.M=r.M;mdy.R=r.R;mdy.K=r.K;mdy.dec=r.dec;mdy.deep=r.sd;mdy.hard=r.hard;
+  mdy.rest=mdRest(mdy.A0,mdy.B);
+  mdy.cur=mdy.A0.slice();mdy.tag=[];for(let k=0;k<mdy.nA;k++)mdy.tag.push('');mdy.ins={};
+  mdy.i=0;mdy.j=0;mdy.cost=0;mdy.steps=0;mdy.matched=0;mdy.insN=0;mdy.delN=0;mdy.subN=0;
+  mdy.maxSpan=0;mdy.deepHit=0;mdy.goodSteps=0;mdy.badSteps=0;mdy.spanSum=0;
+  mdy.opts=[];mdy.ans='';mdy.qCat='';mdy.reveal='';mdy.pending='';mdy.waited=0;
+  mdy.err=0;mdy.comboKeep=mdy.combo;mdy.caseTools=0;
+  mdy.goodSet=[];mdy.bestAct='';mdy.flashAt=-1;mdy.flashGood=false;mdy.calcAct='';mdy.flashMs=0;
+  mdy.case0=mdCaseMs(mdy.lv);mdy.caseMs=mdy.case0;
+  mdy.quickMs=0;mdy.quickOk=1;
+  /* 这一摊的进出文钱从零起算：上一摊没结的账不许混进这一摊的结摊报数 */
+  mdy.caseWen=0;
+  mdy.fresh=mdDexHas(r.ch)?0:1;
+  mdy.seen.push(r.ch);
+  mdy.phase='pick';mdy.busy=false;
+  mdForkRefresh();
+  mdTag('✏️ 第 '+(mdy.ni+1)+' 摊 ·「'+r.ch+'」');
+  mdSay('✏️「'+r.ch+'」帖上 '+mdy.nB+' 张牌，小书童抄出 '+mdy.nA+' 张。'+
+    (mdTellOn()?'两张带子都摊在案上：笔尖对齐就 ✓，错开了就得挑 换 / 抽走 / 补进':
+      '帖上往后的牌摊头收走了：只看米字格描金那一笔，自己数错位到哪一张')+
+    '<br>🖊️ 这一摊先生最少花 <b>'+(mdDimOn()?mdy.M:'?')+'</b> 墨，龟伯硬要花 <b>'+(mdDimOn()?mdy.R:'?')+'</b> 墨');
+  mdRenderAll();
+}
+/* ---- 岔口刷新：把眼下这一步的省墨手法算出来（屏上只在掀帘时点亮，结算才报盈亏）---- */
+function mdForkRefresh(){
+  const F=mdForkNow();
+  mdy.goodSet=F.good.slice();
+  mdy.bestAct=F.good.length?F.good[0]:'';
+  return F;
+}
+
+/* ---- 出题：帖上第 j 笔是哪一类笔形（凡吃掉帖一张牌的手，都要先认这一笔）---- */
+function mdBuildAsk(act){
+  const j=mdy.j;
+  if(j>=mdy.nB){mdDoStep(act,0);return}
+  const c=mdy.B[j];
+  mdy.qCat=c;mdy.ans=c;mdy.reveal='';
+  const others=[];
+  for(let i=0;i<MD_KINDS.length;i++)if(MD_KINDS[i].c!==c)others.push(MD_KINDS[i]);
+  for(let i=others.length-1;i>0;i--){const t=Math.floor(mdRnd()*(i+1));const x=others[i];others[i]=others[t];others[t]=x}
+  const picked=[mdKind(c)].concat(others.slice(0,3)).map(K=>({c:K.c,g:K.g,n:K.n}));
+  for(let i=picked.length-1;i>0;i--){const t=Math.floor(mdRnd()*(i+1));const x=picked[i];picked[i]=picked[t];picked[t]=x}
+  mdy.opts=picked;
+  mdy.pending=act;
+  mdy.phase='ask';
+  mdAsk('🧠 帖上第 <b>'+(j+1)+'</b> 笔 ——「'+mdy.ch+'」的第 '+(j+1)+' 笔是哪一类笔形？'+
+    '<small>'+(mdTellOn()?'帖上第 '+(j+1)+' 张牌就写着它的模样':'这一笔的名字摊头不写 · 看米字格里描金那一笔')+' · 认对了这一'+
+    (mdActIdx(act)===0?'张 ✓ 对上':'手')+'才算数</small>');
+  mdy.qMs0=mdAskMs(mdy.lv);mdy.qMs=mdy.qMs0;
+  mdRenderOpts();mdRenderGate();mdRenderHud();mdRenderMeters();mdRenderActs();
+}
+function mdAsk(html){const e=mdEl('mdAsk');if(e)e.innerHTML=html}
+
+/* ---- 举牌钟走尽：这一笔没认出来（手照样落下，账照真值结）---- */
+function mdAskOut(){
+  if(mdy.phase!=='ask')return;
+  mdy.waited++;mdy.waitAll++;
+  mdScore(-MD_P_MISS,'白认一息');
+  mdBad();
+  mdy.reveal=mdy.ans;
+  mdy.combo=0;
+  mdy.err++;
+  mdSay('🕯 认笔形的钟走尽：帖上第 '+(mdy.j+1)+' 笔是「'+mdKind(mdy.ans).n+'」（-'+MD_P_MISS+' 文），红笔照样落下');
+  if(mdy.err>=MD_ERR_LINE){mdy.err=0;mdLoseHeart('这一笔等到睡着了')}
+  mdRenderOpts();mdRenderHud();
+  const act=mdy.pending;mdy.pending='';
+  mdDoStep(act,1);
+}
+
+/* ---- 答一道笔形题 ---- */
+function mdAnswer(i){
+  if(!mdy.run||mdy.busy)return;
+  if(mdy.phase!=='ask')return;
+  const o=mdy.opts[i];
+  if(!o)return;
+  const right=o.c===mdy.ans;
+  const act=mdy.pending;
+  if(right){
+    mdy.combo++;
+    if(mdy.combo>mdy.maxCombo)mdy.maxCombo=mdy.combo;
+    mdScore(MD_RIGHT_WEN+Math.min(6,mdy.combo-1)*2,'认对笔形');
+    mdDing(mdy.combo);
+    mdy.reveal=mdy.ans;
+    mdSay('✅ 对喽：帖上第 '+(mdy.j+1)+' 笔是「'+mdKind(mdy.ans).n+'」——'+mdActName(act)+'这一手落得下去');
+    mdRenderOpts();
+    const k=mdy.pending;mdy.pending='';
+    mdLater(MD_POP_MS,function(){mdDoStep(k,0)});
+  }else{
+    mdy.combo=0;
+    mdy.waited++;mdy.waitAll++;
+    mdScore(-MD_P_MISS,'认错笔形');
+    mdBad();
+    mdy.reveal=mdy.ans;
+    mdy.err++;
+    mdSay('❌ 这一笔不是「'+o.n+'」：正确的那一类亮在牌上（-'+MD_P_MISS+' 文）· 手照样落下');
+    if(mdy.err>=MD_ERR_LINE){mdy.err=0;mdLoseHeart('两回没认出笔形')}
+    mdRenderOpts();mdRenderHud();
+    const k=mdy.pending;mdy.pending='';
+    mdLater(MD_WRONG_MS,function(){mdDoStep(k,1)});
+  }
+  mdy.busy=true;
+  mdLater(1,function(){mdy.busy=false});
+}
+
+/* ---- 落一笔：✓ 对上 / 🔁 换 / ➖ 抽走 / ⊕ 补进 ----
+   吃法：✓ 🔁 各吃掉错本一张与帖一张；➖ 只划掉错本一张（不吃帖 ⇒ 不考笔形）；⊕ 只在笔尖前插进帖那一张。*/
+function mdAct(k){
+  if(!mdy.run||mdy.busy)return;
+  if(mdy.phase!=='pick')return;
+  const key=mdActKey(k);
+  if(!mdActLegal(k)){mdSay('🈳 '+mdActName(k)+'这会儿按不动：'+(k===3?'帖上的牌全对完了':'错本这张已经改过了'));return}
+  if(k===0&&mdy.A0[mdy.i]!==mdy.B[mdy.j]){
+    /* ✓ 对不上：这两张压根不同类 ⇒ 白罚一次，笔尖不动（这一手就是龟伯那条直觉）*/
+    mdy.doubtAll++;
+    mdScore(-MD_P_NOFIT,'对不上');
+    mdBad();
+    mdy.flashAt=mdy.i;mdy.flashGood=false;mdy.flashMs=MD_HIT_MS;
+    mdSay('😖 对不上：错本第 '+(mdy.i+1)+' 张是「'+mdKind(mdy.A0[mdy.i]).n+'」，帖上第 '+(mdy.j+1)+' 张是「'+mdKind(mdy.B[mdy.j]).n+'」——'+
+      '两张不同类，✓ 落不下去（-'+MD_P_NOFIT+' 文）。要么 🔁 改写这一张，要么 ➖ 抽走 / ⊕ 补进把带子错开');
+    mdRenderRows();mdRenderHud();
+    return;
+  }
+  if(k===2){
+    /* ➖ 抽走不吃帖上那张牌 ⇒ 不考笔形，直接落 */
+    mdDoStep('E',0);
+    return;
+  }
+  mdBuildAsk(key);
+}
+function mdDoStep(act,waited){
+  if(!mdy.run)return;
+  const i=mdy.i,j=mdy.j,A=mdy.A0,B=mdy.B;
+  if(act==='Q'||act==='W'){if(i>=A.length||j>=B.length)return;if(act==='Q'&&A[i]!==B[j])return}
+  if(act==='E'&&i>=A.length)return;
+  if(act==='T'&&j>=B.length)return;
+  const F=mdForkNow();
+  const good=F.good.indexOf(act)>=0;
+  const sp=Math.abs(i-j);
+  let cost=1;
+  if(act==='Q'){cost=0;mdy.tag[i]='done';mdy.matched++;mdy.i++;mdy.j++}
+  else if(act==='W'){mdy.cur[i]=B[j];mdy.tag[i]='sub';mdy.subN++;mdy.i++;mdy.j++}
+  else if(act==='E'){mdy.tag[i]='del';mdy.delN++;mdy.i++}
+  else{if(!mdy.ins[i])mdy.ins[i]=[];mdy.ins[i].push(B[j]);mdy.insN++;mdy.j++}
+  mdy.cost+=cost;mdy.steps++;mdy.spanSum+=sp;
+  if(sp>mdy.maxSpan)mdy.maxSpan=sp;
+  if(sp>=MD_DEEP_MIN)mdy.deepHit++;
+  if(good)mdy.goodSteps++;else mdy.badSteps++;
+  if(cost)mdy.inkAll++;
+  mdScore(cost===0?MD_MATCH_WEN:MD_STEP_WEN,cost===0?'对上':'改一笔');
+  if(sp>0)mdScore(MD_SPAN_WEN*sp,'错开 '+sp+' 张');
+  if(sp>=MD_DEEP_MIN)mdScore(MD_DEEP_WEN,'错得深');
+  if(good)mdScore(MD_GOOD_WEN,'顺先生的表');
+  else{mdy.wasteAll++;mdScore(-MD_P_WASTE,'多花一墨')}
+  mdy.flashAt=i;mdy.flashGood=good;mdy.flashMs=MD_HIT_MS;
+  mdy.hitOk=1;
+  mdBell();
+  mdSay((good?'👍 省墨：':'😖 亏墨：')+mdActName(mdActIdx(act))+' 之后'+
+    (act==='T'?'把「'+mdKind(B[j]).n+'」插在第 '+(i+1)+' 张前':(act==='E'?'划掉第 '+(i+1)+' 张「'+mdKind(A[i]).n+'」':'第 '+(i+1)+' 张与帖第 '+(j+1)+' 张对上'))+
+    (waited?'（这一笔是白认回来的）':'')+
+    ' · 剩下还得花 <b>'+mdy.rest[mdy.i][mdy.j]+'</b> 墨（这一摊最少 '+mdy.M+' 墨）'+
+    (sp>=MD_DEEP_MIN?' · 这一处错开 '+sp+' 张':''));
+  mdy.phase='slide';
+  mdy.handMs=MD_SLIDE_MS;
+  mdSpark(0.5,0.46,good?12:8,good?'#FFD54F':'#EF5350');
+  mdRenderAll();
+}
+/* ---- 下一步：两条带子都见底就结账，否则笔尖接着挑 ---- */
+function mdNextStep(){
+  if(!mdy.run)return;
+  if(mdy.phase!=='slide')return;
+  mdy.busy=false;
+  if(mdy.i>=mdy.nA&&mdy.j>=mdy.nB){mdCaseDone();return}
+  mdy.phase='pick';
+  const F=mdForkRefresh();
+  mdRenderAll();
+  mdSay('🖊️ 笔尖在错本第 '+(mdy.i+1)+' 张 ↔ 帖第 '+(mdy.j+1)+' 张（错开 <b>'+Math.abs(mdy.i-mdy.j)+'</b> 张）：'+
+    '这一步往后最少还得花 <b>'+F.cur+'</b> 墨 · 已花 '+mdy.cost+' 墨'+
+    (F.good.length?' · 顺表的有 '+F.good.length+' 手':''));
+}
+
+/* ==== ✏️ 笔顺改字坊 ⑤：一摊的账（结算）· 心 · 三支钟的收口 · 家什 · 笔架 · 说明 · 火花 ====
+   屏上报的数、结算用的数、落盘存的数必须是同一本账：文钱只走 mdScore 这一道门，
+   摊账只在 mdCaseDone 一次结清，局账只在 mdOver 一次写盘。 */
+
+/* ---- 一文一分都记清：唯一的加分减分门 ---- */
+function mdScore(n,why){
+  if(!n)return;
+  mdy.score=Math.max(0,mdy.score+n);
+  if(n>0)mdy.gain+=n;else mdy.penSum+=-n;
+  mdy.caseWen+=n;
+  mdy.hitOk=n>0;mdy.hitTxt=why||'';
+  mdRenderHud();
+}
+
+/* ---- 掉一颗心 ---- */
+function mdLoseHeart(why){
+  if(mdy.over)return;
+  mdy.hearts--;
+  mdBad();
+  mdSay('💔 掉一颗心：'+(why||'')+'（还剩 '+mdy.hearts+' 颗）');
+  mdRenderHud();
+  if(mdy.hearts<=0)mdOver('hearts');
+}
+
+/* ---- 一摊改完：省下的墨在这里结账 ---- */
+function mdCaseDone(){
+  if(!mdy.run||mdy.phase==='seal'||mdy.phase==='over')return;
+  mdy.phase='seal';mdy.busy=true;
+  mdy.quickMs=Math.max(0,mdy.case0-mdy.caseMs);
+  const saved=Math.max(0,mdy.R-mdy.cost);        /* 比龟伯少花几墨 */
+  const perfect=(mdy.cost===mdy.M);              /* 与先生一字不差（穷举说这就是最少的）*/
+  const tight=(mdy.badSteps===0&&mdy.steps>0);
+  const quick=(mdy.quickOk&&mdy.quickMs<=mdQuickMs(mdy.lv));
+  const clean=(mdy.waited===0&&mdy.i===mdy.nA&&mdy.j===mdy.nB);
+  const nosame=(mdy.caseTools===0);
+  mdy.saved+=saved;
+  mdy.overBy+=Math.max(0,mdy.cost-mdy.M);
+  mdy.costTotal+=mdy.cost;
+  if(saved>0){mdy.saves++;mdScore(MD_SAVE_WEN*saved,'比龟伯省 '+saved+' 墨')}
+  if(perfect){mdy.perfN++;mdScore(MD_PERFECT_WEN,'一步没多花')}
+  if(tight){mdy.tightN++;mdScore(MD_TIGHT_WEN,'一回没亏墨')}
+  if(quick){mdy.quickN++;mdScore(MD_QUICK_WEN,'眼快')}
+  if(mdy.fresh){mdy.cleanN++;mdScore(MD_FRESH_WEN,'头一回改这一子');mdDexAdd(mdy.ch)}
+  if(nosame)mdScore(MD_PTS_NOTOOL,'一把家什没借');
+  /* 落盘：摊数 · 手数 · 墨数 · 省下的墨 · 亏墨的步 */
+  mdInc('nights',1);mdInc('steps',mdy.steps);mdInc('ink',mdy.cost);
+  if(saved>0)mdInc('saved',saved);
+  if(mdy.badSteps>0)mdInc('wrong',mdy.badSteps);
+  mdy.nights++;mdy.stepsAll+=mdy.steps;
+  /* 赊账簿：一路改到底就把这一子划掉，没改好就记上一笔 */
+  if(perfect&&clean)mdBookDel(mdy.ch);
+  else mdBookPush(mdy.ch,(perfect?'不多花墨':'多花 '+(mdy.cost-mdy.M)+' 墨')+'·亏墨 '+mdy.badSteps+' 步·白认 '+mdy.waited+' 次');
+  const got=mdShelfGiveAll();
+  mdSeal();mdSpark(.5,.42,18,'#FFD54F');
+  mdSay('🧾 一摊账：落笔 <b>'+mdy.steps+'</b> 步（✓ 对上 '+mdy.matched+' · 🔁 换 '+mdy.subN+' · ➖ 抽走 '+mdy.delN+' · ⊕ 补进 '+mdy.insN+'）· '+
+    '花 <b>'+mdy.cost+'</b> 墨 · 龟伯硬要 '+mdy.R+' 墨 · 先生最少 '+mdy.M+' 墨 ⇒ 比龟伯省 <b>'+(saved>0?saved:0)+'</b> 墨'+
+    (perfect?'：一步都没多花！':'：还差 '+(mdy.cost-mdy.M)+' 墨才追上先生')+
+    (tight?' · 一回没亏墨':' · 亏墨 '+mdy.badSteps+' 步')+(quick?' · 眼快':'')+
+    (mdy.maxSpan>=MD_DEEP_MIN?' · 最深错位 '+mdy.maxSpan+' 张':'')+
+    (got.length?' · 🎒 添进笔架：'+got.join('、'):'')+
+    '（+'+mdy.caseWen+' 文）');
+  mdy.caseWen=0;
+  mdRenderTally();mdRenderHud();mdRenderRows();
+  mdLater(MD_SEAL_OUT,function(){mdNextCase()});
+}
+
+/* ---- 下一摊 / 这一串的十摊改完升一夜 ---- */
+function mdNextCase(){
+  if(!mdy.run)return;
+  mdy.busy=false;
+  mdy.ni++;
+  if(mdy.ni>=MD_LETTERS){mdNightDone();return}
+  if(!mdy.pool.length){mdNightDone();return}
+  mdStartCase();
+}
+function mdNightDone(){
+  mdy.ni=0;mdy.poolLv=-1;mdy.pool=[];
+  if(mdy.lv<9)mdy.lv++;
+  mdy.tiersDone++;
+  mdy.hearts=Math.min(MD_HEART_MAX,mdy.hearts+1);
+  if(mdy.tools===0)mdy.cleanRound=1;
+  mdSeal();mdSpark(.5,.3,26,'#80DEEA');
+  mdSay('🌙 这一串改完了：升第 <b>'+mdy.lv+'</b> 夜（还回一颗心，剩 '+mdy.hearts+' 颗）· 新一夜的帖又盖上一层布');
+  mdy.phase='load';mdy.busy=false;
+  /* 升夜这一刻屏上就得改口：夜号与心要说升就升，不许等下一摊开起来才追上这句话 */
+  mdRenderHud();
+  mdFillPool();
+}
+
+/* ---- 摊钟走尽：错本还没改成帖 ---- */
+function mdCaseOut(){
+  if(!mdy.run||mdy.phase==='seal'||mdy.phase==='over'||mdy.phase==='out')return;
+  mdy.phase='out';
+  mdy.quickOk=0;
+  mdScore(-MD_P_OUT,'夜钟走尽');
+  mdBookPush(mdy.ch,'夜钟走尽 · 已改 '+(mdy.i+mdy.j)+'/'+(mdy.nA+mdy.nB)+' 张');
+  mdLoseHeart('夜钟走尽：错本上还剩 '+(mdy.nA-mdy.i+mdy.nB-mdy.j)+' 张牌没改成帖');
+  if(mdy.over)return;
+  mdNextCase();
+}
+
+/* ---- 收摊：局钟走完 / 心尽 / 弃摊 / 池空 ---- */
+function mdRoundOut(why){mdOver(why||'lamp')}
+function mdOver(why){
+  if(mdy.over)return;
+  mdy.over=true;mdy.run=false;mdy.phase='over';
+  mdKill();
+  const best=mdNum('best');
+  mdy.newBest=mdy.score>best;
+  if(mdy.newBest)mdPut('best',mdy.score);
+  mdInc('rounds',1);
+  const got=mdShelfGiveAll();
+  const txt={lamp:'⏺ 这一局的钟走完了',hearts:'💔 心掉完了',quit:'🏳 弃摊收工',pool:'🌱 这一夜没挑出能上台的字',done:'⏺ 摊收了'}[why]||'⏺ 收工';
+  const stars=(why==='quit'||why==='pool')?2:(mdy.perfN>=2?12:(mdy.perfN?8:(mdy.nights?5:2)));
+  const r=mdRankOf(mdNum('nights'));
+  mdTxt('mdRsWhy',txt);
+  mdTxt('mdRsScore','🧾 '+mdy.score+' 文'+(mdy.newBest?'（新纪录）':'')+' · 破纪录 '+mdNum('best')+' 文');
+  mdTxt('mdRsWords','🌙 改完 '+mdy.nights+' 摊（'+mdy.tiersDone+' 串）· 局号 '+(mdNum('rounds')+1)+' · 连对最长 '+mdy.maxCombo);
+  mdTxt('mdRsStars','⭐ +'+stars);
+  mdTxt('mdRsErr','✗ 亏墨 '+mdy.wasteAll+' 步 · 白认 '+mdy.waitAll+' 次 · 对不上 '+mdy.doubtAll+' 回 · 省下一共 '+mdy.saved+' 墨 · 比先生多花 '+mdy.overBy+' 墨');
+  mdTxt('mdRsShelf','🎒 笔架：'+(got.length?('添进 '+got.join('、')):(mdy.shelfGet.length?('添进 '+mdy.shelfGet.join('、')):'（这一把一件没添）'))+' · 一共 '+mdShelfNow().filter(Boolean).length+'/'+MD_SHELF.length+' 件');
+  mdTxt('mdRsRank',r.e+' '+r.t+' · 一辈子改完 '+mdNum('nights')+' 摊 · 第 '+mdy.lv+' 夜 · 一共落 '+mdNum('steps')+' 手 / '+mdNum('ink')+' 墨');
+  const ov=mdEl('mdOver');if(ov)ov.style.display='flex';
+  mdAskBoard();
+  mdSay('🧾 摊收了：'+txt+' · 这一把 <b>'+mdy.score+'</b> 文 · <code>R</code> 再来一把');
+}
+
+/* ---- 弃摊：眼下这一摊不改了（连弃三摊就收工）---- */
+function mdQuit(why){
+  if(!mdy.run||mdy.over)return;
+  mdScore(-MD_P_QUIT,'弃摊');
+  mdBookPush(mdy.ch,why||'弃摊');
+  mdy.quits++;
+  mdTag('🏳 弃了这一摊');
+  if(mdy.quits>=3){mdOver('quit');return}
+  mdNextCase();
+}
+
+/* ---- 离场：把这一坊的钟全掐掉，回到实验室或首页 ---- */
+function mdLeave(where){
+  mdKill();mdy.run=false;mdy.over=false;
+  currentMode=where==='home'?'home':'lab';
+  document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});
+  const t=where==='home'?document.getElementById('screen-home'):document.getElementById('screen-lab');
+  if(t)t.classList.add('active');
+  try{updateHomeStats&&updateHomeStats()}catch(e){}
+}
+
+/* ---- 三件家什：🔎 掀帘 / 🧮 代改一手 / 🔁 换一摊 ---- */
+function mdToolCost(){mdy.tools++;mdScore(-MD_P_TOOL,'借家什')}
+function mdPeek(){
+  if(!mdy.run)return;
+  if(mdy.peekN<=0){mdSay('🈳 🔎 掀帘的家什用完了（一夜只借 '+MD_P0.peek+' 回）');return}
+  mdy.peekN--;mdy.peekUse++;mdy.caseTools++;mdToolCost();
+  mdy.peekMs=MD_PEEK_MS;
+  mdSlide();
+  mdSay('🔎 帘子掀开 '+(MD_PEEK_MS/1000).toFixed(1)+' 秒：帖上往后的牌、三双手的墨数、顺表的手法一起亮回来');
+  mdRenderAll();
+}
+function mdCalc(){
+  if(!mdy.run)return;
+  if(mdy.phase!=='pick'){mdSay('🧮 代改只在「笔尖等你挑手法」的时候管用');return}
+  if(mdy.calcN<=0){mdSay('🈳 🧮 代改的家什用完了（一夜只借 '+MD_P0.calc+' 回）');return}
+  mdy.calcN--;mdy.calcUse++;mdy.caseTools++;mdToolCost();
+  const F=mdForkRefresh();
+  if(!F.good.length){mdSay('🧮 眼下这一步怎么落都要多花一墨：先生也无语');return}
+  mdy.calcAct=mdy.bestAct;mdy.calcMs=MD_CALC_MS;
+  mdSlide();
+  mdSay('🧮 代改：这一手摊头替你把 <b>'+mdActName(mdActIdx(mdy.bestAct))+'</b> 落下去（自己数一遍：它往后最省墨）');
+  mdRenderActs();
+  mdLater(MD_CALC_HIT,function(){
+    if(!mdy.run||mdy.phase!=='pick'||!mdy.calcAct)return;
+    const a=mdy.calcAct;mdy.calcAct='';mdy.calcMs=0;
+    mdDoStep(a,0);
+  });
+}
+function mdSwapNight(){
+  if(!mdy.run)return;
+  if(mdy.swapN<=0){mdSay('🈳 🔁 换一摊的家什用完了（一把只借 '+MD_P0.swap+' 回）');return}
+  mdy.swapN--;mdy.swapUse++;mdy.caseTools++;mdy.swaps++;
+  mdScore(-MD_SWAP_PEN,'换一摊');
+  mdBookPush(mdy.ch,'换了一摊');
+  if(mdy.pool.length>1)mdy.pool.push(mdy.pool.shift());
+  mdSay('🔁 换一摊：这一子先收进抽屉（-'+MD_SWAP_PEN+' 文），换隔壁那一摊');
+  mdStartCase();
+}
+
+/* ---- 笔架：8 件，一眼数得清的终身账 ---- */
+function mdShelfNow(){
+  const g=[],shelf=(mdGet('shelf','')||'').split('|');
+  const has=function(k){return shelf.indexOf(k)>=0};
+  g[0]=(mdy.badSteps===0&&mdy.steps>0)||has(MD_SHELF[0].k);
+  g[1]=(mdy.maxSpan>=MD_DEEP_MIN)||has(MD_SHELF[1].k);
+  g[2]=(mdy.cost===mdy.M&&mdy.steps>0)||has(MD_SHELF[2].k);
+  g[3]=(mdy.caseTools===0&&mdy.steps>0)||has(MD_SHELF[3].k);
+  g[4]=(mdy.lv>=MD_SHELF_LV)||has(MD_SHELF[4].k);
+  g[5]=(mdy.tools===0&&mdy.steps>0)||has(MD_SHELF[5].k);
+  let badges=0;try{badges=(localStorage.getItem('hz_badges')||'').split('|').filter(function(x){return x}).length}catch(e){}
+  g[6]=(badges>=3)||has(MD_SHELF[6].k);
+  g[7]=(mdNum('steps')>=400)||has(MD_SHELF[7].k);
+  return g;
+}
+function mdShelfGiveAll(){
+  const g=mdShelfNow(),shelf=(mdGet('shelf','')||'').split('|').filter(function(x){return x});
+  const added=[];
+  for(let i=0;i<MD_SHELF.length;i++){
+    if(!g[i])continue;
+    if(shelf.indexOf(MD_SHELF[i].k)<0){shelf.push(MD_SHELF[i].k);added.push(MD_SHELF[i].k)}
+    if(mdy.shelfGet.indexOf(MD_SHELF[i].k)<0)mdy.shelfGet.push(MD_SHELF[i].k);
+  }
+  if(added.length)mdPut('shelf',shelf.join('|'));
+  return added;
+}
+
+/* ---- 说明 ---- */
+function mdHelpText(){
+  return '✏️ <b>笔顺改字坊</b>：帖上写着这一子的真笔顺（一笔一张牌 ——「横 / 竖 / 撇 / 捺 / 点 / 折」）。'+
+    '一个小书童照着抄了一遍，<b>抄错了</b>：漏几笔、多写几笔、把某笔写成别一类、把相邻两笔写反。<br>'+
+    '🖊️ <b>你执红笔改</b>：笔尖停在「错本第几张」与「帖第几张」之间，四种手只有取舍：<b>✓ 对上</b>（两张同一类 ⇒ <b>不花墨</b>）、'+
+    '<b>🔁 换</b>（把错本这一张改写成帖上那一类 ⇒ 1 墨）、<b>➖ 抽走</b>（这一张是多写的 ⇒ 1 墨）、<b>⊕ 补进</b>（帖上这一张漏了 ⇒ 1 墨）。'+
+    '除抽走之外，落笔前都要先答一笔「<b>帖上第几张是哪一类笔形</b>」。<br>'+
+    '🐢 <b>龟伯对照</b>：他不许错开对齐，从头一位一位硬对、不一样就换、剩下补齐（这就是多数人第一眼的直觉）。'+
+    '过闸的每一摊他都<b>至少多花 '+MD_GAPMIN+' 墨</b> —— 你替他把带子错开，就省下来。<br>'+
+    '📐 <b>三双手</b>：龟伯（硬对）· 先生（<b>填表递推</b>= 序列比对 Levenshtein）· 穷举（所有对齐方式一条条走到底）。'+
+    '先生与穷举必须<b>一字不差</b>，龟伯必须<b>严格吃亏</b>，这一摊才准上台 —— 这条狠话数学上叫<b>编辑距离的最优子结构</b>。<br>'+
+    '📏 <b>眼力在错位上</b>：错本第 p 张与帖第 q 张错开 |q−p| 张，越深越考眼力（≥'+MD_DEEP_MIN+' 张另赏一笔）；'+
+    '一步顺先生的表就<b>不多花墨</b>，亏一步就<b>得多花一墨</b>才追得回来。<br>'+
+    '⏳ <b>三支钟</b>：这一摊的牌（第 1 夜 '+(mdCaseMs(1)/1000).toFixed(1)+' 秒）· 认笔形（'+(mdAskMs(1)/1000).toFixed(1)+' 秒一笔）· 这一局（'+(mdLampMs(1)/1000).toFixed(0)+' 秒）。<br>'+
+    '🎒 笔架 8 件 · 称号看一辈子改完几摊 · 家什：🔎 <code>P</code> 掀帘 · 🧮 <code>V</code> 代改一手 · 🔁 <code>S</code> 换一摊 · '+
+    '<code>Q</code>/<code>W</code>/<code>E</code>/<code>T</code> 对上·换·抽走·补进 · <code>1~4</code> 答笔形 · <code>H</code> 说明 · <code>G</code> 弃摊 · <code>R</code> 再来一把';
+}
+function mdHelp(){
+  if(!mdy.run)return;
+  mdSay(mdHelpText());
+  mdy.helpMs=MD_HELP_MS;
+  mdScore(-MD_P_HELP,'看说明');
+  mdTag('📖 说明写在下面这栏');
+}
+
+/* ==== ✏️ 笔顺改字坊 ⑥：探针桥（只掐帧、喂帧、读数、摆场面；判据一字不动）====
+   段 S/M/K/E/F 全靠这一节把手里的账递出去看，桥本身不算账、不改口径。 */
+
+/* ---- 读数：眼下这一摊的全部账 ---- */
+function mdvState(){
+  const r=mdy.rec;
+  return {ok:r?1:0,run:mdy.run,over:mdy.over,load:mdy.load,phase:mdy.phase,
+    ch:mdy.ch,i:mdy.i,j:mdy.j,nA:mdy.nA,nB:mdy.nB,
+    B:r?r.cats.slice():[],A:r?r.a.slice():[],
+    D:mdy.D,M:mdy.M,R:mdy.R,K:mdy.K,dec:mdy.dec,deep:mdy.deep,hard:mdy.hard,
+    cost:mdy.cost,steps:mdy.steps,matched:mdy.matched,insN:mdy.insN,delN:mdy.delN,subN:mdy.subN,
+    maxSpan:mdy.maxSpan,deepHit:mdy.deepHit,goodSteps:mdy.goodSteps,badSteps:mdy.badSteps,spanSum:mdy.spanSum,
+    rest:mdy.rest?mdy.rest.map(function(x){return x.slice()}):[],
+    goodSet:mdy.goodSet.slice(),bestAct:mdy.bestAct,
+    cur:mdy.cur.slice(),tag:mdy.tag.slice(),ins:Object.keys(mdy.ins).map(function(k){return k+':'+mdy.ins[k].join('')}),
+    pending:mdy.pending,calcAct:mdy.calcAct,
+    err:mdy.err,waited:mdy.waited,reveal:mdy.reveal,
+    score:mdy.score,hearts:mdy.hearts,combo:mdy.combo,maxCombo:mdy.maxCombo,
+    lv:mdy.lv,ni:mdy.ni,nights:mdy.nights,tiers:mdy.tiersDone,perfN:mdy.perfN,tightN:mdy.tightN,quickN:mdy.quickN,cleanN:mdy.cleanN,
+    saved:mdy.saved,saves:mdy.saves,overBy:mdy.overBy,costTotal:mdy.costTotal,caseWen:mdy.caseWen,
+    caseMs:mdy.caseMs,case0:mdy.case0,lamp:mdy.lamp,lamp0:mdy.lamp0,
+    qMs:mdy.qMs,qMs0:mdy.qMs0,handMs:mdy.handMs,sealMs:mdy.sealMs,flashMs:mdy.flashMs,
+    peekMs:mdy.peekMs,calcMs:mdy.calcMs,helpMs:mdy.helpMs,
+    peekN:mdy.peekN,calcN:mdy.calcN,swapN:mdy.swapN,tools:mdy.tools,swaps:mdy.swaps,quits:mdy.quits,
+    wasteAll:mdy.wasteAll,doubtAll:mdy.doubtAll,waitAll:mdy.waitAll,stepsAll:mdy.stepsAll,inkAll:mdy.inkAll,
+    gain:mdy.gain,penSum:mdy.penSum,shelfGet:mdy.shelfGet.slice(),
+    tell:mdTellOn()?1:0,dimOn:mdDimOn()?1:0,quickOk:mdy.quickOk,quickMs:mdy.quickMs,
+    fresh:mdy.fresh,caseTools:mdy.caseTools,pool:mdy.pool.length,poolLv:mdy.poolLv,miss:mdy.miss.length,
+    hitOk:mdy.hitOk,hitTxt:mdy.hitTxt,newBest:mdy.newBest?1:0};
+}
+/* ---- 摊内的对表：拿这一摊的字料把三双手与先生的表重算一遍，与开摊时记的账逐字核 ---- */
+function mdvAud(){
+  const r=mdy.rec;
+  if(!r)return {ok:0,why:'摊还没开'};
+  const d=charDataCache[mdy.ch];
+  if(!d||!d.medians)return {ok:0,why:'没字料'};
+  const g=mdBuild(d.medians);
+  if(!g)return {ok:0,why:'笔形不成人形'};
+  const w=mdWrong(g.cats,mdy.ch.charCodeAt(0));
+  const dp=mdDp(w.a,g.cats),G=mdGreedy(w.a,g.cats),E=mdBrute(w.a,g.cats);
+  const rest=mdRest(w.a,g.cats);
+  const bad=[];
+  if(g.cats.join('')!==r.cats.join(''))bad.push('帖串重算不符');
+  if(w.a.join('')!==r.a.join(''))bad.push('错本重算不符（同一个种子该错得一样）');
+  if(dp.M!==r.M)bad.push('先生 '+dp.M+' ≠ 在账 '+r.M);
+  if(G.R!==r.R)bad.push('龟伯 '+G.R+' ≠ 在账 '+r.R);
+  if(E.K!==r.K)bad.push('穷举 '+E.K+' ≠ 在账 '+r.K);
+  if(E.K!==dp.M)bad.push('穷举 '+E.K+' ≠ 先生 '+dp.M+'（对齐穷尽后填表该是真最少墨）');
+  if(G.R-dp.M<MD_GAPMIN)bad.push('龟伯没吃亏：'+G.R+'−'+dp.M);
+  if(rest[0][0]!==dp.M)bad.push('余账表脚 '+rest[0][0]+' ≠ 先生 '+dp.M);
+  if(r.M<MD_MMIN||r.M>MD_MMAX)bad.push('最少墨出格 '+r.M);
+  if(g.D<MD_DMIN||g.D>MD_DMAX)bad.push('类目数出格 '+g.D);
+  if(Math.abs(w.a.length-g.n)>MD_LENMAX)bad.push('长短差出格');
+  return {ok:bad.length?0:1,ch:mdy.ch,nA:w.a.length,nB:g.n,D:g.D,M:dp.M,R:G.R,K:E.K,
+    walk:E.walked,dec:G.dec,g0:r.g0,mut:r.mut?r.mut.length:0,
+    rest00:rest[0][0],why:bad.join(' · ')};
+}
+/* ---- 眼下这一手的岔口真值：余账表与穷举各算一遍，两条路必须给出同一句话 ---- */
+function mdvFork(){
+  const r=mdy.rec;
+  if(!r)return {ok:0,why:'摊还没开'};
+  const i=mdy.i,j=mdy.j,A=mdy.A0,B=mdy.B;
+  const F=mdForkNow();
+  const tail=mdBrute(A.slice(i),B.slice(j));
+  const each={},legal={};
+  const nm=['Q','W','E','T'];
+  for(let k=0;k<4;k++){
+    const a=nm[k];
+    legal[a]=mdActLegal(k)?1:0;
+    let c=Infinity;
+    if(a==='Q'){if(i<A.length&&j<B.length&&A[i]===B[j])c=mdy.rest[i+1][j+1]}
+    if(a==='W'){if(i<A.length&&j<B.length)c=1+mdy.rest[i+1][j+1]}
+    if(a==='E'){if(i<A.length)c=1+mdy.rest[i+1][j]}
+    if(a==='T'){if(j<B.length)c=1+mdy.rest[i][j+1]}
+    each[a]=c;
+  }
+  const agree=(F.cur===tail.K)?1:0;
+  const goodOk=(function(){
+    for(let k=0;k<nm.length;k++){
+      const a=nm[k];
+      const inGood=F.good.indexOf(a)>=0;
+      const opt=(each[a]===F.cur);
+      if(inGood!==opt)return 0;
+    }
+    return 1;
+  })();
+  return {ok:1,i:i,j:j,cur:F.cur,each:each,legal:legal,good:F.good.slice(),
+    bruteTail:tail.K,walked:tail.walked,agree:agree,goodOk:goodOk,span:Math.abs(i-j),
+    shelf:r.cats.slice(j).join('')};
+}
+/* ---- 读数：题 · 笔尖 · 架上 ---- */
+function mdvAns(){
+  return {ok:1,ans:mdy.ans,qCat:mdy.qCat,pending:mdy.pending,
+    opts:mdy.opts.map(function(o){return o?o.c:''}),
+    i:mdy.i,j:mdy.j,phase:mdy.phase,reveal:mdy.reveal};
+}
+function mdvRows(){
+  return {ok:1,A:mdy.A0.slice(),cur:mdy.cur.slice(),tag:mdy.tag.slice(),
+    B:mdy.B.slice(),i:mdy.i,j:mdy.j,
+    ins:Object.keys(mdy.ins).map(function(k){return k+':'+mdy.ins[k].join('')}),
+    tell:mdTellOn()?1:0,dimOn:mdDimOn()?1:0};
+}
+function mdvStrip(){
+  return {ok:1,cards:Array.prototype.map.call(document.querySelectorAll('#mdRowA .md-cell'),function(e){return e.className+'|'+e.textContent}),
+    book:Array.prototype.map.call(document.querySelectorAll('#mdRowB .md-cell'),function(e){return e.className+'|'+e.textContent})};
+}
+function mdvDom(){
+  const g=function(id){const e=mdEl(id);return e?e.textContent.trim():''};
+  const h=function(id){const e=mdEl(id);return e?e.innerHTML:''};
+  const w=function(id){const e=mdEl(id);return e?e.style.width:''};
+  const d=function(id){const e=mdEl(id);return e?!!e.disabled:null};
+  return {ok:1,score:g('mdScore'),rank:g('mdRank'),hearts:g('mdHearts'),lv:g('mdLv'),
+    combo:g('mdLedCombo'),word:g('mdLedWord'),gate:g('mdLedGate'),light:g('mdHitLight'),time:g('mdTime'),
+    tag:g('mdTag'),tie:g('mdTie'),tally:h('mdTally'),msg:h('mdMsg'),ask:h('mdAsk'),headA:g('mdHeadA'),headB:g('mdHeadB'),
+    barCase:w('mdBarCase'),barIdle:w('mdBarIdle'),barLamp:w('mdBarLamp'),barLed:w('mdBarLed'),
+    barCaseL:g('mdBarCaseL'),barIdleL:g('mdBarIdleL'),barLampL:g('mdBarLampL'),barLedL:g('mdBarLedL'),
+    peek:g('mdPeek'),calc:g('mdCalc'),swap:g('mdSwap'),over:h('mdOver'),
+    actDis:[d('mdAct0'),d('mdAct1'),d('mdAct2'),d('mdAct3')],
+    actCls:Array.prototype.map.call(document.querySelectorAll('.md-act'),function(e){return e.className}),
+    optCls:Array.prototype.map.call(document.querySelectorAll('#mdOpts .wl-opt'),function(e){return e.className+'|'+e.dataset.value})};
+}
+function mdInkPts(st){
+  const out=[];
+  for(let i=0;i<(st||[]).length;i++)out.push([mdPX(st[i][0]),mdPY(st[i][1])]);
+  return out;
+}
+function mdvInk(){
+  const r=mdy.rec;
+  if(!r)return {ok:0,why:'摊还没开'};
+  return {ok:1,i:mdy.i,j:mdy.j,phase:mdy.phase,nB:mdy.nB,
+    M:r.st.map(function(st){return mdInkPts(st)}),
+    W:MD_IW,H:MD_IH};
+}
+/* ---- 掐帧喂帧 ---- */
+function mdvStep(ms){
+  if(!mdy.run)return {ok:0,why:'没开摊'};
+  const end=mdy.t+(ms||16)/1000,t0=mdy.t;
+  let guard=0;
+  while(mdy.run&&mdy.t<end&&guard++<800){
+    const dt=Math.min(.02,Math.max(.0005,end-mdy.t));
+    mdy.t+=dt;
+    mdTick(dt);
+  }
+  return {ok:1,ms:(mdy.t-t0)*1000,phase:mdy.phase,i:mdy.i,j:mdy.j,cost:mdy.cost,
+    score:mdy.score,hearts:mdy.hearts,over:mdy.over,tools:mdy.tools,lamp:mdy.lamp};
+}
+function mdvClock(kind,v){
+  if(kind==='case'){mdy.caseMs=v;mdy.case0=Math.max(mdy.case0,v)}
+  else if(kind==='lamp'){mdy.lamp=v;mdy.lamp0=Math.max(mdy.lamp0,v)}
+  else if(kind==='q'){mdy.qMs=v;mdy.qMs0=Math.max(mdy.qMs0,v)}
+  else if(kind==='seal'){mdy.sealMs=v}
+  else if(kind==='hand'){mdy.handMs=v}
+  else if(kind==='peek'){mdy.peekMs=v}
+  else if(kind==='calc'){mdy.calcMs=v}
+  else if(kind==='flash'){mdy.flashMs=v}
+  else if(kind==='help'){mdy.helpMs=v}
+  else return {ok:0,why:'没这支钟 '+kind};
+  return {ok:1,kind:kind,v:v};
+}
+function mdvLv(L,fill){
+  mdy.lv=L;
+  mdy.poolLv=-1;mdy.pool=[];
+  mdTxt('mdLv','第 '+L+' 夜');
+  if(fill!==0)mdFillPool();
+  return {ok:1,lv:mdy.lv,tell:mdTellOn()?1:0,dimOn:mdDimOn()?1:0,ch:mdy.ch,pool:mdy.pool.length};
+}
+/* ---- 掐掉在路上的挑字扫描：代号加一，正跑着的 mdFillPool 自己收手（否则它会半路换摊）---- */
+function mdvAbort(){mdy.gen++;mdy.scan=false;mdy.load=false;mdy.pool=[];return {ok:1,gen:mdy.gen}}
+function mdvHeart(n){mdy.hearts=n;mdRenderHud();return {ok:1,hearts:mdy.hearts}}
+function mdvTool(k,n){
+  if(k==='peek')mdy.peekN=n;else if(k==='calc')mdy.calcN=n;else if(k==='swap')mdy.swapN=n;
+  else return {ok:0,why:'没这件家什 '+k};
+  mdRenderMeters();
+  return {ok:1,k:k,n:n};
+}
+function mdvPool(n){mdy.pool.splice(Math.max(0,n|0));return {ok:1,pool:mdy.pool.length}}
+function mdvPoolSet(list){mdy.pool=(list||[]).slice();mdy.poolLv=mdy.lv;return {ok:1,pool:mdy.pool.length}}
+function mdvNext(){mdNextCase();return {ok:1,ch:mdy.ch,ni:mdy.ni,lv:mdy.lv}}
+function mdvNight(){mdNightDone();return {ok:1,lv:mdy.lv,phase:mdy.phase,hearts:mdy.hearts}}
+
+/* ---- 真动作：答题 · 落笔（与手指走同一条路）---- */
+function mdvAnswer(i){
+  if(!mdy.run)return {ok:0,why:'没开摊'};
+  mdy.busy=false;
+  mdAnswer(i);
+  return {ok:1,phase:mdy.phase,i:mdy.i,j:mdy.j,score:mdy.score,combo:mdy.combo,cost:mdy.cost,
+    maxCombo:mdy.maxCombo,reveal:mdy.reveal,err:mdy.err,waited:mdy.waited,pending:mdy.pending};
+}
+function mdvAct(k){
+  if(!mdy.run)return {ok:0,why:'没开摊'};
+  mdAct(k);
+  return {ok:1,phase:mdy.phase,i:mdy.i,j:mdy.j,cost:mdy.cost,steps:mdy.steps,
+    score:mdy.score,doubtAll:mdy.doubtAll,pending:mdy.pending};
+}
+function mdvPeek(){mdPeek();return {ok:1,peekMs:mdy.peekMs,peekN:mdy.peekN,tell:mdTellOn()?1:0,dimOn:mdDimOn()?1:0}}
+function mdvCalc(){mdCalc();return {ok:1,calcMs:mdy.calcMs,calcN:mdy.calcN,act:mdy.calcAct,best:mdy.bestAct}}
+function mdvSwap(){mdSwapNight();return {ok:1,ch:mdy.ch,ni:mdy.ni,cost:mdy.cost}}
+function mdvHelp(){mdHelp();return {ok:1,score:mdy.score,helpMs:mdy.helpMs}}
+function mdvQuit(){mdQuit('探针弃摊');return {ok:1,ni:mdy.ni,over:mdy.over}}
+function mdvOver(w){mdOver(w||'quit');return {ok:1,over:mdy.over,score:mdy.score}}
+function mdvCaseOut(){mdCaseOut();return {ok:1,phase:mdy.phase,hearts:mdy.hearts}}
+function mdvStart(){mdStart(true);return {ok:1}}
+function mdvLetters(L){return {ok:1,letters:mdLetters(L||mdy.lv),len:(mdLetters(L||mdy.lv)||'').length}}
+function mdvShelfGot(){return {ok:1,got:mdShelfNow().map(function(x,i){return x?MD_SHELF[i].k:''}).filter(function(x){return x})}}
+function mdvStore(){
+  const o={};
+  for(let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i);
+    if(k&&k.indexOf('hz_md_')===0)o[k]=localStorage.getItem(k);
+  }
+  return {ok:1,keys:o};
+}
+/* ---- 摆场面：指定哪一子就摊哪一摊（判据照常走 mdAudit）---- */
+async function mdvOpen(ch){
+  const d=await ctTO(loadCharData(ch),8000);
+  if(!d||!d.medians)return {ok:0,why:'取不到 '+ch+' 的笔顺'};
+  const a=mdAudit(ch,d.medians);
+  if(!a||a.why!=='')return {ok:0,why:ch+' 过不了闸：'+(a?a.why:'没账')};
+  if(!mdy.run)return {ok:0,why:'坊还没开（先 mdvStart）'};
+  mdy.load=false;mdy.scan=false;
+  mdy.pool=[a];mdy.poolLv=mdy.lv;mdy.ni=0;
+  mdStartCase();
+  return {ok:1,ch:ch,nB:a.n,nA:a.a.length,D:a.D,M:a.M,R:a.R,K:a.K,dec:a.dec,sd:a.sd,
+    cats:a.cats.slice(),a:a.a.slice(),phase:mdy.phase};
+}
+/* ---- 对表用的批量手：一次把一批字的三双手全算出来（段 W 逐字与离线闸门比）---- */
+async function mdvBatch(list){
+  const out=[];
+  for(let i=0;i<list.length;i++){
+    const ch=list[i];
+    const d=await ctTO(loadCharData(ch),8000);
+    const a=mdAudit(ch,d&&d.medians?d.medians:null);
+    out.push({ch:ch,n:a.n||0,cats:a.cats?a.cats.join(''):'',a:a.a?a.a.join(''):'',D:a.D||0,
+      M:a.M||0,R:a.R||0,K:a.K||0,dec:a.dec||0,sd:a.sd||0,walked:a.walked||0,
+      ins:a.ins||0,del:a.del||0,sub:a.sub||0,g0:a.g0||0,mut:a.mut?a.mut.length:0,
+      hard:a.hard||0,path:a.path?a.path.join(''):'',why:a.why||''});
+  }
+  return {ok:1,rows:out};
+}
+/* ---- 一路顺表改到底：把这一摊按先生的路改完（只用于摆出结算画面，判据照常）---- */
+function mdvSolve(maxSteps){
+  let n=0,lim=maxSteps||80;
+  const log=[];
+  while(mdy.run&&mdy.phase==='pick'&&n<lim){
+    const F=mdForkNow();
+    if(!F.good.length){log.push('无好手 '+mdy.i+','+mdy.j);break}
+    const a=F.good[0];
+    if(a==='E'){mdDoStep('E',0)}
+    else{
+      mdy.pending=a;mdy.phase='ask';
+      mdDoStep(a,0);
+    }
+    log.push(a+'@'+mdy.i+','+mdy.j);
+    mdy.handMs=0;mdNextStep();
+    n++;
+  }
+  return {ok:1,steps:n,phase:mdy.phase,i:mdy.i,j:mdy.j,cost:mdy.cost,M:mdy.M,log:log};
+}
+/* ---- 快门用：把钟掐住、把画面钉在要拍的那一手 ---- */
+function mdvFreeze(){if(mdy.rafId)cancelAnimationFrame(mdy.rafId);mdy.rafId=0;return {ok:1,raf:mdy.rafId}}
+function mdvDraw(){mdRenderRows();mdRenderActs();mdRenderTally();mdRenderHud();mdRenderMeters();mdRenderOpts();mdRenderGate();mdRenderInk();return {ok:1,phase:mdy.phase}}
+function mdvHelpHtml(){return {ok:1,html:mdHelpText()}}
 
 
 window.addEventListener('DOMContentLoaded',boot);
