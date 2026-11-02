@@ -8256,6 +8256,114 @@ button:active{transform:scale(.95)}
 /* 火花：从落点往外溅（停车那一瞬）*/
 .pv-spark{position:absolute;width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:8;animation:pvFly .58s ease-out forwards}
 @keyframes pvFly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.4);opacity:0}}
+/* ================= v1.119 📚 笔顺翻书坊 ================= */
+/* HUD 占死三行：夜里数着腾位与客数，字串换了也不许把案面往上顶 */
+.fb-hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-content:center;justify-content:center;width:100%;margin:2px 0 4px;font-size:13px;color:#CFD8DC;min-height:76px}
+.fb-hud span{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.fb-hud .light{background:rgba(0,0,0,.34);font-weight:800}
+.fb-hud .light.on{background:rgba(255,213,79,.2);color:#FFE082}
+.fb-hud #fbHearts{color:#EF5350;text-shadow:0 0 6px rgba(239,83,80,.45);font-weight:900;letter-spacing:1px}
+.fb-hud #fbHearts.low{color:#EF5350;animation:fbBeat .8s infinite}
+@keyframes fbBeat{0%,100%{opacity:1}50%{opacity:.4}}
+/* 题头占死四行：三副题面里最宽那副（掀错那一格报的是「第几位客人还要它」）*/
+.fb-ask{width:100%;text-align:center;font-size:19px;font-weight:700;color:#FFF3E0;margin:2px 0 6px;line-height:1.35;min-height:calc(1.35em*4)}
+.fb-ask small{font-size:13px;font-weight:400;color:#90A4AE}
+.fb-ask b{color:#FFE082}
+.fb-stage{display:flex;gap:10px;align-items:stretch;width:calc(100% - 10px);max-width:520px;margin:0 auto;position:relative}
+/* 左：这一子的米字格（接好一笔描金一笔）；右：常用架 + 未来书带 */
+.fb-inkwrap{flex:0 0 108px;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:flex-start}
+.fb-ink{width:108px;height:108px;background:linear-gradient(158deg,#20262E,#0D1216);border-radius:12px;box-shadow:inset 0 2px 16px rgba(0,0,0,.75)}
+.fb-inkcap{font-size:11px;font-weight:800;color:#80CBC4;text-align:center;line-height:1.35}
+/* 右半：柜台后面那两格常用架 */
+.fb-counter{flex:1;min-width:0;position:relative;display:flex;flex-direction:column;gap:6px;background:linear-gradient(158deg,#242C33,#151B20 58%,#0A0E12);border-radius:14px;box-shadow:inset 0 2px 22px rgba(0,0,0,.8);padding:26px 7px 8px}
+.fb-shelf{display:flex;gap:7px;justify-content:center}
+.fb-slot{position:relative;flex:1;min-width:0;min-height:80px;border:2px dashed rgba(255,255,255,.2);border-radius:12px;background:rgba(255,255,255,.04);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:4px 2px;transition:box-shadow .18s,border-color .18s,background .18s;touch-action:manipulation}
+.fb-slot .k{font-size:26px;font-weight:900;line-height:1.1;color:var(--fbk,#546E7A)}
+.fb-slot b{font-size:12px;font-weight:800;color:#CFD8DC}
+.fb-slot s{font-size:10.5px;font-weight:700;color:#78909C;text-decoration:none}
+.fb-slot i.no{position:absolute;left:5px;top:3px;font-style:normal;font-size:10px;font-weight:900;color:#455A64}
+.fb-slot.empty{opacity:.5}
+.fb-slot.empty .k{color:#37474F}
+.fb-slot.pick{border-color:#FFD54F;border-style:solid;background:rgba(255,213,79,.07);cursor:pointer}
+.fb-slot.pick:hover{background:rgba(255,213,79,.18)}
+.fb-slot.sel{box-shadow:0 0 0 2px rgba(255,213,79,.5) inset}
+.fb-slot.best{border-color:#80DEEA;background:rgba(128,222,234,.16);box-shadow:0 0 12px rgba(128,222,234,.4)}
+.fb-slot.auto{animation:fbGlow .9s ease-in-out infinite alternate;border-color:#80DEEA}
+@keyframes fbGlow{0%{box-shadow:0 0 0 rgba(128,222,234,.2)}100%{box-shadow:0 0 18px rgba(128,222,234,.8)}}
+.fb-slot.good{border-color:#81C784;background:rgba(129,199,132,.22)}
+.fb-slot.bad{border-color:#EF5350;background:rgba(239,83,80,.22);animation:fbShake .3s}
+/* 六类笔形各占一色：横竖撇捺点折 */
+.fb-X,.gcard.X{--fbk:#FFD54F}
+.fb-S,.gcard.S{--fbk:#80DEEA}
+.fb-P,.gcard.P{--fbk:#A5D6A7}
+.fb-N,.gcard.N{--fbk:#F48FB1}
+.fb-I,.gcard.I{--fbk:#B39DDB}
+.fb-Z,.gcard.Z{--fbk:#BCAAA4}
+/* 未来书带：整子笔顺摊开，一位客人一张牌 */
+.fb-striphead{font-size:11px;font-weight:800;color:#78909C;text-align:center;margin:0 0 4px}
+.fb-cards{display:flex;flex-wrap:wrap;gap:3px;justify-content:center}
+.fb-card{position:relative;min-width:22px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#0E1417;background:var(--fbk,#546E7A);box-shadow:0 1px 3px rgba(0,0,0,.5)}
+.fb-card em{position:absolute;right:1px;bottom:-1px;font-style:normal;font-size:8px;font-weight:800;color:rgba(14,20,23,.62)}
+.fb-card.past{opacity:.34}
+.fb-card.soon{box-shadow:0 0 8px rgba(255,255,255,.28)}
+.fb-card.now{outline:2px solid #FFF;box-shadow:0 0 12px rgba(255,255,255,.6);transform:translateY(-2px)}
+.fb-card.veil{background:repeating-linear-gradient(135deg,#1B252B,#1B252B 5px,#141C21 5px,#141C21 10px);color:#37474F}
+.fb-card.lit{background:var(--fbk,#546E7A);color:#0E1417;box-shadow:0 0 10px rgba(255,213,79,.6)}
+.fb-tag{position:absolute;left:50%;top:4px;transform:translateX(-50%);background:rgba(8,12,18,.92);color:#FFD54F;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;pointer-events:none;white-space:nowrap;line-height:1.4;max-width:94%;z-index:6}
+.fb-shelftip{font-size:11.5px;font-weight:800;color:#80CBC4;text-align:center;line-height:1.4;min-height:calc(11.5px*1.4)}
+.fb-msg{width:calc(100% - 28px);max-width:520px;margin:6px auto 0;background:rgba(8,12,18,.72);border:1px solid #37474F;border-radius:12px;color:#FFD54F;font-size:13px;font-weight:700;line-height:1.5;padding:7px 12px;text-align:center;min-height:calc(13px*1.5*2);max-height:168px;overflow-y:auto;transition:opacity .25s}
+.fb-msg b{color:#FFCC80}
+.fb-msg code{background:rgba(255,255,255,.12);border-radius:4px;padding:0 4px;color:#FFE082}
+/* 三双手的牌：老朝奉 · 翻书手 · 我自己的账 · 题面 */
+.fb-tally{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;width:calc(100% - 24px);max-width:520px;margin:6px auto 0;font-size:12px;font-weight:800;color:#B0BEC5}
+.fb-tally .tb{background:rgba(255,255,255,.07);border-radius:9px;padding:2px 7px;white-space:nowrap}
+.fb-tally .tb.naive b{color:#F48FB1}
+.fb-tally .tb.smart b{color:#80DEEA}
+.fb-tally .tb.mine b{color:#FFD54F}
+.fb-tally .tb.gate{color:#80CBC4}
+/* 进口：眼下这一位客人举的牌 */
+.fb-gate{display:flex;gap:6px;align-items:center;width:calc(100% - 24px);max-width:520px;margin:5px auto 0;min-height:30px;flex-wrap:wrap;justify-content:center}
+.fb-gate b{font-size:11px;color:#78909C;font-weight:800}
+.fb-gate .gcard{font-size:14px;font-weight:900;color:#0E1417;background:var(--fbk,#546E7A);border-radius:9px;padding:3px 10px;box-shadow:0 0 10px rgba(255,255,255,.25)}
+.fb-gate .gq{font-size:12px;font-weight:800;color:#B0BEC5}
+/* 亮牌：题钟走尽或答错时产品把正确那一类挂上 .reveal —— 文案许诺了「亮在牌上」，画里就得真亮 */
+#fbOpts .wl-opt.reveal{background:linear-gradient(180deg,#1F4A25,#123018);border-color:#81C784;color:#DCEDC8;box-shadow:0 0 12px rgba(129,199,132,.55)}
+.fb-meter{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;width:calc(100% - 28px);max-width:520px;margin:4px auto}
+.fb-tl{position:relative;height:16px;background:rgba(0,0,0,.42);border-radius:8px;overflow:hidden}
+.fb-tl i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:8px;transition:width .1s linear}
+.fb-tl.case i{background:linear-gradient(90deg,#FFB74D,#FF7043)}
+.fb-tl.idle i{background:linear-gradient(90deg,#BA68C8,#6A1B9A)}
+.fb-tl.lamp i{background:linear-gradient(90deg,#FFF176,#FBC02D)}
+.fb-tl.led i{background:linear-gradient(90deg,#4FC3F7,#0277BD)}
+.fb-tl b{position:absolute;inset:0;font-size:11px;font-weight:800;color:#0E1417;text-align:center;line-height:16px;text-shadow:0 1px 0 rgba(255,255,255,.28)}
+.fb-tools{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px auto 2px;max-width:520px}
+.fb-tool{background:#18222A;color:#B0BEC5;border:1px solid #37474F;border-radius:10px;font-size:12px;font-weight:700;padding:5px 9px;cursor:pointer}
+.fb-tool span{display:inline-block;background:rgba(255,255,255,.14);border-radius:5px;padding:0 4px;margin-left:5px;font-size:10px}
+.fb-tool b{color:#FFE082;margin-left:4px}
+.fb-tool:disabled{opacity:.4;cursor:default}
+.fb-hintline{font-size:11.5px;color:#78909C;text-align:center;margin:4px auto 0;max-width:520px;line-height:1.5;padding:0 10px}
+.fb-hintline b{color:#B0BEC5}
+.fb-hintline code{background:rgba(255,255,255,.1);border-radius:4px;padding:0 4px}
+.fb-cdot{position:absolute;right:8px;top:8px;font-size:11px;background:#FF7043;color:#20150C;border-radius:8px;padding:1px 6px;font-weight:900}
+/* 结算：盖在柜台上的一层布 */
+.fb-over{position:absolute;inset:0;background:rgba(3,6,8,.9);z-index:20;display:flex;align-items:center;justify-content:center;border-radius:16px}
+#screen-fb{position:relative}
+.fb-overbox{width:88%;max-width:430px;background:linear-gradient(180deg,#1E2B33,#0B1114);border:2px solid #455A64;border-radius:14px;padding:12px 14px;text-align:center;color:#CFD8DC}
+.fb-overbox h3{margin:0 0 6px;font-size:20px;color:#FFD54F}
+.fb-overbox p{margin:3px 0;font-size:13px;line-height:1.45}
+.fb-overbtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.fb-overbtns button{background:#37474F;color:#FFE0B2;border:1px solid #607D8B;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:800;cursor:pointer}
+/* 火花：从命中那一格往外溅 */
+.fb-spark{position:absolute;width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:8;animation:fbFly .62s ease-out forwards}
+@keyframes fbFly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.4);opacity:0}}
+@keyframes fbShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+/* 窄屏 390：顶栏那一排账（文数 · 夜数 · 两支钟）比屏幕还宽，
+   把它整条折到下面一行、字号收小，别让右边的钮被挤出屏外 */
+@media(max-width:460px){
+  #screen-fb .top-bar{flex-wrap:wrap;gap:6px}
+  #screen-fb .stats{flex:1 1 100%;order:3;gap:6px;justify-content:center;flex-wrap:wrap}
+  #screen-fb .stats span{font-size:11.5px;padding:3px 8px}
+}
 </style>
 
 </head>
@@ -8312,8 +8420,8 @@ button:active{transform:scale(.95)}
   <div class="mode-cards" style="margin-top:0">
     <div class="mode-card lab-entry" onclick="goLab()">
       <div class="icon">🧪</div>
-      <div class="info"><h3>玩法实验室</h3><p>还有 117 个小游戏，按「练什么」分好组</p></div>
-      <span class="lab-count" id="labCount">117</span>
+      <div class="info"><h3>玩法实验室</h3><p>还有 118 个小游戏，按「练什么」分好组</p></div>
+      <span class="lab-count" id="labCount">118</span>
     </div>
   </div>
   <button class="collection-btn" onclick="enterMode('collection')">🎁 我的收藏</button>
@@ -8324,12 +8432,18 @@ button:active{transform:scale(.95)}
     <div class="stats"><span id="labStars">⭐ 0</span><span id="labGrade">📚 全部</span></div>
     <span style="width:56px"></span>
   </div>
-  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>117 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
-  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>59</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
+  <div class="lab-head"><h2>🧪 玩法实验室</h2><p>118 个小游戏 · 按「练什么」分好组，想玩哪类点上面</p></div>
+  <div class="lab-tabs"><button class="lab-tab" onclick="labJump(1)">🧠 眼力与结构 <b>60</b></button><button class="lab-tab" onclick="labJump(2)">👁 记忆与辨认 <b>14</b></button><button class="lab-tab" onclick="labJump(3)">⚡ 手速与反应 <b>28</b></button><button class="lab-tab" onclick="labJump(4)">🏗️ 养成与收集 <b>7</b></button><button class="lab-tab" onclick="labJump(5)">⚔️ 对战与远征 <b>9</b></button></div>
   <div class="lab-body">
     <div class="lab-group" id="labG1">
       <h4 class="lab-gtitle">🧠 眼力与结构 <small>看结构、认字形</small><i></i></h4>
       <div class="mode-cards">
+<div class="mode-card" id="fbCard" onclick="enterMode('fb')">
+      <div class="icon">📚</div>
+      <div class="info"><h3>笔顺翻书坊</h3><p id="fbCardTip">这一子的<b>每一笔 = 一位客人</b>，他进门只举一张牌：要<b>横竖撇捺点折</b>哪一类。柜台后只有<b>两格常用架</b> —— 架上有就命中，没有你就得挑<b>掀哪一格</b>。摊头把<b>未来摊成一条书带</b>：掀掉那格「以后最晚才再要」的，就少腾一次位。👴 老朝奉<b>绝不看未来</b>，过闸的每一摊他都要<b>多腾位</b>。答对这一笔的笔形才招呼得上客</p>
+      <span class="fb-cdot" id="fbCardDot">🆕</span>
+    </div>
+</div>
 <div class="mode-card" id="pvCard" onclick="enterMode('pv')">
       <div class="icon">🚗</div>
       <div class="info"><h3>笔顺停车坊</h3><p id="pvCardTip">这一子的<b>每一笔 = 一辆车</b>：它横着压住第几到第几号车位是<b>钉死</b>的，你只能挑<b>停进第几排</b>，同一排两辆车不许压在同一个格上。最挤那一列压了几笔，这张表就<b>最少要几排</b> —— 可车偏是照<b>笔顺</b>一辆辆进场的，班主不回头替它排<b>每张表都要多开一排</b>。答对这一笔往哪写才放行</p>
@@ -9498,6 +9612,77 @@ button:active{transform:scale(.95)}
       <div class="nc-overbtns">
         <button id="ncReBtn">🔁 再归一回</button>
         <button id="ncReHome">🏠 回实验室</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="screen" id="screen-fb">
+  <div class="top-bar">
+    <button class="back-btn" onclick="fbLeave('lab')">← 返回</button>
+    <div class="stats"><span id="fbScoreTxt">📚 <b id="fbScore">0</b> 文</span><span id="fbLv">第 1 夜</span><span id="fbTime">这一摊 48.0 秒 · 这一局 96 秒</span></div>
+    <button class="icon-btn" onclick="fbHelp()" title="怎么玩">❓</button>
+  </div>
+  <div class="fb-hud">
+    <span id="fbRank" title="称号">📚 新生掌柜</span>
+    <span id="fbHearts" title="生命">♥♥♥</span>
+    <span id="fbLedCombo" title="连对">🔥 连对 0 · 最长 0</span>
+    <span id="fbLedWord">🌙 这一夜接到第 1/10 摊 · 一辈子接完 0 摊</span>
+    <span id="fbLedGate" title="三双手的账">🌱 摊还没开</span>
+    <span class="light" id="fbHitLight">💡 等命中</span>
+  </div>
+  <div class="fb-ask" id="fbAsk">📚 正在挑字……<br><small>在字库里找「看得见未来、替老主顾留格就少腾一次位」的字</small></div>
+  <div class="fb-stage" id="fbStage">
+    <div class="fb-inkwrap">
+      <canvas class="fb-ink" id="fbInk" width="108" height="108"></canvas>
+      <div class="fb-inkcap" id="fbInkCap">这一子的模样<br><b>接好一笔描金一笔</b></div>
+    </div>
+    <div class="fb-counter">
+      <div class="fb-tag" id="fbTag">📚 摊还没开</div>
+      <div class="fb-shelf" id="fbShelf">
+        <div class="fb-slot empty" id="fbSlot0" data-slot="0"><i class="no">1</i><span class="k">·</span><b>空</b><s class="dep">—</s></div>
+        <div class="fb-slot empty" id="fbSlot1" data-slot="1"><i class="no">2</i><span class="k">·</span><b>空</b><s class="dep">—</s></div>
+      </div>
+      <div class="fb-shelftip" id="fbShelfTip">📚 常用架 2 格：留哪格、掀哪格，都是你的主意</div>
+      <div class="fb-strip" id="fbStrip"><div class="fb-striphead">📜 摊头把这一子的未来全摊开了</div><div class="fb-cards"></div></div>
+    </div>
+  </div>
+  <div class="fb-gate" id="fbGate"><b>🚪 摊还没开</b></div>
+  <div class="fb-tally" id="fbTally"></div>
+  <div class="fb-msg" id="fbMsg">📚 一位客人 = 这一子的一笔：他进门只举一张牌 ——「要 <b>横 / 竖 / 撇 / 捺 / 点 / 折</b> 哪一类」。架上有 ⇒ <b>命中</b>，赏文按他<b>隔了几位客人</b>才回门；架上没有 ⇒ 你挑<b>掀哪一格</b></div>
+  <div class="wl-tbl" id="fbOpts">
+    <button class="wl-opt" id="fbOpt0">—</button>
+    <button class="wl-opt" id="fbOpt1">—</button>
+    <button class="wl-opt" id="fbOpt2">—</button>
+    <button class="wl-opt" id="fbOpt3">—</button>
+  </div>
+  <div class="fb-meter">
+    <div class="fb-tl case"><i id="fbBarCase"></i><b id="fbBarCaseL">⏳ 这一摊</b></div>
+    <div class="fb-tl idle"><i id="fbBarIdle"></i><b id="fbBarIdleL">🔔 举牌</b></div>
+    <div class="fb-tl lamp"><i id="fbBarLamp"></i><b id="fbBarLampL">🌙 这一局</b></div>
+    <div class="fb-tl led"><i id="fbBarLed"></i><b id="fbBarLedL">🧾 0/0 位</b></div>
+  </div>
+  <div class="fb-tools">
+    <button class="fb-tool" id="fbPeek">🔎 看未来<span>P</span><b>剩 2</b></button>
+    <button class="fb-tool" id="fbCalc">🧮 代掀一格<span>V</span><b>剩 2</b></button>
+    <button class="fb-tool" id="fbSwap">🔁 换一摊<span>S</span><b>剩 1</b></button>
+    <button class="fb-tool" id="fbHelpBtn">📖 说明<span>H</span></button>
+    <button class="fb-tool" id="fbQuitBtn">🏳 弃摊<span>G</span></button>
+  </div>
+  <div class="fb-hintline" id="fbLedNaive">👴 <b>老朝奉对照</b>：客人照笔顺一位位进门，他<b>绝不回头看未来、只掀最久没被要的那格</b> —— 过闸的每一摊他都要<b>多腾一次位</b><br>🫴 点一格就把手里这张牌摆进去 · <code>Q</code>/<code>W</code> 掀第 1/2 格 · <code>1~4</code> 答笔形 · 🔎 <code>P</code> 看未来 · 🧮 <code>V</code> 代掀 · 🔁 <code>S</code> 换摊 · <code>H</code> 说明 · <code>G</code> 弃摊 · <code>R</code> 再来一把</div>
+
+  <div class="fb-over" id="fbOver" style="display:none">
+    <div class="fb-overbox">
+      <h3>📚 收摊</h3>
+      <p id="fbRsWhy">⏺ 这一局的钟走完了</p>
+      <p id="fbRsScore">🧾 0 文</p>
+      <p id="fbRsWords">🌙 接完 0 摊 · 局号 1 · 连对最长 0</p>
+      <p id="fbRsStars">⭐ +0</p>
+      <p id="fbRsErr">✗ 掀错 0 次 · 白等 0 位 · 省 0 次腾位</p>
+      <p id="fbRsShelf">🎒 书架：（这一把一件没添）</p>
+      <p id="fbRsRank">📚 新生掌柜 · 一辈子接完 0 摊</p>
+      <div class="fb-overbtns">
+        <button id="fbReBtn">🔁 再接一把</button>
+        <button id="fbReHome">🏠 回实验室</button>
       </div>
     </div>
   </div>
@@ -17741,6 +17926,7 @@ function updateHomeStats(){
   if(typeof sdNudge==='function')sdNudge();
   if(typeof wlNudge==='function')wlNudge();
   if(typeof pvNudge==='function')pvNudge();
+  if(typeof fbNudge==='function')fbNudge();
 }
 function enterMode(mode){
   if(mode==='fold'){zpStart();return}
@@ -17804,6 +17990,7 @@ function enterMode(mode){
   if(mode==='sd'){sdStart();return}
   if(mode==='wl'){wlStart();return}
   if(mode==='pv'){pvStart();return}
+  if(mode==='fb'){fbStart();return}
   if(mode==='quiz')startQuiz();
   else if(mode==='adventure')startAdventure();
   else if(mode==='challenge')challengeStart();
@@ -135063,6 +135250,1472 @@ function pvvInk(){
     M:r.M.map(function(st){return (st||[]).map(function(p){return [pvPX(p[0]),pvPY(p[1])]})}),
     W:PV_IW,H:PV_IH};
 }
+
+
+/* ==== 📚 笔顺翻书坊 v1（v1.119.0）====
+   这一子的每一笔 = 一位客人，他进门只举一张牌：「我要 横 / 竖 / 撇 / 捺 / 点 / 折 这一类笔形」。
+   柜台后只有 FB_C 格常用架。架上正有他要的这一类 ⇒ 命中，赏文按**隔位**（他上回供这类，
+   中间已经进了几位客人）；架上没有 ⇒ 客人当面等着，你必须挑**掀哪一格**把旧牌取下、把新牌摆上。
+   摊头把整子的笔顺**摊成看得见的未来**（一条书带，每一位客人举的牌从左到右排开）⇒
+   「掀掉以后最晚才再要的那格」这条狠话是数得出来的（数学上叫 Belady 最优）。
+   账是本坊自己的三双手算的：手一「老朝奉」绝不看未来，只掀最久没被要的那格（LRU）→ R；
+   手二「翻书手」把未来摊开，每回掀以后最晚用上的那格（Belady）→ B；
+   手三「穷举」把每一次腾位、每一格全试一遍，求真正最少腾位数 → K。
+   手二与手三必须**一字不差**（摊开未来后 Belady 就是真最优），手一必须**严格亏**（R−B ≥ FB_GAPMIN）
+   这一摊才准上台 —— 孩子看得见未来，就得替后面的老主顾留格。
+   本节：口径 · 六类笔形 · 九串字表 · 状态 · 落盘 · 发声 */
+
+/* ---- 口径（与 _fbgeo.cjs 一字一样，改这里就得重扫重写九串）---- */
+const FB_C=2;                         /* 柜台常用架只有两格：第三类笔形来了就得掀一格 */
+const FB_NMIN=5,FB_NMAX=12;           /* 客数 = 这一子的笔数 */
+const FB_DMIN=3,FB_DMAX=6;            /* 这一子里出现的笔形类目数带（比架格多才要腾位，与扫描器同一条带）*/
+const FB_EVMIN=3,FB_EVMAX=9;          /* 腾位次数带：少于三次没决策，多于九次孩子烦 */
+const FB_GAPMIN=1;                    /* 老朝奉至少比最优多腾几次（有亏可省）*/
+const FB_CHMIN=3;                     /* 至少几次腾位面前摆着坑（掀错要赔、掀对不亏）*/
+const FB_SDMIN=4;                     /* 至少一位老主顾隔了这么几位才回来（冷格留着才值钱）*/
+const FB_HITMIN=2;                    /* 至少几次命中（全是要腾位就没赏文可算）*/
+const FB_TURN=40;                     /* 折：一笔里拐过这么大的弯就算「折」这一类 */
+const FB_DIAN=110;                    /* 点：首尾横竖都挪不出这么远（千分位 ≈ 字面的 11%，全站 13415 笔里最短的那一档）就是点 */
+/* ---- 六类基本笔形：横竖撇捺点折 ---- */
+const FB_KINDS=[
+  {c:'X',n:'横',g:'一',i:'➡️',d:'往右写'},
+  {c:'S',n:'竖',g:'丨',i:'⬇️',d:'往下写'},
+  {c:'P',n:'撇',g:'丿',i:'↙️',d:'往左下'},
+  {c:'N',n:'捺',g:'㇏',i:'↘️',d:'往右下'},
+  {c:'I',n:'点',g:'丶',i:'🔸',d:'短短一点'},
+  {c:'Z',n:'折',g:'乛',i:'↪️',d:'拐了个弯'}
+];
+function fbKind(c){for(let i=0;i<FB_KINDS.length;i++)if(FB_KINDS[i].c===c)return FB_KINDS[i];return FB_KINDS[0]}
+/* ---- 夜 · 池 · 心 ---- */
+const FB_LETTERS=10;                  /* 一串十个字，一串打完升一夜 */
+const FB_HEARTS=3,FB_HEART_MAX=5,FB_BOOK_MAX=300;
+const FB_EV_MS=520;                   /* 掀错那一格泛红多久 */
+const FB_TELL_LV=4,FB_DIM_LV=6;       /* 第 4 夜起摊头的未来书带整条盖上布，第 6 夜起架上的隔位数与翻书手/老朝奉两块牌一起蒙上 */
+function fbNoTell(L){return L>=FB_TELL_LV}
+function fbDim(L){return L>=FB_DIM_LV}
+/* ---- 赏 ---- */
+const FB_GUEST_WEN=5;                 /* 每招呼好一位客人（答对这—笔的笔形）*/
+const FB_SD_WEN=4;                    /* 命中：隔位每一位 ×4（留着没人要的格才赏得出钱）*/
+const FB_COLD_MIN=4,FB_COLD_WEN=12;   /* 隔位到这一步的冷格回门，再赏一笔 */
+const FB_SAVE_WEN=10;                 /* 比老朝奉少腾一次，一次一文 ×10（每摊结一次）*/
+const FB_PERFECT_WEN=20;              /* 一摊接完：一回都没多腾（== 翻书手 B）*/
+const FB_QUICK_WEN=12;                /* 眼快：这一摊在夜钟一半内接完*/
+const FB_FRESH_WEN=6;                 /* 头一回摊这一子*/
+const FB_TIGHT_WEN=8;                 /* 一次没掀错：这一摊一回格都没腾错*/
+const FB_FREE_WEN=4;                  /* 掀得妙：掀掉那一格往后压根不再来*/
+const FB_PTS_NOTOOL=8,FB_PTS_TOOLRUN=14;
+/* ---- 罚 ---- */
+const FB_P_OUT=8;                     /* 夜钟走完还有客人没接：掉一颗心*/
+const FB_P_EVICT=6;                   /* 掀错：把以后还要用的老主顾掀下了架*/
+const FB_P_MISS=5;                    /* 答错：这一位客人白等一息*/
+const FB_P_QUIT=5;                    /* 弃摊*/
+const FB_P_TOOL=4,FB_P_HELP=3;
+const FB_ERR_LINE=2;                  /* 一摊错到这一回就掉一颗心*/
+/* ---- 家什 ---- */
+const FB_P0={peek:2,calc:2,swap:1};   /* 🔎 看未来 / 🧮 代掀一格 / 🔁 换一摊 */
+const FB_PEEK_MS=5200,FB_CALC_MS=4200,FB_SWAP_PEN=6;
+/* ---- 钟 ---- */
+function fbNightMs(L){return Math.max(20000,48000-2800*(L-1))}   /* 这一摊的客人们 */
+function fbAskMs(L){return Math.max(4200,8600-320*(L-1))}        /* 进口举牌：等你说清这一笔是哪类*/
+function fbLampMs(L){return Math.max(78000,96000-1800*(L-1))}    /* 这一局*/
+const FB_AUDIT_MS=9000,FB_HELP_MS=8200,FB_WRONG_MS=620;
+function fbQuickMs(L){return Math.floor(fbNightMs(L)*0.5)}
+const FB_SLIDE_MS=280,FB_POP_MS=300,FB_BACK_MS=420;   /* 搬家一眼（待客落账到请下一位之间停一拍）· 答对到待客 · 回座 */
+const FB_SEAL_OUT=1500,FB_CALC_HIT=900;   /* 一摊结账站多久 · 🧮 代掀亮格子到动手多久 */
+/* ---- 案面：米字格给这一子的墨*/
+const FB_IW=108,FB_IH=108,FB_IX0=10,FB_IX1=98,FB_IY0=10,FB_IY1=98;
+/* ---- 称号：一辈子接完的摊 ---- */
+const FB_RANKS=[
+  {n:0,e:'📚',t:'新生掌柜'},{n:2,e:'📖',t:'认得笔形'},{n:5,e:'🧷',t:'留得住格'},
+  {n:9,e:'🔖',t:'一眼看深'},{n:14,e:'📇',t:'越接越快'},{n:21,e:'🗂️',t:'摊摊接全'},
+  {n:30,e:'🧮',t:'格格有着'},{n:42,e:'🪜',t:'不被眼骗'},{n:58,e:'👑',t:'从没多腾位'}
+];
+function fbRankOf(w){
+  let r=FB_RANKS[0];
+  for(let i=0;i<FB_RANKS.length;i++)if(w>=FB_RANKS[i].n)r=FB_RANKS[i];
+  return r;
+}
+/* ---- 书架 8 件 ---- */
+const FB_SHELF_LV=4;
+const FB_SHELF=[
+  {k:'老主顾簿',d:'一摊里接住一位隔位≥6 的客'}, {k:'清白单',d:'一摊每格腾位零掀错'},
+  {k:'铁书签',d:'一摊接完且一位没白等'},      {k:'分毫囊',d:'一摊一样家什不借'},
+  {k:'夜班灯',d:'走到第 '+FB_SHELF_LV+' 夜还在接'},{k:'空手囊',d:'一夜家什一样不借'},
+  {k:'名刺',d:'别处的章节徽章攒到 3 枚'},      {k:'量格尺',d:'累计招呼 400 位客人'}
+];
+/* ---- 九串字表（一夜一串，串外的字这一摊过不了闸）----
+   由 _fbgeo.cjs 离线数出来（口径与上面的 FB_* 常量一一对应，改常量就得重扫重写这九串）：
+   全站 1372 字过闸 113 字（腾位次数出格 422 · 客太多 276 · 隔位不够深 177 · 老朝奉不吃亏 121 ·
+   岔口太少 112 · 客太少 80 · 类目数出格 55 · 命中太少 16，三双手对不上与客表同形为零），
+   难度分 =「老朝奉多腾的次数 ×10 + 岔口次数 ×2 + 客数 + 最深隔位」，
+   按难度在整条带上均匀取 90 字切成九串（每串 10 字）：第 1 串 7~9 笔、3~4 次腾位；第 9 串 11~12 笔、4~6 次腾位。
+   六类笔形（横竖撇捺点折）全在这九串里进过牌局 ——「点」的阈值从 45 提到 110 之后才真的有点可认。
+   每一摊的翻书手与穷举逐字相等（摊开未来后 Belady 就是真最优，这也是这一摊的题面）。*/
+const FB_LEV={
+  1:"体社疙染荒除知昼秒柴",
+  2:"骏俐栏租悬断梅淡粗谎",
+  3:"样栽剩掌湖湿谦隙航眷",
+  4:"谜揪敬辉雅困村怜奈宣",
+  5:"实晃砸谈验贷晒荷蚊辆",
+  6:"蚁恩案速乾停域萍寒愉",
+  7:"毯焰践阔绽袭腊落喊奥",
+  8:"棋硬菌雀嫂朝装雇唱措",
+  9:"通晶梁猎萎喧检椅隔筒"
+};
+function fbLetters(L){return FB_LEV[L]||''}
+function fbInLev(ch,L){return (fbLetters(L)||'').indexOf(ch)>=0}
+
+/* ---- 状态 ---- */
+const fby={
+  run:false,over:false,bound:false,gen:0,rafId:0,last:0,t:0,playMs:0,timers:[],ac:null,
+  pool:[],poolLv:-1,miss:[],fresh:0,seen:[],
+  lv:1,ni:0,score:0,hearts:FB_HEARTS,combo:0,maxCombo:0,phase:'load',load:true,locked:0,
+  /* 这一摊：字 · 客表 · 三双手的账 */
+  ch:'',rec:null,n:0,cats:[],D:0,B:0,R:0,Fp:0,K:0,ev:0,hits:0,sd:[],dec:0,maxSD:0,hard:0,
+  /* 眼下这一手：接到第几位 · 架上摆的什么 · 我自己的账 */
+  idx:0,shelf:[],sel:0,myMiss:0,myEv:0,wrongEv:0,freeEv:0,served:0,waited:0,coldHit:0,
+  opts:[],ans:'',qCat:'',qKind:'',qMs:0,qMs0:0,busy:false,dirty:false,
+  err:0,errSum:0,wrongMs:0,anim:null,
+  /* 这一摊的架与账：架上摆什么 · 每类上次是第几位 · 掀对没掀对 */
+  lastAt:{},shelfHot:-1,reveal:'',bestSlot:-1,bestSet:[],calcSlot:-1,evFlash:-1,evGood:false,
+  comboKeep:0,caseTools:0,maxSdCase:0,heartsLost:0,quits:0,
+  peekMs:0,calcMs:0,peekN:FB_P0.peek,calcN:FB_P0.calc,swapN:FB_P0.swap,
+  peekUse:0,calcUse:0,swapUse:0,
+  /* 这一摊 / 这一局的钟 */
+  case0:0,caseMs:0,caseUsed:0,qNag:0,nags:0,nagMs:0,helpMs:0,lamp:0,lamp0:0,
+  sealMs:0,handMs:0,evMs:FB_EV_MS,tools:0,swaps:0,wrong:0,spark:[],lit:null,
+  quickOk:1,quickMs:0,nightMs:0,tellOff:0,dim:0,
+  /* 局账 */
+  nights:0,guestsAll:0,saved:0,saves:0,perfN:0,tightN:0,quickN:0,cleanN:0,
+  evictAll:0,wrongAll:0,waitAll:0,wordTools:0,rounds:0,
+  gain:0,penSum:0,hitOk:0,hitTxt:'',serveKind:'',newBest:false,seed:1,
+  nightWen:0,shelfGet:[],lastHitCat:'',lastSd:0,stamp:'',
+  overBy:0,myMissTotal:0,quitsAll:0,tiersDone:0,cleanRound:0
+};
+
+/* ---- 落盘：hz_fb_* 共 10 本（best / nights / rounds / guests / saved / wrong / shelf / book / dex / cold）---- */
+function fbPut(k,v){try{localStorage.setItem('hz_fb_'+k,''+v)}catch(e){}}
+function fbGet(k,d){try{const v=localStorage.getItem('hz_fb_'+k);return v===null?d:v}catch(e){return d}}
+function fbNum(k){return Number(fbGet(k,0))||0}
+function fbInc(k,n){const v=fbNum(k)+(typeof n==='number'?n:1);fbPut(k,v);return v}
+function fbBookPush(ch,why){
+  const bk=(fbGet('book','')||'').split('|').filter(x=>x);
+  const i=bk.findIndex(x=>x.indexOf(ch+':')===0);
+  const e=ch+':'+(why||'没接完');
+  if(i>=0)bk[i]=e;else bk.unshift(e);
+  while(bk.length>FB_BOOK_MAX)bk.pop();
+  fbPut('book',bk.join('|'));
+}
+function fbBookHas(ch){return (fbGet('book','')||'').split('|').some(x=>x.indexOf(ch+':')===0)}
+/* 这一摊就一路接到底，就把这一子从赊账簿上划掉：簿上只留还没接完的摊 */
+function fbBookDel(ch){
+  const bk=(fbGet('book','')||'').split('|').filter(x=>x&&x.indexOf(ch+':')!==0);
+  fbPut('book',bk.join('|'));
+}
+function fbDexHas(ch){return (fbGet('dex','')||'').split('|').indexOf(ch)>=0}
+function fbDexAdd(ch){
+  const d=(fbGet('dex','')||'').split('|').filter(x=>x);
+  if(d.indexOf(ch)<0){d.push(ch);fbPut('dex',d.join('|'));return 1}
+  return 0;
+}
+
+/* ---- 本坊自己的发声 · 回话 · 定时器（不借别人家的栏）---- */
+function fbTone(f,d,g){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!fby.ac)fby.ac=new AC();
+    const c=fby.ac;if(c.state==='suspended'){if(c.resume)c.resume();return}
+    const o=c.createOscillator(),n=c.createGain();
+    o.frequency.value=f;o.type='triangle';
+    n.gain.setValueAtTime(g||.11,c.currentTime);
+    n.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);
+    o.connect(n);n.connect(c.destination);o.start();o.stop(c.currentTime+d);
+  }catch(e){}
+}
+function fbDing(i){fbTone(523*Math.pow(1.0595,Math.min(24,(i||0)*2)),.16,.10)}
+function fbBad(){fbTone(150,.26,.13);setTimeout(()=>fbTone(112,.3,.12),110)}
+function fbBell(){fbTone(880,.09,.07);setTimeout(()=>fbTone(1175,.12,.07),90)}/* 门铃：一位客人进门 */
+function fbPop(){fbTone(660,.07,.07)}
+function fbSlide(){fbTone(330,.09,.06);setTimeout(()=>fbTone(494,.11,.06),70)}
+function fbNag(){fbTone(196,.12,.07);fbRenderHud()}/* 白等一息就得把文钱牌重画：不然停在上一息 */
+function fbSeal(){[0,4,7,12].forEach((s,i)=>setTimeout(()=>fbTone(523*Math.pow(1.0595,s),.2,.09),i*90))}
+function fbClearTimers(){fby.timers.forEach(t=>clearTimeout(t));fby.timers=[]}
+function fbLater(ms,fn){const id=setTimeout(fn,ms);fby.timers.push(id);return id}
+function fbSay(t){const e=document.getElementById('fbMsg');if(e)e.innerHTML=t}
+
+/* ==== 📚 笔顺翻书坊 · 第二节：三双手（分类 · 老朝奉 · 翻书手 · 穷举 · 一摊的账）====
+   这一节的每一条算式都与 _fbgeo.cjs 一字一样：段 W 会把全站 1372 字逐字拿去对表，
+   页内算出来的类目串、命中隔位、三双手的次数必须与离线闸门完全相同，一个数字都不许多不许少。 */
+
+/* ---- 六类笔形：屏幕上「往下」为正，故纵差取 m[0][1]-m[n-1][1]（字形数据 y 轴朝上）---- */
+function fbTurn(m){
+  let worst=0;
+  for(let i=1;i+1<m.length;i++){
+    const ax=m[i][0]-m[i-1][0],ay=m[i-1][1]-m[i][1];
+    const bx=m[i+1][0]-m[i][0],by=m[i][1]-m[i+1][1];
+    if(!ax&&!ay)continue;
+    if(!bx&&!by)continue;
+    let d=Math.abs(Math.atan2(ay,ax)-Math.atan2(by,bx))*180/Math.PI;
+    if(d>180)d=360-d;
+    if(d>worst)worst=d;
+  }
+  return worst;
+}
+function fbCat(m){
+  if(!m||m.length<2)return'X';
+  const n=m.length;
+  const dx=m[n-1][0]-m[0][0];
+  const dy=m[0][1]-m[n-1][1];
+  if(Math.abs(dx)<FB_DIAN&&Math.abs(dy)<FB_DIAN)return'I';
+  if(fbTurn(m)>=FB_TURN)return'Z';
+  const a=Math.atan2(dy,dx)*180/Math.PI;
+  if(a>=-70&&a<30)return'X';
+  if(a>=30&&a<70)return'N';
+  if(a>=70&&a<=110)return'S';
+  return'P';
+}
+function fbBuild(M){
+  if(!Array.isArray(M)||M.length<FB_NMIN||M.length>FB_NMAX)return null;
+  const cats=[];
+  for(let i=0;i<M.length;i++){
+    const st=M[i];
+    if(!Array.isArray(st)||st.length<1)return null;
+    cats.push(fbCat(st));
+  }
+  const seen={};
+  for(let i=0;i<cats.length;i++)seen[cats[i]]=1;
+  const D=Object.keys(seen).length;
+  return {n:cats.length,cats:cats,D:D};
+}
+/* ---- 某位之后，这一类笔形下一次再被举起来是第几位客人（不再来 = -1）---- */
+function fbNext(cats,k,c){for(let j=k+1;j<cats.length;j++)if(cats[j]===c)return j;return -1}
+/* ---- 一双按策略行事的手：逐位栈距 + 每次腾位掀了哪格 ---- */
+function fbSim(g,policy){
+  const sh=[],used=[],born=[],sd=[],ev=[];
+  const last={};
+  let miss=0;
+  for(let k=0;k<g.n;k++){
+    const c=g.cats[k];
+    const at=sh.indexOf(c);
+    if(at>=0){
+      sd.push([k,last[c]===undefined?0:k-last[c]]);
+      used[at]=k;last[c]=k;
+      continue;
+    }
+    miss++;last[c]=k;
+    if(sh.length<FB_C){sh.push(c);used.push(k);born.push(k);ev.push([k,-1,false]);continue}
+    const pick=policy(k,c,sh,used,born,g.cats);
+    sh[pick]=c;used[pick]=k;born[pick]=k;
+    ev.push([k,pick,true]);
+  }
+  let e=0;for(let i=0;i<ev.length;i++)if(ev[i][2])e++;
+  return {miss:miss,ev:ev,evict:e,sd:sd,hits:sd.length};
+}
+/* ---- 手一 · 老朝奉 LRU：绝不看未来，掀最久没被要的那格 ---- */
+function fbLru(g){
+  return fbSim(g,function(k,c,sh,used){
+    let p=0;for(let s=1;s<sh.length;s++)if(used[s]<used[p])p=s;return p;
+  });
+}
+/* ---- 探针 · FIFO：掀上架最早的那格（既不看未来也不看使用，第三条腿）---- */
+function fbFifo(g){
+  return fbSim(g,function(k,c,sh,used,born){
+    let p=0;for(let s=1;s<sh.length;s++)if(born[s]<born[p])p=s;return p;
+  });
+}
+/* ---- 手二 · 翻书手 Belady：掀以后最晚才用上的那格，永不再来的先掀 ---- */
+function fbBelady(g){
+  return fbSim(g,function(k,c,sh,used,born,cats){
+    let p=-1,pn=-1;
+    for(let s=0;s<sh.length;s++){
+      const nx=fbNext(cats,k,sh[s]);
+      if(nx<0)return s;
+      if(nx>pn){pn=nx;p=s}
+    }
+    return p<0?0:p;
+  });
+}
+/* ---- 手三 · 穷举：每一次腾位把每一格都试一遍（记忆化全搜索，一条不落）---- */
+function fbBrute(g){
+  const memo={};
+  let steps=0;
+  function go(k,state){
+    if(k>=g.n)return 0;
+    const key=k+'|'+state;
+    if(memo[key]!==undefined)return memo[key];
+    steps++;
+    const sh=state===''?[]:state.split(',');
+    const c=g.cats[k];
+    const at=sh.indexOf(c);
+    let best;
+    if(at>=0)best=go(k+1,state);
+    else if(sh.length<FB_C){const t=sh.slice();t.push(c);best=1+go(k+1,t.join(','))}
+    else{
+      best=Infinity;
+      for(let s=0;s<sh.length;s++){const t=sh.slice();t[s]=c;const v=1+go(k+1,t.join(','));if(v<best)best=v}
+    }
+    memo[key]=best;
+    return best;
+  }
+  return {K:go(0,''),steps:steps,go:go};
+}
+/* ---- 岔口账：沿正着走一遍，数几次腾位面前摆着坑（掀错要赔）---- */
+function fbFork(g,E){
+  const sh=[];
+  let dec=0,free=0,ev=0;
+  for(let k=0;k<g.n;k++){
+    const c=g.cats[k];
+    if(sh.indexOf(c)>=0)continue;
+    if(sh.length<FB_C){sh.push(c);continue}
+    const cur=E.go(k,sh.join(','));
+    let good=-1,cnt=0;
+    for(let s=0;s<FB_C;s++){
+      const t=sh.slice();t[s]=c;
+      if(1+E.go(k+1,t.join(','))===cur){cnt++;if(good<0)good=s}
+    }
+    if(cnt<FB_C)dec++;else free++;
+    sh[good]=c;ev++;
+  }
+  return {dec:dec,free:free,evict:ev};
+}
+/* ---- 过闸判定：这一摊能不能上台（与 _fbgeo.cjs 同一条一条的闸）---- */
+function fbGate(g,B,R,E,FT,maxSD){
+  if(g.D<FB_DMIN||g.D>FB_DMAX)return '类目数出格';
+  if(g.D<=FB_C)return '架够宽不用腾';
+  if(B.evict<FB_EVMIN||B.evict>FB_EVMAX)return '腾位次数出格';
+  if(E.K!==B.miss)return '穷举与翻书手对不上';
+  if(R.miss-B.miss<FB_GAPMIN)return '老朝奉不吃亏';
+  if(B.hits<FB_HITMIN)return '命中太少';
+  if(maxSD<FB_SDMIN)return '隔位不够深';
+  if(FT.evict!==B.evict)return '两双手数不对';
+  if(FT.dec<FB_CHMIN)return '岔口太少';
+  return '';
+}
+/* ---- 一摊的账（缓存：同一字重复摊不重算）---- */
+const fbCache={};
+function fbAudit(ch,j){
+  if(!ch)return null;
+  if(!fbCache[ch]){
+    const M=Array.isArray(j)?j:((j&&j.M)||null);
+    let r=null;
+    if(M){
+      const g=fbBuild(M);
+      if(g){
+        const B=fbBelady(g),R=fbLru(g),Fp=fbFifo(g),E=fbBrute(g),FT=fbFork(g,E);
+        let maxSD=0;
+        for(let i=0;i<B.sd.length;i++)if(B.sd[i][1]>maxSD)maxSD=B.sd[i][1];
+        const why=fbGate(g,B,R,E,FT,maxSD);
+        r={ch:ch,n:g.n,cats:g.cats,D:g.D,B:B.miss,R:R.miss,Fp:Fp.miss,K:E.K,
+          ev:B.evict,hits:B.hits,sd:B.sd.map(x=>x[1]),evAt:B.ev.map(x=>[x[0],x[1],x[2]]),
+          dec:FT.dec,free:FT.free,maxSD:maxSD,why:why,
+          hard:(R.miss-B.miss)*10+FT.dec*2+g.n+maxSD};
+      } else r={ch:ch,why:'笔形不成人形'};
+    } else r={ch:ch,why:'没字料'};
+    fbCache[ch]=r;
+  }
+  return fbCache[ch];
+}
+function fbPass(ch){const a=fbCache[ch];return !!(a&&a.why==='')}
+
+/* ==== 📚 笔顺翻书坊 · 第三节：版面（常用架 / 未来书带 / 三双手牌 / 米字格墨）与主循环 ==== */
+function fbEl(id){return document.getElementById(id)}
+function fbTxt(id,s){const e=fbEl(id);if(e)e.textContent=s}
+function fbHtml(id,s){const e=fbEl(id);if(e)e.innerHTML=s}
+function fbTag(s){const e=fbEl('fbTag');if(e)e.textContent=s}
+let fbInk=null,fbIctx=null,fbGen=0;
+
+/* ---- 两处帘子的唯一开关：屏上所有派生读数都走这两个谓词（掀帘一起点亮）---- */
+function fbTellOn(){return !fbNoTell(fby.lv)||fby.peekMs>0}
+function fbDimOn(){return !fbDim(fby.lv)||fby.peekMs>0}
+
+/* ---- 绑定：选项 · 架格 · 家什 · 键位 ---- */
+function fbBind(){
+  if(fby.bound)return;
+  fby.bound=true;
+  for(let i=0;i<4;i++){
+    const b=fbEl('fbOpt'+i);
+    if(b)b.addEventListener('click',function(){fbAnswer(i)});
+  }
+  /* 架格是每次重画的，手指只能落在容器上（委托）*/
+  const box=fbEl('fbShelf');
+  if(box)box.addEventListener('click',function(e){
+    const t=e.target&&e.target.closest?e.target.closest('.fb-slot'):null;
+    if(!t)return;
+    const s=Number(t.getAttribute('data-slot'));
+    if(s>=0&&s<FB_C)fbEvict(s);
+  });
+  const p=fbEl('fbPeek');if(p)p.addEventListener('click',function(){fbPeek()});
+  const v=fbEl('fbCalc');if(v)v.addEventListener('click',function(){fbCalc()});
+  const sw=fbEl('fbSwap');if(sw)sw.addEventListener('click',function(){fbSwapNight()});
+  const hb=fbEl('fbHelpBtn');if(hb)hb.addEventListener('click',function(){fbHelp()});
+  const qb=fbEl('fbQuitBtn');if(qb)qb.addEventListener('click',function(){fbQuit('手动弃摊')});
+  const rb=fbEl('fbReBtn');if(rb)rb.addEventListener('click',function(){fbStart(true)});
+  const rh=fbEl('fbReHome');if(rh)rh.addEventListener('click',function(){fbLeave('home')});
+  window.addEventListener('keydown',function(e){
+    if(!fby.run||currentMode!=='fb')return;
+    const k=e.key;
+    if(k>='1'&&k<='4'){fbAnswer(Number(k)-1);e.preventDefault();return}
+    if(fby.phase==='evict'&&(k==='q'||k==='Q')){fbEvict(0);e.preventDefault();return}
+    if(fby.phase==='evict'&&(k==='w'||k==='W')){fbEvict(1);e.preventDefault();return}
+    if(k==='p'||k==='P'){fbPeek();e.preventDefault();return}
+    if(k==='v'||k==='V'){fbCalc();e.preventDefault();return}
+    if(k==='s'||k==='S'){fbSwapNight();e.preventDefault();return}
+    if(k==='h'||k==='H'){fbHelp();e.preventDefault();return}
+    if(k==='g'||k==='G'){fbQuit('弃摊');e.preventDefault();return}
+    if(k==='r'||k==='R'){if(fby.over)fbStart(true);e.preventDefault();return}
+  });
+}
+
+/* ---- 称号档：一辈子接完的摊数决定第几夜 ---- */
+function fbLvOf(w){return Math.max(1,Math.min(9,1+Math.floor(w/FB_LETTERS)))}
+function fbKill(){if(fby.rafId)cancelAnimationFrame(fby.rafId);fby.rafId=0;fbClearTimers();fbSparkClear()}
+
+/* ---- 开摊 ---- */
+function fbStart(again){
+  fbKill();
+  fbGen++;
+  const g=fbGen;
+  fby.gen=g;
+  fbBind();
+  const w=fbNum('nights');
+  fby.lv=fbLvOf(w);fby.ni=0;fby.score=0;fby.hearts=FB_HEARTS;fby.combo=0;fby.maxCombo=0;fby.nights=0;
+  fby.guestsAll=0;fby.saved=0;fby.saves=0;fby.perfN=0;fby.tightN=0;fby.quickN=0;fby.cleanN=0;
+  fby.evictAll=0;fby.wrongAll=0;fby.waitAll=0;fby.wordTools=0;fby.rounds=fbNum('rounds');
+  fby.peekN=FB_P0.peek;fby.calcN=FB_P0.calc;fby.swapN=FB_P0.swap;
+  fby.peekUse=0;fby.calcUse=0;fby.swapUse=0;fby.quits=0;fby.quitsAll=0;
+  fby.peekMs=0;fby.calcMs=0;fby.evMs=0;fby.helpMs=0;fby.sealMs=0;fby.handMs=0;
+  fby.tools=0;fby.swaps=0;fby.wrong=0;fby.heartsLost=0;fby.overBy=0;fby.myMissTotal=0;fby.tiersDone=0;fby.cleanRound=0;
+  fby.gain=0;fby.penSum=0;
+  fby.seen=[];fby.shelfGet=[];fby.stamp='';fby.over=false;fby.run=true;fby.phase='load';fby.load=true;
+  fby.lamp0=fbLampMs(fby.lv);fby.lamp=fby.lamp0;
+  fby.pool=[];fby.poolLv=-1;fby.miss=[];fby.fresh=0;
+  /* 摊还没开就把上一摊的版面一并收走：书带、架、题、钟都不许留着旧账冒充新摊 */
+  fby.rec=null;fby.ch='';fby.n=0;fby.cats=[];fby.idx=0;fby.served=0;fby.waited=0;
+  fby.shelf=[];for(let s=0;s<FB_C;s++)fby.shelf.push(null);
+  fby.lastAt={};fby.shelfHot=-1;fby.myMiss=0;fby.myEv=0;fby.wrongEv=0;fby.freeEv=0;
+  fby.opts=[];fby.ans='';fby.qKind='';fby.reveal='';fby.qMs=0;fby.qMs0=0;
+  fby.case0=0;fby.caseMs=0;fby.bestSlot=-1;fby.bestSet=[];fby.calcSlot=-1;fby.evFlash=-1;fby.sel=0;
+  fby.t=0;fby.playMs=0;fby.last=0;fby.spark=[];fby.helpMs=0;fby.busy=false;
+  /* 门牌：本坊自己点屏（与全站新坊同一套路），并把 currentMode 交给本坊 —— 主循环与键盘都认这块门牌 */
+  currentMode='fb';
+  const sc=fbEl('screen-fb');
+  if(sc){document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});sc.classList.add('active')}
+  const ov=fbEl('fbOver');if(ov)ov.style.display='none';
+  fbTag('📚 正在挑字……');
+  fbSay('📚 摊头正在找那种「不回头替老主顾留格、偏要你看得见未来才少腾位」的字……');
+  fbRenderHud();fbRenderTally();fbRenderMeters();fbRenderShelf();fbRenderStrip();fbRenderGate();
+  fbFillPool();
+  fby.last=performance.now();
+  fby.rafId=requestAnimationFrame(fbLoop);
+}
+function fbNudge(){/* 别的坊开了摊：称号条跟着走 */
+  const e=fbEl('fbRank');if(e){const r=fbRankOf(fbNum('nights'));e.textContent=r.e+' '+r.t}
+}
+
+/* ---- 主循环：三支钟 + 掀帘 + 火花 ---- */
+function fbTick(dt){
+  if(!fby.run)return;
+  fby.playMs+=dt*1000;
+  /* 局灯 */
+  if(fby.lamp>0){
+    fby.lamp-=dt*1000;
+    if(fby.lamp<=0){fby.lamp=0;fbRenderMeters();fbRoundOut();return}
+  }
+  /* 掀帘：两处一起灭，灭了就得把整屏派生读数重画 */
+  if(fby.peekMs>0){
+    fby.peekMs-=dt*1000;
+    if(fby.peekMs<=0){fby.peekMs=0;fbRenderShelf();fbRenderStrip();fbRenderTally();fbRenderHud()}
+  }
+  if(fby.calcMs>0){
+    fby.calcMs-=dt*1000;
+    if(fby.calcMs<=0){fby.calcMs=0;fbRenderShelf()}
+  }
+  if(fby.evMs>0){fby.evMs-=dt*1000;if(fby.evMs<=0){fby.evMs=0;fbRenderShelf()}}
+  if(fby.helpMs>0){fby.helpMs-=dt*1000;if(fby.helpMs<=0){fby.helpMs=0;fbSay(fbIdleSay())}}
+  if(fby.sealMs>0){fby.sealMs-=dt*1000;if(fby.sealMs<=0){fby.sealMs=0;fbRenderTally()}}
+  if(fby.handMs>0){fby.handMs-=dt*1000;if(fby.handMs<=0){fby.handMs=0;fbNextGuest()}}
+  if(fby.phase==='load'){fbFillPool();return}
+  if(fby.phase==='ask'&&fby.qMs>0){
+    fby.qMs-=dt*1000;
+    if(fby.qMs<=0){fby.qMs=0;fbAskOut();return}
+  }
+  if(fby.phase==='serve'||fby.phase==='evict'){
+    /* 待客不许拖：架上的决策也吃夜钟，但没有额外的小钟（孩子得自己拿主意）*/
+  }
+  if(fby.caseMs>0){
+    fby.caseMs-=dt*1000;
+    if(fby.caseMs<=0){fby.caseMs=0;fbNightOut();return}
+  }
+  fbFx(dt);
+}
+function fbLoop(ts){
+  if(!fby.run||currentMode!=='fb')return;
+  fby.rafId=requestAnimationFrame(fbLoop);
+  const dt=Math.min(.08,Math.max(0,(ts-(fby.last||ts))/1000));
+  fby.last=ts;fby.t+=dt;
+  fbTick(dt);
+  fbRenderMeters();
+}
+/* ---- 顶上那行字：两支钟都报数，屏上=结算=落盘同一本账 ---- */
+function fbTopClock(){
+  const e=fbEl('fbTime');
+  if(!e)return;
+  e.textContent='这一摊 '+(fby.case0?((Math.max(0,fby.caseMs))/1000).toFixed(1):'--')+' 秒 · 这一局 '+((Math.max(0,fby.lamp))/1000).toFixed(0)+' 秒';
+}
+
+/* ---- 常用架：FB_C 格，每格摆一类笔形 + 隔位（第 6 夜起蒙上）---- */
+function fbShelfDepth(s){
+  /* 这一格上次被供是第几位客人，与现在之间隔了几位 */
+  const s0=fby.shelf[s];
+  if(!s0||s0.last<0)return -1;
+  return fby.idx-s0.last;
+}
+function fbRenderShelf(){
+  const box=fbEl('fbShelf');
+  if(!box)return;
+  const dim=fbDimOn();
+  let h='';
+  for(let s=0;s<FB_C;s++){
+    const it=fby.shelf[s];
+    const key=it?it.cat:'';
+    const K=it?fbKind(key):null;
+    const dep=fbShelfDepth(s);
+    let cls='fb-slot';
+    if(!it)cls+=' empty';
+    if(K)cls+=' fb-'+K.c;
+    if(fby.phase==='evict')cls+=' pick';
+    if(fby.sel===s&&fby.phase==='evict')cls+=' sel';
+    if(fby.peekMs>0&&fby.phase==='evict'&&fby.bestSlot===s)cls+=' best';
+    if(fby.calcMs>0&&fby.calcSlot===s)cls+=' auto';
+    if(fby.evFlash===s&&fby.evMs>0)cls+=(fby.evGood?' good':' bad');
+    h+='<div class="'+cls+'" id="fbSlot'+s+'" data-slot="'+s+'">'+
+      '<span class="k">'+(K?K.g:'·')+'</span>'+
+      '<b>'+(K?K.n:'空')+'</b>'+
+      '<s class="dep">'+(dim&&it?(dep<0?'—':dep+' 位没来'):'—')+'</s>'+
+      '<i class="no">'+(s+1)+'</i>'+
+    '</div>';
+  }
+  box.innerHTML=h;
+  const t=fbEl('fbShelfTip');
+  if(t)t.textContent=fby.phase==='evict'?'🫴 架上正没有他要的这一类：点一格掀下来（键盘 Q/W）':(fby.phase==='ask'?'🪑 客人正在进口举牌，先说清他要哪一类':'📚 常用架 '+FB_C+' 格：留哪格、掀哪格，都是你的主意');
+}
+
+/* ---- 未来书带：整子笔顺摊开（第 4 夜起盖上布）---- */
+function fbRenderStrip(){
+  const box=fbEl('fbStrip');
+  if(!box)return;
+  const tell=fbTellOn();
+  let h='<div class="fb-striphead">'+(tell?'📜 摊头把这一子的未来全摊开了 · 每一位客人举的牌从左到右':'📜 摊头把未来收了进去 · 只看眼下这一位')+'</div>';
+  h+='<div class="fb-cards">';
+  for(let i=0;i<fby.n;i++){
+    const c=fby.cats[i];
+    const K=fbKind(c);
+    let cls='fb-card fb-'+c;
+    if(i<fby.idx)cls+=' past';
+    else if(i===fby.idx)cls+=' now';
+    else if(i===fby.idx+1)cls+=' soon';
+    if(!tell&&i>fby.idx)cls+=' veil';
+    if(fby.peekMs>0&&i>fby.idx)cls+=' lit';
+    h+='<span class="'+cls+'">'+(tell||i<=fby.idx?K.g:'？')+'<em>'+(i+1)+'</em></span>';
+  }
+  h+='</div>';
+  box.innerHTML=h;
+}
+
+/* ---- 三双手的牌：翻书手 B · 老朝奉 R · 我自己的账（第 6 夜起 B/R 蒙上）---- */
+function fbRenderTally(){
+  const box=fbEl('fbTally');
+  if(!box)return;
+  const lit=fbDimOn();/* 亮着才报数：帘子落下去就把 B/R 与省的次数蒙上 */
+  const B=fby.rec?fbAud('B'):0,R=fby.rec?fbAud('R'):0;
+  const my=fby.myMiss;
+  const saved=R-my;
+  /* 中途不许拿老朝奉整摊的账去比自己半摊的账：只比他在同一位客人身上摆了几次 */
+  const sealed=fby.phase==='seal'||fby.phase==='over';
+  const upto=sealed?R:(fby.rPre&&fby.served>0?fby.rPre[Math.min(fby.n-1,fby.served-1)]:my);
+  let h='';
+  /* 三双手共用的账 = 摆牌次数（添架与掀旧换新都算一次），写「腾」会和添架那句打脸 */
+  h+='<span class="tb naive">'+(lit?'👴 老朝奉不回头看未来，要摆 <b>'+R+'</b> 次':'👴 老朝奉要摆 <b>?</b> 次')+'</span>';
+  h+='<span class="tb smart">'+(lit?'📖 翻书手摊开未来只需 <b>'+B+'</b> 次':'📖 翻书手看未来最少摆 <b>?</b> 次')+'</span>';
+  h+='<span class="tb mine">🫴 我已摆 <b>'+my+'</b> 次'+(lit&&fby.rec?(sealed?' · 比老朝奉省 <b>'+(saved>0?saved:0)+'</b> 次':' · 同一步老朝奉已摆 <b>'+upto+'</b> 次'):'')+'</span>';
+  h+='<span class="tb gate">'+(fby.rec?('🎟️ 这一摊的题面：最少 '+fby.rec.K+' 次（穷举与翻书手一字不差）'):'🎟️ 摊还没开')+'</span>';
+  box.innerHTML=h;
+}
+function fbAud(k){return fby.rec?(fby.rec[k]||0):0}
+
+/* ---- 进口：眼下这一位客人举的牌 ---- */
+function fbRenderGate(){
+  const e=fbEl('fbGate');
+  if(!e)return;
+  if(!fby.rec){e.innerHTML='<b>🚪 摊还没开</b>';return}
+  if(fby.idx>=fby.n){e.innerHTML='<b>🪊 这一摊的客人接完了</b>';return}
+  const c=fby.cats[fby.idx];
+  const K=fbKind(c);
+  /* 门牌上那句话说的是「这一位客人刚才怎么被招待的」：架上摆完新牌再看架子，
+     添架和腾位都会被读成命中，所以认待客那一步记下的账，不认眼前的架子 */
+  const sk=fby.serveKind;
+  const after=sk==='hit'?'🎉 架上正有这一类：命中':
+    (sk==='add'?'🪧 空架上一格：新牌已摆上':
+      (sk==='evict'?(fby.phase==='evict'?'🫴 架上没有：掀哪一格？':'🫴 掀掉旧牌：这一格换上了新牌')
+        :(fby.shelfFull()?'🫴 架上没有：掀哪一格？':'🪧 架上还空着：直接摆上去')));
+  e.innerHTML='<b>🚪 第 '+(fby.idx+1)+' 位客人进门</b>'+
+    '<span class="gcard '+K.c+'" id="fbGCard">'+K.g+' '+K.n+'</span>'+
+    '<span class="gq">'+(fby.phase==='ask'?(fbTellOn()?'他要的是书带上第 '+(fby.idx+1)+' 张牌那一类 · 你说清是哪一类':'他举着牌，你说清是哪一类笔形'):after)+'</span>';
+}
+
+/* ----  HUD：称号 / 心 / 连击 / 摊账 / 闸门账 / 命中灯 ---- */
+function fbIdleSay(){
+  return '📚 你当掌柜：一位客人要一类笔形。<b>架上有 ⇒ 命中</b>，赏文按他<b>隔了几位客人</b>才回门；'+
+    '<b>架上没有 ⇒ 你得挑一格掀下来</b>。摊头把整子的<b>未来摊在书带上</b> —— 掀掉那格「以后最晚才再要」的，就少腾一次位。'+
+    '<br>👴 老朝奉绝不看未来（只掀最久没被要的），过闸的每一摊他都要<b>多腾位</b>';
+}
+function fbRenderHud(){
+  const r=fbRankOf(fby.nights+fbNum('nights'));
+  fbTxt('fbRank',r.e+' '+r.t);
+  let hs='';for(let i=0;i<fby.hearts;i++)hs+='♥';
+  const e1=fbEl('fbHearts');if(e1){e1.textContent=hs||'♥♥♥ 没了';e1.className=fby.hearts<=1?'low':''}
+  fbTxt('fbLv','第 '+fby.lv+' 夜');
+  fbTxt('fbLedCombo','🔥 连对 '+fby.combo+' · 最长 '+fby.maxCombo);
+  fbTxt('fbLedWord','🌙 这一夜接到第 '+(fby.ni+1)+'/'+(fbLetters(fby.lv).length||FB_LETTERS)+' 摊 · 一辈子接完 '+fbNum('nights')+' 摊');
+  const g=fbEl('fbLedGate');
+  if(g){
+    if(fby.rec)g.textContent=(fbDimOn()?'🎟️ 翻书手 '+fby.rec.B+' · 老朝奉 '+fby.rec.R+' · 穷举 '+fby.rec.K:'🌱 闸门账蒙着');
+    else g.textContent='🌱 摊还没开';
+  }
+  const L=fbEl('fbHitLight');
+  if(L){
+    L.className='light'+(fby.hitOk>0?' on':'');
+    L.textContent=fby.hitOk?(FB_KINDS.some(k=>k.c===fby.lastHitCat)?'💡 命中 · 隔 '+fby.lastSd+' 位':'💡 命中'):'💡 等命中';
+  }
+  fbTxt('fbScore',''+fby.score);
+  const bar=fbEl('fbLedSnap');
+  if(bar)bar.textContent='🧾 '+fby.served+'/'+fby.n+' 位 · 掀错 '+fby.wrongEv+' 次';
+  fbTopClock();
+}
+
+/* ---- 四支尺：夜钟 / 举牌钟 / 局灯 / 待客账 ---- */
+function fbRenderMeters(){
+  const set=function(id,frac){const e=fbEl(id);if(e)e.style.width=Math.max(0,Math.min(100,frac*100))+'%'};
+  set('fbBarCase',fby.case0?fby.caseMs/Math.max(1,fby.case0):0);
+  set('fbBarIdle',fby.qMs0?fby.qMs/Math.max(1,fby.qMs0):0);
+  set('fbBarLamp',fby.lamp0?fby.lamp/Math.max(1,fby.lamp0):0);
+  set('fbBarLed',fby.n?fby.idx/fby.n:0);
+  const c=fbEl('fbBarCaseL');if(c)c.textContent='⏳ 这一摊 '+(fby.case0?(fby.caseMs/1000).toFixed(1):'--')+' 秒';
+  const i=fbEl('fbBarIdleL');if(i)i.textContent=fby.phase==='ask'?'🔔 举牌 '+(fby.qMs/1000).toFixed(1)+' 秒':'🔔 举牌 停';
+  const l=fbEl('fbBarLampL');if(l)l.textContent='🌙 这一局 '+(fby.lamp/1000).toFixed(0)+' 秒';
+  const d=fbEl('fbBarLedL');if(d)d.textContent='🧾 '+fby.served+'/'+fby.n+' 位 · 摆 '+fby.myMiss+' 次';
+  const b1=fbEl('fbPeek'),b2=fbEl('fbCalc'),b3=fbEl('fbSwap');
+  if(b1&&b1.querySelector('b'))b1.querySelector('b').textContent='剩 '+fby.peekN;
+  if(b2&&b2.querySelector('b'))b2.querySelector('b').textContent='剩 '+fby.calcN;
+  if(b3&&b3.querySelector('b'))b3.querySelector('b').textContent='剩 '+fby.swapN;
+}
+
+/* ---- 选项 ---- */
+function fbRenderOpts(){
+  for(let i=0;i<4;i++){
+    const b=fbEl('fbOpt'+i);
+    if(!b)continue;
+    const o=fby.opts[i];
+    if(!o){b.textContent='—';b.className='wl-opt';b.dataset.value='';continue}
+    b.textContent=o.g+' '+o.n;
+    b.className='wl-opt'+(fby.ans&&o.c===fby.ans?(fby.phase==='done'?' correct':''):'');
+    if(o.c===fby.reveal)b.classList.add('reveal');
+    b.dataset.value=o.c;
+  }
+}
+
+/* ---- 米字格：这一子的模样，接好一笔描金一笔 ---- */
+function fbPX(x){return FB_IX0+x/1000*(FB_IX1-FB_IX0)}
+function fbPY(y){return FB_IY1-y/1000*(FB_IY1-FB_IY0)}
+function fbRenderInk(){
+  if(!fbInk){const cv=fbEl('fbInk');if(!cv)return;fbInk=cv;fbIctx=cv.getContext('2d')}
+  const ctx=fbIctx,W=fbInk.width,H=fbInk.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='#e8d8b8';ctx.lineWidth=1;
+  ctx.strokeRect(2,2,W-4,H-4);
+  ctx.setLineDash([3,3]);
+  ctx.beginPath();ctx.moveTo(W/2,2);ctx.lineTo(W/2,H-2);ctx.moveTo(2,H/2);ctx.lineTo(W-2,H/2);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(2,2);ctx.lineTo(W-2,H-2);ctx.moveTo(W-2,2);ctx.lineTo(2,H-2);ctx.stroke();
+  ctx.setLineDash([]);
+  const M=fby.rec&&fby.rec.M;
+  if(!M){fbHtml('fbInkCap','这一子的模样<br><b>摊开了就看得见</b>');return}
+  for(let i=0;i<M.length;i++){
+    const st=M[i];
+    if(!Array.isArray(st)||st.length<2)continue;
+    const done=i<fby.idx,now=i===fby.idx;
+    ctx.lineWidth=done?3.6:(now?4.2:2.2);
+    ctx.strokeStyle=done?'#2e7d32':(now?'#FF6F00':'rgba(60,60,60,.22)');
+    ctx.lineCap='round';
+    ctx.beginPath();
+    for(let p=0;p<st.length;p++){
+      const x=fbPX(st[p][0]),y=fbPY(st[p][1]);
+      if(p===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+  }
+  fbHtml('fbInkCap','「'+fby.ch+'」'+fby.n+' 笔 '+fby.D+' 类笔形<br><b>'+(fby.idx<fby.n?'第 '+(fby.idx+1)+' 位客人正在举牌':'客人全接完了')+'</b>');
+}
+
+/* ---- 架是否满 · 眼下这位要不要腾位（产品自己的门，探针也只走这里）---- */
+fby.shelfFull=function(){
+  for(let s=0;s<FB_C;s++)if(!fby.shelf[s])return false;
+  return true;
+};
+
+/* ==== 📚 笔顺翻书坊 · 第四节：挑字池 · 开摊 · 出题 · 待客（命中 / 腾位）==== */
+
+function fbRnd(){fby.seed=(fby.seed*1103515245+12345)&0x7fffffff;return fby.seed/0x7fffffff}
+
+/* ---- 挑字池：只收「这一摊过闸」的字（三双手对不上、老朝奉不吃亏的一律不上台）---- */
+function fbFillPool(){
+  const L=fby.lv;
+  if(fby.poolLv===L&&fby.pool.length)return;
+  const letters=fbLetters(L);
+  if(!letters){fby.poolLv=L;fby.pool=[];fby.miss=[];fbStartCase();return}
+  fby.poolLv=L;
+  fby.pool=[];fby.miss=[];
+  for(let i=0;i<letters.length;i++){
+    const ch=letters[i];
+    if(fby.pool.length>=FB_LETTERS)break;
+    const d=charDataCache[ch];
+    if(!d||!d.medians){fby.miss.push(ch);continue}
+    const a=fbAudit(ch,d.medians);
+    if(!a||a.why!==''){fby.miss.push(ch);continue}
+    fby.pool.push(ch);
+  }
+  if(!fby.pool.length){/* 这一串一个字都没料：把缺的记下来，往后退一夜再挑 */
+    fby.load=true;
+    fbSay('🌱 这一夜的字号还在路上（缺料 '+fby.miss.length+' 个）……');
+    return;
+  }
+  fby.load=false;
+  fby.ni=0;
+  fbStartCase();
+}
+function fbAudLoad(ch){
+  const d=charDataCache[ch];
+  if(!d||!d.medians)return null;
+  const a=fbAudit(ch,d.medians);
+  return (a&&a.why==='')?a:null;
+}
+
+/* ---- 开一摊（一夜一串，一摊一字）---- */
+function fbStartCase(){
+  const pool=fby.pool;
+  if(!pool.length){fbRoundOut();return}
+  const ch=pool[fby.ni%pool.length];
+  const a=fbAudLoad(ch);
+  if(!a){fby.ni++;fbStartCase();return}
+  const d=charDataCache[ch];
+  fby.ch=ch;
+  fby.rec={ch:ch,M:d.medians,n:a.n,cats:a.cats.slice(),D:a.D,B:a.B,R:a.R,Fp:a.Fp,K:a.K,
+    ev:a.ev,hits:a.hits,sd:a.sd.slice(),dec:a.dec,maxSD:a.maxSD,hard:a.hard};
+  fby.n=a.n;fby.cats=a.cats.slice();fby.D=a.D;
+  /* 老朝奉走到第 k 位客人身上摆了几次牌：中途那条对比只能拿这一列的同一步来比 */
+  const lr=fbLru({n:a.n,cats:a.cats});
+  fby.rPre=[];let lmc=0,lmi=0;
+  for(let k=0;k<a.n;k++){while(lmi<lr.ev.length&&lr.ev[lmi][0]<=k){lmc++;lmi++}fby.rPre.push(lmc)}
+  fby.idx=0;fby.shelf=[];for(let s=0;s<FB_C;s++)fby.shelf.push(null);
+  fby.lastAt={};
+  fby.myMiss=0;fby.myEv=0;fby.wrongEv=0;fby.freeEv=0;fby.served=0;fby.waited=0;fby.coldHit=0;
+  fby.err=0;fby.errSum=0;fby.comboKeep=fby.combo;
+  fby.nightWen=0;fby.caseTools=0;fby.maxSdCase=0;fby.hitOk=0;fby.serveKind='';
+  fby.bestSlot=-1;fby.bestSet=[];fby.calcSlot=-1;fby.evFlash=-1;fby.evGood=false;
+  fby.phase='ask';fby.busy=false;fby.reveal='';
+  fby.case0=fbNightMs(fby.lv);fby.caseMs=fby.case0;fby.caseUsed=1;
+  fby.quickMs=0;fby.quickOk=1;
+  fby.fresh=fbDexHas(ch)?0:1;
+  fby.seen.push(ch);
+  fbTag('📚 第 '+(fby.ni+1)+' 摊 ·「'+ch+'」');
+  fbBuildAsk();
+  fbSay('📚「'+ch+'」'+fby.n+' 位客人照笔顺进门。摊头把未来摊在书带上了：'+
+    (fbTellOn()?'第 '+(fby.idx+1)+' 位举的是哪一类，架上没有时你要替他掀一格':'这一夜起摊头把未来收了进去 —— 只能凭架上摆着的猜'));
+  fbRenderAll();
+}
+
+/* ---- 出题：这一笔是哪一类笔形 / 这一子一共几笔（题面钉死在字料上）---- */
+function fbBuildAsk(){
+  const k=fby.idx;
+  if(k>=fby.n){fby.phase='done';fbRenderGate();return}
+  const c=fby.cats[k];
+  const count=(fby.n>=6&&fbRnd()<.35);
+  fby.opts=[];fby.reveal='';
+  if(count){
+    fby.qKind='count';fby.ans=''+fby.n;
+    const nums=[fby.n];
+    const near=[];
+    for(let v=Math.max(2,fby.n-3);v<=fby.n+3;v++)if(v!==fby.n)near.push(v);
+    while(nums.length<4&&near.length){nums.push(near.splice(Math.floor(fbRnd()*near.length),1)[0])}
+    while(nums.length<4)nums.push(fby.n+nums.length+1);
+    fby.opts=nums.map(v=>({c:''+v,g:'',n:v+' 笔'}));
+    fbAsk('🧮「'+fby.ch+'」一共有几笔？<small>数清了才招呼得起客人</small>');
+  }else{
+    fby.qKind='kind';fby.ans=c;
+    const pool=[];
+    for(let i=0;i<FB_KINDS.length;i++)if(FB_KINDS[i].c!==c)pool.push(FB_KINDS[i]);
+    for(let i=pool.length-1;i>0;i--){const j=Math.floor(fbRnd()*(i+1));const t=pool[i];pool[i]=pool[j];pool[j]=t}
+    const picked=[fbKind(c)].concat(pool.slice(0,3));
+    fby.opts=picked.map(K=>({c:K.c,g:K.g,n:K.n}));
+    fbAsk('🪧 第 <b>'+(k+1)+'</b> 位客人要的那一笔 ——「'+fby.ch+'」的第 '+(k+1)+' 笔是哪一类笔形？'+
+      '<small>'+(fbTellOn()?'书带上第 '+(k+1)+' 张牌就写着这一笔的模样':'这一张牌被摊头收走了，凭这一子的模样想')+'</small>');
+  }
+  /* 打乱选项，正确答案只存在 fby.ans 里 */
+  for(let i=fby.opts.length-1;i>0;i--){const j=Math.floor(fbRnd()*(i+1));const t=fby.opts[i];fby.opts[i]=fby.opts[j];fby.opts[j]=t}
+  fby.qMs0=fbAskMs(fby.lv);fby.qMs=fby.qMs0;
+  fby.nags=0;
+  fbRenderOpts();fbRenderGate();fbRenderHud();fbRenderMeters();
+}
+function fbAsk(html){const e=fbEl('fbAsk');if(e)e.innerHTML=html}
+
+/* ---- 举牌钟走尽：客人白等一息（照样要待客，账不跳位）---- */
+function fbAskOut(){
+  if(fby.phase!=='ask')return;
+  fby.waited++;fby.waitAll++;
+  fbScore(-FB_P_MISS,'白等一息');
+  fbBad();
+  fby.reveal=fby.ans;
+  fby.combo=0;
+  fbSay('🕯 举牌的钟走尽：这位客人白等了一息（-'+FB_P_MISS+' 文），牌还是要接的');
+  fby.err++;
+  if(fby.err>=FB_ERR_LINE){fby.err=0;fbLoseHeart('客人等到睡着了')}
+  fbRenderOpts();
+  fby.phase='serve';fby.busy=false;
+  fbLater(FB_WRONG_MS,function(){fbServe(true)});
+}
+
+/* ---- 答一道题 ---- */
+function fbAnswer(i){
+  if(!fby.run||fby.busy)return;
+  if(fby.phase!=='ask')return;
+  const o=fby.opts[i];
+  if(!o)return;
+  const right=o.c===fby.ans;
+  if(right){
+    fby.combo++;
+    if(fby.combo>fby.maxCombo)fby.maxCombo=fby.combo;
+    const base=fby.qKind==='count'?FB_GUEST_WEN+2:FB_GUEST_WEN;
+    const bonus=Math.min(6,fby.combo-1)*2;
+    fbScore(base+bonus,'答对笔形');
+    fbDing(fby.combo);
+    fby.hitOk=0;
+    fbSay('✅ 对喽：这一笔是'+(fby.qKind==='count'?fby.ch+'一共 '+fby.n+' 笔':'「'+fbKind(fby.ans).n+'」这一类')+'。客人上柜');
+    fby.phase='serve';
+    fbRenderOpts();
+    fbLater(FB_POP_MS,function(){fbServe(false)});
+  }else{
+    fby.combo=0;
+    fby.waited++;fby.waitAll++;
+    fbScore(-FB_P_MISS,'答错笔形');
+    fbBad();
+    fby.reveal=fby.ans;
+    fby.err++;
+    if(fby.err>=FB_ERR_LINE){fby.err=0;fbLoseHeart('两回没认出笔形')}
+    fbRenderOpts();
+    fbSay('❌ 这一笔不是「'+o.n+'」：正确的那一类亮在牌上（-'+FB_P_MISS+' 文）。客人白等，但牌还得接');
+    fby.phase='serve';
+    fbLater(FB_WRONG_MS,function(){fbServe(true)});
+  }
+  fby.busy=true;
+  fbLater(1,function(){fby.busy=false});
+}
+
+/* ---- 待客：命中 / 添架 / 腾位 ---- */
+function fbServe(waited){
+  if(!fby.run||fby.phase!=='serve')return;
+  const k=fby.idx,c=fby.cats[k];
+  let at=-1;
+  for(let s=0;s<FB_C;s++)if(fby.shelf[s]&&fby.shelf[s].cat===c)at=s;
+  if(at>=0){
+    /* 命中：赏文按隔位（这位老主顾隔了几位客人又回门）*/
+    const prev=fby.lastAt[c];
+    const dep=prev===undefined?0:k-prev;
+    let wen=FB_GUEST_WEN+FB_SD_WEN*dep;
+    if(dep>=FB_COLD_MIN){wen+=FB_COLD_WEN;fby.coldHit++;fbInc('cold',1)}
+    if(waited)wen=Math.floor(wen/2);
+    fby.lastAt[c]=k;
+    fby.shelf[at]={cat:c,last:k};
+    fbScore(wen,'命中');
+    fby.hitOk=1;fby.lastHitCat=c;fby.lastSd=dep;fby.serveKind='hit';
+    if(dep>fby.maxSdCase)fby.maxSdCase=dep;
+    fby.shelfHot=at;
+    fbBell();
+    fbSay('🎉 命中：架上第 '+(at+1)+' 格正是「'+fbKind(c).n+'」，他隔了 <b>'+dep+'</b> 位客人又回门（+'+wen+' 文）'+
+      (dep>=FB_COLD_MIN?'：这就是替老主顾留格的钱':''));
+    fbSpark(0.5,0.35,10,'#FFD54F');
+    fby.served++;fby.guestsAll++;
+    fbRenderAll();
+    fby.phase='slide';
+    fby.handMs=FB_SLIDE_MS;
+    return;
+  }
+  fby.myMiss++;
+  if(!fby.shelfFull()){
+    let s=0;while(s<FB_C&&fby.shelf[s])s++;
+    fby.shelf[s]={cat:c,last:k};
+    fby.lastAt[c]=k;
+    fby.shelfHot=s;
+    fbScore(waited?2:FB_GUEST_WEN,'添架');
+    fby.serveKind='add';
+    fbSay('🪧 架上还空着第 '+(s+1)+' 格：把「'+fbKind(c).n+'」摆上去（不用腾位）');
+    fby.served++;fby.guestsAll++;
+    fbRenderAll();
+    fby.phase='slide';
+    fby.handMs=FB_SLIDE_MS;
+    return;
+  }
+  /* 架满了：这一步归孩子决定 —— 掀哪一格 */
+  fby.myEv++;fby.evictAll++;
+  const set=fbOptimalSlots(k,c);
+  fby.bestSet=set;
+  fby.bestSlot=set.length?set[0]:-1;
+  fby.phase='evict';
+  fby.serveKind='evict';
+  fby.sel=0;
+  fbSay('🫴 架上两格都没有「'+fbKind(c).n+'」：点一格掀下来（键盘 Q/W）。'+
+    (fbTellOn()?'书带上翻一翻：<b>以后最晚才再要</b>（或不再来）的那格先掀':'这一夜摊头收了未来：只能看架上的隔位数掂量'));
+  fbRenderAll();
+}
+/* ---- 掀对没掀对：真值 = 穷举的余账（掀完之后腾位次数不再多就算对，与题面 K 同一双手）----
+   「以后最晚才再要」的那一格一定在这个集合里（Belady 本就是最优），可并列无亏的不止它一个：
+   拿规则当判据会把不亏的一手判成掀错，屏上那句「第 N 位客人还要它」就成了假话。 */
+function fbOptimalSlots(k,c){
+  const sh=[];
+  for(let s=0;s<FB_C;s++)sh.push(fby.shelf[s]?fby.shelf[s].cat:'');
+  if(!fby.rec)return [];
+  const g=fbBuild(fby.rec.M),E=fbBrute(g);
+  const cur=E.go(k,sh.join(','));
+  const out=[];
+  for(let s=0;s<FB_C;s++){
+    const t=sh.slice();
+    t[s]=c;
+    if(1+E.go(k+1,t.join(','))===cur)out.push(s);
+  }
+  return out;
+}
+function fbEvict(s){
+  if(!fby.run||fby.phase!=='evict')return;
+  if(s<0||s>=FB_C)return;
+  if(!fby.shelf[s])return;
+  const c=fby.cats[fby.idx];
+  const old=fby.shelf[s].cat;
+  const good=fby.bestSet.indexOf(s)>=0;
+  fby.evFlash=s;fby.evGood=good;fby.evMs=FB_EV_MS;
+  if(good){
+    const nx=fbNext(fby.cats,fby.idx,old);
+    if(nx<0){fby.freeEv++;fbScore(FB_FREE_WEN,'掀得妙');}
+    fbScore(FB_GUEST_WEN,'腾位');
+    fby.combo++;
+    if(fby.combo>fby.maxCombo)fby.maxCombo=fby.combo;
+    fbDing(fby.combo);
+    fbSay('👍 掀对喽：「'+fbKind(old).n+'」'+(nx<0?'往后压根不再来':'要到第 '+(nx+1)+' 位才再要')+'，这一格掀得不亏');
+  }else{
+    fby.wrongEv++;fby.wrongAll++;
+    const nx=fbNext(fby.cats,fby.idx,old);
+    fbScore(-FB_P_EVICT,'掀错格');
+    fbBad();
+    fby.combo=0;
+    fbSay('😖 掀错了：「'+fbKind(old).n+'」'+(nx<0?'？它其实不再来，是另一格更该掀':'第 '+(nx+1)+' 位客人还要它')+' —— 待会儿还得再腾一次位（-'+FB_P_EVICT+' 文）');
+  }
+  fby.shelf[s]={cat:c,last:fby.idx};
+  fby.lastAt[c]=fby.idx;
+  fby.shelfHot=s;
+  fby.served++;fby.guestsAll++;
+  fby.phase='slide';
+  fby.handMs=FB_SLIDE_MS;
+  fbRenderAll();
+}
+/* ---- 下一位客人 ---- */
+function fbNextGuest(){
+  if(!fby.run)return;
+  if(fby.phase!=='slide')return;
+  fby.idx++;
+  fby.shelfHot=-1;
+  if(fby.idx>=fby.n){fbCaseDone();return}
+  fby.phase='ask';
+  fby.reveal='';
+  fby.serveKind='';
+  fbBuildAsk();
+  fbRenderAll();
+}
+function fbRenderAll(){
+  fbRenderShelf();fbRenderStrip();fbRenderTally();fbRenderHud();fbRenderMeters();
+  fbRenderOpts();fbRenderGate();fbRenderInk();
+}
+
+/* ==== 📚 笔顺翻书坊 · 第五节：一摊的账（结算）· 心 · 三支钟的收口 · 家什 · 书架 · 说明 · 火花 ====
+   屏上报的数、结算用的数、落盘存的数必须是同一本账：文钱只走 fbScore 这一道门，
+   摊账只在 fbCaseDone 一次结清，局账只在 fbOver 一次写盘。 */
+
+/* ---- 一文一分都记清：唯一的加分减分门 ---- */
+function fbScore(n,why){
+  if(!n)return;
+  fby.score=Math.max(0,fby.score+n);
+  if(n>0)fby.gain+=n;else fby.penSum+=-n;
+  fby.nightWen+=n;
+  fby.hitOk=n>0;fby.hitTxt=why||'';
+  fbRenderHud();
+}
+
+/* ---- 掉一颗心 ---- */
+function fbLoseHeart(why){
+  if(fby.over)return;
+  fby.hearts--;fby.heartsLost++;
+  fbBad();
+  fbSay('💔 掉一颗心：'+(why||'')+'（还剩 '+fby.hearts+' 颗）');
+  fbRenderHud();
+  if(fby.hearts<=0)fbOver('hearts');
+}
+
+/* ---- 一摊接完：省下的腾位次数在这里结账 ---- */
+function fbCaseDone(){
+  if(!fby.run||fby.phase==='seal'||fby.phase==='over')return;
+  const r=fby.rec;
+  fby.phase='seal';fby.busy=true;
+  fby.quickMs=Math.max(0,fby.case0-fby.caseMs);
+  const saved=Math.max(0,r.R-fby.myMiss);      /* 比不回头老朝奉少腾几次 */
+  const perfect=(fby.myMiss===r.B);            /* 与翻书手一字不差（穷举说这就是最少的）*/
+  const tight=(fby.wrongEv===0&&fby.myEv>0);
+  const quick=(fby.quickOk&&fby.quickMs<=fbQuickMs(fby.lv));
+  const clean=(fby.served===fby.n&&fby.waited===0);
+  const nosame=(fby.caseTools===0);
+  fby.saved+=saved;
+  fby.overBy+=Math.max(0,fby.myMiss-r.B);
+  fby.myMissTotal+=fby.myMiss;
+  if(fby.maxSdCase<fby.rec.maxSD)fby.maxSdCase=fby.rec.maxSD;
+  if(saved>0){fby.saves++;fbScore(FB_SAVE_WEN*saved,'比老朝奉省 '+saved+' 次')}
+  if(perfect){fby.perfN++;fbScore(FB_PERFECT_WEN,'一回没多摆')}
+  if(tight){fby.tightN++;fbScore(FB_TIGHT_WEN,'一回没掀错')}
+  if(quick){fby.quickN++;fbScore(FB_QUICK_WEN,'眼快')}
+  if(fby.fresh){fby.cleanN++;fbScore(FB_FRESH_WEN,'头一回摊这一子');fbDexAdd(fby.ch)}
+  /* 落盘：摊数 · 客数 · 省下的次数 · 掀错的次数 · 冷格回门 */
+  fbInc('nights',1);fbInc('guests',fby.served);
+  if(saved>0)fbInc('saved',saved);
+  if(fby.wrongEv>0)fbInc('wrong',fby.wrongEv);
+  fby.nights++;
+  /* 赊账簿：一路接到底就把这一子划掉，没接好就记上一笔 */
+  if(perfect&&clean)fbBookDel(fby.ch);
+  else fbBookPush(fby.ch,(perfect?'没多摆':'多摆 '+(fby.myMiss-r.B)+' 次')+'·掀错 '+fby.wrongEv+' 次·白等 '+fby.waited+' 位');
+  const got=fbShelfGiveAll();
+  fbSeal();fbSpark(.5,.42,18,'#FFD54F');
+  fbSay('🧾 一摊账：招呼 <b>'+fby.served+'</b> 位 · 摆牌 <b>'+fby.myMiss+'</b> 次（添架 '+(fby.myMiss-fby.myEv)+' 回 · 掀旧换新 '+fby.myEv+' 回，题面最少 '+r.K+' 次）· '+
+    '老朝奉要 '+r.R+' 次 ⇒ 省 <b>'+(saved>0?saved:0)+'</b> 次'+
+    (perfect?'：一回都没多摆！':'：还差 '+(fby.myMiss-r.B)+' 次才追上翻书手')+
+    (tight?' · 一回没掀错':'')+(quick?' · 眼快':'')+(got.length?' · 🎒 添进书架：'+got.join('、'):'')+
+    '（+'+fby.nightWen+' 文）');
+  fby.nightWen=0;
+  fbRenderTally();fbRenderHud();
+  fbLater(FB_SEAL_OUT,function(){fbNextCase()});
+}
+
+/* ---- 下一摊 / 这一串的十摊接完升一夜 ---- */
+function fbNextCase(){
+  if(!fby.run)return;
+  fby.busy=false;
+  fby.ni++;
+  if(fby.ni>=fby.pool.length||fby.ni>=FB_LETTERS){fbNightDone();return}
+  fbStartCase();
+}
+function fbNightDone(){
+  fby.ni=0;fby.poolLv=-1;fby.pool=[];
+  if(fby.lv<9)fby.lv++;
+  fby.tiersDone++;
+  fby.hearts=Math.min(FB_HEART_MAX,fby.hearts+1);
+  if(fby.tools===0)fby.cleanRound=1;
+  fbSeal();fbSpark(.5,.3,26,'#80DEEA');
+  fbSay('🌙 这一串接完了：升第 <b>'+fby.lv+'</b> 夜（还回一颗心，剩 '+fby.hearts+' 颗）· 新一夜的帘子又厚一层');
+  fbFillPool();
+  if(fby.phase!=='load')fbStartCase();
+}
+
+/* ---- 夜钟走完：客人还在门口站着 ---- */
+function fbNightOut(){
+  if(!fby.run||fby.phase==='seal'||fby.phase==='over'||fby.phase==='out')return;
+  fby.phase='out';
+  fby.quickOk=0;
+  fbScore(-FB_P_OUT,'夜钟走尽');
+  fbBookPush(fby.ch,'夜钟走尽 · 已接 '+fby.served+'/'+fby.n+' 位');
+  fbLoseHeart('夜钟走尽：还有 '+(fby.n-fby.idx)+' 位客人在门口站到打烊');
+  if(fby.over)return;
+  fbNextCase();
+}
+
+/* ---- 收摊：局钟走完 / 心尽 / 弃摊 / 池空 ---- */
+function fbRoundOut(){fbOver('lamp')}
+function fbOver(why){
+  if(fby.over)return;
+  fby.over=true;fby.run=false;fby.phase='over';
+  fbKill();
+  const best=fbNum('best');
+  fby.newBest=fby.score>best;
+  if(fby.newBest)fbPut('best',fby.score);
+  fbInc('rounds',1);
+  const got=fbShelfGiveAll();
+  const txt={lamp:'⏺ 这一局的钟走完了',hearts:'💔 心掉完了',quit:'🏳 弃摊收工',pool:'🌱 这一夜没挑出能上台的字',done:'⏺ 摊收了'}[why]||'⏺ 收工';
+  const stars=(why==='quit'||why==='pool')?2:(fby.perfN>=2?12:(fby.perfN?8:(fby.nights?5:2)));
+  const r=fbRankOf(fbNum('nights'));
+  fbTxt('fbRsWhy',txt);
+  fbTxt('fbRsScore','🧾 '+fby.score+' 文'+(fby.newBest?'（新纪录）':'')+' · 破纪录 '+fbNum('best')+' 文');
+  fbTxt('fbRsWords','🌙 接完 '+fby.nights+' 摊（'+fby.tiersDone+' 串）· 局号 '+(fbNum('rounds')+1)+' · 连对最长 '+fby.maxCombo);
+  fbTxt('fbRsStars','⭐ +'+stars);
+  fbTxt('fbRsErr','✗ 掀错 '+fby.wrongAll+' 次 · 白等 '+fby.waitAll+' 位 · 省下一共 '+fby.saved+' 次摆牌 · 比题面多摆 '+fby.overBy+' 次');
+  fbTxt('fbRsShelf','🎒 书架：'+(got.length?('添进 '+got.join('、')):(fby.shelfGet.length?('添进 '+fby.shelfGet.join('、')):'（这一把一件没添）'))+' · 一共 '+fbShelfNow().filter(Boolean).length+'/'+FB_SHELF.length+' 件');
+  fbTxt('fbRsRank',r.e+' '+r.t+' · 一辈子接完 '+fbNum('nights')+' 摊 · 第 '+fby.lv+' 夜');
+  const ov=fbEl('fbOver');if(ov)ov.style.display='flex';
+  fbSay('🧾 摊收了：'+txt+' · 这一把 <b>'+fby.score+'</b> 文 · <code>R</code> 再来一把');
+}
+
+/* ---- 弃摊：眼下这一摊不接了（连弃三摊就收工）---- */
+function fbQuit(why){
+  if(!fby.run||fby.over)return;
+  fbScore(-FB_P_QUIT,'弃摊');
+  fbBookPush(fby.ch,why||'弃摊');
+  fby.quits++;fby.quitsAll++;
+  fbTag('🏳 弃了这一摊');
+  if(fby.quits>=3){fbOver('quit');return}
+  fbNextCase();
+}
+
+/* ---- 离场：把这一坊的钟全掐掉，回到实验室或首页 ---- */
+function fbLeave(where){
+  fbKill();fby.run=false;fby.over=false;
+  currentMode=where==='home'?'home':'lab';
+  document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});
+  const t=where==='home'?document.getElementById('screen-home'):document.getElementById('screen-lab');
+  if(t)t.classList.add('active');
+  try{updateHomeStats&&updateHomeStats()}catch(e){}
+}
+
+/* ---- 三件家什：🔎 看未来 / 🧮 代掀一格 / 🔁 换一摊 ---- */
+function fbToolCost(){fby.tools++;fby.wordTools++;fbScore(-FB_P_TOOL,'借家什')}
+function fbPeek(){
+  if(!fby.run)return;
+  if(fby.peekN<=0){fbSay('🈳 🔎 看未来的家什用完了（一夜只借 '+FB_P0.peek+' 回）');return}
+  fby.peekN--;fby.peekUse++;fby.caseTools++;fbToolCost();
+  fby.peekMs=FB_PEEK_MS;
+  fby.tellOff=1;fby.dim=1;
+  fbSlide();
+  fbSay('🔎 帘子掀开 '+(FB_PEEK_MS/1000).toFixed(1)+' 秒：未来的书带、架上的隔位数、三双手的牌一起亮回来');
+  fbRenderAll();
+}
+function fbCalc(){
+  if(!fby.run)return;
+  if(fby.phase!=='evict'){fbSay('🧮 代掀只在「架上没有、要腾位」的时候管用');return}
+  if(fby.calcN<=0){fbSay('🈳 🧮 代掀的家什用完了（一夜只借 '+FB_P0.calc+' 回）');return}
+  fby.calcN--;fby.calcUse++;fby.caseTools++;fbToolCost();
+  fby.calcSlot=fby.bestSlot;fby.calcMs=FB_CALC_MS;
+  fbSlide();
+  fbSay('🧮 代掀：这一回摊头替你把第 '+(fby.bestSlot+1)+' 格亮出来（自己数一遍：它以后最晚才再要）');
+  fbRenderShelf();
+  fbLater(FB_CALC_HIT,function(){
+    if(!fby.run||fby.phase!=='evict'||fby.calcSlot<0)return;
+    const s=fby.calcSlot;fby.calcSlot=-1;fby.calcMs=0;
+    fbEvict(s);
+  });
+}
+function fbSwapNight(){
+  if(!fby.run)return;
+  if(fby.swapN<=0){fbSay('🈳 🔁 换一摊的家什用完了（一把只借 '+FB_P0.swap+' 回）');return}
+  fby.swapN--;fby.swapUse++;fby.caseTools++;fby.swaps++;
+  fbScore(-FB_SWAP_PEN,'换一摊');
+  fbBookPush(fby.ch,'换了一摊');
+  if(fby.pool.length>1)fby.pool.push(fby.pool.shift());
+  fbSay('🔁 换一摊：这一子的客人先请回去（-'+FB_SWAP_PEN+' 文），换隔壁那一摊');
+  fbStartCase();
+}
+
+/* ---- 书架：8 件，一眼数得清的终身账 ---- */
+function fbShelfNow(){
+  const g=[],shelf=(fbGet('shelf','')||'').split('|');
+  const has=function(k){return shelf.indexOf(k)>=0};
+  g[0]=(fby.maxSdCase>=6)||has(FB_SHELF[0].k);
+  g[1]=(fby.wrongEv===0&&fby.myEv>0)||has(FB_SHELF[1].k);
+  g[2]=(fby.served===fby.n&&fby.waited===0)||has(FB_SHELF[2].k);
+  g[3]=(fby.caseTools===0&&fby.served>0)||has(FB_SHELF[3].k);
+  g[4]=(fby.lv>=FB_SHELF_LV)||has(FB_SHELF[4].k);
+  g[5]=(fby.tools===0&&fby.served>0)||has(FB_SHELF[5].k);
+  let badges=0;try{badges=(localStorage.getItem('hz_badges')||'').split('|').filter(function(x){return x}).length}catch(e){}
+  g[6]=(badges>=3)||has(FB_SHELF[6].k);
+  g[7]=(fbNum('guests')>=400)||has(FB_SHELF[7].k);
+  return g;
+}
+function fbShelfGiveAll(){
+  const g=fbShelfNow(),shelf=(fbGet('shelf','')||'').split('|').filter(function(x){return x});
+  const added=[];
+  for(let i=0;i<FB_SHELF.length;i++){
+    if(!g[i])continue;
+    if(shelf.indexOf(FB_SHELF[i].k)<0){shelf.push(FB_SHELF[i].k);added.push(FB_SHELF[i].k)}
+    if(fby.shelfGet.indexOf(FB_SHELF[i].k)<0)fby.shelfGet.push(FB_SHELF[i].k);
+  }
+  if(added.length)fbPut('shelf',shelf.join('|'));
+  return added;
+}
+
+/* ---- 说明 ---- */
+function fbHelpText(){
+  return '📚 <b>笔顺翻书坊</b>：这一子的每一笔 = 一位客人，他进门只举一张牌 ——「我要 <b>横 / 竖 / 撇 / 捺 / 点 / 折</b> 这一类」。'+
+    '柜台后只有 <b>'+FB_C+' 格常用架</b>：架上正有他要的这一类 ⇒ <b>命中</b>；架上没有 ⇒ 你挑<b>掀哪一格</b>把旧牌取下、把新牌摆上。<br>'+
+    '🎟️ <b>同一格只摆一类</b> ⇒ 客人照<b>笔顺</b>一位位进门，怎么摆都在所难免，比的只是<b>摆牌几次</b>（空架添上、掀旧换新都算一次）。'+
+    '摊头把整子的<b>未来摊成一条书带</b>：掀掉那一格「以后最晚才再要（或压根不再来）」的，就少腾一次 —— 这条狠话数学上叫 <b>Belady 最优</b>。<br>'+
+    '👴 <b>老朝奉对照</b>：他绝不回头看未来，每回只掀<b>最久没被要</b>的那格（LRU）。过闸的每一摊他都<b>比翻书手多腾位</b>，你看得见书带，就该替他省下来。<br>'+
+    '🧮 <b>三双手</b>：老朝奉（LRU）· 翻书手（Belady）· 穷举（每一次腾位把每一格全试一遍）。翻书手与穷举必须<b>一字不差</b>，老朝奉必须<b>严格吃亏</b>，这一摊才准上台。<br>'+
+    '🪧 每一位客人上柜前先答这一笔的<b>笔形题</b>（是哪一类 / 一共几笔），答错或让举牌钟走完就白等一息，赏文对半。<br>'+
+    '⏳ <b>三支钟</b>：这一摊的客人们（第 1 夜 '+(fbNightMs(1)/1000).toFixed(1)+' 秒）· 举牌（'+(fbAskMs(1)/1000).toFixed(1)+' 秒一位）· 这一局（'+(fbLampMs(1)/1000).toFixed(0)+' 秒）。<br>'+
+    '🎒 书架 8 件 · 称号看一辈子接完几摊 · 家什：🔎 <code>P</code> 看未来 · 🧮 <code>V</code> 代掀一格 · 🔁 <code>S</code> 换一摊 · <code>1~4</code> 答笔形 · <code>Q/W</code> 掀第 1/2 格 · <code>H</code> 说明 · <code>G</code> 弃摊 · <code>R</code> 再来一把';
+}
+function fbHelp(){
+  if(!fby.run)return;
+  fbSay(fbHelpText());
+  fby.helpMs=FB_HELP_MS;
+  fbScore(-FB_P_HELP,'看说明');
+  fbTag('📖 说明写在下面这栏');
+}
+
+/* ---- 火花：飘在案面上，自己会散 ---- */
+function fbSpark(fx,fy,n,color){
+  const box=fbEl('fbStage');if(!box)return;
+  for(let i=0;i<n;i++){
+    const d=document.createElement('i');
+    d.className='fb-spark';
+    d.style.left=(fx*100)+'%';d.style.top=(fy*100)+'%';
+    d.style.background=color||'#FFD54F';
+    d.style.setProperty('--dx',(Math.random()*76-38).toFixed(1)+'px');
+    d.style.setProperty('--dy',(-Math.random()*56-8).toFixed(1)+'px');
+    d.style.animationDelay=(Math.random()*90).toFixed(0)+'ms';
+    box.appendChild(d);
+    fby.spark.push(d);
+    fbLater(640,function(){if(d.parentNode)d.parentNode.removeChild(d)});
+  }
+  if(fby.spark.length>90)fby.spark.splice(0,fby.spark.length-90);
+}
+function fbSparkClear(){
+  const box=fbEl('fbStage');
+  if(box)for(let i=box.children.length-1;i>=0;i--){const d=box.children[i];if(d.classList&&d.classList.contains('fb-spark'))box.removeChild(d)}
+  fby.spark=[];
+}
+function fbFx(dt){
+  if(fby.spark.length>60)fby.spark=fby.spark.filter(function(d){return d.parentNode});
+}
+
+/* ==== 📚 笔顺翻书坊 ⑥：探针桥（只掐帧、喂帧、读数、摆场面；判据一字不动）====
+   段 W/M/K/E/F 全靠这一节把手里的账递出去看，桥本身不算账、不改口径。 */
+
+/* ---- 读数：眼下这一摊的全部账 ---- */
+function fbvState(){
+  const r=fby.rec;
+  return {ok:r?1:0,run:fby.run,over:fby.over,load:fby.load,phase:fby.phase,
+    ch:fby.ch,idx:fby.idx,n:fby.n,D:fby.D,
+    cats:r?r.cats.slice():[],B:r?r.B:0,R:r?r.R:0,Fp:r?r.Fp:0,K:r?r.K:0,
+    ev:r?r.ev:0,hits:r?r.hits:0,sd:r?r.sd.slice():[],dec:r?r.dec:0,maxSD:r?r.maxSD:0,hard:r?r.hard:0,
+    shelf:fby.shelf.map(function(x){return x?x.cat:''}),
+    shelfLast:fby.shelf.map(function(x){return x?x.last:-1}),
+    lastAt:fby.lastAt,myMiss:fby.myMiss,myEv:fby.myEv,wrongEv:fby.wrongEv,freeEv:fby.freeEv,
+    served:fby.served,waited:fby.waited,coldHit:fby.coldHit,maxSdCase:fby.maxSdCase,
+    score:fby.score,hearts:fby.hearts,combo:fby.combo,maxCombo:fby.maxCombo,
+    lv:fby.lv,ni:fby.ni,nights:fby.nights,tiers:fby.tiersDone,perfN:fby.perfN,tightN:fby.tightN,quickN:fby.quickN,
+    saved:fby.saved,saves:fby.saves,overBy:fby.overBy,nightWen:fby.nightWen,
+    caseMs:fby.caseMs,case0:fby.case0,lamp:fby.lamp,lamp0:fby.lamp0,
+    qMs:fby.qMs,qMs0:fby.qMs0,handMs:fby.handMs,sealMs:fby.sealMs,evMs:fby.evMs,
+    peekMs:fby.peekMs,calcMs:fby.calcMs,helpMs:fby.helpMs,
+    peekN:fby.peekN,calcN:fby.calcN,swapN:fby.swapN,tools:fby.tools,swaps:fby.swaps,quits:fby.quits,
+    err:fby.err,errSum:fby.errSum,guestsAll:fby.guestsAll,evictAll:fby.evictAll,wrongAll:fby.wrongAll,waitAll:fby.waitAll,
+    bestSlot:fby.bestSlot,bestSet:fby.bestSet.slice(),calcSlot:fby.calcSlot,evFlash:fby.evFlash,evGood:fby.evGood,
+    sel:fby.sel,reveal:fby.reveal,qKind:fby.qKind,ans:fby.ans,opts:fby.opts.map(function(o){return o?o.c:''}),
+    tell:fbTellOn()?1:0,dimOn:fbDimOn()?1:0,quickOk:fby.quickOk,quickMs:fby.quickMs,
+    fresh:fby.fresh,caseTools:fby.caseTools,
+    pool:fby.pool.length,poolLv:fby.poolLv,shelfFull:fby.shelfFull()?1:0,
+    gain:fby.gain,penSum:fby.penSum,shelfGet:fby.shelfGet.slice()};
+}
+/* ---- 摊内的对表：拿这一摊的字料把三双手重算一遍，与开摊时记的账逐字核 ---- */
+function fbvAud(){
+  const r=fby.rec;
+  if(!r)return {ok:0,why:'摊还没开'};
+  const g=fbBuild(r.M);
+  if(!g)return {ok:0,why:'笔形不成人形'};
+  const B=fbBelady(g),R=fbLru(g),Fp=fbFifo(g),E=fbBrute(g),FT=fbFork(g,E);
+  let maxSD=0;
+  for(let i=0;i<B.sd.length;i++)if(B.sd[i][1]>maxSD)maxSD=B.sd[i][1];
+  const bad=[];
+  if(g.cats.join('')!==r.cats.join(''))bad.push('笔形串重算不符');
+  if(B.miss!==r.B)bad.push('翻书手 '+B.miss+' ≠ 在账 '+r.B);
+  if(R.miss!==r.R)bad.push('老朝奉 '+R.miss+' ≠ 在账 '+r.R);
+  if(Fp.miss!==r.Fp)bad.push('排队探针 '+Fp.miss+' ≠ 在账 '+r.Fp);
+  if(E.K!==r.K)bad.push('穷举 '+E.K+' ≠ 在账 '+r.K);
+  if(E.K!==B.miss)bad.push('穷举 '+E.K+' ≠ 翻书手 '+B.miss+'（摊开未来后 Belady 该是真最优）');
+  if(B.evict!==r.ev)bad.push('腾位次数 '+B.evict+' ≠ 在账 '+r.ev);
+  if(FT.evict!==B.evict)bad.push('岔口手腾位 '+FT.evict+' ≠ 翻书手 '+B.evict);
+  if(FT.dec!==r.dec)bad.push('岔口次数 '+FT.dec+' ≠ 在账 '+r.dec);
+  if(maxSD!==r.maxSD)bad.push('最深隔位 '+maxSD+' ≠ 在账 '+r.maxSD);
+  if(R.miss-B.miss<FB_GAPMIN)bad.push('老朝奉没吃亏：'+R.miss+'−'+B.miss);
+  return {ok:bad.length?0:1,ch:r.ch,n:r.n,D:r.D,B:r.B,R:r.R,Fp:r.Fp,K:r.K,ev:r.ev,dec:r.dec,free:FT.free,
+    maxSD:maxSD,sd:r.sd.slice(),why:bad.join(' · ')};
+}
+/* ---- 眼下这一手的岔口真值：拿穷举的余账把每一格都试一遍 ---- */
+function fbvFork(){
+  const r=fby.rec;
+  if(!r)return {ok:0,why:'摊还没开'};
+  const sh=fby.shelf.map(function(x){return x?x.cat:''});
+  if(sh.some(function(c){return !c}))return {ok:0,why:'架还没满，这一步不用腾位'};
+  const g=fbBuild(r.M),E=fbBrute(g);
+  const c=g.cats[fby.idx];
+  const cur=E.go(fby.idx,sh.join(','));
+  const each=[];
+  for(let s=0;s<FB_C;s++){const t=sh.slice();t[s]=c;each.push(1+E.go(fby.idx+1,t.join(',')))}
+  const good=[];
+  for(let s=0;s<FB_C;s++)if(each[s]===cur)good.push(s);
+  const nxt=[];
+  for(let s=0;s<FB_C;s++)nxt.push(fbNext(g.cats,fby.idx,sh[s]));
+  return {ok:1,k:fby.idx,cur:cur,each:each,good:good,next:nxt,shelf:sh,cats:g.cats.slice(),
+    agree:(good.join(',')===fby.bestSet.join(','))?1:0};
+}
+/* ---- 读数：牌面 · 架 · 书带 · 顶上那行钟 ---- */
+function fbvAns(){
+  return {ok:1,ans:fby.ans,qKind:fby.qKind,opts:fby.opts.map(function(o){return o?o.g+o.n:''}),
+    idx:fby.idx,n:fby.n,reveal:fby.reveal};
+}
+function fbvShelf(){
+  return {ok:1,shelf:fby.shelf.map(function(x){return x?x.cat:''}),depth:fby.shelf.map(function(x,i){return fbShelfDepth(i)}),
+    hot:fby.shelfHot,phase:fby.phase,best:fby.bestSlot,set:fby.bestSet.slice()};
+}
+function fbvStrip(){
+  return {ok:1,cats:fby.cats.slice(),idx:fby.idx,tell:fbTellOn()?1:0,
+    cards:Array.prototype.map.call(document.querySelectorAll('#fbStrip .fb-card'),function(e){return e.className+'|'+e.textContent}).slice(0,fby.n)};
+}
+function fbvDom(){
+  const g=function(id){const e=fbEl(id);return e?e.textContent.trim():''};
+  const h=function(id){const e=fbEl(id);return e?e.innerHTML:''};
+  const w=function(id){const e=fbEl(id);return e?e.style.width:''};
+  return {ok:1,score:g('fbScore'),rank:g('fbRank'),hearts:g('fbHearts'),lv:g('fbLv'),
+    combo:g('fbLedCombo'),word:g('fbLedWord'),gate:g('fbLedGate'),light:g('fbHitLight'),time:g('fbTime'),
+    tag:g('fbTag'),shelfTip:g('fbShelfTip'),tally:h('fbTally'),msg:h('fbMsg'),ask:h('fbAsk'),
+    barCase:w('fbBarCase'),barIdle:w('fbBarIdle'),barLamp:w('fbBarLamp'),barLed:w('fbBarLed'),
+    barCaseL:g('fbBarCaseL'),barIdleL:g('fbBarIdleL'),barLampL:g('fbBarLampL'),barLedL:g('fbBarLedL'),
+    peek:g('fbPeek'),calc:g('fbCalc'),swap:g('fbSwap'),over:h('fbOver'),
+    slotCls:Array.prototype.map.call(document.querySelectorAll('.fb-slot'),function(e){return e.className}),
+    optCls:Array.prototype.map.call(document.querySelectorAll('#fbOpts .wl-opt'),function(e){return e.className+'|'+e.dataset.value})};
+}
+function fbInkPts(st){
+  const out=[];
+  for(let i=0;i<(st||[]).length;i++)out.push([fbPX(st[i][0]),fbPY(st[i][1])]);
+  return out;
+}
+function fbvInk(){
+  const r=fby.rec;
+  if(!r)return {ok:0,why:'摊还没开'};
+  return {ok:1,idx:fby.idx,phase:fby.phase,n:r.n,
+    M:r.M.map(function(st){return fbInkPts(st)}),
+    W:FB_IW,H:FB_IH};
+}
+/* ---- 掐帧喂帧 ---- */
+function fbvStep(ms){
+  if(!fby.run)return {ok:0,why:'没开摊'};
+  const end=fby.t+(ms||16)/1000,t0=fby.t;
+  let guard=0;
+  while(fby.run&&fby.t<end&&guard++<800){
+    const dt=Math.min(.02,Math.max(.0005,end-fby.t));
+    fby.t+=dt;
+    fbTick(dt);
+  }
+  return {ok:1,ms:(fby.t-t0)*1000,phase:fby.phase,idx:fby.idx,caseMs:fby.caseMs,lamp:fby.lamp,
+    score:fby.score,hearts:fby.hearts,over:fby.over,tools:fby.tools};
+}
+function fbvClock(kind,v){
+  if(kind==='case'){fby.caseMs=v;fby.case0=Math.max(fby.case0,v)}
+  else if(kind==='lamp'){fby.lamp=v;fby.lamp0=Math.max(fby.lamp0,v)}
+  else if(kind==='q'){fby.qMs=v;fby.qMs0=Math.max(fby.qMs0,v)}
+  else if(kind==='seal'){fby.sealMs=v}
+  else if(kind==='hand'){fby.handMs=v}
+  else if(kind==='peek'){fby.peekMs=v}
+  else if(kind==='calc'){fby.calcMs=v}
+  else if(kind==='ev'){fby.evMs=v}
+  else if(kind==='help'){fby.helpMs=v}
+  else return {ok:0,why:'没这支钟 '+kind};
+  return {ok:1,kind:kind,v:v};
+}
+function fbvLv(L){
+  fby.lv=L;fby.tellOff=fbNoTell(L)?1:0;fby.dim=fbDim(L)?1:0;
+  fby.poolLv=-1;fby.pool=[];
+  fbTxt('fbLv','第 '+L+' 夜');
+  fbFillPool();
+  return {ok:1,lv:fby.lv,tell:fbTellOn()?1:0,dimOn:fbDimOn()?1:0,ch:fby.ch,pool:fby.pool.length};
+}
+function fbvHeart(n){fby.hearts=n;fbRenderHud();return {ok:1,hearts:fby.hearts}}
+function fbvTool(k,n){
+  if(k==='peek')fby.peekN=n;else if(k==='calc')fby.calcN=n;else if(k==='swap')fby.swapN=n;
+  else return {ok:0,why:'没这件家什 '+k};
+  fbRenderMeters();
+  return {ok:1,k:k,n:n};
+}
+function fbvPool(n){fby.pool.splice(Math.max(0,n|0));return {ok:1,pool:fby.pool.length}}
+function fbvPoolSet(list){fby.pool=(list||[]).slice();fby.poolLv=fby.lv;return {ok:1,pool:fby.pool.length}}
+function fbvNext(){fbNextCase();return {ok:1,ch:fby.ch,ni:fby.ni,lv:fby.lv}}
+
+/* ---- 真动作：答题 · 掀格（与手指走同一条路）---- */
+function fbvAnswer(i){
+  if(!fby.run)return {ok:0,why:'没开摊'};
+  fby.busy=false;
+  fbAnswer(i);
+  return {ok:1,phase:fby.phase,idx:fby.idx,score:fby.score,combo:fby.combo};
+}
+function fbvEvict(s){
+  if(!fby.run)return {ok:0,why:'没开摊'};
+  fbEvict(s);
+  return {ok:1,phase:fby.phase,idx:fby.idx,shelf:fby.shelf.map(function(x){return x?x.cat:''}),
+    wrongEv:fby.wrongEv,score:fby.score};
+}
+function fbvServe(){/* 眼下这一位直接待客（探针跳过笔形题，只验命中/腾位的账）*/
+  if(!fby.run||fby.phase!=='ask')return {ok:0,why:'不在举牌这一步'};
+  fby.phase='serve';fbServe(true);
+  return {ok:1,phase:fby.phase,idx:fby.idx};
+}
+function fbvPeek(){fbPeek();return {ok:1,peekMs:fby.peekMs,peekN:fby.peekN,tell:fbTellOn()?1:0,dimOn:fbDimOn()?1:0}}
+function fbvCalc(){fbCalc();return {ok:1,calcMs:fby.calcMs,calcN:fby.calcN,slot:fby.calcSlot}}
+function fbvSwap(){fbSwapNight();return {ok:1,ch:fby.ch,ni:fby.ni}}
+function fbvHelp(){fbHelp();return {ok:1,score:fby.score,helpMs:fby.helpMs}}
+function fbvQuit(){fbQuit('探针弃摊');return {ok:1,ni:fby.ni,over:fby.over}}
+function fbvOver(w){fbOver(w||'quit');return {ok:1,over:fby.over,score:fby.score}}
+function fbvNightOut(){fbNightOut();return {ok:1,phase:fby.phase,hearts:fby.hearts}}
+function fbvStart(){fbStart(true);return {ok:1}}
+function fbvLetters(L){return {ok:1,letters:fbLetters(L||fby.lv),len:(fbLetters(L||fby.lv)||'').length}}
+function fbvShelfGot(){const a=fbShelfNow(),got=[];for(let i=0;i<FB_SHELF.length;i++)if(a[i])got.push(FB_SHELF[i].k);return {ok:1,got:got}}
+function fbvStore(){
+  const o={};
+  for(let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i);
+    if(k&&k.indexOf('hz_fb_')===0)o[k]=localStorage.getItem(k);
+  }
+  return {ok:1,keys:o};
+}
+/* ---- 摆场面：指定哪一子就摊哪一摊（判据照常走 fbAudit）---- */
+async function fbvOpen(ch){
+  const d=await ctTO(loadCharData(ch),8000);
+  if(!d||!d.medians)return {ok:0,why:'取不到 '+ch+' 的笔顺'};
+  const a=fbAudit(ch,d.medians);
+  if(!a||a.why!=='')return {ok:0,why:ch+' 过不了闸：'+(a?a.why:'没账')};
+  if(!fby.run)return {ok:0,why:'坊还没开（先 fbvStart）'};
+  fby.load=false;
+  fby.pool=[ch];fby.poolLv=fby.lv;fby.ni=0;
+  fbStartCase();
+  return {ok:1,ch:ch,n:a.n,D:a.D,B:a.B,R:a.R,K:a.K,ev:a.ev,dec:a.dec,maxSD:a.maxSD,
+    cats:a.cats.slice(),phase:fby.phase,qKind:fby.qKind};
+}
+/* ---- 对表用的批量手：一次把一批字的三双手全算出来（段 W 逐字与离线闸门比）---- */
+async function fbvBatch(list){
+  const out=[];
+  for(let i=0;i<list.length;i++){
+    const ch=list[i];
+    const d=await ctTO(loadCharData(ch),8000);
+    const a=fbAudit(ch,d&&d.medians?d.medians:null);
+    out.push({ch:ch,n:a.n||0,cats:a.cats?a.cats.join(''):'',D:a.D||0,B:a.B||0,R:a.R||0,Fp:a.Fp||0,
+      K:a.K||0,ev:a.ev||0,hits:a.hits||0,sd:a.sd?a.sd.join(','):'',dec:a.dec||0,free:a.free||0,
+      maxSD:a.maxSD||0,why:a.why||'',hard:a.hard||0});
+  }
+  return {ok:1,rows:out};
+}
+/* ---- 快门用：把钟掐住、把画面钉在要拍的那一手 ---- */
+function fbvFreeze(){if(fby.rafId)cancelAnimationFrame(fby.rafId);fby.rafId=0;return {ok:1,raf:fby.rafId}}
+function fbvDraw(){fbRenderShelf();fbRenderStrip();fbRenderTally();fbRenderHud();fbRenderMeters();fbRenderOpts();fbRenderGate();fbRenderInk();return {ok:1,phase:fby.phase}}
+function fbvHelpHtml(){return {ok:1,html:fbHelpText()}}
 
 
 window.addEventListener('DOMContentLoaded',boot);
